@@ -344,6 +344,219 @@ export default function Home() {
     return Math.max(min, Math.min(max, n));
   }
 
+  const baseUrl = "https://morsewords.com";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${baseUrl}#org`,
+        name: "MorseWords",
+        url: baseUrl,
+        logo: {
+          "@type": "ImageObject",
+          url: "https://cdn.example.com/logo.png",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${baseUrl}#website`,
+        url: baseUrl,
+        name: "MorseWords",
+        inLanguage: "en",
+        publisher: { "@id": `${baseUrl}#org` },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${baseUrl}/#webpage`,
+        url: baseUrl + "/",
+        name: "MorseWords - Translate and Play Morse Code",
+        description:
+          "Clean light-theme Morse translator with audio playback, WPM and tone controls. Separate Text → Morse and Morse → Text tools, plus an upcoming Morse word game.",
+        isPartOf: { "@id": `${baseUrl}#website` },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: "https://cdn.example.com/og/morsewords-home.jpg",
+        },
+        breadcrumb: { "@id": `${baseUrl}/#breadcrumb` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${baseUrl}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${baseUrl}/`,
+          },
+        ],
+      },
+      {
+        "@type": "WebApplication",
+        "@id": `${baseUrl}#app`,
+        name: "MorseWords",
+        applicationCategory: "EducationalApplication",
+        operatingSystem: "All",
+        url: baseUrl + "/",
+        description:
+          "Browser-based Morse translator with audio playback, timing controls, and practice content.",
+        inLanguage: "en",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        publisher: { "@id": `${baseUrl}#org` },
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${baseUrl}#features`,
+        name: "MorseWords Features",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Instant Text to Morse Conversion",
+            url: `${baseUrl}/#t2m`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Accurate Morse to Text Translation",
+            url: `${baseUrl}/#m2t`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Audio Playback with WPM and Tone Controls",
+            url: `${baseUrl}/#audio`,
+          },
+          {
+            "@type": "ListItem",
+            position: 4,
+            name: "Learning Tips and Practice Content",
+            url: `${baseUrl}/#learn`,
+          },
+          {
+            "@type": "ListItem",
+            position: 5,
+            name: "Upcoming Morse Word Game",
+            url: `${baseUrl}/#game`,
+          },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${baseUrl}#faq-translator`,
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "What speed should I start with?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Begin around 15 to 20 WPM, then raise speed as accuracy improves.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Does punctuation work?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. Period, comma, question mark, slash, quotes, hyphen, plus, equals, and more are supported.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Can I listen without converting?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. Paste Morse and use audio playback at your chosen WPM and tone.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Why are spaces required?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Spacing separates symbols and words so the translator can decode correctly. Use three spaces between letters and seven between words.",
+            },
+          },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${baseUrl}#faq-game`,
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Do I need audio to play?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "No. You can decode by reading the code or by listening.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How long is each round?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Rounds are short so you can practice daily without fatigue.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What should I focus on first?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Focus on recognition and spacing. Speed will follow.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Is this good for beginners?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. The game starts simple and grows with your skill.",
+            },
+          },
+        ],
+      },
+      {
+        "@type": "HowTo",
+        "@id": `${baseUrl}#how-to-play`,
+        name: "How to Play the Morse Word Game",
+        description:
+          "Decode Morse, type the correct word, and track your progress.",
+        step: [
+          {
+            "@type": "HowToStep",
+            position: 1,
+            name: "Listen or read the code",
+            text: "Listen to the audio or read the code shown on screen.",
+          },
+          {
+            "@type": "HowToStep",
+            position: 2,
+            name: "Type your guess",
+            text: "Type your guess as plain text and use hints if needed.",
+          },
+          {
+            "@type": "HowToStep",
+            position: 3,
+            name: "Submit and learn",
+            text: "Submit your answer to reveal the correct decoding and earn points.",
+          },
+        ],
+        totalTime: "PT1M",
+        tool: [
+          { "@type": "HowToTool", name: "MorseWords audio player" },
+          { "@type": "HowToTool", name: "MorseWords translator" },
+        ],
+      },
+    ],
+  };
+
   return (
     <div style={styles.page}>
       <div style={styles.wrap}>
@@ -1638,6 +1851,12 @@ export default function Home() {
           © {new Date().getFullYear()} MorseWords. Clean tools for Morse code.
         </footer>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
     </div>
   );
 }
