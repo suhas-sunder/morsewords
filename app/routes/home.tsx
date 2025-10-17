@@ -3,16 +3,18 @@ import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "MorseWords - Translate and Play Morse Code" },
+    {
+      title: "Free Online Morse Code Translator & Audio Player | MorseWords",
+    },
     {
       name: "description",
       content:
-        "Clean light-theme Morse translator with audio playback, WPM and tone controls. Separate Text → Morse and Morse → Text tools. Upcoming Morse word game.",
+        "Instantly convert text to Morse code or decode Morse to text. Hear clean audio with adjustable speed (WPM) and tone. Fast, accurate, and free—learn and practice Morse online.",
     },
     {
       name: "keywords",
       content:
-        "morse code, translator, text to morse, morse to text, cw, wpm, tone, audio",
+        "morse code, morse code translator, text to morse, morse to text, morse code audio, morse code converter, cw, wpm, tone, free morse code tool, online morse translator",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
@@ -108,20 +110,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   siteTitle: { fontWeight: 800, letterSpacing: 0.3, fontSize: "1.15rem" },
   tagline: { color: "#5a616c", fontSize: ".95rem" },
-  pill: {
-    border: "1px solid #e6e8ef",
-    padding: "8px 12px",
-    borderRadius: 999,
-    background: "#fff",
-    color: "#0b2447",
-    fontWeight: 800,
-  },
-  hero: {
-    display: "grid",
-    gridTemplateColumns: "1.2fr 0.8fr",
-    gap: 24,
-    padding: "24px 0",
-  },
+
   h1: {
     fontSize: "clamp(1.8rem, 2.6vw + 1rem, 3rem)",
     lineHeight: 1.15,
@@ -201,6 +190,307 @@ const styles: Record<string, React.CSSProperties> = {
     padding: "28px 0",
   },
 };
+
+import { useEffect, useMemo, useRef, useState } from "react";
+
+interface Props {
+  plainA: string;
+  setPlainA: (v: string) => void;
+  morseA: string;
+  morseB: string;
+  textB: string;
+  setMorseB: (v: string) => void;
+  wpm: number;
+  freq: number;
+  playMorse: (code: string, wpm: number, freq: number) => void;
+  stop: () => void;
+}
+
+function TranslatorSections({
+  wpm,
+  freq,
+  playMorse,
+  stop,
+}: Props) {
+  const [plainA, setPlainA] = useState("");
+  const [morseA, setMorseA] = useState("");
+  const [morseB, setMorseB] = useState("");
+  const [textB, setTextB] = useState("");
+  const [copied, setCopied] = useState<string | null>(null);
+
+  // ---------- Internal Morse map ----------
+  const MORSE: Record<string, string> = {
+    A: ".-", B: "-...", C: "-.-.", D: "-..", E: ".", F: "..-.", G: "--.",
+    H: "....", I: "..", J: ".---", K: "-.-", L: ".-..", M: "--", N: "-.",
+    O: "---", P: ".--.", Q: "--.-", R: ".-.", S: "...", T: "-",
+    U: "..-", V: "...-", W: ".--", X: "-..-", Y: "-.--", Z: "--..",
+    "0": "-----", "1": ".----", "2": "..---", "3": "...--", "4": "....-",
+    "5": ".....", "6": "-....", "7": "--...", "8": "---..", "9": "----.",
+    ".": ".-.-.-", ",": "--..--", "?": "..--..", "'": ".----.", "!": "-.-.--",
+    "/": "-..-.", "(": "-.--.", ")": "-.--.-", "&": ".-...", ":": "---...",
+    ";": "-.-.-.", "=": "-...-", "+": ".-.-.", "-": "-....-", "_": "..--.-",
+    "\"": ".-..-.", "@": ".--.-.",
+  };
+  const REVERSE: Record<string, string> = {};
+  for (const [k, v] of Object.entries(MORSE)) REVERSE[v] = k;
+
+  // ---------- Encode / Decode ----------
+  const encode = (text: string) =>
+    text
+      .toUpperCase()
+      .split(/\s+/)
+      .map(
+        (word) =>
+          [...word]
+            .map((ch) => MORSE[ch] || "")
+            .filter(Boolean)
+            .join("   ")
+      )
+      .join("       "); // 7 spaces between words
+
+  const decode = (morse: string) =>
+    morse
+      .trim()
+      .split(/(?:\s{7,}|\/+)/)
+      .map((word) =>
+        word
+          .trim()
+          .split(/\s{1,6}/)
+          .map((c) => REVERSE[c.trim()] || "")
+          .join("")
+      )
+      .join(" ");
+
+  // ---------- Effects ----------
+  useEffect(() => setMorseA(encode(plainA)), [plainA]);
+  useEffect(() => setTextB(decode(morseB)), [morseB]);
+
+  // ---------- Copy helper ----------
+  const handleCopy = async (text: string, label: string) => {
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(label);
+      setTimeout(() => setCopied(null), 1200);
+    } catch (e) {
+      console.error("Copy failed", e);
+    }
+  };
+
+  // ---------- Validation ----------
+  const ALLOWED = useMemo(() => new Set(Object.keys(MORSE)), []);
+  const unsupportedPlain = useMemo(() => {
+    const u: Record<string, number> = {};
+    for (const ch of plainA.toUpperCase()) {
+      if (!ch.trim()) continue;
+      if (!ALLOWED.has(ch)) u[ch] = (u[ch] || 0) + 1;
+    }
+    return u;
+  }, [plainA]);
+
+  const morseInputIssues = useMemo(() => {
+    const issues: string[] = [];
+    if (morseB) {
+      const bad = morseB.replace(/[.\-\s/]/g, "");
+      if (bad.length)
+        issues.push(
+          `Invalid char${bad.length > 1 ? "s" : ""}: ${[
+            ...new Set(bad),
+          ].join(" ")}`
+        );
+      if (/\s{2,}/.test(morseB) && !/\s{3,}/.test(morseB))
+        issues.push("Tip: use 3 spaces between letters, 7 between words.");
+    }
+    return issues;
+  }, [morseB]);
+
+  const examples = [
+    { label: "HELLO_WORLD", morse: ".... . .-.. .-.. ---   ..--.-   .-- --- .-. .-.. -.." },
+    { label: "CQ", morse: "-.-. --.-" },
+    { label: "SOS", morse: "... --- ..." },
+  ];
+
+  // ---------- UI ----------
+  return (
+    <div className="flex flex-col gap-10 my-8">
+      {/* TEXT → MORSE */}
+      <section className="space-y-4 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+        <h2 className="text-2xl font-bold text-[#0b2447]">Text → Morse</h2>
+
+        <div className="flex flex-wrap gap-2 mt-2">
+          {examples.map((ex) => (
+            <button
+              key={ex.label}
+              onClick={() => setPlainA(ex.label)}
+              className="border border-[#e6e8ef] px-3 py-1 rounded-full text-sm hover:bg-gray-50 active:scale-95 transition"
+            >
+              Try “{ex.label}”
+            </button>
+          ))}
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="plainA" className="font-semibold">
+              Plain Text
+            </label>
+            <textarea
+              id="plainA"
+              className="w-full border rounded-md p-3 font-mono h-40 focus:ring-2 focus:ring-[#0b2447]"
+              value={plainA}
+              onChange={(e) => setPlainA(e.target.value)}
+              autoCapitalize="characters"
+              autoCorrect="off"
+              spellCheck={false}
+            />
+            {Object.keys(unsupportedPlain).length > 0 && (
+              <p className="mt-2 text-xs text-amber-600">
+                Unsupported:{" "}
+                {Object.entries(unsupportedPlain)
+                  .map(([ch, n]) => `${ch}×${n}`)
+                  .join(", ")}{" "}
+                (ignored)
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="morseA" className="font-semibold">
+              Morse Output
+            </label>
+            <textarea
+              id="morseA"
+              className="w-full border rounded-md p-3 font-mono h-40 bg-gray-50"
+              value={morseA}
+              readOnly
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row md:items-center gap-2 relative">
+          <div className="flex gap-2">
+            <button
+              onClick={() => handleCopy(morseA, "morseA")}
+              disabled={!morseA}
+              className={`px-4 py-2 rounded-md font-semibold active:scale-95 transition text-white ${
+                morseA
+                  ? "bg-[#0b2447] hover:bg-[#09203d]"
+                  : "bg-gray-400 cursor-not-allowed"
+              }`}
+            >
+              📋 Copy Morse
+            </button>
+            <button
+              onClick={() => morseA && playMorse(morseA, wpm, freq)}
+              disabled={!morseA}
+              className={`px-4 py-2 rounded-md font-semibold active:scale-95 transition text-white ${
+                morseA
+                  ? "bg-green-600 hover:bg-green-700"
+                  : "bg-gray-400 cursor-not-allowed"
+              }`}
+            >
+              ▶ Play Audio
+            </button>
+            <button
+              onClick={stop}
+              className="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-md hover:bg-gray-300 active:scale-95 transition"
+            >
+              ⏹ Stop
+            </button>
+          </div>
+          {copied === "morseA" && (
+            <span className="absolute left-0 bottom-[-1.5rem] text-sm text-green-600 animate-fade">
+              ✓ Copied!
+            </span>
+          )}
+          <span className="ml-auto text-sm text-gray-500">
+            3 spaces = letters, 7 spaces = words.
+          </span>
+        </div>
+      </section>
+
+      {/* MORSE → TEXT */}
+      <section className="space-y-4 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+        <h2 className="text-2xl font-bold text-[#0b2447]">Morse → Text</h2>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="morseB" className="font-semibold">
+              Morse Input
+            </label>
+            <textarea
+              id="morseB"
+              className="w-full border rounded-md p-3 font-mono h-40 focus:ring-2 focus:ring-[#0b2447]"
+              value={morseB}
+              onChange={(e) => setMorseB(e.target.value)}
+              placeholder="... --- ..."
+              spellCheck={false}
+            />
+            {morseInputIssues.length > 0 && (
+              <p className="mt-2 text-xs text-amber-600">
+                {morseInputIssues.join(" ")}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="textB" className="font-semibold">
+              Text Output
+            </label>
+            <textarea
+              id="textB"
+              className="w-full border rounded-md p-3 font-mono h-40 bg-gray-50"
+              value={textB}
+              readOnly
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row md:items-center gap-2 relative">
+          <div className="flex gap-2">
+            <button
+              onClick={() => handleCopy(textB, "textB")}
+              disabled={!textB}
+              className={`px-4 py-2 rounded-md font-semibold active:scale-95 transition text-white ${
+                textB
+                  ? "bg-[#0b2447] hover:bg-[#09203d]"
+                  : "bg-gray-400 cursor-not-allowed"
+              }`}
+            >
+              📋 Copy Text
+            </button>
+            <button
+              onClick={() => morseB && playMorse(morseB, wpm, freq)}
+              disabled={!morseB}
+              className={`px-4 py-2 rounded-md font-semibold active:scale-95 transition text-white ${
+                morseB
+                  ? "bg-green-600 hover:bg-green-700"
+                  : "bg-gray-400 cursor-not-allowed"
+              }`}
+            >
+              ▶ Play Audio
+            </button>
+            <button
+              onClick={stop}
+              className="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-md hover:bg-gray-300 active:scale-95 transition"
+            >
+              ⏹ Stop
+            </button>
+          </div>
+          {copied === "textB" && (
+            <span className="absolute left-0 bottom-[-1.5rem] text-sm text-green-600 animate-fade">
+              ✓ Copied!
+            </span>
+          )}
+          <span className="ml-auto text-sm text-gray-500">
+            3 spaces = letters, 7 spaces = words.
+          </span>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 
 function LogoBars() {
   return (
@@ -322,6 +612,417 @@ function morseToText(code: string): string {
         .join("")
     )
     .join(" ");
+}
+
+function MorseStats({ morse, wpm }: { morse: string; wpm: number }) {
+  // --- calculate Morse timing units and estimated duration ---
+  const calculateMorseUnits = (morse: string) => {
+    let units = 0;
+    let symbols = 0;
+    const chars = morse.trim().split("");
+
+    for (let i = 0; i < chars.length; i++) {
+      const c = chars[i];
+      if (c === ".") {
+        units += 1;
+        symbols++;
+      } else if (c === "-") {
+        units += 3;
+        symbols++;
+      } else if (c === " ") {
+        // detect multiple spaces (letter/word gap)
+        const spaceCount = morse.slice(i).match(/^ +/)?.[0].length || 1;
+        if (spaceCount >= 7) units += 7;
+        else if (spaceCount >= 3) units += 3;
+        else units += 1;
+        i += spaceCount - 1;
+      }
+    }
+
+    return { units, symbols };
+  };
+
+  const { units, symbols } = calculateMorseUnits(morse);
+  const dotDuration = 1200 / wpm; // ms per dot
+  const totalMs = Math.round(units * dotDuration);
+  const seconds = (totalMs / 1000).toFixed(2);
+
+  // --- render UI ---
+  return (
+    <div className="flex flex-wrap items-center gap-3 text-sm bg-gray-50 px-3 py-2 rounded-md border border-gray-200 mt-3">
+      <span className="font-semibold text-[#0b2447]">{symbols}</span> symbols •
+      <span className="font-semibold text-[#0b2447]">{units}</span> units • ≈{" "}
+      <span className="font-semibold text-[#0b2447]">{seconds}</span> s @ {wpm}{" "}
+      WPM
+    </div>
+  );
+}
+
+const pairs = [
+  { letter: "A", morse: ".-" },
+  { letter: "B", morse: "-..." },
+  { letter: "C", morse: "-.-." },
+  { letter: "D", morse: "-.." },
+  { letter: "E", morse: "." },
+  { letter: "F", morse: "..-." },
+  { letter: "G", morse: "--." },
+  { letter: "H", morse: "...." },
+  { letter: "I", morse: ".." },
+  { letter: "J", morse: ".---" },
+  { letter: "K", morse: "-.-" },
+  { letter: "L", morse: ".-.." },
+  { letter: "M", morse: "--" },
+  { letter: "N", morse: "-." },
+  { letter: "O", morse: "---" },
+  { letter: "P", morse: ".--." },
+  { letter: "Q", morse: "--.-" },
+  { letter: "R", morse: ".-." },
+  { letter: "S", morse: "..." },
+  { letter: "T", morse: "-" },
+  { letter: "U", morse: "..-" },
+  { letter: "V", morse: "...-" },
+  { letter: "W", morse: ".--" },
+  { letter: "X", morse: "-..-" },
+  { letter: "Y", morse: "-.--" },
+  { letter: "Z", morse: "--.." },
+  // Add these below your existing A–Z list
+  { letter: "0", morse: "-----" },
+  { letter: "1", morse: ".----" },
+  { letter: "2", morse: "..---" },
+  { letter: "3", morse: "...--" },
+  { letter: "4", morse: "....-" },
+  { letter: "5", morse: "....." },
+  { letter: "6", morse: "-...." },
+  { letter: "7", morse: "--..." },
+  { letter: "8", morse: "---.." },
+  { letter: "9", morse: "----." },
+
+  // Common punctuation
+  { letter: ".", morse: ".-.-.-" },
+  { letter: ",", morse: "--..--" },
+  { letter: "?", morse: "..--.." },
+  { letter: "'", morse: ".----." },
+  { letter: "!", morse: "-.-.--" },
+  { letter: "/", morse: "-..-." },
+  { letter: "(", morse: "-.--." },
+  { letter: ")", morse: "-.--.-" },
+  { letter: "&", morse: ".-..." },
+  { letter: ":", morse: "---..." },
+  { letter: ";", morse: "-.-.-." },
+  { letter: "=", morse: "-...-" },
+  { letter: "+", morse: ".-.-." },
+  { letter: "-", morse: "-....-" },
+  { letter: "_", morse: "..--.-" },
+  { letter: '"', morse: ".-..-." },
+  { letter: "$", morse: "...-..-" },
+  { letter: "@", morse: ".--.-." },
+
+  // Procedural signs (prosigns / abbreviations)
+  { letter: "AR (End of message)", morse: ".-.-." },
+  { letter: "AS (Wait)", morse: ".-..." },
+  { letter: "BK (Break)", morse: "-...-.-" },
+  { letter: "BT (New paragraph)", morse: "-...-" },
+  { letter: "CL (Going off air)", morse: "-.-..-.." },
+  { letter: "CT (Start of transmission)", morse: "-.-.-" },
+  { letter: "HH (Error)", morse: "........" },
+  { letter: "KA (Attention)", morse: "-.-.-" },
+  { letter: "KN (Over to you only)", morse: "-.--." },
+  { letter: "SK (End of contact)", morse: "...-.-" },
+  { letter: "SOS (Distress)", morse: "...---..." },
+  { letter: "CQ (Calling any station)", morse: "-.-.- --.-" },
+
+  // Additional ham / signal abbreviations
+  { letter: "QRZ (Who is calling me?)", morse: "--.- .-. --.." },
+  { letter: "QTH (My location is...)", morse: "--.- - ...." },
+  { letter: "QSL (I acknowledge receipt)", morse: "--.- ... .-.." },
+  { letter: "QSO (Radio contact)", morse: "--.- ... ---" },
+  { letter: "QRM (Interference)", morse: "--.- .-. --" },
+  { letter: "QRN (Static)", morse: "--.- .-. -." },
+  { letter: "QRP (Low power)", morse: "--.- .-. .--." },
+  { letter: "QRQ (Send faster)", morse: "--.- .-. --.-" },
+  { letter: "QRS (Send slower)", morse: "--.- .-. ..." },
+  { letter: "QRT (Stop sending)", morse: "--.- .-. -" },
+  { letter: "QRU (Have you anything for me?)", morse: "--.- .-. ..-" },
+  { letter: "QRV (I am ready)", morse: "--.- .-. ...-" },
+  { letter: "QRX (Stand by)", morse: "--.- .-. -..-" },
+  { letter: "QSB (Your signal is fading)", morse: "--.- ... -..." },
+  { letter: "QSL (Acknowledged)", morse: "--.- ... .-.." },
+  { letter: "QSY (Change frequency)", morse: "--.- ... -.--" },
+  { letter: "QTH (Location)", morse: "--.- - ...." },
+  { letter: "QTR (Time)", morse: "--.- - .-." },
+
+  // Greetings
+  { text: "HELLO", morse: ".... . .-.. .-.. ---" },
+  { text: "HI", morse: ".... .." },
+  { text: "HEY", morse: ".... . -.--" },
+  { text: "WELCOME", morse: ".-- . .-.. -.-. --- -- ." },
+  { text: "GOOD MORNING", morse: "--. --- --- -..   -- --- .-. -. .. -. --." },
+  { text: "GOOD NIGHT", morse: "--. --- --- -..   -. .. --. .... -" },
+
+  // Courtesy
+  { text: "PLEASE", morse: ".--. .-.. . .- ... ." },
+  { text: "THANK YOU", morse: "- .... .- -. -.-   -.-- --- ..-" },
+  { text: "SORRY", morse: "... --- .-. .-. -.--" },
+  { text: "YES", morse: "-.-- . ..." },
+  { text: "NO", morse: "-. ---" },
+  { text: "MAYBE", morse: "-- .- -.-- -... ." },
+
+  // Everyday communication
+  { text: "HOW ARE YOU", morse: ".... --- .--   .- .-. .   -.-- --- ..-" },
+  { text: "I LOVE YOU", morse: "..   .-.. --- ...- .   -.-- --- ..-" },
+  { text: "THANKS", morse: "- .... .- -. -.- ..." },
+  { text: "BYE", morse: "-... -.-- ." },
+  { text: "SEE YOU", morse: "... . .   -.-- --- ..-" },
+
+  // Simple emotions
+  { text: "HAPPY", morse: ".... .- .--. .--. -.--" },
+  { text: "SAD", morse: "... .- -.." },
+  { text: "LOVE", morse: ".-.. --- ...- ." },
+  { text: "PEACE", morse: ".--. . .- -.-. ." },
+
+  // Emergency / utility
+  { text: "SOS", morse: "... --- ..." },
+  { text: "HELP", morse: ".... . .-.. .--." },
+  { text: "EMERGENCY", morse: ". -- . .-. --. . -. -.-. -.--" },
+  { text: "STOP", morse: "... - --- .--." },
+  { text: "FIRE", morse: "..-. .. .-." },
+  { text: "CALL 911", morse: "-.-. .- .-.. .-..   ----. .---- .----" },
+
+  // Common nouns
+  { text: "DOG", morse: "-.. --- --." },
+  { text: "CAT", morse: "-.-. .- -" },
+  { text: "TREE", morse: "- .-. . ." },
+  { text: "SUN", morse: "... ..- -." },
+  { text: "MOON", morse: "-- --- --- -." },
+  { text: "STAR", morse: "... - .- .-." },
+
+  // Numbers / dates
+  { text: "ONE TWO THREE", morse: "--- -. .   - .-- ---   - .... .-. . ." },
+  { text: "123", morse: ".---- ..--- ...--" },
+  { text: "2025", morse: "..--- ----- ..--- ....." },
+  { text: "TIME", morse: "- .. -- ." },
+
+  // Radio / procedural
+  { text: "CQ", morse: "-.-. --.-" },
+  { text: "OVER", morse: "--- ...- . .-." },
+  { text: "OUT", morse: "--- ..- -" },
+  { text: "WAIT", morse: ".-- .- .. -" },
+  { text: "READY", morse: ".-. . .- -.. -.--" },
+  { text: "GO", morse: "--. ---" },
+
+  // Learning / fun
+  { text: "CODE", morse: "-.-. --- -.. ." },
+  { text: "MORSE", morse: "-- --- .-. ... ." },
+  { text: "LEARN", morse: ".-.. . .- .-. -." },
+  { text: "QUIZ", morse: "--.- ..- .. --.." },
+  { text: "PRACTICE", morse: ".--. .-. .- -.-. - .. -.-. ." },
+
+  //Emergency phrases
+  { text: "MAYDAY", morse: "-- .- -.-- -.. .- -.--" },
+  { text: "SOS HELP ME", morse: "... --- ...   .... . .-.. .--.   -- ." },
+  { text: "FIRE HERE", morse: "..-. .. .-. .   .... . .-. ." },
+  {
+    text: "NEED ASSISTANCE",
+    morse: "-. . . -..   .- ... ... .. ... - .- -. -.-. .",
+  },
+
+  //Love
+  { text: "I MISS YOU", morse: "..   -- .. ... ...   -.-- --- ..-" },
+  { text: "BE MINE", morse: "-... .   -- .. -. ." },
+  { text: "LOVE YOU", morse: ".-.. --- ...- .   -.-- --- ..-" },
+];
+
+function MorseQuiz() {
+  // ----- helpers -----
+  const getAnswerFromPair = (p: any): string =>
+    (p?.letter ?? p?.text ?? p?.word ?? p?.char ?? p?.label ?? "")
+      .toString()
+      .trim()
+      .toUpperCase();
+
+  const getMorseFromPair = (p: any): string => (p?.morse ?? "").toString();
+
+  const normalizeText = (s: string): string =>
+    s.replace(/\s+/g, " ").trim().toUpperCase();
+
+  // ensure we only pick items that have morse and some answer text
+  const validPairs = Array.isArray(pairs)
+    ? pairs.filter((p) => getMorseFromPair(p) && getAnswerFromPair(p))
+    : [];
+
+  if (validPairs.length === 0) {
+    console.warn("⚠️ No valid pairs available");
+    return (
+      <div className="border border-gray-200 rounded-xl p-6 bg-white mt-8 text-gray-700">
+        Loading quiz…
+      </div>
+    );
+  }
+
+  const getRandomPair = () =>
+    validPairs[Math.floor(Math.random() * validPairs.length)] ?? validPairs[0];
+
+  // ----- state -----
+  const [question, setQuestion] = useState<any>(getRandomPair());
+  const [answer, setAnswer] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [streak, setStreak] = useState(0);
+  const [focused, setFocused] = useState(false);
+  const [locked, setLocked] = useState(false);
+
+  const timeoutRef = useRef<number | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // ----- submit -----
+  const handleSubmit = () => {
+    if (locked) return;
+
+    const user = normalizeText(answer);
+    if (!user) return;
+
+    // snapshot current question to avoid race conditions
+    const current = question;
+    const expected = normalizeText(getAnswerFromPair(current));
+
+    setLocked(true);
+
+    if (user === expected) {
+      setFeedback("✅ Correct!");
+      setStreak((s) => s + 1);
+    } else {
+      // show the *resolved* expected string (letter OR word)
+      setFeedback(`❌ The correct answer was “${expected || "?"}”.`);
+      setStreak(0);
+    }
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      setQuestion(getRandomPair());
+      setAnswer("");
+      setFeedback("");
+      setLocked(false);
+      inputRef.current?.focus();
+    }, 1800);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  // ----- render -----
+  const morse = getMorseFromPair(question);
+
+  return (
+    <section
+      className="border border-gray-200 rounded-2xl p-6 mt-8 bg-white mb-5 space-y-5 shadow-sm transition"
+      aria-labelledby="morse-quiz-title"
+      itemScope
+      itemType="https://schema.org/Quiz"
+    >
+      <h2
+        id="morse-quiz-title"
+        itemProp="name"
+        className="font-bold text-2xl text-[#0b2447]"
+      >
+        Morse Code Quick Quiz
+      </h2>
+
+      <p
+        itemProp="description"
+        className="text-gray-700 text-base leading-relaxed"
+      >
+        Decode the Morse code shown below by typing the matching{" "}
+        <strong>letter or word</strong>. Press <kbd>Enter</kbd> or click{" "}
+        <strong>Check</strong> to submit. Build your streak!
+      </p>
+
+      <div
+        className="flex flex-col items-start gap-4 mt-2"
+        itemProp="hasPart"
+        itemScope
+        itemType="https://schema.org/Question"
+      >
+        <p className="text-lg text-gray-800">
+          <span className="font-semibold text-[#0b2447]">Code:</span>{" "}
+          <span
+            itemProp="text"
+            className="font-mono text-2xl tracking-wider select-none bg-gray-50 px-3 py-1 rounded"
+          >
+            {morse || "…"}
+          </span>
+        </p>
+
+        <div className="flex flex-col sm:flex-row w-full items-center gap-3">
+          <label htmlFor="quizAnswer" className="sr-only">
+            Enter your answer
+          </label>
+
+          <input
+            ref={inputRef}
+            id="quizAnswer"
+            type="text"
+            className="border border-gray-300 rounded-md w-full sm:w-2/3 px-4 py-2 text-base text-gray-900 text-left font-medium focus:ring-2 focus:ring-[#0b2447] outline-none transition"
+            placeholder={focused ? "" : "Type your answer (letter or word)"}
+            value={answer}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            onChange={(e) => setAnswer(e.target.value)}
+            onKeyDown={handleKeyDown}
+            aria-label="Your answer"
+            disabled={locked}
+            autoCapitalize="characters"
+          />
+
+          <button
+            onClick={handleSubmit}
+            className={`px-6 py-2 rounded-md font-semibold transition text-white ${
+              locked
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#0b2447] hover:bg-[#09203d] active:scale-95"
+            }`}
+            disabled={locked}
+            itemProp="suggestedAnswer"
+            itemScope
+            itemType="https://schema.org/Answer"
+          >
+            {locked ? "Next…" : "Check"}
+          </button>
+        </div>
+
+        {feedback && (
+          <p
+            className={`text-base font-semibold mt-1 ${
+              feedback.startsWith("✅") ? "text-green-600" : "text-red-600"
+            }`}
+            itemProp="acceptedAnswer"
+            itemScope
+            itemType="https://schema.org/Answer"
+          >
+            <span itemProp="text">{feedback}</span>
+          </p>
+        )}
+
+        <div className="text-sm text-gray-600 flex flex-wrap gap-3 mt-2">
+          <span>🔥 Streak: {streak}</span>
+          <span className="hidden sm:inline">•</span>
+          <span>New code appears automatically after each answer.</span>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default function Home() {
@@ -572,11 +1273,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <span style={styles.pill}>Instant Translator</span>
+          <span className="border border-[#e6e8ef] py-2 px-4 text-sm sm:text-base rounded-full bg-white text-[#0b2447] font-extrabold text-center">
+            Instant Translator
+          </span>
         </header>
 
         {/* Hero */}
-        <section style={styles.hero}>
+        <section className="flex flex-col sm:flex-row gap-8 mt-6 mb-8 sm:mb-2">
           <div>
             <h1 style={styles.h1}>
               A clean Morse translator with audio playback
@@ -626,113 +1329,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Translator A: Text → Morse */}
-        <section style={styles.section} aria-labelledby="t2m-title">
-          <h2 id="t2m-title" style={styles.sectionTitle}>
-            Text → Morse
-          </h2>
-          <div style={{ ...styles.card, ...styles.cardPad }}>
-            <div style={styles.grid2}>
-              <div>
-                <label style={styles.label} htmlFor="plainA">
-                  Plain Text
-                </label>
-                <textarea
-                  id="plainA"
-                  style={styles.textarea}
-                  value={plainA}
-                  onChange={(e) => setPlainA(e.target.value)}
-                />
-              </div>
-              <div>
-                <label style={styles.label} htmlFor="morseA">
-                  Morse Output
-                </label>
-                <textarea
-                  id="morseA"
-                  style={styles.textarea}
-                  value={morseA}
-                  readOnly
-                />
-              </div>
-            </div>
-            <div style={styles.controls}>
-              <button
-                style={styles.btnPrimary}
-                onClick={() => navigator.clipboard.writeText(morseA)}
-              >
-                Copy Morse
-              </button>
-              <button
-                style={styles.btnSecondary}
-                onClick={() => playMorse(morseA, wpm, freq)}
-              >
-                Play Audio
-              </button>
-              <button style={styles.btnGhost} onClick={stop}>
-                Stop
-              </button>
-              <span style={{ ...styles.note, marginLeft: "auto" }}>
-                Three spaces between letters. Seven between words.
-              </span>
-            </div>
-          </div>
-        </section>
+        <TranslatorSections
+          plainA={plainA}
+          setPlainA={setPlainA}
+          morseA={morseA}
+          morseB={morseB}
+          textB={textB}
+          setMorseB={setMorseB}
+          wpm={wpm}
+          freq={freq}
+          playMorse={playMorse}
+          stop={stop}
+        />
 
-        {/* Translator B: Morse → Text */}
-        <section style={styles.section} aria-labelledby="m2t-title">
-          <h2 id="m2t-title" style={styles.sectionTitle}>
-            Morse → Text
-          </h2>
-          <div style={{ ...styles.card, ...styles.cardPad }}>
-            <div style={styles.grid2}>
-              <div>
-                <label style={styles.label} htmlFor="morseB">
-                  Morse Input
-                </label>
-                <textarea
-                  id="morseB"
-                  style={styles.textarea}
-                  value={morseB}
-                  onChange={(e) => setMorseB(e.target.value)}
-                  placeholder="... --- ..."
-                />
-              </div>
-              <div>
-                <label style={styles.label} htmlFor="textB">
-                  Text Output
-                </label>
-                <textarea
-                  id="textB"
-                  style={styles.textarea}
-                  value={textB}
-                  readOnly
-                />
-              </div>
-            </div>
-            <div style={styles.controls}>
-              <button
-                style={styles.btnPrimary}
-                onClick={() => navigator.clipboard.writeText(textB)}
-              >
-                Copy Text
-              </button>
-              <button
-                style={styles.btnSecondary}
-                onClick={() => playMorse(morseB, wpm, freq)}
-              >
-                Play Audio
-              </button>
-              <button style={styles.btnGhost} onClick={stop}>
-                Stop
-              </button>
-              <span style={{ ...styles.note, marginLeft: "auto" }}>
-                Use three spaces between letters, seven between words.
-              </span>
-            </div>
-          </div>
-        </section>
-
+        <MorseQuiz />
         {/* Learn / SEO content */}
         <section style={styles.section} aria-labelledby="learn-title">
           <h2 id="learn-title" style={styles.sectionTitle}>
@@ -746,7 +1356,6 @@ export default function Home() {
             </p>
           </div>
         </section>
-
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Instant Text to Morse Conversion</h2>
           <p style={{ color: "#555" }}>
@@ -1089,13 +1698,7 @@ export default function Home() {
         {/* Benefits of Learning */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Why Learn Morse Code?</h2>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr",
-              gap: 12,
-            }}
-          >
+          <div className="flex flex-col sm:flex-row gap-5">
             <div
               style={{
                 background: "#fff",
@@ -1174,9 +1777,7 @@ export default function Home() {
         {/* Comparison */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>MorseWords vs Other Translators</h2>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}
-          >
+          <div className="flex flex-col gap-5 sm:flex-row">
             <div
               style={{
                 background: "#fff",
@@ -1384,9 +1985,7 @@ export default function Home() {
         {/* FAQ */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Morse Translator FAQ</h2>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}
-          >
+          <div className="grid gap-5 sm:grid-cols-4 my-5">
             <div
               style={{
                 background: "#fff",
@@ -1647,13 +2246,7 @@ export default function Home() {
               puzzles, or a higher WPM at the same accuracy. Small, steady
               improvements add up.
             </p>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                gap: 12,
-              }}
-            >
+            <div className="flex flex-col sm:flex-row gap-5 my-5">
               <div
                 style={{
                   background: "#f7f8fb",
@@ -1769,7 +2362,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* FAQ for the game */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Morse Word Game FAQ</h2>
