@@ -206,12 +206,7 @@ interface Props {
   stop: () => void;
 }
 
-function TranslatorSections({
-  wpm,
-  freq,
-  playMorse,
-  stop,
-}: Props) {
+function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
   const [plainA, setPlainA] = useState("");
   const [morseA, setMorseA] = useState("");
   const [morseB, setMorseB] = useState("");
@@ -220,16 +215,59 @@ function TranslatorSections({
 
   // ---------- Internal Morse map ----------
   const MORSE: Record<string, string> = {
-    A: ".-", B: "-...", C: "-.-.", D: "-..", E: ".", F: "..-.", G: "--.",
-    H: "....", I: "..", J: ".---", K: "-.-", L: ".-..", M: "--", N: "-.",
-    O: "---", P: ".--.", Q: "--.-", R: ".-.", S: "...", T: "-",
-    U: "..-", V: "...-", W: ".--", X: "-..-", Y: "-.--", Z: "--..",
-    "0": "-----", "1": ".----", "2": "..---", "3": "...--", "4": "....-",
-    "5": ".....", "6": "-....", "7": "--...", "8": "---..", "9": "----.",
-    ".": ".-.-.-", ",": "--..--", "?": "..--..", "'": ".----.", "!": "-.-.--",
-    "/": "-..-.", "(": "-.--.", ")": "-.--.-", "&": ".-...", ":": "---...",
-    ";": "-.-.-.", "=": "-...-", "+": ".-.-.", "-": "-....-", "_": "..--.-",
-    "\"": ".-..-.", "@": ".--.-.",
+    A: ".-",
+    B: "-...",
+    C: "-.-.",
+    D: "-..",
+    E: ".",
+    F: "..-.",
+    G: "--.",
+    H: "....",
+    I: "..",
+    J: ".---",
+    K: "-.-",
+    L: ".-..",
+    M: "--",
+    N: "-.",
+    O: "---",
+    P: ".--.",
+    Q: "--.-",
+    R: ".-.",
+    S: "...",
+    T: "-",
+    U: "..-",
+    V: "...-",
+    W: ".--",
+    X: "-..-",
+    Y: "-.--",
+    Z: "--..",
+    "0": "-----",
+    "1": ".----",
+    "2": "..---",
+    "3": "...--",
+    "4": "....-",
+    "5": ".....",
+    "6": "-....",
+    "7": "--...",
+    "8": "---..",
+    "9": "----.",
+    ".": ".-.-.-",
+    ",": "--..--",
+    "?": "..--..",
+    "'": ".----.",
+    "!": "-.-.--",
+    "/": "-..-.",
+    "(": "-.--.",
+    ")": "-.--.-",
+    "&": ".-...",
+    ":": "---...",
+    ";": "-.-.-.",
+    "=": "-...-",
+    "+": ".-.-.",
+    "-": "-....-",
+    _: "..--.-",
+    '"': ".-..-.",
+    "@": ".--.-.",
   };
   const REVERSE: Record<string, string> = {};
   for (const [k, v] of Object.entries(MORSE)) REVERSE[v] = k;
@@ -239,12 +277,11 @@ function TranslatorSections({
     text
       .toUpperCase()
       .split(/\s+/)
-      .map(
-        (word) =>
-          [...word]
-            .map((ch) => MORSE[ch] || "")
-            .filter(Boolean)
-            .join("   ")
+      .map((word) =>
+        [...word]
+          .map((ch) => MORSE[ch] || "")
+          .filter(Boolean)
+          .join("   ")
       )
       .join("       "); // 7 spaces between words
 
@@ -294,9 +331,9 @@ function TranslatorSections({
       const bad = morseB.replace(/[.\-\s/]/g, "");
       if (bad.length)
         issues.push(
-          `Invalid char${bad.length > 1 ? "s" : ""}: ${[
-            ...new Set(bad),
-          ].join(" ")}`
+          `Invalid char${bad.length > 1 ? "s" : ""}: ${[...new Set(bad)].join(
+            " "
+          )}`
         );
       if (/\s{2,}/.test(morseB) && !/\s{3,}/.test(morseB))
         issues.push("Tip: use 3 spaces between letters, 7 between words.");
@@ -305,7 +342,10 @@ function TranslatorSections({
   }, [morseB]);
 
   const examples = [
-    { label: "HELLO_WORLD", morse: ".... . .-.. .-.. ---   ..--.-   .-- --- .-. .-.. -.." },
+    {
+      label: "HELLO_WORLD",
+      morse: ".... . .-.. .-.. ---   ..--.-   .-- --- .-. .-.. -..",
+    },
     { label: "CQ", morse: "-.-. --.-" },
     { label: "SOS", morse: "... --- ..." },
   ];
@@ -490,7 +530,6 @@ function TranslatorSections({
     </div>
   );
 }
-
 
 function LogoBars() {
   return (
@@ -1025,6 +1064,426 @@ function MorseQuiz() {
   );
 }
 
+function MorseLookupTable() {
+  const morseData = [
+    // Letters
+    { symbol: "A", morse: ".-" },
+    { symbol: "B", morse: "-..." },
+    { symbol: "C", morse: "-.-." },
+    { symbol: "D", morse: "-.." },
+    { symbol: "E", morse: "." },
+    { symbol: "F", morse: "..-." },
+    { symbol: "G", morse: "--." },
+    { symbol: "H", morse: "...." },
+    { symbol: "I", morse: ".." },
+    { symbol: "J", morse: ".---" },
+    { symbol: "K", morse: "-.-" },
+    { symbol: "L", morse: ".-.." },
+    { symbol: "M", morse: "--" },
+    { symbol: "N", morse: "-." },
+    { symbol: "O", morse: "---" },
+    { symbol: "P", morse: ".--." },
+    { symbol: "Q", morse: "--.-" },
+    { symbol: "R", morse: ".-." },
+    { symbol: "S", morse: "..." },
+    { symbol: "T", morse: "-" },
+    { symbol: "U", morse: "..-" },
+    { symbol: "V", morse: "...-" },
+    { symbol: "W", morse: ".--" },
+    { symbol: "X", morse: "-..-" },
+    { symbol: "Y", morse: "-.--" },
+    { symbol: "Z", morse: "--.." },
+
+    // Numbers
+    { symbol: "1", morse: ".----" },
+    { symbol: "2", morse: "..---" },
+    { symbol: "3", morse: "...--" },
+    { symbol: "4", morse: "....-" },
+    { symbol: "5", morse: "....." },
+    { symbol: "6", morse: "-...." },
+    { symbol: "7", morse: "--..." },
+    { symbol: "8", morse: "---.." },
+    { symbol: "9", morse: "----." },
+    { symbol: "0", morse: "-----" },
+
+    // Punctuation
+    { symbol: ".", morse: ".-.-.-" },
+    { symbol: ",", morse: "--..--" },
+    { symbol: "?", morse: "..--.." },
+    { symbol: "'", morse: ".----." },
+    { symbol: "!", morse: "-.-.--" },
+    { symbol: "/", morse: "-..-." },
+    { symbol: "(", morse: "-.--." },
+    { symbol: ")", morse: "-.--.-" },
+    { symbol: "&", morse: ".-..." },
+    { symbol: ":", morse: "---..." },
+    { symbol: ";", morse: "-.-.-." },
+    { symbol: "=", morse: "-...-" },
+    { symbol: "+", morse: ".-.-." },
+    { symbol: "-", morse: "-....-" },
+    { symbol: "_", morse: "..--.-" },
+    { symbol: '"', morse: ".-..-." },
+    { symbol: "@", morse: ".--.-." },
+  ];
+
+  return (
+    <section
+      className="my-12 border border-gray-200 rounded-2xl bg-white shadow-sm p-6"
+      aria-labelledby="morse-table-title"
+      itemScope
+      itemType="https://schema.org/Table"
+    >
+      <h2
+        id="morse-table-title"
+        className="text-2xl font-bold text-[#0b2447] mb-2"
+        itemProp="name"
+      >
+        Morse Code Conversion Table (A–Z, 0–9, and Symbols)
+      </h2>
+      <p
+        className="text-gray-700 text-base leading-relaxed mb-6"
+        itemProp="description"
+      >
+        This complete International Morse Code chart shows letters, numbers, and
+        punctuation with their corresponding dot (·) and dash (–) patterns. Use
+        it as a quick reference for learning or decoding messages. Perfect for
+        radio operators, students, and Morse enthusiasts.
+      </p>
+
+      <div className="overflow-x-auto">
+        <table
+          className="min-w-full border-collapse text-sm md:text-base text-gray-800"
+          itemProp="about"
+        >
+          <thead className="bg-gray-50 border-b">
+            <tr>
+              <th className="py-2 px-3 text-left font-semibold border-r">
+                Character
+              </th>
+              <th className="py-2 px-3 text-left font-semibold border-r">
+                Morse Code
+              </th>
+              <th className="py-2 px-3 text-left font-semibold">Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {morseData.map((item, idx) => (
+              <tr
+                key={idx}
+                className="odd:bg-white even:bg-gray-50 hover:bg-blue-50 transition"
+              >
+                <td className="py-2 px-3 font-mono font-semibold">
+                  {item.symbol}
+                </td>
+                <td className="py-2 px-3 font-mono text-[#0b2447] tracking-wider">
+                  {item.morse}
+                </td>
+                <td className="py-2 px-3 text-gray-600">
+                  {/[A-Z]/.test(item.symbol)
+                    ? "Letter"
+                    : /[0-9]/.test(item.symbol)
+                      ? "Number"
+                      : "Punctuation"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* SEO-rich paragraph below table */}
+      <div className="mt-6 text-sm text-gray-700 leading-relaxed space-y-2">
+        <p>
+          Each Morse symbol combines dots (·) and dashes (–) with precise
+          timing. One dot equals one unit, a dash equals three units, the gap
+          between elements within a letter is one unit, between letters is
+          three, and between words is seven units.
+        </p>
+        <p>
+          Learning the rhythm of Morse code is key to mastery. Start with the
+          most common letters (E, T, A, I, N, O), then progress to numbers and
+          punctuation. With regular practice, you’ll be able to recognize entire
+          words by sound alone.
+        </p>
+        <p>
+          This chart follows the{" "}
+          <strong>ITU International Morse Standard</strong> and is suitable for{" "}
+          <em>
+            ham radio operators, aviation, maritime use, and educational
+            learning
+          </em>
+          . Bookmark this page as a quick Morse reference anytime you need to
+          translate between text and code.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function MorsePhraseLookupTable() {
+  const phrases = [
+    // Common words
+    {
+      phrase: "HELLO",
+      morse: ".... . .-.. .-.. ---",
+      meaning: "Friendly greeting",
+    },
+    {
+      phrase: "GOOD MORNING",
+      morse: "--. --- --- -..       -- --- .-. -. .. -. --.",
+      meaning: "Polite day greeting",
+    },
+    {
+      phrase: "THANK YOU",
+      morse: "- .... .- -. -.-       -.-- --- ..-",
+      meaning: "Expression of gratitude",
+    },
+    { phrase: "YES", morse: "-.-- . ...", meaning: "Affirmative / agreement" },
+    { phrase: "NO", morse: "-. ---", meaning: "Negative / denial" },
+    {
+      phrase: "PLEASE",
+      morse: ".--. .-.. . .- ... .",
+      meaning: "Polite request",
+    },
+    {
+      phrase: "LOVE",
+      morse: ".-.. --- ...- .",
+      meaning: "Affection / endearment",
+    },
+    {
+      phrase: "FRIEND",
+      morse: "..-. .-. .. . -. -..",
+      meaning: "Companionship",
+    },
+    {
+      phrase: "GOODBYE",
+      morse: "--. --- --- -.. -... -.-- .",
+      meaning: "Farewell / sign-off",
+    },
+
+    // Emergency / distress
+    {
+      phrase: "SOS",
+      morse: "... --- ...",
+      meaning: "Universal distress signal",
+    },
+    {
+      phrase: "MAYDAY",
+      morse: "-- .- -.-- -.. .- -.--",
+      meaning: "Distress call (aviation/maritime)",
+    },
+    {
+      phrase: "HELP",
+      morse: ".... . .-.. .--.",
+      meaning: "Request for assistance",
+    },
+    {
+      phrase: "NEED ASSISTANCE",
+      morse: "-. . . -..       .- ... ... .. ... - .- -. -.-. .",
+      meaning: "Emergency request",
+    },
+    { phrase: "STOP", morse: "... - --- .--.", meaning: "End of transmission" },
+
+    // Prosigns (procedure signals)
+    { phrase: "AR (.-.-.)", morse: ".-.-.", meaning: "End of message" },
+    { phrase: "AS (.-...)", morse: ".-...", meaning: "Wait / standby" },
+    { phrase: "BT (-...-)", morse: "-...-", meaning: "Pause / new section" },
+    {
+      phrase: "CL (-.-..-..)",
+      morse: "-.-..-..",
+      meaning: "Going off air / closing station",
+    },
+    {
+      phrase: "KN (-.-.-.)",
+      morse: "-.-.-.",
+      meaning: "Invitation to transmit specifically",
+    },
+    {
+      phrase: "SK (...-.-)",
+      morse: "...-.-",
+      meaning: "End of contact / signing off",
+    },
+
+    // Q-codes (radio shorthand)
+    {
+      phrase: "QRL",
+      morse: "--.- .-. .-..",
+      meaning: "Is the frequency busy?",
+    },
+    { phrase: "QRZ", morse: "--.- .-. --..", meaning: "Who is calling me?" },
+    { phrase: "QRS", morse: "--.- .-. ...", meaning: "Send more slowly" },
+    { phrase: "QRQ", morse: "--.- .-. --.-", meaning: "Send faster" },
+    { phrase: "QTH", morse: "--.- - ....", meaning: "My location is..." },
+    {
+      phrase: "QSL",
+      morse: "--.- ... .-..",
+      meaning: "Message received / acknowledgment",
+    },
+    { phrase: "QSY", morse: "--.- ... -.--", meaning: "Change frequency" },
+    { phrase: "QRM", morse: "--.- .-. --", meaning: "Interference (man-made)" },
+    {
+      phrase: "QRN",
+      morse: "--.- .-. -.",
+      meaning: "Natural interference / static",
+    },
+    { phrase: "QRP", morse: "--.- .-. .--.", meaning: "Reduce power" },
+
+    // Abbreviations (CW shorthand)
+    {
+      phrase: "73",
+      morse: "--... ...--",
+      meaning: "Best regards (friendly sign-off)",
+    },
+    {
+      phrase: "88",
+      morse: "---.. ---..",
+      meaning: "Love and kisses (friendly end)",
+    },
+    {
+      phrase: "OM",
+      morse: "--- --",
+      meaning: "Old man (friendly term for operator)",
+    },
+    {
+      phrase: "YL",
+      morse: "-.-- .-..",
+      meaning: "Young lady (female operator)",
+    },
+    {
+      phrase: "FB",
+      morse: "..-. -...",
+      meaning: "Fine business (good signal / message)",
+    },
+    { phrase: "HR", morse: ".... .-.", meaning: "Here" },
+    {
+      phrase: "TNX",
+      morse: "- .... .- -. -..- / -....- / -..- -.",
+      meaning: "Thanks",
+    },
+    { phrase: "CUL", morse: "-.-. ..- .-..", meaning: "See you later" },
+    { phrase: "GL", morse: "--. .-..", meaning: "Good luck" },
+    { phrase: "GA", morse: "--. .-", meaning: "Good afternoon" },
+    { phrase: "GE", morse: "--. .", meaning: "Good evening" },
+    { phrase: "GM", morse: "--. --", meaning: "Good morning" },
+
+    // Practice phrases (balanced letter frequency)
+    {
+      phrase: "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
+      morse:
+        "- .... .       --.- ..- .. -.-. -.-       -... .-. --- .-- -.       ..-. --- -..-       .--- ..- -- .--. ...       --- ...- . .-.       - .... .       .-.. .- --.. -.--       -.. --- --.",
+      meaning: "Pangram (uses every letter)",
+    },
+    {
+      phrase: "PACK MY BOX WITH FIVE DOZEN LIQUOR JUGS",
+      morse:
+        ".--. .- -.-. -.-       -- -.--       -... --- -..-       .-- .. - ....       ..-. .. ...- .       -.. --- --.. . -.       .-.. .. --.- ..- --- .-.       .--- ..- --. ...",
+      meaning: "Another pangram for practice",
+    },
+    {
+      phrase: "MORSE CODE IS FUN",
+      morse:
+        "-- --- .-. ... .       -.-. --- -.. .       .. ...       ..-. ..- -.",
+      meaning: "Motivational practice phrase",
+    },
+    {
+      phrase: "KEEP PRACTICING",
+      morse: "-.- . . .--.       .--. .-. .- -.-. - .. -.-. .. -. --.",
+      meaning: "Encouragement to practice regularly",
+    },
+    {
+      phrase: "LISTEN LEARN REPEAT",
+      morse:
+        ".-.. .. ... - . -.       .-.. . .- .-. -.       .-. . .--. . .- -",
+      meaning: "Training advice for beginners",
+    },
+  ];
+
+  return (
+    <section
+      className="my-12 border border-gray-200 rounded-2xl bg-white shadow-sm p-6"
+      aria-labelledby="morse-phrases-title"
+      itemScope
+      itemType="https://schema.org/Table"
+    >
+      <h2
+        id="morse-phrases-title"
+        className="text-2xl font-bold text-[#0b2447] mb-2"
+        itemProp="name"
+      >
+        Common Morse Code Phrases, Prosigns, and Abbreviations
+      </h2>
+      <p
+        className="text-gray-700 text-base leading-relaxed mb-6"
+        itemProp="description"
+      >
+        Explore a complete list of real-world Morse code phrases, radio
+        shorthand, and prosigns used by amateur radio operators, maritime and
+        aviation communication, and CW learners. Each entry shows the phrase,
+        its Morse code pattern, and its meaning or usage context.
+      </p>
+
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-collapse text-sm md:text-base text-gray-800">
+          <thead className="bg-gray-50 border-b">
+            <tr>
+              <th className="py-2 px-3 text-left font-semibold border-r">
+                Phrase / Abbreviation
+              </th>
+              <th className="py-2 px-3 text-left font-semibold border-r">
+                Morse Code
+              </th>
+              <th className="py-2 px-3 text-left font-semibold">
+                Meaning / Usage
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {phrases.map((p, i) => (
+              <tr
+                key={i}
+                className="odd:bg-white even:bg-gray-50 hover:bg-blue-50 transition"
+              >
+                <td className="py-2 px-3 font-semibold font-mono">
+                  {p.phrase}
+                </td>
+                <td className="py-2 px-3 font-mono text-[#0b2447] tracking-wider">
+                  {p.morse}
+                </td>
+                <td className="py-2 px-3 text-gray-700">{p.meaning}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="mt-6 text-sm text-gray-700 leading-relaxed space-y-2">
+        <p>
+          These Morse code phrases include <strong>Q-codes</strong> (used in
+          amateur radio),
+          <strong>prosigns</strong> (procedural signals), and{" "}
+          <strong>abbreviations</strong> commonly exchanged during CW
+          (continuous wave) transmissions. They make communication faster and
+          more standardized worldwide.
+        </p>
+        <p>
+          Practicing with these phrases improves both <em>copy speed</em> and{" "}
+          <em>transmit rhythm</em>. Focus first on SOS, QTH, QSL, and SK for
+          real-world readiness, then build up to longer pangrams like{" "}
+          <strong>THE QUICK BROWN FOX</strong>.
+        </p>
+        <p>
+          This table follows the{" "}
+          <strong>International Telecommunication Union (ITU)</strong> standards
+          and includes terms recognized by{" "}
+          <em>ham radio, aviation, and maritime</em> operators globally.
+          Bookmark this chart to quickly look up any Morse prosign or radio
+          abbreviation.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   // Shared controls
   const [wpm, setWpm] = React.useState(20);
@@ -1343,6 +1802,9 @@ export default function Home() {
         />
 
         <MorseQuiz />
+
+        <MorseLookupTable />
+
         {/* Learn / SEO content */}
         <section style={styles.section} aria-labelledby="learn-title">
           <h2 id="learn-title" style={styles.sectionTitle}>
@@ -2362,6 +2824,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <MorsePhraseLookupTable />
+
         {/* FAQ for the game */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Morse Word Game FAQ</h2>
