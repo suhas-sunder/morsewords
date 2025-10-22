@@ -12,4 +12,10 @@ export default defineConfig({
     tailwindcss(),
     netlifyPlugin(), // generates the Netlify serverless function for SSR
   ],
+  build: {
+    sourcemap: false, // disables sourcemap lookups for all deps
+  },
+  ssr: {
+    noExternal: ["posthog-js", "posthog-js/react"],
+  },
 });

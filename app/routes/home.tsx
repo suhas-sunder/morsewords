@@ -1,20 +1,20 @@
 import * as React from "react";
 import type { Route } from "./+types/home";
-
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Free Online Morse Code Translator & Audio Player | MorseWords",
+      title:
+        "Free Online Translator & Audio Tool | Learn and Practice Morse Code ~ MorseWords",
     },
     {
       name: "description",
       content:
-        "Instantly convert text to Morse code or decode Morse to text. Hear clean audio with adjustable speed (WPM) and tone. Fast, accurate, and free—learn and practice Morse online.",
+        "Convert text to Morse or decode back instantly, adjust speed (WPM) and tone, and practice real listening skills through an educational interface. Learn Morse code online with this free interactive translator and audio trainer.",
     },
     {
       name: "keywords",
       content:
-        "morse code, morse code translator, text to morse, morse to text, morse code audio, morse code converter, cw, wpm, tone, free morse code tool, online morse translator",
+        "morse code translator, learn morse code, morse code practice, text to morse, morse to text, morse audio, morse code converter, cw training, wpm, tone, online morse learning tool",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
@@ -212,6 +212,28 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
   const [morseB, setMorseB] = useState("");
   const [textB, setTextB] = useState("");
   const [copied, setCopied] = useState<string | null>(null);
+  const isPlayingRef = useRef(false);
+
+  // ---------- Unlock AudioContext on Mobile ----------
+  useEffect(() => {
+    const unlockAudio = () => {
+      try {
+        const ctx =
+          (window as any).audioContext ||
+          new (window.AudioContext || (window as any).webkitAudioContext)();
+        ctx.resume?.();
+        (window as any).audioContext = ctx;
+      } catch (err) {
+        console.warn("AudioContext unlock failed:", err);
+      }
+    };
+    document.addEventListener("touchstart", unlockAudio, { once: true });
+    document.addEventListener("click", unlockAudio, { once: true });
+    return () => {
+      document.removeEventListener("touchstart", unlockAudio);
+      document.removeEventListener("click", unlockAudio);
+    };
+  }, []);
 
   // ---------- Internal Morse map ----------
   const MORSE: Record<string, string> = {
@@ -331,9 +353,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
       const bad = morseB.replace(/[.\-\s/]/g, "");
       if (bad.length)
         issues.push(
-          `Invalid char${bad.length > 1 ? "s" : ""}: ${[...new Set(bad)].join(
-            " "
-          )}`
+          `Invalid char${bad.length > 1 ? "s" : ""}: ${[...new Set(bad)].join(" ")}`
         );
       if (/\s{2,}/.test(morseB) && !/\s{3,}/.test(morseB))
         issues.push("Tip: use 3 spaces between letters, 7 between words.");
@@ -350,6 +370,24 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
     { label: "SOS", morse: "... --- ..." },
   ];
 
+  const morseExamplesB = [
+    { label: "HI", morse: "....   .." },
+    { label: "OK", morse: "---   -.-" },
+    { label: "FUN", morse: "..-.   ..-   -." },
+  ];
+
+  // ---------- Safe Play Wrapper ----------
+  const handlePlay = async (code: string) => {
+    if (!code || isPlayingRef.current) return;
+    try {
+      isPlayingRef.current = true;
+      stop();
+      await playMorse(code, wpm, freq);
+    } finally {
+      isPlayingRef.current = false;
+    }
+  };
+
   // ---------- UI ----------
   return (
     <div className="flex flex-col gap-10 my-8">
@@ -362,7 +400,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
             <button
               key={ex.label}
               onClick={() => setPlainA(ex.label)}
-              className="border border-[#e6e8ef] px-3 py-1 rounded-full text-sm hover:bg-gray-50 active:scale-95 transition"
+              className="border cursor-pointer border-[#e6e8ef] px-3 py-1 rounded-full text-sm hover:bg-gray-50 active:scale-95 transition"
             >
               Try “{ex.label}”
             </button>
@@ -379,6 +417,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
               className="w-full border rounded-md p-3 font-mono h-40 focus:ring-2 focus:ring-[#0b2447]"
               value={plainA}
               onChange={(e) => setPlainA(e.target.value)}
+              placeholder="Example: Hello World"
               autoCapitalize="characters"
               autoCorrect="off"
               spellCheck={false}
@@ -403,6 +442,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
               className="w-full border rounded-md p-3 font-mono h-40 bg-gray-50"
               value={morseA}
               readOnly
+              placeholder=".... . .-.. .-.. ---   .-- --- .-. .-.. -.."
             />
           </div>
         </div>
@@ -412,7 +452,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
             <button
               onClick={() => handleCopy(morseA, "morseA")}
               disabled={!morseA}
-              className={`px-4 py-2 rounded-md font-semibold active:scale-95 transition text-white ${
+              className={`px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition text-white ${
                 morseA
                   ? "bg-[#0b2447] hover:bg-[#09203d]"
                   : "bg-gray-400 cursor-not-allowed"
@@ -421,9 +461,9 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
               📋 Copy Morse
             </button>
             <button
-              onClick={() => morseA && playMorse(morseA, wpm, freq)}
+              onClick={() => morseA && handlePlay(morseA)}
               disabled={!morseA}
-              className={`px-4 py-2 rounded-md font-semibold active:scale-95 transition text-white ${
+              className={`px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition text-white ${
                 morseA
                   ? "bg-green-600 hover:bg-green-700"
                   : "bg-gray-400 cursor-not-allowed"
@@ -433,7 +473,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
             </button>
             <button
               onClick={stop}
-              className="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-md hover:bg-gray-300 active:scale-95 transition"
+              className="bg-gray-200 cursor-pointer text-gray-800 font-semibold px-4 py-2 rounded-md hover:bg-gray-300 active:scale-95 transition"
             >
               ⏹ Stop
             </button>
@@ -453,6 +493,18 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
       <section className="space-y-4 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
         <h2 className="text-2xl font-bold text-[#0b2447]">Morse → Text</h2>
 
+        <div className="flex flex-wrap gap-2 mt-2">
+          {morseExamplesB.map((ex) => (
+            <button
+              key={ex.label}
+              onClick={() => setMorseB(ex.morse)}
+              className="border border-[#e6e8ef] px-3 py-1 rounded-full text-sm hover:bg-gray-50 active:scale-95 transition"
+            >
+              Try “{ex.label}”
+            </button>
+          ))}
+        </div>
+
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="morseB" className="font-semibold">
@@ -463,7 +515,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
               className="w-full border rounded-md p-3 font-mono h-40 focus:ring-2 focus:ring-[#0b2447]"
               value={morseB}
               onChange={(e) => setMorseB(e.target.value)}
-              placeholder="... --- ..."
+              placeholder=".... . .-.. .-.. ---   .-- --- .-. .-.. -.."
               spellCheck={false}
             />
             {morseInputIssues.length > 0 && (
@@ -482,6 +534,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
               className="w-full border rounded-md p-3 font-mono h-40 bg-gray-50"
               value={textB}
               readOnly
+              placeholder="Example: Hello World"
             />
           </div>
         </div>
@@ -491,7 +544,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
             <button
               onClick={() => handleCopy(textB, "textB")}
               disabled={!textB}
-              className={`px-4 py-2 rounded-md font-semibold active:scale-95 transition text-white ${
+              className={`px-4 py-2 rounded-md cursor-pointer font-semibold active:scale-95 transition text-white ${
                 textB
                   ? "bg-[#0b2447] hover:bg-[#09203d]"
                   : "bg-gray-400 cursor-not-allowed"
@@ -500,9 +553,9 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
               📋 Copy Text
             </button>
             <button
-              onClick={() => morseB && playMorse(morseB, wpm, freq)}
+              onClick={() => morseB && handlePlay(morseB)}
               disabled={!morseB}
-              className={`px-4 py-2 rounded-md font-semibold active:scale-95 transition text-white ${
+              className={`px-4 py-2 rounded-md cursor-pointer font-semibold active:scale-95 transition text-white ${
                 morseB
                   ? "bg-green-600 hover:bg-green-700"
                   : "bg-gray-400 cursor-not-allowed"
@@ -512,7 +565,7 @@ function TranslatorSections({ wpm, freq, playMorse, stop }: Props) {
             </button>
             <button
               onClick={stop}
-              className="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-md hover:bg-gray-300 active:scale-95 transition"
+              className="bg-gray-200 text-gray-800 cursor-pointer font-semibold px-4 py-2 rounded-md hover:bg-gray-300 active:scale-95 transition"
             >
               ⏹ Stop
             </button>
@@ -724,7 +777,8 @@ const pairs = [
   { letter: "X", morse: "-..-" },
   { letter: "Y", morse: "-.--" },
   { letter: "Z", morse: "--.." },
-  // Add these below your existing A–Z list
+
+  // Digits
   { letter: "0", morse: "-----" },
   { letter: "1", morse: ".----" },
   { letter: "2", morse: "..---" },
@@ -736,7 +790,7 @@ const pairs = [
   { letter: "8", morse: "---.." },
   { letter: "9", morse: "----." },
 
-  // Common punctuation
+  // Punctuation
   { letter: ".", morse: ".-.-.-" },
   { letter: ",", morse: "--..--" },
   { letter: "?", morse: "..--.." },
@@ -756,119 +810,200 @@ const pairs = [
   { letter: "$", morse: "...-..-" },
   { letter: "@", morse: ".--.-." },
 
-  // Procedural signs (prosigns / abbreviations)
-  { letter: "AR (End of message)", morse: ".-.-." },
-  { letter: "AS (Wait)", morse: ".-..." },
-  { letter: "BK (Break)", morse: "-...-.-" },
-  { letter: "BT (New paragraph)", morse: "-...-" },
-  { letter: "CL (Going off air)", morse: "-.-..-.." },
-  { letter: "CT (Start of transmission)", morse: "-.-.-" },
-  { letter: "HH (Error)", morse: "........" },
-  { letter: "KA (Attention)", morse: "-.-.-" },
-  { letter: "KN (Over to you only)", morse: "-.--." },
-  { letter: "SK (End of contact)", morse: "...-.-" },
-  { letter: "SOS (Distress)", morse: "...---..." },
-  { letter: "CQ (Calling any station)", morse: "-.-.- --.-" },
-
-  // Additional ham / signal abbreviations
-  { letter: "QRZ (Who is calling me?)", morse: "--.- .-. --.." },
-  { letter: "QTH (My location is...)", morse: "--.- - ...." },
-  { letter: "QSL (I acknowledge receipt)", morse: "--.- ... .-.." },
-  { letter: "QSO (Radio contact)", morse: "--.- ... ---" },
-  { letter: "QRM (Interference)", morse: "--.- .-. --" },
-  { letter: "QRN (Static)", morse: "--.- .-. -." },
-  { letter: "QRP (Low power)", morse: "--.- .-. .--." },
-  { letter: "QRQ (Send faster)", morse: "--.- .-. --.-" },
-  { letter: "QRS (Send slower)", morse: "--.- .-. ..." },
-  { letter: "QRT (Stop sending)", morse: "--.- .-. -" },
-  { letter: "QRU (Have you anything for me?)", morse: "--.- .-. ..-" },
-  { letter: "QRV (I am ready)", morse: "--.- .-. ...-" },
-  { letter: "QRX (Stand by)", morse: "--.- .-. -..-" },
-  { letter: "QSB (Your signal is fading)", morse: "--.- ... -..." },
-  { letter: "QSL (Acknowledged)", morse: "--.- ... .-.." },
-  { letter: "QSY (Change frequency)", morse: "--.- ... -.--" },
-  { letter: "QTH (Location)", morse: "--.- - ...." },
-  { letter: "QTR (Time)", morse: "--.- - .-." },
-
   // Greetings
-  { text: "HELLO", morse: ".... . .-.. .-.. ---" },
-  { text: "HI", morse: ".... .." },
-  { text: "HEY", morse: ".... . -.--" },
-  { text: "WELCOME", morse: ".-- . .-.. -.-. --- -- ." },
-  { text: "GOOD MORNING", morse: "--. --- --- -..   -- --- .-. -. .. -. --." },
-  { text: "GOOD NIGHT", morse: "--. --- --- -..   -. .. --. .... -" },
-
-  // Courtesy
-  { text: "PLEASE", morse: ".--. .-.. . .- ... ." },
-  { text: "THANK YOU", morse: "- .... .- -. -.-   -.-- --- ..-" },
-  { text: "SORRY", morse: "... --- .-. .-. -.--" },
-  { text: "YES", morse: "-.-- . ..." },
-  { text: "NO", morse: "-. ---" },
-  { text: "MAYBE", morse: "-- .- -.-- -... ." },
-
-  // Everyday communication
-  { text: "HOW ARE YOU", morse: ".... --- .--   .- .-. .   -.-- --- ..-" },
-  { text: "I LOVE YOU", morse: "..   .-.. --- ...- .   -.-- --- ..-" },
-  { text: "THANKS", morse: "- .... .- -. -.- ..." },
-  { text: "BYE", morse: "-... -.-- ." },
-  { text: "SEE YOU", morse: "... . .   -.-- --- ..-" },
-
-  // Simple emotions
-  { text: "HAPPY", morse: ".... .- .--. .--. -.--" },
-  { text: "SAD", morse: "... .- -.." },
-  { text: "LOVE", morse: ".-.. --- ...- ." },
-  { text: "PEACE", morse: ".--. . .- -.-. ." },
-
-  // Emergency / utility
-  { text: "SOS", morse: "... --- ..." },
-  { text: "HELP", morse: ".... . .-.. .--." },
-  { text: "EMERGENCY", morse: ". -- . .-. --. . -. -.-. -.--" },
-  { text: "STOP", morse: "... - --- .--." },
-  { text: "FIRE", morse: "..-. .. .-." },
-  { text: "CALL 911", morse: "-.-. .- .-.. .-..   ----. .---- .----" },
-
-  // Common nouns
-  { text: "DOG", morse: "-.. --- --." },
-  { text: "CAT", morse: "-.-. .- -" },
-  { text: "TREE", morse: "- .-. . ." },
-  { text: "SUN", morse: "... ..- -." },
-  { text: "MOON", morse: "-- --- --- -." },
-  { text: "STAR", morse: "... - .- .-." },
-
-  // Numbers / dates
-  { text: "ONE TWO THREE", morse: "--- -. .   - .-- ---   - .... .-. . ." },
-  { text: "123", morse: ".---- ..--- ...--" },
-  { text: "2025", morse: "..--- ----- ..--- ....." },
-  { text: "TIME", morse: "- .. -- ." },
-
-  // Radio / procedural
-  { text: "CQ", morse: "-.-. --.-" },
-  { text: "OVER", morse: "--- ...- . .-." },
-  { text: "OUT", morse: "--- ..- -" },
-  { text: "WAIT", morse: ".-- .- .. -" },
-  { text: "READY", morse: ".-. . .- -.. -.--" },
-  { text: "GO", morse: "--. ---" },
-
-  // Learning / fun
-  { text: "CODE", morse: "-.-. --- -.. ." },
-  { text: "MORSE", morse: "-- --- .-. ... ." },
-  { text: "LEARN", morse: ".-.. . .- .-. -." },
-  { text: "QUIZ", morse: "--.- ..- .. --.." },
-  { text: "PRACTICE", morse: ".--. .-. .- -.-. - .. -.-. ." },
-
-  //Emergency phrases
-  { text: "MAYDAY", morse: "-- .- -.-- -.. .- -.--" },
-  { text: "SOS HELP ME", morse: "... --- ...   .... . .-.. .--.   -- ." },
-  { text: "FIRE HERE", morse: "..-. .. .-. .   .... . .-. ." },
+  { text: "HELLO", morse: "....   .   .-..   .-..   ---" },
+  { text: "HI", morse: "....   .." },
+  { text: "HEY", morse: "....   .   -.--" },
+  { text: "WELCOME", morse: ".--   .   .-..   -.-.   ---   --   ." },
   {
-    text: "NEED ASSISTANCE",
-    morse: "-. . . -..   .- ... ... .. ... - .- -. -.-. .",
+    text: "GOOD MORNING",
+    morse: "--.   ---   ---   -..       --   ---   .-.   -.   ..   -.   --.",
+  },
+  {
+    text: "GOOD NIGHT",
+    morse: "--.   ---   ---   -..       -.   ..   --.   ....   -",
   },
 
-  //Love
-  { text: "I MISS YOU", morse: "..   -- .. ... ...   -.-- --- ..-" },
-  { text: "BE MINE", morse: "-... .   -- .. -. ." },
-  { text: "LOVE YOU", morse: ".-.. --- ...- .   -.-- --- ..-" },
+  // Courtesy
+  { text: "PLEASE", morse: ".--.   .-..   .   .-   ...   ." },
+  {
+    text: "THANK YOU",
+    morse: "-   ....   .-   -.   -.-       -.--   ---   ..-",
+  },
+  { text: "SORRY", morse: "...   ---   .-.   .-.   -.--" },
+  { text: "YES", morse: "-.--   .   ..." },
+  { text: "NO", morse: "-.   ---" },
+  { text: "MAYBE", morse: "--   .-   -.--   -...   ." },
+
+  // Everyday
+  {
+    text: "HOW ARE YOU",
+    morse: "....   ---   .--       .-   .-.   .       -.--   ---   ..-",
+  },
+  {
+    text: "I LOVE YOU",
+    morse: "..       .-..   ---   ...-   .       -.--   ---   ..-",
+  },
+  { text: "THANKS", morse: "-   ....   .-   -.   -.-   ..." },
+  { text: "BYE", morse: "-...   -.--   ." },
+  { text: "SEE YOU", morse: "...   .   .       -.--   ---   ..-" },
+
+  // Emotions
+  { text: "HAPPY", morse: "....   .-   .--.   .--.   -.--" },
+  { text: "SAD", morse: "...   .-   -.." },
+  { text: "LOVE", morse: ".-..   ---   ...-   ." },
+  { text: "PEACE", morse: ".--.   .   .-   -.-.   ." },
+
+  // Emergencies
+  { text: "SOS", morse: "...   ---   ..." },
+  { text: "HELP", morse: "....   .   .-..   .--." },
+  { text: "EMERGENCY", morse: ".   --   .   .-.   --.   .   -.   -.-.   -.--" },
+  { text: "STOP", morse: "...   -   ---   .--." },
+  { text: "FIRE", morse: "..-.   ..   .-.   ." },
+  {
+    text: "CALL 911",
+    morse: "-.-.   .-   .-..   .-..       ----.   .----   .----",
+  },
+
+  // Nouns
+  { text: "DOG", morse: "-..   ---   --." },
+  { text: "CAT", morse: "-.-.   .-   -" },
+  { text: "TREE", morse: "-   .-.   .   ." },
+  { text: "SUN", morse: "...   ..-   -." },
+  { text: "MOON", morse: "--   ---   ---   -." },
+  { text: "STAR", morse: "...   -   .-   .-." },
+
+  // Numbers & time
+  {
+    text: "ONE TWO THREE",
+    morse: "---   -.   .       -   .--   ---       -   ....   .-.   .   .",
+  },
+  { text: "123", morse: ".----   ..---   ...--" },
+  { text: "2025", morse: "..---   -----   ..---   ....." },
+  { text: "TIME", morse: "-   ..   --   ." },
+
+  // Radio procedure
+  { text: "CQ", morse: "-.-.   --.-" },
+  { text: "OVER", morse: "---   ...-   .   .-." },
+  { text: "OUT", morse: "---   ..-   -" },
+  { text: "WAIT", morse: ".--   .-   ..   -" },
+  { text: "READY", morse: ".-.   .   .-   -..   -.--" },
+  { text: "GO", morse: "--.   ---" },
+
+  // Learning
+  { text: "CODE", morse: "-.-.   ---   -..   ." },
+  { text: "MORSE", morse: "--   ---   .-.   ...   ." },
+  { text: "LEARN", morse: ".-..   .   .-   .-.   -." },
+  { text: "QUIZ", morse: "--.-   ..-   ..   --.." },
+  { text: "PRACTICE", morse: ".--.   .-.   .-   -.-.   -   ..   -.-.   ." },
+
+  // Emergency phrases
+  { text: "MAYDAY", morse: "--   .-   -.--   -..   .-   -.--" },
+  {
+    text: "SOS HELP ME",
+    morse: "...   ---   ...       ....   .   .-..   .--.       --   .",
+  },
+  { text: "FIRE HERE", morse: "..-.   ..   .-.   .       ....   .   .-.   ." },
+  {
+    text: "NEED ASSISTANCE",
+    morse:
+      "-.   .   .   -..       .-   ...   ...   ..   ...   -   .-   -.   -.-.   .",
+  },
+
+  // Love
+  {
+    text: "I MISS YOU",
+    morse: "..       --   ..   ...   ...       -.--   ---   ..-",
+  },
+  { text: "BE MINE", morse: "-...   .       --   ..   -.   ." },
+  { text: "LOVE YOU", morse: ".-..   ---   ...-   .       -.--   ---   ..-" },
+
+  { text: "GOOD JOB", morse: "--.   ---   ---   -..       .---   ---   -..." },
+  {
+    text: "WELL DONE",
+    morse: ".--   .   .-..   .-..       -..   ---   -.   .",
+  },
+  {
+    text: "NICE WORK",
+    morse: "-.   ..   -.-.   .       .--   ---   .-.   -.-",
+  },
+  {
+    text: "KEEP GOING",
+    morse: "-.-   .   .   .--.       --.   ---   ..   -.   --.",
+  },
+  {
+    text: "STAY STRONG",
+    morse: "...   -   .-   -.--       ...   -   .-.   ---   -.   --.",
+  },
+  { text: "TRY AGAIN", morse: "-   .-.   -.--       .-   --.   .-   ..   -." },
+  { text: "YOU CAN", morse: "-.--   ---   ..-       -.-.   .-   -." },
+  {
+    text: "GREAT WORK",
+    morse: "--.   .-.   .   .-   -       .--   ---   .-.   -.-",
+  },
+  {
+    text: "KEEP LEARNING",
+    morse: "-.-   .   .   .--.       .-..   .   .-   .-.   -.   ..   -.   --.",
+  },
+
+  {
+    text: "NEVER QUIT",
+    morse: "-.   .   ...-   .   .-.       --.-   ..-   ..   -",
+  },
+  { text: "BE STRONG", morse: "-...   .       ...   -   .-.   ---   -.   --." },
+  {
+    text: "KEEP TRYING",
+    morse: "-.-   .   .   .--.       -   .-.   -.--   ..   -.   --.",
+  },
+  { text: "BELIEVE", morse: "-...   .   .-..   ..   .   ...-   ." },
+  { text: "FOCUS", morse: "..-.   ---   -.-.   ..-   ..." },
+  { text: "SMILE", morse: "...   --   ..   .-..   ." },
+  { text: "WIN", morse: ".--   ..   -." },
+  {
+    text: "READY SET GO",
+    morse: ".-.   .   .-   -..   -.--       ...   .   -       --.   ---",
+  },
+
+  {
+    text: "HELLO THERE",
+    morse: "....   .   .-..   .-..   ---       -   ....   .   .-.   .",
+  },
+  {
+    text: "HI FRIEND",
+    morse: "....   ..       ..-.   .-.   ..   .   -.   -..",
+  },
+  {
+    text: "SECRET CODE",
+    morse: "...   .   -.-.   .-.   .   -       -.-.   ---   -..   .",
+  },
+  {
+    text: "HIDDEN MESSAGE",
+    morse:
+      "....   ..   -..   -..   .   -.       --   .   ...   ...   .-   --.   .",
+  },
+  {
+    text: "RADIO SIGNAL",
+    morse: ".-.   .-   -..   ..   ---       ...   ..   --.   -.   .-   .-..",
+  },
+  { text: "TAP TAP", morse: "-   .-   .--.       -   .-   .--." },
+  { text: "FUN TIME", morse: "..-.   ..-   -.       -   ..   --   ." },
+  { text: "CODE GAME", morse: "-.-.   ---   -..   .       --.   .-   --   ." },
+
+  { text: "ALERT", morse: ".-   .-..   .   .-.   -" },
+  { text: "SAFE NOW", morse: "...   .-   ..-.   .       -.   ---   .--" },
+  {
+    text: "HELP NEEDED",
+    morse: "....   .   .-..   .--.       -.   .   .   -..   .   -..",
+  },
+  {
+    text: "ALL CLEAR",
+    morse: ".-   .-..   .-..       -.-.   .-..   .   .-   .-.",
+  },
+  {
+    text: "CALL FOR HELP",
+    morse:
+      "-.-.   .-   .-..   .-..       ..-.   ---   .-.       ....   .   .-..   .--.",
+  },
 ];
 
 function MorseQuiz() {
@@ -902,7 +1037,7 @@ function MorseQuiz() {
     validPairs[Math.floor(Math.random() * validPairs.length)] ?? validPairs[0];
 
   // ----- state -----
-  const [question, setQuestion] = useState<any>(getRandomPair());
+  const [question, setQuestion] = useState<any>(null);
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
   const [streak, setStreak] = useState(0);
@@ -911,6 +1046,13 @@ function MorseQuiz() {
 
   const timeoutRef = useRef<number | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    // initialize once on client
+    if (!question && validPairs.length > 0) {
+      setQuestion(getRandomPair());
+    }
+  }, [question, validPairs]);
 
   // ----- submit -----
   const handleSubmit = () => {
@@ -962,7 +1104,7 @@ function MorseQuiz() {
   }, []);
 
   // ----- render -----
-  const morse = getMorseFromPair(question);
+  const morse = question ? getMorseFromPair(question) : "";
 
   return (
     <section
@@ -976,7 +1118,7 @@ function MorseQuiz() {
         itemProp="name"
         className="font-bold text-2xl text-[#0b2447]"
       >
-        Morse Code Quick Quiz
+        Morse Code Quick Quiz - Test Your Skills & Beat Your Longest Streak!
       </h2>
 
       <p
@@ -1027,7 +1169,7 @@ function MorseQuiz() {
 
           <button
             onClick={handleSubmit}
-            className={`px-6 py-2 rounded-md font-semibold transition text-white ${
+            className={`px-6 py-2 cursor-pointer rounded-md font-semibold transition text-white ${
               locked
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-[#0b2447] hover:bg-[#09203d] active:scale-95"
@@ -1530,9 +1672,9 @@ export default function Home() {
         "@type": "WebPage",
         "@id": `${baseUrl}/#webpage`,
         url: baseUrl + "/",
-        name: "MorseWords - Translate and Play Morse Code",
+        name: "MorseWords – Free Online Morse Translator & Learning Tool",
         description:
-          "Clean light-theme Morse translator with audio playback, WPM and tone controls. Separate Text → Morse and Morse → Text tools, plus an upcoming Morse word game.",
+          "Learn and practice Morse code online with audio playback, WPM and tone controls. Translate instantly between text and Morse, then improve skills with our interactive learning interface.",
         isPartOf: { "@id": `${baseUrl}#website` },
         primaryImageOfPage: {
           "@type": "ImageObject",
@@ -1560,7 +1702,7 @@ export default function Home() {
         operatingSystem: "All",
         url: baseUrl + "/",
         description:
-          "Browser-based Morse translator with audio playback, timing controls, and practice content.",
+          "Browser-based Morse translator with audio playback, timing controls, and interactive training features.",
         inLanguage: "en",
         offers: {
           "@type": "Offer",
@@ -1595,20 +1737,20 @@ export default function Home() {
           {
             "@type": "ListItem",
             position: 4,
-            name: "Learning Tips and Practice Content",
+            name: "Learning Tips and Practice Exercises",
             url: `${baseUrl}/#learn`,
           },
           {
             "@type": "ListItem",
             position: 5,
-            name: "Upcoming Morse Word Game",
-            url: `${baseUrl}/#game`,
+            name: "Interactive Morse Learning Interface",
+            url: `${baseUrl}/#interactive-learning`,
           },
         ],
       },
       {
         "@type": "FAQPage",
-        "@id": `${baseUrl}#faq-translator`,
+        "@id": `${baseUrl}#faq`,
         mainEntity: [
           {
             "@type": "Question",
@@ -1642,15 +1784,9 @@ export default function Home() {
               text: "Spacing separates symbols and words so the translator can decode correctly. Use three spaces between letters and seven between words.",
             },
           },
-        ],
-      },
-      {
-        "@type": "FAQPage",
-        "@id": `${baseUrl}#faq-game`,
-        mainEntity: [
           {
             "@type": "Question",
-            name: "Do I need audio to play?",
+            name: "Do I need audio to practice learning Morse Code?",
             acceptedAnswer: {
               "@type": "Answer",
               text: "No. You can decode by reading the code or by listening.",
@@ -1658,7 +1794,7 @@ export default function Home() {
           },
           {
             "@type": "Question",
-            name: "How long is each round?",
+            name: "How long is each practice round?",
             acceptedAnswer: {
               "@type": "Answer",
               text: "Rounds are short so you can practice daily without fatigue.",
@@ -1669,7 +1805,7 @@ export default function Home() {
             name: "What should I focus on first?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Focus on recognition and spacing. Speed will follow.",
+              text: "Focus on recognition and spacing. Speed will follow naturally.",
             },
           },
           {
@@ -1677,41 +1813,51 @@ export default function Home() {
             name: "Is this good for beginners?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. The game starts simple and grows with your skill.",
+              text: "Yes. The Interactive Learning Interface starts simple and adapts to your skill level.",
             },
           },
         ],
       },
       {
         "@type": "HowTo",
-        "@id": `${baseUrl}#how-to-play`,
-        name: "How to Play the Morse Word Game",
+        "@id": `${baseUrl}#how-to-practice`,
+        name: "How to Practice Morse Code with MorseWords",
         description:
-          "Decode Morse, type the correct word, and track your progress.",
+          "Follow three simple steps to learn Morse code using the MorseWords translator and learning interface.",
         step: [
           {
             "@type": "HowToStep",
             position: 1,
             name: "Listen or read the code",
-            text: "Listen to the audio or read the code shown on screen.",
+            text: "Listen to the audio or read the Morse sequence shown on screen.",
           },
           {
             "@type": "HowToStep",
             position: 2,
-            name: "Type your guess",
-            text: "Type your guess as plain text and use hints if needed.",
+            name: "Type your translation",
+            text: "Type your decoded text and compare it with the reference output.",
           },
           {
             "@type": "HowToStep",
             position: 3,
-            name: "Submit and learn",
-            text: "Submit your answer to reveal the correct decoding and earn points.",
+            name: "Review and improve",
+            text: "Check your accuracy, note tricky letters, and repeat to strengthen recognition.",
           },
         ],
         totalTime: "PT1M",
         tool: [
-          { "@type": "HowToTool", name: "MorseWords audio player" },
-          { "@type": "HowToTool", name: "MorseWords translator" },
+          {
+            "@type": "HowToTool",
+            name: "MorseWords Morse Code Audio Player",
+            description:
+              "For listening to Morse code audio while training recognition.",
+          },
+          {
+            "@type": "HowToTool",
+            name: "MorseWords Morse Code Translator",
+            description:
+              "For verifying decoded text and practicing translation accuracy.",
+          },
         ],
       },
     ],
@@ -1741,14 +1887,16 @@ export default function Home() {
         <section className="flex flex-col sm:flex-row gap-8 mt-6 mb-8 sm:mb-2">
           <div>
             <h1 style={styles.h1}>
-              A clean Morse translator with audio playback
+              Learn and Translate Morse Code with Clean Audio
             </h1>
             <p style={styles.lead}>
-              Convert words to Morse and back with accurate spacing. Adjust
-              speed and tone, then play clean sine audio. Light theme, no
-              gradients.
+              Convert words into International Morse Code and decode messages
+              back to text. Adjust speed (WPM) and tone to train your ear and
+              practice real Morse rhythm. Simple, accurate, and built for
+              focused learning.
             </p>
           </div>
+
           <div className="card" style={{ ...styles.card, ...styles.cardPad }}>
             <h2 style={{ marginTop: 0, fontSize: "1.25rem" }}>
               Quick Controls
@@ -1782,8 +1930,8 @@ export default function Home() {
               </div>
             </div>
             <p style={{ ...styles.note, marginTop: 8 }}>
-              Standard timing: dit one unit. Dah three. Letter gap three. Word
-              gap seven.
+              Standard timing: one "dit" equals one unit, one "dah" equals
+              three. Letter gaps are three units, word gaps seven.
             </p>
           </div>
         </section>
@@ -1808,55 +1956,60 @@ export default function Home() {
         {/* Learn / SEO content */}
         <section style={styles.section} aria-labelledby="learn-title">
           <h2 id="learn-title" style={styles.sectionTitle}>
-            Learn and practice
+            Learn and Practice Morse Code
           </h2>
           <div style={{ ...styles.card, ...styles.cardPad }}>
             <p style={{ margin: 0, color: "#5a616c", fontSize: "1.02rem" }}>
-              Start with short phrases. Listen for rhythm at 15 to 20 WPM. Raise
-              speed as you improve. The upcoming word game will make daily
-              practice simple and fun.
+              Begin with short phrases and listen for rhythm at 15 to 20 WPM.
+              Increase speed as your recognition improves. This interactive
+              learning tool provides structured daily practice to help you build
+              real Morse proficiency.
             </p>
           </div>
         </section>
+
         <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ color: "#0b2447" }}>Instant Text to Morse Conversion</h2>
+          <h2 style={{ color: "#0b2447" }}>Instant Text-to-Morse Conversion</h2>
           <p style={{ color: "#555" }}>
-            Our translator instantly turns any word or phrase into Morse code.
-            Whether you are learning the basics or decoding historical signals,
-            this tool makes conversion simple, fast, and reliable.
+            Instantly convert any word or sentence into International Morse
+            Code. Whether you’re learning the fundamentals or exploring
+            historical communication, this educational translator provides fast,
+            accurate results with clear audio feedback.
           </p>
         </section>
 
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>
-            Accurate Morse to Text Translation
+            Accurate Morse-to-Text Translation
           </h2>
           <p style={{ color: "#555" }}>
-            Paste Morse code into the translator and get clean text output. The
-            converter supports letters, numbers, and punctuation, making it a
-            complete solution for decoding real-world Morse messages.
+            Paste or type Morse code to decode it back into readable text. The
+            converter supports letters, numbers, and punctuation, making it
+            ideal for both classroom learning and real-world radio practice.
           </p>
         </section>
 
         <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ color: "#0b2447" }}>Morse Translator With Audio</h2>
+          <h2 style={{ color: "#0b2447" }}>
+            Morse Translator with Audio Training
+          </h2>
           <p style={{ color: "#555" }}>
-            Learning Morse is easier when you hear it. With our audio playback
-            feature, you can listen to dits and dahs at different speeds and
-            tones. This helps improve recognition and builds real listening
-            skills.
+            Learning Morse is easier when you can hear it. Use audio playback to
+            listen to dits and dahs at adjustable speeds and tones. Training
+            your ear through sound builds recognition, rhythm, and long-term
+            memory.
           </p>
         </section>
 
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Practice and Learn Anywhere</h2>
           <p style={{ color: "#555" }}>
-            The MorseWords translator works directly in your browser, with no
-            installation. Translate text, practice listening, and copy results
-            from desktop, tablet, or mobile - always available when you need it.
+            The MorseWords translator runs directly in your browser, no
+            installation required. Translate text, practice decoding, and review
+            results from desktop, tablet, or mobile. Always accessible when
+            you’re ready to learn.
           </p>
         </section>
-
         {/* How it works */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>How the Morse Translator Works</h2>
@@ -1870,22 +2023,24 @@ export default function Home() {
           >
             <p style={{ color: "#555", marginTop: 0 }}>
               The converter maps letters, numbers, and punctuation to
-              International Morse and applies standard timing. One dit is one
-              unit. A dah is three units. Spacing inside a letter is one unit,
-              between letters is three units, and between words is seven units.
-              This keeps on-screen output and audio playback consistent.
+              International Morse Code and applies standard timing. One dit
+              equals one unit, and a dah equals three. Spacing inside a letter
+              is one unit, between letters is three, and between words is seven.
+              This ensures both visual output and audio playback remain
+              consistent and accurate.
             </p>
             <ol style={{ color: "#555", lineHeight: 1.65, paddingLeft: 18 }}>
               <li>
-                Type text to create Morse instantly, or paste Morse to decode
+                Type text to create Morse instantly, or paste Morse to decode it
                 back to text.
               </li>
               <li>
-                Use the Convert buttons to lock in the result, then copy it or
+                Use the Convert buttons to lock in the result, then copy or
                 listen with audio playback.
               </li>
               <li>
-                Adjust WPM and tone to train your ear at comfortable speeds.
+                Adjust WPM and tone to train your ear at comfortable learning
+                speeds.
               </li>
             </ol>
           </div>
@@ -1905,9 +2060,9 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              Letters A–Z and digits 0–9 are fully supported, plus common
-              punctuation. Unsupported symbols are ignored to keep results
-              clean.
+              Letters A–Z and digits 0–9 are fully supported, along with the
+              most common punctuation marks. Unsupported symbols are ignored to
+              keep translations clean and readable.
             </p>
             <div
               style={{
@@ -1987,14 +2142,16 @@ export default function Home() {
                 margin: 0,
               }}
             >
-              <li>Dit length is one unit. Dah length is three units.</li>
-              <li>Gap inside a character is one unit.</li>
-              <li>Gap between letters is three units.</li>
-              <li>Gap between words is seven units.</li>
+              <li>
+                Dit length equals one unit, dah length equals three units.
+              </li>
+              <li>The gap inside a character is one unit.</li>
+              <li>The gap between letters is three units.</li>
+              <li>The gap between words is seven units.</li>
             </ul>
             <p style={{ color: "#555", marginTop: 12 }}>
               For best decoding, keep three spaces between letters and seven
-              spaces between words when pasting Morse.
+              between words when pasting Morse.
             </p>
           </div>
         </section>
@@ -2005,98 +2162,40 @@ export default function Home() {
           <div
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}
           >
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
+            {[
+              {
+                text: "HELLO WORLD",
+                code: ".... . .-.. .-.. --- .-- --- .-. .-.. -..",
+              },
+              { text: "MORSE CODE", code: "-- --- .-. ... . -.-. --- -.. ." },
+              { text: "GOOD LUCK", code: "--. --- --- -.. .-.. ..- -.- -.-" },
+              { text: "CQ", code: "-.-. --.-" },
+            ].map((ex, i) => (
               <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                HELLO WORLD
-              </div>
-              <div
+                key={i}
                 style={{
-                  color: "#333",
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+                  background: "#fff",
+                  border: "1px solid #e6e8ef",
+                  borderRadius: 6,
+                  padding: 12,
                 }}
               >
-                .... . .-.. .-.. --- .-- --- .-. .-.. -..
+                <div
+                  style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
+                >
+                  {ex.text}
+                </div>
+                <div
+                  style={{
+                    color: "#333",
+                    fontFamily:
+                      'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+                  }}
+                >
+                  {ex.code}
+                </div>
               </div>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                MORSE CODE
-              </div>
-              <div
-                style={{
-                  color: "#333",
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
-                }}
-              >
-                -- --- .-. ... . -.-. --- -.. .
-              </div>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                GOOD LUCK
-              </div>
-              <div
-                style={{
-                  color: "#333",
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
-                }}
-              >
-                --. --- --- -.. .-.. ..- -.- -.-
-              </div>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                CQ
-              </div>
-              <div
-                style={{
-                  color: "#333",
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
-                }}
-              >
-                -.-. --.-
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
@@ -2120,8 +2219,8 @@ export default function Home() {
               }}
             >
               <li>
-                If output looks merged, add spaces. Three between letters, seven
-                between words.
+                If output looks merged, add spaces: three between letters and
+                seven between words.
               </li>
               <li>
                 If a character does not appear, it is likely unsupported
@@ -2148,11 +2247,11 @@ export default function Home() {
           >
             <p style={{ color: "#555", marginTop: 0 }}>
               Morse code was developed in the 1830s by Samuel Morse and Alfred
-              Vail as a way to transmit messages across telegraph lines. It
-              quickly became the backbone of long-distance communication, used
-              in railroads, maritime signaling, aviation, and emergency
-              services. Today, enthusiasts and learners continue to keep it
-              alive through translators, radio practice, and educational games.
+              Vail as a method to transmit messages across telegraph lines. It
+              soon became the backbone of long-distance communication, used in
+              railroads, maritime signaling, aviation, and emergency services.
+              Today, students and radio operators continue to learn and practice
+              it through modern educational tools.
             </p>
           </div>
         </section>
@@ -2161,60 +2260,39 @@ export default function Home() {
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Why Learn Morse Code?</h2>
           <div className="flex flex-col sm:flex-row gap-5">
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
+            {[
+              {
+                title: "Emergency Use",
+                desc: "SOS (... --- ...) remains a recognized international distress signal.",
+              },
+              {
+                title: "Brain Training",
+                desc: "Learning Morse strengthens memory, concentration, and auditory pattern recognition.",
+              },
+              {
+                title: "Cultural Heritage",
+                desc: "Preserve a communication system that helped shape modern technology and global contact.",
+              },
+            ].map((item, i) => (
               <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
+                key={i}
+                style={{
+                  background: "#fff",
+                  border: "1px solid #e6e8ef",
+                  borderRadius: 6,
+                  padding: 12,
+                }}
               >
-                Emergency Use
+                <div
+                  style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
+                >
+                  {item.title}
+                </div>
+                <p style={{ color: "#555", margin: 0 }}>{item.desc}</p>
               </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                SOS (... --- ...) is still a recognized global distress signal.
-              </p>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                Brain Training
-              </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                Learning Morse improves memory, focus, and auditory skills.
-              </p>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                Cultural Heritage
-              </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                Keep alive a language that shaped modern communication.
-              </p>
-            </div>
+            ))}
           </div>
         </section>
-
         {/* Educational Uses */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Educational Uses of Morse Code</h2>
@@ -2230,8 +2308,9 @@ export default function Home() {
               Teachers often use Morse code to spark interest in history,
               physics, and language learning. From understanding sound waves to
               practicing rhythm and timing, Morse brings an interactive element
-              into classrooms. Our translator and word game make it easy to
-              introduce students to these timeless concepts.
+              into classrooms. Our translator and learning activities make it
+              easy to introduce students to these timeless communication
+              concepts.
             </p>
           </div>
         </section>
@@ -2261,9 +2340,9 @@ export default function Home() {
                   lineHeight: 1.65,
                 }}
               >
-                <li>Word-to-Morse and Morse-to-word conversion</li>
+                <li>Text-to-Morse and Morse-to-text translation</li>
                 <li>Audio playback for real listening practice</li>
-                <li>Interactive game for daily learning</li>
+                <li>Interactive learning modules for ongoing study</li>
               </ul>
             </div>
             <div
@@ -2287,9 +2366,9 @@ export default function Home() {
                   lineHeight: 1.65,
                 }}
               >
-                <li>Text conversion only</li>
-                <li>No training or typing practice</li>
-                <li>Limited accuracy for symbols and punctuation</li>
+                <li>Basic text conversion only</li>
+                <li>No structured learning or listening support</li>
+                <li>Limited accuracy for punctuation and symbols</li>
               </ul>
             </div>
           </div>
@@ -2307,10 +2386,11 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              MorseWords is built for mobile and desktop browsers. Translate,
-              listen, and play anywhere you go. Whether you have a quick moment
-              on your phone or want to dedicate longer sessions on your
-              computer, the same clean experience is available across devices.
+              MorseWords is designed for both mobile and desktop browsers.
+              Translate, listen, and practice from any device. Whether you have
+              a minute on your phone or want to dedicate longer sessions on your
+              computer, the same clean and accessible experience is always
+              available.
             </p>
           </div>
         </section>
@@ -2327,18 +2407,18 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              Once you master basic letters and numbers, challenge yourself with
-              advanced practice sessions. Our translator supports punctuation,
-              symbols, and even custom phrases, so you can simulate real-world
-              radio messages or puzzle scenarios. Perfect for contest prep and
-              ham operators.
+              Once you master basic letters and numbers, explore advanced
+              practice sessions. The translator supports punctuation, symbols,
+              and custom phrases, allowing you to simulate real radio messages
+              and challenge your comprehension. Suitable for students,
+              hobbyists, and radio operators refining their skills.
             </p>
           </div>
         </section>
 
-        {/* Gamified Learning */}
+        {/* Guided Learning */}
         <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ color: "#0b2447" }}>Gamified Morse Learning</h2>
+          <h2 style={{ color: "#0b2447" }}>Guided Morse Practice</h2>
           <div
             style={{
               background: "#fff",
@@ -2348,11 +2428,11 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              Turn practice into play. The upcoming MorseWords game blends speed
-              typing with Morse decoding, making each session fun and
-              competitive. Earn streaks, track your WPM, and unlock harder
-              challenges as you improve. Learning Morse doesn’t have to feel
-              like study - it can feel like play.
+              Learning Morse code can be engaging and goal-oriented. The
+              MorseWords interactive training modules combine typing accuracy
+              with listening exercises, creating a balanced way to study at your
+              own pace. Track your progress, improve recognition, and build
+              speed naturally through daily use.
             </p>
           </div>
         </section>
@@ -2369,11 +2449,10 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              Practice typing Morse as fast as you can while keeping accuracy
-              high. With adjustable WPM targets and real-time feedback, you’ll
-              build both speed and confidence. This is one of the most effective
-              ways to train your ear and hand coordination for Morse code
-              fluency.
+              Practice typing Morse while maintaining high accuracy. Adjustable
+              WPM targets and real-time feedback help you build speed, rhythm,
+              and confidence. This focused approach develops strong coordination
+              between hearing and writing, leading to true Morse fluency.
             </p>
           </div>
         </section>
@@ -2381,7 +2460,7 @@ export default function Home() {
         {/* Real-Life Applications */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>
-            Real-Life Applications of Morse Code
+            Real-World Applications of Morse Code
           </h2>
           <div
             style={{
@@ -2392,18 +2471,18 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              Beyond history, Morse code is still used today in emergency
-              signaling, survival scenarios, and even by people with
-              disabilities as an accessible communication tool. Knowing Morse
-              gives you a timeless skill that can help in unexpected situations.
+              Morse code continues to serve practical roles today, including
+              emergency signaling, survival communication, and accessibility
+              support for individuals with limited mobility or speech.
+              Understanding Morse provides a versatile skill that connects
+              history, technology, and communication practice.
             </p>
           </div>
         </section>
-
         {/* SEO Long-tail: Free & Online */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>
-            Free Online Morse Translator and Game
+            Free Online Morse Translator and Interactive Learning Interface
           </h2>
           <div
             style={{
@@ -2414,11 +2493,13 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              MorseWords is completely free to use - no downloads or sign-ups
-              required. Translate text to Morse instantly, listen to audio, and
-              soon, play our online game. Whether you are a beginner searching
-              “free Morse code practice” or an expert looking for “online Morse
-              translator,” this site delivers.
+              MorseWords is completely free to use. No downloads or sign-ups are
+              required. Translate text to Morse instantly, listen to clean
+              audio, and practice using our structured interactive interface.
+              Whether you are a beginner searching for “free Morse code
+              practice” or an advanced learner seeking an accurate “online Morse
+              translator,” this educational tool delivers reliable, high-quality
+              results.
             </p>
           </div>
         </section>
@@ -2435,94 +2516,17 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              MorseWords is designed to be accessible for everyone. Clear fonts,
-              high contrast, and simple audio controls make it easy for learners
-              of all ages. For accessibility needs, Morse code can even be
-              practiced visually or with sound, supporting multiple learning
-              styles.
+              MorseWords is designed with accessibility in mind. Clear fonts,
+              high-contrast colors, and intuitive audio controls make it
+              suitable for learners of all ages and abilities. The site supports
+              both visual and auditory learning styles, and it is screen reader
+              friendly to ensure inclusive access for all users. Following key
+              WCAG principles, the interface promotes focus, simplicity, and
+              comfort for every learning environment.
             </p>
           </div>
         </section>
-
-        {/* FAQ */}
-        <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ color: "#0b2447" }}>Morse Translator FAQ</h2>
-          <div className="grid gap-5 sm:grid-cols-4 my-5">
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                What speed should I start with?
-              </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                Begin around 15 to 20 WPM, then raise speed as accuracy
-                improves.
-              </p>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                Does punctuation work?
-              </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                Yes. Period, comma, question mark, slash, quotes, hyphen, plus,
-                equals, and more.
-              </p>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                Can I listen without converting?
-              </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                Paste Morse and use audio playback at your chosen WPM and tone.
-              </p>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                Why are spaces required?
-              </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                Spacing separates symbols and words so the translator can decode
-                correctly.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Learning path */}
+        {/* Learning Path */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Learn Morse the Smart Way</h2>
           <div
@@ -2541,26 +2545,28 @@ export default function Home() {
                 margin: 0,
               }}
             >
-              <li>Begin with the most common letters: E, T, A, I, N, O.</li>
+              <li>Begin with the most common letters: E, T, A, I, N, and O.</li>
               <li>
-                Add pairs with distinct rhythms, for example K and R, M and S.
+                Add pairs with distinct rhythms, for example K and R, or M and
+                S.
               </li>
               <li>
-                Introduce numbers and key punctuation once letters feel
-                automatic.
+                Introduce numbers and punctuation once letters become automatic.
               </li>
               <li>
-                Practice with words and short phrases to cement pattern memory.
+                Practice with short words and phrases to reinforce memory
+                patterns.
               </li>
             </ol>
             <p style={{ color: "#555", marginTop: 12 }}>
-              Keep character speed near 15 to 20 WPM and increase it over time.
-              This builds recognition that transfers to real listening.
+              Keep character speed between 15 and 20 WPM and increase it
+              gradually. Consistent pacing builds strong recognition for both
+              reading and listening.
             </p>
           </div>
         </section>
 
-        {/* Audio training tips */}
+        {/* Audio Training Tips */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Audio Training Tips</h2>
           <div
@@ -2580,18 +2586,20 @@ export default function Home() {
               }}
             >
               <li>Use a tone near 600 to 700 Hz for comfortable listening.</li>
-              <li>Practice short sessions, then rest your ears.</li>
-              <li>Focus on rhythm and spacing rather than counting symbols.</li>
+              <li>Keep practice sessions short to prevent fatigue.</li>
+              <li>Focus on rhythm and timing rather than counting symbols.</li>
               <li>
-                Repeat tricky letters in isolation, then embed them in words.
+                Repeat difficult letters in isolation, then embed them in words.
               </li>
             </ul>
           </div>
         </section>
 
-        {/* Game: What it is */}
+        {/* About the Interactive Learning Interface */}
         <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ color: "#0b2447" }}>About the Morse Word Game</h2>
+          <h2 style={{ color: "#0b2447" }}>
+            About the MorseWords Interactive Learning Interface
+          </h2>
           <div
             style={{
               background: "#fff",
@@ -2601,22 +2609,24 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              The Morse word game turns practice into a daily challenge. Decode
-              Morse, type the correct word, and track your progress. Puzzles
-              focus on common words and short phrases so you build recognition
-              and speed without feeling overwhelmed.
+              The MorseWords Interactive Learning Interface provides structured,
+              daily practice. Decode Morse, type the correct word, and review
+              feedback to improve over time. Each exercise emphasizes pattern
+              recognition and speed through familiar words and short phrases.
             </p>
             <ul style={{ color: "#555", lineHeight: 1.65, paddingLeft: 18 }}>
-              <li>Short daily puzzles for quick wins.</li>
-              <li>Balanced difficulty that grows with your skill.</li>
-              <li>Built around accurate timing and spacing rules.</li>
+              <li>Short daily exercises for consistent progress.</li>
+              <li>Difficulty adapts naturally to your current level.</li>
+              <li>Built on precise timing and spacing standards.</li>
             </ul>
           </div>
         </section>
 
-        {/* Game: How to play */}
+        {/* How to Practice with the Interface */}
         <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ color: "#0b2447" }}>How to Play</h2>
+          <h2 style={{ color: "#0b2447" }}>
+            How to Practice with the MorseWords Training Interface
+          </h2>
           <div
             style={{
               background: "#fff",
@@ -2633,25 +2643,27 @@ export default function Home() {
                 margin: 0,
               }}
             >
-              <li>Listen to the audio or read the code shown on screen.</li>
               <li>
-                Type your guess as plain text. Use hints if you get stuck.
+                Listen to the audio or read the Morse sequence shown on screen.
               </li>
               <li>
-                Submit your answer to reveal the correct decoding and earn
-                points.
+                Type your answer in plain text. Use hints for assistance if
+                needed.
+              </li>
+              <li>
+                Check your results to compare your decoding accuracy and timing.
               </li>
             </ol>
             <p style={{ color: "#555", marginTop: 12 }}>
-              Each round reinforces letter patterns and common sound groups so
-              you build muscle memory for dits and dahs.
+              Each round reinforces letter patterns and rhythm groups, helping
+              you develop long-term recognition and fluency in Morse code.
             </p>
           </div>
         </section>
 
-        {/* Game: Modes */}
+        {/* Interface Modes */}
         <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ color: "#0b2447" }}>Game Modes</h2>
+          <h2 style={{ color: "#0b2447" }}>Interactive Learning Modes</h2>
           <div
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}
           >
@@ -2669,7 +2681,8 @@ export default function Home() {
                 Daily Challenge
               </div>
               <p style={{ color: "#555", margin: 0 }}>
-                One puzzle per day. Short and focused for consistent practice.
+                A focused, one-puzzle-a-day format designed to build steady
+                improvement.
               </p>
             </div>
             <div
@@ -2686,13 +2699,14 @@ export default function Home() {
                 Practice Pack
               </div>
               <p style={{ color: "#555", margin: 0 }}>
-                Unlimited drills that target letters, numbers, and common words.
+                Unlimited drills covering letters, numbers, and commonly used
+                words.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Progress and goals */}
+        {/* Progress and Goals */}
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ color: "#0b2447" }}>Progress and Personal Goals</h2>
           <div
@@ -2704,69 +2718,54 @@ export default function Home() {
             }}
           >
             <p style={{ color: "#555", marginTop: 0 }}>
-              Set a clear goal for each week. You might aim for two clean daily
-              puzzles, or a higher WPM at the same accuracy. Small, steady
-              improvements add up.
+              Set small, measurable goals each week. For example, aim for two
+              complete practice sessions per day, or increase your WPM while
+              maintaining 95 percent accuracy. Small, consistent steps lead to
+              meaningful progress.
             </p>
             <div className="flex flex-col sm:flex-row gap-5 my-5">
-              <div
-                style={{
-                  background: "#f7f8fb",
-                  border: "1px solid #e6e8ef",
-                  borderRadius: 6,
-                  padding: 12,
-                }}
-              >
+              {[
+                {
+                  title: "Consistency",
+                  desc: "Practice daily to strengthen recognition and retention.",
+                },
+                {
+                  title: "Accuracy",
+                  desc: "Keep error rates low before increasing speed.",
+                },
+                {
+                  title: "Speed",
+                  desc: "Gradually raise WPM once decoding feels natural.",
+                },
+              ].map((goal, i) => (
                 <div
-                  style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
+                  key={i}
+                  style={{
+                    background: "#f7f8fb",
+                    border: "1px solid #e6e8ef",
+                    borderRadius: 6,
+                    padding: 12,
+                  }}
                 >
-                  Consistency
+                  <div
+                    style={{
+                      fontWeight: 700,
+                      marginBottom: 6,
+                      color: "#0b2447",
+                    }}
+                  >
+                    {goal.title}
+                  </div>
+                  <p style={{ color: "#555", margin: 0 }}>{goal.desc}</p>
                 </div>
-                <p style={{ color: "#555", margin: 0 }}>
-                  Practice a little every day to build recognition.
-                </p>
-              </div>
-              <div
-                style={{
-                  background: "#f7f8fb",
-                  border: "1px solid #e6e8ef",
-                  borderRadius: 6,
-                  padding: 12,
-                }}
-              >
-                <div
-                  style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-                >
-                  Accuracy
-                </div>
-                <p style={{ color: "#555", margin: 0 }}>
-                  Keep mistakes low before pushing speed.
-                </p>
-              </div>
-              <div
-                style={{
-                  background: "#f7f8fb",
-                  border: "1px solid #e6e8ef",
-                  borderRadius: 6,
-                  padding: 12,
-                }}
-              >
-                <div
-                  style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-                >
-                  Speed
-                </div>
-                <p style={{ color: "#555", margin: 0 }}>
-                  Increase WPM once you feel confident.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Sample puzzles */}
+        {/* Sample Puzzles */}
         <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ color: "#0b2447" }}>Sample Puzzle Ideas</h2>
+          <h2 style={{ color: "#0b2447" }}>Sample Practice Exercises</h2>
           <div
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}
           >
@@ -2793,7 +2792,7 @@ export default function Home() {
                 .... . .-.. .-.. --- .-- --- .-. .-.. -..
               </div>
               <p style={{ color: "#555", marginTop: 8, marginBottom: 0 }}>
-                Decode and type the answer to earn points.
+                Decode this Morse sequence and check your translation accuracy.
               </p>
             </div>
             <div
@@ -2819,7 +2818,8 @@ export default function Home() {
                 .---- ..--- ...-- .-.-.- --..-- ..--..
               </div>
               <p style={{ color: "#555", marginTop: 8, marginBottom: 0 }}>
-                Practice decoding digits and punctuation in short sets.
+                Practice decoding digits and punctuation through short,
+                structured sets.
               </p>
             </div>
           </div>
@@ -2827,85 +2827,67 @@ export default function Home() {
 
         <MorsePhraseLookupTable />
 
-        {/* FAQ for the game */}
+        {/* FAQ */}
         <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ color: "#0b2447" }}>Morse Word Game FAQ</h2>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}
-          >
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
+          <h2 style={{ color: "#0b2447" }}>MorseWords FAQ</h2>
+          <div className="grid gap-5 sm:grid-cols-4 my-5">
+            {[
+              {
+                q: "What speed should I start with?",
+                a: "Begin around 15 to 20 WPM, then raise speed as accuracy improves.",
+              },
+              {
+                q: "Does punctuation work?",
+                a: "Yes. Period, comma, question mark, slash, quotes, hyphen, plus, equals, and more are supported.",
+              },
+              {
+                q: "Can I listen without converting?",
+                a: "Yes. Paste Morse and use audio playback at your chosen WPM and tone.",
+              },
+              {
+                q: "Why are spaces required?",
+                a: "Spacing separates symbols and words so the translator can decode correctly. Use three spaces between letters and seven between words.",
+              },
+              {
+                q: "Do I need audio to practice learning Morse Code?",
+                a: "No. You can decode by reading the code or by listening.",
+              },
+              {
+                q: "How long is each round?",
+                a: "Rounds are short so you can practice daily without fatigue.",
+              },
+              {
+                q: "What should I focus on first?",
+                a: "Focus on recognition and spacing. Speed will follow naturally.",
+              },
+              {
+                q: "Is this good for beginners?",
+                a: "Yes. The Interactive Learning Interface starts simple and grows with your skill.",
+              },
+            ].map((faq, i) => (
               <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
+                key={i}
+                style={{
+                  background: "#fff",
+                  border: "1px solid #e6e8ef",
+                  borderRadius: 6,
+                  padding: 12,
+                }}
               >
-                Do I need audio to play?
+                <div
+                  style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
+                >
+                  {faq.q}
+                </div>
+                <p style={{ color: "#555", margin: 0 }}>{faq.a}</p>
               </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                No. You can decode by reading the code or by listening.
-              </p>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                How long is each round?
-              </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                Rounds are short so you can practice daily without fatigue.
-              </p>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                What should I focus on first?
-              </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                Focus on recognition and spacing. Speed will follow.
-              </p>
-            </div>
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid #e6e8ef",
-                borderRadius: 6,
-                padding: 12,
-              }}
-            >
-              <div
-                style={{ fontWeight: 700, marginBottom: 6, color: "#0b2447" }}
-              >
-                Is this good for beginners?
-              </div>
-              <p style={{ color: "#555", margin: 0 }}>
-                Yes. The game starts simple and grows with your skill.
-              </p>
-            </div>
+            ))}
           </div>
         </section>
 
         <footer style={styles.footer}>
-          © {new Date().getFullYear()} MorseWords. Clean tools for Morse code.
+          © {new Date().getFullYear()} MorseWords. Educational Learning Tools
+          for Morse code. -- .- -.. . ..--.- .-- .. - .... ..--.-💖!
         </footer>
       </div>
       <script
