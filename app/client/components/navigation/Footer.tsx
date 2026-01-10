@@ -27,8 +27,14 @@ export default function Footer() {
 
         <span className="opacity-50">|</span>
 
-        <Link to="/misc/cookies" className="hover:underline">
+        <Link to="/misc/cookies-policy" className="hover:underline">
           Cookies Policy
+        </Link>
+
+        <span className="opacity-50">|</span>
+
+        <Link to="/misc/socials" className="hover:underline">
+          Socials
         </Link>
       </nav>
 
