@@ -11,6 +11,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { PHogProvider } from "./client/providers/PHogProvider";
+import Footer from "./client/components/navigation/Footer";
 
 /* ---------- Trailing slash helpers (one place, app-level) ---------- */
 function needsStrip(pathname: string) {
@@ -45,8 +46,6 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
-  // Canonical URL without trailing slash
-  { rel: "canonical", href: "https://morsewords.com" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -65,6 +64,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Scripts />
         </PHogProvider>
       </body>
+      <Footer />
     </html>
   );
 }

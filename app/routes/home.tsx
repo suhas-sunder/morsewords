@@ -192,6 +192,7 @@ const styles: Record<string, React.CSSProperties> = {
 };
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Footer from "~/client/components/navigation/Footer";
 
 interface Props {
   plainA: string;
@@ -2885,10 +2886,6 @@ export default function Home() {
           </div>
         </section>
 
-        <footer style={styles.footer}>
-          © {new Date().getFullYear()} MorseWords. Educational Learning Tools
-          for Morse code. -- .- -.. . ..--.- .-- .. - .... ..--.-💖!
-        </footer>
       </div>
       <script
         type="application/ld+json"
