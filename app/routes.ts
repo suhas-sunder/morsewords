@@ -1,8 +1,19 @@
 import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
 export default [
+  // Canonical translator
   index("routes/home.tsx"),
 
+  // MVP feature routes
+  route("audio", "routes/audio.tsx"),
+  route("morse-code-translator", "routes/morse-code-translator.tsx"),
+  route("practice", "routes/practice.tsx"),
+  route("typing", "routes/typing.tsx"),
+  route("how-to-use", "routes/how-to-use.tsx"),
+  route("dictionary", "routes/dictionary.tsx"),
+  // route("listening-practice", "routes/listening-practice.tsx"),
+
+  // Misc / legal
   route("misc", "routes/misc/misc.tsx", [
     route("cookies-policy", "routes/misc/misc.cookies-policy.tsx"),
     route("faq", "routes/misc/misc.faq.tsx"),
