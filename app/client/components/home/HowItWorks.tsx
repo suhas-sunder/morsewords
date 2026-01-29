@@ -13,7 +13,7 @@ export default function HowItWorks() {
         </h2>
 
         <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-          This homepage tool is a two-way{" "}
+          MorseWords is a two-way{" "}
           <strong>Morse code translator and decoder</strong>. It converts plain
           text to <strong>International Morse</strong> (encode), and it converts
           Morse back to readable text (decode). It is built to be predictable:

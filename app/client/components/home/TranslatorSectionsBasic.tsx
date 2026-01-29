@@ -19,7 +19,7 @@ import {
   SoundIcon,
   StopIcon,
   VibrateIcon,
-} from "~/client/assets/svg/icons";
+} from "../../assets/svg/Icons";
 
 interface Props {
   plainA: string;
@@ -422,7 +422,7 @@ export default function TranslatorSectionsBasic({
             </div>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center  gap-2">
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex justify-center items-center gap-2 flex-wrap">
               <button
                 onClick={() => handleCopy(outputValue, "output")}
                 disabled={!outputValue}
@@ -448,6 +448,15 @@ export default function TranslatorSectionsBasic({
                 <ShareIcon size={18} title="Share output" />
                 <span>Share</span>
               </button>
+
+              {copied === "output" && (
+                <p className="text-sm text-green-600">Copied</p>
+              )}
+              {copied === "share" && (
+                <p className="text-sm text-green-600">
+                  Saved image and copied text
+                </p>
+              )}
             </div>
 
             <span className="sm:ml-auto text-sm text-gray-500">
@@ -528,15 +537,6 @@ export default function TranslatorSectionsBasic({
 
           {/* Primary actions */}
           <div className="flex flex-col gap-3">
-            {copied === "output" && (
-              <p className="text-sm text-green-600">Copied</p>
-            )}
-            {copied === "share" && (
-              <p className="text-sm text-green-600">
-                Saved image and copied text
-              </p>
-            )}
-
             {/* Audio controls */}
             <div className="border border-gray-200 rounded-2xl p-4 bg-white">
               <div className="flex flex-col gap-4">
@@ -655,16 +655,6 @@ export default function TranslatorSectionsBasic({
                         </select>
                       </div>
 
-                      <SliderRow
-                        label="Character speed"
-                        value={charWpm}
-                        min={5}
-                        max={50}
-                        step={1}
-                        unit="WPM"
-                        onChange={setCharWpm}
-                        help="Sets dit/dah length."
-                      />
                       <SliderRow
                         label="Farnsworth"
                         value={farnsworthWpm}
