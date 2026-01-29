@@ -92,12 +92,12 @@ export default function NavBar(props: { pathname?: string }) {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 bg-neutral-900 backdrop-blur border-b border-gray-200">
+    <header className="sticky top-0 z-50 bg-neutral-900 backdrop-blur ">
       <div className="mx-auto max-w-5xl px-4">
         <div className="flex items-center justify-between py-3">
           <a
             href="/"
-            className="flex items-center gap-3 cursor-pointer transition hover:opacity-90"
+            className="flex items-center gap-3 cursor-pointer transition text-white hover:text-sky-200"
           >
             <img
               src={logoUrl}
@@ -106,9 +106,7 @@ export default function NavBar(props: { pathname?: string }) {
               loading="eager"
             />
             <div className="leading-tight">
-              <div className="text-lg font-extrabold text-white">
-                MorseWords
-              </div>
+              <div className="text-lg font-extrabold ">MorseWords</div>
               <div className="text-xs text-sky-200">
                 Translate, listen, and practice Morse code
               </div>

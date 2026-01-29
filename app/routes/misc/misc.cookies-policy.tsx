@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { Link, type MetaFunction } from "react-router";
-import SocialLinks from "~/client/components/navigation/SocialLinks";
 
 export const meta: MetaFunction = () => {
   const canonical = "https://www.morsewords.com/cookies";
@@ -38,28 +37,8 @@ export const meta: MetaFunction = () => {
 
 export default function CookiesPolicy() {
   return (
-    <div className="my-8 flex flex-col mx-10 items-center justify-center gap-8 font-nunito text-skull-brown">
+    <div className="pt-8 flex flex-col mx-10 items-center justify-center gap-8 font-nunito text-skull-brown">
       <header className="max-w-[1200px] w-full flex flex-col gap-3">
-        <nav aria-label="Breadcrumb" className="text-sm font-lato">
-          <ol className="flex flex-wrap items-center gap-2">
-            <li>
-              <Link to="/" className="hover:underline">
-                Home
-              </Link>
-            </li>
-            <li className="opacity-70">&gt;</li>
-            <li>
-              <Link to="/misc" className="hover:underline">
-                Misc
-              </Link>
-            </li>
-            <li className="opacity-70">&gt;</li>
-            <li aria-current="page" className="opacity-90">
-              Cookies Policy
-            </li>
-          </ol>
-        </nav>
-
         <h1 className="mb-5 flex py-2 text-4xl">COOKIE POLICY</h1>
         <h2 className="flex py-2 text-2xl">Last updated January 10, 2026</h2>
 
@@ -123,8 +102,8 @@ export default function CookiesPolicy() {
             These cookies (and similar technologies) collect information that is
             used either in aggregate form to help us understand how our Website
             is being used, to improve site performance, and to help diagnose
-            errors. We currently use PostHog for analytics, which may set cookies
-            or use similar identifiers depending on your browser and our
+            errors. We currently use PostHog for analytics, which may set
+            cookies or use similar identifiers depending on your browser and our
             configuration.
           </p>
           <p>
@@ -254,20 +233,20 @@ export default function CookiesPolicy() {
             and related technologies.
           </p>
           <p>
-            The date at the top of this Cookie Policy indicates when it was
-            last updated.
+            The date at the top of this Cookie Policy indicates when it was last
+            updated.
           </p>
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">Where can I get further information?</h2>
+          <h2 className="flex py-2 text-2xl">
+            Where can I get further information?
+          </h2>
           <p>
             If you have any questions about our use of cookies or other
             technologies, please contact us at: admin@morsewords.com.
           </p>
         </section>
-
-        <SocialLinks />
       </main>
     </div>
   );

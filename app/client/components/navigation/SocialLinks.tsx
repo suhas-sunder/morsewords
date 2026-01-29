@@ -103,11 +103,11 @@ function SocialLinks() {
     },
   ];
   return (
-    <div className="flex flex-col gap-8 w-full justify-center items-center pb-[5em]">
+    <div className="flex flex-col gap-8 w-full justify-center items-center pb-[5em] bg-gray-50 pt-3">
       <h2
-        className={`text-stone-400 flex py-2 text-2xl text-center sm:text-4xl font-lora mt-4 tracking-wide`}
+        className={`text-neutral-900 flex py-2 text-2xl text-center sm:text-5xl font-lora mt-4 tracking-wide`}
       >
-        Follow WordSkull On Social Media
+        Follow MorseWords On Social Media
       </h2>
       <ul className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-12 md:gap-6 justify-center lg:pl-8 items-center">
         {linksData.map((link) => (

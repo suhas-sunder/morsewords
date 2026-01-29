@@ -2,8 +2,6 @@
 
 import { Link } from "react-router";
 import type { Route } from "./+types/misc.privacy-policy";
-import SocialLinks from "~/client/components/navigation/SocialLinks";
-
 export const meta: Route.MetaFunction = () => {
   const canonical = "https://www.morsewords.com/privacy";
 
@@ -39,7 +37,7 @@ export const meta: Route.MetaFunction = () => {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="my-8 mx-10 flex flex-col items-center justify-center gap-8 font-nunito text-skull-brown">
+    <div className="pt-8 mx-10 flex flex-col items-center justify-center gap-8 font-nunito text-skull-brown">
       <header className="max-w-[1200px] w-full flex flex-col gap-3">
         <nav aria-label="Breadcrumb" className="text-sm font-lato">
           <ol className="flex flex-wrap items-center gap-2">
@@ -657,8 +655,6 @@ export default function PrivacyPolicy() {
           <p>Toronto, Ontario</p>
           <p>Canada</p>
         </section>
-
-        <SocialLinks />
       </main>
     </div>
   );

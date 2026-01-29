@@ -1,7 +1,25 @@
 import * as React from "react";
 import { useEffect, useMemo, useState } from "react";
-import { TEXT_TO_MORSE } from "./morseMaps";
+import {
+  getUnsupportedTextCharacters,
+  normalizeMorseForDecoding,
+  textToMorse,
+} from "./morseUtils";
 import useAudio, { type SoundPreset } from "./useAudio";
+
+import styles from "~/client/components/home/styles";
+import {
+  CopyIcon,
+  LightBulbIcon,
+  LoopIcon,
+  PauseIcon,
+  PlayIcon,
+  SaveIcon,
+  ShareIcon,
+  SoundIcon,
+  StopIcon,
+  VibrateIcon,
+} from "~/client/assets/svg/icons";
 
 interface Props {
   plainA: string;
@@ -42,6 +60,36 @@ export default function TranslatorSectionsBasic({
   );
   const [vibrate, setVibrate] = useState<boolean>(() =>
     readBool("mw_vibrate", false),
+  );
+
+  // Ensure at least one feedback mode stays enabled.
+  const setFeedback = React.useCallback(
+    (key: "sound" | "repeat" | "flash" | "vibrate", next: boolean) => {
+      const current = {
+        sound: soundOn,
+        repeat,
+        flash,
+        vibrate,
+      };
+      const updated = { ...current, [key]: next };
+      const anyOn =
+        updated.sound || updated.repeat || updated.flash || updated.vibrate;
+
+      if (!anyOn) {
+        // Refuse turning off the last enabled option. Default back to Sound.
+        setSoundOn(true);
+        setRepeat(false);
+        setFlash(false);
+        setVibrate(false);
+        return;
+      }
+
+      if (key === "sound") setSoundOn(next);
+      if (key === "repeat") setRepeat(next);
+      if (key === "flash") setFlash(next);
+      if (key === "vibrate") setVibrate(next);
+    },
+    [soundOn, repeat, flash, vibrate],
   );
 
   const [preset, setPreset] = useState<SoundPreset>(
@@ -120,37 +168,40 @@ export default function TranslatorSectionsBasic({
   };
 
   // Validation
-  const ALLOWED = useMemo(() => new Set(Object.keys(TEXT_TO_MORSE)), []);
   const unsupportedPlain = useMemo(() => {
-    const u: Record<string, number> = {};
-    for (const ch of plainA.toUpperCase()) {
-      if (!ch.trim()) continue;
-      if (!ALLOWED.has(ch)) u[ch] = (u[ch] || 0) + 1;
-    }
-    return u;
-  }, [plainA, ALLOWED]);
+    return getUnsupportedTextCharacters(plainA);
+  }, [plainA]);
 
   const morseInputIssues = useMemo(() => {
     const issues: string[] = [];
-    if (morseB) {
-      const bad = morseB.replace(/[.\-\s/]/g, "");
-      if (bad.length) {
-        issues.push(
-          `Invalid char${bad.length > 1 ? "s" : ""}: ${[...new Set(bad)].join(" ")}`,
-        );
-      }
-      if (/\s{2,}/.test(morseB) && !/\s{3,}/.test(morseB)) {
-        issues.push("Tip: use 3 spaces between letters, 7 between words.");
-      }
+    if (!morseB) return issues;
+
+    const { invalidChars, normalized } = normalizeMorseForDecoding(morseB);
+    if (invalidChars.length) {
+      issues.push(
+        `Invalid character${invalidChars.length > 1 ? "s" : ""}: ${invalidChars.join(" ")}`,
+      );
     }
+
     return issues;
   }, [morseB]);
 
+  const applyExampleText = (text: string) => {
+    // Examples should work from either direction without feeling like the UI "jumped".
+    if (direction === "encode") {
+      setPlainA(text);
+      return;
+    }
+    // If the user is in Morse → Text, insert the Morse version into the Morse input.
+    // This preserves intent (decode) while still making the chips useful.
+    setMorseB(textToMorse(text));
+  };
+
   const examples = [
-    { label: "HELLO WORLD", set: () => setPlainA("HELLO WORLD") },
-    { label: "CQ", set: () => setPlainA("CQ") },
-    { label: "SOS", set: () => setPlainA("SOS") },
-    { label: "... --- ...", set: () => setMorseB("... --- ...") },
+    { label: "HELLO WORLD", set: () => applyExampleText("HELLO WORLD") },
+    { label: "CQ", set: () => applyExampleText("CQ") },
+    { label: "SOS", set: () => applyExampleText("SOS") },
+    { label: "TEST 123", set: () => applyExampleText("TEST 123") },
   ];
 
   const canPlay = !!activeMorseForPlayback.trim();
@@ -245,7 +296,7 @@ export default function TranslatorSectionsBasic({
   };
 
   return (
-    <div className="my-8">
+    <div className="mb-8 mt-4">
       {/* Light feedback overlay */}
       {flashOn && (
         <div
@@ -255,6 +306,17 @@ export default function TranslatorSectionsBasic({
       )}
 
       <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div className="mb-4 flex flex-col justify-center items-center text-center">
+          <h1 style={styles.h1} className="font-bold !text-2xl sm:!text-4xl">
+            Morse Code Translator
+          </h1>
+          <p className="mt-2 text-sm sm:text-lg">
+            All-in-one Morse code translator and decoder
+            <span className="hidden sm:inline-flex">
+              : encode text into Morse, or decode Morse back to readable text.
+            </span>
+          </p>
+        </div>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
             <div className="inline-flex rounded-xl border border-gray-200 bg-gray-50 p-1 w-full sm:w-auto">
@@ -359,55 +421,108 @@ export default function TranslatorSectionsBasic({
               />
             </div>
           </div>
+          <div className="flex flex-col sm:flex-row sm:items-center  gap-2">
+            <div className="flex gap-2 flex-wrap">
+              <button
+                onClick={() => handleCopy(outputValue, "output")}
+                disabled={!outputValue}
+                className={`flex items-center gap-2 px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition ${
+                  outputValue
+                    ? "bg-neutral-900 hover:bg-neutral-800 text-sky-200 hover:text-white"
+                    : "bg-gray-400 text-gray-200 cursor-not-allowed"
+                }`}
+              >
+                <CopyIcon size={18} title="Copy output" />
+                <span>Copy Output</span>
+              </button>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <button
+                onClick={handleShare}
+                disabled={!outputValue}
+                className={`flex items-center gap-2 px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition border ${
+                  outputValue
+                    ? "border-neutral-900 text-neutral-900 hover:bg-gray-50"
+                    : "border-gray-300 text-gray-400 cursor-not-allowed"
+                }`}
+              >
+                <ShareIcon size={18} title="Share output" />
+                <span>Share</span>
+              </button>
+            </div>
+
+            <span className="sm:ml-auto text-sm text-gray-500">
+              3 spaces = letters, 7 spaces = words. “/” also works for words.
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <button
-              onClick={handlePlay}
+              onClick={() => {
+                if (player.state === "idle") {
+                  handlePlay();
+                } else if (player.state === "playing") {
+                  player.pause();
+                } else if (player.state === "paused") {
+                  player.resume();
+                }
+              }}
               disabled={
-                !canPlay || !player.isSupported || player.state === "playing"
+                player.state === "playing"
+                  ? !player.isSupported
+                  : !canPlay || !player.isSupported
               }
-              className={`px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
-                canPlay && player.isSupported && player.state !== "playing"
-                  ? "bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white"
-                  : "bg-gray-100 text-gray-400 cursor-not-allowed"
+              className={`flex justify-center items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
+                player.state === "playing"
+                  ? player.isSupported
+                    ? "border border-neutral-900 text-neutral-900 hover:bg-gray-50"
+                    : "border border-gray-200 text-gray-400 cursor-not-allowed"
+                  : canPlay && player.isSupported
+                    ? "bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white"
+                    : "bg-gray-100 text-gray-400 cursor-not-allowed"
               }`}
             >
-              Play
+              {player.state === "playing" ? (
+                <PauseIcon size={22} title="Pause timer" />
+              ) : (
+                <PlayIcon
+                  size={22}
+                  title={
+                    player.state === "paused" ? "Resume timer" : "Start timer"
+                  }
+                />
+              )}
+
+              <span>
+                {player.state === "playing"
+                  ? "Pause"
+                  : player.state === "paused"
+                    ? "Resume"
+                    : "Play"}
+              </span>
             </button>
-            <button
-              onClick={() =>
-                player.state === "paused" ? player.resume() : player.pause()
-              }
-              disabled={!player.isSupported || player.state === "idle"}
-              className={`px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
-                player.isSupported && player.state !== "idle"
-                  ? "border-neutral-900 text-neutral-900 hover:bg-gray-50"
-                  : "border-gray-200 text-gray-400 cursor-not-allowed"
-              }`}
-            >
-              {player.state === "paused" ? "Resume" : "Pause"}
-            </button>
+
             <button
               onClick={player.stop}
               disabled={!player.isSupported || player.state === "idle"}
-              className={`px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
+              className={`flex justify-center items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
                 player.isSupported && player.state !== "idle"
                   ? "border-gray-300 text-gray-700 hover:bg-gray-50"
                   : "border-gray-200 text-gray-400 cursor-not-allowed"
               }`}
             >
-              Stop
+              <StopIcon size={22} title="Stop timer" />
+              <span>Stop</span>
             </button>
             <button
               onClick={handleSaveAudio}
               disabled={!canPlay || !soundOn}
-              className={`px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
+              className={`flex justify-center items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
                 canPlay && soundOn
                   ? "border-gray-300 text-gray-700 hover:bg-gray-50"
                   : "border-gray-200 text-gray-400 cursor-not-allowed"
               }`}
             >
-              Save audio
+              <SaveIcon size={22} title="Save audio" />
+              <span>Save Audio</span>
             </button>
           </div>
 
@@ -473,22 +588,29 @@ export default function TranslatorSectionsBasic({
                   <TogglePill
                     label="Sound"
                     checked={soundOn}
-                    onChange={setSoundOn}
+                    onChange={(v) => setFeedback("sound", v)}
+                    icon={<SoundIcon size={16} title="Sound" />}
                   />
+
                   <TogglePill
                     label="Repeat"
                     checked={repeat}
-                    onChange={setRepeat}
+                    onChange={(v) => setFeedback("repeat", v)}
+                    icon={<LoopIcon size={16} title="Repeat" />}
                   />
+
                   <TogglePill
-                    label="Light"
+                    label="Flash Light"
                     checked={flash}
-                    onChange={setFlash}
+                    onChange={(v) => setFeedback("flash", v)}
+                    icon={<LightBulbIcon size={16} title="Light" />}
                   />
+
                   <TogglePill
                     label="Vibrate"
                     checked={vibrate}
-                    onChange={setVibrate}
+                    onChange={(v) => setFeedback("vibrate", v)}
+                    icon={<VibrateIcon size={16} title="Vibrate" />}
                   />
                 </div>
 
@@ -556,44 +678,14 @@ export default function TranslatorSectionsBasic({
                     </div>
 
                     <p className="text-xs text-gray-600">
-                      Tip: keep character speed higher and Farnsworth lower to
-                      train recognition without counting.
+                      Tip: set a higher <strong>Character speed</strong> and a
+                      lower <strong>Farnsworth</strong> to keep dits/dahs crisp
+                      while adding extra spacing between characters and words.
                     </p>
                   </div>
                 )}
               </div>
             </div>
-          </div>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-            <div className="flex gap-2 flex-wrap">
-              <button
-                onClick={() => handleCopy(outputValue, "output")}
-                disabled={!outputValue}
-                className={`px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition text-sky-200 ${
-                  outputValue
-                    ? "bg-neutral-900 hover:bg-neutral-800 text-neutral-600 hover:text-white"
-                    : "bg-gray-400 cursor-not-allowed"
-                }`}
-              >
-                Copy
-              </button>
-
-              <button
-                onClick={handleShare}
-                disabled={!outputValue}
-                className={`px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition border ${
-                  outputValue
-                    ? "border-neutral-900 text-neutral-900 hover:bg-gray-50"
-                    : "border-gray-300 text-gray-400 cursor-not-allowed"
-                }`}
-              >
-                Share
-              </button>
-            </div>
-
-            <span className="sm:ml-auto text-sm text-gray-500">
-              3 spaces = letters, 7 spaces = words. “/” also works for words.
-            </span>
           </div>
         </div>
       </section>
@@ -605,23 +697,26 @@ function TogglePill({
   label,
   checked,
   onChange,
+  icon,
 }: {
   label: string;
   checked: boolean;
   onChange: (v: boolean) => void;
+  icon?: React.ReactNode;
 }) {
   return (
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={`px-3 py-1.5 rounded-full text-sm font-semibold border cursor-pointer active:scale-95 transition ${
+      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold border cursor-pointer active:scale-95 transition ${
         checked
           ? "border-neutral-900 bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white"
           : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
       }`}
       aria-pressed={checked}
     >
-      {label}
+      {icon}
+      <span>{label}</span>
     </button>
   );
 }
@@ -664,7 +759,8 @@ function SliderRow({
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         disabled={disabled}
-        className={`w-full mt-2 ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"}`}
+        style={{ accentColor: "#38bdf8" }}
+        className={`w-full mt-2 ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-sky-300 rounded-full`}
       />
     </div>
   );
@@ -685,7 +781,11 @@ function readBool(key: string, fallback: boolean) {
   if (typeof window === "undefined") return fallback;
   const raw = window.localStorage.getItem(key);
   if (raw === null) return fallback;
-  return raw === "1";
+  if (raw === "1") return true;
+  if (raw === "0") return false;
+  if (raw === "true") return true;
+  if (raw === "false") return false;
+  return fallback;
 }
 
 function readStr(key: string, fallback: string) {
@@ -730,41 +830,167 @@ async function makeShareImagePng({
   output: string;
 }): Promise<Blob> {
   const title = direction === "encode" ? "Text → Morse" : "Morse → Text";
-  const safe = (s: string) =>
+
+  const escapeXml = (s: string) =>
     (s || "")
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
-      .replace(/\"/g, "&quot;");
+      .replace(/"/g, "&quot;");
 
-  const maxLen = 700;
-  const inTxt = safe(input).slice(0, maxLen);
-  const outTxt = safe(output).slice(0, maxLen);
+  const normalizeForCard = (s: string) =>
+    (s || "")
+      // Keep the card clean and predictable.
+      .replace(/\r\n/g, "\n")
+      .replace(/\n+/g, " / ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const normalizeMorseForCard = (s: string) =>
+    (s || "")
+      .replace(/[·•∙]/g, ".")
+      .replace(/[–—−]/g, "-")
+      .replace(/\r\n/g, "\n")
+      .replace(/\n+/g, "       ")
+      // Make word gaps readable in a share card
+      .replace(/\s*\/\s*/g, "       ")
+      .replace(/\s{7,}/g, " / ")
+      .replace(/\s{3,}/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const wrapLines = (
+    s: string,
+    maxChars: number,
+    maxLines: number,
+    mode: "text" | "morse" = "text",
+  ) => {
+    const text =
+      mode === "morse" ? normalizeMorseForCard(s) : normalizeForCard(s);
+    if (!text) return ["—"];
+
+    const tokens = text.split(" ");
+    const lines: string[] = [];
+    let current = "";
+
+    const pushCurrent = () => {
+      if (current) lines.push(current);
+      current = "";
+    };
+
+    for (const tok of tokens) {
+      if (!tok) continue;
+
+      const candidate = current ? `${current} ${tok}` : tok;
+
+      if (candidate.length <= maxChars) {
+        current = candidate;
+        continue;
+      }
+
+      // If the token itself is too long, hard-wrap it.
+      if (!current && tok.length > maxChars) {
+        let t = tok;
+        while (t.length > maxChars && lines.length < maxLines) {
+          lines.push(t.slice(0, maxChars));
+          t = t.slice(maxChars);
+        }
+        current = t;
+        continue;
+      }
+
+      pushCurrent();
+      current = tok;
+
+      if (lines.length >= maxLines) break;
+    }
+
+    if (lines.length < maxLines) pushCurrent();
+
+    const capped = lines.slice(0, maxLines);
+    const wasTruncated =
+      tokens.join(" ").length > capped.join(" ").length + 3 ||
+      lines.length > maxLines;
+
+    if (wasTruncated && capped.length) {
+      const last = capped[capped.length - 1];
+      capped[capped.length - 1] =
+        last.length >= maxChars
+          ? `${last.slice(0, Math.max(0, maxChars - 1))}…`
+          : `${last}…`;
+    }
+
+    return capped.length ? capped : ["—"];
+  };
+
+  const maxLen = 25000;
+  const inLines = wrapLines(input.slice(0, maxLen), 68, 18, "text");
+  const outLines = wrapLines(
+    output.slice(0, maxLen),
+    68,
+    20,
+    direction === "encode" ? "morse" : "text",
+  );
+
+  const lineHeight = 30;
+  const cardPaddingTop = 60;
+  const cardPaddingBottom = 60;
+  const cardX = 60;
+  const cardY = 60;
+  const cardWidth = 1080;
+
+  const inputLabelY = 245;
+  const inputTextY = 285;
+  const outputLabelY = inputTextY + inLines.length * lineHeight + 70;
+  const outputTextY = outputLabelY + 40;
+  const outputBlockBottom =
+    outputTextY + Math.max(0, outLines.length - 1) * lineHeight;
+
+  // Place footer below content, then grow the SVG if needed.
+  const footerY = outputBlockBottom + 70;
+  const desiredHeight = footerY + cardPaddingBottom;
+  const svgHeight = Math.min(2000, Math.max(630, desiredHeight));
+  const cardHeight = svgHeight - cardY * 2;
+  const footerTextY = cardY + cardHeight - 50;
+
+  const inTspans = inLines
+    .map(
+      (l, i) =>
+        `<tspan x="100" dy="${i === 0 ? 0 : lineHeight}">${escapeXml(l)}</tspan>`,
+    )
+    .join("");
+
+  const outTspans = outLines
+    .map(
+      (l, i) =>
+        `<tspan x="100" dy="${i === 0 ? 0 : lineHeight}">${escapeXml(l)}</tspan>`,
+    )
+    .join("");
 
   const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="${svgHeight}">
   <defs>
     <style>
       .bg { fill: #f8fafc; }
       .card { fill: #ffffff; stroke: #e5e7eb; stroke-width: 2; }
       .h1 { font: 700 42px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Arial,sans-serif; fill: #0b2447; }
+      .muted { font: 600 18px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Arial,sans-serif; fill: #64748b; }
       .label { font: 700 20px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Arial,sans-serif; fill: #334155; }
-      .mono { font: 500 22px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; fill: #0f172a; }
-      .muted { font: 500 18px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Arial,sans-serif; fill: #64748b; }
+      .mono { font: 600 24px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; fill: #0f172a; }
     </style>
   </defs>
-  <rect class="bg" x="0" y="0" width="1200" height="630"/>
-  <rect class="card" x="60" y="60" width="1080" height="510" rx="28"/>
+  <rect class="bg" x="0" y="0" width="1200" height="${svgHeight}"/>
+  <rect class="card" x="${cardX}" y="${cardY}" width="${cardWidth}" height="${cardHeight}" rx="28"/>
   <text class="h1" x="100" y="140">MorseWords</text>
-  <text class="muted" x="100" y="185">${title}</text>
+  <text class="muted" x="100" y="185">${escapeXml(title)}</text>
 
   <text class="label" x="100" y="245">Input</text>
-  <text class="mono" x="100" y="285">${inTxt}</text>
+  <text class="mono" x="100" y="${inputTextY}">${inTspans}</text>
 
-  <text class="label" x="100" y="360">Output</text>
-  <text class="mono" x="100" y="400">${outTxt}</text>
+  <text class="label" x="100" y="${outputLabelY}">Output</text>
+  <text class="mono" x="100" y="${outputTextY}">${outTspans}</text>
 
-  <text class="muted" x="100" y="520">morsewords.com</text>
+  <text class="muted" x="100" y="${footerTextY}">morsewords.com</text>
 </svg>`;
 
   const svgBlob = new Blob([svg], { type: "image/svg+xml" });
@@ -773,7 +999,7 @@ async function makeShareImagePng({
   const img = await loadImage(url);
   const canvas = document.createElement("canvas");
   canvas.width = 1200;
-  canvas.height = 630;
+  canvas.height = svgHeight;
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Canvas not supported");
   ctx.drawImage(img, 0, 0);

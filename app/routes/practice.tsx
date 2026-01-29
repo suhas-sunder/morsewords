@@ -3,7 +3,7 @@ import type { Route } from "./+types/practice";
 
 import styles from "~/client/components/home/styles";
 import useAudio from "~/client/components/home/useAudio";
-import MorsePractice from "~/client/components/home/MorseQuiz";
+import MorsePractice from "~/client/components/other/MorseQuiz";
 import JsonLdScript from "~/client/components/home/JsonLdScript";
 
 export function meta({}: Route.MetaArgs) {

@@ -1,8 +1,7 @@
-import * as React from "react";
 import type { Route } from "./+types/dictionary";
 
 import styles from "~/client/components/home/styles";
-import MorseLookupTable from "~/client/components/home/MorseLookupTable";
+import MorseLookupTable from "~/client/components/other/MorseLookupTable";
 import JsonLdScript from "~/client/components/home/JsonLdScript";
 import MorsePhraseLookupTable from "~/client/components/home/MorsePhraseLookupTable";
 
