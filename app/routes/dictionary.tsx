@@ -191,25 +191,35 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title:
-        "Morse Code Dictionary | Lookup Tables, Q-codes, Prosigns | MorseWords",
+      title: "Morse Code Dictionary (Letters, Prosigns, Q-Codes) | MorseWords",
     },
     {
       name: "description",
       content:
-        "Morse code dictionary with fast lookup and copy controls. Find letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases.",
+        "Fast Morse code dictionary with instant lookup and copy. Find letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases in one place.",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
+
     { property: "og:type", content: "website" },
     { property: "og:url", content: CANONICAL_URL },
     { property: "og:title", content: "Morse Code Dictionary | MorseWords" },
     {
       property: "og:description",
       content:
-        "Lookup and copy Morse patterns for characters, prosigns, Q-codes, abbreviations, and phrases.",
+        "Instantly look up and copy Morse patterns for characters, prosigns, Q-codes, abbreviations, and phrases.",
     },
+
     { name: "twitter:card", content: "summary" },
+    {
+      name: "twitter:title",
+      content: "Morse Code Dictionary",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "Fast lookup for Morse letters, prosigns, Q-codes, abbreviations, and phrases.",
+    },
   ];
 }
 

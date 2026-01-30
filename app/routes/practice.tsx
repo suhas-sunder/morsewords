@@ -17,12 +17,12 @@ export function meta({}: Route.MetaArgs) {
   return [
     {
       title:
-        "Morse Code Practice (Quiz) | Flashcards, Drills, and Instant Feedback | MorseWords",
+        "Morse Code Practice & Quiz (Instant Feedback Drills) | MorseWords",
     },
     {
       name: "description",
       content:
-        "Practice Morse code with a focused 10-question quiz. One prompt at a time with instant feedback. Train letters, numbers, and common signals.",
+        "Practice Morse code with focused quizzes and drills. One question at a time with instant feedback to train letters, numbers, and common signals. No signup, start immediately.",
     },
     {
       name: "keywords",
@@ -31,28 +31,28 @@ export function meta({}: Route.MetaArgs) {
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
+
     { property: "og:type", content: "website" },
     {
       property: "og:title",
-      content:
-        "Morse Code Practice (Quiz) | Flashcards, Drills, and Instant Feedback | MorseWords",
+      content: "Morse Code Practice & Quiz | MorseWords",
     },
     {
       property: "og:description",
       content:
-        "Practice Morse code with a focused 10-question quiz. One prompt at a time with instant feedback. Train letters, numbers, and common signals.",
+        "Practice Morse code with instant-feedback quizzes and drills designed for fast learning.",
     },
     { property: "og:url", content: CANONICAL_URL },
+
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content:
-        "Morse Code Practice (Quiz) | Flashcards, Drills, and Instant Feedback | MorseWords",
+      content: "Morse Code Practice & Quiz",
     },
     {
       name: "twitter:description",
       content:
-        "Practice Morse code with a focused 10-question quiz. One prompt at a time with instant feedback. Train letters, numbers, and common signals.",
+        "Train Morse code with instant-feedback quizzes and drills. Start practicing immediately.",
     },
     { name: "twitter:url", content: CANONICAL_URL },
   ];
@@ -86,15 +86,15 @@ export default function PracticeRoute() {
   };
   const jsonLd = [
     {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "MorseWords Morse Code Practice (Quiz)",
-    applicationCategory: "EducationalApplication",
-    operatingSystem: "All",
-    url: CANONICAL_URL,
-    description:
-      "A focused 10-question Morse code quiz with instant feedback.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: "MorseWords Morse Code Practice (Quiz)",
+      applicationCategory: "EducationalApplication",
+      operatingSystem: "All",
+      url: CANONICAL_URL,
+      description:
+        "A focused 10-question Morse code quiz with instant feedback.",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     },
     breadcrumbJsonLd,
     faqJsonLd,
@@ -103,11 +103,13 @@ export default function PracticeRoute() {
   return (
     <div style={styles.page}>
       <div style={styles.wrap}>
-        
         <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
-              <a href="/" className="underline hover:no-underline cursor-pointer">
+              <a
+                href="/"
+                className="underline hover:no-underline cursor-pointer"
+              >
                 Home
               </a>
             </li>

@@ -14,12 +14,12 @@ const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Audio Translator | Generate Morse Sound and Export WAV | MorseWords",
+      title: "Morse Code Audio Generator (Play & Export WAV) | MorseWords",
     },
     {
       name: "description",
       content:
-        "Generate Morse code audio from text or Morse. Tune WPM, Farnsworth spacing, pitch, and waveform, then export a WAV file instantly in your browser.",
+        "Generate Morse code audio from text or Morse instantly. Adjust WPM, Farnsworth spacing, pitch, and waveform, then export a WAV file directly in your browser. Fast, accurate, and practical.",
     },
     {
       name: "keywords",
@@ -28,20 +28,22 @@ export function meta({}: Route.MetaArgs) {
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
-    { property: "og:title", content: "Morse Code Audio Translator" },
+
+    { property: "og:title", content: "Morse Code Audio Generator" },
     {
       property: "og:description",
       content:
-        "Generate Morse code audio from text or Morse. Tune WPM, Farnsworth spacing, pitch, and waveform, then export a WAV file instantly in your browser.",
+        "Play Morse code audio and export WAV files with full control over speed, Farnsworth spacing, pitch, and waveform.",
     },
     { property: "og:type", content: "website" },
     { property: "og:url", content: CANONICAL_URL },
+
     { name: "twitter:card", content: "summary" },
-    { name: "twitter:title", content: "Morse Code Audio Translator" },
+    { name: "twitter:title", content: "Morse Code Audio Generator" },
     {
       name: "twitter:description",
       content:
-        "Generate Morse code audio from text or Morse. Tune WPM, Farnsworth spacing, pitch, and waveform, then export a WAV file instantly in your browser.",
+        "Generate Morse code audio, fine-tune speed and tone, and export WAV files instantly.",
     },
   ];
 }
@@ -130,19 +132,23 @@ export default function AudioRoute() {
 
   return (
     <div style={styles.page}>
-      <div style={styles.wrap}><nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
-  <ol className="flex flex-wrap items-center gap-2">
-    <li>
-      <a href="/" className="underline hover:no-underline cursor-pointer">
-        Home
-      </a>
-    </li>
-    <li>/</li>
-    <li className="font-semibold text-gray-900">
-      Morse Code Audio Translator
-    </li>
-  </ol>
-</nav>
+      <div style={styles.wrap}>
+        <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
+          <ol className="flex flex-wrap items-center gap-2">
+            <li>
+              <a
+                href="/"
+                className="underline hover:no-underline cursor-pointer"
+              >
+                Home
+              </a>
+            </li>
+            <li>/</li>
+            <li className="font-semibold text-gray-900">
+              Morse Code Audio Translator
+            </li>
+          </ol>
+        </nav>
 
         <MorseAudioTranslator />
         <HowItWorksAudio />

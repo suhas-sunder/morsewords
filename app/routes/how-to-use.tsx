@@ -17,13 +17,12 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title:
-        "How to Use MorseWords | Translator, Audio, Practice, Typing, Dictionary",
+      title: "How to Use MorseWords (Translator, Audio, Practice & More)",
     },
     {
       name: "description",
       content:
-        "A practical guide to using MorseWords tools: translate text and Morse, play audio at your speed, practice drills, type dots and dashes, and look up patterns in the dictionary.",
+        "Learn how to use MorseWords tools step by step. Translate text and Morse, play audio at your own speed, practice drills, type dots and dashes, and look up patterns in the dictionary.",
     },
     {
       name: "keywords",
@@ -32,28 +31,28 @@ export function meta({}: Route.MetaArgs) {
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
+
     { property: "og:type", content: "website" },
     {
       property: "og:title",
-      content:
-        "How to Use MorseWords | Translator, Audio, Practice, Typing, Dictionary",
+      content: "How to Use MorseWords",
     },
     {
       property: "og:description",
       content:
-        "A practical guide to using MorseWords tools: translate text and Morse, play audio at your speed, practice drills, type dots and dashes, and look up patterns in the dictionary.",
+        "A simple guide to using MorseWords tools for translating, listening, practicing, typing, and looking up Morse code.",
     },
     { property: "og:url", content: CANONICAL_URL },
+
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content:
-        "How to Use MorseWords | Translator, Audio, Practice, Typing, Dictionary",
+      content: "How to Use MorseWords",
     },
     {
       name: "twitter:description",
       content:
-        "A practical guide to using MorseWords tools: translate text and Morse, play audio at your speed, practice drills, type dots and dashes, and look up patterns in the dictionary.",
+        "Learn how to use MorseWords tools to translate, practice, listen to, and type Morse code.",
     },
     { name: "twitter:url", content: CANONICAL_URL },
   ];
@@ -132,12 +131,17 @@ export default function HowToUse() {
         <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
-              <a href="/" className="underline hover:no-underline cursor-pointer">
+              <a
+                href="/"
+                className="underline hover:no-underline cursor-pointer"
+              >
                 Home
               </a>
             </li>
             <li>/</li>
-            <li className="font-semibold text-gray-900">How to Use MorseWords</li>
+            <li className="font-semibold text-gray-900">
+              How to Use MorseWords
+            </li>
           </ol>
         </nav>
         <HowToUseSuiteGuide />

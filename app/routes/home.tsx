@@ -11,13 +11,12 @@ import HowItWorks from "~/client/components/home/HowItWorks";
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title:
-        "Morse Code Translator | Text to Morse and Morse to Text | MorseWords",
+      title: "Morse Code Translator (Text ⇄ Morse) | Fast Decoder & Encoder",
     },
     {
       name: "description",
       content:
-        "Free Morse code translator. Convert text to Morse code or decode Morse to text instantly. Supports letters, numbers, and common punctuation.",
+        "Instant Morse code translator. Convert text to Morse or decode Morse to text in real time. Supports letters, numbers, and punctuation. Fast, free, and works entirely in your browser.",
     },
     {
       name: "keywords",

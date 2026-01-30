@@ -17,13 +17,12 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title:
-        "Morse Code Typing Tool | Real-Time Decoder Scratchpad for Fluent Users | MorseWords",
+      title: "Morse Code Typing Tool (Real-Time Decoder Scratchpad)",
     },
     {
       name: "description",
       content:
-        "A freeform Morse code typing scratchpad with real-time decoding. Built for people who already know Morse and want repetition, rhythm, and endurance.",
+        "Freeform Morse code typing scratchpad with instant decoding. Type continuously, build rhythm, and practice endurance with no lessons or prompts. Designed for fluent Morse users.",
     },
     {
       name: "keywords",
@@ -32,29 +31,29 @@ export function meta({}: Route.MetaArgs) {
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
+
     { property: "og:type", content: "website" },
     {
       property: "og:title",
-      content:
-        "Morse Code Typing Tool | Real-Time Decoder Scratchpad for Fluent Users | MorseWords",
+      content: "Morse Code Typing Tool (Real-Time Decoder)",
     },
     {
       property: "og:description",
       content:
-        "Freeform Morse typing with instant decode feedback. No lessons, no prompts, just flow.",
+        "Type Morse freely and see the decode instantly. A real-time scratchpad for rhythm, repetition, and endurance.",
     },
     { property: "og:url", content: CANONICAL_URL },
     { property: "og:site_name", content: "MorseWords" },
+
     { property: "twitter:card", content: "summary" },
     {
       property: "twitter:title",
-      content:
-        "Morse Code Typing Tool | Real-Time Decoder Scratchpad for Fluent Users | MorseWords",
+      content: "Morse Code Typing Tool",
     },
     {
       property: "twitter:description",
       content:
-        "Type Morse continuously and see the decode instantly. Built for repetition and rhythm, not teaching.",
+        "A real-time Morse typing scratchpad for fluent users. No lessons, just flow.",
     },
     { name: "twitter:url", content: CANONICAL_URL },
   ];
@@ -108,7 +107,10 @@ export default function TypingRoute() {
         <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
-              <a href="/" className="underline hover:no-underline cursor-pointer">
+              <a
+                href="/"
+                className="underline hover:no-underline cursor-pointer"
+              >
                 Home
               </a>
             </li>
