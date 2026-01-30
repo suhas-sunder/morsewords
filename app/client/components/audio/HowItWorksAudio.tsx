@@ -21,6 +21,14 @@ export default function HowItWorksAudio() {
           here to keep the output predictable and copyable, but the main product
           is the audio you can play, loop, and export.
         </p>
+
+        <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+          If you only need a clean file for an editor or a practice track, you
+          can treat this as a small audio workstation: enter a message, pick a
+          speed, choose a tone, listen, then export. The controls are designed
+          so changes are audible immediately, and the exported WAV matches the
+          timing you preview.
+        </p>
       </div>
 
       {/* Optional: quick jump links for long content */}
@@ -87,6 +95,13 @@ export default function HowItWorksAudio() {
             unit rules below.
           </p>
 
+          <p className="mt-4 text-base sm:text-lg">
+            Practical takeaway: if your output sounds "too fast" or "too slow,"
+            you almost always want to change the unit duration (character speed)
+            rather than trying to compensate with pitch or volume. Pitch and
+            waveform change the character of the tone, not the timing grid.
+          </p>
+
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
               <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
@@ -151,6 +166,55 @@ dah(ms) = 3 * dit(ms)`}
 
           <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
             <p className="text-base font-extrabold text-gray-800">
+              Fast setup checklist
+            </p>
+            <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
+              <li>
+                Set <strong>character speed</strong> to the target you want the
+                symbols to be formed at.
+              </li>
+              <li>
+                If the message feels hard to follow, leave character speed
+                alone and increase <strong>Farnsworth</strong> first.
+              </li>
+              <li>
+                Pick a waveform that suits the use: <strong>sine</strong> for a
+                clean practice tone, <strong>square</strong> for a sharper
+                on-air style beep, or <strong>sounder</strong> for a percussive
+                click.
+              </li>
+              <li>
+                If you plan to export and edit, add a little <strong>tail
+                padding</strong> so the final release is not cut short.
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">
+              Picking a speed for your goal
+            </p>
+            <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
+              <li>
+                <strong>Practice or listening:</strong> pick a character speed
+                you can recognize reliably, then increase Farnsworth spacing if
+                you want more time between letters.
+              </li>
+              <li>
+                <strong>Audio cues or alerts:</strong> slower speeds can read
+                clearly in noisy environments, but keep symbols crisp by using
+                a short attack and release.
+              </li>
+              <li>
+                <strong>Export for editing:</strong> use the final speed you
+                want in the WAV. If you plan to time-stretch in an editor, keep
+                the waveform simple (sine/triangle) to avoid artifacts.
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">
               Why audio can click
             </p>
             <p className="mt-2 text-base sm:text-lg">
@@ -197,6 +261,25 @@ dah(ms) = 3 * dit(ms)`}
               If characters feel readable but words blur together, increase word
               spacing slightly before slowing down character speed.
             </p>
+            <p className="mt-3 text-base sm:text-lg text-gray-700">
+              For utility use, think of Farnsworth as a readability dial. Keep
+              character speed set to how you want the symbols to sound, then
+              use Farnsworth to control how much silence appears between
+              letters and words. This keeps the audio recognizable while
+              making long messages less fatiguing to follow.
+            </p>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">
+              When to leave Farnsworth at 1.0
+            </p>
+            <p className="mt-2 text-base sm:text-lg">
+              If you are creating a tight rhythmic track (for example, a short
+              intro sting or a sound effect), keep Farnsworth spacing at the
+              default so spacing remains standard. Increase Farnsworth when the
+              goal is readability rather than density.
+            </p>
           </div>
         </div>
 
@@ -209,6 +292,13 @@ dah(ms) = 3 * dit(ms)`}
             The audio generator can produce classic CW tones and more stylized
             sounds. Waveform and envelope settings change the feel of the signal
             without changing the timing rules.
+          </p>
+
+          <p className="mt-4 text-base sm:text-lg">
+            For the cleanest results, start simple: a sine tone, moderate pitch,
+            and a small attack and release. Then change one control at a time.
+            If the tone is harsh, switch waveform before lowering volume. If it
+            clicks, increase attack or release before changing speed.
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -280,6 +370,18 @@ dah(ms) = 3 * dit(ms)`}
             and samples into a Blob for download.
           </p>
 
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">
+              What the WAV contains
+            </p>
+            <p className="mt-2 text-base sm:text-lg">
+              The export is uncompressed audio. That means the file is larger
+              than MP3, but it preserves exact symbol timing and avoids encoder
+              smearing on short dits. If you need MP3 later, convert from the
+              WAV in your editor after you are happy with speed and spacing.
+            </p>
+          </div>
+
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
               Offline render keeps timing stable and avoids glitches that can
@@ -333,6 +435,12 @@ dah(ms) = 3 * dit(ms)`}
             <li>
               <strong>Export is large:</strong> reduce sample rate or shorten
               long messages. WAV is uncompressed by design.
+            </li>
+            <li>
+              <strong>Export differs from live playback:</strong> offline export
+              is deterministic. If your live playback stutters, close other tabs
+              or lower the message length, then rely on the exported WAV for
+              consistent results.
             </li>
           </ul>
         </div>

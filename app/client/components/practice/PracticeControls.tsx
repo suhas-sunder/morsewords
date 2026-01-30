@@ -1,9 +1,9 @@
 import * as React from "react";
-import Button from "~/client/components/practice/components/Button";
-import ToggleChip from "~/client/components/practice/components/ToggleChip";
+import Button from "~/client/components/practice/Button";
+import ToggleChip from "~/client/components/practice/ToggleChip";
 
 export type DrillMode = "text_to_morse" | "morse_to_text" | "mixed";
-export type Pool = "letters" | "numbers" | "signals" | "words";
+export type Pool = "all" | "letters" | "numbers" | "signals" | "words";
 
 export default function PracticeControls({
   mode,
@@ -48,6 +48,12 @@ export default function PracticeControls({
 
       <div className="mt-4 text-sm text-gray-600">Prompt pool</div>
       <div className="mt-2 flex flex-wrap gap-2">
+        <ToggleChip
+          label="All"
+          active={pool === "all"}
+          onClick={() => setPool("all")}
+          title="Mixes letters, numbers, signals, and words"
+        />
         <ToggleChip
           label="Letters"
           active={pool === "letters"}

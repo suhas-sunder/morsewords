@@ -271,6 +271,7 @@ export default function MorseAudioTranslator() {
 
   return (
     <div className="mb-8 mt-4">
+      
       {flashOn && (
         <div
           className="fixed inset-0 z-[999] pointer-events-none"
@@ -342,7 +343,7 @@ export default function MorseAudioTranslator() {
                 <>
                   <textarea
                     id="mw_audio_source"
-                    className="w-full mt-2 border rounded-md p-3 font-mono h-44 focus:ring-2 focus:ring-neutral-900"
+                    className="w-full mt-2 border rounded-md p-3 font-mono h-44 outline-sky-500 border-sky-500"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     placeholder="Example: Hello world"
@@ -363,7 +364,7 @@ export default function MorseAudioTranslator() {
                 <>
                   <textarea
                     id="mw_audio_source"
-                    className="w-full mt-2 border rounded-md p-3 font-mono h-44 focus:ring-2 focus:ring-neutral-900"
+                    className="w-full mt-2 border rounded-md p-3 font-mono h-44 outline-sky-500 border-sky-500"
                     value={morse}
                     onChange={(e) => setMorse(e.target.value)}
                     placeholder="Example: ... --- ..."

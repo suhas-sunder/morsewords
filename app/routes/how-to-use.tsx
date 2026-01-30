@@ -2,150 +2,146 @@ import * as React from "react";
 import type { Route } from "./+types/how-to-use";
 
 import styles from "~/client/components/home/styles";
+import FaqSectionGeneric from "~/client/components/home/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/home/JsonLdScript";
+import HowToUseSuiteGuide from "~/client/components/how-to-use/HowToUseSuiteGuide";
+
+const SITE_URL = "https://morsewords.com";
+const CANONICAL_PATH = "/how-to-use";
+const CANONICAL_URL = SITE_URL + CANONICAL_PATH;
+
+export function links() {
+  return [{ rel: "canonical", href: CANONICAL_URL }];
+}
 
 export function meta({}: Route.MetaArgs) {
   return [
     {
       title:
-        "How to Use MorseWords | Morse Translator, Audio, Practice, Typing",
+        "How to Use MorseWords | Translator, Audio, Practice, Typing, Dictionary",
     },
     {
       name: "description",
       content:
-        "Step-by-step instructions for using the MorseWords translator, audio player, practice mode, and typing tool.",
+        "A practical guide to using MorseWords tools: translate text and Morse, play audio at your speed, practice drills, type dots and dashes, and look up patterns in the dictionary.",
     },
     {
       name: "keywords",
       content:
-        "how to use morsewords, morse translator help, morse code tool instructions",
+        "how to use morsewords, morse code tools, morse translator guide, morse audio, morse practice, morse typing tool, morse dictionary",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
+    { property: "og:type", content: "website" },
+    {
+      property: "og:title",
+      content:
+        "How to Use MorseWords | Translator, Audio, Practice, Typing, Dictionary",
+    },
+    {
+      property: "og:description",
+      content:
+        "A practical guide to using MorseWords tools: translate text and Morse, play audio at your speed, practice drills, type dots and dashes, and look up patterns in the dictionary.",
+    },
+    { property: "og:url", content: CANONICAL_URL },
+    { name: "twitter:card", content: "summary" },
+    {
+      name: "twitter:title",
+      content:
+        "How to Use MorseWords | Translator, Audio, Practice, Typing, Dictionary",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "A practical guide to using MorseWords tools: translate text and Morse, play audio at your speed, practice drills, type dots and dashes, and look up patterns in the dictionary.",
+    },
+    { name: "twitter:url", content: CANONICAL_URL },
   ];
 }
 
 export default function HowToUse() {
-  const baseUrl = "https://morsewords.com";
-  const jsonLd = {
+  const baseUrl = SITE_URL;
+
+  const faqItems = [
+    {
+      q: "Do I have to format spacing a specific way when decoding?",
+      a: "No, but clean spacing makes decoding reliable. The safest format is 3 spaces between letters and 7 spaces between words. A slash (/) and new lines also work as word breaks.",
+    },
+    {
+      q: "Why do you recommend 3 spaces and 7 spaces?",
+      a: "It prevents ambiguity when you paste Morse from different sources. Three spaces keeps letter chunks separate, and seven spaces makes word breaks obvious even when apps compress whitespace.",
+    },
+    {
+      q: "What is the fastest way to go from text to audio?",
+      a: "Translate your text on the main translator, copy the Morse output, then paste it into the Audio tool and press Play Audio. Set WPM and tone first if you want a specific sound.",
+    },
+    {
+      q: "The audio is silent. What should I check first?",
+      a: "Make sure your device volume is up and not muted. If you are on Bluetooth, reconnect. Then confirm you have a non-empty Morse string and press Play Audio again.",
+    },
+    {
+      q: "Which tool should I use if I only have dots and dashes and want to decode quickly?",
+      a: "Use the Translator if you already have clean separators. If you are entering it manually and want full control over spacing, use the Typing tool.",
+    },
+  ];
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "How to Use MorseWords",
+        item: CANONICAL_URL,
+      },
+    ],
+  };
+
+  const pageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "How to Use MorseWords",
-    url: baseUrl + "/how-to-use",
-    description: "Procedural instructions for each MorseWords tool.",
+    url: CANONICAL_URL,
+    description:
+      "A practical guide to using MorseWords tools: translator, audio translator, practice drills, typing tool, and dictionary.",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "MorseWords",
+      url: baseUrl,
+    },
   };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((it) => ({
+      "@type": "Question",
+      name: it.q,
+      acceptedAnswer: { "@type": "Answer", text: it.a },
+    })),
+    url: CANONICAL_URL,
+  };
+
+  const jsonLd = [pageJsonLd, breadcrumbJsonLd, faqJsonLd];
 
   return (
     <div style={styles.page}>
       <div style={styles.wrap}>
-        <section className="mt-6">
-          <h1 style={styles.h1}>How to use MorseWords</h1>
-          <p style={styles.lead}>
-            This page explains how to use each tool. If you just want a quick
-            conversion, start with the translator.
-          </p>
-        </section>
-
-        <section className="mt-6 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold text-[#0b2447]">1. Translator</h2>
-          <ol className="mt-3 list-decimal pl-5 text-gray-700 space-y-2">
+        <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
+          <ol className="flex flex-wrap items-center gap-2">
             <li>
-              Open{" "}
-              <a
-                className="text-[#0b2447] underline hover:no-underline"
-                href="/"
-              >
-                /
+              <a href="/" className="underline hover:no-underline cursor-pointer">
+                Home
               </a>
-              .
             </li>
-            <li>Type text to get Morse output, or paste Morse to decode it.</li>
-            <li>
-              Use 3 spaces between letters and 7 spaces between words when
-              decoding.
-            </li>
-            <li>Copy the output using the copy buttons.</li>
+            <li>/</li>
+            <li className="font-semibold text-gray-900">How to Use MorseWords</li>
           </ol>
-        </section>
-
-        <section className="mt-6 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold text-[#0b2447]">
-            2. Audio translator
-          </h2>
-          <ol className="mt-3 list-decimal pl-5 text-gray-700 space-y-2">
-            <li>
-              Open{" "}
-              <a
-                className="text-[#0b2447] underline hover:no-underline"
-                href="/audio"
-              >
-                /audio
-              </a>
-              .
-            </li>
-            <li>Set WPM and tone, then translate or paste Morse as needed.</li>
-            <li>Press Play Audio to hear the current Morse string.</li>
-            <li>Use Stop to end playback immediately.</li>
-          </ol>
-        </section>
-
-        <section className="mt-6 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold text-[#0b2447]">3. Practice</h2>
-          <ol className="mt-3 list-decimal pl-5 text-gray-700 space-y-2">
-            <li>
-              Open{" "}
-              <a
-                className="text-[#0b2447] underline hover:no-underline"
-                href="/practice"
-              >
-                /practice
-              </a>
-              .
-            </li>
-            <li>Select visual prompts, audio prompts, or both.</li>
-            <li>Choose a character set and type the answer for each prompt.</li>
-            <li>A correct answer advances to the next prompt automatically.</li>
-          </ol>
-        </section>
-
-        <section className="mt-6 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold text-[#0b2447]">4. Typing tool</h2>
-          <ol className="mt-3 list-decimal pl-5 text-gray-700 space-y-2">
-            <li>
-              Open{" "}
-              <a
-                className="text-[#0b2447] underline hover:no-underline"
-                href="/typing"
-              >
-                /typing
-              </a>
-              .
-            </li>
-            <li>
-              Type dots and dashes. Add spacing to separate letters and words.
-            </li>
-            <li>Copy the decoded output when you are done.</li>
-          </ol>
-        </section>
-
-        <section className="mt-6 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <h2 className="text-2xl font-bold text-[#0b2447]">5. Dictionary</h2>
-          <ol className="mt-3 list-decimal pl-5 text-gray-700 space-y-2">
-            <li>
-              Open{" "}
-              <a
-                className="text-[#0b2447] underline hover:no-underline"
-                href="/dictionary"
-              >
-                /dictionary
-              </a>
-              .
-            </li>
-            <li>
-              Use the table as a quick reference for a character’s pattern.
-            </li>
-          </ol>
-        </section>
+        </nav>
+        <HowToUseSuiteGuide />
+        <FaqSectionGeneric title="How to Use FAQ" items={faqItems} />
       </div>
 
       <JsonLdScript jsonLd={jsonLd} />

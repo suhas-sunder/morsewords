@@ -13,6 +13,7 @@ import "./app.css";
 import { PHogProvider } from "./client/providers/PHogProvider";
 import Footer from "./client/components/navigation/Footer";
 import NavBar from "./client/components/navigation/NavBar";
+import RelatedTools from "./client/components/navigation/RelatedTools";
 
 /* ---------- Trailing slash helpers (one place, app-level) ---------- */
 function needsStrip(pathname: string) {
@@ -62,11 +63,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <PHogProvider>
           <NavBar />
           {children}
+          <RelatedTools />
           <ScrollRestoration />
           <Scripts />
         </PHogProvider>
+        <Footer />
       </body>
-      <Footer />
     </html>
   );
 }

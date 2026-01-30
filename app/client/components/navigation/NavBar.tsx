@@ -107,7 +107,7 @@ export default function NavBar(props: { pathname?: string }) {
             />
             <div className="leading-tight">
               <div className="text-lg font-extrabold ">MorseWords</div>
-              <div className="text-xs text-sky-200">
+              <div className=" text-sm sm:text-xs text-sky-200">
                 Translate, listen, and practice Morse code
               </div>
             </div>

@@ -1,7 +1,7 @@
 import { morseToText, normalizeMorseForDecoding, normalizeTextForEncoding, textToMorse } from "./morseUtils";
 import { LETTERS, NUMBERS, SIGNALS, WORDS } from "./practiceBank";
-import type { DrillMode, Pool } from "~/client/components/practice/components/PracticeControls";
-import type { Prompt, PromptKind } from "~/client/components/practice/components/PromptCard";
+import type { DrillMode, Pool } from "~/client/components/practice/PracticeControls";
+import type { Prompt, PromptKind } from "~/client/components/practice/PromptCard";
 
 export function randomPrompt(mode: DrillMode, pool: Pool): Prompt {
   const kind: PromptKind =
@@ -9,7 +9,11 @@ export function randomPrompt(mode: DrillMode, pool: Pool): Prompt {
       ? Math.random() < 0.5
         ? "text_to_morse"
         : "morse_to_text"
-      : mode;
+      : mode === "text_to_morse" || mode === "morse_to_text"
+        ? mode
+        : Math.random() < 0.5
+          ? "text_to_morse"
+          : "morse_to_text";
 
   const plain = pickPlain(pool);
   const morse = textToMorse(plain);
@@ -20,11 +24,26 @@ export function randomPrompt(mode: DrillMode, pool: Pool): Prompt {
 }
 
 function pickPlain(pool: Pool): string {
-  const bank = pool === "letters" ? LETTERS : pool === "numbers" ? NUMBERS : pool === "signals" ? SIGNALS : WORDS;
+  const bank =
+    pool === "letters"
+      ? LETTERS
+      : pool === "numbers"
+        ? NUMBERS
+        : pool === "signals"
+          ? SIGNALS
+          : pool === "words"
+            ? WORDS
+            : [...LETTERS, ...NUMBERS, ...SIGNALS, ...WORDS];
   return bank[Math.floor(Math.random() * bank.length)] ?? "SOS";
 }
 
 function labelFor(pool: Pool, plain: string): string {
+  if (pool === "all") {
+    if (LETTERS.includes(plain)) return "Single letter";
+    if (NUMBERS.includes(plain)) return "Single number";
+    if (SIGNALS.includes(plain)) return "Common signal";
+    return `Short word (${plain.length} chars)`;
+  }
   if (pool === "letters") return "Single letter";
   if (pool === "numbers") return "Single number";
   if (pool === "signals") return "Common signal";
@@ -34,6 +53,7 @@ function labelFor(pool: Pool, plain: string): string {
 
 export type CheckResult = {
   ok: boolean;
+  msg: string;
   expected: string;
   got: string;
   normalizedExpected: string;
@@ -51,6 +71,8 @@ export function checkAnswer(prompt: Prompt, answer: string): CheckResult {
 
     return {
       ok,
+      // Never leak the expected answer in the UI (users may want multiple attempts).
+      msg: ok ? "Correct" : "Not quite. Try again.",
       expected,
       got: raw,
       normalizedExpected,
@@ -64,13 +86,22 @@ export function checkAnswer(prompt: Prompt, answer: string): CheckResult {
 
   // Allow either typed text, or pasted Morse that decodes to the expected text.
   const trimmed = raw.trim();
-  const decodedIfMorse = looksLikeMorse(trimmed) ? normalizeTextForEncoding(morseToText(trimmed)) : "";
+  const promptMorse = canonicalizeMorse(prompt.morse);
+  const pastedMorse = looksLikeMorse(trimmed) ? canonicalizeMorse(trimmed) : "";
+  const decodedIfMorse =
+    pastedMorse && promptMorse && pastedMorse === promptMorse
+      ? ""
+      : looksLikeMorse(trimmed)
+        ? normalizeTextForEncoding(morseToText(trimmed))
+        : "";
   const normalizedGot = normalizeTextForEncoding(decodedIfMorse || trimmed);
 
   const ok = normalizedExpected.length > 0 && normalizedExpected === normalizedGot;
 
   return {
     ok,
+    // Never leak the expected answer in the UI (users may want multiple attempts).
+    msg: ok ? "Correct" : "Not quite. Try again.",
     expected,
     got: raw,
     normalizedExpected,
@@ -79,8 +110,9 @@ export function checkAnswer(prompt: Prompt, answer: string): CheckResult {
 }
 
 function looksLikeMorse(s: string): boolean {
-  // Allow dot/dash/spaces/slashes/newlines only
-  return /^[.\-\s/]+$/.test(s);
+  const { normalized, invalidChars } = normalizeMorseForDecoding(s);
+  if (invalidChars.length > 0) return false;
+  return normalized.length > 0;
 }
 
 export function canonicalizeMorse(input: string): string {

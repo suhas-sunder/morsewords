@@ -1,0 +1,530 @@
+export default function HowToUseSuiteGuide() {
+  return (
+    <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
+      <div className="flex flex-col gap-3">
+        <div className="inline-flex items-center gap-2">
+          <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1.5 text-sm font-extrabold text-sky-900 border border-sky-200">
+            Tool guide
+          </span>
+        </div>
+
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0b2447] tracking-tight">
+          How to use MorseWords
+        </h1>
+
+        <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+          This page is a practical guide to the MorseWords toolkit. It is not
+          a history lesson and it is not trying to teach you Morse from zero.
+          It is here so you can move quickly between tools, format input the
+          way the apps expect, and avoid the few small mistakes that make Morse
+          look “broken.” If you just want a fast conversion, start with the
+          Translator and copy the output.
+        </p>
+      </div>
+
+      <div className="mt-6 flex flex-wrap gap-2">
+        {[
+          ["Translator", "#translator"],
+          ["Audio", "#audio"],
+          ["Practice", "#practice"],
+          ["Typing", "#typing"],
+          ["Dictionary", "#dictionary"],
+          ["Spacing", "#spacing"],
+          ["Workflows", "#workflows"],
+          ["Copy + share", "#copy"],
+        ].map(([label, href]) => (
+          <a
+            key={href}
+            href={href}
+            className="px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 cursor-pointer transition"
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+
+      <div className="mt-7 grid gap-4 sm:grid-cols-3">
+        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+          <p className="text-base font-extrabold text-[#0b2447]">
+            Copy-first design
+          </p>
+          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            Every tool is built around clean output you can copy and reuse.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+          <p className="text-base font-extrabold text-[#0b2447]">
+            Spacing matters
+          </p>
+          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            For decoding, use <strong>3 spaces</strong> between letters and{" "}
+            <strong>7 spaces</strong> between words.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+          <p className="text-base font-extrabold text-[#0b2447]">
+            Suite, not one page
+          </p>
+          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            Translate, listen, drill, type, and look up patterns without
+            leaving the site.
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-8 space-y-6 text-gray-700 leading-relaxed">
+        {/* Translator */}
+        <section
+          id="translator"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
+        >
+          <div className="flex flex-col gap-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+              1) Translator
+            </h2>
+            <p className="text-base sm:text-lg">
+              Open{" "}
+              <a
+                href="/"
+                className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              >
+                Morse Code Translator
+              </a>
+              . It is the fastest way to convert in either direction.
+            </p>
+          </div>
+
+          <ol className="mt-4 list-decimal pl-6 space-y-3 text-base sm:text-lg">
+            <li>
+              Type normal text in the left box to get Morse output instantly.
+              Paste Morse in the right box to decode it back to text.
+            </li>
+            <li>
+              When decoding, use <strong>3 spaces</strong> between letters and{" "}
+              <strong>7 spaces</strong> between words for the cleanest results.
+              If your source uses a slash between words, that works too.
+            </li>
+            <li>
+              Copy results using the copy buttons. If you are moving output into
+              another app, keep the spacing, because spacing is part of the
+              meaning when decoding.
+            </li>
+          </ol>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+                Best for
+              </p>
+              <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
+                <li>Quick conversions</li>
+                <li>Cleaning up pasted Morse</li>
+                <li>Copying a consistent output format</li>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+                Common gotcha
+              </p>
+              <p className="mt-3 text-base sm:text-lg">
+                If everything decodes as one long string of nonsense, your Morse
+                probably has no letter boundaries. Add gaps (3 spaces) between
+                letters.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Audio */}
+        <section
+          id="audio"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
+        >
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+            2) Audio translator
+          </h2>
+
+          <p className="mt-3 text-base sm:text-lg">
+            Open{" "}
+            <a
+              href="/audio"
+              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+            >
+              Morse Code Audio Translator
+            </a>
+            . This tool is for listening: you control speed (WPM) and tone, then
+            play the current Morse string.
+          </p>
+
+          <ol className="mt-4 list-decimal pl-6 space-y-3 text-base sm:text-lg">
+            <li>
+              Set your preferred <strong>WPM</strong> and tone. If you are not
+              sure, pick a comfortable WPM first, then adjust up or down.
+            </li>
+            <li>
+              Translate text to Morse or paste Morse directly, depending on what
+              you are working with.
+            </li>
+            <li>
+              Press <strong>Play Audio</strong> to hear the current Morse string.
+              Use <strong>Stop</strong> to end playback immediately.
+            </li>
+          </ol>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-gray-50 p-5">
+            <p className="text-base font-extrabold text-gray-800">Tip</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700">
+              If a long message is hard to follow, shorten it first in the
+              Translator. Audio practice works best in small, repeatable chunks.
+            </p>
+          </div>
+        </section>
+
+        {/* Practice */}
+        <section
+          id="practice"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
+        >
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+            3) Practice
+          </h2>
+
+          <p className="mt-3 text-base sm:text-lg">
+            Open{" "}
+            <a
+              href="/practice"
+              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+            >
+              Morse Code Practice
+            </a>
+            . Practice is structured drills: you get prompts and you answer.
+            It is designed to keep you moving, not to overwhelm you with options.
+          </p>
+
+          <ol className="mt-4 list-decimal pl-6 space-y-3 text-base sm:text-lg">
+            <li>
+              Choose <strong>visual prompts</strong>, <strong>audio prompts</strong>,
+              or both.
+            </li>
+            <li>
+              Pick a character set (letters only, numbers, mixed, or a tighter
+              subset) that matches what you are trying to improve.
+            </li>
+            <li>
+              Type your answer for each prompt. A correct answer advances to the
+              next prompt automatically.
+            </li>
+          </ol>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+                When to use it
+              </p>
+              <p className="mt-3 text-base sm:text-lg">
+                When you want repetition with feedback. Practice is the quickest
+                way to find the handful of characters you keep mixing up.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+                When to switch tools
+              </p>
+              <p className="mt-3 text-base sm:text-lg">
+                If you fail the same prompt repeatedly, jump to the Dictionary
+                to confirm the pattern, then come back.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Typing */}
+        <section
+          id="typing"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
+        >
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+            4) Typing tool
+          </h2>
+
+          <p className="mt-3 text-base sm:text-lg">
+            Open{" "}
+            <a
+              href="/typing"
+              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+            >
+              Morse Code Typing Tool
+            </a>
+            . This is for hands-on input: you type dots and dashes directly, add
+            spacing, and let the tool decode as you go.
+          </p>
+
+          <ol className="mt-4 list-decimal pl-6 space-y-3 text-base sm:text-lg">
+            <li>
+              Enter dots and dashes for each character. Then add spacing to
+              separate letters and words.
+            </li>
+            <li>
+              Use the spacing rules from this page: 3 spaces between letters,
+              7 spaces between words. If you prefer, use / between words.
+            </li>
+            <li>
+              When you are done, copy the decoded output. If the decoded output
+              contains <strong>?</strong>, at least one chunk did not match a
+              known pattern.
+            </li>
+          </ol>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-gray-50 p-5">
+            <p className="text-base font-extrabold text-gray-800">Good use case</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700">
+              You have a short Morse snippet from a puzzle or a screenshot and
+              want to manually enter it without relying on a copyable source.
+            </p>
+          </div>
+        </section>
+
+        {/* Dictionary */}
+        <section
+          id="dictionary"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
+        >
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+            5) Dictionary
+          </h2>
+
+          <p className="mt-3 text-base sm:text-lg">
+            Open{" "}
+            <a
+              href="/dictionary"
+              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+            >
+              Morse Code Dictionary
+            </a>
+            . It is a lookup table for letters, numbers, and punctuation.
+            Use it when you want to confirm one character without running a full
+            translation.
+          </p>
+
+          <ol className="mt-4 list-decimal pl-6 space-y-3 text-base sm:text-lg">
+            <li>Scan the table for the character you need.</li>
+            <li>Copy the pattern or compare it to what you received.</li>
+            <li>
+              If you are unsure about spacing, treat the character pattern as
+              the atomic unit, then add gaps between units.
+            </li>
+          </ol>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-gray-50 p-5">
+            <p className="text-base font-extrabold text-gray-800">Shortcut mindset</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700">
+              Dictionary for one character, Translator for full messages.
+              Switching quickly is the whole point of the suite.
+            </p>
+          </div>
+        </section>
+
+        {/* Spacing */}
+        <section
+          id="spacing"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
+        >
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+            Spacing rules you actually need
+          </h2>
+
+          <p className="mt-4 text-base sm:text-lg text-gray-700 leading-relaxed">
+            Morse can be written a few different ways, but MorseWords is strict
+            about boundaries so decoding is predictable. If you control the
+            format, use the site’s spacing convention everywhere:
+          </p>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+                Recommended format
+              </p>
+              <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-gray-700">
+                <li>3 spaces between letters</li>
+                <li>7 spaces between words</li>
+                <li>/ can act as a visible word separator</li>
+                <li>New lines count as word breaks</li>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+                Why this works
+              </p>
+              <p className="mt-3 text-base sm:text-lg text-gray-700">
+                When decoding, the tool reads dot-dash chunks and uses separators
+                to decide where letters and words end. If separators are missing,
+                the decoder cannot safely guess.
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-5 text-base sm:text-lg text-gray-700 leading-relaxed">
+            If you are copying Morse from a source that only uses single spaces,
+            decoding may still work, but you will see more errors when the input
+            is messy. The easiest fix is to normalize spacing in the Translator
+            first, then move to Audio or Practice.
+          </p>
+        </section>
+
+        {/* Workflows */}
+        <section
+          id="workflows"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
+        >
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+            Fast workflows
+          </h2>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5">
+              <p className="text-base sm:text-lg font-extrabold text-gray-900">
+                Convert → Listen
+              </p>
+              <p className="mt-2 text-base sm:text-lg text-gray-700">
+                Use the Translator to generate clean Morse, then open Audio to
+                play it at a specific WPM and tone. This is the easiest way to
+                sanity-check that your spacing is good.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5">
+              <p className="text-base sm:text-lg font-extrabold text-gray-900">
+                Hear → Confirm
+              </p>
+              <p className="mt-2 text-base sm:text-lg text-gray-700">
+                When a Practice audio prompt feels ambiguous, check the
+                Dictionary for the pattern, then go back to Practice and keep
+                the set small until it sticks.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5">
+              <p className="text-base sm:text-lg font-extrabold text-gray-900">
+                Manual entry → Decode
+              </p>
+              <p className="mt-2 text-base sm:text-lg text-gray-700">
+                Use Typing when you cannot copy the Morse (for example, it is
+                in an image). Enter dots and dashes, add spacing, and copy the
+                decoded result.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5">
+              <p className="text-base sm:text-lg font-extrabold text-gray-900">
+                Debug a bad paste
+              </p>
+              <p className="mt-2 text-base sm:text-lg text-gray-700">
+                If pasted Morse includes bullets or long dashes, run it through
+                the Translator’s decode box first. Clean output there is the
+                foundation for everything else.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Copy + share */}
+        <section
+          id="copy"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
+        >
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+            Copying, pasting, and sharing without breaking the spacing
+          </h2>
+
+          <p className="mt-4 text-base sm:text-lg text-gray-700 leading-relaxed">
+            Most Morse issues are not “wrong dots and dashes.” They are spacing
+            issues introduced by where you paste the text. Some apps collapse
+            multiple spaces into one, and some fonts make dots and dashes look
+            different (bullets for dots, long dashes for hyphens). If you are
+            sending Morse to someone else, prefer formats that preserve
+            whitespace, or use <strong>/</strong> as a visible word separator.
+          </p>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+                Safer places to paste
+              </p>
+              <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-gray-700">
+                <li>Code blocks and monospace editors</li>
+                <li>Plain-text notes apps</li>
+                <li>Messaging apps that keep multiple spaces</li>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+                Places that often mangle it
+              </p>
+              <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-gray-700">
+                <li>Rich-text docs that auto-collapse spaces</li>
+                <li>Auto-formatted email clients</li>
+                <li>PDF copy-and-paste</li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="mt-5 text-base sm:text-lg text-gray-700 leading-relaxed">
+            If a paste source keeps changing your characters, run it through the
+            Translator’s decode box first. The decoder normalizes common dot and
+            dash lookalikes, and it will show <strong>?</strong> for anything it
+            cannot interpret so you can clean it up before you practice or play
+            audio.
+          </p>
+        </section>
+
+        {/* FAQ */}
+        <div className="pt-2">
+          <p className="text-sm text-gray-500">
+            Looking for the tools themselves? Jump to{" "}
+            <a
+              href="/"
+              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+            >
+              Translator
+            </a>
+            ,{" "}
+            <a
+              href="/audio"
+              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+            >
+              Audio
+            </a>
+            ,{" "}
+            <a
+              href="/practice"
+              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+            >
+              Practice
+            </a>
+            ,{" "}
+            <a
+              href="/typing"
+              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+            >
+              Typing
+            </a>
+            , or{" "}
+            <a
+              href="/dictionary"
+              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+            >
+              Dictionary
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

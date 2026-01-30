@@ -9,6 +9,20 @@ const styles: Record<string, React.CSSProperties> = {
     margin: 0,
   },
   wrap: { maxWidth: 1120, margin: "0 auto", padding: 24 },
+
+  breadcrumb: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    marginBottom: 18,
+    fontSize: "1.05rem",
+  },
+  breadcrumbLink: {
+    color: "inherit",
+    textDecoration: "underline",
+  },
+  breadcrumbSep: { color: "#111317" },
+  breadcrumbCurrent: { fontWeight: 700 },
   header: {
     display: "flex",
     alignItems: "center",

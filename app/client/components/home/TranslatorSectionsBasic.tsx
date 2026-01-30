@@ -373,7 +373,7 @@ export default function TranslatorSectionsBasic({
               </label>
               <textarea
                 id={liveInputId}
-                className="w-full mt-2 border rounded-md p-3 font-mono h-44 focus:ring-2 focus:ring-neutral-900"
+                className="w-full mt-2 border rounded-md p-3 font-mono h-44 outline-sky-500 border-sky-500"
                 value={inputValue}
                 onChange={(e) =>
                   direction === "encode"
@@ -412,7 +412,7 @@ export default function TranslatorSectionsBasic({
               </label>
               <textarea
                 id="mw_output"
-                className="w-full mt-2 border rounded-md p-3 font-mono h-44 bg-gray-50"
+                className="w-full mt-2 rounded-md p-3 font-mono h-44 bg-sky-50 outline-sky-500 border-sky-500"
                 value={outputValue}
                 readOnly
                 placeholder={

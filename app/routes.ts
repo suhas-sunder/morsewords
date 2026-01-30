@@ -11,7 +11,7 @@ export default [
   route("typing", "routes/typing.tsx"),
   route("how-to-use", "routes/how-to-use.tsx"),
   route("dictionary", "routes/dictionary.tsx"),
-  // route("listening-practice", "routes/listening-practice.tsx"),
+  route("about", "routes/about.tsx"),
 
   // Misc / legal
   route("misc", "routes/misc/misc.tsx", [
