@@ -2,7 +2,6 @@
 
 import { Link } from "react-router";
 import type { Route } from "./+types/misc.socials";
-import SocialLinks from "~/client/components/navigation/SocialLinks";
 
 export const meta: Route.MetaFunction = () => {
   const canonical = "https://www.morsewords.com/links";

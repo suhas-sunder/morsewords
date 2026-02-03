@@ -1,5 +1,5 @@
 import { morseToText, normalizeMorseForDecoding, normalizeTextForEncoding, textToMorse } from "./morseUtils";
-import { LETTERS, NUMBERS, SIGNALS, WORDS } from "./practiceBank";
+import { LETTERS, NUMBERS, SIGNALS, WORDS, SENTENCES } from "./practiceBank";
 import type { DrillMode, Pool } from "~/client/components/practice/PracticeControls";
 import type { Prompt, PromptKind } from "~/client/components/practice/PromptCard";
 
@@ -33,20 +33,26 @@ function pickPlain(pool: Pool): string {
           ? SIGNALS
           : pool === "words"
             ? WORDS
-            : [...LETTERS, ...NUMBERS, ...SIGNALS, ...WORDS];
+            : pool === "sentences"
+              ? SENTENCES
+              : [...LETTERS, ...NUMBERS, ...SIGNALS, ...WORDS, ...SENTENCES];
   return bank[Math.floor(Math.random() * bank.length)] ?? "SOS";
 }
 
 function labelFor(pool: Pool, plain: string): string {
+  const wordCount = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
+
   if (pool === "all") {
     if (LETTERS.includes(plain)) return "Single letter";
     if (NUMBERS.includes(plain)) return "Single number";
     if (SIGNALS.includes(plain)) return "Common signal";
+    if (SENTENCES.includes(plain)) return `Short sentence (${wordCount(plain)} words)`;
     return `Short word (${plain.length} chars)`;
   }
   if (pool === "letters") return "Single letter";
   if (pool === "numbers") return "Single number";
   if (pool === "signals") return "Common signal";
+  if (pool === "sentences") return `Short sentence (${wordCount(plain)} words)`;
   // words
   return `Short word (${plain.length} chars)`;
 }

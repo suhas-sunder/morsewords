@@ -4,46 +4,46 @@ import type { Route } from "./+types/about";
 import styles from "~/client/components/home/styles";
 import JsonLdScript from "~/client/components/home/JsonLdScript";
 
-const SITE_URL = "https://morsewords.com";
+const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/about";
 const CANONICAL_URL = SITE_URL + CANONICAL_PATH;
 
 export function links() {
-  return [{ rel: "canonical", href: CANONICAL_URL }];
+  return [
+    {
+      rel: "canonical",
+      href: CANONICAL_URL,
+    },
+  ];
 }
 
-export function meta({}: Route.MetaArgs) {
+export function meta(_: Route.MetaArgs) {
+  const title = "About MorseWords | Practical Morse Code Tools";
+  const description =
+    "MorseWords is a collection of fast, practical Morse code tools. Translate text, hear audio, practice patterns, type Morse, and look up symbols. Built for utility, not lessons.";
+
   return [
-    { title: "About MorseWords | Practical Morse Code Tools (Not a Course)" },
-    {
-      name: "description",
-      content:
-        "MorseWords is a collection of fast, practical Morse code tools: translate text, hear audio, practice patterns, type Morse, and look up symbols. Built for utility, not lessons.",
-    },
+    { title },
+
+    { name: "description", content: description },
     {
       name: "keywords",
       content:
-        "about morsewords, morse code tools, morse translator, morse practice, morse dictionary",
+        "about morsewords, morse code tools, morse translator, morse audio, morse practice, morse dictionary",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
     { property: "og:type", content: "website" },
-    { property: "og:title", content: "About MorseWords" },
-    {
-      property: "og:description",
-      content:
-        "A set of practical Morse code tools, not a course. Translate, listen, practice, type, and look up Morse instantly.",
-    },
+    { property: "og:site_name", content: "MorseWords" },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
     { property: "og:url", content: CANONICAL_URL },
 
     { name: "twitter:card", content: "summary" },
-    { name: "twitter:title", content: "About MorseWords" },
-    {
-      name: "twitter:description",
-      content:
-        "Practical Morse code tools for translating, listening, practicing, and typing. No course, no fluff.",
-    },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:url", content: CANONICAL_URL },
   ];
 }
 

@@ -6,9 +6,9 @@ import FaqSectionGeneric from "~/client/components/home/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/home/JsonLdScript";
 import HowToUseSuiteGuide from "~/client/components/how-to-use/HowToUseSuiteGuide";
 
-const SITE_URL = "https://morsewords.com";
+const SITE_URL = "https://www.morsewords.com"; // keep host consistent site-wide
 const CANONICAL_PATH = "/how-to-use";
-const CANONICAL_URL = SITE_URL + CANONICAL_PATH;
+const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
@@ -17,12 +17,12 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "How to Use MorseWords (Translator, Audio, Practice & More)",
+      title: "How to Use MorseWords | Translator, Audio, Practice & Tools",
     },
     {
       name: "description",
       content:
-        "Learn how to use MorseWords tools step by step. Translate text and Morse, play audio at your own speed, practice drills, type dots and dashes, and look up patterns in the dictionary.",
+        "Learn how to use MorseWords to translate text and Morse code, play audio at adjustable speeds, practice drills, type dots and dashes, and explore the Morse dictionary.",
     },
     {
       name: "keywords",
@@ -32,11 +32,10 @@ export function meta({}: Route.MetaArgs) {
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
+    // Open Graph
     { property: "og:type", content: "website" },
-    {
-      property: "og:title",
-      content: "How to Use MorseWords",
-    },
+    { property: "og:site_name", content: "MorseWords" },
+    { property: "og:title", content: "How to Use MorseWords" },
     {
       property: "og:description",
       content:
@@ -44,17 +43,14 @@ export function meta({}: Route.MetaArgs) {
     },
     { property: "og:url", content: CANONICAL_URL },
 
+    // Twitter
     { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "How to Use MorseWords",
-    },
+    { name: "twitter:title", content: "How to Use MorseWords" },
     {
       name: "twitter:description",
       content:
         "Learn how to use MorseWords tools to translate, practice, listen to, and type Morse code.",
     },
-    { name: "twitter:url", content: CANONICAL_URL },
   ];
 }
 

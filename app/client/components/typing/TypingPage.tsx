@@ -679,7 +679,7 @@ export default function TypingPage({ jsonLd }: Props) {
                   onChange={onInputChange}
                   readOnly={sessionState === "paused" || sessionState === "done"}
                   rows={8}
-                  wrap="off"
+                  wrap="soft"
                   onKeyDown={onInputKeyDown}
                   onFocus={(e) => {
                     const el = e.currentTarget;
@@ -694,8 +694,8 @@ export default function TypingPage({ jsonLd }: Props) {
                   autoCapitalize="off"
                   autoCorrect="off"
                   spellCheck={false}
-                  className="w-full mt-2 rounded-xl p-3 font-mono border border-sky-500 outline-sky-500 bg-white overflow-auto min-h-[220px] max-h-[360px]"
-                  style={{ whiteSpace: "pre", overflowX: "auto" }}
+                  className="w-full max-w-full min-w-0 box-border mt-2 rounded-xl p-3 font-mono border border-sky-500 outline-sky-500 bg-white overflow-auto min-h-[220px] max-h-[360px]"
+                  style={{ whiteSpace: "pre-wrap", overflowX: "hidden", overflowWrap: "anywhere", wordBreak: "break-word", maxWidth: "100%", minWidth: 0 }}
                   placeholder={
                     sessionState === "paused"
                       ? "Paused"

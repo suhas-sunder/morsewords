@@ -1,14 +1,13 @@
-import * as React from "react";
 import type { Route } from "./+types/typing";
 
 import styles from "../client/components/typing/styles";
 import TypingPage from "../client/components/typing/TypingPage";
 
+import { items as faqItems } from "../client/components/typing/TypingFaq";
+
 const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/typing";
-const CANONICAL_URL = SITE_URL + CANONICAL_PATH;
-
-import { items as faqItems } from "../client/components/typing/TypingFaq";
+const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
@@ -17,25 +16,26 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Typing Tool (Real-Time Decoder Scratchpad)",
+      title: "Morse Code Typing Tool | Real-Time Decoder Scratchpad",
     },
     {
       name: "description",
       content:
-        "Freeform Morse code typing scratchpad with instant decoding. Type continuously, build rhythm, and practice endurance with no lessons or prompts. Designed for fluent Morse users.",
+        "A freeform Morse code typing scratchpad with instant decoding. Type continuously, build rhythm, and practice endurance with no lessons or prompts. Built for fluent Morse users.",
     },
     {
       name: "keywords",
       content:
-        "morse code typing tool, morse code scratchpad, real time morse decoder, morse drills, cw practice typing, morse code practice typing",
+        "morse code typing tool, morse code scratchpad, real time morse decoder, cw typing practice, morse typing practice",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
+    // Open Graph
     { property: "og:type", content: "website" },
     {
       property: "og:title",
-      content: "Morse Code Typing Tool (Real-Time Decoder)",
+      content: "Morse Code Typing Tool | MorseWords",
     },
     {
       property: "og:description",
@@ -45,17 +45,17 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:url", content: CANONICAL_URL },
     { property: "og:site_name", content: "MorseWords" },
 
-    { property: "twitter:card", content: "summary" },
+    // Twitter
+    { name: "twitter:card", content: "summary" },
     {
-      property: "twitter:title",
+      name: "twitter:title",
       content: "Morse Code Typing Tool",
     },
     {
-      property: "twitter:description",
+      name: "twitter:description",
       content:
         "A real-time Morse typing scratchpad for fluent users. No lessons, just flow.",
     },
-    { name: "twitter:url", content: CANONICAL_URL },
   ];
 }
 

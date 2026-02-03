@@ -3,7 +3,7 @@ import Button from "~/client/components/practice/Button";
 import ToggleChip from "~/client/components/practice/ToggleChip";
 
 export type DrillMode = "text_to_morse" | "morse_to_text" | "mixed";
-export type Pool = "all" | "letters" | "numbers" | "signals" | "words";
+export type Pool = "all" | "letters" | "numbers" | "signals" | "words" | "sentences";
 
 export default function PracticeControls({
   mode,
@@ -52,7 +52,7 @@ export default function PracticeControls({
           label="All"
           active={pool === "all"}
           onClick={() => setPool("all")}
-          title="Mixes letters, numbers, signals, and words"
+          title="Mixes letters, numbers, signals, words, and sentences"
         />
         <ToggleChip
           label="Letters"
@@ -75,6 +75,12 @@ export default function PracticeControls({
           active={pool === "words"}
           onClick={() => setPool("words")}
           title="Short words to practice spacing"
+        />
+        <ToggleChip
+          label="Sentences"
+          active={pool === "sentences"}
+          onClick={() => setPool("sentences")}
+          title="Short, radio-realistic sentences"
         />
       </div>
 

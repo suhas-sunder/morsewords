@@ -1,4 +1,4 @@
-import * as React from "react";
+import { items as faqItems } from "../client/components/practice/PracticeFaq";
 import type { Route } from "./+types/practice";
 
 import styles from "../client/components/practice/styles";
@@ -6,8 +6,7 @@ import PracticePage from "../client/components/practice/PracticePage";
 
 const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/practice";
-const CANONICAL_URL = SITE_URL + CANONICAL_PATH;
-import { items as faqItems } from "../client/components/practice/PracticeFaq";
+const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
@@ -16,45 +15,45 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title:
-        "Morse Code Practice & Quiz (Instant Feedback Drills) | MorseWords",
+      title: "Morse Code Practice & Quizzes | Instant Feedback Drills",
     },
     {
       name: "description",
       content:
-        "Practice Morse code with focused quizzes and drills. One question at a time with instant feedback to train letters, numbers, and common signals. No signup, start immediately.",
+        "Practice Morse code with instant-feedback quizzes and focused drills. Train letters, numbers, common signals, words, and short sentences one question at a time. No signup required.",
     },
     {
       name: "keywords",
       content:
-        "morse code practice, morse code quiz, morse code drills, morse flashcards, learn morse code, morse training",
+        "morse code practice, morse code quiz, morse code drills, morse flashcards, learn morse code, morse training, morse code words, morse code sentences",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
+    // Open Graph
     { property: "og:type", content: "website" },
     {
       property: "og:title",
-      content: "Morse Code Practice & Quiz | MorseWords",
+      content: "Morse Code Practice & Quizzes | MorseWords",
     },
     {
       property: "og:description",
       content:
-        "Practice Morse code with instant-feedback quizzes and drills designed for fast learning.",
+        "Practice Morse code with instant-feedback quizzes and drills designed for fast, focused learning.",
     },
     { property: "og:url", content: CANONICAL_URL },
 
+    // Twitter
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Practice & Quiz",
+      content: "Morse Code Practice & Quizzes",
     },
     {
       name: "twitter:description",
       content:
-        "Train Morse code with instant-feedback quizzes and drills. Start practicing immediately.",
+        "Train Morse code with instant-feedback quizzes and focused drills. Start practicing immediately.",
     },
-    { name: "twitter:url", content: CANONICAL_URL },
   ];
 }
 

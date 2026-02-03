@@ -1,9 +1,58 @@
 import * as React from "react";
 import type { Route } from "./+types/dictionary";
-
 const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/dictionary";
-const CANONICAL_URL = SITE_URL + CANONICAL_PATH;
+const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
+
+export function links() {
+  return [{ rel: "canonical", href: CANONICAL_URL }];
+}
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    {
+      title: "Morse Code Dictionary | Letters, Prosigns & Q-Codes",
+    },
+    {
+      name: "description",
+      content:
+        "Fast Morse code dictionary with instant lookup and copy. Find letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases in one place.",
+    },
+    {
+      name: "keywords",
+      content:
+        "morse code dictionary, morse letters, morse prosigns, q codes morse, morse abbreviations, morse code symbols",
+    },
+    { name: "robots", content: "index,follow" },
+    { name: "theme-color", content: "#0b2447" },
+
+    // Open Graph
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "MorseWords" },
+    { property: "og:url", content: CANONICAL_URL },
+    {
+      property: "og:title",
+      content: "Morse Code Dictionary | MorseWords",
+    },
+    {
+      property: "og:description",
+      content:
+        "Instantly look up and copy Morse patterns for characters, prosigns, Q-codes, abbreviations, and phrases.",
+    },
+
+    // Twitter
+    { name: "twitter:card", content: "summary" },
+    {
+      name: "twitter:title",
+      content: "Morse Code Dictionary",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "Fast lookup for Morse letters, prosigns, Q-codes, abbreviations, and phrases.",
+    },
+  ];
+}
 
 type Entry = {
   label: string;
@@ -182,45 +231,6 @@ function Section({
       </div>
     </section>
   );
-}
-
-export function links() {
-  return [{ rel: "canonical", href: CANONICAL_URL }];
-}
-
-export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Morse Code Dictionary (Letters, Prosigns, Q-Codes) | MorseWords",
-    },
-    {
-      name: "description",
-      content:
-        "Fast Morse code dictionary with instant lookup and copy. Find letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases in one place.",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: CANONICAL_URL },
-    { property: "og:title", content: "Morse Code Dictionary | MorseWords" },
-    {
-      property: "og:description",
-      content:
-        "Instantly look up and copy Morse patterns for characters, prosigns, Q-codes, abbreviations, and phrases.",
-    },
-
-    { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "Morse Code Dictionary",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Fast lookup for Morse letters, prosigns, Q-codes, abbreviations, and phrases.",
-    },
-  ];
 }
 
 export default function DictionaryRoute() {

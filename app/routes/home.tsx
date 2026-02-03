@@ -25,6 +25,12 @@ export function meta({}: Route.MetaArgs) {
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
+
+    // canonical (no trailing slash, matches sitemap)
+    {
+      rel: "canonical",
+      href: "https://www.morsewords.com",
+    },
   ];
 }
 

@@ -18,10 +18,34 @@ export default function PromptCard({
   questionNumber: number;
   totalQuestions: number;
 }) {
-  const shown = prompt.kind === "text_to_morse" ? prompt.plain : prompt.morse;
-
   const kindLabel =
     prompt.kind === "text_to_morse" ? "Text → Morse" : "Morse → Text";
+
+  const renderMorse = (morse: string) => {
+    return morse.split("").map((ch, i) => {
+      if (ch === " ") {
+        return (
+          <span
+            key={i}
+            style={{
+              display: "inline-block",
+              width: "0.6em",
+              // Only spaces get a subtle tint so users can visually count gaps.
+              // Dots and dashes remain completely unstyled.
+              backgroundColor: "#dbeaf6",
+              opacity: 0.3,
+              borderRadius: "6px",
+              // Tiny separation so consecutive spaces don't look like a single block.
+              marginRight: "3px",
+            }}
+          >
+            &nbsp;
+          </span>
+        );
+      }
+      return <span key={i}>{ch}</span>;
+    });
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -39,8 +63,10 @@ export default function PromptCard({
           </span>
         </div>
 
-        <div className="mt-4 text-2xl sm:text-3xl font-mono tracking-wide text-neutral-900 break-words">
-          {shown}
+        <div className="mt-4 text-2xl sm:text-3xl font-mono tracking-wide text-neutral-900 break-words whitespace-pre-wrap">
+          {prompt.kind === "morse_to_text"
+            ? renderMorse(prompt.morse)
+            : prompt.plain}
         </div>
       </div>
     </div>

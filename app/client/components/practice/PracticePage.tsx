@@ -19,10 +19,16 @@ import {
   randomPrompt,
 } from "~/client/components/practice/practiceEngine";
 
-const LS_MODE = "mw_practice_mode";
 const LS_POOL = "mw_practice_pool";
+const lsModeKey = (pool: string) => `mw_practice_mode_${pool}`;
+const lsBestStreakKey = (pool: string) => `mw_practice_best_streak_${pool}`;
 
 const TOTAL_QUESTIONS = 10;
+
+const defaultModeForPool = (pool: Pool): DrillMode => {
+  // Words are primarily an encoding drill; default to Text → Morse.
+  return pool === "words" || pool === "sentences" ? "text_to_morse" : "mixed";
+};
 
 function readStr(key: string, fallback: string) {
   if (typeof window === "undefined") return fallback;
@@ -42,18 +48,35 @@ function writeStr(key: string, val: string) {
   }
 }
 
+function readInt(key: string, fallback: number) {
+  const v = readStr(key, String(fallback));
+  const n = parseInt(v, 10);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function writeInt(key: string, val: number) {
+  writeStr(key, String(val));
+}
+
 export default function PracticePage({ jsonLd }: { jsonLd: any }) {
-  const [mode, setMode] = React.useState<DrillMode>(() => {
-    const v = readStr(LS_MODE, "mixed");
-    return v === "text_to_morse" || v === "morse_to_text" || v === "mixed"
-      ? (v as DrillMode)
-      : "mixed";
-  });
   const [pool, setPool] = React.useState<Pool>(() => {
     const v = readStr(LS_POOL, "all");
-    return v === "all" || v === "letters" || v === "numbers" || v === "signals" || v === "words"
+    return v === "all" ||
+      v === "letters" ||
+      v === "numbers" ||
+      v === "signals" ||
+      v === "words" ||
+      v === "sentences"
       ? (v as Pool)
       : "all";
+  });
+
+  const [mode, setMode] = React.useState<DrillMode>(() => {
+    // Mode is stored per-pool so switching drills does not inherit unrelated settings.
+    const v = readStr(lsModeKey(pool), defaultModeForPool(pool));
+    return v === "text_to_morse" || v === "morse_to_text" || v === "mixed"
+      ? (v as DrillMode)
+      : defaultModeForPool(pool);
   });
 
   const [prompt, setPrompt] = React.useState<Prompt>(() =>
@@ -76,7 +99,9 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
   const [correct, setCorrect] = React.useState(0);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(0);
+  const [bestStreak, setBestStreak] = React.useState(() =>
+    readInt(lsBestStreakKey(pool), 0),
+  );
 
   React.useEffect(() => {
     if (completed > TOTAL_QUESTIONS) {
@@ -91,9 +116,29 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   }, [completed]);
 
   React.useEffect(() => {
-    writeStr(LS_MODE, mode);
     writeStr(LS_POOL, pool);
+  }, [pool]);
+
+  React.useEffect(() => {
+    // When pool changes, load pool-specific settings instead of inheriting from other drills.
+    const v = readStr(lsModeKey(pool), defaultModeForPool(pool));
+    const nextMode: DrillMode =
+      v === "text_to_morse" || v === "morse_to_text" || v === "mixed"
+        ? (v as DrillMode)
+        : defaultModeForPool(pool);
+    setMode((m) => (m === nextMode ? m : nextMode));
+
+    const bs = readInt(lsBestStreakKey(pool), 0);
+    setBestStreak((b) => (b === bs ? b : bs));
+  }, [pool]);
+
+  React.useEffect(() => {
+    writeStr(lsModeKey(pool), mode);
   }, [mode, pool]);
+
+  React.useEffect(() => {
+    writeInt(lsBestStreakKey(pool), bestStreak);
+  }, [bestStreak, pool]);
 
   React.useEffect(() => {
     // When settings change, generate a new prompt to match intent.
@@ -107,7 +152,6 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
     setRunStartedAt(null);
     setCorrect(0);
     setStreak(0);
-    setBestStreak(0);
   }, [mode, pool]);
 
   const next = React.useCallback(() => {
@@ -115,7 +159,8 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
       if (c >= TOTAL_QUESTIONS) return c;
 
       const nextCompleted = c + 1;
-      const clamped = nextCompleted > TOTAL_QUESTIONS ? TOTAL_QUESTIONS : nextCompleted;
+      const clamped =
+        nextCompleted > TOTAL_QUESTIONS ? TOTAL_QUESTIONS : nextCompleted;
 
       // If they advance without solving, break the streak.
       if (!solvedThisQuestion) setStreak(0);
@@ -143,7 +188,6 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
     setAttempts(0);
     setCorrect(0);
     setStreak(0);
-    setBestStreak(0);
     setSolvedThisQuestion(false);
     setFeedback(null);
     setPrompt(randomPrompt(mode, pool));
@@ -183,15 +227,19 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
     });
   }, [prompt, answer, runStartedAt, solvedThisQuestion, completed]);
 
-  const progress = Math.min(TOTAL_QUESTIONS, completed + (solvedThisQuestion ? 1 : 0));
-  const accuracy = attempts > 0 ? Math.min(100, Math.round((correct / attempts) * 100)) : 0;
+  const progress = Math.min(
+    TOTAL_QUESTIONS,
+    completed + (solvedThisQuestion ? 1 : 0),
+  );
+  const accuracy =
+    attempts > 0 ? Math.min(100, Math.round((correct / attempts) * 100)) : 0;
   const gameOver = completed >= TOTAL_QUESTIONS;
   const questionsShown = gameOver ? TOTAL_QUESTIONS : questionNumber;
 
   const placeholder =
     prompt.kind === "text_to_morse"
-      ? "Type Morse here (e.g., ... --- ...)"
-      : "Type text here (e.g., SOS)";
+      ? "Type Morse here (e.g., ... --- ...) ~ Tip: press Enter to check"
+      : "Type text here (e.g., SOS) ~ Tip: press Enter to check";
 
   const statusBadge = feedback ? (
     <div
@@ -208,21 +256,19 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
       <span>{feedback.msg}</span>
     </div>
   ) : (
-    <div className="mt-3 inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm text-gray-700">
-      Tip: press <span className="mx-1 font-semibold">Enter</span> to check
-    </div>
+    <></>
   );
 
   return (
     <div className="mb-8 mt-4">
       <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-
         <div className="mb-4 flex flex-col justify-center items-center text-center">
           <h1 className="font-bold !text-2xl sm:!text-4xl">
             Morse Code Practice (Quiz)
           </h1>
           <p className="mt-2 text-sm sm:text-lg text-gray-700">
-            A focused 10-question Morse quiz. One prompt at a time with instant feedback.
+            A focused 10-question Morse quiz. One prompt at a time with instant
+            feedback.
           </p>
         </div>
 
@@ -281,9 +327,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
             </span>
             <span className="hidden sm:inline">
               Accuracy:{" "}
-              <span className="font-semibold text-sky-900">
-                {accuracy}%
-              </span>
+              <span className="font-semibold text-sky-900">{accuracy}%</span>
             </span>
 
             <span>
@@ -292,9 +336,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
             </span>
             <span className="hidden sm:inline">
               Best:{" "}
-              <span className="font-semibold text-sky-900">
-                {bestStreak}
-              </span>
+              <span className="font-semibold text-sky-900">{bestStreak}</span>
             </span>
 
             <ShareResultsButton
@@ -325,36 +367,59 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                   Your results
                 </h2>
                 <p className="mt-1 text-sm sm:text-base text-gray-700">
-                  10 questions, unlimited attempts per question. Accuracy reflects all attempts.
+                  10 questions, unlimited attempts per question. Accuracy
+                  reflects all attempts.
                 </p>
               </div>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-3">
                 <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">Questions</div>
+                  <div className="text-sm font-semibold text-gray-600">
+                    Questions
+                  </div>
                   <div className="mt-1 text-3xl font-extrabold text-neutral-900">
                     {TOTAL_QUESTIONS}/{TOTAL_QUESTIONS}
                   </div>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">Attempts</div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">{attempts}</div>
+                  <div className="text-sm font-semibold text-gray-600">
+                    Attempts
+                  </div>
+                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                    {attempts}
+                  </div>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">Correct</div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">{correct}</div>
+                  <div className="text-sm font-semibold text-gray-600">
+                    Correct
+                  </div>
+                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                    {correct}
+                  </div>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">Accuracy</div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">{accuracy}%</div>
+                  <div className="text-sm font-semibold text-gray-600">
+                    Accuracy
+                  </div>
+                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                    {accuracy}%
+                  </div>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">Best streak</div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">{bestStreak}</div>
+                  <div className="text-sm font-semibold text-gray-600">
+                    Best streak
+                  </div>
+                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                    {bestStreak}
+                  </div>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">Final streak</div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">{streak}</div>
+                  <div className="text-sm font-semibold text-gray-600">
+                    Final streak
+                  </div>
+                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                    {streak}
+                  </div>
                 </div>
               </div>
 
@@ -392,7 +457,8 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
 
               <div className="mt-5">
                 <label className="text-sky-900 font-bold">
-                  Your answer ({prompt.kind === "text_to_morse" ? "Morse" : "Text"})
+                  Your answer (
+                  {prompt.kind === "text_to_morse" ? "Morse" : "Text"})
                 </label>
 
                 <input
@@ -455,18 +521,17 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
           {/* Drill options (always visible) */}
           <div className="mt-6 border-t border-gray-200 pt-5">
             <div className="text-sm font-semibold text-neutral-900">
-              Drill options
+              Drill options (Quiz settings)
             </div>
 
             <div className="mt-3 grid gap-4 sm:grid-cols-2 sm:items-start">
               <div>
-                <div className="text-sm text-gray-600">Prompt pool</div>
                 <div className="mt-2 flex flex-wrap gap-2">
                   <ToggleChip
                     label="All"
                     active={pool === "all"}
                     onClick={() => setPool("all")}
-                    title="Mixes letters, numbers, signals, and words"
+                    title="Mixes letters, numbers, signals, words, and sentences"
                   />
                   <ToggleChip
                     label="Letters"
@@ -487,6 +552,12 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     label="Words"
                     active={pool === "words"}
                     onClick={() => setPool("words")}
+                  />
+                  <ToggleChip
+                    label="Sentences"
+                    active={pool === "sentences"}
+                    onClick={() => setPool("sentences")}
+                    title="Short, radio-realistic sentences"
                   />
                 </div>
               </div>
@@ -511,10 +582,6 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                 </Button>
               </div>
             </div>
-
-            <p className="mt-4 text-sm text-gray-700 leading-relaxed">
-              Designed for repetition drills. This page does not try to be a translator.
-            </p>
           </div>
         </div>
       </section>
