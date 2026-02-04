@@ -4,13 +4,24 @@ import logoUrl from "~/client/assets/images/logo.png";
 
 type NavItem = { label: string; href: string };
 
-const NAV_ITEMS: NavItem[] = [
+const MAIN_ITEMS: NavItem[] = [
   { label: "Translator", href: "/" },
   { label: "Audio", href: "/audio" },
   { label: "Practice", href: "/practice" },
   { label: "Typing", href: "/typing" },
   { label: "How to use", href: "/how-to-use" },
+];
+
+const MORE_ITEMS: NavItem[] = [
   { label: "Dictionary", href: "/dictionary" },
+  { label: "Morse code encoder", href: "/morse-code-encoder" },
+  { label: "Morse code decoder", href: "/morse-code-decoder" },
+  {
+    label: "Quick Brown Fox (Morse)",
+    href: "/the-quick-brown-fox-morse-code",
+  },
+  { label: "Word separator", href: "/morse-code-word-separator" },
+  { label: "About", href: "/about" },
 ];
 
 function normalizePathname(raw: string) {
@@ -24,22 +35,20 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(href + "/");
 }
 
+function anyActive(pathname: string, items: NavItem[]) {
+  return items.some((it) => isActive(pathname, it.href));
+}
+
 /**
  * Fixes "Translator flashes active" by preventing an SSR/hydration default "/"
  * from being used as the active pathname.
- *
- * If pathname is not provided:
- * - On SSR we render with "unknown" pathname (no active item).
- * - On client mount we read window.location.pathname once and set it.
- *
- * This eliminates the incorrect brief active state.
  */
 function useResolvedPathname(provided?: string) {
   const providedNormalized = provided ? normalizePathname(provided) : undefined;
 
   const [pathname, setPathname] = React.useState<string | null>(() => {
     if (providedNormalized) return providedNormalized;
-    if (typeof window === "undefined") return null; // unknown during SSR
+    if (typeof window === "undefined") return null;
     return normalizePathname(window.location.pathname);
   });
 
@@ -48,7 +57,6 @@ function useResolvedPathname(provided?: string) {
       setPathname(providedNormalized);
       return;
     }
-    // If no pathname prop, resolve once on mount.
     setPathname(normalizePathname(window.location.pathname));
   }, [providedNormalized]);
 
@@ -81,18 +89,62 @@ function BurgerIcon(props: { open: boolean }) {
   );
 }
 
+function ChevronDown(props: { open: boolean }) {
+  return (
+    <span
+      className={
+        "ml-2 inline-block transition-transform duration-150 " +
+        (props.open ? "rotate-180" : "rotate-0")
+      }
+      aria-hidden="true"
+    >
+      ▾
+    </span>
+  );
+}
+
 export default function NavBar(props: { pathname?: string }) {
   const [open, setOpen] = React.useState(false);
+  const [moreOpen, setMoreOpen] = React.useState(false);
+
   const pathname = useResolvedPathname(props.pathname);
+
+  const moreWrapRef = React.useRef<HTMLDivElement | null>(null);
 
   // Close mobile menu on route change (only when we actually have a pathname).
   React.useEffect(() => {
     if (!pathname) return;
     setOpen(false);
+    setMoreOpen(false);
   }, [pathname]);
 
+  // Click outside closes More dropdown
+  React.useEffect(() => {
+    if (!moreOpen) return;
+
+    function onDocMouseDown(e: MouseEvent) {
+      const el = moreWrapRef.current;
+      if (!el) return;
+      const target = e.target as Node | null;
+      if (target && !el.contains(target)) setMoreOpen(false);
+    }
+
+    function onDocKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setMoreOpen(false);
+    }
+
+    document.addEventListener("mousedown", onDocMouseDown);
+    document.addEventListener("keydown", onDocKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onDocMouseDown);
+      document.removeEventListener("keydown", onDocKeyDown);
+    };
+  }, [moreOpen]);
+
+  const moreActive = pathname ? anyActive(pathname, MORE_ITEMS) : false;
+
   return (
-    <header className="sticky top-0 z-50 bg-neutral-900 backdrop-blur ">
+    <header className="sticky top-0 z-50 bg-neutral-900 backdrop-blur">
       <div className="mx-auto max-w-5xl px-4">
         <div className="flex items-center justify-between py-3">
           <a
@@ -106,15 +158,16 @@ export default function NavBar(props: { pathname?: string }) {
               loading="eager"
             />
             <div className="leading-tight">
-              <div className="text-lg font-extrabold ">MorseWords</div>
-              <div className=" text-sm sm:text-xs text-sky-200">
+              <div className="text-lg font-extrabold">MorseWords</div>
+              <div className="text-sm sm:text-xs text-sky-200">
                 Translate, listen, and practice Morse code
               </div>
             </div>
           </a>
 
+          {/* Desktop */}
           <nav className="hidden md:flex items-center gap-2">
-            {NAV_ITEMS.map((item) => {
+            {MAIN_ITEMS.map((item) => {
               const active = pathname ? isActive(pathname, item.href) : false;
               return (
                 <a
@@ -132,8 +185,59 @@ export default function NavBar(props: { pathname?: string }) {
                 </a>
               );
             })}
+
+            <div ref={moreWrapRef} className="relative">
+              <button
+                type="button"
+                onClick={() => setMoreOpen((v) => !v)}
+                className={
+                  "px-3 py-2 rounded-xl text-sm font-semibold cursor-pointer transition inline-flex items-center " +
+                  (moreActive || moreOpen
+                    ? "bg-sky-200 text-neutral-900"
+                    : "text-white hover:bg-sky-200 hover:text-neutral-900")
+                }
+                aria-haspopup="menu"
+                aria-expanded={moreOpen}
+              >
+                More
+                <ChevronDown open={moreOpen} />
+              </button>
+
+              {moreOpen ? (
+                <div
+                  role="menu"
+                  className="absolute right-0 mt-2 w-72 rounded-2xl border border-gray-200 bg-white shadow-lg overflow-hidden"
+                >
+                  <div className="p-2">
+                    {MORE_ITEMS.map((item) => {
+                      const active = pathname
+                        ? isActive(pathname, item.href)
+                        : false;
+                      return (
+                        <a
+                          key={item.href}
+                          href={item.href}
+                          role="menuitem"
+                          className={
+                            "block w-full px-3 py-2 rounded-xl text-sm font-semibold cursor-pointer transition " +
+                            (active
+                              ? "bg-sky-50 text-sky-900 border border-sky-200"
+                              : "text-neutral-900 hover:bg-gray-50")
+                          }
+                          aria-current={active ? "page" : undefined}
+                          onClick={() => setMoreOpen(false)}
+                        >
+                          {item.label}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </nav>
 
+          {/* Mobile burger */}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -150,13 +254,12 @@ export default function NavBar(props: { pathname?: string }) {
           </button>
         </div>
 
+        {/* Mobile menu (flat list, no dropdown) */}
         {open ? (
           <nav id="mobile-nav" className="md:hidden pb-4">
             <div className="flex flex-col gap-2">
-              {NAV_ITEMS.map((item) => {
+              {[...MAIN_ITEMS, ...MORE_ITEMS].map((item) => {
                 const active = pathname ? isActive(pathname, item.href) : false;
-
-                // Match desktop styling: same active and hover behavior, but full-width rows.
                 return (
                   <a
                     key={item.href}

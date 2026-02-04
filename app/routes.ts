@@ -6,12 +6,19 @@ export default [
 
   // MVP feature routes
   route("audio", "routes/audio.tsx"),
-  route("morse-code-translator", "routes/morse-code-translator.tsx"),
   route("practice", "routes/practice.tsx"),
   route("typing", "routes/typing.tsx"),
   route("how-to-use", "routes/how-to-use.tsx"),
   route("dictionary", "routes/dictionary.tsx"),
   route("about", "routes/about.tsx"),
+  route("morse-code-encoder", "routes/morse-code-encoder.tsx"),
+  route("morse-code-decoder", "routes/morse-code-decoder.tsx"),
+  route("the-quick-brown-fox-morse-code", "routes/the-quick-brown-fox-morse-code.tsx"),
+  route("morse-code-word-separator", "routes/morse-code-word-separator.tsx"),
+
+  // Redirects for old URLs. Ignore these routes
+  route("morse-code-translator", "routes/morse-code-translator.tsx"),
+  route("morse-code-audio-generator", "routes/morse-code-audio-generator.tsx"),
 
   // Misc / legal
   route("misc", "routes/misc/misc.tsx", [
