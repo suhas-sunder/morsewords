@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router";
 
 export default function HowItWorksTyping() {
   return (
@@ -15,12 +16,11 @@ export default function HowItWorksTyping() {
         </h2>
 
         <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-          MorseWords Typing Practice is built for people who already know Morse
-          and want a simple way to type continuously with real-time decoding and
-          timed sessions. It is intentionally minimal. No prompts. No quizzes.
-          No grading loop that interrupts your flow. You choose a session
-          length, start typing, and get a clean results summary you can repeat
-          and share.
+          MorseWords Typing Practice is built for people who already know Morse and want
+          a simple way to type continuously with real-time decoding and timed sessions.
+          It is intentionally minimal: no prompts, no quizzes, no grading loop that
+          interrupts your flow. Pick a session length, start typing, and get a clean
+          results summary you can repeat and share.
         </p>
       </div>
 
@@ -45,32 +45,26 @@ export default function HowItWorksTyping() {
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
-            Freeform production
-          </p>
+          <p className="text-base font-extrabold text-sky-900">Freeform production</p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            You produce Morse like you would in real use. The tool is a typing
-            scratchpad with a timer, not a prompt-driven drill.
+            You produce Morse like you would in real use. This is a typing scratchpad
+            with a timer, not a prompt-driven drill.
           </p>
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
-            Boundary-driven decode
-          </p>
+          <p className="text-base font-extrabold text-sky-900">Boundary-driven decode</p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            Decoding happens when you commit a boundary. This keeps output
-            predictable and avoids guessing.
+            Decoding happens when you commit a boundary. That keeps output predictable
+            and avoids guessing.
           </p>
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
-            Endurance sessions
-          </p>
+          <p className="text-base font-extrabold text-sky-900">Endurance sessions</p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            Pick a duration and type continuously. When time is up, input locks
-            and you get a results card with shareable stats.
+            Pick a duration and type continuously. When time is up, input locks and you
+            get a results card with shareable stats.
           </p>
         </div>
       </div>
@@ -85,10 +79,10 @@ export default function HowItWorksTyping() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            Typing Practice is optimized for fast, low-friction input. You can
-            type using standard dot and dash characters, or use the optional
-            keyboard mapping for touch typing. The goal is to keep your hands
-            moving and your attention on rhythm instead of UI controls.
+            Typing Practice is optimized for fast, low-friction input. You can type
+            standard dot and dash characters, or use the optional keyboard mapping for
+            touch typing. The goal is to keep your hands moving and your attention on
+            rhythm instead of UI controls.
           </p>
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
@@ -115,24 +109,39 @@ export default function HowItWorksTyping() {
               enters a dah.
             </li>
             <li>
-              Backspace removes the last character from your raw input. You can
-              correct freely without losing your session.
+              Backspace removes the last character from your raw input so you can correct
+              freely without losing the session.
             </li>
             <li>
-              The input box is intentionally large so your raw stream remains
-              visible during long runs, including on mobile.
+              The input box is intentionally large so your raw stream stays visible
+              during longer runs.
             </li>
           </ul>
 
           <div className="mt-5">
             <p className="text-base font-extrabold text-gray-800">Example</p>
             <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
-              {`. . . .  (space)  .  (space)  .-..  (space)  .-..  (space)  ---  (/)  .--  (space)  ---  (space)  .-.  (space)  .-..  (space)  -..`}
+              {`. . . . (space) . (space) .-.. (space) .-.. (space) --- (/) .-- (space) --- (space) .-. (space) .-.. (space) -..`}
             </pre>
             <p className="mt-3 text-base sm:text-lg text-gray-600">
-              In practice you will type the dots and dashes directly and use
-              Space and / as boundaries. The decoded output updates as letters
-              are committed.
+              In practice you type dots and dashes, then use Space and{" "}
+              <code>/</code> as boundaries. The decoded output updates as letters are
+              committed.
+            </p>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">Need to convert text?</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              This page is for continuous typing sessions. If you want a utility that
+              converts full text into Morse, use{" "}
+              <Link
+                to="/morse-code-encoder"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                Encoder
+              </Link>
+              .
             </p>
           </div>
         </div>
@@ -146,24 +155,23 @@ export default function HowItWorksTyping() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            This tool is boundary-driven, not timing-driven. It does not infer
-            letter breaks from how long you pause. Instead, you explicitly tell
-            the decoder when a letter or word is complete. That makes the output
-            predictable, even when you are typing quickly or inconsistently.
+            This tool is boundary-driven, not timing-driven. It does not infer letter
+            breaks from how long you pause. Instead, you explicitly tell the decoder when
+            a letter or word is complete. That makes output predictable even when you are
+            typing quickly.
           </p>
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              <strong>Space</strong> commits the current dot-dash chunk as a
-              letter.
+              <strong>Space</strong> commits the current dot-dash chunk as a letter.
             </li>
             <li>
-              <strong>/</strong> commits a word break (and also commits any
-              pending letter first).
+              <strong>/</strong> commits a word break (and also commits any pending letter
+              first).
             </li>
             <li>
-              If a chunk is not recognized, it decodes to <strong>?</strong> so
-              the mistake stays visible instead of being silently corrected.
+              If a chunk is not recognized, it decodes to <strong>?</strong> so the
+              mistake stays visible instead of being silently corrected.
             </li>
           </ul>
 
@@ -172,10 +180,9 @@ export default function HowItWorksTyping() {
               Why this matters for fluent users
             </p>
             <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-              During a sustained typing run, you want consistency and feedback,
-              not interpretation. Boundary rules keep the tool honest. If your
-              output looks wrong, the fix is simple: adjust the chunk you typed
-              or commit boundaries more cleanly.
+              During a sustained run you want consistency and feedback, not interpretation.
+              Boundary rules keep the tool honest. If output looks wrong, the fix is
+              simple: correct the chunk, then commit boundaries more cleanly.
             </p>
           </div>
         </div>
@@ -189,35 +196,23 @@ export default function HowItWorksTyping() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            Typing Practice is structured around short and long endurance
-            windows. Choose a preset duration and begin typing. The countdown
-            starts automatically on your first valid input. That removes the
-            “start button” ritual and makes the tool feel like a real
-            scratchpad.
+            Choose a preset duration and begin typing. The countdown starts automatically
+            on your first valid input, so you do not have to do a start-button ritual.
           </p>
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
+            <li>Short sessions (10s, 30s, 1m) for crisp, high-intensity runs.</li>
+            <li>Medium sessions (2m, 5m) to stay accurate as speed changes.</li>
+            <li>Long sessions (30m) for endurance and consistency over time.</li>
             <li>
-              Use short sessions (10s, 30s, 1m) for crisp, high-intensity runs.
-            </li>
-            <li>
-              Use medium sessions (2m, 5m) to practice staying accurate while
-              speed naturally changes.
-            </li>
-            <li>
-              Use long sessions (30m) for endurance and consistency over time.
-            </li>
-            <li>
-              <strong>Pause</strong> freezes the clock without clearing your
-              text. <strong>Reset</strong> clears the session and returns to
-              idle.
+              <strong>Pause</strong> freezes the clock without clearing text.{" "}
+              <strong>Reset</strong> clears the session and returns to idle.
             </li>
           </ul>
 
           <p className="mt-4 text-base sm:text-lg">
-            When time runs out, input is locked and a session-complete screen
-            appears. You can restart immediately for another run with the same
-            duration or share your results.
+            When time runs out, input is locked and a session-complete screen appears.
+            Restart immediately for another run or share your results.
           </p>
         </div>
 
@@ -230,10 +225,9 @@ export default function HowItWorksTyping() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            Stats are designed to be useful without turning this into a quiz.
-            They measure what you actually committed, not what you might have
-            intended. That makes them ideal for tracking personal consistency
-            across repeated runs.
+            Stats are meant to be useful without turning this into a quiz. They measure
+            what you actually committed, not what you intended. That makes them good for
+            tracking consistency across repeated runs.
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -242,9 +236,9 @@ export default function HowItWorksTyping() {
                 Letters and words
               </p>
               <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-                Letters count only increases when you commit a letter boundary.
-                Words increase when you commit a word break. This prevents
-                inflated numbers from partial or uncommitted chunks.
+                Letters increase only when you commit a letter boundary. Words increase
+                only when you commit a word break. This prevents inflated counts from
+                partial chunks.
               </p>
             </div>
 
@@ -253,9 +247,8 @@ export default function HowItWorksTyping() {
                 Letters per minute
               </p>
               <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-                Letters/min is a simple rate computed from committed letters and
-                elapsed session time. It is a practical speed indicator for
-                repeatable timed runs.
+                Letters/min is computed from committed letters and elapsed session time.
+                It is a repeatable speed indicator for timed runs.
               </p>
             </div>
 
@@ -264,9 +257,9 @@ export default function HowItWorksTyping() {
                 Invalid
               </p>
               <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-                Invalid counts unrecognized dot-dash chunks. Seeing a few is
-                normal in high-speed sessions. Repeated invalids usually mean a
-                boundary mistake or an extra character slipped into the stream.
+                Invalid counts unrecognized dot-dash chunks. A few are normal in
+                high-speed sessions. Repeated invalids usually mean a boundary issue or
+                an extra character slipped into the stream.
               </p>
             </div>
 
@@ -275,10 +268,27 @@ export default function HowItWorksTyping() {
                 Minimal interference
               </p>
               <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-                The tool keeps stats visible but avoids constant “correct or
-                wrong” interruption. You stay in flow, then review at the end.
+                Stats stay visible but you are not interrupted by constant grading. You
+                stay in flow, then review at the end.
               </p>
             </div>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">
+              Want boundary cleanup?
+            </p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              If you are preparing Morse for sharing or decoding elsewhere, normalize the
+              separators first with{" "}
+              <Link
+                to="/morse-code-word-separator"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                Word separator
+              </Link>
+              .
+            </p>
           </div>
         </div>
 
@@ -292,29 +302,26 @@ export default function HowItWorksTyping() {
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              <strong>Everything decodes as ?</strong>: you may be missing
-              boundaries. Use Space to commit each letter.
+              <strong>Everything decodes as ?:</strong> you are missing boundaries. Use
+              Space to commit each letter.
             </li>
             <li>
-              <strong>Output looks shifted</strong>: a single extra dot or dash
-              can change multiple letters. Backspace the raw stream to the last
-              known-good boundary and continue.
+              <strong>Output looks shifted:</strong> one extra dot or dash can change
+              multiple letters. Backspace to the last known-good boundary and continue.
             </li>
             <li>
-              <strong>Words never increment</strong>: commit word breaks with{" "}
-              <strong>/</strong> (or use the on-screen Word control if you
-              prefer).
+              <strong>Words never increment:</strong> commit word breaks with{" "}
+              <code>/</code>.
             </li>
             <li>
-              <strong>Mobile typing feels awkward</strong>: switch to the F/J
-              mapping or use the on-screen Dit and Dah buttons for a more
-              thumb-friendly rhythm.
+              <strong>Mobile typing feels awkward:</strong> try the F/J mapping or use the
+              on-screen controls for a thumb-friendly rhythm.
             </li>
           </ul>
 
           <p className="mt-4 text-base sm:text-lg text-gray-600">
-            This tool does not try to interpret timing like an audio decoder. If
-            your boundaries are clean, your output will be clean.
+            This tool does not interpret timing like an audio decoder. If boundaries are
+            clean, output is clean.
           </p>
         </div>
 
@@ -327,19 +334,20 @@ export default function HowItWorksTyping() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            When a session completes, you can generate a shareable results card
-            with your stats. It is formatted as an image so it looks consistent
-            across devices and is easy to post or save. If sharing is not
-            available on your device, you can download the PNG instead.
+            When a session completes, you can generate a shareable results card with your
+            stats. It is formatted as an image so it looks consistent across devices and
+            is easy to post or save. If sharing is not available on your device, you can
+            download the PNG instead.
           </p>
 
           <p className="mt-4 text-base sm:text-lg">
-            The share card includes duration, letters, words, letters per
-            minute, invalid count, and the session mode. It is meant to be
-            lightweight proof of a completed run, not a scoreboard.
+            The card includes duration, letters, words, letters/min, invalid count, and
+            session mode. It is meant to be lightweight proof of a completed run, not a
+            scoreboard.
           </p>
         </div>
       </div>
+
       <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
           Quick reference
@@ -347,24 +355,24 @@ export default function HowItWorksTyping() {
 
         <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
           <li>
-            <strong>What this tool is for:</strong> Continuous Morse typing with
-            real-time decoding and timed sessions.
+            <strong>What this tool is for:</strong> continuous Morse typing with real-time
+            decoding and timed sessions.
           </li>
           <li>
-            <strong>How decoding works:</strong> Boundary-driven. Space commits
-            a letter, <code>/</code> commits a word.
+            <strong>How decoding works:</strong> boundary-driven. Space commits a letter,
+            <code>/</code> commits a word.
           </li>
           <li>
-            <strong>Sessions:</strong> Pick a duration; input locks when time is
-            up and stats are shown.
+            <strong>Sessions:</strong> pick a duration. Input locks when time is up and
+            stats are shown.
           </li>
           <li>
-            <strong>Stats:</strong> Letters, words, letters/min, and invalid
-            chunks are counted from committed input.
+            <strong>Stats:</strong> letters, words, letters/min, and invalid chunks are
+            counted from committed input.
           </li>
           <li>
-            <strong>Best use case:</strong> Endurance and fluency practice
-            without prompts or grading interruptions.
+            <strong>Best use case:</strong> endurance and fluency practice without prompts
+            or grading interruptions.
           </li>
         </ul>
       </div>

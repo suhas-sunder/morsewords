@@ -15,6 +15,7 @@ const MAIN_ITEMS: NavItem[] = [
 
 const MORE_ITEMS: NavItem[] = [
   { label: "Dictionary", href: "/dictionary" },
+  { label: "Morse code words (chart)", href: "/morse-code-words" },
   { label: "Morse code encoder", href: "/morse-code-encoder" },
   { label: "Morse code decoder", href: "/morse-code-decoder" },
   {

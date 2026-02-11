@@ -13,8 +13,12 @@ export default [
   route("about", "routes/about.tsx"),
   route("morse-code-encoder", "routes/morse-code-encoder.tsx"),
   route("morse-code-decoder", "routes/morse-code-decoder.tsx"),
-  route("the-quick-brown-fox-morse-code", "routes/the-quick-brown-fox-morse-code.tsx"),
+  route(
+    "the-quick-brown-fox-morse-code",
+    "routes/the-quick-brown-fox-morse-code.tsx",
+  ),
   route("morse-code-word-separator", "routes/morse-code-word-separator.tsx"),
+  route("morse-code-words", "routes/morse-code-words.tsx"),
 
   // Redirects for old URLs. Ignore these routes
   route("morse-code-translator", "routes/morse-code-translator.tsx"),

@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function HowItWorks() {
   const phrase = "the quick brown fox jumps over the lazy dog";
   const phraseUpper = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG";
@@ -26,8 +28,8 @@ export default function HowItWorks() {
           This page focuses on the classic pangram{" "}
           <strong>“the quick brown fox jumps over the lazy dog”</strong>. It is
           commonly used for typing tests and puzzles because it contains every
-          letter A–Z. Here you can copy the Morse, and use the decoder to verify
-          spacing and separators.
+          letter A–Z. Here you can copy the Morse in two formats and verify it
+          using the decoder.
         </p>
       </div>
 
@@ -74,8 +76,8 @@ export default function HowItWorks() {
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
           <p className="text-base font-extrabold text-sky-900">Decode safety</p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            If you paste Morse into a decoder, use consistent separators so word
-            breaks do not collapse.
+            If your platform collapses multiple spaces, use the{" "}
+            <strong>/</strong> version to keep word boundaries intact.
           </p>
         </div>
       </div>
@@ -106,9 +108,8 @@ export default function HowItWorks() {
           </div>
 
           <p className="mt-4 text-base sm:text-lg text-gray-700">
-            If you are using this in a puzzle, you can keep it as a single line,
-            or split it across lines. Just keep word boundaries consistent in
-            the Morse output.
+            If you use this in a puzzle, you can keep it as one line or split it
+            across lines. Just keep word boundaries consistent in the Morse.
           </p>
         </div>
 
@@ -181,6 +182,22 @@ export default function HowItWorks() {
               pasted symbol that is not a real dot/dash).
             </li>
           </ul>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">
+              Verify instantly
+            </p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              Paste into the{" "}
+              <Link
+                to="/morse-code-decoder"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                decoder
+              </Link>{" "}
+              to confirm spacing and token boundaries.
+            </p>
+          </div>
         </div>
 
         <div
@@ -221,7 +238,7 @@ export default function HowItWorks() {
                 <tr>
                   <td className="py-2 pr-4">Common paste issue</td>
                   <td className="py-2">
-                    Multiple spaces can collapse into one on some platforms
+                    Some platforms collapse multiple spaces into one
                   </td>
                 </tr>
               </tbody>
@@ -229,7 +246,7 @@ export default function HowItWorks() {
           </div>
 
           <p className="mt-4 text-base sm:text-lg text-gray-700">
-            If you need a format that survives “space-collapsing” platforms,
+            If you need a format that survives space-collapsing platforms,
             prefer the version that uses <code>/</code>.
           </p>
         </div>
@@ -257,6 +274,29 @@ export default function HowItWorks() {
               normalize common variants, but not all.
             </li>
           </ul>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">
+              Practice this phrase
+            </p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              Use{" "}
+              <Link
+                to="/practice"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                Practice
+              </Link>{" "}
+              for 10-question drills or{" "}
+              <Link
+                to="/audio"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                Audio
+              </Link>{" "}
+              to hear timing at different speeds.
+            </p>
+          </div>
         </div>
 
         <div
@@ -269,48 +309,48 @@ export default function HowItWorks() {
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              <a
-                href="/morse-code-encoder"
-                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              <Link
+                to="/morse-code-encoder"
+                className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
               >
                 Morse code encoder
-              </a>{" "}
+              </Link>{" "}
               to generate Morse from your own text.
             </li>
             <li>
-              <a
-                href="/morse-code-decoder"
-                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              <Link
+                to="/morse-code-decoder"
+                className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
               >
                 Morse code decoder
-              </a>{" "}
+              </Link>{" "}
               to decode dots and dashes back to text.
             </li>
             <li>
-              <a
-                href="/audio"
-                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              <Link
+                to="/audio"
+                className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
               >
                 Audio
-              </a>{" "}
-              for focused playback and timing controls.
+              </Link>{" "}
+              for playback and timing controls.
             </li>
             <li>
-              <a
-                href="/practice"
-                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              <Link
+                to="/practice"
+                className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
               >
                 Practice
-              </a>{" "}
+              </Link>{" "}
               for drills and repetition.
             </li>
             <li>
-              <a
-                href="/dictionary"
-                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              <Link
+                to="/dictionary"
+                className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
               >
                 Dictionary
-              </a>{" "}
+              </Link>{" "}
               to look up letters and punctuation.
             </li>
           </ul>
@@ -327,8 +367,8 @@ export default function HowItWorks() {
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
               <strong>Decoded text looks wrong:</strong> check boundaries first.
-              If word gaps collapsed, the decoder will join tokens that should
-              be separate.
+              If word gaps collapsed, the decoder may join tokens that should be
+              separate.
             </li>
             <li>
               <strong>You see ? characters:</strong> at least one Morse chunk
@@ -338,12 +378,13 @@ export default function HowItWorks() {
             <li>
               <strong>Pasted Morse has weird symbols:</strong> dots are
               sometimes pasted as <code>•</code> and dashes as <code>—</code>.
-              If your tool does not normalize them, replace with <code>.</code>{" "}
-              and <code>-</code>.
+              Replace with <code>.</code> and <code>-</code> if your tool does
+              not normalize them.
             </li>
           </ul>
         </div>
       </div>
+
       <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
           Quick reference

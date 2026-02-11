@@ -15,11 +15,11 @@ export default function HowItWorks() {
         </h2>
 
         <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-          This page is a focused <strong>Morse code decoder</strong>. It
-          converts <strong>International Morse</strong> (dots and dashes) back
-          into readable text, emphasizing spacing and separators. It is built to
-          be predictable: it normalizes inputs, applies a fixed character map,
-          and keeps mistakes visible instead of guessing.
+          This page is a focused <strong>Morse code decoder</strong>. It converts{" "}
+          <strong>International Morse</strong> (dots and dashes) back into readable
+          text, emphasizing spacing and separators. It is built to be predictable:
+          it normalizes inputs, applies a fixed character map, and keeps mistakes
+          visible instead of guessing.
         </p>
       </div>
 
@@ -27,8 +27,8 @@ export default function HowItWorks() {
       <div className="mt-6 flex flex-wrap gap-2">
         {[
           ["Paste Morse", "#decode"],
+          ["Accepted formats", "#accepted-formats"],
           ["Word separators", "#formatting"],
-          ["Formatting", "#formatting"],
           ["Supported", "#supported"],
           ["Troubleshooting", "#troubleshooting"],
         ].map(([label, href]) => (
@@ -44,34 +44,160 @@ export default function HowItWorks() {
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
-            Spacing legend
-          </p>
+          <p className="text-base font-extrabold text-sky-900">Input spacing</p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            Output uses <strong>3 spaces</strong> between letters and{" "}
-            <strong>7 spaces</strong> between words.
+            Separate <strong>letters</strong> with <strong>spaces</strong>. Separate{" "}
+            <strong>words</strong> with <strong>7+ spaces</strong>, <strong>/</strong>,
+            or a <strong>new line</strong>.
           </p>
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
-            Decoder boundaries
-          </p>
+          <p className="text-base font-extrabold text-sky-900">Decoder boundaries</p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
             When decoding, <strong>1–6 spaces</strong> separates letters.{" "}
-            <strong>7+ spaces</strong>, <strong>/</strong>, and new lines
-            separate words.
+            <strong>7+ spaces</strong>, <strong>/</strong>, and new lines separate
+            words.
           </p>
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
-            Errors stay visible
-          </p>
+          <p className="text-base font-extrabold text-sky-900">Errors stay visible</p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
             Unknown Morse chunks decode to <strong>?</strong>. Unsupported text
             characters are skipped and surfaced in the UI.
           </p>
+        </div>
+      </div>
+
+      <div
+        id="accepted-formats"
+        className="mt-6 rounded-2xl border border-gray-200 p-6 sm:p-7"
+      >
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          Accepted input formats
+        </h3>
+
+        <p className="mt-3 text-base sm:text-lg text-gray-700 leading-relaxed">
+          Paste Morse using dots and dashes. This decoder accepts common lookalikes
+          and normalizes them before decoding so you can paste from anywhere.
+        </p>
+
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-sky-900">Symbols</p>
+            <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-gray-700">
+              <li>
+                Dots: <code>.</code>{" "}
+                <span className="text-gray-500">(also · • ∙)</span>
+              </li>
+              <li>
+                Dashes: <code>-</code>{" "}
+                <span className="text-gray-500">(also – — −)</span>
+              </li>
+              <li>
+                Separators: spaces, new lines, and <code>/</code>
+              </li>
+            </ul>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-sky-900">Common paste patterns</p>
+            <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-gray-700">
+              <li>
+                <code>.... ..</code>{" "}
+                <span className="text-gray-500">(letters separated by a space)</span>
+              </li>
+              <li>
+                <code>. . . . -</code>{" "}
+                <span className="text-gray-500">(extra spaces are okay)</span>
+              </li>
+              <li>
+                <code>... --- ...</code>{" "}
+                <span className="text-gray-500">(classic SOS)</span>
+              </li>
+              <li>
+                <code>.... . .-.. .-.. --- / .-- --- .-. .-.. -..</code>{" "}
+                <span className="text-gray-500">(slash between words)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+          <p className="text-base font-extrabold text-amber-900">Note</p>
+          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            This decoder is <strong>separator-based</strong>. It does not infer timing.
+            If your Morse has no spacing at all, use the{" "}
+            <Link
+              to="/morse-code-word-separator"
+              className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+            >
+              word separator tool
+            </Link>{" "}
+            to split it first.
+          </p>
+        </div>
+      </div>
+
+      <div
+        id="examples"
+        className="mt-6 rounded-2xl border border-gray-200 bg-white p-6 sm:p-7"
+      >
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          Examples you can copy
+        </h3>
+
+        <p className="mt-3 text-base sm:text-lg text-gray-700 leading-relaxed">
+          These are short, copy-ready inputs that show spacing, word breaks, and what
+          happens when something is invalid.
+        </p>
+
+        <div className="mt-5 grid gap-4">
+          <div className="rounded-2xl border border-gray-200 p-5">
+            <p className="text-base font-extrabold text-sky-900">Decode a single letter</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700">
+              <strong>Input:</strong>{" "}
+              <code>...</code>{" "}
+              <span className="text-gray-500">(S)</span>
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 p-5">
+            <p className="text-base font-extrabold text-sky-900">Decode a word (spaces between letters)</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              <strong>Input:</strong>{" "}
+              <code>.... . .-.. .-.. ---</code>{" "}
+              <span className="text-gray-500">(HELLO)</span>
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 p-5">
+            <p className="text-base font-extrabold text-sky-900">Decode two words (slash separator)</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              <strong>Input:</strong>{" "}
+              <code>.... . .-.. .-.. --- / .-- --- .-. .-.. -..</code>{" "}
+              <span className="text-gray-500">(HELLO WORLD)</span>
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 p-5">
+            <p className="text-base font-extrabold text-sky-900">Decode punctuation</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              <strong>Input:</strong>{" "}
+              <code>... --- ... -.-.--</code>{" "}
+              <span className="text-gray-500">(SOS!)</span>
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 p-5">
+            <p className="text-base font-extrabold text-sky-900">What an error looks like</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              <strong>Input:</strong>{" "}
+              <code>.... .. --..-- ..-.-</code>{" "}
+              <span className="text-gray-500">(the last chunk becomes ?)</span>
+            </p>
+          </div>
         </div>
       </div>
 
@@ -83,8 +209,8 @@ export default function HowItWorks() {
           Need to encode text to Morse?
         </h3>
         <p className="mt-3 text-base sm:text-lg text-gray-700">
-          This page is for decoding dots and dashes into text. If you want to
-          convert text into Morse code, use the encoder tool instead.
+          This page is for decoding dots and dashes into text. If you want to convert
+          text into Morse code, use the encoder tool instead.
         </p>
 
         <Link
@@ -148,7 +274,7 @@ export default function HowItWorks() {
               <tr className="border-b border-gray-100">
                 <td className="py-2 pr-4">Valid symbols</td>
                 <td className="py-2">
-                  Dot, dash, whitespace, and <code>/</code>
+                  Dot, dash, whitespace, new lines, and <code>/</code>
                 </td>
               </tr>
               <tr className="border-b border-gray-100">
@@ -175,6 +301,21 @@ export default function HowItWorks() {
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+          <p className="text-base font-extrabold text-sky-900">Tip for copy/paste</p>
+          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            If you plan to paste your decoded result elsewhere, keep it as normal
+            text. If you want to generate Morse again, use the{" "}
+            <Link
+              to="/morse-code-encoder"
+              className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+            >
+              encoder
+            </Link>{" "}
+            so spacing and separators are consistent.
+          </p>
         </div>
       </div>
     </section>

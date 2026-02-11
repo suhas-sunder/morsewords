@@ -79,6 +79,8 @@ export default function useAudio() {
   const ctxRef = React.useRef<AudioContext | null>(null);
   const gainRef = React.useRef<GainNode | null>(null);
 
+  const vibrateStartedRef = React.useRef(false);
+
   const stopRef = React.useRef(false);
   const pausedRef = React.useRef(false);
   const playingRef = React.useRef(false);
@@ -200,11 +202,136 @@ export default function useAudio() {
   }
 
   function triggerVibrate(ms: number) {
+    if (vibrateStartedRef.current) return;
     if (typeof navigator === "undefined" || !navigator.vibrate) return;
     try {
       navigator.vibrate(ms);
     } catch {
       // ignore
+    }
+  }
+
+  function cancelVibration() {
+    if (typeof navigator === "undefined" || !navigator.vibrate) return;
+    try {
+      navigator.vibrate(0);
+    } catch {
+      // ignore
+    }
+    vibrateStartedRef.current = false;
+  }
+
+  function capVibrationPattern(pattern: number[], maxTotalMs: number) {
+    const out: number[] = [];
+    let total = 0;
+
+    for (let i = 0; i < pattern.length; i++) {
+      const ms = Math.max(0, Math.round(pattern[i]));
+      if (ms === 0 && out.length === 0) continue;
+      if (total + ms > maxTotalMs) {
+        const remaining = maxTotalMs - total;
+        if (remaining > 0) out.push(remaining);
+        break;
+      }
+      out.push(ms);
+      total += ms;
+    }
+
+    // Pattern must start with a vibration duration (not a pause)
+    while (out.length > 0 && out[0] === 0) out.shift();
+
+    return out;
+  }
+
+  function buildVibrationPatternFromPosition(
+    code: string,
+    unit: number,
+    letterGapUnits: number,
+    wordGapUnits: number,
+    pos: InternalPosition
+  ) {
+    const parts = code.split(/(\s+)/);
+    const pattern: number[] = [];
+
+    const addVibe = (ms: number) => {
+      if (ms <= 0) return;
+      if (pattern.length === 0) {
+        pattern.push(ms);
+        return;
+      }
+      if (pattern.length % 2 === 0) {
+        // last is a pause
+        pattern.push(ms);
+      } else {
+        // last is a vibration; insert a zero pause
+        pattern.push(0);
+        pattern.push(ms);
+      }
+    };
+
+    const addPause = (ms: number) => {
+      if (ms <= 0) return;
+      if (pattern.length === 0) return;
+      if (pattern.length % 2 === 1) {
+        // last is a vibration
+        pattern.push(ms);
+      } else {
+        // last is a pause
+        pattern[pattern.length - 1] += ms;
+      }
+    };
+
+    for (let i = pos.tokenIndex; i < parts.length; i++) {
+      const token = parts[i];
+      if (!token) continue;
+
+      if (/^\s+$/.test(token)) {
+        const spaces = token.length;
+        const units = spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
+        addPause(units * unit);
+        continue;
+      }
+
+      const startSymbol = i === pos.tokenIndex ? pos.symbolIndex : 0;
+      for (let s = startSymbol; s < token.length; s++) {
+        const ch = token[s];
+        if (ch !== "." && ch !== "-") continue;
+
+        const dur = ch === "." ? unit : 3 * unit;
+        addVibe(dur);
+
+        // intra-character gap
+        if (s < token.length - 1) addPause(unit);
+      }
+    }
+
+    return pattern;
+  }
+
+  function startVibrationForPosition(opts: PlayOptions, pos: InternalPosition) {
+    if (!opts.vibrate) {
+      vibrateStartedRef.current = false;
+      return;
+    }
+    if (typeof navigator === "undefined" || !navigator.vibrate) return;
+
+    const unit = ditMs(opts.wpm);
+    const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
+    const letterGapUnits = Math.round(3 * mult);
+    const wordGapUnits = Math.round(7 * mult);
+
+    const code = normalizeMorseInput(opts.code);
+    const pattern = buildVibrationPatternFromPosition(code, unit, letterGapUnits, wordGapUnits, pos);
+    if (pattern.length === 0) return;
+
+    const capped = capVibrationPattern(pattern, 18000);
+    if (capped.length === 0) return;
+
+    try {
+      const ok = navigator.vibrate(capped);
+      vibrateStartedRef.current = !!ok;
+    } catch {
+      vibrateStartedRef.current = false;
     }
   }
 
@@ -286,6 +413,8 @@ export default function useAudio() {
 
     setState("playing");
 
+    startVibrationForPosition(safeOpts, { tokenIndex: 0, symbolIndex: 0 });
+
     do {
       await runOnce(safeOpts);
       if (stopRef.current) break;
@@ -293,6 +422,8 @@ export default function useAudio() {
       // small gap between repeats
       if (repeatRef.current) await sleep(160);
     } while (repeatRef.current);
+
+    cancelVibration();
 
     playingRef.current = false;
     pausedRef.current = false;
@@ -304,12 +435,17 @@ export default function useAudio() {
   function pause() {
     if (!playingRef.current) return;
     pausedRef.current = true;
+    cancelVibration();
     setState("paused");
   }
 
   function resume() {
     if (!playingRef.current) return;
     pausedRef.current = false;
+
+    const last = lastOptsRef.current;
+    if (last) startVibrationForPosition(last, posRef.current);
+
     setState("playing");
   }
 
@@ -317,6 +453,7 @@ export default function useAudio() {
     stopRef.current = true;
     pausedRef.current = false;
     repeatRef.current = false;
+    cancelVibration();
     setState("idle");
   }
 

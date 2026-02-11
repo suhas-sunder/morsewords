@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function HowItWorks() {
   return (
     <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
@@ -16,8 +18,8 @@ export default function HowItWorks() {
           This page is a focused <strong>Morse code encoder</strong>. It
           converts plain text into <strong>International Morse</strong> (dots
           and dashes) as you type. It is built to be predictable: it normalizes
-          inputs, applies a fixed character map, and keeps mistakes visible
-          instead of guessing.
+          input, applies a fixed character map, and keeps unsupported characters
+          visible instead of guessing.
         </p>
       </div>
 
@@ -25,8 +27,7 @@ export default function HowItWorks() {
       <div className="mt-6 flex flex-wrap gap-2">
         {[
           ["Text → Morse output", "#encode"],
-          ["Copy & share", "#formatting"],
-          ["Formatting", "#formatting"],
+          ["Output format", "#output-format"],
           ["Supported", "#supported"],
           ["Troubleshooting", "#troubleshooting"],
         ].map(([label, href]) => (
@@ -43,32 +44,33 @@ export default function HowItWorks() {
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
           <p className="text-base font-extrabold text-sky-900">
-            Spacing legend
+            Predictable output
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            Output uses <strong>3 spaces</strong> between letters and{" "}
-            <strong>7 spaces</strong> between words.
+            The encoder re-emits Morse with consistent separators so copy/paste
+            behaves the same across tools.
           </p>
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
           <p className="text-base font-extrabold text-sky-900">
-            Decoder boundaries
+            Word breaks are strict
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            When decoding, <strong>1–6 spaces</strong> separates letters.{" "}
-            <strong>7+ spaces</strong>, <strong>/</strong>, and new lines
-            separate words.
+            Any run of whitespace in your text input is treated as a{" "}
+            <strong>word break</strong>. The Morse output uses a single,
+            consistent word separator.
           </p>
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
           <p className="text-base font-extrabold text-sky-900">
-            Errors stay visible
+            Unsupported stays visible
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            Unknown Morse chunks decode to <strong>?</strong>. Unsupported text
-            characters are skipped and surfaced in the UI.
+            Characters that are not in the supported set are{" "}
+            <strong>skipped</strong> in output and surfaced in the UI so you can
+            fix the source text.
           </p>
         </div>
       </div>
@@ -85,12 +87,12 @@ export default function HowItWorks() {
           want readable text, use the decoder tool.
         </p>
 
-        <a
-          href="/morse-code-decoder"
+        <Link
+          to="/morse-code-decoder"
           className="inline-flex mt-4 items-center rounded-full bg-sky-50 px-4 py-2 text-base sm:text-lg font-extrabold text-sky-900 border border-sky-200 hover:bg-sky-100 cursor-pointer transition"
         >
           Switch to decoder
-        </a>
+        </Link>
       </div>
 
       <div className="mt-6 space-y-6 text-gray-700 leading-relaxed">
@@ -104,21 +106,21 @@ export default function HowItWorks() {
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              Input text is normalized and uppercased, then each supported
-              character is looked up in a fixed International Morse map.
+              Input text is normalized (trimmed, collapsed whitespace) and
+              uppercased, then each supported character is mapped using a fixed
+              International Morse table.
             </li>
             <li>
-              Any run of whitespace in the text input is treated as a word
-              break. The Morse output is re-emitted with consistent separators.
+              Letters are encoded one-by-one. The output is then re-joined using
+              a consistent letter separator.
             </li>
             <li>
-              Output formatting is strict: <strong>3 spaces</strong> between
-              letters, <strong>7 spaces</strong> between words.
+              Any run of whitespace becomes a word break so the output is stable
+              when you paste it into other decoders.
             </li>
             <li>
-              Unsupported characters are not invented or approximated. They are
-              skipped in the Morse output and listed under the input so you can
-              fix the source.
+              Unsupported characters are not approximated. They are skipped in
+              output and shown under the input so you can correct them.
             </li>
           </ul>
 
@@ -129,52 +131,73 @@ export default function HowItWorks() {
 ....   .   .-..   .-..   ---       .--   ---   .-.   .-..   -..`}
             </pre>
             <p className="mt-3 text-base sm:text-lg text-gray-600">
-              The spacing is part of the output. If you copy this Morse
-              elsewhere, keep the gaps.
+              The gaps are part of Morse formatting. If you copy this elsewhere,
+              keep the separators so it decodes correctly.
             </p>
           </div>
         </div>
 
         <div
-          id="formatting"
+          id="output-format"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
-            Input formatting guide
+            Output format (spacing and separators)
           </h3>
+
+          <p className="mt-4 text-base sm:text-lg">
+            This encoder emits spacing that is easy to decode reliably:
+          </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-900">
-                For best decoding
+                Standard output spacing
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
-                <li>3 spaces between letters</li>
-                <li>7 spaces between words</li>
-                <li>/ can replace a word gap</li>
-                <li>New lines count as word gaps</li>
+                <li>
+                  <strong>3 spaces</strong> between letters
+                </li>
+                <li>
+                  <strong>7 spaces</strong> between words
+                </li>
+                <li>New lines are treated as word breaks in your input</li>
               </ul>
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-900">
-                Common paste problems
+                Copy &amp; share tips
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
-                <li>Fancy dashes from PDFs</li>
-                <li>Dots rendered as bullets</li>
-                <li>Mixed separators</li>
-                <li>Extra punctuation mixed into Morse</li>
+                <li>Keep spacing intact when pasting into other tools</li>
+                <li>Use a monospace field/editor if you can</li>
+                <li>
+                  If you prefer slashes for word breaks, decode with{" "}
+                  <code>/</code> support (this site does)
+                </li>
               </ul>
             </div>
           </div>
 
-          <p className="mt-5 text-base sm:text-lg">
-            If you need to preserve exact spacing inside a single word, this
-            tool will not do that. It favors predictable normalization and
-            consistent separators so copied output behaves the same across
-            tools.
-          </p>
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-sky-900">
+              Decoder compatibility note
+            </p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              Your output will decode correctly on this site’s{" "}
+              <Link
+                to="/morse-code-decoder"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                decoder
+              </Link>{" "}
+              because it recognizes <strong>1–6 spaces</strong> as letter breaks
+              and <strong>7+ spaces</strong> as word breaks. Some third-party
+              decoders only expect single spaces, so if something decodes wrong
+              elsewhere, paste it into this site’s decoder to verify.
+            </p>
+          </div>
         </div>
 
         <div
@@ -186,7 +209,7 @@ export default function HowItWorks() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            This translator supports A–Z, 0–9, and a core set of common
+            This encoder supports A–Z, 0–9, and a core set of common
             punctuation. It intentionally does not guess at extended alphabets
             or locale-specific variants.
           </p>
@@ -205,46 +228,46 @@ export default function HowItWorks() {
             </p>
             <ul className="mt-3 list-disc pl-6 space-y-3 text-base sm:text-lg">
               <li>
-                <a
-                  href="/audio"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer"
+                <Link
+                  to="/audio"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   Audio
-                </a>{" "}
-                for focused playback and timing controls.
+                </Link>{" "}
+                for playback and timing controls.
               </li>
               <li>
-                <a
-                  href="/dictionary"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer"
+                <Link
+                  to="/dictionary"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   Dictionary
-                </a>{" "}
+                </Link>{" "}
                 to look up characters and punctuation.
               </li>
               <li>
-                <a
-                  href="/practice"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer"
+                <Link
+                  to="/practice"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   Practice
-                </a>{" "}
+                </Link>{" "}
                 and{" "}
-                <a
-                  href="/typing"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer"
+                <Link
+                  to="/typing"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   Typing
-                </a>{" "}
+                </Link>{" "}
                 for drills and repetition.
               </li>
               <li>
-                <a
-                  href="/how-to-use"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer"
+                <Link
+                  to="/how-to-use"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   How to use
-                </a>{" "}
+                </Link>{" "}
                 for suite-level notes.
               </li>
             </ul>
@@ -261,25 +284,30 @@ export default function HowItWorks() {
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              <strong>Decoded text looks wrong:</strong> check boundaries. Add 3
-              spaces between letters and 7 spaces between words, or use /
+              <strong>Characters are missing in the Morse output:</strong> check
+              the unsupported list under the input. Replace unsupported symbols
+              with plain letters or supported punctuation.
+            </li>
+            <li>
+              <strong>Spacing looks “too wide”:</strong> that’s intentional for
+              reliable decoding. The output uses 3 spaces between letters and 7
               between words.
             </li>
             <li>
-              <strong>You see ? characters:</strong> at least one Morse chunk
-              was not recognized. Look for missing dots, extra dashes, or
-              accidental characters mixed into the Morse.
+              <strong>Another site decodes it incorrectly:</strong> some tools
+              assume single-space separation. Verify using this site’s{" "}
+              <Link
+                to="/morse-code-decoder"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                decoder
+              </Link>{" "}
+              which matches this encoder’s formatting.
             </li>
             <li>
-              <strong>Encoding skipped characters:</strong> the unsupported list
-              under the input shows exactly what was ignored. Replace those
-              characters with supported punctuation or plain letters.
-            </li>
-            <li>
-              <strong>Pasted Morse has weird symbols:</strong> PDFs often
-              replace hyphen with a long dash, and dot with a bullet. This tool
-              normalizes the most common variants, but anything else will be
-              flagged as invalid.
+              <strong>You pasted fancy punctuation:</strong> text from PDFs
+              often includes smart quotes and long dashes. Replace them with
+              plain equivalents or remove them.
             </li>
             <li>
               <strong>Audio is silent:</strong> confirm Sound is on, raise
@@ -301,7 +329,7 @@ export default function HowItWorks() {
             </li>
             <li>
               <strong>How this encoder formats output:</strong> It emits
-              predictable spacing so you can copy and paste reliably.
+              consistent separators so you can copy and paste reliably.
             </li>
             <li>
               <strong>Spacing rules:</strong> <strong>3 spaces</strong> between
@@ -340,6 +368,12 @@ export default function HowItWorks() {
                   </td>
                 </tr>
                 <tr className="border-b border-gray-100">
+                  <td className="py-2 pr-4">Word breaks (input)</td>
+                  <td className="py-2">
+                    Any run of whitespace becomes a word break in output
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-100">
                   <td className="py-2 pr-4">Letter separator (output)</td>
                   <td className="py-2">3 spaces</td>
                 </tr>
@@ -355,6 +389,20 @@ export default function HowItWorks() {
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-sky-900">Tip</p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              If you want to generate sound from your output, switch to{" "}
+              <Link
+                to="/audio"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                Audio
+              </Link>{" "}
+              for playback controls and timing.
+            </p>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router";
 
 export default function HowItWorksPractice() {
   return (
@@ -70,8 +71,8 @@ export default function HowItWorksPractice() {
             Utility over tutorials
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            There are no long lessons. This is a practice surface designed to
-            help you drill mappings quickly.
+            No long lessons. This is a practice surface designed to help you
+            drill mappings quickly.
           </p>
         </div>
       </div>
@@ -106,8 +107,7 @@ export default function HowItWorksPractice() {
               <strong>Questions X/10</strong>.
             </li>
             <li>
-              When the run ends, you can restart to generate a fresh set of
-              prompts.
+              When the run ends, restart to generate a fresh set of prompts.
             </li>
           </ul>
 
@@ -127,10 +127,10 @@ export default function HowItWorksPractice() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            Practice mode supports both directions because they exercise
-            different skills. Encoding tests whether you can recall the pattern
-            for a symbol. Decoding tests whether you can recognize a pattern
-            quickly and name it. Mixed mode forces the switch so you do not get
+            Practice supports both directions because they exercise different
+            skills. Encoding tests whether you can recall the pattern for a
+            symbol. Decoding tests whether you can recognize a pattern quickly
+            and name it. Mixed mode forces the switch so you do not get
             comfortable in one direction.
           </p>
 
@@ -140,8 +140,8 @@ export default function HowItWorksPractice() {
                 Text → Morse
               </p>
               <p className="mt-2 text-base sm:text-lg">
-                You see text (like A, 7, or SOS) and you type the Morse. This is
-                useful for sending practice and building muscle memory.
+                You see text (like A, 7, or SOS) and you type the Morse. Useful
+                for sending practice and building recall speed.
               </p>
             </div>
 
@@ -150,16 +150,16 @@ export default function HowItWorksPractice() {
                 Morse → Text
               </p>
               <p className="mt-2 text-base sm:text-lg">
-                You see dots and dashes and you identify the symbol. This is
-                useful for reading, decoding, and recognition speed.
+                You see dots and dashes and you identify the symbol. Useful for
+                reading, decoding, and recognition speed.
               </p>
             </div>
           </div>
 
           <p className="mt-5 text-base sm:text-lg">
             Mixed mode alternates between these prompt types. It is a good
-            choice when you want “real-world” switching, or when you are trying
-            to stop relying on one-direction shortcuts.
+            choice when you want real switching, or when you are trying to stop
+            relying on one-direction shortcuts.
           </p>
         </div>
 
@@ -172,10 +172,10 @@ export default function HowItWorksPractice() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            Pools control what the prompts are drawn from. Use a narrow pool
-            when you are fixing a weak area, then widen it when you want more
-            variety. Short words are kept intentionally brief so a prompt still
-            feels like a quick recall test rather than a transcription task.
+            Pools control what prompts are drawn from. Use a narrow pool when
+            you are fixing a weak area, then widen it when you want more
+            variety. Short words are intentionally brief so a prompt stays a
+            quick recall test rather than a long transcription task.
           </p>
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
@@ -183,8 +183,7 @@ export default function HowItWorksPractice() {
               <strong>Letters</strong> help you lock in A–Z quickly.
             </li>
             <li>
-              <strong>Numbers</strong> are great for tightening up 0–9 and
-              reducing mix-ups.
+              <strong>Numbers</strong> tighten up 0–9 and reduce mix-ups.
             </li>
             <li>
               <strong>Signals</strong> (common short patterns) help with
@@ -206,11 +205,28 @@ export default function HowItWorksPractice() {
             will not produce invalid prompt kinds.
           </p>
 
-          <p className="mt-4 text-base sm:text-lg">
-            Sentences are intentionally short. This is still a drill surface, so
-            the goal is quick conversion and recognition, not long-form
-            transcription.
-          </p>
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">
+              Want more than drills?
+            </p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              Use{" "}
+              <Link
+                to="/dictionary"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                Dictionary
+              </Link>{" "}
+              to study mappings, or{" "}
+              <Link
+                to="/typing"
+                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              >
+                Typing
+              </Link>{" "}
+              to practice continuous entry.
+            </p>
+          </div>
         </div>
 
         <div
@@ -222,10 +238,10 @@ export default function HowItWorksPractice() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            Sentence prompts introduce a new failure mode that single symbols do
-            not: you can be “right” about dots and dashes but still be wrong
-            about boundaries. The practice goal here is to make word breaks
-            obvious and consistent while keeping the experience fast.
+            Sentence prompts introduce a failure mode that single symbols do
+            not: you can be right about dots and dashes but still be wrong about
+            boundaries. The practice goal here is to make word breaks obvious
+            and consistent while keeping the experience fast.
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -235,8 +251,8 @@ export default function HowItWorksPractice() {
               </p>
               <p className="mt-2 text-base sm:text-lg">
                 You convert multiple characters in a row. A correct answer is
-                not just “the right symbols”, it is also the right grouping so
-                letters and words do not collapse into a single blob.
+                not just the right symbols, it is also the right grouping so
+                letters and words do not collapse.
               </p>
             </div>
 
@@ -245,21 +261,23 @@ export default function HowItWorksPractice() {
                 Morse → Text sentences
               </p>
               <p className="mt-2 text-base sm:text-lg">
-                You read a sequence and produce text. This is where spacing is
-                most valuable because it prevents the classic “everything turns
-                into one long stream” issue.
+                You read a sequence and produce text. Clear spacing prevents the
+                classic everything-turns-into-one-stream issue.
               </p>
             </div>
           </div>
 
-          <p className="mt-5 text-base sm:text-lg">
-            Practical expectation: you should include clear word boundaries when
-            working with sentence prompts. If you paste Morse from somewhere
-            else, spacing can vary by source. The tool normalizes common dot and
-            dash variants, and it is designed to be tolerant of reasonable
-            spacing differences while still enforcing true word breaks where
-            they matter.
-          </p>
+          <div className="mt-5 rounded-2xl border border-sky-200 bg-sky-50 p-5">
+            <p className="text-base font-extrabold text-sky-900">
+              Boundary rule of thumb
+            </p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              If your answer expects Morse, separate letters with spaces and
+              separate words with <code>/</code> or a clear longer gap. The
+              checker is tolerant of reasonable spacing differences, but it
+              still needs true word boundaries to be visible.
+            </p>
+          </div>
         </div>
 
         <div
@@ -293,17 +311,21 @@ export default function HowItWorksPractice() {
           </div>
 
           <p className="mt-4 text-base sm:text-lg">
-            For multi-character prompts (words and sentences), you should keep
-            your spacing deliberate so boundaries stay readable. The UI is built
-            to make gaps visible, because in Morse practice, spacing is part of
-            correctness, not decoration.
+            For words and sentences, keep spacing deliberate so boundaries stay
+            readable. If you need a dedicated separator normalizer, use{" "}
+            <Link
+              to="/morse-code-word-separator"
+              className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+            >
+              Word separator
+            </Link>{" "}
+            first.
           </p>
 
           <p className="mt-4 text-base sm:text-lg">
-            The “Check” action mirrors the button’s disabled state. If your
-            answer is empty (or only whitespace), pressing Enter will not submit
-            a check. This keeps keyboard flow consistent and prevents accidental
-            empty attempts.
+            The Check action mirrors the button’s disabled state. If your answer
+            is empty (or only whitespace), pressing Enter will not submit a
+            check.
           </p>
         </div>
 
@@ -312,24 +334,33 @@ export default function HowItWorksPractice() {
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
-            Scoring: attempts, accuracy, and what “progress” means here
+            Scoring: attempts, accuracy, and what progress means here
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            The stats are designed to match drill intent. Attempts increase each
-            time you submit an answer. Correct increases only when your
-            submission matches the prompt. Accuracy is simply correct divided by
-            attempts. Streak measures consecutive correct answers in the current
-            run, and Best streak records the highest streak you hit during the
-            run.
+            Attempts increase each time you submit an answer. Correct increases
+            only when your submission matches the prompt. Accuracy is correct
+            divided by attempts. Streak measures consecutive correct answers in
+            the current run, and Best streak records the highest streak you hit
+            during the run.
           </p>
 
           <p className="mt-4 text-base sm:text-lg">
-            Progress in this tool means how many questions you have completed in
-            the run. A solved question counts as solved immediately, even if you
-            have not advanced to the next prompt yet. This is reflected in the
-            share summary so your results do not undercount by one.
+            Progress is how many questions you have completed in the run. A
+            solved question counts as solved immediately, even if you have not
+            advanced to the next prompt yet.
           </p>
+
+          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-base font-extrabold text-gray-800">
+              Measure improvement the right way
+            </p>
+            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              If your accuracy is stuck, narrow the pool (letters only, then
+              numbers), and use Mixed mode only after each direction is
+              comfortable.
+            </p>
+          </div>
         </div>
 
         <div
@@ -343,16 +374,14 @@ export default function HowItWorksPractice() {
           <p className="mt-4 text-base sm:text-lg">
             Skip is treated as an unsolved advance. It moves you forward, breaks
             the streak, and does not add a correct answer. This matches real
-            practice behavior: if you did not recall the symbol, you should not
-            carry a perfect streak through it.
+            practice: if you did not recall the symbol, you should not carry a
+            perfect streak through it.
           </p>
 
           <p className="mt-4 text-base sm:text-lg">
-            To prevent nonsensical usage, skip is disabled after a prompt has
-            already been solved. This avoids ambiguous state like “skipping
-            after success” and keeps progress accounting clean. Rapid clicking
-            is handled defensively so you cannot over-increment beyond the
-            10-question run limit.
+            Skip is disabled after a prompt has already been solved. Rapid
+            clicking is handled defensively so you cannot over-increment beyond
+            the 10-question run limit.
           </p>
         </div>
 
@@ -365,11 +394,10 @@ export default function HowItWorksPractice() {
           </h3>
 
           <p className="mt-4 text-base sm:text-lg">
-            When you share results, the tool copies a compact summary of your
-            run to your clipboard. It includes your progress (questions
-            completed), correct count, attempts, accuracy, and streaks. Sharing
-            is designed for quick pasting into chats, notes, or study logs
-            without extra formatting.
+            Sharing copies a compact summary of your run to your clipboard. It
+            includes progress (questions completed), correct count, attempts,
+            accuracy, and streaks. It is designed for quick pasting into chats,
+            notes, or study logs.
           </p>
 
           <p className="mt-4 text-base sm:text-lg">
@@ -389,9 +417,9 @@ export default function HowItWorksPractice() {
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              <strong>Morse answer keeps failing:</strong> check for mixed
-              punctuation from copy-paste. The tool normalizes common dots and
-              dashes, but extra symbols still matter.
+              <strong>Morse answer keeps failing:</strong> check for extra
+              symbols from copy-paste. The tool normalizes common dots and
+              dashes, but other characters still matter.
             </li>
             <li>
               <strong>Everything looks right but is marked wrong:</strong>{" "}
@@ -399,24 +427,37 @@ export default function HowItWorksPractice() {
               prompt.
             </li>
             <li>
-              <strong>Sentence answers keep failing:</strong> look at spacing.
-              If you collapse word gaps (or add extra separators), you can turn
-              a correct set of symbols into the wrong message.
+              <strong>Sentence answers keep failing:</strong> boundaries are the
+              usual cause. Use clear word breaks (<code>/</code> or a clear
+              longer gap).
             </li>
             <li>
-              <strong>My progress jumped:</strong> rapid clicks are clamped to
-              the run limit. If you restart, the run begins at 1/10 with fresh
-              prompts.
+              <strong>Progress jumped:</strong> rapid clicks are clamped to the
+              run limit. Restart begins at 1/10 with fresh prompts.
             </li>
           </ul>
 
           <p className="mt-4 text-base sm:text-lg">
-            If you want a conversion utility for longer text, use the
-            translator. If you want quick checks and repetition, this practice
-            page is the faster tool.
+            If you want conversion utilities, use{" "}
+            <Link
+              to="/morse-code-encoder"
+              className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+            >
+              Encoder
+            </Link>{" "}
+            and{" "}
+            <Link
+              to="/morse-code-decoder"
+              className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+            >
+              Decoder
+            </Link>
+            . If you want repetition and quick checks, Practice is the faster
+            tool.
           </p>
         </div>
       </div>
+
       <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
           Quick reference
@@ -424,26 +465,25 @@ export default function HowItWorksPractice() {
 
         <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
           <li>
-            <strong>What this tool is for:</strong> Fast Morse drills with one
-            prompt at a time and instant checks.
+            <strong>What this tool is for:</strong> fast drills with one prompt
+            at a time and instant checks.
           </li>
           <li>
-            <strong>Run size:</strong> Each session is a fixed set of 10
-            prompts.
+            <strong>Run size:</strong> fixed set of 10 prompts per session.
           </li>
           <li>
             <strong>Modes:</strong> Text → Morse, Morse → Text, or Mixed.
           </li>
           <li>
-            <strong>Pools:</strong> Letters, numbers, signals, short words, and
+            <strong>Pools:</strong> letters, numbers, signals, short words, and
             short sentences.
           </li>
           <li>
-            <strong>Scoring:</strong> Attempts, correct count, accuracy, and
+            <strong>Scoring:</strong> attempts, correct count, accuracy, and
             streaks update per run.
           </li>
           <li>
-            <strong>Spacing matters:</strong> Clear letter and word boundaries
+            <strong>Spacing matters:</strong> clear letter and word boundaries
             reduce false negatives on sentence prompts.
           </li>
         </ul>
