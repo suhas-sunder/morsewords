@@ -10,7 +10,7 @@ export default function HowItWorksTyping() {
           </span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0b2447] tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
           How MorseWords Typing Practice works
         </h2>
 
@@ -45,7 +45,7 @@ export default function HowItWorksTyping() {
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Freeform production
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -55,7 +55,7 @@ export default function HowItWorksTyping() {
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Boundary-driven decode
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -65,7 +65,7 @@ export default function HowItWorksTyping() {
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Endurance sessions
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -80,7 +80,7 @@ export default function HowItWorksTyping() {
           id="typing-input"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Input rules
           </h3>
 
@@ -141,7 +141,7 @@ export default function HowItWorksTyping() {
           id="typing-boundaries"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Boundaries
           </h3>
 
@@ -168,7 +168,7 @@ export default function HowItWorksTyping() {
           </ul>
 
           <div className="mt-5 rounded-2xl border border-sky-200 bg-sky-50 p-5">
-            <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+            <p className="text-base sm:text-lg font-extrabold text-sky-900">
               Why this matters for fluent users
             </p>
             <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -184,7 +184,7 @@ export default function HowItWorksTyping() {
           id="typing-timer"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Timed sessions
           </h3>
 
@@ -225,7 +225,7 @@ export default function HowItWorksTyping() {
           id="typing-stats"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             What the stats mean
           </h3>
 
@@ -238,7 +238,7 @@ export default function HowItWorksTyping() {
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Letters and words
               </p>
               <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -249,7 +249,7 @@ export default function HowItWorksTyping() {
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Letters per minute
               </p>
               <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -260,7 +260,7 @@ export default function HowItWorksTyping() {
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Invalid
               </p>
               <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -271,7 +271,7 @@ export default function HowItWorksTyping() {
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Minimal interference
               </p>
               <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -286,7 +286,7 @@ export default function HowItWorksTyping() {
           id="typing-pitfalls"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Common pitfalls (and quick fixes)
           </h3>
 
@@ -322,7 +322,7 @@ export default function HowItWorksTyping() {
           id="typing-sharing"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Sharing your results
           </h3>
 
@@ -339,6 +339,34 @@ export default function HowItWorksTyping() {
             lightweight proof of a completed run, not a scoreboard.
           </p>
         </div>
+      </div>
+      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          Quick reference
+        </h3>
+
+        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+          <li>
+            <strong>What this tool is for:</strong> Continuous Morse typing with
+            real-time decoding and timed sessions.
+          </li>
+          <li>
+            <strong>How decoding works:</strong> Boundary-driven. Space commits
+            a letter, <code>/</code> commits a word.
+          </li>
+          <li>
+            <strong>Sessions:</strong> Pick a duration; input locks when time is
+            up and stats are shown.
+          </li>
+          <li>
+            <strong>Stats:</strong> Letters, words, letters/min, and invalid
+            chunks are counted from committed input.
+          </li>
+          <li>
+            <strong>Best use case:</strong> Endurance and fluency practice
+            without prompts or grading interruptions.
+          </li>
+        </ul>
       </div>
     </section>
   );

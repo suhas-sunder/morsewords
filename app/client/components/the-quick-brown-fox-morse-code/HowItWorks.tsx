@@ -1,4 +1,14 @@
 export default function HowItWorks() {
+  const phrase = "the quick brown fox jumps over the lazy dog";
+  const phraseUpper = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG";
+
+  // 3 spaces between letters, 7 spaces between words
+  // This Morse is International Morse for A–Z.
+  const morseCopyFriendly = `-   ....   .       --.-   ..-   ..   -.-.   -.-       -...   .-.   ---   .--   -.       ..-.   ---   -..-       .---   ..-   --   .--.   ...       ---   ...-   .   .-.       - ....   .       .-..   .-   --..   -.--       -..   ---   --.`;
+
+  // Human-friendly with visible word separators
+  const morseWithSlashes = `- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.`;
+
   return (
     <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
       <div className="flex flex-col gap-3">
@@ -8,23 +18,29 @@ export default function HowItWorks() {
           </span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0b2447] tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
           The Quick Brown Fox in Morse code
         </h2>
 
         <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-          This page focuses on the classic pangram “the quick brown fox jumps over the lazy dog.” It is commonly used for typing tests and puzzles because it contains every letter A–Z. Here you can copy the Morse, listen to it, and decode it back to text to verify spacing and separators.
+          This page focuses on the classic pangram{" "}
+          <strong>“the quick brown fox jumps over the lazy dog”</strong>. It is
+          commonly used for typing tests and puzzles because it contains every
+          letter A–Z. Here you can copy the Morse, and use the decoder to verify
+          spacing and separators.
         </p>
       </div>
 
-      {/* Optional: quick jump links for long content */}
+      {/* Quick jump links */}
       <div className="mt-6 flex flex-wrap gap-2">
         {[
-          ["Morse string", "#encode"],
-          ["Listen", "#formatting"],
-          ["Decode check", "#decode"],
-          ["Puzzles", "#troubleshooting"],
-          ["Practice", "#supported"],
+          ["Phrase", "#phrase"],
+          ["Morse (copy-friendly)", "#morse-copy"],
+          ["Morse (with /)", "#morse-slash"],
+          ["Decode check", "#decode-check"],
+          ["Spacing rules", "#spacing-rules"],
+          ["Puzzles & tips", "#tips"],
+          ["Related tools", "#related-tools"],
         ].map(([label, href]) => (
           <a
             key={href}
@@ -38,283 +54,323 @@ export default function HowItWorks() {
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
-            Spacing legend
-          </p>
+          <p className="text-base font-extrabold text-sky-900">Copy-friendly</p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            Output uses <strong>3 spaces</strong> between letters and{" "}
+            Uses <strong>3 spaces</strong> between letters and{" "}
             <strong>7 spaces</strong> between words.
           </p>
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
-            Decoder boundaries
+          <p className="text-base font-extrabold text-sky-900">
+            Human-friendly
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            When decoding, <strong>1–6 spaces</strong> separates letters.{" "}
-            <strong>7+ spaces</strong>, <strong>/</strong>, and new lines
-            separate words.
+            A visible separator like <strong>/</strong> is common in puzzles and
+            social posts.
           </p>
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
-            Errors stay visible
-          </p>
+          <p className="text-base font-extrabold text-sky-900">Decode safety</p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            Unknown Morse chunks decode to <strong>?</strong>. Unsupported text
-            characters are skipped and surfaced in the UI.
+            If you paste Morse into a decoder, use consistent separators so word
+            breaks do not collapse.
           </p>
         </div>
       </div>
 
       <div className="mt-8 space-y-6 text-gray-700 leading-relaxed">
         <div
-          id="encode"
+          id="phrase"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
-            Text → Morse (encode)
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+            The phrase
+          </h3>
+
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+              <p className="text-sm font-extrabold text-gray-800">Lowercase</p>
+              <pre className="mt-2 whitespace-pre-wrap text-base sm:text-lg font-mono">
+                {phrase}
+              </pre>
+            </div>
+
+            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+              <p className="text-sm font-extrabold text-gray-800">Uppercase</p>
+              <pre className="mt-2 whitespace-pre-wrap text-base sm:text-lg font-mono">
+                {phraseUpper}
+              </pre>
+            </div>
+          </div>
+
+          <p className="mt-4 text-base sm:text-lg text-gray-700">
+            If you are using this in a puzzle, you can keep it as a single line,
+            or split it across lines. Just keep word boundaries consistent in
+            the Morse output.
+          </p>
+        </div>
+
+        <div
+          id="morse-copy"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+        >
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+            Morse code (copy-friendly spacing)
+          </h3>
+
+          <p className="mt-4 text-base sm:text-lg">
+            This version is designed for tools and copy/paste:{" "}
+            <strong>3 spaces</strong> between letters and{" "}
+            <strong>7 spaces</strong> between words.
+          </p>
+
+          <pre className="mt-4 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            {morseCopyFriendly}
+          </pre>
+
+          <p className="mt-3 text-base sm:text-lg text-gray-600">
+            Tip: some apps collapse multiple spaces. If your platform does that,
+            use the “with /” version below.
+          </p>
+        </div>
+
+        <div
+          id="morse-slash"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+        >
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+            Morse code (with / between words)
+          </h3>
+
+          <p className="mt-4 text-base sm:text-lg">
+            This version is easier for humans to read and share. It avoids the
+            “how many spaces is that?” problem.
+          </p>
+
+          <pre className="mt-4 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            {morseWithSlashes}
+          </pre>
+        </div>
+
+        <div
+          id="decode-check"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+        >
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+            Decode check
+          </h3>
+
+          <p className="mt-4 text-base sm:text-lg">
+            If you paste either Morse string into a decoder, you should get:
+          </p>
+
+          <pre className="mt-4 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            {phraseUpper}
+          </pre>
+
+          <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
+            <li>
+              If the output looks wrong, check word boundaries first. Collapsed
+              spacing is the most common cause.
+            </li>
+            <li>
+              If you see <strong>?</strong> characters, at least one dot-dash
+              chunk was not recognized (often caused by a missing separator or a
+              pasted symbol that is not a real dot/dash).
+            </li>
+          </ul>
+        </div>
+
+        <div
+          id="spacing-rules"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+        >
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+            Spacing rules
+          </h3>
+
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full border-collapse text-base sm:text-lg">
+              <thead>
+                <tr className="border-b border-gray-200">
+                  <th className="py-2 text-left font-extrabold text-sky-900">
+                    Item
+                  </th>
+                  <th className="py-2 text-left font-extrabold text-sky-900">
+                    Meaning
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-700">
+                <tr className="border-b border-gray-100">
+                  <td className="py-2 pr-4">Letter gap (output)</td>
+                  <td className="py-2">3 spaces</td>
+                </tr>
+                <tr className="border-b border-gray-100">
+                  <td className="py-2 pr-4">Word gap (output)</td>
+                  <td className="py-2">7 spaces</td>
+                </tr>
+                <tr className="border-b border-gray-100">
+                  <td className="py-2 pr-4">Word divider (alternative)</td>
+                  <td className="py-2">
+                    <code>/</code> between words
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-2 pr-4">Common paste issue</td>
+                  <td className="py-2">
+                    Multiple spaces can collapse into one on some platforms
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-4 text-base sm:text-lg text-gray-700">
+            If you need a format that survives “space-collapsing” platforms,
+            prefer the version that uses <code>/</code>.
+          </p>
+        </div>
+
+        <div
+          id="tips"
+          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+        >
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+            Puzzles and practice tips
           </h3>
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              Input text is normalized and uppercased, then each supported
-              character is looked up in a fixed International Morse map.
+              For human-first puzzles, use <code>/</code> so word breaks are
+              obvious.
             </li>
             <li>
-              Any run of whitespace in the text input is treated as a word
-              break. The Morse output is re-emitted with consistent separators.
+              For tool-first workflows, use 7 spaces so decoders treat word gaps
+              unambiguously.
             </li>
             <li>
-              Output formatting is strict: <strong>3 spaces</strong> between
-              letters, <strong>7 spaces</strong> between words.
-            </li>
-            <li>
-              Unsupported characters are not invented or approximated. They are
-              skipped in the Morse output and listed under the input so you can
-              fix the source.
+              If your Morse came from a PDF, watch for bullet dots (
+              <code>•</code>) and long dashes (<code>—</code>). Many tools
+              normalize common variants, but not all.
             </li>
           </ul>
-
-          <div className="mt-5">
-            <p className="text-base font-extrabold text-gray-800">Example</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
-              {`HELLO WORLD
-....   .   .-..   .-..   ---       .--   ---   .-.   .-..   -..`}
-            </pre>
-            <p className="mt-3 text-base sm:text-lg text-gray-600">
-              The spacing is part of the output. If you copy this Morse
-              elsewhere, keep the gaps.
-            </p>
-          </div>
         </div>
 
         <div
-          id="decode"
+          id="related-tools"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
-            Morse → Text (decode)
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+            Related tools
           </h3>
-
-          <p className="mt-4 text-base sm:text-lg">
-            Decoding is boundary-driven. The tool does not infer letter breaks
-            from timing. It reads chunks of dots and dashes, then uses
-            separators to decide where each letter and word ends.
-          </p>
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              Valid Morse characters are dot and dash, plus whitespace and{" "}
-              <strong>/</strong> for separation.
+              <a
+                href="/morse-code-encoder"
+                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              >
+                Morse code encoder
+              </a>{" "}
+              to generate Morse from your own text.
             </li>
             <li>
-              The decoder normalizes common lookalikes: <strong>· • ∙</strong>{" "}
-              become dot, and <strong>– — −</strong> become dash.
+              <a
+                href="/morse-code-decoder"
+                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              >
+                Morse code decoder
+              </a>{" "}
+              to decode dots and dashes back to text.
             </li>
             <li>
-              Separators: <strong>1–6 spaces</strong> means letter gap.{" "}
-              <strong>7+ spaces</strong>, <strong>/</strong>, or a new line
-              means word gap.
+              <a
+                href="/audio"
+                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              >
+                Audio
+              </a>{" "}
+              for focused playback and timing controls.
             </li>
             <li>
-              If a Morse chunk is not recognized, the output shows{" "}
-              <strong>?</strong> so the mistake stays visible and you can
-              correct it.
+              <a
+                href="/practice"
+                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              >
+                Practice
+              </a>{" "}
+              for drills and repetition.
+            </li>
+            <li>
+              <a
+                href="/dictionary"
+                className="text-sky-900 underline hover:no-underline cursor-pointer"
+              >
+                Dictionary
+              </a>{" "}
+              to look up letters and punctuation.
             </li>
           </ul>
-
-          <div className="mt-5">
-            <p className="text-base font-extrabold text-gray-800">Examples</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
-              {`...   ---   ...
-SOS
-
-... / --- / ...
-S O S`}
-            </pre>
-            <p className="mt-3 text-base sm:text-lg text-gray-600">
-              Tip: if everything runs together, add separators. The safest
-              format is 3 spaces between letters and 7 spaces between words.
-            </p>
-          </div>
-        </div>
-
-        <div
-          id="formatting"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
-        >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
-            Input formatting guide
-          </h3>
-
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
-                For best decoding
-              </p>
-              <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
-                <li>3 spaces between letters</li>
-                <li>7 spaces between words</li>
-                <li>/ can replace a word gap</li>
-                <li>New lines count as word gaps</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
-                Common paste problems
-              </p>
-              <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
-                <li>Fancy dashes from PDFs</li>
-                <li>Dots rendered as bullets</li>
-                <li>Mixed separators</li>
-                <li>Extra punctuation mixed into Morse</li>
-              </ul>
-            </div>
-          </div>
-
-          <p className="mt-5 text-base sm:text-lg">
-            If you need to preserve exact spacing inside a single word, this
-            tool will not do that. It favors predictable normalization and
-            consistent separators so copied output behaves the same across
-            tools.
-          </p>
-        </div>
-
-        <div
-          id="supported"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
-        >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
-            Supported characters and assumptions
-          </h3>
-
-          <p className="mt-4 text-base sm:text-lg">
-            This translator supports A–Z, 0–9, and a core set of common
-            punctuation. It intentionally does not guess at extended alphabets
-            or locale-specific variants.
-          </p>
-
-          <p className="mt-4 text-base sm:text-lg">
-            Supported punctuation includes:{" "}
-            <code className="rounded-md bg-gray-50 px-2 py-1 border border-gray-200">
-              . , ? / ' ! - @ : ; = + &quot; ( ) &amp; _
-            </code>
-            .
-          </p>
-
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
-              Related tools
-            </p>
-            <ul className="mt-3 list-disc pl-6 space-y-3 text-base sm:text-lg">
-              <li>
-                <a
-                  href="/audio"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
-                >
-                  Audio
-                </a>{" "}
-                for focused playback and timing controls.
-              </li>
-              <li>
-                <a
-                  href="/dictionary"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
-                >
-                  Dictionary
-                </a>{" "}
-                to look up characters and punctuation.
-              </li>
-              <li>
-                <a
-                  href="/practice"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
-                >
-                  Practice
-                </a>{" "}
-                and{" "}
-                <a
-                  href="/typing"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
-                >
-                  Typing
-                </a>{" "}
-                for drills and repetition.
-              </li>
-              <li>
-                <a
-                  href="/how-to-use"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
-                >
-                  How to use
-                </a>{" "}
-                for suite-level notes.
-              </li>
-            </ul>
-          </div>
         </div>
 
         <div
           id="troubleshooting"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Troubleshooting
           </h3>
 
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              <strong>Decoded text looks wrong:</strong> check boundaries. Add 3
-              spaces between letters and 7 spaces between words, or use /
-              between words.
+              <strong>Decoded text looks wrong:</strong> check boundaries first.
+              If word gaps collapsed, the decoder will join tokens that should
+              be separate.
             </li>
             <li>
               <strong>You see ? characters:</strong> at least one Morse chunk
-              was not recognized. Look for missing dots, extra dashes, or
-              accidental characters mixed into the Morse.
+              was not recognized. Look for missing dots, extra dashes, or stray
+              characters mixed into the Morse string.
             </li>
             <li>
-              <strong>Encoding skipped characters:</strong> the unsupported list
-              under the input shows exactly what was ignored. Replace those
-              characters with supported punctuation or plain letters.
-            </li>
-            <li>
-              <strong>Pasted Morse has weird symbols:</strong> PDFs often
-              replace hyphen with a long dash, and dot with a bullet. This tool
-              normalizes the most common variants, but anything else will be
-              flagged as invalid.
-            </li>
-            <li>
-              <strong>Audio is silent:</strong> confirm Sound is on, raise
-              volume, and make sure your device is not muted. If you are using
-              Bluetooth, reconnect and try again.
+              <strong>Pasted Morse has weird symbols:</strong> dots are
+              sometimes pasted as <code>•</code> and dashes as <code>—</code>.
+              If your tool does not normalize them, replace with <code>.</code>{" "}
+              and <code>-</code>.
             </li>
           </ul>
         </div>
+      </div>
+      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          Quick reference
+        </h3>
+
+        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+          <li>
+            <strong>Phrase:</strong> “the quick brown fox jumps over the lazy
+            dog”
+          </li>
+          <li>
+            <strong>Why this phrase:</strong> It contains every letter A–Z at
+            least once.
+          </li>
+          <li>
+            <strong>Tool-friendly Morse:</strong> 3 spaces between letters, 7
+            spaces between words.
+          </li>
+          <li>
+            <strong>Human-friendly Morse:</strong> Use <code>/</code> between
+            words.
+          </li>
+          <li>
+            <strong>Decode result:</strong> THE QUICK BROWN FOX JUMPS OVER THE
+            LAZY DOG
+          </li>
+        </ul>
       </div>
     </section>
   );

@@ -10,7 +10,7 @@ export default function HowItWorksPractice() {
           </span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold capitalize text-[#0b2447] tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold capitalize text-sky-900 tracking-tight">
           How Morse Code Practice works
         </h2>
 
@@ -46,7 +46,7 @@ export default function HowItWorksPractice() {
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             10-question runs
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -56,7 +56,7 @@ export default function HowItWorksPractice() {
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Instant checks
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -66,7 +66,7 @@ export default function HowItWorksPractice() {
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Utility over tutorials
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -81,7 +81,7 @@ export default function HowItWorksPractice() {
           id="run-flow"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Run flow: what happens in a session
           </h3>
 
@@ -122,7 +122,7 @@ export default function HowItWorksPractice() {
           id="modes"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Modes: practice the direction you actually need
           </h3>
 
@@ -136,7 +136,7 @@ export default function HowItWorksPractice() {
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Text → Morse
               </p>
               <p className="mt-2 text-base sm:text-lg">
@@ -146,7 +146,7 @@ export default function HowItWorksPractice() {
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Morse → Text
               </p>
               <p className="mt-2 text-base sm:text-lg">
@@ -167,7 +167,7 @@ export default function HowItWorksPractice() {
           id="pools"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Pools: narrow focus or broad coverage
           </h3>
 
@@ -217,7 +217,7 @@ export default function HowItWorksPractice() {
           id="sentences"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Sentence rules: spacing matters, but the checker stays practical
           </h3>
 
@@ -230,7 +230,7 @@ export default function HowItWorksPractice() {
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Text → Morse sentences
               </p>
               <p className="mt-2 text-base sm:text-lg">
@@ -241,7 +241,7 @@ export default function HowItWorksPractice() {
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Morse → Text sentences
               </p>
               <p className="mt-2 text-base sm:text-lg">
@@ -266,7 +266,7 @@ export default function HowItWorksPractice() {
           id="morse-input"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Morse input tips: type the way you naturally type
           </h3>
 
@@ -311,7 +311,7 @@ export default function HowItWorksPractice() {
           id="scoring"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Scoring: attempts, accuracy, and what “progress” means here
           </h3>
 
@@ -336,7 +336,7 @@ export default function HowItWorksPractice() {
           id="skip"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Skip and streaks: deliberate rules to keep practice honest
           </h3>
 
@@ -360,7 +360,7 @@ export default function HowItWorksPractice() {
           id="share"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Share: copy a clean progress snapshot
           </h3>
 
@@ -383,7 +383,7 @@ export default function HowItWorksPractice() {
           id="troubleshooting"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Troubleshooting: common practice mistakes
           </h3>
 
@@ -416,6 +416,37 @@ export default function HowItWorksPractice() {
             page is the faster tool.
           </p>
         </div>
+      </div>
+      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          Quick reference
+        </h3>
+
+        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+          <li>
+            <strong>What this tool is for:</strong> Fast Morse drills with one
+            prompt at a time and instant checks.
+          </li>
+          <li>
+            <strong>Run size:</strong> Each session is a fixed set of 10
+            prompts.
+          </li>
+          <li>
+            <strong>Modes:</strong> Text → Morse, Morse → Text, or Mixed.
+          </li>
+          <li>
+            <strong>Pools:</strong> Letters, numbers, signals, short words, and
+            short sentences.
+          </li>
+          <li>
+            <strong>Scoring:</strong> Attempts, correct count, accuracy, and
+            streaks update per run.
+          </li>
+          <li>
+            <strong>Spacing matters:</strong> Clear letter and word boundaries
+            reduce false negatives on sentence prompts.
+          </li>
+        </ul>
       </div>
     </section>
   );

@@ -8,7 +8,7 @@ export default function HowItWorks() {
           </span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0b2447] tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
           How this Morse code translator works
         </h2>
 
@@ -43,7 +43,7 @@ export default function HowItWorks() {
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Spacing legend
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -53,7 +53,7 @@ export default function HowItWorks() {
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Decoder boundaries
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -64,7 +64,7 @@ export default function HowItWorks() {
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Errors stay visible
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -79,7 +79,7 @@ export default function HowItWorks() {
           id="encode"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Text → Morse (encode)
           </h3>
 
@@ -120,7 +120,7 @@ export default function HowItWorks() {
           id="decode"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Morse → Text (decode)
           </h3>
 
@@ -171,13 +171,13 @@ S O S`}
           id="formatting"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Input formatting guide
           </h3>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 For best decoding
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -189,7 +189,7 @@ S O S`}
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Common paste problems
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -213,7 +213,7 @@ S O S`}
           id="supported"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Supported characters and assumptions
           </h3>
 
@@ -239,7 +239,7 @@ S O S`}
               <li>
                 <a
                   href="/audio"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer"
                 >
                   Audio
                 </a>{" "}
@@ -248,7 +248,7 @@ S O S`}
               <li>
                 <a
                   href="/dictionary"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer"
                 >
                   Dictionary
                 </a>{" "}
@@ -257,14 +257,14 @@ S O S`}
               <li>
                 <a
                   href="/practice"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer"
                 >
                   Practice
                 </a>{" "}
                 and{" "}
                 <a
                   href="/typing"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer"
                 >
                   Typing
                 </a>{" "}
@@ -273,7 +273,7 @@ S O S`}
               <li>
                 <a
                   href="/how-to-use"
-                  className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+                  className="text-sky-900 underline hover:no-underline cursor-pointer"
                 >
                   How to use
                 </a>{" "}
@@ -287,7 +287,7 @@ S O S`}
           id="troubleshooting"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
             Troubleshooting
           </h3>
 
@@ -319,6 +319,79 @@ S O S`}
               Bluetooth, reconnect and try again.
             </li>
           </ul>
+        </div>
+      </div>
+      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-6 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          Quick answers
+        </h3>
+
+        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+          <li>
+            <strong>What this tool does:</strong> Converts plain text to
+            International Morse code and decodes Morse back to readable text.
+          </li>
+          <li>
+            <strong>Best output format:</strong> 3 spaces between letters, 7
+            spaces between words. You can also use <code>/</code> to separate
+            words.
+          </li>
+          <li>
+            <strong>How decoding works:</strong> The decoder reads dots and
+            dashes and uses separators to decide where letters and words end. It
+            does not guess timing.
+          </li>
+          <li>
+            <strong>Errors and unknowns:</strong> Unknown Morse chunks decode to{" "}
+            <code>?</code>. Unsupported text characters are skipped and shown so
+            you can fix the input.
+          </li>
+        </ul>
+      </div>
+      <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          Morse formatting rules
+        </h3>
+
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full border-collapse text-base sm:text-lg">
+            <thead>
+              <tr className="border-b border-gray-200">
+                <th className="py-2 text-left font-extrabold text-sky-900">
+                  Rule
+                </th>
+                <th className="py-2 text-left font-extrabold text-sky-900">
+                  Behavior
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-700">
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4">Letter separator (encode)</td>
+                <td className="py-2">3 spaces</td>
+              </tr>
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4">Word separator (encode)</td>
+                <td className="py-2">7 spaces</td>
+              </tr>
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4">Letter separator (decode)</td>
+                <td className="py-2">1–6 spaces</td>
+              </tr>
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4">Word separator (decode)</td>
+                <td className="py-2">
+                  7+ spaces, <code>/</code>, or new line
+                </td>
+              </tr>
+              <tr>
+                <td className="py-2 pr-4">Unknown Morse chunk</td>
+                <td className="py-2">
+                  Decodes to <code>?</code>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

@@ -8,16 +8,16 @@ export default function HowToUseSuiteGuide() {
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0b2447] tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
           How to use MorseWords
         </h1>
 
         <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-          This page is a practical guide to the MorseWords toolkit. It is not
-          a history lesson and it is not trying to teach you Morse from zero.
-          It is here so you can move quickly between tools, format input the
-          way the apps expect, and avoid the few small mistakes that make Morse
-          look “broken.” If you just want a fast conversion, start with the
+          This page is a practical guide to the MorseWords toolkit. It is not a
+          history lesson and it is not trying to teach you Morse from zero. It
+          is here so you can move quickly between tools, format input the way
+          the apps expect, and avoid the few small mistakes that make Morse look
+          “broken.” If you just want a fast conversion, start with the
           Translator and copy the output.
         </p>
       </div>
@@ -45,7 +45,7 @@ export default function HowToUseSuiteGuide() {
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Copy-first design
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -54,7 +54,7 @@ export default function HowToUseSuiteGuide() {
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Spacing matters
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
@@ -64,12 +64,12 @@ export default function HowToUseSuiteGuide() {
         </div>
 
         <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-[#0b2447]">
+          <p className="text-base font-extrabold text-sky-900">
             Suite, not one page
           </p>
           <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-            Translate, listen, drill, type, and look up patterns without
-            leaving the site.
+            Translate, listen, drill, type, and look up patterns without leaving
+            the site.
           </p>
         </div>
       </div>
@@ -81,14 +81,14 @@ export default function HowToUseSuiteGuide() {
           className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
         >
           <div className="flex flex-col gap-2">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
               1) Translator
             </h2>
             <p className="text-base sm:text-lg">
               Open{" "}
               <a
                 href="/"
-                className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+                className="text-sky-900 underline hover:no-underline cursor-pointer"
               >
                 Morse Code Translator
               </a>
@@ -115,7 +115,7 @@ export default function HowToUseSuiteGuide() {
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Best for
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -126,7 +126,7 @@ export default function HowToUseSuiteGuide() {
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Common gotcha
               </p>
               <p className="mt-3 text-base sm:text-lg">
@@ -143,7 +143,7 @@ export default function HowToUseSuiteGuide() {
           id="audio"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
             2) Audio translator
           </h2>
 
@@ -151,7 +151,7 @@ export default function HowToUseSuiteGuide() {
             Open{" "}
             <a
               href="/audio"
-              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              className="text-sky-900 underline hover:no-underline cursor-pointer"
             >
               Morse Code Audio Translator
             </a>
@@ -169,8 +169,8 @@ export default function HowToUseSuiteGuide() {
               you are working with.
             </li>
             <li>
-              Press <strong>Play Audio</strong> to hear the current Morse string.
-              Use <strong>Stop</strong> to end playback immediately.
+              Press <strong>Play Audio</strong> to hear the current Morse
+              string. Use <strong>Stop</strong> to end playback immediately.
             </li>
           </ol>
 
@@ -188,7 +188,7 @@ export default function HowToUseSuiteGuide() {
           id="practice"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
             3) Practice
           </h2>
 
@@ -196,18 +196,18 @@ export default function HowToUseSuiteGuide() {
             Open{" "}
             <a
               href="/practice"
-              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              className="text-sky-900 underline hover:no-underline cursor-pointer"
             >
               Morse Code Practice
             </a>
-            . Practice is structured drills: you get prompts and you answer.
-            It is designed to keep you moving, not to overwhelm you with options.
+            . Practice is structured drills: you get prompts and you answer. It
+            is designed to keep you moving, not to overwhelm you with options.
           </p>
 
           <ol className="mt-4 list-decimal pl-6 space-y-3 text-base sm:text-lg">
             <li>
-              Choose <strong>visual prompts</strong>, <strong>audio prompts</strong>,
-              or both.
+              Choose <strong>visual prompts</strong>,{" "}
+              <strong>audio prompts</strong>, or both.
             </li>
             <li>
               Pick a character set (letters only, numbers, mixed, or a tighter
@@ -221,7 +221,7 @@ export default function HowToUseSuiteGuide() {
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 When to use it
               </p>
               <p className="mt-3 text-base sm:text-lg">
@@ -231,7 +231,7 @@ export default function HowToUseSuiteGuide() {
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 When to switch tools
               </p>
               <p className="mt-3 text-base sm:text-lg">
@@ -247,7 +247,7 @@ export default function HowToUseSuiteGuide() {
           id="typing"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
             4) Typing tool
           </h2>
 
@@ -255,7 +255,7 @@ export default function HowToUseSuiteGuide() {
             Open{" "}
             <a
               href="/typing"
-              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              className="text-sky-900 underline hover:no-underline cursor-pointer"
             >
               Morse Code Typing Tool
             </a>
@@ -269,8 +269,8 @@ export default function HowToUseSuiteGuide() {
               separate letters and words.
             </li>
             <li>
-              Use the spacing rules from this page: 3 spaces between letters,
-              7 spaces between words. If you prefer, use / between words.
+              Use the spacing rules from this page: 3 spaces between letters, 7
+              spaces between words. If you prefer, use / between words.
             </li>
             <li>
               When you are done, copy the decoded output. If the decoded output
@@ -280,7 +280,9 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 rounded-2xl border border-gray-200 bg-gray-50 p-5">
-            <p className="text-base font-extrabold text-gray-800">Good use case</p>
+            <p className="text-base font-extrabold text-gray-800">
+              Good use case
+            </p>
             <p className="mt-2 text-base sm:text-lg text-gray-700">
               You have a short Morse snippet from a puzzle or a screenshot and
               want to manually enter it without relying on a copyable source.
@@ -293,7 +295,7 @@ export default function HowToUseSuiteGuide() {
           id="dictionary"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
             5) Dictionary
           </h2>
 
@@ -301,12 +303,12 @@ export default function HowToUseSuiteGuide() {
             Open{" "}
             <a
               href="/dictionary"
-              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              className="text-sky-900 underline hover:no-underline cursor-pointer"
             >
               Morse Code Dictionary
             </a>
-            . It is a lookup table for letters, numbers, and punctuation.
-            Use it when you want to confirm one character without running a full
+            . It is a lookup table for letters, numbers, and punctuation. Use it
+            when you want to confirm one character without running a full
             translation.
           </p>
 
@@ -320,7 +322,9 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 rounded-2xl border border-gray-200 bg-gray-50 p-5">
-            <p className="text-base font-extrabold text-gray-800">Shortcut mindset</p>
+            <p className="text-base font-extrabold text-gray-800">
+              Shortcut mindset
+            </p>
             <p className="mt-2 text-base sm:text-lg text-gray-700">
               Dictionary for one character, Translator for full messages.
               Switching quickly is the whole point of the suite.
@@ -333,7 +337,7 @@ export default function HowToUseSuiteGuide() {
           id="spacing"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
             Spacing rules you actually need
           </h2>
 
@@ -345,7 +349,7 @@ export default function HowToUseSuiteGuide() {
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Recommended format
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-gray-700">
@@ -357,13 +361,13 @@ export default function HowToUseSuiteGuide() {
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Why this works
               </p>
               <p className="mt-3 text-base sm:text-lg text-gray-700">
-                When decoding, the tool reads dot-dash chunks and uses separators
-                to decide where letters and words end. If separators are missing,
-                the decoder cannot safely guess.
+                When decoding, the tool reads dot-dash chunks and uses
+                separators to decide where letters and words end. If separators
+                are missing, the decoder cannot safely guess.
               </p>
             </div>
           </div>
@@ -381,7 +385,7 @@ export default function HowToUseSuiteGuide() {
           id="workflows"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
             Fast workflows
           </h2>
 
@@ -413,8 +417,8 @@ export default function HowToUseSuiteGuide() {
                 Manual entry → Decode
               </p>
               <p className="mt-2 text-base sm:text-lg text-gray-700">
-                Use Typing when you cannot copy the Morse (for example, it is
-                in an image). Enter dots and dashes, add spacing, and copy the
+                Use Typing when you cannot copy the Morse (for example, it is in
+                an image). Enter dots and dashes, add spacing, and copy the
                 decoded result.
               </p>
             </div>
@@ -437,7 +441,7 @@ export default function HowToUseSuiteGuide() {
           id="copy"
           className="rounded-2xl border border-gray-200 p-6 sm:p-7 bg-white"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
             Copying, pasting, and sharing without breaking the spacing
           </h2>
 
@@ -452,7 +456,7 @@ export default function HowToUseSuiteGuide() {
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Safer places to paste
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-gray-700">
@@ -463,7 +467,7 @@ export default function HowToUseSuiteGuide() {
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+              <p className="text-base sm:text-lg font-extrabold text-sky-900">
                 Places that often mangle it
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-gray-700">
@@ -489,41 +493,72 @@ export default function HowToUseSuiteGuide() {
             Looking for the tools themselves? Jump to{" "}
             <a
               href="/"
-              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              className="text-sky-900 underline hover:no-underline cursor-pointer"
             >
               Translator
             </a>
             ,{" "}
             <a
               href="/audio"
-              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              className="text-sky-900 underline hover:no-underline cursor-pointer"
             >
               Audio
             </a>
             ,{" "}
             <a
               href="/practice"
-              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              className="text-sky-900 underline hover:no-underline cursor-pointer"
             >
               Practice
             </a>
             ,{" "}
             <a
               href="/typing"
-              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              className="text-sky-900 underline hover:no-underline cursor-pointer"
             >
               Typing
             </a>
             , or{" "}
             <a
               href="/dictionary"
-              className="text-[#0b2447] underline hover:no-underline cursor-pointer"
+              className="text-sky-900 underline hover:no-underline cursor-pointer"
             >
               Dictionary
             </a>
             .
           </p>
         </div>
+      </div>
+      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
+          Quick reference
+        </h2>
+
+        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+          <li>
+            <strong>Fastest tool:</strong> Use the Translator for quick
+            encode/decode.
+          </li>
+          <li>
+            <strong>Audio practice:</strong> Use Audio to hear the current Morse
+            string at a chosen WPM.
+          </li>
+          <li>
+            <strong>Drills:</strong> Use Practice for repetition with feedback.
+          </li>
+          <li>
+            <strong>Manual input:</strong> Use Typing when you cannot copy Morse
+            from the source.
+          </li>
+          <li>
+            <strong>Lookup:</strong> Use Dictionary to confirm a single
+            character.
+          </li>
+          <li>
+            <strong>Spacing rule:</strong> 3 spaces between letters, 7 spaces
+            between words (or use <code>/</code>).
+          </li>
+        </ul>
       </div>
     </section>
   );

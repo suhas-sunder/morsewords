@@ -1,27 +1,29 @@
 export default function HowItWorks() {
   return (
     <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
-      <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+      <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900 tracking-tight">
         Word separators in Morse code
       </h2>
 
       <p className="mt-3 text-base sm:text-lg text-gray-700 leading-relaxed">
-        Morse code is not a “symbol language” in the way people often copy it online.
-        In real Morse, meaning comes from <strong>timing</strong>: dots and dashes
-        (short and long signals), plus the length of the pauses between them. When Morse
-        is written as plain text, those pauses get approximated with spaces and sometimes
-        visible separators like <strong>/</strong> or <strong>|</strong>. This page is
-        focused on one specific problem: keeping word breaks consistent so that Morse is
-        easier to share, easier to paste into tools, and less likely to decode incorrectly.
+        Morse code is not a “symbol language” in the way people often copy it
+        online. In real Morse, meaning comes from <strong>timing</strong>: dots
+        and dashes (short and long signals), plus the length of the pauses
+        between them. When Morse is written as plain text, those pauses get
+        approximated with spaces and sometimes visible separators like{" "}
+        <strong>/</strong> or <strong>|</strong>. This page is focused on one
+        specific problem: keeping word breaks consistent so that Morse is easier
+        to share, easier to paste into tools, and less likely to decode
+        incorrectly.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
           <p className="font-extrabold text-neutral-900">Letter gap</p>
           <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-            In pasted text, letters are typically separated by a short gap such as{" "}
-            <strong>one space</strong>. Some sources use 2–3 spaces, which is still usually
-            intended to mean “next letter.”
+            In pasted text, letters are typically separated by a short gap such
+            as <strong>one space</strong>. Some sources use 2–3 spaces, which is
+            still usually intended to mean “next letter.”
           </p>
         </div>
 
@@ -37,9 +39,9 @@ export default function HowItWorks() {
         <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
           <p className="font-extrabold text-neutral-900">Why normalize?</p>
           <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-            Decoders rely on separators to know where letters and words end. If separators
-            are inconsistent, decoders either fail or produce confusing output. Normalizing
-            makes results predictable.
+            Decoders rely on separators to know where letters and words end. If
+            separators are inconsistent, decoders either fail or produce
+            confusing output. Normalizing makes results predictable.
           </p>
         </div>
       </div>
@@ -54,21 +56,23 @@ export default function HowItWorks() {
 
       <ul className="mt-3 space-y-2 text-gray-700 leading-relaxed list-disc pl-6">
         <li>
-          <strong>You already have Morse</strong> (dots and dashes) from a website, a puzzle,
-          a worksheet, or a friend, and you want to rewrite the word separators into a format
-          that tools will handle consistently.
+          <strong>You already have Morse</strong> (dots and dashes) from a
+          website, a puzzle, a worksheet, or a friend, and you want to rewrite
+          the word separators into a format that tools will handle consistently.
         </li>
         <li>
-          <strong>You have English text</strong> and you want to generate Morse in a specific
-          word-separated format, usually because the audience expects <strong>/</strong> or
+          <strong>You have English text</strong> and you want to generate Morse
+          in a specific word-separated format, usually because the audience
+          expects <strong>/</strong> or
           <strong> 7 spaces</strong>.
         </li>
       </ul>
 
       <p className="mt-3 text-gray-700 leading-relaxed">
         That is why this page supports both <strong>Normalize Morse</strong> and{" "}
-        <strong>English → Morse</strong>. The goal is not to become a full translator page.
-        The goal is to be extremely reliable about one thing: word breaks.
+        <strong>English → Morse</strong>. The goal is not to become a full
+        translator page. The goal is to be extremely reliable about one thing:
+        word breaks.
       </p>
 
       <h3 className="mt-8 text-xl sm:text-2xl font-extrabold text-neutral-900">
@@ -76,30 +80,36 @@ export default function HowItWorks() {
       </h3>
 
       <p className="mt-3 text-gray-700 leading-relaxed">
-        There is no single “only correct” way to display word breaks in pasted Morse text,
-        but there are formats that are more interoperable with tools and formats that are
-        more human-readable.
+        There is no single “only correct” way to display word breaks in pasted
+        Morse text, but there are formats that are more interoperable with tools
+        and formats that are more human-readable.
       </p>
 
       <div className="mt-5 grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-gray-200 bg-white p-5">
-          <p className="font-extrabold text-neutral-900">7 spaces (tool-friendly)</p>
+          <p className="font-extrabold text-neutral-900">
+            7 spaces (tool-friendly)
+          </p>
           <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-            Many decoders and encoders use 7 spaces as a clear word boundary because it is
-            unambiguous in plain text. If you are preparing Morse for another tool or for
-            consistent decoding, 7 spaces is usually the safest output.
+            Many decoders and encoders use 7 spaces as a clear word boundary
+            because it is unambiguous in plain text. If you are preparing Morse
+            for another tool or for consistent decoding, 7 spaces is usually the
+            safest output.
           </p>
           <p className="mt-3 text-sm text-gray-700 leading-relaxed font-mono bg-gray-50 border border-gray-200 rounded-xl p-3 whitespace-pre-wrap">
-            .... . .-.. .-.. ---       .-- --- .-. .-.. -..
+            .... . .-.. .-.. --- .-- --- .-. .-.. -..
           </p>
         </div>
 
         <div className="rounded-2xl border border-gray-200 bg-white p-5">
-          <p className="font-extrabold text-neutral-900">Slash / (human-friendly)</p>
+          <p className="font-extrabold text-neutral-900">
+            Slash / (human-friendly)
+          </p>
           <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-            A slash is very common in puzzles and social posts because it is easy to see.
-            It avoids the “how many spaces is that?” problem. If your audience is humans
-            first and tools second, <strong>/</strong> is often ideal.
+            A slash is very common in puzzles and social posts because it is
+            easy to see. It avoids the “how many spaces is that?” problem. If
+            your audience is humans first and tools second, <strong>/</strong>{" "}
+            is often ideal.
           </p>
           <p className="mt-3 text-sm text-gray-700 leading-relaxed font-mono bg-gray-50 border border-gray-200 rounded-xl p-3 whitespace-pre-wrap">
             .... . .-.. .-.. --- / .-- --- .-. .-.. -..
@@ -107,11 +117,13 @@ export default function HowItWorks() {
         </div>
 
         <div className="rounded-2xl border border-gray-200 bg-white p-5">
-          <p className="font-extrabold text-neutral-900">Pipe | (visible divider)</p>
+          <p className="font-extrabold text-neutral-900">
+            Pipe | (visible divider)
+          </p>
           <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-            Some people prefer <strong>|</strong> as a word divider because it looks like a
-            clean boundary and rarely appears in Morse itself. It is not universal, but it
-            is easy to normalize into something else.
+            Some people prefer <strong>|</strong> as a word divider because it
+            looks like a clean boundary and rarely appears in Morse itself. It
+            is not universal, but it is easy to normalize into something else.
           </p>
           <p className="mt-3 text-sm text-gray-700 leading-relaxed font-mono bg-gray-50 border border-gray-200 rounded-xl p-3 whitespace-pre-wrap">
             .... . .-.. .-.. --- | .-- --- .-. .-.. -..
@@ -119,18 +131,22 @@ export default function HowItWorks() {
         </div>
 
         <div className="rounded-2xl border border-gray-200 bg-white p-5">
-          <p className="font-extrabold text-neutral-900">New lines (input only)</p>
+          <p className="font-extrabold text-neutral-900">
+            New lines (input only)
+          </p>
           <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-            Line breaks appear when Morse is copied from PDFs, worksheets, email, or chat.
-            They are useful to <strong>accept</strong> and normalize, but they are not a
-            standard way to represent word breaks. Many tools and platforms rewrap text and
-            change line breaks unexpectedly.
+            Line breaks appear when Morse is copied from PDFs, worksheets,
+            email, or chat. They are useful to <strong>accept</strong> and
+            normalize, but they are not a standard way to represent word breaks.
+            Many tools and platforms rewrap text and change line breaks
+            unexpectedly.
           </p>
           <p className="mt-3 text-sm text-gray-700 leading-relaxed">
-            This is why this page treats new lines as a valid Morse input format and can
-            output new lines when you are normalizing pasted Morse, but it avoids generating
-            new lines from English as a “word separator.” For English → Morse, you typically
-            want output that survives copy/paste across sites.
+            This is why this page treats new lines as a valid Morse input format
+            and can output new lines when you are normalizing pasted Morse, but
+            it avoids generating new lines from English as a “word separator.”
+            For English → Morse, you typically want output that survives
+            copy/paste across sites.
           </p>
         </div>
       </div>
@@ -140,11 +156,11 @@ export default function HowItWorks() {
       </h3>
 
       <p className="mt-3 text-gray-700 leading-relaxed">
-        A decoder has a simple job: split the input into letter tokens, then map each token
-        to a character. The hard part is not the mapping. The hard part is knowing where one
-        letter ends and the next begins. If letters and words are not separated consistently,
-        a decoder may join tokens that should be separate or split tokens that should be
-        together.
+        A decoder has a simple job: split the input into letter tokens, then map
+        each token to a character. The hard part is not the mapping. The hard
+        part is knowing where one letter ends and the next begins. If letters
+        and words are not separated consistently, a decoder may join tokens that
+        should be separate or split tokens that should be together.
       </p>
 
       <p className="mt-3 text-gray-700 leading-relaxed">
@@ -153,22 +169,24 @@ export default function HowItWorks() {
 
       <ul className="mt-3 space-y-2 text-gray-700 leading-relaxed list-disc pl-6">
         <li>
-          <strong>Mixed conventions</strong>: the same string uses both <strong>/</strong> and
-          variable spaces, making word boundaries inconsistent.
+          <strong>Mixed conventions</strong>: the same string uses both{" "}
+          <strong>/</strong> and variable spaces, making word boundaries
+          inconsistent.
         </li>
         <li>
-          <strong>Collapsed spacing</strong>: some apps compress multiple spaces into one,
-          turning word gaps into letter gaps.
+          <strong>Collapsed spacing</strong>: some apps compress multiple spaces
+          into one, turning word gaps into letter gaps.
         </li>
         <li>
-          <strong>Line wrapping</strong>: copying from a webpage introduces new lines that were
-          not intended as word breaks.
+          <strong>Line wrapping</strong>: copying from a webpage introduces new
+          lines that were not intended as word breaks.
         </li>
       </ul>
 
       <p className="mt-3 text-gray-700 leading-relaxed">
-        Normalizing separators does not magically “fix” incorrect Morse, but it removes one of
-        the biggest sources of confusion: word boundary formatting.
+        Normalizing separators does not magically “fix” incorrect Morse, but it
+        removes one of the biggest sources of confusion: word boundary
+        formatting.
       </p>
 
       <h3 className="mt-8 text-xl sm:text-2xl font-extrabold text-neutral-900">
@@ -177,31 +195,103 @@ export default function HowItWorks() {
 
       <ul className="mt-3 space-y-2 text-gray-700 leading-relaxed list-disc pl-6">
         <li>
-          If you are making a puzzle for humans, consider using <strong>/</strong> or{" "}
-          <strong>|</strong> so word breaks are obvious without counting spaces.
+          If you are making a puzzle for humans, consider using{" "}
+          <strong>/</strong> or <strong>|</strong> so word breaks are obvious
+          without counting spaces.
         </li>
         <li>
-          If you are preparing Morse for a decoder or for consistent machine parsing, choose{" "}
-          <strong>7 spaces</strong> as output.
+          If you are preparing Morse for a decoder or for consistent machine
+          parsing, choose <strong>7 spaces</strong> as output.
         </li>
         <li>
-          If your input came from a PDF or worksheet, normalize it first. PDFs often insert
-          random line breaks that are not meaningful.
+          If your input came from a PDF or worksheet, normalize it first. PDFs
+          often insert random line breaks that are not meaningful.
         </li>
         <li>
-          If a decoder output looks wrong, check spacing before you assume the Morse is wrong.
-          Word and letter boundaries are the most common issue.
+          If a decoder output looks wrong, check spacing before you assume the
+          Morse is wrong. Word and letter boundaries are the most common issue.
         </li>
       </ul>
 
       <div className="mt-6 rounded-2xl border border-sky-200 bg-sky-50 p-4 text-sky-900">
         <p className="font-extrabold">What this page does (and does not do)</p>
         <p className="mt-2 text-sm leading-relaxed">
-          This page is intentionally narrow. It focuses on word separators and spacing
-          conventions. It does not try to “guess” letters or fix incorrect Morse sequences.
-          If you want full conversion between English and Morse, use the dedicated encoder
-          and decoder pages.
+          This page is intentionally narrow. It focuses on word separators and
+          spacing conventions. It does not try to “guess” letters or fix
+          incorrect Morse sequences. If you want full conversion between English
+          and Morse, use the dedicated encoder and decoder pages.
         </p>
+      </div>
+      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          Quick answers (word separators)
+        </h3>
+
+        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+          <li>
+            <strong>Word separator options:</strong> 7+ spaces, <code>/</code>,{" "}
+            <code>|</code>, or new lines (input).
+          </li>
+          <li>
+            <strong>Most tool-friendly output:</strong> 7 spaces between words.
+          </li>
+          <li>
+            <strong>Most human-friendly format:</strong> <code>/</code> (or{" "}
+            <code>|</code>) so word breaks are visible.
+          </li>
+          <li>
+            <strong>Why decoders fail:</strong> if word gaps collapse into
+            letter gaps, tokens merge and output becomes wrong.
+          </li>
+        </ul>
+      </div>
+      <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          Morse word separator rules
+        </h3>
+
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full border-collapse text-base sm:text-lg">
+            <thead>
+              <tr className="border-b border-gray-200">
+                <th className="py-2 text-left font-extrabold text-sky-900">
+                  Item
+                </th>
+                <th className="py-2 text-left font-extrabold text-sky-900">
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-700">
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4">Letter gap (typical pasted Morse)</td>
+                <td className="py-2">1 space (sometimes 2–3 spaces)</td>
+              </tr>
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4">Word gap (tool-friendly)</td>
+                <td className="py-2">7 spaces</td>
+              </tr>
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4">Word divider (human-friendly)</td>
+                <td className="py-2">
+                  <code>/</code> or <code>|</code>
+                </td>
+              </tr>
+              <tr className="border-b border-gray-100">
+                <td className="py-2 pr-4">New lines</td>
+                <td className="py-2">
+                  Accept as input; normalize to a stable output
+                </td>
+              </tr>
+              <tr>
+                <td className="py-2 pr-4">Best practice</td>
+                <td className="py-2">
+                  Pick one convention and stick to it end-to-end
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   );
