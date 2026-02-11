@@ -59,29 +59,19 @@ function writeInt(key: string, val: number) {
 }
 
 export default function PracticePage({ jsonLd }: { jsonLd: any }) {
-  const [pool, setPool] = React.useState<Pool>(() => {
-    const v = readStr(LS_POOL, "all");
-    return v === "all" ||
-      v === "letters" ||
-      v === "numbers" ||
-      v === "signals" ||
-      v === "words" ||
-      v === "sentences"
-      ? (v as Pool)
-      : "all";
-  });
+  // Hydration safety: do not read localStorage or generate random prompts during SSR/first paint.
+  // Load persisted settings after mount.
+  const [hydrated, setHydrated] = React.useState(false);
 
-  const [mode, setMode] = React.useState<DrillMode>(() => {
-    // Mode is stored per-pool so switching drills does not inherit unrelated settings.
-    const v = readStr(lsModeKey(pool), defaultModeForPool(pool));
-    return v === "text_to_morse" || v === "morse_to_text" || v === "mixed"
-      ? (v as DrillMode)
-      : defaultModeForPool(pool);
-  });
+  const [pool, setPool] = React.useState<Pool>("all");
+  const [mode, setMode] = React.useState<DrillMode>(defaultModeForPool("all"));
 
-  const [prompt, setPrompt] = React.useState<Prompt>(() =>
-    randomPrompt(mode, pool),
-  );
+  const [prompt, setPrompt] = React.useState<Prompt>(() => ({
+    kind: "text_to_morse",
+    plain: "SOS",
+    morse: "... --- ...",
+    label: "Practice",
+  }));
   const [answer, setAnswer] = React.useState("");
 
   // Quiz flow
@@ -99,9 +89,36 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
   const [correct, setCorrect] = React.useState(0);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(() =>
-    readInt(lsBestStreakKey(pool), 0),
-  );
+  const [bestStreak, setBestStreak] = React.useState(0);
+
+  React.useEffect(() => {
+    // Load persisted settings once on mount.
+    const poolRaw = readStr(LS_POOL, "all");
+    const nextPool: Pool =
+      poolRaw === "all" ||
+      poolRaw === "letters" ||
+      poolRaw === "numbers" ||
+      poolRaw === "signals" ||
+      poolRaw === "words" ||
+      poolRaw === "sentences"
+        ? (poolRaw as Pool)
+        : "all";
+
+    const modeRaw = readStr(lsModeKey(nextPool), defaultModeForPool(nextPool));
+    const nextMode: DrillMode =
+      modeRaw === "text_to_morse" ||
+      modeRaw === "morse_to_text" ||
+      modeRaw === "mixed"
+        ? (modeRaw as DrillMode)
+        : defaultModeForPool(nextPool);
+
+    const nextBest = readInt(lsBestStreakKey(nextPool), 0);
+
+    setPool((p) => (p === nextPool ? p : nextPool));
+    setMode((m) => (m === nextMode ? m : nextMode));
+    setBestStreak((b) => (b === nextBest ? b : nextBest));
+    setHydrated(true);
+  }, []);
 
   React.useEffect(() => {
     if (completed > TOTAL_QUESTIONS) {
@@ -116,10 +133,12 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   }, [completed]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     writeStr(LS_POOL, pool);
   }, [pool]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     // When pool changes, load pool-specific settings instead of inheriting from other drills.
     const v = readStr(lsModeKey(pool), defaultModeForPool(pool));
     const nextMode: DrillMode =
@@ -130,15 +149,17 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
 
     const bs = readInt(lsBestStreakKey(pool), 0);
     setBestStreak((b) => (b === bs ? b : bs));
-  }, [pool]);
+  }, [pool, hydrated]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     writeStr(lsModeKey(pool), mode);
-  }, [mode, pool]);
+  }, [mode, pool, hydrated]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     writeInt(lsBestStreakKey(pool), bestStreak);
-  }, [bestStreak, pool]);
+  }, [bestStreak, pool, hydrated]);
 
   React.useEffect(() => {
     // When settings change, generate a new prompt to match intent.
@@ -260,13 +281,13 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   );
 
   return (
-    <div className="mb-8 mt-4">
+    <div className=" ">
       <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="mb-4 flex flex-col justify-center items-center text-center">
-          <h1 className="font-bold !text-2xl sm:!text-4xl">
+          <h1 className="font-bold !text-2xl sm:!text-4xl text-sky-800">
             Morse Code Practice (Quiz)
           </h1>
-          <p className="mt-2 text-sm sm:text-lg text-gray-700">
+          <p className="mt-2 text-sm sm:text-lg text-gray-700 hidden sm:flex">
             A focused 10-question Morse quiz. One prompt at a time with instant
             feedback.
           </p>

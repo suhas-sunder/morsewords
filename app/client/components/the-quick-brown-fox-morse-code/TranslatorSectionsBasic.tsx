@@ -296,7 +296,7 @@ export default function TranslatorSectionsBasic({
   };
 
   return (
-    <div className="mb-8 mt-4">
+    <div className="mb-8">
       {/* Light feedback overlay */}
       {flashOn && (
         <div
@@ -307,10 +307,10 @@ export default function TranslatorSectionsBasic({
 
       <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="mb-4 flex flex-col justify-center items-center text-center">
-          <h1 style={styles.h1} className="font-bold !text-2xl sm:!text-4xl">
+          <h1 style={styles.h1} className="font-bold !text-2xl sm:!text-4xl text-sky-800">
             The Quick Brown Fox in Morse Code
           </h1>
-          <p className="mt-2 text-sm sm:text-lg">
+          <p className="mt-2 text-sm sm:text-lg hidden sm:flex">
             Copy, play, and practice the classic pangram in International Morse.
           </p>
         </div>

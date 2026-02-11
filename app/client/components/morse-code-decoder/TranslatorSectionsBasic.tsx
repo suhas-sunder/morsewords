@@ -47,20 +47,14 @@ export default function TranslatorSectionsBasic({
   const player = useAudio();
 
   // Speed slider controls character speed directly.
-  const [toneHz, setToneHz] = useState<number>(() => readNum("mw_hz", 600));
-  const [volume, setVolume] = useState<number>(() => readNum("mw_vol", 0.75));
-  const [soundOn, setSoundOn] = useState<boolean>(() =>
-    readBool("mw_sound", true),
-  );
-  const [repeat, setRepeat] = useState<boolean>(() =>
-    readBool("mw_repeat", false),
-  );
-  const [flash, setFlash] = useState<boolean>(() =>
-    readBool("mw_flash", false),
-  );
-  const [vibrate, setVibrate] = useState<boolean>(() =>
-    readBool("mw_vibrate", false),
-  );
+  const [hydrated, setHydrated] = useState(false);
+
+  const [toneHz, setToneHz] = useState<number>(600);
+  const [volume, setVolume] = useState<number>(0.75);
+  const [soundOn, setSoundOn] = useState<boolean>(true);
+  const [repeat, setRepeat] = useState<boolean>(false);
+  const [flash, setFlash] = useState<boolean>(false);
+  const [vibrate, setVibrate] = useState<boolean>(false);
 
   // Ensure at least one feedback mode stays enabled.
   const setFeedback = React.useCallback(
@@ -92,20 +86,44 @@ export default function TranslatorSectionsBasic({
     [soundOn, repeat, flash, vibrate],
   );
 
-  const [preset, setPreset] = useState<SoundPreset>(
-    () => (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio",
-  );
-  const [charWpm, setCharWpm] = useState<number>(() =>
-    readNum("mw_char_wpm", readNum("mw_wpm", 20)),
-  );
-  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(() =>
-    readNum("mw_fwpm", 20),
-  );
-  const [advancedOpen, setAdvancedOpen] = useState<boolean>(() =>
-    readBool("mw_adv_open", false),
-  );
+  const [preset, setPreset] = useState<SoundPreset>("cw_radio");
+  const [charWpm, setCharWpm] = useState<number>(20);
+  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(20);
+  const [advancedOpen, setAdvancedOpen] = useState<boolean>(false);
+
+  // Hydration-safe: load persisted settings after mount to avoid SSR/client mismatches.
+  useEffect(() => {
+    const nextToneHz = readNum("mw_hz", 600);
+    const nextVolume = readNum("mw_vol", 0.75);
+    const nextSoundOn = readBool("mw_sound", true);
+    const nextRepeat = readBool("mw_repeat", false);
+    const nextFlash = readBool("mw_flash", false);
+    const nextVibrate = readBool("mw_vibrate", false);
+    const nextPreset = ((readStr("mw_preset", "cw_radio") as SoundPreset) ||
+      "cw_radio") as SoundPreset;
+    const nextCharWpm = readNum("mw_char_wpm", readNum("mw_wpm", 20));
+    const nextFarnsworthWpm = readNum("mw_fwpm", 20);
+    const nextAdvancedOpen = readBool("mw_adv_open", false);
+
+    // Enforce "at least one feedback mode" on load too.
+    const anyOn = nextSoundOn || nextRepeat || nextFlash || nextVibrate;
+
+    setToneHz(nextToneHz);
+    setVolume(nextVolume);
+    setSoundOn(anyOn ? nextSoundOn : true);
+    setRepeat(anyOn ? nextRepeat : false);
+    setFlash(anyOn ? nextFlash : false);
+    setVibrate(anyOn ? nextVibrate : false);
+    setPreset(nextPreset);
+    setCharWpm(nextCharWpm);
+    setFarnsworthWpm(nextFarnsworthWpm);
+    setAdvancedOpen(nextAdvancedOpen);
+
+    setHydrated(true);
+  }, []);
 
   useEffect(() => {
+    if (!hydrated) return;
     writeNum("mw_wpm", charWpm);
     writeNum("mw_hz", toneHz);
     writeNum("mw_vol", volume);
@@ -296,7 +314,7 @@ export default function TranslatorSectionsBasic({
   };
 
   return (
-    <div className="mb-8 mt-4">
+    <div className="mb-8 ">
       {/* Light feedback overlay */}
       {flashOn && (
         <div
@@ -307,10 +325,13 @@ export default function TranslatorSectionsBasic({
 
       <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="mb-4 flex flex-col justify-center items-center text-center">
-          <h1 style={styles.h1} className="font-bold !text-2xl sm:!text-4xl">
+          <h1
+            style={styles.h1}
+            className="font-bold !text-2xl sm:!text-4xl text-sky-800"
+          >
             Morse Code Decoder
           </h1>
-          <p className="mt-2 text-sm sm:text-lg">
+          <p className="mt-2 hidden sm:flex text-sm sm:text-lg">
             Decode dots and dashes into readable text (International Morse)
             <span className="hidden sm:inline-flex">
               : paste Morse code and instantly convert it back into text.

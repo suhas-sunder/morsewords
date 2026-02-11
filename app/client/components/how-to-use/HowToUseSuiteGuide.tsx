@@ -1,14 +1,8 @@
 export default function HowToUseSuiteGuide() {
   return (
-    <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
+    <section className=" bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
       <div className="flex flex-col gap-3">
-        <div className="inline-flex items-center gap-2">
-          <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1.5 text-sm font-extrabold text-sky-900 border border-sky-200">
-            Tool guide
-          </span>
-        </div>
-
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
+        <h1 className="text-3xl flex justify-center items-center sm:text-4xl font-extrabold text-sky-900 tracking-tight">
           How to use MorseWords
         </h1>
 
@@ -36,7 +30,7 @@ export default function HowToUseSuiteGuide() {
           <a
             key={href}
             href={href}
-            className="px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 cursor-pointer transition"
+            className="px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold border border-sky-400 bg-sky-200 text-sky-800 hover:bg-gray-50 cursor-pointer transition"
           >
             {label}
           </a>

@@ -9,22 +9,22 @@ type RelatedLink = {
 
 const RELATED_LINKS: RelatedLink[] = [
   {
-    title: "iLoveTimers",
-    description: "Practice Morse with timed intervals.",
+    title: "TypingStories",
+    description: "Timed typing practice with engaging stories and passages.",
     href: "https://ilovetimers.com",
-    badge: "Practice",
+    badge: "Typing Practice",
   },
   {
     title: "iLoveWordSearch",
     description: "Explore word puzzles and pattern recognition.",
     href: "https://ilovewordsearch.com",
-    badge: "Word games",
+    badge: "Word Puzzles",
   },
   {
     title: "WordMythology",
     description: "Word games and vocabulary exploration.",
     href: "https://wordmythology.com",
-    badge: "Optional",
+    badge: "Fun with words",
   },
 ];
 
@@ -39,13 +39,13 @@ export default function RelatedTools() {
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b2447] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-800 tracking-tight">
             Keep practicing
           </h2>
 
           <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
             A small set of adjacent tools for timed practice and word-based
-            drills.
+            skill development.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function RelatedTools() {
               className="group rounded-2xl border border-gray-200 bg-white p-5 hover:bg-gray-50 cursor-pointer transition"
             >
               <div className="flex items-start justify-between gap-3">
-                <p className="text-base sm:text-lg font-extrabold text-[#0b2447]">
+                <p className="text-base sm:text-lg font-extrabold text-sky-800">
                   {item.title}
                 </p>
 

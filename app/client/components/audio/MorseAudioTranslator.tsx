@@ -27,17 +27,9 @@ type SourceMode = "text" | "morse";
 export default function MorseAudioTranslator() {
   const player = useMorseAudio();
 
-  const [sourceMode, setSourceMode] = React.useState<SourceMode>(
-    () => (readStr("mw_audio_source", "text") as SourceMode) || "text",
-  );
-
-  const [text, setText] = React.useState(() =>
-    readStr("mw_audio_text", "sos help"),
-  );
-  const [morse, setMorse] = React.useState(() =>
-    readStr("mw_audio_morse", "... --- ..."),
-  );
-
+  const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
+  const [text, setText] = React.useState("sos help");
+  const [morse, setMorse] = React.useState("... --- ...");
   const computedMorse = React.useMemo(() => textToMorse(text), [text]);
 
   const activeCode = React.useMemo(() => {
@@ -46,59 +38,66 @@ export default function MorseAudioTranslator() {
 
   const [copied, setCopied] = React.useState<string | null>(null);
 
-  const [toneHz, setToneHz] = React.useState<number>(() =>
-    readNum("mw_audio_hz", 650),
-  );
-  const [volume, setVolume] = React.useState<number>(() =>
-    readNum("mw_audio_vol", 0.75),
-  );
-  const [preset, setPreset] = React.useState<SoundPreset>(
-    () => (readStr("mw_audio_preset", "cw_radio") as SoundPreset) || "cw_radio",
-  );
-  const [charWpm, setCharWpm] = React.useState<number>(() =>
-    readNum("mw_audio_char_wpm", 20),
-  );
-  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(() =>
-    readNum("mw_audio_fwpm", 20),
-  );
-  const [attackMs, setAttackMs] = React.useState<number>(() =>
-    readNum("mw_audio_attack", 8),
-  );
-  const [releaseMs, setReleaseMs] = React.useState<number>(() =>
-    readNum("mw_audio_release", 12),
-  );
-
-  const [repeat, setRepeat] = React.useState<boolean>(() =>
-    readBool("mw_audio_repeat", false),
-  );
-  const [soundOn, setSoundOn] = React.useState<boolean>(() =>
-    readBool("mw_audio_sound", true),
-  );
-  const [flash, setFlash] = React.useState<boolean>(() =>
-    readBool("mw_audio_flash", false),
-  );
-  const [vibrate, setVibrate] = React.useState<boolean>(() =>
-    readBool("mw_audio_vibrate", false),
-  );
-
-  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(() =>
-    readBool("mw_audio_adv_open", true),
-  );
-  const [exportOpen, setExportOpen] = React.useState<boolean>(() =>
-    readBool("mw_audio_export_open", true),
-  );
-
-  const [fileName, setFileName] = React.useState(() =>
-    readStr("mw_audio_filename", "morse-audio"),
-  );
+  const [toneHz, setToneHz] = React.useState<number>(650);
+  const [volume, setVolume] = React.useState<number>(0.75);
+  const [preset, setPreset] = React.useState<SoundPreset>("cw_radio");
+  const [charWpm, setCharWpm] = React.useState<number>(20);
+  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(20);
+  const [attackMs, setAttackMs] = React.useState<number>(8);
+  const [releaseMs, setReleaseMs] = React.useState<number>(12);
+  const [repeat, setRepeat] = React.useState<boolean>(false);
+  const [soundOn, setSoundOn] = React.useState<boolean>(true);
+  const [flash, setFlash] = React.useState<boolean>(false);
+  const [vibrate, setVibrate] = React.useState<boolean>(false);
+  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(true);
+  const [exportOpen, setExportOpen] = React.useState<boolean>(true);
+  const [fileName, setFileName] = React.useState("morse-audio");
   const [sampleRate, setSampleRate] = React.useState<22050 | 44100 | 48000>(
-    () => (readNum("mw_audio_sr", 44100) as 22050 | 44100 | 48000) || 44100,
+    44100,
   );
-  const [tailMs, setTailMs] = React.useState<number>(() =>
-    readNum("mw_audio_tail", 120),
-  );
+  const [tailMs, setTailMs] = React.useState<number>(120);
+
+  const [hydrated, setHydrated] = React.useState(false);
+
+  // Load persisted settings after mount to avoid SSR/client markup mismatches.
+  React.useEffect(() => {
+    setSourceMode((readStr("mw_audio_source", "text") as SourceMode) || "text");
+    setText(readStr("mw_audio_text", "sos help"));
+    setMorse(readStr("mw_audio_morse", "... --- ..."));
+
+    setToneHz(readNum("mw_audio_hz", 650));
+    setVolume(readNum("mw_audio_vol", 0.75));
+    setPreset(
+      (readStr("mw_audio_preset", "cw_radio") as SoundPreset) || "cw_radio",
+    );
+    setCharWpm(readNum("mw_audio_char_wpm", 20));
+    setFarnsworthWpm(readNum("mw_audio_fwpm", 20));
+    setAttackMs(readNum("mw_audio_attack", 8));
+    setReleaseMs(readNum("mw_audio_release", 12));
+
+    setRepeat(readBool("mw_audio_repeat", false));
+    setSoundOn(readBool("mw_audio_sound", true));
+    setFlash(readBool("mw_audio_flash", false));
+    setVibrate(readBool("mw_audio_vibrate", false));
+
+    setAdvancedOpen(readBool("mw_audio_adv_open", true));
+    setExportOpen(readBool("mw_audio_export_open", true));
+
+    setFileName(readStr("mw_audio_filename", "morse-audio"));
+    setSampleRate(
+      ((readNum("mw_audio_sr", 44100) as 22050 | 44100 | 48000) || 44100) as
+        | 22050
+        | 44100
+        | 48000,
+    );
+    setTailMs(readNum("mw_audio_tail", 120));
+
+    setHydrated(true);
+  }, []);
 
   React.useEffect(() => {
+    if (!hydrated) return;
+
     writeStr("mw_audio_source", sourceMode);
     writeStr("mw_audio_text", text);
     writeStr("mw_audio_morse", morse);
@@ -142,6 +141,7 @@ export default function MorseAudioTranslator() {
     fileName,
     sampleRate,
     tailMs,
+    hydrated,
   ]);
 
   // Flash overlay
@@ -270,8 +270,7 @@ export default function MorseAudioTranslator() {
   };
 
   return (
-    <div className="mb-8 mt-4">
-      
+    <div className="mb-8">
       {flashOn && (
         <div
           className="fixed inset-0 z-[999] pointer-events-none"
@@ -281,10 +280,13 @@ export default function MorseAudioTranslator() {
 
       <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="mb-4 flex flex-col justify-center items-center text-center">
-          <h1 style={styles.h1} className="font-bold !text-2xl sm:!text-4xl">
+          <h1
+            style={styles.h1}
+            className="font-bold !text-2xl sm:!text-4xl text-sky-800"
+          >
             Morse Code Audio Translator
           </h1>
-          <p className="mt-2 text-sm sm:text-lg text-gray-700">
+          <p className="mt-2 text-sm hidden sm:flex sm:text-lg text-gray-700">
             Generate clean Morse audio from your message. Tune speed, spacing,
             and sound, then export a WAV.
           </p>
@@ -317,13 +319,13 @@ export default function MorseAudioTranslator() {
               </button>
             </div>
 
-            <div className="sm:ml-auto text-sm text-gray-600">
+            <div className="sm:ml-auto text-base font-semibold text-gray-600">
               {player.isSupported ? (
                 <>
-                  <span className="font-semibold text-neutral-900">
-                    Duration:
+                  <span className="font-bold  text-neutral-900">
+                    Duration (mm:ss):
                   </span>{" "}
-                  {formatMs(durationMs)}
+                  {formatMs(durationMs).toString()}
                 </>
               ) : (
                 <span className="text-gray-500">

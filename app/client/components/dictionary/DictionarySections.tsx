@@ -79,10 +79,7 @@ function ActionButton(props: {
   const { onClick, children, title, kind = "secondary", compact } = props;
   const [hover, setHover] = React.useState(false);
 
-  const base =
-    kind === "primary"
-      ? styles.btnPrimary
-      : styles.btnSecondary;
+  const base = kind === "primary" ? styles.btnPrimary : styles.btnSecondary;
 
   const style: React.CSSProperties = {
     ...base,
@@ -90,7 +87,8 @@ function ActionButton(props: {
     borderRadius: 10,
     whiteSpace: "nowrap",
     lineHeight: 1.15,
-    transition: "transform 120ms ease, filter 120ms ease, background 120ms ease, color 120ms ease",
+    transition:
+      "transform 120ms ease, filter 120ms ease, background 120ms ease, color 120ms ease",
     filter: hover ? "brightness(0.96)" : "none",
     transform: hover ? "translateY(-1px)" : "translateY(0px)",
     cursor: "pointer",
@@ -128,7 +126,8 @@ function ChipButton(props: {
     fontSize: ".92rem",
     cursor: "pointer",
     whiteSpace: "nowrap",
-    transition: "filter 120ms ease, transform 120ms ease, background 120ms ease, color 120ms ease",
+    transition:
+      "filter 120ms ease, transform 120ms ease, background 120ms ease, color 120ms ease",
     filter: hover ? "brightness(0.96)" : "none",
     transform: hover ? "translateY(-1px)" : "translateY(0px)",
   };
@@ -148,8 +147,18 @@ function ChipButton(props: {
 
 function SectionHeader(props: { title: string; id: string }) {
   return (
-    <div id={props.id} style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
-      <h2 style={{ ...styles.sectionTitle, margin: "0 0 10px" }}>{props.title}</h2>
+    <div
+      id={props.id}
+      style={{
+        display: "flex",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        gap: 12,
+      }}
+    >
+      <h2 style={{ ...styles.sectionTitle, margin: "0 0 10px" }}>
+        {props.title}
+      </h2>
       <a
         href="#top"
         style={{
@@ -164,12 +173,15 @@ function SectionHeader(props: { title: string; id: string }) {
           transition: "filter 120ms ease, transform 120ms ease",
         }}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.filter = "brightness(0.96)";
-          (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)";
+          (e.currentTarget as HTMLAnchorElement).style.filter =
+            "brightness(0.96)";
+          (e.currentTarget as HTMLAnchorElement).style.transform =
+            "translateY(-1px)";
         }}
         onMouseLeave={(e) => {
           (e.currentTarget as HTMLAnchorElement).style.filter = "none";
-          (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0px)";
+          (e.currentTarget as HTMLAnchorElement).style.transform =
+            "translateY(0px)";
         }}
       >
         Top
@@ -188,14 +200,25 @@ function TableShell(props: { children: React.ReactNode }) {
 
 function ScrollTable(props: { children: React.ReactNode }) {
   return (
-    <div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" as any }}>
+    <div
+      style={{
+        width: "100%",
+        overflowX: "auto",
+        WebkitOverflowScrolling: "touch" as any,
+      }}
+    >
       {props.children}
     </div>
   );
 }
 
 function TableBase(props: {
-  columns: { key: string; label: string; width?: number | string; align?: "left" | "right" | "center" }[];
+  columns: {
+    key: string;
+    label: string;
+    width?: number | string;
+    align?: "left" | "right" | "center";
+  }[];
   rows: React.ReactNode;
 }) {
   const { columns, rows } = props;
@@ -231,7 +254,11 @@ function TableBase(props: {
   );
 }
 
-function RowTd(props: { children: React.ReactNode; mono?: boolean; align?: "left" | "right" | "center" }) {
+function RowTd(props: {
+  children: React.ReactNode;
+  mono?: boolean;
+  align?: "left" | "right" | "center";
+}) {
   return (
     <td
       style={{
@@ -291,12 +318,15 @@ function QuickLinks(props: { items: { id: string; label: string }[] }) {
               transition: "filter 120ms ease, transform 120ms ease",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.filter = "brightness(0.96)";
-              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)";
+              (e.currentTarget as HTMLAnchorElement).style.filter =
+                "brightness(0.96)";
+              (e.currentTarget as HTMLAnchorElement).style.transform =
+                "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.filter = "none";
-              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0px)";
+              (e.currentTarget as HTMLAnchorElement).style.transform =
+                "translateY(0px)";
             }}
           >
             {i.label}
@@ -321,8 +351,11 @@ function DictionarySections() {
 
   const charRows = React.useMemo(() => {
     const entries = Object.entries(TEXT_TO_MORSE).map(([ch, morse]) => {
-      const category =
-        /^[A-Z]$/.test(ch) ? "Letters" : /^[0-9]$/.test(ch) ? "Numbers" : "Punctuation";
+      const category = /^[A-Z]$/.test(ch)
+        ? "Letters"
+        : /^[0-9]$/.test(ch)
+          ? "Numbers"
+          : "Punctuation";
       return { ch, morse, category };
     });
 
@@ -338,7 +371,11 @@ function DictionarySections() {
 
     // stable-ish order: letters, numbers, punctuation
     const order = { Letters: 0, Numbers: 1, Punctuation: 2 } as const;
-    filtered.sort((a, b) => order[a.category as keyof typeof order] - order[b.category as keyof typeof order] || a.ch.localeCompare(b.ch));
+    filtered.sort(
+      (a, b) =>
+        order[a.category as keyof typeof order] -
+          order[b.category as keyof typeof order] || a.ch.localeCompare(b.ch),
+    );
     return filtered;
   }, [q, charCat]);
 
@@ -360,7 +397,11 @@ function DictionarySections() {
       Phrases: 3,
     };
 
-    filtered.sort((a, b) => catOrder[a.category] - catOrder[b.category] || a.phrase.localeCompare(b.phrase));
+    filtered.sort(
+      (a, b) =>
+        catOrder[a.category] - catOrder[b.category] ||
+        a.phrase.localeCompare(b.phrase),
+    );
     return filtered;
   }, [q]);
 
@@ -391,10 +432,19 @@ function DictionarySections() {
     <div id="top">
       <style dangerouslySetInnerHTML={{ __html: responsiveCss }} />
       <div style={{ ...styles.section, paddingTop: 0 }}>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 14, flexWrap: "wrap" }}>
-          <h1 style={styles.h1}>Morse Code Dictionary</h1>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+            gap: 14,
+            flexWrap: "wrap",
+          }}
+        >
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <div style={{ fontSize: ".9rem", color: "#5a616c" }}>{copiedLabel}</div>
+            <div style={{ fontSize: ".9rem", color: "#5a616c" }}>
+              {copiedLabel}
+            </div>
           </div>
         </div>
 
@@ -416,17 +466,37 @@ function DictionarySections() {
               spellCheck={false}
             />
 
-            <div style={{ display: "flex", gap: 8, overflowX: "auto", WebkitOverflowScrolling: "touch" as any, paddingBottom: 2 }}>
-              <ChipButton active={charCat === "All"} onClick={() => setCharCat("All")}>
+            <div
+              style={{
+                display: "flex",
+                gap: 8,
+                overflowX: "auto",
+                WebkitOverflowScrolling: "touch" as any,
+                paddingBottom: 2,
+              }}
+            >
+              <ChipButton
+                active={charCat === "All"}
+                onClick={() => setCharCat("All")}
+              >
                 All
               </ChipButton>
-              <ChipButton active={charCat === "Letters"} onClick={() => setCharCat("Letters")}>
+              <ChipButton
+                active={charCat === "Letters"}
+                onClick={() => setCharCat("Letters")}
+              >
                 Letters
               </ChipButton>
-              <ChipButton active={charCat === "Numbers"} onClick={() => setCharCat("Numbers")}>
+              <ChipButton
+                active={charCat === "Numbers"}
+                onClick={() => setCharCat("Numbers")}
+              >
                 Numbers
               </ChipButton>
-              <ChipButton active={charCat === "Punctuation"} onClick={() => setCharCat("Punctuation")}>
+              <ChipButton
+                active={charCat === "Punctuation"}
+                onClick={() => setCharCat("Punctuation")}
+              >
                 Punctuation
               </ChipButton>
             </div>
@@ -458,11 +528,25 @@ function DictionarySections() {
                           <RowTd mono>{r.morse}</RowTd>
                           <RowTd>{r.category}</RowTd>
                           <RowTd align="right">
-                            <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "nowrap" }}>
-                              <ActionButton onClick={() => copy(r.morse, key + ":m")} compact>
+                            <div
+                              style={{
+                                display: "flex",
+                                gap: 10,
+                                justifyContent: "flex-end",
+                                flexWrap: "nowrap",
+                              }}
+                            >
+                              <ActionButton
+                                onClick={() => copy(r.morse, key + ":m")}
+                                compact
+                              >
                                 Copy Morse
                               </ActionButton>
-                              <ActionButton onClick={() => copy(r.ch, key + ":c")} compact kind="primary">
+                              <ActionButton
+                                onClick={() => copy(r.ch, key + ":c")}
+                                compact
+                                kind="primary"
+                              >
                                 Copy Char
                               </ActionButton>
                             </div>
@@ -490,9 +574,11 @@ function DictionarySections() {
                       <div className={`mwDictCardValue mwDictMono`}>{r.ch}</div>
                     </div>
 
-          <div className="mwDictMobileBackTop">
-            <a href="#top" aria-label="Back to top">Back to top</a>
-          </div>
+                    <div className="mwDictMobileBackTop">
+                      <a href="#top" aria-label="Back to top">
+                        Back to top
+                      </a>
+                    </div>
                     <div style={{ textAlign: "right" }}>
                       <div className="mwDictCardLabel">Category</div>
                       <div className="mwDictCardValue">{r.category}</div>
@@ -501,14 +587,23 @@ function DictionarySections() {
 
                   <div>
                     <div className="mwDictCardLabel">Morse</div>
-                    <div className={`mwDictCardValue mwDictMono`}>{r.morse}</div>
+                    <div className={`mwDictCardValue mwDictMono`}>
+                      {r.morse}
+                    </div>
                   </div>
 
                   <div className="mwDictCardBtns">
-                    <ActionButton onClick={() => copy(r.morse, key + ":m")} compact>
+                    <ActionButton
+                      onClick={() => copy(r.morse, key + ":m")}
+                      compact
+                    >
                       Copy Morse
                     </ActionButton>
-                    <ActionButton onClick={() => copy(r.ch, key + ":c")} compact kind="primary">
+                    <ActionButton
+                      onClick={() => copy(r.ch, key + ":c")}
+                      compact
+                      kind="primary"
+                    >
                       Copy Char
                     </ActionButton>
                   </div>
@@ -521,12 +616,20 @@ function DictionarySections() {
 
       <div style={styles.section}>
         <SectionHeader title="Prosigns" id="signals" />
-        <LookupTable rows={phraseRows.filter((r) => r.category === "Prosigns")} copy={copy} tableKey="prosigns" />
+        <LookupTable
+          rows={phraseRows.filter((r) => r.category === "Prosigns")}
+          copy={copy}
+          tableKey="prosigns"
+        />
       </div>
 
       <div style={styles.section}>
         <SectionHeader title="Q-codes" id="qcodes" />
-        <LookupTable rows={phraseRows.filter((r) => r.category === "Q-codes")} copy={copy} tableKey="qcodes" />
+        <LookupTable
+          rows={phraseRows.filter((r) => r.category === "Q-codes")}
+          copy={copy}
+          tableKey="qcodes"
+        />
       </div>
 
       <div style={styles.section}>
@@ -540,7 +643,11 @@ function DictionarySections() {
 
       <div style={{ ...styles.section, paddingBottom: 6 }}>
         <SectionHeader title="Phrases" id="phrases" />
-        <LookupTable rows={phraseRows.filter((r) => r.category === "Phrases")} copy={copy} tableKey="phrases" />
+        <LookupTable
+          rows={phraseRows.filter((r) => r.category === "Phrases")}
+          copy={copy}
+          tableKey="phrases"
+        />
       </div>
     </div>
   );
@@ -576,11 +683,25 @@ function LookupTable(props: {
                         <RowTd mono>{r.morse}</RowTd>
                         <RowTd>{r.meaning}</RowTd>
                         <RowTd align="right">
-                          <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "nowrap" }}>
-                            <ActionButton onClick={() => copy(r.morse, key + ":m")} compact>
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: 10,
+                              justifyContent: "flex-end",
+                              flexWrap: "nowrap",
+                            }}
+                          >
+                            <ActionButton
+                              onClick={() => copy(r.morse, key + ":m")}
+                              compact
+                            >
                               Copy Morse
                             </ActionButton>
-                            <ActionButton onClick={() => copy(r.phrase, key + ":p")} compact kind="primary">
+                            <ActionButton
+                              onClick={() => copy(r.phrase, key + ":p")}
+                              compact
+                              kind="primary"
+                            >
                               Copy Label
                             </ActionButton>
                           </div>
@@ -607,9 +728,11 @@ function LookupTable(props: {
                   <div className={`mwDictCardValue mwDictMono`}>{r.phrase}</div>
                 </div>
 
-          <div className="mwDictMobileBackTop">
-            <a href="#top" aria-label="Back to top">Back to top</a>
-          </div>
+                <div className="mwDictMobileBackTop">
+                  <a href="#top" aria-label="Back to top">
+                    Back to top
+                  </a>
+                </div>
                 <div>
                   <div className="mwDictCardLabel">Morse</div>
                   <div className={`mwDictCardValue mwDictMono`}>{r.morse}</div>
@@ -619,10 +742,17 @@ function LookupTable(props: {
                   <div className="mwDictCardValue">{r.meaning}</div>
                 </div>
                 <div className="mwDictCardBtns">
-                  <ActionButton onClick={() => copy(r.morse, key + ":m")} compact>
+                  <ActionButton
+                    onClick={() => copy(r.morse, key + ":m")}
+                    compact
+                  >
                     Copy Morse
                   </ActionButton>
-                  <ActionButton onClick={() => copy(r.phrase, key + ":p")} compact kind="primary">
+                  <ActionButton
+                    onClick={() => copy(r.phrase, key + ":p")}
+                    compact
+                    kind="primary"
+                  >
                     Copy Label
                   </ActionButton>
                 </div>

@@ -124,26 +124,23 @@ export default function HowToUse() {
   return (
     <div style={styles.page}>
       <div style={styles.wrap}>
-        <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
-          <ol className="flex flex-wrap items-center gap-2">
-            <li>
-              <a
-                href="/"
-                className="underline hover:no-underline cursor-pointer"
-              >
-                Home
-              </a>
-            </li>
-            <li>/</li>
-            <li className="font-semibold text-gray-900">
-              How to Use MorseWords
-            </li>
-          </ol>
-        </nav>
         <HowToUseSuiteGuide />
         <FaqSectionGeneric title="How to Use FAQ" items={faqItems} />
       </div>
-
+      <nav
+        aria-label="Breadcrumb"
+        className="pb-4 text-sm text-gray-600 max-w-5xl mx-auto"
+      >
+        <ol className="flex flex-wrap items-center gap-2">
+          <li>
+            <a href="/" className="underline hover:no-underline cursor-pointer">
+              Home
+            </a>
+          </li>
+          <li>/</li>
+          <li className="font-semibold text-gray-900">How to Use MorseWords</li>
+        </ol>
+      </nav>
       <JsonLdScript jsonLd={jsonLd} />
     </div>
   );

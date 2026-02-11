@@ -113,6 +113,15 @@ export default function useMorseAudio() {
 
   const [state, setState] = React.useState<MorsePlayerState>("idle");
 
+  const [isSupported, setIsSupported] = React.useState(false);
+
+  React.useEffect(() => {
+    const supported =
+      typeof window !== "undefined" &&
+      !!(window.AudioContext || (window as any).webkitAudioContext);
+    setIsSupported(supported);
+  }, []);
+
   function ensureCtx() {
     if (!ctxRef.current) {
       const Ctx = (window.AudioContext || (window as any).webkitAudioContext) as
@@ -511,9 +520,7 @@ export default function useMorseAudio() {
 
   return {
     state,
-    isSupported:
-      typeof window !== "undefined" &&
-      !!(window.AudioContext || (window as any).webkitAudioContext),
+    isSupported,
     play,
     pause,
     resume,

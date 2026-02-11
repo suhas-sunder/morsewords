@@ -47,20 +47,16 @@ export default function TranslatorSectionsBasic({
   const player = useAudio();
 
   // Speed slider controls character speed directly.
-  const [toneHz, setToneHz] = useState<number>(() => readNum("mw_hz", 600));
-  const [volume, setVolume] = useState<number>(() => readNum("mw_vol", 0.75));
-  const [soundOn, setSoundOn] = useState<boolean>(() =>
-    readBool("mw_sound", true),
-  );
-  const [repeat, setRepeat] = useState<boolean>(() =>
-    readBool("mw_repeat", false),
-  );
-  const [flash, setFlash] = useState<boolean>(() =>
-    readBool("mw_flash", false),
-  );
-  const [vibrate, setVibrate] = useState<boolean>(() =>
-    readBool("mw_vibrate", false),
-  );
+  // Hydration-safe defaults first (SSR + first client render must match), then
+  // load persisted values after mount.
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  const [toneHz, setToneHz] = useState<number>(600);
+  const [volume, setVolume] = useState<number>(0.75);
+  const [soundOn, setSoundOn] = useState<boolean>(true);
+  const [repeat, setRepeat] = useState<boolean>(false);
+  const [flash, setFlash] = useState<boolean>(false);
+  const [vibrate, setVibrate] = useState<boolean>(false);
 
   // Ensure at least one feedback mode stays enabled.
   const setFeedback = React.useCallback(
@@ -92,20 +88,54 @@ export default function TranslatorSectionsBasic({
     [soundOn, repeat, flash, vibrate],
   );
 
-  const [preset, setPreset] = useState<SoundPreset>(
-    () => (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio",
-  );
-  const [charWpm, setCharWpm] = useState<number>(() =>
-    readNum("mw_char_wpm", readNum("mw_wpm", 20)),
-  );
-  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(() =>
-    readNum("mw_fwpm", 20),
-  );
-  const [advancedOpen, setAdvancedOpen] = useState<boolean>(() =>
-    readBool("mw_adv_open", false),
-  );
+  const [preset, setPreset] = useState<SoundPreset>("cw_radio");
+  const [charWpm, setCharWpm] = useState<number>(20);
+  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(20);
+  const [advancedOpen, setAdvancedOpen] = useState<boolean>(false);
+
+  // Load persisted settings after mount (prevents SSR/client mismatch).
+  useEffect(() => {
+    const nextTone = readNum("mw_hz", 600);
+    const nextVol = readNum("mw_vol", 0.75);
+    const nextSound = readBool("mw_sound", true);
+    const nextRepeat = readBool("mw_repeat", false);
+    const nextFlash = readBool("mw_flash", false);
+    const nextVib = readBool("mw_vibrate", false);
+    const nextPreset = (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio";
+
+    const legacyWpm = readNum("mw_wpm", 20);
+    const nextChar = readNum("mw_char_wpm", legacyWpm);
+    const nextFwpm = readNum("mw_fwpm", 20);
+    const nextAdv = readBool("mw_adv_open", false);
+
+    // Enforce the "at least one feedback mode" rule on load as well.
+    const anyOn = nextSound || nextRepeat || nextFlash || nextVib;
+
+    setToneHz(nextTone);
+    setVolume(nextVol);
+    setPreset(nextPreset);
+    setCharWpm(nextChar);
+    setFarnsworthWpm(nextFwpm);
+    setAdvancedOpen(nextAdv);
+
+    if (!anyOn) {
+      setSoundOn(true);
+      setRepeat(false);
+      setFlash(false);
+      setVibrate(false);
+    } else {
+      setSoundOn(nextSound);
+      setRepeat(nextRepeat);
+      setFlash(nextFlash);
+      setVibrate(nextVib);
+    }
+
+    setIsHydrated(true);
+  }, []);
 
   useEffect(() => {
+    // Don't write defaults during the hydration pass.
+    if (!isHydrated) return;
     writeNum("mw_wpm", charWpm);
     writeNum("mw_hz", toneHz);
     writeNum("mw_vol", volume);
@@ -118,6 +148,7 @@ export default function TranslatorSectionsBasic({
     writeNum("mw_fwpm", farnsworthWpm);
     writeBool("mw_adv_open", advancedOpen);
   }, [
+    isHydrated,
     toneHz,
     volume,
     soundOn,
@@ -296,7 +327,7 @@ export default function TranslatorSectionsBasic({
   };
 
   return (
-    <div className="mb-8 mt-4">
+    <div className="mb-8">
       {/* Light feedback overlay */}
       {flashOn && (
         <div
@@ -307,10 +338,10 @@ export default function TranslatorSectionsBasic({
 
       <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="mb-4 flex flex-col justify-center items-center text-center">
-          <h1 style={styles.h1} className="font-bold !text-2xl sm:!text-4xl">
+          <h1 style={styles.h1} className="font-bold !text-2xl sm:!text-4xl text-sky-800">
             Morse Code Translator
           </h1>
-          <p className="mt-2 text-sm sm:text-lg">
+          <p className="mt-2 hidden sm:flex text-sm sm:text-lg">
             All-in-one Morse code translator and decoder
             <span className="hidden sm:inline-flex">
               : encode text into Morse, or decode Morse back to readable text.

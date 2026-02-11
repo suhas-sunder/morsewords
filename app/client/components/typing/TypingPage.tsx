@@ -78,15 +78,21 @@ export default function TypingPage({ jsonLd }: Props) {
       { label: "5m", sec: 300 },
       { label: "30m", sec: 1800 },
     ],
-    []
+    [],
   );
 
   const [durationSec, setDurationSec] = React.useState<number>(30);
-  const [sessionState, setSessionState] = React.useState<"idle" | "running" | "paused" | "done">("idle");
-  const [sessionStartMs, setSessionStartMs] = React.useState<number | null>(null);
+  const [sessionState, setSessionState] = React.useState<
+    "idle" | "running" | "paused" | "done"
+  >("idle");
+  const [sessionStartMs, setSessionStartMs] = React.useState<number | null>(
+    null,
+  );
   const [elapsedBeforePauseMs, setElapsedBeforePauseMs] = React.useState(0);
   const [endsAtMs, setEndsAtMs] = React.useState<number | null>(null);
-  const [pausedRemainingMs, setPausedRemainingMs] = React.useState<number | null>(null);
+  const [pausedRemainingMs, setPausedRemainingMs] = React.useState<
+    number | null
+  >(null);
   const [completedAtMs, setCompletedAtMs] = React.useState<number | null>(null);
   const [showEndScreen, setShowEndScreen] = React.useState(false);
 
@@ -141,7 +147,9 @@ export default function TypingPage({ jsonLd }: Props) {
   }, [now, sessionState, endsAtMs, durationSec]);
 
   const runningElapsedMs =
-    sessionState === "running" && sessionStartMs != null ? Math.max(0, now - sessionStartMs) : 0;
+    sessionState === "running" && sessionStartMs != null
+      ? Math.max(0, now - sessionStartMs)
+      : 0;
   const elapsedMs = elapsedBeforePauseMs + runningElapsedMs;
   const elapsedSec = Math.floor(elapsedMs / 1000);
 
@@ -152,17 +160,29 @@ export default function TypingPage({ jsonLd }: Props) {
 
     // paused
     const ms =
-      sessionState === "paused" ? pausedRemainingMs : endsAtMs != null ? Math.max(0, endsAtMs - now) : 0;
+      sessionState === "paused"
+        ? pausedRemainingMs
+        : endsAtMs != null
+          ? Math.max(0, endsAtMs - now)
+          : 0;
     return Math.max(0, Math.ceil(ms / 1000));
   }, [durationSec, sessionState, pausedRemainingMs, endsAtMs, now]);
 
   // Display remaining time while running/paused, otherwise show the selected duration.
   const timeDisplay =
-    sessionState === "running" || sessionState === "paused" ? fmtMMSS(remainingSec) : fmtMMSS(durationSec);
+    sessionState === "running" || sessionState === "paused"
+      ? fmtMMSS(remainingSec)
+      : fmtMMSS(durationSec);
 
-  const timeLabel = sessionState === "running" || sessionState === "paused" ? "Remaining" : "Duration";
+  const timeLabel =
+    sessionState === "running" || sessionState === "paused"
+      ? "Remaining"
+      : "Duration";
 
-  const lettersPerMin = elapsedSec === 0 ? 0 : Math.round((decoded.lettersDecoded / elapsedSec) * 60);
+  const lettersPerMin =
+    elapsedSec === 0
+      ? 0
+      : Math.round((decoded.lettersDecoded / elapsedSec) * 60);
 
   const focusInput = React.useCallback(() => {
     inputRef.current?.focus();
@@ -200,7 +220,7 @@ export default function TypingPage({ jsonLd }: Props) {
       setRaw((prev) => prev + s);
       focusInput();
     },
-    [ensureRunning, focusInput]
+    [ensureRunning, focusInput],
   );
 
   const backspace = React.useCallback(() => {
@@ -225,7 +245,8 @@ export default function TypingPage({ jsonLd }: Props) {
   const pauseSession = React.useCallback(() => {
     if (sessionState !== "running") return;
     const nowMs = Date.now();
-    const runningMs = sessionStartMs != null ? Math.max(0, nowMs - sessionStartMs) : 0;
+    const runningMs =
+      sessionStartMs != null ? Math.max(0, nowMs - sessionStartMs) : 0;
     setElapsedBeforePauseMs((prev) => prev + runningMs);
     setSessionStartMs(null);
     setSessionState("paused");
@@ -350,7 +371,7 @@ export default function TypingPage({ jsonLd }: Props) {
       }
       return out;
     },
-    [inputMode]
+    [inputMode],
   );
 
   const onInputChange = React.useCallback(
@@ -362,14 +383,20 @@ export default function TypingPage({ jsonLd }: Props) {
       const prev = raw;
       if (sessionState === "idle" && nextRaw.length > prev.length) {
         const added = nextRaw.slice(prev.length);
-        if (added.trim().length > 0 || added.includes(".") || added.includes("-") || added.includes("/") || added.includes(" ")) {
+        if (
+          added.trim().length > 0 ||
+          added.includes(".") ||
+          added.includes("-") ||
+          added.includes("/") ||
+          added.includes(" ")
+        ) {
           ensureRunning();
         }
       }
 
       setRaw(nextRaw);
     },
-    [ensureRunning, raw, sanitizeAndMap, sessionState]
+    [ensureRunning, raw, sanitizeAndMap, sessionState],
   );
 
   return (
@@ -406,31 +433,41 @@ export default function TypingPage({ jsonLd }: Props) {
             <div className="p-4 sm:p-6">
               <div className="grid gap-3 sm:grid-cols-3">
                 <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">Letters</div>
+                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                    Letters
+                  </div>
                   <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
                     {decoded.lettersDecoded}
                   </div>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">Words</div>
+                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                    Words
+                  </div>
                   <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
                     {decoded.wordsDecoded}
                   </div>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">Letters/min</div>
+                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                    Letters/min
+                  </div>
                   <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
                     {lettersPerMin}
                   </div>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4 sm:col-span-2">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">Invalid</div>
+                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                    Invalid
+                  </div>
                   <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
                     {decoded.invalidSymbols}
                   </div>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">Time</div>
+                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                    Time
+                  </div>
                   <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
                     {fmtMMSS(durationSec)}
                   </div>
@@ -463,7 +500,8 @@ export default function TypingPage({ jsonLd }: Props) {
                 </div>
 
                 <div className="text-sm sm:text-base text-gray-600">
-                  Pick a duration above, then start typing to begin a new session.
+                  Pick a duration above, then start typing to begin a new
+                  session.
                 </div>
               </div>
             </div>
@@ -471,13 +509,15 @@ export default function TypingPage({ jsonLd }: Props) {
         </div>
       ) : null}
 
-
-      <div className="mb-8 mt-4">
+      <div className="">
         <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
           <div className="mb-4 flex flex-col justify-center items-center text-center">
-            <h1 className="font-bold !text-2xl sm:!text-4xl">Morse Code Typing</h1>
-            <p className="mt-2 text-sm sm:text-lg text-gray-700">
-              Freeform, input-first Morse typing with real-time decoding. Built for fluent users who want repetition, rhythm, and endurance.
+            <h1 className="font-bold !text-2xl sm:!text-4xl text-sky-800">
+              Morse Code Typing
+            </h1>
+            <p className="mt-2 text-sm sm:text-lg text-gray-700 hidden sm:flex">
+              Freeform, input-first Morse typing with real-time decoding. Built
+              for fluent users who want repetition, rhythm, and endurance.
             </p>
           </div>
 
@@ -499,7 +539,11 @@ export default function TypingPage({ jsonLd }: Props) {
                         : "text-gray-700 hover:bg-white/60"
                     }`}
                     aria-label={`Set session duration to ${p.label}`}
-                    title={sessionState === "running" ? "Pause or reset to change duration" : `Set duration: ${p.label}`}
+                    title={
+                      sessionState === "running"
+                        ? "Pause or reset to change duration"
+                        : `Set duration: ${p.label}`
+                    }
                   >
                     {p.label}
                   </button>
@@ -510,9 +554,17 @@ export default function TypingPage({ jsonLd }: Props) {
                 <Button
                   type="button"
                   variant={sessionState === "paused" ? "primary" : "secondary"}
-                  onClick={sessionState === "paused" ? resumeSession : pauseSession}
-                  disabled={sessionState !== "running" && sessionState !== "paused"}
-                  aria-label={sessionState === "paused" ? "Resume session" : "Pause session"}
+                  onClick={
+                    sessionState === "paused" ? resumeSession : pauseSession
+                  }
+                  disabled={
+                    sessionState !== "running" && sessionState !== "paused"
+                  }
+                  aria-label={
+                    sessionState === "paused"
+                      ? "Resume session"
+                      : "Pause session"
+                  }
                 >
                   {sessionState === "paused" ? "Resume" : "Pause"}
                 </Button>
@@ -564,19 +616,34 @@ export default function TypingPage({ jsonLd }: Props) {
               {showStats ? (
                 <>
                   <span>
-                    {timeLabel}: <span className="font-extrabold text-[#0b2447]">{timeDisplay}</span>
+                    {timeLabel}:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {timeDisplay}
+                    </span>
                   </span>
                   <span>
-                    Letters: <span className="font-extrabold text-[#0b2447]">{decoded.lettersDecoded}</span>
+                    Letters:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {decoded.lettersDecoded}
+                    </span>
                   </span>
                   <span className="hidden sm:inline">
-                    Words: <span className="font-extrabold text-[#0b2447]">{decoded.wordsDecoded}</span>
+                    Words:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {decoded.wordsDecoded}
+                    </span>
                   </span>
                   <span className="hidden sm:inline">
-                    Letters/min: <span className="font-extrabold text-[#0b2447]">{lettersPerMin}</span>
+                    Letters/min:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {lettersPerMin}
+                    </span>
                   </span>
                   <span>
-                    Invalid: <span className="font-extrabold text-[#0b2447]">{decoded.invalidSymbols}</span>
+                    Invalid:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {decoded.invalidSymbols}
+                    </span>
                   </span>
                 </>
               ) : null}
@@ -612,9 +679,13 @@ export default function TypingPage({ jsonLd }: Props) {
             <div className="rounded-2xl border border-gray-200 bg-sky-50 p-4 sm:p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <div className="text-sm font-semibold text-sky-900">Decoded output</div>
+                  <div className="text-sm font-semibold text-sky-900">
+                    Decoded output
+                  </div>
                   <div className="mt-1 text-sm text-gray-700">
-                    Type dots and dashes continuously. Commit a letter with <span className="font-semibold">Space</span> and a word with <span className="font-semibold">/</span>.
+                    Type dots and dashes continuously. Commit a letter with{" "}
+                    <span className="font-semibold">Space</span> and a word with{" "}
+                    <span className="font-semibold">/</span>.
                   </div>
                 </div>
 
@@ -627,21 +698,43 @@ export default function TypingPage({ jsonLd }: Props) {
               </div>
 
               <pre className="mt-4 whitespace-pre-wrap break-words rounded-xl border border-gray-200 bg-white p-4 font-mono text-base leading-relaxed text-gray-900 min-h-[160px] max-h-[320px] overflow-auto">
-{decoded.decoded || ""}
+                {decoded.decoded || ""}
               </pre>
 
               {sessionState === "done" ? (
                 <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4">
-                  <div className="text-sm font-semibold text-neutral-900">Session complete</div>
+                  <div className="text-sm font-semibold text-neutral-900">
+                    Session complete
+                  </div>
                   <div className="mt-1 text-sm text-gray-700">
-                    Duration: <span className="font-extrabold text-[#0b2447]">{fmtMMSS(durationSec)}</span> · Letters:{" "}
-                    <span className="font-extrabold text-[#0b2447]">{decoded.lettersDecoded}</span> · Words:{" "}
-                    <span className="font-extrabold text-[#0b2447]">{decoded.wordsDecoded}</span> · Letters/min:{" "}
-                    <span className="font-extrabold text-[#0b2447]">{lettersPerMin}</span> · Invalid:{" "}
-                    <span className="font-extrabold text-[#0b2447]">{decoded.invalidSymbols}</span>
+                    Duration:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {fmtMMSS(durationSec)}
+                    </span>{" "}
+                    · Letters:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {decoded.lettersDecoded}
+                    </span>{" "}
+                    · Words:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {decoded.wordsDecoded}
+                    </span>{" "}
+                    · Letters/min:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {lettersPerMin}
+                    </span>{" "}
+                    · Invalid:{" "}
+                    <span className="font-extrabold text-[#0b2447]">
+                      {decoded.invalidSymbols}
+                    </span>
                   </div>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    <Button type="button" variant="primary" onClick={resetSession} aria-label="Reset and type again">
+                    <Button
+                      type="button"
+                      variant="primary"
+                      onClick={resetSession}
+                      aria-label="Reset and type again"
+                    >
                       Type again
                     </Button>
                     <ShareResultsButton
@@ -664,20 +757,32 @@ export default function TypingPage({ jsonLd }: Props) {
                 <label className="text-sky-900 font-bold">Input</label>
                 <div className="mt-1 text-sm text-gray-700">
                   {sessionState === "idle" ? (
-                    <>Choose a duration, then start typing. The timer begins on your first keypress.</>
+                    <>
+                      Choose a duration, then start typing. The timer begins on
+                      your first keypress.
+                    </>
                   ) : sessionState === "paused" ? (
-                    <>Paused. Tap <span className="font-semibold">Resume</span> to continue.</>
+                    <>
+                      Paused. Tap <span className="font-semibold">Resume</span>{" "}
+                      to continue.
+                    </>
                   ) : sessionState === "done" ? (
                     <>Session finished. Reset to run another round.</>
                   ) : (
-                    <>Type continuously. Commit a letter with <span className="font-semibold">Space</span>, a word with <span className="font-semibold">/</span>.</>
+                    <>
+                      Type continuously. Commit a letter with{" "}
+                      <span className="font-semibold">Space</span>, a word with{" "}
+                      <span className="font-semibold">/</span>.
+                    </>
                   )}
                 </div>
                 <textarea
                   ref={inputRef}
                   value={raw}
                   onChange={onInputChange}
-                  readOnly={sessionState === "paused" || sessionState === "done"}
+                  readOnly={
+                    sessionState === "paused" || sessionState === "done"
+                  }
                   rows={8}
                   wrap="soft"
                   onKeyDown={onInputKeyDown}
@@ -695,7 +800,14 @@ export default function TypingPage({ jsonLd }: Props) {
                   autoCorrect="off"
                   spellCheck={false}
                   className="w-full max-w-full min-w-0 box-border mt-2 rounded-xl p-3 font-mono border border-sky-500 outline-sky-500 bg-white overflow-auto min-h-[220px] max-h-[360px]"
-                  style={{ whiteSpace: "pre-wrap", overflowX: "hidden", overflowWrap: "anywhere", wordBreak: "break-word", maxWidth: "100%", minWidth: 0 }}
+                  style={{
+                    whiteSpace: "pre-wrap",
+                    overflowX: "hidden",
+                    overflowWrap: "anywhere",
+                    wordBreak: "break-word",
+                    maxWidth: "100%",
+                    minWidth: 0,
+                  }}
                   placeholder={
                     sessionState === "paused"
                       ? "Paused"
@@ -707,42 +819,85 @@ export default function TypingPage({ jsonLd }: Props) {
                   }
                   aria-label="Morse typing input"
                 />
-</div>
+              </div>
 
               <div className="mt-4 flex flex-wrap gap-3">
-                <Button type="button" variant="primary" onClick={copyDecoded} aria-label="Copy decoded output">
+                <Button
+                  type="button"
+                  variant="primary"
+                  onClick={copyDecoded}
+                  aria-label="Copy decoded output"
+                >
                   Copy decoded
                 </Button>
-                <Button type="button" variant="ghost" onClick={clearAll} disabled={!raw} aria-label="Clear scratchpad">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={clearAll}
+                  disabled={!raw}
+                  aria-label="Clear scratchpad"
+                >
                   Clear
                 </Button>
-</div>
+              </div>
             </div>
 
             {/* Options */}
             <div className="mt-6 border-t border-gray-200 pt-5">
-              <div className="text-sm font-semibold text-neutral-900">Typing helpers</div>
+              <div className="text-sm font-semibold text-neutral-900">
+                Typing helpers
+              </div>
 
               <div className="mt-3 grid gap-4 sm:grid-cols-2 sm:items-start">
                 <div>
                   <div className="text-sm text-gray-600">On-screen keys</div>
                   <div className="mt-2 grid grid-cols-2 gap-2">
-                    <Button type="button" variant="secondary" onClick={() => append(".")} aria-label="Append dit">
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      onClick={() => append(".")}
+                      aria-label="Append dit"
+                    >
                       Dit (.)
                     </Button>
-                    <Button type="button" variant="secondary" onClick={() => append("-")} aria-label="Append dah">
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      onClick={() => append("-")}
+                      aria-label="Append dah"
+                    >
                       Dah (-)
                     </Button>
-                    <Button type="button" variant="ghost" onClick={() => append(" ")} aria-label="Commit letter (space)">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={() => append(" ")}
+                      aria-label="Commit letter (space)"
+                    >
                       Space
                     </Button>
-                    <Button type="button" variant="ghost" onClick={() => append("/")} aria-label="Commit word (slash)">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={() => append("/")}
+                      aria-label="Commit word (slash)"
+                    >
                       Word (/)
                     </Button>
-                    <Button type="button" variant="ghost" onClick={backspace} aria-label="Backspace">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={backspace}
+                      aria-label="Backspace"
+                    >
                       Backspace
                     </Button>
-                    <Button type="button" variant="ghost" onClick={clearAll} aria-label="Clear all">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={clearAll}
+                      aria-label="Clear all"
+                    >
                       Clear
                     </Button>
                   </div>
@@ -750,24 +905,40 @@ export default function TypingPage({ jsonLd }: Props) {
 
                 <div className="sm:justify-end">
                   <div className="rounded-2xl border border-gray-200 bg-white p-4">
-                    <div className="text-sm font-semibold text-neutral-900">Keyboard tips</div>
+                    <div className="text-sm font-semibold text-neutral-900">
+                      Keyboard tips
+                    </div>
                     <ul className="mt-2 text-sm text-gray-700 list-disc pl-5 space-y-1">
                       <li>
                         {inputMode === "dotdash" ? (
                           <>
-                            Type <span className="font-mono font-semibold">.</span> for dit and <span className="font-mono font-semibold">-</span> for dah.
+                            Type{" "}
+                            <span className="font-mono font-semibold">.</span>{" "}
+                            for dit and{" "}
+                            <span className="font-mono font-semibold">-</span>{" "}
+                            for dah.
                           </>
                         ) : (
                           <>
-                            Type <span className="font-mono font-semibold">F</span> for dit and <span className="font-mono font-semibold">J</span> for dah.
+                            Type{" "}
+                            <span className="font-mono font-semibold">F</span>{" "}
+                            for dit and{" "}
+                            <span className="font-mono font-semibold">J</span>{" "}
+                            for dah.
                           </>
                         )}
                       </li>
                       <li>
-                        Press <span className="font-mono font-semibold">Space</span> to commit a letter, <span className="font-mono font-semibold">/</span> to commit a word.
+                        Press{" "}
+                        <span className="font-mono font-semibold">Space</span>{" "}
+                        to commit a letter,{" "}
+                        <span className="font-mono font-semibold">/</span> to
+                        commit a word.
                       </li>
                       <li>
-                        Press <span className="font-mono font-semibold">Esc</span> to re-focus the input at any time.
+                        Press{" "}
+                        <span className="font-mono font-semibold">Esc</span> to
+                        re-focus the input at any time.
                       </li>
                     </ul>
                   </div>
@@ -777,14 +948,15 @@ export default function TypingPage({ jsonLd }: Props) {
                       Show raw input
                     </summary>
                     <pre className="mt-3 whitespace-pre-wrap break-words rounded-xl border border-gray-200 bg-gray-50 p-4 font-mono text-sm text-gray-900">
-{decoded.normalizedRaw}
+                      {decoded.normalizedRaw}
                     </pre>
                   </details>
                 </div>
               </div>
 
               <p className="mt-4 text-sm text-gray-700 leading-relaxed">
-                This tool is for repetition and flow. No prompts, no grading, no lessons.
+                This tool is for repetition and flow. No prompts, no grading, no
+                lessons.
               </p>
             </div>
           </div>

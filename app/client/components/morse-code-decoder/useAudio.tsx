@@ -66,6 +66,13 @@ function normalizeMorseInput(code: string) {
  * - stop()
  */
 export default function useAudio() {
+  const [isSupported, setIsSupported] = React.useState(false);
+
+  React.useEffect(() => {
+    // Hydration-safe: detect support after mount.
+    setIsSupported(!!(window.AudioContext || (window as any).webkitAudioContext));
+  }, []);
+
   const ctxRef = React.useRef<AudioContext | null>(null);
   const gainRef = React.useRef<GainNode | null>(null);
 
@@ -409,7 +416,7 @@ export default function useAudio() {
 
   return {
     state,
-    isSupported: typeof window !== "undefined" && !!(window.AudioContext || (window as any).webkitAudioContext),
+    isSupported,
     play,
     pause,
     resume,

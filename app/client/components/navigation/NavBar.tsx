@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useLocation } from "react-router";
 
 import logoUrl from "~/client/assets/images/logo.png";
 
@@ -37,30 +38,6 @@ function isActive(pathname: string, href: string) {
 
 function anyActive(pathname: string, items: NavItem[]) {
   return items.some((it) => isActive(pathname, it.href));
-}
-
-/**
- * Fixes "Translator flashes active" by preventing an SSR/hydration default "/"
- * from being used as the active pathname.
- */
-function useResolvedPathname(provided?: string) {
-  const providedNormalized = provided ? normalizePathname(provided) : undefined;
-
-  const [pathname, setPathname] = React.useState<string | null>(() => {
-    if (providedNormalized) return providedNormalized;
-    if (typeof window === "undefined") return null;
-    return normalizePathname(window.location.pathname);
-  });
-
-  React.useEffect(() => {
-    if (providedNormalized) {
-      setPathname(providedNormalized);
-      return;
-    }
-    setPathname(normalizePathname(window.location.pathname));
-  }, [providedNormalized]);
-
-  return pathname;
 }
 
 function BurgerIcon(props: { open: boolean }) {
@@ -107,13 +84,15 @@ export default function NavBar(props: { pathname?: string }) {
   const [open, setOpen] = React.useState(false);
   const [moreOpen, setMoreOpen] = React.useState(false);
 
-  const pathname = useResolvedPathname(props.pathname);
+  // Remix provides location during SSR and on the client.
+  // Using it avoids SSR/client divergence caused by window.location.
+  const location = useLocation();
+  const pathname = normalizePathname(props.pathname ?? location.pathname);
 
   const moreWrapRef = React.useRef<HTMLDivElement | null>(null);
 
-  // Close mobile menu on route change (only when we actually have a pathname).
+  // Close mobile menu on route change.
   React.useEffect(() => {
-    if (!pathname) return;
     setOpen(false);
     setMoreOpen(false);
   }, [pathname]);
@@ -141,7 +120,7 @@ export default function NavBar(props: { pathname?: string }) {
     };
   }, [moreOpen]);
 
-  const moreActive = pathname ? anyActive(pathname, MORE_ITEMS) : false;
+  const moreActive = anyActive(pathname, MORE_ITEMS);
 
   return (
     <header className="sticky top-0 z-50 bg-neutral-900 backdrop-blur">
@@ -168,7 +147,7 @@ export default function NavBar(props: { pathname?: string }) {
           {/* Desktop */}
           <nav className="hidden md:flex items-center gap-2">
             {MAIN_ITEMS.map((item) => {
-              const active = pathname ? isActive(pathname, item.href) : false;
+              const active = isActive(pathname, item.href);
               return (
                 <a
                   key={item.href}
@@ -210,9 +189,7 @@ export default function NavBar(props: { pathname?: string }) {
                 >
                   <div className="p-2">
                     {MORE_ITEMS.map((item) => {
-                      const active = pathname
-                        ? isActive(pathname, item.href)
-                        : false;
+                      const active = isActive(pathname, item.href);
                       return (
                         <a
                           key={item.href}
@@ -259,7 +236,7 @@ export default function NavBar(props: { pathname?: string }) {
           <nav id="mobile-nav" className="md:hidden pb-4">
             <div className="flex flex-col gap-2">
               {[...MAIN_ITEMS, ...MORE_ITEMS].map((item) => {
-                const active = pathname ? isActive(pathname, item.href) : false;
+                const active = isActive(pathname, item.href);
                 return (
                   <a
                     key={item.href}

@@ -110,26 +110,13 @@ export default function About() {
     <div style={styles.page}>
       <JsonLdScript data={jsonLd} />
       <div style={styles.wrap}>
-        <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
-          <ol className="flex flex-wrap items-center gap-2">
-            <li>
-              <a
-                href="/"
-                className="underline hover:no-underline cursor-pointer"
-              >
-                Home
-              </a>
-            </li>
-            <li>/</li>
-            <li className="font-semibold text-gray-900">About</li>
-          </ol>
-        </nav>
-
         <header
           style={{ ...styles.header, borderBottom: "none", paddingBottom: 6 }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <h1 style={styles.h1}>About MorseWords</h1>
+            <h1 className="text-sky-800 font-bold" style={styles.h1}>
+              About MorseWords
+            </h1>
             <p style={styles.lead}>
               Practical Morse code utilities built for fast conversion, clean
               playback, and focused practice.
@@ -333,20 +320,20 @@ export default function About() {
           </p>
         </SectionCard>
 
-        <footer
-          style={{
-            padding: "12px 0 28px",
-            color: "#5a616c",
-            fontSize: ".95rem",
-          }}
-        >
-          <div style={{ borderTop: "1px solid #e6e8ef", paddingTop: 14 }}>
-            <span style={{ fontWeight: 700, color: "#111317" }}>
-              MorseWords
-            </span>{" "}
-            <span>- focused Morse tools, built to stay focused.</span>
-          </div>
-        </footer>
+        <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
+          <ol className="flex flex-wrap items-center gap-2">
+            <li>
+              <a
+                href="/"
+                className="underline hover:no-underline cursor-pointer"
+              >
+                Home
+              </a>
+            </li>
+            <li>/</li>
+            <li className="font-semibold text-gray-900">About</li>
+          </ol>
+        </nav>
       </div>
     </div>
   );

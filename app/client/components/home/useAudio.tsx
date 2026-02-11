@@ -69,6 +69,10 @@ export default function useAudio() {
   const ctxRef = React.useRef<AudioContext | null>(null);
   const gainRef = React.useRef<GainNode | null>(null);
 
+  // Hydration-safe support detection.
+  // Do not read `window` during SSR or the first client render.
+  const [isSupported, setIsSupported] = React.useState(false);
+
   const stopRef = React.useRef(false);
   const pausedRef = React.useRef(false);
   const playingRef = React.useRef(false);
@@ -407,9 +411,18 @@ export default function useAudio() {
     return audioBufferToWavBlob(rendered);
   }
 
+  React.useEffect(() => {
+    // Runs only on the client after mount.
+    try {
+      setIsSupported(!!(window.AudioContext || (window as any).webkitAudioContext));
+    } catch {
+      setIsSupported(false);
+    }
+  }, []);
+
   return {
     state,
-    isSupported: typeof window !== "undefined" && !!(window.AudioContext || (window as any).webkitAudioContext),
+    isSupported,
     play,
     pause,
     resume,

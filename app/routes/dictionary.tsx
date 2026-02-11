@@ -669,31 +669,19 @@ export default function DictionaryRoute() {
   }, [q]);
 
   return (
-    <main id="top" className="max-w-5xl mx-auto px-4 py-8">
+    <main id="top" className="max-w-5xl mx-auto pt-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
-        <ol className="flex flex-wrap items-center gap-2">
-          <li>
-            <a href="/" className="underline hover:no-underline cursor-pointer">
-              Home
-            </a>
-          </li>
-          <li>/</li>
-          <li className="font-semibold text-gray-900">Morse Code Dictionary</li>
-        </ol>
-      </nav>
-
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">
+      <header className="mb-3">
+        <h1 className="text-3xl font-bold text-sky-800">
           Morse Code Dictionary
         </h1>
       </header>
 
-      <div className="mb-6">
+      <div className="mb-3">
         <label className="block text-sm font-semibold text-gray-800 mb-2">
           Filter
         </label>
@@ -722,6 +710,18 @@ export default function DictionaryRoute() {
       {filtered.map((s) => (
         <Section key={s.id} id={s.id} title={s.title} items={s.filteredItems} />
       ))}
+
+      <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
+        <ol className="flex flex-wrap items-center gap-2">
+          <li>
+            <a href="/" className="underline hover:no-underline cursor-pointer">
+              Home
+            </a>
+          </li>
+          <li>/</li>
+          <li className="font-semibold text-gray-900">Morse Code Dictionary</li>
+        </ol>
+      </nav>
     </main>
   );
 }
