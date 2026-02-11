@@ -47,20 +47,25 @@ export default function TranslatorSectionsBasic({
   const player = useAudio();
 
   // Speed slider controls character speed directly.
-  const [toneHz, setToneHz] = useState<number>(() => readNum("mw_hz", 600));
-  const [volume, setVolume] = useState<number>(() => readNum("mw_vol", 0.75));
-  const [soundOn, setSoundOn] = useState<boolean>(() =>
-    readBool("mw_sound", true),
-  );
-  const [repeat, setRepeat] = useState<boolean>(() =>
-    readBool("mw_repeat", false),
-  );
-  const [flash, setFlash] = useState<boolean>(() =>
-    readBool("mw_flash", false),
-  );
-  const [vibrate, setVibrate] = useState<boolean>(() =>
-    readBool("mw_vibrate", false),
-  );
+  const DEFAULT_TONE_HZ = 600;
+  const DEFAULT_VOLUME = 0.75;
+  const DEFAULT_SOUND_ON = true;
+  const DEFAULT_REPEAT = false;
+  const DEFAULT_FLASH = false;
+  const DEFAULT_VIBRATE = false;
+  const DEFAULT_PRESET: SoundPreset = "cw_radio";
+  const DEFAULT_CHAR_WPM = 20;
+  const DEFAULT_FARNSWORTH_WPM = 20;
+  const DEFAULT_ADVANCED_OPEN = false;
+
+  const [hydrated, setHydrated] = useState(false);
+
+  const [toneHz, setToneHz] = useState<number>(DEFAULT_TONE_HZ);
+  const [volume, setVolume] = useState<number>(DEFAULT_VOLUME);
+  const [soundOn, setSoundOn] = useState<boolean>(DEFAULT_SOUND_ON);
+  const [repeat, setRepeat] = useState<boolean>(DEFAULT_REPEAT);
+  const [flash, setFlash] = useState<boolean>(DEFAULT_FLASH);
+  const [vibrate, setVibrate] = useState<boolean>(DEFAULT_VIBRATE);
 
   // Ensure at least one feedback mode stays enabled.
   const setFeedback = React.useCallback(
@@ -92,20 +97,46 @@ export default function TranslatorSectionsBasic({
     [soundOn, repeat, flash, vibrate],
   );
 
-  const [preset, setPreset] = useState<SoundPreset>(
-    () => (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio",
-  );
-  const [charWpm, setCharWpm] = useState<number>(() =>
-    readNum("mw_char_wpm", readNum("mw_wpm", 20)),
-  );
-  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(() =>
-    readNum("mw_fwpm", 20),
-  );
-  const [advancedOpen, setAdvancedOpen] = useState<boolean>(() =>
-    readBool("mw_adv_open", false),
-  );
+  const [preset, setPreset] = useState<SoundPreset>(DEFAULT_PRESET);
+  const [charWpm, setCharWpm] = useState<number>(DEFAULT_CHAR_WPM);
+  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(DEFAULT_FARNSWORTH_WPM);
+  const [advancedOpen, setAdvancedOpen] = useState<boolean>(DEFAULT_ADVANCED_OPEN);
 
   useEffect(() => {
+    // Hydration-safe: read persisted settings only after mount so SSR HTML matches
+    // the initial client render.
+    if (typeof window === "undefined") return;
+
+    const nextToneHz = readNum("mw_hz", DEFAULT_TONE_HZ);
+    const nextVolume = readNum("mw_vol", DEFAULT_VOLUME);
+    const nextSoundOn = readBool("mw_sound", DEFAULT_SOUND_ON);
+    const nextRepeat = readBool("mw_repeat", DEFAULT_REPEAT);
+    const nextFlash = readBool("mw_flash", DEFAULT_FLASH);
+    const nextVibrate = readBool("mw_vibrate", DEFAULT_VIBRATE);
+    const nextPreset = (readStr("mw_preset", DEFAULT_PRESET) as SoundPreset) || DEFAULT_PRESET;
+    const nextCharWpm = readNum("mw_char_wpm", readNum("mw_wpm", DEFAULT_CHAR_WPM));
+    const nextFwpm = readNum("mw_fwpm", DEFAULT_FARNSWORTH_WPM);
+    const nextAdvancedOpen = readBool("mw_adv_open", DEFAULT_ADVANCED_OPEN);
+
+    // Enforce invariant: at least one feedback channel enabled.
+    const anyOn = nextSoundOn || nextRepeat || nextFlash || nextVibrate;
+
+    setToneHz(nextToneHz);
+    setVolume(nextVolume);
+    setSoundOn(anyOn ? nextSoundOn : true);
+    setRepeat(anyOn ? nextRepeat : false);
+    setFlash(anyOn ? nextFlash : false);
+    setVibrate(anyOn ? nextVibrate : false);
+    setPreset(nextPreset);
+    setCharWpm(nextCharWpm);
+    setFarnsworthWpm(nextFwpm);
+    setAdvancedOpen(nextAdvancedOpen);
+
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
     writeNum("mw_wpm", charWpm);
     writeNum("mw_hz", toneHz);
     writeNum("mw_vol", volume);
@@ -118,6 +149,7 @@ export default function TranslatorSectionsBasic({
     writeNum("mw_fwpm", farnsworthWpm);
     writeBool("mw_adv_open", advancedOpen);
   }, [
+    hydrated,
     toneHz,
     volume,
     soundOn,

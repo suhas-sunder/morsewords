@@ -2,7 +2,7 @@ export default function HowToUseSuiteGuide() {
   return (
     <section className=" bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
       <div className="flex flex-col gap-3">
-        <h1 className="text-3xl flex justify-center items-center sm:text-4xl font-extrabold text-sky-900 tracking-tight">
+        <h1 className="text-3xl flex justify-center items-center sm:text-4xl font-bold text-sky-900 tracking-tight">
           How to use MorseWords
         </h1>
 

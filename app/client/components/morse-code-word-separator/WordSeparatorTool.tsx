@@ -138,15 +138,15 @@ export default function WordSeparatorTool() {
         ];
 
   return (
-    <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+    <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:px-6 shadow-sm">
       <div className="flex flex-col gap-3 text-center">
-        <h1 className="font-extrabold text-2xl sm:text-4xl text-[#0b2447] tracking-tight">
+        <h1 className="font-extrabold text-2xl sm:text-4xl text-sky-800 tracking-tight">
           Morse code word separator
         </h1>
-        <p className="text-sm sm:text-lg text-gray-700">
-          Normalize Morse word breaks and format English → Morse separators using{" "}
-          <strong>7 spaces</strong>, <strong>/</strong>, <strong>|</strong>, or{" "}
-          <strong>new lines</strong>.
+        <p className="text-sm sm:text-lg text-gray-700 hidden sm:block">
+          Normalize Morse word breaks and format English → Morse separators
+          using <strong>7 spaces</strong>, <strong>/</strong>,{" "}
+          <strong>|</strong>, or <strong>new lines</strong>.
         </p>
       </div>
 
@@ -248,7 +248,7 @@ export default function WordSeparatorTool() {
             {out || "—"}
           </pre>
 
-                   <div className="mt-3 flex flex-wrap gap-2 items-center">
+          <div className="mt-3 flex flex-wrap gap-2 items-center">
             <button
               onClick={async () => {
                 const ok = await copyToClipboard(out);
@@ -270,9 +270,9 @@ export default function WordSeparatorTool() {
             <strong>Note:</strong>{" "}
             {mode === "normalizeMorse" ? (
               <>
-                This page does not “guess” letters. It only rewrites separators and
-                spacing. If your letter groups are wrong, the output will still be
-                wrong, just consistently formatted.
+                This page does not “guess” letters. It only rewrites separators
+                and spacing. If your letter groups are wrong, the output will
+                still be wrong, just consistently formatted.
               </>
             ) : (
               <>
@@ -295,15 +295,15 @@ export default function WordSeparatorTool() {
         <div className="rounded-2xl border border-gray-200 bg-white p-4">
           <p className="font-extrabold text-neutral-900">Slash separator</p>
           <p className="mt-2 text-sm text-gray-700">
-            A <strong>/</strong> is often used as a visible word break in puzzles
-            and copied strings.
+            A <strong>/</strong> is often used as a visible word break in
+            puzzles and copied strings.
           </p>
         </div>
         <div className="rounded-2xl border border-gray-200 bg-white p-4">
           <p className="font-extrabold text-neutral-900">Pipe separator</p>
           <p className="mt-2 text-sm text-gray-700">
-            A <strong>|</strong> is another common “word divider” when people want
-            something easy to spot.
+            A <strong>|</strong> is another common “word divider” when people
+            want something easy to spot.
           </p>
         </div>
       </div>
