@@ -18,7 +18,6 @@ import {
   ShareIcon,
   SoundIcon,
   StopIcon,
-  VibrateIcon,
 } from "../../assets/svg/Icons";
 
 interface Props {
@@ -56,37 +55,8 @@ export default function TranslatorSectionsBasic({
   const [soundOn, setSoundOn] = useState<boolean>(true);
   const [repeat, setRepeat] = useState<boolean>(false);
   const [flash, setFlash] = useState<boolean>(false);
-  const [vibrate, setVibrate] = useState<boolean>(false);
 
-  // Ensure at least one feedback mode stays enabled.
-  const setFeedback = React.useCallback(
-    (key: "sound" | "repeat" | "flash" | "vibrate", next: boolean) => {
-      const current = {
-        sound: soundOn,
-        repeat,
-        flash,
-        vibrate,
-      };
-      const updated = { ...current, [key]: next };
-      const anyOn =
-        updated.sound || updated.repeat || updated.flash || updated.vibrate;
-
-      if (!anyOn) {
-        // Refuse turning off the last enabled option. Default back to Sound.
-        setSoundOn(true);
-        setRepeat(false);
-        setFlash(false);
-        setVibrate(false);
-        return;
-      }
-
-      if (key === "sound") setSoundOn(next);
-      if (key === "repeat") setRepeat(next);
-      if (key === "flash") setFlash(next);
-      if (key === "vibrate") setVibrate(next);
-    },
-    [soundOn, repeat, flash, vibrate],
-  );
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const [preset, setPreset] = useState<SoundPreset>("cw_radio");
   const [charWpm, setCharWpm] = useState<number>(20);
@@ -100,16 +70,13 @@ export default function TranslatorSectionsBasic({
     const nextSound = readBool("mw_sound", true);
     const nextRepeat = readBool("mw_repeat", false);
     const nextFlash = readBool("mw_flash", false);
-    const nextVib = readBool("mw_vibrate", false);
-    const nextPreset = (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio";
+    const nextPreset =
+      (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio";
 
     const legacyWpm = readNum("mw_wpm", 20);
     const nextChar = readNum("mw_char_wpm", legacyWpm);
     const nextFwpm = readNum("mw_fwpm", 20);
     const nextAdv = readBool("mw_adv_open", false);
-
-    // Enforce the "at least one feedback mode" rule on load as well.
-    const anyOn = nextSound || nextRepeat || nextFlash || nextVib;
 
     setToneHz(nextTone);
     setVolume(nextVol);
@@ -118,17 +85,9 @@ export default function TranslatorSectionsBasic({
     setFarnsworthWpm(nextFwpm);
     setAdvancedOpen(nextAdv);
 
-    if (!anyOn) {
-      setSoundOn(true);
-      setRepeat(false);
-      setFlash(false);
-      setVibrate(false);
-    } else {
-      setSoundOn(nextSound);
-      setRepeat(nextRepeat);
-      setFlash(nextFlash);
-      setVibrate(nextVib);
-    }
+    setSoundOn(nextSound);
+    setRepeat(nextRepeat);
+    setFlash(nextFlash);
 
     setIsHydrated(true);
   }, []);
@@ -142,7 +101,6 @@ export default function TranslatorSectionsBasic({
     writeBool("mw_sound", soundOn);
     writeBool("mw_repeat", repeat);
     writeBool("mw_flash", flash);
-    writeBool("mw_vibrate", vibrate);
     writeStr("mw_preset", preset);
     writeNum("mw_char_wpm", charWpm);
     writeNum("mw_fwpm", farnsworthWpm);
@@ -154,12 +112,27 @@ export default function TranslatorSectionsBasic({
     soundOn,
     repeat,
     flash,
-    vibrate,
     preset,
     charWpm,
     farnsworthWpm,
     advancedOpen,
   ]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia?.("(max-width: 1100px)");
+    const update = () => setIsMobile(!!mq?.matches);
+    update();
+    if (!mq) return;
+    try {
+      mq.addEventListener("change", update);
+      return () => mq.removeEventListener("change", update);
+    } catch {
+      // Safari
+      mq.addListener?.(update);
+      return () => mq.removeListener?.(update);
+    }
+  }, []);
 
   // Screen flash overlay (light feedback)
   const [flashOn, setFlashOn] = useState(false);
@@ -229,6 +202,10 @@ export default function TranslatorSectionsBasic({
   };
 
   const examples = [
+    {
+      label: "I love Morse code",
+      set: () => applyExampleText("I love Morse code"),
+    },
     { label: "HELLO WORLD", set: () => applyExampleText("HELLO WORLD") },
     { label: "CQ", set: () => applyExampleText("CQ") },
     { label: "SOS", set: () => applyExampleText("SOS") },
@@ -248,13 +225,40 @@ export default function TranslatorSectionsBasic({
       wpm: effectiveChar,
       farnsworthWpm: effectiveF,
       hz: toneHz,
-      volume: soundOn ? volume : 0,
+      volume,
+      soundEnabled: soundOn,
       preset,
       repeat,
       flash,
-      vibrate,
     });
   };
+
+  // Apply option changes live during playback.
+  useEffect(() => {
+    (player as any)?.setLiveOptions?.({
+      code: activeMorseForPlayback,
+      wpm: clampNum(charWpm, 5, 60),
+      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      hz: toneHz,
+      volume,
+      soundEnabled: soundOn,
+      preset,
+      repeat,
+      flash,
+      vibrate: false,
+    });
+  }, [
+    activeMorseForPlayback,
+    charWpm,
+    farnsworthWpm,
+    toneHz,
+    volume,
+    soundOn,
+    preset,
+    repeat,
+    flash,
+    player,
+  ]);
 
   const handleSaveAudio = async () => {
     if (!canPlay || !soundOn) return;
@@ -265,6 +269,7 @@ export default function TranslatorSectionsBasic({
         farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
         hz: toneHz,
         volume,
+        soundEnabled: true,
         preset,
       });
       const url = URL.createObjectURL(blob);
@@ -338,7 +343,10 @@ export default function TranslatorSectionsBasic({
 
       <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="mb-4 flex flex-col justify-center items-center text-center">
-          <h1 style={styles.h1} className="font-bold !text-2xl sm:!text-4xl text-sky-800">
+          <h1
+            style={styles.h1}
+            className="font-bold !text-2xl sm:!text-4xl text-sky-800"
+          >
             Morse Code Translator
           </h1>
           <p className="mt-2 hidden sm:flex text-sm sm:text-lg">
@@ -374,7 +382,7 @@ export default function TranslatorSectionsBasic({
                 Morse → Text
               </button>
             </div>
-            {examples.map((ex) => (
+            {(isMobile ? examples.slice(0, 1) : examples).map((ex) => (
               <button
                 key={ex.label}
                 onClick={ex.set}
@@ -385,7 +393,7 @@ export default function TranslatorSectionsBasic({
             ))}
             <button
               onClick={handleSwap}
-              className="sm:ml-auto inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 cursor-pointer active:scale-95 transition"
+              className="hidden md:flex sm:ml-auto items-center justify-center gap-2 px-3 py-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 cursor-pointer active:scale-95 transition"
               title="Swap direction"
             >
               <span className="text-sm font-semibold text-neutral-900">
@@ -404,7 +412,7 @@ export default function TranslatorSectionsBasic({
               </label>
               <textarea
                 id={liveInputId}
-                className="w-full mt-2 border rounded-md p-3 font-mono h-44 outline-sky-500 border-sky-500"
+                className="w-full mt-2 border rounded-md p-3 font-mono min-h-[11rem] resize-y outline-sky-500 border-sky-500"
                 value={inputValue}
                 onChange={(e) =>
                   direction === "encode"
@@ -420,6 +428,18 @@ export default function TranslatorSectionsBasic({
                 autoCorrect="off"
                 spellCheck={false}
               />
+              <div className="mt-2 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (direction === "encode") setPlainA("");
+                    else setMorseB("");
+                  }}
+                  className="cursor-pointer px-3 py-1.5 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 text-sm font-semibold text-gray-700 active:scale-95 transition"
+                >
+                  Clear input
+                </button>
+              </div>
               {direction === "encode" &&
                 Object.keys(unsupportedPlain).length > 0 && (
                   <p className="mt-2 text-xs text-amber-600">
@@ -443,13 +463,26 @@ export default function TranslatorSectionsBasic({
               </label>
               <textarea
                 id="mw_output"
-                className="w-full mt-2 rounded-md p-3 font-mono h-44 bg-sky-50 outline-sky-500 border-sky-500"
+                className="w-full mt-2 rounded-md p-3 font-mono min-h-[11rem] resize-y bg-sky-50 outline-sky-500 border-sky-500"
                 value={outputValue}
                 readOnly
                 placeholder={
                   direction === "encode" ? "... --- ..." : "Example: SOS"
                 }
               />
+              <div className="mt-2 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    // Output is derived; clear the source input for this direction.
+                    if (direction === "encode") setPlainA("");
+                    else setMorseB("");
+                  }}
+                  className="cursor-pointer px-3 py-1.5 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 text-sm font-semibold text-gray-700 active:scale-95 transition"
+                >
+                  Clear output
+                </button>
+              </div>
             </div>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center  gap-2">
@@ -619,31 +652,34 @@ export default function TranslatorSectionsBasic({
                   <TogglePill
                     label="Sound"
                     checked={soundOn}
-                    onChange={(v) => setFeedback("sound", v)}
+                    onChange={setSoundOn}
                     icon={<SoundIcon size={16} title="Sound" />}
                   />
 
                   <TogglePill
                     label="Repeat"
                     checked={repeat}
-                    onChange={(v) => setFeedback("repeat", v)}
+                    onChange={setRepeat}
                     icon={<LoopIcon size={16} title="Repeat" />}
                   />
 
                   <TogglePill
                     label="Flash Light"
                     checked={flash}
-                    onChange={(v) => setFeedback("flash", v)}
+                    onChange={setFlash}
                     icon={<LightBulbIcon size={16} title="Light" />}
                   />
-
-                  <TogglePill
-                    label="Vibrate"
-                    checked={vibrate}
-                    onChange={(v) => setFeedback("vibrate", v)}
-                    icon={<VibrateIcon size={16} title="Vibrate" />}
-                  />
                 </div>
+
+                {flash && (
+                  <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+                    <div className="font-bold">Strobe warning</div>
+                    <div className="mt-1">
+                      Flashing light may trigger seizures for people with
+                      photosensitive epilepsy. Use with caution.
+                    </div>
+                  </div>
+                )}
 
                 <button
                   onClick={() => setAdvancedOpen((v) => !v)}

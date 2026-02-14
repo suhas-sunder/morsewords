@@ -22,8 +22,18 @@ export type PlayOptions = {
   repeat?: boolean;
   /** Flash the screen on dits/dahs (mobile-friendly). */
   flash?: boolean;
-  /** Vibrate on dits/dahs (mobile-friendly). */
+
+  /**
+   * Deprecated. Vibration support intentionally removed.
+   * Kept only so existing callers don't break.
+   */
   vibrate?: boolean;
+
+  /**
+   * If false, playback is silent but timing/flash still runs.
+   * Defaults to true.
+   */
+  soundEnabled?: boolean;
 };
 
 type InternalPosition = {
@@ -67,9 +77,7 @@ function normalizeMorseInput(code: string) {
  */
 export default function useAudio() {
   const ctxRef = React.useRef<AudioContext | null>(null);
-  const gainRef = React.useRef<GainNode | null>(null);
-
-  const vibrateStartedRef = React.useRef(false);
+  const masterGainRef = React.useRef<GainNode | null>(null);
 
   // Hydration-safe support detection.
   // Do not read `window` during SSR or the first client render.
@@ -82,7 +90,7 @@ export default function useAudio() {
 
   const posRef = React.useRef<InternalPosition>({ tokenIndex: 0, symbolIndex: 0 });
   const lastCodeRef = React.useRef<string>("");
-  const lastOptsRef = React.useRef<PlayOptions | null>(null);
+  const liveOptsRef = React.useRef<PlayOptions | null>(null);
 
   const [state, setState] = React.useState<MorsePlayerState>("idle");
 
@@ -96,10 +104,61 @@ export default function useAudio() {
     }
     const ctx = ctxRef.current;
     if (!ctx) return null;
-    if (!gainRef.current) {
-      gainRef.current = ctx.createGain();
-      gainRef.current.gain.value = 0.25;
-      gainRef.current.connect(ctx.destination);
+
+    if (!masterGainRef.current) {
+      const g = ctx.createGain();
+      g.gain.value = 0;
+      g.connect(ctx.destination);
+      masterGainRef.current = g;
+    }
+    return ctx;
+  }
+
+  function triggerFlash(ms: number) {
+    window.dispatchEvent(new CustomEvent("morsewords:flash", { detail: { ms } }));
+  }
+
+  function sanitize(opts: PlayOptions): PlayOptions {
+    return {
+      ...opts,
+      wpm: clamp(opts.wpm, 5, 60),
+      farnsworthWpm: opts.farnsworthWpm ? clamp(opts.farnsworthWpm, 5, 60) : undefined,
+      hz: clamp(opts.hz, 200, 1200),
+      volume: clamp(opts.volume, 0, 1),
+      repeat: !!opts.repeat,
+      flash: !!opts.flash,
+      // vibrate is intentionally ignored
+      vibrate: false,
+      soundEnabled: opts.soundEnabled !== false,
+    };
+  }
+
+  function applyMasterFromOpts(opts: PlayOptions) {
+    const ctx = ensureCtx();
+    if (!ctx) return;
+    const g = masterGainRef.current;
+    if (!g) return;
+
+    const safe = sanitize(opts);
+    const effective = safe.soundEnabled === false ? 0 : safe.volume * 0.35;
+    const now = ctx.currentTime;
+    g.gain.cancelScheduledValues(now);
+    g.gain.setTargetAtTime(effective, now, 0.02);
+  }
+
+  function getLive(base: PlayOptions) {
+    return sanitize(liveOptsRef.current ?? base);
+  }
+
+  async function ensureRunning() {
+    const ctx = ensureCtx();
+    if (!ctx) return null;
+    if (ctx.state === "suspended") {
+      try {
+        await ctx.resume();
+      } catch {
+        // ignore
+      }
     }
     return ctx;
   }
@@ -110,61 +169,63 @@ export default function useAudio() {
     }
   }
 
-  async function playTone(ms: number, hz: number, oscType: OscillatorType, volume: number) {
-    const ctx = ensureCtx();
+  async function playTone(ms: number, hz: number, oscType: OscillatorType) {
+    const ctx = await ensureRunning();
     if (!ctx) return;
-    if (ctx.state === "suspended") {
-      try {
-        await ctx.resume();
-      } catch {
-        // ignore
-      }
+    const master = masterGainRef.current;
+    if (!master) return;
+
+    // If muted, keep timing correct without scheduling audio.
+    if (master.gain.value <= 0.000001) {
+      await sleep(ms);
+      return;
     }
-    const gain = gainRef.current;
-    if (!gain) return;
 
     const osc = ctx.createOscillator();
     osc.type = oscType;
     osc.frequency.value = hz;
-    osc.connect(gain);
 
-    // Envelope (quick attack/release avoids clicks and feels cleaner)
+    // Per-tone envelope so mute is truly silent.
+    const env = ctx.createGain();
+    env.gain.value = 0;
+    osc.connect(env).connect(master);
+
     const now = ctx.currentTime;
-    const target = clamp(volume, 0, 1) * 0.35;
-    gain.gain.cancelScheduledValues(now);
-    gain.gain.setValueAtTime(Math.max(0.0005, gain.gain.value), now);
-    gain.gain.exponentialRampToValueAtTime(Math.max(0.001, target), now + 0.008);
+    env.gain.cancelScheduledValues(now);
+    env.gain.setValueAtTime(0, now);
+    env.gain.linearRampToValueAtTime(1, now + 0.008);
 
     osc.start();
     await sleep(ms);
 
     const t2 = ctx.currentTime;
-    gain.gain.cancelScheduledValues(t2);
-    gain.gain.setValueAtTime(Math.max(0.001, target), t2);
-    gain.gain.exponentialRampToValueAtTime(0.001, t2 + 0.012);
+    env.gain.cancelScheduledValues(t2);
+    env.gain.setValueAtTime(env.gain.value, t2);
+    env.gain.linearRampToValueAtTime(0, t2 + 0.012);
+
     await sleep(18);
-    osc.stop();
+    try {
+      osc.stop();
+    } catch {
+      // ignore
+    }
   }
 
-  async function playSounder(ms: number, volume: number) {
-    const ctx = ensureCtx();
+  async function playSounder(ms: number) {
+    const ctx = await ensureRunning();
     if (!ctx) return;
-    if (ctx.state === "suspended") {
-      try {
-        await ctx.resume();
-      } catch {
-        // ignore
-      }
-    }
-    const gain = gainRef.current;
-    if (!gain) return;
+    const master = masterGainRef.current;
+    if (!master) return;
 
-    // Telegraph sounder-like click using filtered noise burst
+    if (master.gain.value <= 0.000001) {
+      await sleep(ms);
+      return;
+    }
+
     const bufferSize = Math.max(256, Math.floor((ctx.sampleRate * ms) / 1000));
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) {
-      // Decaying noise
       const env = 1 - i / bufferSize;
       data[i] = (Math.random() * 2 - 1) * env;
     }
@@ -178,10 +239,9 @@ export default function useAudio() {
     biquad.Q.value = 1.5;
 
     const localGain = ctx.createGain();
-    const target = clamp(volume, 0, 1) * 0.45;
-    localGain.gain.value = target;
+    localGain.gain.value = 1;
 
-    src.connect(biquad).connect(localGain).connect(gain);
+    src.connect(biquad).connect(localGain).connect(master);
     src.start();
     await sleep(ms);
     try {
@@ -191,155 +251,8 @@ export default function useAudio() {
     }
   }
 
-  function triggerFlash(ms: number) {
-    window.dispatchEvent(new CustomEvent("morsewords:flash", { detail: { ms } }));
-  }
-
-  function triggerVibrate(ms: number) {
-    if (vibrateStartedRef.current) return;
-    if (typeof navigator === "undefined" || !navigator.vibrate) return;
-    try {
-      navigator.vibrate(ms);
-    } catch {
-      // ignore
-    }
-  }
-
-  function cancelVibration() {
-    if (typeof navigator === "undefined" || !navigator.vibrate) return;
-    try {
-      navigator.vibrate(0);
-    } catch {
-      // ignore
-    }
-    vibrateStartedRef.current = false;
-  }
-
-  function capVibrationPattern(pattern: number[], maxTotalMs: number) {
-    const out: number[] = [];
-    let total = 0;
-
-    for (let i = 0; i < pattern.length; i++) {
-      const ms = Math.max(0, Math.round(pattern[i]));
-      if (ms === 0 && out.length === 0) continue;
-      if (total + ms > maxTotalMs) {
-        const remaining = maxTotalMs - total;
-        if (remaining > 0) out.push(remaining);
-        break;
-      }
-      out.push(ms);
-      total += ms;
-    }
-
-    // Pattern must start with a vibration duration (not a pause)
-    while (out.length > 0 && out[0] === 0) out.shift();
-
-    return out;
-  }
-
-  function buildVibrationPatternFromPosition(
-    code: string,
-    unit: number,
-    letterGapUnits: number,
-    wordGapUnits: number,
-    pos: InternalPosition
-  ) {
-    const parts = code.split(/(\s+)/);
-    const pattern: number[] = [];
-
-    const addVibe = (ms: number) => {
-      if (ms <= 0) return;
-      if (pattern.length === 0) {
-        pattern.push(ms);
-        return;
-      }
-      if (pattern.length % 2 === 0) {
-        // last is a pause
-        pattern.push(ms);
-      } else {
-        // last is a vibration; insert a zero pause
-        pattern.push(0);
-        pattern.push(ms);
-      }
-    };
-
-    const addPause = (ms: number) => {
-      if (ms <= 0) return;
-      if (pattern.length === 0) return;
-      if (pattern.length % 2 === 1) {
-        // last is a vibration
-        pattern.push(ms);
-      } else {
-        // last is a pause
-        pattern[pattern.length - 1] += ms;
-      }
-    };
-
-    for (let i = pos.tokenIndex; i < parts.length; i++) {
-      const token = parts[i];
-      if (!token) continue;
-
-      if (/^\s+$/.test(token)) {
-        const spaces = token.length;
-        const units = spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
-        addPause(units * unit);
-        continue;
-      }
-
-      const startSymbol = i === pos.tokenIndex ? pos.symbolIndex : 0;
-      for (let s = startSymbol; s < token.length; s++) {
-        const ch = token[s];
-        if (ch !== "." && ch !== "-") continue;
-
-        const dur = ch === "." ? unit : 3 * unit;
-        addVibe(dur);
-
-        // intra-character gap
-        if (s < token.length - 1) addPause(unit);
-      }
-    }
-
-    return pattern;
-  }
-
-  function startVibrationForPosition(opts: PlayOptions, pos: InternalPosition) {
-    if (!opts.vibrate) {
-      vibrateStartedRef.current = false;
-      return;
-    }
-    if (typeof navigator === "undefined" || !navigator.vibrate) return;
-
-    const unit = ditMs(opts.wpm);
-    const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
-    const letterGapUnits = Math.round(3 * mult);
-    const wordGapUnits = Math.round(7 * mult);
-
-    const code = normalizeMorseInput(opts.code);
-    const pattern = buildVibrationPatternFromPosition(code, unit, letterGapUnits, wordGapUnits, pos);
-    if (pattern.length === 0) return;
-
-    const capped = capVibrationPattern(pattern, 18000);
-    if (capped.length === 0) return;
-
-    try {
-      const ok = navigator.vibrate(capped);
-      vibrateStartedRef.current = !!ok;
-    } catch {
-      vibrateStartedRef.current = false;
-    }
-  }
-
-  async function runOnce(opts: PlayOptions) {
-    const unit = ditMs(opts.wpm);
-    const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
-    const letterGapUnits = Math.round(3 * mult);
-    const wordGapUnits = Math.round(7 * mult);
-
-    const preset = opts.preset ?? "cw_radio";
-    const oscType: OscillatorType =
-      preset === "bright_square" ? "square" : preset === "cw_radio" ? "sine" : "sine";
-
-    const code = normalizeMorseInput(opts.code);
+  async function runOnce(baseOpts: PlayOptions) {
+    const code = normalizeMorseInput(baseOpts.code);
     const parts = code.split(/(\s+)/);
 
     for (let i = posRef.current.tokenIndex; i < parts.length; i++) {
@@ -348,8 +261,17 @@ export default function useAudio() {
 
       const token = parts[i];
       posRef.current.tokenIndex = i;
-
       if (!token) continue;
+
+      // Always read live opts before timing decisions.
+      const opts = getLive(baseOpts);
+      const unit = ditMs(opts.wpm);
+      const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
+      const letterGapUnits = Math.round(3 * mult);
+      const wordGapUnits = Math.round(7 * mult);
+
+      const preset = opts.preset ?? "cw_radio";
+      const oscType: OscillatorType = preset === "bright_square" ? "square" : "sine";
 
       if (/^\s+$/.test(token)) {
         const spaces = token.length;
@@ -364,60 +286,52 @@ export default function useAudio() {
         await waitWhilePaused();
         posRef.current.symbolIndex = s;
 
+        // Pull latest settings each symbol.
+        const live = getLive(baseOpts);
+        applyMasterFromOpts(live);
+
+        const liveUnit = ditMs(live.wpm);
+        const livePreset = live.preset ?? "cw_radio";
+        const liveOscType: OscillatorType =
+          livePreset === "bright_square" ? "square" : "sine";
+
         const ch = token[s];
         if (ch !== "." && ch !== "-") continue;
 
-        const dur = ch === "." ? unit : 3 * unit;
-        if (opts.flash) triggerFlash(dur);
-        if (opts.vibrate) triggerVibrate(dur);
+        const dur = ch === "." ? liveUnit : 3 * liveUnit;
+        if (live.flash) triggerFlash(dur);
 
-        if (preset === "telegraph_sounder") await playSounder(dur, opts.volume);
-        else await playTone(dur, opts.hz, oscType, opts.volume);
+        if (livePreset === "telegraph_sounder") await playSounder(dur);
+        else await playTone(dur, live.hz, liveOscType);
 
-        // intra-character gap
-        if (s < token.length - 1) await sleep(unit);
+        if (s < token.length - 1) await sleep(liveUnit);
       }
 
-      // reset symbol position when moving to next token
       posRef.current.symbolIndex = 0;
     }
   }
 
   async function play(opts: PlayOptions) {
-    const safeOpts: PlayOptions = {
-      ...opts,
-      wpm: clamp(opts.wpm, 5, 60),
-      farnsworthWpm: opts.farnsworthWpm ? clamp(opts.farnsworthWpm, 5, 60) : undefined,
-      hz: clamp(opts.hz, 200, 1200),
-      volume: clamp(opts.volume, 0, 1),
-      repeat: !!opts.repeat,
-      flash: !!opts.flash,
-      vibrate: !!opts.vibrate,
-    };
+    const safe = sanitize(opts);
 
-    lastCodeRef.current = safeOpts.code;
-    lastOptsRef.current = safeOpts;
+    lastCodeRef.current = safe.code;
+    liveOptsRef.current = safe;
 
-    // If already playing, restart from the top.
     stopRef.current = false;
     pausedRef.current = false;
     playingRef.current = true;
-    repeatRef.current = !!safeOpts.repeat;
+    repeatRef.current = !!safe.repeat;
     posRef.current = { tokenIndex: 0, symbolIndex: 0 };
 
     setState("playing");
-
-    startVibrationForPosition(safeOpts, { tokenIndex: 0, symbolIndex: 0 });
+    applyMasterFromOpts(safe);
 
     do {
-      await runOnce(safeOpts);
+      await runOnce(safe);
       if (stopRef.current) break;
       posRef.current = { tokenIndex: 0, symbolIndex: 0 };
-      // small gap between repeats
       if (repeatRef.current) await sleep(160);
     } while (repeatRef.current);
-
-    cancelVibration();
 
     playingRef.current = false;
     pausedRef.current = false;
@@ -429,17 +343,12 @@ export default function useAudio() {
   function pause() {
     if (!playingRef.current) return;
     pausedRef.current = true;
-    cancelVibration();
     setState("paused");
   }
 
   function resume() {
     if (!playingRef.current) return;
     pausedRef.current = false;
-
-    const last = lastOptsRef.current;
-    if (last) startVibrationForPosition(last, posRef.current);
-
     setState("playing");
   }
 
@@ -447,24 +356,30 @@ export default function useAudio() {
     stopRef.current = true;
     pausedRef.current = false;
     repeatRef.current = false;
-    cancelVibration();
     setState("idle");
   }
 
   // Back-compat API
   async function playMorse(code: string, wpm: number, hz: number, _wordGapUnits = 7) {
-    return play({ code, wpm, hz, volume: 0.75, preset: "cw_radio" });
+    return play({ code, wpm, hz, volume: 0.75, preset: "cw_radio", soundEnabled: true });
+  }
+
+  /** Update options live during playback (applies immediately). */
+  function setLiveOptions(partial: Partial<PlayOptions>) {
+    if (!liveOptsRef.current) return;
+    liveOptsRef.current = { ...liveOptsRef.current, ...partial };
+    if (playingRef.current) applyMasterFromOpts(liveOptsRef.current);
   }
 
   /** Render a WAV file for sharing/downloading without realtime playback jitter. */
   async function renderWav(opts: PlayOptions): Promise<Blob> {
-    const code = normalizeMorseInput(opts.code);
-    const unit = ditMs(opts.wpm);
-    const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
+    const safe = sanitize(opts);
+    const code = normalizeMorseInput(safe.code);
+    const unit = ditMs(safe.wpm);
+    const mult = farnsworthMultiplier(safe.wpm, safe.farnsworthWpm);
     const letterGapUnits = Math.round(3 * mult);
     const wordGapUnits = Math.round(7 * mult);
 
-    // Estimate total duration
     const parts = code.split(/(\s+)/);
     let totalMs = 0;
     for (const token of parts) {
@@ -486,19 +401,22 @@ export default function useAudio() {
     const sr = 44100;
     const length = Math.ceil((totalMs / 1000) * sr);
     const offline = new OfflineAudioContext(1, Math.max(1, length), sr);
-    const gain = offline.createGain();
-    gain.gain.value = clamp(opts.volume, 0, 1) * 0.35;
-    gain.connect(offline.destination);
 
-    const preset = opts.preset ?? "cw_radio";
+    const master = offline.createGain();
+    const effective = safe.soundEnabled === false ? 0 : safe.volume * 0.35;
+    master.gain.value = effective;
+    master.connect(offline.destination);
+
+    const preset = safe.preset ?? "cw_radio";
     const oscType: OscillatorType = preset === "bright_square" ? "square" : "sine";
 
     let t = 0;
     const unitS = unit / 1000;
 
     function addTone(durS: number) {
+      if (effective <= 0.000001) return;
+
       if (preset === "telegraph_sounder") {
-        // very short noise click
         const bufferSize = Math.max(256, Math.floor(offline.sampleRate * durS));
         const buffer = offline.createBuffer(1, bufferSize, offline.sampleRate);
         const data = buffer.getChannelData(0);
@@ -512,7 +430,7 @@ export default function useAudio() {
         biquad.type = "bandpass";
         biquad.frequency.value = 1100;
         biquad.Q.value = 1.5;
-        src.connect(biquad).connect(gain);
+        src.connect(biquad).connect(master);
         src.start(t);
         src.stop(t + durS);
         return;
@@ -520,8 +438,14 @@ export default function useAudio() {
 
       const osc = offline.createOscillator();
       osc.type = oscType;
-      osc.frequency.value = clamp(opts.hz, 200, 1200);
-      osc.connect(gain);
+      osc.frequency.value = clamp(safe.hz, 200, 1200);
+
+      const env = offline.createGain();
+      env.gain.setValueAtTime(0, t);
+      env.gain.linearRampToValueAtTime(1, t + 0.008);
+      env.gain.linearRampToValueAtTime(0, t + Math.max(0.008, durS - 0.012));
+
+      osc.connect(env).connect(master);
       osc.start(t);
       osc.stop(t + durS);
     }
@@ -566,6 +490,7 @@ export default function useAudio() {
     stop,
     playMorse,
     renderWav,
+    setLiveOptions,
   };
 }
 
@@ -615,7 +540,6 @@ function audioBufferToWavBlob(buffer: AudioBuffer): Blob {
   view.setUint32(offset, dataSize, true);
   offset += 4;
 
-  // interleave channels
   const channels: Float32Array[] = [];
   for (let c = 0; c < numChannels; c++) channels.push(buffer.getChannelData(c));
 

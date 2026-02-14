@@ -31,11 +31,24 @@ export type PlayOptions = {
 
   /** Flash the screen on dits/dahs (mobile-friendly). */
   flash?: boolean;
-  /** Vibrate on dits/dahs (mobile-friendly). */
+
+  /**
+   * Deprecated: vibration is intentionally ignored (removed from UI).
+   * Kept only so older callers don't break.
+   */
   vibrate?: boolean;
+
+  /**
+   * If false, playback is silent but timing/flash still runs.
+   * Defaults to true.
+   */
+  soundEnabled?: boolean;
 };
 
-export type RenderWavOptions = Omit<PlayOptions, "repeat" | "flash" | "vibrate"> & {
+export type RenderWavOptions = Omit<
+  PlayOptions,
+  "repeat" | "flash" | "vibrate"
+> & {
   /** Output sample rate (Hz). Default 44100. */
   sampleRate?: 22050 | 44100 | 48000;
   /** Add silence at the end to avoid clipped tails. Default 120ms. */
@@ -99,6 +112,11 @@ function defaultReleaseMs(preset: SoundPreset) {
  * Morse audio engine focused on playback quality and export.
  * - Real-time playback uses AudioContext and a click-safe envelope.
  * - Export uses OfflineAudioContext for consistent timing.
+ *
+ * Fixes:
+ * - true mute via master gain (no "minimum gain" bleed-through)
+ * - live updates while playing/paused via setLiveOptions()
+ * - vibration removed (ignored)
  */
 export default function useMorseAudio() {
   const ctxRef = React.useRef<AudioContext | null>(null);
@@ -109,36 +127,71 @@ export default function useMorseAudio() {
   const playingRef = React.useRef(false);
   const repeatRef = React.useRef(false);
 
-  const posRef = React.useRef<InternalPosition>({ tokenIndex: 0, symbolIndex: 0 });
+  const posRef = React.useRef<InternalPosition>({
+    tokenIndex: 0,
+    symbolIndex: 0,
+  });
+
+  const liveOptsRef = React.useRef<PlayOptions | null>(null);
 
   const [state, setState] = React.useState<MorsePlayerState>("idle");
-
   const [isSupported, setIsSupported] = React.useState(false);
 
   React.useEffect(() => {
     const supported =
       typeof window !== "undefined" &&
-      !!(window.AudioContext || (window as any).webkitAudioContext);
-    setIsSupported(supported);
+      (!!(
+        window.AudioContext || (window as any).webkitAudioContext
+      ) as boolean);
+    setIsSupported(!!supported);
   }, []);
 
   function ensureCtx() {
+    if (typeof window === "undefined") return null;
+
     if (!ctxRef.current) {
-      const Ctx = (window.AudioContext || (window as any).webkitAudioContext) as
-        | typeof AudioContext
-        | undefined;
+      const Ctx = (window.AudioContext ||
+        (window as any).webkitAudioContext) as typeof AudioContext | undefined;
       if (!Ctx) return null;
       ctxRef.current = new Ctx();
     }
+
     const ctx = ctxRef.current;
     if (!ctx) return null;
 
     if (!masterGainRef.current) {
-      masterGainRef.current = ctx.createGain();
-      masterGainRef.current.gain.value = 0.25;
-      masterGainRef.current.connect(ctx.destination);
+      const g = ctx.createGain();
+      g.gain.value = 0; // set by applyMasterFromLive()
+      g.connect(ctx.destination);
+      masterGainRef.current = g;
     }
+
     return ctx;
+  }
+
+  function sanitizeOpts(opts: PlayOptions): PlayOptions {
+    const safePreset: SoundPreset = (opts.preset ?? "cw_radio") as SoundPreset;
+
+    return {
+      ...opts,
+      preset: safePreset,
+      wpm: clamp(opts.wpm, 5, 60),
+      farnsworthWpm: opts.farnsworthWpm
+        ? clamp(opts.farnsworthWpm, 5, 60)
+        : undefined,
+      hz: clamp(opts.hz, 200, 1600),
+      volume: clamp(opts.volume, 0, 1),
+      repeat: !!opts.repeat,
+      flash: !!opts.flash,
+      vibrate: false,
+      soundEnabled: opts.soundEnabled !== false,
+      attackMs: clamp(opts.attackMs ?? defaultAttackMs(safePreset), 0, 200),
+      releaseMs: clamp(opts.releaseMs ?? defaultReleaseMs(safePreset), 0, 400),
+    };
+  }
+
+  function getLiveOpts(fallback: PlayOptions) {
+    return sanitizeOpts(liveOptsRef.current ?? fallback);
   }
 
   async function waitWhilePaused() {
@@ -148,82 +201,104 @@ export default function useMorseAudio() {
   }
 
   function triggerFlash(ms: number) {
-    window.dispatchEvent(new CustomEvent("morsewords:flash", { detail: { ms } }));
+    window.dispatchEvent(
+      new CustomEvent("morsewords:flash", { detail: { ms } }),
+    );
   }
 
-  function triggerVibrate(ms: number) {
-    if (typeof navigator === "undefined" || !navigator.vibrate) return;
-    try {
-      navigator.vibrate(ms);
-    } catch {
-      // ignore
+  async function ensureRunning() {
+    const ctx = ensureCtx();
+    if (!ctx) return null;
+    if (ctx.state === "suspended") {
+      try {
+        await ctx.resume();
+      } catch {
+        // ignore
+      }
     }
+    return ctx;
+  }
+
+  function applyMasterFromLive(opts: PlayOptions) {
+    const ctx = ensureCtx();
+    if (!ctx) return;
+    const master = masterGainRef.current;
+    if (!master) return;
+
+    const safe = sanitizeOpts(opts);
+    const effective =
+      safe.soundEnabled === false ? 0 : clamp(safe.volume, 0, 1) * 0.38;
+
+    const now = ctx.currentTime;
+    master.gain.cancelScheduledValues(now);
+    master.gain.setTargetAtTime(effective, now, 0.02);
   }
 
   async function playTone(params: {
     ms: number;
     hz: number;
     preset: SoundPreset;
-    volume: number;
     attackMs: number;
     releaseMs: number;
   }) {
-    const ctx = ensureCtx();
+    const ctx = await ensureRunning();
     if (!ctx) return;
-    if (ctx.state === "suspended") {
-      try {
-        await ctx.resume();
-      } catch {
-        // ignore
-      }
-    }
 
     const master = masterGainRef.current;
     if (!master) return;
+
+    // If muted, preserve timing without scheduling audio nodes.
+    if (master.gain.value <= 0.000001) {
+      await sleep(params.ms);
+      return;
+    }
 
     const osc = ctx.createOscillator();
     osc.type = presetToOscType(params.preset);
     osc.frequency.value = params.hz;
 
-    const localGain = ctx.createGain();
-    // Conservative scaling so volume feels usable across devices
-    const target = clamp(params.volume, 0, 1) * 0.38;
+    // Per-tone envelope so master gain can truly hit 0 with no bleed.
+    const env = ctx.createGain();
+    env.gain.value = 0;
 
-    osc.connect(localGain).connect(master);
+    osc.connect(env).connect(master);
 
     const now = ctx.currentTime;
     const attackS = clamp(params.attackMs, 0, 200) / 1000;
     const releaseS = clamp(params.releaseMs, 0, 400) / 1000;
 
-    localGain.gain.cancelScheduledValues(now);
-    localGain.gain.setValueAtTime(0.0001, now);
-    localGain.gain.exponentialRampToValueAtTime(Math.max(0.001, target), now + Math.max(0.001, attackS));
+    env.gain.cancelScheduledValues(now);
+    env.gain.setValueAtTime(0, now);
+    env.gain.linearRampToValueAtTime(1, now + Math.max(0.001, attackS));
 
     osc.start();
 
     await sleep(params.ms);
 
     const t2 = ctx.currentTime;
-    localGain.gain.cancelScheduledValues(t2);
-    localGain.gain.setValueAtTime(Math.max(0.001, target), t2);
-    localGain.gain.exponentialRampToValueAtTime(0.0001, t2 + Math.max(0.001, releaseS));
+    env.gain.cancelScheduledValues(t2);
+    env.gain.setValueAtTime(env.gain.value, t2);
+    env.gain.linearRampToValueAtTime(0, t2 + Math.max(0.001, releaseS));
 
     await sleep(Math.max(0, params.releaseMs) + 10);
-    osc.stop();
+    try {
+      osc.stop();
+    } catch {
+      // ignore
+    }
   }
 
-  async function playSounder(ms: number, volume: number) {
-    const ctx = ensureCtx();
+  async function playSounder(ms: number) {
+    const ctx = await ensureRunning();
     if (!ctx) return;
-    if (ctx.state === "suspended") {
-      try {
-        await ctx.resume();
-      } catch {
-        // ignore
-      }
-    }
+
     const master = masterGainRef.current;
     if (!master) return;
+
+    if (master.gain.value <= 0.000001) {
+      await sleep(ms);
+      return;
+    }
 
     // Telegraph sounder: filtered noise burst
     const bufferSize = Math.max(256, Math.floor((ctx.sampleRate * ms) / 1000));
@@ -244,7 +319,7 @@ export default function useMorseAudio() {
     biquad.Q.value = 1.5;
 
     const localGain = ctx.createGain();
-    localGain.gain.value = clamp(volume, 0, 1) * 0.5;
+    localGain.gain.value = 1;
 
     src.connect(biquad).connect(localGain).connect(master);
     src.start();
@@ -256,22 +331,24 @@ export default function useMorseAudio() {
     }
   }
 
-  async function runOnce(opts: PlayOptions) {
-    const unit = ditMs(opts.wpm);
-    const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
-    const letterGapUnits = Math.round(3 * mult);
-    const wordGapUnits = Math.round(7 * mult);
-
-    const preset = opts.preset ?? "cw_radio";
-    const attackMs = opts.attackMs ?? defaultAttackMs(preset);
-    const releaseMs = opts.releaseMs ?? defaultReleaseMs(preset);
-
-    const code = normalizeMorseInput(opts.code);
+  async function runOnce(baseOpts: PlayOptions) {
+    const code = normalizeMorseInput(baseOpts.code);
     const parts = code.split(/(\s+)/);
 
     for (let i = posRef.current.tokenIndex; i < parts.length; i++) {
       if (stopRef.current) break;
       await waitWhilePaused();
+
+      const opts = getLiveOpts(baseOpts);
+
+      const unit = ditMs(opts.wpm);
+      const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
+      const letterGapUnits = Math.round(3 * mult);
+      const wordGapUnits = Math.round(7 * mult);
+
+      const preset = opts.preset ?? "cw_radio";
+      const attackMs = opts.attackMs ?? defaultAttackMs(preset);
+      const releaseMs = opts.releaseMs ?? defaultReleaseMs(preset);
 
       const token = parts[i];
       posRef.current.tokenIndex = i;
@@ -280,7 +357,8 @@ export default function useMorseAudio() {
 
       if (/^\s+$/.test(token)) {
         const spaces = token.length;
-        const units = spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
+        const units =
+          spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
         posRef.current.symbolIndex = 0;
         await sleep(units * unit);
         continue;
@@ -289,53 +367,45 @@ export default function useMorseAudio() {
       for (let s = posRef.current.symbolIndex; s < token.length; s++) {
         if (stopRef.current) break;
         await waitWhilePaused();
+
+        const live = getLiveOpts(baseOpts);
+        applyMasterFromLive(live);
+
+        const liveUnit = ditMs(live.wpm);
+
         posRef.current.symbolIndex = s;
 
         const ch = token[s];
         if (ch !== "." && ch !== "-") continue;
 
-        const dur = ch === "." ? unit : 3 * unit;
-        if (opts.flash) triggerFlash(dur);
-        if (opts.vibrate) triggerVibrate(dur);
+        const dur = ch === "." ? liveUnit : 3 * liveUnit;
+        if (live.flash) triggerFlash(dur);
 
-        if (preset === "sounder") {
-          await playSounder(dur, opts.volume);
+        if (live.preset === "sounder") {
+          await playSounder(dur);
         } else {
           await playTone({
             ms: dur,
-            hz: opts.hz,
-            preset,
-            volume: opts.volume,
-            attackMs,
-            releaseMs,
+            hz: live.hz,
+            preset: live.preset ?? "cw_radio",
+            attackMs:
+              live.attackMs ?? defaultAttackMs(live.preset ?? "cw_radio"),
+            releaseMs:
+              live.releaseMs ?? defaultReleaseMs(live.preset ?? "cw_radio"),
           });
         }
 
-        // intra-character gap
-        if (s < token.length - 1) await sleep(unit);
+        if (s < token.length - 1) await sleep(liveUnit);
       }
 
-      // reset symbol position when moving to next token
       posRef.current.symbolIndex = 0;
     }
   }
 
   async function play(opts: PlayOptions) {
-    const safePreset: SoundPreset = (opts.preset ?? "cw_radio") as SoundPreset;
+    const safeOpts = sanitizeOpts(opts);
 
-    const safeOpts: PlayOptions = {
-      ...opts,
-      preset: safePreset,
-      wpm: clamp(opts.wpm, 5, 60),
-      farnsworthWpm: opts.farnsworthWpm ? clamp(opts.farnsworthWpm, 5, 60) : undefined,
-      hz: clamp(opts.hz, 200, 1600),
-      volume: clamp(opts.volume, 0, 1),
-      repeat: !!opts.repeat,
-      flash: !!opts.flash,
-      vibrate: !!opts.vibrate,
-      attackMs: clamp(opts.attackMs ?? defaultAttackMs(safePreset), 0, 200),
-      releaseMs: clamp(opts.releaseMs ?? defaultReleaseMs(safePreset), 0, 400),
-    };
+    liveOptsRef.current = safeOpts;
 
     stopRef.current = false;
     pausedRef.current = false;
@@ -344,6 +414,8 @@ export default function useMorseAudio() {
     posRef.current = { tokenIndex: 0, symbolIndex: 0 };
 
     setState("playing");
+
+    applyMasterFromLive(safeOpts);
 
     do {
       await runOnce(safeOpts);
@@ -368,6 +440,10 @@ export default function useMorseAudio() {
   function resume() {
     if (!playingRef.current) return;
     pausedRef.current = false;
+
+    const live = liveOptsRef.current;
+    if (live) applyMasterFromLive(live);
+
     setState("playing");
   }
 
@@ -376,6 +452,12 @@ export default function useMorseAudio() {
     pausedRef.current = false;
     repeatRef.current = false;
     setState("idle");
+  }
+
+  function setLiveOptions(partial: Partial<PlayOptions>) {
+    if (!liveOptsRef.current) return;
+    liveOptsRef.current = { ...liveOptsRef.current, ...partial };
+    if (playingRef.current) applyMasterFromLive(liveOptsRef.current);
   }
 
   function estimateDurationMs(opts: {
@@ -396,7 +478,8 @@ export default function useMorseAudio() {
       if (!token) continue;
       if (/^\s+$/.test(token)) {
         const spaces = token.length;
-        const units = spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
+        const units =
+          spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
         totalMs += units * unit;
         continue;
       }
@@ -407,108 +490,130 @@ export default function useMorseAudio() {
         if (i < token.length - 1) totalMs += unit;
       }
     }
-
-    return Math.max(0, Math.round(totalMs));
+    return totalMs;
   }
 
-  /** Render a WAV file for sharing/downloading without realtime playback jitter. */
   async function renderWav(opts: RenderWavOptions): Promise<Blob> {
-    const preset: SoundPreset = (opts.preset ?? "cw_radio") as SoundPreset;
-    const code = normalizeMorseInput(opts.code);
+    const safePreset: SoundPreset = (opts.preset ?? "cw_radio") as SoundPreset;
 
-    const unit = ditMs(opts.wpm);
-    const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
+    const safe: RenderWavOptions = {
+      ...opts,
+      preset: safePreset,
+      wpm: clamp(opts.wpm, 5, 60),
+      farnsworthWpm: opts.farnsworthWpm
+        ? clamp(opts.farnsworthWpm, 5, 60)
+        : undefined,
+      hz: clamp(opts.hz, 200, 1600),
+      volume: clamp(opts.volume, 0, 1),
+      soundEnabled: opts.soundEnabled !== false,
+      attackMs: clamp(opts.attackMs ?? defaultAttackMs(safePreset), 0, 200),
+      releaseMs: clamp(opts.releaseMs ?? defaultReleaseMs(safePreset), 0, 400),
+      sampleRate: opts.sampleRate ?? 44100,
+      tailMs: opts.tailMs ?? 120,
+    };
+
+    const code = normalizeMorseInput(safe.code);
+    const unit = ditMs(safe.wpm);
+    const mult = farnsworthMultiplier(safe.wpm, safe.farnsworthWpm);
     const letterGapUnits = Math.round(3 * mult);
     const wordGapUnits = Math.round(7 * mult);
 
-    const sr = opts.sampleRate ?? 44100;
-    const tailMs = opts.tailMs ?? 120;
+    const parts = code.split(/(\s+)/);
+    let totalMs = 0;
+    for (const token of parts) {
+      if (!token) continue;
+      if (/^\s+$/.test(token)) {
+        const spaces = token.length;
+        const units =
+          spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
+        totalMs += units * unit;
+        continue;
+      }
+      for (let i = 0; i < token.length; i++) {
+        const ch = token[i];
+        if (ch !== "." && ch !== "-") continue;
+        totalMs += ch === "." ? unit : 3 * unit;
+        if (i < token.length - 1) totalMs += unit;
+      }
+    }
+    totalMs += clamp(safe.tailMs ?? 120, 0, 2000);
 
-    const totalMs = estimateDurationMs({
-      code,
-      wpm: opts.wpm,
-      farnsworthWpm: opts.farnsworthWpm,
-    });
+    const sr = safe.sampleRate ?? 44100;
+    const length = Math.ceil((totalMs / 1000) * sr);
 
-    const totalWithTail = totalMs + tailMs;
-    const length = Math.ceil((totalWithTail / 1000) * sr);
     const offline = new OfflineAudioContext(1, Math.max(1, length), sr);
-
     const master = offline.createGain();
-    master.gain.value = 1;
+
+    const effective =
+      safe.soundEnabled === false ? 0 : clamp(safe.volume, 0, 1) * 0.38;
+
+    master.gain.value = effective;
     master.connect(offline.destination);
 
-    const parts = code.split(/(\s+)/);
     let t = 0;
     const unitS = unit / 1000;
 
-    const attackS = (clamp(opts.attackMs ?? defaultAttackMs(preset), 0, 200) / 1000) || 0.001;
-    const releaseS = (clamp(opts.releaseMs ?? defaultReleaseMs(preset), 0, 400) / 1000) || 0.001;
+    function addTone(durS: number) {
+      if (effective <= 0.000001) return;
 
-    const hz = clamp(opts.hz, 200, 1600);
-    const amp = clamp(opts.volume, 0, 1) * 0.38;
+      if (safe.preset === "sounder") {
+        const bufferSize = Math.max(256, Math.floor(offline.sampleRate * durS));
+        const buffer = offline.createBuffer(1, bufferSize, offline.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          const env = 1 - i / bufferSize;
+          data[i] = (Math.random() * 2 - 1) * env;
+        }
+        const src = offline.createBufferSource();
+        src.buffer = buffer;
 
-    function addOscTone(durS: number) {
-      const osc = offline.createOscillator();
-      osc.type = presetToOscType(preset);
-      osc.frequency.value = hz;
+        const biquad = offline.createBiquadFilter();
+        biquad.type = "bandpass";
+        biquad.frequency.value = 1100;
+        biquad.Q.value = 1.5;
 
-      const localGain = offline.createGain();
-      localGain.gain.setValueAtTime(0.0001, t);
-
-      // Attack and release envelope for click reduction
-      localGain.gain.exponentialRampToValueAtTime(Math.max(0.001, amp), t + Math.max(0.001, attackS));
-      localGain.gain.setValueAtTime(Math.max(0.001, amp), Math.max(t, t + durS - Math.max(0.001, releaseS)));
-      localGain.gain.exponentialRampToValueAtTime(0.0001, t + durS);
-
-      osc.connect(localGain).connect(master);
-      osc.start(t);
-      osc.stop(t + durS);
-    }
-
-    function addSounder(durS: number) {
-      // Noise burst with fixed filtering to mimic mechanical click
-      const bufferSize = Math.max(256, Math.floor(offline.sampleRate * durS));
-      const buffer = offline.createBuffer(1, bufferSize, offline.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        const env = 1 - i / bufferSize;
-        data[i] = (Math.random() * 2 - 1) * env;
+        src.connect(biquad).connect(master);
+        src.start(t);
+        src.stop(t + durS);
+        return;
       }
 
-      const src = offline.createBufferSource();
-      src.buffer = buffer;
+      const osc = offline.createOscillator();
+      osc.type = presetToOscType(safe.preset ?? "cw_radio");
+      osc.frequency.value = clamp(safe.hz, 200, 1600);
 
-      const biquad = offline.createBiquadFilter();
-      biquad.type = "bandpass";
-      biquad.frequency.value = 1100;
-      biquad.Q.value = 1.5;
+      const env = offline.createGain();
+      const attackS =
+        clamp(safe.attackMs ?? defaultAttackMs(safePreset), 0, 200) / 1000;
+      const releaseS =
+        clamp(safe.releaseMs ?? defaultReleaseMs(safePreset), 0, 400) / 1000;
 
-      const localGain = offline.createGain();
-      localGain.gain.value = clamp(opts.volume, 0, 1) * 0.5;
+      env.gain.setValueAtTime(0, t);
+      env.gain.linearRampToValueAtTime(1, t + Math.max(0.001, attackS));
+      env.gain.linearRampToValueAtTime(
+        0,
+        t + Math.max(0.002, durS - Math.max(0.001, releaseS)),
+      );
 
-      src.connect(biquad).connect(localGain).connect(master);
-      src.start(t);
-      src.stop(t + durS);
+      osc.connect(env).connect(master);
+      osc.start(t);
+      osc.stop(t + durS);
     }
 
     for (const token of parts) {
       if (!token) continue;
       if (/^\s+$/.test(token)) {
         const spaces = token.length;
-        const units = spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
+        const units =
+          spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
         t += units * unitS;
         continue;
       }
-
       for (let i = 0; i < token.length; i++) {
         const ch = token[i];
         if (ch !== "." && ch !== "-") continue;
-
         const durS = ch === "." ? unitS : 3 * unitS;
-        if (preset === "sounder") addSounder(durS);
-        else addOscTone(durS);
-
+        addTone(durS);
         t += durS;
         if (i < token.length - 1) t += unitS;
       }
@@ -525,6 +630,7 @@ export default function useMorseAudio() {
     pause,
     resume,
     stop,
+    setLiveOptions,
     renderWav,
     estimateDurationMs,
   };
