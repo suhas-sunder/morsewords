@@ -5,30 +5,29 @@ import styles from "~/client/components/morse-code-encoder/styles";
 import TranslatorSectionsBasic from "~/client/components/morse-code-encoder/TranslatorSectionsBasic";
 import FaqSectionGeneric from "~/client/components/morse-code-encoder/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/morse-code-encoder/JsonLdScript";
-import { morseToText, textToMorse } from "~/client/components/morse-code-encoder/morseUtils";
+import {
+  morseToText,
+  textToMorse,
+} from "~/client/components/morse-code-encoder/morseUtils";
 import HowItWorks from "~/client/components/morse-code-encoder/HowItWorks";
 
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Encoder (Text → Morse) | Instant Dots & Dashes",
+      title: "Morse Code Encoder (Text → Morse) | Instant & Free",
     },
     {
       name: "description",
       content:
-        
-      "Free Morse code encoder. Convert text to International Morse instantly, with clean spacing, copy buttons, and built-in audio and practice support.",
+        "Convert text to Morse code instantly. Generate clean dots and dashes, copy the output, and use built-in audio and practice tools in your browser for free.",
     },
     {
       name: "keywords",
       content:
-        
-      "morse code encoder, text to morse, dots and dashes, international morse, morsewords",
+        "morse code encoder, text to morse, text to morse code, morse encoder, dots and dashes",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
-
-    // canonical (no trailing slash, matches sitemap)
     {
       rel: "canonical",
       href: "https://www.morsewords.com/morse-code-encoder",
@@ -52,7 +51,8 @@ export default function Home() {
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
     url: baseUrl + "/morse-code-encoder",
-    description: "Browser-based Morse code encoder for converting text into International Morse.",
+    description:
+      "Browser-based Morse code encoder for converting text into International Morse.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   };
   const faqItems = [
@@ -77,7 +77,6 @@ export default function Home() {
       a: "Yes. The conversion happens in your browser, and your text is not sent to a server by this page.",
     },
   ];
-
 
   return (
     <div style={styles.page}>

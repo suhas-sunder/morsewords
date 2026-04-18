@@ -5,32 +5,29 @@ import styles from "~/client/components/the-quick-brown-fox-morse-code/styles";
 import TranslatorSectionsBasic from "~/client/components/the-quick-brown-fox-morse-code/TranslatorSectionsBasic";
 import FaqSectionGeneric from "~/client/components/the-quick-brown-fox-morse-code/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/the-quick-brown-fox-morse-code/JsonLdScript";
-import { morseToText, textToMorse } from "~/client/components/the-quick-brown-fox-morse-code/morseUtils";
+import {
+  morseToText,
+  textToMorse,
+} from "~/client/components/the-quick-brown-fox-morse-code/morseUtils";
 import HowItWorks from "~/client/components/the-quick-brown-fox-morse-code/HowItWorks";
 
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "The Quick Brown Fox Jumps Over The Lazy Dog in Morse Code (Copy + Audio)",
+      title: "The Quick Brown Fox in Morse Code | Full Pangram with Audio",
     },
     {
       name: "description",
       content:
-        
-      
-      "See “the quick brown fox jumps over the lazy dog” in International Morse code. Copy the full Morse string, listen to the audio, and decode it back to text for puzzles and practice.",
+        "See “The quick brown fox jumps over the lazy dog” in International Morse code. Copy the full Morse string, listen to the audio, and decode it back to text for practice or puzzles.",
     },
     {
       name: "keywords",
       content:
-        
-      
-      "the quick brown fox morse code, quick brown fox morse, morse code pangram, morse code puzzle, morsewords",
+        "the quick brown fox morse code, quick brown fox morse, morse code pangram, morse pangram, morse code puzzle",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
-
-    // canonical (no trailing slash, matches sitemap)
     {
       rel: "canonical",
       href: "https://www.morsewords.com/the-quick-brown-fox-morse-code",
@@ -40,10 +37,14 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   // Translator state (conversion logic stays in morseUtils)
-  const [plainA, setPlainA] = React.useState("the quick brown fox jumps over the lazy dog");
+  const [plainA, setPlainA] = React.useState(
+    "the quick brown fox jumps over the lazy dog",
+  );
   const morseA = React.useMemo(() => textToMorse(plainA), [plainA]);
 
-  const [morseB, setMorseB] = React.useState(textToMorse("the quick brown fox jumps over the lazy dog"));
+  const [morseB, setMorseB] = React.useState(
+    textToMorse("the quick brown fox jumps over the lazy dog"),
+  );
   const textB = React.useMemo(() => morseToText(morseB), [morseB]);
 
   const baseUrl = "https://www.morsewords.com";
@@ -54,7 +55,8 @@ export default function Home() {
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
     url: baseUrl + "/the-quick-brown-fox-morse-code",
-    description: "Page showing the Quick Brown Fox pangram in International Morse code with copy and audio.",
+    description:
+      "Page showing the Quick Brown Fox pangram in International Morse code with copy and audio.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   };
   const faqItems = [
@@ -80,8 +82,6 @@ export default function Home() {
     },
   ];
 
-
-
   return (
     <div style={styles.page}>
       <div style={styles.wrap}>
@@ -96,7 +96,10 @@ export default function Home() {
 
         <HowItWorks />
 
-        <FaqSectionGeneric title="Quick Brown Fox Morse Code FAQ" items={faqItems} />
+        <FaqSectionGeneric
+          title="Quick Brown Fox Morse Code FAQ"
+          items={faqItems}
+        />
       </div>
 
       <JsonLdScript jsonLd={jsonLd} />

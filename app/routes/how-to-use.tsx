@@ -17,39 +17,43 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "How to Use MorseWords | Translator, Audio, Practice & Tools",
+      title: "How to Use a Morse Code Translator, Audio, Practice & Tools",
     },
     {
       name: "description",
       content:
-        "Learn how to use MorseWords to translate text and Morse code, play audio at adjustable speeds, practice drills, type dots and dashes, and explore the Morse dictionary.",
+        "Learn how to translate text and Morse code, play Morse audio at adjustable speeds, practice drills, type dots and dashes, and use Morse code tools in your browser.",
     },
     {
       name: "keywords",
       content:
-        "how to use morsewords, morse code tools, morse translator guide, morse audio, morse practice, morse typing tool, morse dictionary",
+        "how to use morse code translator, morse code tools, morse translator guide, morse code audio, morse code practice, morse typing tool, morse code dictionary",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
-    // Open Graph
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "MorseWords" },
-    { property: "og:title", content: "How to Use MorseWords" },
+    {
+      property: "og:title",
+      content: "How to Use Morse Code Translator, Audio, Practice & Tools",
+    },
     {
       property: "og:description",
       content:
-        "A simple guide to using MorseWords tools for translating, listening, practicing, typing, and looking up Morse code.",
+        "A practical guide to translating Morse code, using audio playback, practicing drills, typing dots and dashes, and exploring Morse tools.",
     },
     { property: "og:url", content: CANONICAL_URL },
 
-    // Twitter
     { name: "twitter:card", content: "summary" },
-    { name: "twitter:title", content: "How to Use MorseWords" },
+    {
+      name: "twitter:title",
+      content: "How to Use Morse Code Translator, Audio, Practice & Tools",
+    },
     {
       name: "twitter:description",
       content:
-        "Learn how to use MorseWords tools to translate, practice, listen to, and type Morse code.",
+        "Learn how to translate Morse code, play audio, practice drills, type dots and dashes, and use Morse tools in your browser.",
     },
   ];
 }

@@ -10,17 +10,17 @@ import JsonLdScript from "~/client/components/morse-code-word-separator/JsonLdSc
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Word Separator (English ↔ Morse) – 7 Spaces vs / vs |",
+      title: "Morse Code Word Separator Converter | 7 Spaces, / and |",
     },
     {
       name: "description",
       content:
-        "Normalize Morse code word separators and format English → Morse word breaks. Convert between 7-space word gaps, slash (/), pipe (|), and new lines, and generate Morse from English using your preferred word separator.",
+        "Convert and normalize Morse code word separators. Switch between 7-space gaps, slash (/), pipe (|), and line breaks, or format English to Morse using your preferred separator style.",
     },
     {
       name: "keywords",
       content:
-        "morse code word separator, morse code word separator slash, morse code slash separator, morse word break, english to morse word separator, 7 spaces morse",
+        "morse code word separator, morse separator converter, morse code slash separator, morse word break, 7 spaces morse, morse code spacing",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },

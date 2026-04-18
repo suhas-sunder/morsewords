@@ -5,30 +5,29 @@ import styles from "~/client/components/morse-code-decoder/styles";
 import TranslatorSectionsBasic from "~/client/components/morse-code-decoder/TranslatorSectionsBasic";
 import FaqSectionGeneric from "~/client/components/morse-code-decoder/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/morse-code-decoder/JsonLdScript";
-import { morseToText, textToMorse } from "~/client/components/morse-code-decoder/morseUtils";
+import {
+  morseToText,
+  textToMorse,
+} from "~/client/components/morse-code-decoder/morseUtils";
 import HowItWorks from "~/client/components/morse-code-decoder/HowItWorks";
 
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Decoder (Morse → Text) | Decode Dots & Dashes Fast",
+      title: "Morse Code Decoder (Morse → Text) | Instant & Free",
     },
     {
       name: "description",
       content:
-        
-      "Fast Morse code decoder. Paste dots and dashes and convert Morse to text instantly, with word separator handling, copy controls, and clear error signaling.",
+        "Decode Morse code to text instantly. Paste dots and dashes, handle word separators, and copy decoded output in your browser for free.",
     },
     {
       name: "keywords",
       content:
-        
-      "morse code decoder, morse to text, decode dots and dashes, international morse, morsewords",
+        "morse code decoder, morse to text, decode dots and dashes, morse decoder, decode morse code",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
-
-    // canonical (no trailing slash, matches sitemap)
     {
       rel: "canonical",
       href: "https://www.morsewords.com/morse-code-decoder",
@@ -52,7 +51,8 @@ export default function Home() {
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
     url: baseUrl + "/morse-code-decoder",
-    description: "Browser-based Morse code decoder for converting Morse into readable text.",
+    description:
+      "Browser-based Morse code decoder for converting Morse into readable text.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   };
   const faqItems = [
@@ -77,7 +77,6 @@ export default function Home() {
       a: "Yes. Decoding runs locally in your browser and does not require sending your Morse input to a server.",
     },
   ];
-
 
   return (
     <div style={styles.page}>

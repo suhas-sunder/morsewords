@@ -11,22 +11,20 @@ import HowItWorks from "~/client/components/home/HowItWorks";
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Translator (Text ⇄ Morse) | Fast Decoder & Encoder",
+      title: "Morse Code Translator (Text ⇄ Morse with Audio) – Instant & Free",
     },
     {
       name: "description",
       content:
-        "Instant Morse code translator. Convert text to Morse or decode Morse to text in real time. Supports letters, numbers, and punctuation. Fast, free, and works entirely in your browser.",
+        "Translate text to Morse code or decode Morse instantly. Includes audio playback, speed control, and real-time output. Free, fast, and works in your browser.",
     },
     {
       name: "keywords",
       content:
-        "morse code translator, text to morse, morse to text, morse decoder, morse encoder",
+        "morse code translator, text to morse, morse to text, morse decoder, morse encoder, morse audio generator",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
-
-    // canonical (no trailing slash, matches sitemap)
     {
       rel: "canonical",
       href: "https://www.morsewords.com",

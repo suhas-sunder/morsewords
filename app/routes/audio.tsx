@@ -18,45 +18,43 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Audio Generator | Play & Export WAV",
+      title: "Morse Code Audio Generator | Play, Tune & Export WAV",
     },
     {
       name: "description",
       content:
-        "Generate Morse code audio from text or Morse instantly. Control WPM, Farnsworth spacing, pitch, and waveform, then export a WAV file directly in your browser.",
+        "Generate Morse code audio instantly from text or code. Adjust WPM, Farnsworth spacing, pitch, and tone, then play or export a WAV file directly in your browser.",
     },
     {
       name: "keywords",
       content:
-        "morse code audio generator, morse code sound, morse wav export, farnsworth spacing, morse audio practice, cw tone generator",
+        "morse code audio generator, morse code sound generator, text to morse audio, morse wav export, farnsworth spacing, cw tone generator",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
-    // Open Graph
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "MorseWords" },
     {
       property: "og:title",
-      content: "Morse Code Audio Generator | MorseWords",
+      content: "Morse Code Audio Generator | Play, Tune & Export WAV",
     },
     {
       property: "og:description",
       content:
-        "Play Morse code audio with full control over speed, Farnsworth spacing, pitch, and waveform, then export WAV files instantly.",
+        "Generate Morse code audio instantly, adjust speed and tone, and export WAV files in your browser.",
     },
     { property: "og:url", content: CANONICAL_URL },
 
-    // Twitter
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Audio Generator",
+      content: "Morse Code Audio Generator | Play, Tune & Export WAV",
     },
     {
       name: "twitter:description",
       content:
-        "Generate Morse code audio, fine-tune speed and tone, and export WAV files instantly.",
+        "Generate Morse code audio instantly, adjust speed and tone, and export WAV files in your browser.",
     },
   ];
 }

@@ -11,45 +11,43 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Dictionary | Letters, Prosigns & Q-Codes",
+      title: "Morse Code Dictionary | Alphabet, Prosigns & Q-Codes",
     },
     {
       name: "description",
       content:
-        "Fast Morse code dictionary with instant lookup and copy. Find letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases in one place.",
+        "Morse code dictionary with instant lookup and copy. Find letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases in one place.",
     },
     {
       name: "keywords",
       content:
-        "morse code dictionary, morse letters, morse prosigns, q codes morse, morse abbreviations, morse code symbols",
+        "morse code dictionary, morse code alphabet, morse code letters, morse prosigns, q codes, morse abbreviations, morse code symbols",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
-    // Open Graph
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "MorseWords" },
     { property: "og:url", content: CANONICAL_URL },
     {
       property: "og:title",
-      content: "Morse Code Dictionary | MorseWords",
+      content: "Morse Code Dictionary | Alphabet, Prosigns & Q-Codes",
     },
     {
       property: "og:description",
       content:
-        "Instantly look up and copy Morse patterns for characters, prosigns, Q-codes, abbreviations, and phrases.",
+        "Look up and copy Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and phrases.",
     },
 
-    // Twitter
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Dictionary",
+      content: "Morse Code Dictionary | Alphabet, Prosigns & Q-Codes",
     },
     {
       name: "twitter:description",
       content:
-        "Fast lookup for Morse letters, prosigns, Q-codes, abbreviations, and phrases.",
+        "Look up and copy Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and phrases.",
     },
   ];
 }

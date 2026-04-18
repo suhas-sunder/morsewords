@@ -9,17 +9,17 @@ import { Link } from "react-router";
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Words | Common Words, Phrases, Prosigns (Copy Ready)",
+      title: "Morse Code Words | Common Words, Phrases, Prosigns & Q-Codes",
     },
     {
       name: "description",
       content:
-        "Copy-ready Morse code words and phrases: common words, prosigns, Q-codes, and CW abbreviations in International Morse. Use this list for puzzles and practice, then jump to the encoder, decoder, audio, and typing tools on MorseWords.",
+        "Browse common Morse code words and phrases, plus prosigns, Q-codes, and CW abbreviations in International Morse. Use the list for practice, puzzles, and quick lookup.",
     },
     {
       name: "keywords",
       content:
-        "morse code words, morse words, words in morse code, common morse code words, morse code phrases, prosigns, q codes, morse code abbreviation",
+        "morse code words, morse words, words in morse code, common morse code words, morse code phrases, prosigns, q codes, morse code abbreviations",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
