@@ -24,6 +24,7 @@ const MORE_ITEMS: NavItem[] = [
   },
   { label: "Word separator", href: "/morse-code-word-separator" },
   { label: "About", href: "/about" },
+  { label: "Morse code alphabet", href: "/morse-code-alphabet" },
 ];
 
 function normalizePathname(raw: string) {
