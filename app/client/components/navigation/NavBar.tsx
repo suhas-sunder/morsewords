@@ -14,6 +14,7 @@ const MAIN_ITEMS: NavItem[] = [
 ];
 
 const MORE_ITEMS: NavItem[] = [
+  {label: "Morse code sentence practice", href:"/morse-code-sentence-practice"},
   { label: "Dictionary", href: "/dictionary" },
   { label: "Morse code words (chart)", href: "/morse-code-words" },
   { label: "Morse code encoder", href: "/morse-code-encoder" },
