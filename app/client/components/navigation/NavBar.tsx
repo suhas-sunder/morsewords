@@ -19,6 +19,7 @@ const MORE_ITEMS: NavItem[] = [
   { label: "Morse code words (chart)", href: "/morse-code-words" },
   { label: "Morse code encoder", href: "/morse-code-encoder" },
   { label: "Morse code decoder", href: "/morse-code-decoder" },
+  {label: "Morse Code Sound Generator", href: "/morse-code-sound-generator"},
   {
     label: "Quick Brown Fox (Morse)",
     href: "/the-quick-brown-fox-morse-code",

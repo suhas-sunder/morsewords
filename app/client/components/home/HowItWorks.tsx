@@ -8,9 +8,9 @@ export default function HowItWorks() {
           </span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
           How this Morse code translator works
-        </h2>
+        </h1>
 
         <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
           MorseWords is a two-way{" "}

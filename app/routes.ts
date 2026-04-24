@@ -21,6 +21,7 @@ export default [
   route("morse-code-words", "routes/morse-code-words.tsx"),
   route("morse-code-alphabet", "routes/morse-code-alphabet.tsx"),
   route("morse-code-sentence-practice", "routes/morse-code-sentence-practice.tsx"),
+  route("morse-code-sound-generator", "routes/morse-code-sound-generator.tsx"),
 
   // Redirects for old URLs. Ignore these routes
   route("morse-code-translator", "routes/morse-code-translator.tsx"),

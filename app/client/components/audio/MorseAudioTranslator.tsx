@@ -325,18 +325,19 @@ export default function MorseAudioTranslator() {
         />
       )}
 
-      <section className="py-7">
+      <section className="pb-7">
         <div className="max-w-[1120px] mx-auto px-4">
-          <div className="flex flex-col gap-3">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900">
+          <div className="flex flex-col gap-3 text-center">
+          
+
+            <div className=" bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm">
+        <h1 className="text-3xl sm:text-4xl font-bold text-sky-800 tracking-tight mb-1">
               Morse Audio Generator
             </h1>
-            <p className="text-gray-700">
+        <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-3">
               Convert text or Morse into audio. Adjust speed, pitch, waveform,
               and export a WAV file.
             </p>
-
-            <div className="mt-4 bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm">
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
