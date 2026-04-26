@@ -14,6 +14,8 @@ type Props = {
     streak: number;
     bestStreak: number;
     totalQuestions: number;
+    // Optional: skipped questions count toward accuracy denominator.
+    skipped?: number;
   };
   runStartedAt: number | null;
 };
@@ -44,7 +46,7 @@ function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
 
-const SHARE_URL = "www.morswords.com";
+const SHARE_URL = "www.morsewords.com";
 
 async function renderShareImage(args: Props): Promise<Blob> {
   const W = 1200;
@@ -126,7 +128,9 @@ async function renderShareImage(args: Props): Promise<Blob> {
   const progress = Math.max(0, args.stats.progress);
   const total = Math.max(1, args.stats.totalQuestions);
   const correct = Math.max(0, args.stats.correct);
-  const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
+  const skipped = Math.max(0, args.stats.skipped ?? 0);
+  const scoredActions = attempts + skipped;
+  const accuracy = scoredActions > 0 ? Math.round((correct / scoredActions) * 100) : 0;
 
   const cardsTop = y + 18;
   const cardsLeft = left;
@@ -340,7 +344,7 @@ export default function ShareResultsButton(props: Props) {
                 </div>
               ) : (
                 <div className="mt-4 rounded-2xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700">
-                  {busy ? "Generating your share card..." : "Generating your share card..."}
+                  {busy ? "Generating your share card..." : "Preparing your share card..."}
                 </div>
               )}
             </div>
