@@ -666,6 +666,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
                     streak,
                     bestStreak,
                     totalQuestions: TOTAL_QUESTIONS,
+                    skipped,
                   }}
                   runStartedAt={runStartedAt}
                 />
