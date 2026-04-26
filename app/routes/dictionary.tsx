@@ -11,12 +11,12 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Dictionary | Alphabet, Prosigns & Q-Codes",
+      title: "Free Morse Code Dictionary",
     },
     {
       name: "description",
       content:
-        "Morse code dictionary with instant lookup and copy. Find letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases in one place.",
+        "Look up Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases. Copy any entry instantly for free.",
     },
     {
       name: "keywords",
@@ -31,23 +31,23 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:url", content: CANONICAL_URL },
     {
       property: "og:title",
-      content: "Morse Code Dictionary | Alphabet, Prosigns & Q-Codes",
+      content: "Free Morse Code Dictionary",
     },
     {
       property: "og:description",
       content:
-        "Look up and copy Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and phrases.",
+        "Look up and copy Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases.",
     },
 
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Dictionary | Alphabet, Prosigns & Q-Codes",
+      content: "Free Morse Code Dictionary",
     },
     {
       name: "twitter:description",
       content:
-        "Look up and copy Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and phrases.",
+        "Look up and copy Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases.",
     },
   ];
 }

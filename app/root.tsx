@@ -61,6 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <PHogProvider>
+          Impact-Site-Verification: 155105a5-9b72-4dad-893f-3814cafbeeee
           <NavBar />
           {children}
           <RelatedTools />

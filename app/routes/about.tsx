@@ -18,9 +18,9 @@ export function links() {
 }
 
 export function meta(_: Route.MetaArgs) {
-  const title = "About MorseWords | Practical Morse Code Tools";
+  const title = "About MorseWords";
   const description =
-    "MorseWords is a collection of fast, practical Morse code tools. Translate text, hear audio, practice patterns, type Morse, and look up symbols. Built for utility, not lessons.";
+    "MorseWords is a free collection of practical Morse code tools for translating text, playing audio, practicing Morse, typing dots and dashes, and looking up symbols.";
 
   return [
     { title },

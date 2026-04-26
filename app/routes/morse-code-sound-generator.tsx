@@ -57,47 +57,46 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Sound Generator | MP3, WAV, Beep & Tone Maker",
+      title: "Free Morse Code Sound Generator",
     },
     {
       name: "description",
       content:
-        "Use this Morse code sound generator to make beep and tone audio from text or Morse. Adjust WPM, pitch, waveform, and spacing, then export MP3 or WAV.",
+        "Create Morse code audio from text or Morse code. Adjust the speed, pitch, waveform, and spacing, then play or export the sound as MP3 or WAV for free.",
     },
     {
       name: "keywords",
       content:
-        "morse code sound generator, morse code audio generator, morse code sound maker, morse code generator audio, morse code mp3 generator, morse code beep generator, morse code tone generator",
+        "morse code sound generator, morse code audio generator, morse code sound maker, morse code generator audio, morse code mp3 generator, morse code wav generator, morse code beep generator, morse code tone generator",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "MorseWords" },
+    { property: "og:url", content: CANONICAL_URL },
     {
       property: "og:title",
-      content: "Morse Code Sound Generator | MP3, WAV, Beep & Tone Maker",
+      content: "Free Morse Code Sound Generator",
     },
     {
       property: "og:description",
       content:
-        "Create Morse code beeps and tones from text or Morse, tune the sound, and export MP3 or WAV audio in your browser.",
+        "Create Morse code audio from text or Morse code, adjust the sound, and export MP3 or WAV files for free.",
     },
-    { property: "og:url", content: CANONICAL_URL },
 
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Sound Generator",
+      content: "Free Morse Code Sound Generator",
     },
     {
       name: "twitter:description",
       content:
-        "Generate Morse code beeps, tones, MP3, and WAV audio from text or Morse code.",
+        "Create Morse code audio from text or Morse code, adjust the sound, and export MP3 or WAV files for free.",
     },
   ];
 }
-
 export default function MorseCodeSoundGeneratorRoute() {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -158,8 +157,18 @@ export default function MorseCodeSoundGeneratorRoute() {
         "@type": "BreadcrumbList",
         "@id": `${CANONICAL_URL}#breadcrumbs`,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: "Morse Code Sound Generator", item: CANONICAL_URL },
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${SITE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Morse Code Sound Generator",
+            item: CANONICAL_URL,
+          },
         ],
       },
       {
@@ -196,7 +205,10 @@ export default function MorseCodeSoundGeneratorRoute() {
           exportFormats={["wav", "mp3"]}
         />
         <SoundGeneratorGuide />
-        <FaqSectionGeneric title="Morse code sound generator FAQ" items={faqItems} />
+        <FaqSectionGeneric
+          title="Morse code sound generator FAQ"
+          items={faqItems}
+        />
       </div>
       <nav
         aria-label="Breadcrumb"
@@ -209,7 +221,9 @@ export default function MorseCodeSoundGeneratorRoute() {
             </a>
           </li>
           <li>/</li>
-          <li className="font-semibold text-gray-900">Morse Code Sound Generator</li>
+          <li className="font-semibold text-gray-900">
+            Morse Code Sound Generator
+          </li>
         </ol>
       </nav>
       <JsonLdScript jsonLd={jsonLd} />

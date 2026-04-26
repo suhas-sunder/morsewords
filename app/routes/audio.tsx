@@ -18,12 +18,12 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Audio Generator | Play, Tune & Export WAV",
+      title: "Free Morse Code Audio Generator",
     },
     {
       name: "description",
       content:
-        "Generate Morse code audio instantly from text or code. Adjust WPM, Farnsworth spacing, pitch, and tone, then play or export a WAV file directly in your browser.",
+        "Generate Morse code audio from text or Morse code. Adjust WPM, Farnsworth spacing, pitch, and tone, then play or export a WAV file for free.",
     },
     {
       name: "keywords",
@@ -35,26 +35,26 @@ export function meta({}: Route.MetaArgs) {
 
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "MorseWords" },
+    { property: "og:url", content: CANONICAL_URL },
     {
       property: "og:title",
-      content: "Morse Code Audio Generator | Play, Tune & Export WAV",
+      content: "Free Morse Code Audio Generator",
     },
     {
       property: "og:description",
       content:
-        "Generate Morse code audio instantly, adjust speed and tone, and export WAV files in your browser.",
+        "Generate Morse code audio from text or Morse code, adjust the speed and tone, and export a WAV file for free.",
     },
-    { property: "og:url", content: CANONICAL_URL },
 
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Audio Generator | Play, Tune & Export WAV",
+      content: "Free Morse Code Audio Generator",
     },
     {
       name: "twitter:description",
       content:
-        "Generate Morse code audio instantly, adjust speed and tone, and export WAV files in your browser.",
+        "Generate Morse code audio, adjust WPM, pitch, and tone, then play or export a WAV file for free.",
     },
   ];
 }

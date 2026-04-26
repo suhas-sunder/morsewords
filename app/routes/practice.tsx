@@ -15,12 +15,12 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Practice & Quizzes | Instant Feedback Drills",
+      title: "Free Morse Code Practice and Quizzes",
     },
     {
       name: "description",
       content:
-        "Practice Morse code with instant-feedback quizzes and focused drills. Train letters, numbers, common signals, words, and short sentences one question at a time. No signup required.",
+        "Practice Morse code with instant-feedback quizzes and focused drills. Train letters, numbers, signals, words, and short sentences one question at a time.",
     },
     {
       name: "keywords",
@@ -30,24 +30,23 @@ export function meta({}: Route.MetaArgs) {
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
-    // Open Graph
     { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "MorseWords" },
+    { property: "og:url", content: CANONICAL_URL },
     {
       property: "og:title",
-      content: "Morse Code Practice & Quizzes | MorseWords",
+      content: "Free Morse Code Practice and Quizzes",
     },
     {
       property: "og:description",
       content:
-        "Practice Morse code with instant-feedback quizzes and drills designed for fast, focused learning.",
+        "Practice Morse code with instant-feedback quizzes and focused drills for letters, numbers, words, and sentences.",
     },
-    { property: "og:url", content: CANONICAL_URL },
 
-    // Twitter
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Practice & Quizzes",
+      content: "Free Morse Code Practice and Quizzes",
     },
     {
       name: "twitter:description",

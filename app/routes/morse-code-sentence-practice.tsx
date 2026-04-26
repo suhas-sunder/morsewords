@@ -15,42 +15,43 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Sentence Practice | Sentence Drills & Spacing",
+      title: "Free Morse Code Sentence Practice",
     },
     {
       name: "description",
       content:
-        "Practice Morse code sentences with example sentences, difficulty-based drills, spacing guidance, and common practice sets for sending and copying full phrases.",
+        "Practice Morse code with full sentences. Try beginner-friendly sentence drills, learn proper letter and word spacing, and build confidence reading longer messages.",
     },
     {
       name: "keywords",
       content:
-        "morse code sentence practice, morse code sentences, morse sentence drills, practice morse code phrases, morse code spacing, morse code practice sentences, sentence morse code",
+        "morse code sentence practice, morse code sentences, morse code practice sentences, morse sentence drills, practice morse code phrases, morse code spacing, sentence morse code",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
     { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "MorseWords" },
+    { property: "og:url", content: CANONICAL_URL },
     {
       property: "og:title",
-      content: "Morse Code Sentence Practice | MorseWords",
+      content: "Free Morse Code Sentence Practice",
     },
     {
       property: "og:description",
       content:
-        "Practice complete Morse code sentences with examples, drill sets, and clear spacing guidance.",
+        "Practice Morse code with full sentences, beginner-friendly drills, and clear spacing guidance.",
     },
-    { property: "og:url", content: CANONICAL_URL },
 
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Sentence Practice",
+      content: "Free Morse Code Sentence Practice",
     },
     {
       name: "twitter:description",
       content:
-        "Sentence-focused Morse drills with examples, difficulty levels, and spacing help.",
+        "Practice Morse code with full sentences, beginner-friendly drills, and clear spacing guidance.",
     },
   ];
 }

@@ -16,12 +16,12 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Typing Tool | Real-Time Decoder Scratchpad",
+      title: "Free Morse Code Typing Tool",
     },
     {
       name: "description",
       content:
-        "A freeform Morse code typing scratchpad with instant decoding. Type continuously, build rhythm, and practice endurance with no lessons or prompts. Built for fluent Morse users.",
+        "Type Morse code freely and see it decode in real time. Use this scratchpad to practice rhythm, repetition, and longer Morse typing sessions without prompts.",
     },
     {
       name: "keywords",
@@ -31,30 +31,28 @@ export function meta({}: Route.MetaArgs) {
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
 
-    // Open Graph
     { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "MorseWords" },
+    { property: "og:url", content: CANONICAL_URL },
     {
       property: "og:title",
-      content: "Morse Code Typing Tool | MorseWords",
+      content: "Free Morse Code Typing Tool",
     },
     {
       property: "og:description",
       content:
-        "Type Morse freely and see the decode instantly. A real-time scratchpad for rhythm, repetition, and endurance.",
+        "Type Morse code freely and see it decode in real time. A simple scratchpad for rhythm, repetition, and longer practice sessions.",
     },
-    { property: "og:url", content: CANONICAL_URL },
-    { property: "og:site_name", content: "MorseWords" },
 
-    // Twitter
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Typing Tool",
+      content: "Free Morse Code Typing Tool",
     },
     {
       name: "twitter:description",
       content:
-        "A real-time Morse typing scratchpad for fluent users. No lessons, just flow.",
+        "Type Morse code freely and see it decode in real time with a simple practice scratchpad.",
     },
   ];
 }

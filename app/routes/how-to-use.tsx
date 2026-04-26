@@ -17,12 +17,12 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "How to Use a Morse Code Translator, Audio, Practice & Tools",
+      title: "How to Use Morse Code Tools",
     },
     {
       name: "description",
       content:
-        "Learn how to translate text and Morse code, play Morse audio at adjustable speeds, practice drills, type dots and dashes, and use Morse code tools in your browser.",
+        "Learn how to use Morse code tools to translate text, decode Morse, play audio, practice drills, type dots and dashes, and copy results in your browser.",
     },
     {
       name: "keywords",
@@ -34,26 +34,26 @@ export function meta({}: Route.MetaArgs) {
 
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "MorseWords" },
+    { property: "og:url", content: CANONICAL_URL },
     {
       property: "og:title",
-      content: "How to Use Morse Code Translator, Audio, Practice & Tools",
+      content: "How to Use Morse Code Tools",
     },
     {
       property: "og:description",
       content:
-        "A practical guide to translating Morse code, using audio playback, practicing drills, typing dots and dashes, and exploring Morse tools.",
+        "A practical guide to translating text, decoding Morse, using audio playback, practicing drills, typing dots and dashes, and copying results.",
     },
-    { property: "og:url", content: CANONICAL_URL },
 
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "How to Use Morse Code Translator, Audio, Practice & Tools",
+      content: "How to Use Morse Code Tools",
     },
     {
       name: "twitter:description",
       content:
-        "Learn how to translate Morse code, play audio, practice drills, type dots and dashes, and use Morse tools in your browser.",
+        "Learn how to translate text, decode Morse, play audio, practice drills, type dots and dashes, and use Morse tools in your browser.",
     },
   ];
 }

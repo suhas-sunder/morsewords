@@ -10,12 +10,12 @@ import JsonLdScript from "~/client/components/morse-code-word-separator/JsonLdSc
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Word Separator Converter | 7 Spaces, / and |",
+      title: "Free Morse Code Word Separator Converter",
     },
     {
       name: "description",
       content:
-        "Convert and normalize Morse code word separators. Switch between 7-space gaps, slash (/), pipe (|), and line breaks, or format English to Morse using your preferred separator style.",
+        "Convert Morse code word separators instantly. Switch between spaces, slashes, pipes, and line breaks, or format text to Morse code with your preferred separator.",
     },
     {
       name: "keywords",
@@ -27,6 +27,40 @@ export function meta({}: Route.MetaArgs) {
     {
       rel: "canonical",
       href: "https://www.morsewords.com/morse-code-word-separator",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      property: "og:site_name",
+      content: "MorseWords",
+    },
+    {
+      property: "og:url",
+      content: "https://www.morsewords.com/morse-code-word-separator",
+    },
+    {
+      property: "og:title",
+      content: "Free Morse Code Word Separator Converter",
+    },
+    {
+      property: "og:description",
+      content:
+        "Switch Morse code word separators between spaces, slashes, pipes, and line breaks for free.",
+    },
+    {
+      name: "twitter:card",
+      content: "summary",
+    },
+    {
+      name: "twitter:title",
+      content: "Free Morse Code Word Separator Converter",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "Convert Morse code word separators between spaces, slashes, pipes, and line breaks for free.",
     },
   ];
 }

@@ -11,17 +11,17 @@ import HowItWorks from "~/client/components/home/HowItWorks";
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Translator (Text ⇄ Morse with Audio) – Instant & Free",
+      title: "Free Morse Code Translator with Audio",
     },
     {
       name: "description",
       content:
-        "Translate text to Morse code or decode Morse instantly. Includes audio playback, speed control, and real-time output. Free, fast, and works in your browser.",
+        "Type a message to convert it into Morse code, or paste Morse code to decode it back to text. Play the audio, adjust the speed, and copy your result instantly.",
     },
     {
       name: "keywords",
       content:
-        "morse code translator, text to morse, morse to text, morse decoder, morse encoder, morse audio generator",
+        "morse code translator, free morse code translator, text to morse code, morse code decoder, morse to text, morse code audio",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
@@ -29,9 +29,38 @@ export function meta({}: Route.MetaArgs) {
       rel: "canonical",
       href: "https://www.morsewords.com",
     },
+    {
+      property: "og:title",
+      content: "Free Morse Code Translator with Audio",
+    },
+    {
+      property: "og:description",
+      content:
+        "Convert text to Morse code, decode Morse back to text, play the audio, adjust speed, and copy your result instantly.",
+    },
+    {
+      property: "og:url",
+      content: "https://www.morsewords.com",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      name: "twitter:card",
+      content: "summary",
+    },
+    {
+      name: "twitter:title",
+      content: "Free Morse Code Translator with Audio",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "Convert text to Morse code, decode Morse back to text, play the audio, adjust speed, and copy your result instantly.",
+    },
   ];
 }
-
 export default function Home() {
   // Translator state (conversion logic stays in morseUtils)
   const [plainA, setPlainA] = React.useState("sos help");

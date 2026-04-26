@@ -12,12 +12,12 @@ export function links() {
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Alphabet Chart (A–Z) | Letters, Numbers & Symbols",
+      title: "Free Morse Code Alphabet Chart | Letters, Numbers & Symbols",
     },
     {
       name: "description",
       content:
-        "Browse the Morse code alphabet chart with A–Z letters, numbers, and symbols. Copy any character instantly or use the translator to convert full text.",
+        "View the Morse code alphabet for A-Z letters, numbers, and common symbols. Copy any Morse character instantly or open the translator to convert full messages.",
     },
     {
       name: "keywords",
@@ -32,23 +32,23 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:url", content: CANONICAL_URL },
     {
       property: "og:title",
-      content: "Morse Code Alphabet Chart (A–Z) | Letters, Numbers & Symbols",
+      content: "Free Morse Code Alphabet Chart",
     },
     {
       property: "og:description",
       content:
-        "Browse the Morse code alphabet chart with A–Z letters, numbers, and symbols. Copy any character instantly or use the translator to convert full text.",
+        "View the Morse code alphabet for A-Z letters, numbers, and common symbols. Copy any Morse character instantly or open the translator to convert full messages.",
     },
 
     { name: "twitter:card", content: "summary" },
     {
       name: "twitter:title",
-      content: "Morse Code Alphabet (A–Z Chart) | Letters, Numbers & Symbols",
+      content: "Free Morse Code Alphabet Chart",
     },
     {
       name: "twitter:description",
       content:
-        "Browse the Morse code alphabet in a clean chart and copy letters, numbers, and symbols instantly.",
+        "View the Morse code alphabet for A-Z letters, numbers, and common symbols. Copy any Morse character instantly.",
     },
   ];
 }

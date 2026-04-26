@@ -9,12 +9,12 @@ import { Link } from "react-router";
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Words | Common Words, Phrases, Prosigns & Q-Codes",
+      title: "Free Morse Code Words and Phrases",
     },
     {
       name: "description",
       content:
-        "Browse common Morse code words and phrases, plus prosigns, Q-codes, and CW abbreviations in International Morse. Use the list for practice, puzzles, and quick lookup.",
+        "Browse common words and phrases in Morse code, including greetings, short messages, prosigns, Q-codes, and CW abbreviations for practice or quick lookup.",
     },
     {
       name: "keywords",
@@ -26,6 +26,40 @@ export function meta({}: Route.MetaArgs) {
     {
       rel: "canonical",
       href: "https://www.morsewords.com/morse-code-words",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      property: "og:site_name",
+      content: "MorseWords",
+    },
+    {
+      property: "og:url",
+      content: "https://www.morsewords.com/morse-code-words",
+    },
+    {
+      property: "og:title",
+      content: "Free Morse Code Words and Phrases",
+    },
+    {
+      property: "og:description",
+      content:
+        "Browse common words and phrases in Morse code, including greetings, short messages, prosigns, Q-codes, and CW abbreviations.",
+    },
+    {
+      name: "twitter:card",
+      content: "summary",
+    },
+    {
+      name: "twitter:title",
+      content: "Free Morse Code Words and Phrases",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "Browse common words and phrases in Morse code for practice, puzzles, and quick lookup.",
     },
   ];
 }

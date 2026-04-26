@@ -14,23 +14,57 @@ import HowItWorks from "~/client/components/morse-code-decoder/HowItWorks";
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Decoder (Morse → Text) | Instant & Free",
+      title: "Free Morse Code Decoder",
     },
     {
       name: "description",
       content:
-        "Decode Morse code to text instantly. Paste dots and dashes, handle word separators, and copy decoded output in your browser for free.",
+        "Decode Morse code to text instantly. Paste dots, dashes, spaces, or word separators to read Morse code, then copy the translated result for free.",
     },
     {
       name: "keywords",
       content:
-        "morse code decoder, morse to text, decode dots and dashes, morse decoder, decode morse code",
+        "morse code decoder, morse to text, decode morse code, morse decoder, decode dots and dashes, morse code translator",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
     {
       rel: "canonical",
       href: "https://www.morsewords.com/morse-code-decoder",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      property: "og:site_name",
+      content: "MorseWords",
+    },
+    {
+      property: "og:url",
+      content: "https://www.morsewords.com/morse-code-decoder",
+    },
+    {
+      property: "og:title",
+      content: "Free Morse Code Decoder",
+    },
+    {
+      property: "og:description",
+      content:
+        "Paste Morse code to decode it into readable text instantly. Supports dots, dashes, spaces, and word separators.",
+    },
+    {
+      name: "twitter:card",
+      content: "summary",
+    },
+    {
+      name: "twitter:title",
+      content: "Free Morse Code Decoder",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "Decode Morse code to text instantly. Paste dots, dashes, spaces, or word separators and copy the result for free.",
     },
   ];
 }

@@ -14,23 +14,57 @@ import HowItWorks from "~/client/components/morse-code-encoder/HowItWorks";
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "Morse Code Encoder (Text → Morse) | Instant & Free",
+      title: "Free Text to Morse Code Encoder",
     },
     {
       name: "description",
       content:
-        "Convert text to Morse code instantly. Generate clean dots and dashes, copy the output, and use built-in audio and practice tools in your browser for free.",
+        "Convert text to Morse code instantly. Type a message to generate dots and dashes, play the audio, adjust the speed, and copy your result for free.",
     },
     {
       name: "keywords",
       content:
-        "morse code encoder, text to morse, text to morse code, morse encoder, dots and dashes",
+        "morse code encoder, text to morse code, text to morse, morse encoder, dots and dashes, morse code audio",
     },
     { name: "robots", content: "index,follow" },
     { name: "theme-color", content: "#0b2447" },
     {
       rel: "canonical",
       href: "https://www.morsewords.com/morse-code-encoder",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      property: "og:site_name",
+      content: "MorseWords",
+    },
+    {
+      property: "og:url",
+      content: "https://www.morsewords.com/morse-code-encoder",
+    },
+    {
+      property: "og:title",
+      content: "Free Text to Morse Code Encoder",
+    },
+    {
+      property: "og:description",
+      content:
+        "Convert text to Morse code instantly. Generate dots and dashes, play the audio, adjust the speed, and copy your result for free.",
+    },
+    {
+      name: "twitter:card",
+      content: "summary",
+    },
+    {
+      name: "twitter:title",
+      content: "Free Text to Morse Code Encoder",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "Convert text to Morse code instantly. Play the audio, adjust the speed, and copy your result for free.",
     },
   ];
 }

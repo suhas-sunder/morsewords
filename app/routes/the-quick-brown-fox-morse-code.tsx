@@ -14,12 +14,12 @@ import HowItWorks from "~/client/components/the-quick-brown-fox-morse-code/HowIt
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "The Quick Brown Fox in Morse Code | Full Pangram with Audio",
+      title: "The Quick Brown Fox in Morse Code",
     },
     {
       name: "description",
       content:
-        "See “The quick brown fox jumps over the lazy dog” in International Morse code. Copy the full Morse string, listen to the audio, and decode it back to text for practice or puzzles.",
+        "See The quick brown fox jumps over the lazy dog in Morse code. Copy the full pangram, play the audio, and decode it back to text for practice or puzzles.",
     },
     {
       name: "keywords",
@@ -31,6 +31,40 @@ export function meta({}: Route.MetaArgs) {
     {
       rel: "canonical",
       href: "https://www.morsewords.com/the-quick-brown-fox-morse-code",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      property: "og:site_name",
+      content: "MorseWords",
+    },
+    {
+      property: "og:url",
+      content: "https://www.morsewords.com/the-quick-brown-fox-morse-code",
+    },
+    {
+      property: "og:title",
+      content: "The Quick Brown Fox in Morse Code",
+    },
+    {
+      property: "og:description",
+      content:
+        "Copy the full quick brown fox Morse code pangram, play the audio, and decode it back to text.",
+    },
+    {
+      name: "twitter:card",
+      content: "summary",
+    },
+    {
+      name: "twitter:title",
+      content: "The Quick Brown Fox in Morse Code",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "See the full quick brown fox pangram in Morse code with audio and copyable output.",
     },
   ];
 }
