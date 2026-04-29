@@ -1,7 +1,7 @@
 import { items as faqItems } from "../client/components/morse-code-sentence-practice/SentencePracticeFaq";
 import type { Route } from "./+types/morse-code-sentence-practice";
 
-import styles from "../client/components/practice/styles";
+import styles from "../client/components/shared/practiceStyles";
 import SentencePracticePage from "../client/components/morse-code-sentence-practice/SentencePracticePage";
 
 const SITE_URL = "https://morsewords.com";

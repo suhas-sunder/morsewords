@@ -1,7 +1,7 @@
 import { items as faqItems } from "../client/components/practice/PracticeFaq";
 import type { Route } from "./+types/practice";
 
-import styles from "../client/components/practice/styles";
+import styles from "../client/components/shared/practiceStyles";
 import PracticePage from "../client/components/practice/PracticePage";
 
 const SITE_URL = "https://morsewords.com";

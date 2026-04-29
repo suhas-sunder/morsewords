@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import Button from "~/client/components/practice/Button";
-import JsonLdScript from "~/client/components/practice/JsonLdScript";
+import Button from "~/client/components/shared/Button";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
 import type {
   Prompt,
@@ -11,7 +11,7 @@ import { checkAnswer } from "~/client/components/practice/practiceEngine";
 import {
   normalizeTextForEncoding,
   textToMorse,
-} from "~/client/components/practice/morseUtils";
+} from "~/client/components/shared/practiceMorseUtils";
 import SentencePracticeFaq from "~/client/components/morse-code-sentence-practice/SentencePracticeFaq";
 import {
   commonPracticeSets,

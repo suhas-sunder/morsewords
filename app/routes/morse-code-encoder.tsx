@@ -1,14 +1,14 @@
 import * as React from "react";
 import type { Route } from "./+types/home";
 
-import styles from "~/client/components/morse-code-encoder/styles";
-import TranslatorSectionsBasic from "~/client/components/morse-code-encoder/TranslatorSectionsBasic";
-import FaqSectionGeneric from "~/client/components/morse-code-encoder/FaqSectionGeneric";
-import JsonLdScript from "~/client/components/morse-code-encoder/JsonLdScript";
+import styles from "~/client/components/shared/pageStyles";
+import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   morseToText,
   textToMorse,
-} from "~/client/components/morse-code-encoder/morseUtils";
+} from "~/client/components/shared/morseUtils";
 import HowItWorks from "~/client/components/morse-code-encoder/HowItWorks";
 
 export function meta({}: Route.MetaArgs) {

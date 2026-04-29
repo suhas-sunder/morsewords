@@ -1,6 +1,6 @@
 import type { Route } from "./+types/typing";
 
-import styles from "../client/components/typing/styles";
+import styles from "../client/components/shared/practiceStyles";
 import TypingPage from "../client/components/typing/TypingPage";
 
 import { items as faqItems } from "../client/components/typing/TypingFaq";

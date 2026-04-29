@@ -1,9 +1,9 @@
 import * as React from "react";
 import type { Route } from "./+types/how-to-use";
 
-import styles from "~/client/components/home/styles";
-import FaqSectionGeneric from "~/client/components/home/FaqSectionGeneric";
-import JsonLdScript from "~/client/components/home/JsonLdScript";
+import styles from "~/client/components/shared/pageStyles";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import HowToUseSuiteGuide from "~/client/components/how-to-use/HowToUseSuiteGuide";
 
 const SITE_URL = "https://www.morsewords.com"; // keep host consistent site-wide

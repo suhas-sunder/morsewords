@@ -1,11 +1,11 @@
 import * as React from "react";
 import type { Route } from "./+types/home";
 
-import styles from "~/client/components/home/styles";
-import TranslatorSectionsBasic from "~/client/components/home/TranslatorSectionsBasic";
-import FaqSectionGeneric from "~/client/components/home/FaqSectionGeneric";
-import JsonLdScript from "~/client/components/home/JsonLdScript";
-import { morseToText, textToMorse } from "~/client/components/home/morseUtils";
+import styles from "~/client/components/shared/pageStyles";
+import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
 import HowItWorks from "~/client/components/home/HowItWorks";
 
 export function meta({}: Route.MetaArgs) {

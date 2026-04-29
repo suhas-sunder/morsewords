@@ -1,11 +1,11 @@
 import * as React from "react";
 import type { Route } from "./+types/audio";
 
-import styles from "~/client/components/audio/styles";
+import styles from "~/client/components/shared/audioStyles";
 import MorseAudioTranslator from "~/client/components/audio/MorseAudioTranslator";
-import HowItWorksAudio from "~/client/components/audio/HowItWorksAudio";
-import FaqSectionGeneric from "~/client/components/audio/FaqSectionGeneric";
-import JsonLdScript from "~/client/components/audio/JsonLdScript";
+import HowItWorksAudio from "~/client/components/shared/HowItWorksAudio";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 
 const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/audio";

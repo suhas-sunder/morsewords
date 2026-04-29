@@ -1,14 +1,14 @@
 import * as React from "react";
 
-import styles from "~/client/components/audio/styles";
+import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
-} from "~/client/components/audio/useMorseAudio";
+} from "~/client/components/shared/useMorseAudio";
 import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
   textToMorse,
-} from "~/client/components/audio/morseUtils";
+} from "~/client/components/shared/morseUtils";
 
 import {
   CopyIcon,

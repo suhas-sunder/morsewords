@@ -1,8 +1,8 @@
 import * as React from "react";
 import type { Route } from "./+types/morse-code-words";
 
-import FaqSectionGeneric from "~/client/components/morse-code-words/FaqSectionGeneric";
-import JsonLdScript from "~/client/components/morse-code-words/JsonLdScript";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import MorsePhraseLookupTable from "~/client/components/morse-code-words/MorsePhraseLookupTable";
 import { Link } from "react-router";
 

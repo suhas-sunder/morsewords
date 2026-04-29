@@ -1,6 +1,6 @@
 import * as React from "react";
-import Button from "~/client/components/practice/Button";
-import ToggleChip from "~/client/components/practice/ToggleChip";
+import Button from "~/client/components/shared/Button";
+import ToggleChip from "~/client/components/shared/ToggleChip";
 
 export type DrillMode = "text_to_morse" | "morse_to_text" | "mixed";
 export type Pool = "all" | "letters" | "numbers" | "signals" | "words" | "sentences";

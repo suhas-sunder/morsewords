@@ -1,6 +1,6 @@
 import * as React from "react";
-import styles from "~/client/components/home/styles";
-import { TEXT_TO_MORSE } from "~/client/components/home/morseMaps";
+import styles from "~/client/components/shared/pageStyles";
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
 import { PHRASE_ROWS, type PhraseRow } from "./dictionaryData";
 
 type CharCategory = "All" | "Letters" | "Numbers" | "Punctuation";

@@ -4,10 +4,10 @@ import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
   textToMorse,
-} from "./morseUtils";
-import useAudio, { type SoundPreset } from "./useAudio";
+} from "~/client/components/shared/morseUtils";
+import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
 
-import styles from "~/client/components/home/styles";
+import styles from "~/client/components/shared/pageStyles";
 import {
   CopyIcon,
   LightBulbIcon,

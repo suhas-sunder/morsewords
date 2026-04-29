@@ -1,5 +1,5 @@
 import * as React from "react";
-import { textToMorse } from "./morseUtils";
+import { textToMorse } from "~/client/components/shared/morseUtils";
 
 type OutputSep = "standard" | "slash" | "pipe" | "newline";
 type Mode = "normalizeMorse" | "englishToMorse";

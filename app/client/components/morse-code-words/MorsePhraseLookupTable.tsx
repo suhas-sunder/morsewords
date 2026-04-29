@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./styles";
+import styles from "~/client/components/shared/pageStyles";
 
 type Category =
   | "Common"

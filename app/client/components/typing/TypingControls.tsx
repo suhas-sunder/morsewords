@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import ToggleChip from "./components/ToggleChip";
+import ToggleChip from "~/client/components/shared/ToggleChip";
 
 export type InputMode = "dotdash" | "fj";
 

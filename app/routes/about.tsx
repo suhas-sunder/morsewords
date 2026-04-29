@@ -1,8 +1,8 @@
 import * as React from "react";
 import type { Route } from "./+types/about";
 
-import styles from "~/client/components/home/styles";
-import JsonLdScript from "~/client/components/home/JsonLdScript";
+import styles from "~/client/components/shared/pageStyles";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 
 const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/about";

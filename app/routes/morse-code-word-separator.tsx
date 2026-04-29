@@ -4,8 +4,8 @@ import type { Route } from "./+types/home";
 import styles from "~/client/components/morse-code-word-separator/styles";
 import WordSeparatorTool from "~/client/components/morse-code-word-separator/WordSeparatorTool";
 import HowItWorks from "~/client/components/morse-code-word-separator/HowItWorks";
-import FaqSectionGeneric from "~/client/components/morse-code-word-separator/FaqSectionGeneric";
-import JsonLdScript from "~/client/components/morse-code-word-separator/JsonLdScript";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 
 export function meta({}: Route.MetaArgs) {
   return [

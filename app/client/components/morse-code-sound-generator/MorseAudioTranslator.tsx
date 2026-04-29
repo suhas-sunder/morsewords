@@ -1,15 +1,15 @@
 import * as React from "react";
 
-import styles from "~/client/components/morse-code-sound-generator/styles";
+import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
-} from "~/client/components/morse-code-sound-generator/useMorseAudio";
+} from "~/client/components/shared/useMorseAudio";
 import { audioBufferToMp3Blob, type ExportFormat } from "~/client/components/morse-code-sound-generator/audioExport";
 import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
   textToMorse,
-} from "~/client/components/morse-code-sound-generator/morseUtils";
+} from "~/client/components/shared/morseUtils";
 
 import {
   CopyIcon,

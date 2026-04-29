@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import JsonLdScript from "./JsonLdScript";
-import Button from "./components/Button";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import Button from "~/client/components/shared/Button";
 import ShareResultsButton from "./components/ShareResultsButton";
 
 import { type InputMode } from "./TypingControls";

@@ -1,4 +1,4 @@
-import { morseToText } from "./morseUtils";
+import { morseToText } from "~/client/components/shared/practiceMorseUtils";
 
 export type DecodeResult = {
   decoded: string;

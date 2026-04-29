@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { TEXT_TO_MORSE } from "./morseMaps";
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
 
 interface Props {
   plainA: string;

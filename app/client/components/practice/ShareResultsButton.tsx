@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import Button from "~/client/components/practice/Button";
+import Button from "~/client/components/shared/Button";
 
 type Props = {
   title: string;

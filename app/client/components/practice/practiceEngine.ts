@@ -1,4 +1,4 @@
-import { morseToText, normalizeMorseForDecoding, normalizeTextForEncoding, textToMorse } from "./morseUtils";
+import { morseToText, normalizeMorseForDecoding, normalizeTextForEncoding, textToMorse } from "~/client/components/shared/practiceMorseUtils";
 import { LETTERS, NUMBERS, SIGNALS, WORDS, SENTENCES } from "./practiceBank";
 import type { DrillMode, Pool } from "~/client/components/practice/PracticeControls";
 import type { Prompt, PromptKind } from "~/client/components/practice/PromptCard";

@@ -1,11 +1,11 @@
 import * as React from "react";
 import type { Route } from "./+types/morse-code-sound-generator";
 
-import styles from "~/client/components/morse-code-sound-generator/styles";
+import styles from "~/client/components/shared/audioStyles";
 import MorseAudioTranslator from "~/client/components/morse-code-sound-generator/MorseAudioTranslator";
 import SoundGeneratorGuide from "~/client/components/morse-code-sound-generator/SoundGeneratorGuide";
-import FaqSectionGeneric from "~/client/components/morse-code-sound-generator/FaqSectionGeneric";
-import JsonLdScript from "~/client/components/morse-code-sound-generator/JsonLdScript";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 
 const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/morse-code-sound-generator";

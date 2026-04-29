@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import Button from "~/client/components/practice/Button";
-import ToggleChip from "~/client/components/practice/ToggleChip";
+import Button from "~/client/components/shared/Button";
+import ToggleChip from "~/client/components/shared/ToggleChip";
 import type {
   DrillMode,
   Pool,
@@ -11,7 +11,7 @@ import PromptCard, {
 } from "~/client/components/practice/PromptCard";
 import HowItWorksPractice from "~/client/components/practice/HowItWorksPractice";
 import PracticeFaq from "~/client/components/practice/PracticeFaq";
-import JsonLdScript from "~/client/components/practice/JsonLdScript";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
 
 import {
