@@ -10,63 +10,24 @@ import {
   textToMorse,
 } from "~/client/components/shared/morseUtils";
 import HowItWorks from "~/client/components/morse-code-encoder/HowItWorks";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+
+const CANONICAL_PATH = "/morse-code-encoder";
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+
+export function links() {
+  return [{ rel: "canonical", href: CANONICAL_URL }];
+}
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Text to Morse Code Encoder",
-    },
-    {
-      name: "description",
-      content:
-        "Convert text to Morse code instantly. Type a message to generate dots and dashes, play the audio, adjust the speed, and copy your result for free.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code encoder, text to morse code, text to morse, morse encoder, dots and dashes, morse code audio",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-    {
-      rel: "canonical",
-      href: "https://www.morsewords.com/morse-code-encoder",
-    },
-    {
-      property: "og:type",
-      content: "website",
-    },
-    {
-      property: "og:site_name",
-      content: "MorseWords",
-    },
-    {
-      property: "og:url",
-      content: "https://www.morsewords.com/morse-code-encoder",
-    },
-    {
-      property: "og:title",
-      content: "Free Text to Morse Code Encoder",
-    },
-    {
-      property: "og:description",
-      content:
-        "Convert text to Morse code instantly. Generate dots and dashes, play the audio, adjust the speed, and copy your result for free.",
-    },
-    {
-      name: "twitter:card",
-      content: "summary",
-    },
-    {
-      name: "twitter:title",
-      content: "Free Text to Morse Code Encoder",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Convert text to Morse code instantly. Play the audio, adjust the speed, and copy your result for free.",
-    },
-  ];
+  return seoMeta({
+    title: "Text to Morse Code Encoder - Convert Words to Morse",
+    description:
+      "Convert English text, words, and numbers into Morse code instantly. Copy dots and dashes, play audio, and adjust WPM for free.",
+    path: CANONICAL_PATH,
+    keywords:
+      "text to morse code, english to morse code, words to morse code, morse code encoder, convert text to morse code",
+  });
 }
 
 export default function Home() {
@@ -77,14 +38,14 @@ export default function Home() {
   const [morseB, setMorseB] = React.useState("... --- ...");
   const textB = React.useMemo(() => morseToText(morseB), [morseB]);
 
-  const baseUrl = "https://www.morsewords.com";
+  const baseUrl = SITE_URL;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "MorseWords Morse Code Encoder",
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
-    url: baseUrl + "/morse-code-encoder",
+    url: CANONICAL_URL,
     description:
       "Browser-based Morse code encoder for converting text into International Morse.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },

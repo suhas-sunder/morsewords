@@ -5,63 +5,25 @@ import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import MorsePhraseLookupTable from "~/client/components/morse-code-words/MorsePhraseLookupTable";
 import { Link } from "react-router";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import styles from "~/client/components/shared/pageStyles";
+
+const CANONICAL_PATH = "/morse-code-words";
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+
+export function links() {
+  return [{ rel: "canonical", href: CANONICAL_URL }];
+}
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Words and Phrases",
-    },
-    {
-      name: "description",
-      content:
-        "Browse common words and phrases in Morse code, including greetings, short messages, prosigns, Q-codes, and CW abbreviations for practice or quick lookup.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code words, morse words, words in morse code, common morse code words, morse code phrases, prosigns, q codes, morse code abbreviations",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-    {
-      rel: "canonical",
-      href: "https://www.morsewords.com/morse-code-words",
-    },
-    {
-      property: "og:type",
-      content: "website",
-    },
-    {
-      property: "og:site_name",
-      content: "MorseWords",
-    },
-    {
-      property: "og:url",
-      content: "https://www.morsewords.com/morse-code-words",
-    },
-    {
-      property: "og:title",
-      content: "Free Morse Code Words and Phrases",
-    },
-    {
-      property: "og:description",
-      content:
-        "Browse common words and phrases in Morse code, including greetings, short messages, prosigns, Q-codes, and CW abbreviations.",
-    },
-    {
-      name: "twitter:card",
-      content: "summary",
-    },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Words and Phrases",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Browse common words and phrases in Morse code for practice, puzzles, and quick lookup.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Words - Common Words & Phrases to Copy",
+    description:
+      "Look up common words in Morse code, including SOS, HELLO, THANK YOU, Q-codes, prosigns, and abbreviations. Copy phrases for practice or puzzles.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code words, morse words, words in morse code, common morse code words, morse code phrases, morse code abbreviations",
+  });
 }
 
 function CardSection(props: {
@@ -85,13 +47,13 @@ function CardSection(props: {
 }
 
 export default function MorseCodeWords() {
-  const baseUrl = "https://morsewords.com";
+  const baseUrl = SITE_URL;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Morse Code Words",
-    url: baseUrl + "/morse-code-words",
+    url: CANONICAL_URL,
     description:
       "Copy-ready Morse code words, phrases, prosigns, Q-codes, and CW abbreviations in International Morse, with links to encoder/decoder and practice tools.",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: baseUrl },
@@ -145,8 +107,8 @@ export default function MorseCodeWords() {
     "font-extrabold text-sky-800 underline underline-offset-4 hover:opacity-90 cursor-pointer";
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="mx-auto max-w-6xl px-6 py-6">
+    <div style={styles.page}>
+      <div style={styles.wrap}>
         <section className="pt-3 pb-3">
           <h1 className="text-sky-800 font-bold text-3xl sm:text-4xl leading-tight m-0">
             Morse Code Words

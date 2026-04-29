@@ -7,59 +7,23 @@ import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
 import HowItWorks from "~/client/components/home/HowItWorks";
+import { seoMeta, SITE_URL } from "~/client/seo";
+
+const CANONICAL_PATH = "/";
+
+export function links() {
+  return [{ rel: "canonical", href: SITE_URL + "/" }];
+}
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Translator with Audio",
-    },
-    {
-      name: "description",
-      content:
-        "Type a message to convert it into Morse code, or paste Morse code to decode it back to text. Play the audio, adjust the speed, and copy your result instantly.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code translator, free morse code translator, text to morse code, morse code decoder, morse to text, morse code audio",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-    {
-      rel: "canonical",
-      href: "https://www.morsewords.com",
-    },
-    {
-      property: "og:title",
-      content: "Free Morse Code Translator with Audio",
-    },
-    {
-      property: "og:description",
-      content:
-        "Convert text to Morse code, decode Morse back to text, play the audio, adjust speed, and copy your result instantly.",
-    },
-    {
-      property: "og:url",
-      content: "https://www.morsewords.com",
-    },
-    {
-      property: "og:type",
-      content: "website",
-    },
-    {
-      name: "twitter:card",
-      content: "summary",
-    },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Translator with Audio",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Convert text to Morse code, decode Morse back to text, play the audio, adjust speed, and copy your result instantly.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Translator - Text to Morse & Morse to Text",
+    description:
+      "Type text to convert it into Morse code, or paste dots and dashes to decode Morse to text. Play audio, adjust speed, and copy the result instantly.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code translator, text to morse code, morse to text, morse code decoder, morse code audio, english to morse code",
+  });
 }
 export default function Home() {
   // Translator state (conversion logic stays in morseUtils)
@@ -69,7 +33,7 @@ export default function Home() {
   const [morseB, setMorseB] = React.useState("... --- ...");
   const textB = React.useMemo(() => morseToText(morseB), [morseB]);
 
-  const baseUrl = "https://morsewords.com";
+  const baseUrl = SITE_URL;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",

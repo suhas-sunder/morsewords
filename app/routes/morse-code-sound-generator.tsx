@@ -6,10 +6,10 @@ import MorseAudioTranslator from "~/client/components/morse-code-sound-generator
 import SoundGeneratorGuide from "~/client/components/morse-code-sound-generator/SoundGeneratorGuide";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/morse-code-sound-generator";
-const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 const faqItems = [
   {
@@ -55,47 +55,14 @@ export function links() {
 }
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Sound Generator",
-    },
-    {
-      name: "description",
-      content:
-        "Create Morse code audio from text or Morse code. Adjust the speed, pitch, waveform, and spacing, then play or export the sound as MP3 or WAV for free.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code sound generator, morse code audio generator, morse code sound maker, morse code generator audio, morse code mp3 generator, morse code wav generator, morse code beep generator, morse code tone generator",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "MorseWords" },
-    { property: "og:url", content: CANONICAL_URL },
-    {
-      property: "og:title",
-      content: "Free Morse Code Sound Generator",
-    },
-    {
-      property: "og:description",
-      content:
-        "Create Morse code audio from text or Morse code, adjust the sound, and export MP3 or WAV files for free.",
-    },
-
-    { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Sound Generator",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Create Morse code audio from text or Morse code, adjust the sound, and export MP3 or WAV files for free.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Sound Generator - MP3 & WAV Download",
+    description:
+      "Make Morse code sound from text or dots and dashes. Tune WPM, pitch, waveform, and spacing, then play or download MP3 and WAV audio for free.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code sound generator, morse code audio generator, morse code sound maker, morse code mp3 generator, morse code wav generator, morse code beep generator",
+  });
 }
 export default function MorseCodeSoundGeneratorRoute() {
   const jsonLd = {

@@ -1,0 +1,37 @@
+export const SITE_URL = "https://morsewords.com";
+
+type SeoMetaInput = {
+  title: string;
+  description: string;
+  path: string;
+  keywords?: string;
+};
+
+export function canonicalUrl(path: string) {
+  return `${SITE_URL}${path}`;
+}
+
+export function seoMeta({ title, description, path, keywords }: SeoMetaInput) {
+  const url = canonicalUrl(path);
+  const tags: Array<Record<string, string>> = [
+    { title },
+    { name: "description", content: description },
+  ];
+
+  if (keywords) tags.push({ name: "keywords", content: keywords });
+
+  tags.push(
+    { name: "robots", content: "index,follow" },
+    { name: "theme-color", content: "#0b2447" },
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "MorseWords" },
+    { property: "og:url", content: url },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { name: "twitter:card", content: "summary" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+  );
+
+  return tags;
+}

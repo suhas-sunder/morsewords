@@ -4,57 +4,24 @@ import styles from "../client/components/shared/practiceStyles";
 import TypingPage from "../client/components/typing/TypingPage";
 
 import { items as faqItems } from "../client/components/typing/TypingFaq";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/typing";
-const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Typing Tool",
-    },
-    {
-      name: "description",
-      content:
-        "Type Morse code freely and see it decode in real time. Use this scratchpad to practice rhythm, repetition, and longer Morse typing sessions without prompts.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code typing tool, morse code scratchpad, real time morse decoder, cw typing practice, morse typing practice",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "MorseWords" },
-    { property: "og:url", content: CANONICAL_URL },
-    {
-      property: "og:title",
-      content: "Free Morse Code Typing Tool",
-    },
-    {
-      property: "og:description",
-      content:
-        "Type Morse code freely and see it decode in real time. A simple scratchpad for rhythm, repetition, and longer practice sessions.",
-    },
-
-    { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Typing Tool",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Type Morse code freely and see it decode in real time with a simple practice scratchpad.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Typing Tool - Real-Time Morse Decoder",
+    description:
+      "Type dots, dashes, spaces, and slashes to decode Morse in real time. Use the free scratchpad for Morse typing practice and rhythm drills.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code typer, morse code typing, morse code typewriter, morse code typing practice, real time morse code translator",
+  });
 }
 
 export default function TypingRoute() {

@@ -3,10 +3,10 @@ import type { Route } from "./+types/about";
 
 import styles from "~/client/components/shared/pageStyles";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/about";
-const CANONICAL_URL = SITE_URL + CANONICAL_PATH;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
   return [
@@ -18,33 +18,14 @@ export function links() {
 }
 
 export function meta(_: Route.MetaArgs) {
-  const title = "About MorseWords";
-  const description =
-    "MorseWords is a free collection of practical Morse code tools for translating text, playing audio, practicing Morse, typing dots and dashes, and looking up symbols.";
-
-  return [
-    { title },
-
-    { name: "description", content: description },
-    {
-      name: "keywords",
-      content:
-        "about morsewords, morse code tools, morse translator, morse audio, morse practice, morse dictionary",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "MorseWords" },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:url", content: CANONICAL_URL },
-
-    { name: "twitter:card", content: "summary" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:url", content: CANONICAL_URL },
-  ];
+  return seoMeta({
+    title: "About MorseWords - Free Morse Code Translator Tools",
+    description:
+      "MorseWords is a free Morse code toolkit for translating text, decoding Morse, playing audio, practicing drills, and looking up symbols.",
+    path: CANONICAL_PATH,
+    keywords:
+      "about morsewords, morse code tools, morse code translator, morse code audio, morse code practice",
+  });
 }
 
 function SectionCard(props: {

@@ -1,56 +1,23 @@
 import * as React from "react";
 import type { Route } from "./+types/home";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/morse-code-alphabet";
-const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Alphabet Chart | Letters, Numbers & Symbols",
-    },
-    {
-      name: "description",
-      content:
-        "View the Morse code alphabet for A-Z letters, numbers, and common symbols. Copy any Morse character instantly or open the translator to convert full messages.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code alphabet, morse code chart, morse code letters, morse code numbers, morse code symbols, international morse code",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "MorseWords" },
-    { property: "og:url", content: CANONICAL_URL },
-    {
-      property: "og:title",
-      content: "Free Morse Code Alphabet Chart",
-    },
-    {
-      property: "og:description",
-      content:
-        "View the Morse code alphabet for A-Z letters, numbers, and common symbols. Copy any Morse character instantly or open the translator to convert full messages.",
-    },
-
-    { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Alphabet Chart",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "View the Morse code alphabet for A-Z letters, numbers, and common symbols. Copy any Morse character instantly.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Alphabet Chart - Letters, Numbers & Symbols",
+    description:
+      "View the International Morse code alphabet for A-Z letters, numbers, and common symbols. Copy any character or open the translator.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code alphabet, morse code chart, morse code letters, morse code numbers, international morse code, morse alphabet",
+  });
 }
 
 type Entry = {

@@ -3,61 +3,27 @@ import type { Route } from "./+types/practice";
 
 import styles from "../client/components/shared/practiceStyles";
 import PracticePage from "../client/components/practice/PracticePage";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/practice";
-const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Practice and Quizzes",
-    },
-    {
-      name: "description",
-      content:
-        "Practice Morse code with instant-feedback quizzes and focused drills. Train letters, numbers, signals, words, and short sentences one question at a time.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code practice, morse code quiz, morse code drills, morse flashcards, learn morse code, morse training, morse code words, morse code sentences",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "MorseWords" },
-    { property: "og:url", content: CANONICAL_URL },
-    {
-      property: "og:title",
-      content: "Free Morse Code Practice and Quizzes",
-    },
-    {
-      property: "og:description",
-      content:
-        "Practice Morse code with instant-feedback quizzes and focused drills for letters, numbers, words, and sentences.",
-    },
-
-    { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Practice and Quizzes",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Train Morse code with instant-feedback quizzes and focused drills. Start practicing immediately.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Practice Test - Quiz Letters, Words & Signals",
+    description:
+      "Practice Morse code with instant-feedback quizzes. Train letters, numbers, signals, words, and short sentences one question at a time.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code practice test, morse code quiz, morse code practice, morse code drills, morse code words, morse code test",
+  });
 }
 
 export default function PracticeRoute() {
-  const baseUrl = SITE_URL;
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",

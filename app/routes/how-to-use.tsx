@@ -5,57 +5,24 @@ import styles from "~/client/components/shared/pageStyles";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import HowToUseSuiteGuide from "~/client/components/how-to-use/HowToUseSuiteGuide";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const SITE_URL = "https://www.morsewords.com"; // keep host consistent site-wide
 const CANONICAL_PATH = "/how-to-use";
-const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "How to Use Morse Code Tools",
-    },
-    {
-      name: "description",
-      content:
-        "Learn how to use Morse code tools to translate text, decode Morse, play audio, practice drills, type dots and dashes, and copy results in your browser.",
-    },
-    {
-      name: "keywords",
-      content:
-        "how to use morse code translator, morse code tools, morse translator guide, morse code audio, morse code practice, morse typing tool, morse code dictionary",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "MorseWords" },
-    { property: "og:url", content: CANONICAL_URL },
-    {
-      property: "og:title",
-      content: "How to Use Morse Code Tools",
-    },
-    {
-      property: "og:description",
-      content:
-        "A practical guide to translating text, decoding Morse, using audio playback, practicing drills, typing dots and dashes, and copying results.",
-    },
-
-    { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "How to Use Morse Code Tools",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Learn how to translate text, decode Morse, play audio, practice drills, type dots and dashes, and use Morse tools in your browser.",
-    },
-  ];
+  return seoMeta({
+    title: "How to Use Morse Code Tools - Translator, Audio & Practice",
+    description:
+      "Learn how to translate text, decode Morse, play audio, practice drills, type dots and dashes, and copy Morse code results.",
+    path: CANONICAL_PATH,
+    keywords:
+      "how to use morse code translator, morse code tools, how to read morse code, how to write morse code, morse code practice",
+  });
 }
 
 export default function HowToUse() {

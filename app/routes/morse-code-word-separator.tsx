@@ -1,72 +1,33 @@
 import * as React from "react";
 import type { Route } from "./+types/home";
 
-import styles from "~/client/components/morse-code-word-separator/styles";
+import styles from "~/client/components/shared/pageStyles";
 import WordSeparatorTool from "~/client/components/morse-code-word-separator/WordSeparatorTool";
 import HowItWorks from "~/client/components/morse-code-word-separator/HowItWorks";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+
+const CANONICAL_PATH = "/morse-code-word-separator";
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+
+export function links() {
+  return [{ rel: "canonical", href: CANONICAL_URL }];
+}
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Word Separator Converter",
-    },
-    {
-      name: "description",
-      content:
-        "Convert Morse code word separators instantly. Switch between spaces, slashes, pipes, and line breaks, or format text to Morse code with your preferred separator.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code word separator, morse separator converter, morse code slash separator, morse word break, 7 spaces morse, morse code spacing",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-    {
-      rel: "canonical",
-      href: "https://www.morsewords.com/morse-code-word-separator",
-    },
-    {
-      property: "og:type",
-      content: "website",
-    },
-    {
-      property: "og:site_name",
-      content: "MorseWords",
-    },
-    {
-      property: "og:url",
-      content: "https://www.morsewords.com/morse-code-word-separator",
-    },
-    {
-      property: "og:title",
-      content: "Free Morse Code Word Separator Converter",
-    },
-    {
-      property: "og:description",
-      content:
-        "Switch Morse code word separators between spaces, slashes, pipes, and line breaks for free.",
-    },
-    {
-      name: "twitter:card",
-      content: "summary",
-    },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Word Separator Converter",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Convert Morse code word separators between spaces, slashes, pipes, and line breaks for free.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Word Separator - Slash, Spaces & Word Gaps",
+    description:
+      "Convert Morse code word separators between 7 spaces, slashes, pipes, and line breaks. Learn how to separate words in Morse code.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code word separator, morse code slash word separator, how to separate words in morse code, morse code spacing, morse word gaps",
+  });
 }
 
 export default function MorseCodeWordSeparator() {
-  const baseUrl = "https://www.morsewords.com";
+  const baseUrl = SITE_URL;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -74,7 +35,7 @@ export default function MorseCodeWordSeparator() {
     name: "MorseWords Morse Code Word Separator",
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
-    url: baseUrl + "/morse-code-word-separator",
+    url: CANONICAL_URL,
     description:
       "Tool to normalize Morse code word separators (7 spaces, /, |, new lines) and format English → Morse word breaks with your chosen separator.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },

@@ -6,57 +6,24 @@ import MorseAudioTranslator from "~/client/components/audio/MorseAudioTranslator
 import HowItWorksAudio from "~/client/components/shared/HowItWorksAudio";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/audio";
-const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Audio Generator",
-    },
-    {
-      name: "description",
-      content:
-        "Generate Morse code audio from text or Morse code. Adjust WPM, Farnsworth spacing, pitch, and tone, then play or export a WAV file for free.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code audio generator, morse code sound generator, text to morse audio, morse wav export, farnsworth spacing, cw tone generator",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "MorseWords" },
-    { property: "og:url", content: CANONICAL_URL },
-    {
-      property: "og:title",
-      content: "Free Morse Code Audio Generator",
-    },
-    {
-      property: "og:description",
-      content:
-        "Generate Morse code audio from text or Morse code, adjust the speed and tone, and export a WAV file for free.",
-    },
-
-    { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Audio Generator",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Generate Morse code audio, adjust WPM, pitch, and tone, then play or export a WAV file for free.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Audio Generator - Text to Sound & WAV",
+    description:
+      "Turn text or pasted Morse code into audio. Adjust WPM, Farnsworth spacing, pitch, and tone, then play or download a WAV file in your browser.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code audio generator, text to morse audio, morse code to audio, morse audio generator, morse wav, morse code sound",
+  });
 }
 
 export default function AudioRoute() {

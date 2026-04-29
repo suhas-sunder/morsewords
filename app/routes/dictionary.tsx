@@ -1,55 +1,23 @@
 import * as React from "react";
 import type { Route } from "./+types/dictionary";
-const SITE_URL = "https://morsewords.com";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+
 const CANONICAL_PATH = "/dictionary";
-const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Dictionary",
-    },
-    {
-      name: "description",
-      content:
-        "Look up Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases. Copy any entry instantly for free.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code dictionary, morse code alphabet, morse code letters, morse prosigns, q codes, morse abbreviations, morse code symbols",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "MorseWords" },
-    { property: "og:url", content: CANONICAL_URL },
-    {
-      property: "og:title",
-      content: "Free Morse Code Dictionary",
-    },
-    {
-      property: "og:description",
-      content:
-        "Look up and copy Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases.",
-    },
-
-    { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Dictionary",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Look up and copy Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common phrases.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Dictionary - Letters, Numbers, Q-Codes",
+    description:
+      "Look up Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and phrases. Copy any entry instantly.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code dictionary, morse dictionary, morse code letters, morse code numbers, q codes, morse abbreviations",
+  });
 }
 
 type Entry = {

@@ -3,57 +3,24 @@ import type { Route } from "./+types/morse-code-sentence-practice";
 
 import styles from "../client/components/shared/practiceStyles";
 import SentencePracticePage from "../client/components/morse-code-sentence-practice/SentencePracticePage";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const SITE_URL = "https://morsewords.com";
 const CANONICAL_PATH = "/morse-code-sentence-practice";
-const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    {
-      title: "Free Morse Code Sentence Practice",
-    },
-    {
-      name: "description",
-      content:
-        "Practice Morse code with full sentences. Try beginner-friendly sentence drills, learn proper letter and word spacing, and build confidence reading longer messages.",
-    },
-    {
-      name: "keywords",
-      content:
-        "morse code sentence practice, morse code sentences, morse code practice sentences, morse sentence drills, practice morse code phrases, morse code spacing, sentence morse code",
-    },
-    { name: "robots", content: "index,follow" },
-    { name: "theme-color", content: "#0b2447" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "MorseWords" },
-    { property: "og:url", content: CANONICAL_URL },
-    {
-      property: "og:title",
-      content: "Free Morse Code Sentence Practice",
-    },
-    {
-      property: "og:description",
-      content:
-        "Practice Morse code with full sentences, beginner-friendly drills, and clear spacing guidance.",
-    },
-
-    { name: "twitter:card", content: "summary" },
-    {
-      name: "twitter:title",
-      content: "Free Morse Code Sentence Practice",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Practice Morse code with full sentences, beginner-friendly drills, and clear spacing guidance.",
-    },
-  ];
+  return seoMeta({
+    title: "Morse Code Sentence Practice - Full Message Drills",
+    description:
+      "Practice Morse code with complete sentences. Try beginner-friendly drills, learn letter and word spacing, and build confidence reading longer messages.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code sentence practice, morse code sentences, morse code practice sentences, morse code sentence, morse code spacing",
+  });
 }
 
 export default function MorseCodeSentencePracticeRoute() {
