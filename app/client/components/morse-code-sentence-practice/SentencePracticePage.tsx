@@ -475,7 +475,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
 
   return (
     <div>
-      <JsonLdScript data={jsonLd} />
+      <JsonLdScript jsonLd={jsonLd} />
 
       <section className="bg-white border border-gray-200 rounded-2xl p-3 shadow-sm">
         <div className="mb-5 flex flex-col justify-center items-center text-center">

@@ -92,14 +92,9 @@ export function checkAnswer(prompt: Prompt, answer: string): CheckResult {
 
   // Allow either typed text, or pasted Morse that decodes to the expected text.
   const trimmed = raw.trim();
-  const promptMorse = canonicalizeMorse(prompt.morse);
-  const pastedMorse = looksLikeMorse(trimmed) ? canonicalizeMorse(trimmed) : "";
-  const decodedIfMorse =
-    pastedMorse && promptMorse && pastedMorse === promptMorse
-      ? ""
-      : looksLikeMorse(trimmed)
-        ? normalizeTextForEncoding(morseToText(trimmed))
-        : "";
+  const decodedIfMorse = looksLikeMorse(trimmed)
+    ? normalizeTextForEncoding(morseToText(trimmed))
+    : "";
   const normalizedGot = normalizeTextForEncoding(decodedIfMorse || trimmed);
 
   const ok = normalizedExpected.length > 0 && normalizedExpected === normalizedGot;

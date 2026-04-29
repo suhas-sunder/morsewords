@@ -103,7 +103,7 @@ export async function audioBufferToMp3Blob(
   const flushed = encoder.flush();
   if (flushed.length > 0) parts.push(toUint8Array(flushed));
 
-  return new Blob(parts, { type: "audio/mpeg" });
+  return new Blob(parts.map((part) => part.slice()), { type: "audio/mpeg" });
 }
 
 function loadLameJs(): Promise<LameJsGlobal> {

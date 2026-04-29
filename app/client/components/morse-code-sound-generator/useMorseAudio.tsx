@@ -110,6 +110,10 @@ function defaultReleaseMs(preset: SoundPreset) {
   return 14;
 }
 
+function hasAudibleOutput(opts: PlayOptions) {
+  return opts.soundEnabled !== false && clamp(opts.volume, 0, 1) > 0.000001;
+}
+
 /**
  * Morse audio engine focused on playback quality and export.
  * - Real-time playback uses AudioContext and a click-safe envelope.
@@ -242,6 +246,7 @@ export default function useMorseAudio() {
     preset: SoundPreset;
     attackMs: number;
     releaseMs: number;
+    audible: boolean;
   }) {
     const ctx = await ensureRunning();
     if (!ctx) return;
@@ -250,7 +255,7 @@ export default function useMorseAudio() {
     if (!master) return;
 
     // If muted, preserve timing without scheduling audio nodes.
-    if (master.gain.value <= 0.000001) {
+    if (!params.audible) {
       await sleep(params.ms);
       return;
     }
@@ -290,14 +295,14 @@ export default function useMorseAudio() {
     }
   }
 
-  async function playSounder(ms: number) {
+  async function playSounder(ms: number, audible: boolean) {
     const ctx = await ensureRunning();
     if (!ctx) return;
 
     const master = masterGainRef.current;
     if (!master) return;
 
-    if (master.gain.value <= 0.000001) {
+    if (!audible) {
       await sleep(ms);
       return;
     }
@@ -383,8 +388,10 @@ export default function useMorseAudio() {
         const dur = ch === "." ? liveUnit : 3 * liveUnit;
         if (live.flash) triggerFlash(dur);
 
+        const audible = hasAudibleOutput(live);
+
         if (live.preset === "sounder") {
-          await playSounder(dur);
+          await playSounder(dur, audible);
         } else {
           await playTone({
             ms: dur,
@@ -394,6 +401,7 @@ export default function useMorseAudio() {
               live.attackMs ?? defaultAttackMs(live.preset ?? "cw_radio"),
             releaseMs:
               live.releaseMs ?? defaultReleaseMs(live.preset ?? "cw_radio"),
+            audible,
           });
         }
 

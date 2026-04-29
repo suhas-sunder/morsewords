@@ -108,7 +108,7 @@ export default function About() {
 
   return (
     <div style={styles.page}>
-      <JsonLdScript data={jsonLd} />
+      <JsonLdScript jsonLd={jsonLd} />
       <div style={styles.wrap}>
         <header
           style={{ ...styles.header, borderBottom: "none", paddingBottom: 6 }}

@@ -161,7 +161,7 @@ export default function TypingPage({ jsonLd }: Props) {
     // paused
     const ms =
       sessionState === "paused"
-        ? pausedRemainingMs
+        ? (pausedRemainingMs ?? 0)
         : endsAtMs != null
           ? Math.max(0, endsAtMs - now)
           : 0;
@@ -401,7 +401,7 @@ export default function TypingPage({ jsonLd }: Props) {
 
   return (
     <main>
-      <JsonLdScript json={jsonLd} />
+      <JsonLdScript jsonLd={jsonLd} />
 
       {showEndScreen ? (
         <div
@@ -963,7 +963,7 @@ export default function TypingPage({ jsonLd }: Props) {
         </section>
       </div>
 
-      <HowItWorksTyping onFocusInput={focusInput} />
+      <HowItWorksTyping />
       <TypingFaq />
     </main>
   );
