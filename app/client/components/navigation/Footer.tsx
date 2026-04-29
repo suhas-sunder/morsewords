@@ -21,6 +21,13 @@ export default function Footer() {
             </Link>
 
             <Link
+              to="/sitemap"
+              className="cursor-pointer transition hover:text-sky-200"
+            >
+              Sitemap
+            </Link>
+
+            <Link
               to="/misc/privacy-policy"
               className="cursor-pointer transition hover:text-sky-200"
             >

@@ -14,12 +14,16 @@ const MAIN_ITEMS: NavItem[] = [
 ];
 
 const MORE_ITEMS: NavItem[] = [
-  {label: "Morse code sentence practice", href:"/morse-code-sentence-practice"},
+  {
+    label: "Morse code sentence practice",
+    href: "/morse-code-sentence-practice",
+  },
   { label: "Dictionary", href: "/dictionary" },
   { label: "Morse code words (chart)", href: "/morse-code-words" },
+  { label: "Printable Morse chart", href: "/morse-code-printable-chart" },
   { label: "Morse code encoder", href: "/morse-code-encoder" },
   { label: "Morse code decoder", href: "/morse-code-decoder" },
-  {label: "Morse Code Sound Generator", href: "/morse-code-sound-generator"},
+  { label: "Morse Code Sound Generator", href: "/morse-code-sound-generator" },
   {
     label: "Quick Brown Fox (Morse)",
     href: "/the-quick-brown-fox-morse-code",
@@ -46,6 +50,7 @@ function anyActive(pathname: string, items: NavItem[]) {
 
 function BurgerIcon(props: { open: boolean }) {
   const { open } = props;
+
   return (
     <span className="relative inline-flex h-4 w-5 items-center justify-center">
       <span
@@ -88,26 +93,23 @@ export default function NavBar(props: { pathname?: string }) {
   const [open, setOpen] = React.useState(false);
   const [moreOpen, setMoreOpen] = React.useState(false);
 
-  // Remix provides location during SSR and on the client.
-  // Using it avoids SSR/client divergence caused by window.location.
   const location = useLocation();
   const pathname = normalizePathname(props.pathname ?? location.pathname);
 
   const moreWrapRef = React.useRef<HTMLDivElement | null>(null);
 
-  // Close mobile menu on route change.
   React.useEffect(() => {
     setOpen(false);
     setMoreOpen(false);
   }, [pathname]);
 
-  // Click outside closes More dropdown
   React.useEffect(() => {
     if (!moreOpen) return;
 
     function onDocMouseDown(e: MouseEvent) {
       const el = moreWrapRef.current;
       if (!el) return;
+
       const target = e.target as Node | null;
       if (target && !el.contains(target)) setMoreOpen(false);
     }
@@ -118,6 +120,7 @@ export default function NavBar(props: { pathname?: string }) {
 
     document.addEventListener("mousedown", onDocMouseDown);
     document.addEventListener("keydown", onDocKeyDown);
+
     return () => {
       document.removeEventListener("mousedown", onDocMouseDown);
       document.removeEventListener("keydown", onDocKeyDown);
@@ -126,13 +129,35 @@ export default function NavBar(props: { pathname?: string }) {
 
   const moreActive = anyActive(pathname, MORE_ITEMS);
 
+  function handleAllToolsClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    const target = document.getElementById("morse-code-navigation");
+
+    setOpen(false);
+    setMoreOpen(false);
+
+    if (!target) return;
+
+    e.preventDefault();
+
+    const headerOffset = 100;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY;
+    const scrollTo = Math.max(targetTop - headerOffset, 0);
+
+    window.scrollTo({
+      top: scrollTo,
+      behavior: "smooth",
+    });
+
+    window.history.replaceState(null, "", "#morse-code-navigation");
+  }
+
   return (
     <header className="sticky top-0 z-50 bg-neutral-900 backdrop-blur">
       <div className="mx-auto max-w-5xl px-4">
         <div className="flex items-center justify-between py-3">
           <a
             href="/"
-            className="flex items-center gap-3 cursor-pointer transition text-white hover:text-sky-200"
+            className="flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
           >
             <img
               src={logoUrl}
@@ -140,27 +165,34 @@ export default function NavBar(props: { pathname?: string }) {
               className="h-10 w-10 rounded-sm"
               loading="eager"
             />
+
             <div className="leading-tight">
               <div className="text-lg font-extrabold">MorseWords</div>
-              <div className="text-sm sm:text-xs text-sky-200">
+              <div className="text-sm text-sky-200 sm:text-xs">
                 Translate, listen, and practice Morse code
               </div>
             </div>
           </a>
 
-          {/* Desktop */}
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden items-center gap-6 md:flex">
+            <a
+              href="#morse-code-navigation"
+              onClick={handleAllToolsClick}
+              className="text-sm font-semibold text-white transition cursor-pointer hover:text-sky-200"
+            >
+              All tools
+            </a>
+
             {MAIN_ITEMS.map((item) => {
               const active = isActive(pathname, item.href);
+
               return (
                 <a
                   key={item.href}
                   href={item.href}
                   className={
-                    "px-3 py-2 rounded-xl text-sm font-semibold cursor-pointer transition " +
-                    (active
-                      ? "bg-sky-200 text-neutral-900"
-                      : "text-white hover:bg-sky-200 hover:text-neutral-900")
+                    "text-sm font-semibold transition cursor-pointer " +
+                    (active ? "text-sky-200" : "text-white hover:text-sky-200")
                   }
                   aria-current={active ? "page" : undefined}
                 >
@@ -174,10 +206,10 @@ export default function NavBar(props: { pathname?: string }) {
                 type="button"
                 onClick={() => setMoreOpen((v) => !v)}
                 className={
-                  "px-3 py-2 rounded-xl text-sm font-semibold cursor-pointer transition inline-flex items-center " +
+                  "inline-flex items-center text-sm font-semibold transition cursor-pointer " +
                   (moreActive || moreOpen
-                    ? "bg-sky-200 text-neutral-900"
-                    : "text-white hover:bg-sky-200 hover:text-neutral-900")
+                    ? "text-sky-200"
+                    : "text-white hover:text-sky-200")
                 }
                 aria-haspopup="menu"
                 aria-expanded={moreOpen}
@@ -189,41 +221,72 @@ export default function NavBar(props: { pathname?: string }) {
               {moreOpen ? (
                 <div
                   role="menu"
-                  className="absolute right-0 mt-2 w-72 rounded-2xl border border-gray-200 bg-white shadow-lg overflow-hidden"
+                  className="absolute right-0 mt-4 w-80 overflow-hidden rounded-2xl border border-sky-200 bg-white shadow-xl ring-1 ring-black/5"
                 >
-                  <div className="p-2">
+                  <div className="border-b border-sky-100 bg-sky-50 px-4 py-3">
+                    <p className="text-sm font-extrabold text-sky-900">
+                      More Morse tools
+                    </p>
+                    <p className="mt-1 text-xs font-medium text-sky-900/70">
+                      Practice pages, charts, guides, and utilities.
+                    </p>
+                  </div>
+
+                  <div className="max-h-[70vh] overflow-y-auto p-2">
                     {MORE_ITEMS.map((item) => {
                       const active = isActive(pathname, item.href);
+
                       return (
                         <a
                           key={item.href}
                           href={item.href}
                           role="menuitem"
                           className={
-                            "block w-full px-3 py-2 rounded-xl text-sm font-semibold cursor-pointer transition " +
+                            "group flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition " +
                             (active
-                              ? "bg-sky-50 text-sky-900 border border-sky-200"
-                              : "text-neutral-900 hover:bg-gray-50")
+                              ? "bg-sky-100 text-sky-950"
+                              : "text-neutral-900 hover:bg-sky-50 hover:text-sky-900")
                           }
                           aria-current={active ? "page" : undefined}
                           onClick={() => setMoreOpen(false)}
                         >
-                          {item.label}
+                          <span>{item.label}</span>
+                          <span
+                            aria-hidden="true"
+                            className={
+                              "text-xs transition " +
+                              (active
+                                ? "text-sky-800"
+                                : "text-sky-700 opacity-0 group-hover:translate-x-0.5 group-hover:opacity-100")
+                            }
+                          >
+                            →
+                          </span>
                         </a>
                       );
                     })}
+                  </div>
+
+                  <div className="border-t border-sky-100 bg-sky-50/70 p-2">
+                    <a
+                      href="#morse-code-navigation"
+                      onClick={handleAllToolsClick}
+                      className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-sky-200 bg-white px-3 py-2.5 text-sm font-extrabold text-sky-900 transition hover:border-sky-300 hover:bg-sky-100"
+                    >
+                      <span>View all tools</span>
+                      <span aria-hidden="true">↓</span>
+                    </a>
                   </div>
                 </div>
               ) : null}
             </div>
           </nav>
 
-          {/* Mobile burger */}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             className={
-              "md:hidden inline-flex items-center justify-center rounded-xl border border-gray-200 px-3 py-2 text-sm font-semibold cursor-pointer transition " +
+              "inline-flex items-center justify-center rounded-xl border border-gray-200 px-3 py-2 text-sm font-semibold transition cursor-pointer md:hidden " +
               (open ? "bg-gray-100" : "bg-white") +
               " hover:bg-gray-100"
             }
@@ -235,20 +298,48 @@ export default function NavBar(props: { pathname?: string }) {
           </button>
         </div>
 
-        {/* Mobile menu (flat list, no dropdown) */}
         {open ? (
-          <nav id="mobile-nav" className="md:hidden pb-4">
-            <div className="flex flex-col gap-2">
-              {[...MAIN_ITEMS, ...MORE_ITEMS].map((item) => {
+          <nav id="mobile-nav" className="pb-4 md:hidden">
+            <div className="flex flex-col gap-1">
+              <a
+                href="#morse-code-navigation"
+                onClick={handleAllToolsClick}
+                className="w-full rounded-xl px-3 py-2 text-sm font-semibold text-white transition cursor-pointer hover:bg-sky-200 hover:text-neutral-900"
+              >
+                All tools
+              </a>
+
+              {MAIN_ITEMS.map((item) => {
                 const active = isActive(pathname, item.href);
+
                 return (
                   <a
                     key={item.href}
                     href={item.href}
                     className={
-                      "w-full px-3 py-2 rounded-xl text-sm font-semibold cursor-pointer transition " +
+                      "w-full rounded-xl px-3 py-2 text-sm font-semibold transition cursor-pointer " +
                       (active
-                        ? "bg-sky-200 text-neutral-900"
+                        ? "text-sky-200"
+                        : "text-white hover:bg-sky-200 hover:text-neutral-900")
+                    }
+                    aria-current={active ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
+
+              {MORE_ITEMS.map((item) => {
+                const active = isActive(pathname, item.href);
+
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={
+                      "w-full rounded-xl px-3 py-2 text-sm font-semibold transition cursor-pointer " +
+                      (active
+                        ? "text-sky-200"
                         : "text-white hover:bg-sky-200 hover:text-neutral-900")
                     }
                     aria-current={active ? "page" : undefined}
