@@ -27,6 +27,10 @@ interface Props {
   morseB: string;
   textB: string;
   setMorseB: (v: string) => void;
+  title?: string;
+  subtitle?: React.ReactNode;
+  examples?: string[];
+  plainValidationValue?: string;
 }
 
 export default function TranslatorSectionsBasic({
@@ -36,6 +40,10 @@ export default function TranslatorSectionsBasic({
   morseB,
   textB,
   setMorseB,
+  title = "Morse Code Translator",
+  subtitle,
+  examples: exampleValues,
+  plainValidationValue,
 }: Props) {
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -173,8 +181,8 @@ export default function TranslatorSectionsBasic({
 
   // Validation
   const unsupportedPlain = useMemo(() => {
-    return getUnsupportedTextCharacters(plainA);
-  }, [plainA]);
+    return getUnsupportedTextCharacters(plainValidationValue ?? plainA);
+  }, [plainA, plainValidationValue]);
 
   const morseInputIssues = useMemo(() => {
     const issues: string[] = [];
@@ -201,16 +209,12 @@ export default function TranslatorSectionsBasic({
     setMorseB(textToMorse(text));
   };
 
-  const examples = [
-    {
-      label: "I love Morse code",
-      set: () => applyExampleText("I love Morse code"),
-    },
-    { label: "HELLO WORLD", set: () => applyExampleText("HELLO WORLD") },
-    { label: "CQ", set: () => applyExampleText("CQ") },
-    { label: "SOS", set: () => applyExampleText("SOS") },
-    { label: "TEST 123", set: () => applyExampleText("TEST 123") },
-  ];
+  const examples = (
+    exampleValues ?? ["I love Morse code", "HELLO WORLD", "CQ", "SOS", "TEST 123"]
+  ).map((text) => ({
+    label: text,
+    set: () => applyExampleText(text),
+  }));
 
   const canPlay = !!activeMorseForPlayback.trim();
 
@@ -347,14 +351,16 @@ export default function TranslatorSectionsBasic({
             style={styles.h1}
             className="font-bold !text-2xl sm:!text-4xl text-sky-800"
           >
-            Morse Code Translator
+            {title}
           </h1>
-          <p className="mt-2 hidden sm:flex text-sm sm:text-lg">
-            All-in-one Morse code translator and decoder
-            <span className="hidden sm:inline-flex">
-              : encode text into Morse, or decode Morse back to readable text.
-            </span>
-          </p>
+          {subtitle ?? (
+            <p className="mt-2 hidden sm:flex text-sm sm:text-lg">
+              All-in-one Morse code translator and decoder
+              <span className="hidden sm:inline-flex">
+                : encode text into Morse, or decode Morse back to readable text.
+              </span>
+            </p>
+          )}
         </div>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">

@@ -1,0 +1,213 @@
+import * as React from "react";
+
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import { transliterateForInternationalMorse } from "~/client/components/shared/internationalMorse";
+import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
+import styles from "~/client/components/shared/pageStyles";
+import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
+import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+
+const CANONICAL_PATH = "/morse-code-international-translator";
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+
+const EXAMPLES = [
+  { word: "Maestro", language: "Spanish" },
+  { word: "Professeur", language: "French" },
+  { word: "Professor", language: "Portuguese" },
+  { word: "Lehrer", language: "German" },
+  { word: "शिक्षक", language: "Hindi", transliteration: "shikshak" },
+  { word: "Guro", language: "Tagalog" },
+  { word: "先生", language: "Japanese", transliteration: "sensei" },
+  { word: "Guru", language: "Indonesian" },
+  { word: "Учитель", language: "Russian", transliteration: "uchitel'" },
+  { word: "선생님", language: "Korean", transliteration: "seonsaengnim" },
+  { word: "Insegnante", language: "Italian" },
+  { word: "Leraar", language: "Dutch" },
+  { word: "Öğretmen", language: "Turkish" },
+];
+
+export function links() {
+  return [{ rel: "canonical", href: CANONICAL_URL }];
+}
+
+export function meta() {
+  return seoMeta({
+    title: "International Morse Code Translator - English & World Languages",
+    description:
+      "Translate English and international words into Morse code using readable transliteration for Spanish, French, German, Hindi, Japanese, Korean, Russian, and more.",
+    path: CANONICAL_PATH,
+    keywords:
+      "international morse code translator, morse code translator languages, english to morse code, spanish morse code, japanese morse code, hindi morse code",
+  });
+}
+
+async function copyText(text: string) {
+  await navigator.clipboard.writeText(text);
+}
+
+function ExampleCard({
+  item,
+  onUse,
+}: {
+  item: (typeof EXAMPLES)[number];
+  onUse: (word: string) => void;
+}) {
+  const [copied, setCopied] = React.useState(false);
+  const transliteration =
+    item.transliteration ?? transliterateForInternationalMorse(item.word);
+  const morse = textToMorse(transliteration);
+
+  return (
+    <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h3 className="m-0 text-xl font-black text-sky-800">{item.word}</h3>
+          <p className="mt-1 text-sm font-bold text-slate-500">
+            {item.language}
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => onUse(item.word)}
+          className="rounded-xl border border-slate-200 px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+        >
+          Try
+        </button>
+      </div>
+      <code className="mt-4 block break-words rounded-xl bg-slate-50 px-3 py-3 text-sm font-black text-slate-950">
+        {morse}
+      </code>
+      <div className="mt-3 flex items-center justify-between gap-3">
+        <span className="text-sm text-slate-600">{transliteration}</span>
+        <button
+          type="button"
+          onClick={async () => {
+            await copyText(morse);
+            setCopied(true);
+            window.setTimeout(() => setCopied(false), 1000);
+          }}
+          className="rounded-xl bg-neutral-900 px-3 py-1.5 text-sm font-bold text-sky-200 transition hover:bg-neutral-800 hover:text-white"
+        >
+          {copied ? "Copied" : "Copy"}
+        </button>
+      </div>
+    </article>
+  );
+}
+
+export default function InternationalTranslator() {
+  const [plainA, setPlainA] = React.useState("Maestro");
+  const transliterated = React.useMemo(
+    () => transliterateForInternationalMorse(plainA),
+    [plainA],
+  );
+  const morseA = React.useMemo(() => textToMorse(transliterated), [transliterated]);
+
+  const [morseB, setMorseB] = React.useState("-- .- . ... - .-. ---");
+  const textB = React.useMemo(() => morseToText(morseB), [morseB]);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "International Morse Code Translator",
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "All",
+    url: CANONICAL_URL,
+    description:
+      "A browser-based Morse code translator that accepts English and international words by transliterating them into Latin characters before Morse encoding.",
+    isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  };
+
+  return (
+    <div style={styles.page}>
+      <main style={styles.wrap}>
+        <section className="py-4">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p className="m-0 text-sm font-extrabold uppercase tracking-wide text-sky-800">
+              International Morse code translator
+            </p>
+            <h1 className="mt-3 text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
+              Translate English and International Words into Morse Code
+            </h1>
+            <p className="mt-3 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+              Type English, accented Latin words, or common non-Latin scripts.
+              MorseWords transliterates the text into readable Latin characters
+              first, then converts that pronunciation-friendly text into
+              International Morse code.
+            </p>
+          </div>
+        </section>
+
+        <TranslatorSectionsBasic
+          title="International Morse Code Translator"
+          subtitle={
+            <p className="mt-2 hidden text-sm sm:flex sm:text-lg">
+              Convert English and world-language words into Morse using
+              transliteration.
+            </p>
+          }
+          examples={EXAMPLES.slice(0, 5).map((item) => item.word)}
+          plainA={plainA}
+          setPlainA={setPlainA}
+          morseA={morseA}
+          morseB={morseB}
+          textB={textB}
+          setMorseB={setMorseB}
+          plainValidationValue={transliterated}
+        />
+
+        <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h2 className="m-0 text-2xl font-black text-sky-800">
+            Transliteration used for Morse
+          </h2>
+          <p className="mt-2 text-slate-600">
+            Morse code is based on characters, so non-English words are converted
+            through this Latin text before encoding.
+          </p>
+          <code className="mt-4 block break-words rounded-xl bg-slate-50 px-4 py-3 text-base font-black text-slate-950">
+            {transliterated || "Type a word above"}
+          </code>
+        </section>
+
+        <section className="pb-4">
+          <h2 className="m-0 text-2xl font-black text-sky-800">
+            International Morse code examples
+          </h2>
+          <p className="mt-2 max-w-3xl text-slate-600">
+            These examples focus on the English-speaking search intent behind
+            international Morse code: how a word from another language can be
+            represented as a Latin transliteration, then converted into dots and
+            dashes.
+          </p>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {EXAMPLES.map((item) => (
+              <ExampleCard
+                key={`${item.language}-${item.word}`}
+                item={item}
+                onUse={setPlainA}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="pb-8">
+          <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-950">
+            <h2 className="m-0 text-xl font-black">
+              International translation disclaimer
+            </h2>
+            <p className="mt-2 leading-relaxed">
+              International Morse code encodes letters and symbols, not meaning.
+              For non-Latin scripts, this page uses practical transliteration
+              before conversion. International translations and transliterations
+              may not be perfect, especially for names, regional pronunciation,
+              or languages with more than one romanization standard.
+            </p>
+          </div>
+        </section>
+
+        <JsonLdScript jsonLd={jsonLd} />
+      </main>
+    </div>
+  );
+}

@@ -44,6 +44,12 @@ const GROUPS: SitemapGroup[] = [
         to: "/morse-code-decoder",
         description: "Convert Morse code back into readable text.",
       },
+      {
+        label: "International Morse Code Translator",
+        to: "/morse-code-international-translator",
+        description:
+          "Translate English and international words into Morse code with transliteration.",
+      },
     ],
   },
   {
@@ -106,6 +112,12 @@ const GROUPS: SitemapGroup[] = [
         to: "/the-quick-brown-fox-morse-code",
         description: "Use the classic pangram as a full-alphabet practice phrase.",
       },
+      {
+        label: "SOS in Morse Code",
+        to: "/morse-code-sos",
+        description:
+          "Play, copy, and learn the SOS Morse code distress signal.",
+      },
     ],
   },
   {
@@ -119,7 +131,7 @@ const GROUPS: SitemapGroup[] = [
       },
       {
         label: "Socials",
-        to: "/socials",
+        to: "/misc/socials",
         description: "Find MorseWords social links.",
       },
       {

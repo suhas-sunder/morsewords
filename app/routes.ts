@@ -21,6 +21,11 @@ export default [
   route("morse-code-words", "routes/morse-code-words.tsx"),
   route("morse-code-alphabet", "routes/morse-code-alphabet.tsx"),
   route("morse-code-printable-chart", "routes/morse-code-printable-chart.tsx"),
+  route(
+    "morse-code-international-translator",
+    "routes/morse-code-international-translator.tsx",
+  ),
+  route("morse-code-sos", "routes/morse-code-sos.tsx"),
   route("morse-code-sentence-practice", "routes/morse-code-sentence-practice.tsx"),
   route("morse-code-sound-generator", "routes/morse-code-sound-generator.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
