@@ -2,7 +2,10 @@ import * as React from "react";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { transliterateForInternationalMorse } from "~/client/components/shared/internationalMorse";
-import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
+import {
+  morseToText,
+  textToMorse,
+} from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -101,7 +104,10 @@ export default function InternationalTranslator() {
     () => transliterateForInternationalMorse(plainA),
     [plainA],
   );
-  const morseA = React.useMemo(() => textToMorse(transliterated), [transliterated]);
+  const morseA = React.useMemo(
+    () => textToMorse(transliterated),
+    [transliterated],
+  );
 
   const [morseB, setMorseB] = React.useState("-- .- . ... - .-. ---");
   const textB = React.useMemo(() => morseToText(morseB), [morseB]);
@@ -122,23 +128,6 @@ export default function InternationalTranslator() {
   return (
     <div style={styles.page}>
       <main style={styles.wrap}>
-        <section className="py-4">
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <p className="m-0 text-sm font-extrabold uppercase tracking-wide text-sky-800">
-              International Morse code translator
-            </p>
-            <h1 className="mt-3 text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
-              Translate English and International Words into Morse Code
-            </h1>
-            <p className="mt-3 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
-              Type English, accented Latin words, or common non-Latin scripts.
-              MorseWords transliterates the text into readable Latin characters
-              first, then converts that pronunciation-friendly text into
-              International Morse code.
-            </p>
-          </div>
-        </section>
-
         <TranslatorSectionsBasic
           title="International Morse Code Translator"
           subtitle={
@@ -157,17 +146,21 @@ export default function InternationalTranslator() {
           plainValidationValue={transliterated}
         />
 
-        <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="m-0 text-2xl font-black text-sky-800">
-            Transliteration used for Morse
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Morse code is based on characters, so non-English words are converted
-            through this Latin text before encoding.
-          </p>
-          <code className="mt-4 block break-words rounded-xl bg-slate-50 px-4 py-3 text-base font-black text-slate-950">
-            {transliterated || "Type a word above"}
-          </code>
+        <section className="pb-6">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h1 className="m-0 text-sm font-extrabold uppercase tracking-wide text-sky-800">
+              International Morse code translator
+            </h1>
+            <h2 className="mt-3 text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
+              Translate English and International Words into Morse Code
+            </h2>
+            <p className="mt-3 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+              Type English, accented Latin words, or common non-Latin scripts.
+              MorseWords transliterates the text into readable Latin characters
+              first, then converts that pronunciation-friendly text into
+              International Morse code.
+            </p>
+          </div>
         </section>
 
         <section className="pb-4">
