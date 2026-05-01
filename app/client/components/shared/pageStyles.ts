@@ -2,7 +2,7 @@ import * as React from "react";
 
 const styles: Record<string, React.CSSProperties> = {
   page: {
-    background: "#f7f8fb",
+    background: "transparent",
     color: "#111317",
     fontFamily:
       "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
@@ -35,8 +35,8 @@ const styles: Record<string, React.CSSProperties> = {
   },
   lead: { marginTop: 8, color: "#5a616c", fontSize: "1.05rem" },
   card: {
-    background: "#fff",
-    border: "1px solid #e6e8ef",
+    background: "#fffdf8",
+    border: "1px solid #e2e8f0",
     borderRadius: 16,
     boxShadow: "0 1px 0 rgba(11,36,71,0.14)",
   },
@@ -49,9 +49,9 @@ const styles: Record<string, React.CSSProperties> = {
     width: "100%",
     minHeight: 140,
     padding: 12,
-    border: "1px solid #e6e8ef",
+    border: "1px solid #e2e8f0",
     borderRadius: 10,
-    background: "#fff",
+    background: "#fffdf8",
     color: "#111317",
     font: '500 0.98rem/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
   },
@@ -59,9 +59,9 @@ const styles: Record<string, React.CSSProperties> = {
     width: "100%",
     minHeight: 40,
     padding: 10,
-    border: "1px solid #e6e8ef",
+    border: "1px solid #e2e8f0",
     borderRadius: 10,
-    background: "#fff",
+    background: "#fffdf8",
     color: "#111317",
     font: '600 0.98rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
   },
@@ -91,8 +91,8 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: "pointer",
   },
   btnGhost: {
-    border: "1px solid #e6e8ef",
-    background: "#fff",
+    border: "1px solid #e2e8f0",
+    background: "#fffdf8",
     color: "#111317",
     padding: "10px 14px",
     borderRadius: 10,

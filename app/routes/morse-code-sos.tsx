@@ -1,21 +1,16 @@
 import * as React from "react";
 
-import {
-  CopyIcon,
-  PauseIcon,
-  PlayIcon,
-  SaveIcon,
-  StopIcon,
-} from "~/client/assets/svg/Icons";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
-import useAudio from "~/client/components/shared/useAudio";
+import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-sos";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
-const SOS_MORSE = "... --- ...";
-const SOS_CONTINUOUS = "...---...";
+const SOS_MORSE = "...   ---   ...";
+const SOS_PROSIGN = "...---...";
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
@@ -23,324 +18,214 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "SOS in Morse Code - Sound, Meaning & Distress Signal",
+    title: "SOS in Morse Code - Translate, Play & Copy the Distress Signal",
     description:
-      "See SOS in Morse code, play the distress signal, copy the dots and dashes, and learn why SOS does not officially stand for Save Our Souls.",
+      "See SOS in Morse code, play the distress signal with sound or flash, copy the dots and dashes, and learn what SOS means.",
     path: CANONICAL_PATH,
     keywords:
       "sos in morse code, sos morse code, what is sos in morse code, sos distress signal, save our souls morse code, morse code sos sound",
   });
 }
 
-async function copyText(text: string) {
-  await navigator.clipboard.writeText(text);
-}
-
-function SignalBlock() {
-  const player = useAudio();
-  const [copied, setCopied] = React.useState(false);
-  const [flash, setFlash] = React.useState(false);
-  const [wpm, setWpm] = React.useState(15);
-
-  const play = async () => {
-    await player.play({
-      code: SOS_MORSE,
-      wpm,
-      farnsworthWpm: wpm,
-      hz: 600,
-      volume: 0.75,
-      soundEnabled: true,
-      preset: "cw_radio",
-      repeat: false,
-      flash,
-    });
-  };
-
-  const saveAudio = async () => {
-    const blob = await player.renderWav({
-      code: SOS_MORSE,
-      wpm,
-      farnsworthWpm: wpm,
-      hz: 600,
-      volume: 0.75,
-      soundEnabled: true,
-      preset: "cw_radio",
-    });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "sos-morse-code.wav";
-    link.click();
-    URL.revokeObjectURL(url);
-  };
-
+function Section({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-        <div>
-          <p className="m-0 text-sm font-extrabold uppercase tracking-wide text-sky-800">
-            Interactive SOS translator
-          </p>
-          <h1 className="mt-3 text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
-            SOS in Morse Code
-          </h1>
-          <p className="mt-3 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
-            SOS is written as three dots, three dashes, and three dots:
-          </p>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            {[
-              { label: "S", marks: ["dot", "dot", "dot"] },
-              { label: "O", marks: ["dash", "dash", "dash"] },
-              { label: "S", marks: ["dot", "dot", "dot"] },
-            ].map((group, index) => (
-              <div
-                key={`${group.label}-${index}`}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center"
-              >
-                <div className="text-4xl font-black text-sky-800">
-                  {group.label}
-                </div>
-                <div className="mt-4 flex min-h-8 items-center justify-center gap-2">
-                  {group.marks.map((mark, markIndex) => (
-                    <span
-                      key={`${mark}-${markIndex}`}
-                      className={
-                        mark === "dot"
-                          ? "h-5 w-5 rounded bg-neutral-900"
-                          : "h-5 w-14 rounded bg-neutral-900"
-                      }
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-5 rounded-2xl bg-sky-50 p-4">
-            <div className="text-sm font-bold text-slate-600">
-              Copy-ready Morse
-            </div>
-            <code className="mt-1 block break-words text-2xl font-black text-slate-950">
-              {SOS_MORSE}
-            </code>
-            <div className="mt-2 text-sm text-slate-600">
-              Continuous distress prosign form:{" "}
-              <code className="font-black">{SOS_CONTINUOUS}</code>
-            </div>
-          </div>
+    <section className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
+      <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-5 sm:px-8">
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-sky-800" />
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+            {eyebrow}
+          </span>
         </div>
-
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <div className="grid gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                if (player.state === "playing") player.pause();
-                else if (player.state === "paused") player.resume();
-                else play();
-              }}
-              className="flex items-center justify-center gap-2 rounded-xl bg-neutral-900 px-4 py-3 font-extrabold text-sky-200 transition hover:bg-neutral-800 hover:text-white"
-            >
-              {player.state === "playing" ? (
-                <PauseIcon size={22} title="Pause SOS" />
-              ) : (
-                <PlayIcon size={22} title="Play SOS" />
-              )}
-              {player.state === "playing"
-                ? "Pause SOS"
-                : player.state === "paused"
-                  ? "Resume SOS"
-                  : "Play SOS"}
-            </button>
-
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={player.stop}
-                className="flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2 font-bold text-slate-800 transition hover:bg-slate-100"
-              >
-                <StopIcon size={18} title="Stop SOS" />
-                Stop
-              </button>
-              <button
-                type="button"
-                onClick={saveAudio}
-                className="flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2 font-bold text-slate-800 transition hover:bg-slate-100"
-              >
-                <SaveIcon size={18} title="Save SOS audio" />
-                Save
-              </button>
-            </div>
-
-            <button
-              type="button"
-              onClick={async () => {
-                await copyText(SOS_MORSE);
-                setCopied(true);
-                window.setTimeout(() => setCopied(false), 1000);
-              }}
-              className="flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2 font-bold text-slate-800 transition hover:bg-slate-100"
-            >
-              <CopyIcon size={18} title="Copy SOS Morse" />
-              {copied ? "Copied" : "Copy SOS"}
-            </button>
-
-            <label className="grid gap-2 text-sm font-bold text-slate-700">
-              Speed: {wpm} WPM
-              <input
-                type="range"
-                min={8}
-                max={30}
-                value={wpm}
-                onChange={(event) => setWpm(Number(event.target.value))}
-                className="cursor-pointer"
-                style={{ accentColor: "#38bdf8" }}
-              />
-            </label>
-
-            <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700">
-              <input
-                type="checkbox"
-                checked={flash}
-                onChange={(event) => setFlash(event.target.checked)}
-              />
-              Flash screen while playing
-            </label>
-          </div>
-        </div>
+        <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+          {title}
+        </h2>
+      </div>
+      <div className="px-5 py-6 text-base leading-relaxed text-slate-700 sm:px-8 sm:text-lg">
+        {children}
       </div>
     </section>
   );
 }
 
-function InfoCard({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function SosReferenceCard() {
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h2 className="m-0 text-2xl font-black text-sky-800">{title}</h2>
-      <div className="mt-3 leading-relaxed text-slate-700">{children}</div>
+    <section className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
+      <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-6 sm:px-8">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-sky-800" />
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+                Distress signal
+              </span>
+            </div>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+              What is SOS in Morse code?
+            </h2>
+            <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              SOS is three short signals, three long signals, and three short
+              signals. For everyday translation it appears as the letters S O S;
+              as a distress prosign, it is often sent as one continuous pattern.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-slate-800 bg-[#171717] px-4 py-3 text-white shadow-sm lg:w-72">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
+              Copy-ready signal
+            </p>
+            <p className="mt-2 font-mono text-lg font-bold tracking-[0.18em] text-sky-100">
+              {SOS_MORSE}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-slate-200">
+              Continuous prosign:{" "}
+              <span className="font-mono font-bold">{SOS_PROSIGN}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-4 bg-[#fffdf8] px-5 py-6 sm:grid-cols-3 sm:px-8">
+        {[
+          { label: "S", marks: ["dot", "dot", "dot"] },
+          { label: "O", marks: ["dash", "dash", "dash"] },
+          { label: "S", marks: ["dot", "dot", "dot"] },
+        ].map((group, index) => (
+          <div
+            key={`${group.label}-${index}`}
+            className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-center"
+          >
+            <div className="text-4xl font-extrabold text-sky-950">
+              {group.label}
+            </div>
+            <div className="mt-4 flex min-h-8 items-center justify-center gap-2">
+              {group.marks.map((mark, markIndex) => (
+                <span
+                  key={`${mark}-${markIndex}`}
+                  className={
+                    mark === "dot"
+                      ? "h-5 w-5 rounded bg-[#171717]"
+                      : "h-5 w-14 rounded bg-[#171717]"
+                  }
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
 
 export default function MorseCodeSos() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "SOS in Morse Code",
-    url: CANONICAL_URL,
-    description:
-      "Interactive guide to SOS in Morse code with audio playback, copy-ready dots and dashes, and plain-English history of the distress signal.",
-    isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
-    about: [
-      { "@type": "Thing", name: "SOS distress signal" },
-      { "@type": "Thing", name: "International Morse code" },
-    ],
-  };
+  const [plainA, setPlainA] = React.useState("SOS");
+  const morseA = React.useMemo(() => textToMorse(plainA), [plainA]);
+  const [morseB, setMorseB] = React.useState(SOS_MORSE);
+  const textB = React.useMemo(() => morseToText(morseB), [morseB]);
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
+  const faqItems = [
+    {
+      q: "What is SOS in Morse code?",
+      a: "SOS in Morse code is three dots, three dashes, and three dots: ... --- ... . As a distress prosign it may be sent continuously as ...---... .",
+    },
+    {
+      q: "Does SOS stand for Save Our Souls?",
+      a: "No. Save Our Souls and Save Our Ship are popular memory phrases, but SOS was chosen because the Morse pattern is simple, symmetrical, and recognizable.",
+    },
+    {
+      q: "Can SOS be sent with a flashlight?",
+      a: "Yes. Use the same rhythm: three short flashes, three long flashes, and three short flashes.",
+    },
+  ];
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "SOS in Morse Code",
+      url: CANONICAL_URL,
+      description:
+        "Interactive guide to SOS in Morse code with audio playback, flash, copy-ready dots and dashes, and plain-English history.",
+      isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+      about: [
+        { "@type": "Thing", name: "SOS distress signal" },
+        { "@type": "Thing", name: "International Morse code" },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqItems.map((item) => ({
         "@type": "Question",
-        name: "What is SOS in Morse code?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "SOS in Morse code is three dots, three dashes, and three dots: ... --- ... . As a distress prosign it may be sent as a continuous sequence without normal letter gaps.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does SOS stand for Save Our Souls?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. Save Our Souls and Save Our Ship are common memory phrases, but SOS was chosen as a simple, recognizable Morse distress signal rather than as an acronym.",
-        },
-      },
-    ],
-  };
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    },
+  ];
 
   return (
     <div style={styles.page}>
       <main style={styles.wrap}>
-        <div className="grid gap-5 py-4">
-          <SignalBlock />
-
-          <InfoCard title="What does SOS sound like?">
-            <p>
-              SOS sounds like three short signals, three long signals, and three
-              short signals. Written as ordinary Morse letters it appears as{" "}
-              <code className="rounded bg-slate-100 px-1 py-0.5 font-bold">
-                ... --- ...
-              </code>
-              . In formal distress use, operators often think of it as one
-              continuous prosign pattern rather than three separate letters.
+        <TranslatorSectionsBasic
+          title="SOS Morse Code Translator"
+          subtitle={
+            <p className="mt-2 max-w-none text-base leading-7 text-slate-700 sm:text-[1.08rem]">
+              Translate SOS, play the signal, copy the Morse, or use Flash
+              Light with the same controls as the main MorseWords translator.
             </p>
-          </InfoCard>
+          }
+          examples={["SOS", "HELP", "MAYDAY", "CQD", "TEST SOS"]}
+          plainA={plainA}
+          setPlainA={setPlainA}
+          morseA={morseA}
+          morseB={morseB}
+          textB={textB}
+          setMorseB={setMorseB}
+        />
 
-          <InfoCard title="Does SOS mean Save Our Souls?">
+        <div className="grid gap-6">
+          <SosReferenceCard />
+
+          <Section eyebrow="Sound pattern" title="What does SOS sound like?">
             <p>
-              No. "Save Our Souls" and "Save Our Ship" are popular memory
-              phrases, but SOS is not officially an acronym. The signal became
-              famous because the pattern is short, symmetrical, and easy to
-              recognize under stress.
+              SOS sounds like three short beeps, three long beeps, and three
+              short beeps. In Morse timing, a dash is three times as long as a
+              dot. The pauses are just as important as the marks because they
+              make the signal readable.
             </p>
-          </InfoCard>
+          </Section>
 
-          <InfoCard title="Why was SOS chosen?">
+          <Section eyebrow="Meaning" title="Does SOS mean Save Our Souls?">
             <p>
-              The practical reason is speed and clarity. Three dots, three
-              dashes, and three dots can be sent by radio, light, tapping, or
-              sound, and the shape is hard to confuse with ordinary text. The
-              signal was introduced in early twentieth-century radio rules and
-              became the internationally recognized Morse distress signal.
+              Not officially. "Save Our Souls" and "Save Our Ship" are easy
+              ways to remember SOS, but the signal itself was adopted because
+              the pattern is short, clear, and hard to miss in an emergency.
             </p>
-          </InfoCard>
+          </Section>
 
-          <InfoCard title="How to send SOS">
+          <Section eyebrow="Practical use" title="How to send SOS">
             <ul className="m-0 grid gap-2 pl-5">
               <li>By sound: three short beeps, three long beeps, three short beeps.</li>
               <li>By light: three short flashes, three long flashes, three short flashes.</li>
-              <li>By writing: use SOS or the Morse pattern ... --- ... .</li>
               <li>By tapping: three quick taps, three longer taps, three quick taps.</li>
+              <li>By writing: use SOS or the Morse pattern ... --- ... .</li>
             </ul>
-          </InfoCard>
+          </Section>
 
-          <InfoCard title="SOS FAQ">
-            <div className="grid gap-4">
-              <article>
-                <h3 className="m-0 text-lg font-black text-slate-950">
-                  Is SOS the same as sending the letters S, O, S?
-                </h3>
-                <p className="mt-1">
-                  For everyday learning, yes, the pattern matches S O S. For
-                  distress signaling, it is commonly described as one continuous
-                  signal with no normal letter spacing.
-                </p>
-              </article>
-              <article>
-                <h3 className="m-0 text-lg font-black text-slate-950">
-                  Can I use SOS with a flashlight?
-                </h3>
-                <p className="mt-1">
-                  Yes. The same short-short-short, long-long-long,
-                  short-short-short rhythm can be sent with light, sound, or
-                  tapping.
-                </p>
-              </article>
-            </div>
-          </InfoCard>
+          <FaqSectionGeneric title="SOS FAQ" items={faqItems} />
         </div>
 
-        <JsonLdScript jsonLd={jsonLd} />
-        <JsonLdScript jsonLd={faqJsonLd} />
+        {jsonLd.map((item, index) => (
+          <JsonLdScript key={index} jsonLd={item} />
+        ))}
       </main>
     </div>
   );

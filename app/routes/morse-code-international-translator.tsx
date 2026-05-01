@@ -2,10 +2,7 @@ import * as React from "react";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { transliterateForInternationalMorse } from "~/client/components/shared/internationalMorse";
-import {
-  morseToText,
-  textToMorse,
-} from "~/client/components/shared/morseUtils";
+import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -18,15 +15,27 @@ const EXAMPLES = [
   { word: "Professeur", language: "French" },
   { word: "Professor", language: "Portuguese" },
   { word: "Lehrer", language: "German" },
-  { word: "शिक्षक", language: "Hindi", transliteration: "shikshak" },
+  {
+    word: "\u0936\u093f\u0915\u094d\u0937\u0915",
+    language: "Hindi",
+    transliteration: "shikshak",
+  },
   { word: "Guro", language: "Tagalog" },
-  { word: "先生", language: "Japanese", transliteration: "sensei" },
+  { word: "\u5148\u751f", language: "Japanese", transliteration: "sensei" },
   { word: "Guru", language: "Indonesian" },
-  { word: "Учитель", language: "Russian", transliteration: "uchitel'" },
-  { word: "선생님", language: "Korean", transliteration: "seonsaengnim" },
+  {
+    word: "\u0423\u0447\u0438\u0442\u0435\u043b\u044c",
+    language: "Russian",
+    transliteration: "uchitel'",
+  },
+  {
+    word: "\uc120\uc0dd\ub2d8",
+    language: "Korean",
+    transliteration: "seonsaengnim",
+  },
   { word: "Insegnante", language: "Italian" },
   { word: "Leraar", language: "Dutch" },
-  { word: "Öğretmen", language: "Turkish" },
+  { word: "\u00d6\u011fretmen", language: "Turkish" },
 ];
 
 export function links() {
@@ -61,23 +70,25 @@ function ExampleCard({
   const morse = textToMorse(transliteration);
 
   return (
-    <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <article className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="m-0 text-xl font-black text-sky-800">{item.word}</h3>
-          <p className="mt-1 text-sm font-bold text-slate-500">
+          <h3 className="m-0 text-xl font-extrabold text-sky-950">
+            {item.word}
+          </h3>
+          <p className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
             {item.language}
           </p>
         </div>
         <button
           type="button"
           onClick={() => onUse(item.word)}
-          className="rounded-xl border border-slate-200 px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+          className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
         >
           Try
         </button>
       </div>
-      <code className="mt-4 block break-words rounded-xl bg-slate-50 px-3 py-3 text-sm font-black text-slate-950">
+      <code className="mt-4 block break-words rounded-xl border border-slate-200 bg-[#f7f4ee] px-3 py-3 text-sm font-black text-slate-950">
         {morse}
       </code>
       <div className="mt-3 flex items-center justify-between gap-3">
@@ -89,7 +100,7 @@ function ExampleCard({
             setCopied(true);
             window.setTimeout(() => setCopied(false), 1000);
           }}
-          className="rounded-xl bg-neutral-900 px-3 py-1.5 text-sm font-bold text-sky-200 transition hover:bg-neutral-800 hover:text-white"
+          className="rounded-xl bg-[#171717] px-3 py-1.5 text-sm font-bold text-sky-100 transition hover:bg-slate-800 hover:text-white"
         >
           {copied ? "Copied" : "Copy"}
         </button>
@@ -131,9 +142,9 @@ export default function InternationalTranslator() {
         <TranslatorSectionsBasic
           title="International Morse Code Translator"
           subtitle={
-            <p className="mt-2 hidden text-sm sm:flex sm:text-lg">
+            <p className="mt-2 max-w-none text-base leading-7 text-slate-700 sm:text-[1.08rem]">
               Convert English and world-language words into Morse using
-              transliteration.
+              readable transliteration before encoding.
             </p>
           }
           examples={EXAMPLES.slice(0, 5).map((item) => item.word)}
@@ -147,14 +158,19 @@ export default function InternationalTranslator() {
         />
 
         <section className="pb-6">
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h1 className="m-0 text-sm font-extrabold uppercase tracking-wide text-sky-800">
-              International Morse code translator
-            </h1>
-            <h2 className="mt-3 text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
-              Translate English and International Words into Morse Code
-            </h2>
-            <p className="mt-3 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
+            <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-6 sm:px-8">
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-sky-800" />
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+                  International Morse
+                </span>
+              </div>
+              <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+                Translate English and International Words into Morse Code
+              </h2>
+            </div>
+            <p className="max-w-3xl px-5 py-6 text-base leading-relaxed text-slate-700 sm:px-8 sm:text-lg">
               Type English, accented Latin words, or common non-Latin scripts.
               MorseWords transliterates the text into readable Latin characters
               first, then converts that pronunciation-friendly text into
@@ -164,14 +180,13 @@ export default function InternationalTranslator() {
         </section>
 
         <section className="pb-4">
-          <h2 className="m-0 text-2xl font-black text-sky-800">
+          <h2 className="m-0 text-2xl font-extrabold text-sky-950">
             International Morse code examples
           </h2>
-          <p className="mt-2 max-w-3xl text-slate-600">
-            These examples focus on the English-speaking search intent behind
-            international Morse code: how a word from another language can be
-            represented as a Latin transliteration, then converted into dots and
-            dashes.
+          <p className="mt-2 max-w-3xl text-slate-700">
+            These examples match the English-speaking intent behind
+            international Morse code: a word from another language is shown as
+            readable transliteration, then converted into dots and dashes.
           </p>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {EXAMPLES.map((item) => (
@@ -185,8 +200,8 @@ export default function InternationalTranslator() {
         </section>
 
         <section className="pb-8">
-          <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-amber-950">
-            <h2 className="m-0 text-xl font-black">
+          <div className="rounded-2xl border border-amber-200 bg-[#fffaf2] p-5 text-amber-950 shadow-sm">
+            <h2 className="m-0 text-xl font-extrabold">
               International translation disclaimer
             </h2>
             <p className="mt-2 leading-relaxed">

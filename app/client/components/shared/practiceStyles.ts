@@ -2,7 +2,7 @@ import * as React from "react";
 
 const styles: Record<string, React.CSSProperties> = {
   page: {
-    background: "#f7f8fb",
+    background: "transparent",
     color: "#111317",
     fontFamily:
       "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
@@ -23,8 +23,8 @@ const styles: Record<string, React.CSSProperties> = {
   lead: { marginTop: 8, color: "#5a616c", fontSize: "1.05rem" },
 
   card: {
-    background: "#fff",
-    border: "1px solid #e6e8ef",
+    background: "#fffdf8",
+    border: "1px solid #e2e8f0",
     borderRadius: 16,
     boxShadow: "0 1px 0 rgba(11,36,71,0.14)",
   },
@@ -42,10 +42,10 @@ const styles: Record<string, React.CSSProperties> = {
   label: { fontSize: ".9rem", color: "#5a616c" },
 
   promptBox: {
-    border: "1px solid #e6e8ef",
+    border: "1px solid #e2e8f0",
     borderRadius: 14,
     padding: 16,
-    background: "linear-gradient(180deg, #ffffff 0%, #fbfbfe 100%)",
+    background: "linear-gradient(180deg, #fffdf8 0%, #fffaf2 100%)",
   },
   promptKind: {
     display: "inline-flex",
@@ -71,9 +71,9 @@ const styles: Record<string, React.CSSProperties> = {
     width: "100%",
     minHeight: 44,
     padding: 10,
-    border: "1px solid #e6e8ef",
+    border: "1px solid #e2e8f0",
     borderRadius: 10,
-    background: "#fff",
+    background: "#fffdf8",
     color: "#111317",
     font: '650 1.05rem/1.1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
   },
@@ -110,8 +110,8 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 999,
     fontSize: ".9rem",
     fontWeight: 800,
-    border: "1px solid #e6e8ef",
-    background: "#fff",
+    border: "1px solid #e2e8f0",
+    background: "#fffdf8",
   },
   badgeGood: { borderColor: "#cfe9d7", background: "#f0fbf3", color: "#155724" },
   badgeBad: { borderColor: "#f2c9c9", background: "#fff1f1", color: "#7a1c1c" },

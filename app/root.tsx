@@ -14,6 +14,9 @@ import { PHogProvider } from "./client/providers/PHogProvider";
 import Footer from "./client/components/navigation/Footer";
 import NavBar from "./client/components/navigation/NavBar";
 import RelatedTools from "./client/components/navigation/RelatedTools";
+import PageBackdrop, {
+  paperBackground,
+} from "./client/components/shared/PageBackdrop";
 
 /* ---------- Trailing slash helpers (one place, app-level) ---------- */
 function needsStrip(pathname: string) {
@@ -62,8 +65,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <PHogProvider>
           <NavBar />
-          {children}
-          <RelatedTools />
+          <div
+            className="relative min-h-screen overflow-hidden"
+            style={paperBackground}
+          >
+            <PageBackdrop />
+            <div className="relative z-10">
+              {children}
+              <RelatedTools />
+            </div>
+          </div>
           <ScrollRestoration />
           <Scripts />
         </PHogProvider>
