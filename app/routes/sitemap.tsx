@@ -127,12 +127,6 @@ const GROUPS: SitemapGroup[] = [
           "Print or download learner, teacher, and classroom Morse code templates.",
       },
       {
-        label: "Morse Code Worksheet Generator",
-        to: "/morse-code-worksheet-generator",
-        description:
-          "Create custom word and sentence worksheets with answer keys.",
-      },
-      {
         label: "Morse Code Word Search Builder",
         to: "/morse-code-word-search-builder",
         description:

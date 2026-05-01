@@ -45,10 +45,6 @@ export default [
     "morse-code-word-search-builder",
     "routes/morse-code-word-search-builder.tsx",
   ),
-  route(
-    "morse-code-worksheet-generator",
-    "routes/morse-code-worksheet-generator.tsx",
-  ),
   route("morse-code-visual-practice", "routes/morse-code-visual-practice.tsx"),
   route("morse-code-audio-quiz", "routes/morse-code-audio-quiz.tsx"),
   route("morse-code-visual-quiz", "routes/morse-code-visual-quiz.tsx"),

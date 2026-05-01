@@ -134,13 +134,6 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Worksheets",
       },
       {
-        title: "Worksheet Generator",
-        description:
-          "Create custom word and sentence worksheets with answer keys.",
-        href: "/morse-code-worksheet-generator",
-        badge: "Print",
-      },
-      {
         title: "Morse Code Audio Generator",
         description:
           "Generate Morse audio for listening, practice, and downloadable clips.",
