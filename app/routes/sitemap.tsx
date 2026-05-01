@@ -46,12 +46,30 @@ const GROUPS: SitemapGroup[] = [
         description:
           "Translate English and international words into Morse code with transliteration.",
       },
+      {
+        label: "International Morse Code Reference",
+        to: "/international-morse-code-reference",
+        description:
+          "Browse letters, digits, punctuation, prosigns, Q-codes, and standards notes.",
+      },
     ],
   },
   {
     title: "Practice and learning",
     description: "Build recognition, accuracy, and speed with practical drills.",
     links: [
+      {
+        label: "Learn Morse Code",
+        to: "/learn-morse-code",
+        description:
+          "Follow a practical path through alphabet, practice, audio, words, sentences, and worksheets.",
+      },
+      {
+        label: "Morse Code Practice Plan",
+        to: "/morse-code-practice-plan",
+        description:
+          "Use a 2-week or 6-week routine across MorseWords tools.",
+      },
       {
         label: "Practice",
         to: "/practice",
@@ -68,6 +86,34 @@ const GROUPS: SitemapGroup[] = [
         description: "Decode and practice complete Morse code sentences.",
       },
       {
+        label: "Morse Code Word Trainer",
+        to: "/morse-code-word-trainer",
+        description:
+          "Practice built-in or custom word lists with audio and weak-word review.",
+      },
+      {
+        label: "Morse Code Audio Practice",
+        to: "/morse-code-audio-practice",
+        description:
+          "Practice copying Morse by ear with focused audio prompts.",
+      },
+      {
+        label: "Morse Code Visual Practice",
+        to: "/morse-code-visual-practice",
+        description:
+          "Practice reading Morse from a flashing light signal.",
+      },
+      {
+        label: "Morse Code Audio Quiz",
+        to: "/morse-code-audio-quiz",
+        description: "Test Morse listening recall with audio-only prompts.",
+      },
+      {
+        label: "Morse Code Visual Quiz",
+        to: "/morse-code-visual-quiz",
+        description: "Test visual Morse recall with flashing prompts.",
+      },
+      {
         label: "How to Use MorseWords",
         to: "/how-to-use",
         description: "Learn the site workflow and common Morse conventions.",
@@ -77,6 +123,18 @@ const GROUPS: SitemapGroup[] = [
         to: "/morse-code-printable-chart",
         description:
           "Print or download learner, teacher, and classroom Morse code templates.",
+      },
+      {
+        label: "Morse Code Worksheet Generator",
+        to: "/morse-code-worksheet-generator",
+        description:
+          "Create custom word and sentence worksheets with answer keys.",
+      },
+      {
+        label: "Morse Code Word Search Builder",
+        to: "/morse-code-word-search-builder",
+        description:
+          "Build printable Morse vocabulary word searches from custom lists.",
       },
     ],
   },
@@ -105,6 +163,36 @@ const GROUPS: SitemapGroup[] = [
         description: "Understand spaces, slashes, and word breaks in Morse.",
       },
       {
+        label: "Morse Code Timing",
+        to: "/morse-code-timing",
+        description:
+          "Understand dot, dash, character gap, word gap, WPM, and PARIS timing.",
+      },
+      {
+        label: "Farnsworth Timing",
+        to: "/farnsworth-timing",
+        description:
+          "Learn character speed, effective speed, and learner spacing.",
+      },
+      {
+        label: "Morse Code Prosigns",
+        to: "/morse-code-prosigns",
+        description:
+          "Look up SOS, AR, SK, BT, and other procedural Morse signals.",
+      },
+      {
+        label: "Morse Code Q-Codes",
+        to: "/morse-code-q-codes",
+        description:
+          "Browse common Q-codes with meanings, examples, and audio.",
+      },
+      {
+        label: "Morse Code Punctuation",
+        to: "/morse-code-punctuation",
+        description:
+          "Find Morse punctuation for period, comma, question mark, slash, and symbols.",
+      },
+      {
         label: "The Quick Brown Fox in Morse Code",
         to: "/the-quick-brown-fox-morse-code",
         description: "Use the classic pangram as a full-alphabet practice phrase.",
@@ -125,6 +213,12 @@ const GROUPS: SitemapGroup[] = [
         label: "About",
         to: "/about",
         description: "Learn what MorseWords is built for.",
+      },
+      {
+        label: "Sources",
+        to: "/sources",
+        description:
+          "See the standards and references used for MorseWords timing and reference pages.",
       },
       {
         label: "Socials",

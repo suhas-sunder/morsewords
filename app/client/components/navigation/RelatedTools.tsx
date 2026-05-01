@@ -46,6 +46,13 @@ const ROUTE_GROUPS: RouteGroup[] = [
         href: "/dictionary",
         badge: "Reference",
       },
+      {
+        title: "International Morse Reference",
+        description:
+          "Browse letters, digits, punctuation, prosigns, Q-codes, and standards notes.",
+        href: "/international-morse-code-reference",
+        badge: "Reference",
+      },
     ],
   },
   {
@@ -54,6 +61,20 @@ const ROUTE_GROUPS: RouteGroup[] = [
     description:
       "Use these pages for drills, typing practice, sentence work, and guided learning.",
     links: [
+      {
+        title: "Learn Morse Code",
+        description:
+          "Follow a practical path through alphabet, words, audio, sentences, and worksheets.",
+        href: "/learn-morse-code",
+        badge: "Learn",
+      },
+      {
+        title: "Practice Plan",
+        description:
+          "Use a 2-week or 6-week routine across the MorseWords tools.",
+        href: "/morse-code-practice-plan",
+        badge: "Plan",
+      },
       {
         title: "Morse Code Practice",
         description: "Practice reading, writing, and recognizing Morse patterns.",
@@ -72,6 +93,18 @@ const ROUTE_GROUPS: RouteGroup[] = [
           "Work with full sentence examples instead of single letters.",
         href: "/morse-code-sentence-practice",
         badge: "Sentences",
+      },
+      {
+        title: "Word Trainer",
+        description: "Practice built-in and custom Morse word lists.",
+        href: "/morse-code-word-trainer",
+        badge: "Words",
+      },
+      {
+        title: "Audio Practice",
+        description: "Practice copying Morse by ear with focused prompts.",
+        href: "/morse-code-audio-practice",
+        badge: "Listen",
       },
       {
         title: "Morse Code Words",
@@ -101,11 +134,25 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Worksheets",
       },
       {
+        title: "Worksheet Generator",
+        description:
+          "Create custom word and sentence worksheets with answer keys.",
+        href: "/morse-code-worksheet-generator",
+        badge: "Print",
+      },
+      {
         title: "Morse Code Audio Generator",
         description:
           "Generate Morse audio for listening, practice, and downloadable clips.",
         href: "/audio",
         badge: "Listen",
+      },
+      {
+        title: "Word Search Builder",
+        description:
+          "Create printable Morse vocabulary puzzles from custom word lists.",
+        href: "/morse-code-word-search-builder",
+        badge: "Puzzle",
       },
       {
         title: "Morse Code Word Separator",
@@ -122,6 +169,37 @@ const ROUTE_GROUPS: RouteGroup[] = [
     description:
       "Extra pages for common examples, separators, and basic site guidance.",
     links: [
+      {
+        title: "Morse Code Timing",
+        description: "Understand dot, dash, WPM, PARIS, and spacing ratios.",
+        href: "/morse-code-timing",
+        badge: "Timing",
+      },
+      {
+        title: "Farnsworth Timing",
+        description:
+          "Learn character speed, effective speed, and learner spacing.",
+        href: "/farnsworth-timing",
+        badge: "Audio",
+      },
+      {
+        title: "Morse Code Prosigns",
+        description: "Look up SOS, AR, SK, BT, KN, and other operating signs.",
+        href: "/morse-code-prosigns",
+        badge: "Signals",
+      },
+      {
+        title: "Morse Code Q-Codes",
+        description: "Browse common Q-codes with meanings and examples.",
+        href: "/morse-code-q-codes",
+        badge: "Q-code",
+      },
+      {
+        title: "Morse Punctuation",
+        description: "Find period, comma, question mark, slash, and symbols.",
+        href: "/morse-code-punctuation",
+        badge: "Symbols",
+      },
       {
         title: "How to Use",
         description: "Learn how to use the Morse code tools effectively.",
@@ -140,6 +218,13 @@ const ROUTE_GROUPS: RouteGroup[] = [
           "Understand spacing, slashes, and word separation in Morse code.",
         href: "/morse-code-word-separator",
         badge: "Formatting",
+      },
+      {
+        title: "Sources",
+        description:
+          "See the standards and references used by MorseWords pages.",
+        href: "/sources",
+        badge: "Trust",
       },
       {
         title: "About",

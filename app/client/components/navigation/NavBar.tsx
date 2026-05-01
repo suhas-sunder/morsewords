@@ -15,26 +15,45 @@ const MAIN_ITEMS: NavItem[] = [
 ];
 
 const MORE_ITEMS: NavItem[] = [
+  { label: "Learn Morse code", href: "/learn-morse-code" },
+  { label: "Practice plan", href: "/morse-code-practice-plan" },
   {
     label: "Morse code sentence practice",
     href: "/morse-code-sentence-practice",
   },
+  { label: "Word trainer", href: "/morse-code-word-trainer" },
+  { label: "Audio practice", href: "/morse-code-audio-practice" },
+  { label: "Visual practice", href: "/morse-code-visual-practice" },
+  { label: "Audio quiz", href: "/morse-code-audio-quiz" },
+  { label: "Visual quiz", href: "/morse-code-visual-quiz" },
   { label: "Dictionary", href: "/dictionary" },
   { label: "Morse code words (chart)", href: "/morse-code-words" },
   { label: "Printable worksheets", href: "/morse-code-printable-chart" },
+  { label: "Worksheet generator", href: "/morse-code-worksheet-generator" },
+  { label: "Word search builder", href: "/morse-code-word-search-builder" },
   {
     label: "International translator",
     href: "/morse-code-international-translator",
   },
+  {
+    label: "International reference",
+    href: "/international-morse-code-reference",
+  },
   { label: "SOS in Morse code", href: "/morse-code-sos" },
   { label: "Morse code encoder", href: "/morse-code-encoder" },
   { label: "Morse code decoder", href: "/morse-code-decoder" },
+  { label: "Timing guide", href: "/morse-code-timing" },
+  { label: "Farnsworth timing", href: "/farnsworth-timing" },
+  { label: "Prosigns", href: "/morse-code-prosigns" },
+  { label: "Q-codes", href: "/morse-code-q-codes" },
+  { label: "Punctuation", href: "/morse-code-punctuation" },
   {
     label: "Quick Brown Fox (Morse)",
     href: "/the-quick-brown-fox-morse-code",
   },
   { label: "Word separator", href: "/morse-code-word-separator" },
   { label: "About", href: "/about" },
+  { label: "Sources", href: "/sources" },
   { label: "Morse code alphabet", href: "/morse-code-alphabet" },
 ];
 

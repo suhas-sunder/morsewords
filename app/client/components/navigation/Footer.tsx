@@ -21,10 +21,24 @@ export default function Footer() {
             </Link>
 
             <Link
+              to="/learn-morse-code"
+              className="cursor-pointer transition hover:text-sky-200"
+            >
+              Learn
+            </Link>
+
+            <Link
               to="/morse-code-printable-chart"
               className="cursor-pointer transition hover:text-sky-200"
             >
               Worksheets
+            </Link>
+
+            <Link
+              to="/sources"
+              className="cursor-pointer transition hover:text-sky-200"
+            >
+              Sources
             </Link>
 
             <Link
