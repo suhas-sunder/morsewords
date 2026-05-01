@@ -123,7 +123,7 @@ function SocialLinks() {
   ];
 
   return (
-    <section className="w-full bg-slate-50 px-4 py-10 sm:px-6 sm:py-12 mt-10 sm:mt-12">
+    <section className="w-full bg-[#f7f4ef] px-4 py-10 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
         <div className="border-b border-slate-200 px-5 py-6 sm:px-8">
           <div className="flex items-center gap-3">

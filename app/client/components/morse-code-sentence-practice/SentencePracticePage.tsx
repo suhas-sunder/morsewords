@@ -477,7 +477,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
     <div>
       <JsonLdScript jsonLd={jsonLd} />
 
-      <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+      <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
           <div className="flex items-center justify-center gap-3 sm:justify-start">
             <span className="h-px w-8 bg-sky-800" />
@@ -916,7 +916,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
       </section>
 
-      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
@@ -967,7 +967,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
       </section>
 
-      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           How spacing works in sentence Morse
         </h2>
@@ -1010,7 +1010,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
       </section>
 
-      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           Common Morse code sentence practice sets
         </h2>
@@ -1053,7 +1053,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
       </section>
 
-      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           Why practice complete Morse code sentences?
         </h2>

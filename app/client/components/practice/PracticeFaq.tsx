@@ -1,6 +1,6 @@
-import * as React from "react";
-
-type FaqItem = { q: string; a: string };
+import FaqSectionGeneric, {
+  type FaqItem,
+} from "~/client/components/shared/FaqSectionGeneric";
 
 export const items: FaqItem[] = [
   {
@@ -13,7 +13,7 @@ export const items: FaqItem[] = [
   },
   {
     q: "What does Mixed mode do?",
-    a: "Mixed alternates between Text → Morse and Morse → Text prompts so you practice both directions.",
+    a: "Mixed alternates between Text to Morse and Morse to Text prompts so you practice both directions.",
   },
   {
     q: "How is accuracy calculated?",
@@ -34,25 +34,5 @@ export const items: FaqItem[] = [
 ];
 
 export default function PracticeFaq() {
-  return (
-    <section className="mt-10 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-      <h2 className="text-2xl font-bold text-neutral-900">Practice FAQ</h2>
-      <div className="mt-4 space-y-4">
-        {items.map((it) => (
-          <details
-            key={it.q}
-            className="group border border-gray-200 rounded-xl p-4 bg-gray-50"
-          >
-            <summary className="cursor-pointer font-semibold text-neutral-900 list-none flex items-center justify-between">
-              <span>{it.q}</span>
-              <span className="ml-4 text-gray-500 group-open:rotate-180 transition-transform">
-                ▾
-              </span>
-            </summary>
-            <p className="mt-3 text-gray-700 leading-relaxed">{it.a}</p>
-          </details>
-        ))}
-      </div>
-    </section>
-  );
+  return <FaqSectionGeneric title="Practice FAQ" items={items} />;
 }

@@ -1,6 +1,6 @@
-import * as React from "react";
-
-type FaqItem = { q: string; a: string };
+import FaqSectionGeneric, {
+  type FaqItem,
+} from "~/client/components/shared/FaqSectionGeneric";
 
 export const items: FaqItem[] = [
   {
@@ -26,22 +26,5 @@ export const items: FaqItem[] = [
 ];
 
 export default function TypingFaq() {
-  return (
-    <section className="mt-10">
-      <h2 className="text-xl font-extrabold text-gray-900">FAQ</h2>
-      <div className="mt-4 space-y-4">
-        {items.map((it) => (
-          <details
-            key={it.q}
-            className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
-          >
-            <summary className="cursor-pointer select-none font-bold text-gray-900">
-              {it.q}
-            </summary>
-            <p className="mt-2 text-gray-700">{it.a}</p>
-          </details>
-        ))}
-      </div>
-    </section>
-  );
+  return <FaqSectionGeneric title="FAQ" items={items} />;
 }

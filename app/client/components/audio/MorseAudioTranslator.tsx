@@ -330,7 +330,7 @@ export default function MorseAudioTranslator() {
           <div className="flex flex-col gap-3">
           
 
-            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 shadow-sm sm:p-6">
+            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
               <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
                 <div className="flex items-center justify-center gap-3 sm:justify-start">
                   <span className="h-px w-8 bg-sky-800" />
