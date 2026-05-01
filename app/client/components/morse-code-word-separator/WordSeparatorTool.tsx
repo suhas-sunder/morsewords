@@ -5,26 +5,23 @@ type OutputSep = "standard" | "slash" | "pipe" | "newline";
 type Mode = "normalizeMorse" | "englishToMorse";
 
 function onlyMorseChars(input: string) {
-  // Keep dots, dashes, spaces, slashes, pipes, and newlines.
   return input.replace(/[^\n.\-\/|\s]/g, "");
 }
 
 function splitWordsFromMorse(raw: string): string[] {
-  // Normalize all common word breaks to a sentinel.
   const s = raw
     .replace(/\r/g, "")
-    .replace(/\n+/g, " ␟ ")
-    .replace(/\s*\/\s*/g, " ␟ ")
-    .replace(/\s*\|\s*/g, " ␟ ")
-    .replace(/\s{7,}/g, " ␟ ");
+    .replace(/\n+/g, " WORD_BREAK ")
+    .replace(/\s*\/\s*/g, " WORD_BREAK ")
+    .replace(/\s*\|\s*/g, " WORD_BREAK ")
+    .replace(/\s{7,}/g, " WORD_BREAK ");
   return s
-    .split("␟")
+    .split("WORD_BREAK")
     .map((w) => w.trim())
     .filter(Boolean);
 }
 
 function splitLettersFromMorse(word: string): string[] {
-  // 1–6 spaces => letter gap (normalize to single spaces).
   const normalized = word.trim().replace(/\s{2,}/g, " ");
   return normalized
     .split(" ")
@@ -34,7 +31,6 @@ function splitLettersFromMorse(word: string): string[] {
 
 function formatMorse(words: string[][], sep: OutputSep): string {
   if (sep === "standard") {
-    // Letters: single space, words: 7 spaces
     return words.map((letters) => letters.join(" ")).join("       ");
   }
   if (sep === "slash") {
@@ -43,7 +39,6 @@ function formatMorse(words: string[][], sep: OutputSep): string {
   if (sep === "pipe") {
     return words.map((letters) => letters.join(" ")).join(" | ");
   }
-  // newline
   return words.map((letters) => letters.join(" ")).join("\n");
 }
 
@@ -64,20 +59,13 @@ async function copyToClipboard(text: string) {
 
 export default function WordSeparatorTool() {
   const [mode, setMode] = React.useState<Mode>("normalizeMorse");
-
-  // Shared separator choice (UI will hide newline when in English mode).
   const [sep, setSep] = React.useState<OutputSep>("standard");
-
-  // Morse normalization input
   const [morseInput, setMorseInput] = React.useState<string>(
     "... --- ... / .-.-.-  .- -... -.-",
   );
-
-  // English → Morse input (separator-focused)
   const [englishInput, setEnglishInput] = React.useState<string>(
     "the quick brown fox jumps over the lazy dog",
   );
-
   const [copied, setCopied] = React.useState(false);
 
   const cleanedMorse = React.useMemo(
@@ -96,14 +84,11 @@ export default function WordSeparatorTool() {
   );
 
   const englishOut = React.useMemo(() => {
-    // Encode each English word independently so the separator is always controlled here.
     const words = englishInput.trim().split(/\s+/).filter(Boolean);
     if (!words.length) return "";
 
-    // In English mode, "newline" doesn't make sense for word separators.
     const effectiveSep: Exclude<OutputSep, "newline"> =
       sep === "newline" ? "standard" : sep;
-
     const encodedWords = words.map((w) => textToMorse(w).trim());
 
     if (effectiveSep === "standard") return encodedWords.join("       ");
@@ -112,12 +97,10 @@ export default function WordSeparatorTool() {
   }, [englishInput, sep]);
 
   const out = mode === "normalizeMorse" ? morseOut : englishOut;
-
   const wordCount =
     mode === "normalizeMorse"
       ? morseWords.length
       : countEnglishWords(englishInput);
-
   const letterCount =
     mode === "normalizeMorse"
       ? morseWords.reduce((acc, w) => acc + w.length, 0)
@@ -138,26 +121,32 @@ export default function WordSeparatorTool() {
         ];
 
   return (
-    <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:px-6 shadow-sm">
-      <div className="flex flex-col gap-3 text-center">
-        <h1 className="font-extrabold text-2xl sm:text-4xl text-sky-800 tracking-tight">
+    <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+      <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
+        <div className="flex items-center justify-center gap-3 sm:justify-start">
+          <span className="h-px w-8 bg-sky-800" />
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+            Separator tool
+          </span>
+        </div>
+        <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           Morse code word separator
         </h1>
-        <p className="text-sm sm:text-lg text-gray-700 hidden sm:block">
-          Normalize Morse word breaks and format English → Morse separators
+        <p className="hidden text-base leading-relaxed text-slate-700 sm:block sm:text-lg">
+          Normalize Morse word breaks and format English to Morse separators
           using <strong>7 spaces</strong>, <strong>/</strong>,{" "}
           <strong>|</strong>, or <strong>new lines</strong>.
         </p>
       </div>
 
-      <div className="mt-5 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2">
-        <div className="inline-flex rounded-xl border border-gray-200 bg-gray-50 p-1">
+      <div className="mt-5 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
+        <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1">
           <button
             onClick={() => setMode("normalizeMorse")}
-            className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition ${
+            className={`cursor-pointer rounded-lg px-3 py-2 text-sm font-semibold transition ${
               mode === "normalizeMorse"
-                ? "bg-white shadow-sm text-neutral-900"
-                : "text-gray-700 hover:bg-white"
+                ? "bg-white text-sky-950 shadow-sm"
+                : "text-slate-700 hover:bg-white"
             }`}
             aria-pressed={mode === "normalizeMorse"}
           >
@@ -165,26 +154,26 @@ export default function WordSeparatorTool() {
           </button>
           <button
             onClick={() => setMode("englishToMorse")}
-            className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition ${
+            className={`cursor-pointer rounded-lg px-3 py-2 text-sm font-semibold transition ${
               mode === "englishToMorse"
-                ? "bg-white shadow-sm text-neutral-900"
-                : "text-gray-700 hover:bg-white"
+                ? "bg-white text-sky-950 shadow-sm"
+                : "text-slate-700 hover:bg-white"
             }`}
             aria-pressed={mode === "englishToMorse"}
           >
-            English → Morse
+            English to Morse
           </button>
         </div>
 
-        <div className="inline-flex rounded-xl border border-gray-200 bg-white p-1">
+        <div className="inline-flex rounded-xl border border-slate-200 bg-white p-1">
           {sepOptions.map(([label, v]) => (
             <button
               key={v}
               onClick={() => setSep(v)}
-              className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition ${
+              className={`cursor-pointer rounded-lg px-3 py-2 text-sm font-semibold transition ${
                 sep === v
-                  ? "bg-sky-50 border border-sky-200 text-sky-900"
-                  : "text-gray-700 hover:bg-gray-50"
+                  ? "border border-sky-200 bg-sky-50 text-sky-950"
+                  : "text-slate-700 hover:bg-slate-50"
               }`}
               aria-pressed={sep === v}
             >
@@ -195,18 +184,18 @@ export default function WordSeparatorTool() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+        <div className="rounded-2xl border border-slate-200 bg-[#f7f4ee] p-4">
           <div className="flex items-center justify-between gap-2">
-            <h2 className="font-bold text-neutral-900">
+            <h2 className="font-extrabold text-sky-950">
               {mode === "normalizeMorse" ? "Paste Morse" : "English input"}
             </h2>
 
             {mode === "normalizeMorse" ? (
-              <span className="text-xs text-gray-600">
-                Words: {wordCount} · Letters: {letterCount}
+              <span className="text-xs text-slate-600">
+                Words: {wordCount} | Letters: {letterCount}
               </span>
             ) : (
-              <span className="text-xs text-gray-600">Words: {wordCount}</span>
+              <span className="text-xs text-slate-600">Words: {wordCount}</span>
             )}
           </div>
 
@@ -215,10 +204,10 @@ export default function WordSeparatorTool() {
               <textarea
                 value={morseInput}
                 onChange={(e) => setMorseInput(e.target.value)}
-                className="mt-3 w-full min-h-[180px] rounded-xl border border-gray-200 bg-white p-3 text-sm sm:text-base font-mono focus:outline-none focus:ring-2 focus:ring-sky-200"
+                className="mt-3 min-h-[180px] w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-sky-200 sm:text-base"
                 spellCheck={false}
               />
-              <p className="mt-2 text-xs text-gray-600">
+              <p className="mt-2 text-xs text-slate-600">
                 Kept characters: dots, dashes, spaces, slashes, pipes, and new
                 lines.
               </p>
@@ -228,10 +217,10 @@ export default function WordSeparatorTool() {
               <textarea
                 value={englishInput}
                 onChange={(e) => setEnglishInput(e.target.value)}
-                className="mt-3 w-full min-h-[180px] rounded-xl border border-gray-200 bg-white p-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-sky-200"
+                className="mt-3 min-h-[180px] w-full rounded-xl border border-slate-200 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-200 sm:text-base"
                 spellCheck={false}
               />
-              <p className="mt-2 text-xs text-gray-600">
+              <p className="mt-2 text-xs text-slate-600">
                 Encodes each word independently so the chosen word separator is
                 always respected.
               </p>
@@ -239,40 +228,40 @@ export default function WordSeparatorTool() {
           )}
         </div>
 
-        <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+        <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-4">
           <div className="flex items-center justify-between gap-2">
-            <h2 className="font-bold text-neutral-900">Output</h2>
+            <h2 className="font-extrabold text-sky-950">Output</h2>
           </div>
 
-          <pre className="mt-3 w-full min-h-[180px] whitespace-pre-wrap rounded-xl border border-gray-200 bg-white p-3 text-sm sm:text-base font-mono">
-            {out || "—"}
+          <pre className="mt-3 min-h-[180px] w-full whitespace-pre-wrap rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm sm:text-base">
+            {out || "-"}
           </pre>
 
-          <div className="mt-3 flex flex-wrap gap-2 items-center">
+          <div className="mt-3 flex flex-wrap items-center gap-2">
             <button
               onClick={async () => {
                 const ok = await copyToClipboard(out);
                 setCopied(ok);
                 window.setTimeout(() => setCopied(false), 900);
               }}
-              className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 cursor-pointer active:scale-95 transition"
+              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 transition hover:border-sky-300 hover:bg-sky-50 active:scale-95"
             >
               Copy output
             </button>
             {copied && (
-              <span className="text-sm font-semibold text-green-700">
+              <span className="text-sm font-semibold text-emerald-700">
                 Copied
               </span>
             )}
           </div>
 
-          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-            <strong>Note:</strong>{" "}
+          <div className="mt-4 rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-700">
+            <strong className="text-sky-950">Note:</strong>{" "}
             {mode === "normalizeMorse" ? (
               <>
-                This page does not “guess” letters. It only rewrites separators
-                and spacing. If your letter groups are wrong, the output will
-                still be wrong, just consistently formatted.
+                This page only rewrites separators and spacing. If your letter
+                groups are wrong, the output will still be wrong, just
+                consistently formatted.
               </>
             ) : (
               <>
@@ -285,27 +274,30 @@ export default function WordSeparatorTool() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-2xl border border-gray-200 bg-white p-4">
-          <p className="font-extrabold text-neutral-900">Standard spacing</p>
-          <p className="mt-2 text-sm text-gray-700">
-            Letters are separated by a single space. Words are separated by{" "}
-            <strong>7 spaces</strong>.
-          </p>
-        </div>
-        <div className="rounded-2xl border border-gray-200 bg-white p-4">
-          <p className="font-extrabold text-neutral-900">Slash separator</p>
-          <p className="mt-2 text-sm text-gray-700">
-            A <strong>/</strong> is often used as a visible word break in
-            puzzles and copied strings.
-          </p>
-        </div>
-        <div className="rounded-2xl border border-gray-200 bg-white p-4">
-          <p className="font-extrabold text-neutral-900">Pipe separator</p>
-          <p className="mt-2 text-sm text-gray-700">
-            A <strong>|</strong> is another common “word divider” when people
-            want something easy to spot.
-          </p>
-        </div>
+        {[
+          [
+            "Standard spacing",
+            "Letters are separated by a single space. Words are separated by 7 spaces.",
+          ],
+          [
+            "Slash separator",
+            "A / is often used as a visible word break in puzzles and copied strings.",
+          ],
+          [
+            "Pipe separator",
+            "A | is another common word divider when people want something easy to spot.",
+          ],
+        ].map(([title, body]) => (
+          <div
+            key={title}
+            className="rounded-2xl border border-slate-200 bg-white p-4"
+          >
+            <p className="font-extrabold text-sky-950">{title}</p>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700">
+              {body}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );

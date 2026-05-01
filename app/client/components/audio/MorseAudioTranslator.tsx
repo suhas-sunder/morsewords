@@ -327,17 +327,25 @@ export default function MorseAudioTranslator() {
 
       <section className="pb-7">
         <div className="max-w-[1120px] mx-auto px-4">
-          <div className="flex flex-col gap-3 text-center">
+          <div className="flex flex-col gap-3">
           
 
-            <div className=" bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm">
-        <h1 className="text-3xl sm:text-4xl font-bold text-sky-800 tracking-tight mb-1">
+            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 shadow-sm sm:p-6">
+              <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
+                <div className="flex items-center justify-center gap-3 sm:justify-start">
+                  <span className="h-px w-8 bg-sky-800" />
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+                    Audio tool
+                  </span>
+                </div>
+        <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
               Morse Audio Generator
             </h1>
-        <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-3">
+        <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
               Convert text or Morse into audio. Adjust speed, pitch, waveform,
               and export a WAV file.
             </p>
+              </div>
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
@@ -362,11 +370,11 @@ export default function MorseAudioTranslator() {
                   Morse to audio
                 </button>
 
-                <span className="ml-auto text-xs text-gray-500">
+                <span className="ml-auto text-xs text-slate-500">
                   {player.isSupported ? (
                     <>Est. time: {formatMs(durationMs).toString()}</>
                   ) : (
-                    <span className="text-gray-500">
+                    <span className="text-slate-500">
                       Audio unavailable in this browser
                     </span>
                   )}
@@ -375,7 +383,7 @@ export default function MorseAudioTranslator() {
 
               <div className="grid gap-4 mt-4">
                 <div>
-                  <label htmlFor="mw_audio_source" className="font-semibold">
+                  <label htmlFor="mw_audio_source" className="font-semibold text-sky-950">
                     {sourceMode === "text" ? "Message (Text)" : "Morse input"}
                   </label>
 
@@ -383,7 +391,7 @@ export default function MorseAudioTranslator() {
                     <>
                       <textarea
                         id="mw_audio_source"
-                        className="w-full mt-2 border rounded-md p-3 font-mono min-h-[11rem] resize-y outline-sky-500 border-sky-500"
+                        className="w-full mt-2 min-h-[11rem] resize-y rounded-xl border border-slate-200 bg-white p-3 font-mono outline-sky-500 focus:ring-2 focus:ring-sky-200"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Example: Hello world"

@@ -282,12 +282,18 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
 
   return (
     <div className=" ">
-      <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <div className="mb-4 flex flex-col justify-center items-center text-center">
-          <h1 className="font-bold !text-2xl sm:!text-4xl text-sky-800">
+      <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+        <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
+          <div className="flex items-center justify-center gap-3 sm:justify-start">
+            <span className="h-px w-8 bg-sky-800" />
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+              Practice drill
+            </span>
+          </div>
+          <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             Morse Code Practice (Quiz)
           </h1>
-          <p className="mt-2 text-sm sm:text-lg text-gray-700 hidden sm:flex">
+          <p className="hidden text-base leading-relaxed text-slate-700 sm:flex sm:text-lg">
             A focused 10-question Morse quiz. One prompt at a time with instant
             feedback.
           </p>
@@ -295,14 +301,14 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
 
         {/* Top control bar: match Audio page density */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-          <div className="inline-flex rounded-xl border border-gray-200 bg-gray-50 p-1 w-full sm:w-auto">
+          <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1 w-full sm:w-auto">
             <button
               type="button"
               onClick={() => setMode("text_to_morse")}
               className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "text_to_morse"
-                  ? "bg-white border border-gray-200 shadow-sm"
-                  : "text-gray-700 hover:bg-white/60"
+                  ? "bg-white border border-slate-200 text-sky-950 shadow-sm"
+                  : "text-slate-700 hover:bg-white/70"
               }`}
             >
               Text → Morse
@@ -312,8 +318,8 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               onClick={() => setMode("morse_to_text")}
               className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "morse_to_text"
-                  ? "bg-white border border-gray-200 shadow-sm"
-                  : "text-gray-700 hover:bg-white/60"
+                  ? "bg-white border border-slate-200 text-sky-950 shadow-sm"
+                  : "text-slate-700 hover:bg-white/70"
               }`}
             >
               Morse → Text
@@ -323,15 +329,15 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               onClick={() => setMode("mixed")}
               className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "mixed"
-                  ? "bg-white border border-gray-200 shadow-sm"
-                  : "text-gray-700 hover:bg-white/60"
+                  ? "bg-white border border-slate-200 text-sky-950 shadow-sm"
+                  : "text-slate-700 hover:bg-white/70"
               }`}
             >
               Mixed
             </button>
           </div>
 
-          <div className="sm:ml-auto text-sm text-gray-700 flex flex-wrap items-center gap-3 justify-end">
+          <div className="sm:ml-auto text-sm text-slate-700 flex flex-wrap items-center gap-3 justify-end">
             <span className="hidden sm:inline">
               Questions:{" "}
               <span className="font-semibold text-sky-900">
@@ -377,14 +383,14 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
 
         {/* Main drill panel */}
-        <div className="mt-4 border border-gray-200 rounded-2xl p-4 sm:p-5 bg-white">
+        <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
           {gameOver ? (
-            <div className="rounded-2xl border border-gray-200 bg-sky-50 p-5 sm:p-6">
+            <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-5 sm:p-6">
               <div className="flex flex-col items-center text-center">
-                <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
+                <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-sky-950">
                   Quiz complete
                 </div>
-                <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-neutral-900">
+                <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
                   Your results
                 </h2>
                 <p className="mt-1 text-sm sm:text-base text-gray-700">

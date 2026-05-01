@@ -334,33 +334,39 @@ export default function MorseAudioTranslator({
           <div className="flex flex-col gap-4 ">
           
 
-            <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm ">
-              <div className="text-center">
- <h1 className="text-3xl sm:text-4xl font-bold text-sky-800 tracking-tight mb-1">
+            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 shadow-sm sm:p-6">
+              <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
+                <div className="flex items-center justify-center gap-3 sm:justify-start">
+                  <span className="h-px w-8 bg-sky-800" />
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+                    {introEyebrow}
+                  </span>
+                </div>
+ <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
                 {heading}
               </h1>
               
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-3">{lead}</p>
+              <p className="text-base leading-relaxed text-slate-700 sm:text-lg">{lead}</p>
                 </div>
 
               <div className="flex flex-wrap items-center gap-2">
                 <ModeButton active={sourceMode === "text"} onClick={() => setSourceMode("text")}>{textModeLabel}</ModeButton>
                 <ModeButton active={sourceMode === "morse"} onClick={() => setSourceMode("morse")}>{morseModeLabel}</ModeButton>
-                <span className="ml-auto text-xs text-gray-500">
+                <span className="ml-auto text-xs text-slate-500">
                   {player.isSupported ? <>Est. time: {formatMs(durationMs)}</> : <span>Audio unavailable in this browser</span>}
                 </span>
               </div>
 
               <div className="grid gap-4 mt-4 lg:grid-cols-[minmax(0,1fr)_320px]">
                 <div>
-                  <label htmlFor={sourceInputId} className="font-semibold text-sky-900">
+                  <label htmlFor={sourceInputId} className="font-semibold text-sky-950">
                     {sourceMode === "text" ? textInputLabel : morseInputLabel}
                   </label>
                   {sourceMode === "text" ? (
                     <>
                       <textarea
                         id={sourceInputId}
-                        className="w-full mt-2 border rounded-xl p-3 font-mono min-h-[12rem] resize-y outline-sky-500 border-sky-500"
+                        className="w-full mt-2 min-h-[12rem] resize-y rounded-xl border border-slate-200 bg-white p-3 font-mono outline-sky-500 focus:ring-2 focus:ring-sky-200"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Example: Hello world"
@@ -384,7 +390,7 @@ export default function MorseAudioTranslator({
                     <>
                       <textarea
                         id={sourceInputId}
-                        className="w-full mt-2 border rounded-xl p-3 font-mono min-h-[12rem] resize-y outline-sky-500 border-sky-500"
+                        className="w-full mt-2 min-h-[12rem] resize-y rounded-xl border border-slate-200 bg-white p-3 font-mono outline-sky-500 focus:ring-2 focus:ring-sky-200"
                         value={morse}
                         onChange={(e) => setMorse(e.target.value)}
                         placeholder="Example: ... --- ..."
@@ -398,17 +404,17 @@ export default function MorseAudioTranslator({
                   )}
                 </div>
 
-                <div className="rounded-2xl border border-sky-200 bg-sky-50 p-4">
-                  <h2 className="text-lg font-extrabold text-sky-900">Generated Morse preview</h2>
-                  <p className="mt-1 text-sm text-gray-700">This is the exact dot-dash pattern used for playback and downloads.</p>
-                  <code className="mt-3 block max-h-44 overflow-auto whitespace-pre-wrap break-words rounded-xl border border-gray-200 bg-white p-3 font-mono text-sm text-neutral-900">
+                <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-4">
+                  <h2 className="text-lg font-extrabold text-sky-950">Generated Morse preview</h2>
+                  <p className="mt-1 text-sm text-slate-700">This is the exact dot-dash pattern used for playback and downloads.</p>
+                  <code className="mt-3 block max-h-44 overflow-auto whitespace-pre-wrap break-words rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm text-slate-950">
                     {activeCode.trim() || "Your Morse output will appear here."}
                   </code>
                   <div className="mt-3 flex flex-wrap items-center gap-2">
                     <button
                       onClick={handleCopyMorse}
                       disabled={!canPlay}
-                      className={`inline-flex items-center gap-2 px-3 py-2 cursor-pointer rounded-xl font-semibold active:scale-95 transition border ${canPlay ? "border-gray-300 text-gray-700 hover:bg-white" : "border-gray-200 text-gray-400 cursor-not-allowed"}`}
+                      className={`inline-flex items-center gap-2 px-3 py-2 cursor-pointer rounded-xl font-semibold active:scale-95 transition border ${canPlay ? "border-slate-300 text-slate-700 hover:bg-white" : "border-slate-200 text-slate-400 cursor-not-allowed"}`}
                     >
                       <CopyIcon size={18} title="Copy Morse" />
                       <span>{copied === "morse" ? "Copied" : "Copy Morse"}</span>
@@ -603,7 +609,7 @@ export default function MorseAudioTranslator({
 
 function ModeButton({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) {
   return (
-    <button type="button" onClick={onClick} className={`px-3 py-2 rounded-xl font-semibold border cursor-pointer active:scale-95 transition ${active ? "border-neutral-900 bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white" : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"}`}>
+    <button type="button" onClick={onClick} className={`px-3 py-2 rounded-xl font-semibold border cursor-pointer active:scale-95 transition ${active ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800" : "border-slate-200 bg-white text-slate-700 hover:bg-sky-50"}`}>
       {children}
     </button>
   );
@@ -612,9 +618,9 @@ function ModeButton({ active, children, onClick }: { active: boolean; children: 
 function InputButtons({ onUseExample, onUseSecond, secondLabel, onClear }: { onUseExample: () => void; onUseSecond?: () => void; secondLabel?: string; onClear: () => void }) {
   return (
     <div className="mt-2 flex flex-wrap items-center gap-2">
-      <button type="button" onClick={onUseExample} className="px-3 py-1.5 rounded-xl border border-gray-200 hover:bg-gray-50 font-semibold text-sm cursor-pointer active:scale-95 transition">Use example</button>
-      {onUseSecond && secondLabel ? <button type="button" onClick={onUseSecond} className="px-3 py-1.5 rounded-xl border border-gray-200 hover:bg-gray-50 font-semibold text-sm cursor-pointer active:scale-95 transition">{secondLabel}</button> : null}
-      <button type="button" onClick={onClear} className="ml-auto px-3 py-1.5 rounded-xl border border-gray-200 hover:bg-gray-50 font-semibold text-sm cursor-pointer active:scale-95 transition">Clear input</button>
+      <button type="button" onClick={onUseExample} className="px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition">Use example</button>
+      {onUseSecond && secondLabel ? <button type="button" onClick={onUseSecond} className="px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition">{secondLabel}</button> : null}
+      <button type="button" onClick={onClear} className="ml-auto px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition">Clear input</button>
     </div>
   );
 }
