@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { Route } from "./+types/morse-code-visual-quiz";
 
+import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   ActionLinks,
@@ -8,14 +9,25 @@ import {
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
-import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
+import { textToMorse } from "~/client/components/shared/morseUtils";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
-import { textToMorse } from "~/client/components/shared/morseUtils";
+import { LightBulbIcon, LoopIcon } from "~/client/assets/svg/Icons";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-visual-quiz";
-const PROMPTS = ["sos", "cq", "test", "help", "73", "qsl", "copy", "radio", "qth", "morse"];
+const PROMPTS = [
+  "sos",
+  "cq",
+  "test",
+  "help",
+  "73",
+  "qsl",
+  "copy",
+  "radio",
+  "qth",
+  "morse",
+];
 const TOTAL_QUESTIONS = 10;
 
 export function links() {
@@ -26,26 +38,34 @@ export function meta({}: Route.MetaArgs) {
   return seoMeta({
     title: "Morse Code Visual Quiz | Flashing Light Test",
     description:
-      "Take a scored visual Morse code quiz with flashing-light prompts, answer checks, accuracy, streaks, and shareable results.",
+      "Take a scored visual Morse code quiz with flashing-light prompts, WPM, Farnsworth spacing, answer checks, streaks, and shareable results.",
     path: CANONICAL_PATH,
-    keywords: "morse code visual quiz, flashing morse quiz, morse code light test",
+    keywords:
+      "morse code visual quiz, flashing morse quiz, morse code light test, farnsworth visual morse",
   });
 }
 
-function useFlash(pattern: string) {
+function useFlash(pattern: string, wpm: number, farnsworthWpm: number) {
   const [active, setActive] = React.useState(false);
   const timers = React.useRef<number[]>([]);
-  React.useEffect(() => () => timers.current.forEach((timer) => window.clearTimeout(timer)), []);
+
+  React.useEffect(() => {
+    return () => {
+      timers.current.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, []);
+
   function play() {
     timers.current.forEach((timer) => window.clearTimeout(timer));
     timers.current = [];
     let cursor = 0;
-    for (const event of morseVisualEvents(pattern, 14)) {
+    for (const event of morseVisualEvents(pattern, wpm, farnsworthWpm)) {
       timers.current.push(window.setTimeout(() => setActive(event.on), cursor));
       cursor += event.ms;
     }
     timers.current.push(window.setTimeout(() => setActive(false), cursor + 80));
   }
+
   return { active, play };
 }
 
@@ -60,9 +80,12 @@ export default function MorseCodeVisualQuiz() {
   const [streak, setStreak] = React.useState(0);
   const [bestStreak, setBestStreak] = React.useState(0);
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
+  const [wpm, setWpm] = React.useState(14);
+  const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
+
   const prompt = PROMPTS[index % PROMPTS.length];
   const morse = textToMorse(prompt);
-  const { active, play } = useFlash(morse);
+  const { active, play } = useFlash(morse, wpm, farnsworthWpm);
   const isCorrect = answer.trim().toLowerCase() === prompt;
   const gameOver = completed >= TOTAL_QUESTIONS;
   const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
@@ -79,7 +102,10 @@ export default function MorseCodeVisualQuiz() {
 
   React.useEffect(() => {
     try {
-      window.localStorage.setItem("mw_visual_quiz_best_streak", String(bestStreak));
+      window.localStorage.setItem(
+        "mw_visual_quiz_best_streak",
+        String(bestStreak),
+      );
     } catch {
       // ignore
     }
@@ -141,12 +167,21 @@ export default function MorseCodeVisualQuiz() {
         <PageHero
           eyebrow="Visual test"
           title="Morse code visual quiz"
-          description="Watch the flashing bulb, type the message you saw, then check the answer. This is the visual companion to the audio quiz."
-          aside={<DarkNote label="Score" value={`${correct}/${TOTAL_QUESTIONS}`}>This follows the same results model as practice: 10 prompts, attempts, accuracy, streak, and a share card.</DarkNote>}
+          description="Watch the flashing bulb, type the message you saw, then check the answer. The quiz uses the same speed and Farnsworth spacing controls as visual practice."
+          aside={
+            <DarkNote label="Score" value={`${correct}/${TOTAL_QUESTIONS}`}>
+              Ten prompts, attempts, accuracy, streak, and a share card. Set
+              Farnsworth lower when you need slower gaps between flashes.
+            </DarkNote>
+          }
         >
           <ActionLinks
             links={[
-              { href: "/morse-code-visual-practice", label: "Visual practice", primary: true },
+              {
+                href: "/morse-code-visual-practice",
+                label: "Visual practice",
+                primary: true,
+              },
               { href: "/morse-code-audio-quiz", label: "Audio quiz" },
             ]}
           />
@@ -155,14 +190,32 @@ export default function MorseCodeVisualQuiz() {
         <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <div className="border-b border-slate-200 px-5 py-4 sm:px-8">
             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
-              <span>Question <strong className="text-sky-950">{Math.min(completed + 1, TOTAL_QUESTIONS)}/{TOTAL_QUESTIONS}</strong></span>
-              <span>Attempts <strong className="text-sky-950">{attempts}</strong></span>
-              <span>Accuracy <strong className="text-sky-950">{accuracy}%</strong></span>
-              <span>Streak <strong className="text-sky-950">{streak}</strong></span>
+              <span>
+                Question{" "}
+                <strong className="text-sky-950">
+                  {Math.min(completed + 1, TOTAL_QUESTIONS)}/{TOTAL_QUESTIONS}
+                </strong>
+              </span>
+              <span>
+                Attempts <strong className="text-sky-950">{attempts}</strong>
+              </span>
+              <span>
+                Accuracy <strong className="text-sky-950">{accuracy}%</strong>
+              </span>
+              <span>
+                Streak <strong className="text-sky-950">{streak}</strong>
+              </span>
               <ShareResultsButton
                 title="Morse Code Visual Quiz"
                 subtitle="Flashing-light quiz results"
-                stats={{ attempts, correct, progress: completed, streak, bestStreak, totalQuestions: TOTAL_QUESTIONS }}
+                stats={{
+                  attempts,
+                  correct,
+                  progress: completed,
+                  streak,
+                  bestStreak,
+                  totalQuestions: TOTAL_QUESTIONS,
+                }}
                 runStartedAt={runStartedAt}
               />
             </div>
@@ -171,8 +224,12 @@ export default function MorseCodeVisualQuiz() {
           {gameOver ? (
             <div className="px-5 py-6 sm:px-8">
               <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-5 text-center">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Quiz complete</p>
-                <h2 className="mt-2 text-2xl font-extrabold text-sky-950">Visual quiz results</h2>
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                  Quiz complete
+                </p>
+                <h2 className="mt-2 text-2xl font-extrabold text-sky-950">
+                  Visual quiz results
+                </h2>
                 <div className="mt-5 grid gap-3 sm:grid-cols-3">
                   {[
                     ["Questions", `${TOTAL_QUESTIONS}/${TOTAL_QUESTIONS}`],
@@ -182,20 +239,39 @@ export default function MorseCodeVisualQuiz() {
                     ["Best streak", String(bestStreak)],
                     ["Final streak", String(streak)],
                   ].map(([label, value]) => (
-                    <div key={label} className="rounded-xl border border-slate-200 bg-white p-4 text-left">
-                      <p className="text-sm font-semibold text-slate-600">{label}</p>
-                      <p className="mt-1 text-3xl font-black text-slate-950">{value}</p>
+                    <div
+                      key={label}
+                      className="rounded-xl border border-slate-200 bg-white p-4 text-left"
+                    >
+                      <p className="text-sm font-semibold text-slate-600">
+                        {label}
+                      </p>
+                      <p className="mt-1 text-3xl font-black text-slate-950">
+                        {value}
+                      </p>
                     </div>
                   ))}
                 </div>
                 <div className="mt-5 flex flex-wrap justify-center gap-3">
-                  <button type="button" onClick={resetQuiz} className="min-h-11 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100">
+                  <button
+                    type="button"
+                    onClick={resetQuiz}
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
+                  >
+                    <LoopIcon size={18} title="Try again" />
                     Try again
                   </button>
                   <ShareResultsButton
                     title="Morse Code Visual Quiz"
                     subtitle="Flashing-light quiz results"
-                    stats={{ attempts, correct, progress: TOTAL_QUESTIONS, streak, bestStreak, totalQuestions: TOTAL_QUESTIONS }}
+                    stats={{
+                      attempts,
+                      correct,
+                      progress: TOTAL_QUESTIONS,
+                      streak,
+                      bestStreak,
+                      totalQuestions: TOTAL_QUESTIONS,
+                    }}
                     runStartedAt={runStartedAt}
                   />
                 </div>
@@ -204,17 +280,35 @@ export default function MorseCodeVisualQuiz() {
           ) : (
             <div className="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[320px_minmax(0,1fr)]">
               <div className="flex flex-col items-center rounded-2xl border border-slate-200 bg-[#fffdf8] p-6">
-                <div className={"h-40 w-40 rounded-full border transition-all duration-75 " + (active ? "border-sky-300 bg-sky-200 shadow-[0_0_60px_rgba(56,189,248,0.95)]" : "border-slate-200 bg-slate-100 shadow-inner")} />
-                <button type="button" onClick={play} className="mt-5 min-h-12 w-full rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100">
+                <div
+                  className={
+                    "h-40 w-40 rounded-full border transition-all duration-75 " +
+                    (active
+                      ? "border-sky-300 bg-sky-200 shadow-[0_0_60px_rgba(56,189,248,0.95)]"
+                      : "border-slate-200 bg-slate-100 shadow-inner")
+                  }
+                  aria-label={active ? "Morse light on" : "Morse light off"}
+                />
+                <button
+                  type="button"
+                  onClick={play}
+                  className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
+                >
+                  <LightBulbIcon size={20} title="Flash prompt" />
                   Flash prompt
                 </button>
               </div>
               <div>
                 <label className="block">
-                  <span className="text-sm font-extrabold text-sky-950">Your answer</span>
+                  <span className="text-sm font-extrabold text-sky-950">
+                    Your answer
+                  </span>
                   <input
                     value={answer}
-                    onChange={(event) => { setAnswer(event.target.value); setChecked(false); }}
+                    onChange={(event) => {
+                      setAnswer(event.target.value);
+                      setChecked(false);
+                    }}
                     onKeyDown={(event) => {
                       if (event.key === "Enter") {
                         if (solved) nextPrompt();
@@ -224,23 +318,71 @@ export default function MorseCodeVisualQuiz() {
                     className="mt-2 min-h-12 w-full rounded-xl border border-slate-200 px-4 font-mono text-lg outline-none focus:border-sky-400"
                   />
                 </label>
-                <div className="mt-4 flex flex-wrap gap-2">
+
+                <div className="mt-5 grid gap-5 md:grid-cols-2">
+                  <SliderRow
+                    label="Character speed"
+                    value={wpm}
+                    min={6}
+                    max={30}
+                    step={1}
+                    unit="WPM"
+                    onChange={setWpm}
+                  />
+                  <SliderRow
+                    label="Farnsworth spacing"
+                    value={farnsworthWpm}
+                    min={5}
+                    max={30}
+                    step={1}
+                    unit="WPM"
+                    onChange={setFarnsworthWpm}
+                    help="Slows spacing only."
+                  />
+                </div>
+
+                <div className="mt-5 flex flex-wrap gap-2">
                   {!solved ? (
-                    <button type="button" onClick={checkAnswer} disabled={!answer.trim()} className="min-h-11 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold disabled:opacity-50">
+                    <button
+                      type="button"
+                      onClick={checkAnswer}
+                      disabled={!answer.trim()}
+                      className="min-h-11 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold disabled:opacity-50"
+                    >
                       Check answer
                     </button>
                   ) : (
-                    <button type="button" onClick={nextPrompt} className="min-h-11 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100">
-                      {completed + 1 >= TOTAL_QUESTIONS ? "Finish" : "Next prompt"}
+                    <button
+                      type="button"
+                      onClick={nextPrompt}
+                      className="min-h-11 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
+                    >
+                      {completed + 1 >= TOTAL_QUESTIONS
+                        ? "Finish"
+                        : "Next prompt"}
                     </button>
                   )}
-                  <button type="button" onClick={nextPrompt} disabled={solved} className="min-h-11 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold disabled:opacity-50">
+                  <button
+                    type="button"
+                    onClick={nextPrompt}
+                    disabled={solved}
+                    className="min-h-11 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold disabled:opacity-50"
+                  >
                     Skip
                   </button>
                 </div>
                 {checked ? (
-                  <p className={"mt-4 inline-flex rounded-full border px-3 py-1 text-sm font-extrabold " + (isCorrect ? "border-sky-200 bg-sky-50 text-sky-950" : "border-amber-200 bg-amber-50 text-amber-900")}>
-                    {isCorrect ? "Correct." : "Not quite. Try again before moving on."}
+                  <p
+                    className={
+                      "mt-4 inline-flex rounded-full border px-3 py-1 text-sm font-extrabold " +
+                      (isCorrect
+                        ? "border-sky-200 bg-sky-50 text-sky-950"
+                        : "border-amber-200 bg-amber-50 text-amber-900")
+                    }
+                  >
+                    {isCorrect
+                      ? "Correct."
+                      : "Not quite. Try again before moving on."}
                   </p>
                 ) : null}
               </div>
@@ -251,14 +393,63 @@ export default function MorseCodeVisualQuiz() {
         <SectionCard eyebrow="Review" title="Build review from missed visual prompts">
           <ActionLinks
             links={[
-              { href: "/morse-code-word-trainer", label: "Word trainer", primary: true },
-              { href: "/morse-code-worksheet-generator", label: "Worksheet generator" },
+              {
+                href: "/morse-code-word-trainer",
+                label: "Word trainer",
+                primary: true,
+              },
+              {
+                href: "/morse-code-worksheet-generator",
+                label: "Worksheet generator",
+              },
             ]}
           />
         </SectionCard>
 
         <JsonLdScript jsonLd={jsonLd} />
       </main>
+    </div>
+  );
+}
+
+function SliderRow({
+  label,
+  value,
+  min,
+  max,
+  step,
+  unit,
+  onChange,
+  help,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  unit: string;
+  onChange: (value: number) => void;
+  help?: string;
+}) {
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-3">
+        <label className="text-sm font-extrabold text-sky-950">{label}</label>
+        <span className="text-sm text-slate-600">
+          {value} {unit}
+        </span>
+      </div>
+      {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(event) => onChange(Number(event.target.value))}
+        style={{ accentColor: "#38bdf8" }}
+        className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300"
+      />
     </div>
   );
 }

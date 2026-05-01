@@ -1,4 +1,4 @@
-function patternToEvents(pattern: string, unitMs: number) {
+function patternToEvents(pattern: string, unitMs: number, spacingUnitMs = unitMs) {
   const events: Array<{ on: boolean; ms: number }> = [];
   const words = pattern.trim().split(/\s{7,}|\s*\/\s*/).filter(Boolean);
 
@@ -11,15 +11,30 @@ function patternToEvents(pattern: string, unitMs: number) {
           if (partIndex < symbol.length - 1) events.push({ on: false, ms: unitMs });
         }
       });
-      if (symbolIndex < symbols.length - 1) events.push({ on: false, ms: unitMs * 3 });
+      if (symbolIndex < symbols.length - 1) {
+        events.push({ on: false, ms: spacingUnitMs * 3 });
+      }
     });
-    if (wordIndex < words.length - 1) events.push({ on: false, ms: unitMs * 7 });
+    if (wordIndex < words.length - 1) {
+      events.push({ on: false, ms: spacingUnitMs * 7 });
+    }
   });
 
   return events;
 }
 
-export function playMorsePattern(pattern: string, options?: { wpm?: number; frequency?: number }) {
+function spacingMs(wpm: number, farnsworthWpm?: number) {
+  const charWpm = Math.max(5, Math.min(35, wpm));
+  const fwpm = farnsworthWpm
+    ? Math.max(5, Math.min(35, farnsworthWpm))
+    : charWpm;
+  return fwpm < charWpm ? 1200 / fwpm : 1200 / charWpm;
+}
+
+export function playMorsePattern(
+  pattern: string,
+  options?: { wpm?: number; frequency?: number; farnsworthWpm?: number },
+) {
   if (typeof window === "undefined") return;
 
   const AudioContextCtor = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
@@ -27,6 +42,7 @@ export function playMorsePattern(pattern: string, options?: { wpm?: number; freq
 
   const wpm = Math.max(5, Math.min(35, options?.wpm ?? 18));
   const unitMs = 1200 / wpm;
+  const gapMs = spacingMs(wpm, options?.farnsworthWpm);
   const frequency = Math.max(220, Math.min(1000, options?.frequency ?? 560));
   const ctx = new AudioContextCtor();
   const master = ctx.createGain();
@@ -34,7 +50,7 @@ export function playMorsePattern(pattern: string, options?: { wpm?: number; freq
   master.connect(ctx.destination);
 
   let cursor = ctx.currentTime + 0.04;
-  for (const event of patternToEvents(pattern, unitMs)) {
+  for (const event of patternToEvents(pattern, unitMs, gapMs)) {
     const seconds = event.ms / 1000;
     if (event.on) {
       const osc = ctx.createOscillator();
@@ -58,13 +74,14 @@ export function playMorsePattern(pattern: string, options?: { wpm?: number; freq
   }, Math.max(250, (cursor - ctx.currentTime + 0.2) * 1000));
 }
 
-export function morseDurationMs(pattern: string, wpm = 18) {
+export function morseDurationMs(pattern: string, wpm = 18, farnsworthWpm?: number) {
   const unitMs = 1200 / Math.max(5, Math.min(35, wpm));
-  return patternToEvents(pattern, unitMs).reduce((sum, event) => sum + event.ms, 0);
+  const gapMs = spacingMs(wpm, farnsworthWpm);
+  return patternToEvents(pattern, unitMs, gapMs).reduce((sum, event) => sum + event.ms, 0);
 }
 
-export function morseVisualEvents(pattern: string, wpm = 18) {
+export function morseVisualEvents(pattern: string, wpm = 18, farnsworthWpm?: number) {
   const unitMs = 1200 / Math.max(5, Math.min(35, wpm));
-  return patternToEvents(pattern, unitMs);
+  const gapMs = spacingMs(wpm, farnsworthWpm);
+  return patternToEvents(pattern, unitMs, gapMs);
 }
-

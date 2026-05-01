@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { PlayIcon } from "~/client/assets/svg/Icons";
+
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3">
@@ -219,9 +221,10 @@ export function ReferenceTable({
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
-            className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-extrabold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-extrabold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50"
             disabled={!onPlay}
           >
+            <PlayIcon size={16} title="Play" />
             Play
           </button>
         </div>
@@ -229,4 +232,3 @@ export function ReferenceTable({
     </div>
   );
 }
-

@@ -11,6 +11,13 @@ import {
 import useMorseAudio, { type SoundPreset } from "~/client/components/shared/useMorseAudio";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
+import {
+  LightBulbIcon,
+  LoopIcon,
+  PlayIcon,
+  SoundIcon,
+  StopIcon,
+} from "~/client/assets/svg/Icons";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-audio-practice";
@@ -178,16 +185,18 @@ export default function MorseCodeAudioPractice() {
                   type="button"
                   onClick={play}
                   disabled={!canPlay}
-                  className="mt-4 min-h-12 w-full rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 disabled:cursor-not-allowed disabled:opacity-50"
                 >
+                  <PlayIcon size={20} title="Play audio" />
                   {player.state === "playing" ? "Restart audio" : "Play audio"}
                 </button>
                 <button
                   type="button"
                   onClick={player.stop}
                   disabled={player.state === "idle"}
-                  className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold text-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="mt-2 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold text-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
                 >
+                  <StopIcon size={20} title="Stop audio" />
                   Stop
                 </button>
               </div>
@@ -232,9 +241,24 @@ export default function MorseCodeAudioPractice() {
                   </label>
 
                   <div className="flex flex-wrap gap-2">
-                    <TogglePill label="Sound" checked={soundOn} onChange={setSoundOn} />
-                    <TogglePill label="Repeat" checked={repeat} onChange={setRepeat} />
-                    <TogglePill label="Flash" checked={flash} onChange={setFlash} />
+                    <TogglePill
+                      label="Sound"
+                      checked={soundOn}
+                      onChange={setSoundOn}
+                      icon={<SoundIcon size={16} title="Sound" />}
+                    />
+                    <TogglePill
+                      label="Repeat"
+                      checked={repeat}
+                      onChange={setRepeat}
+                      icon={<LoopIcon size={16} title="Repeat" />}
+                    />
+                    <TogglePill
+                      label="Flash"
+                      checked={flash}
+                      onChange={setFlash}
+                      icon={<LightBulbIcon size={16} title="Flash" />}
+                    />
                   </div>
                 </div>
                 {flash ? (
@@ -294,23 +318,26 @@ function TogglePill({
   label,
   checked,
   onChange,
+  icon,
 }: {
   label: string;
   checked: boolean;
   onChange: (value: boolean) => void;
+  icon?: React.ReactNode;
 }) {
   return (
     <button
       type="button"
       onClick={() => onChange(!checked)}
       className={
-        "rounded-full border px-3 py-1.5 text-sm font-extrabold transition " +
+        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-extrabold transition " +
         (checked
           ? "border-neutral-950 bg-neutral-950 text-sky-100"
           : "border-slate-200 bg-white text-slate-800 hover:border-sky-300 hover:bg-sky-50")
       }
       aria-pressed={checked}
     >
+      {icon}
       {label}
     </button>
   );

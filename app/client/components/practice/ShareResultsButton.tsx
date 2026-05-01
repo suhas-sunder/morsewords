@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { SaveIcon, ShareIcon } from "~/client/assets/svg/Icons";
 import Button from "~/client/components/shared/Button";
 
 type Props = {
@@ -283,7 +284,10 @@ export default function ShareResultsButton(props: Props) {
         }}
         aria-label="Share results"
       >
-        Share results
+        <span className="inline-flex items-center gap-2">
+          <ShareIcon size={18} title="Share results" />
+          Share results
+        </span>
       </Button>
 
       {open ? (
@@ -319,16 +323,20 @@ export default function ShareResultsButton(props: Props) {
                     disabled={busy || !pngBlob}
                     aria-label="Share via system dialog"
                   >
-                    Share
+                    <span className="inline-flex items-center gap-2">
+                      <ShareIcon size={18} title="Share" />
+                      Share
+                    </span>
                   </Button>
                 ) : null}
 
                 {pngBlob ? (
                   <a
-                    className="inline-flex items-center rounded-xl border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-semibold hover:bg-gray-100 cursor-pointer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-semibold hover:bg-gray-100 cursor-pointer"
                     href={pngUrl || undefined}
                     download="morse-practice-results.png"
                   >
+                    <SaveIcon size={18} title="Download PNG" />
                     Download PNG
                   </a>
                 ) : null}
