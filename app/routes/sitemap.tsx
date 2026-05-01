@@ -25,14 +25,10 @@ const GROUPS: SitemapGroup[] = [
         description: "Convert text to Morse, decode Morse to text, and play audio.",
       },
       {
-        label: "Audio",
+        label: "Morse Code Audio Generator",
         to: "/audio",
-        description: "Generate Morse code audio from text or Morse input.",
-      },
-      {
-        label: "Morse Code Sound Generator",
-        to: "/morse-code-sound-generator",
-        description: "Create controllable Morse beeps for practice and downloads.",
+        description:
+          "Generate Morse code audio from text or Morse input for practice and downloads.",
       },
       {
         label: "Morse Code Encoder",
@@ -77,9 +73,10 @@ const GROUPS: SitemapGroup[] = [
         description: "Learn the site workflow and common Morse conventions.",
       },
       {
-        label: "Printable Morse Code Chart",
+        label: "Printable Morse Code Worksheets",
         to: "/morse-code-printable-chart",
-        description: "Print or download learner and teacher Morse code templates.",
+        description:
+          "Print or download learner, teacher, and classroom Morse code templates.",
       },
     ],
   },

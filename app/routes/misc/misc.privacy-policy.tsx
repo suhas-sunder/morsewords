@@ -7,7 +7,7 @@ export const meta: Route.MetaFunction = () => {
 
   const title = "Privacy Policy | MorseWords";
   const description =
-    "Read the MorseWords privacy policy. Learn how your data is handled and protected when using the MorseWords website.";
+    "See what MorseWords stores locally, what analytics events are tracked, and what data is not collected from your Morse messages or exports.";
 
   const ogImage = "https://www.morsewords.com/og/morsewords-privacy.jpg";
 

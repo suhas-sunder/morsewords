@@ -17,9 +17,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Translator - Text to Morse & Morse to Text",
+    title: "Morse Code Translator, Audio, Practice, and Worksheets | MorseWords",
     description:
-      "Type text to convert it into Morse code, or paste dots and dashes to decode Morse to text. Play audio, adjust speed, and copy the result instantly.",
+      "Convert text to Morse code and Morse to text, generate audio, run practice drills, and build printable worksheets with fast browser-based tools.",
     path: CANONICAL_PATH,
     keywords:
       "morse code translator, text to morse code, morse to text, morse code decoder, morse code audio, english to morse code",
@@ -42,7 +42,7 @@ export default function Home() {
     operatingSystem: "All",
     url: baseUrl + "/",
     description:
-      "Browser-based Morse code translator for converting between text and Morse code.",
+      "Browser-based Morse toolkit for translating, listening, practicing, and printing Morse code.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   };
 

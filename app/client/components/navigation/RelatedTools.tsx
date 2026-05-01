@@ -94,23 +94,25 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Alphabet",
       },
       {
-        title: "Printable Morse Code Chart",
+        title: "Printable Morse Worksheets",
         description:
-          "Create a clean printable chart for students, teachers, or personal study.",
+          "Build printable charts, learner templates, and teacher-ready handouts.",
         href: "/morse-code-printable-chart",
-        badge: "Printable",
+        badge: "Worksheets",
       },
       {
-        title: "Morse Code Sound Generator",
-        description: "Generate Morse audio so learners can hear the rhythm.",
-        href: "/morse-code-sound-generator",
-        badge: "Audio",
-      },
-      {
-        title: "Morse Code Audio",
-        description: "Use audio-focused tools for listening and signal practice.",
+        title: "Morse Code Audio Generator",
+        description:
+          "Generate Morse audio for listening, practice, and downloadable clips.",
         href: "/audio",
         badge: "Listen",
+      },
+      {
+        title: "Morse Code Word Separator",
+        description:
+          "Understand spaces, slashes, and word breaks in pasted Morse.",
+        href: "/morse-code-word-separator",
+        badge: "Formatting",
       },
     ],
   },
@@ -163,11 +165,11 @@ const FEATURED_LINKS = [
   {
     title: "Printable chart",
     href: "/morse-code-printable-chart",
-    label: "Classroom",
+    label: "Worksheets",
   },
   {
-    title: "Sound generator",
-    href: "/morse-code-sound-generator",
+    title: "Audio",
+    href: "/audio",
     label: "Audio",
   },
 ];

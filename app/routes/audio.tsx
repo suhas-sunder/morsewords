@@ -17,9 +17,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Audio Generator - Text to Sound & WAV",
+    title: "Morse Code Audio Generator, MP3 and WAV Export | MorseWords",
     description:
-      "Turn text or pasted Morse code into audio. Adjust WPM, Farnsworth spacing, pitch, and tone, then play or download a WAV file in your browser.",
+      "Generate Morse audio from text or Morse input, adjust WPM, Farnsworth, pitch, and waveform, then export audio locally in your browser.",
     path: CANONICAL_PATH,
     keywords:
       "morse code audio generator, text to morse audio, morse code to audio, morse audio generator, morse wav, morse code sound",
@@ -33,12 +33,12 @@ export default function AudioRoute() {
       {
         "@type": "WebApplication",
         "@id": `${CANONICAL_URL}#webapp`,
-        name: "Morse Code Audio Translator",
+        name: "Morse Code Audio Generator",
         applicationCategory: "UtilityApplication",
         operatingSystem: "All",
         url: CANONICAL_URL,
         description:
-          "Browser-based Morse audio generator with adjustable timing and WAV export.",
+          "Browser-based Morse audio generator with adjustable timing and local audio export.",
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       },
       {
@@ -54,7 +54,7 @@ export default function AudioRoute() {
           {
             "@type": "ListItem",
             position: 2,
-            name: "Morse Code Audio Translator",
+            name: "Morse Code Audio Generator",
             item: CANONICAL_URL,
           },
         ],
@@ -123,7 +123,7 @@ export default function AudioRoute() {
           </li>
           <li>/</li>
           <li className="font-semibold text-gray-900">
-            Morse Code Audio Translator
+            Morse Code Audio Generator
           </li>
         </ol>
       </nav>

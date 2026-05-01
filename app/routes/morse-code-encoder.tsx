@@ -21,9 +21,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Text to Morse Code Encoder - Convert Words to Morse",
+    title: "Text to Morse Code Encoder | MorseWords",
     description:
-      "Convert English text, words, and numbers into Morse code instantly. Copy dots and dashes, play audio, and adjust WPM for free.",
+      "Turn plain text into clean International Morse code with consistent separators, copyable output, and quick links to audio and worksheets.",
     path: CANONICAL_PATH,
     keywords:
       "text to morse code, english to morse code, words to morse code, morse code encoder, convert text to morse code",
@@ -61,7 +61,7 @@ export default function Home() {
     },
     {
       q: "How are letters and words separated?",
-      a: "Letters are separated with a single space by default. Words are separated clearly so the output stays readable and easy to paste elsewhere.",
+      a: "MorseWords accepts common pasted spacing styles, then exports readable Morse with single spaces between letters and clear word breaks. Use the word separator page when you need a different separator style.",
     },
     {
       q: "Can I copy the Morse output?",
@@ -77,6 +77,13 @@ export default function Home() {
     <div style={styles.page}>
       <div style={styles.wrap}>
         <TranslatorSectionsBasic
+          title="Text to Morse Code Encoder"
+          subtitle={
+            <p className="mt-2 max-w-none text-base leading-7 text-slate-700 sm:text-[1.08rem]">
+              Encode plain text into predictable International Morse output,
+              then copy it, play it as audio, or turn it into a worksheet.
+            </p>
+          }
           plainA={plainA}
           setPlainA={setPlainA}
           morseA={morseA}

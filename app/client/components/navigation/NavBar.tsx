@@ -9,6 +9,7 @@ const MAIN_ITEMS: NavItem[] = [
   { label: "Translator", href: "/" },
   { label: "Audio", href: "/audio" },
   { label: "Practice", href: "/practice" },
+  { label: "Worksheets", href: "/morse-code-printable-chart" },
   { label: "Typing", href: "/typing" },
   { label: "How to use", href: "/how-to-use" },
 ];
@@ -20,7 +21,7 @@ const MORE_ITEMS: NavItem[] = [
   },
   { label: "Dictionary", href: "/dictionary" },
   { label: "Morse code words (chart)", href: "/morse-code-words" },
-  { label: "Printable Morse chart", href: "/morse-code-printable-chart" },
+  { label: "Printable worksheets", href: "/morse-code-printable-chart" },
   {
     label: "International translator",
     href: "/morse-code-international-translator",
@@ -28,7 +29,6 @@ const MORE_ITEMS: NavItem[] = [
   { label: "SOS in Morse code", href: "/morse-code-sos" },
   { label: "Morse code encoder", href: "/morse-code-encoder" },
   { label: "Morse code decoder", href: "/morse-code-decoder" },
-  { label: "Morse Code Sound Generator", href: "/morse-code-sound-generator" },
   {
     label: "Quick Brown Fox (Morse)",
     href: "/the-quick-brown-fox-morse-code",

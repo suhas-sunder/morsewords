@@ -17,9 +17,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Word Separator - Slash, Spaces & Word Gaps",
+    title: "Morse Code Spacing, Separators, and Word Breaks | MorseWords",
     description:
-      "Convert Morse code word separators between 7 spaces, slashes, pipes, and line breaks. Learn how to separate words in Morse code.",
+      "Learn how Morse spacing works, when to use slashes, how to normalize pasted code, and which separator styles MorseWords accepts and exports.",
     path: CANONICAL_PATH,
     keywords:
       "morse code word separator, morse code slash word separator, how to separate words in morse code, morse code spacing, morse word gaps",
