@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { Route } from "./+types/morse-code-word-search-builder";
 
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   ActionLinks,
@@ -12,6 +13,21 @@ import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-word-search-builder";
+
+const faqItems = [
+  {
+    q: "What words work best in a Morse code word search?",
+    a: "Short, clean words work best because they fit the grid and are easier for students to connect back to Morse practice.",
+  },
+  {
+    q: "Can I print the word search?",
+    a: "Yes. Use the Print puzzle button for a quick classroom copy, then pair it with the printable chart builder for answer keys or extra Morse review.",
+  },
+  {
+    q: "Is this a replacement for Morse practice?",
+    a: "No. It is a warm-up or classroom activity. Use the word trainer and audio practice when learners need recall, listening, and scoring.",
+  },
+];
 
 export function links() {
   return [{ rel: "canonical", href: canonicalUrl(CANONICAL_PATH) }];
@@ -77,6 +93,15 @@ export default function MorseCodeWordSearchBuilder() {
     applicationCategory: "EducationalApplication",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
   };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
 
   return (
     <div style={styles.page}>
@@ -94,7 +119,7 @@ export default function MorseCodeWordSearchBuilder() {
         >
           <ActionLinks
             links={[
-              { href: "/morse-code-worksheet-generator", label: "Worksheet generator", primary: true },
+            { href: "/morse-code-printable-chart", label: "Worksheet generator", primary: true },
               { href: "/morse-code-word-trainer", label: "Word trainer" },
               { href: "/morse-code-printable-chart", label: "Full print builder" },
             ]}
@@ -123,6 +148,7 @@ export default function MorseCodeWordSearchBuilder() {
                 max={16}
                 value={size}
                 onChange={(event) => setSize(Number(event.target.value))}
+                style={{ accentColor: "#38bdf8" }}
                 className="mt-3 w-full cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300"
               />
             </label>
@@ -162,12 +188,14 @@ export default function MorseCodeWordSearchBuilder() {
             links={[
               { href: "/morse-code-word-trainer", label: "Practice the words", primary: true },
               { href: "/morse-code-audio-practice", label: "Hear the words" },
-              { href: "/morse-code-worksheet-generator", label: "Make answer sheet" },
+              { href: "/morse-code-printable-chart", label: "Make answer sheet" },
             ]}
           />
         </SectionCard>
 
-        <JsonLdScript jsonLd={jsonLd} />
+        <FaqSectionGeneric title="Word search FAQ" items={faqItems} />
+
+        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
       </main>
     </div>
   );

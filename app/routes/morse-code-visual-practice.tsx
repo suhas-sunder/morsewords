@@ -2,12 +2,14 @@ import * as React from "react";
 import type { Route } from "./+types/morse-code-visual-practice";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import {
   ActionLinks,
   DarkNote,
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
@@ -15,6 +17,25 @@ import { LightBulbIcon } from "~/client/assets/svg/Icons";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-visual-practice";
+
+const faqItems = [
+  {
+    q: "What is visual Morse practice?",
+    a: "Visual practice shows Morse as flashes instead of tones. It is useful for learning light signals, checking spacing, and practicing without audio.",
+  },
+  {
+    q: "Why does visual practice include Farnsworth spacing?",
+    a: "Farnsworth spacing slows the gaps between flashed characters and words while keeping each character shape crisp. It slows spacing only.",
+  },
+  {
+    q: "Should I use short messages?",
+    a: "Yes. Visual Morse is easiest with short prompts because long flashing sequences are harder to hold in memory.",
+  },
+  {
+    q: "Is flashing light safe for everyone?",
+    a: "No. Flashing light can be uncomfortable or unsafe for people with photosensitive epilepsy. Stop using visual mode if flashing light bothers you.",
+  },
+];
 
 export function links() {
   return [{ rel: "canonical", href: canonicalUrl(CANONICAL_PATH) }];
@@ -71,6 +92,15 @@ export default function MorseCodeVisualPractice() {
     applicationCategory: "EducationalApplication",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
   };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
 
   return (
     <div style={styles.page}>
@@ -115,6 +145,10 @@ export default function MorseCodeVisualPractice() {
                 <LightBulbIcon size={20} title="Flash message" />
                 Flash message
               </button>
+              <p className="mt-4 rounded-xl border border-slate-200 bg-white p-3 text-sm leading-relaxed text-slate-700">
+                <strong>Strobe warning:</strong> flashing light may be
+                uncomfortable or unsafe for people with photosensitive epilepsy.
+              </p>
             </div>
 
             <div>
@@ -129,7 +163,7 @@ export default function MorseCodeVisualPractice() {
                   className="mt-2 min-h-12 w-full rounded-xl border border-slate-200 px-4 font-mono text-lg outline-none focus:border-sky-400"
                 />
               </label>
-              <div className="mt-5 grid gap-5 md:grid-cols-2">
+              <div className="mt-5 grid gap-5">
                 <SliderRow
                   label="Character speed"
                   value={wpm}
@@ -166,17 +200,75 @@ export default function MorseCodeVisualPractice() {
           </div>
         </section>
 
+        <ToolHowItWorks
+          eyebrow="Visual practice spec"
+          title="How this visual Morse practice tool works"
+          description="Visual practice turns the Morse message into timed flashes. Character speed controls the flash lengths, and Farnsworth spacing stretches only the gaps so you have more time to recognize the next character."
+          referenceLabel="Flash signal"
+          referenceValue={active ? "ON" : "... --- ..."}
+          referenceText="Use short messages first. Clean spacing matters as much as the flashes."
+          chips={[
+            { label: "Message", href: "#visual-practice-message" },
+            { label: "Speed", href: "#visual-practice-speed" },
+            { label: "Farnsworth", href: "#visual-practice-farnsworth" },
+            { label: "Quiz next", href: "#visual-practice-quiz" },
+          ]}
+          summary={[
+            {
+              title: "Light-based copy",
+              text: "The page uses the same dots, dashes, and gaps, but renders them as flashes.",
+            },
+            {
+              title: "Stacked controls",
+              text: "Speed and Farnsworth settings are kept vertical so each slider is easy to read.",
+            },
+            {
+              title: "Answer reveal",
+              text: "Reveal the message only after watching the full flash sequence.",
+            },
+          ]}
+          details={[
+            {
+              kicker: "Prompt setup",
+              title: "Message",
+              text: "Type a short word, Q-code, or phrase. The tool converts it to Morse and flashes the signal with standard dot, dash, letter-gap, and word-gap timing.",
+            },
+            {
+              kicker: "Flash length",
+              title: "Speed",
+              text: "Character speed controls how long each dit and dah stays on. Higher WPM means shorter flashes and a faster signal.",
+            },
+            {
+              kicker: "Learner gaps",
+              title: "Farnsworth",
+              text: "Farnsworth spacing gives you more time between characters and words without changing the shape of each flashed character.",
+              bullets: [
+                "Use lower Farnsworth spacing for early practice.",
+                "Raise it as visual recall improves.",
+                "Keep messages short to avoid memory overload.",
+              ],
+            },
+            {
+              kicker: "Test mode",
+              title: "Quiz next",
+              text: "The visual quiz uses the same speed and Farnsworth controls, but hides the prompt and tracks score, attempts, accuracy, and streaks.",
+            },
+          ]}
+        />
+
         <SectionCard eyebrow="Visual flow" title="Practice flashes, then test recall">
           <ActionLinks
             links={[
               { href: "/morse-code-visual-quiz", label: "Visual quiz", primary: true },
               { href: "/morse-code-timing", label: "Timing guide" },
-              { href: "/morse-code-worksheet-generator", label: "Print review" },
+              { href: "/morse-code-printable-chart", label: "Print review" },
             ]}
           />
         </SectionCard>
 
-        <JsonLdScript jsonLd={jsonLd} />
+        <FaqSectionGeneric title="Visual practice FAQ" items={faqItems} />
+
+        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
       </main>
     </div>
   );

@@ -2,6 +2,7 @@ import * as React from "react";
 import type { Route } from "./+types/morse-code-audio-quiz";
 
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   ActionLinks,
@@ -9,6 +10,7 @@ import {
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
 import useMorseAudio, {
@@ -37,6 +39,25 @@ const PROMPTS = [
   "morse",
 ];
 const TOTAL_QUESTIONS = 10;
+
+const faqItems = [
+  {
+    q: "How does the Morse code audio quiz work?",
+    a: "The quiz plays a hidden Morse prompt. You type what you heard, check the answer, and MorseWords tracks attempts, accuracy, streak, and a shareable result.",
+  },
+  {
+    q: "Does the audio quiz support Farnsworth spacing?",
+    a: "Yes. Character speed controls the dits and dahs, while Farnsworth spacing slows only the gaps between letters and words.",
+  },
+  {
+    q: "How is this different from audio practice?",
+    a: "Audio practice keeps the prompt visible so you can tune timing and repeat the sound. The audio quiz hides the answer and scores recall.",
+  },
+  {
+    q: "Is the Flash option safe for everyone?",
+    a: "No. Flash mode can create strobing light, which may be uncomfortable or unsafe for people with photosensitive epilepsy or light sensitivity.",
+  },
+];
 
 export function links() {
   return [{ rel: "canonical", href: canonicalUrl(CANONICAL_PATH) }];
@@ -227,6 +248,15 @@ export default function MorseCodeAudioQuiz() {
     name: "Morse Code Audio Quiz",
     url: canonicalUrl(CANONICAL_PATH),
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+  };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 
   return (
@@ -563,6 +593,14 @@ export default function MorseCodeAudioQuiz() {
                         />
                       </div>
                     </div>
+                    {flash ? (
+                      <div className="mt-4 rounded-xl border border-slate-200 bg-[#fffdf8] p-3 text-sm leading-relaxed text-slate-700">
+                        <strong>Strobe warning:</strong> flashing light may be
+                        uncomfortable or unsafe for people with photosensitive
+                        epilepsy. Disable Flash if you are sensitive to
+                        strobing.
+                      </div>
+                    ) : null}
                   </div>
                 ) : null}
 
@@ -578,6 +616,62 @@ export default function MorseCodeAudioQuiz() {
           )}
         </section>
 
+        <ToolHowItWorks
+          eyebrow="Audio quiz spec"
+          title="How this Morse code audio quiz works"
+          description="The audio quiz hides the prompt, plays the Morse signal, and asks you to copy what you heard. It keeps the full listening controls from audio practice so testing and training use the same timing model."
+          referenceLabel="Hidden signal"
+          referenceValue="... --- ..."
+          referenceText="Replay the prompt, then type the word. Farnsworth changes gaps only."
+          chips={[
+            { label: "Prompt", href: "#audio-quiz-prompt" },
+            { label: "Scoring", href: "#audio-quiz-scoring" },
+            { label: "Timing", href: "#audio-quiz-timing" },
+            { label: "Review", href: "#audio-quiz-review" },
+          ]}
+          summary={[
+            {
+              title: "Hidden-answer test",
+              text: "The word stays hidden while you listen, answer, and check recall.",
+            },
+            {
+              title: "Full audio controls",
+              text: "WPM, Farnsworth, pitch, volume, waveform, attack, release, repeat, and flash stay available.",
+            },
+            {
+              title: "Shareable results",
+              text: "The quiz tracks attempts, accuracy, streak, and best streak for a useful result card.",
+            },
+          ]}
+          details={[
+            {
+              kicker: "Listening prompt",
+              title: "Prompt",
+              text: "Each question uses a short practice word or signal. You can replay the audio with your current settings, but the text answer stays hidden until you check it.",
+            },
+            {
+              kicker: "Result model",
+              title: "Scoring",
+              text: "Every answer check counts as an attempt. Correct answers increase your score and streak; misses reset the current streak but keep the question active for another try.",
+            },
+            {
+              kicker: "Learner timing",
+              title: "Timing",
+              text: "Character speed controls the dit and dah rhythm. Farnsworth spacing slows only the letter and word gaps, which gives learners more copy time without distorting the Morse character shapes.",
+              bullets: [
+                "Use lower Farnsworth spacing when copying feels rushed.",
+                "Use repeat for short prompts and weak words.",
+                "Use attack and release to soften the start and end of tones.",
+              ],
+            },
+            {
+              kicker: "Next session",
+              title: "Review",
+              text: "After the quiz, move missed words into the word trainer or make a printable review sheet so the next practice block starts with the signals that need the most work.",
+            },
+          ]}
+        />
+
         <SectionCard eyebrow="After the quiz" title="Use misses as your next practice list">
           <ActionLinks
             links={[
@@ -587,7 +681,7 @@ export default function MorseCodeAudioQuiz() {
                 primary: true,
               },
               {
-                href: "/morse-code-worksheet-generator",
+                href: "/morse-code-printable-chart",
                 label: "Worksheet generator",
               },
               { href: "/practice", label: "General practice" },
@@ -595,7 +689,9 @@ export default function MorseCodeAudioQuiz() {
           />
         </SectionCard>
 
-        <JsonLdScript jsonLd={jsonLd} />
+        <FaqSectionGeneric title="Audio quiz FAQ" items={faqItems} />
+
+        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
       </main>
     </div>
   );

@@ -103,7 +103,7 @@ export default function LearnMorseCode() {
               {
                 title: "6. Print review sheets",
                 text: "Turn weak words, classroom lists, and practice sets into printable worksheets with answer keys.",
-                href: "/morse-code-worksheet-generator",
+    href: "/morse-code-printable-chart",
                 badge: "Print",
               },
             ]}
@@ -135,7 +135,7 @@ export default function LearnMorseCode() {
               {
                 title: "Worksheet generator",
                 text: "Build learner handouts, answer keys, and printable classroom practice.",
-                href: "/morse-code-worksheet-generator",
+    href: "/morse-code-printable-chart",
               },
             ]}
           />

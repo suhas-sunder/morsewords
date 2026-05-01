@@ -57,7 +57,7 @@ export default function MorseCodeProsigns() {
             links={[
               { href: "/morse-code-sos", label: "Open SOS page", primary: true },
               { href: "/morse-code-audio-practice", label: "Practice by audio" },
-              { href: "/morse-code-worksheet-generator", label: "Make worksheet" },
+              { href: "/morse-code-printable-chart", label: "Make worksheet" },
             ]}
           />
         </PageHero>

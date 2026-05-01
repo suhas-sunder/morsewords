@@ -2,12 +2,14 @@ import * as React from "react";
 import type { Route } from "./+types/morse-code-audio-practice";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import {
   ActionLinks,
   DarkNote,
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import useMorseAudio, { type SoundPreset } from "~/client/components/shared/useMorseAudio";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
@@ -21,6 +23,25 @@ import {
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-audio-practice";
+
+const faqItems = [
+  {
+    q: "What is audio practice for?",
+    a: "Audio practice lets you hear a visible prompt first, tune the timing, and repeat the sound until the rhythm is familiar before switching to a hidden-answer quiz.",
+  },
+  {
+    q: "What does Farnsworth spacing do?",
+    a: "Farnsworth keeps the character speed crisp but stretches the gaps between letters and words. It slows spacing only, which helps learners hear the shapes without rushing the copy.",
+  },
+  {
+    q: "Should I use repeat?",
+    a: "Use repeat for short words, Q-codes, and weak prompts. Turn it off for longer messages so you do not train yourself to wait for a second pass.",
+  },
+  {
+    q: "Does the audio upload my text?",
+    a: "No. The practice audio is generated in your browser with the same local audio engine used by the MorseWords audio tools.",
+  },
+];
 
 export function links() {
   return [{ rel: "canonical", href: canonicalUrl(CANONICAL_PATH) }];
@@ -132,6 +153,15 @@ export default function MorseCodeAudioPractice() {
     url: canonicalUrl(CANONICAL_PATH),
     applicationCategory: "EducationalApplication",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+  };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 
   return (
@@ -263,8 +293,9 @@ export default function MorseCodeAudioPractice() {
                 </div>
                 {flash ? (
                   <div className="mt-4 rounded-xl border border-slate-200 bg-[#fffdf8] p-3 text-sm leading-relaxed text-slate-700">
-                    Flash uses the same screen-flash behavior as the audio
-                    generator. Disable it if flashing light is uncomfortable.
+                    <strong>Strobe warning:</strong> flashing light may be
+                    uncomfortable or unsafe for people with photosensitive
+                    epilepsy. Disable Flash if you are sensitive to strobing.
                   </div>
                 ) : null}
               </div>
@@ -293,6 +324,67 @@ export default function MorseCodeAudioPractice() {
           </div>
         </section>
 
+        <ToolHowItWorks
+          eyebrow="Audio practice spec"
+          title="How this Morse code audio practice tool works"
+          description="Audio practice uses the same Morse timing model as the audio generator, but keeps the workflow focused on listening. You choose the message, set character speed, add Farnsworth spacing if needed, then play, repeat, or flash the signal."
+          referenceLabel="Listening signal"
+          referenceValue="... --- ..."
+          referenceText="Character speed controls dits and dahs. Farnsworth changes the gaps only."
+          chips={[
+            { label: "Timing", href: "#audio-practice-timing" },
+            { label: "Farnsworth", href: "#audio-practice-farnsworth" },
+            { label: "Repeat", href: "#audio-practice-repeat" },
+            { label: "Quiz next", href: "#audio-practice-quiz" },
+          ]}
+          summary={[
+            {
+              title: "Local playback",
+              text: "The signal is generated in your browser, so practice text is not uploaded.",
+            },
+            {
+              title: "Farnsworth spacing",
+              text: "Character speed stays sharp while letter and word gaps can slow down.",
+            },
+            {
+              title: "Practice before testing",
+              text: "Use visible prompts first, then switch to the audio quiz when recall feels steady.",
+            },
+          ]}
+          details={[
+            {
+              kicker: "Playback controls",
+              title: "Timing",
+              text: "Character speed sets the length of dits and dahs. Pitch, volume, attack, and release change how the sound feels without changing the Morse message.",
+              bullets: [
+                "Raise WPM when the shapes sound too slow.",
+                "Lower pitch if high tones feel tiring.",
+                "Use attack and release to soften clicks.",
+              ],
+            },
+            {
+              kicker: "Learner spacing",
+              title: "Farnsworth",
+              text: "Farnsworth spacing is useful when you can recognize characters but need more time between them. The character rhythm stays intact while the spaces stretch.",
+              bullets: [
+                "Set character speed higher than spacing speed.",
+                "Increase spacing speed as copy improves.",
+                "Avoid slowing character shapes so much that they stop sounding like Morse.",
+              ],
+            },
+            {
+              kicker: "Short loops",
+              title: "Repeat",
+              text: "Repeat mode is best for short words, Q-codes, prosigns, and weak prompts. It turns the page into a focused listening loop without leaving the practice screen.",
+            },
+            {
+              kicker: "Next step",
+              title: "Quiz next",
+              text: "Once a prompt is familiar, move to the audio quiz. The quiz hides the answer and scores attempts, accuracy, and streaks using the same timing controls.",
+            },
+          ]}
+        />
+
         <SectionCard
           eyebrow="Listening flow"
           title="Use audio practice before tests"
@@ -308,7 +400,9 @@ export default function MorseCodeAudioPractice() {
           />
         </SectionCard>
 
-        <JsonLdScript jsonLd={jsonLd} />
+        <FaqSectionGeneric title="Audio practice FAQ" items={faqItems} />
+
+        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
       </main>
     </div>
   );

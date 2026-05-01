@@ -13,6 +13,21 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-practice-plan";
 
+const faqItems = [
+  {
+    q: "How long should each session be?",
+    a: "Start with 10 minutes. If your accuracy stays strong, add another short block for audio or sentences.",
+  },
+  {
+    q: "When should I use worksheets?",
+    a: "Use worksheets after practice sessions to review weak words, classroom lists, or sentence patterns away from the screen.",
+  },
+  {
+    q: "Should I practice visually or by audio?",
+    a: "Use both. Visual practice helps you understand written Morse, while audio practice builds the rhythm needed for real copy.",
+  },
+];
+
 export function links() {
   return [{ rel: "canonical", href: canonicalUrl(CANONICAL_PATH) }];
 }
@@ -62,6 +77,15 @@ export default function MorseCodePracticePlan() {
     url: canonicalUrl(CANONICAL_PATH),
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
   };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
 
   return (
     <div style={styles.page}>
@@ -81,7 +105,7 @@ export default function MorseCodePracticePlan() {
             links={[
               { href: "/practice", label: "Start practice", primary: true },
               { href: "/morse-code-audio-practice", label: "Audio practice" },
-              { href: "/morse-code-worksheet-generator", label: "Print review" },
+              { href: "/morse-code-printable-chart", label: "Print review" },
             ]}
           />
         </PageHero>
@@ -116,25 +140,123 @@ export default function MorseCodePracticePlan() {
           </div>
         </SectionCard>
 
+        <SectionCard
+          eyebrow="Practice strategy"
+          title="How to use this Morse code practice plan"
+          description="A good practice plan should match how people actually learn Morse: short sessions, clear spacing, frequent recall, and enough listening work to make the symbols feel like sound instead of memorized marks."
+          aside={
+            <DarkNote label="Routine" value="LISTEN + RECALL">
+              Start each session with one review block, then finish with a
+              small test or worksheet so weak symbols do not disappear.
+            </DarkNote>
+          }
+        >
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
+            <div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
+              <p>
+                This routine is built for adults, students, radio learners,
+                puzzle makers, and teachers in English-speaking audiences who
+                want practical progress without turning Morse into a full-time
+                course. Use the{" "}
+                <a
+                  href="/practice"
+                  className="font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  quick practice drills
+                </a>{" "}
+                for symbol recall, then move into the{" "}
+                <a
+                  href="/morse-code-word-trainer"
+                  className="font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  word trainer
+                </a>{" "}
+                so letters become useful chunks.
+              </p>
+              <p>
+                For listening practice, start with a comfortable character
+                speed and slower spacing. The{" "}
+                <a
+                  href="/farnsworth-timing"
+                  className="font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  Farnsworth timing guide
+                </a>{" "}
+                explains why slowing gaps can help without ruining the shape of
+                each character, while the{" "}
+                <a
+                  href="/morse-code-timing"
+                  className="font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  Morse timing guide
+                </a>{" "}
+                covers dots, dashes, letter gaps, word gaps, and WPM.
+              </p>
+              <p>
+                Once a list feels familiar, switch to{" "}
+                <a
+                  href="/morse-code-audio-practice"
+                  className="font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  audio practice
+                </a>{" "}
+                or the{" "}
+                <a
+                  href="/morse-code-audio-quiz"
+                  className="font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  audio quiz
+                </a>
+                . End the week by printing review with the{" "}
+                <a
+                  href="/morse-code-printable-chart"
+                  className="font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  worksheet builder
+                </a>{" "}
+                or by using{" "}
+                <a
+                  href="/morse-code-sentence-practice"
+                  className="font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  sentence practice
+                </a>{" "}
+                to copy longer phrases.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-5">
+              <h3 className="text-xl font-extrabold text-sky-950">
+                Weekly rhythm
+              </h3>
+              <ul className="mt-4 space-y-3 text-base leading-relaxed text-slate-700">
+                <li>
+                  <strong className="text-sky-950">Review:</strong> 2 minutes
+                  of weak letters, numbers, or words.
+                </li>
+                <li>
+                  <strong className="text-sky-950">Recall:</strong> 5 minutes
+                  with practice drills or the word trainer.
+                </li>
+                <li>
+                  <strong className="text-sky-950">Listen:</strong> 3 minutes
+                  of audio practice with Farnsworth spacing.
+                </li>
+                <li>
+                  <strong className="text-sky-950">Prove it:</strong> one quiz,
+                  worksheet, or sentence set at the end of the block.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </SectionCard>
+
         <FaqSectionGeneric
           title="Practice plan FAQ"
-          items={[
-            {
-              q: "How long should each session be?",
-              a: "Start with 10 minutes. If your accuracy stays strong, add another short block for audio or sentences.",
-            },
-            {
-              q: "When should I use worksheets?",
-              a: "Use worksheets after practice sessions to review weak words, classroom lists, or sentence patterns away from the screen.",
-            },
-            {
-              q: "Should I practice visually or by audio?",
-              a: "Use both. Visual practice helps you understand written Morse, while audio practice builds the rhythm needed for real copy.",
-            },
-          ]}
+          items={faqItems}
         />
 
-        <JsonLdScript jsonLd={jsonLd} />
+        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
       </main>
     </div>
   );

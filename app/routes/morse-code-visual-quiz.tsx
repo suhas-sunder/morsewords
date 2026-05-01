@@ -3,12 +3,14 @@ import type { Route } from "./+types/morse-code-visual-quiz";
 
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import {
   ActionLinks,
   DarkNote,
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
@@ -29,6 +31,25 @@ const PROMPTS = [
   "morse",
 ];
 const TOTAL_QUESTIONS = 10;
+
+const faqItems = [
+  {
+    q: "How does the visual Morse quiz work?",
+    a: "The quiz flashes a hidden prompt. You type what you saw, check the answer, and the page tracks attempts, accuracy, streak, and a shareable result card.",
+  },
+  {
+    q: "Does visual quiz use Farnsworth spacing?",
+    a: "Yes. Character speed controls each flashed Morse character, while Farnsworth spacing slows the gaps only.",
+  },
+  {
+    q: "Can I practice before taking the quiz?",
+    a: "Yes. Use visual practice first so you can see the answer, tune the speed, and get comfortable with the flash rhythm.",
+  },
+  {
+    q: "Is this safe for light-sensitive users?",
+    a: "Flashing light may be unsafe or uncomfortable for people with photosensitive epilepsy or light sensitivity. Use audio practice instead if flashing bothers you.",
+  },
+];
 
 export function links() {
   return [{ rel: "canonical", href: canonicalUrl(CANONICAL_PATH) }];
@@ -159,6 +180,15 @@ export default function MorseCodeVisualQuiz() {
     name: "Morse Code Visual Quiz",
     url: canonicalUrl(CANONICAL_PATH),
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+  };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 
   return (
@@ -297,6 +327,11 @@ export default function MorseCodeVisualQuiz() {
                   <LightBulbIcon size={20} title="Flash prompt" />
                   Flash prompt
                 </button>
+                <p className="mt-4 rounded-xl border border-slate-200 bg-white p-3 text-sm leading-relaxed text-slate-700">
+                  <strong>Strobe warning:</strong> flashing light may be
+                  uncomfortable or unsafe for people with photosensitive
+                  epilepsy.
+                </p>
               </div>
               <div>
                 <label className="block">
@@ -319,7 +354,7 @@ export default function MorseCodeVisualQuiz() {
                   />
                 </label>
 
-                <div className="mt-5 grid gap-5 md:grid-cols-2">
+                <div className="mt-5 grid gap-5">
                   <SliderRow
                     label="Character speed"
                     value={wpm}
@@ -390,6 +425,57 @@ export default function MorseCodeVisualQuiz() {
           )}
         </section>
 
+        <ToolHowItWorks
+          eyebrow="Visual quiz spec"
+          title="How this visual Morse quiz works"
+          description="The visual quiz hides the prompt, flashes the Morse signal, and asks you to copy what you saw. It keeps the visual practice timing controls, including Farnsworth spacing, so practice and testing feel consistent."
+          referenceLabel="Hidden prompt"
+          referenceValue={active ? "FLASHING" : "READY"}
+          referenceText="Watch the full sequence before answering. Replays use your current timing settings."
+          chips={[
+            { label: "Prompt", href: "#visual-quiz-prompt" },
+            { label: "Scoring", href: "#visual-quiz-scoring" },
+            { label: "Farnsworth", href: "#visual-quiz-farnsworth" },
+            { label: "Review", href: "#visual-quiz-review" },
+          ]}
+          summary={[
+            {
+              title: "Hidden answer",
+              text: "The word is hidden until you check it, unlike visual practice.",
+            },
+            {
+              title: "Same timing controls",
+              text: "Character speed and Farnsworth spacing match visual practice.",
+            },
+            {
+              title: "Shareable results",
+              text: "The quiz tracks attempts, accuracy, streak, and best streak.",
+            },
+          ]}
+          details={[
+            {
+              kicker: "Test prompt",
+              title: "Prompt",
+              text: "Each question chooses a short MorseWords practice prompt and flashes it as a light signal. Replay the prompt when needed, then type the copied word.",
+            },
+            {
+              kicker: "Result model",
+              title: "Scoring",
+              text: "Every answer check counts as an attempt. Correct answers increase your score and streak; misses reset the current streak but keep the question active.",
+            },
+            {
+              kicker: "Learner timing",
+              title: "Farnsworth",
+              text: "Farnsworth spacing slows only the gaps between characters and words. This helps you copy visual Morse without distorting the dit and dah shapes.",
+            },
+            {
+              kicker: "Next drill",
+              title: "Review",
+              text: "After the quiz, turn missed words into a word trainer set or printable worksheet so the next session starts with the weak prompts.",
+            },
+          ]}
+        />
+
         <SectionCard eyebrow="Review" title="Build review from missed visual prompts">
           <ActionLinks
             links={[
@@ -399,14 +485,16 @@ export default function MorseCodeVisualQuiz() {
                 primary: true,
               },
               {
-                href: "/morse-code-worksheet-generator",
+                href: "/morse-code-printable-chart",
                 label: "Worksheet generator",
               },
             ]}
           />
         </SectionCard>
 
-        <JsonLdScript jsonLd={jsonLd} />
+        <FaqSectionGeneric title="Visual quiz FAQ" items={faqItems} />
+
+        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
       </main>
     </div>
   );
