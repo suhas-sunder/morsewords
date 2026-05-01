@@ -28,7 +28,6 @@ const MORE_ITEMS: NavItem[] = [
   { label: "Visual quiz", href: "/morse-code-visual-quiz" },
   { label: "Dictionary", href: "/dictionary" },
   { label: "Morse code words (chart)", href: "/morse-code-words" },
-  { label: "Printable worksheets", href: "/morse-code-printable-chart" },
   { label: "Worksheet generator", href: "/morse-code-worksheet-generator" },
   { label: "Word search builder", href: "/morse-code-word-search-builder" },
   {

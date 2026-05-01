@@ -98,12 +98,26 @@ export default function FarnsworthTiming() {
           description="Use the audio tools when you want tone, speed, pitch, and spacing control. Use practice pages when you want answer checking."
         >
           <div className="max-w-[74ch] space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
-            <p>
-              Start with a character speed that sounds crisp, then lower the
-              effective speed until you can copy without panic. As you improve,
-              raise the effective speed first. Keep the character speed stable
-              so the sounds stay familiar.
-            </p>
+              <p>
+                Start with a character speed that sounds crisp, then lower the
+                effective speed until you can copy without panic. As you improve,
+                raise the effective speed first. Keep the character speed stable
+                so the sounds stay familiar. The{" "}
+                <a
+                  href="/morse-code-audio-practice"
+                  className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  audio practice page
+                </a>{" "}
+                is the best place to test those settings before taking the{" "}
+                <a
+                  href="/morse-code-audio-quiz"
+                  className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  audio quiz
+                </a>
+                .
+              </p>
             <p>
               If you are practicing by ear, avoid slowing characters so far that
               each dit and dah becomes a separate counting task. The point is to
@@ -135,4 +149,3 @@ export default function FarnsworthTiming() {
     </div>
   );
 }
-

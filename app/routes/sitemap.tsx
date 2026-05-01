@@ -106,12 +106,14 @@ const GROUPS: SitemapGroup[] = [
       {
         label: "Morse Code Audio Quiz",
         to: "/morse-code-audio-quiz",
-        description: "Test Morse listening recall with audio-only prompts.",
+        description:
+          "Test Morse listening recall with a 10-question scored audio quiz.",
       },
       {
         label: "Morse Code Visual Quiz",
         to: "/morse-code-visual-quiz",
-        description: "Test visual Morse recall with flashing prompts.",
+        description:
+          "Test visual Morse recall with a 10-question scored flashing-light quiz.",
       },
       {
         label: "How to Use MorseWords",

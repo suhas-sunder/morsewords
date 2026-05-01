@@ -79,7 +79,14 @@ export default function MorseCodePunctuation() {
             If you type text that includes a slash, the encoder can convert that
             slash into its Morse punctuation pattern. If you paste Morse into the
             decoder, a slash is treated as a word break because that is a common
-            written convention for separating Morse words.
+            written convention for separating Morse words. The{" "}
+            <a
+              href="/morse-code-word-separator"
+              className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+            >
+              word separator guide
+            </a>{" "}
+            explains that input behavior in more detail.
           </p>
         </SectionCard>
 
@@ -88,4 +95,3 @@ export default function MorseCodePunctuation() {
     </div>
   );
 }
-

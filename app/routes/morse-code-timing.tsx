@@ -103,8 +103,22 @@ export default function MorseCodeTiming() {
               <p>
                 The PARIS standard gives tools a consistent way to translate a
                 speed setting into a dot length. That is why the audio generator,
-                audio practice pages, and timing explanations all talk about
-                WPM instead of inventing page-specific speed labels.
+                <a
+                  href="/morse-code-audio-practice"
+                  className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  {" "}
+                  audio practice
+                </a>
+                , and timing explanations all talk about WPM instead of
+                inventing page-specific speed labels. Use the{" "}
+                <a
+                  href="/audio"
+                  className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                >
+                  full audio generator
+                </a>{" "}
+                when you need downloadable files.
               </p>
             </div>
             <DarkNote label="PARIS pattern" value=".--. .- .-. .. ...">
@@ -137,4 +151,3 @@ export default function MorseCodeTiming() {
     </div>
   );
 }
-

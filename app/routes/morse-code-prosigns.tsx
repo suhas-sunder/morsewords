@@ -84,7 +84,14 @@ export default function MorseCodeProsigns() {
             <p>
               If you are practicing for puzzles or classroom use, the exact
               labels matter less than the rule: when a signal is a prosign, send
-              the marks continuously.
+              the marks continuously. For normal three-letter shorthand, use the{" "}
+              <a
+                href="/morse-code-q-codes"
+                className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+              >
+                Q-codes reference
+              </a>{" "}
+              instead.
             </p>
           </div>
         </SectionCard>
@@ -94,4 +101,3 @@ export default function MorseCodeProsigns() {
     </div>
   );
 }
-
