@@ -21,9 +21,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Punctuation and Symbols Chart | MorseWords",
+    title: "Morse Code Punctuation Chart | Symbols, Slash & Question Mark",
     description:
-      "Look up Morse code punctuation for period, comma, question mark, slash, hyphen, apostrophe, parentheses, colon, semicolon, and symbols.",
+      "Find Morse code punctuation for period, comma, question mark, slash, hyphen, apostrophe, parentheses, colon, semicolon, and common symbols.",
     path: CANONICAL_PATH,
     keywords:
       "morse code punctuation, period in morse code, comma morse code, question mark morse, slash morse code, hyphen morse",

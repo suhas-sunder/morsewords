@@ -17,9 +17,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Spacing, Separators, and Word Breaks | MorseWords",
+    title: "Morse Code Spacing and Word Separators | Slash & Gaps",
     description:
-      "Learn how Morse spacing works, when to use slashes, how to normalize pasted code, and which separator styles MorseWords accepts and exports.",
+      "Learn Morse code spacing, letter gaps, word gaps, slash separators, pasted-code cleanup, and the default output format used across MorseWords.",
     path: CANONICAL_PATH,
     keywords:
       "morse code word separator, morse code slash word separator, how to separate words in morse code, morse code spacing, morse word gaps",

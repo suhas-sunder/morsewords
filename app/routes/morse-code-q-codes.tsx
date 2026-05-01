@@ -21,9 +21,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Q-Codes with Meanings and Audio | MorseWords",
+    title: "Morse Code Q-Codes | Meanings, Examples & Audio",
     description:
-      "Browse common Morse code Q-codes like QTH, QRM, QRN, QRS, QSL, QSO, QSY, QRT, QRV, and QRZ with examples and audio.",
+      "Browse common Morse Q-codes like QTH, QRM, QRN, QRS, QSL, QSO, QSY, QRT, QRV, and QRZ with meanings, examples, and audio playback.",
     path: CANONICAL_PATH,
     keywords:
       "morse code q codes, qth meaning, qsl meaning, qso morse, qrs morse, qrz morse",
@@ -102,4 +102,3 @@ export default function MorseCodeQCodes() {
     </div>
   );
 }
-

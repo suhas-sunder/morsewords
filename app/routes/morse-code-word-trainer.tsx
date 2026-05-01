@@ -22,9 +22,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Word Trainer with Custom Lists | MorseWords",
+    title: "Morse Code Word Trainer | Custom Lists and Audio",
     description:
-      "Practice Morse words from built-in or custom lists, play audio, mark weak words, and send word sets into worksheets or audio tools.",
+      "Practice Morse words from built-in or custom lists, play each word as audio, mark weak words, and turn practice sets into worksheets.",
     path: CANONICAL_PATH,
     keywords:
       "morse code word trainer, morse code words practice, custom morse word list, morse code word practice",
@@ -211,4 +211,3 @@ export default function MorseCodeWordTrainer() {
     </div>
   );
 }
-

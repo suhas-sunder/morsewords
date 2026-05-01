@@ -21,9 +21,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Decoder | MorseWords",
+    title: "Morse Code Decoder | Convert Dots and Dashes to Text",
     description:
-      "Decode dots, dashes, spaces, and slash-separated Morse into readable text. Clean messy separators and confirm uncertain strings fast.",
+      "Decode dots, dashes, spaces, slashes, and pasted Morse into readable text. Clean messy separators and keep uncertain characters visible.",
     path: CANONICAL_PATH,
     keywords:
       "morse code decoder, morse to text, morse code to text, decode morse code, convert morse code to text, morse decoder",

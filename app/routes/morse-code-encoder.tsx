@@ -21,9 +21,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Text to Morse Code Encoder | MorseWords",
+    title: "Text to Morse Code Encoder | Clean Copyable Morse",
     description:
-      "Turn plain text into clean International Morse code with consistent separators, copyable output, and quick links to audio and worksheets.",
+      "Turn plain text into clean International Morse code with consistent separators, copyable output, audio links, and printable worksheet workflows.",
     path: CANONICAL_PATH,
     keywords:
       "text to morse code, english to morse code, words to morse code, morse code encoder, convert text to morse code",

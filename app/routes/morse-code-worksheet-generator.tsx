@@ -20,7 +20,7 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Worksheet Generator with Answer Key | MorseWords",
+    title: "Morse Code Worksheet Generator | Custom Practice Sheets",
     description:
       "Create custom Morse code worksheets from words or sentences, show or hide answer keys, print browser-ready sheets, and open the full chart builder.",
     path: CANONICAL_PATH,

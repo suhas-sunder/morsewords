@@ -11,9 +11,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Dictionary - Letters, Numbers, Q-Codes",
+    title: "Morse Code Dictionary | Letters, Numbers, Signals & Q-Codes",
     description:
-      "Look up Morse code for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and phrases. Copy any entry instantly.",
+      "Look up Morse code letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and phrases in one clean reference built for fast copying and practice.",
     path: CANONICAL_PATH,
     keywords:
       "morse code dictionary, morse dictionary, morse code letters, morse code numbers, q codes, morse abbreviations",

@@ -21,9 +21,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Prosigns with Meanings and Audio | MorseWords",
+    title: "Morse Code Prosigns | Meanings, Examples & Audio",
     description:
-      "Look up common Morse code prosigns like SOS, AR, SK, BT, KN, AS, HH, and CT with meanings, examples, and play buttons.",
+      "Look up Morse prosigns like SOS, AR, SK, BT, KN, AS, HH, and CT with meanings, examples, continuous-signal notes, and audio playback.",
     path: CANONICAL_PATH,
     keywords:
       "morse code prosigns, SOS prosign, AR prosign, SK morse, BT morse, Morse code operating signs",

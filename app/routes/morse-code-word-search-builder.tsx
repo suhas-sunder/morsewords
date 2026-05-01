@@ -19,9 +19,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Word Search Builder | Printable Puzzle Maker",
+    title: "Morse Code Word Search Builder | Printable Classroom Puzzles",
     description:
-      "Build a printable Morse code word search with custom words, a classroom-friendly grid, and an answer key list for learners and teachers.",
+      "Build a printable Morse code word search from custom vocabulary, classroom lists, radio terms, or learner words with a clean answer key.",
     path: CANONICAL_PATH,
     keywords:
       "morse code word search, morse word search builder, printable morse code puzzle, morse code puzzle maker",
@@ -117,7 +117,14 @@ export default function MorseCodeWordSearchBuilder() {
               <span className="text-sm font-extrabold text-sky-950">
                 Grid size: {size} x {size}
               </span>
-              <input type="range" min={10} max={16} value={size} onChange={(event) => setSize(Number(event.target.value))} className="mt-3 w-full" />
+              <input
+                type="range"
+                min={10}
+                max={16}
+                value={size}
+                onChange={(event) => setSize(Number(event.target.value))}
+                className="mt-3 w-full cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300"
+              />
             </label>
             <button type="button" onClick={() => window.print()} className="mt-4 min-h-11 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100">
               Print puzzle
@@ -165,4 +172,3 @@ export default function MorseCodeWordSearchBuilder() {
     </div>
   );
 }
-

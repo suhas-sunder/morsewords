@@ -17,9 +17,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Audio Generator, MP3 and WAV Export | MorseWords",
+    title: "Morse Code Audio Generator with WAV Export | MorseWords",
     description:
-      "Generate Morse audio from text or Morse input, adjust WPM, Farnsworth, pitch, and waveform, then export audio locally in your browser.",
+      "Create clean Morse code audio from text or Morse input. Adjust WPM, Farnsworth spacing, pitch, waveform, volume, and export WAV files locally in your browser.",
     path: CANONICAL_PATH,
     keywords:
       "morse code audio generator, text to morse audio, morse code to audio, morse audio generator, morse wav, morse code sound",

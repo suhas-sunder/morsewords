@@ -21,9 +21,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Audio Practice with WPM and Repeat | MorseWords",
+    title: "Morse Code Audio Practice | Listen, Repeat, and Build Speed",
     description:
-      "Practice Morse by ear with audio-only prompts, WPM, Farnsworth spacing, pitch, waveform, repeat, flash, and built-in examples.",
+      "Practice Morse by ear with repeat playback, WPM, Farnsworth spacing, pitch, waveform, volume, flash, and focused prompts before taking a quiz.",
     path: CANONICAL_PATH,
     keywords:
       "morse code audio practice, listen to morse code, morse code by ear, morse audio drills, morse code listening practice",
@@ -368,4 +368,3 @@ function formatMs(ms: number) {
   const minutes = Math.floor(seconds / 60);
   return `${minutes}m ${seconds % 60}s`;
 }
-

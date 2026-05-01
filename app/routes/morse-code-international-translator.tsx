@@ -44,9 +44,9 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "International Morse Code Translator - English & World Languages",
+    title: "International Morse Code Translator | English & World Words",
     description:
-      "Translate English and international words into Morse code using readable transliteration for Spanish, French, German, Hindi, Japanese, Korean, Russian, and more.",
+      "Translate English and international words into Morse code with readable transliteration examples for Spanish, French, German, Hindi, Japanese, Korean, Russian, and more.",
     path: CANONICAL_PATH,
     keywords:
       "international morse code translator, morse code translator languages, english to morse code, spanish morse code, japanese morse code, hindi morse code",

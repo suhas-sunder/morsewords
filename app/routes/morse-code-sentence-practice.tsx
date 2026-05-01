@@ -14,9 +14,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Sentence Practice - Full Message Drills",
+    title: "Morse Code Sentence Practice | Full Message Drills",
     description:
-      "Practice Morse code with complete sentences. Try beginner-friendly drills, learn letter and word spacing, and build confidence reading longer messages.",
+      "Practice Morse code with complete sentences, realistic spacing, beginner sets, radio-style prompts, answer checks, and longer-message confidence drills.",
     path: CANONICAL_PATH,
     keywords:
       "morse code sentence practice, morse code sentences, morse code practice sentences, morse code sentence, morse code spacing",

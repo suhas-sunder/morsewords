@@ -20,7 +20,7 @@ const GROUPS: SitemapGroup[] = [
     description: "Translate, encode, decode, and play Morse code.",
     links: [
       {
-        label: "Free Morse Code Translator with Audio",
+        label: "Morse Code Translator with Audio",
         to: "/",
         description: "Convert text to Morse, decode Morse to text, and play audio.",
       },
@@ -252,9 +252,9 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "HTML Sitemap - MorseWords",
+    title: "HTML Sitemap | MorseWords Tools and Reference Pages",
     description:
-      "Browse every MorseWords translator, audio tool, practice page, printable chart, reference guide, and site policy from one HTML sitemap.",
+      "Browse MorseWords translator, audio, practice, worksheet, quiz, and reference pages from one clean HTML sitemap.",
     path: CANONICAL_PATH,
     keywords:
       "morsewords sitemap, morse code tools, morse code translator sitemap, morse code practice pages",

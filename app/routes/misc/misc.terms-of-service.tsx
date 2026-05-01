@@ -3,11 +3,11 @@ import { Link } from "react-router";
 import type { Route } from "./+types/misc.terms-of-service";
 
 export const meta: Route.MetaFunction = () => {
-  const canonical = "https://www.morsewords.com/terms";
+  const canonical = "https://www.morsewords.com/misc/terms-of-service";
 
   const title = "Terms of Service | MorseWords";
   const description =
-    "Read the MorseWords Terms of Service. Learn about your rights and responsibilities when using the website.";
+    "Review the terms for using MorseWords translator, audio, practice, worksheet, and reference tools.";
 
   const ogImage = "https://www.morsewords.com/og/morsewords-terms.jpg";
 
@@ -37,9 +37,9 @@ export const meta: Route.MetaFunction = () => {
 
 export default function TermsOfService() {
   return (
-    <div className="pt-8 flex flex-col mx-10 items-center justify-center gap-8 font-nunito text-skull-brown">
-      <header className="flex max-w-[1200px] flex-col gap-5 w-full">
-        <nav aria-label="Breadcrumb" className="text-sm font-lato">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 text-slate-800">
+      <header className="flex w-full flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+        <nav aria-label="Breadcrumb" className="text-sm font-semibold text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
               <Link to="/" className="hover:underline">
@@ -59,8 +59,15 @@ export default function TermsOfService() {
           </ol>
         </nav>
 
-        <h1 className="mb-5 flex py-2 text-4xl">TERMS OF SERVICE</h1>
-        <h3 className="flex py-2 text-2xl">Last updated January 10, 2026</h3>
+        <p className="text-sm font-extrabold uppercase tracking-[0.22em] text-sky-800">
+          MorseWords terms
+        </p>
+        <h1 className="text-4xl font-black leading-tight text-sky-950">
+          Terms of Service
+        </h1>
+        <h3 className="text-lg font-bold text-slate-700">
+          Last updated January 10, 2026
+        </h3>
 
         <h2>AGREEMENT TO OUR LEGAL TERMS</h2>
 
@@ -112,7 +119,7 @@ export default function TermsOfService() {
         </p>
       </header>
 
-      <main className="flex max-w-[1200px] flex-col gap-8">
+      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">1. OUR SERVICES</h2>
           <p>
@@ -874,7 +881,7 @@ export default function TermsOfService() {
           <h2 className="flex py-2 text-2xl">16. PRIVACY POLICY</h2>
           <p>
             We care about data privacy and security. Please review our Privacy
-            Policy: https://www.morsewords.com/privacy. By using the Services,
+            Policy: https://www.morsewords.com/misc/privacy-policy. By using the Services,
             you agree to be bound by our Privacy Policy, which is incorporated
             into these Legal Terms. Please be advised the Services may be hosted
             in Canada and/or other jurisdictions depending on our service

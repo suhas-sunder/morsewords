@@ -14,9 +14,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Practice Test - Quiz Letters, Words & Signals",
+    title: "Morse Code Practice Test | Quiz Letters, Words and Signals",
     description:
-      "Practice Morse code with instant-feedback quizzes. Train letters, numbers, signals, words, and short sentences one question at a time.",
+      "Practice Morse code with scored quizzes, instant feedback, streaks, shareable results, and drills for letters, numbers, signals, words, and sentences.",
     path: CANONICAL_PATH,
     keywords:
       "morse code practice test, morse code quiz, morse code practice, morse code drills, morse code words, morse code test",

@@ -21,9 +21,9 @@ export function links() {
 
 export function meta(_: Route.MetaArgs) {
   return seoMeta({
-    title: "About MorseWords | Practical Morse Tools",
+    title: "About MorseWords | Practical Morse Code Tools",
     description:
-      "Learn what MorseWords is for, how it is built, what data it uses, and where its Morse translation, audio, practice, and worksheet tools fit.",
+      "Learn how MorseWords supports clean Morse translation, audio generation, practice drills, and printable worksheets for learners, teachers, radio clubs, and puzzle makers.",
     path: CANONICAL_PATH,
     keywords:
       "about morsewords, morse code tools, morse code translator, morse code decoder, morse code audio, morse code practice",

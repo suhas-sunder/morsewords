@@ -19,9 +19,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Practice Plan for 2 Weeks or 6 Weeks | MorseWords",
+    title: "Morse Code Practice Plan | 2-Week and 6-Week Routines",
     description:
-      "Follow a structured Morse code practice routine using alphabet review, drills, audio practice, word training, sentence practice, typing, and worksheets.",
+      "Follow a structured Morse code routine using alphabet review, drills, word training, audio copy, sentence practice, typing, quizzes, and worksheets.",
     path: CANONICAL_PATH,
     keywords:
       "morse code practice plan, learn morse code schedule, morse code drills, morse code audio practice",
@@ -139,4 +139,3 @@ export default function MorseCodePracticePlan() {
     </div>
   );
 }
-

@@ -187,9 +187,9 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "Printable Morse Code Worksheets and Chart Builder | MorseWords",
+    title: "Printable Morse Code Worksheets & Chart Builder | MorseWords",
     description:
-      "Create printable Morse worksheets with answer keys, branding, QR codes, student fields, and PDF or image export for classrooms, clubs, and homeschooling.",
+      "Create polished Morse code worksheets with answer keys, student fields, QR codes, branding, and PDF or image export for classrooms, clubs, and homeschool lessons.",
     path: CANONICAL_PATH,
     keywords:
       "printable morse code chart, morse code worksheet, custom morse code worksheet, teacher morse code worksheet, morse code printable, morse code alphabet printable, morse code practice sheet",

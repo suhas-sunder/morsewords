@@ -22,9 +22,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "International Morse Code Reference | Letters, Numbers, Symbols",
+    title: "International Morse Code Reference | Complete MorseWords Guide",
     description:
-      "Browse International Morse code letters, numbers, punctuation, prosigns, Q-codes, timing notes, and standards-backed reference links.",
+      "Browse International Morse letters, numbers, punctuation, prosigns, Q-codes, timing notes, audio examples, and standards-backed reference links.",
     path: CANONICAL_PATH,
     keywords:
       "International Morse code reference, Morse code letters, Morse code numbers, Morse prosigns, Morse Q-codes",
@@ -99,4 +99,3 @@ export default function InternationalMorseCodeReference() {
     </div>
   );
 }
-

@@ -18,9 +18,9 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "SOS in Morse Code - Translate, Play & Copy the Distress Signal",
+    title: "SOS in Morse Code | Play, Copy & Learn the Distress Signal",
     description:
-      "See SOS in Morse code, play the distress signal with sound or flash, copy the dots and dashes, and learn what SOS means.",
+      "See SOS in Morse code, play the continuous distress signal with sound or flash, copy the dots and dashes, and learn what SOS means.",
     path: CANONICAL_PATH,
     keywords:
       "sos in morse code, sos morse code, what is sos in morse code, sos distress signal, save our souls morse code, morse code sos sound",

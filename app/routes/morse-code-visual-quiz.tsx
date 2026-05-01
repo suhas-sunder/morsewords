@@ -24,9 +24,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Visual Quiz with Flashing Light | MorseWords",
+    title: "Morse Code Visual Quiz | Flashing Light Test",
     description:
-      "Take a visual Morse code quiz. Watch the flashing light signal, type the answer, and check your recall.",
+      "Take a scored visual Morse code quiz with flashing-light prompts, answer checks, accuracy, streaks, and shareable results.",
     path: CANONICAL_PATH,
     keywords: "morse code visual quiz, flashing morse quiz, morse code light test",
   });

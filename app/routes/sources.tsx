@@ -19,9 +19,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Sources and Standards | MorseWords",
+    title: "Sources and Standards | MorseWords Morse Code References",
     description:
-      "See the standards and references MorseWords uses for International Morse code tables, timing, spacing, Farnsworth practice, and learning explanations.",
+      "See the standards and references behind MorseWords code tables, timing, spacing, Farnsworth practice, audio behavior, and learning explanations.",
     path: CANONICAL_PATH,
     keywords:
       "morse code sources, ITU Morse code, ARRL Morse timing, MorseWords standards, International Morse code reference",
@@ -116,4 +116,3 @@ export default function SourcesPage() {
     </div>
   );
 }
-

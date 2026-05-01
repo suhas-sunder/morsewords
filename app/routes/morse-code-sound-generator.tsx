@@ -56,9 +56,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Sound Generator - MP3 & WAV Download",
+    title: "Morse Code Sound Generator | Create Practice Audio",
     description:
-      "Make Morse code sound from text or dots and dashes. Tune WPM, pitch, waveform, and spacing, then play or download MP3 and WAV audio for free.",
+      "Create Morse code sound from text or dots and dashes. Tune WPM, pitch, waveform, spacing, and export practice audio from your browser.",
     path: CANONICAL_PATH,
     keywords:
       "morse code sound generator, morse code audio generator, morse code sound maker, morse code mp3 generator, morse code wav generator, morse code beep generator",

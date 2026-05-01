@@ -19,9 +19,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Timing, WPM, and PARIS Standard | MorseWords",
+    title: "Morse Code Timing | WPM, Spacing and PARIS Standard",
     description:
-      "Understand Morse timing rules: dot length, dash length, element gaps, character gaps, word gaps, WPM, and the PARIS standard.",
+      "Understand Morse timing for dot length, dash length, element gaps, character gaps, word gaps, WPM, PARIS speed, and audio practice settings.",
     path: CANONICAL_PATH,
     keywords:
       "morse code timing, morse code wpm, PARIS standard morse, dot dash timing, morse code spacing",

@@ -3,11 +3,11 @@
 import { Link, type MetaFunction } from "react-router";
 
 export const meta: MetaFunction = () => {
-  const canonical = "https://www.morsewords.com/cookies";
+  const canonical = "https://www.morsewords.com/misc/cookies-policy";
 
   const title = "Cookies Policy | MorseWords";
   const description =
-    "Read the MorseWords cookies policy. Learn how cookies and similar technologies are used on the MorseWords website.";
+    "Learn how MorseWords uses cookies and similar technologies for essential site behavior and privacy-conscious analytics.";
 
   const ogImage = "https://www.morsewords.com/og/morsewords-cookies.jpg";
 
@@ -37,10 +37,17 @@ export const meta: MetaFunction = () => {
 
 export default function CookiesPolicy() {
   return (
-    <div className="pt-8 flex flex-col mx-10 items-center justify-center gap-8 font-nunito text-skull-brown">
-      <header className="max-w-[1200px] w-full flex flex-col gap-3">
-        <h1 className="mb-5 flex py-2 text-4xl">COOKIE POLICY</h1>
-        <h2 className="flex py-2 text-2xl">Last updated January 10, 2026</h2>
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 text-slate-800">
+      <header className="w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+        <p className="m-0 text-sm font-extrabold uppercase tracking-[0.22em] text-sky-800">
+          MorseWords policy
+        </p>
+        <h1 className="mt-3 text-4xl font-black leading-tight text-sky-950">
+          Cookies Policy
+        </h1>
+        <h2 className="mt-3 text-lg font-bold text-slate-700">
+          Last updated January 10, 2026
+        </h2>
 
         <p className="flex flex-col gap-4 py-2">
           This Cookie Policy explains how https://www.morsewords.com ("Company",
@@ -58,7 +65,7 @@ export default function CookiesPolicy() {
         </p>
       </header>
 
-      <main className="flex max-w-[1200px] flex-col gap-8">
+      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">What are cookies?</h2>
           <p>

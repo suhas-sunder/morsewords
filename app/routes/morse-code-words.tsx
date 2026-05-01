@@ -17,9 +17,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Words - Common Words & Phrases to Copy",
+    title: "Morse Code Words | Common Words, Q-Codes & Prosigns",
     description:
-      "Look up common words in Morse code, including SOS, HELLO, THANK YOU, Q-codes, prosigns, and abbreviations. Copy phrases for practice or puzzles.",
+      "Look up common Morse code words, SOS, HELLO, THANK YOU, Q-codes, prosigns, and abbreviations. Copy phrases for practice, puzzles, and worksheets.",
     path: CANONICAL_PATH,
     keywords:
       "morse code words, morse words, words in morse code, common morse code words, morse code phrases, morse code abbreviations",

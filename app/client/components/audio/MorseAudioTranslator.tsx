@@ -489,7 +489,9 @@ export default function MorseAudioTranslator() {
                   <span>Copy Morse</span>
                 </button>
                 {copied === "morse" && (
-                  <span className="text-sm text-green-600">Copied</span>
+                  <span className="text-sm font-semibold text-sky-800">
+                    Copied
+                  </span>
                 )}
                 <span className="ml-auto text-xs text-gray-500">
                   3 spaces = letters, 7 spaces = words, “/” = word break

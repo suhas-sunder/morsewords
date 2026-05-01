@@ -20,9 +20,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Learn Morse Code with Practice, Audio, and Worksheets | MorseWords",
+    title: "Learn Morse Code | Practice, Audio, Words & Worksheets",
     description:
-      "Start learning Morse code with a practical path from alphabet recognition to words, sentences, audio copy, typing practice, and printable worksheets.",
+      "Learn Morse code with a practical path from alphabet recognition to words, sentence copy, audio practice, typing drills, quizzes, and printable worksheets.",
     path: CANONICAL_PATH,
     keywords:
       "learn morse code, morse code practice plan, morse code lessons, morse code worksheets, morse code audio practice",
@@ -164,4 +164,3 @@ export default function LearnMorseCode() {
     </div>
   );
 }
-

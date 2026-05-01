@@ -11,9 +11,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Alphabet Chart - Letters, Numbers & Symbols",
+    title: "Morse Code Alphabet Chart | Letters, Numbers & Symbols",
     description:
-      "View the International Morse code alphabet for A-Z letters, numbers, and common symbols. Copy any character or open the translator.",
+      "View a clean International Morse code alphabet chart for A-Z letters, numbers, and symbols. Copy characters, play audio, or open the translator.",
     path: CANONICAL_PATH,
     keywords:
       "morse code alphabet, morse code chart, morse code letters, morse code numbers, international morse code, morse alphabet",

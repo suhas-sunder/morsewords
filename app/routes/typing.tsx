@@ -15,9 +15,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Typing Tool - Real-Time Morse Decoder",
+    title: "Morse Code Typing Tool | Real-Time Dot and Dash Decoder",
     description:
-      "Type dots, dashes, spaces, and slashes to decode Morse in real time. Use the free scratchpad for Morse typing practice and rhythm drills.",
+      "Type dots, dashes, spaces, and slashes to decode Morse in real time. Use the scratchpad for Morse typing practice, rhythm drills, and quick checks.",
     path: CANONICAL_PATH,
     keywords:
       "morse code typer, morse code typing, morse code typewriter, morse code typing practice, real time morse code translator",

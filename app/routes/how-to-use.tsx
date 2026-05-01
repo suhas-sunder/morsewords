@@ -16,9 +16,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "How to Use Morse Code Tools - Translator, Audio & Practice",
+    title: "How to Use MorseWords | Translator, Audio, Practice & Worksheets",
     description:
-      "Learn how to translate text, decode Morse, play audio, practice drills, type dots and dashes, and copy Morse code results.",
+      "Learn how to translate Morse, generate audio, run practice drills, type dots and dashes, and build printable Morse worksheets with consistent spacing.",
     path: CANONICAL_PATH,
     keywords:
       "how to use morse code translator, morse code tools, how to read morse code, how to write morse code, morse code practice",

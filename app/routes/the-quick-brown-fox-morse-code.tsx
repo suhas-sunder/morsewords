@@ -21,9 +21,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "The Quick Brown Fox in Morse Code - Copy & Play Audio",
+    title: "The Quick Brown Fox in Morse Code | Copy & Play the Pangram",
     description:
-      "See the full 'the quick brown fox jumps over the lazy dog' pangram in Morse code. Copy the dots and dashes or play the audio.",
+      "See the full quick brown fox pangram in Morse code, copy the dots and dashes, play the audio, and use the phrase for alphabet practice.",
     path: CANONICAL_PATH,
     keywords:
       "the quick brown fox morse code, quick brown fox morse, morse code pangram, the quick brown fox jumps over the lazy dog morse code",

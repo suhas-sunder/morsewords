@@ -24,9 +24,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Audio Quiz | Listen and Type the Answer",
+    title: "Morse Code Audio Quiz | Test Listening Accuracy",
     description:
-      "Take an audio-only Morse code quiz. Listen to the prompt, type what you hear, check your answer, and repeat the signal.",
+      "Take a scored Morse code audio quiz with 10 listening prompts, answer checks, accuracy, streaks, and shareable results.",
     path: CANONICAL_PATH,
     keywords: "morse code audio quiz, morse listening test, morse code test audio",
   });

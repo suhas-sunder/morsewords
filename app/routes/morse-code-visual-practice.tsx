@@ -21,9 +21,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Visual Morse Code Practice with Flashing Light | MorseWords",
+    title: "Visual Morse Code Practice | Flashing Light Trainer",
     description:
-      "Practice Morse visually with a flashing bulb. Watch the signal, guess the message, reveal the answer, and move into visual quiz mode.",
+      "Practice Morse code visually with a flashing-light trainer. Set speed, watch the signal, reveal the answer, and move into the scored visual quiz.",
     path: CANONICAL_PATH,
     keywords:
       "visual morse code practice, flashing morse code, morse code light practice, morse code visual trainer",
@@ -128,7 +128,14 @@ export default function MorseCodeVisualPractice() {
               </label>
               <label className="mt-5 block">
                 <span className="text-sm font-extrabold text-sky-950">Speed: {wpm} WPM</span>
-                <input type="range" min={6} max={24} value={wpm} onChange={(event) => setWpm(Number(event.target.value))} className="mt-3 w-full" />
+                <input
+                  type="range"
+                  min={6}
+                  max={24}
+                  value={wpm}
+                  onChange={(event) => setWpm(Number(event.target.value))}
+                  className="mt-3 w-full cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300"
+                />
               </label>
               <button
                 type="button"
@@ -161,4 +168,3 @@ export default function MorseCodeVisualPractice() {
     </div>
   );
 }
-

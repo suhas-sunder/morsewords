@@ -3,11 +3,11 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/misc.privacy-policy";
 export const meta: Route.MetaFunction = () => {
-  const canonical = "https://www.morsewords.com/privacy";
+  const canonical = "https://www.morsewords.com/misc/privacy-policy";
 
   const title = "Privacy Policy | MorseWords";
   const description =
-    "See what MorseWords stores locally, what analytics events are tracked, and what data is not collected from your Morse messages or exports.";
+    "See what MorseWords stores locally, how analytics are handled, and what is not collected from Morse messages, audio exports, or worksheet content.";
 
   const ogImage = "https://www.morsewords.com/og/morsewords-privacy.jpg";
 
@@ -37,9 +37,9 @@ export const meta: Route.MetaFunction = () => {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="pt-8 mx-10 flex flex-col items-center justify-center gap-8 font-nunito text-skull-brown">
-      <header className="max-w-[1200px] w-full flex flex-col gap-3">
-        <nav aria-label="Breadcrumb" className="text-sm font-lato">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 text-slate-800">
+      <header className="w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+        <nav aria-label="Breadcrumb" className="text-sm font-semibold text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
               <Link to="/" className="hover:underline">
@@ -59,8 +59,15 @@ export default function PrivacyPolicy() {
           </ol>
         </nav>
 
-        <h1 className="mb-5 flex py-2 text-4xl">PRIVACY POLICY</h1>
-        <h2 className="flex py-2 text-2xl">Last updated January 10, 2026</h2>
+        <p className="mt-6 text-sm font-extrabold uppercase tracking-[0.22em] text-sky-800">
+          MorseWords privacy
+        </p>
+        <h1 className="mt-3 text-4xl font-black leading-tight text-sky-950">
+          Privacy Policy
+        </h1>
+        <h2 className="mt-3 text-lg font-bold text-slate-700">
+          Last updated January 10, 2026
+        </h2>
 
         <p className="flex flex-col gap-4 py-2">
           <span>
@@ -99,7 +106,7 @@ export default function PrivacyPolicy() {
         </p>
       </header>
 
-      <main className="flex max-w-[1200px] flex-col gap-8">
+      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">SUMMARY OF KEY POINTS</h2>
           <p>
@@ -244,7 +251,7 @@ export default function PrivacyPolicy() {
           <p>
             Like many businesses, we also collect information through cookies
             and similar technologies. You can find out more about this in our
-            Cookie Notice: https://www.morsewords.com/cookiespolicy.
+            Cookie Notice: https://www.morsewords.com/misc/cookies-policy.
           </p>
 
           <p>

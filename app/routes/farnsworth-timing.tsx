@@ -20,9 +20,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Farnsworth Timing for Morse Code Practice | MorseWords",
+    title: "Farnsworth Timing for Morse Code | Learn Better by Ear",
     description:
-      "Learn how Farnsworth timing separates character speed from effective speed so Morse learners can hear fast character shapes with easier spacing.",
+      "Learn how Farnsworth timing separates character speed from effective speed so you can hear crisp Morse patterns while keeping practice copy manageable.",
     path: CANONICAL_PATH,
     keywords:
       "Farnsworth timing, morse code Farnsworth, character speed, effective speed, morse code audio practice",
