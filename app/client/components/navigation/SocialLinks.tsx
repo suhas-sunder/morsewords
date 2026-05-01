@@ -20,20 +20,30 @@ import dev_png from "../../assets/images/dev_icon.png";
 import dev_webp from "../../assets/images/dev_icon.webp";
 import github_png from "../../assets/images/github_icon.png";
 import github_webp from "../../assets/images/github_icon.webp";
-import { Link } from "react-router";
+
+type SocialLink = {
+  id: number;
+  name: string;
+  label: string;
+  url: string;
+  pngImg: string;
+  webpImg: string;
+};
 
 function SocialLinks() {
-  const linksData = [
+  const linksData: SocialLink[] = [
     {
       id: 1,
       name: "Facebook",
+      label: "Updates",
       url: "https://www.facebook.com/profile.php?id=61566613301910",
       pngImg: facebook_png,
       webpImg: facebook_webp,
     },
     {
       id: 2,
-      name: "Twitter (X)",
+      name: "Twitter / X",
+      label: "Short posts",
       url: "https://x.com/WordSkullGame",
       pngImg: twitter_png,
       webpImg: twitter_webp,
@@ -41,6 +51,7 @@ function SocialLinks() {
     {
       id: 3,
       name: "Pinterest",
+      label: "Reference boards",
       url: "https://ca.pinterest.com/WordSkull",
       pngImg: pinterest_png,
       webpImg: pinterest_webp,
@@ -48,6 +59,7 @@ function SocialLinks() {
     {
       id: 4,
       name: "LinkedIn",
+      label: "Company page",
       url: "https://www.linkedin.com/company/104154929/",
       pngImg: linkedin_png,
       webpImg: linkedin_webp,
@@ -55,6 +67,7 @@ function SocialLinks() {
     {
       id: 5,
       name: "Instructables",
+      label: "Guides",
       url: "https://www.instructables.com/member/SunderOrigami/",
       pngImg: instructables_png,
       webpImg: instructables_webp,
@@ -62,6 +75,7 @@ function SocialLinks() {
     {
       id: 6,
       name: "Reddit",
+      label: "Community",
       url: "https://www.reddit.com/r/WordSkull/",
       pngImg: reddit_png,
       webpImg: reddit_webp,
@@ -69,6 +83,7 @@ function SocialLinks() {
     {
       id: 7,
       name: "TikTok",
+      label: "Short videos",
       url: "https://www.tiktok.com/@wordskull",
       pngImg: tiktok_png,
       webpImg: tiktok_webp,
@@ -76,6 +91,7 @@ function SocialLinks() {
     {
       id: 8,
       name: "YouTube",
+      label: "Videos",
       url: "https://www.youtube.com/@WordSkullYT",
       pngImg: youtube_png,
       webpImg: youtube_webp,
@@ -83,6 +99,7 @@ function SocialLinks() {
     {
       id: 9,
       name: "Dev.to",
+      label: "Build notes",
       url: "https://dev.to/productivitygarden",
       pngImg: dev_png,
       webpImg: dev_webp,
@@ -90,6 +107,7 @@ function SocialLinks() {
     {
       id: 10,
       name: "GitHub",
+      label: "Code",
       url: "https://github.com/suhas-sunder/EmojiKitchenGame",
       pngImg: github_png,
       webpImg: github_webp,
@@ -97,47 +115,72 @@ function SocialLinks() {
     {
       id: 11,
       name: "Instagram",
+      label: "Posts",
       url: "https://www.instagram.com/productivitygarden/",
       pngImg: insta_png,
       webpImg: insta_webp,
     },
   ];
+
   return (
-    <div className="flex flex-col gap-8 w-full justify-center items-center pb-[5em] bg-gray-50 pt-3">
-      <h2
-        className={`text-neutral-900 flex py-2 text-2xl text-center sm:text-5xl font-lora mt-4 tracking-wide`}
-      >
-        Follow MorseWords On Social Media
-      </h2>
-      <ul className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-12 md:gap-6 justify-center lg:pl-8 items-center">
-        {linksData.map((link) => (
-          <li key={link.id}>
-            <Link
-              className={
-                "text-pumpkin-orange group hover:text-amber-600 font-lora flex gap-3 items-center"
-              }
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              to={link.url}
-            >
-              <picture className="group-hover:scale-105 block">
-                <source srcSet={`${link.webpImg}`} type="image/webp" />
-                <source srcSet={`${link.pngImg}`} type="image/png" />
-                <img
-                  src={link.pngImg}
-                  alt={link.name + " icon that links to social media page"}
-                  className="w-[28px] h-[28px] block"
-                  width="48"
-                  height="48"
-                  loading="lazy"
-                />
-              </picture>
-              <h3>{link.name}</h3>
-            </Link>{" "}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <section className="w-full bg-slate-50 px-4 py-10 sm:px-6 sm:py-12 mt-10 sm:mt-12">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div className="border-b border-slate-200 px-5 py-6 sm:px-8">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-sky-800" />
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
+              MorseWords social links
+            </span>
+          </div>
+        </div>
+
+        <div className="px-5 py-5 sm:px-8 sm:py-6">
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {linksData.map((link) => (
+              <li key={link.id}>
+                <a
+                  className="group flex h-full cursor-pointer items-center gap-4 rounded-xl border border-slate-200 bg-white p-4 text-slate-900 transition hover:border-sky-300 hover:bg-sky-50/70 hover:shadow-sm"
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  aria-label={`Open MorseWords on ${link.name}`}
+                >
+                  <picture className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 transition group-hover:border-sky-200 group-hover:bg-white">
+                    <source srcSet={link.webpImg} type="image/webp" />
+                    <source srcSet={link.pngImg} type="image/png" />
+                    <img
+                      src={link.pngImg}
+                      alt=""
+                      className="block h-7 w-7 transition group-hover:scale-105"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+
+                  <span className="min-w-0">
+                    <span className="block text-base font-extrabold leading-tight text-sky-950">
+                      {link.name}
+                    </span>
+                    <span className="mt-1 block font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      {link.label}
+                    </span>
+                  </span>
+
+                  <span
+                    className="ml-auto text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-sky-800"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }
 

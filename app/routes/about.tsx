@@ -7,6 +7,8 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/about";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+const CREATOR_URL = "https://www.suhassunder.com";
+const CREATOR_LINKEDIN = "https://www.linkedin.com/in/s-sunder";
 
 export function links() {
   return [
@@ -19,12 +21,12 @@ export function links() {
 
 export function meta(_: Route.MetaArgs) {
   return seoMeta({
-    title: "About MorseWords - Free Morse Code Translator Tools",
+    title: "About MorseWords | Morse Code Translator and Practice Tools",
     description:
-      "MorseWords is a free Morse code toolkit for translating text, decoding Morse, playing audio, practicing drills, and looking up symbols.",
+      "Learn what MorseWords is, who built it, and how its Morse code translator, decoder, audio, typing, practice, and lookup tools are designed.",
     path: CANONICAL_PATH,
     keywords:
-      "about morsewords, morse code tools, morse code translator, morse code audio, morse code practice",
+      "about morsewords, morse code tools, morse code translator, morse code decoder, morse code audio, morse code practice",
   });
 }
 
@@ -36,7 +38,9 @@ function SectionCard(props: {
   return (
     <section id={props.id} style={styles.section}>
       <div style={{ ...styles.card, ...styles.cardPad }}>
-        <h2 style={styles.sectionTitle}>{props.title}</h2>
+        <h2 className="text-sky-800 font-bold" style={styles.sectionTitle}>
+          {props.title}
+        </h2>
         <div
           style={{ color: "#111317", lineHeight: 1.65, fontSize: "1.02rem" }}
         >
@@ -54,6 +58,8 @@ export default function About() {
     name: "About MorseWords",
     url: CANONICAL_URL,
     inLanguage: "en",
+    description:
+      "MorseWords is a practical Morse code toolkit for translating, decoding, listening, typing, practicing, and looking up International Morse code.",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL + "/" },
     about: {
       "@type": "SoftwareApplication",
@@ -62,12 +68,30 @@ export default function About() {
       operatingSystem: "All",
       url: SITE_URL + "/",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      featureList: [
+        "Text to Morse code translation",
+        "Morse code decoding",
+        "Morse code audio playback",
+        "Morse code typing practice",
+        "Morse code drills",
+        "Morse code symbol lookup",
+      ],
     },
     author: {
       "@type": "Person",
       name: "Suhas Sunder",
       jobTitle: "Software Developer",
-      url: "https://www.suhassunder.com",
+      url: CREATOR_URL,
+      sameAs: [CREATOR_URL, CREATOR_LINKEDIN],
+      knowsAbout: [
+        "Full-stack web development",
+        "React",
+        "TypeScript",
+        "Remix",
+        "Node.js",
+        "User interface development",
+        "Web utilities",
+      ],
     },
   };
 
@@ -99,13 +123,14 @@ export default function About() {
               About MorseWords
             </h1>
             <p style={styles.lead}>
-              Practical Morse code utilities built for fast conversion, clean
-              playback, and focused practice.
+              MorseWords is a practical Morse code toolkit for converting text,
+              decoding Morse, playing audio, practicing patterns, and looking up
+              symbols without extra setup.
             </p>
           </div>
           <a
             href="/how-to-use"
-            className="rounded-xl px-4 py-2 font-semibold cursor-pointer transition-colors"
+            className="rounded-xl px-4 py-2 font-semibold cursor-pointer transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500"
             style={{
               border: "1px solid #0b2447",
               background: "#0b2447",
@@ -122,15 +147,15 @@ export default function About() {
           style={{ alignItems: "center" }}
         >
           {[
-            ["#what-this-is", "What this is"],
+            ["#what-morsewords-does", "What MorseWords does"],
+            ["#tool-design", "Tool design"],
             ["#what-this-is-not", "What this is not"],
-            ["#tools-not-courses", "Tools, not courses"],
             ["#author", "Author"],
           ].map(([href, label]) => (
             <a
               key={href}
               href={href}
-              className="rounded-full border px-3 py-2 text-sm font-semibold cursor-pointer transition-colors hover:bg-white"
+              className="rounded-full border px-3 py-2 text-sm font-semibold cursor-pointer transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
               style={{ borderColor: "#e6e8ef", background: "#f7f8fb" }}
             >
               {label}
@@ -138,121 +163,154 @@ export default function About() {
           ))}
         </div>
 
-        <SectionCard id="what-this-is" title="What this is">
+        <SectionCard id="what-morsewords-does" title="What MorseWords does">
           <p>
-            MorseWords is a small suite of browser-based tools for working with
-            International Morse code. It’s designed for people who want an
-            immediate, reliable workflow: translate text to Morse, decode Morse
-            back to text, listen to a generated Morse string at a chosen speed,
-            run quick drills, and look up patterns without hunting through PDFs
-            or scattered charts.
+            MorseWords is built for people who need a direct way to work with
+            Morse code. The site focuses on common jobs: converting plain text
+            into Morse, decoding Morse back into readable text, listening to
+            generated Morse audio, practicing recognition, typing dots and
+            dashes, and checking symbols in a reference table.
           </p>
-          <p>
-            The emphasis is utility and clarity. The interfaces are
-            intentionally direct, with fast copy controls and predictable
-            formatting rules so you can move between tools without re-learning
-            how each one behaves.
+
+          <p style={{ marginTop: 10 }}>
+            The goal is not to make Morse code feel complicated. The goal is to
+            make the result easy to generate, check, copy, hear, and reuse. Each
+            tool is designed around a specific task so you can get the output
+            without digging through scattered charts, PDF tables, or overloaded
+            training pages.
           </p>
+
           <ul style={{ marginTop: 10, paddingLeft: 18 }}>
             <li>
-              <strong>Translate:</strong> convert text to Morse or decode Morse
-              to text.
+              <strong>Translator:</strong> convert letters, numbers, and
+              supported punctuation into Morse code.
             </li>
             <li>
-              <strong>Audio:</strong> generate playback at configurable WPM and
-              tone.
+              <strong>Decoder:</strong> turn dots, dashes, letter gaps, and word
+              gaps back into readable text.
             </li>
             <li>
-              <strong>Practice:</strong> drills with instant feedback and
-              minimal friction.
+              <strong>Audio:</strong> listen to Morse playback with practical
+              speed and tone controls.
             </li>
             <li>
-              <strong>Typing:</strong> type dots and dashes and see decoded
-              output.
+              <strong>Typing:</strong> type Morse patterns and see the decoded
+              result as you work.
             </li>
             <li>
-              <strong>Dictionary:</strong> filterable lookup tables with copy
-              controls.
+              <strong>Practice:</strong> run focused drills for recognition and
+              recall.
+            </li>
+            <li>
+              <strong>Dictionary:</strong> look up Morse symbols quickly and
+              copy what you need.
             </li>
           </ul>
         </SectionCard>
 
-        <SectionCard id="what-this-is-not" title="What this is not">
+        <SectionCard id="tool-design" title="How the tools are designed">
           <p>
-            MorseWords is not trying to be everything for everyone. The goal is
-            to keep the scope narrow so the tools stay fast, dependable, and
-            easy to verify.
+            MorseWords is meant to behave like a utility, not a maze. The pages
+            are intentionally simple, with clear inputs, readable outputs, and
+            copy-friendly formatting. Settings are included when they materially
+            change the result, such as playback speed or tone, but the tools
+            avoid unnecessary controls that slow down basic use.
           </p>
-          <ul style={{ marginTop: 10, paddingLeft: 18 }}>
-            <li>
-              <strong>Not a course:</strong> there’s no curriculum, tracking, or
-              “lesson plan” flow.
-            </li>
-            <li>
-              <strong>Not a community platform:</strong> no accounts, feeds, or
-              social features.
-            </li>
-            <li>
-              <strong>Not a certification prep site:</strong> no test programs
-              or completion claims.
-            </li>
-            <li>
-              <strong>Not a history encyclopedia:</strong> no long-form articles
-              or storytelling.
-            </li>
-          </ul>
-          <p style={{ marginTop: 10 }}>
-            If you want structured learning, there are plenty of excellent
-            training resources elsewhere. MorseWords is for the moments in
-            between: when you need a conversion, a clean audio string, or a
-            quick reference, right now.
-          </p>
-        </SectionCard>
 
-        <SectionCard id="tools-not-courses" title="Tools, not courses">
-          <p>
-            “Tools, not courses” is the operating rule behind the site. It
-            shapes what gets added and what stays out. Each page is built around
-            a single job with minimal setup and clear outputs. That means:
+          <p style={{ marginTop: 10 }}>
+            The site uses International Morse code conventions and keeps spacing
+            rules predictable across the toolkit. That matters because Morse
+            code is not only about dots and dashes. Letter gaps, word gaps,
+            slash separators, and unsupported characters can all affect whether
+            a decoded result is understandable.
           </p>
+
           <ul style={{ marginTop: 10, paddingLeft: 18 }}>
             <li>
-              <strong>Low cognitive overhead:</strong> settings are limited to
-              what materially changes the result.
+              <strong>Fast first:</strong> pages are built to load quickly and
+              avoid unnecessary friction.
             </li>
             <li>
-              <strong>Copy-first outputs:</strong> if you’re here, you likely
-              want to paste the result somewhere else.
+              <strong>Clear output:</strong> results are formatted so they are
+              easy to read, copy, paste, or listen to.
             </li>
             <li>
-              <strong>Consistent conventions:</strong> spacing and decoding
-              expectations are stable across tools.
+              <strong>Predictable rules:</strong> translation and decoding
+              behavior should be consistent from tool to tool.
             </li>
             <li>
-              <strong>No upsell funnel:</strong> the value is the tool working
-              quickly and correctly.
+              <strong>No account required:</strong> the core tools are available
+              without sign-up or a user profile.
             </li>
           </ul>
-          <p style={{ marginTop: 10 }}>
-            If you’re new to the tool set, use the usage guide for the exact
-            input rules and workflow across pages.
-          </p>
+
           <p style={{ marginTop: 12 }}>
             <a
               href="/how-to-use"
-              className="underline hover:no-underline cursor-pointer font-semibold"
+              className="underline hover:no-underline cursor-pointer font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
             >
-              Open the “How to use” guide
+              Open the MorseWords usage guide
             </a>
           </p>
         </SectionCard>
 
-        <SectionCard id="author" title="Author">
+        <SectionCard id="what-this-is-not" title="What this is not">
           <p>
-            MorseWords is built and maintained by <strong>Suhas Sunder</strong>{" "}
-            (Software Developer). I build production web applications and small,
-            focused utilities that prioritize speed, correctness, and clean UX.
+            MorseWords is not trying to replace every Morse code learning
+            resource. It is a focused tool site. That means it is useful for
+            quick conversion, playback, practice, and lookup, but it does not
+            claim to be a full training program or certification path.
           </p>
+
+          <ul style={{ marginTop: 10, paddingLeft: 18 }}>
+            <li>
+              <strong>Not a full course:</strong> there is no long curriculum,
+              progress path, or formal lesson system.
+            </li>
+            <li>
+              <strong>Not certification prep:</strong> the tools do not promise
+              exam readiness or official qualification.
+            </li>
+            <li>
+              <strong>Not emergency guidance:</strong> the site is for learning,
+              reference, and utility use, not safety-critical communication.
+            </li>
+            <li>
+              <strong>Not a community platform:</strong> there are no accounts,
+              feeds, messages, or social features.
+            </li>
+          </ul>
+
+          <p style={{ marginTop: 10 }}>
+            That narrow scope is intentional. MorseWords should stay useful by
+            doing a small set of Morse code tasks clearly and reliably.
+          </p>
+        </SectionCard>
+
+        <SectionCard id="author" title="Built and maintained by">
+          <p>
+            MorseWords is built and maintained by <strong>Suhas Sunder</strong>,
+            a software developer based in the Toronto area. I build production
+            web applications and focused web utilities with an emphasis on
+            practical workflows, fast interfaces, and clear user experience.
+          </p>
+
+          <p style={{ marginTop: 10 }}>
+            My background includes full-stack web development with React,
+            TypeScript, Remix, Node.js, Express, PostgreSQL, Prisma, and
+            responsive UI development. I also have a Master’s degree in
+            Electrical and Computer Engineering from Ontario Tech University.
+          </p>
+
+          <p style={{ marginTop: 10 }}>
+            MorseWords exists because Morse code tools often fall into two
+            extremes: overly basic converters with weak surrounding utilities,
+            or dense training resources that are more than someone needs for a
+            quick task. This site is meant to sit in the middle: useful enough
+            for repeated use, but simple enough that the main action is always
+            obvious.
+          </p>
+
           <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
             <div
               style={{
@@ -267,38 +325,44 @@ export default function About() {
               </div>
               <div style={{ color: "#5a616c", marginTop: 4 }}>
                 Full-stack web development: React, TypeScript, Remix, Node.js,
-                Express, PostgreSQL, Prisma.
+                Express, PostgreSQL, Prisma, and responsive interface work.
               </div>
               <div style={{ color: "#5a616c", marginTop: 4 }}>
-                Master’s in Electrical and Computer Engineering (Dec 2025),
-                focused on applied software engineering.
+                Master’s in Electrical and Computer Engineering, Ontario Tech
+                University.
               </div>
             </div>
 
             <div style={{ ...styles.card, padding: 14, borderRadius: 14 }}>
-              <div style={{ fontWeight: 800 }}>Portfolio</div>
-              <div style={{ marginTop: 6 }}>
+              <div style={{ fontWeight: 800 }}>More about the developer</div>
+              <div
+                style={{
+                  marginTop: 8,
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 10,
+                }}
+              >
                 <a
-                  href="https://www.suhassunder.com"
-                  className="underline hover:no-underline cursor-pointer font-semibold"
+                  href={CREATOR_URL}
+                  className="underline hover:no-underline cursor-pointer font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
                 >
-                  www.suhassunder.com
+                  Portfolio
+                </a>
+                <a
+                  href={CREATOR_LINKEDIN}
+                  className="underline hover:no-underline cursor-pointer font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                >
+                  LinkedIn
                 </a>
               </div>
-              <div style={{ color: "#5a616c", marginTop: 6 }}>
-                You can review skills and projects there. The intent here is
-                simple: make it obvious there’s a real person behind the site,
-                and that the scope is intentionally maintained.
+              <div style={{ color: "#5a616c", marginTop: 8 }}>
+                The point is simple: MorseWords is not an anonymous throwaway
+                converter. It is a maintained utility site with a real person
+                behind it and a narrow product direction.
               </div>
             </div>
           </div>
-
-          <p style={{ marginTop: 12 }}>
-            If something looks off, inconsistent, or unclear, that’s a signal to
-            tighten the tool, not expand the story around it. The trust moat is
-            boring on purpose: predictable behavior, transparent intent, and
-            pages that do what they claim.
-          </p>
         </SectionCard>
 
         <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
@@ -306,7 +370,7 @@ export default function About() {
             <li>
               <a
                 href="/"
-                className="underline hover:no-underline cursor-pointer"
+                className="underline hover:no-underline cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
               >
                 Home
               </a>

@@ -64,8 +64,10 @@ export default function Footer() {
 
           <div className="text-center leading-relaxed">
             <div className="mb-1 text-gray-400">
-              © {year}{" "}
+              © 2025{" "}-{" "}{year}{" "}
               <span className="font-semibold text-white">MorseWords</span>
+              <span className=""> ~</span>
+              <span className=""> By Suhas Sunder</span>
             </div>
 
             <div className="text-sky-200">

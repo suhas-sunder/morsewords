@@ -46,16 +46,10 @@ export default function TranslatorSectionsBasic({
   plainValidationValue,
 }: Props) {
   const [copied, setCopied] = useState<string | null>(null);
-
-  // Unified tool direction
   const [direction, setDirection] = useState<"encode" | "decode">("encode");
 
-  // Audio + mobile feedback settings (persisted)
   const player = useAudio();
 
-  // Speed slider controls character speed directly.
-  // Hydration-safe defaults first (SSR + first client render must match), then
-  // load persisted values after mount.
   const [isHydrated, setIsHydrated] = useState(false);
 
   const [toneHz, setToneHz] = useState<number>(600);
@@ -71,7 +65,6 @@ export default function TranslatorSectionsBasic({
   const [farnsworthWpm, setFarnsworthWpm] = useState<number>(20);
   const [advancedOpen, setAdvancedOpen] = useState<boolean>(false);
 
-  // Load persisted settings after mount (prevents SSR/client mismatch).
   useEffect(() => {
     const nextTone = readNum("mw_hz", 600);
     const nextVol = readNum("mw_vol", 0.75);
@@ -101,8 +94,8 @@ export default function TranslatorSectionsBasic({
   }, []);
 
   useEffect(() => {
-    // Don't write defaults during the hydration pass.
     if (!isHydrated) return;
+
     writeNum("mw_wpm", charWpm);
     writeNum("mw_hz", toneHz);
     writeNum("mw_vol", volume);
@@ -131,19 +124,20 @@ export default function TranslatorSectionsBasic({
     const mq = window.matchMedia?.("(max-width: 1100px)");
     const update = () => setIsMobile(!!mq?.matches);
     update();
+
     if (!mq) return;
+
     try {
       mq.addEventListener("change", update);
       return () => mq.removeEventListener("change", update);
     } catch {
-      // Safari
       mq.addListener?.(update);
       return () => mq.removeListener?.(update);
     }
   }, []);
 
-  // Screen flash overlay (light feedback)
   const [flashOn, setFlashOn] = useState(false);
+
   useEffect(() => {
     const handler = (e: Event) => {
       if (!flash) return;
@@ -151,6 +145,7 @@ export default function TranslatorSectionsBasic({
       setFlashOn(true);
       window.setTimeout(() => setFlashOn(false), Math.max(30, ms));
     };
+
     window.addEventListener("morsewords:flash", handler as any);
     return () => window.removeEventListener("morsewords:flash", handler as any);
   }, [flash]);
@@ -163,13 +158,12 @@ export default function TranslatorSectionsBasic({
   const outputValue = direction === "encode" ? morseA : textB;
 
   const activeMorseForPlayback = useMemo(() => {
-    // Always play Morse. If direction is decode, play the user's morse input.
     return direction === "encode" ? morseA : morseB;
   }, [direction, morseA, morseB]);
 
-  // Copy helper
   const handleCopy = async (text: string, label: string) => {
     if (!text) return;
+
     try {
       await navigator.clipboard.writeText(text);
       setCopied(label);
@@ -179,7 +173,6 @@ export default function TranslatorSectionsBasic({
     }
   };
 
-  // Validation
   const unsupportedPlain = useMemo(() => {
     return getUnsupportedTextCharacters(plainValidationValue ?? plainA);
   }, [plainA, plainValidationValue]);
@@ -188,7 +181,7 @@ export default function TranslatorSectionsBasic({
     const issues: string[] = [];
     if (!morseB) return issues;
 
-    const { invalidChars, normalized } = normalizeMorseForDecoding(morseB);
+    const { invalidChars } = normalizeMorseForDecoding(morseB);
     if (invalidChars.length) {
       issues.push(
         `Invalid character${invalidChars.length > 1 ? "s" : ""}: ${invalidChars.join(" ")}`,
@@ -199,13 +192,11 @@ export default function TranslatorSectionsBasic({
   }, [morseB]);
 
   const applyExampleText = (text: string) => {
-    // Examples should work from either direction without feeling like the UI "jumped".
     if (direction === "encode") {
       setPlainA(text);
       return;
     }
-    // If the user is in Morse → Text, insert the Morse version into the Morse input.
-    // This preserves intent (decode) while still making the chips useful.
+
     setMorseB(textToMorse(text));
   };
 
@@ -220,7 +211,7 @@ export default function TranslatorSectionsBasic({
 
   const handlePlay = async () => {
     if (!canPlay) return;
-    // Prefer advanced character speed controls if set
+
     const effectiveChar = clampNum(charWpm, 5, 60);
     const effectiveF = clampNum(farnsworthWpm, 5, 60);
 
@@ -237,7 +228,6 @@ export default function TranslatorSectionsBasic({
     });
   };
 
-  // Apply option changes live during playback.
   useEffect(() => {
     (player as any)?.setLiveOptions?.({
       code: activeMorseForPlayback,
@@ -266,6 +256,7 @@ export default function TranslatorSectionsBasic({
 
   const handleSaveAudio = async () => {
     if (!canPlay || !soundOn) return;
+
     try {
       const blob = await player.renderWav({
         code: activeMorseForPlayback,
@@ -276,6 +267,7 @@ export default function TranslatorSectionsBasic({
         soundEnabled: true,
         preset,
       });
+
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -316,13 +308,13 @@ export default function TranslatorSectionsBasic({
         return;
       }
 
-      // Fallback: download image + copy text
       const url = URL.createObjectURL(file);
       const a = document.createElement("a");
       a.href = url;
       a.download = "morsewords.png";
       a.click();
       URL.revokeObjectURL(url);
+
       await navigator.clipboard.writeText(shareText);
       setCopied("share");
       setTimeout(() => setCopied(null), 1400);
@@ -335,294 +327,350 @@ export default function TranslatorSectionsBasic({
     setDirection((d) => (d === "encode" ? "decode" : "encode"));
   };
 
+  const playbackStatus = player.isSupported
+    ? player.state === "idle"
+      ? "Ready"
+      : player.state
+    : "Audio unavailable";
+
   return (
     <div className="mb-8">
-      {/* Light feedback overlay */}
       {flashOn && (
         <div
-          className="fixed inset-0 z-[999] pointer-events-none"
+          className="pointer-events-none fixed inset-0 z-[999]"
           style={{ background: "rgba(255,255,255,0.65)" }}
         />
       )}
 
-      <section className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <div className="mb-4 flex flex-col justify-center items-center text-center">
+      <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div className="border-b border-slate-200 px-4 py-4 sm:px-6 sm:py-4">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-sky-800" />
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
+              Live translator
+            </span>
+          </div>
+
           <h1
             style={styles.h1}
-            className="font-bold !text-2xl sm:!text-4xl text-sky-800"
+            className="mt-2 !text-[2.2rem] font-extrabold leading-[1.05] tracking-tight text-sky-950 sm:!text-[3rem]"
           >
             {title}
           </h1>
+
           {subtitle ?? (
-            <p className="mt-2 hidden sm:flex text-sm sm:text-lg">
-              All-in-one Morse code translator and decoder
-              <span className="hidden sm:inline-flex">
-                : encode text into Morse, or decode Morse back to readable text.
-              </span>
+            <p className="mt-2 max-w-none text-base leading-7 text-slate-700 sm:text-[1.08rem] xl:whitespace-nowrap">
+              Encode text into Morse, decode Morse back to text, and play the signal with timing controls.
             </p>
           )}
         </div>
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <div className="inline-flex rounded-xl border border-gray-200 bg-gray-50 p-1 w-full sm:w-auto">
-              <button
-                onClick={() => setDirection("encode")}
-                className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/2 sm:w-auto ${
-                  direction === "encode"
-                    ? "bg-white shadow-sm text-neutral-900"
-                    : "text-gray-600 hover:bg-white"
-                }`}
-                aria-pressed={direction === "encode"}
-              >
-                Text → Morse
-              </button>
-              <button
-                onClick={() => setDirection("decode")}
-                className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/2 sm:w-auto ${
-                  direction === "decode"
-                    ? "bg-white shadow-sm text-neutral-900"
-                    : "text-gray-600 hover:bg-white"
-                }`}
-                aria-pressed={direction === "decode"}
-              >
-                Morse → Text
-              </button>
-            </div>
-            {(isMobile ? examples.slice(0, 1) : examples).map((ex) => (
-              <button
-                key={ex.label}
-                onClick={ex.set}
-                className="border cursor-pointer border-[#e6e8ef] px-3 py-1.5 rounded-full text-sm hover:bg-gray-50 active:scale-95 transition"
-              >
-                Try “{ex.label}”
-              </button>
-            ))}
-            <button
-              onClick={handleSwap}
-              className="hidden md:flex sm:ml-auto items-center justify-center gap-2 px-3 py-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 cursor-pointer active:scale-95 transition"
-              title="Swap direction"
-            >
-              <span className="text-sm font-semibold text-neutral-900">
-                Swap
-              </span>
-              <span aria-hidden className="text-gray-500">
-                ⇄
-              </span>
-            </button>
-          </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <label htmlFor={liveInputId} className="font-semibold">
-                {inputLabel}
-              </label>
-              <textarea
-                id={liveInputId}
-                className="w-full mt-2 border rounded-md p-3 font-mono min-h-[11rem] resize-y outline-sky-500 border-sky-500"
-                value={inputValue}
-                onChange={(e) =>
-                  direction === "encode"
-                    ? setPlainA(e.target.value)
-                    : setMorseB(e.target.value)
-                }
-                placeholder={
-                  direction === "encode"
-                    ? "Example: Hello World"
-                    : "Example: ... --- ..."
-                }
-                autoCapitalize={direction === "encode" ? "characters" : "off"}
-                autoCorrect="off"
-                spellCheck={false}
-              />
-              <div className="mt-2 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (direction === "encode") setPlainA("");
-                    else setMorseB("");
-                  }}
-                  className="cursor-pointer px-3 py-1.5 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 text-sm font-semibold text-gray-700 active:scale-95 transition"
-                >
-                  Clear input
-                </button>
-              </div>
-              {direction === "encode" &&
-                Object.keys(unsupportedPlain).length > 0 && (
-                  <p className="mt-2 text-xs text-amber-600">
-                    Unsupported:{" "}
-                    {Object.entries(unsupportedPlain)
-                      .map(([ch, n]) => `${ch}×${n}`)
-                      .join(", ")}{" "}
-                    (ignored)
-                  </p>
-                )}
-              {direction === "decode" && morseInputIssues.length > 0 && (
-                <p className="mt-2 text-xs text-amber-600">
-                  {morseInputIssues.join(" ")}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label htmlFor="mw_output" className="font-semibold">
-                {outputLabel}
-              </label>
-              <textarea
-                id="mw_output"
-                className="w-full mt-2 rounded-md p-3 font-mono min-h-[11rem] resize-y bg-sky-50 outline-sky-500 border-sky-500"
-                value={outputValue}
-                readOnly
-                placeholder={
-                  direction === "encode" ? "... --- ..." : "Example: SOS"
-                }
-              />
-              <div className="mt-2 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    // Output is derived; clear the source input for this direction.
-                    if (direction === "encode") setPlainA("");
-                    else setMorseB("");
-                  }}
-                  className="cursor-pointer px-3 py-1.5 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 text-sm font-semibold text-gray-700 active:scale-95 transition"
-                >
-                  Clear output
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row sm:items-center  gap-2">
-            <div className="flex justify-center items-center gap-2 flex-wrap">
-              <button
-                onClick={() => handleCopy(outputValue, "output")}
-                disabled={!outputValue}
-                className={`flex items-center gap-2 px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition ${
-                  outputValue
-                    ? "bg-neutral-900 hover:bg-neutral-800 text-sky-200 hover:text-white"
-                    : "bg-gray-400 text-gray-200 cursor-not-allowed"
-                }`}
-              >
-                <CopyIcon size={18} title="Copy output" />
-                <span>Copy Output</span>
-              </button>
-
-              <button
-                onClick={handleShare}
-                disabled={!outputValue}
-                className={`flex items-center gap-2 px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition border ${
-                  outputValue
-                    ? "border-neutral-900 text-neutral-900 hover:bg-gray-50"
-                    : "border-gray-300 text-gray-400 cursor-not-allowed"
-                }`}
-              >
-                <ShareIcon size={18} title="Share output" />
-                <span>Share</span>
-              </button>
-
-              {copied === "output" && (
-                <p className="text-sm text-green-600">Copied</p>
-              )}
-              {copied === "share" && (
-                <p className="text-sm text-green-600">
-                  Saved image and copied text
-                </p>
-              )}
-            </div>
-
-            <span className="sm:ml-auto text-sm text-gray-500">
-              3 spaces = letters, 7 spaces = words. “/” also works for words.
-            </span>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <button
-              onClick={() => {
-                if (player.state === "idle") {
-                  handlePlay();
-                } else if (player.state === "playing") {
-                  player.pause();
-                } else if (player.state === "paused") {
-                  player.resume();
-                }
-              }}
-              disabled={
-                player.state === "playing"
-                  ? !player.isSupported
-                  : !canPlay || !player.isSupported
-              }
-              className={`flex justify-center items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
-                player.state === "playing"
-                  ? player.isSupported
-                    ? "border border-neutral-900 text-neutral-900 hover:bg-gray-50"
-                    : "border border-gray-200 text-gray-400 cursor-not-allowed"
-                  : canPlay && player.isSupported
-                    ? "bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white"
-                    : "bg-gray-100 text-gray-400 cursor-not-allowed"
-              }`}
-            >
-              {player.state === "playing" ? (
-                <PauseIcon size={22} title="Pause timer" />
-              ) : (
-                <PlayIcon
-                  size={22}
-                  title={
-                    player.state === "paused" ? "Resume timer" : "Start timer"
-                  }
-                />
-              )}
-
-              <span>
-                {player.state === "playing"
-                  ? "Pause"
-                  : player.state === "paused"
-                    ? "Resume"
-                    : "Play"}
-              </span>
-            </button>
-
-            <button
-              onClick={player.stop}
-              disabled={!player.isSupported || player.state === "idle"}
-              className={`flex justify-center items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
-                player.isSupported && player.state !== "idle"
-                  ? "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  : "border-gray-200 text-gray-400 cursor-not-allowed"
-              }`}
-            >
-              <StopIcon size={22} title="Stop timer" />
-              <span>Stop</span>
-            </button>
-            <button
-              onClick={handleSaveAudio}
-              disabled={!canPlay || !soundOn}
-              className={`flex justify-center items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
-                canPlay && soundOn
-                  ? "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  : "border-gray-200 text-gray-400 cursor-not-allowed"
-              }`}
-            >
-              <SaveIcon size={22} title="Save audio" />
-              <span>Save Audio</span>
-            </button>
-          </div>
-
-          {/* Primary actions */}
+        <div className="px-4 py-4 sm:px-6 sm:py-4">
           <div className="flex flex-col gap-3">
-            {/* Audio controls */}
-            <div className="border border-gray-200 rounded-2xl p-4 bg-white">
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-bold text-neutral-900">
-                    Playback Settings
-                  </h3>
-                  <span className="text-sm text-gray-600">
-                    {player.isSupported
-                      ? player.state === "idle"
-                        ? "Ready"
-                        : player.state
-                      : "Audio unavailable"}
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+              <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+                <div className="inline-flex w-full rounded-lg border border-slate-200 bg-white p-1 sm:w-auto">
+                  <button
+                    type="button"
+                    onClick={() => setDirection("encode")}
+                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${
+                      direction === "encode"
+                        ? "bg-sky-50 text-sky-950 shadow-sm"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-950"
+                    }`}
+                    aria-pressed={direction === "encode"}
+                  >
+                    Text → Morse
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setDirection("decode")}
+                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${
+                      direction === "decode"
+                        ? "bg-sky-50 text-sky-950 shadow-sm"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-950"
+                    }`}
+                    aria-pressed={direction === "decode"}
+                  >
+                    Morse → Text
+                  </button>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {(isMobile ? examples.slice(0, 1) : examples).map((ex) => (
+                    <button
+                      type="button"
+                      key={ex.label}
+                      onClick={ex.set}
+                      className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 active:scale-95"
+                    >
+                      Try “{ex.label}”
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleSwap}
+                  className="hidden cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 active:scale-95 md:flex lg:ml-auto"
+                  title="Swap direction"
+                >
+                  <span>Swap</span>
+                  <span aria-hidden className="text-slate-500">
+                    ⇄
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                <div className="flex items-center justify-between gap-3 border-b border-slate-200 bg-slate-50 px-4 py-3">
+                  <label
+                    htmlFor={liveInputId}
+                    className="text-sm font-extrabold text-sky-950"
+                  >
+                    {inputLabel}
+                  </label>
+
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                    Source
                   </span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+                <textarea
+                  id={liveInputId}
+                  className="min-h-[10rem] w-full resize-y border-0 bg-white p-4 font-mono text-slate-950 outline-none focus:ring-0"
+                  value={inputValue}
+                  onChange={(e) =>
+                    direction === "encode"
+                      ? setPlainA(e.target.value)
+                      : setMorseB(e.target.value)
+                  }
+                  placeholder={
+                    direction === "encode"
+                      ? "Example: Hello World"
+                      : "Example: ... --- ..."
+                  }
+                  autoCapitalize={
+                    direction === "encode" ? "characters" : "off"
+                  }
+                  autoCorrect="off"
+                  spellCheck={false}
+                />
+
+                <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 px-4 py-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (direction === "encode") setPlainA("");
+                      else setMorseB("");
+                    }}
+                    className="cursor-pointer rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 active:scale-95"
+                  >
+                    Clear input
+                  </button>
+
+                  {direction === "encode" &&
+                    Object.keys(unsupportedPlain).length > 0 && (
+                      <p className="text-xs font-medium text-amber-700">
+                        Unsupported:{" "}
+                        {Object.entries(unsupportedPlain)
+                          .map(([ch, n]) => `${ch}×${n}`)
+                          .join(", ")}{" "}
+                        (ignored)
+                      </p>
+                    )}
+
+                  {direction === "decode" && morseInputIssues.length > 0 && (
+                    <p className="text-xs font-medium text-amber-700">
+                      {morseInputIssues.join(" ")}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-xl border border-sky-100 bg-sky-50/70">
+                <div className="flex items-center justify-between gap-3 border-b border-sky-100 bg-sky-50 px-4 py-3">
+                  <label
+                    htmlFor="mw_output"
+                    className="text-sm font-extrabold text-sky-950"
+                  >
+                    {outputLabel}
+                  </label>
+
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-sky-800">
+                    Result
+                  </span>
+                </div>
+
+                <textarea
+                  id="mw_output"
+                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0"
+                  value={outputValue}
+                  readOnly
+                  placeholder={
+                    direction === "encode" ? "... --- ..." : "Example: SOS"
+                  }
+                />
+
+                <div className="flex flex-wrap items-center justify-between gap-2 border-t border-sky-100 px-4 py-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (direction === "encode") setPlainA("");
+                      else setMorseB("");
+                    }}
+                    className="cursor-pointer rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 active:scale-95"
+                  >
+                    Clear output
+                  </button>
+
+                  <span className="text-sm text-slate-500">
+                    3 spaces = letters. 7 spaces = words.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 sm:flex-row sm:items-center">
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleCopy(outputValue, "output")}
+                  disabled={!outputValue}
+                  className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${
+                    outputValue
+                      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+                      : "cursor-not-allowed bg-slate-200 text-slate-400"
+                  }`}
+                >
+                  <CopyIcon size={18} title="Copy output" />
+                  <span>Copy Output</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleShare}
+                  disabled={!outputValue}
+                  className={`flex cursor-pointer items-center gap-2 rounded-lg border px-4 py-2 font-semibold transition active:scale-95 ${
+                    outputValue
+                      ? "border-slate-300 bg-white text-slate-900 hover:border-sky-300 hover:bg-sky-50"
+                      : "cursor-not-allowed border-slate-200 text-slate-400"
+                  }`}
+                >
+                  <ShareIcon size={18} title="Share output" />
+                  <span>Share</span>
+                </button>
+
+                {copied === "output" && (
+                  <p className="text-sm font-semibold text-green-700">Copied</p>
+                )}
+
+                {copied === "share" && (
+                  <p className="text-sm font-semibold text-green-700">
+                    Saved image and copied text
+                  </p>
+                )}
+              </div>
+
+              <span className="text-sm leading-relaxed text-slate-500 sm:ml-auto">
+                “/” also works as a word separator.
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+              <button
+                type="button"
+                onClick={() => {
+                  if (player.state === "idle") {
+                    handlePlay();
+                  } else if (player.state === "playing") {
+                    player.pause();
+                  } else if (player.state === "paused") {
+                    player.resume();
+                  }
+                }}
+                disabled={
+                  player.state === "playing"
+                    ? !player.isSupported
+                    : !canPlay || !player.isSupported
+                }
+                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${
+                  player.state === "playing"
+                    ? player.isSupported
+                      ? "border border-slate-900 bg-white text-slate-950 hover:bg-slate-50"
+                      : "cursor-not-allowed border border-slate-200 text-slate-400"
+                    : canPlay && player.isSupported
+                      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+                      : "cursor-not-allowed bg-slate-100 text-slate-400"
+                }`}
+              >
+                {player.state === "playing" ? (
+                  <PauseIcon size={22} title="Pause timer" />
+                ) : (
+                  <PlayIcon
+                    size={22}
+                    title={
+                      player.state === "paused"
+                        ? "Resume timer"
+                        : "Start timer"
+                    }
+                  />
+                )}
+
+                <span>
+                  {player.state === "playing"
+                    ? "Pause"
+                    : player.state === "paused"
+                      ? "Resume"
+                      : "Play"}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={player.stop}
+                disabled={!player.isSupported || player.state === "idle"}
+                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 py-2.5 font-semibold transition active:scale-95 ${
+                  player.isSupported && player.state !== "idle"
+                    ? "border-slate-300 text-slate-700 hover:bg-slate-50"
+                    : "cursor-not-allowed border-slate-200 text-slate-400"
+                }`}
+              >
+                <StopIcon size={22} title="Stop timer" />
+                <span>Stop</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleSaveAudio}
+                disabled={!canPlay || !soundOn}
+                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 py-2.5 font-semibold transition active:scale-95 ${
+                  canPlay && soundOn
+                    ? "border-slate-300 text-slate-700 hover:bg-slate-50"
+                    : "cursor-not-allowed border-slate-200 text-slate-400"
+                }`}
+              >
+                <SaveIcon size={22} title="Save audio" />
+                <span>Save Audio</span>
+              </button>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-white p-4">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-base font-extrabold text-sky-950">
+                    Playback Settings
+                  </h3>
+
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                    {playbackStatus}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                   <SliderRow
                     label="Speed"
                     value={charWpm}
@@ -654,7 +702,7 @@ export default function TranslatorSectionsBasic({
                   />
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 border-t border-slate-200 pt-4">
                   <TogglePill
                     label="Sound"
                     checked={soundOn}
@@ -688,32 +736,34 @@ export default function TranslatorSectionsBasic({
                 )}
 
                 <button
+                  type="button"
                   onClick={() => setAdvancedOpen((v) => !v)}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer active:scale-95 transition"
+                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 transition hover:border-sky-300 hover:bg-sky-50 active:scale-95 sm:w-auto"
                   aria-expanded={advancedOpen}
                 >
-                  <span className="text-sm font-semibold text-neutral-900">
+                  <span className="text-sm font-semibold text-slate-900">
                     Advanced settings
                   </span>
-                  <span aria-hidden className="text-gray-500">
+                  <span aria-hidden className="text-slate-500">
                     {advancedOpen ? "▴" : "▾"}
                   </span>
                 </button>
 
                 {advancedOpen && (
-                  <div className="grid gap-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="grid gap-4 border-t border-slate-200 pt-4">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                       <div>
-                        <label className="text-sm font-semibold text-gray-700">
+                        <label className="text-sm font-semibold text-slate-700">
                           Sound type
                         </label>
+
                         <select
                           value={preset}
                           onChange={(e) =>
                             setPreset(e.target.value as SoundPreset)
                           }
                           disabled={!soundOn}
-                          className={`mt-1 w-full border rounded-xl p-2 bg-white hover:bg-gray-50 ${
+                          className={`mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 transition hover:bg-slate-50 ${
                             soundOn
                               ? "cursor-pointer"
                               : "cursor-not-allowed opacity-60"
@@ -740,10 +790,11 @@ export default function TranslatorSectionsBasic({
                       />
                     </div>
 
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs leading-relaxed text-slate-600">
                       Tip: set a higher <strong>Character speed</strong> and a
-                      lower <strong>Farnsworth</strong> to keep dits/dahs crisp
-                      while adding extra spacing between characters and words.
+                      lower <strong>Farnsworth</strong> to keep dits and dahs
+                      crisp while adding extra spacing between characters and
+                      words.
                     </p>
                   </div>
                 )}
@@ -771,10 +822,10 @@ function TogglePill({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold border cursor-pointer active:scale-95 transition ${
+      className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${
         checked
-          ? "border-neutral-900 bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white"
-          : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+          ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+          : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
       }`}
       aria-pressed={checked}
     >
@@ -807,13 +858,15 @@ function SliderRow({
 }) {
   return (
     <div>
-      <div className="flex items-baseline justify-between">
-        <label className="text-sm font-semibold text-gray-700">{label}</label>
-        <span className="text-sm text-gray-600">
+      <div className="flex items-baseline justify-between gap-3">
+        <label className="text-sm font-semibold text-slate-700">{label}</label>
+        <span className="text-sm text-slate-600">
           {value} {unit}
         </span>
       </div>
-      {help && <p className="text-xs text-gray-500 mt-0.5">{help}</p>}
+
+      {help && <p className="mt-0.5 text-xs text-slate-500">{help}</p>}
+
       <input
         type="range"
         min={min}
@@ -823,7 +876,9 @@ function SliderRow({
         onChange={(e) => onChange(Number(e.target.value))}
         disabled={disabled}
         style={{ accentColor: "#38bdf8" }}
-        className={`w-full mt-2 ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-sky-300 rounded-full`}
+        className={`mt-2 w-full rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300 ${
+          disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+        }`}
       />
     </div>
   );
@@ -903,7 +958,6 @@ async function makeShareImagePng({
 
   const normalizeForCard = (s: string) =>
     (s || "")
-      // Keep the card clean and predictable.
       .replace(/\r\n/g, "\n")
       .replace(/\n+/g, " / ")
       .replace(/\s+/g, " ")
@@ -915,7 +969,6 @@ async function makeShareImagePng({
       .replace(/[–—−]/g, "-")
       .replace(/\r\n/g, "\n")
       .replace(/\n+/g, "       ")
-      // Make word gaps readable in a share card
       .replace(/\s*\/\s*/g, "       ")
       .replace(/\s{7,}/g, " / ")
       .replace(/\s{3,}/g, " ")
@@ -951,7 +1004,6 @@ async function makeShareImagePng({
         continue;
       }
 
-      // If the token itself is too long, hard-wrap it.
       if (!current && tok.length > maxChars) {
         let t = tok;
         while (t.length > maxChars && lines.length < maxLines) {
@@ -996,20 +1048,17 @@ async function makeShareImagePng({
   );
 
   const lineHeight = 30;
-  const cardPaddingTop = 60;
   const cardPaddingBottom = 60;
   const cardX = 60;
   const cardY = 60;
   const cardWidth = 1080;
 
-  const inputLabelY = 245;
   const inputTextY = 285;
   const outputLabelY = inputTextY + inLines.length * lineHeight + 70;
   const outputTextY = outputLabelY + 40;
   const outputBlockBottom =
     outputTextY + Math.max(0, outLines.length - 1) * lineHeight;
 
-  // Place footer below content, then grow the SVG if needed.
   const footerY = outputBlockBottom + 70;
   const desiredHeight = footerY + cardPaddingBottom;
   const svgHeight = Math.min(2000, Math.max(630, desiredHeight));
