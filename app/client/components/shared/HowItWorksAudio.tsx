@@ -2,19 +2,18 @@ import * as React from "react";
 
 export default function HowItWorksAudio() {
   return (
-    <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
       <div className="flex flex-col gap-3">
-        <div className="inline-flex items-center gap-2">
-          <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1.5 text-sm font-extrabold text-sky-900 border border-sky-200">
-            Audio spec
-          </span>
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-sky-800" />
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">Audio spec</span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
+        <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           How this Morse code audio translator works
         </h2>
 
-        <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+        <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
           This page is audio-first. You type text to generate an{" "}
           <strong>International Morse</strong> pattern, and the tool turns that
           pattern into sound using standard timing rules. The preview Morse is
@@ -22,7 +21,7 @@ export default function HowItWorksAudio() {
           is the audio you can play, loop, and export.
         </p>
 
-        <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+        <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
           If you only need a clean file for an editor or a practice track, you
           can treat this as a small audio workstation: enter a message, pick a
           speed, choose a tone, listen, then export. The controls are designed
@@ -44,7 +43,7 @@ export default function HowItWorksAudio() {
           <a
             key={href}
             href={href}
-            className="px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 cursor-pointer transition"
+            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -52,43 +51,43 @@ export default function HowItWorksAudio() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">
             Symbols are units
           </p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Morse is built from a single time unit. A <strong>dit</strong> is 1
             unit and a <strong>dah</strong> is 3 units.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">
             Speed sets dit length
           </p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Your <strong>character speed</strong> controls the dit duration. All
             other timings scale from that base.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">
             Export is offline-rendered
           </p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             WAV export renders in an <strong>offline</strong> audio context so
             spacing stays consistent even if your device is busy.
           </p>
         </div>
       </div>
 
-      <div className="mt-8 space-y-6 text-gray-700 leading-relaxed">
+      <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="units"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Timing units
           </h3>
 
@@ -106,8 +105,8 @@ export default function HowItWorksAudio() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Symbol lengths
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -120,8 +119,8 @@ export default function HowItWorksAudio() {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Gap lengths
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -133,21 +132,21 @@ export default function HowItWorksAudio() {
           </div>
 
           <div className="mt-5">
-            <p className="text-base font-extrabold text-gray-800">Example</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            <p className="text-base font-extrabold text-sky-950">Example</p>
+            <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
               {`S O S
 ...   ---   ...
 (dit dit dit)   (dah dah dah)   (dit dit dit)`}
             </pre>
-            <p className="mt-3 text-base sm:text-lg text-gray-600">
+            <p className="mt-3 text-base sm:text-lg text-slate-600">
               The spaces in the Morse preview are the same boundaries the audio
               scheduler uses for letter and word gaps.
             </p>
           </div>
         </div>
 
-        <div id="wpm" className="rounded-2xl border border-gray-200 p-6 sm:p-7">
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+        <div id="wpm" className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Speed and WPM
           </h3>
 
@@ -156,7 +155,7 @@ export default function HowItWorksAudio() {
             <strong>PARIS</strong> as a timing reference. A common shortcut is:
           </p>
 
-          <pre className="mt-4 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
+          <pre className="mt-4 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
             {`dit(ms) = 1200 / WPM
 dah(ms) = 3 * dit(ms)`}
           </pre>
@@ -167,8 +166,8 @@ dah(ms) = 3 * dit(ms)`}
             schedules every symbol and gap from that.
           </p>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Fast setup checklist
             </p>
             <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -194,8 +193,8 @@ dah(ms) = 3 * dit(ms)`}
             </ul>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Picking a speed for your goal
             </p>
             <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -217,8 +216,8 @@ dah(ms) = 3 * dit(ms)`}
             </ul>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Why audio can click
             </p>
             <p className="mt-2 text-base sm:text-lg">
@@ -232,9 +231,9 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="farnsworth"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Farnsworth spacing
           </h3>
 
@@ -260,12 +259,12 @@ dah(ms) = 3 * dit(ms)`}
           </ul>
 
           <div className="mt-5">
-            <p className="text-base font-extrabold text-gray-800">Tip</p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700">
+            <p className="text-base font-extrabold text-sky-950">Tip</p>
+            <p className="mt-2 text-base sm:text-lg text-slate-700">
               If characters feel readable but words blur together, increase word
               spacing slightly before slowing down character speed.
             </p>
-            <p className="mt-3 text-base sm:text-lg text-gray-700">
+            <p className="mt-3 text-base sm:text-lg text-slate-700">
               For utility use, think of Farnsworth as a readability dial. Keep
               character speed set to how you want the symbols to sound, then use
               Farnsworth to control how much silence appears between letters and
@@ -274,8 +273,8 @@ dah(ms) = 3 * dit(ms)`}
             </p>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               When to leave Farnsworth at 1.0
             </p>
             <p className="mt-2 text-base sm:text-lg">
@@ -289,9 +288,9 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="sound"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Sound settings
           </h3>
 
@@ -309,8 +308,8 @@ dah(ms) = 3 * dit(ms)`}
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Waveforms
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -332,8 +331,8 @@ dah(ms) = 3 * dit(ms)`}
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Envelope
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -351,8 +350,8 @@ dah(ms) = 3 * dit(ms)`}
             </div>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Pitch, volume, and sidetone feel
             </p>
             <p className="mt-2 text-base sm:text-lg">
@@ -365,9 +364,9 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="export"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Audio export
           </h3>
 
@@ -377,8 +376,8 @@ dah(ms) = 3 * dit(ms)`}
             and samples into a Blob for download.
           </p>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               What the WAV contains
             </p>
             <p className="mt-2 text-base sm:text-lg">
@@ -405,10 +404,10 @@ dah(ms) = 3 * dit(ms)`}
           </ul>
 
           <div className="mt-5">
-            <p className="text-base font-extrabold text-gray-800">
+            <p className="text-base font-extrabold text-sky-950">
               Export note
             </p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700">
+            <p className="mt-2 text-base sm:text-lg text-slate-700">
               If you hear the last symbol cut off, increase tail padding or
               release time. If you hear a click, increase attack slightly.
             </p>
@@ -417,9 +416,9 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="troubleshooting"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting
           </h3>
 
@@ -454,12 +453,12 @@ dah(ms) = 3 * dit(ms)`}
           </ul>
         </div>
       </div>
-      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
-        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+      <div className="mt-8 rounded-xl border border-slate-200 bg-[#fffdf8] p-5 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>
 
-        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-slate-700">
           <li>
             <strong>What this tool does:</strong> Converts Morse patterns into
             playable audio using standard timing units.
@@ -485,3 +484,6 @@ dah(ms) = 3 * dit(ms)`}
     </section>
   );
 }
+
+
+

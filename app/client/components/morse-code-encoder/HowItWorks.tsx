@@ -2,19 +2,18 @@ import { Link } from "react-router";
 
 export default function HowItWorks() {
   return (
-    <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
       <div className="flex flex-col gap-3">
-        <div className="inline-flex items-center gap-2">
-          <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1.5 text-sm font-extrabold text-sky-900 border border-sky-200">
-            Encoder spec
-          </span>
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-sky-800" />
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">Encoder spec</span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
+        <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           How this Morse code encoder works
         </h2>
 
-        <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+        <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
           This page is a focused <strong>Morse code encoder</strong>. It
           converts plain text into <strong>International Morse</strong> (dots
           and dashes) as you type. It is built to be predictable: it normalizes
@@ -34,7 +33,7 @@ export default function HowItWorks() {
           <a
             key={href}
             href={href}
-            className="px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 cursor-pointer transition"
+            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -42,32 +41,32 @@ export default function HowItWorks() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">
             Predictable output
           </p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             The encoder re-emits Morse with consistent separators so copy/paste
             behaves the same across tools.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">
             Word breaks are strict
           </p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Any run of whitespace in your text input is treated as a{" "}
             <strong>word break</strong>. The Morse output uses a single,
             consistent word separator.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">
             Unsupported stays visible
           </p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Characters that are not in the supported set are{" "}
             <strong>skipped</strong> in output and surfaced in the UI so you can
             fix the source text.
@@ -77,30 +76,30 @@ export default function HowItWorks() {
 
       <div
         id="related-tool"
-        className="mt-6 rounded-2xl border border-gray-200 p-6 sm:p-7"
+        className="mt-6 rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
       >
-        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Need to decode Morse back to text?
         </h3>
-        <p className="mt-3 text-base sm:text-lg text-gray-700">
+        <p className="mt-3 text-base sm:text-lg text-slate-700">
           This page encodes text into Morse. If you have dots and dashes and
           want readable text, use the decoder tool.
         </p>
 
         <Link
           to="/morse-code-decoder"
-          className="inline-flex mt-4 items-center rounded-full bg-sky-50 px-4 py-2 text-base sm:text-lg font-extrabold text-sky-900 border border-sky-200 hover:bg-sky-100 cursor-pointer transition"
+          className="inline-flex mt-4 items-center rounded-full bg-[#f7f4ee] px-4 py-2 text-base sm:text-lg font-extrabold text-sky-950 border border-slate-200 hover:bg-sky-50 cursor-pointer transition"
         >
           Switch to decoder
         </Link>
       </div>
 
-      <div className="mt-6 space-y-6 text-gray-700 leading-relaxed">
+      <div className="mt-6 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="encode"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Text → Morse (encode)
           </h3>
 
@@ -125,12 +124,12 @@ export default function HowItWorks() {
           </ul>
 
           <div className="mt-5">
-            <p className="text-base font-extrabold text-gray-800">Example</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            <p className="text-base font-extrabold text-sky-950">Example</p>
+            <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
               {`HELLO WORLD
 ....   .   .-..   .-..   ---       .--   ---   .-.   .-..   -..`}
             </pre>
-            <p className="mt-3 text-base sm:text-lg text-gray-600">
+            <p className="mt-3 text-base sm:text-lg text-slate-600">
               The gaps are part of Morse formatting. If you copy this elsewhere,
               keep the separators so it decodes correctly.
             </p>
@@ -139,9 +138,9 @@ export default function HowItWorks() {
 
         <div
           id="output-format"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Output format (spacing and separators)
           </h3>
 
@@ -150,8 +149,8 @@ export default function HowItWorks() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Standard output spacing
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -165,8 +164,8 @@ export default function HowItWorks() {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Copy &amp; share tips
               </p>
               <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg">
@@ -180,15 +179,15 @@ export default function HowItWorks() {
             </div>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-sky-900">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Decoder compatibility note
             </p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               Your output will decode correctly on this site’s{" "}
               <Link
                 to="/morse-code-decoder"
-                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+                className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
               >
                 decoder
               </Link>{" "}
@@ -202,9 +201,9 @@ export default function HowItWorks() {
 
         <div
           id="supported"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Supported characters and assumptions
           </h3>
 
@@ -216,21 +215,21 @@ export default function HowItWorks() {
 
           <p className="mt-4 text-base sm:text-lg">
             Supported punctuation includes:{" "}
-            <code className="rounded-md bg-gray-50 px-2 py-1 border border-gray-200">
+            <code className="rounded-md bg-[#f7f4ee] px-2 py-1 border border-slate-200">
               . , ? / ' ! - @ : ; = + &quot; ( ) &amp; _
             </code>
             .
           </p>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Related tools
             </p>
             <ul className="mt-3 list-disc pl-6 space-y-3 text-base sm:text-lg">
               <li>
                 <Link
                   to="/audio"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
+                  className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   Audio
                 </Link>{" "}
@@ -239,7 +238,7 @@ export default function HowItWorks() {
               <li>
                 <Link
                   to="/dictionary"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
+                  className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   Dictionary
                 </Link>{" "}
@@ -248,14 +247,14 @@ export default function HowItWorks() {
               <li>
                 <Link
                   to="/practice"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
+                  className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   Practice
                 </Link>{" "}
                 and{" "}
                 <Link
                   to="/typing"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
+                  className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   Typing
                 </Link>{" "}
@@ -264,7 +263,7 @@ export default function HowItWorks() {
               <li>
                 <Link
                   to="/how-to-use"
-                  className="text-sky-900 underline hover:no-underline cursor-pointer font-semibold"
+                  className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold"
                 >
                   How to use
                 </Link>{" "}
@@ -276,9 +275,9 @@ export default function HowItWorks() {
 
         <div
           id="troubleshooting"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting
           </h3>
 
@@ -298,7 +297,7 @@ export default function HowItWorks() {
               assume single-space separation. Verify using this site’s{" "}
               <Link
                 to="/morse-code-decoder"
-                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+                className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
               >
                 decoder
               </Link>{" "}
@@ -317,12 +316,12 @@ export default function HowItWorks() {
           </ul>
         </div>
 
-        <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-6 sm:p-7">
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+        <div className="mt-8 rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Quick answers (Morse encoding)
           </h3>
 
-          <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+          <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-slate-700">
             <li>
               <strong>What a Morse code encoder does:</strong> It converts plain
               text into International Morse code using dots and dashes.
@@ -343,41 +342,41 @@ export default function HowItWorks() {
           </ul>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6 sm:p-7">
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+        <div className="mt-6 rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Encoder rules
           </h3>
 
           <div className="mt-4 overflow-x-auto">
             <table className="w-full border-collapse text-base sm:text-lg">
               <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="py-2 text-left font-extrabold text-sky-900">
+                <tr className="border-b border-slate-200">
+                  <th className="py-2 text-left font-extrabold text-sky-950">
                     Rule
                   </th>
-                  <th className="py-2 text-left font-extrabold text-sky-900">
+                  <th className="py-2 text-left font-extrabold text-sky-950">
                     Meaning
                   </th>
                 </tr>
               </thead>
-              <tbody className="text-gray-700">
-                <tr className="border-b border-gray-100">
+              <tbody className="text-slate-700">
+                <tr className="border-b border-slate-100">
                   <td className="py-2 pr-4">Text normalization</td>
                   <td className="py-2">
                     Input is normalized and uppercased before mapping
                   </td>
                 </tr>
-                <tr className="border-b border-gray-100">
+                <tr className="border-b border-slate-100">
                   <td className="py-2 pr-4">Word breaks (input)</td>
                   <td className="py-2">
                     Any run of whitespace becomes a word break in output
                   </td>
                 </tr>
-                <tr className="border-b border-gray-100">
+                <tr className="border-b border-slate-100">
                   <td className="py-2 pr-4">Letter separator (output)</td>
                   <td className="py-2">3 spaces</td>
                 </tr>
-                <tr className="border-b border-gray-100">
+                <tr className="border-b border-slate-100">
                   <td className="py-2 pr-4">Word separator (output)</td>
                   <td className="py-2">7 spaces</td>
                 </tr>
@@ -391,13 +390,13 @@ export default function HowItWorks() {
             </table>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-sky-900">Tip</p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">Tip</p>
+            <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               If you want to generate sound from your output, switch to{" "}
               <Link
                 to="/audio"
-                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+                className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
               >
                 Audio
               </Link>{" "}
@@ -409,3 +408,6 @@ export default function HowItWorks() {
     </section>
   );
 }
+
+
+

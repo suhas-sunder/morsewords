@@ -3,19 +3,18 @@ import { Link } from "react-router";
 
 export default function HowItWorksTyping() {
   return (
-    <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
       <div className="flex flex-col gap-3">
-        <div className="inline-flex items-center gap-2">
-          <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1.5 text-sm font-extrabold text-sky-900 border border-sky-200">
-            Typing tool spec
-          </span>
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-sky-800" />
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">Typing tool spec</span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
+        <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           How MorseWords Typing Practice works
         </h2>
 
-        <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+        <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
           MorseWords Typing Practice is built for people who already know Morse and want
           a simple way to type continuously with real-time decoding and timed sessions.
           It is intentionally minimal: no prompts, no quizzes, no grading loop that
@@ -36,7 +35,7 @@ export default function HowItWorksTyping() {
           <a
             key={href}
             href={href}
-            className="px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 cursor-pointer transition"
+            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -44,37 +43,37 @@ export default function HowItWorksTyping() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">Freeform production</p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">Freeform production</p>
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             You produce Morse like you would in real use. This is a typing scratchpad
             with a timer, not a prompt-driven drill.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">Boundary-driven decode</p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">Boundary-driven decode</p>
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Decoding happens when you commit a boundary. That keeps output predictable
             and avoids guessing.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">Endurance sessions</p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">Endurance sessions</p>
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Pick a duration and type continuously. When time is up, input locks and you
             get a results card with shareable stats.
           </p>
         </div>
       </div>
 
-      <div className="mt-8 space-y-6 text-gray-700 leading-relaxed">
+      <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="typing-input"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Input rules
           </h3>
 
@@ -88,22 +87,22 @@ export default function HowItWorksTyping() {
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
               Type{" "}
-              <code className="rounded-md bg-gray-50 px-2 py-1 border border-gray-200">
+              <code className="rounded-md bg-[#f7f4ee] px-2 py-1 border border-slate-200">
                 .
               </code>{" "}
               for dit and{" "}
-              <code className="rounded-md bg-gray-50 px-2 py-1 border border-gray-200">
+              <code className="rounded-md bg-[#f7f4ee] px-2 py-1 border border-slate-200">
                 -
               </code>{" "}
               for dah.
             </li>
             <li>
               Optional mapping:{" "}
-              <code className="rounded-md bg-gray-50 px-2 py-1 border border-gray-200">
+              <code className="rounded-md bg-[#f7f4ee] px-2 py-1 border border-slate-200">
                 F
               </code>{" "}
               enters a dit and{" "}
-              <code className="rounded-md bg-gray-50 px-2 py-1 border border-gray-200">
+              <code className="rounded-md bg-[#f7f4ee] px-2 py-1 border border-slate-200">
                 J
               </code>{" "}
               enters a dah.
@@ -119,25 +118,25 @@ export default function HowItWorksTyping() {
           </ul>
 
           <div className="mt-5">
-            <p className="text-base font-extrabold text-gray-800">Example</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            <p className="text-base font-extrabold text-sky-950">Example</p>
+            <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
               {`. . . . (space) . (space) .-.. (space) .-.. (space) --- (/) .-- (space) --- (space) .-. (space) .-.. (space) -..`}
             </pre>
-            <p className="mt-3 text-base sm:text-lg text-gray-600">
+            <p className="mt-3 text-base sm:text-lg text-slate-600">
               In practice you type dots and dashes, then use Space and{" "}
               <code>/</code> as boundaries. The decoded output updates as letters are
               committed.
             </p>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">Need to convert text?</p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">Need to convert text?</p>
+            <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               This page is for continuous typing sessions. If you want a utility that
               converts full text into Morse, use{" "}
               <Link
                 to="/morse-code-encoder"
-                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+                className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
               >
                 Encoder
               </Link>
@@ -148,9 +147,9 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-boundaries"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Boundaries
           </h3>
 
@@ -175,11 +174,11 @@ export default function HowItWorksTyping() {
             </li>
           </ul>
 
-          <div className="mt-5 rounded-2xl border border-sky-200 bg-sky-50 p-5">
-            <p className="text-base sm:text-lg font-extrabold text-sky-900">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <p className="text-base sm:text-lg font-extrabold text-sky-950">
               Why this matters for fluent users
             </p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               During a sustained run you want consistency and feedback, not interpretation.
               Boundary rules keep the tool honest. If output looks wrong, the fix is
               simple: correct the chunk, then commit boundaries more cleanly.
@@ -189,9 +188,9 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-timer"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Timed sessions
           </h3>
 
@@ -218,9 +217,9 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-stats"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             What the stats mean
           </h3>
 
@@ -231,59 +230,59 @@ export default function HowItWorksTyping() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Letters and words
               </p>
-              <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
                 Letters increase only when you commit a letter boundary. Words increase
                 only when you commit a word break. This prevents inflated counts from
                 partial chunks.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Letters per minute
               </p>
-              <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
                 Letters/min is computed from committed letters and elapsed session time.
                 It is a repeatable speed indicator for timed runs.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Invalid
               </p>
-              <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
                 Invalid counts unrecognized dot-dash chunks. A few are normal in
                 high-speed sessions. Repeated invalids usually mean a boundary issue or
                 an extra character slipped into the stream.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Minimal interference
               </p>
-              <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
                 Stats stay visible but you are not interrupted by constant grading. You
                 stay in flow, then review at the end.
               </p>
             </div>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Want boundary cleanup?
             </p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               If you are preparing Morse for sharing or decoding elsewhere, normalize the
               separators first with{" "}
               <Link
                 to="/morse-code-word-separator"
-                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+                className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
               >
                 Word separator
               </Link>
@@ -294,9 +293,9 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-pitfalls"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Common pitfalls (and quick fixes)
           </h3>
 
@@ -319,7 +318,7 @@ export default function HowItWorksTyping() {
             </li>
           </ul>
 
-          <p className="mt-4 text-base sm:text-lg text-gray-600">
+          <p className="mt-4 text-base sm:text-lg text-slate-600">
             This tool does not interpret timing like an audio decoder. If boundaries are
             clean, output is clean.
           </p>
@@ -327,9 +326,9 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-sharing"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Sharing your results
           </h3>
 
@@ -348,12 +347,12 @@ export default function HowItWorksTyping() {
         </div>
       </div>
 
-      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
-        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+      <div className="mt-8 rounded-xl border border-slate-200 bg-[#fffdf8] p-5 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>
 
-        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-slate-700">
           <li>
             <strong>What this tool is for:</strong> continuous Morse typing with real-time
             decoding and timed sessions.
@@ -379,3 +378,6 @@ export default function HowItWorksTyping() {
     </section>
   );
 }
+
+
+

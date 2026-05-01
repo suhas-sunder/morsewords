@@ -59,71 +59,71 @@ const toneRows = [
 export default function SoundGeneratorGuide() {
   return (
     <>
-      <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
-        <div className="inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-sm font-extrabold text-sky-900">
+      <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+        <div className="inline-flex items-center rounded-full border border-slate-200 bg-[#f7f4ee] px-3 py-1.5 text-sm font-extrabold text-sky-950">
           Sound generator guide
         </div>
-        <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold text-sky-900 tracking-tight">
+        <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           Generate Morse code sound, beeps, tones, WAV, or MP3 audio
         </h2>
-        <p className="mt-3 text-base sm:text-lg text-gray-700 leading-relaxed">
+        <p className="mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
           This page is built for the sound-generation workflow: make the Morse audio, tune how it sounds, and download the file. It is not just the regular translator page with a play button. The controls focus on tone shape, speed, export format, and practical audio use.
         </p>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {searchIntentBlocks.map((item) => (
-            <article key={item.title} className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <h3 className="font-extrabold text-sky-900">{item.title}</h3>
-              <p className="mt-2 text-gray-700 leading-relaxed">{item.body}</p>
+            <article key={item.title} className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <h3 className="font-extrabold text-sky-950">{item.title}</h3>
+              <p className="mt-2 text-slate-700 leading-relaxed">{item.body}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900">
+      <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           How to make Morse code audio
         </h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           {workflowSteps.map((item) => (
-            <article key={item.title} className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-              <h3 className="font-extrabold text-sky-900">{item.title}</h3>
-              <p className="mt-2 text-gray-700 leading-relaxed">{item.body}</p>
+            <article key={item.title} className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <h3 className="font-extrabold text-sky-950">{item.title}</h3>
+              <p className="mt-2 text-slate-700 leading-relaxed">{item.body}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900">
+      <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           MP3 vs WAV export for Morse code
         </h2>
-        <p className="mt-3 text-gray-700 leading-relaxed">
+        <p className="mt-3 text-slate-700 leading-relaxed">
           People often search for a Morse code MP3 generator because they want a file they can reuse. This tool supports MP3 for convenience and WAV for clean editing. Use MP3 when file size matters. Use WAV when you want the most reliable source file for editing, archiving, or later conversion.
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           {exportRows.map((row) => (
-            <article key={row.format} className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <h3 className="text-xl font-extrabold text-sky-900">{row.format}</h3>
-              <p className="mt-2 text-gray-700 leading-relaxed">{row.bestFor}</p>
+            <article key={row.format} className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <h3 className="text-xl font-extrabold text-sky-950">{row.format}</h3>
+              <p className="mt-2 text-slate-700 leading-relaxed">{row.bestFor}</p>
               <p className="mt-3 text-sm font-semibold text-neutral-900">{row.note}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900">
+      <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           Pick the right Morse beep or tone
         </h2>
-        <p className="mt-3 text-gray-700 leading-relaxed">
+        <p className="mt-3 text-slate-700 leading-relaxed">
           The same Morse message can feel clean, harsh, soft, mechanical, or buzzy depending on waveform and pitch. Start around 600 to 700 Hz, then adjust from there.
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {toneRows.map(([name, use]) => (
-            <article key={name} className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
-              <h3 className="font-extrabold text-sky-900">{name}</h3>
-              <p className="mt-2 text-gray-700 leading-relaxed">{use}</p>
+            <article key={name} className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <h3 className="font-extrabold text-sky-950">{name}</h3>
+              <p className="mt-2 text-slate-700 leading-relaxed">{use}</p>
             </article>
           ))}
         </div>
@@ -131,3 +131,6 @@ export default function SoundGeneratorGuide() {
     </>
   );
 }
+
+
+

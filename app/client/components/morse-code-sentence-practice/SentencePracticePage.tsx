@@ -150,7 +150,7 @@ function countMorseSentenceWords(input: string) {
 function difficultyClass(difficulty: Difficulty) {
   if (difficulty === "easy")
     return "bg-emerald-50 border-emerald-200 text-emerald-900";
-  if (difficulty === "medium") return "bg-sky-50 border-sky-200 text-sky-900";
+  if (difficulty === "medium") return "bg-sky-50 border-sky-200 text-sky-950";
   return "bg-amber-50 border-amber-200 text-amber-900";
 }
 
@@ -217,7 +217,7 @@ function ToggleButton({
       className={`rounded-full border px-3 py-1.5 text-sm font-bold cursor-pointer transition ${
         active
           ? "bg-neutral-900 text-sky-100 border-neutral-900"
-          : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
+          : "bg-white text-slate-700 border-slate-200 hover:bg-[#f7f4ee]"
       }`}
     >
       {children}
@@ -231,7 +231,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
   return (
     <button
       type="button"
-      className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 cursor-pointer transition"
+      className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-[#f7f4ee] cursor-pointer transition"
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(text);
@@ -250,7 +250,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 
 function MorseLine({ text }: { text: string }) {
   return (
-    <code className="block rounded-xl border border-gray-200 bg-gray-50 p-3 text-sm sm:text-base font-mono text-neutral-900 whitespace-pre-wrap break-words leading-relaxed">
+    <code className="block rounded-xl border border-slate-200 bg-[#f7f4ee] p-3 text-sm sm:text-base font-mono text-neutral-900 whitespace-pre-wrap break-words leading-relaxed">
       {morseWithWordSlashes(text)}
     </code>
   );
@@ -477,12 +477,12 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
     <div>
       <JsonLdScript jsonLd={jsonLd} />
 
-      <section className="bg-white border border-gray-200 rounded-2xl p-3 shadow-sm">
+      <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-3 shadow-sm">
         <div className="mb-5 flex flex-col justify-center items-center text-center">
           <h1 className="mt-3 font-bold !text-2xl sm:!text-4xl text-sky-800">
             Morse Code Sentence Practice
           </h1>
-          <p className="mt-2 max-w-3xl text-sm sm:text-lg text-gray-700">
+          <p className="mt-2 max-w-3xl text-sm sm:text-lg text-slate-700">
             Decode and send complete Morse code sentences with a longer typing
             area, instant checking, sentence difficulty filters, and spacing
             hints built for full-phrase practice.
@@ -490,14 +490,14 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
 
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-          <div className="inline-flex rounded-xl border border-gray-200 bg-gray-50 p-1 w-full sm:w-auto">
+          <div className="inline-flex rounded-xl border border-slate-200 bg-[#f7f4ee] p-1 w-full sm:w-auto">
             <button
               type="button"
               onClick={() => setMode("text_to_morse")}
               className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "text_to_morse"
-                  ? "bg-white border border-gray-200 shadow-sm"
-                  : "text-gray-700 hover:bg-white/60"
+                  ? "border border-slate-200 bg-[#fffdf8] shadow-sm"
+                  : "text-slate-700 hover:bg-white/60"
               }`}
             >
               Text → Morse
@@ -507,8 +507,8 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
               onClick={() => setMode("morse_to_text")}
               className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "morse_to_text"
-                  ? "bg-white border border-gray-200 shadow-sm"
-                  : "text-gray-700 hover:bg-white/60"
+                  ? "border border-slate-200 bg-[#fffdf8] shadow-sm"
+                  : "text-slate-700 hover:bg-white/60"
               }`}
             >
               Morse → Text
@@ -518,44 +518,44 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
               onClick={() => setMode("mixed")}
               className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "mixed"
-                  ? "bg-white border border-gray-200 shadow-sm"
-                  : "text-gray-700 hover:bg-white/60"
+                  ? "border border-slate-200 bg-[#fffdf8] shadow-sm"
+                  : "text-slate-700 hover:bg-white/60"
               }`}
             >
               Mixed
             </button>
           </div>
 
-          <div className="lg:ml-auto text-sm text-gray-700 flex flex-wrap items-center gap-3 justify-start lg:justify-end">
+          <div className="lg:ml-auto text-sm text-slate-700 flex flex-wrap items-center gap-3 justify-start lg:justify-end">
             <span>
               Questions:{" "}
-              <span className="font-semibold text-sky-900">
+              <span className="font-semibold text-sky-950">
                 {questionsShown}/{TOTAL_QUESTIONS}
               </span>
             </span>
             <span>
               Attempts:{" "}
-              <span className="font-semibold text-sky-900">{attempts}</span>
+              <span className="font-semibold text-sky-950">{attempts}</span>
             </span>
             <span>
               Correct:{" "}
-              <span className="font-semibold text-sky-900">{correct}</span>
+              <span className="font-semibold text-sky-950">{correct}</span>
             </span>
             <span>
               Skipped:{" "}
-              <span className="font-semibold text-sky-900">{skipped}</span>
+              <span className="font-semibold text-sky-950">{skipped}</span>
             </span>
             <span>
               Accuracy:{" "}
-              <span className="font-semibold text-sky-900">{accuracy}%</span>
+              <span className="font-semibold text-sky-950">{accuracy}%</span>
             </span>
             <span>
               Streak:{" "}
-              <span className="font-semibold text-sky-900">{streak}</span>
+              <span className="font-semibold text-sky-950">{streak}</span>
             </span>
             <span>
               Best:{" "}
-              <span className="font-semibold text-sky-900">{bestStreak}</span>
+              <span className="font-semibold text-sky-950">{bestStreak}</span>
             </span>
             <ShareResultsButton
               title="Morse Code Sentence Practice"
@@ -573,73 +573,73 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
           </div>
         </div>
 
-        <div className="mt-4 border border-gray-200 rounded-2xl p-4 sm:p-5 bg-white">
+        <div className="mt-4 border border-slate-200 rounded-2xl p-4 sm:p-5 bg-white">
           {gameOver ? (
-            <div className="rounded-2xl border border-gray-200 bg-sky-50 p-5 sm:p-6">
+            <div className="rounded-2xl border border-slate-200 bg-sky-50 p-5 sm:p-6">
               <div className="flex flex-col items-center text-center">
-                <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
+                <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
                   Sentence session complete
                 </div>
-                <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-900">
+                <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
                   Your sentence practice results
                 </h2>
-                <p className="mt-1 text-sm sm:text-base text-gray-700">
+                <p className="mt-1 text-sm sm:text-base text-slate-700">
                   This session checks full sentences, so accuracy counts skipped
                   sentences as missed questions.
                 </p>
               </div>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="text-sm font-semibold text-slate-600">
                     Questions
                   </div>
                   <div className="mt-1 text-3xl font-extrabold text-neutral-900">
                     {TOTAL_QUESTIONS}/{TOTAL_QUESTIONS}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="text-sm font-semibold text-slate-600">
                     Attempts
                   </div>
                   <div className="mt-1 text-3xl font-extrabold text-neutral-900">
                     {attempts}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="text-sm font-semibold text-slate-600">
                     Correct
                   </div>
                   <div className="mt-1 text-3xl font-extrabold text-neutral-900">
                     {correct}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="text-sm font-semibold text-slate-600">
                     Skipped
                   </div>
                   <div className="mt-1 text-3xl font-extrabold text-neutral-900">
                     {skipped}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="text-sm font-semibold text-slate-600">
                     Accuracy
                   </div>
                   <div className="mt-1 text-3xl font-extrabold text-neutral-900">
                     {accuracy}%
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="text-sm font-semibold text-slate-600">
                     Best streak
                   </div>
                   <div className="mt-1 text-3xl font-extrabold text-neutral-900">
                     {bestStreak}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="text-sm font-semibold text-slate-600">
                     Mode
                   </div>
                   <div className="mt-1 text-lg font-extrabold text-neutral-900">
@@ -677,16 +677,16 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
               <div className="rounded-2xl border border-sky-100 bg-sky-50 p-4 sm:p-5">
                 <div className="flex items-center gap-2 justify-between flex-wrap">
                   <div className="inline-flex items-center gap-2 flex-wrap">
-                    <span className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
+                    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
                       {prompt.kind === "text_to_morse"
                         ? "Text → Morse"
                         : "Morse → Text"}
                     </span>
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-slate-600">
                       {prompt.label}
                     </span>
                   </div>
-                  <span className="text-sm font-semibold text-gray-700">
+                  <span className="text-sm font-semibold text-slate-700">
                     Question {questionsShown}/{TOTAL_QUESTIONS}
                   </span>
                 </div>
@@ -700,27 +700,27 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
                 {showHint ? (
                   <div className="mt-3 grid gap-3 sm:grid-cols-3">
                     <div className="rounded-xl border border-sky-100 bg-white p-3">
-                      <p className="text-xs font-extrabold uppercase tracking-wide text-sky-900">
+                      <p className="text-xs font-extrabold uppercase tracking-wide text-sky-950">
                         Sentence length
                       </p>
-                      <p className="mt-1 text-sm text-gray-700">
+                      <p className="mt-1 text-sm text-slate-700">
                         Target: {targetWordCount} words
                       </p>
                     </div>
                     <div className="rounded-xl border border-sky-100 bg-white p-3">
-                      <p className="text-xs font-extrabold uppercase tracking-wide text-sky-900">
+                      <p className="text-xs font-extrabold uppercase tracking-wide text-sky-950">
                         Spacing rule
                       </p>
-                      <p className="mt-1 text-sm text-gray-700">
+                      <p className="mt-1 text-sm text-slate-700">
                         Letters get small gaps. Words get larger gaps or
                         slashes.
                       </p>
                     </div>
                     <div className="rounded-xl border border-sky-100 bg-white p-3">
-                      <p className="text-xs font-extrabold uppercase tracking-wide text-sky-900">
+                      <p className="text-xs font-extrabold uppercase tracking-wide text-sky-950">
                         Best habit
                       </p>
-                      <p className="mt-1 text-sm text-gray-700">
+                      <p className="mt-1 text-sm text-slate-700">
                         Finish the full sentence before checking.
                       </p>
                     </div>
@@ -731,7 +731,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
               <div className="mt-5">
                 <label
                   htmlFor="sentence-answer"
-                  className="text-base font-extrabold text-sky-900"
+                  className="text-base font-extrabold text-sky-950"
                 >
                   Your full-sentence answer
                 </label>
@@ -755,33 +755,33 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
                   spellCheck={false}
                   inputMode="text"
                   aria-label="Sentence practice answer"
-                  className="mt-2 w-full rounded-xl border border-gray-300 bg-white p-4 font-mono text-base sm:text-lg text-neutral-900 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100 disabled:bg-gray-50 disabled:text-gray-500"
+                  className="mt-2 w-full rounded-xl border border-gray-300 bg-white p-4 font-mono text-base sm:text-lg text-neutral-900 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100 disabled:bg-[#f7f4ee] disabled:text-slate-500"
                 />
 
-                <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-gray-600">
+                <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-600">
                   <span>
                     Typed words:{" "}
-                    <span className="font-semibold text-sky-900">
+                    <span className="font-semibold text-sky-950">
                       {answerWordCount}
                     </span>
                   </span>
                   <span>
                     Target words:{" "}
-                    <span className="font-semibold text-sky-900">
+                    <span className="font-semibold text-sky-950">
                       {targetWordCount}
                     </span>
                   </span>
                   <span>
                     Tip:{" "}
-                    <span className="font-semibold text-sky-900">
+                    <span className="font-semibold text-sky-950">
                       Ctrl/⌘ + Enter checks
                     </span>
                   </span>
                 </div>
 
                 {prompt.kind === "text_to_morse" && answer.trim() ? (
-                  <div className="mt-3 rounded-xl border border-gray-200 bg-gray-50 p-3">
-                    <p className="text-sm font-bold text-sky-900">
+                  <div className="mt-3 rounded-xl border border-slate-200 bg-[#f7f4ee] p-3">
+                    <p className="text-sm font-bold text-sky-950">
                       Normalized Morse preview
                     </p>
                     <code className="mt-1 block whitespace-pre-wrap break-words font-mono text-sm text-neutral-900">
@@ -848,13 +848,13 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
 
                 {showAnswer ? (
                   <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4">
-                    <p className="text-sm font-extrabold text-sky-900">
+                    <p className="text-sm font-extrabold text-sky-950">
                       Expected answer
                     </p>
                     <code className="mt-2 block whitespace-pre-wrap break-words font-mono text-base text-neutral-900">
                       {expectedAnswer}
                     </code>
-                    <p className="mt-2 text-sm text-gray-700">
+                    <p className="mt-2 text-sm text-slate-700">
                       Use reveal after trying the full sentence. It is useful
                       for spacing review, but it will not count as a correct
                       attempt.
@@ -863,13 +863,13 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
                 ) : null}
               </div>
 
-              <div className="mt-6 border-t border-gray-200 pt-5">
+              <div className="mt-6 border-t border-slate-200 pt-5">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <p className="text-base font-extrabold text-neutral-900">
                       Sentence drill options
                     </p>
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-slate-600">
                       Filter the quiz to short beginner sentences, radio contact
                       phrases, signal reports, or spacing-control drills.
                     </p>
@@ -910,13 +910,13 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
       </section>
 
-      <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
               Sentence drill library
             </h2>
-            <p className="mt-2 text-gray-700 leading-relaxed">
+            <p className="mt-2 text-slate-700 leading-relaxed">
               Use this library after the interactive drill when you want
               specific Morse code sentences to copy, send, or repeat by
               difficulty.
@@ -928,7 +928,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
           {sentenceDrills.map((drill) => (
             <article
               key={drill.text}
-              className="rounded-2xl border border-gray-200 bg-gray-50 p-4"
+              className="rounded-2xl border border-slate-200 bg-[#f7f4ee] p-4"
             >
               <div className="flex items-start justify-between gap-3">
                 <h3 className="font-mono text-base font-extrabold text-neutral-900">
@@ -940,10 +940,10 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
                   {difficultyLabels[drill.difficulty]}
                 </span>
               </div>
-              <p className="mt-2 text-sm font-semibold text-sky-900">
+              <p className="mt-2 text-sm font-semibold text-sky-950">
                 {drill.focus}
               </p>
-              <p className="mt-1 text-sm text-gray-700 leading-relaxed">
+              <p className="mt-1 text-sm text-slate-700 leading-relaxed">
                 {drill.note}
               </p>
               <div className="mt-3">
@@ -961,11 +961,11 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
       </section>
 
-      <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900">
+      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           How spacing works in sentence Morse
         </h2>
-        <p className="mt-3 text-gray-700 leading-relaxed">
+        <p className="mt-3 text-slate-700 leading-relaxed">
           Sentence practice is mostly a spacing problem. You are not just
           remembering dots and dashes. You are also learning where one character
           ends, where the next word begins, and how to keep the sentence
@@ -976,25 +976,25 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
           {spacingExamples.map((example) => (
             <div
               key={example.label}
-              className="rounded-2xl border border-sky-200 bg-sky-50 p-4"
+              className="rounded-2xl border border-slate-200 bg-[#f7f4ee] p-4"
             >
-              <h3 className="font-extrabold text-sky-900">{example.label}</h3>
+              <h3 className="font-extrabold text-sky-950">{example.label}</h3>
               <p className="mt-2 font-mono text-xl font-bold text-neutral-900">
                 {example.plain}
               </p>
               <MorseLine text={example.plain} />
-              <p className="mt-3 text-sm text-gray-700 leading-relaxed">
+              <p className="mt-3 text-sm text-slate-700 leading-relaxed">
                 {example.explanation}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-5 rounded-2xl border border-gray-200 bg-gray-50 p-4">
-          <h3 className="font-extrabold text-sky-900">
+        <div className="mt-5 rounded-2xl border border-slate-200 bg-[#f7f4ee] p-4">
+          <h3 className="font-extrabold text-sky-950">
             Practical sentence spacing format
           </h3>
-          <p className="mt-2 text-gray-700 leading-relaxed">
+          <p className="mt-2 text-slate-700 leading-relaxed">
             On this page, letters are grouped with spaces and word gaps are
             shown with a slash for readability. For example, SEND HELP is shown
             as Morse groups for SEND, then a slash, then Morse groups for HELP.
@@ -1004,11 +1004,11 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
       </section>
 
-      <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900">
+      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           Common Morse code sentence practice sets
         </h2>
-        <p className="mt-3 text-gray-700 leading-relaxed">
+        <p className="mt-3 text-slate-700 leading-relaxed">
           These sets are useful when you want a repeatable routine instead of
           random prompts. Start with the beginner set, then move into radio
           contact phrases and signal reports once full-sentence spacing feels
@@ -1019,24 +1019,24 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
           {commonPracticeSets.map((set) => (
             <article
               key={set.title}
-              className="rounded-2xl border border-gray-200 bg-gray-50 p-4"
+              className="rounded-2xl border border-slate-200 bg-[#f7f4ee] p-4"
             >
-              <h3 className="text-lg font-extrabold text-sky-900">
+              <h3 className="text-lg font-extrabold text-sky-950">
                 {set.title}
               </h3>
-              <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+              <p className="mt-2 text-sm text-slate-700 leading-relaxed">
                 {set.description}
               </p>
               <ul className="mt-3 space-y-2">
                 {set.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-xl border border-gray-200 bg-white p-3"
+                    className="rounded-xl border border-slate-200 bg-white p-3"
                   >
                     <p className="font-mono text-sm font-bold text-neutral-900">
                       {item}
                     </p>
-                    <p className="mt-1 font-mono text-xs text-gray-600 break-words">
+                    <p className="mt-1 font-mono text-xs text-slate-600 break-words">
                       {morseWithWordSlashes(item)}
                     </p>
                   </li>
@@ -1047,28 +1047,28 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
       </section>
 
-      <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-900">
+      <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           Why practice complete Morse code sentences?
         </h2>
         <div className="mt-4 grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-            <h3 className="font-extrabold text-sky-900">You train rhythm</h3>
-            <p className="mt-2 text-gray-700 leading-relaxed">
+          <div className="rounded-2xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <h3 className="font-extrabold text-sky-950">You train rhythm</h3>
+            <p className="mt-2 text-slate-700 leading-relaxed">
               Letters alone do not teach sentence rhythm. Full phrases force you
               to hold a steady pace across multiple words.
             </p>
           </div>
-          <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-            <h3 className="font-extrabold text-sky-900">You learn word gaps</h3>
-            <p className="mt-2 text-gray-700 leading-relaxed">
+          <div className="rounded-2xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <h3 className="font-extrabold text-sky-950">You learn word gaps</h3>
+            <p className="mt-2 text-slate-700 leading-relaxed">
               Most sentence-copy mistakes come from weak spacing. Practicing
               phrases makes the gaps obvious.
             </p>
           </div>
-          <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-            <h3 className="font-extrabold text-sky-900">You copy meaning</h3>
-            <p className="mt-2 text-gray-700 leading-relaxed">
+          <div className="rounded-2xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <h3 className="font-extrabold text-sky-950">You copy meaning</h3>
+            <p className="mt-2 text-slate-700 leading-relaxed">
               Sentences train you to decode useful meaning instead of treating
               every character as a disconnected symbol.
             </p>
@@ -1080,3 +1080,4 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
     </div>
   );
 }
+

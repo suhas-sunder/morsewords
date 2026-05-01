@@ -3,19 +3,18 @@ import { Link } from "react-router";
 
 export default function HowItWorksPractice() {
   return (
-    <section className="mt-8 bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 shadow-sm">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
       <div className="flex flex-col gap-3">
-        <div className="inline-flex items-center gap-2">
-          <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1.5 text-sm font-extrabold text-sky-900 border border-sky-200">
-            Practice spec
-          </span>
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-sky-800" />
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">Practice spec</span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold capitalize text-sky-900 tracking-tight">
+        <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           How Morse Code Practice works
         </h2>
 
-        <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+        <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
           This page is a utility-first drill. It is built for fast repetition
           and clear checks, not for teaching Morse from scratch. You get one
           prompt at a time, submit an answer, and move forward through a fixed
@@ -38,7 +37,7 @@ export default function HowItWorksPractice() {
           <a
             key={href}
             href={href}
-            className="px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 cursor-pointer transition"
+            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -46,43 +45,43 @@ export default function HowItWorksPractice() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">
             10-question runs
           </p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Every session is a fixed run of <strong>10 prompts</strong>. The
             goal is to keep momentum high and make progress measurable.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">
             Instant checks
           </p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             You get immediate feedback after each submission. The tool checks
             meaning, not cosmetic formatting.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-          <p className="text-base font-extrabold text-sky-900">
+        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <p className="text-base font-extrabold text-sky-950">
             Utility over tutorials
           </p>
-          <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             No long lessons. This is a practice surface designed to help you
             drill mappings quickly.
           </p>
         </div>
       </div>
 
-      <div className="mt-8 space-y-6 text-gray-700 leading-relaxed">
+      <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="run-flow"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Run flow: what happens in a session
           </h3>
 
@@ -120,9 +119,9 @@ export default function HowItWorksPractice() {
 
         <div
           id="modes"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Modes: practice the direction you actually need
           </h3>
 
@@ -135,8 +134,8 @@ export default function HowItWorksPractice() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Text → Morse
               </p>
               <p className="mt-2 text-base sm:text-lg">
@@ -145,8 +144,8 @@ export default function HowItWorksPractice() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Morse → Text
               </p>
               <p className="mt-2 text-base sm:text-lg">
@@ -165,9 +164,9 @@ export default function HowItWorksPractice() {
 
         <div
           id="pools"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Pools: narrow focus or broad coverage
           </h3>
 
@@ -205,22 +204,22 @@ export default function HowItWorksPractice() {
             will not produce invalid prompt kinds.
           </p>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Want more than drills?
             </p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               Use{" "}
               <Link
                 to="/dictionary"
-                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+                className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
               >
                 Dictionary
               </Link>{" "}
               to study mappings, or{" "}
               <Link
                 to="/typing"
-                className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+                className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
               >
                 Typing
               </Link>{" "}
@@ -231,9 +230,9 @@ export default function HowItWorksPractice() {
 
         <div
           id="sentences"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Sentence rules: spacing matters, but the checker stays practical
           </h3>
 
@@ -245,8 +244,8 @@ export default function HowItWorksPractice() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Text → Morse sentences
               </p>
               <p className="mt-2 text-base sm:text-lg">
@@ -256,8 +255,8 @@ export default function HowItWorksPractice() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
-              <p className="text-base sm:text-lg font-extrabold text-sky-900">
+            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Morse → Text sentences
               </p>
               <p className="mt-2 text-base sm:text-lg">
@@ -267,11 +266,11 @@ export default function HowItWorksPractice() {
             </div>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-sky-200 bg-sky-50 p-5">
-            <p className="text-base font-extrabold text-sky-900">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Boundary rule of thumb
             </p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               If your answer expects Morse, separate letters with spaces and
               separate words with <code>/</code> or a clear longer gap. The
               checker is tolerant of reasonable spacing differences, but it
@@ -282,9 +281,9 @@ export default function HowItWorksPractice() {
 
         <div
           id="morse-input"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Morse input tips: type the way you naturally type
           </h3>
 
@@ -296,13 +295,13 @@ export default function HowItWorksPractice() {
           </p>
 
           <div className="mt-5">
-            <p className="text-base font-extrabold text-gray-800">Examples</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            <p className="text-base font-extrabold text-sky-950">Examples</p>
+            <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
               {`.-
 . -
 • −`}
             </pre>
-            <p className="mt-3 text-base sm:text-lg text-gray-600">
+            <p className="mt-3 text-base sm:text-lg text-slate-600">
               These all represent the same Morse character after normalization.
               Spaces inside a single character (like <code>. -</code>) are
               interpreted as the intended <code>.-</code> rather than separate
@@ -315,7 +314,7 @@ export default function HowItWorksPractice() {
             readable. If you need a dedicated separator normalizer, use{" "}
             <Link
               to="/morse-code-word-separator"
-              className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
             >
               Word separator
             </Link>{" "}
@@ -331,9 +330,9 @@ export default function HowItWorksPractice() {
 
         <div
           id="scoring"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Scoring: attempts, accuracy, and what progress means here
           </h3>
 
@@ -351,11 +350,11 @@ export default function HowItWorksPractice() {
             advanced to the next prompt yet.
           </p>
 
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-base font-extrabold text-gray-800">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+            <p className="text-base font-extrabold text-sky-950">
               Measure improvement the right way
             </p>
-            <p className="mt-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+            <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               If your accuracy is stuck, narrow the pool (letters only, then
               numbers), and use Mixed mode only after each direction is
               comfortable.
@@ -365,9 +364,9 @@ export default function HowItWorksPractice() {
 
         <div
           id="skip"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Skip and streaks: deliberate rules to keep practice honest
           </h3>
 
@@ -387,9 +386,9 @@ export default function HowItWorksPractice() {
 
         <div
           id="share"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Share: copy a clean progress snapshot
           </h3>
 
@@ -409,9 +408,9 @@ export default function HowItWorksPractice() {
 
         <div
           id="troubleshooting"
-          className="rounded-2xl border border-gray-200 p-6 sm:p-7"
+          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting: common practice mistakes
           </h3>
 
@@ -441,14 +440,14 @@ export default function HowItWorksPractice() {
             If you want conversion utilities, use{" "}
             <Link
               to="/morse-code-encoder"
-              className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
             >
               Encoder
             </Link>{" "}
             and{" "}
             <Link
               to="/morse-code-decoder"
-              className="font-extrabold text-sky-900 hover:text-sky-800 underline cursor-pointer"
+              className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer"
             >
               Decoder
             </Link>
@@ -458,12 +457,12 @@ export default function HowItWorksPractice() {
         </div>
       </div>
 
-      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
-        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-900">
+      <div className="mt-8 rounded-xl border border-slate-200 bg-[#fffdf8] p-5 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>
 
-        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-gray-700">
+        <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-slate-700">
           <li>
             <strong>What this tool is for:</strong> fast drills with one prompt
             at a time and instant checks.
@@ -491,3 +490,6 @@ export default function HowItWorksPractice() {
     </section>
   );
 }
+
+
+
