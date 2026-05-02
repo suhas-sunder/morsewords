@@ -10,14 +10,21 @@ import {
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
-import { LightBulbIcon, LoopIcon } from "~/client/assets/svg/Icons";
+import {
+  CheckCircleIcon,
+  LightBulbIcon,
+  LoopIcon,
+  RefreshIcon,
+} from "~/client/assets/svg/Icons";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-visual-quiz";
+const STROBE_WARNING_ID = "visual-quiz-strobe-warning";
 const PROMPTS = [
   "sos",
   "cq",
@@ -47,7 +54,7 @@ const faqItems = [
   },
   {
     q: "Is this safe for light-sensitive users?",
-    a: "Flashing light may be unsafe or uncomfortable for people with photosensitive epilepsy or light sensitivity. Use audio practice instead if flashing bothers you.",
+    a: "Strobe warning: flashing light may be uncomfortable or unsafe for people with photosensitive epilepsy or light sensitivity. Turn off Flash or use audio-only practice if you are sensitive to strobing.",
   },
 ];
 
@@ -286,7 +293,7 @@ export default function MorseCodeVisualQuiz() {
                   <button
                     type="button"
                     onClick={resetQuiz}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
                   >
                     <LoopIcon size={18} title="Try again" />
                     Try again
@@ -310,6 +317,7 @@ export default function MorseCodeVisualQuiz() {
           ) : (
             <div className="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[320px_minmax(0,1fr)]">
               <div className="flex flex-col items-center rounded-2xl border border-slate-200 bg-[#fffdf8] p-6">
+                <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
                 <div
                   className={
                     "h-40 w-40 rounded-full border transition-all duration-75 " +
@@ -322,16 +330,12 @@ export default function MorseCodeVisualQuiz() {
                 <button
                   type="button"
                   onClick={play}
-                  className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
+                  aria-describedby={STROBE_WARNING_ID}
+                  className="mt-5 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
                 >
                   <LightBulbIcon size={20} title="Flash prompt" />
                   Flash prompt
                 </button>
-                <p className="mt-4 rounded-xl border border-slate-200 bg-white p-3 text-sm leading-relaxed text-slate-700">
-                  <strong>Strobe warning:</strong> flashing light may be
-                  uncomfortable or unsafe for people with photosensitive
-                  epilepsy.
-                </p>
               </div>
               <div>
                 <label className="block">
@@ -378,31 +382,34 @@ export default function MorseCodeVisualQuiz() {
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {!solved ? (
-                    <button
-                      type="button"
-                      onClick={checkAnswer}
-                      disabled={!answer.trim()}
-                      className="min-h-11 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold disabled:opacity-50"
-                    >
-                      Check answer
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={nextPrompt}
-                      className="min-h-11 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
-                    >
-                      {completed + 1 >= TOTAL_QUESTIONS
-                        ? "Finish"
-                        : "Next prompt"}
+                      <button
+                        type="button"
+                        onClick={checkAnswer}
+                        disabled={!answer.trim()}
+                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <CheckCircleIcon size={18} title="Check answer" />
+                        Check answer
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={nextPrompt}
+                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
+                      >
+                        <LoopIcon size={18} title="Next prompt" />
+                        {completed + 1 >= TOTAL_QUESTIONS
+                          ? "Finish"
+                          : "Next prompt"}
                     </button>
                   )}
                   <button
                     type="button"
                     onClick={nextPrompt}
                     disabled={solved}
-                    className="min-h-11 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold disabled:opacity-50"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50"
                   >
+                    <RefreshIcon size={18} title="Skip prompt" />
                     Skip
                   </button>
                 </div>

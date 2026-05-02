@@ -9,6 +9,7 @@ import {
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import useMorseAudio, { type SoundPreset } from "~/client/components/shared/useMorseAudio";
 import styles from "~/client/components/shared/pageStyles";
@@ -23,6 +24,7 @@ import {
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-audio-practice";
+const STROBE_WARNING_ID = "audio-practice-strobe-warning";
 
 const faqItems = [
   {
@@ -288,16 +290,11 @@ export default function MorseCodeAudioPractice() {
                       checked={flash}
                       onChange={setFlash}
                       icon={<LightBulbIcon size={16} title="Flash" />}
+                      describedBy={STROBE_WARNING_ID}
                     />
                   </div>
                 </div>
-                {flash ? (
-                  <div className="mt-4 rounded-xl border border-slate-200 bg-[#fffdf8] p-3 text-sm leading-relaxed text-slate-700">
-                    <strong>Strobe warning:</strong> flashing light may be
-                    uncomfortable or unsafe for people with photosensitive
-                    epilepsy. Disable Flash if you are sensitive to strobing.
-                  </div>
-                ) : null}
+                <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
               </div>
             ) : null}
 
@@ -413,11 +410,13 @@ function TogglePill({
   checked,
   onChange,
   icon,
+  describedBy,
 }: {
   label: string;
   checked: boolean;
   onChange: (value: boolean) => void;
   icon?: React.ReactNode;
+  describedBy?: string;
 }) {
   return (
     <button
@@ -430,6 +429,7 @@ function TogglePill({
           : "border-slate-200 bg-white text-slate-800 hover:border-sky-300 hover:bg-sky-50")
       }
       aria-pressed={checked}
+      aria-describedby={describedBy}
     >
       {icon}
       {label}

@@ -10,6 +10,7 @@ import {
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
@@ -17,15 +18,18 @@ import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
 import {
+  CheckCircleIcon,
   LightBulbIcon,
   LoopIcon,
   PlayIcon,
+  RefreshIcon,
   SoundIcon,
   StopIcon,
 } from "~/client/assets/svg/Icons";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-audio-quiz";
+const STROBE_WARNING_ID = "audio-quiz-strobe-warning";
 const PROMPTS = [
   "sos",
   "cq",
@@ -55,7 +59,7 @@ const faqItems = [
   },
   {
     q: "Is the Flash option safe for everyone?",
-    a: "No. Flash mode can create strobing light, which may be uncomfortable or unsafe for people with photosensitive epilepsy or light sensitivity.",
+    a: "Strobe warning: flashing light may be uncomfortable or unsafe for people with photosensitive epilepsy or light sensitivity. Turn off Flash or use audio-only practice if you are sensitive to strobing.",
   },
 ];
 
@@ -361,7 +365,7 @@ export default function MorseCodeAudioQuiz() {
                   <button
                     type="button"
                     onClick={resetQuiz}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
                   >
                     <LoopIcon size={18} title="Try again" />
                     Try again
@@ -411,29 +415,32 @@ export default function MorseCodeAudioQuiz() {
                         type="button"
                         onClick={checkAnswer}
                         disabled={!answer.trim()}
-                        className="min-h-11 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold disabled:opacity-50"
+                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50"
                       >
+                        <CheckCircleIcon size={18} title="Check answer" />
                         Check answer
                       </button>
                     ) : (
                       <button
                         type="button"
                         onClick={nextPrompt}
-                        className="min-h-11 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
+                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
                       >
+                        <LoopIcon size={18} title="Next prompt" />
                         {completed + 1 >= TOTAL_QUESTIONS
                           ? "Finish"
                           : "Next prompt"}
                       </button>
                     )}
                     <button
-                      type="button"
-                      onClick={nextPrompt}
-                      disabled={solved}
-                      className="min-h-11 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold disabled:opacity-50"
-                    >
-                      Skip
-                    </button>
+                    type="button"
+                    onClick={nextPrompt}
+                    disabled={solved}
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <RefreshIcon size={18} title="Skip prompt" />
+                    Skip
+                  </button>
                   </div>
                   {checked ? (
                     <p
@@ -458,7 +465,7 @@ export default function MorseCodeAudioQuiz() {
                   <button
                     type="button"
                     onClick={playPrompt}
-                    className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
+                    className="mt-4 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
                   >
                     <PlayIcon size={20} title="Play prompt" />
                     {player.state === "playing" ? "Restart prompt" : "Play prompt"}
@@ -467,7 +474,7 @@ export default function MorseCodeAudioQuiz() {
                     type="button"
                     onClick={player.stop}
                     disabled={player.state === "idle"}
-                    className="mt-2 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold text-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="mt-2 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <StopIcon size={20} title="Stop audio" />
                     Stop
@@ -590,24 +597,18 @@ export default function MorseCodeAudioQuiz() {
                           checked={flash}
                           onChange={setFlash}
                           icon={<LightBulbIcon size={16} title="Flash" />}
+                          describedBy={STROBE_WARNING_ID}
                         />
                       </div>
                     </div>
-                    {flash ? (
-                      <div className="mt-4 rounded-xl border border-slate-200 bg-[#fffdf8] p-3 text-sm leading-relaxed text-slate-700">
-                        <strong>Strobe warning:</strong> flashing light may be
-                        uncomfortable or unsafe for people with photosensitive
-                        epilepsy. Disable Flash if you are sensitive to
-                        strobing.
-                      </div>
-                    ) : null}
+                    <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
                   </div>
                 ) : null}
 
                 <button
                   type="button"
                   onClick={() => setAdvancedOpen((value) => !value)}
-                  className="mt-5 min-h-11 w-full rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold text-slate-900"
+                  className="mt-5 min-h-11 w-full cursor-pointer rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300"
                 >
                   {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
                 </button>
@@ -702,11 +703,13 @@ function TogglePill({
   checked,
   onChange,
   icon,
+  describedBy,
 }: {
   label: string;
   checked: boolean;
   onChange: (value: boolean) => void;
   icon?: React.ReactNode;
+  describedBy?: string;
 }) {
   return (
     <button
@@ -719,6 +722,7 @@ function TogglePill({
           : "border-slate-200 bg-white text-slate-800 hover:border-sky-300 hover:bg-sky-50")
       }
       aria-pressed={checked}
+      aria-describedby={describedBy}
     >
       {icon}
       {label}

@@ -9,14 +9,20 @@ import {
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
-import { LightBulbIcon } from "~/client/assets/svg/Icons";
+import {
+  LightBulbIcon,
+  VisibilityIcon,
+  VisibilityOffIcon,
+} from "~/client/assets/svg/Icons";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-visual-practice";
+const STROBE_WARNING_ID = "visual-practice-strobe-warning";
 
 const faqItems = [
   {
@@ -33,7 +39,7 @@ const faqItems = [
   },
   {
     q: "Is flashing light safe for everyone?",
-    a: "No. Flashing light can be uncomfortable or unsafe for people with photosensitive epilepsy. Stop using visual mode if flashing light bothers you.",
+    a: "Strobe warning: flashing light may be uncomfortable or unsafe for people with photosensitive epilepsy or light sensitivity. Turn off Flash or use audio-only practice if you are sensitive to strobing.",
   },
 ];
 
@@ -128,6 +134,7 @@ export default function MorseCodeVisualPractice() {
         <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <div className="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-center">
             <div className="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-[#fffdf8] p-8">
+              <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
               <div
                 className={
                   "h-44 w-44 rounded-full border transition-all duration-75 " +
@@ -140,15 +147,12 @@ export default function MorseCodeVisualPractice() {
               <button
                 type="button"
                 onClick={play}
-                className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100"
+                aria-describedby={STROBE_WARNING_ID}
+                className="mt-6 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
               >
                 <LightBulbIcon size={20} title="Flash message" />
                 Flash message
               </button>
-              <p className="mt-4 rounded-xl border border-slate-200 bg-white p-3 text-sm leading-relaxed text-slate-700">
-                <strong>Strobe warning:</strong> flashing light may be
-                uncomfortable or unsafe for people with photosensitive epilepsy.
-              </p>
             </div>
 
             <div>
@@ -187,8 +191,13 @@ export default function MorseCodeVisualPractice() {
               <button
                 type="button"
                 onClick={() => setShowAnswer((value) => !value)}
-                className="mt-5 min-h-11 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold"
+                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300"
               >
+                {showAnswer ? (
+                  <VisibilityOffIcon size={18} title="Hide answer" />
+                ) : (
+                  <VisibilityIcon size={18} title="Reveal answer" />
+                )}
                 {showAnswer ? "Hide answer" : "Reveal answer"}
               </button>
               {showAnswer ? (

@@ -1,6 +1,7 @@
 import * as React from "react";
 import QRCode from "qrcode";
 
+import { DownloadIcon, ShareIcon, WarningIcon } from "~/client/assets/svg/Icons";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
 import styles from "~/client/components/shared/pageStyles";
@@ -209,13 +210,19 @@ function normalizeLegacyList(value: string) {
   return value.replace(/\r?\n/g, ",");
 }
 
-function parseCommaSeparatedItems(value: string, fallback: string[]) {
-  const items = normalizeLegacyList(value)
+const MAX_CUSTOM_CONTENT_ITEMS = 12;
+
+function parseCustomContentItems(value: string) {
+  return normalizeLegacyList(value)
     .split(",")
     .map((item) => item.trim().replace(/\s+/g, " "))
     .filter(Boolean);
+}
 
-  return items.length > 0 ? items.slice(0, 12) : fallback;
+function parseCommaSeparatedItems(value: string, fallback: string[]) {
+  const items = parseCustomContentItems(value);
+
+  return items.length > 0 ? items.slice(0, MAX_CUSTOM_CONTENT_ITEMS) : fallback;
 }
 
 function cleanMorseInput(value: string) {
@@ -361,6 +368,29 @@ function getWorksheetSentenceLimit(level: WorksheetLevel) {
   if (level === "beginner") return 1;
   if (level === "challenge") return 4;
   return 3;
+}
+
+function getCustomContentStats({
+  value,
+  fallback,
+  activeLimit,
+}: {
+  value: string;
+  fallback: string[];
+  activeLimit: number;
+}) {
+  const rawItems = parseCustomContentItems(value);
+  const sourceCount = rawItems.length || fallback.length;
+  const cappedCount = Math.min(sourceCount, MAX_CUSTOM_CONTENT_ITEMS);
+
+  return {
+    sourceCount,
+    usedCount: Math.min(cappedCount, activeLimit),
+    activeLimit,
+    cappedOutCount: Math.max(0, sourceCount - MAX_CUSTOM_CONTENT_ITEMS),
+    unusedForLevelCount: Math.max(0, cappedCount - activeLimit),
+    usesFallback: rawItems.length === 0,
+  };
 }
 
 function getReferenceRows(settings: PrintableSettings) {
@@ -1950,16 +1980,15 @@ async function sharePrintable({
 
   if (navigator.share) {
     await navigator.share(shareData);
-    return;
+    return "";
   }
 
   if (navigator.clipboard?.writeText) {
     await navigator.clipboard.writeText(url);
-    window.alert("Link copied to clipboard.");
-    return;
+    return "Link copied to clipboard.";
   }
 
-  window.prompt("Copy this link:", url);
+  return `Copy this link: ${url}`;
 }
 
 function FormField({
@@ -2003,6 +2032,43 @@ function SettingsSection({
       </p>
       <div className="mt-4 grid min-w-0 gap-4">{children}</div>
     </section>
+  );
+}
+
+function ContentLimitNote({
+  label,
+  stats,
+}: {
+  label: string;
+  stats: ReturnType<typeof getCustomContentStats>;
+}) {
+  const notices = [
+    stats.usesFallback
+      ? `Using the default ${label.toLowerCase()} because the custom field is empty.`
+      : "",
+    `${stats.usedCount} of ${stats.sourceCount} ${label.toLowerCase()} will print for the current difficulty.`,
+    stats.unusedForLevelCount
+      ? `${stats.unusedForLevelCount} ${
+          stats.unusedForLevelCount === 1 ? "item is" : "items are"
+        } saved here but not used at this difficulty.`
+      : "",
+    stats.cappedOutCount
+      ? `Only the first ${MAX_CUSTOM_CONTENT_ITEMS} custom items are available for worksheet generation.`
+      : "",
+  ].filter(Boolean);
+
+  return (
+    <div className="mt-3 rounded-xl border border-slate-200 bg-[#fffdf8] p-3 text-xs leading-relaxed text-slate-600">
+      <div className="flex items-center gap-2 font-bold text-sky-900">
+        <WarningIcon size={16} title={`${label} limits`} />
+        Content limits
+      </div>
+      <ul className="mt-2 list-disc space-y-1 pl-5">
+        {notices.map((notice) => (
+          <li key={notice}>{notice}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -2206,6 +2272,7 @@ function LivePreview({
   qrCodeDataUrl,
   downloadFormat,
   isExporting,
+  statusMessage,
   onDownloadFormatChange,
   onDownload,
   onShare,
@@ -2214,6 +2281,7 @@ function LivePreview({
   qrCodeDataUrl: string;
   downloadFormat: DownloadFormat;
   isExporting: boolean;
+  statusMessage: string;
   onDownloadFormatChange: (format: DownloadFormat) => void;
   onDownload: () => void;
   onShare: () => void;
@@ -2264,6 +2332,7 @@ function LivePreview({
             className="action-primary"
             disabled={isExporting}
           >
+            <DownloadIcon size={18} title="Download printable" />
             {isExporting
               ? "Preparing export..."
               : isPdf
@@ -2272,9 +2341,16 @@ function LivePreview({
           </button>
 
           <button type="button" onClick={onShare} className="action-secondary">
+            <ShareIcon size={18} title="Share printable" />
             Share
           </button>
         </div>
+
+        {statusMessage ? (
+          <p className="mt-3 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
+            {statusMessage}
+          </p>
+        ) : null}
 
         {isPdf ? (
           <p className="mt-2 text-xs leading-relaxed text-slate-500">
@@ -2376,6 +2452,17 @@ export default function MorseCodePrintableChart() {
   const [downloadFormat, setDownloadFormat] =
     React.useState<DownloadFormat>("pdf");
   const [isExporting, setIsExporting] = React.useState(false);
+  const [statusMessage, setStatusMessage] = React.useState("");
+  const wordContentStats = getCustomContentStats({
+    value: settings.customWords,
+    fallback: DEFAULT_WORDS,
+    activeLimit: getWorksheetWordLimit(settings.worksheetLevel),
+  });
+  const sentenceContentStats = getCustomContentStats({
+    value: settings.customSentences,
+    fallback: DEFAULT_SENTENCES,
+    activeLimit: getWorksheetSentenceLimit(settings.worksheetLevel),
+  });
 
   React.useEffect(() => {
     try {
@@ -2675,9 +2762,11 @@ export default function MorseCodePrintableChart() {
 
   const handleDownload = async () => {
     if (isExporting) return;
+    setStatusMessage("");
 
     if (downloadFormat === "pdf") {
       printHtml(printableHtml);
+      setStatusMessage("PDF print dialog opened.");
       return;
     }
 
@@ -2685,9 +2774,10 @@ export default function MorseCodePrintableChart() {
 
     try {
       await exportPrintableImage(settings, qrCodeDataUrl, downloadFormat);
+      setStatusMessage("Download started.");
     } catch {
-      window.alert(
-        "The image export could not be generated in this browser. Try PDF export, or remove uploaded images and try again.",
+      setStatusMessage(
+        "The image export could not be generated in this browser. Try PDF export or remove uploaded images.",
       );
     } finally {
       setIsExporting(false);
@@ -2696,10 +2786,11 @@ export default function MorseCodePrintableChart() {
 
   const handleShare = async () => {
     try {
-      await sharePrintable({
+      const message = await sharePrintable({
         title: settings.worksheetTitle || "Printable Morse Code Worksheet",
         url: typeof window !== "undefined" ? window.location.href : CANONICAL_URL,
       });
+      if (message) setStatusMessage(message);
     } catch {
       // User cancelled share sheet or browser blocked it. No action needed.
     }
@@ -2784,6 +2875,7 @@ export default function MorseCodePrintableChart() {
         .action-secondary {
           min-height: 2.75rem;
           padding: 0.75rem 1.15rem;
+          gap: 0.55rem;
         }
 
         .action-primary {
@@ -3088,6 +3180,7 @@ export default function MorseCodePrintableChart() {
                     maxLength={300}
                   />
                 </div>
+                <ContentLimitNote label="Words" stats={wordContentStats} />
               </div>
 
               <div className="content-card">
@@ -3107,6 +3200,7 @@ export default function MorseCodePrintableChart() {
                     maxLength={420}
                   />
                 </div>
+                <ContentLimitNote label="Sentences" stats={sentenceContentStats} />
               </div>
             </SettingsSection>
 
@@ -3302,6 +3396,7 @@ export default function MorseCodePrintableChart() {
             qrCodeDataUrl={qrCodeDataUrl}
             downloadFormat={downloadFormat}
             isExporting={isExporting}
+            statusMessage={statusMessage}
             onDownloadFormatChange={setDownloadFormat}
             onDownload={handleDownload}
             onShare={handleShare}

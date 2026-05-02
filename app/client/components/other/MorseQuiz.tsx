@@ -221,7 +221,7 @@ export default function MorsePractice({
           {feedback && (
             <p
               className={`mt-3 font-semibold ${
-                feedback.ok ? "text-green-700" : "text-red-700"
+                feedback.ok ? "text-sky-800" : "text-amber-800"
               }`}
             >
               {feedback.ok

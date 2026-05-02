@@ -4,6 +4,7 @@ import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
+import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import { audioBufferToMp3Blob, type ExportFormat } from "~/client/components/morse-code-sound-generator/audioExport";
 import {
   getUnsupportedTextCharacters,
@@ -24,6 +25,7 @@ import {
 
 type SourceMode = "text" | "morse";
 type PageIntent = "audio" | "sound";
+const STROBE_WARNING_ID = "sound-generator-strobe-warning";
 
 type MorseAudioTranslatorProps = {
   heading?: string;
@@ -494,15 +496,10 @@ export default function MorseAudioTranslator({
                   <div className="mt-4 flex flex-wrap gap-2">
                     <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} />
                     <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} />
-                    <TogglePill label="Flash" checked={flash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} />
+                    <TogglePill label="Flash" checked={flash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={STROBE_WARNING_ID} />
                   </div>
 
-                  {flash ? (
-                    <div className="mt-3 rounded-2xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-                      <div className="font-bold">Strobe warning</div>
-                      <div className="mt-1">Flashing light may trigger seizures for people with photosensitive epilepsy. Disable Flash if you are unsure.</div>
-                    </div>
-                  ) : null}
+                  <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
                 </div>
               ) : null}
 
@@ -634,9 +631,9 @@ function ExportButton({ label, onClick, disabled }: { label: string; onClick: ()
   );
 }
 
-function TogglePill({ label, checked, onChange, icon }: { label: string; checked: boolean; onChange: (v: boolean) => void; icon?: React.ReactNode }) {
+function TogglePill({ label, checked, onChange, icon, describedBy }: { label: string; checked: boolean; onChange: (v: boolean) => void; icon?: React.ReactNode; describedBy?: string }) {
   return (
-    <button type="button" onClick={() => onChange(!checked)} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold border cursor-pointer active:scale-95 transition ${checked ? "border-neutral-900 bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white" : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"}`} aria-pressed={checked}>
+    <button type="button" onClick={() => onChange(!checked)} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold border cursor-pointer active:scale-95 transition ${checked ? "border-neutral-900 bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white" : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"}`} aria-pressed={checked} aria-describedby={describedBy}>
       {icon}
       <span>{label}</span>
     </button>

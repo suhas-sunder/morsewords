@@ -6,6 +6,7 @@ import {
   textToMorse,
 } from "~/client/components/shared/morseUtils";
 import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
+import StrobeWarning from "~/client/components/shared/StrobeWarning";
 
 import styles from "~/client/components/shared/pageStyles";
 import {
@@ -32,6 +33,8 @@ interface Props {
   examples?: string[];
   plainValidationValue?: string;
 }
+
+const STROBE_WARNING_ID = "translator-strobe-warning";
 
 export default function TranslatorSectionsBasic({
   plainA,
@@ -722,18 +725,11 @@ export default function TranslatorSectionsBasic({
                     checked={flash}
                     onChange={setFlash}
                     icon={<LightBulbIcon size={16} title="Light" />}
+                    describedBy={STROBE_WARNING_ID}
                   />
                 </div>
 
-                {flash && (
-                  <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-                    <div className="font-bold">Strobe warning</div>
-                    <div className="mt-1">
-                      Flashing light may trigger seizures for people with
-                      photosensitive epilepsy. Use with caution.
-                    </div>
-                  </div>
-                )}
+                <StrobeWarning id={STROBE_WARNING_ID} />
 
                 <button
                   type="button"
@@ -812,11 +808,13 @@ function TogglePill({
   checked,
   onChange,
   icon,
+  describedBy,
 }: {
   label: string;
   checked: boolean;
   onChange: (v: boolean) => void;
   icon?: React.ReactNode;
+  describedBy?: string;
 }) {
   return (
     <button
@@ -828,6 +826,7 @@ function TogglePill({
           : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
       }`}
       aria-pressed={checked}
+      aria-describedby={describedBy}
     >
       {icon}
       <span>{label}</span>

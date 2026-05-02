@@ -4,6 +4,7 @@ import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
+import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
@@ -22,6 +23,7 @@ import {
 } from "~/client/assets/svg/Icons";
 
 type SourceMode = "text" | "morse";
+const STROBE_WARNING_ID = "audio-translator-strobe-warning";
 
 export default function MorseAudioTranslator() {
   const player = useMorseAudio();
@@ -698,19 +700,11 @@ export default function MorseAudioTranslator() {
                       checked={flash}
                       onChange={(v) => setFeedback("flash", v)}
                       icon={<LightBulbIcon size={16} title="Flash" />}
+                      describedBy={STROBE_WARNING_ID}
                     />
                   </div>
 
-                  {flash && (
-                    <div className="mt-3 rounded-2xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-                      <div className="font-bold">Strobe warning</div>
-                      <div className="mt-1">
-                        Flashing light may trigger seizures for people with
-                        photosensitive epilepsy. Disable Flash if you are
-                        unsure.
-                      </div>
-                    </div>
-                  )}
+                  <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
                 </div>
               )}
 
@@ -813,11 +807,13 @@ function TogglePill({
   checked,
   onChange,
   icon,
+  describedBy,
 }: {
   label: string;
   checked: boolean;
   onChange: (v: boolean) => void;
   icon?: React.ReactNode;
+  describedBy?: string;
 }) {
   return (
     <button
@@ -829,6 +825,7 @@ function TogglePill({
           : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
       }`}
       aria-pressed={checked}
+      aria-describedby={describedBy}
     >
       {icon}
       <span>{label}</span>
