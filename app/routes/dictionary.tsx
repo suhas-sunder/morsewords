@@ -67,12 +67,12 @@ function CopyButton({
         window.setTimeout(() => setCopied(false), 800);
       }}
       className={[
-        "rounded-xl border px-3 py-2 font-semibold cursor-pointer transition-colors",
-        "hover:bg-sky-500 active:bg-gray-200",
+        "rounded-lg border px-3 py-2 font-semibold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2",
+        "hover:border-sky-300 hover:bg-sky-50 active:bg-sky-100",
         compact ? "text-sm" : "text-base",
-        copied ? "bg-gray-100" : "",
+        copied ? "bg-sky-50" : "",
         kind === "Label"
-          ? "bg-[#0b2447] text-white border-[#0b2447] hover:bg-[#0b2447]/90 active:bg-[#0b2447]/80"
+          ? "bg-slate-950 text-sky-100 border-slate-950 hover:bg-slate-800 hover:text-white active:bg-slate-900"
           : "",
       ].join(" ")}
       style={{ whiteSpace: "nowrap" }}
@@ -85,9 +85,9 @@ function CopyButton({
 
 function DesktopTable({ items }: { items: Entry[] }) {
   return (
-    <div className="hidden md:block overflow-x-auto rounded-2xl border bg-white">
+    <div className="hidden overflow-x-auto rounded-2xl border border-slate-200 bg-white md:block">
       <table className="w-full text-left">
-        <thead className="bg-gray-50 text-sm text-gray-700">
+        <thead className="bg-[#f7f4ee] text-sm text-slate-700">
           <tr>
             <th className="px-4 py-3 w-[14%]">Label</th>
             <th className="px-4 py-3 w-[26%]">Morse</th>
@@ -101,11 +101,11 @@ function DesktopTable({ items }: { items: Entry[] }) {
               key={`${e.category}-${e.label}-${e.morse}`}
               className="border-t"
             >
-              <td className="px-4 py-3 font-semibold text-gray-900">
+              <td className="px-4 py-3 font-semibold text-slate-900">
                 {e.label}
               </td>
-              <td className="px-4 py-3 font-mono text-gray-900">{e.morse}</td>
-              <td className="px-4 py-3 text-gray-800">{e.meaning}</td>
+              <td className="px-4 py-3 font-mono text-slate-900">{e.morse}</td>
+              <td className="px-4 py-3 text-slate-700">{e.meaning}</td>
               <td className="px-4 py-3">
                 <div className="flex justify-end gap-2">
                   <CopyButton kind="Morse" value={e.morse} compact />
@@ -126,30 +126,30 @@ function MobileCards({ items }: { items: Entry[] }) {
       {items.map((e) => (
         <article
           key={`${e.category}-${e.label}-${e.morse}`}
-          className="rounded-2xl border bg-white p-4"
+          className="rounded-2xl border border-slate-200 bg-white p-4"
         >
           <div className="grid gap-3">
             <div className="grid gap-1">
-              <div className="text-xs font-semibold tracking-wide text-gray-500">
+              <div className="text-xs font-semibold tracking-wide text-slate-500">
                 Label
               </div>
-              <div className="text-lg font-semibold text-gray-900">
+              <div className="text-lg font-semibold text-sky-950">
                 {e.label}
               </div>
             </div>
 
             <div className="grid gap-1">
-              <div className="text-xs font-semibold tracking-wide text-gray-500">
+              <div className="text-xs font-semibold tracking-wide text-slate-500">
                 Morse
               </div>
-              <div className="font-mono text-base text-gray-900">{e.morse}</div>
+              <div className="font-mono text-base text-slate-900">{e.morse}</div>
             </div>
 
             <div className="grid gap-1">
-              <div className="text-xs font-semibold tracking-wide text-gray-500">
+              <div className="text-xs font-semibold tracking-wide text-slate-500">
                 Meaning
               </div>
-              <div className="text-base text-gray-900">{e.meaning}</div>
+              <div className="text-base text-slate-700">{e.meaning}</div>
             </div>
 
             <div className="grid grid-cols-2 gap-3 pt-1">
@@ -174,11 +174,11 @@ function Section({
 }) {
   return (
     <section id={id} className="mb-12 scroll-mt-28">
-      <div className="flex items-center justify-between gap-3 mb-4">
-        <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
         <a
           href="#top"
-          className="text-sm rounded-full border px-3 py-1 hover:bg-gray-100 cursor-pointer"
+          className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
         >
           Top
         </a>
@@ -187,10 +187,10 @@ function Section({
       <DesktopTable items={items} />
       <MobileCards items={items} />
 
-      <div className="md:hidden pt-3">
+      <div className="pt-3 md:hidden">
         <a
           href="#top"
-          className="block text-center text-sm rounded-xl border px-3 py-2 hover:bg-gray-100 cursor-pointer text-gray-700"
+          className="block cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
         >
           Back to top
         </a>
@@ -635,37 +635,47 @@ export default function DictionaryRoute() {
   }, [q]);
 
   return (
-    <main id="top" className="max-w-5xl mx-auto pt-4">
+    <main id="top" className="mx-auto max-w-5xl px-4 pt-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <header className="mb-3">
-        <h1 className="text-3xl font-bold text-sky-800">
+      <header className="mb-5 overflow-hidden rounded-2xl border border-slate-200 bg-white px-5 py-6 shadow-sm sm:px-8">
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-sky-800" />
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+            Reference
+          </span>
+        </div>
+        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
           Morse Code Dictionary
         </h1>
+        <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+          Look up Morse letters, numbers, punctuation, prosigns, Q-codes, and
+          practice phrases in one clean reference.
+        </p>
       </header>
 
       <div className="mb-3">
-        <label className="block text-sm font-semibold text-gray-800 mb-2">
+        <label className="mb-2 block text-sm font-semibold text-sky-950">
           Filter
         </label>
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Type to filter by label, Morse, or meaning…"
-          className="w-full rounded-xl border px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[#0b2447]/30"
+          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-300"
         />
       </div>
 
-      <nav className="sticky top-0 z-10 bg-white -mx-4 px-4 py-3 mb-8 border-b overflow-x-auto">
+      <nav className="-mx-4 mb-8 overflow-x-auto border-b border-slate-200 bg-white px-4 py-3">
         <div className="flex gap-2 whitespace-nowrap text-sm">
           {sections.map((s) => (
             <a
               key={s.id}
               href={`#${s.id}`}
-              className="border rounded-full px-3 py-1 hover:bg-gray-100 cursor-pointer"
+              className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
             >
               {s.title}
             </a>

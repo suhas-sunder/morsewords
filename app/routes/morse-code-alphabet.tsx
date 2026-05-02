@@ -54,8 +54,8 @@ function CopyButton({ value, label }: { value: string; label: string }) {
         window.setTimeout(() => setCopied(false), 900);
       }}
       className={[
-        "rounded-xl border px-3 py-2 text-sm font-semibold cursor-pointer transition-colors",
-        "border-[#0b2447] bg-[#0b2447] text-white hover:bg-[#0b2447]/90 active:bg-[#0b2447]/80",
+        "rounded-lg border px-3 py-2 text-sm font-semibold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2",
+        "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900",
       ].join(" ")}
       aria-label={`Copy ${label}`}
     >
@@ -66,17 +66,17 @@ function CopyButton({ value, label }: { value: string; label: string }) {
 
 function AlphabetCard({ entry }: { entry: Entry }) {
   return (
-    <article className="rounded-2xl border bg-white p-4 shadow-sm">
+    <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="grid gap-3">
         <div className="flex items-start justify-between gap-3">
           <div>
             <div className="text-xs font-semibold tracking-wide text-gray-500">
               Character
             </div>
-            <div className="text-2xl font-bold text-sky-800">{entry.label}</div>
+            <div className="text-2xl font-bold text-sky-950">{entry.label}</div>
           </div>
 
-          <span className="rounded-full border px-3 py-1 text-xs font-semibold text-gray-700">
+          <span className="rounded-full border border-slate-200 bg-[#f7f4ee] px-3 py-1 text-xs font-semibold text-slate-700">
             {entry.category}
           </span>
         </div>
@@ -85,7 +85,7 @@ function AlphabetCard({ entry }: { entry: Entry }) {
           <div className="text-xs font-semibold tracking-wide text-gray-500">
             Morse
           </div>
-          <div className="mt-1 break-words rounded-xl bg-gray-50 px-3 py-3 font-mono text-base text-gray-900">
+          <div className="mt-1 break-words rounded-xl bg-[#f7f4ee] px-3 py-3 font-mono text-base text-slate-900">
             {entry.morse}
           </div>
         </div>
@@ -94,7 +94,7 @@ function AlphabetCard({ entry }: { entry: Entry }) {
           <div className="text-xs font-semibold tracking-wide text-gray-500">
             Meaning
           </div>
-          <div className="mt-1 text-sm text-gray-800">{entry.meaning}</div>
+          <div className="mt-1 text-sm text-slate-700">{entry.meaning}</div>
         </div>
 
         <div className="grid grid-cols-2 gap-3 pt-1">
@@ -121,8 +121,8 @@ function Section({
     <section id={id} className="scroll-mt-28">
       <div className="mb-5 flex items-start justify-between gap-3">
         <div>
-          <h2 className="text-2xl font-semibold text-sky-800">{title}</h2>
-          <p className="mt-2 text-gray-700">{description}</p>
+          <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
+          <p className="mt-2 text-slate-700">{description}</p>
         </div>
 
         <a
@@ -153,22 +153,22 @@ function InfoBox({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border bg-white p-5">
-      <h2 className="text-xl font-semibold text-sky-800">{title}</h2>
-      <div className="mt-3 text-gray-800">{children}</div>
+    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-5">
+      <h2 className="text-xl font-extrabold text-sky-950">{title}</h2>
+      <div className="mt-3 text-slate-700">{children}</div>
     </section>
   );
 }
 
 function FaqSection({ items }: { items: Array<{ q: string; a: string }> }) {
   return (
-    <section className="rounded-2xl border bg-white p-5">
-      <h2 className="text-2xl font-semibold text-sky-800">Alphabet FAQ</h2>
+    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-5">
+      <h2 className="text-2xl font-extrabold text-sky-950">Alphabet FAQ</h2>
       <div className="mt-4 grid gap-4">
         {items.map((item) => (
-          <article key={item.q} className="rounded-xl border bg-gray-50 p-4">
-            <h3 className="text-base font-semibold text-gray-900">{item.q}</h3>
-            <p className="mt-2 text-gray-800">{item.a}</p>
+          <article key={item.q} className="rounded-xl border border-slate-200 bg-white p-4">
+            <h3 className="text-base font-semibold text-sky-950">{item.q}</h3>
+            <p className="mt-2 text-slate-700">{item.a}</p>
           </article>
         ))}
       </div>
@@ -323,7 +323,7 @@ export default function Home() {
   ];
 
   return (
-    <main id="top" className="max-w-6xl mx-auto pt-4 px-4">
+    <main id="top" className="mx-auto max-w-6xl px-4 pt-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -333,44 +333,52 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }}
       />
 
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-sky-800">Morse Code Alphabet</h1>
-        <p className="mt-3 text-lg text-gray-800">
+      <header className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white px-5 py-6 shadow-sm sm:px-8">
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-sky-800" />
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+            Reference chart
+          </span>
+        </div>
+        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+          Morse Code Alphabet
+        </h1>
+        <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
           Browse a clean Morse code alphabet chart with letters, numbers, and
           common symbols. Copy any entry instantly, then jump to the translator,
           encoder, or decoder if you want to convert full text.
         </p>
       </header>
 
-      <nav className="sticky top-0 z-10 bg-white -mx-4 px-4 py-3 mb-8 border-b overflow-x-auto">
+      <nav className="-mx-4 mb-8 overflow-x-auto border-b border-slate-200 bg-white px-4 py-3">
         <div className="flex gap-2 whitespace-nowrap text-sm">
           <a
             href="#letters"
-            className="border rounded-full px-3 py-1 hover:bg-gray-100 cursor-pointer"
+            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
           >
             Letters
           </a>
           <a
             href="#numbers"
-            className="border rounded-full px-3 py-1 hover:bg-gray-100 cursor-pointer"
+            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
           >
             Numbers
           </a>
           <a
             href="#symbols"
-            className="border rounded-full px-3 py-1 hover:bg-gray-100 cursor-pointer"
+            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
           >
             Symbols
           </a>
           <a
             href="#how-it-works"
-            className="border rounded-full px-3 py-1 hover:bg-gray-100 cursor-pointer"
+            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
           >
             How It Works
           </a>
           <a
             href="#faq"
-            className="border rounded-full px-3 py-1 hover:bg-gray-100 cursor-pointer"
+            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
           >
             FAQ
           </a>
@@ -415,25 +423,25 @@ export default function Home() {
               <div className="flex flex-wrap gap-3 pt-2">
                 <a
                   href="/"
-                  className="rounded-xl border px-4 py-2 font-semibold text-gray-900 hover:bg-gray-100 cursor-pointer"
+                  className="cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
                 >
                   Morse Code Translator
                 </a>
                 <a
                   href="/morse-code-encoder"
-                  className="rounded-xl border px-4 py-2 font-semibold text-gray-900 hover:bg-gray-100 cursor-pointer"
+                  className="cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
                 >
                   Text to Morse Code
                 </a>
                 <a
                   href="/morse-code-decoder"
-                  className="rounded-xl border px-4 py-2 font-semibold text-gray-900 hover:bg-gray-100 cursor-pointer"
+                  className="cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
                 >
                   Decode Morse Code
                 </a>
                 <a
                   href="/dictionary"
-                  className="rounded-xl border px-4 py-2 font-semibold text-gray-900 hover:bg-gray-100 cursor-pointer"
+                  className="cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
                 >
                   Morse Code Dictionary
                 </a>

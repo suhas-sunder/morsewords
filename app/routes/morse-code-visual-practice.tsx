@@ -148,7 +148,7 @@ export default function MorseCodeVisualPractice() {
                 type="button"
                 onClick={play}
                 aria-describedby={STROBE_WARNING_ID}
-                className="mt-6 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
+                className="mt-6 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
               >
                 <LightBulbIcon size={20} title="Flash message" />
                 Flash message
@@ -191,7 +191,7 @@ export default function MorseCodeVisualPractice() {
               <button
                 type="button"
                 onClick={() => setShowAnswer((value) => !value)}
-                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300"
+                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
               >
                 {showAnswer ? (
                   <VisibilityOffIcon size={18} title="Hide answer" />

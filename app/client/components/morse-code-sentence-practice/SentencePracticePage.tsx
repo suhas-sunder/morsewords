@@ -149,9 +149,9 @@ function countMorseSentenceWords(input: string) {
 
 function difficultyClass(difficulty: Difficulty) {
   if (difficulty === "easy")
-    return "bg-emerald-50 border-emerald-200 text-emerald-900";
+    return "bg-white border-slate-200 text-slate-700";
   if (difficulty === "medium") return "bg-sky-50 border-sky-200 text-sky-950";
-  return "bg-amber-50 border-amber-200 text-amber-900";
+  return "bg-[#fffdf8] border-slate-200 text-slate-800";
 }
 
 function buildPool(difficulty: Difficulty | "all", setFilter: SetFilter) {
@@ -216,8 +216,8 @@ function ToggleButton({
       onClick={onClick}
       className={`rounded-full border px-3 py-1.5 text-sm font-bold cursor-pointer transition ${
         active
-          ? "bg-neutral-900 text-sky-100 border-neutral-900"
-          : "bg-white text-slate-700 border-slate-200 hover:bg-[#f7f4ee]"
+          ? "bg-slate-950 text-sky-100 border-slate-950 hover:bg-slate-800 hover:text-white"
+          : "bg-white text-slate-700 border-slate-200 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
       }`}
     >
       {children}
@@ -462,8 +462,8 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
     <div
       className={`mt-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-semibold ${
         feedback.ok
-          ? "bg-emerald-50 border-emerald-200 text-emerald-900"
-          : "bg-amber-50 border-amber-200 text-amber-900"
+          ? "bg-sky-50 border-sky-200 text-sky-950"
+          : "bg-[#fffdf8] border-slate-200 text-slate-800"
       }`}
       role="status"
       aria-live="polite"
@@ -853,7 +853,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
                 </div>
 
                 {showAnswer ? (
-                  <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+                  <div className="mt-4 rounded-2xl border border-slate-200 bg-[#fffdf8] p-4">
                     <p className="text-sm font-extrabold text-sky-950">
                       Expected answer
                     </p>

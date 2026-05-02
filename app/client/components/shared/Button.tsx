@@ -3,8 +3,8 @@ import * as React from "react";
 type Variant = "primary" | "secondary" | "ghost";
 
 const base: React.CSSProperties = {
-  borderRadius: 12,
-  fontWeight: 800,
+  borderRadius: 8,
+  fontWeight: 600,
   padding: "10px 14px",
   cursor: "pointer",
   userSelect: "none",
@@ -21,11 +21,10 @@ const variants: Record<
   }
 > = {
   primary: {
-    // Match the Audio page: neutral primary with a subtle sky accent.
     normal: {
-      border: "1px solid #111827",
-      background: "#111827",
-      color: "#bae6fd",
+      border: "1px solid #020617",
+      background: "#020617",
+      color: "#e0f2fe",
     },
     hover: {
       background: "#0f172a",
@@ -36,20 +35,30 @@ const variants: Record<
   },
   secondary: {
     normal: {
-      border: "1px solid #d1d5db",
+      border: "1px solid #e2e8f0",
       background: "#ffffff",
-      color: "#374151",
+      color: "#0f172a",
     },
-    hover: { background: "#f9fafb", transform: "translateY(-1px)" },
+    hover: {
+      borderColor: "#7dd3fc",
+      background: "#f0f9ff",
+      color: "#082f49",
+      transform: "translateY(-1px)",
+    },
     disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
   ghost: {
     normal: {
-      border: "1px solid #e5e7eb",
+      border: "1px solid #e2e8f0",
       background: "#ffffff",
-      color: "#111827",
+      color: "#0f172a",
     },
-    hover: { background: "#f9fafb", transform: "translateY(-1px)" },
+    hover: {
+      borderColor: "#7dd3fc",
+      background: "#f0f9ff",
+      color: "#082f49",
+      transform: "translateY(-1px)",
+    },
     disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
 };
@@ -64,6 +73,7 @@ export default function Button({
   variant?: Variant;
 }) {
   const [hover, setHover] = React.useState(false);
+  const [focusVisible, setFocusVisible] = React.useState(false);
   const v = variants[variant];
 
   const computed: React.CSSProperties = {
@@ -71,6 +81,9 @@ export default function Button({
     ...v.normal,
     ...(hover && !disabled ? v.hover : null),
     ...(disabled ? v.disabled : null),
+    ...(focusVisible && !disabled
+      ? { outline: "2px solid #7dd3fc", outlineOffset: 2 }
+      : null),
     ...style,
   };
 
@@ -96,6 +109,14 @@ export default function Button({
         setHover(false);
         (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
         rest.onPointerLeave?.(e);
+      }}
+      onFocus={(e) => {
+        setFocusVisible(true);
+        rest.onFocus?.(e);
+      }}
+      onBlur={(e) => {
+        setFocusVisible(false);
+        rest.onBlur?.(e);
       }}
     >
       {children}

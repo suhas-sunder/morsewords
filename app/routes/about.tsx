@@ -38,7 +38,7 @@ function SectionCard(props: {
   return (
     <section id={props.id} style={styles.section}>
       <div style={{ ...styles.card, ...styles.cardPad }}>
-        <h2 className="text-sky-800 font-bold" style={styles.sectionTitle}>
+        <h2 className="font-bold text-sky-950" style={styles.sectionTitle}>
           {props.title}
         </h2>
         <div
@@ -119,7 +119,7 @@ export default function About() {
           style={{ ...styles.header, borderBottom: "none", paddingBottom: 6 }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <h1 className="text-sky-800 font-bold" style={styles.h1}>
+            <h1 className="font-bold text-sky-950" style={styles.h1}>
               About MorseWords
             </h1>
             <p style={styles.lead}>
@@ -132,9 +132,9 @@ export default function About() {
             href="/how-to-use"
             className="rounded-xl px-4 py-2 font-semibold cursor-pointer transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500"
             style={{
-              border: "1px solid #0b2447",
-              background: "#0b2447",
-              color: "#fff",
+              border: "1px solid #020617",
+              background: "#020617",
+              color: "#e0f2fe",
               whiteSpace: "nowrap",
             }}
           >

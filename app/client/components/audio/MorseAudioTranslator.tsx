@@ -354,8 +354,8 @@ export default function MorseAudioTranslator() {
                   onClick={() => setSourceMode("text")}
                   className={`px-3 py-2 rounded-xl font-semibold border cursor-pointer active:scale-95 transition ${
                     sourceMode === "text"
-                      ? "border-neutral-900 bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white"
-                      : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                      ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+                      : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
                   }`}
                 >
                   Text to Morse audio
@@ -365,8 +365,8 @@ export default function MorseAudioTranslator() {
                   onClick={() => setSourceMode("morse")}
                   className={`px-3 py-2 rounded-xl font-semibold border cursor-pointer active:scale-95 transition ${
                     sourceMode === "morse"
-                      ? "border-neutral-900 bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white"
-                      : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                      ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+                      : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
                   }`}
                 >
                   Morse to audio
@@ -407,7 +407,7 @@ export default function MorseAudioTranslator() {
                           onClick={() =>
                             setText(isMobile ? "I love Morse code" : "sos help")
                           }
-                          className="px-3 py-1.5 rounded-xl border border-gray-200 hover:bg-gray-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
+                          className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:border-sky-300 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
                         >
                           Use example
                         </button>
@@ -415,7 +415,7 @@ export default function MorseAudioTranslator() {
                           <button
                             type="button"
                             onClick={() => setText("I love Morse code")}
-                            className="px-3 py-1.5 rounded-xl border border-gray-200 hover:bg-gray-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
+                            className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:border-sky-300 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
                           >
                             I love Morse code
                           </button>
@@ -423,14 +423,14 @@ export default function MorseAudioTranslator() {
                         <button
                           type="button"
                           onClick={() => setText("")}
-                          className="ml-auto px-3 py-1.5 rounded-xl border border-gray-200 hover:bg-gray-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
+                          className="ml-auto px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:border-sky-300 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
                         >
                           Clear output
                         </button>
                       </div>
 
                       {Object.keys(unsupportedPlain).length > 0 && (
-                        <p className="mt-2 text-xs text-amber-600">
+                        <p className="mt-2 text-xs font-medium text-slate-600">
                           Unsupported characters are ignored:{" "}
                           {Object.entries(unsupportedPlain)
                             .map(([ch, n]) => `${ch}×${n}`)
@@ -454,21 +454,21 @@ export default function MorseAudioTranslator() {
                         <button
                           type="button"
                           onClick={() => setMorse("... --- ...")}
-                          className="px-3 py-1.5 rounded-xl border border-gray-200 hover:bg-gray-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
+                          className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:border-sky-300 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
                         >
                           Use example
                         </button>
                         <button
                           type="button"
                           onClick={() => setMorse("")}
-                          className="ml-auto px-3 py-1.5 rounded-xl border border-gray-200 hover:bg-gray-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
+                          className="ml-auto px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:border-sky-300 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition"
                         >
                           Clear output
                         </button>
                       </div>
 
                       {morseIssues.length > 0 && (
-                        <p className="mt-2 text-xs text-amber-600">
+                        <p className="mt-2 text-xs font-medium text-slate-600">
                           {morseIssues.join(" ")}
                         </p>
                       )}
@@ -483,8 +483,8 @@ export default function MorseAudioTranslator() {
                   disabled={!canPlay}
                   className={`inline-flex items-center gap-2 px-3 py-2 cursor-pointer rounded-xl font-semibold active:scale-95 transition border ${
                     canPlay
-                      ? "border-gray-300 text-gray-700 hover:bg-gray-50"
-                      : "border-gray-200 text-gray-400 cursor-not-allowed"
+                      ? "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+                      : "border-slate-200 text-slate-400 cursor-not-allowed"
                   }`}
                 >
                   <CopyIcon size={18} title="Copy Morse" />
@@ -519,11 +519,11 @@ export default function MorseAudioTranslator() {
                   className={`flex justify-center items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
                     player.state === "playing"
                       ? player.isSupported
-                        ? "border border-neutral-900 text-neutral-900 hover:bg-gray-50"
-                        : "border border-gray-200 text-gray-400 cursor-not-allowed"
+                        ? "border border-slate-200 bg-white text-slate-900 hover:border-sky-300 hover:bg-sky-50"
+                        : "border border-slate-200 text-slate-400 cursor-not-allowed"
                       : canPlay && player.isSupported
-                        ? "bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white"
-                        : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                        ? "border border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+                        : "border border-slate-200 bg-slate-50 text-slate-400 cursor-not-allowed"
                   }`}
                 >
                   {player.state === "playing" ? (
@@ -552,8 +552,8 @@ export default function MorseAudioTranslator() {
                   disabled={!player.isSupported || player.state === "idle"}
                   className={`flex justify-center items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
                     player.isSupported && player.state !== "idle"
-                      ? "border-gray-300 text-gray-700 hover:bg-gray-50"
-                      : "border-gray-200 text-gray-400 cursor-not-allowed"
+                      ? "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+                      : "border-slate-200 text-slate-400 cursor-not-allowed"
                   }`}
                 >
                   <StopIcon size={22} title="Stop audio" />
@@ -565,8 +565,8 @@ export default function MorseAudioTranslator() {
                   disabled={!canPlay || !soundOn}
                   className={`flex justify-center items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
                     canPlay && soundOn
-                      ? "border-gray-300 text-gray-700 hover:bg-gray-50"
-                      : "border-gray-200 text-gray-400 cursor-not-allowed"
+                      ? "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+                      : "border-slate-200 text-slate-400 cursor-not-allowed"
                   }`}
                 >
                   <SaveIcon size={22} title="Export WAV" />
@@ -711,7 +711,7 @@ export default function MorseAudioTranslator() {
               <div className="mt-4">
                 <button
                   onClick={() => setAdvancedOpen((v) => !v)}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer active:scale-95 transition font-semibold"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer active:scale-95 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 >
                   {advancedOpen ? "Hide advanced" : "Show advanced"}
                 </button>
@@ -727,7 +727,7 @@ export default function MorseAudioTranslator() {
                       <input
                         value={fileName}
                         onChange={(e) => setFileName(e.target.value)}
-                        className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 font-semibold"
+                        className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold"
                         placeholder="morse-audio"
                       />
                     </div>
@@ -742,7 +742,7 @@ export default function MorseAudioTranslator() {
                           onChange={(e) =>
                             setSampleRate(Number(e.target.value) as any)
                           }
-                          className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:bg-gray-50"
+                          className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:border-sky-300 hover:bg-sky-50"
                         >
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
@@ -771,8 +771,8 @@ export default function MorseAudioTranslator() {
                       disabled={!canPlay || !soundOn}
                       className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition border ${
                         canPlay && soundOn
-                          ? "border-gray-300 text-gray-700 hover:bg-gray-50"
-                          : "border-gray-200 text-gray-400 cursor-not-allowed"
+                          ? "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+                          : "border-slate-200 text-slate-400 cursor-not-allowed"
                       }`}
                     >
                       <SaveIcon size={18} title="Export WAV" />
@@ -785,7 +785,7 @@ export default function MorseAudioTranslator() {
               <div className="mt-4">
                 <button
                   onClick={() => setExportOpen((v) => !v)}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer active:scale-95 transition font-semibold"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer active:scale-95 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 >
                   {exportOpen ? "Hide export" : "Show export"}
                 </button>
@@ -821,8 +821,8 @@ function TogglePill({
       onClick={() => onChange(!checked)}
       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold border cursor-pointer active:scale-95 transition ${
         checked
-          ? "border-neutral-900 bg-neutral-900 text-sky-200 hover:bg-neutral-800 hover:text-white"
-          : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+          ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+          : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
       }`}
       aria-pressed={checked}
       aria-describedby={describedBy}

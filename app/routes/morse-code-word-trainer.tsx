@@ -1013,7 +1013,7 @@ function NoticeList({
       {notices.map((notice) => (
         <p
           key={notice}
-          className="rounded-xl border border-amber-200 bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700"
+          className="rounded-lg border border-slate-200 bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700"
         >
           {notice}
         </p>
@@ -1048,7 +1048,7 @@ function FeedbackCard({
         (isCorrect
           ? "border-sky-200 bg-sky-50"
           : isIncorrect
-            ? "border-amber-200 bg-[#fffdf8]"
+            ? "border-slate-200 bg-[#fffdf8]"
             : "border-slate-200 bg-white")
       }
     >
@@ -1069,7 +1069,7 @@ function FeedbackCard({
           <RefreshIcon
             size={22}
             title="Try again"
-            className="mt-0.5 text-amber-700"
+            className="mt-0.5 text-slate-700"
           />
         )}
         <div>
@@ -1126,9 +1126,9 @@ function ChoiceButton({
       type="button"
       onClick={onClick}
       className={
-        "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border px-4 py-2 text-sm font-extrabold transition focus:outline-none focus:ring-2 focus:ring-sky-300 " +
+        "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
         (active
-          ? "border-neutral-950 bg-neutral-950 text-sky-100"
+          ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
           : "border-slate-200 bg-white text-slate-900 hover:border-sky-300 hover:bg-sky-50")
       }
     >
@@ -1154,9 +1154,9 @@ function ToolButton({
       onClick={onClick}
       disabled={disabled}
       className={
-        "inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border px-4 py-2 text-sm font-extrabold transition focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50 " +
+        "inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 " +
         (tone === "primary"
-          ? "border-neutral-950 bg-neutral-950 text-sky-100 hover:bg-slate-800"
+          ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
           : "border-slate-200 bg-white text-slate-900 hover:border-sky-300 hover:bg-sky-50")
       }
     >

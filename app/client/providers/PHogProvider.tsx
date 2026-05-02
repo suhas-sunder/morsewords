@@ -1,20 +1,41 @@
-import { useEffect, useState } from "react";
-import posthog from "posthog-js";
-import { PostHogProvider } from "posthog-js/react";
+import { useEffect } from "react";
+import type { ReactNode } from "react";
 
-export function PHogProvider({ children }: { children: React.ReactNode }) {
-  const [hydrated, setHydrated] = useState(false);
+type PostHogClient = {
+  init: (
+    token: string,
+    options: {
+      api_host: string;
+      person_profiles: "identified_only";
+      capture_pageview: boolean;
+    },
+  ) => void;
+};
 
+declare global {
+  interface Window {
+    posthog?: PostHogClient;
+  }
+}
+
+export function PHogProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
-    posthog.init("phc_bM7udiE9SpQQnyERjIjmXBMGHaaesURgTEfdjLD0GBZ", {
-      api_host: "https://us.i.posthog.com",
-      person_profiles: "identified_only",
-      capture_pageview: true,
+    let cancelled = false;
+
+    void import("posthog-js/dist/array.no-external.js").then(() => {
+      if (cancelled) return;
+
+      window.posthog?.init("phc_bM7udiE9SpQQnyERjIjmXBMGHaaesURgTEfdjLD0GBZ", {
+        api_host: "https://us.i.posthog.com",
+        person_profiles: "identified_only",
+        capture_pageview: true,
+      });
     });
 
-    setHydrated(true);
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  if (!hydrated) return <>{children}</>;
-  return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
+  return <>{children}</>;
 }

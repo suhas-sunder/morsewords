@@ -123,8 +123,8 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-5">
-          <p className="text-base font-extrabold text-amber-900">Note</p>
+        <div className="mt-5 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5">
+          <p className="text-base font-extrabold text-sky-950">Note</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             This decoder is <strong>separator-based</strong>. It does not infer timing.
             If your Morse has no spacing at all, use the{" "}

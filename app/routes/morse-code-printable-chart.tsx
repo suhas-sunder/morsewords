@@ -2861,8 +2861,8 @@ export default function MorseCodePrintableChart() {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          border-radius: 999px;
-          font-weight: 900;
+          border-radius: 0.5rem;
+          font-weight: 600;
           text-decoration: none;
           transition:
             transform 160ms ease,
@@ -2879,43 +2879,44 @@ export default function MorseCodePrintableChart() {
         }
 
         .action-primary {
-          border: 1px solid #0369a1;
-          background: #0369a1;
-          color: #ffffff;
-          box-shadow: 0 10px 20px rgba(3, 105, 161, 0.16);
+          border: 1px solid #020617;
+          background: #020617;
+          color: #e0f2fe;
+          box-shadow: none;
         }
 
         .action-primary:hover {
           transform: translateY(-1px);
-          background: #075985;
-          border-color: #075985;
-          box-shadow: 0 14px 24px rgba(3, 105, 161, 0.22);
+          background: #1e293b;
+          border-color: #1e293b;
+          color: #ffffff;
+          box-shadow: none;
         }
 
         .action-secondary {
-          border: 1px solid #cbd5e1;
+          border: 1px solid #e2e8f0;
           background: #ffffff;
           color: #0f172a;
         }
 
         .action-secondary:hover {
           transform: translateY(-1px);
-          border-color: #38bdf8;
-          background: #f8fafc;
+          border-color: #7dd3fc;
+          background: #f0f9ff;
         }
 
         .quick-button {
           min-height: 2.35rem;
-          border: 1px solid #bae6fd;
+          border: 1px solid #e2e8f0;
           background: #ffffff;
           padding: 0.55rem 0.9rem;
-          color: #075985;
+          color: #0f172a;
           font-size: 0.85rem;
         }
 
         .quick-button:hover {
           transform: translateY(-1px);
-          border-color: #38bdf8;
+          border-color: #7dd3fc;
           background: #f0f9ff;
         }
 

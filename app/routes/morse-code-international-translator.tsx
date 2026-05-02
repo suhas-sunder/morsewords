@@ -200,8 +200,8 @@ export default function InternationalTranslator() {
         </section>
 
         <section className="pb-8">
-          <div className="rounded-2xl border border-amber-200 bg-[#fffaf2] p-5 text-amber-950 shadow-sm">
-            <h2 className="m-0 text-xl font-extrabold">
+          <div className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 text-slate-700 shadow-sm">
+            <h2 className="m-0 text-xl font-extrabold text-sky-950">
               International translation disclaimer
             </h2>
             <p className="mt-2 leading-relaxed">

@@ -15,7 +15,4 @@ export default defineConfig({
   build: {
     sourcemap: false, // disables sourcemap lookups for all deps
   },
-  ssr: {
-    noExternal: ["posthog-js", "posthog-js/react"],
-  },
 });

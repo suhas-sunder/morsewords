@@ -217,7 +217,7 @@ export default function MorseCodeAudioPractice() {
                   type="button"
                   onClick={play}
                   disabled={!canPlay}
-                  className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-neutral-950 bg-neutral-950 px-4 py-2 font-extrabold text-sky-100 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="mt-4 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <PlayIcon size={20} title="Play audio" />
                   {player.state === "playing" ? "Restart audio" : "Play audio"}
@@ -226,7 +226,7 @@ export default function MorseCodeAudioPractice() {
                   type="button"
                   onClick={player.stop}
                   disabled={player.state === "idle"}
-                  className="mt-2 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold text-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="mt-2 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <StopIcon size={20} title="Stop audio" />
                   Stop
@@ -301,7 +301,7 @@ export default function MorseCodeAudioPractice() {
             <button
               type="button"
               onClick={() => setAdvancedOpen((value) => !value)}
-              className="mt-5 min-h-11 w-full rounded-xl border border-slate-200 bg-white px-4 py-2 font-extrabold text-slate-900"
+              className="mt-5 min-h-11 w-full cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
             >
               {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
             </button>
@@ -423,9 +423,9 @@ function TogglePill({
       type="button"
       onClick={() => onChange(!checked)}
       className={
-        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-extrabold transition " +
+        "inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
         (checked
-          ? "border-neutral-950 bg-neutral-950 text-sky-100"
+          ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
           : "border-slate-200 bg-white text-slate-800 hover:border-sky-300 hover:bg-sky-50")
       }
       aria-pressed={checked}

@@ -113,8 +113,8 @@ const styles: Record<string, React.CSSProperties> = {
     border: "1px solid #e2e8f0",
     background: "#fffdf8",
   },
-  badgeGood: { borderColor: "#cfe9d7", background: "#f0fbf3", color: "#155724" },
-  badgeBad: { borderColor: "#f2c9c9", background: "#fff1f1", color: "#7a1c1c" },
+  badgeGood: { borderColor: "#bae6fd", background: "#f0f9ff", color: "#082f49" },
+  badgeBad: { borderColor: "#e2e8f0", background: "#fffdf8", color: "#334155" },
   badgeNeutral: { borderColor: "#e6e8ef", background: "#fff", color: "#111317" },
 
   footer: {

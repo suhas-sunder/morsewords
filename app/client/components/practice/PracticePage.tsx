@@ -267,8 +267,8 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
       className={[
         "mt-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-semibold",
         feedback.ok
-          ? "bg-emerald-50 border-emerald-200 text-emerald-900"
-          : "bg-amber-50 border-amber-200 text-amber-900",
+          ? "bg-sky-50 border-sky-200 text-sky-950"
+          : "bg-[#fffdf8] border-slate-200 text-slate-800",
       ].join(" ")}
       role="status"
       aria-live="polite"

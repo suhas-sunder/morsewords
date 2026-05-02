@@ -119,9 +119,9 @@ export function ActionLinks({
           key={link.href + link.label}
           href={link.href}
           className={
-            "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border px-4 py-2 text-sm font-extrabold transition " +
+            "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
             (link.primary
-              ? "border-neutral-950 bg-neutral-950 text-sky-100 hover:bg-neutral-800"
+              ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
               : "border-slate-200 bg-white text-slate-900 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950")
           }
         >
@@ -166,7 +166,7 @@ export function SimpleGrid({
               className="group block min-h-[150px] cursor-pointer rounded-xl border border-slate-200 bg-white p-5 no-underline transition hover:-translate-y-0.5 hover:border-sky-300 hover:shadow-sm"
             >
               {body}
-              <span className="mt-4 inline-block text-sm font-extrabold text-sky-900">
+              <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
                 Open page{" "}
                 <span aria-hidden="true" className="inline-block transition group-hover:translate-x-1">
                   -&gt;
@@ -207,7 +207,7 @@ export function ReferenceTable({
           className="grid gap-3 border-b border-slate-100 px-4 py-4 last:border-b-0 sm:grid-cols-[180px_1fr_2fr_120px] sm:items-center"
         >
           <div>
-            <p className="font-extrabold text-sky-950">{item.label}</p>
+            <p className="font-bold text-sky-950">{item.label}</p>
             {item.example ? (
               <p className="mt-1 font-mono text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
                 {item.example}
@@ -221,7 +221,7 @@ export function ReferenceTable({
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
-            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-extrabold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             disabled={!onPlay}
           >
             <PlayIcon size={16} title="Play" />
