@@ -196,8 +196,8 @@ export default function MorseCodeAudioPractice() {
           />
         </PageHero>
 
-        <section className="mw-tool-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-200 px-5 py-6 sm:px-8">
+        <section className="mw-tool-section mt-8 overflow-hidden rounded-2xl bg-white">
+          <div className="px-5 pb-4 pt-6 sm:px-8 sm:pt-7">
             <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_280px]">
               <label className="block">
                 <span className="text-sm font-extrabold text-sky-950">
@@ -235,7 +235,7 @@ export default function MorseCodeAudioPractice() {
             </div>
           </div>
 
-          <div className="px-5 py-6 sm:px-8">
+          <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
             <div className="rounded-xl border border-slate-200 bg-[#f7fbff] p-4">
               <p className="font-mono text-base font-bold tracking-[0.16em] text-slate-950">
                 {morse}

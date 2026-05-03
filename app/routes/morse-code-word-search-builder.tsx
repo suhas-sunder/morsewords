@@ -1161,8 +1161,8 @@ export default function MorseCodeWordSearchBuilder() {
           />
         </PageHero>
 
-        <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-5 sm:px-8">
+        <section className="mt-8 overflow-hidden rounded-2xl bg-white">
+          <div className="px-5 pb-4 pt-6 sm:px-8 sm:pt-7">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <div className="flex items-center gap-3">

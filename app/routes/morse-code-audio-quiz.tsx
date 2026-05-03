@@ -296,8 +296,8 @@ export default function MorseCodeAudioQuiz() {
           />
         </PageHero>
 
-        <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-200 px-5 py-4 sm:px-8">
+        <section className="mt-8 overflow-hidden rounded-2xl bg-white">
+          <div className="px-5 pb-4 pt-6 sm:px-8 sm:pt-7">
             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
               <span>
                 Question{" "}
@@ -331,7 +331,7 @@ export default function MorseCodeAudioQuiz() {
           </div>
 
           {gameOver ? (
-            <div className="px-5 py-6 sm:px-8">
+            <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
               <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-5 text-center">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
                   Quiz complete

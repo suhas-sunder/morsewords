@@ -348,7 +348,7 @@ export default function MorseAudioTranslator() {
                   waveform, and export a WAV file.
                 </p>
               </div>
-              <div className="px-5 py-6 sm:px-8 sm:py-7">
+              <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"

@@ -139,7 +139,7 @@ export default function WordSeparatorTool() {
         </p>
       </div>
 
-      <div className="px-5 py-6 sm:px-8 sm:py-7">
+      <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
       <div className="mt-5 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
         <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1">
           <button

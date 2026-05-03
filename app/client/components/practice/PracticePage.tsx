@@ -299,7 +299,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
           </p>
         </div>
 
-        <div className="px-5 py-6 sm:px-8 sm:py-7">
+        <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
         {/* Top control bar: match Audio page density */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
           <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1 w-full sm:w-auto">
