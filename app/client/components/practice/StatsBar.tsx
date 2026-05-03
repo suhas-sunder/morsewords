@@ -12,7 +12,7 @@ export default function StatsBar({
   const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
 
   const chip =
-    "inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm font-semibold text-neutral-900";
+    "inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-900 shadow-sm";
 
   return (
     <div className="flex flex-wrap gap-3">

@@ -332,22 +332,23 @@ export default function MorseAudioTranslator() {
           <div className="flex flex-col gap-3">
           
 
-            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-              <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
-                <div className="flex items-center justify-center gap-3 sm:justify-start">
+            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <div className="tool-header flex flex-col gap-3 border-b border-slate-200 px-5 py-6 sm:px-8 sm:py-7">
+                <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-sky-800" />
                   <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                     Audio tool
                   </span>
                 </div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
-              Morse Audio Generator
-            </h1>
-        <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
-              Convert text or Morse into audio. Adjust speed, pitch, waveform,
-              and export a WAV file.
-            </p>
+                <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+                  Morse Audio Generator
+                </h1>
+                <p className="max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+                  Convert text or Morse into audio. Adjust speed, pitch,
+                  waveform, and export a WAV file.
+                </p>
               </div>
+              <div className="px-5 py-6 sm:px-8 sm:py-7">
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
@@ -495,7 +496,7 @@ export default function MorseAudioTranslator() {
                     Copied
                   </span>
                 )}
-                <span className="ml-auto text-xs text-gray-500">
+                <span className="ml-auto text-xs text-slate-500">
                   3 spaces = letters, 7 spaces = words, “/” = word break
                 </span>
               </div>
@@ -575,12 +576,12 @@ export default function MorseAudioTranslator() {
               </div>
             </div>
 
-            <div className="border border-gray-200 rounded-2xl p-4 bg-white mt-4">
+            <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
               <div className="flex items-center justify-between gap-2">
-                <h2 className="text-base font-bold text-neutral-900">
+                <h2 className="text-base font-extrabold text-sky-950">
                   Audio controls
                 </h2>
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-slate-600">
                   {player.isSupported
                     ? player.state === "idle"
                       ? "Ready"
@@ -634,10 +635,10 @@ export default function MorseAudioTranslator() {
               </div>
 
               {advancedOpen && (
-                <div className="mt-4 border-t border-gray-100 pt-4">
+                <div className="mt-4 border-t border-slate-200 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">
+                      <label className="text-sm font-semibold text-slate-700">
                         Preset
                       </label>
                       <select
@@ -645,7 +646,7 @@ export default function MorseAudioTranslator() {
                         onChange={(e) =>
                           setPreset(e.target.value as SoundPreset)
                         }
-                        className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:bg-gray-50"
+                        className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300"
                       >
                         <option value="cw_radio">CW (Radio)</option>
                         <option value="sine">Sine</option>
@@ -718,10 +719,10 @@ export default function MorseAudioTranslator() {
               </div>
 
               {exportOpen && (
-                <div className="mt-4 border-t border-gray-100 pt-4">
+                <div className="mt-4 border-t border-slate-200 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">
+                      <label className="text-sm font-semibold text-slate-700">
                         File name
                       </label>
                       <input
@@ -734,7 +735,7 @@ export default function MorseAudioTranslator() {
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="text-sm font-semibold text-gray-700">
+                        <label className="text-sm font-semibold text-slate-700">
                           Sample rate
                         </label>
                         <select
@@ -791,9 +792,10 @@ export default function MorseAudioTranslator() {
                 </button>
               </div>
 
-              <p className="mt-4 text-xs text-gray-500">
+              <p className="mt-4 text-xs text-slate-500">
                 Audio is generated in your browser. Nothing is uploaded.
               </p>
+              </div>
             </div>
           </div>
         </div>
@@ -819,7 +821,7 @@ function TogglePill({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold border cursor-pointer active:scale-95 transition ${
+      className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${
         checked
           ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
           : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
@@ -857,12 +859,12 @@ function SliderRow({
   return (
     <div>
       <div className="flex items-baseline justify-between">
-        <label className="text-sm font-semibold text-gray-700">{label}</label>
-        <span className="text-sm text-gray-600">
+        <label className="text-sm font-semibold text-slate-700">{label}</label>
+        <span className="text-sm text-slate-600">
           {value} {unit}
         </span>
       </div>
-      {help && <p className="text-xs text-gray-500 mt-0.5">{help}</p>}
+      {help && <p className="mt-0.5 text-xs text-slate-500">{help}</p>}
       <input
         type="range"
         min={min}

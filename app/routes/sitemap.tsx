@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import { PageHero } from "~/client/components/shared/MorseLearningLayout";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
@@ -280,42 +281,41 @@ export default function HtmlSitemap() {
   return (
     <div style={styles.page}>
       <main style={styles.wrap}>
-        <section className="py-4">
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <p className="m-0 text-sm font-extrabold uppercase tracking-wide text-sky-800">
-              MorseWords sitemap
-            </p>
-            <h1 className="mt-3 text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
-              HTML Sitemap
-            </h1>
-            <p className="mt-3 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
-              A simple map of every main MorseWords page, including translator
-              tools, audio generators, practice pages, printable learning
-              resources, reference charts, and site information.
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="MorseWords sitemap"
+          title="HTML Sitemap"
+          description="A simple map of every main MorseWords page, including translator tools, audio generators, practice pages, printable learning resources, reference charts, and site information."
+        />
 
         <div className="grid gap-5 pb-8 md:grid-cols-2">
           {GROUPS.map((group) => (
             <section
               key={group.title}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+              className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm"
             >
-              <h2 className="m-0 text-2xl font-bold text-sky-800">
-                {group.title}
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                {group.description}
-              </p>
-              <div className="mt-4 grid gap-3">
+              <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-5 sm:px-6">
+                <div className="flex items-center gap-3">
+                  <span className="h-px w-8 bg-sky-800" />
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+                    Sitemap
+                  </span>
+                </div>
+                <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-sky-950">
+                  {group.title}
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                  {group.description}
+                </p>
+              </div>
+              <div className="px-5 py-5 sm:px-6">
+              <div className="grid gap-3">
                 {group.links.map((link) => (
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="block rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 no-underline transition hover:bg-white hover:shadow-sm"
+                    className="block cursor-pointer rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 no-underline transition hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                   >
-                    <span className="block font-extrabold text-sky-800">
+                    <span className="block font-extrabold text-sky-950">
                       {link.label}
                     </span>
                     <span className="mt-1 block text-sm leading-relaxed text-slate-600">
@@ -323,6 +323,7 @@ export default function HtmlSitemap() {
                     </span>
                   </Link>
                 ))}
+              </div>
               </div>
             </section>
           ))}

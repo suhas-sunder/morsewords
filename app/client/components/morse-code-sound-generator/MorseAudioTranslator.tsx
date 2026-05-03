@@ -336,20 +336,21 @@ export default function MorseAudioTranslator({
           <div className="flex flex-col gap-4 ">
           
 
-            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-              <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
-                <div className="flex items-center justify-center gap-3 sm:justify-start">
+            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <div className="tool-header flex flex-col gap-3 border-b border-slate-200 px-5 py-6 sm:px-8 sm:py-7">
+                <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-sky-800" />
                   <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                     {introEyebrow}
                   </span>
                 </div>
- <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+              <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
                 {heading}
               </h1>
               
-              <p className="text-base leading-relaxed text-slate-700 sm:text-lg">{lead}</p>
+              <p className="max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">{lead}</p>
                 </div>
+              <div className="px-5 py-6 sm:px-8 sm:py-7">
 
               <div className="flex flex-wrap items-center gap-2">
                 <ModeButton active={sourceMode === "text"} onClick={() => setSourceMode("text")}>{textModeLabel}</ModeButton>
@@ -406,7 +407,7 @@ export default function MorseAudioTranslator({
                   )}
                 </div>
 
-                <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-4">
+                <div className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-4">
                   <h2 className="text-lg font-extrabold text-sky-950">Generated Morse preview</h2>
                   <p className="mt-1 text-sm text-slate-700">This is the exact dot-dash pattern used for playback and downloads.</p>
                   <code className="mt-3 block max-h-44 overflow-auto whitespace-pre-wrap break-words rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm text-slate-950">
@@ -422,7 +423,7 @@ export default function MorseAudioTranslator({
                       <span>{copied === "morse" ? "Copied" : "Copy Morse"}</span>
                     </button>
                   </div>
-                  <p className="mt-3 text-xs text-gray-600">3 spaces = letters, 7 spaces = words, “/” = word break.</p>
+                  <p className="mt-3 text-xs text-slate-600">3 spaces = letters, 7 spaces = words, "/" = word break.</p>
                 </div>
               </div>
 
@@ -460,10 +461,10 @@ export default function MorseAudioTranslator({
               </div>
             </div>
 
-            <div className="border border-gray-200 rounded-2xl p-4 bg-white mt-4">
+            <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
               <div className="flex items-center justify-between gap-2">
-                <h2 className="text-base font-bold text-sky-900">Sound controls</h2>
-                <span className="text-sm text-gray-600">{player.isSupported ? player.state === "idle" ? "Ready" : player.state === "playing" ? "Playing" : "Paused" : "Unavailable"}</span>
+                <h2 className="text-base font-extrabold text-sky-950">Sound controls</h2>
+                <span className="text-sm text-slate-600">{player.isSupported ? player.state === "idle" ? "Ready" : player.state === "playing" ? "Playing" : "Paused" : "Unavailable"}</span>
               </div>
 
               <div className="mt-4 grid sm:grid-cols-2 gap-4">
@@ -474,10 +475,10 @@ export default function MorseAudioTranslator({
               </div>
 
               {advancedOpen ? (
-                <div className="mt-4 border-t border-gray-100 pt-4">
+                <div className="mt-4 border-t border-slate-200 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Tone preset</label>
+                      <label className="text-sm font-semibold text-slate-700">Tone preset</label>
                       <select value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:border-sky-300 hover:bg-sky-50">
                         <option value="cw_radio">CW radio tone</option>
                         <option value="sine">Sine tone</option>
@@ -512,15 +513,15 @@ export default function MorseAudioTranslator({
               
 
               {exportOpen ? (
-                <div className="mt-4 border-t border-gray-100 pt-4">
+                <div className="mt-4 border-t border-slate-200 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">File name</label>
+                      <label className="text-sm font-semibold text-slate-700">File name</label>
                       <input value={fileName} onChange={(e) => setFileName(e.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold" placeholder={defaultFileName} />
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="text-sm font-semibold text-gray-700">Sample rate</label>
+                        <label className="text-sm font-semibold text-slate-700">Sample rate</label>
                         <select value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:border-sky-300 hover:bg-sky-50">
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
@@ -532,14 +533,14 @@ export default function MorseAudioTranslator({
                   </div>
 
                   {exportFormats.includes("mp3") ? (
-                    <div className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-4">
+                    <div className="mt-4 rounded-2xl border border-slate-200 bg-[#fffdf8] p-4">
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                           <h3 className="font-extrabold text-sky-900">Choose your audio download</h3>
-                          <p className="mt-1 text-sm text-gray-700">Use WAV for lossless editing and MP3 for smaller shareable files.</p>
+                          <p className="mt-1 text-sm text-slate-700">Use WAV for lossless editing and MP3 for smaller shareable files.</p>
                         </div>
                         <div className="flex items-center gap-2">
-                          <label className="text-sm font-semibold text-gray-700" htmlFor={`${safePrefix}_mp3_kbps`}>MP3 kbps</label>
+                          <label className="text-sm font-semibold text-slate-700" htmlFor={`${safePrefix}_mp3_kbps`}>MP3 kbps</label>
                           <select id={`${safePrefix}_mp3_kbps`} value={mp3Kbps} onChange={(e) => setMp3Kbps(Number(e.target.value))} className="rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:border-sky-300 hover:bg-sky-50">
                             <option value={96}>96</option>
                             <option value={128}>128</option>
@@ -572,28 +573,29 @@ export default function MorseAudioTranslator({
                 </button>
               </div>
 
-              <p className="mt-4 text-xs text-gray-500">Audio is generated in your browser. WAV rendering is local. MP3 download is encoded in the browser when selected.</p>
+              <p className="mt-4 text-xs text-slate-500">Audio is generated in your browser. WAV rendering is local. MP3 download is encoded in the browser when selected.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-        <div className={isSoundPage ? "rounded-3xl border border-sky-200 bg-gradient-to-br from-sky-50 via-white to-white p-5 sm:p-7 shadow-sm" : ""}>
+        <div className={isSoundPage ? "rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-7" : ""}>
              
               {isSoundPage ? (
                 <>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {["sound generator", "audio generator", "sound maker", "MP3 generator", "beep generator", "tone generator"].map((label) => (
-                      <span key={label} className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-sm font-bold text-sky-900">
+                      <span key={label} className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-900">
                         {label}
                       </span>
                     ))}
                   </div>
                   <div className="mt-5 grid gap-3 sm:grid-cols-4">
                     {heroStats.map(([label, value]) => (
-                      <div key={label} className="rounded-2xl border border-gray-200 bg-white p-4">
-                        <p className="text-xs font-extrabold uppercase tracking-wide text-gray-500">{label}</p>
-                        <p className="mt-1 text-lg font-extrabold text-neutral-900">{value}</p>
+                      <div key={label} className="rounded-xl border border-slate-200 bg-white p-4">
+                        <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">{label}</p>
+                        <p className="mt-1 text-lg font-extrabold text-sky-950">{value}</p>
                       </div>
                     ))}
                   </div>
@@ -633,7 +635,7 @@ function ExportButton({ label, onClick, disabled }: { label: string; onClick: ()
 
 function TogglePill({ label, checked, onChange, icon, describedBy }: { label: string; checked: boolean; onChange: (v: boolean) => void; icon?: React.ReactNode; describedBy?: string }) {
   return (
-    <button type="button" onClick={() => onChange(!checked)} className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${checked ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"}`} aria-pressed={checked} aria-describedby={describedBy}>
+    <button type="button" onClick={() => onChange(!checked)} className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${checked ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"}`} aria-pressed={checked} aria-describedby={describedBy}>
       {icon}
       <span>{label}</span>
     </button>
@@ -644,10 +646,10 @@ function SliderRow({ label, value, min, max, step, unit, onChange, help, disable
   return (
     <div>
       <div className="flex items-baseline justify-between">
-        <label className="text-sm font-semibold text-gray-700">{label}</label>
-        <span className="text-sm text-gray-600">{value} {unit}</span>
+        <label className="text-sm font-semibold text-slate-700">{label}</label>
+        <span className="text-sm text-slate-600">{value} {unit}</span>
       </div>
-      {help ? <p className="text-xs text-gray-500 mt-0.5">{help}</p> : null}
+      {help ? <p className="mt-0.5 text-xs text-slate-500">{help}</p> : null}
       <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} disabled={disabled} style={{ accentColor: "#38bdf8" }} className={`w-full mt-2 ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-sky-300 rounded-full`} />
     </div>
   );

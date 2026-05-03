@@ -1,12 +1,19 @@
 export default function HowToUseSuiteGuide() {
   return (
-    <section className=" bg-[#fffdf8] border border-slate-200 rounded-2xl p-5 sm:p-8 shadow-sm">
-      <div className="flex flex-col gap-3">
-        <h1 className="text-3xl flex justify-center items-center sm:text-4xl font-bold text-sky-950 tracking-tight">
+    <div className="space-y-8">
+      <section className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white px-5 py-6 shadow-sm sm:px-8 sm:py-7">
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-sky-800" />
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+            Toolkit guide
+          </span>
+        </div>
+
+        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
           How to use MorseWords
         </h1>
 
-        <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
+        <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
           This page is a practical guide to the MorseWords toolkit. It is not a
           history lesson and it is not trying to teach you Morse from zero. It
           is here so you can move quickly between tools, format input the way
@@ -14,9 +21,9 @@ export default function HowToUseSuiteGuide() {
           “broken.” If you just want a fast conversion, start with the
           Translator and copy the output.
         </p>
-      </div>
+      </section>
 
-      <div className="mt-6 flex flex-wrap gap-2">
+      <nav className="flex flex-wrap gap-2" aria-label="How to use sections">
         {[
           ["Translator", "#translator"],
           ["Audio", "#audio"],
@@ -30,15 +37,15 @@ export default function HowToUseSuiteGuide() {
           <a
             key={href}
             href={href}
-            className="px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold border border-sky-400 bg-sky-200 text-sky-800 hover:bg-[#f7f4ee] cursor-pointer transition"
+            className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
           >
             {label}
           </a>
         ))}
-      </div>
+      </nav>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <p className="text-base font-extrabold text-sky-950">
             Copy-first design
           </p>
@@ -47,7 +54,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <p className="text-base font-extrabold text-sky-950">
             Spacing matters
           </p>
@@ -57,7 +64,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <p className="text-base font-extrabold text-sky-950">
             Suite, not one page
           </p>
@@ -72,7 +79,7 @@ export default function HowToUseSuiteGuide() {
         {/* Translator */}
         <section
           id="translator"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7 bg-[#fffdf8]"
+          className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 shadow-sm sm:p-7"
         >
           <div className="flex flex-col gap-2">
             <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
@@ -108,7 +115,7 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Best for
               </p>
@@ -119,7 +126,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Common gotcha
               </p>
@@ -135,7 +142,7 @@ export default function HowToUseSuiteGuide() {
         {/* Audio */}
         <section
           id="audio"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7 bg-[#fffdf8]"
+          className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 shadow-sm sm:p-7"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             2) Audio translator
@@ -168,7 +175,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
             <p className="text-base font-extrabold text-sky-950">Tip</p>
             <p className="mt-2 text-base sm:text-lg text-slate-700">
               If a long message is hard to follow, shorten it first in the
@@ -180,7 +187,7 @@ export default function HowToUseSuiteGuide() {
         {/* Practice */}
         <section
           id="practice"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7 bg-[#fffdf8]"
+          className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 shadow-sm sm:p-7"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             3) Practice
@@ -214,7 +221,7 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 When to use it
               </p>
@@ -224,7 +231,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 When to switch tools
               </p>
@@ -385,7 +392,7 @@ export default function HowToUseSuiteGuide() {
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
-              <p className="text-base sm:text-lg font-extrabold text-gray-900">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Convert → Listen
               </p>
               <p className="mt-2 text-base sm:text-lg text-slate-700">
@@ -396,7 +403,7 @@ export default function HowToUseSuiteGuide() {
             </div>
 
             <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
-              <p className="text-base sm:text-lg font-extrabold text-gray-900">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Hear → Confirm
               </p>
               <p className="mt-2 text-base sm:text-lg text-slate-700">
@@ -407,7 +414,7 @@ export default function HowToUseSuiteGuide() {
             </div>
 
             <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
-              <p className="text-base sm:text-lg font-extrabold text-gray-900">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Manual entry → Decode
               </p>
               <p className="mt-2 text-base sm:text-lg text-slate-700">
@@ -418,7 +425,7 @@ export default function HowToUseSuiteGuide() {
             </div>
 
             <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
-              <p className="text-base sm:text-lg font-extrabold text-gray-900">
+              <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Debug a bad paste
               </p>
               <p className="mt-2 text-base sm:text-lg text-slate-700">
@@ -523,7 +530,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
       </div>
-      <div className="mt-8 rounded-xl border border-slate-200 bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mt-8 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-7">
         <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           Quick reference
         </h2>
@@ -554,7 +561,7 @@ export default function HowToUseSuiteGuide() {
           </li>
         </ul>
       </div>
-    </section>
+    </div>
   );
 }
 

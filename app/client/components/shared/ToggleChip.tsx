@@ -18,11 +18,11 @@ export default function ToggleChip({
     alignItems: "center",
     gap: 8,
     padding: "8px 10px",
-    borderRadius: 999,
-    border: active ? "1px solid #111827" : "1px solid #e5e7eb",
-    background: active ? "#111827" : hover ? "#f9fafb" : "#eee",
-    color: active ? "#b8e6fe" : "#111827",
-    fontWeight: 800,
+    borderRadius: 8,
+    border: active ? "1px solid #020617" : "1px solid #e2e8f0",
+    background: active ? "#020617" : hover ? "#f0f9ff" : "#ffffff",
+    color: active ? "#e0f2fe" : "#0f172a",
+    fontWeight: 600,
     fontSize: ".9rem",
     cursor: "pointer",
     userSelect: "none",
@@ -39,6 +39,8 @@ export default function ToggleChip({
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
       onClick={onClick}
+      onFocus={() => setHover(true)}
+      onBlur={() => setHover(false)}
     >
       {label}
     </button>

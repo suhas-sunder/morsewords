@@ -1,5 +1,9 @@
 import * as React from "react";
 import type { Route } from "./+types/dictionary";
+import {
+  ActionLinks,
+  PageHero,
+} from "~/client/components/shared/MorseLearningLayout";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/dictionary";
@@ -85,9 +89,9 @@ function CopyButton({
 
 function DesktopTable({ items }: { items: Entry[] }) {
   return (
-    <div className="hidden overflow-x-auto rounded-2xl border border-slate-200 bg-white md:block">
+    <div className="hidden overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm md:block">
       <table className="w-full text-left">
-        <thead className="bg-[#f7f4ee] text-sm text-slate-700">
+        <thead className="bg-[#f7f4ee] font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">
           <tr>
             <th className="px-4 py-3 w-[14%]">Label</th>
             <th className="px-4 py-3 w-[26%]">Morse</th>
@@ -99,7 +103,7 @@ function DesktopTable({ items }: { items: Entry[] }) {
           {items.map((e) => (
             <tr
               key={`${e.category}-${e.label}-${e.morse}`}
-              className="border-t"
+              className="border-t border-slate-100 transition hover:bg-sky-50"
             >
               <td className="px-4 py-3 font-semibold text-slate-900">
                 {e.label}
@@ -173,12 +177,12 @@ function Section({
   items: Entry[];
 }) {
   return (
-    <section id={id} className="mb-12 scroll-mt-28">
+    <section id={id} className="mb-12 scroll-mt-28 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
       <div className="mb-4 flex items-center justify-between gap-3">
         <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
         <a
           href="#top"
-          className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+          className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           Top
         </a>
@@ -641,31 +645,30 @@ export default function DictionaryRoute() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <header className="mb-5 overflow-hidden rounded-2xl border border-slate-200 bg-white px-5 py-6 shadow-sm sm:px-8">
-        <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-sky-800" />
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-            Reference
-          </span>
-        </div>
-        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
-          Morse Code Dictionary
-        </h1>
-        <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-          Look up Morse letters, numbers, punctuation, prosigns, Q-codes, and
-          practice phrases in one clean reference.
-        </p>
-      </header>
+      <PageHero
+        eyebrow="Reference"
+        title="Morse Code Dictionary"
+        description="Look up Morse letters, numbers, punctuation, prosigns, Q-codes, and practice phrases in one clean reference."
+      >
+        <ActionLinks
+          links={[
+            { href: "#characters", label: "Characters", primary: true },
+            { href: "#prosigns", label: "Prosigns" },
+            { href: "#qcodes", label: "Q-codes" },
+            { href: "/morse-code-alphabet", label: "Alphabet chart" },
+          ]}
+        />
+      </PageHero>
 
-      <div className="mb-3">
-        <label className="mb-2 block text-sm font-semibold text-sky-950">
-          Filter
+      <div className="mb-3 mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <label className="mb-2 block text-sm font-extrabold text-sky-950">
+          Filter dictionary
         </label>
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Type to filter by label, Morse, or meaning…"
-          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-300"
+          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-950 transition focus:outline-none focus:ring-2 focus:ring-sky-300"
         />
       </div>
 
@@ -675,7 +678,7 @@ export default function DictionaryRoute() {
             <a
               key={s.id}
               href={`#${s.id}`}
-              className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+              className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
             >
               {s.title}
             </a>

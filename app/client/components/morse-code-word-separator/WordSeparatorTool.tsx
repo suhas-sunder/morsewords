@@ -121,24 +121,25 @@ export default function WordSeparatorTool() {
         ];
 
   return (
-    <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-      <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
-        <div className="flex items-center justify-center gap-3 sm:justify-start">
+    <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div className="tool-header flex flex-col gap-3 border-b border-slate-200 px-5 py-6 sm:px-8 sm:py-7">
+        <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
             Separator tool
           </span>
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+        <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
           Morse code word separator
         </h1>
-        <p className="hidden text-base leading-relaxed text-slate-700 sm:block sm:text-lg">
+        <p className="max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
           Normalize Morse word breaks and format English to Morse separators
           using <strong>7 spaces</strong>, <strong>/</strong>,{" "}
           <strong>|</strong>, or <strong>new lines</strong>.
         </p>
       </div>
 
+      <div className="px-5 py-6 sm:px-8 sm:py-7">
       <div className="mt-5 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
         <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1">
           <button
@@ -228,7 +229,7 @@ export default function WordSeparatorTool() {
           )}
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-4">
+        <div className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-4">
           <div className="flex items-center justify-between gap-2">
             <h2 className="font-extrabold text-sky-950">Output</h2>
           </div>
@@ -298,6 +299,7 @@ export default function WordSeparatorTool() {
             </p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );

@@ -477,15 +477,15 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
     <div>
       <JsonLdScript jsonLd={jsonLd} />
 
-      <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
-          <div className="flex items-center justify-center gap-3 sm:justify-start">
+      <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div className="tool-header flex flex-col gap-3 border-b border-slate-200 px-5 py-6 sm:px-8 sm:py-7">
+          <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
             <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
               Sentence practice
             </span>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+          <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
             Morse Code Sentence Practice
           </h1>
           <p className="max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg">
@@ -495,6 +495,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
           </p>
         </div>
 
+        <div className="px-5 py-6 sm:px-8 sm:py-7">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
           <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1 w-full sm:w-auto">
             <button
@@ -761,7 +762,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
                   spellCheck={false}
                   inputMode="text"
                   aria-label="Sentence practice answer"
-                  className="mt-2 w-full rounded-xl border border-gray-300 bg-white p-4 font-mono text-base sm:text-lg text-neutral-900 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100 disabled:bg-[#f7f4ee] disabled:text-slate-500"
+                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-4 font-mono text-base text-slate-950 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100 disabled:bg-[#f7f4ee] disabled:text-slate-500 sm:text-lg"
                 />
 
                 <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-600">
@@ -913,6 +914,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
               </div>
             </>
           )}
+        </div>
         </div>
       </section>
 

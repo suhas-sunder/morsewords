@@ -49,21 +49,21 @@ export default function PromptCard({
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="flex flex-col w-full border border-gray-200 rounded-2xl p-4 bg-sky-50">
+      <div className="flex w-full flex-col rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 shadow-sm">
         <div className="flex items-center gap-2 justify-between">
           <div className="inline-flex items-center gap-2">
-            <span className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
+            <span className="inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-slate-600">
               {kindLabel}
             </span>
-            <span className="text-sm text-gray-600">{prompt.label}</span>
+            <span className="text-sm text-slate-600">{prompt.label}</span>
           </div>
 
-          <span className="text-sm font-semibold text-gray-700">
+          <span className="text-sm font-semibold text-slate-700">
             Question {questionNumber}/{totalQuestions}
           </span>
         </div>
 
-        <div className="mt-4 text-2xl sm:text-3xl font-mono tracking-wide text-neutral-900 break-words whitespace-pre-wrap">
+        <div className="mt-4 break-words whitespace-pre-wrap font-mono text-2xl tracking-wide text-slate-950 sm:text-3xl">
           {prompt.kind === "morse_to_text"
             ? renderMorse(prompt.morse)
             : prompt.plain}

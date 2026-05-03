@@ -1,5 +1,11 @@
 import * as React from "react";
 import type { Route } from "./+types/home";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import {
+  ActionLinks,
+  PageHero,
+  SectionCard,
+} from "~/client/components/shared/MorseLearningLayout";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-alphabet";
@@ -66,23 +72,23 @@ function CopyButton({ value, label }: { value: string; label: string }) {
 
 function AlphabetCard({ entry }: { entry: Entry }) {
   return (
-    <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="grid gap-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <div className="text-xs font-semibold tracking-wide text-gray-500">
+            <div className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
               Character
             </div>
             <div className="text-2xl font-bold text-sky-950">{entry.label}</div>
           </div>
 
-          <span className="rounded-full border border-slate-200 bg-[#f7f4ee] px-3 py-1 text-xs font-semibold text-slate-700">
+          <span className="rounded-md border border-slate-200 bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
             {entry.category}
           </span>
         </div>
 
         <div>
-          <div className="text-xs font-semibold tracking-wide text-gray-500">
+          <div className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
             Morse
           </div>
           <div className="mt-1 break-words rounded-xl bg-[#f7f4ee] px-3 py-3 font-mono text-base text-slate-900">
@@ -91,7 +97,7 @@ function AlphabetCard({ entry }: { entry: Entry }) {
         </div>
 
         <div>
-          <div className="text-xs font-semibold tracking-wide text-gray-500">
+          <div className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
             Meaning
           </div>
           <div className="mt-1 text-sm text-slate-700">{entry.meaning}</div>
@@ -118,7 +124,7 @@ function Section({
   items: Entry[];
 }) {
   return (
-    <section id={id} className="scroll-mt-28">
+    <section id={id} className="scroll-mt-28 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
       <div className="mb-5 flex items-start justify-between gap-3">
         <div>
           <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
@@ -127,7 +133,7 @@ function Section({
 
         <a
           href="#top"
-          className="rounded-full border px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+          className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           Top
         </a>
@@ -153,26 +159,9 @@ function InfoBox({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-5">
-      <h2 className="text-xl font-extrabold text-sky-950">{title}</h2>
-      <div className="mt-3 text-slate-700">{children}</div>
-    </section>
-  );
-}
-
-function FaqSection({ items }: { items: Array<{ q: string; a: string }> }) {
-  return (
-    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-5">
-      <h2 className="text-2xl font-extrabold text-sky-950">Alphabet FAQ</h2>
-      <div className="mt-4 grid gap-4">
-        {items.map((item) => (
-          <article key={item.q} className="rounded-xl border border-slate-200 bg-white p-4">
-            <h3 className="text-base font-semibold text-sky-950">{item.q}</h3>
-            <p className="mt-2 text-slate-700">{item.a}</p>
-          </article>
-        ))}
-      </div>
-    </section>
+    <SectionCard eyebrow="Reference flow" title={title}>
+      {children}
+    </SectionCard>
   );
 }
 
@@ -333,52 +322,50 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }}
       />
 
-      <header className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white px-5 py-6 shadow-sm sm:px-8">
-        <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-sky-800" />
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-            Reference chart
-          </span>
-        </div>
-        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
-          Morse Code Alphabet
-        </h1>
-        <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-          Browse a clean Morse code alphabet chart with letters, numbers, and
-          common symbols. Copy any entry instantly, then jump to the translator,
-          encoder, or decoder if you want to convert full text.
-        </p>
-      </header>
+      <PageHero
+        eyebrow="Reference chart"
+        title="Morse Code Alphabet"
+        description="Browse a clean Morse code alphabet chart with letters, numbers, and common symbols. Copy any entry instantly, then jump to the translator, encoder, or decoder if you want to convert full text."
+      >
+        <ActionLinks
+          links={[
+            { href: "#letters", label: "Letters", primary: true },
+            { href: "#numbers", label: "Numbers" },
+            { href: "#symbols", label: "Symbols" },
+            { href: "/", label: "Translator" },
+          ]}
+        />
+      </PageHero>
 
-      <nav className="-mx-4 mb-8 overflow-x-auto border-b border-slate-200 bg-white px-4 py-3">
+      <nav className="-mx-4 mb-8 mt-5 overflow-x-auto border-b border-slate-200 bg-white px-4 py-3">
         <div className="flex gap-2 whitespace-nowrap text-sm">
           <a
             href="#letters"
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Letters
           </a>
           <a
             href="#numbers"
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Numbers
           </a>
           <a
             href="#symbols"
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Symbols
           </a>
           <a
             href="#how-it-works"
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             How It Works
           </a>
           <a
             href="#faq"
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             FAQ
           </a>
@@ -421,37 +408,21 @@ export default function Home() {
                 use the dedicated tools below.
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
-                <a
-                  href="/"
-                  className="cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
-                >
-                  Morse Code Translator
-                </a>
-                <a
-                  href="/morse-code-encoder"
-                  className="cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
-                >
-                  Text to Morse Code
-                </a>
-                <a
-                  href="/morse-code-decoder"
-                  className="cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
-                >
-                  Decode Morse Code
-                </a>
-                <a
-                  href="/dictionary"
-                  className="cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
-                >
-                  Morse Code Dictionary
-                </a>
+                <ActionLinks
+                  links={[
+                    { href: "/", label: "Morse Code Translator", primary: true },
+                    { href: "/morse-code-encoder", label: "Text to Morse Code" },
+                    { href: "/morse-code-decoder", label: "Decode Morse Code" },
+                    { href: "/dictionary", label: "Morse Code Dictionary" },
+                  ]}
+                />
               </div>
             </div>
           </InfoBox>
         </div>
 
         <div id="faq">
-          <FaqSection items={faqItems} />
+          <FaqSectionGeneric title="Alphabet FAQ" items={faqItems} />
         </div>
       </div>
 

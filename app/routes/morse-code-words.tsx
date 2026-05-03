@@ -3,6 +3,11 @@ import type { Route } from "./+types/morse-code-words";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import {
+  ActionLinks,
+  PageHero,
+  SectionCard as SharedSectionCard,
+} from "~/client/components/shared/MorseLearningLayout";
 import MorsePhraseLookupTable from "~/client/components/morse-code-words/MorsePhraseLookupTable";
 import { Link } from "react-router";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -32,17 +37,9 @@ function CardSection(props: {
   id?: string;
 }) {
   return (
-    <section
-      id={props.id}
-      className="mt-4 rounded-2xl border border-slate-200 bg-white shadow-sm"
-    >
-      <div className="p-4">
-        <h2 className="m-0 text-sky-800 font-bold text-xl leading-tight">
-          {props.title}
-        </h2>
-        <div className="mt-3">{props.children}</div>
-      </div>
-    </section>
+    <SharedSectionCard eyebrow="Morse words" title={props.title}>
+      <div id={props.id}>{props.children}</div>
+    </SharedSectionCard>
   );
 }
 
@@ -88,31 +85,45 @@ export default function MorseCodeWords() {
   ];
 
   const btnBase =
-    "cursor-pointer inline-flex items-center justify-center rounded-xl px-4 py-2 font-extrabold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 whitespace-nowrap";
+    "cursor-pointer inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 whitespace-nowrap";
 
   const btnPrimary =
     btnBase +
-    " border border-[#0b2447] bg-[#0b2447] text-white shadow-sm hover:brightness-110";
+    " border border-slate-950 bg-slate-950 text-sky-100 shadow-sm hover:bg-slate-800 hover:text-white";
 
   const btnSecondary =
     btnBase +
-    " border border-[#0b2447] bg-white text-sky-800 shadow-sm hover:bg-slate-50";
+    " border border-slate-200 bg-white text-slate-900 shadow-sm hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950";
 
   const btnGhost =
     btnBase +
-    " border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50";
+    " border border-slate-200 bg-white text-slate-900 shadow-sm hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950";
 
   const pClass = "my-3 text-slate-700 leading-relaxed";
   const linkClass =
-    "font-extrabold text-sky-800 underline underline-offset-4 hover:opacity-90 cursor-pointer";
+    "font-semibold text-sky-900 underline underline-offset-4 hover:text-sky-950 hover:no-underline cursor-pointer";
 
   return (
     <div style={styles.page}>
       <div style={styles.wrap}>
-        <section className="pt-3 pb-3">
-          <h1 className="text-sky-800 font-bold text-3xl sm:text-4xl leading-tight m-0">
+        <PageHero
+          eyebrow="Morse words"
+          title="Morse Code Words"
+          description="A practical, copy-ready collection of words, phrases, prosigns, and radio abbreviations in International Morse code. Use the converter pages for conversion, then use this page for ready-to-copy words, phrases, operator shorthand, and spacing rules that keep everything decodable."
+        >
+          <ActionLinks
+            links={[
+              { href: "#lookup", label: "Browse words", primary: true },
+              { href: "/morse-code-word-trainer", label: "Train words" },
+              { href: "/morse-code-word-search-builder", label: "Build puzzle" },
+            ]}
+          />
+        </PageHero>
+
+        <section className="hidden" aria-hidden="true">
+          <p className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
             Morse Code Words
-          </h1>
+          </p>
 
           <p className="mt-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm text-slate-600 text-base sm:text-lg leading-relaxed">
             A practical, copy-ready collection of words, phrases, prosigns, and
@@ -124,7 +135,9 @@ export default function MorseCodeWords() {
           </p>
         </section>
 
-        <MorsePhraseLookupTable />
+        <section id="lookup">
+          <MorsePhraseLookupTable />
+        </section>
 
         <CardSection title="Common Morse code words, plus real-world shorthand">
           <p className={pClass}>

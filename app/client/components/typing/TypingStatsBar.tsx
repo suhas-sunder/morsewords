@@ -37,29 +37,29 @@ export default function TypingStatsBar({
       : Math.round((lettersDecoded / elapsedSec) * 60);
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex flex-wrap items-center gap-4 text-sm">
         <div>
-          <div className="text-gray-500">Time</div>
-          <div className="font-extrabold text-gray-900">{fmtSeconds(elapsedSec)}</div>
+          <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">Time</div>
+          <div className="font-extrabold text-sky-950">{fmtSeconds(elapsedSec)}</div>
         </div>
         <div>
-          <div className="text-gray-500">Letters</div>
-          <div className="font-extrabold text-gray-900">{lettersDecoded}</div>
+          <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">Letters</div>
+          <div className="font-extrabold text-sky-950">{lettersDecoded}</div>
         </div>
         <div>
-          <div className="text-gray-500">Words</div>
-          <div className="font-extrabold text-gray-900">{wordsDecoded}</div>
+          <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">Words</div>
+          <div className="font-extrabold text-sky-950">{wordsDecoded}</div>
         </div>
         <div>
-          <div className="text-gray-500">Letters/min</div>
-          <div className="font-extrabold text-gray-900">{lpm}</div>
+          <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">Letters/min</div>
+          <div className="font-extrabold text-sky-950">{lpm}</div>
         </div>
       </div>
 
       <div className="text-sm">
-        <span className="text-gray-500">Invalid letters:</span>{" "}
-        <span className="font-extrabold text-gray-900">{invalidSymbols}</span>
+        <span className="text-slate-500">Invalid letters:</span>{" "}
+        <span className="font-extrabold text-sky-950">{invalidSymbols}</span>
       </div>
     </div>
   );

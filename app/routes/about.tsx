@@ -3,6 +3,11 @@ import type { Route } from "./+types/about";
 
 import styles from "~/client/components/shared/pageStyles";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import {
+  ActionLinks,
+  PageHero,
+  SectionCard as SharedSectionCard,
+} from "~/client/components/shared/MorseLearningLayout";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/about";
@@ -36,18 +41,11 @@ function SectionCard(props: {
   id?: string;
 }) {
   return (
-    <section id={props.id} style={styles.section}>
-      <div style={{ ...styles.card, ...styles.cardPad }}>
-        <h2 className="font-bold text-sky-950" style={styles.sectionTitle}>
-          {props.title}
-        </h2>
-        <div
-          style={{ color: "#111317", lineHeight: 1.65, fontSize: "1.02rem" }}
-        >
-          {props.children}
-        </div>
+    <SharedSectionCard eyebrow="About" title={props.title}>
+      <div id={props.id} className="space-y-3 text-base leading-relaxed text-slate-700 sm:text-lg">
+        {props.children}
       </div>
-    </section>
+    </SharedSectionCard>
   );
 }
 
@@ -115,53 +113,21 @@ export default function About() {
     <div style={styles.page}>
       <JsonLdScript jsonLd={jsonLd} />
       <div style={styles.wrap}>
-        <header
-          style={{ ...styles.header, borderBottom: "none", paddingBottom: 6 }}
+        <PageHero
+          eyebrow="About MorseWords"
+          title="About MorseWords"
+          description="MorseWords is a practical Morse code toolkit for converting text, decoding Morse, playing audio, practicing patterns, and looking up symbols without extra setup."
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <h1 className="font-bold text-sky-950" style={styles.h1}>
-              About MorseWords
-            </h1>
-            <p style={styles.lead}>
-              MorseWords is a practical Morse code toolkit for converting text,
-              decoding Morse, playing audio, practicing patterns, and looking up
-              symbols without extra setup.
-            </p>
-          </div>
-          <a
-            href="/how-to-use"
-            className="rounded-xl px-4 py-2 font-semibold cursor-pointer transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500"
-            style={{
-              border: "1px solid #020617",
-              background: "#020617",
-              color: "#e0f2fe",
-              whiteSpace: "nowrap",
-            }}
-          >
-            How to use
-          </a>
-        </header>
-
-        <div
-          className="mt-4 flex flex-wrap gap-2"
-          style={{ alignItems: "center" }}
-        >
-          {[
-            ["#what-morsewords-does", "What MorseWords does"],
-            ["#tool-design", "Tool design"],
-            ["#what-this-is-not", "What this is not"],
-            ["#author", "Author"],
-          ].map(([href, label]) => (
-            <a
-              key={href}
-              href={href}
-              className="rounded-full border px-3 py-2 text-sm font-semibold cursor-pointer transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
-              style={{ borderColor: "#e6e8ef", background: "#f7f8fb" }}
-            >
-              {label}
-            </a>
-          ))}
-        </div>
+          <ActionLinks
+            links={[
+              { href: "/how-to-use", label: "How to use", primary: true },
+              { href: "#what-morsewords-does", label: "What MorseWords does" },
+              { href: "#tool-design", label: "Tool design" },
+              { href: "#what-this-is-not", label: "What this is not" },
+              { href: "#author", label: "Author" },
+            ]}
+          />
+        </PageHero>
 
         <SectionCard id="what-morsewords-does" title="What MorseWords does">
           <p>

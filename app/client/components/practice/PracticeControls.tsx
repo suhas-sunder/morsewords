@@ -22,11 +22,11 @@ export default function PracticeControls({
 }) {
   return (
     <div>
-      <div className="text-lg font-extrabold text-neutral-900">
+      <div className="text-lg font-extrabold text-sky-950">
         Drill settings
       </div>
 
-      <div className="mt-3 text-sm text-gray-600">Mode</div>
+      <div className="mt-3 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">Mode</div>
       <div className="mt-2 flex flex-wrap gap-2">
         <ToggleChip
           label="Text → Morse"
@@ -46,7 +46,7 @@ export default function PracticeControls({
         />
       </div>
 
-      <div className="mt-4 text-sm text-gray-600">Prompt pool</div>
+      <div className="mt-4 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">Prompt pool</div>
       <div className="mt-2 flex flex-wrap gap-2">
         <ToggleChip
           label="All"

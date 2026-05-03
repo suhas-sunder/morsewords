@@ -3,6 +3,11 @@ import QRCode from "qrcode";
 
 import { DownloadIcon, ShareIcon, WarningIcon } from "~/client/assets/svg/Icons";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import {
+  ActionLinks,
+  DarkNote,
+  PageHero,
+} from "~/client/components/shared/MorseLearningLayout";
 import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -2023,8 +2028,8 @@ function SettingsSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <h3 className="m-0 break-words text-lg font-black text-sky-800">
+    <section className="min-w-0 rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 shadow-sm">
+      <h3 className="m-0 break-words text-lg font-extrabold text-sky-950">
         {title}
       </h3>
       <p className="mt-1 break-words text-sm leading-relaxed text-slate-600">
@@ -2289,13 +2294,13 @@ function LivePreview({
   const isPdf = downloadFormat === "pdf";
 
   return (
-    <aside className="min-w-0 rounded-3xl border border-sky-200 bg-sky-50 p-5 shadow-sm lg:sticky lg:top-4">
+    <aside className="min-w-0 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm lg:sticky lg:top-4">
       <div className="flex min-w-0 flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="m-0 text-sm font-extrabold uppercase tracking-wide text-sky-800">
+          <p className="m-0 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
             Output preview
           </p>
-          <h2 className="mt-2 break-words text-2xl font-black text-sky-800">
+          <h2 className="mt-2 break-words text-2xl font-extrabold text-sky-950">
             {printModeLabel(settings.printMode)}
           </h2>
           <p className="mt-2 max-w-2xl break-words text-sm leading-relaxed text-slate-700">
@@ -2305,9 +2310,9 @@ function LivePreview({
         </div>
       </div>
 
-      <div className="mt-4 rounded-2xl border border-sky-100 bg-white p-3">
+      <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-3">
         <label className="block">
-          <span className="block text-sm font-extrabold text-sky-800">
+          <span className="block text-sm font-semibold text-sky-950">
             Download format
           </span>
           <select
@@ -2380,15 +2385,15 @@ function LivePreview({
       </div>
 
       {settings.includeBranding && qrCodeDataUrl ? (
-        <div className="mt-4 min-w-0 rounded-2xl border border-sky-100 bg-white p-3 text-xs text-slate-700">
+        <div className="mt-4 min-w-0 rounded-2xl border border-slate-200 bg-white p-3 text-xs text-slate-700">
           <div className="flex min-w-0 items-center gap-3">
             <img
               src={qrCodeDataUrl}
               alt="QR code to MorseWords"
-              className="h-12 w-12 shrink-0 rounded-lg border border-sky-100 bg-white p-1"
+              className="h-12 w-12 shrink-0 rounded-lg border border-slate-200 bg-white p-1"
             />
             <div className="min-w-0">
-              <strong className="break-words text-sky-800">
+              <strong className="break-words text-sky-950">
                 QR appears on the reference guide
               </strong>
               <div className="break-words">{DISPLAY_URL}</div>
@@ -2988,16 +2993,35 @@ export default function MorseCodePrintableChart() {
       `}</style>
 
       <main style={styles.wrap}>
-        <section className="py-4">
+        <PageHero
+          eyebrow="MorseWords"
+          title="Printable Morse Code Chart and Worksheet Builder"
+          description="Create a clean teacher-ready printable with student fields, answer key controls, own-message sections, branding, QR code, sharing, PDF export, and image exports."
+          aside={
+            <DarkNote label="Print defaults" value="PDF">
+              <p>Answer keys stay off until you include them.</p>
+            </DarkNote>
+          }
+        >
+          <ActionLinks
+            links={[
+              { href: "#builder", label: "Build printable", primary: true },
+              { href: "/morse-code-word-search-builder", label: "Word search" },
+              { href: "/morse-code-practice-plan", label: "Practice plan" },
+            ]}
+          />
+        </PageHero>
+
+        <section className="hidden">
           <div className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-4">
               <div className="min-w-0">
                 <div className="text-sm font-extrabold uppercase tracking-wide text-sky-800">
                   MorseWords
                 </div>
-                <h1 className="mt-1 break-words text-2xl font-black leading-tight text-slate-950 sm:text-3xl">
+                <p className="mt-1 break-words text-2xl font-black leading-tight text-slate-950 sm:text-3xl">
                   Printable Morse Code Chart and Worksheet Builder
-                </h1>
+                </p>
                 <p className="mt-2 max-w-3xl break-words text-sm leading-relaxed text-slate-600">
                   Create a clean teacher-ready printable with student fields,
                   answer key controls, own-message sections, branding, QR code,
@@ -3005,20 +3029,23 @@ export default function MorseCodePrintableChart() {
                 </p>
               </div>
 
-              <div className="rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-black text-sky-800">
+              <div className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900">
                 PDF default · Answer key off by default
               </div>
             </div>
           </div>
         </section>
 
-        <section className="grid min-w-0 items-start gap-5 py-4 lg:grid-cols-[0.88fr_1.12fr]">
+        <section
+          id="builder"
+          className="grid min-w-0 items-start gap-5 py-4 lg:grid-cols-[0.88fr_1.12fr]"
+        >
           <div className="grid min-w-0 gap-4">
-            <section className="min-w-0 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-              <p className="m-0 text-sm font-extrabold uppercase tracking-wide text-sky-800">
+            <section className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p className="m-0 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                 Worksheet settings
               </p>
-              <h2 className="mt-2 break-words text-2xl font-black text-sky-800">
+              <h2 className="mt-2 break-words text-2xl font-extrabold text-sky-950">
                 Build the printable
               </h2>
               <p className="mt-2 break-words text-sm leading-relaxed text-slate-600">

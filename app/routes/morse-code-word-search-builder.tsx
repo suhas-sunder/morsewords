@@ -1553,7 +1553,7 @@ function WordSearchPreview({
   qrCodeDataUrl: string;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-[#f8fafc] p-4 shadow-inner">
+    <div className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 shadow-inner">
       <article className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 text-slate-900 shadow-sm sm:p-7">
         <div className="flex flex-col gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-start sm:justify-between">
           <div>

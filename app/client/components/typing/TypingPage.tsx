@@ -410,20 +410,20 @@ export default function TypingPage({ jsonLd }: Props) {
           aria-modal="true"
           aria-label="Session complete"
         >
-          <div className="w-full max-w-3xl rounded-2xl border border-gray-200 bg-white shadow-lg">
-            <div className="flex items-center justify-between gap-3 border-b border-gray-200 p-4 sm:p-5">
+          <div className="w-full max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
+            <div className="flex items-center justify-between gap-3 border-b border-slate-200 bg-[#fffaf2] p-4 sm:p-5">
               <div>
-                <div className="text-xl sm:text-2xl font-extrabold text-[#0b2447]">
+                <div className="text-xl font-extrabold text-sky-950 sm:text-2xl">
                   Session complete
                 </div>
-                <div className="mt-1 text-sm sm:text-base text-gray-700">
+                <div className="mt-1 text-sm text-slate-700 sm:text-base">
                   Duration: {fmtMMSS(durationSec)}
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setShowEndScreen(false)}
-                className="px-4 py-2 rounded-xl font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50 cursor-pointer transition"
+                className="cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 aria-label="Close results"
               >
                 Close
@@ -432,43 +432,43 @@ export default function TypingPage({ jsonLd }: Props) {
 
             <div className="p-4 sm:p-6">
               <div className="grid gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-4">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Letters
                   </div>
-                  <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
+                  <div className="mt-1 text-2xl font-extrabold text-sky-950 sm:text-3xl">
                     {decoded.lettersDecoded}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-4">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Words
                   </div>
-                  <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
+                  <div className="mt-1 text-2xl font-extrabold text-sky-950 sm:text-3xl">
                     {decoded.wordsDecoded}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-4">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Letters/min
                   </div>
-                  <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
+                  <div className="mt-1 text-2xl font-extrabold text-sky-950 sm:text-3xl">
                     {lettersPerMin}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4 sm:col-span-2">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-4 sm:col-span-2">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Invalid
                   </div>
-                  <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
+                  <div className="mt-1 text-2xl font-extrabold text-sky-950 sm:text-3xl">
                     {decoded.invalidSymbols}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                  <div className="text-sm sm:text-base font-semibold text-gray-700">
+                <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-4">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Time
                   </div>
-                  <div className="mt-1 text-2xl sm:text-3xl font-extrabold text-[#0b2447]">
+                  <div className="mt-1 text-2xl font-extrabold text-sky-950 sm:text-3xl">
                     {fmtMMSS(durationSec)}
                   </div>
                 </div>
@@ -499,7 +499,7 @@ export default function TypingPage({ jsonLd }: Props) {
                   />
                 </div>
 
-                <div className="text-sm sm:text-base text-gray-600">
+                <div className="text-sm text-slate-600 sm:text-base">
                   Pick a duration above, then start typing to begin a new
                   session.
                 </div>
@@ -510,23 +510,24 @@ export default function TypingPage({ jsonLd }: Props) {
       ) : null}
 
       <div className="">
-        <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-          <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
-            <div className="flex items-center justify-center gap-3 sm:justify-start">
+        <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="tool-header flex flex-col gap-3 border-b border-slate-200 px-5 py-6 sm:px-8 sm:py-7">
+            <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-sky-800" />
               <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                 Typing practice
               </span>
             </div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+            <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
               Morse Code Typing
             </h1>
-            <p className="hidden text-base leading-relaxed text-slate-700 sm:flex sm:text-lg">
+            <p className="max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Freeform, input-first Morse typing with real-time decoding. Built
               for fluent users who want repetition, rhythm, and endurance.
             </p>
           </div>
 
+          <div className="px-5 py-6 sm:px-8 sm:py-7">
           {/* Top control bar: durations + session controls + input mode + stats */}
           <div className="flex flex-col gap-3">
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
@@ -708,29 +709,29 @@ export default function TypingPage({ jsonLd }: Props) {
               </pre>
 
               {sessionState === "done" ? (
-                <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4">
-                  <div className="text-sm font-semibold text-neutral-900">
+                <div className="mt-4 rounded-xl border border-slate-200 bg-[#fffdf8] p-4">
+                  <div className="text-sm font-extrabold text-sky-950">
                     Session complete
                   </div>
-                  <div className="mt-1 text-sm text-gray-700">
+                  <div className="mt-1 text-sm text-slate-700">
                     Duration:{" "}
-                    <span className="font-extrabold text-[#0b2447]">
+                    <span className="font-extrabold text-sky-950">
                       {fmtMMSS(durationSec)}
                     </span>{" "}
                     · Letters:{" "}
-                    <span className="font-extrabold text-[#0b2447]">
+                    <span className="font-extrabold text-sky-950">
                       {decoded.lettersDecoded}
                     </span>{" "}
                     · Words:{" "}
-                    <span className="font-extrabold text-[#0b2447]">
+                    <span className="font-extrabold text-sky-950">
                       {decoded.wordsDecoded}
                     </span>{" "}
                     · Letters/min:{" "}
-                    <span className="font-extrabold text-[#0b2447]">
+                    <span className="font-extrabold text-sky-950">
                       {lettersPerMin}
                     </span>{" "}
                     · Invalid:{" "}
-                    <span className="font-extrabold text-[#0b2447]">
+                    <span className="font-extrabold text-sky-950">
                       {decoded.invalidSymbols}
                     </span>
                   </div>
@@ -761,7 +762,7 @@ export default function TypingPage({ jsonLd }: Props) {
 
               <div className="mt-4">
                 <label className="text-sky-900 font-bold">Input</label>
-                <div className="mt-1 text-sm text-gray-700">
+                <div className="mt-1 text-sm text-slate-700">
                   {sessionState === "idle" ? (
                     <>
                       Choose a duration, then start typing. The timer begins on
@@ -849,14 +850,14 @@ export default function TypingPage({ jsonLd }: Props) {
             </div>
 
             {/* Options */}
-            <div className="mt-6 border-t border-gray-200 pt-5">
-              <div className="text-sm font-semibold text-neutral-900">
+            <div className="mt-6 border-t border-slate-200 pt-5">
+              <div className="text-sm font-extrabold text-sky-950">
                 Typing helpers
               </div>
 
               <div className="mt-3 grid gap-4 sm:grid-cols-2 sm:items-start">
                 <div>
-                  <div className="text-sm text-gray-600">On-screen keys</div>
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">On-screen keys</div>
                   <div className="mt-2 grid grid-cols-2 gap-2">
                     <Button
                       type="button"
@@ -910,11 +911,11 @@ export default function TypingPage({ jsonLd }: Props) {
                 </div>
 
                 <div className="sm:justify-end">
-                  <div className="rounded-2xl border border-gray-200 bg-white p-4">
-                    <div className="text-sm font-semibold text-neutral-900">
+                  <div className="rounded-xl border border-slate-200 bg-white p-4">
+                    <div className="text-sm font-extrabold text-sky-950">
                       Keyboard tips
                     </div>
-                    <ul className="mt-2 text-sm text-gray-700 list-disc pl-5 space-y-1">
+                    <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
                       <li>
                         {inputMode === "dotdash" ? (
                           <>
@@ -949,22 +950,23 @@ export default function TypingPage({ jsonLd }: Props) {
                     </ul>
                   </div>
 
-                  <details className="mt-4 rounded-xl border border-gray-200 p-4 bg-white">
-                    <summary className="cursor-pointer select-none font-bold text-gray-900">
+                  <details className="mt-4 rounded-xl border border-slate-200 bg-white p-4">
+                    <summary className="cursor-pointer select-none font-bold text-sky-950">
                       Show raw input
                     </summary>
-                    <pre className="mt-3 whitespace-pre-wrap break-words rounded-xl border border-gray-200 bg-gray-50 p-4 font-mono text-sm text-gray-900">
+                    <pre className="mt-3 whitespace-pre-wrap break-words rounded-xl border border-slate-200 bg-[#fffdf8] p-4 font-mono text-sm text-slate-950">
                       {decoded.normalizedRaw}
                     </pre>
                   </details>
                 </div>
               </div>
 
-              <p className="mt-4 text-sm text-gray-700 leading-relaxed">
+              <p className="mt-4 text-sm leading-relaxed text-slate-700">
                 This tool is for repetition and flow. No prompts, no grading, no
                 lessons.
               </p>
             </div>
+          </div>
           </div>
         </section>
       </div>

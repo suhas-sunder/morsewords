@@ -1,5 +1,4 @@
 import * as React from "react";
-import styles from "~/client/components/shared/pageStyles";
 
 type Category =
   | "Common"
@@ -328,21 +327,20 @@ function MorsePhraseLookupTable() {
 
   return (
     <section
-      style={{ ...styles.card, ...styles.cardPad, marginTop: 16 }}
+      className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm"
       aria-labelledby="morse-words-table-title"
       itemScope
       itemType="https://schema.org/Table"
     >
       <h2
         id="morse-words-table-title"
-        style={{ ...styles.sectionTitle, margin: 0 }}
-        className="text-sky-800 font-bold"
+        className="px-5 pt-6 text-3xl font-extrabold tracking-tight text-sky-950 sm:px-8 sm:pt-7 sm:text-4xl"
         itemProp="name"
       >
-        Morse code words and operator shorthand (copy-ready)
+        Morse code words and operator shorthand
       </h2>
       <p
-        className="text-gray-700 text-base leading-relaxed mb-5"
+        className="mb-5 max-w-[72ch] px-5 pt-4 text-base leading-relaxed text-slate-700 sm:px-8 sm:text-lg"
         itemProp="description"
       >
         This list focuses on what people mean by “morsewords”: common everyday
@@ -352,24 +350,24 @@ function MorsePhraseLookupTable() {
         into puzzles, worksheets, or notes.
       </p>
 
-      <div className="flex flex-col md:flex-row gap-3 md:items-center md:justify-between mb-5">
+      <div className="mx-5 mb-5 flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:mx-8 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-          <label className="text-sm font-semibold text-neutral-900">
+          <label className="text-sm font-semibold text-sky-950">
             Search
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder='Try "SOS", "QSL", or "thank"'
-              className="mt-1 sm:mt-0 sm:ml-2 w-full sm:w-80 border border-gray-200 rounded-xl px-3 py-2 text-sm text-neutral-900 bg-white"
+              className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-950 transition focus:outline-none focus:ring-2 focus:ring-sky-300 sm:ml-2 sm:mt-0 sm:w-80"
             />
           </label>
 
-          <label className="text-sm font-semibold text-neutral-900">
+          <label className="text-sm font-semibold text-sky-950">
             Category
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as Category | "All")}
-              className="mt-1 sm:mt-0 sm:ml-2 border border-gray-200 rounded-xl px-3 py-2 text-sm text-neutral-900 bg-white cursor-pointer"
+              className="mt-1 cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-950 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-300 sm:ml-2 sm:mt-0"
             >
               <option value="All">All</option>
               <option value="Common">Common words</option>
@@ -382,7 +380,7 @@ function MorsePhraseLookupTable() {
           </label>
         </div>
 
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-slate-600">
           Showing{" "}
           <span className="font-semibold text-neutral-900">
             {filtered.length}
@@ -391,20 +389,20 @@ function MorsePhraseLookupTable() {
         </p>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full border-collapse text-sm md:text-base text-gray-800">
-          <thead className="bg-gray-50 border-b">
+      <div className="mx-5 overflow-x-auto rounded-xl border border-slate-200 bg-white sm:mx-8">
+        <table className="min-w-full border-collapse text-sm text-slate-800 md:text-base">
+          <thead className="border-b border-slate-200 bg-[#f7f4ee] font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">
             <tr>
-              <th className="py-2 px-3 text-left font-semibold border-r">
+              <th className="py-3 px-3 text-left font-bold border-r border-slate-200">
                 Word / Phrase
               </th>
-              <th className="py-2 px-3 text-left font-semibold border-r">
+              <th className="py-3 px-3 text-left font-bold border-r border-slate-200">
                 Morse
               </th>
-              <th className="py-2 px-3 text-left font-semibold border-r">
+              <th className="py-3 px-3 text-left font-bold border-r border-slate-200">
                 Meaning
               </th>
-              <th className="py-2 px-3 text-left font-semibold">Copy</th>
+              <th className="py-3 px-3 text-left font-bold">Copy</th>
             </tr>
           </thead>
           <tbody>
@@ -414,26 +412,26 @@ function MorsePhraseLookupTable() {
               return (
                 <tr
                   key={key}
-                  className="odd:bg-white even:bg-gray-50 hover:bg-sky-50 transition"
+                  className="odd:bg-white even:bg-[#fffdf8] transition hover:bg-sky-50"
                 >
-                  <td className="py-2 px-3 border-r font-semibold">
+                  <td className="py-3 px-3 border-r border-slate-100 font-semibold text-slate-950">
                     {p.phrase}
                   </td>
-                  <td className="py-2 px-3 border-r font-mono break-words text-sky-900 tracking-wide">
+                  <td className="py-3 px-3 border-r border-slate-100 font-mono break-words text-sky-950 tracking-wide">
                     {normalizeForCopy(p.morse)}
                     <span className="sr-only">{p.category}</span>
                   </td>
-                  <td className="py-2 px-3 border-r text-gray-700">
+                  <td className="py-3 px-3 border-r border-slate-100 text-slate-700">
                     {p.meaning}
                   </td>
-                  <td className="py-2 px-3">
+                  <td className="py-3 px-3">
                     <button
                       type="button"
                       onClick={() => copy(p.morse, key)}
-                      className={`px-3 py-2 rounded-xl border text-sm font-semibold cursor-pointer transition ${
+                      className={`rounded-lg border px-3 py-2 text-sm font-semibold cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${
                         copied
-                          ? "bg-sky-900 text-white border-sky-900"
-                          : "bg-white text-sky-900 border-sky-900 hover:bg-sky-50"
+                          ? "border-slate-950 bg-slate-950 text-sky-100"
+                          : "border-slate-200 bg-white text-slate-900 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
                       }`}
                       aria-label={`Copy Morse for ${p.phrase}`}
                     >
@@ -447,7 +445,7 @@ function MorsePhraseLookupTable() {
         </table>
       </div>
 
-      <div className="mt-6 text-sm text-gray-700 leading-relaxed space-y-2">
+      <div className="px-5 pb-6 pt-6 text-sm leading-relaxed text-slate-700 space-y-2 sm:px-8 sm:pb-7">
         <p>
           For puzzles and learning, the slash separator is intentionally
           explicit. If you prefer spacing-only Morse, you can replace{" "}

@@ -282,23 +282,24 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
 
   return (
     <div className=" ">
-      <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="tool-header flex flex-col gap-3 text-center sm:text-left">
-          <div className="flex items-center justify-center gap-3 sm:justify-start">
+      <section className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div className="tool-header flex flex-col gap-3 border-b border-slate-200 px-5 py-6 sm:px-8 sm:py-7">
+          <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
             <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
               Practice drill
             </span>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+          <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
             Morse Code Practice (Quiz)
           </h1>
-          <p className="hidden text-base leading-relaxed text-slate-700 sm:flex sm:text-lg">
+          <p className="max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
             A focused 10-question Morse quiz. One prompt at a time with instant
             feedback.
           </p>
         </div>
 
+        <div className="px-5 py-6 sm:px-8 sm:py-7">
         {/* Top control bar: match Audio page density */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
           <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1 w-full sm:w-auto">
@@ -393,58 +394,58 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                 <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
                   Your results
                 </h2>
-                <p className="mt-1 text-sm sm:text-base text-gray-700">
+                <p className="mt-1 text-sm text-slate-700 sm:text-base">
                   10 questions, unlimited attempts per question. Accuracy
                   reflects all attempts.
                 </p>
               </div>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Questions
                   </div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                  <div className="mt-1 text-3xl font-extrabold text-sky-950">
                     {TOTAL_QUESTIONS}/{TOTAL_QUESTIONS}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Attempts
                   </div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                  <div className="mt-1 text-3xl font-extrabold text-sky-950">
                     {attempts}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Correct
                   </div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                  <div className="mt-1 text-3xl font-extrabold text-sky-950">
                     {correct}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Accuracy
                   </div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                  <div className="mt-1 text-3xl font-extrabold text-sky-950">
                     {accuracy}%
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Best streak
                   </div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                  <div className="mt-1 text-3xl font-extrabold text-sky-950">
                     {bestStreak}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-600">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Final streak
                   </div>
-                  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
+                  <div className="mt-1 text-3xl font-extrabold text-sky-950">
                     {streak}
                   </div>
                 </div>
@@ -546,7 +547,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
           )}
 
           {/* Drill options (always visible) */}
-          <div className="mt-6 border-t border-gray-200 pt-5">
+          <div className="mt-6 border-t border-slate-200 pt-5">
             <div className="text-sm font-semibold text-neutral-900">
               Drill options (Quiz settings)
             </div>
@@ -610,6 +611,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
 

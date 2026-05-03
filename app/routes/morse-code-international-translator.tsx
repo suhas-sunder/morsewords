@@ -83,7 +83,7 @@ function ExampleCard({
         <button
           type="button"
           onClick={() => onUse(item.word)}
-          className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+          className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           Try
         </button>
@@ -100,7 +100,7 @@ function ExampleCard({
             setCopied(true);
             window.setTimeout(() => setCopied(false), 1000);
           }}
-          className="rounded-xl bg-[#171717] px-3 py-1.5 text-sm font-bold text-sky-100 transition hover:bg-slate-800 hover:text-white"
+          className="cursor-pointer rounded-lg border border-slate-950 bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           {copied ? "Copied" : "Copy"}
         </button>

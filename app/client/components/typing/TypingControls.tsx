@@ -18,9 +18,9 @@ export default function TypingControls({
   setShowStats,
 }: Props) {
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+    <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex flex-wrap items-center gap-2">
-        <div className="mr-2 font-extrabold text-gray-900">Input mode</div>
+        <div className="mr-2 font-extrabold text-sky-950">Input mode</div>
         <ToggleChip
           active={inputMode === "dotdash"}
           onClick={() => setInputMode("dotdash")}
@@ -34,7 +34,7 @@ export default function TypingControls({
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <div className="mr-2 font-extrabold text-gray-900">Display</div>
+        <div className="mr-2 font-extrabold text-sky-950">Display</div>
         <ToggleChip
           active={showStats}
           onClick={() => setShowStats(true)}
@@ -47,7 +47,7 @@ export default function TypingControls({
         />
       </div>
 
-      <p className="text-sm text-gray-700">
+      <p className="text-sm text-slate-700">
         Tip: press <span className="font-mono">Esc</span> to re-focus the input
         at any time.
       </p>
