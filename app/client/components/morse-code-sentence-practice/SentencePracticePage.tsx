@@ -477,7 +477,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
     <div>
       <JsonLdScript jsonLd={jsonLd} />
 
-      <section className="mw-tool-section overflow-hidden rounded-2xl bg-white">
+      <section className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
         <div className="tool-header flex flex-col gap-3 px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
@@ -488,7 +488,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
           <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
             Morse Code Sentence Practice
           </h1>
-          <p className="max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg">
+          <p className="max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
             Decode and send complete Morse code sentences with a longer typing
             area, instant checking, sentence difficulty filters, and spacing
             hints built for full-phrase practice.
@@ -497,14 +497,14 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
 
         <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-          <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1 w-full sm:w-auto">
+          <div className="inline-flex rounded-xl bg-slate-100 p-1 w-full sm:w-auto">
             <button
               type="button"
               onClick={() => setMode("text_to_morse")}
               className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "text_to_morse"
-                  ? "border border-slate-200 bg-white text-sky-950 shadow-sm"
-                  : "text-slate-700 hover:bg-white/70"
+                  ? "bg-slate-950 text-sky-100"
+                  : "text-slate-700 hover:bg-slate-200"
               }`}
             >
               Text → Morse
@@ -514,8 +514,8 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
               onClick={() => setMode("morse_to_text")}
               className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "morse_to_text"
-                  ? "border border-slate-200 bg-white text-sky-950 shadow-sm"
-                  : "text-slate-700 hover:bg-white/70"
+                  ? "bg-slate-950 text-sky-100"
+                  : "text-slate-700 hover:bg-slate-200"
               }`}
             >
               Morse → Text
@@ -525,8 +525,8 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
               onClick={() => setMode("mixed")}
               className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "mixed"
-                  ? "border border-slate-200 bg-white text-sky-950 shadow-sm"
-                  : "text-slate-700 hover:bg-white/70"
+                  ? "bg-slate-950 text-sky-100"
+                  : "text-slate-700 hover:bg-slate-200"
               }`}
             >
               Mixed

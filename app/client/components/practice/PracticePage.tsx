@@ -265,10 +265,10 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   const statusBadge = feedback ? (
     <div
       className={[
-        "mt-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-semibold",
+        "mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold",
         feedback.ok
-          ? "bg-sky-50 border-sky-200 text-sky-950"
-          : "bg-[#fffdf8] border-slate-200 text-slate-800",
+          ? "bg-slate-100 text-sky-950"
+          : "bg-slate-100 text-slate-800",
       ].join(" ")}
       role="status"
       aria-live="polite"
@@ -282,18 +282,18 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
 
   return (
     <div className=" ">
-      <section className="mw-tool-section overflow-hidden rounded-2xl bg-white">
-        <div className="tool-header flex flex-col gap-3 px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
+      <section className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
+        <div className="tool-header px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
             <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
               Practice drill
             </span>
           </div>
-          <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+          <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
             Morse Code Practice (Quiz)
           </h1>
-          <p className="max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+          <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
             A focused 10-question Morse quiz. One prompt at a time with instant
             feedback.
           </p>
@@ -302,14 +302,14 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
         <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
         {/* Top control bar: match Audio page density */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-          <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1 w-full sm:w-auto">
+          <div className="inline-flex rounded-lg bg-white w-full gap-2 sm:w-auto">
             <button
               type="button"
               onClick={() => setMode("text_to_morse")}
-              className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
+              className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "text_to_morse"
-                  ? "bg-white border border-slate-200 text-sky-950 shadow-sm"
-                  : "text-slate-700 hover:bg-white/70"
+                  ? "bg-slate-950 text-sky-100"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
               }`}
             >
               Text → Morse
@@ -317,10 +317,10 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
             <button
               type="button"
               onClick={() => setMode("morse_to_text")}
-              className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
+              className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "morse_to_text"
-                  ? "bg-white border border-slate-200 text-sky-950 shadow-sm"
-                  : "text-slate-700 hover:bg-white/70"
+                  ? "bg-slate-950 text-sky-100"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
               }`}
             >
               Morse → Text
@@ -328,10 +328,10 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
             <button
               type="button"
               onClick={() => setMode("mixed")}
-              className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
+              className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "mixed"
-                  ? "bg-white border border-slate-200 text-sky-950 shadow-sm"
-                  : "text-slate-700 hover:bg-white/70"
+                  ? "bg-slate-950 text-sky-100"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
               }`}
             >
               Mixed
@@ -384,11 +384,11 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
 
         {/* Main drill panel */}
-        <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+        <div className="mt-4">
           {gameOver ? (
-            <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-5 sm:p-6">
+            <div className="rounded-2xl bg-slate-100 p-5 sm:p-6">
               <div className="flex flex-col items-center text-center">
-                <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-sky-950">
+                <div className="inline-flex items-center rounded-full bg-white px-3 py-1 text-sm font-semibold text-sky-950">
                   Quiz complete
                 </div>
                 <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
@@ -401,7 +401,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               </div>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="rounded-xl bg-white p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Questions
                   </div>
@@ -409,7 +409,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {TOTAL_QUESTIONS}/{TOTAL_QUESTIONS}
                   </div>
                 </div>
-                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="rounded-xl bg-white p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Attempts
                   </div>
@@ -417,7 +417,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {attempts}
                   </div>
                 </div>
-                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="rounded-xl bg-white p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Correct
                   </div>
@@ -425,7 +425,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {correct}
                   </div>
                 </div>
-                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="rounded-xl bg-white p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Accuracy
                   </div>
@@ -433,7 +433,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {accuracy}%
                   </div>
                 </div>
-                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="rounded-xl bg-white p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Best streak
                   </div>
@@ -441,7 +441,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {bestStreak}
                   </div>
                 </div>
-                <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="rounded-xl bg-white p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Final streak
                   </div>
@@ -493,7 +493,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}
                   placeholder={placeholder}
-                  className="w-full mt-2 rounded-xl p-3 font-mono border border-sky-500 outline-sky-500"
+                  className="w-full mt-2 rounded-xl bg-slate-100 p-3 font-mono outline-none focus:ring-2 focus:ring-sky-300"
                   onKeyDown={(e) => {
                     if (e.key !== "Enter") return;
                     if (solvedThisQuestion) {
@@ -547,7 +547,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
           )}
 
           {/* Drill options (always visible) */}
-          <div className="mt-6 border-t border-slate-200 pt-5">
+            <div className="mt-6 pt-5">
             <div className="text-sm font-semibold text-neutral-900">
               Drill options (Quiz settings)
             </div>

@@ -12,7 +12,7 @@ const styles: Record<string, React.CSSProperties> = {
 
   hero: {
     padding: "18px 0 10px",
-    borderBottom: "1px solid #e6e8ef",
+    borderBottom: 0,
     marginBottom: 16,
   },
   h1: {
@@ -24,9 +24,9 @@ const styles: Record<string, React.CSSProperties> = {
 
   card: {
     background: "#fffdf8",
-    border: "1px solid #e2e8f0",
+    border: 0,
     borderRadius: 16,
-    boxShadow: "0 1px 0 rgba(11,36,71,0.14)",
+    boxShadow: "none",
   },
   cardPad: { padding: 16 },
   section: { padding: "8px 0 24px" },
@@ -42,7 +42,7 @@ const styles: Record<string, React.CSSProperties> = {
   label: { fontSize: ".9rem", color: "#5a616c" },
 
   promptBox: {
-    border: "1px solid #e2e8f0",
+    border: 0,
     borderRadius: 14,
     padding: 16,
     background: "linear-gradient(180deg, #fffdf8 0%, #fffaf2 100%)",
@@ -71,7 +71,7 @@ const styles: Record<string, React.CSSProperties> = {
     width: "100%",
     minHeight: 44,
     padding: 10,
-    border: "1px solid #e2e8f0",
+    border: 0,
     borderRadius: 10,
     background: "#fffdf8",
     color: "#111317",
@@ -110,7 +110,7 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 999,
     fontSize: ".9rem",
     fontWeight: 800,
-    border: "1px solid #e2e8f0",
+    border: 0,
     background: "#fffdf8",
   },
   badgeGood: { borderColor: "#bae6fd", background: "#f0f9ff", color: "#082f49" },

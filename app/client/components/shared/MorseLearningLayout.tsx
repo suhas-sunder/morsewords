@@ -26,10 +26,14 @@ export function PageHero({
   children?: React.ReactNode;
   aside?: React.ReactNode;
 }) {
+  const headerGridClass = aside
+    ? "grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start"
+    : "grid gap-6";
+
   return (
-    <section className="mt-6 overflow-hidden rounded-2xl bg-white">
-      <div className="px-5 py-6 sm:px-8 sm:py-7">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+    <section className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
+      <div className="tool-header px-5 py-6 sm:px-8 sm:py-7">
+        <div className={headerGridClass}>
           <div className="min-w-0">
             <Eyebrow>{eyebrow}</Eyebrow>
             <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">

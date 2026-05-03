@@ -27,6 +27,37 @@ input[type="range"]:focus-visible {
   outline-offset: 3px;
 }
 
+.mw-tool-section,
+.mw-tool-section .tool-header {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.mw-tool-section * {
+  box-shadow: none !important;
+}
+
+.mw-tool-section .tool-header {
+  background: transparent !important;
+}
+
+.mw-tool-section .tool-header p {
+  max-width: none;
+}
+
+.mw-tool-section :where(.border, .border-t, .border-b, .border-l, .border-r) {
+  border-width: 0 !important;
+}
+
+.mw-tool-section
+  :where(section, article, div, button, input, textarea, select, pre, details) {
+  border-color: transparent !important;
+}
+
+.mw-tool-section :where(.shadow, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl) {
+  box-shadow: none !important;
+}
+
 .mw-how-section > .flex.flex-col:first-child {
   margin: -1.25rem -1.25rem 1.5rem;
   border-bottom: 1px solid #e2e8f0;

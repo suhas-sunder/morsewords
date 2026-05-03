@@ -12,6 +12,15 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
+import {
+  audioDifficultyOptions,
+  buildPromptDeck,
+  getAudioPrompts,
+  isAudioDifficulty,
+  normalizeAudioAnswer,
+  promptTypeLabel,
+  type AudioDifficulty,
+} from "~/client/components/audioPractice/audioPromptBank";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
 import useMorseAudio, {
@@ -30,24 +39,20 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-audio-quiz";
 const STROBE_WARNING_ID = "audio-quiz-strobe-warning";
-const PROMPTS = [
-  "sos",
-  "cq",
-  "test",
-  "help",
-  "radio",
-  "qth",
-  "copy",
-  "73",
-  "qsl",
-  "morse",
-];
+const DIFFICULTY_STORAGE_KEY = "mw_audio_quiz_difficulty";
+const BEST_STREAK_STORAGE_KEY = "mw_audio_quiz_best_streak";
 const TOTAL_QUESTIONS = 10;
+
+type FeedbackState = "idle" | "correct" | "missed";
 
 const faqItems = [
   {
     q: "How does the Morse code audio quiz work?",
-    a: "The quiz plays a hidden Morse prompt. You type what you heard, check the answer, and MorseWords tracks attempts, accuracy, streak, and a shareable result.",
+    a: "The quiz plays a hidden Morse prompt. You type what you heard, check the answer, and MorseWords tracks score, attempts, accuracy, streak, and shareable results.",
+  },
+  {
+    q: "What do the audio quiz difficulty levels change?",
+    a: "Beginner uses letters, numbers, and tiny groups. Easy adds short words and common signals. Medium adds longer words and short sentences. Hard adds Q-codes, longer copy, and tougher sentences.",
   },
   {
     q: "Does the audio quiz support Farnsworth spacing?",
@@ -55,11 +60,7 @@ const faqItems = [
   },
   {
     q: "How is this different from audio practice?",
-    a: "Audio practice keeps the prompt visible so you can tune timing and repeat the sound. The audio quiz hides the answer and scores recall.",
-  },
-  {
-    q: "Is the Flash option safe for everyone?",
-    a: "Strobe warning: flashing light may be uncomfortable or unsafe for people with photosensitive epilepsy or light sensitivity. Turn off Flash or use audio-only practice if you are sensitive to strobing.",
+    a: "Audio practice is open-ended and built for repetition. The audio quiz is a fixed scored test, so it is better for checking your current listening level.",
   },
 ];
 
@@ -71,7 +72,7 @@ export function meta({}: Route.MetaArgs) {
   return seoMeta({
     title: "Morse Code Audio Quiz | Test Listening Accuracy",
     description:
-      "Take a scored Morse code audio quiz with WPM, Farnsworth spacing, pitch, waveform, repeat, answer checks, streaks, and shareable results.",
+      "Take a scored Morse code audio quiz with hidden prompts, difficulty levels, WPM, Farnsworth spacing, streak tracking, and shareable results.",
     path: CANONICAL_PATH,
     keywords:
       "morse code audio quiz, morse listening test, morse code test audio, farnsworth morse quiz",
@@ -80,13 +81,17 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioQuiz() {
   const player = useMorseAudio();
+  const [difficulty, setDifficulty] = React.useState<AudioDifficulty>(() =>
+    readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"),
+  );
+  const [deckSeed, setDeckSeed] = React.useState(() => Date.now());
   const [index, setIndex] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
-  const [checked, setChecked] = React.useState(false);
+  const [feedback, setFeedback] = React.useState<FeedbackState>("idle");
   const [attempts, setAttempts] = React.useState(0);
   const [correct, setCorrect] = React.useState(0);
   const [completed, setCompleted] = React.useState(0);
-  const [solved, setSolved] = React.useState(false);
+  const [skipped, setSkipped] = React.useState(0);
   const [streak, setStreak] = React.useState(0);
   const [bestStreak, setBestStreak] = React.useState(0);
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
@@ -101,11 +106,19 @@ export default function MorseCodeAudioQuiz() {
   const [repeat, setRepeat] = React.useState(false);
   const [soundOn, setSoundOn] = React.useState(true);
   const [flash, setFlash] = React.useState(false);
-  const [advancedOpen, setAdvancedOpen] = React.useState(true);
+  const [advancedOpen, setAdvancedOpen] = React.useState(false);
 
-  const prompt = PROMPTS[index % PROMPTS.length];
-  const morse = textToMorse(prompt);
-  const isCorrect = answer.trim().toLowerCase() === prompt;
+  const promptPool = React.useMemo(() => getAudioPrompts(difficulty), [difficulty]);
+  const deck = React.useMemo(
+    () => buildPromptDeck(promptPool, TOTAL_QUESTIONS, deckSeed),
+    [promptPool, deckSeed],
+  );
+  const prompt = deck[Math.min(index, TOTAL_QUESTIONS - 1)];
+  const morse = React.useMemo(() => textToMorse(prompt.text), [prompt.text]);
+  const normalizedAnswer = normalizeAudioAnswer(answer);
+  const expectedAnswer = normalizeAudioAnswer(prompt.text);
+  const isCorrect = normalizedAnswer === expectedAnswer;
+  const currentProgress = Math.min(completed + (feedback !== "idle" ? 1 : 0), TOTAL_QUESTIONS);
   const gameOver = completed >= TOTAL_QUESTIONS;
   const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
   const durationMs = player.estimateDurationMs({
@@ -113,6 +126,37 @@ export default function MorseCodeAudioQuiz() {
     wpm: charWpm,
     farnsworthWpm,
   });
+
+  React.useEffect(() => {
+    try {
+      window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
+    } catch {
+      // local-only preference; ignore storage failures
+    }
+  }, [difficulty]);
+
+  React.useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(BEST_STREAK_STORAGE_KEY);
+      const parsed = raw ? Number(raw) : 0;
+      if (Number.isFinite(parsed)) setBestStreak(parsed);
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  React.useEffect(() => {
+    try {
+      window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
+    } catch {
+      // ignore
+    }
+  }, [bestStreak]);
+
+  React.useEffect(() => {
+    resetQuiz({ preserveDifficulty: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [difficulty]);
 
   React.useEffect(() => {
     const anyPlayer = player as typeof player & {
@@ -165,28 +209,8 @@ export default function MorseCodeAudioQuiz() {
       window.removeEventListener("morsewords:flash", handler as EventListener);
   }, [flash]);
 
-  React.useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem("mw_audio_quiz_best_streak");
-      const parsed = raw ? Number(raw) : 0;
-      if (Number.isFinite(parsed)) setBestStreak(parsed);
-    } catch {
-      // ignore
-    }
-  }, []);
-
-  React.useEffect(() => {
-    try {
-      window.localStorage.setItem(
-        "mw_audio_quiz_best_streak",
-        String(bestStreak),
-      );
-    } catch {
-      // ignore
-    }
-  }, [bestStreak]);
-
   async function playPrompt() {
+    if (runStartedAt === null) setRunStartedAt(Date.now());
     await player.play({
       code: morse,
       wpm: charWpm,
@@ -203,45 +227,46 @@ export default function MorseCodeAudioQuiz() {
   }
 
   function checkAnswer() {
-    if (gameOver || solved) return;
+    if (gameOver || feedback !== "idle" || !normalizedAnswer) return;
     if (runStartedAt === null) setRunStartedAt(Date.now());
     setAttempts((value) => value + 1);
-    setChecked(true);
     if (isCorrect) {
-      setSolved(true);
+      setFeedback("correct");
       setCorrect((value) => value + 1);
       setStreak((value) => {
         const next = value + 1;
         setBestStreak((best) => (next > best ? next : best));
         return next;
       });
-    } else {
-      setStreak(0);
+      return;
     }
+    setFeedback("missed");
+    setStreak(0);
   }
 
-  function nextPrompt() {
+  function nextQuestion() {
     player.stop();
-    if (!solved) setStreak(0);
+    if (feedback === "idle") {
+      setSkipped((value) => value + 1);
+      setStreak(0);
+    }
     const nextCompleted = completed + 1;
     setCompleted(nextCompleted);
     setAnswer("");
-    setChecked(false);
-    setSolved(false);
-    if (nextCompleted < TOTAL_QUESTIONS) {
-      setIndex((value) => (value + 1) % PROMPTS.length);
-    }
+    setFeedback("idle");
+    if (nextCompleted < TOTAL_QUESTIONS) setIndex((value) => value + 1);
   }
 
-  function resetQuiz() {
+  function resetQuiz(_: { preserveDifficulty?: boolean } = {}) {
     player.stop();
+    setDeckSeed(Date.now());
     setIndex(0);
     setAnswer("");
-    setChecked(false);
+    setFeedback("idle");
     setAttempts(0);
     setCorrect(0);
     setCompleted(0);
-    setSolved(false);
+    setSkipped(0);
     setStreak(0);
     setRunStartedAt(null);
   }
@@ -276,11 +301,11 @@ export default function MorseCodeAudioQuiz() {
         <PageHero
           eyebrow="Audio test"
           title="Morse code audio quiz"
-          description="Listen first, then type the word you heard. The quiz uses the same timing controls as audio practice, including Farnsworth spacing for slower gaps."
+          description="Test Morse listening recall with hidden audio prompts. Pick a difficulty, play each signal, type what you copied, and get a scored result."
           aside={
             <DarkNote label="Score" value={`${correct}/${TOTAL_QUESTIONS}`}>
-              Accuracy counts every answer check. Current prompt time is about{" "}
-              {formatMs(durationMs)} with these settings.
+              {audioDifficultyOptions.find((option) => option.value === difficulty)?.label}{" "}
+              quiz. Current prompt time is about {formatMs(durationMs)}.
             </DarkNote>
           }
         >
@@ -296,8 +321,28 @@ export default function MorseCodeAudioQuiz() {
           />
         </PageHero>
 
-        <section className="mt-8 overflow-hidden rounded-2xl bg-white">
-          <div className="px-5 pb-4 pt-6 sm:px-8 sm:pt-7">
+        <section className="mt-8 rounded-[1.75rem] bg-white px-5 py-6 sm:px-8 lg:px-10">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap gap-2">
+              {audioDifficultyOptions.map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => setDifficulty(option.value)}
+                  className={
+                    "min-h-11 cursor-pointer rounded-xl px-4 py-2 font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
+                    (difficulty === option.value
+                      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+                      : "bg-slate-100 text-slate-800 hover:bg-slate-200 hover:text-sky-950")
+                  }
+                  aria-pressed={difficulty === option.value}
+                  title={option.description}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+
             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
               <span>
                 Question{" "}
@@ -316,11 +361,11 @@ export default function MorseCodeAudioQuiz() {
               </span>
               <ShareResultsButton
                 title="Morse Code Audio Quiz"
-                subtitle="Listening quiz results"
+                subtitle={`${difficultyLabel(difficulty)} listening quiz`}
                 stats={{
                   attempts,
                   correct,
-                  progress: completed,
+                  progress: currentProgress,
                   streak,
                   bestStreak,
                   totalQuestions: TOTAL_QUESTIONS,
@@ -331,363 +376,353 @@ export default function MorseCodeAudioQuiz() {
           </div>
 
           {gameOver ? (
-            <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
-              <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-5 text-center">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
-                  Quiz complete
-                </p>
-                <h2 className="mt-2 text-2xl font-extrabold text-sky-950">
-                  Audio quiz results
-                </h2>
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                  {[
-                    ["Questions", `${TOTAL_QUESTIONS}/${TOTAL_QUESTIONS}`],
-                    ["Attempts", String(attempts)],
-                    ["Correct", String(correct)],
-                    ["Accuracy", `${accuracy}%`],
-                    ["Best streak", String(bestStreak)],
-                    ["Final streak", String(streak)],
-                  ].map(([label, value]) => (
-                    <div
-                      key={label}
-                      className="rounded-xl border border-slate-200 bg-white p-4 text-left"
-                    >
-                      <p className="text-sm font-semibold text-slate-600">
-                        {label}
-                      </p>
-                      <p className="mt-1 text-3xl font-black text-slate-950">
-                        {value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 flex flex-wrap justify-center gap-3">
-                  <button
-                    type="button"
-                    onClick={resetQuiz}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
-                  >
-                    <LoopIcon size={18} title="Try again" />
-                    Try again
-                  </button>
-                  <ShareResultsButton
-                    title="Morse Code Audio Quiz"
-                    subtitle="Listening quiz results"
-                    stats={{
-                      attempts,
-                      correct,
-                      progress: TOTAL_QUESTIONS,
-                      streak,
-                      bestStreak,
-                      totalQuestions: TOTAL_QUESTIONS,
-                    }}
-                    runStartedAt={runStartedAt}
-                  />
-                </div>
-              </div>
-            </div>
+            <QuizComplete
+              attempts={attempts}
+              correct={correct}
+              skipped={skipped}
+              accuracy={accuracy}
+              streak={streak}
+              bestStreak={bestStreak}
+              difficulty={difficulty}
+              runStartedAt={runStartedAt}
+              onReset={() => resetQuiz()}
+            />
           ) : (
-            <div className="px-5 py-6 sm:px-8">
-              <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-                <div>
-                  <label className="block max-w-xl">
-                    <span className="text-sm font-extrabold text-sky-950">
-                      Your answer
-                    </span>
-                    <input
-                      value={answer}
-                      onChange={(event) => {
-                        setAnswer(event.target.value);
-                        setChecked(false);
-                      }}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter") {
-                          if (solved) nextPrompt();
-                          else if (answer.trim()) checkAnswer();
-                        }
-                      }}
-                      className="mt-2 min-h-12 w-full rounded-xl border border-slate-200 px-4 font-mono text-lg outline-none focus:border-sky-400"
-                    />
-                  </label>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {!solved ? (
-                      <button
-                        type="button"
-                        onClick={checkAnswer}
-                        disabled={!answer.trim()}
-                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        <CheckCircleIcon size={18} title="Check answer" />
-                        Check answer
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={nextPrompt}
-                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
-                      >
-                        <LoopIcon size={18} title="Next prompt" />
-                        {completed + 1 >= TOTAL_QUESTIONS
-                          ? "Finish"
-                          : "Next prompt"}
-                      </button>
-                    )}
-                    <button
-                    type="button"
-                    onClick={nextPrompt}
-                    disabled={solved}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    <RefreshIcon size={18} title="Skip prompt" />
-                    Skip
-                  </button>
-                  </div>
-                  {checked ? (
-                    <p
-                      className={
-                        "mt-4 inline-flex rounded-full border px-3 py-1 text-sm font-semibold " +
-                        (isCorrect
-                          ? "border-sky-200 bg-sky-50 text-sky-950"
-                          : "border-slate-200 bg-[#fffdf8] text-slate-800")
-                      }
+            <>
+              <div className="mt-5 grid gap-5 lg:grid-cols-2">
+                <div className="rounded-xl bg-slate-100 p-4">
+                  <div className="mb-3 flex items-center justify-between gap-3">
+                    <label
+                      htmlFor="mw_audio_quiz_answer"
+                      className="text-sm font-extrabold text-sky-950"
                     >
-                      {isCorrect
-                        ? "Correct."
-                        : "Not quite. Try again before moving on."}
-                    </p>
-                  ) : null}
+                      Your answer
+                    </label>
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                      {promptTypeLabel(prompt.type)}
+                    </span>
+                  </div>
+                  <textarea
+                    id="mw_audio_quiz_answer"
+                    value={answer}
+                    onChange={(event) => {
+                      if (feedback === "idle") setAnswer(event.target.value);
+                    }}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
+                        event.preventDefault();
+                        if (feedback === "idle") checkAnswer();
+                        else nextQuestion();
+                      }
+                    }}
+                    placeholder="Type what you heard"
+                    readOnly={feedback !== "idle"}
+                    className="min-h-[11rem] w-full resize-y bg-transparent font-mono text-lg text-slate-950 outline-none placeholder:text-slate-500 focus:ring-0 read-only:cursor-default"
+                  />
                 </div>
 
-                <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
-                  <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
-                    Playback
-                  </p>
-                  <button
-                    type="button"
-                    onClick={playPrompt}
-                    className="mt-4 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
-                  >
-                    <PlayIcon size={20} title="Play prompt" />
-                    {player.state === "playing" ? "Restart prompt" : "Play prompt"}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={player.stop}
-                    disabled={player.state === "idle"}
-                    className="mt-2 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    <StopIcon size={20} title="Stop audio" />
-                    Stop
-                  </button>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                    The prompt stays hidden during the quiz.
-                  </p>
+                <div className="rounded-xl bg-[#202020] p-4 text-sky-100">
+                  <div className="mb-3 flex items-center justify-between gap-3">
+                    <h2 className="text-sm font-extrabold text-slate-100">
+                      Playback
+                    </h2>
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
+                      Hidden prompt
+                    </span>
+                  </div>
+                  <div className="min-h-[11rem] text-sm leading-relaxed text-slate-200">
+                    <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-300">
+                      {difficultyLabel(difficulty)} {promptTypeLabel(prompt.type)}
+                    </p>
+                    {feedback === "idle" ? (
+                      <p className="mt-4 max-w-lg text-base">
+                        Listen to the signal, then type what you copied. The
+                        answer stays hidden until you check it.
+                      </p>
+                    ) : (
+                      <div className="mt-4">
+                        <p className="font-semibold text-sky-100">
+                          {feedback === "correct"
+                            ? "Correct."
+                            : "Not quite. Expected:"}{" "}
+                          {prompt.text}
+                        </p>
+                        <p className="mt-3 font-mono text-sm font-bold tracking-[0.16em] text-sky-100">
+                          {morse}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-6 rounded-xl border border-slate-200 bg-white p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-base font-extrabold text-sky-950">
-                    Audio quiz settings
-                  </h3>
-                  <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
-                    {player.state === "idle" ? "Ready" : player.state}
-                  </span>
-                </div>
-                <div className="mt-4 grid gap-5 md:grid-cols-3">
-                  <SliderRow
-                    label="Character speed"
-                    value={charWpm}
-                    min={5}
-                    max={40}
-                    step={1}
-                    unit="WPM"
-                    onChange={setCharWpm}
-                  />
-                  <SliderRow
-                    label="Farnsworth spacing"
-                    value={farnsworthWpm}
-                    min={5}
-                    max={40}
-                    step={1}
-                    unit="WPM"
-                    onChange={setFarnsworthWpm}
-                    help="Slows spacing only."
-                  />
-                  <SliderRow
-                    label="Pitch"
-                    value={toneHz}
-                    min={300}
-                    max={1000}
-                    step={10}
-                    unit="Hz"
-                    onChange={setToneHz}
-                    disabled={!soundOn || preset === "sounder"}
-                  />
-                  <SliderRow
-                    label="Volume"
-                    value={Math.round(volume * 100)}
-                    min={0}
-                    max={100}
-                    step={1}
-                    unit="%"
-                    onChange={(value) => setVolume(value / 100)}
-                    disabled={!soundOn}
-                  />
-                  <SliderRow
-                    label="Attack"
-                    value={attackMs}
-                    min={0}
-                    max={40}
-                    step={1}
-                    unit="ms"
-                    onChange={setAttackMs}
-                    disabled={!soundOn || preset === "sounder"}
-                  />
-                  <SliderRow
-                    label="Release"
-                    value={releaseMs}
-                    min={0}
-                    max={80}
-                    step={1}
-                    unit="ms"
-                    onChange={setReleaseMs}
-                    disabled={!soundOn || preset === "sounder"}
-                  />
-                </div>
+              <p className="mt-3 text-right text-sm text-slate-600">
+                Prompt stays hidden until you check. Press Ctrl+Enter to check or continue.
+              </p>
 
-                {advancedOpen ? (
-                  <div className="mt-5 border-t border-slate-100 pt-5">
-                    <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_2fr] md:items-end">
-                      <label className="block">
-                        <span className="text-sm font-extrabold text-sky-950">
-                          Sound preset
-                        </span>
-                        <select
-                          value={preset}
-                          onChange={(event) =>
-                            setPreset(event.target.value as SoundPreset)
-                          }
-                          className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 bg-white px-3 font-semibold"
-                        >
-                          <option value="cw_radio">CW (Radio)</option>
-                          <option value="sine">Sine</option>
-                          <option value="square">Square</option>
-                          <option value="triangle">Triangle</option>
-                          <option value="sawtooth">Sawtooth</option>
-                          <option value="sounder">Telegraph sounder</option>
-                        </select>
-                      </label>
-
-                      <div className="flex flex-wrap gap-2">
-                        <TogglePill
-                          label="Sound"
-                          checked={soundOn}
-                          onChange={setSoundOn}
-                          icon={<SoundIcon size={16} title="Sound" />}
-                        />
-                        <TogglePill
-                          label="Repeat"
-                          checked={repeat}
-                          onChange={setRepeat}
-                          icon={<LoopIcon size={16} title="Repeat" />}
-                        />
-                        <TogglePill
-                          label="Flash"
-                          checked={flash}
-                          onChange={setFlash}
-                          icon={<LightBulbIcon size={16} title="Flash" />}
-                          describedBy={flash ? STROBE_WARNING_ID : undefined}
-                        />
-                      </div>
-                    </div>
-                    {flash ? (
-                      <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
-                    ) : null}
-                  </div>
-                ) : null}
-
+              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
                 <button
                   type="button"
-                  onClick={() => setAdvancedOpen((value) => !value)}
-                  className="mt-5 min-h-11 w-full cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                  onClick={playPrompt}
+                  className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 >
-                  {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
+                  <PlayIcon size={20} title="Play prompt" />
+                  {player.state === "playing" ? "Restart prompt" : "Play prompt"}
+                </button>
+                <button
+                  type="button"
+                  onClick={player.stop}
+                  disabled={player.state === "idle"}
+                  className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
+                >
+                  <StopIcon size={20} title="Stop audio" />
+                  Stop
+                </button>
+                {feedback === "idle" ? (
+                  <button
+                    type="button"
+                    onClick={checkAnswer}
+                    disabled={!normalizedAnswer}
+                    className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
+                  >
+                    <CheckCircleIcon size={20} title="Check answer" />
+                    Check answer
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={nextQuestion}
+                    className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                  >
+                    <LoopIcon size={20} title="Next question" />
+                    {completed + 1 >= TOTAL_QUESTIONS ? "Finish quiz" : "Next question"}
+                  </button>
+                )}
+              </div>
+
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                <p
+                  className={
+                    "min-h-10 text-sm font-semibold " +
+                    (feedback === "correct"
+                      ? "text-sky-950"
+                      : feedback === "missed"
+                        ? "text-slate-800"
+                        : "text-slate-500")
+                  }
+                >
+                  {feedback === "correct"
+                    ? "Correct. Continue when ready."
+                    : feedback === "missed"
+                      ? "Not quite. Review the answer, then continue."
+                      : "Answer by ear before checking."}
+                </p>
+                <button
+                  type="button"
+                  onClick={nextQuestion}
+                  disabled={feedback !== "idle"}
+                  className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
+                >
+                  <RefreshIcon size={18} title="Skip question" />
+                  Skip question
                 </button>
               </div>
-            </div>
+            </>
           )}
+
+          <div className="mt-7">
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-base font-extrabold text-sky-950">
+                Audio quiz settings
+              </h3>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                {player.state === "idle" ? "Ready" : player.state}
+              </span>
+            </div>
+            <div className="mt-4 grid gap-5 md:grid-cols-3">
+              <SliderRow
+                label="Character speed"
+                value={charWpm}
+                min={5}
+                max={40}
+                step={1}
+                unit="WPM"
+                onChange={setCharWpm}
+              />
+              <SliderRow
+                label="Farnsworth spacing"
+                value={farnsworthWpm}
+                min={5}
+                max={40}
+                step={1}
+                unit="WPM"
+                onChange={setFarnsworthWpm}
+                help="Slows spacing only."
+              />
+              <SliderRow
+                label="Pitch"
+                value={toneHz}
+                min={300}
+                max={1000}
+                step={10}
+                unit="Hz"
+                onChange={setToneHz}
+                disabled={!soundOn || preset === "sounder"}
+              />
+              <SliderRow
+                label="Volume"
+                value={Math.round(volume * 100)}
+                min={0}
+                max={100}
+                step={1}
+                unit="%"
+                onChange={(value) => setVolume(value / 100)}
+                disabled={!soundOn}
+              />
+              <SliderRow
+                label="Attack"
+                value={attackMs}
+                min={0}
+                max={40}
+                step={1}
+                unit="ms"
+                onChange={setAttackMs}
+                disabled={!soundOn || preset === "sounder"}
+              />
+              <SliderRow
+                label="Release"
+                value={releaseMs}
+                min={0}
+                max={80}
+                step={1}
+                unit="ms"
+                onChange={setReleaseMs}
+                disabled={!soundOn || preset === "sounder"}
+              />
+            </div>
+
+            {advancedOpen ? (
+              <div className="mt-5">
+                <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_2fr] md:items-end">
+                  <label className="block">
+                    <span className="text-sm font-extrabold text-sky-950">
+                      Sound preset
+                    </span>
+                    <select
+                      value={preset}
+                      onChange={(event) => setPreset(event.target.value as SoundPreset)}
+                      className="mt-2 min-h-11 w-full rounded-xl bg-slate-100 px-3 font-semibold text-slate-950 outline-none transition hover:bg-slate-200 focus:ring-2 focus:ring-sky-300"
+                    >
+                      <option value="cw_radio">CW (Radio)</option>
+                      <option value="sine">Sine</option>
+                      <option value="square">Square</option>
+                      <option value="triangle">Triangle</option>
+                      <option value="sawtooth">Sawtooth</option>
+                      <option value="sounder">Telegraph sounder</option>
+                    </select>
+                  </label>
+
+                  <div className="flex flex-wrap gap-2">
+                    <TogglePill
+                      label="Sound"
+                      checked={soundOn}
+                      onChange={setSoundOn}
+                      icon={<SoundIcon size={16} title="Sound" />}
+                    />
+                    <TogglePill
+                      label="Repeat"
+                      checked={repeat}
+                      onChange={setRepeat}
+                      icon={<LoopIcon size={16} title="Repeat" />}
+                    />
+                    <TogglePill
+                      label="Flash"
+                      checked={flash}
+                      onChange={setFlash}
+                      icon={<LightBulbIcon size={16} title="Flash" />}
+                      describedBy={flash ? STROBE_WARNING_ID : undefined}
+                    />
+                  </div>
+                </div>
+                {flash ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" /> : null}
+              </div>
+            ) : null}
+
+            <button
+              type="button"
+              onClick={() => setAdvancedOpen((value) => !value)}
+              className="mt-5 min-h-11 w-full cursor-pointer rounded-lg bg-slate-100 px-4 py-2 font-semibold text-slate-900 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+            >
+              {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
+            </button>
+          </div>
         </section>
 
         <ToolHowItWorks
           eyebrow="Audio quiz spec"
           title="How this Morse code audio quiz works"
-          description="The audio quiz hides the prompt, plays the Morse signal, and asks you to copy what you heard. It keeps the full listening controls from audio practice so testing and training use the same timing model."
+          description="The audio quiz hides each prompt, plays the Morse signal, and scores your copied answer. It is a fixed test, unlike open-ended audio practice."
           referenceLabel="Hidden signal"
           referenceValue="... --- ..."
-          referenceText="Replay the prompt, then type the word. Farnsworth changes gaps only."
+          referenceText="Listen first, answer from memory, then check."
           chips={[
-            { label: "Prompt", href: "#audio-quiz-prompt" },
+            { label: "Difficulty", href: "#audio-quiz-difficulty" },
             { label: "Scoring", href: "#audio-quiz-scoring" },
             { label: "Timing", href: "#audio-quiz-timing" },
-            { label: "Review", href: "#audio-quiz-review" },
+            { label: "Practice", href: "#audio-quiz-practice" },
           ]}
           summary={[
             {
-              title: "Hidden-answer test",
-              text: "The word stays hidden while you listen, answer, and check recall.",
+              title: "Ten hidden prompts",
+              text: "Each run uses a shuffled deck from the selected difficulty level.",
             },
             {
-              title: "Full audio controls",
-              text: "WPM, Farnsworth, pitch, volume, waveform, attack, release, repeat, and flash stay available.",
+              title: "Skill check",
+              text: "Score, attempts, accuracy, skips, streak, and best streak show how well you copied by ear.",
             },
             {
-              title: "Shareable results",
-              text: "The quiz tracks attempts, accuracy, streak, and best streak for a useful result card.",
+              title: "Local audio",
+              text: "Playback and answer checking stay in the browser; only the difficulty and best streak are saved locally.",
             },
           ]}
           details={[
             {
-              kicker: "Listening prompt",
-              title: "Prompt",
-              text: "Each question uses a short practice word or signal. You can replay the audio with your current settings, but the text answer stays hidden until you check it.",
+              kicker: "Prompt bank",
+              title: "Difficulty",
+              text: "Beginner focuses on letters, numbers, and tiny groups. Easy adds short words and common signals. Medium adds longer words and sentences. Hard adds Q-codes and tougher copy.",
             },
             {
               kicker: "Result model",
               title: "Scoring",
-              text: "Every answer check counts as an attempt. Correct answers increase your score and streak; misses reset the current streak but keep the question active for another try.",
+              text: "A checked answer counts as an attempt. Correct answers raise your score and streak. Skipped prompts move the quiz forward without adding a correct answer.",
             },
             {
-              kicker: "Learner timing",
+              kicker: "Copy speed",
               title: "Timing",
-              text: "Character speed controls the dit and dah rhythm. Farnsworth spacing slows only the letter and word gaps, which gives learners more copy time without distorting the Morse character shapes.",
-              bullets: [
-                "Use lower Farnsworth spacing when copying feels rushed.",
-                "Use repeat for short prompts and weak words.",
-                "Use attack and release to soften the start and end of tones.",
-              ],
+              text: "Character speed sets the dit and dah rhythm. Farnsworth spacing slows only the gaps, so you can test at a realistic character rhythm while giving yourself more copy time.",
             },
             {
-              kicker: "Next session",
-              title: "Review",
-              text: "After the quiz, move missed words into the word trainer or make a printable review sheet so the next practice block starts with the signals that need the most work.",
+              kicker: "Next step",
+              title: "Practice",
+              text: "If the quiz feels rough, switch to audio practice. It uses the same prompt bank and timing controls but keeps the session open-ended for repetition.",
             },
           ]}
         />
 
-        <SectionCard eyebrow="After the quiz" title="Use misses as your next practice list">
+        <SectionCard
+          eyebrow="After the test"
+          title="Use the score to pick the next drill"
+          description="If accuracy is low, drop one difficulty level and run open-ended audio practice. If accuracy is steady, move into sentence practice or a faster WPM setting."
+        >
           <ActionLinks
             links={[
               {
-                href: "/morse-code-word-trainer",
-                label: "Word trainer",
+                href: "/morse-code-audio-practice",
+                label: "Audio practice",
                 primary: true,
               },
-              {
-                href: "/morse-code-printable-chart",
-                label: "Worksheet generator",
-              },
-              { href: "/practice", label: "General practice" },
+              { href: "/morse-code-sentence-practice", label: "Sentence practice" },
+              { href: "/morse-code-practice-plan", label: "Practice plan" },
             ]}
           />
         </SectionCard>
@@ -696,6 +731,77 @@ export default function MorseCodeAudioQuiz() {
 
         <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
       </main>
+    </div>
+  );
+}
+
+function QuizComplete({
+  attempts,
+  correct,
+  skipped,
+  accuracy,
+  streak,
+  bestStreak,
+  difficulty,
+  runStartedAt,
+  onReset,
+}: {
+  attempts: number;
+  correct: number;
+  skipped: number;
+  accuracy: number;
+  streak: number;
+  bestStreak: number;
+  difficulty: AudioDifficulty;
+  runStartedAt: number | null;
+  onReset: () => void;
+}) {
+  return (
+    <div className="mt-6 rounded-2xl bg-slate-100 p-5 text-center">
+      <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+        Quiz complete
+      </p>
+      <h2 className="mt-2 text-2xl font-extrabold text-sky-950">
+        {difficultyLabel(difficulty)} audio quiz results
+      </h2>
+      <div className="mt-5 grid gap-3 sm:grid-cols-3">
+        {[
+          ["Score", `${correct}/${TOTAL_QUESTIONS}`],
+          ["Attempts", String(attempts)],
+          ["Skipped", String(skipped)],
+          ["Accuracy", `${accuracy}%`],
+          ["Best streak", String(bestStreak)],
+          ["Final streak", String(streak)],
+        ].map(([label, value]) => (
+          <div key={label} className="rounded-xl bg-white p-4 text-left">
+            <p className="text-sm font-semibold text-slate-600">{label}</p>
+            <p className="mt-1 text-3xl font-black text-slate-950">{value}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 flex flex-wrap justify-center gap-3">
+        <button
+          type="button"
+          onClick={onReset}
+          className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+        >
+          <LoopIcon size={18} title="Try again" />
+          Try again
+        </button>
+        <ShareResultsButton
+          title="Morse Code Audio Quiz"
+          subtitle={`${difficultyLabel(difficulty)} listening quiz`}
+          stats={{
+            attempts,
+            correct,
+            progress: TOTAL_QUESTIONS,
+            streak,
+            bestStreak,
+            totalQuestions: TOTAL_QUESTIONS,
+          }}
+          runStartedAt={runStartedAt}
+        />
+      </div>
     </div>
   );
 }
@@ -718,10 +824,10 @@ function TogglePill({
       type="button"
       onClick={() => onChange(!checked)}
       className={
-        "inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
+        "inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
         (checked
-          ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-          : "border-slate-200 bg-white text-slate-800 hover:border-sky-300 hover:bg-sky-50")
+          ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+          : "bg-slate-100 text-slate-800 hover:bg-slate-200 hover:text-sky-950")
       }
       aria-pressed={checked}
       aria-describedby={describedBy}
@@ -779,6 +885,23 @@ function SliderRow({
         className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-60"
       />
     </div>
+  );
+}
+
+function readStoredDifficulty(key: string, fallback: AudioDifficulty): AudioDifficulty {
+  if (typeof window === "undefined") return fallback;
+  try {
+    const stored = window.localStorage.getItem(key);
+    return isAudioDifficulty(stored) ? stored : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function difficultyLabel(difficulty: AudioDifficulty) {
+  return (
+    audioDifficultyOptions.find((option) => option.value === difficulty)?.label ??
+    "Easy"
   );
 }
 

@@ -50,9 +50,9 @@ const styles: Record<string, React.CSSProperties> = {
   lead: { marginTop: 8, color: "#5a616c", fontSize: "1.05rem" },
   card: {
     background: "#fffdf8",
-    border: "1px solid #e2e8f0",
+    border: 0,
     borderRadius: 16,
-    boxShadow: "0 1px 0 rgba(11,36,71,0.14)",
+    boxShadow: "none",
   },
   cardPad: { padding: 16 },
   section: { padding: "8px 0 24px" },
@@ -87,7 +87,7 @@ const styles: Record<string, React.CSSProperties> = {
     marginTop: 10,
   },
   btnPrimary: {
-    border: "1px solid #0b2447",
+    border: 0,
     background: "#0b2447",
     color: "#fff",
     padding: "10px 14px",
@@ -96,8 +96,8 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: "pointer",
   },
   btnSecondary: {
-    border: "1px solid #0b2447",
-    background: "#fff",
+    border: 0,
+    background: "#eef2f6",
     color: "#0b2447",
     padding: "10px 14px",
     borderRadius: 10,
@@ -105,8 +105,8 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: "pointer",
   },
   btnGhost: {
-    border: "1px solid #e2e8f0",
-    background: "#fffdf8",
+    border: 0,
+    background: "#f8fafc",
     color: "#111317",
     padding: "10px 14px",
     borderRadius: 10,

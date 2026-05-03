@@ -344,8 +344,8 @@ export default function TranslatorSectionsBasic({
         />
       )}
 
-      <section className="mt-6 overflow-hidden rounded-2xl bg-white">
-        <div className="px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
+      <section className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
+        <div className="tool-header px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
             <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -358,7 +358,7 @@ export default function TranslatorSectionsBasic({
           </h1>
 
           {subtitle ?? (
-            <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg xl:whitespace-nowrap">
+            <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
               Encode text into Morse, decode Morse back to text, and play the signal with timing controls.
             </p>
           )}
@@ -525,10 +525,6 @@ export default function TranslatorSectionsBasic({
                   >
                     Clear output
                   </button>
-
-                  <span className="text-sm text-slate-200">
-                    3 spaces = letters. 7 spaces = words.
-                  </span>
                 </div>
               </div>
             </div>
@@ -574,9 +570,9 @@ export default function TranslatorSectionsBasic({
                 )}
               </div>
 
-              <span className="text-sm leading-relaxed text-slate-500 sm:ml-auto">
-                “/” also works as a word separator.
-              </span>
+              <p className="text-right text-sm leading-relaxed text-slate-600 sm:ml-auto">
+                3 spaces = letters · 7 = words · / = word break
+              </p>
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
