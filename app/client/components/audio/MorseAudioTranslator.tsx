@@ -332,8 +332,8 @@ export default function MorseAudioTranslator() {
           <div className="flex flex-col gap-3">
           
 
-            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-              <div className="tool-header flex flex-col gap-3 border-b border-slate-200 px-5 py-6 sm:px-8 sm:py-7">
+            <div className="mw-tool-section overflow-hidden rounded-2xl bg-white">
+              <div className="tool-header flex flex-col gap-3 px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
                 <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-sky-800" />
                   <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">

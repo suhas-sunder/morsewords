@@ -1,7 +1,7 @@
 export default function HowToUseSuiteGuide() {
   return (
     <div className="space-y-8">
-      <section className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white px-5 py-6 shadow-sm sm:px-8 sm:py-7">
+      <section className="mt-6 overflow-hidden rounded-2xl bg-white px-5 py-6 sm:px-8 sm:py-7">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -13,7 +13,7 @@ export default function HowToUseSuiteGuide() {
           How to use MorseWords
         </h1>
 
-        <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+        <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
           This page is a practical guide to the MorseWords toolkit. It is not a
           history lesson and it is not trying to teach you Morse from zero. It
           is here so you can move quickly between tools, format input the way
@@ -37,7 +37,7 @@ export default function HowToUseSuiteGuide() {
           <a
             key={href}
             href={href}
-            className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+            className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
           >
             {label}
           </a>

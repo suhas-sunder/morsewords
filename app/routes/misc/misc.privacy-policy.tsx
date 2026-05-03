@@ -38,7 +38,7 @@ export const meta: Route.MetaFunction = () => {
 export default function PrivacyPolicy() {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 text-slate-800">
-      <header className="w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+      <header className="w-full overflow-hidden rounded-2xl bg-white px-5 py-6 sm:px-8 sm:py-7">
         <nav aria-label="Breadcrumb" className="text-sm font-semibold text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>

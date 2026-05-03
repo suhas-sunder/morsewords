@@ -38,7 +38,7 @@ export const meta: MetaFunction = () => {
 export default function CookiesPolicy() {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 text-slate-800">
-      <header className="w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+      <header className="w-full overflow-hidden rounded-2xl bg-white px-5 py-6 sm:px-8 sm:py-7">
         <p className="m-0 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900 before:h-px before:w-8 before:bg-sky-800 before:content-['']">
           MorseWords policy
         </p>
