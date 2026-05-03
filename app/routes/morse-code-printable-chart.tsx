@@ -2028,7 +2028,7 @@ function SettingsSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="min-w-0 rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 shadow-sm">
+    <section className="min-w-0 rounded-2xl border border-slate-200 bg-[#fffdf8] p-4">
       <h3 className="m-0 break-words text-lg font-extrabold text-sky-950">
         {title}
       </h3>
@@ -2089,7 +2089,7 @@ function ToggleField({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition hover:border-sky-300 hover:bg-sky-50/40">
+    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-3 transition hover:border-sky-300 hover:bg-sky-50/40">
       <span className="min-w-0 break-words text-sm font-bold text-slate-800">
         {label}
       </span>
@@ -2148,7 +2148,7 @@ function NumberField({
 
 function PreviewReferenceTable({ rows }: { rows: CharacterRow[] }) {
   return (
-    <section className="min-w-0 rounded-2xl border border-sky-100 bg-white p-4 shadow-sm">
+    <section className="min-w-0 rounded-2xl border border-sky-100 bg-white p-4">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Reference guide page
@@ -2181,7 +2181,7 @@ function WorksheetPaperPreview({
   const sentences = getWorksheetSentences(settings);
 
   return (
-    <section className="min-w-0 rounded-2xl border border-sky-100 bg-white p-4 shadow-sm">
+    <section className="min-w-0 rounded-2xl border border-sky-100 bg-white p-4">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Worksheet page
@@ -2253,7 +2253,7 @@ function AnswerKeyPreview({ settings }: { settings: PrintableSettings }) {
   const sentences = getWorksheetSentences(settings);
 
   return (
-    <section className="min-w-0 rounded-2xl border border-sky-100 bg-white p-4 shadow-sm">
+    <section className="min-w-0 rounded-2xl border border-sky-100 bg-white p-4">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Answer key page
@@ -2296,7 +2296,7 @@ function LivePreview({
   const isPdf = downloadFormat === "pdf";
 
   return (
-    <aside className="min-w-0 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm lg:sticky lg:top-4">
+    <aside className="min-w-0 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 lg:sticky lg:top-4">
       <div className="flex min-w-0 flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="m-0 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -2429,7 +2429,7 @@ function CharacterGrid({
         {rows.map((row) => (
           <article
             key={`${row.character}-${row.morse}`}
-            className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+            className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4"
           >
             <div className="flex min-w-0 items-start justify-between gap-3">
               <div className="min-w-0">
@@ -2806,6 +2806,13 @@ export default function MorseCodePrintableChart() {
   return (
     <div style={styles.page}>
       <style>{`
+        .mw-printable-chart-page,
+        .mw-printable-chart-page * {
+          box-shadow: none !important;
+          filter: none !important;
+          text-shadow: none !important;
+        }
+
         .input-control,
         .textarea-control,
         .select-control {
@@ -2817,11 +2824,9 @@ export default function MorseCodePrintableChart() {
           background: #ffffff;
           color: #0f172a;
           font-weight: 700;
-          box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
           transition:
             border-color 160ms ease,
-            background-color 160ms ease,
-            box-shadow 160ms ease;
+            background-color 160ms ease;
         }
 
         .input-control,
@@ -2873,7 +2878,6 @@ export default function MorseCodePrintableChart() {
           text-decoration: none;
           transition:
             transform 160ms ease,
-            box-shadow 160ms ease,
             background-color 160ms ease,
             border-color 160ms ease;
         }
@@ -2889,7 +2893,6 @@ export default function MorseCodePrintableChart() {
           border: 1px solid #020617;
           background: #020617;
           color: #e0f2fe;
-          box-shadow: none;
         }
 
         .action-primary:hover {
@@ -2897,7 +2900,6 @@ export default function MorseCodePrintableChart() {
           background: #1e293b;
           border-color: #1e293b;
           color: #ffffff;
-          box-shadow: none;
         }
 
         .action-secondary {
@@ -2994,7 +2996,7 @@ export default function MorseCodePrintableChart() {
         }
       `}</style>
 
-      <main style={styles.wrap}>
+      <main className="mw-printable-chart-page" style={styles.wrap}>
         <PageHero
           eyebrow="MorseWords"
           title="Printable Morse Code Chart and Worksheet Builder"
@@ -3015,7 +3017,7 @@ export default function MorseCodePrintableChart() {
         </PageHero>
 
         <section className="hidden">
-          <div className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4">
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-4">
               <div className="min-w-0">
                 <div className="text-sm font-extrabold uppercase tracking-wide text-sky-800">
@@ -3043,7 +3045,7 @@ export default function MorseCodePrintableChart() {
           className="grid min-w-0 items-start gap-5 py-4 lg:grid-cols-[0.88fr_1.12fr]"
         >
           <div className="grid min-w-0 gap-4">
-            <section className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <section className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
               <p className="m-0 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                 Worksheet settings
               </p>
@@ -3434,7 +3436,7 @@ export default function MorseCodePrintableChart() {
         </section>
 
         <section className="grid gap-4 py-4 md:grid-cols-3">
-          <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
             <h2 className="m-0 break-words text-xl font-bold text-sky-800">
               Teacher-ready defaults
             </h2>
@@ -3444,7 +3446,7 @@ export default function MorseCodePrintableChart() {
             </p>
           </article>
 
-          <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
             <h2 className="m-0 break-words text-xl font-bold text-sky-800">
               Cleaner own-message section
             </h2>
@@ -3455,7 +3457,7 @@ export default function MorseCodePrintableChart() {
             </p>
           </article>
 
-          <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
             <h2 className="m-0 break-words text-xl font-bold text-sky-800">
               PDF and image export
             </h2>
@@ -3485,7 +3487,7 @@ export default function MorseCodePrintableChart() {
         />
 
         <section className="pb-8">
-          <div className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
             <h2 className="m-0 break-words text-2xl font-bold text-sky-800">
               How this printable works
             </h2>
