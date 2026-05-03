@@ -1,0 +1,881 @@
+{
+  "config": {
+    "configFile": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\playwright.config.ts",
+    "rootDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/tests/break-the-app",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/test-artifacts/break-the-app/playwright-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "desktop-chromium",
+        "name": "desktop-chromium",
+        "testDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/tests/break-the-app",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/test-artifacts/break-the-app/playwright-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "mobile-chromium",
+        "name": "mobile-chromium",
+        "testDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/tests/break-the-app",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "test-artifacts/break-the-app/playwright-html",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-artifacts/break-the-app/logs/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 16,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://127.0.0.1:3001",
+      "reuseExistingServer": true,
+      "stdout": "pipe",
+      "stderr": "pipe",
+      "timeout": 120000,
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "3001"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "warnings-and-edge.spec.ts",
+      "file": "warnings-and-edge.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "flash/strobe warnings are hidden until the user enables flash",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2000,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:56:54.397Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-f4b5fe99b635eefd0b5a",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "visual practice does not show strobe warning before first flash",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10241,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Strobe warning:').filter({ visible: true })\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Strobe warning:').filter({ visible: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Strobe warning:').filter({ visible: true })\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Strobe warning:').filter({ visible: true })\u001b[22m\n\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:45:5",
+                    "location": {
+                      "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                      "column": 5,
+                      "line": 45
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 43 |\u001b[39m   \u001b[36mawait\u001b[39m expect(\n \u001b[90m 44 |\u001b[39m     page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Strobe warning:\"\u001b[39m\u001b[33m,\u001b[39m { exact\u001b[33m:\u001b[39m \u001b[36mfalse\u001b[39m })\u001b[33m.\u001b[39mfilter({ visible\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m,\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 |\u001b[39m   )\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 46 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 47 |\u001b[39m\n \u001b[90m 48 |\u001b[39m test(\u001b[32m\"printable chart content limits are hidden until content is actually omitted\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                        "column": 5,
+                        "line": 45
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Strobe warning:').filter({ visible: true })\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Strobe warning:').filter({ visible: true })\u001b[22m\n\n\n  43 |   await expect(\n  44 |     page.getByText(\"Strobe warning:\", { exact: false }).filter({ visible: true }),\n> 45 |   ).toBeVisible();\n     |     ^\n  46 | });\n  47 |\n  48 | test(\"printable chart content limits are hidden until content is actually omitted\", async ({ page }) => {\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:45:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:56:56.512Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-visual-p-3ec74--warning-before-first-flash-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-visual-p-3ec74--warning-before-first-flash-desktop-chromium\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-visual-p-3ec74--warning-before-first-flash-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-visual-p-3ec74--warning-before-first-flash-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                    "column": 5,
+                    "line": 45
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-b9566b2ef1747214d45b",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "printable chart content limits are hidden until content is actually omitted",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10987,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Content limits')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Content limits')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Content limits')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Content limits')\u001b[22m\n\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:54:50",
+                    "location": {
+                      "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                      "column": 50,
+                      "line": 54
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 52 |\u001b[39m   \u001b[36mconst\u001b[39m customWords \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mgetByPlaceholder(\u001b[32m\"RADIO, SIGNAL, CODE, MORSE\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 53 |\u001b[39m   \u001b[36mawait\u001b[39m customWords\u001b[33m.\u001b[39mfill(\u001b[32m\"ALPHA, BRAVO, CHARLIE, DELTA, ECHO, FOXTROT, GOLF, HOTEL, INDIA, JULIET, KILO, LIMA\"\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 54 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Content limits\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 55 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 56 |\u001b[39m\n \u001b[90m 57 |\u001b[39m test(\u001b[32m\"word search reports oversized words and reveal answer changes preview\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                        "column": 50,
+                        "line": 54
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Content limits')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Content limits')\u001b[22m\n\n\n  52 |   const customWords = page.getByPlaceholder(\"RADIO, SIGNAL, CODE, MORSE\");\n  53 |   await customWords.fill(\"ALPHA, BRAVO, CHARLIE, DELTA, ECHO, FOXTROT, GOLF, HOTEL, INDIA, JULIET, KILO, LIMA\");\n> 54 |   await expect(page.getByText(\"Content limits\")).toBeVisible();\n     |                                                  ^\n  55 | });\n  56 |\n  57 | test(\"word search reports oversized words and reveal answer changes preview\", async ({ page }) => {\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:54:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:57:07.516Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-67395-content-is-actually-omitted-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-67395-content-is-actually-omitted-desktop-chromium\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-67395-content-is-actually-omitted-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-67395-content-is-actually-omitted-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                    "column": 50,
+                    "line": 54
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-37a8b01e088069e35c82",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "word search reports oversized words and reveal answer changes preview",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9920,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Some words are too long for the current grid and were left out.')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Some words are too long for the current grid and were left out.')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Some words are too long for the current grid and were left out.')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Some words are too long for the current grid and were left out.')\u001b[22m\n\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:61:99",
+                    "location": {
+                      "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                      "column": 99,
+                      "line": 61
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 59 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByLabel(\u001b[32m\"Plain words\"\u001b[39m)\u001b[33m.\u001b[39mfill(\u001b[32m\"MORSE\\nSIGNAL\\nRADIO\\nTHISWORDISTOOLONGFORATENGRID\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 61 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Some words are too long for the current grid and were left out.\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 62 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Student preview\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 63 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"button\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Reveal answer\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 64 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Answered preview\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                        "column": 99,
+                        "line": 61
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Some words are too long for the current grid and were left out.')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Some words are too long for the current grid and were left out.')\u001b[22m\n\n\n  59 |   await page.getByLabel(\"Plain words\").fill(\"MORSE\\nSIGNAL\\nRADIO\\nTHISWORDISTOOLONGFORATENGRID\");\n  60 |\n> 61 |   await expect(page.getByText(\"Some words are too long for the current grid and were left out.\")).toBeVisible();\n     |                                                                                                   ^\n  62 |   await expect(page.getByText(\"Student preview\")).toBeVisible();\n  63 |   await page.getByRole(\"button\", { name: \"Reveal answer\" }).click();\n  64 |   await expect(page.getByText(\"Answered preview\")).toBeVisible();\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:61:99"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:57:19.447Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-word-sea-f0a35-veal-answer-changes-preview-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-word-sea-f0a35-veal-answer-changes-preview-desktop-chromium\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-word-sea-f0a35-veal-answer-changes-preview-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-word-sea-f0a35-veal-answer-changes-preview-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                    "column": 99,
+                    "line": 61
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-6c6cf87f4e3b07e05a71",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "word search Generate new puzzle changes the grid",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2626,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:57:30.243Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-c8c4901c9d93695b233c",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 67,
+          "column": 1
+        },
+        {
+          "title": "printable chart accepts SVG logo upload with no visible size/dimension warning",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10561,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('img[alt*=\"logo preview\"]')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for locator('img[alt*=\"logo preview\"]')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('img[alt*=\"logo preview\"]')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for locator('img[alt*=\"logo preview\"]')\u001b[22m\n\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:84:58",
+                    "location": {
+                      "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                      "column": 58,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 82 |\u001b[39m     buffer\u001b[33m:\u001b[39m \u001b[36mawait\u001b[39m fs\u001b[33m.\u001b[39mreadFile(path\u001b[33m.\u001b[39mjoin(fixtureDir\u001b[33m,\u001b[39m \u001b[32m\"inert-logo.svg\"\u001b[39m))\u001b[33m,\u001b[39m\n \u001b[90m 83 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 84 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'img[alt*=\"logo preview\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 85 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Content limits\"\u001b[39m))\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 86 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 87 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                        "column": 58,
+                        "line": 84
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('img[alt*=\"logo preview\"]')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for locator('img[alt*=\"logo preview\"]')\u001b[22m\n\n\n  82 |     buffer: await fs.readFile(path.join(fixtureDir, \"inert-logo.svg\")),\n  83 |   });\n> 84 |   await expect(page.locator('img[alt*=\"logo preview\"]')).toBeVisible();\n     |                                                          ^\n  85 |   await expect(page.getByText(\"Content limits\")).toHaveCount(0);\n  86 | });\n  87 |\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:84:58"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:57:32.971Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-2d8a6-ible-size-dimension-warning-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-2d8a6-ible-size-dimension-warning-desktop-chromium\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-2d8a6-ible-size-dimension-warning-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-2d8a6-ible-size-dimension-warning-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                    "column": 58,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-fb236ddc1015bed3be36",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 76,
+          "column": 1
+        },
+        {
+          "title": "flash/strobe warnings are hidden until the user enables flash",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2050,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:56:54.396Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-1e9a12cbbd29de132909",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "visual practice does not show strobe warning before first flash",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 10098,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Strobe warning:').filter({ visible: true })\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Strobe warning:').filter({ visible: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Strobe warning:').filter({ visible: true })\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Strobe warning:').filter({ visible: true })\u001b[22m\n\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:45:5",
+                    "location": {
+                      "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                      "column": 5,
+                      "line": 45
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 43 |\u001b[39m   \u001b[36mawait\u001b[39m expect(\n \u001b[90m 44 |\u001b[39m     page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Strobe warning:\"\u001b[39m\u001b[33m,\u001b[39m { exact\u001b[33m:\u001b[39m \u001b[36mfalse\u001b[39m })\u001b[33m.\u001b[39mfilter({ visible\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m,\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 |\u001b[39m   )\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 46 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 47 |\u001b[39m\n \u001b[90m 48 |\u001b[39m test(\u001b[32m\"printable chart content limits are hidden until content is actually omitted\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                        "column": 5,
+                        "line": 45
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Strobe warning:').filter({ visible: true })\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Strobe warning:').filter({ visible: true })\u001b[22m\n\n\n  43 |   await expect(\n  44 |     page.getByText(\"Strobe warning:\", { exact: false }).filter({ visible: true }),\n> 45 |   ).toBeVisible();\n     |     ^\n  46 | });\n  47 |\n  48 | test(\"printable chart content limits are hidden until content is actually omitted\", async ({ page }) => {\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:45:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:56:56.560Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-visual-p-3ec74--warning-before-first-flash-mobile-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-visual-p-3ec74--warning-before-first-flash-mobile-chromium\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-visual-p-3ec74--warning-before-first-flash-mobile-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-visual-p-3ec74--warning-before-first-flash-mobile-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                    "column": 5,
+                    "line": 45
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-cfd9fb0ab04977451a8d",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "printable chart content limits are hidden until content is actually omitted",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 11183,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Content limits')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Content limits')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Content limits')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Content limits')\u001b[22m\n\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:54:50",
+                    "location": {
+                      "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                      "column": 50,
+                      "line": 54
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 52 |\u001b[39m   \u001b[36mconst\u001b[39m customWords \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mgetByPlaceholder(\u001b[32m\"RADIO, SIGNAL, CODE, MORSE\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 53 |\u001b[39m   \u001b[36mawait\u001b[39m customWords\u001b[33m.\u001b[39mfill(\u001b[32m\"ALPHA, BRAVO, CHARLIE, DELTA, ECHO, FOXTROT, GOLF, HOTEL, INDIA, JULIET, KILO, LIMA\"\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 54 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Content limits\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 55 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 56 |\u001b[39m\n \u001b[90m 57 |\u001b[39m test(\u001b[32m\"word search reports oversized words and reveal answer changes preview\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                        "column": 50,
+                        "line": 54
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Content limits')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Content limits')\u001b[22m\n\n\n  52 |   const customWords = page.getByPlaceholder(\"RADIO, SIGNAL, CODE, MORSE\");\n  53 |   await customWords.fill(\"ALPHA, BRAVO, CHARLIE, DELTA, ECHO, FOXTROT, GOLF, HOTEL, INDIA, JULIET, KILO, LIMA\");\n> 54 |   await expect(page.getByText(\"Content limits\")).toBeVisible();\n     |                                                  ^\n  55 | });\n  56 |\n  57 | test(\"word search reports oversized words and reveal answer changes preview\", async ({ page }) => {\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:54:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:57:07.414Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-67395-content-is-actually-omitted-mobile-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-67395-content-is-actually-omitted-mobile-chromium\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-67395-content-is-actually-omitted-mobile-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-67395-content-is-actually-omitted-mobile-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                    "column": 50,
+                    "line": 54
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-851291e176cbae8b95ef",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "word search reports oversized words and reveal answer changes preview",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 9885,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Some words are too long for the current grid and were left out.')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Some words are too long for the current grid and were left out.')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Some words are too long for the current grid and were left out.')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Some words are too long for the current grid and were left out.')\u001b[22m\n\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:61:99",
+                    "location": {
+                      "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                      "column": 99,
+                      "line": 61
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 59 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByLabel(\u001b[32m\"Plain words\"\u001b[39m)\u001b[33m.\u001b[39mfill(\u001b[32m\"MORSE\\nSIGNAL\\nRADIO\\nTHISWORDISTOOLONGFORATENGRID\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 61 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Some words are too long for the current grid and were left out.\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 62 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Student preview\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 63 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"button\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Reveal answer\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 64 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Answered preview\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                        "column": 99,
+                        "line": 61
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Some words are too long for the current grid and were left out.')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for getByText('Some words are too long for the current grid and were left out.')\u001b[22m\n\n\n  59 |   await page.getByLabel(\"Plain words\").fill(\"MORSE\\nSIGNAL\\nRADIO\\nTHISWORDISTOOLONGFORATENGRID\");\n  60 |\n> 61 |   await expect(page.getByText(\"Some words are too long for the current grid and were left out.\")).toBeVisible();\n     |                                                                                                   ^\n  62 |   await expect(page.getByText(\"Student preview\")).toBeVisible();\n  63 |   await page.getByRole(\"button\", { name: \"Reveal answer\" }).click();\n  64 |   await expect(page.getByText(\"Answered preview\")).toBeVisible();\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:61:99"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:57:19.510Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-word-sea-f0a35-veal-answer-changes-preview-mobile-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-word-sea-f0a35-veal-answer-changes-preview-mobile-chromium\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-word-sea-f0a35-veal-answer-changes-preview-mobile-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-word-sea-f0a35-veal-answer-changes-preview-mobile-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                    "column": 99,
+                    "line": 61
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-65dd23dd1923817874a6",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "word search Generate new puzzle changes the grid",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2610,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:57:30.264Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-38fb28cc33eeaad6fe58",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 67,
+          "column": 1
+        },
+        {
+          "title": "printable chart accepts SVG logo upload with no visible size/dimension warning",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 10496,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('img[alt*=\"logo preview\"]')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for locator('img[alt*=\"logo preview\"]')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('img[alt*=\"logo preview\"]')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for locator('img[alt*=\"logo preview\"]')\u001b[22m\n\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:84:58",
+                    "location": {
+                      "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                      "column": 58,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 82 |\u001b[39m     buffer\u001b[33m:\u001b[39m \u001b[36mawait\u001b[39m fs\u001b[33m.\u001b[39mreadFile(path\u001b[33m.\u001b[39mjoin(fixtureDir\u001b[33m,\u001b[39m \u001b[32m\"inert-logo.svg\"\u001b[39m))\u001b[33m,\u001b[39m\n \u001b[90m 83 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 84 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'img[alt*=\"logo preview\"]'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 85 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"Content limits\"\u001b[39m))\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 86 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 87 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                        "column": 58,
+                        "line": 84
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('img[alt*=\"logo preview\"]')\nExpected: visible\nTimeout: 7500ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 7500ms\u001b[22m\n\u001b[2m  - waiting for locator('img[alt*=\"logo preview\"]')\u001b[22m\n\n\n  82 |     buffer: await fs.readFile(path.join(fixtureDir, \"inert-logo.svg\")),\n  83 |   });\n> 84 |   await expect(page.locator('img[alt*=\"logo preview\"]')).toBeVisible();\n     |                                                          ^\n  85 |   await expect(page.getByText(\"Content limits\")).toHaveCount(0);\n  86 | });\n  87 |\n    at D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts:84:58"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T01:57:32.981Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-2d8a6-ible-size-dimension-warning-mobile-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-2d8a6-ible-size-dimension-warning-mobile-chromium\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-2d8a6-ible-size-dimension-warning-mobile-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\test-artifacts\\break-the-app\\playwright-output\\warnings-and-edge-printabl-2d8a6-ible-size-dimension-warning-mobile-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\tests\\break-the-app\\warnings-and-edge.spec.ts",
+                    "column": 58,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-39b21c033a92246a39e6",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 76,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-05-03T01:56:52.350Z",
+    "duration": 51441.132,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 8,
+    "flaky": 0
+  }
+}

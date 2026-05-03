@@ -1,0 +1,310 @@
+{
+  "config": {
+    "configFile": "D:\\PROJECTS-and-WORK\\work-projects\\all_projects\\morsewords\\playwright.config.ts",
+    "rootDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/tests/qa-robustness-review",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/test-artifacts/qa-robustness-review/playwright-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-chromium",
+        "name": "desktop-chromium",
+        "testDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/tests/qa-robustness-review",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/test-artifacts/qa-robustness-review/playwright-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-chromium",
+        "name": "mobile-chromium",
+        "testDir": "D:/PROJECTS-and-WORK/work-projects/all_projects/morsewords/tests/qa-robustness-review",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-artifacts/qa-robustness-review/logs/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 16,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://127.0.0.1:3001",
+      "reuseExistingServer": true,
+      "stdout": "pipe",
+      "stderr": "pipe",
+      "timeout": 120000,
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "3001"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "warnings-and-edge.spec.ts",
+      "file": "warnings-and-edge.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "flash/strobe warnings are hidden until the user enables flash",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1702,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T03:28:52.315Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-f4b5fe99b635eefd0b5a",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "visual practice does not show strobe warning before first flash",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1325,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T03:28:54.132Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-b9566b2ef1747214d45b",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "printable chart content limits are hidden until content is actually omitted",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1817,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T03:28:55.469Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-37a8b01e088069e35c82",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 50,
+          "column": 1
+        },
+        {
+          "title": "word search reports oversized words and reveal answer changes preview",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1610,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T03:28:57.300Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-6c6cf87f4e3b07e05a71",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 61,
+          "column": 1
+        },
+        {
+          "title": "word search Generate new puzzle changes the grid",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1427,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T03:28:58.921Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-c8c4901c9d93695b233c",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 72,
+          "column": 1
+        },
+        {
+          "title": "printable chart accepts SVG logo upload with no visible size/dimension warning",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1428,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-03T03:29:00.361Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ffac0496d7d3bf70346-fb236ddc1015bed3be36",
+          "file": "warnings-and-edge.spec.ts",
+          "line": 82,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-05-03T03:28:47.768Z",
+    "duration": 14315.865,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -643,14 +643,16 @@ function TogglePill({ label, checked, onChange, icon, describedBy }: { label: st
 }
 
 function SliderRow({ label, value, min, max, step, unit, onChange, help, disabled }: { label: string; value: number; min: number; max: number; step: number; unit: string; onChange: (v: number) => void; help?: string; disabled?: boolean }) {
+  const id = React.useId();
+
   return (
     <div>
       <div className="flex items-baseline justify-between">
-        <label className="text-sm font-semibold text-slate-700">{label}</label>
+        <label htmlFor={id} className="text-sm font-semibold text-slate-700">{label}</label>
         <span className="text-sm text-slate-600">{value} {unit}</span>
       </div>
       {help ? <p className="mt-0.5 text-xs text-slate-500">{help}</p> : null}
-      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} disabled={disabled} style={{ accentColor: "#38bdf8" }} className={`w-full mt-2 ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-sky-300 rounded-full`} />
+      <input id={id} type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} disabled={disabled} style={{ accentColor: "#38bdf8" }} className={`w-full mt-2 ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-sky-300 rounded-full`} />
     </div>
   );
 }

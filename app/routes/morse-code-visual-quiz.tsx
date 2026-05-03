@@ -328,6 +328,7 @@ export default function MorseCodeVisualQuiz() {
                   <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
                 ) : null}
                 <div
+                  role="img"
                   className={
                     "h-40 w-40 rounded-full border transition-all duration-75 " +
                     (active
@@ -535,16 +536,21 @@ function SliderRow({
   onChange: (value: number) => void;
   help?: string;
 }) {
+  const id = React.useId();
+
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <label className="text-sm font-extrabold text-sky-950">{label}</label>
+        <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
+          {label}
+        </label>
         <span className="text-sm text-slate-600">
           {value} {unit}
         </span>
       </div>
       {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
       <input
+        id={id}
         type="range"
         min={min}
         max={max}

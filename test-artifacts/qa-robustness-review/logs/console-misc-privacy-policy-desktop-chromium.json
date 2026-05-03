@@ -1,0 +1,47 @@
+[
+  {
+    "type": "error",
+    "text": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "url": "http://127.0.0.1:3001/misc/privacy-policy"
+  },
+  {
+    "type": "error",
+    "text": "WebSocket connection to 'ws://127.0.0.1:24678/?token=nbCwo1Zlgohl' failed: Error during WebSocket handshake: Unexpected response code: 400",
+    "url": "http://127.0.0.1:3001/misc/privacy-policy"
+  },
+  {
+    "type": "error",
+    "text": "[vite] failed to connect to websocket (Error: WebSocket closed without opened.). ",
+    "url": "http://127.0.0.1:3001/misc/privacy-policy"
+  },
+  {
+    "type": "pageerror",
+    "text": "WebSocket closed without opened.",
+    "url": "http://127.0.0.1:3001/misc/privacy-policy"
+  },
+  {
+    "type": "error",
+    "text": "In HTML, %s cannot be a descendant of <%s>.\nThis will cause a hydration error.%s <ul> p \n\n  ...\n    <Outlet>\n      <RenderedRoute match={{params:{}, ...}} routeContext={{...}}>\n        <WithComponentProps2>\n          <Misc params={{}} loaderData={null} actionData={undefined} matches={[...]}>\n            <div className=\"min-h-scre...\">\n              <Outlet>\n                <RenderedRoute match={{params:{}, ...}} routeContext={{outlet:null, ...}}>\n                  <WithComponentProps2>\n                    <PrivacyPolicy params={{}} loaderData={null} actionData={undefined} matches={[...]}>\n                      <div className=\"mx-auto fl...\">\n                        <header className=\"w-full ove...\">\n                          <nav>\n                          <p>\n                          <h1>\n                          <h2>\n>                         <p className=\"flex flex-col gap-4 py-2\">\n                            <span>\n>                           <ul className=\"flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400\">\n                            ...\n                          ...\n                        ...\n",
+    "url": "http://127.0.0.1:3001/misc/privacy-policy"
+  },
+  {
+    "type": "pageerror",
+    "text": "Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch",
+    "url": "http://127.0.0.1:3001/misc/privacy-policy"
+  },
+  {
+    "type": "error",
+    "text": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "url": "http://127.0.0.1:3001/misc/privacy-policy"
+  },
+  {
+    "type": "error",
+    "text": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "url": "http://127.0.0.1:3001/misc/privacy-policy"
+  },
+  {
+    "type": "error",
+    "text": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "url": "http://127.0.0.1:3001/misc/privacy-policy"
+  }
+]

@@ -637,25 +637,18 @@ export default function MorseAudioTranslator() {
               {advancedOpen && (
                 <div className="mt-4 border-t border-slate-200 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm font-semibold text-slate-700">
-                        Preset
-                      </label>
-                      <select
-                        value={preset}
-                        onChange={(e) =>
-                          setPreset(e.target.value as SoundPreset)
-                        }
-                        className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300"
-                      >
+                    <LabeledAudioSelect
+                      label="Preset"
+                      value={preset}
+                      onChange={(e) => setPreset(e.target.value as SoundPreset)}
+                    >
                         <option value="cw_radio">CW (Radio)</option>
                         <option value="sine">Sine</option>
                         <option value="square">Square</option>
                         <option value="triangle">Triangle</option>
                         <option value="sawtooth">Sawtooth</option>
                         <option value="sounder">Telegraph sounder</option>
-                      </select>
-                    </div>
+                    </LabeledAudioSelect>
 
                     <div className="grid grid-cols-2 gap-3">
                       <SliderRow
@@ -723,35 +716,24 @@ export default function MorseAudioTranslator() {
               {exportOpen && (
                 <div className="mt-4 border-t border-slate-200 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm font-semibold text-slate-700">
-                        File name
-                      </label>
-                      <input
-                        value={fileName}
-                        onChange={(e) => setFileName(e.target.value)}
-                        className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold"
-                        placeholder="morse-audio"
-                      />
-                    </div>
+                    <LabeledAudioInput
+                      label="File name"
+                      value={fileName}
+                      onChange={(e) => setFileName(e.target.value)}
+                      placeholder="morse-audio"
+                    />
 
                     <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className="text-sm font-semibold text-slate-700">
-                          Sample rate
-                        </label>
-                        <select
-                          value={sampleRate}
-                          onChange={(e) =>
-                            setSampleRate(Number(e.target.value) as any)
-                          }
-                          className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:border-sky-300 hover:bg-sky-50"
-                        >
+                      <LabeledAudioSelect
+                        label="Sample rate"
+                        value={sampleRate}
+                        onChange={(e) => setSampleRate(Number(e.target.value) as any)}
+                        className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300"
+                      >
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
                           <option value={48000}>48000</option>
-                        </select>
-                      </div>
+                      </LabeledAudioSelect>
 
                       <SliderRow
                         label="Tail padding"
@@ -858,16 +840,21 @@ function SliderRow({
   help?: string;
   disabled?: boolean;
 }) {
+  const id = React.useId();
+
   return (
     <div>
       <div className="flex items-baseline justify-between">
-        <label className="text-sm font-semibold text-slate-700">{label}</label>
+        <label htmlFor={id} className="text-sm font-semibold text-slate-700">
+          {label}
+        </label>
         <span className="text-sm text-slate-600">
           {value} {unit}
         </span>
       </div>
       {help && <p className="mt-0.5 text-xs text-slate-500">{help}</p>}
       <input
+        id={id}
         type="range"
         min={min}
         max={max}
@@ -879,6 +866,70 @@ function SliderRow({
         className={`w-full mt-2 ${
           disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
         } focus:outline-none focus:ring-2 focus:ring-sky-300 rounded-full`}
+      />
+    </div>
+  );
+}
+
+function LabeledAudioSelect({
+  label,
+  value,
+  onChange,
+  children,
+  className,
+}: {
+  label: string;
+  value: string | number;
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const id = React.useId();
+
+  return (
+    <div>
+      <label htmlFor={id} className="text-sm font-semibold text-slate-700">
+        {label}
+      </label>
+      <select
+        id={id}
+        value={value}
+        onChange={onChange}
+        className={
+          className ??
+          "mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300"
+        }
+      >
+        {children}
+      </select>
+    </div>
+  );
+}
+
+function LabeledAudioInput({
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
+}) {
+  const id = React.useId();
+
+  return (
+    <div>
+      <label htmlFor={id} className="text-sm font-semibold text-slate-700">
+        {label}
+      </label>
+      <input
+        id={id}
+        value={value}
+        onChange={onChange}
+        className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-sky-300"
+        placeholder={placeholder}
       />
     </div>
   );

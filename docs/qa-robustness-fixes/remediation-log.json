@@ -1,0 +1,106 @@
+{
+  "branch": "qa-robustness-fixes",
+  "sourceReportsFound": false,
+  "sourceArtifactsUsed": [
+    "test-artifacts/break-the-app/logs/baseline-npm-audit.json",
+    "test-artifacts/break-the-app/logs/playwright-full-rerun.log",
+    "test-artifacts/break-the-app/logs/warnings-edge-rerun.log",
+    "test-artifacts/break-the-app/logs/axe-*.json"
+  ],
+  "fixedIssues": [
+    {
+      "id": "ISSUE-QA-001",
+      "title": "Critical dependency vulnerabilities in React Router/Remix dependency chain",
+      "originalSeverity": "Critical",
+      "finalStatus": "Fixed",
+      "filesChanged": [
+        "package.json",
+        "package-lock.json",
+        "app/routes/morse-code-audio-generator.tsx",
+        "app/routes/morse-code-translator.tsx"
+      ],
+      "verification": [
+        "npm audit --audit-level=low --json",
+        "npm run typecheck",
+        "npm run build",
+        "npm run test:e2e"
+      ]
+    },
+    {
+      "id": "ISSUE-QA-002",
+      "title": "Critical/serious accessibility failures on core tool pages",
+      "originalSeverity": "Medium",
+      "finalStatus": "Fixed",
+      "filesChanged": [
+        "app/client/components/shared/TranslatorSectionsBasic.tsx",
+        "app/client/components/audio/MorseAudioTranslator.tsx",
+        "app/client/components/morse-code-sound-generator/MorseAudioTranslator.tsx",
+        "app/routes/morse-code-audio-practice.tsx",
+        "app/routes/morse-code-audio-quiz.tsx",
+        "app/routes/morse-code-visual-practice.tsx",
+        "app/routes/morse-code-visual-quiz.tsx",
+        "app/routes/morse-code-word-trainer.tsx"
+      ],
+      "verification": [
+        "tests/qa-robustness-review/accessibility.spec.ts",
+        "npm run test:e2e"
+      ]
+    },
+    {
+      "id": "ISSUE-QA-003",
+      "title": "Word search Generate new puzzle could keep the same grid",
+      "originalSeverity": "Medium",
+      "finalStatus": "Fixed",
+      "filesChanged": [
+        "app/routes/morse-code-word-search-builder.tsx"
+      ],
+      "verification": [
+        "tests/qa-robustness-review/warnings-and-edge.spec.ts",
+        "npm run test:e2e"
+      ]
+    },
+    {
+      "id": "ISSUE-QA-004",
+      "title": "QA harness produced stale paths and artifact collisions",
+      "originalSeverity": "Info",
+      "finalStatus": "Fixed",
+      "filesChanged": [
+        "playwright.config.ts",
+        "package.json",
+        "tests/qa-robustness-review/helpers.ts",
+        "tests/qa-robustness-review/route-smoke.spec.ts",
+        "tests/qa-robustness-review/warnings-and-edge.spec.ts"
+      ],
+      "notes": "The Playwright HTML report output was removed because generated report assets under test-artifacts can be requested through the app dev server and transformed by Vite. Vite now ignores test-artifacts during dev-server file watching so Playwright traces/screenshots/logs do not trigger HMR reloads or dependency re-optimization while tests run.",
+      "verification": [
+        "npm run test:e2e"
+      ]
+    }
+  ],
+  "deferredIssues": [
+    {
+      "id": "ISSUE-QA-005",
+      "title": "No lint script exists",
+      "severity": "Info"
+    },
+    {
+      "id": "ISSUE-QA-006",
+      "title": "No default test script exists",
+      "severity": "Info"
+    },
+    {
+      "id": "ISSUE-QA-007",
+      "title": "Build still reports unused default React import warnings",
+      "severity": "Low"
+    }
+  ],
+  "finalVerification": {
+    "auditVulnerabilities": 0,
+    "typecheck": "passed",
+    "build": "passed_with_warning",
+    "e2e": "112 passed",
+    "fuzz": "6 passed",
+    "lint": "missing_script",
+    "npmTest": "missing_script"
+  }
+}

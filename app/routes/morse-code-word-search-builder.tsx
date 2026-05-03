@@ -971,7 +971,7 @@ export default function MorseCodeWordSearchBuilder() {
   }
 
   function generateNewPuzzle() {
-    setPuzzleSeed(Date.now());
+    setPuzzleSeed((currentSeed) => currentSeed + 1);
     setShowAnswerKey(false);
     setStatus({
       kind: "ok",

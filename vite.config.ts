@@ -6,6 +6,11 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import netlifyPlugin from "@netlify/vite-plugin-react-router";
 
 export default defineConfig({
+  server: {
+    watch: {
+      ignored: ["**/test-artifacts/**"],
+    },
+  },
   plugins: [
     reactRouter(),
     tsconfigPaths(),

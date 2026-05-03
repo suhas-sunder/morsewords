@@ -6,11 +6,13 @@
     "build": "react-router build",
     "dev": "cross-env NODE_ENV=development node server.js",
     "start": "node server.js",
+    "test:e2e": "playwright test",
+    "test:fuzz": "playwright test tests/qa-robustness-review/morse-utils.fuzz.spec.ts",
     "typecheck": "react-router typegen && tsc -b"
   },
   "dependencies": {
-    "@react-router/express": "^7.7.1",
-    "@react-router/node": "^7.7.1",
+    "@react-router/express": "^7.14.2",
+    "@react-router/node": "^7.14.2",
     "compression": "^1.7.5",
     "express": "^5.1.0",
     "isbot": "^5.1.27",
@@ -19,12 +21,13 @@
     "qrcode": "^1.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.7.1"
+    "react-router": "^7.14.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@netlify/vite-plugin-react-router": "^1.0.1",
-    "@react-router/dev": "^7.7.1",
-    "@remix-run/netlify": "^1.19.3",
+    "@playwright/test": "^1.59.1",
+    "@react-router/dev": "^7.14.2",
     "@tailwindcss/vite": "^4.1.4",
     "@types/compression": "^1.7.5",
     "@types/express": "^5.0.1",
@@ -35,6 +38,7 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "cross-env": "^7.0.3",
+    "fast-check": "^4.7.0",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.3",

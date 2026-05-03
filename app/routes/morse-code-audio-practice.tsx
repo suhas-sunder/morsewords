@@ -460,16 +460,21 @@ function SliderRow({
   help?: string;
   disabled?: boolean;
 }) {
+  const id = React.useId();
+
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <label className="text-sm font-extrabold text-sky-950">{label}</label>
+        <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
+          {label}
+        </label>
         <span className="text-sm text-slate-600">
           {value} {unit}
         </span>
       </div>
       {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
       <input
+        id={id}
         type="range"
         min={min}
         max={max}
