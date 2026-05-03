@@ -8,8 +8,8 @@ export default function HowItWorks() {
   ] as const;
 
   return (
-    <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-6 sm:px-8 sm:py-7">
+    <section className="mt-8 overflow-hidden rounded-2xl bg-[#fffdf8]">
+      <div className="bg-[#fffaf2] px-5 py-6 sm:px-8 sm:py-7">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3">
@@ -32,7 +32,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-[#171717] px-4 py-3 text-white shadow-sm lg:w-64">
+          <div className="rounded-xl bg-[#171717] px-4 py-3 text-white lg:w-64">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
               Reference signal
             </p>
@@ -53,7 +53,7 @@ export default function HowItWorks() {
             <a
               key={href}
               href={href}
-              className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+              className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
             >
               {label}
             </a>
@@ -62,9 +62,9 @@ export default function HowItWorks() {
       </div>
 
       <div className="bg-[#fffdf8] px-5 py-6 sm:px-8 sm:py-7">
-        <dl className="grid gap-5 border-b border-slate-200 pb-6 md:grid-cols-3">
+        <dl className="grid gap-5 pb-6 md:grid-cols-3">
           <div>
-            <dt className="border-l-4 border-sky-700 pl-3 text-base font-extrabold text-sky-950">
+            <dt className="text-base font-extrabold text-sky-950">
               Spacing legend
             </dt>
             <dd className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
@@ -74,7 +74,7 @@ export default function HowItWorks() {
           </div>
 
           <div>
-            <dt className="border-l-4 border-sky-700 pl-3 text-base font-extrabold text-sky-950">
+            <dt className="text-base font-extrabold text-sky-950">
               Decoder boundaries
             </dt>
             <dd className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
@@ -85,7 +85,7 @@ export default function HowItWorks() {
           </div>
 
           <div>
-            <dt className="border-l-4 border-sky-700 pl-3 text-base font-extrabold text-sky-950">
+            <dt className="text-base font-extrabold text-sky-950">
               Errors stay visible
             </dt>
             <dd className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
@@ -95,7 +95,7 @@ export default function HowItWorks() {
           </div>
         </dl>
 
-        <div className="divide-y divide-slate-200 text-slate-700">
+        <div className="text-slate-700">
           <section id="encode" className="py-7">
             <div className="grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
               <header>
@@ -131,7 +131,7 @@ export default function HowItWorks() {
                   <p className="text-base font-extrabold text-sky-950">
                     Example
                   </p>
-                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl border border-slate-800 bg-[#171717] p-4 font-mono text-base leading-relaxed text-sky-50">
+                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#171717] p-4 font-mono text-base leading-relaxed text-sky-50">
                     {`HELLO WORLD
 ....   .   .-..   .-..   ---       .--   ---   .-.   .-..   -..`}
                   </pre>
@@ -186,7 +186,7 @@ export default function HowItWorks() {
                   <p className="text-base font-extrabold text-sky-950">
                     Examples
                   </p>
-                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 font-mono text-base leading-relaxed text-slate-900">
+                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 font-mono text-base leading-relaxed text-slate-900">
                     {`...   ---   ...
 SOS
 
@@ -299,7 +299,7 @@ S O S`}
                       <span
                         key={symbol}
                         title={label}
-                        className="inline-flex min-w-9 items-center justify-center rounded-md border border-slate-200 bg-[#f7f4ee] px-2.5 py-1.5 font-mono text-sm font-bold text-slate-900"
+                        className="inline-flex min-w-9 items-center justify-center rounded-md bg-[#f7f4ee] px-2.5 py-1.5 font-mono text-sm font-bold text-slate-900"
                       >
                         {symbol}
                       </span>
@@ -307,7 +307,7 @@ S O S`}
                   </div>
                 </div>
 
-                <div className="mt-5 border-l-4 border-sky-700 pl-4">
+                <div className="mt-5">
                   <p className="text-base font-extrabold text-sky-950">
                     Related tools
                   </p>
@@ -398,7 +398,7 @@ S O S`}
           </section>
         </div>
 
-        <div className="grid gap-6 border-t border-slate-200 bg-[#fffaf2] px-0 pt-7 lg:grid-cols-[1fr_1.05fr]">
+        <div className="grid gap-6 bg-[#fffaf2] px-0 pt-7 lg:grid-cols-[1fr_1.05fr]">
           <section>
             <h3 className="text-2xl font-extrabold text-sky-950">
               Quick answers
@@ -431,9 +431,9 @@ S O S`}
             </h3>
 
             <div className="mt-4 overflow-x-auto">
-              <table className="w-full border-collapse text-base sm:text-lg">
+              <table className="w-full text-base sm:text-lg">
                 <thead>
-                  <tr className="border-b border-slate-200">
+                  <tr>
                     <th className="py-2 pr-4 text-left font-extrabold text-sky-950">
                       Rule
                     </th>
@@ -443,19 +443,19 @@ S O S`}
                   </tr>
                 </thead>
                 <tbody className="text-slate-700">
-                  <tr className="border-b border-slate-100">
+                  <tr>
                     <td className="py-2 pr-4">Letter separator encode</td>
                     <td className="py-2">3 spaces</td>
                   </tr>
-                  <tr className="border-b border-slate-100">
+                  <tr>
                     <td className="py-2 pr-4">Word separator encode</td>
                     <td className="py-2">7 spaces</td>
                   </tr>
-                  <tr className="border-b border-slate-100">
+                  <tr>
                     <td className="py-2 pr-4">Letter separator decode</td>
                     <td className="py-2">1-6 spaces</td>
                   </tr>
-                  <tr className="border-b border-slate-100">
+                  <tr>
                     <td className="py-2 pr-4">Word separator decode</td>
                     <td className="py-2">
                       7+ spaces, <code>/</code>, or new line
