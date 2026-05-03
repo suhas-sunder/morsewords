@@ -70,7 +70,7 @@ function ExampleCard({
   const morse = textToMorse(transliteration);
 
   return (
-    <article className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 shadow-sm">
+    <article className="rounded-2xl bg-[#fffdf8] p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="m-0 text-xl font-extrabold text-sky-950">
@@ -83,12 +83,12 @@ function ExampleCard({
         <button
           type="button"
           onClick={() => onUse(item.word)}
-          className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="cursor-pointer rounded-lg bg-white px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           Try
         </button>
       </div>
-      <code className="mt-4 block break-words rounded-xl border border-slate-200 bg-[#f7f4ee] px-3 py-3 text-sm font-black text-slate-950">
+      <code className="mt-4 block break-words rounded-xl bg-[#f7f4ee] px-3 py-3 text-sm font-black text-slate-950">
         {morse}
       </code>
       <div className="mt-3 flex items-center justify-between gap-3">
@@ -158,8 +158,8 @@ export default function InternationalTranslator() {
         />
 
         <section className="pb-6">
-          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-            <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-6 sm:px-8">
+          <div className="overflow-hidden rounded-2xl bg-[#fffdf8]">
+            <div className="bg-[#fffaf2] px-5 py-6 sm:px-8">
               <div className="flex items-center gap-3">
                 <span className="h-px w-8 bg-sky-800" />
                 <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -200,7 +200,7 @@ export default function InternationalTranslator() {
         </section>
 
         <section className="pb-8">
-          <div className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 text-slate-700 shadow-sm">
+          <div className="rounded-2xl bg-[#fffdf8] p-5 text-slate-700">
             <h2 className="m-0 text-xl font-extrabold text-sky-950">
               International translation disclaimer
             </h2>

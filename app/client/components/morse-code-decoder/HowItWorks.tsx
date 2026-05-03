@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function HowItWorks() {
   return (
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -34,7 +34,7 @@ export default function HowItWorks() {
           <a
             key={href}
             href={href}
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -42,7 +42,7 @@ export default function HowItWorks() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Input spacing</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Separate <strong>letters</strong> with <strong>spaces</strong>. Separate{" "}
@@ -51,7 +51,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Decoder boundaries</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             When decoding, <strong>1–6 spaces</strong> separates letters.{" "}
@@ -60,7 +60,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Errors stay visible</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Unknown Morse chunks decode to <strong>?</strong>. Unsupported text
@@ -71,7 +71,7 @@ export default function HowItWorks() {
 
       <div
         id="accepted-formats"
-        className="mt-6 rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+        className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7"
       >
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Accepted input formats
@@ -83,7 +83,7 @@ export default function HowItWorks() {
         </p>
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">Symbols</p>
             <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-slate-700">
               <li>
@@ -100,7 +100,7 @@ export default function HowItWorks() {
             </ul>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">Common paste patterns</p>
             <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-slate-700">
               <li>
@@ -123,7 +123,7 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        <div className="mt-5 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5">
+        <div className="mt-5 rounded-2xl bg-[#fffdf8] p-5">
           <p className="text-base font-extrabold text-sky-950">Note</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             This decoder is <strong>separator-based</strong>. It does not infer timing.
@@ -141,7 +141,7 @@ export default function HowItWorks() {
 
       <div
         id="examples"
-        className="mt-6 rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+        className="mt-6 rounded-2xl bg-[#fffdf8] p-6 sm:p-7"
       >
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Examples you can copy
@@ -153,7 +153,7 @@ export default function HowItWorks() {
         </p>
 
         <div className="mt-5 grid gap-4">
-          <div className="rounded-2xl border border-slate-200 p-5">
+          <div className="rounded-2xl p-5">
             <p className="text-base font-extrabold text-sky-950">Decode a single letter</p>
             <p className="mt-2 text-base sm:text-lg text-slate-700">
               <strong>Input:</strong>{" "}
@@ -162,7 +162,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 p-5">
+          <div className="rounded-2xl p-5">
             <p className="text-base font-extrabold text-sky-950">Decode a word (spaces between letters)</p>
             <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               <strong>Input:</strong>{" "}
@@ -171,7 +171,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 p-5">
+          <div className="rounded-2xl p-5">
             <p className="text-base font-extrabold text-sky-950">Decode two words (slash separator)</p>
             <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               <strong>Input:</strong>{" "}
@@ -180,7 +180,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 p-5">
+          <div className="rounded-2xl p-5">
             <p className="text-base font-extrabold text-sky-950">Decode punctuation</p>
             <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               <strong>Input:</strong>{" "}
@@ -189,7 +189,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 p-5">
+          <div className="rounded-2xl p-5">
             <p className="text-base font-extrabold text-sky-950">What an error looks like</p>
             <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               <strong>Input:</strong>{" "}
@@ -202,7 +202,7 @@ export default function HowItWorks() {
 
       <div
         id="related-tool"
-        className="mt-6 rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+        className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7"
       >
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Need to encode text to Morse?
@@ -214,14 +214,14 @@ export default function HowItWorks() {
 
         <Link
           to="/morse-code-encoder"
-          className="inline-flex mt-4 items-center rounded-full bg-[#f7f4ee] px-4 py-2 text-base sm:text-lg font-extrabold text-sky-950 border border-slate-200 hover:bg-sky-50 cursor-pointer transition"
+          className="inline-flex mt-4 items-center rounded-full bg-[#f7f4ee] px-4 py-2 text-base sm:text-lg font-extrabold text-sky-950 hover:bg-sky-50 cursor-pointer transition"
         >
           Switch to encoder
         </Link>
       </div>
 
       {/* AI-friendly: Quick answers + canonical decoding rules */}
-      <div className="mt-8 rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7">
+      <div className="mt-8 rounded-2xl bg-[#fffdf8] p-6 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick answers (Morse decoding)
         </h3>
@@ -252,7 +252,7 @@ export default function HowItWorks() {
         </ul>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7">
+      <div className="mt-6 rounded-2xl bg-[#fffdf8] p-6 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Decoder rules
         </h3>
@@ -260,7 +260,7 @@ export default function HowItWorks() {
         <div className="mt-4 overflow-x-auto">
           <table className="w-full border-collapse text-base sm:text-lg">
             <thead>
-              <tr className="border-b border-slate-200">
+                  <tr>
                 <th className="py-2 text-left font-extrabold text-sky-950">
                   Rule
                 </th>
@@ -302,7 +302,7 @@ export default function HowItWorks() {
           </table>
         </div>
 
-        <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+        <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
           <p className="text-base font-extrabold text-sky-950">Tip for copy/paste</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             If you plan to paste your decoded result elsewhere, keep it as normal

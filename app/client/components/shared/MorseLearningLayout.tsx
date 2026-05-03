@@ -65,8 +65,8 @@ export function SectionCard({
   aside?: React.ReactNode;
 }) {
   return (
-    <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-6 sm:px-8 sm:py-7">
+    <section className="mt-8 overflow-hidden rounded-2xl bg-[#fffdf8]">
+      <div className="bg-[#fffaf2] px-5 py-6 sm:px-8 sm:py-7">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
           <div>
             <Eyebrow>{eyebrow}</Eyebrow>
@@ -151,7 +151,7 @@ export function SimpleGrid({
                 {item.title}
               </h3>
               {item.badge ? (
-                <span className="shrink-0 rounded-md border border-slate-200 bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
+                <span className="shrink-0 rounded-md bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
                   {item.badge}
                 </span>
               ) : null}
@@ -167,7 +167,7 @@ export function SimpleGrid({
             <a
               key={item.title}
               href={item.href}
-              className="group block min-h-[150px] cursor-pointer rounded-xl border border-slate-200 bg-white p-5 no-underline transition hover:-translate-y-0.5 hover:border-sky-300 hover:shadow-sm"
+              className="group block min-h-[150px] cursor-pointer rounded-xl bg-white p-5 no-underline transition hover:bg-sky-50"
             >
               {body}
               <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
@@ -181,7 +181,7 @@ export function SimpleGrid({
         }
 
         return (
-          <div key={item.title} className="rounded-xl border border-slate-200 bg-white p-5">
+          <div key={item.title} className="rounded-xl bg-white p-5">
             {body}
           </div>
         );
@@ -198,8 +198,8 @@ export function ReferenceTable({
   onPlay?: (morse: string) => void;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
-      <div className="grid grid-cols-[1fr_1fr] border-b border-slate-200 bg-[#f7f4ee] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
+    <div className="overflow-hidden rounded-xl bg-white">
+      <div className="grid grid-cols-[1fr_1fr] bg-[#f7f4ee] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
         <span>Name</span>
         <span>Morse</span>
         <span className="hidden sm:block">Use</span>
@@ -208,7 +208,7 @@ export function ReferenceTable({
       {items.map((item) => (
         <div
           key={item.label}
-          className="grid gap-3 border-b border-slate-100 px-4 py-4 last:border-b-0 sm:grid-cols-[180px_1fr_2fr_120px] sm:items-center"
+          className="grid gap-3 px-4 py-4 even:bg-[#fffaf2] sm:grid-cols-[180px_1fr_2fr_120px] sm:items-center"
         >
           <div>
             <p className="font-bold text-sky-950">{item.label}</p>
@@ -225,7 +225,7 @@ export function ReferenceTable({
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
-            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             disabled={!onPlay}
           >
             <PlayIcon size={16} title="Play" />

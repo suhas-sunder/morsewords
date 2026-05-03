@@ -37,8 +37,8 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-5 sm:px-8">
+    <section className="overflow-hidden rounded-2xl bg-[#fffdf8]">
+      <div className="bg-[#fffaf2] px-5 py-5 sm:px-8">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -58,8 +58,8 @@ function Section({
 
 function SosReferenceCard() {
   return (
-    <section className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-6 sm:px-8">
+    <section className="overflow-hidden rounded-2xl bg-[#fffdf8]">
+      <div className="bg-[#fffaf2] px-5 py-6 sm:px-8">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="flex items-center gap-3">
@@ -78,7 +78,7 @@ function SosReferenceCard() {
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-[#171717] px-4 py-3 text-white shadow-sm lg:w-72">
+          <div className="rounded-xl bg-[#171717] px-4 py-3 text-white lg:w-72">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
               Copy-ready signal
             </p>
@@ -101,7 +101,7 @@ function SosReferenceCard() {
         ].map((group, index) => (
           <div
             key={`${group.label}-${index}`}
-            className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-center"
+            className="rounded-xl bg-[#f7f4ee] p-4 text-center"
           >
             <div className="text-4xl font-extrabold text-sky-950">
               {group.label}

@@ -37,8 +37,8 @@ export default function ToolHowItWorks({
   details: DetailItem[];
 }) {
   return (
-    <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-6 sm:px-8 sm:py-7">
+    <section className="mt-8 overflow-hidden rounded-2xl bg-[#fffdf8]">
+      <div className="bg-[#fffaf2] px-5 py-6 sm:px-8 sm:py-7">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3">
@@ -57,7 +57,7 @@ export default function ToolHowItWorks({
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-[#171717] px-4 py-3 text-white shadow-sm lg:w-64">
+          <div className="rounded-xl bg-[#171717] px-4 py-3 text-white lg:w-64">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
               {referenceLabel}
             </p>
@@ -75,7 +75,7 @@ export default function ToolHowItWorks({
             <a
               key={chip.href + chip.label}
               href={chip.href}
-              className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+              className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
             >
               {chip.label}
             </a>
@@ -84,10 +84,10 @@ export default function ToolHowItWorks({
       </div>
 
       <div className="bg-[#fffdf8] px-5 py-6 sm:px-8 sm:py-7">
-        <dl className="grid gap-5 border-b border-slate-200 pb-6 md:grid-cols-3">
+        <dl className="grid gap-5 pb-6 md:grid-cols-3">
           {summary.map((item) => (
             <div key={item.title}>
-              <dt className="border-l-4 border-sky-700 pl-3 text-base font-extrabold text-sky-950">
+              <dt className="text-base font-extrabold text-sky-950">
                 {item.title}
               </dt>
               <dd className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
@@ -97,7 +97,7 @@ export default function ToolHowItWorks({
           ))}
         </dl>
 
-        <div className="divide-y divide-slate-200 text-slate-700">
+        <div className="text-slate-700">
           {details.map((detail, index) => (
             <section
               id={chips[index]?.href.replace("#", "")}

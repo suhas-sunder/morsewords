@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function HowItWorks() {
   return (
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -38,7 +38,7 @@ export default function HowItWorks() {
           <a
             key={href}
             href={href}
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -46,7 +46,7 @@ export default function HowItWorks() {
       </div>
 
       <div id="why" className="mt-6 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Letter gap</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             In pasted text, letters are usually separated by a short gap like{" "}
@@ -55,7 +55,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Word gap</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             A word break is a longer pause. In text form, a common convention is{" "}
@@ -64,7 +64,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Why normalize?
           </p>
@@ -78,7 +78,7 @@ export default function HowItWorks() {
 
       <div
         id="formats"
-        className="mt-8 rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+        className="mt-8 rounded-xl bg-[#fffdf8] p-6 sm:p-7"
       >
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Common word separator formats and when to use them
@@ -91,7 +91,7 @@ export default function HowItWorks() {
         </p>
 
         <div className="mt-5 grid gap-4 md:grid-cols-2">
-          <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="rounded-xl bg-[#fffdf8] p-5">
             <p className="font-extrabold text-sky-950">
               7 spaces (tool-friendly)
             </p>
@@ -100,12 +100,12 @@ export default function HowItWorks() {
               are preparing Morse for consistent decoding,{" "}
               <strong>7 spaces</strong> is usually the safest output.
             </p>
-            <p className="mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] border border-slate-200 rounded-xl p-3 whitespace-pre-wrap">
+            <p className="mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] rounded-xl p-3 whitespace-pre-wrap">
               .... . .-.. .-.. --- .-- --- .-. .-.. -..
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="rounded-xl bg-[#fffdf8] p-5">
             <p className="font-extrabold text-sky-950">
               Slash / (human-friendly)
             </p>
@@ -114,12 +114,12 @@ export default function HowItWorks() {
               to see. It avoids the “how many spaces is that?” problem. If your
               audience is humans first, <strong>/</strong> is often ideal.
             </p>
-            <p className="mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] border border-slate-200 rounded-xl p-3 whitespace-pre-wrap">
+            <p className="mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] rounded-xl p-3 whitespace-pre-wrap">
               .... . .-.. .-.. --- / .-- --- .-. .-.. -..
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="rounded-xl bg-[#fffdf8] p-5">
             <p className="font-extrabold text-sky-950">
               Pipe | (visible divider)
             </p>
@@ -128,12 +128,12 @@ export default function HowItWorks() {
               clean boundary and rarely appears in Morse itself. It is not
               universal, but it is easy to normalize into another format.
             </p>
-            <p className="mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] border border-slate-200 rounded-xl p-3 whitespace-pre-wrap">
+            <p className="mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] rounded-xl p-3 whitespace-pre-wrap">
               .... . .-.. .-.. --- | .-- --- .-. .-.. -..
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="rounded-xl bg-[#fffdf8] p-5">
             <p className="font-extrabold text-sky-950">
               New lines (input only)
             </p>
@@ -154,7 +154,7 @@ export default function HowItWorks() {
 
       <div
         id="normalize"
-        className="mt-6 rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+        className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7"
       >
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Normalize pasted Morse (the main job)
@@ -190,7 +190,7 @@ export default function HowItWorks() {
           <p className="text-base font-extrabold text-sky-950">
             Example: normalize to slash
           </p>
-          <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+          <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
             {`Raw input (messy):
 .... . .-.. .-.. ---      .-- --- .-. .-.. -..
 or
@@ -204,7 +204,7 @@ Normalized output:
           </pre>
         </div>
 
-        <div className="mt-5 rounded-xl border border-slate-200 bg-[#f7f4ee] p-5 text-slate-700">
+        <div className="mt-5 rounded-xl bg-[#f7f4ee] p-5 text-slate-700">
           <p className="text-base font-extrabold text-sky-950">
             If your Morse has no spacing at all
           </p>
@@ -226,7 +226,7 @@ Normalized output:
 
       <div
         id="english-to-morse"
-        className="mt-6 rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+        className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7"
       >
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           English → Morse with the word separator you want
@@ -256,13 +256,13 @@ Normalized output:
           <p className="text-base font-extrabold text-sky-950">
             Example: puzzle-style output with /
           </p>
-          <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+          <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
             {`MEET AT NOON
 -- . . - / .- - / -. --- --- -.`}
           </pre>
         </div>
 
-        <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+        <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Related tools
           </p>
@@ -300,7 +300,7 @@ Normalized output:
 
       <div
         id="troubleshooting"
-        className="mt-6 rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+        className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7"
       >
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Troubleshooting
@@ -328,7 +328,7 @@ Normalized output:
         </ul>
       </div>
 
-      <div className="mt-8 rounded-xl border border-slate-200 bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick answers (word separators)
         </h3>
@@ -352,7 +352,7 @@ Normalized output:
         </ul>
       </div>
 
-      <div className="mt-6 rounded-xl border border-slate-200 bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mt-6 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Morse word separator rules
         </h3>
@@ -360,7 +360,7 @@ Normalized output:
         <div className="mt-4 overflow-x-auto">
           <table className="w-full border-collapse text-base sm:text-lg">
             <thead>
-              <tr className="border-b border-slate-200">
+                  <tr>
                 <th className="py-2 text-left font-extrabold text-sky-950">
                   Item
                 </th>
@@ -400,7 +400,7 @@ Normalized output:
           </table>
         </div>
 
-        <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+        <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Want full translation instead?
           </p>

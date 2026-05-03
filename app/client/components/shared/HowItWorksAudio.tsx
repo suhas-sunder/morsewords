@@ -2,7 +2,7 @@ import * as React from "react";
 
 export default function HowItWorksAudio() {
   return (
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -43,7 +43,7 @@ export default function HowItWorksAudio() {
           <a
             key={href}
             href={href}
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -51,7 +51,7 @@ export default function HowItWorksAudio() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Symbols are units
           </p>
@@ -61,7 +61,7 @@ export default function HowItWorksAudio() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Speed sets dit length
           </p>
@@ -71,7 +71,7 @@ export default function HowItWorksAudio() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Export is offline-rendered
           </p>
@@ -85,7 +85,7 @@ export default function HowItWorksAudio() {
       <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="units"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Timing units
@@ -105,7 +105,7 @@ export default function HowItWorksAudio() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Symbol lengths
               </p>
@@ -119,7 +119,7 @@ export default function HowItWorksAudio() {
               </ul>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Gap lengths
               </p>
@@ -133,7 +133,7 @@ export default function HowItWorksAudio() {
 
           <div className="mt-5">
             <p className="text-base font-extrabold text-sky-950">Example</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
               {`S O S
 ...   ---   ...
 (dit dit dit)   (dah dah dah)   (dit dit dit)`}
@@ -145,7 +145,7 @@ export default function HowItWorksAudio() {
           </div>
         </div>
 
-        <div id="wpm" className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7">
+        <div id="wpm" className="rounded-xl bg-[#fffdf8] p-6 sm:p-7">
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Speed and WPM
           </h3>
@@ -155,7 +155,7 @@ export default function HowItWorksAudio() {
             <strong>PARIS</strong> as a timing reference. A common shortcut is:
           </p>
 
-          <pre className="mt-4 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+          <pre className="mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
             {`dit(ms) = 1200 / WPM
 dah(ms) = 3 * dit(ms)`}
           </pre>
@@ -166,7 +166,7 @@ dah(ms) = 3 * dit(ms)`}
             schedules every symbol and gap from that.
           </p>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Fast setup checklist
             </p>
@@ -193,7 +193,7 @@ dah(ms) = 3 * dit(ms)`}
             </ul>
           </div>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Picking a speed for your goal
             </p>
@@ -216,7 +216,7 @@ dah(ms) = 3 * dit(ms)`}
             </ul>
           </div>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Why audio can click
             </p>
@@ -231,7 +231,7 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="farnsworth"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Farnsworth spacing
@@ -273,7 +273,7 @@ dah(ms) = 3 * dit(ms)`}
             </p>
           </div>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               When to leave Farnsworth at 1.0
             </p>
@@ -288,7 +288,7 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="sound"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Sound settings
@@ -308,7 +308,7 @@ dah(ms) = 3 * dit(ms)`}
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Waveforms
               </p>
@@ -331,7 +331,7 @@ dah(ms) = 3 * dit(ms)`}
               </ul>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Envelope
               </p>
@@ -350,7 +350,7 @@ dah(ms) = 3 * dit(ms)`}
             </div>
           </div>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Pitch, volume, and sidetone feel
             </p>
@@ -364,7 +364,7 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="export"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Audio export
@@ -376,7 +376,7 @@ dah(ms) = 3 * dit(ms)`}
             and samples into a Blob for download.
           </p>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               What the WAV contains
             </p>
@@ -416,7 +416,7 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="troubleshooting"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting
@@ -453,7 +453,7 @@ dah(ms) = 3 * dit(ms)`}
           </ul>
         </div>
       </div>
-      <div className="mt-8 rounded-xl border border-slate-200 bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>

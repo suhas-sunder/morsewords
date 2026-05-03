@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function HowItWorks() {
   return (
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -33,7 +33,7 @@ export default function HowItWorks() {
           <a
             key={href}
             href={href}
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -41,7 +41,7 @@ export default function HowItWorks() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Predictable output
           </p>
@@ -51,7 +51,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Word breaks are strict
           </p>
@@ -62,7 +62,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Unsupported stays visible
           </p>
@@ -76,7 +76,7 @@ export default function HowItWorks() {
 
       <div
         id="related-tool"
-        className="mt-6 rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+        className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7"
       >
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Need to decode Morse back to text?
@@ -88,7 +88,7 @@ export default function HowItWorks() {
 
         <Link
           to="/morse-code-decoder"
-          className="inline-flex mt-4 items-center rounded-full bg-[#f7f4ee] px-4 py-2 text-base sm:text-lg font-extrabold text-sky-950 border border-slate-200 hover:bg-sky-50 cursor-pointer transition"
+          className="inline-flex mt-4 items-center rounded-full bg-[#f7f4ee] px-4 py-2 text-base sm:text-lg font-extrabold text-sky-950 hover:bg-sky-50 cursor-pointer transition"
         >
           Switch to decoder
         </Link>
@@ -97,7 +97,7 @@ export default function HowItWorks() {
       <div className="mt-6 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="encode"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Text → Morse (encode)
@@ -125,7 +125,7 @@ export default function HowItWorks() {
 
           <div className="mt-5">
             <p className="text-base font-extrabold text-sky-950">Example</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
               {`HELLO WORLD
 ....   .   .-..   .-..   ---       .--   ---   .-.   .-..   -..`}
             </pre>
@@ -138,7 +138,7 @@ export default function HowItWorks() {
 
         <div
           id="output-format"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Output format (spacing and separators)
@@ -149,7 +149,7 @@ export default function HowItWorks() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Standard output spacing
               </p>
@@ -164,7 +164,7 @@ export default function HowItWorks() {
               </ul>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Copy &amp; share tips
               </p>
@@ -179,7 +179,7 @@ export default function HowItWorks() {
             </div>
           </div>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Decoder compatibility note
             </p>
@@ -201,7 +201,7 @@ export default function HowItWorks() {
 
         <div
           id="supported"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Supported characters and assumptions
@@ -215,13 +215,13 @@ export default function HowItWorks() {
 
           <p className="mt-4 text-base sm:text-lg">
             Supported punctuation includes:{" "}
-            <code className="rounded-md bg-[#f7f4ee] px-2 py-1 border border-slate-200">
+            <code className="rounded-md bg-[#f7f4ee] px-2 py-1">
               . , ? / ' ! - @ : ; = + &quot; ( ) &amp; _
             </code>
             .
           </p>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Related tools
             </p>
@@ -275,7 +275,7 @@ export default function HowItWorks() {
 
         <div
           id="troubleshooting"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting
@@ -316,7 +316,7 @@ export default function HowItWorks() {
           </ul>
         </div>
 
-        <div className="mt-8 rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7">
+        <div className="mt-8 rounded-2xl bg-[#fffdf8] p-6 sm:p-7">
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Quick answers (Morse encoding)
           </h3>
@@ -342,7 +342,7 @@ export default function HowItWorks() {
           </ul>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7">
+        <div className="mt-6 rounded-2xl bg-[#fffdf8] p-6 sm:p-7">
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Encoder rules
           </h3>
@@ -350,7 +350,7 @@ export default function HowItWorks() {
           <div className="mt-4 overflow-x-auto">
             <table className="w-full border-collapse text-base sm:text-lg">
               <thead>
-                <tr className="border-b border-slate-200">
+                  <tr>
                   <th className="py-2 text-left font-extrabold text-sky-950">
                     Rule
                   </th>
@@ -390,7 +390,7 @@ export default function HowItWorks() {
             </table>
           </div>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">Tip</p>
             <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               If you want to generate sound from your output, switch to{" "}

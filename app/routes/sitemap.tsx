@@ -291,9 +291,9 @@ export default function HtmlSitemap() {
           {GROUPS.map((group) => (
             <section
               key={group.title}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm"
+              className="overflow-hidden rounded-2xl bg-[#fffdf8]"
             >
-              <div className="border-b border-slate-200 bg-[#fffaf2] px-5 py-5 sm:px-6">
+              <div className="bg-[#fffaf2] px-5 py-5 sm:px-6">
                 <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-sky-800" />
                   <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -313,7 +313,7 @@ export default function HtmlSitemap() {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="block cursor-pointer rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 no-underline transition hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                    className="block cursor-pointer rounded-xl bg-white px-4 py-3 text-slate-900 no-underline transition hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                   >
                     <span className="block font-extrabold text-sky-950">
                       {link.label}

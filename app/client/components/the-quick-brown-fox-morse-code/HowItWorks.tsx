@@ -12,7 +12,7 @@ export default function HowItWorks() {
   const morseWithSlashes = `- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.`;
 
   return (
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -46,7 +46,7 @@ export default function HowItWorks() {
           <a
             key={href}
             href={href}
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -54,7 +54,7 @@ export default function HowItWorks() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Copy-friendly</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Uses <strong>3 spaces</strong> between letters and{" "}
@@ -62,7 +62,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Human-friendly
           </p>
@@ -72,7 +72,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Decode safety</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             If your platform collapses multiple spaces, use the{" "}
@@ -84,21 +84,21 @@ export default function HowItWorks() {
       <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="phrase"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             The phrase
           </h3>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-sm font-extrabold text-sky-950">Lowercase</p>
               <pre className="mt-2 whitespace-pre-wrap text-base sm:text-lg font-mono">
                 {phrase}
               </pre>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-sm font-extrabold text-sky-950">Uppercase</p>
               <pre className="mt-2 whitespace-pre-wrap text-base sm:text-lg font-mono">
                 {phraseUpper}
@@ -114,7 +114,7 @@ export default function HowItWorks() {
 
         <div
           id="morse-copy"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Morse code (copy-friendly spacing)
@@ -126,7 +126,7 @@ export default function HowItWorks() {
             <strong>7 spaces</strong> between words.
           </p>
 
-          <pre className="mt-4 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+          <pre className="mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
             {morseCopyFriendly}
           </pre>
 
@@ -138,7 +138,7 @@ export default function HowItWorks() {
 
         <div
           id="morse-slash"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Morse code (with / between words)
@@ -149,14 +149,14 @@ export default function HowItWorks() {
             “how many spaces is that?” problem.
           </p>
 
-          <pre className="mt-4 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+          <pre className="mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
             {morseWithSlashes}
           </pre>
         </div>
 
         <div
           id="decode-check"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Decode check
@@ -166,7 +166,7 @@ export default function HowItWorks() {
             If you paste either Morse string into a decoder, you should get:
           </p>
 
-          <pre className="mt-4 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+          <pre className="mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
             {phraseUpper}
           </pre>
 
@@ -182,7 +182,7 @@ export default function HowItWorks() {
             </li>
           </ul>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Verify instantly
             </p>
@@ -201,7 +201,7 @@ export default function HowItWorks() {
 
         <div
           id="spacing-rules"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Spacing rules
@@ -210,7 +210,7 @@ export default function HowItWorks() {
           <div className="mt-4 overflow-x-auto">
             <table className="w-full border-collapse text-base sm:text-lg">
               <thead>
-                <tr className="border-b border-slate-200">
+                  <tr>
                   <th className="py-2 text-left font-extrabold text-sky-950">
                     Item
                   </th>
@@ -252,7 +252,7 @@ export default function HowItWorks() {
 
         <div
           id="tips"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Puzzles and practice tips
@@ -274,7 +274,7 @@ export default function HowItWorks() {
             </li>
           </ul>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Practice this phrase
             </p>
@@ -300,7 +300,7 @@ export default function HowItWorks() {
 
         <div
           id="related-tools"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Related tools
@@ -357,7 +357,7 @@ export default function HowItWorks() {
 
         <div
           id="troubleshooting"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting
@@ -384,7 +384,7 @@ export default function HowItWorks() {
         </div>
       </div>
 
-      <div className="mt-8 rounded-xl border border-slate-200 bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>

@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export default function HowItWorksPractice() {
   return (
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-8">
+    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -37,7 +37,7 @@ export default function HowItWorksPractice() {
           <a
             key={href}
             href={href}
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+            className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
           >
             {label}
           </a>
@@ -45,7 +45,7 @@ export default function HowItWorksPractice() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             10-question runs
           </p>
@@ -55,7 +55,7 @@ export default function HowItWorksPractice() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Instant checks
           </p>
@@ -65,7 +65,7 @@ export default function HowItWorksPractice() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+        <div className="rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Utility over tutorials
           </p>
@@ -79,7 +79,7 @@ export default function HowItWorksPractice() {
       <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="run-flow"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Run flow: what happens in a session
@@ -119,7 +119,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="modes"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Modes: practice the direction you actually need
@@ -134,7 +134,7 @@ export default function HowItWorksPractice() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Text → Morse
               </p>
@@ -144,7 +144,7 @@ export default function HowItWorksPractice() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Morse → Text
               </p>
@@ -164,7 +164,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="pools"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Pools: narrow focus or broad coverage
@@ -204,7 +204,7 @@ export default function HowItWorksPractice() {
             will not produce invalid prompt kinds.
           </p>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Want more than drills?
             </p>
@@ -230,7 +230,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="sentences"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Sentence rules: spacing matters, but the checker stays practical
@@ -244,7 +244,7 @@ export default function HowItWorksPractice() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Text → Morse sentences
               </p>
@@ -255,7 +255,7 @@ export default function HowItWorksPractice() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Morse → Text sentences
               </p>
@@ -266,7 +266,7 @@ export default function HowItWorksPractice() {
             </div>
           </div>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#f7f4ee] p-5">
+          <div className="mt-5 rounded-xl bg-[#f7f4ee] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Boundary rule of thumb
             </p>
@@ -281,7 +281,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="morse-input"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Morse input tips: type the way you naturally type
@@ -296,7 +296,7 @@ export default function HowItWorksPractice() {
 
           <div className="mt-5">
             <p className="text-base font-extrabold text-sky-950">Examples</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-slate-200 bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
               {`.-
 . -
 • −`}
@@ -330,7 +330,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="scoring"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Scoring: attempts, accuracy, and what progress means here
@@ -350,7 +350,7 @@ export default function HowItWorksPractice() {
             advanced to the next prompt yet.
           </p>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Measure improvement the right way
             </p>
@@ -364,7 +364,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="skip"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Skip and streaks: deliberate rules to keep practice honest
@@ -386,7 +386,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="share"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Share: copy a clean progress snapshot
@@ -408,7 +408,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="troubleshooting"
-          className="rounded-xl border border-slate-200 bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting: common practice mistakes
@@ -457,7 +457,7 @@ export default function HowItWorksPractice() {
         </div>
       </div>
 
-      <div className="mt-8 rounded-xl border border-slate-200 bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>

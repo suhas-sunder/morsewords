@@ -89,7 +89,7 @@ function CopyButton({
 
 function DesktopTable({ items }: { items: Entry[] }) {
   return (
-    <div className="hidden overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm md:block">
+    <div className="hidden overflow-x-auto rounded-xl bg-white md:block">
       <table className="w-full text-left">
         <thead className="bg-[#f7f4ee] font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">
           <tr>
@@ -130,7 +130,7 @@ function MobileCards({ items }: { items: Entry[] }) {
       {items.map((e) => (
         <article
           key={`${e.category}-${e.label}-${e.morse}`}
-          className="rounded-2xl border border-slate-200 bg-white p-4"
+          className="rounded-2xl bg-white p-4"
         >
           <div className="grid gap-3">
             <div className="grid gap-1">
@@ -177,12 +177,12 @@ function Section({
   items: Entry[];
 }) {
   return (
-    <section id={id} className="mb-12 scroll-mt-28 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+    <section id={id} className="mb-12 scroll-mt-28 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
       <div className="mb-4 flex items-center justify-between gap-3">
         <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
         <a
           href="#top"
-          className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           Top
         </a>
@@ -194,7 +194,7 @@ function Section({
       <div className="pt-3 md:hidden">
         <a
           href="#top"
-          className="block cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+          className="block cursor-pointer rounded-lg bg-white px-3 py-2 text-center text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
         >
           Back to top
         </a>
@@ -660,7 +660,7 @@ export default function DictionaryRoute() {
         />
       </PageHero>
 
-      <div className="mb-3 mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="mb-3 mt-5 rounded-2xl bg-white p-4">
         <label className="mb-2 block text-sm font-extrabold text-sky-950">
           Filter dictionary
         </label>
@@ -668,17 +668,17 @@ export default function DictionaryRoute() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Type to filter by label, Morse, or meaning…"
-          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-950 transition focus:outline-none focus:ring-2 focus:ring-sky-300"
+          className="w-full rounded-xl bg-white px-4 py-3 text-slate-950 transition focus:outline-none focus:ring-2 focus:ring-sky-300"
         />
       </div>
 
-      <nav className="-mx-4 mb-8 overflow-x-auto border-b border-slate-200 bg-white px-4 py-3">
+      <nav className="-mx-4 mb-8 overflow-x-auto bg-white px-4 py-3">
         <div className="flex gap-2 whitespace-nowrap text-sm">
           {sections.map((s) => (
             <a
               key={s.id}
               href={`#${s.id}`}
-              className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+              className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
             >
               {s.title}
             </a>

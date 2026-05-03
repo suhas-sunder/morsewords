@@ -62,7 +62,7 @@ export default function SourcesPage() {
               <a
                 key={source.href}
                 href={source.href}
-                className="block rounded-xl border border-slate-200 bg-white p-5 no-underline transition hover:border-sky-300 hover:shadow-sm"
+                className="block rounded-xl bg-white p-5 no-underline transition"
                 rel="noreferrer"
                 target="_blank"
               >

@@ -65,7 +65,7 @@ export default function CookiesPolicy() {
         </p>
       </header>
 
-      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-white p-5 sm:p-8">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">What are cookies?</h2>
           <p>

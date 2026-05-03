@@ -72,7 +72,7 @@ function CopyButton({ value, label }: { value: string; label: string }) {
 
 function AlphabetCard({ entry }: { entry: Entry }) {
   return (
-    <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <article className="rounded-xl bg-white p-4">
       <div className="grid gap-3">
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -82,7 +82,7 @@ function AlphabetCard({ entry }: { entry: Entry }) {
             <div className="text-2xl font-bold text-sky-950">{entry.label}</div>
           </div>
 
-          <span className="rounded-md border border-slate-200 bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
+          <span className="rounded-md bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
             {entry.category}
           </span>
         </div>
@@ -124,7 +124,7 @@ function Section({
   items: Entry[];
 }) {
   return (
-    <section id={id} className="scroll-mt-28 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+    <section id={id} className="scroll-mt-28 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
       <div className="mb-5 flex items-start justify-between gap-3">
         <div>
           <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
@@ -133,7 +133,7 @@ function Section({
 
         <a
           href="#top"
-          className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           Top
         </a>
@@ -337,35 +337,35 @@ export default function Home() {
         />
       </PageHero>
 
-      <nav className="-mx-4 mb-8 mt-5 overflow-x-auto border-b border-slate-200 bg-white px-4 py-3">
+      <nav className="-mx-4 mb-8 mt-5 overflow-x-auto bg-white px-4 py-3">
         <div className="flex gap-2 whitespace-nowrap text-sm">
           <a
             href="#letters"
-            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Letters
           </a>
           <a
             href="#numbers"
-            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Numbers
           </a>
           <a
             href="#symbols"
-            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Symbols
           </a>
           <a
             href="#how-it-works"
-            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             How It Works
           </a>
           <a
             href="#faq"
-            className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             FAQ
           </a>
