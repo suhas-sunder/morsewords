@@ -19,8 +19,8 @@ export default function ToggleChip({
     gap: 8,
     padding: "8px 10px",
     borderRadius: 8,
-    border: active ? "1px solid #020617" : "1px solid #e2e8f0",
-    background: active ? "#020617" : hover ? "#f0f9ff" : "#ffffff",
+    border: 0,
+    background: active ? "#020617" : hover ? "#e2e8f0" : "#eef2f6",
     color: active ? "#e0f2fe" : "#0f172a",
     fontWeight: 600,
     fontSize: ".9rem",
@@ -28,7 +28,7 @@ export default function ToggleChip({
     userSelect: "none",
     transition:
       "background 120ms ease, color 120ms ease, border-color 120ms ease, transform 120ms ease",
-    transform: hover ? "translateY(-1px)" : "translateY(0)",
+    transform: "translateY(0)",
   };
 
   return (

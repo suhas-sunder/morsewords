@@ -11,37 +11,54 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
-import useMorseAudio, { type SoundPreset } from "~/client/components/shared/useMorseAudio";
+import useMorseAudio, {
+  type SoundPreset,
+} from "~/client/components/shared/useMorseAudio";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import {
+  CheckCircleIcon,
   LightBulbIcon,
   LoopIcon,
   PlayIcon,
+  RefreshIcon,
   SoundIcon,
   StopIcon,
+  VisibilityIcon,
 } from "~/client/assets/svg/Icons";
+import {
+  audioDifficultyOptions,
+  getAudioPrompts,
+  isAudioDifficulty,
+  normalizeAudioAnswer,
+  pickPrompt,
+  promptTypeLabel,
+  type AudioDifficulty,
+  type AudioPrompt,
+} from "~/client/components/audioPractice/audioPromptBank";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-audio-practice";
 const STROBE_WARNING_ID = "audio-practice-strobe-warning";
+const DIFFICULTY_STORAGE_KEY = "mw_audio_practice_difficulty";
+const BEST_STREAK_STORAGE_KEY = "mw_audio_practice_best_streak";
 
 const faqItems = [
   {
     q: "What is audio practice for?",
-    a: "Audio practice lets you hear a visible prompt first, tune the timing, and repeat the sound until the rhythm is familiar before switching to a hidden-answer quiz.",
+    a: "Audio practice plays hidden Morse prompts so you can train listening recall without seeing the answer first. It is open-ended, unlike the scored audio quiz.",
+  },
+  {
+    q: "What do the difficulty levels change?",
+    a: "Beginner starts with letters, numbers, and tiny groups. Easy adds short words and signals. Medium adds longer words and short sentences. Hard adds Q-codes, longer words, and fuller sentences.",
   },
   {
     q: "What does Farnsworth spacing do?",
-    a: "Farnsworth keeps the character speed crisp but stretches the gaps between letters and words. It slows spacing only, which helps learners hear the shapes without rushing the copy.",
+    a: "Farnsworth keeps the character speed crisp but stretches the gaps between letters and words. It slows spacing only, which helps learners hear characters without rushing the copy.",
   },
   {
-    q: "Should I use repeat?",
-    a: "Use repeat for short words, Q-codes, and weak prompts. Turn it off for longer messages so you do not train yourself to wait for a second pass.",
-  },
-  {
-    q: "Does the audio upload my text?",
-    a: "No. The practice audio is generated in your browser with the same local audio engine used by the MorseWords audio tools.",
+    q: "Does the audio upload my answers?",
+    a: "No. Prompts, answers, and audio playback stay in your browser. Difficulty and best streak are saved locally only.",
   },
 ];
 
@@ -51,18 +68,35 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Audio Practice | Listen, Repeat, and Build Speed",
+    title: "Morse Code Audio Practice | Hidden Listening Drills",
     description:
-      "Practice Morse by ear with repeat playback, WPM, Farnsworth spacing, pitch, waveform, volume, flash, and focused prompts before taking a quiz.",
+      "Practice Morse by ear with hidden audio prompts for letters, words, and sentences. Choose difficulty, use WPM and Farnsworth controls, and build listening recall.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code audio practice, listen to morse code, morse code by ear, morse audio drills, morse code listening practice",
+      "morse code audio practice, listen to morse code, morse code by ear, morse audio drills, morse listening practice",
   });
 }
 
 export default function MorseCodeAudioPractice() {
   const player = useMorseAudio();
-  const [message, setMessage] = React.useState("sos help");
+  const [difficulty, setDifficulty] = React.useState<AudioDifficulty>(() =>
+    readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"),
+  );
+  const promptPool = React.useMemo(() => getAudioPrompts(difficulty), [difficulty]);
+  const [prompt, setPrompt] = React.useState<AudioPrompt>(() =>
+    pickPrompt(getAudioPrompts(readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"))),
+  );
+  const [answer, setAnswer] = React.useState("");
+  const [feedback, setFeedback] = React.useState<"idle" | "correct" | "missed" | "revealed">(
+    "idle",
+  );
+  const [attempts, setAttempts] = React.useState(0);
+  const [correct, setCorrect] = React.useState(0);
+  const [completed, setCompleted] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(0);
+  const [streak, setStreak] = React.useState(0);
+  const [bestStreak, setBestStreak] = React.useState(0);
+
   const [charWpm, setCharWpm] = React.useState(18);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(12);
   const [toneHz, setToneHz] = React.useState(650);
@@ -73,9 +107,50 @@ export default function MorseCodeAudioPractice() {
   const [repeat, setRepeat] = React.useState(false);
   const [soundOn, setSoundOn] = React.useState(true);
   const [flash, setFlash] = React.useState(false);
-  const [advancedOpen, setAdvancedOpen] = React.useState(true);
-  const morse = React.useMemo(() => textToMorse(message), [message]);
-  const canPlay = !!morse.trim();
+  const [advancedOpen, setAdvancedOpen] = React.useState(false);
+
+  const morse = React.useMemo(() => textToMorse(prompt.text), [prompt.text]);
+  const normalizedAnswer = normalizeAudioAnswer(answer);
+  const expectedAnswer = normalizeAudioAnswer(prompt.text);
+  const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
+  const durationMs = player.estimateDurationMs({
+    code: morse,
+    wpm: charWpm,
+    farnsworthWpm,
+  });
+
+  React.useEffect(() => {
+    try {
+      window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
+    } catch {
+      // local-only preference; ignore storage failures
+    }
+  }, [difficulty]);
+
+  React.useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(BEST_STREAK_STORAGE_KEY);
+      const parsed = raw ? Number(raw) : 0;
+      if (Number.isFinite(parsed)) setBestStreak(parsed);
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  React.useEffect(() => {
+    try {
+      window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
+    } catch {
+      // ignore
+    }
+  }, [bestStreak]);
+
+  React.useEffect(() => {
+    setPrompt((current) => pickPrompt(promptPool, current.text));
+    setAnswer("");
+    setFeedback("idle");
+    player.stop();
+  }, [difficulty, promptPool]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
     const anyPlayer = player as typeof player & {
@@ -124,11 +199,11 @@ export default function MorseCodeAudioPractice() {
       }, ms);
     };
     window.addEventListener("morsewords:flash", handler as EventListener);
-    return () => window.removeEventListener("morsewords:flash", handler as EventListener);
+    return () =>
+      window.removeEventListener("morsewords:flash", handler as EventListener);
   }, [flash]);
 
-  async function play() {
-    if (!canPlay) return;
+  async function playPrompt() {
     await player.play({
       code: morse,
       wpm: charWpm,
@@ -144,9 +219,51 @@ export default function MorseCodeAudioPractice() {
     });
   }
 
-  const durationMs = canPlay
-    ? player.estimateDurationMs({ code: morse, wpm: charWpm, farnsworthWpm })
-    : 0;
+  function checkAnswer() {
+    if (!normalizedAnswer) return;
+    setAttempts((value) => value + 1);
+    if (normalizedAnswer === expectedAnswer) {
+      setCorrect((value) => value + 1);
+      setFeedback("correct");
+      setStreak((value) => {
+        const next = value + 1;
+        setBestStreak((best) => (next > best ? next : best));
+        return next;
+      });
+      return;
+    }
+    setFeedback("missed");
+    setStreak(0);
+  }
+
+  function revealAnswer() {
+    setFeedback("revealed");
+    setStreak(0);
+  }
+
+  function nextPrompt({ skippedPrompt = false }: { skippedPrompt?: boolean } = {}) {
+    player.stop();
+    setPrompt((current) => pickPrompt(promptPool, current.text));
+    setAnswer("");
+    setFeedback("idle");
+    setCompleted((value) => value + 1);
+    if (skippedPrompt) {
+      setSkipped((value) => value + 1);
+      setStreak(0);
+    }
+  }
+
+  function resetSession() {
+    player.stop();
+    setPrompt((current) => pickPrompt(promptPool, current.text));
+    setAnswer("");
+    setFeedback("idle");
+    setAttempts(0);
+    setCorrect(0);
+    setCompleted(0);
+    setSkipped(0);
+    setStreak(0);
+  }
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -179,70 +296,217 @@ export default function MorseCodeAudioPractice() {
         <PageHero
           eyebrow="Audio practice"
           title="Morse code audio practice"
-          description="Practice Morse by ear with the same timing controls used by the audio generator. Use repeat and Farnsworth spacing for listening drills, then move into the audio quiz when you are ready to test recall."
+          description="Practice hidden audio prompts by ear. Choose a difficulty, play a random letter, word, or sentence, then type what you copied."
           aside={
-            <DarkNote label="Current signal" value={morse || "... --- ..."}>
-              Estimated time: {formatMs(durationMs)}. Audio runs locally in your
-              browser; nothing is uploaded.
+            <DarkNote label="Practice mode" value="Endless">
+              {promptPool.length} prompts available. Answers stay hidden until you
+              check or reveal them.
             </DarkNote>
           }
         >
           <ActionLinks
             links={[
               { href: "/morse-code-audio-quiz", label: "Take audio quiz", primary: true },
-              { href: "/audio", label: "Full audio generator" },
               { href: "/farnsworth-timing", label: "Farnsworth guide" },
             ]}
           />
         </PageHero>
 
-        <section className="mw-tool-section mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-200 px-5 py-6 sm:px-8">
-            <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_280px]">
-              <label className="block">
-                <span className="text-sm font-extrabold text-sky-950">
-                  Practice message
+        <section className="mt-8 rounded-[1.75rem] bg-white px-5 py-6 sm:px-8 lg:px-10">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap gap-2">
+              {audioDifficultyOptions.map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => setDifficulty(option.value)}
+                  className={
+                    "min-h-11 cursor-pointer rounded-xl px-4 py-2 font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
+                    (difficulty === option.value
+                      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+                      : "bg-slate-100 text-slate-800 hover:bg-slate-200 hover:text-sky-950")
+                  }
+                  aria-pressed={difficulty === option.value}
+                  title={option.description}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-3 text-sm text-slate-700">
+              <span>
+                Done <strong className="text-sky-950">{completed}</strong>
+              </span>
+              <span>
+                Accuracy <strong className="text-sky-950">{accuracy}%</strong>
+              </span>
+              <span>
+                Streak <strong className="text-sky-950">{streak}</strong>
+              </span>
+              <span>
+                Best <strong className="text-sky-950">{bestStreak}</strong>
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+            <div className="rounded-xl bg-slate-100 p-4">
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <label
+                  htmlFor="mw_audio_practice_answer"
+                  className="text-sm font-extrabold text-sky-950"
+                >
+                  Your answer
+                </label>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                  {promptTypeLabel(prompt.type)}
                 </span>
-                <textarea
-                  value={message}
-                  onChange={(event) => setMessage(event.target.value)}
-                  className="mt-2 min-h-40 w-full rounded-xl border border-slate-200 p-4 font-mono text-base outline-none focus:border-sky-400"
-                />
-              </label>
-              <div className="rounded-xl border border-slate-200 bg-[#fffdf8] p-5">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
-                  Playback
+              </div>
+              <textarea
+                id="mw_audio_practice_answer"
+                value={answer}
+                onChange={(event) => {
+                  setAnswer(event.target.value);
+                  if (feedback !== "revealed") setFeedback("idle");
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
+                    event.preventDefault();
+                    checkAnswer();
+                  }
+                }}
+                placeholder="Type what you hear"
+                className="min-h-[10rem] w-full resize-y bg-transparent font-mono text-lg text-slate-950 outline-none placeholder:text-slate-500 focus:ring-0"
+              />
+            </div>
+
+            <div className="rounded-xl bg-[#202020] p-4 text-sky-100">
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <h2 className="text-sm font-extrabold text-slate-100">
+                  Hidden audio prompt
+                </h2>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
+                  Prompt
+                </span>
+              </div>
+              <div className="min-h-[10rem] text-sm leading-relaxed text-slate-200">
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-300">
+                  {audioDifficultyOptions.find((option) => option.value === difficulty)
+                    ?.label}{" "}
+                  {promptTypeLabel(prompt.type)}
                 </p>
-                <button
-                  type="button"
-                  onClick={play}
-                  disabled={!canPlay}
-                  className="mt-4 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  <PlayIcon size={20} title="Play audio" />
-                  {player.state === "playing" ? "Restart audio" : "Play audio"}
-                </button>
-                <button
-                  type="button"
-                  onClick={player.stop}
-                  disabled={player.state === "idle"}
-                  className="mt-2 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  <StopIcon size={20} title="Stop audio" />
-                  Stop
-                </button>
+                <p className="mt-4 max-w-lg text-base">
+                  Play the signal, copy it by ear, then check your answer. The text
+                  and Morse pattern stay hidden while you practice.
+                </p>
+                {feedback !== "idle" ? (
+                  <div className="mt-5 rounded-lg bg-slate-900/80 p-3">
+                    <p className="font-semibold text-sky-100">
+                      Expected: {prompt.text}
+                    </p>
+                    <p className="mt-2 font-mono text-sm font-bold tracking-[0.16em] text-sky-100">
+                      {morse}
+                    </p>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
 
-          <div className="px-5 py-6 sm:px-8">
-            <div className="rounded-xl border border-slate-200 bg-[#f7fbff] p-4">
-              <p className="font-mono text-base font-bold tracking-[0.16em] text-slate-950">
-                {morse}
-              </p>
+          {feedback !== "idle" ? (
+            <div
+              className={
+                "mt-4 rounded-xl px-4 py-3 text-sm font-semibold " +
+                (feedback === "correct"
+                  ? "bg-sky-50 text-sky-950"
+                  : "bg-slate-100 text-slate-800")
+              }
+            >
+              {feedback === "correct"
+                ? "Correct. Move to the next hidden prompt when ready."
+                : feedback === "revealed"
+                  ? "Answer revealed. Use it as a listening reference, then try the next prompt."
+                  : "Not quite. Compare the answer, replay the sound, then continue."}
             </div>
+          ) : null}
 
-            <div className="mt-5 grid gap-5 md:grid-cols-3">
+          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <button
+              type="button"
+              onClick={playPrompt}
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+            >
+              <PlayIcon size={20} title="Play prompt" />
+              {player.state === "playing" ? "Restart prompt" : "Play prompt"}
+            </button>
+            <button
+              type="button"
+              onClick={player.stop}
+              disabled={player.state === "idle"}
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
+            >
+              <StopIcon size={20} title="Stop audio" />
+              Stop
+            </button>
+            <button
+              type="button"
+              onClick={checkAnswer}
+              disabled={!normalizedAnswer}
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
+            >
+              <CheckCircleIcon size={20} title="Check answer" />
+              Check answer
+            </button>
+          </div>
+
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={revealAnswer}
+                disabled={feedback !== "idle"}
+                className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
+              >
+                <VisibilityIcon size={18} title="Reveal answer" />
+                Reveal answer
+              </button>
+              <button
+                type="button"
+                onClick={() => nextPrompt()}
+                className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+              >
+                <RefreshIcon size={18} title="Next prompt" />
+                Next prompt
+              </button>
+              <button
+                type="button"
+                onClick={() => nextPrompt({ skippedPrompt: true })}
+                className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+              >
+                Skip
+              </button>
+            </div>
+            <button
+              type="button"
+              onClick={resetSession}
+              className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+            >
+              <LoopIcon size={18} title="Reset session" />
+              Reset session
+            </button>
+          </div>
+
+          <div className="mt-7">
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-base font-extrabold text-sky-950">
+                Audio practice settings
+              </h3>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                {player.state === "idle" ? "Ready" : player.state}
+              </span>
+            </div>
+            <div className="mt-4 grid gap-5 md:grid-cols-3">
               <SliderRow label="Character speed" value={charWpm} min={5} max={40} step={1} unit="WPM" onChange={setCharWpm} />
               <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={40} step={1} unit="WPM" onChange={setFarnsworthWpm} help="Slower spacing, same character speed." />
               <SliderRow label="Pitch" value={toneHz} min={300} max={1000} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} />
@@ -252,7 +516,7 @@ export default function MorseCodeAudioPractice() {
             </div>
 
             {advancedOpen ? (
-              <div className="mt-5 border-t border-slate-100 pt-5">
+              <div className="mt-5">
                 <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_2fr] md:items-end">
                   <label className="block">
                     <span className="text-sm font-extrabold text-sky-950">
@@ -261,7 +525,7 @@ export default function MorseCodeAudioPractice() {
                     <select
                       value={preset}
                       onChange={(event) => setPreset(event.target.value as SoundPreset)}
-                      className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 bg-white px-3 font-semibold"
+                      className="mt-2 min-h-11 w-full rounded-xl bg-slate-100 px-3 font-semibold text-slate-950 outline-none transition hover:bg-slate-200 focus:ring-2 focus:ring-sky-300"
                     >
                       <option value="cw_radio">CW (Radio)</option>
                       <option value="sine">Sine</option>
@@ -294,107 +558,82 @@ export default function MorseCodeAudioPractice() {
                     />
                   </div>
                 </div>
-                {flash ? (
-                  <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
-                ) : null}
+                {flash ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" /> : null}
               </div>
             ) : null}
 
             <button
               type="button"
               onClick={() => setAdvancedOpen((value) => !value)}
-              className="mt-5 min-h-11 w-full cursor-pointer rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+              className="mt-5 min-h-11 w-full cursor-pointer rounded-lg bg-slate-100 px-4 py-2 font-semibold text-slate-900 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
             >
               {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
             </button>
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              {["CQ CQ", "TEST 123", "HELLO WORLD", "QTH HOME", "SOS"].map((presetText) => (
-                <button
-                  key={presetText}
-                  type="button"
-                  onClick={() => setMessage(presetText)}
-                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:border-sky-300 hover:bg-sky-50"
-                >
-                  Try {presetText}
-                </button>
-              ))}
-            </div>
           </div>
         </section>
 
         <ToolHowItWorks
           eyebrow="Audio practice spec"
-          title="How this Morse code audio practice tool works"
-          description="Audio practice uses the same Morse timing model as the audio generator, but keeps the workflow focused on listening. You choose the message, set character speed, add Farnsworth spacing if needed, then play, repeat, or flash the signal."
-          referenceLabel="Listening signal"
+          title="How hidden Morse audio practice works"
+          description="Audio practice chooses a random hidden prompt from your selected difficulty. You listen first, type what you copied, then check or reveal the answer before moving on."
+          referenceLabel="Hidden signal"
           referenceValue="... --- ..."
-          referenceText="Character speed controls dits and dahs. Farnsworth changes the gaps only."
+          referenceText="The prompt is audio-first. Text appears only after checking or revealing."
           chips={[
-            { label: "Timing", href: "#audio-practice-timing" },
+            { label: "Difficulty", href: "#audio-practice-difficulty" },
+            { label: "Hidden prompt", href: "#audio-practice-hidden" },
             { label: "Farnsworth", href: "#audio-practice-farnsworth" },
-            { label: "Repeat", href: "#audio-practice-repeat" },
             { label: "Quiz next", href: "#audio-practice-quiz" },
           ]}
           summary={[
             {
-              title: "Local playback",
-              text: "The signal is generated in your browser, so practice text is not uploaded.",
+              title: "Endless training",
+              text: "Practice keeps serving new prompts so you can repeat weak listening patterns without a score cap.",
             },
             {
-              title: "Farnsworth spacing",
-              text: "Character speed stays sharp while letter and word gaps can slow down.",
+              title: "Difficulty memory",
+              text: "Your selected level is saved locally, so the next session starts where you left off.",
             },
             {
-              title: "Practice before testing",
-              text: "Use visible prompts first, then switch to the audio quiz when recall feels steady.",
+              title: "Same audio engine",
+              text: "WPM, Farnsworth spacing, pitch, volume, waveform, attack, release, repeat, and flash all use the same local audio engine.",
             },
           ]}
           details={[
             {
-              kicker: "Playback controls",
-              title: "Timing",
-              text: "Character speed sets the length of dits and dahs. Pitch, volume, attack, and release change how the sound feels without changing the Morse message.",
-              bullets: [
-                "Raise WPM when the shapes sound too slow.",
-                "Lower pitch if high tones feel tiring.",
-                "Use attack and release to soften clicks.",
-              ],
+              kicker: "Prompt pool",
+              title: "Difficulty",
+              text: "Beginner starts with single characters and tiny groups. Easy adds common words and signals. Medium adds longer words and short sentences. Hard includes tougher copy such as Q-codes and longer sentences.",
+            },
+            {
+              kicker: "Listening first",
+              title: "Hidden prompt",
+              text: "The page intentionally hides the text and Morse pattern while you listen. That keeps the task focused on copying by ear instead of reading the answer.",
             },
             {
               kicker: "Learner spacing",
               title: "Farnsworth",
-              text: "Farnsworth spacing is useful when you can recognize characters but need more time between them. The character rhythm stays intact while the spaces stretch.",
-              bullets: [
-                "Set character speed higher than spacing speed.",
-                "Increase spacing speed as copy improves.",
-                "Avoid slowing character shapes so much that they stop sounding like Morse.",
-              ],
+              text: "Farnsworth spacing slows only the gaps between letters and words. The character rhythm stays crisp, which helps you recognize Morse shapes at real speed.",
             },
             {
-              kicker: "Short loops",
-              title: "Repeat",
-              text: "Repeat mode is best for short words, Q-codes, prosigns, and weak prompts. It turns the page into a focused listening loop without leaving the practice screen.",
-            },
-            {
-              kicker: "Next step",
+              kicker: "Skill check",
               title: "Quiz next",
-              text: "Once a prompt is familiar, move to the audio quiz. The quiz hides the answer and scores attempts, accuracy, and streaks using the same timing controls.",
+              text: "When practice feels steady, move to the audio quiz. The quiz uses the same prompt style but limits the run to ten scored questions.",
             },
           ]}
         />
 
         <SectionCard
           eyebrow="Listening flow"
-          title="Use audio practice before tests"
-          description="Listen with the answer visible first, then hide the text and move into the audio quiz when the rhythm feels familiar. For downloadable practice files, use the full audio generator."
+          title="Practice until it feels easy, then test it"
+          description="Use this page for open-ended listening. Switch to the audio quiz when you want a score, or move missed words into word and sentence practice."
         >
           <ActionLinks
             links={[
               { href: "/morse-code-audio-quiz", label: "Audio quiz", primary: true },
               { href: "/morse-code-word-trainer", label: "Word trainer" },
               { href: "/morse-code-sentence-practice", label: "Sentence practice" },
-              { href: "/audio", label: "Export practice audio" },
+              { href: "/morse-code-practice-plan", label: "Practice plan" },
             ]}
           />
         </SectionCard>
@@ -425,10 +664,10 @@ function TogglePill({
       type="button"
       onClick={() => onChange(!checked)}
       className={
-        "inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
+        "inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
         (checked
-          ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-          : "border-slate-200 bg-white text-slate-800 hover:border-sky-300 hover:bg-sky-50")
+          ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+          : "bg-slate-100 text-slate-800 hover:bg-slate-200 hover:text-sky-950")
       }
       aria-pressed={checked}
       aria-describedby={describedBy}
@@ -487,6 +726,16 @@ function SliderRow({
       />
     </div>
   );
+}
+
+function readStoredDifficulty(key: string, fallback: AudioDifficulty): AudioDifficulty {
+  if (typeof window === "undefined") return fallback;
+  try {
+    const stored = window.localStorage.getItem(key);
+    return isAudioDifficulty(stored) ? stored : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 function formatMs(ms: number) {

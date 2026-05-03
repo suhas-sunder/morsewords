@@ -8,7 +8,6 @@ import {
 import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 
-import styles from "~/client/components/shared/pageStyles";
 import {
   CopyIcon,
   LightBulbIcon,
@@ -345,41 +344,38 @@ export default function TranslatorSectionsBasic({
         />
       )}
 
-      <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <div className="border-b border-slate-200 px-4 py-4 sm:px-6 sm:py-4">
+      <section className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
+        <div className="tool-header px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
               Live translator
             </span>
           </div>
 
-          <h1
-            style={styles.h1}
-            className="mt-2 !text-[2.2rem] font-extrabold leading-[1.05] tracking-tight text-sky-950 sm:!text-[3rem]"
-          >
+          <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
             {title}
           </h1>
 
           {subtitle ?? (
-            <p className="mt-2 max-w-none text-base leading-7 text-slate-700 sm:text-[1.08rem] xl:whitespace-nowrap">
+            <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
               Encode text into Morse, decode Morse back to text, and play the signal with timing controls.
             </p>
           )}
         </div>
 
-        <div className="px-4 py-4 sm:px-6 sm:py-4">
-          <div className="flex flex-col gap-3">
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+        <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
+          <div className="flex flex-col gap-4">
+            <div className="rounded-xl bg-white">
               <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-                <div className="inline-flex w-full rounded-lg border border-slate-200 bg-white p-1 sm:w-auto">
+                <div className="inline-flex w-full gap-2 rounded-lg sm:w-auto">
                   <button
                     type="button"
                     onClick={() => setDirection("encode")}
                     className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${
                       direction === "encode"
-                        ? "bg-sky-50 text-sky-950 shadow-sm"
-                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-950"
+                        ? "bg-slate-950 text-sky-100"
+                        : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-950"
                     }`}
                     aria-pressed={direction === "encode"}
                   >
@@ -391,8 +387,8 @@ export default function TranslatorSectionsBasic({
                     onClick={() => setDirection("decode")}
                     className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${
                       direction === "decode"
-                        ? "bg-sky-50 text-sky-950 shadow-sm"
-                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-950"
+                        ? "bg-slate-950 text-sky-100"
+                        : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-950"
                     }`}
                     aria-pressed={direction === "decode"}
                   >
@@ -406,7 +402,7 @@ export default function TranslatorSectionsBasic({
                       type="button"
                       key={ex.label}
                       onClick={ex.set}
-                      className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 active:scale-95"
+                      className="cursor-pointer rounded-full bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95"
                     >
                       Try “{ex.label}”
                     </button>
@@ -416,7 +412,7 @@ export default function TranslatorSectionsBasic({
                 <button
                   type="button"
                   onClick={handleSwap}
-                  className="hidden cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 active:scale-95 md:flex lg:ml-auto"
+                  className="hidden cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 md:flex lg:ml-auto"
                   title="Swap direction"
                 >
                   <span>Swap</span>
@@ -428,8 +424,8 @@ export default function TranslatorSectionsBasic({
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
-                <div className="flex items-center justify-between gap-3 border-b border-slate-200 bg-slate-50 px-4 py-3">
+              <div className="overflow-hidden rounded-xl bg-slate-100">
+                <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <label
                     htmlFor={liveInputId}
                     className="text-sm font-extrabold text-sky-950"
@@ -444,7 +440,7 @@ export default function TranslatorSectionsBasic({
 
                 <textarea
                   id={liveInputId}
-                  className="min-h-[10rem] w-full resize-y border-0 bg-white p-4 font-mono text-slate-950 outline-none focus:ring-0"
+                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0"
                   value={inputValue}
                   onChange={(e) =>
                     direction === "encode"
@@ -463,14 +459,14 @@ export default function TranslatorSectionsBasic({
                   spellCheck={false}
                 />
 
-                <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 px-4 py-3">
+                <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
                   <button
                     type="button"
                     onClick={() => {
                       if (direction === "encode") setPlainA("");
                       else setMorseB("");
                     }}
-                    className="cursor-pointer rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 active:scale-95"
+                    className="cursor-pointer rounded-md bg-slate-200 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-300 hover:text-sky-950 active:scale-95"
                   >
                     Clear input
                   </button>
@@ -494,23 +490,23 @@ export default function TranslatorSectionsBasic({
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-xl border border-sky-100 bg-sky-50/70">
-                <div className="flex items-center justify-between gap-3 border-b border-sky-100 bg-sky-50 px-4 py-3">
+              <div className="overflow-hidden rounded-xl bg-[#202020]">
+                <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <label
                     htmlFor="mw_output"
-                    className="text-sm font-extrabold text-sky-950"
+                    className="text-sm font-extrabold text-slate-200"
                   >
                     {outputLabel}
                   </label>
 
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-sky-800">
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
                     Result
                   </span>
                 </div>
 
                 <textarea
                   id="mw_output"
-                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0"
+                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0"
                   value={outputValue}
                   readOnly
                   placeholder={
@@ -518,26 +514,22 @@ export default function TranslatorSectionsBasic({
                   }
                 />
 
-                <div className="flex flex-wrap items-center justify-between gap-2 border-t border-sky-100 px-4 py-3">
+                <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
                   <button
                     type="button"
                     onClick={() => {
                       if (direction === "encode") setPlainA("");
                       else setMorseB("");
                     }}
-                    className="cursor-pointer rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 active:scale-95"
+                    className="cursor-pointer rounded-md bg-slate-700 px-3 py-1.5 text-sm font-semibold text-slate-200 transition hover:bg-slate-600 active:scale-95"
                   >
                     Clear output
                   </button>
-
-                  <span className="text-sm text-slate-500">
-                    3 spaces = letters. 7 spaces = words.
-                  </span>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-3 rounded-xl bg-white px-4 py-3 sm:flex-row sm:items-center">
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
@@ -546,7 +538,7 @@ export default function TranslatorSectionsBasic({
                   className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${
                     outputValue
                       ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-                      : "cursor-not-allowed bg-slate-200 text-slate-400"
+                      : "cursor-not-allowed bg-slate-100 text-slate-400"
                   }`}
                 >
                   <CopyIcon size={18} title="Copy output" />
@@ -557,10 +549,10 @@ export default function TranslatorSectionsBasic({
                   type="button"
                   onClick={handleShare}
                   disabled={!outputValue}
-                  className={`flex cursor-pointer items-center gap-2 rounded-lg border px-4 py-2 font-semibold transition active:scale-95 ${
+                  className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${
                     outputValue
-                      ? "border-slate-300 bg-white text-slate-900 hover:border-sky-300 hover:bg-sky-50"
-                      : "cursor-not-allowed border-slate-200 text-slate-400"
+                      ? "bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950"
+                      : "cursor-not-allowed bg-slate-100 text-slate-400"
                   }`}
                 >
                   <ShareIcon size={18} title="Share output" />
@@ -578,12 +570,12 @@ export default function TranslatorSectionsBasic({
                 )}
               </div>
 
-              <span className="text-sm leading-relaxed text-slate-500 sm:ml-auto">
-                “/” also works as a word separator.
-              </span>
+              <p className="text-right text-sm leading-relaxed text-slate-600 sm:ml-auto">
+                3 spaces = letters · 7 = words · / = word break
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               <button
                 type="button"
                 onClick={() => {
@@ -603,8 +595,8 @@ export default function TranslatorSectionsBasic({
                 className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${
                   player.state === "playing"
                     ? player.isSupported
-                      ? "border border-slate-900 bg-white text-slate-950 hover:bg-slate-50"
-                      : "cursor-not-allowed border border-slate-200 text-slate-400"
+                      ? "bg-slate-100 text-slate-950 hover:bg-slate-200 hover:text-sky-950"
+                      : "cursor-not-allowed bg-slate-100 text-slate-400"
                     : canPlay && player.isSupported
                       ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
                       : "cursor-not-allowed bg-slate-100 text-slate-400"
@@ -636,10 +628,10 @@ export default function TranslatorSectionsBasic({
                 type="button"
                 onClick={player.stop}
                 disabled={!player.isSupported || player.state === "idle"}
-                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 py-2.5 font-semibold transition active:scale-95 ${
+                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${
                   player.isSupported && player.state !== "idle"
-                    ? "border-slate-300 text-slate-700 hover:bg-slate-50"
-                    : "cursor-not-allowed border-slate-200 text-slate-400"
+                    ? "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
+                    : "cursor-not-allowed bg-slate-100 text-slate-400"
                 }`}
               >
                 <StopIcon size={22} title="Stop timer" />
@@ -650,10 +642,10 @@ export default function TranslatorSectionsBasic({
                 type="button"
                 onClick={handleSaveAudio}
                 disabled={!canPlay || !soundOn}
-                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 py-2.5 font-semibold transition active:scale-95 ${
+                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${
                   canPlay && soundOn
-                    ? "border-slate-300 text-slate-700 hover:bg-slate-50"
-                    : "cursor-not-allowed border-slate-200 text-slate-400"
+                    ? "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
+                    : "cursor-not-allowed bg-slate-100 text-slate-400"
                 }`}
               >
                 <SaveIcon size={22} title="Save audio" />
@@ -661,7 +653,7 @@ export default function TranslatorSectionsBasic({
               </button>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-4">
+            <div className="rounded-2xl bg-white p-4">
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="text-base font-extrabold text-sky-950">
@@ -705,7 +697,7 @@ export default function TranslatorSectionsBasic({
                   />
                 </div>
 
-                <div className="flex flex-wrap gap-2 border-t border-slate-200 pt-4">
+                <div className="flex flex-wrap gap-2">
                   <TogglePill
                     label="Sound"
                     checked={soundOn}
@@ -734,7 +726,7 @@ export default function TranslatorSectionsBasic({
                 <button
                   type="button"
                   onClick={() => setAdvancedOpen((v) => !v)}
-                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 transition hover:border-sky-300 hover:bg-sky-50 active:scale-95 sm:w-auto"
+                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 sm:w-auto"
                   aria-expanded={advancedOpen}
                 >
                   <span className="text-sm font-semibold text-slate-900">
@@ -746,7 +738,7 @@ export default function TranslatorSectionsBasic({
                 </button>
 
                 {advancedOpen && (
-                  <div className="grid gap-4 border-t border-slate-200 pt-4">
+                  <div className="grid gap-4 pt-4">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                       <div>
                         <label className="text-sm font-semibold text-slate-700">
@@ -759,7 +751,7 @@ export default function TranslatorSectionsBasic({
                             setPreset(e.target.value as SoundPreset)
                           }
                           disabled={!soundOn}
-                          className={`mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 transition hover:bg-slate-50 ${
+                          className={`mt-1 w-full rounded-xl bg-slate-100 p-2 transition hover:bg-slate-200 hover:text-sky-950 ${
                             soundOn
                               ? "cursor-pointer"
                               : "cursor-not-allowed opacity-60"
@@ -820,10 +812,10 @@ function TogglePill({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${
+      className={`flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${
         checked
-          ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-          : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"
+          ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+          : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
       }`}
       aria-pressed={checked}
       aria-describedby={describedBy}

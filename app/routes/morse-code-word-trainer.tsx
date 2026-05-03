@@ -439,8 +439,8 @@ export default function MorseCodeWordTrainer() {
           />
         </PageHero>
 
-        <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-200 bg-[#fffdf8] px-5 py-5 sm:px-8">
+        <section className="mt-8 overflow-hidden rounded-2xl bg-white">
+          <div className="px-5 pb-4 pt-6 sm:px-8 sm:pt-7">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <div className="flex items-center gap-3">
@@ -475,7 +475,7 @@ export default function MorseCodeWordTrainer() {
             </div>
           </div>
 
-          <div className="grid gap-6 px-5 py-6 sm:px-8 xl:grid-cols-[310px_minmax(0,1fr)_330px]">
+          <div className="grid gap-6 px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5 xl:grid-cols-[310px_minmax(0,1fr)_330px]">
             <aside className="space-y-5">
               <div className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-5">
                 <div className="flex items-center gap-2 text-sky-950">

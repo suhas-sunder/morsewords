@@ -231,8 +231,8 @@ export default function MorseCodeVisualQuiz() {
           />
         </PageHero>
 
-        <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-200 px-5 py-4 sm:px-8">
+        <section className="mt-8 overflow-hidden rounded-2xl bg-white">
+          <div className="px-5 pb-4 pt-6 sm:px-8 sm:pt-7">
             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
               <span>
                 Question{" "}

@@ -332,25 +332,21 @@ export default function MorseAudioTranslator({
       {flash && <div id="mw_flash_overlay" className="fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75" />}
 
       <section className="pb-7">
-        <div className="max-w-[1120px] mx-auto px-4">
-          <div className="flex flex-col gap-4 ">
-          
-
-            <div className="mw-tool-section overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-              <div className="tool-header flex flex-col gap-3 border-b border-slate-200 px-5 py-6 sm:px-8 sm:py-7">
+            <div className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
+              <div className="tool-header px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
                 <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-sky-800" />
                   <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                     {introEyebrow}
                   </span>
                 </div>
-              <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+              <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
                 {heading}
               </h1>
               
-              <p className="max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">{lead}</p>
+              <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">{lead}</p>
                 </div>
-              <div className="px-5 py-6 sm:px-8 sm:py-7">
+              <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
 
               <div className="flex flex-wrap items-center gap-2">
                 <ModeButton active={sourceMode === "text"} onClick={() => setSourceMode("text")}>{textModeLabel}</ModeButton>
@@ -369,7 +365,7 @@ export default function MorseAudioTranslator({
                     <>
                       <textarea
                         id={sourceInputId}
-                        className="w-full mt-2 min-h-[12rem] resize-y rounded-xl border border-slate-200 bg-white p-3 font-mono outline-sky-500 focus:ring-2 focus:ring-sky-200"
+                        className="w-full mt-2 min-h-[12rem] resize-y rounded-xl bg-slate-100 p-4 font-mono outline-none focus:ring-2 focus:ring-sky-300"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Example: Hello world"
@@ -393,7 +389,7 @@ export default function MorseAudioTranslator({
                     <>
                       <textarea
                         id={sourceInputId}
-                        className="w-full mt-2 min-h-[12rem] resize-y rounded-xl border border-slate-200 bg-white p-3 font-mono outline-sky-500 focus:ring-2 focus:ring-sky-200"
+                        className="w-full mt-2 min-h-[12rem] resize-y rounded-xl bg-slate-100 p-4 font-mono outline-none focus:ring-2 focus:ring-sky-300"
                         value={morse}
                         onChange={(e) => setMorse(e.target.value)}
                         placeholder="Example: ... --- ..."
@@ -407,23 +403,23 @@ export default function MorseAudioTranslator({
                   )}
                 </div>
 
-                <div className="rounded-2xl border border-slate-200 bg-[#fffdf8] p-4">
-                  <h2 className="text-lg font-extrabold text-sky-950">Generated Morse preview</h2>
-                  <p className="mt-1 text-sm text-slate-700">This is the exact dot-dash pattern used for playback and downloads.</p>
-                  <code className="mt-3 block max-h-44 overflow-auto whitespace-pre-wrap break-words rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm text-slate-950">
+                <div className="overflow-hidden rounded-xl bg-[#202020] p-4 text-slate-200">
+                  <h2 className="text-lg font-extrabold text-slate-200">Output (Morse)</h2>
+                  <p className="mt-1 text-sm text-slate-300">This is the exact dot-dash pattern used for playback and downloads.</p>
+                  <code className="mt-3 block max-h-44 overflow-auto whitespace-pre-wrap break-words bg-transparent font-mono text-sm text-sky-100">
                     {activeCode.trim() || "Your Morse output will appear here."}
                   </code>
                   <div className="mt-3 flex flex-wrap items-center gap-2">
                     <button
                       onClick={handleCopyMorse}
                       disabled={!canPlay}
-                      className={`inline-flex items-center gap-2 px-3 py-2 cursor-pointer rounded-xl font-semibold active:scale-95 transition border ${canPlay ? "border-slate-300 text-slate-700 hover:bg-white" : "border-slate-200 text-slate-400 cursor-not-allowed"}`}
+                      className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${canPlay ? "cursor-pointer bg-slate-700 text-slate-200 hover:bg-slate-600" : "cursor-not-allowed bg-slate-800 text-slate-500"}`}
                     >
                       <CopyIcon size={18} title="Copy Morse" />
                       <span>{copied === "morse" ? "Copied" : "Copy Morse"}</span>
                     </button>
                   </div>
-                  <p className="mt-3 text-xs text-slate-600">3 spaces = letters, 7 spaces = words, "/" = word break.</p>
+                  <p className="mt-3 text-xs text-slate-300">3 spaces = letters, 7 spaces = words, "/" = word break.</p>
                 </div>
               </div>
 
@@ -576,11 +572,9 @@ export default function MorseAudioTranslator({
               <p className="mt-4 text-xs text-slate-500">Audio is generated in your browser. WAV rendering is local. MP3 download is encoded in the browser when selected.</p>
               </div>
             </div>
-          </div>
-        </div>
       </section>
 
-        <div className={isSoundPage ? "rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 shadow-sm sm:p-7" : ""}>
+        <div className={isSoundPage ? "rounded-2xl bg-white p-5 sm:p-7" : ""}>
              
               {isSoundPage ? (
                 <>
@@ -608,7 +602,7 @@ export default function MorseAudioTranslator({
 
 function ModeButton({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) {
   return (
-    <button type="button" onClick={onClick} className={`rounded-lg border px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${active ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"}`}>
+    <button type="button" onClick={onClick} className={`rounded-lg px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${active ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"}`}>
       {children}
     </button>
   );
@@ -617,16 +611,16 @@ function ModeButton({ active, children, onClick }: { active: boolean; children: 
 function InputButtons({ onUseExample, onUseSecond, secondLabel, onClear }: { onUseExample: () => void; onUseSecond?: () => void; secondLabel?: string; onClear: () => void }) {
   return (
     <div className="mt-2 flex flex-wrap items-center gap-2">
-      <button type="button" onClick={onUseExample} className="px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition">Use example</button>
-      {onUseSecond && secondLabel ? <button type="button" onClick={onUseSecond} className="px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition">{secondLabel}</button> : null}
-      <button type="button" onClick={onClear} className="ml-auto px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-sky-50 font-semibold text-sm cursor-pointer active:scale-95 transition">Clear input</button>
+      <button type="button" onClick={onUseExample} className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-semibold text-sm cursor-pointer active:scale-95 transition">Use example</button>
+      {onUseSecond && secondLabel ? <button type="button" onClick={onUseSecond} className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-semibold text-sm cursor-pointer active:scale-95 transition">{secondLabel}</button> : null}
+      <button type="button" onClick={onClear} className="ml-auto px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-semibold text-sm cursor-pointer active:scale-95 transition">Clear input</button>
     </div>
   );
 }
 
 function ExportButton({ label, onClick, disabled }: { label: string; onClick: () => void; disabled: boolean }) {
   return (
-    <button type="button" onClick={onClick} disabled={disabled} className={`inline-flex items-center gap-2 rounded-lg border px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${!disabled ? "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950" : "border-slate-200 text-slate-400 cursor-not-allowed"}`}>
+    <button type="button" onClick={onClick} disabled={disabled} className={`inline-flex items-center gap-2 rounded-lg px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${!disabled ? "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950" : "text-slate-400 cursor-not-allowed"}`}>
       <SaveIcon size={18} title={label} />
       <span>{label}</span>
     </button>
@@ -635,7 +629,7 @@ function ExportButton({ label, onClick, disabled }: { label: string; onClick: ()
 
 function TogglePill({ label, checked, onChange, icon, describedBy }: { label: string; checked: boolean; onChange: (v: boolean) => void; icon?: React.ReactNode; describedBy?: string }) {
   return (
-    <button type="button" onClick={() => onChange(!checked)} className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${checked ? "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950"}`} aria-pressed={checked} aria-describedby={describedBy}>
+    <button type="button" onClick={() => onChange(!checked)} className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${checked ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"}`} aria-pressed={checked} aria-describedby={describedBy}>
       {icon}
       <span>{label}</span>
     </button>

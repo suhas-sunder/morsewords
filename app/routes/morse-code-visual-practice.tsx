@@ -137,8 +137,8 @@ export default function MorseCodeVisualPractice() {
           />
         </PageHero>
 
-        <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-center">
+        <section className="mt-8 overflow-hidden rounded-2xl bg-white">
+          <div className="grid gap-6 px-5 py-6 sm:px-8 sm:py-7 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-center">
             <div className="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-[#fffdf8] p-8">
               {hasFlashed ? (
                 <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />

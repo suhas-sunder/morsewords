@@ -22,42 +22,37 @@ const variants: Record<
 > = {
   primary: {
     normal: {
-      border: "1px solid #020617",
+      border: 0,
       background: "#020617",
       color: "#e0f2fe",
     },
     hover: {
       background: "#0f172a",
       color: "#ffffff",
-      transform: "translateY(-1px)",
     },
     disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
   secondary: {
     normal: {
-      border: "1px solid #e2e8f0",
-      background: "#ffffff",
+      border: 0,
+      background: "#eef2f6",
       color: "#0f172a",
     },
     hover: {
-      borderColor: "#7dd3fc",
-      background: "#f0f9ff",
+      background: "#e2e8f0",
       color: "#082f49",
-      transform: "translateY(-1px)",
     },
     disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
   ghost: {
     normal: {
-      border: "1px solid #e2e8f0",
-      background: "#ffffff",
+      border: 0,
+      background: "#f8fafc",
       color: "#0f172a",
     },
     hover: {
-      borderColor: "#7dd3fc",
-      background: "#f0f9ff",
+      background: "#eef2f6",
       color: "#082f49",
-      transform: "translateY(-1px)",
     },
     disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
@@ -98,7 +93,7 @@ export default function Button({
         rest.onPointerDown?.(e);
       }}
       onPointerUp={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.transform = hover && !disabled ? "translateY(-1px)" : "translateY(0)";
+        (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
         rest.onPointerUp?.(e);
       }}
       onPointerEnter={(e) => {

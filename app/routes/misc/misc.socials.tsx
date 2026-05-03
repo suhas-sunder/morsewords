@@ -96,14 +96,14 @@ function ExternalCard(props: { to: string; title: string; subtitle?: string }) {
 export default function Socials() {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col px-4 py-8">
-      <header className="mb-10 overflow-hidden rounded-2xl border border-slate-200 bg-white px-6 py-10 shadow-sm">
+      <header className="mb-10 overflow-hidden rounded-2xl bg-white px-5 py-6 sm:px-8 sm:py-7">
         <p className="m-0 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900 before:h-px before:w-8 before:bg-sky-800 before:content-['']">
           MorseWords links
         </p>
         <h1 className="mt-3 text-4xl font-black leading-tight text-sky-950 sm:text-5xl">
           MorseWords Links
         </h1>
-        <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate-600">
+        <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
           Fast, modern, practical tools for translating, listening to, and
           practicing Morse code. This page links to my other utility sites and
           related projects.
