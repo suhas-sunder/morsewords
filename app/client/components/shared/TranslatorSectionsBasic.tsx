@@ -725,11 +725,11 @@ export default function TranslatorSectionsBasic({
                     checked={flash}
                     onChange={setFlash}
                     icon={<LightBulbIcon size={16} title="Light" />}
-                    describedBy={STROBE_WARNING_ID}
+                    describedBy={flash ? STROBE_WARNING_ID : undefined}
                   />
                 </div>
 
-                <StrobeWarning id={STROBE_WARNING_ID} />
+                {flash ? <StrobeWarning id={STROBE_WARNING_ID} /> : null}
 
                 <button
                   type="button"

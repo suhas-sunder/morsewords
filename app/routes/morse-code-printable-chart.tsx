@@ -2047,10 +2047,12 @@ function ContentLimitNote({
   label: string;
   stats: ReturnType<typeof getCustomContentStats>;
 }) {
+  const hasTriggeredLimit =
+    stats.unusedForLevelCount > 0 || stats.cappedOutCount > 0;
+
+  if (!hasTriggeredLimit) return null;
+
   const notices = [
-    stats.usesFallback
-      ? `Using the default ${label.toLowerCase()} because the custom field is empty.`
-      : "",
     `${stats.usedCount} of ${stats.sourceCount} ${label.toLowerCase()} will print for the current difficulty.`,
     stats.unusedForLevelCount
       ? `${stats.unusedForLevelCount} ${

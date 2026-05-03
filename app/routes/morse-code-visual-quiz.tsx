@@ -110,6 +110,7 @@ export default function MorseCodeVisualQuiz() {
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
   const [wpm, setWpm] = React.useState(14);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
+  const [hasFlashed, setHasFlashed] = React.useState(false);
 
   const prompt = PROMPTS[index % PROMPTS.length];
   const morse = textToMorse(prompt);
@@ -179,6 +180,12 @@ export default function MorseCodeVisualQuiz() {
     setSolved(false);
     setStreak(0);
     setRunStartedAt(null);
+    setHasFlashed(false);
+  }
+
+  function flashPrompt() {
+    setHasFlashed(true);
+    play();
   }
 
   const jsonLd = {
@@ -317,7 +324,9 @@ export default function MorseCodeVisualQuiz() {
           ) : (
             <div className="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[320px_minmax(0,1fr)]">
               <div className="flex flex-col items-center rounded-2xl border border-slate-200 bg-[#fffdf8] p-6">
-                <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
+                {hasFlashed ? (
+                  <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
+                ) : null}
                 <div
                   className={
                     "h-40 w-40 rounded-full border transition-all duration-75 " +
@@ -329,8 +338,8 @@ export default function MorseCodeVisualQuiz() {
                 />
                 <button
                   type="button"
-                  onClick={play}
-                  aria-describedby={STROBE_WARNING_ID}
+                  onClick={flashPrompt}
+                  aria-describedby={hasFlashed ? STROBE_WARNING_ID : undefined}
                   className="mt-5 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 >
                   <LightBulbIcon size={20} title="Flash prompt" />

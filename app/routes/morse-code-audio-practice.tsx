@@ -290,11 +290,13 @@ export default function MorseCodeAudioPractice() {
                       checked={flash}
                       onChange={setFlash}
                       icon={<LightBulbIcon size={16} title="Flash" />}
-                      describedBy={STROBE_WARNING_ID}
+                      describedBy={flash ? STROBE_WARNING_ID : undefined}
                     />
                   </div>
                 </div>
-                <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
+                {flash ? (
+                  <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
+                ) : null}
               </div>
             ) : null}
 

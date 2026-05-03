@@ -497,10 +497,10 @@ export default function MorseAudioTranslator({
                   <div className="mt-4 flex flex-wrap gap-2">
                     <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} />
                     <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} />
-                    <TogglePill label="Flash" checked={flash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={STROBE_WARNING_ID} />
+                    <TogglePill label="Flash" checked={flash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={flash ? STROBE_WARNING_ID : undefined} />
                   </div>
 
-                  <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
+                  {flash ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}
                 </div>
               ) : null}
 
