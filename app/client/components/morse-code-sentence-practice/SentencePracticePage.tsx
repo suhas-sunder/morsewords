@@ -215,7 +215,7 @@ function ToggleButton({
  type="button" onClick={onClick}
  className={`rounded-full px-3 py-1.5 text-sm font-bold cursor-pointer transition ${
  active
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-white text-slate-700 hover:bg-sky-50 hover:text-sky-950"}`}
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950"}`}
  >
  {children}
  </button>
@@ -447,7 +447,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <div
  className={`mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${
  feedback.ok
- ?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-800"}`}
+ ?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-800 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]"}`}
  role="status" aria-live="polite">
               <span aria-hidden="true">{feedback.ok ?"✓":"!"}</span>
  <span>{feedback.msg}</span>
@@ -458,8 +458,8 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <div>
  <JsonLdScript jsonLd={jsonLd} />
 
- <section className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
- <div className="tool-header flex flex-col gap-3 px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
+ <section className="mw-tool-section mt-4">
+ <div className="tool-header flex flex-col gap-3 pb-0 pt-6 sm:pt-7">
  <div className="flex items-center gap-3">
  <span className="h-px w-8 bg-sky-800"/>
  <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -476,27 +476,27 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </p>
  </div>
 
- <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
+ <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
  <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
- <div className="inline-flex rounded-xl bg-slate-100 p-1 w-full sm:w-auto">
+ <div className="inline-flex w-full rounded-xl bg-[#fffdf8]/75 p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:w-auto">
  <button
  type="button" onClick={() => setMode("text_to_morse")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="text_to_morse"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-200"}`}
+ mode ==="text_to_morse"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-white"}`}
  >
                     Text → Morse
  </button>
  <button
  type="button" onClick={() => setMode("morse_to_text")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="morse_to_text"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-200"}`}
+ mode ==="morse_to_text"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-white"}`}
  >
                     Morse → Text
  </button>
  <button
  type="button" onClick={() => setMode("mixed")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="mixed"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-200"}`}
+ mode ==="mixed"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-white"}`}
  >
  Mixed
  </button>
@@ -547,7 +547,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  </div>
 
- <div className="mt-4 rounded-2xl p-4 sm:p-5 bg-white">
+ <div className="mt-4 rounded-xl bg-[#fffaf2]/45 p-4 sm:p-5">
  {gameOver ? (
  <div className="rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
  <div className="flex flex-col items-center text-center">
@@ -657,7 +657,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </span>
  </div>
 
- <div className="mt-4 min-h-[120px] rounded-2xl bg-white/60 p-4 text-2xl sm:text-3xl font-mono tracking-wide text-neutral-900 break-words whitespace-pre-wrap leading-relaxed">
+ <div className="mt-4 min-h-[120px] rounded-xl bg-[#fffdf8]/85 p-4 font-mono text-2xl leading-relaxed tracking-wide text-slate-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] break-words whitespace-pre-wrap sm:text-3xl">
  {prompt.kind ==="morse_to_text"? renderMorseSpacing(prompt.morse)
  : prompt.plain}
  </div>

@@ -82,7 +82,7 @@ function CopyButton({
 
 function DesktopTable({ items }: { items: Entry[] }) {
  return (
- <div className="hidden overflow-x-auto rounded-xl bg-white md:block">
+ <div className="hidden overflow-x-auto rounded-xl bg-[#fffdf8] outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] md:block">
  <table className="w-full text-left">
  <thead className="bg-[#f7f4ee] font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">
  <tr>
@@ -122,7 +122,7 @@ function MobileCards({ items }: { items: Entry[] }) {
  {items.map((e) => (
  <article
  key={`${e.category}-${e.label}-${e.morse}`}
- className="rounded-2xl bg-white p-4">
+ className="rounded-xl bg-[#fffdf8] p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <div className="grid gap-3">
  <div className="grid gap-1">
  <div className="text-xs font-semibold tracking-wide text-slate-500">
@@ -638,23 +638,23 @@ export default function DictionaryRoute() {
  />
  </PageHero>
 
- <div className="mb-3 mt-5 rounded-2xl bg-white p-4">
+ <div className="mb-4 mt-5 rounded-xl bg-[#fffdf8]/80 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <label className="mb-2 block text-sm font-extrabold text-sky-950">
  Filter dictionary
  </label>
  <input
  value={query}
  onChange={(e) => setQuery(e.target.value)}
- placeholder="Type to filter by label, Morse, or meaning…" className="w-full rounded-xl bg-white px-4 py-3 text-slate-950 transition focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ placeholder="Type to filter by label, Morse, or meaning…" className="w-full rounded-xl bg-[#fffdf8] px-4 py-3 text-slate-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"/>
  </div>
 
- <nav className="-mx-4 mb-8 overflow-x-auto bg-white px-4 py-3">
+ <nav className="mb-8 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <div className="flex gap-2 whitespace-nowrap text-sm">
  {sections.map((s) => (
  <a
  key={s.id}
  href={`#${s.id}`}
- className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300">
+ className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300">
  {s.title}
  </a>
  ))}
@@ -665,7 +665,7 @@ export default function DictionaryRoute() {
  <Section key={s.id} id={s.id} title={s.title} items={s.filteredItems} />
  ))}
 
- <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
+ <nav aria-label="Breadcrumb" className="mb-4 text-sm text-slate-600">
  <ol className="flex flex-wrap items-center gap-2">
  <li>
  <a href="/" className="underline hover:no-underline cursor-pointer">
@@ -673,7 +673,7 @@ export default function DictionaryRoute() {
  </a>
  </li>
  <li>/</li>
- <li className="font-semibold text-gray-900">Morse Code Dictionary</li>
+ <li className="font-semibold text-sky-950">Morse Code Dictionary</li>
  </ol>
  </nav>
  </main>

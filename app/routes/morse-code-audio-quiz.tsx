@@ -321,7 +321,7 @@ export default function MorseCodeAudioQuiz() {
           />
         </PageHero>
 
-        <section className="mt-8 rounded-[1.75rem] bg-white px-5 py-6 sm:px-8 lg:px-10">
+        <section className="mt-8 rounded-xl bg-[#fffaf2]/45 px-5 py-6 sm:px-8 lg:px-10">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap gap-2">
               {audioDifficultyOptions.map((option) => (
@@ -333,7 +333,7 @@ export default function MorseCodeAudioQuiz() {
                     "min-h-11 cursor-pointer rounded-xl px-4 py-2 font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
                     (difficulty === option.value
                       ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-                      : "bg-slate-100 text-slate-800 hover:bg-slate-200 hover:text-sky-950")
+                      : "bg-[#fffdf8] text-slate-800 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950")
                   }
                   aria-pressed={difficulty === option.value}
                   title={option.description}
@@ -390,7 +390,7 @@ export default function MorseCodeAudioQuiz() {
           ) : (
             <>
               <div className="mt-5 grid gap-5 lg:grid-cols-2">
-                <div className="rounded-xl bg-slate-100 p-4">
+                <div className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)]">
                   <div className="mb-3 flex items-center justify-between gap-3">
                     <label
                       htmlFor="mw_audio_quiz_answer"
@@ -421,7 +421,7 @@ export default function MorseCodeAudioQuiz() {
                   />
                 </div>
 
-                <div className="rounded-xl bg-[#202020] p-4 text-sky-100">
+                <div className="rounded-xl bg-slate-950 p-4 text-sky-100">
                   <div className="mb-3 flex items-center justify-between gap-3">
                     <h2 className="text-sm font-extrabold text-slate-100">
                       Playback
@@ -473,7 +473,7 @@ export default function MorseCodeAudioQuiz() {
                   type="button"
                   onClick={player.stop}
                   disabled={player.state === "idle"}
-                  className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
+                  className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
                 >
                   <StopIcon size={20} title="Stop audio" />
                   Stop
@@ -483,7 +483,7 @@ export default function MorseCodeAudioQuiz() {
                     type="button"
                     onClick={checkAnswer}
                     disabled={!normalizedAnswer}
-                    className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
+                    className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
                   >
                     <CheckCircleIcon size={20} title="Check answer" />
                     Check answer
@@ -521,7 +521,7 @@ export default function MorseCodeAudioQuiz() {
                   type="button"
                   onClick={nextQuestion}
                   disabled={feedback !== "idle"}
-                  className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
+                  className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-slate-400"
                 >
                   <RefreshIcon size={18} title="Skip question" />
                   Skip question
@@ -611,7 +611,7 @@ export default function MorseCodeAudioQuiz() {
                     <select
                       value={preset}
                       onChange={(event) => setPreset(event.target.value as SoundPreset)}
-                      className="mt-2 min-h-11 w-full rounded-xl bg-slate-100 px-3 font-semibold text-slate-950 outline-none transition hover:bg-slate-200 focus:ring-2 focus:ring-sky-300"
+                      className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition hover:bg-white focus:ring-2 focus:ring-sky-300"
                     >
                       <option value="cw_radio">CW (Radio)</option>
                       <option value="sine">Sine</option>
@@ -651,7 +651,7 @@ export default function MorseCodeAudioQuiz() {
             <button
               type="button"
               onClick={() => setAdvancedOpen((value) => !value)}
-              className="mt-5 min-h-11 w-full cursor-pointer rounded-lg bg-slate-100 px-4 py-2 font-semibold text-slate-900 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+              className="mt-5 min-h-11 w-full cursor-pointer rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
             >
               {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
             </button>
@@ -757,7 +757,7 @@ function QuizComplete({
   onReset: () => void;
 }) {
   return (
-    <div className="mt-6 rounded-2xl bg-slate-100 p-5 text-center">
+    <div className="mt-6 rounded-xl bg-[#fffaf2]/70 p-5 text-center outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
       <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
         Quiz complete
       </p>
@@ -773,7 +773,7 @@ function QuizComplete({
           ["Best streak", String(bestStreak)],
           ["Final streak", String(streak)],
         ].map(([label, value]) => (
-          <div key={label} className="rounded-xl bg-white p-4 text-left">
+          <div key={label} className="rounded-xl bg-[#fffdf8]/85 p-4 text-left outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
             <p className="text-sm font-semibold text-slate-600">{label}</p>
             <p className="mt-1 text-3xl font-black text-slate-950">{value}</p>
           </div>
@@ -827,7 +827,7 @@ function TogglePill({
         "inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
         (checked
           ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-          : "bg-slate-100 text-slate-800 hover:bg-slate-200 hover:text-sky-950")
+          : "bg-[#fffdf8] text-slate-800 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950")
       }
       aria-pressed={checked}
       aria-describedby={describedBy}

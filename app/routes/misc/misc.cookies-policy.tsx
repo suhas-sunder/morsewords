@@ -37,8 +37,8 @@ export const meta: MetaFunction = () => {
 
 export default function CookiesPolicy() {
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 text-slate-800">
-      <header className="w-full overflow-hidden rounded-2xl bg-white px-5 py-6 sm:px-8 sm:py-7">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-10 text-slate-800 sm:py-12">
+      <header className="w-full px-1 py-3 sm:px-2">
         <p className="m-0 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900 before:h-px before:w-8 before:bg-sky-800 before:content-['']">
           MorseWords policy
         </p>
@@ -65,9 +65,9 @@ export default function CookiesPolicy() {
         </p>
       </header>
 
-      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-white p-5 sm:p-8">
+      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] sm:p-8">
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">What are cookies?</h2>
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">What are cookies?</h2>
           <p>
             Cookies are small data files that are placed on your computer or
             mobile device when you visit a website. Cookies are widely used by
@@ -88,7 +88,7 @@ export default function CookiesPolicy() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">Why do we use cookies?</h2>
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">Why do we use cookies?</h2>
           <p>
             We use first- and third-party cookies for several reasons. Some
             cookies are required for technical reasons in order for our Website
@@ -102,7 +102,7 @@ export default function CookiesPolicy() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">
             Analytics and performance cookies
           </h2>
           <p>
@@ -120,7 +120,7 @@ export default function CookiesPolicy() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">Advertising cookies</h2>
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">Advertising cookies</h2>
           <p>
             We may display advertisements on our Website through Google AdSense
             and/or other advertising partners. Advertising providers may use
@@ -129,7 +129,7 @@ export default function CookiesPolicy() {
             interests.
           </p>
 
-          <h3 className="text-xl">Google advertising cookies</h3>
+          <h3 className="text-xl font-extrabold text-sky-950">Google advertising cookies</h3>
           <p>
             Google uses cookies to help serve the ads it displays on the
             websites of its partners, such as websites displaying Google ads or
@@ -141,19 +141,19 @@ export default function CookiesPolicy() {
           <p className="flex flex-col gap-2">
             <Link
               to="https://policies.google.com/technologies/cookies"
-              className="hover:underline"
+              className="font-semibold text-sky-800 hover:text-sky-950 hover:underline"
             >
               Find out how Google uses cookies...
             </Link>
             <Link
               to="https://adssettings.google.com/"
-              className="hover:underline"
+              className="font-semibold text-sky-800 hover:text-sky-950 hover:underline"
             >
               Manage Google Ads Settings...
             </Link>
             <Link
               to="https://optout.aboutads.info/?c=2&lang=EN"
-              className="hover:underline"
+              className="font-semibold text-sky-800 hover:text-sky-950 hover:underline"
             >
               Opt out via aboutads.info...
             </Link>
@@ -161,7 +161,7 @@ export default function CookiesPolicy() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">How can I control cookies?</h2>
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">How can I control cookies?</h2>
           <p>
             You have the right to decide whether to accept or reject cookies.
             You can usually exercise your cookie rights by setting your
@@ -178,7 +178,7 @@ export default function CookiesPolicy() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">
             How can I control cookies on my browser?
           </h2>
           <p>
@@ -195,7 +195,7 @@ export default function CookiesPolicy() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">
             What about other tracking technologies, like web beacons?
           </h2>
           <p>
@@ -211,7 +211,7 @@ export default function CookiesPolicy() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">
             Do you use local storage or similar technologies?
           </h2>
           <p>
@@ -229,7 +229,7 @@ export default function CookiesPolicy() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">
             How often will you update this Cookie Policy?
           </h2>
           <p>
@@ -246,7 +246,7 @@ export default function CookiesPolicy() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <h2 className="flex py-2 text-2xl">
+          <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">
             Where can I get further information?
           </h2>
           <p>

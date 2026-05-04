@@ -67,7 +67,7 @@ export default function MorseLookupTable() {
  return (
  <section className="mt-10 rounded-2xl bg-[#fffdf8] p-6">
  <h2 className="text-2xl font-bold text-neutral-900">Morse Code Dictionary</h2>
- <p className="mt-2 text-gray-700 leading-relaxed">
+ <p className="mt-2 leading-relaxed text-slate-700">
  Use this lookup table to copy a character&apos;s dot and dash pattern. For translation, use the
  main translator. This page is a quick reference only.
  </p>

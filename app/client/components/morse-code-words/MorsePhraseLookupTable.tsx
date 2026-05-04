@@ -320,7 +320,7 @@ function MorsePhraseLookupTable() {
 
  return (
  <section
- className="mt-4 overflow-hidden rounded-2xl bg-[#fffdf8]" aria-labelledby="morse-words-table-title"itemScope
+ className="mt-4 overflow-hidden rounded-xl bg-[#fffaf2]/45" aria-labelledby="morse-words-table-title"itemScope
  itemType="https://schema.org/Table">
  <h2
  id="morse-words-table-title" className="px-5 pt-6 text-3xl font-extrabold tracking-tight text-sky-950 sm:px-8 sm:pt-7 sm:text-4xl" itemProp="name">
@@ -335,7 +335,7 @@ function MorsePhraseLookupTable() {
  into puzzles, worksheets, or notes.
  </p>
 
- <div className="mx-5 mb-5 flex flex-col gap-3 rounded-xl bg-white p-4 sm:mx-8 md:flex-row md:items-center md:justify-between">
+ <div className="mx-5 mb-5 flex flex-col gap-3 rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:mx-8 md:flex-row md:items-center md:justify-between">
  <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
  <label className="text-sm font-semibold text-sky-950">
  Search
@@ -343,7 +343,7 @@ function MorsePhraseLookupTable() {
  value={query}
  onChange={(e) => setQuery(e.target.value)}
  placeholder='Try"SOS","QSL", or"thank"'
- className="mt-1 w-full rounded-xl bg-white px-3 py-2 text-sm text-slate-950 transition focus:outline-none focus:ring-2 focus:ring-sky-300 sm:ml-2 sm:mt-0 sm:w-80"/>
+ className="mt-1 w-full rounded-xl bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition focus:outline-none focus:ring-2 focus:ring-sky-300 sm:ml-2 sm:mt-0 sm:w-80"/>
  </label>
 
  <label className="text-sm font-semibold text-sky-950">
@@ -351,7 +351,7 @@ function MorsePhraseLookupTable() {
  <select
  value={category}
  onChange={(e) => setCategory(e.target.value as Category |"All")}
- className="mt-1 cursor-pointer rounded-xl bg-white px-3 py-2 text-sm text-slate-950 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-300 sm:ml-2 sm:mt-0">
+ className="mt-1 cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 sm:ml-2 sm:mt-0">
  <option value="All">All</option>
  <option value="Common">Common words</option>
  <option value="Emergency">Emergency</option>
@@ -372,7 +372,7 @@ function MorsePhraseLookupTable() {
  </p>
  </div>
 
- <div className="mx-5 overflow-x-auto rounded-xl bg-white sm:mx-8">
+ <div className="mx-5 overflow-x-auto rounded-xl bg-[#fffdf8] outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:mx-8">
  <table className="min-w-full -collapse text-sm text-slate-800 md:text-base">
  <thead className="bg-[#f7f4ee] font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">
  <tr>
@@ -411,7 +411,7 @@ function MorsePhraseLookupTable() {
  type="button" onClick={() => copy(p.morse, key)}
  className={`rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${
  copied
- ?"bg-slate-950 text-sky-100":"bg-white text-slate-900 hover:bg-sky-50 hover:text-sky-950"}`}
+ ?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950"}`}
  aria-label={`Copy Morse for ${p.phrase}`}
  >
  {copied ?"Copied":"Copy"}

@@ -1,7 +1,7 @@
 export default function HowToUseSuiteGuide() {
   return (
     <div className="space-y-8">
-      <section className="mt-6 overflow-hidden rounded-2xl bg-white px-5 py-6 sm:px-8 sm:py-7">
+      <section className="mw-tool-section mt-4 py-6 sm:py-7">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -37,7 +37,7 @@ export default function HowToUseSuiteGuide() {
           <a
             key={href}
             href={href}
-            className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+            className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950 hover:outline-[rgba(11,36,71,0.22)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
           >
             {label}
           </a>
@@ -45,7 +45,7 @@ export default function HowToUseSuiteGuide() {
       </nav>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl bg-white p-5">
+        <div className="rounded-xl bg-[#fffdf8]/80 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
           <p className="text-base font-extrabold text-sky-950">
             Copy-first design
           </p>
@@ -54,7 +54,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
 
-        <div className="rounded-xl bg-white p-5">
+        <div className="rounded-xl bg-[#fffdf8]/80 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
           <p className="text-base font-extrabold text-sky-950">
             Spacing matters
           </p>
@@ -64,7 +64,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
 
-        <div className="rounded-xl bg-white p-5">
+        <div className="rounded-xl bg-[#fffdf8]/80 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
           <p className="text-base font-extrabold text-sky-950">
             Suite, not one page
           </p>
@@ -79,7 +79,7 @@ export default function HowToUseSuiteGuide() {
         {/* Translator */}
         <section
           id="translator"
-          className="overflow-hidden rounded-2xl bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
         >
           <div className="flex flex-col gap-2">
             <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
@@ -115,7 +115,7 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-white p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Best for
               </p>
@@ -126,7 +126,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="rounded-xl bg-white p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Common gotcha
               </p>
@@ -142,7 +142,7 @@ export default function HowToUseSuiteGuide() {
         {/* Audio */}
         <section
           id="audio"
-          className="overflow-hidden rounded-2xl bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             2) Audio translator
@@ -175,7 +175,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mt-5 rounded-xl bg-white p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
             <p className="text-base font-extrabold text-sky-950">Tip</p>
             <p className="mt-2 text-base sm:text-lg text-slate-700">
               If a long message is hard to follow, shorten it first in the
@@ -187,7 +187,7 @@ export default function HowToUseSuiteGuide() {
         {/* Practice */}
         <section
           id="practice"
-          className="overflow-hidden rounded-2xl bg-[#fffdf8] p-6 sm:p-7"
+          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             3) Practice
@@ -221,7 +221,7 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-white p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 When to use it
               </p>
@@ -231,7 +231,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-white p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 When to switch tools
               </p>
@@ -246,7 +246,7 @@ export default function HowToUseSuiteGuide() {
         {/* Typing */}
         <section
           id="typing"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7 bg-[#fffdf8]"
+          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             4) Typing tool
@@ -280,7 +280,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mt-5 rounded-xl bg-[#f7f4ee] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
             <p className="text-base font-extrabold text-sky-950">
               Good use case
             </p>
@@ -294,7 +294,7 @@ export default function HowToUseSuiteGuide() {
         {/* Dictionary */}
         <section
           id="dictionary"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7 bg-[#fffdf8]"
+          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             5) Dictionary
@@ -322,7 +322,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mt-5 rounded-xl bg-[#f7f4ee] p-5">
+          <div className="mt-5 rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
             <p className="text-base font-extrabold text-sky-950">
               Shortcut mindset
             </p>
@@ -336,7 +336,7 @@ export default function HowToUseSuiteGuide() {
         {/* Spacing */}
         <section
           id="spacing"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7 bg-[#fffdf8]"
+          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             Spacing rules you actually need
@@ -349,7 +349,7 @@ export default function HowToUseSuiteGuide() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Recommended format
               </p>
@@ -361,7 +361,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="rounded-xl bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Why this works
               </p>
@@ -384,14 +384,14 @@ export default function HowToUseSuiteGuide() {
         {/* Workflows */}
         <section
           id="workflows"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7 bg-[#fffdf8]"
+          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             Fast workflows
           </h2>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#fffdf8] p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Convert → Listen
               </p>
@@ -402,7 +402,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8] p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Hear → Confirm
               </p>
@@ -413,7 +413,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8] p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Manual entry → Decode
               </p>
@@ -424,7 +424,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8] p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Debug a bad paste
               </p>
@@ -440,7 +440,7 @@ export default function HowToUseSuiteGuide() {
         {/* Copy + share */}
         <section
           id="copy"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7 bg-[#fffdf8]"
+          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             Copying, pasting, and sharing without breaking the spacing
@@ -456,7 +456,7 @@ export default function HowToUseSuiteGuide() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Safer places to paste
               </p>
@@ -467,7 +467,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="rounded-xl bg-[#f7f4ee] p-5">
+            <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Places that often mangle it
               </p>
@@ -530,7 +530,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
       </div>
-      <div className="mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
         <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           Quick reference
         </h2>

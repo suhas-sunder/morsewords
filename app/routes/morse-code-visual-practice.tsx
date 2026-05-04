@@ -137,9 +137,9 @@ export default function MorseCodeVisualPractice() {
           />
         </PageHero>
 
-        <section className="mt-8 overflow-hidden rounded-2xl bg-white">
-          <div className="grid gap-6 px-5 py-6 sm:px-8 sm:py-7 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-center">
-            <div className="flex flex-col items-center justify-center rounded-2xl bg-[#fffdf8] p-8">
+        <section className="mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
+          <div className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-center">
+            <div className="flex flex-col items-center justify-center rounded-xl bg-[#fffdf8]/85 p-8 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               {hasFlashed ? (
                 <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
               ) : null}
@@ -147,7 +147,7 @@ export default function MorseCodeVisualPractice() {
                 role="img"
                 className={
                   "h-44 w-44 rounded-full transition-all duration-75 " +
-                  (active ? "bg-sky-200" : "bg-slate-100")
+                  (active ? "bg-sky-200" : "bg-[#fffaf2]")
                 }
                 aria-label={active ? "Morse light on" : "Morse light off"}
               />
@@ -171,7 +171,7 @@ export default function MorseCodeVisualPractice() {
                     setMessage(event.target.value);
                     setShowAnswer(false);
                   }}
-                  className="mt-2 min-h-12 w-full rounded-xl bg-slate-100 px-4 font-mono text-lg outline-none focus:ring-2 focus:ring-sky-300"
+                  className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"
                 />
               </label>
               <div className="mt-5 grid gap-5">
@@ -198,7 +198,7 @@ export default function MorseCodeVisualPractice() {
               <button
                 type="button"
                 onClick={() => setShowAnswer((value) => !value)}
-                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-4 py-2 font-semibold transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
               >
                 {showAnswer ? (
                   <VisibilityOffIcon size={18} title="Hide answer" />

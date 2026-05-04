@@ -37,8 +37,8 @@ export const meta: Route.MetaFunction = () => {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 text-slate-800">
-      <header className="w-full overflow-hidden rounded-2xl bg-white px-5 py-6 sm:px-8 sm:py-7">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-10 text-slate-800 sm:py-12">
+      <header className="w-full px-1 py-3 sm:px-2">
         <nav aria-label="Breadcrumb" className="text-sm font-semibold text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
@@ -77,7 +77,7 @@ export default function PrivacyPolicy() {
             our services ("Services"), such as when you:
           </span>
 
-          <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+          <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
             <li>
               Visit our website at https://www.morsewords.com, or any website of
               ours that links to this privacy notice
@@ -106,7 +106,7 @@ export default function PrivacyPolicy() {
         </p>
       </header>
 
-      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-white p-5 sm:p-8">
+      <main className="mw-policy-content flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] sm:p-8">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">SUMMARY OF KEY POINTS</h2>
           <p>
@@ -166,7 +166,7 @@ export default function PrivacyPolicy() {
               features you use. The personal information we collect may include
               the following:
             </span>
-            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
               <li>email addresses</li>
               <li>usernames</li>
               <li>passwords</li>
@@ -267,7 +267,7 @@ export default function PrivacyPolicy() {
 
           <p className="flex flex-col gap-4">
             <span>The information we collect includes:</span>
-            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
               <li>
                 Log and Usage Data. Log and usage data is service-related,
                 diagnostic, usage, and performance information our servers
@@ -326,7 +326,7 @@ export default function PrivacyPolicy() {
               depending on how you interact with our Services, including:
             </span>
 
-            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
               <li>
                 To provide and improve the Services (including core site
                 functionality, performance, debugging, and feature
@@ -450,7 +450,7 @@ export default function PrivacyPolicy() {
               We may share your information with third parties such as:
             </span>
           </p>
-          <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+          <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
             <li>
               Analytics providers (for example, PostHog) to help us understand
               usage and improve the Services.
@@ -484,7 +484,7 @@ export default function PrivacyPolicy() {
             </span>
           </p>
 
-          <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+          <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
             <li>
               Business Transfers. We may share or transfer your information in
               connection with, or during negotiations of, any merger, sale of

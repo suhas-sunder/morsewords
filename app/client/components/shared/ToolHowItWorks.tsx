@@ -37,9 +37,10 @@ export default function ToolHowItWorks({
  details: DetailItem[];
 }) {
  return (
- <section className="mw-how-section mt-10 px-5 py-8 sm:px-8 sm:py-10">
- <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
- <div>
+ <section className="mt-8 overflow-hidden rounded-2xl bg-[#fffaf2]">
+ <div className="px-5 py-6 sm:px-8 sm:py-7">
+ <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+ <div className="max-w-3xl">
  <div className="flex items-center gap-3">
  <span className="h-px w-8 bg-sky-800"/>
  <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -51,12 +52,12 @@ export default function ToolHowItWorks({
  {title}
  </h2>
 
- <p className="mt-4 max-w-[78ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+ <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
  {description}
  </p>
  </div>
 
- <div className="rounded-xl bg-slate-950 px-4 py-4 text-white">
+ <div className="rounded-xl bg-[#171717] px-4 py-3 text-white lg:w-64">
  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
  {referenceLabel}
  </p>
@@ -69,54 +70,56 @@ export default function ToolHowItWorks({
  </div>
  </div>
 
- <nav className="mt-6 flex flex-wrap gap-2" aria-label={`${eyebrow} notes`}>
+ <nav className="mt-5 flex flex-wrap gap-2" aria-label={`${eyebrow} notes`}>
  {chips.map((chip) => (
  <a
  key={chip.href + chip.label}
  href={chip.href}
-              className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-700 hover:outline-[rgba(11,36,71,0.22)] active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+              className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  {chip.label}
  </a>
  ))}
  </nav>
+ </div>
 
- <dl className="mt-7 grid gap-4 md:grid-cols-3">
+ <div className="px-5 pb-6 sm:px-8 sm:pb-7">
+ <dl className="grid gap-5 pb-6 md:grid-cols-3">
  {summary.map((item) => (
- <div key={item.title} className="rounded-xl bg-[#fffdf8]/75 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ <div key={item.title} className="rounded-xl bg-[#f7f4ee] p-4">
  <dt className="text-base font-extrabold text-sky-950">
  {item.title}
  </dt>
- <dd className="mt-2 text-base leading-relaxed text-slate-700">
+ <dd className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
  {item.text}
  </dd>
  </div>
  ))}
  </dl>
 
- <div className="mt-8 text-slate-700">
+ <div className="text-slate-700">
  {details.map((detail, index) => (
  <section
  id={chips[index]?.href.replace("#","")}
  key={detail.title}
- className="py-7 first:pt-0 last:pb-0">
- <div className="grid gap-4 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+ className="py-7">
+ <div className="grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
  <header>
  <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
  {detail.kicker}
  </p>
- <h3 className="mt-2 text-2xl font-extrabold leading-tight text-sky-950">
+ <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
  {detail.title}
  </h3>
  </header>
 
- <div>
- <p className="max-w-[82ch] text-base leading-relaxed sm:text-lg">
+ <div className="max-w-[72ch]">
+ <p className="text-base leading-relaxed sm:text-lg">
  {detail.text}
  </p>
  {detail.bullets?.length ? (
- <ul className="mt-4 grid gap-2 pl-5 text-base leading-relaxed sm:text-lg lg:grid-cols-2">
+ <ul className="mt-4 list-disc space-y-2 pl-6 text-base leading-relaxed sm:text-lg">
  {detail.bullets.map((bullet) => (
- <li key={bullet} className="list-disc">{bullet}</li>
+ <li key={bullet}>{bullet}</li>
  ))}
  </ul>
  ) : null}
@@ -124,6 +127,7 @@ export default function ToolHowItWorks({
  </div>
  </section>
  ))}
+ </div>
  </div>
  </section>
  );

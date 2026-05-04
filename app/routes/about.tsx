@@ -331,7 +331,7 @@ export default function About() {
           </div>
         </SectionCard>
 
-        <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-600">
+        <nav aria-label="Breadcrumb" className="mb-4 text-sm text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
               <a
@@ -342,7 +342,7 @@ export default function About() {
               </a>
             </li>
             <li>/</li>
-            <li className="font-semibold text-gray-900">About</li>
+            <li className="font-semibold text-sky-950">About</li>
           </ol>
         </nav>
       </div>

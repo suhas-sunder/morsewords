@@ -100,7 +100,7 @@ export default function HowToUse() {
       </div>
       <nav
         aria-label="Breadcrumb"
-        className="pb-4 text-sm text-gray-600 max-w-5xl mx-auto"
+        className="mx-auto max-w-5xl pb-4 text-sm text-slate-600"
       >
         <ol className="flex flex-wrap items-center gap-2">
           <li>
@@ -109,7 +109,7 @@ export default function HowToUse() {
             </a>
           </li>
           <li>/</li>
-          <li className="font-semibold text-gray-900">How to Use MorseWords</li>
+          <li className="font-semibold text-sky-950">How to Use MorseWords</li>
         </ol>
       </nav>
       <JsonLdScript jsonLd={jsonLd} />

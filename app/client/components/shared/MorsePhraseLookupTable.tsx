@@ -176,22 +176,22 @@ function MorsePhraseLookupTable() {
 
  return (
  <section
- className="my-12 rounded-2xl bg-[#fffdf8] p-6" aria-labelledby="morse-phrases-title"itemScope
+ className="my-12 rounded-2xl bg-[#fffdf8]/80 p-6 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]" aria-labelledby="morse-phrases-title"itemScope
  itemType="https://schema.org/Table">
  <h2
  id="morse-phrases-title" className="text-2xl font-bold text-[#0b2447] mb-2" itemProp="name">
  Common Morse Code Phrases, Prosigns, and Abbreviations
  </h2>
  <p
- className="text-gray-700 text-base leading-relaxed mb-6" itemProp="description">
+ className="text-slate-700 text-base leading-relaxed mb-6" itemProp="description">
  Explore a complete list of real-world Morse code phrases, radio
  shorthand, and prosigns used by amateur radio operators, maritime and
  aviation communication, and CW learners. Each entry shows the phrase,
  its Morse code pattern, and its meaning or usage context.
  </p>
 
- <div className="overflow-x-auto rounded-xl bg-white">
- <table className="min-w-full -separate -spacing-0 text-sm md:text-base text-gray-800">
+ <div className="overflow-x-auto rounded-xl bg-white/85 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]">
+ <table className="min-w-full -separate -spacing-0 text-sm md:text-base text-slate-800">
  <thead className="bg-[#f7f4ee]">
  <tr>
  <th className="py-2 px-3 text-left font-semibold">
@@ -216,14 +216,14 @@ function MorsePhraseLookupTable() {
  <td className="py-2 px-3 font-mono text-[#0b2447] tracking-wider">
  {p.morse}
  </td>
- <td className="py-2 px-3 text-gray-700">{p.meaning}</td>
+ <td className="py-2 px-3 text-slate-700">{p.meaning}</td>
  </tr>
  ))}
  </tbody>
  </table>
  </div>
 
- <div className="mt-6 text-sm text-gray-700 leading-relaxed space-y-2">
+ <div className="mt-6 text-sm text-slate-700 leading-relaxed space-y-2">
  <p>
  These Morse code phrases include <strong>Q-codes</strong> (used in
  amateur radio),

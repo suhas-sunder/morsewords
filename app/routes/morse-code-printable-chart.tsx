@@ -2089,7 +2089,7 @@ function ToggleField({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-2xl bg-slate-100 p-3 transition hover:bg-slate-200">
+    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-xl bg-[#fffdf8] p-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white">
       <span className="min-w-0 break-words text-sm font-bold text-slate-800">
         {label}
       </span>
@@ -2148,7 +2148,7 @@ function NumberField({
 
 function PreviewReferenceTable({ rows }: { rows: CharacterRow[] }) {
   return (
-    <section className="min-w-0 rounded-2xl bg-white p-4">
+    <section className="min-w-0 rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Reference guide page
@@ -2181,7 +2181,7 @@ function WorksheetPaperPreview({
   const sentences = getWorksheetSentences(settings);
 
   return (
-    <section className="min-w-0 rounded-2xl bg-white p-4">
+    <section className="min-w-0 rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Worksheet page
@@ -2238,7 +2238,7 @@ function WorksheetPaperPreview({
         </div>
       ) : null}
 
-        <div className="mt-3 min-w-0 rounded-xl bg-slate-100 px-3 py-2 text-xs text-slate-700">
+        <div className="mt-3 min-w-0 rounded-xl bg-[#fffaf2] px-3 py-2 text-xs text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
         <strong>Own message fields:</strong>{" "}
         <span className="break-words">
           Plain text {settings.ownMessageTextLineCount} lines, Morse{" "}
@@ -2253,7 +2253,7 @@ function AnswerKeyPreview({ settings }: { settings: PrintableSettings }) {
   const sentences = getWorksheetSentences(settings);
 
   return (
-    <section className="min-w-0 rounded-2xl bg-white p-4">
+    <section className="min-w-0 rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Answer key page
@@ -2312,7 +2312,7 @@ function LivePreview({
         </div>
       </div>
 
-      <div className="mt-4 rounded-2xl bg-white p-3">
+      <div className="mt-4 rounded-xl bg-[#fffdf8] p-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
         <label className="block">
           <span className="block text-sm font-semibold text-sky-950">
             Download format
@@ -2354,7 +2354,7 @@ function LivePreview({
         </div>
 
         {statusMessage ? (
-          <p className="mt-3 rounded-xl bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-700">
+          <p className="mt-3 rounded-xl bg-[#fffaf2] px-3 py-2 text-sm font-semibold text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
             {statusMessage}
           </p>
         ) : null}
@@ -2387,7 +2387,7 @@ function LivePreview({
       </div>
 
       {settings.includeBranding && qrCodeDataUrl ? (
-        <div className="mt-4 min-w-0 rounded-2xl bg-white p-3 text-xs text-slate-700">
+        <div className="mt-4 min-w-0 rounded-xl bg-[#fffdf8] p-3 text-xs text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
           <div className="flex min-w-0 items-center gap-3">
             <img
               src={qrCodeDataUrl}
@@ -2429,7 +2429,7 @@ function CharacterGrid({
         {rows.map((row) => (
           <article
             key={`${row.character}-${row.morse}`}
-            className="min-w-0 rounded-2xl bg-slate-100 p-4"
+            className="min-w-0 rounded-xl bg-[#fffaf2]/70 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]"
           >
             <div className="flex min-w-0 items-start justify-between gap-3">
               <div className="min-w-0">
@@ -3003,7 +3003,7 @@ export default function MorseCodePrintableChart() {
         </PageHero>
 
         <section className="hidden">
-          <div className="min-w-0 rounded-2xl bg-white p-4">
+          <div className="min-w-0 rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-4">
               <div className="min-w-0">
                 <div className="text-sm font-extrabold uppercase tracking-wide text-sky-800">
@@ -3019,7 +3019,7 @@ export default function MorseCodePrintableChart() {
                 </p>
               </div>
 
-              <div className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900">
+              <div className="rounded-lg bg-[#fffaf2] px-4 py-2 text-sm font-semibold text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
                 PDF default · Answer key off by default
               </div>
             </div>
@@ -3031,7 +3031,7 @@ export default function MorseCodePrintableChart() {
           className="grid min-w-0 items-start gap-5 py-4 lg:grid-cols-[0.88fr_1.12fr]"
         >
           <div className="grid min-w-0 gap-4">
-            <section className="min-w-0 rounded-2xl bg-white p-5">
+            <section className="min-w-0 rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
               <p className="m-0 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                 Worksheet settings
               </p>
@@ -3328,7 +3328,7 @@ export default function MorseCodePrintableChart() {
               </FormField>
 
               {settings.customLogoDataUrl ? (
-                <div className="flex min-w-0 items-center justify-between gap-4 rounded-2xl bg-slate-100 p-3">
+                <div className="flex min-w-0 items-center justify-between gap-4 rounded-xl bg-[#fffaf2]/70 p-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
                   <div className="flex min-w-0 items-center gap-3">
                     <img
                       src={settings.customLogoDataUrl}

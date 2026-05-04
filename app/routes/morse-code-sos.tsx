@@ -78,7 +78,7 @@ function SosReferenceCard() {
             </p>
           </div>
 
-          <div className="rounded-xl bg-[#171717] px-4 py-3 text-white lg:w-72">
+          <div className="rounded-xl bg-slate-950 px-4 py-3 text-white lg:w-72">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
               Copy-ready signal
             </p>
@@ -112,8 +112,8 @@ function SosReferenceCard() {
                   key={`${mark}-${markIndex}`}
                   className={
                     mark === "dot"
-                      ? "h-5 w-5 rounded bg-[#171717]"
-                      : "h-5 w-14 rounded bg-[#171717]"
+                      ? "h-5 w-5 rounded bg-slate-950"
+                      : "h-5 w-14 rounded bg-slate-950"
                   }
                 />
               ))}

@@ -425,8 +425,8 @@ export default function MorseCodeWordTrainer() {
  />
  </PageHero>
 
- <section className="mt-8 overflow-hidden rounded-2xl bg-white">
- <div className="px-5 pb-4 pt-6 sm:px-8 sm:pt-7">
+ <section className="mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
+ <div className="pb-4">
  <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
  <div>
  <div className="flex items-center gap-3">
@@ -460,9 +460,9 @@ export default function MorseCodeWordTrainer() {
  </div>
  </div>
 
- <div className="grid gap-6 px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5 xl:grid-cols-[310px_minmax(0,1fr)_330px]">
+ <div className="grid gap-6 pb-2 pt-4 xl:grid-cols-[310px_minmax(0,1fr)_330px]">
  <aside className="space-y-5">
- <div className="rounded-2xl bg-[#fffdf8] p-5">
+ <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <div className="flex items-center gap-2 text-sky-950">
  <ListIcon size={20} title="Word list"/>
  <h3 className="text-xl font-extrabold">Word list</h3>
@@ -490,7 +490,7 @@ export default function MorseCodeWordTrainer() {
  <textarea
  value={customWords}
  onChange={(event) => updateCustomWords(event.target.value)}
- className="mt-2 min-h-36 w-full rounded-xl bg-white p-4 font-mono text-sm outline-none transition focus:ring-2 focus:ring-sky-100" placeholder="SIGNAL, RADIO, PRACTICE"/>
+ className="mt-2 min-h-36 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-sm outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition focus:outline-none focus:ring-2 focus:ring-sky-300" placeholder="SIGNAL, RADIO, PRACTICE"/>
  <span className="mt-2 block text-sm leading-relaxed text-slate-600">
  Split words with commas or new lines. Unsupported
  characters are removed before the deck is built.
@@ -501,7 +501,7 @@ export default function MorseCodeWordTrainer() {
  <NoticeList parsed={parsedCustomWords} listName={listName} />
  </div>
 
- <div className="rounded-2xl bg-white p-5">
+ <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <h3 className="text-xl font-extrabold text-sky-950">
  Answer mode
  </h3>
@@ -527,7 +527,7 @@ export default function MorseCodeWordTrainer() {
  </aside>
 
  <div className="min-w-0">
- <div className="rounded-2xl bg-[#f7fbff]">
+ <div className="rounded-xl bg-[#fffdf8]/85 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
  <div>
  <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
@@ -549,13 +549,13 @@ export default function MorseCodeWordTrainer() {
  </div>
 
  <div className="px-5 py-6">
- <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+ <div className="h-2 overflow-hidden rounded-full bg-[#fffaf2] outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <div
  className="h-full rounded-full bg-sky-400 transition-all" style={{ width: `${progressPercent}%` }}
  />
  </div>
 
- <div className="mt-6 rounded-2xl bg-white p-5">
+ <div className="mt-6 rounded-xl bg-[#fffdf8] p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
  Prompt
  </p>
@@ -616,7 +616,7 @@ export default function MorseCodeWordTrainer() {
  disabled={!activeWord || roundComplete}
  placeholder={
  mode ==="morse_to_text"?"Type the word":"-- --- .-. ..."}
- className="mt-2 min-h-12 w-full rounded-xl bg-white px-4 font-mono text-lg outline-none transition focus:ring-2 focus:ring-sky-100 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"/>
+ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:bg-[#fffaf2] disabled:text-slate-400"/>
  </label>
 
  <div className="mt-4 flex flex-wrap gap-2">
@@ -661,7 +661,7 @@ export default function MorseCodeWordTrainer() {
  </div>
 
  {roundComplete ? (
- <div className="mt-4 rounded-2xl bg-sky-50 p-5">
+ <div className="mt-4 rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <h3 className="text-xl font-extrabold text-sky-950">
  Round complete.
  </h3>
@@ -687,7 +687,7 @@ export default function MorseCodeWordTrainer() {
  </div>
 
  <aside className="space-y-5">
- <div className="rounded-2xl bg-[#fffdf8] p-5">
+ <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <div className="flex items-center justify-between gap-3">
  <h3 className="text-xl font-extrabold text-sky-950">
  Session
@@ -716,7 +716,7 @@ export default function MorseCodeWordTrainer() {
  </p>
  </div>
 
- <div className="rounded-2xl bg-white p-5">
+ <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <div className="flex items-center gap-2 text-sky-950">
  <SoundIcon size={18} title="Audio settings"/>
  <h3 className="text-xl font-extrabold">Audio settings</h3>
@@ -739,12 +739,12 @@ export default function MorseCodeWordTrainer() {
  </div>
  </div>
 
- <div className="rounded-2xl bg-[#fffdf8] p-5">
+ <div className="rounded-xl bg-[#fffdf8]/85 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <div className="flex items-center justify-between gap-3">
  <h3 className="text-xl font-extrabold text-sky-950">
  Weak words
  </h3>
- <span className="rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+ <span className="rounded-full bg-[#fffaf2] px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
  {weakWords.length}
  </span>
  </div>
@@ -756,7 +756,7 @@ export default function MorseCodeWordTrainer() {
  <button
  key={word}
  type="button" onClick={() => playWord(word)}
- className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-white px-3 py-2 font-mono text-sm font-bold text-slate-900 transition hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300">
+ className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-mono text-sm font-bold text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300">
  <PlayIcon size={14} title={`Play ${word}`} />
  {word}
  </button>
@@ -777,7 +777,7 @@ export default function MorseCodeWordTrainer() {
  </ToolButton>
  </div>
  {copyStatus ? (
- <p className="mt-3 rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-700">
+ <p className="mt-3 rounded-xl bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  {copyStatus}
  </p>
  ) : null}
@@ -982,10 +982,10 @@ function FeedbackCard({
 
  return (
  <div
- className={"mt-5 rounded-2xl p-4"+
+ className={"mt-5 rounded-xl p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] "+
  (isCorrect
  ?"bg-sky-50": isIncorrect
- ?"bg-[#fffdf8]":"bg-white")
+ ?"bg-[#fffdf8]":"bg-[#fffdf8]")
  }
  >
  <div className="flex items-start gap-3">
@@ -1030,7 +1030,7 @@ function FeedbackCard({
 
 function StatCard({ label, value }: { label: string; value: React.ReactNode }) {
  return (
- <div className="rounded-xl bg-white p-3">
+ <div className="rounded-xl bg-[#fffdf8] p-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
  {label}
  </p>
@@ -1051,9 +1051,9 @@ function ChoiceButton({
  return (
  <button
  type="button" onClick={onClick}
- className={"inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"+
+ className={"inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 "+
  (active
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-white text-slate-900 hover:bg-sky-50")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white")
  }
  >
  {children}
@@ -1076,8 +1076,8 @@ function ToolButton({
  <button
  type="button" onClick={onClick}
  disabled={disabled}
- className={"inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"+
- (tone ==="primary"?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-white text-slate-900 hover:bg-sky-50")
+ className={"inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "+
+ (tone ==="primary"?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white")
  }
  >
  {children}

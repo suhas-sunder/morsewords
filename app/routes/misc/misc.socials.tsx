@@ -55,22 +55,13 @@ function ExternalCard(props: { to: string; title: string; subtitle?: string }) {
         }
         className="
           group relative flex h-full flex-col justify-between rounded-xl
-          bg-white p-5
+          bg-[#fffdf8] p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]
           transition cursor-pointer
-          hover:bg-sky-50/40
+          hover:bg-white hover:outline-[rgba(11,36,71,0.22)]
           focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300
           focus-visible:ring-offset-2 focus-visible:ring-offset-white
         "
       >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-xl opacity-0 transition group-hover:opacity-100"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, rgba(14,116,144,0.65), transparent)",
-          }}
-        />
-
         <div className="relative">
           <h3 className="text-lg font-extrabold text-sky-950 sm:text-xl">
             {title}
@@ -95,8 +86,8 @@ function ExternalCard(props: { to: string; title: string; subtitle?: string }) {
 
 export default function Socials() {
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col px-4 py-8">
-      <header className="mb-10 overflow-hidden rounded-2xl bg-white px-5 py-6 sm:px-8 sm:py-7">
+    <div className="mx-auto flex w-full max-w-6xl flex-col px-4 py-10 sm:py-12">
+      <header className="mb-10 px-1 py-3 sm:px-2">
         <p className="m-0 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900 before:h-px before:w-8 before:bg-sky-800 before:content-['']">
           MorseWords links
         </p>
@@ -111,7 +102,7 @@ export default function Socials() {
       </header>
 
       <main className="flex flex-col gap-12">
-        <section className="rounded-2xl bg-white p-5 sm:p-8">
+        <section className="rounded-2xl bg-[#fffdf8]/75 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] sm:p-8">
           <h2 className="mb-6 text-2xl font-extrabold text-sky-950">
             My Utility Sites
           </h2>

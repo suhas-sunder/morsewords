@@ -35,32 +35,24 @@ const variants: Record<
   secondary: {
     normal: {
       border: 0,
-      background: "#fffdf8",
+      background: "#eef2f6",
       color: "#0f172a",
-      outline: "1px solid rgba(11, 36, 71, 0.1)",
-      outlineOffset: -1,
     },
     hover: {
-      background: "#ffffff",
+      background: "#e2e8f0",
       color: "#082f49",
-      outline: "1px solid rgba(11, 36, 71, 0.22)",
-      outlineOffset: -1,
     },
     disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
   ghost: {
     normal: {
       border: 0,
-      background: "#fffaf2",
+      background: "#f8fafc",
       color: "#0f172a",
-      outline: "1px solid rgba(11, 36, 71, 0.08)",
-      outlineOffset: -1,
     },
     hover: {
-      background: "#fffdf8",
+      background: "#eef2f6",
       color: "#082f49",
-      outline: "1px solid rgba(11, 36, 71, 0.18)",
-      outlineOffset: -1,
     },
     disabled: { opacity: 0.55, cursor: "not-allowed" },
   },

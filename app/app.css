@@ -33,12 +33,6 @@ input[type="range"]:focus-visible {
   box-shadow: none !important;
 }
 
-.mw-tool-section {
-  background: transparent !important;
-  border-radius: 0 !important;
-  overflow: visible !important;
-}
-
 .mw-tool-section * {
   box-shadow: none !important;
 }
@@ -48,7 +42,7 @@ input[type="range"]:focus-visible {
 }
 
 .mw-tool-section .tool-header p {
-  max-width: 72ch;
+  max-width: none;
 }
 
 .mw-tool-section :where(.border, .border-t, .border-b, .border-l, .border-r) {
@@ -62,45 +56,6 @@ input[type="range"]:focus-visible {
 
 .mw-tool-section :where(.shadow, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl) {
   box-shadow: none !important;
-}
-
-.mw-tool-section
-  :where(input, textarea, select, pre, details, [class*="bg-slate-100"], [class*="bg-white"]) {
-  outline: 1px solid rgba(11, 36, 71, 0.1);
-  outline-offset: -1px;
-}
-
-.mw-tool-section :where([class*="bg-slate-100"], [class*="bg-slate-200"]) {
-  background-color: rgba(255, 253, 248, 0.78) !important;
-}
-
-.mw-tool-section
-  :where(button[class*="bg-slate-100"], a[class*="bg-slate-100"], select[class*="bg-slate-100"]) {
-  color: #0f172a !important;
-}
-
-.mw-tool-section
-  :where(button[class*="bg-slate-100"]:hover, a[class*="bg-slate-100"]:hover, select[class*="bg-slate-100"]:hover) {
-  background-color: #ffffff !important;
-  color: #082f49 !important;
-}
-
-.mw-tool-section :where(input, textarea, select) {
-  background-color: rgba(255, 253, 248, 0.88) !important;
-}
-
-.mw-tool-section :where(button, a, summary, select, input, textarea) {
-  transition:
-    background-color 160ms ease,
-    color 160ms ease,
-    outline-color 160ms ease,
-    transform 160ms ease;
-}
-
-.mw-tool-section
-  :where(button, a, summary, select, input, textarea):focus-visible {
-  outline: 2px solid rgba(56, 189, 248, 0.72) !important;
-  outline-offset: 2px;
 }
 
 main
@@ -137,56 +92,6 @@ main :where([style*="border-bottom"], [style*="border-top"]) {
   border-top: 0 !important;
 }
 
-main
-  :where(
-    [class*="bg-gray-50"],
-    [class*="bg-gray-100"],
-    [class*="bg-gray-200"],
-    [class*="bg-gray-300"],
-    [class*="bg-gray-400"],
-    [class*="bg-slate-50"],
-    [class*="bg-slate-100"],
-    [class*="bg-slate-200"]
-  ) {
-  background-color: rgba(255, 253, 248, 0.78) !important;
-}
-
-main
-  :where(
-    [class*="bg-gray-50"],
-    [class*="bg-gray-100"],
-    [class*="bg-gray-200"],
-    [class*="bg-slate-50"],
-    [class*="bg-slate-100"],
-    [class*="bg-slate-200"]
-  ) {
-  outline: 1px solid rgba(11, 36, 71, 0.08);
-  outline-offset: -1px;
-}
-
-main
-  :where(
-    [class*="bg-[#171717]"],
-    [class*="bg-[#202020]"],
-    [class*="bg-neutral-900"],
-    [class*="bg-green-600"]
-  ) {
-  background-color: #020617 !important;
-}
-
-main :where([class*="hover:bg-gray-"]:hover, [class*="hover:bg-slate-200"]:hover) {
-  background-color: #ffffff !important;
-}
-
-main :where(button, a[href], summary, select) {
-  cursor: pointer;
-}
-
-main :where(button, a[href], summary, input, textarea, select):focus-visible {
-  outline: 2px solid rgba(56, 189, 248, 0.72) !important;
-  outline-offset: 2px;
-}
-
 main *,
 main *::before,
 main *::after {
@@ -205,25 +110,11 @@ main *::after {
   border: 0 !important;
 }
 
-.mw-how-section {
-  background: rgba(255, 250, 242, 0.42) !important;
-  border-radius: 0.9rem !important;
-  overflow: visible !important;
-}
-
 .mw-how-section > .flex.flex-col:first-child {
   margin: 0 0 1.5rem;
   border-bottom: 0;
   background: transparent;
   padding: 0;
-}
-
-.mw-how-section :where(.bg-\[\#f7f4ee\], .bg-\[\#fffdf8\], .bg-slate-100) {
-  background: rgba(255, 253, 248, 0.72) !important;
-}
-
-.mw-how-section :where(pre, code, [class*="bg-[#171717]"], [class*="bg-slate-950"]) {
-  outline: 0;
 }
 
 @media (min-width: 640px) {

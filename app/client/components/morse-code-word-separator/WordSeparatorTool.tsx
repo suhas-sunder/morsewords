@@ -121,8 +121,8 @@ export default function WordSeparatorTool() {
         ];
 
   return (
-    <section className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
-      <div className="tool-header px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
+    <section className="mw-tool-section mt-4">
+      <div className="tool-header pb-0 pt-6 sm:pt-7">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -139,15 +139,15 @@ export default function WordSeparatorTool() {
         </p>
       </div>
 
-      <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
+      <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
       <div className="flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
-        <div className="inline-flex rounded-lg bg-white gap-2">
+        <div className="inline-flex gap-2 rounded-lg bg-[#fffdf8]/75 p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
           <button
             onClick={() => setMode("normalizeMorse")}
             className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
               mode === "normalizeMorse"
                 ? "bg-slate-950 text-sky-100"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
+                : "text-slate-700 hover:bg-white hover:text-sky-950"
             }`}
             aria-pressed={mode === "normalizeMorse"}
           >
@@ -158,7 +158,7 @@ export default function WordSeparatorTool() {
             className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
               mode === "englishToMorse"
                 ? "bg-slate-950 text-sky-100"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
+                : "text-slate-700 hover:bg-white hover:text-sky-950"
             }`}
             aria-pressed={mode === "englishToMorse"}
           >
@@ -166,7 +166,7 @@ export default function WordSeparatorTool() {
           </button>
         </div>
 
-        <div className="inline-flex rounded-lg bg-white gap-2">
+        <div className="inline-flex flex-wrap gap-2 rounded-lg bg-[#fffdf8]/75 p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
           {sepOptions.map(([label, v]) => (
             <button
               key={v}
@@ -174,7 +174,7 @@ export default function WordSeparatorTool() {
               className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
                 sep === v
                   ? "bg-slate-950 text-sky-100"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
+                  : "text-slate-700 hover:bg-white hover:text-sky-950"
               }`}
               aria-pressed={sep === v}
             >
@@ -185,7 +185,7 @@ export default function WordSeparatorTool() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-slate-100">
+        <div className="overflow-hidden rounded-xl bg-[#fffdf8]/85 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)]">
           <div className="flex items-center justify-between gap-2">
             <h2 className="px-4 pt-4 font-extrabold text-sky-950">
               {mode === "normalizeMorse" ? "Paste Morse" : "English input"}
@@ -229,7 +229,7 @@ export default function WordSeparatorTool() {
           )}
         </div>
 
-        <div className="overflow-hidden rounded-xl bg-[#202020] text-slate-200">
+        <div className="overflow-hidden rounded-xl bg-slate-950 text-slate-200">
           <div className="flex items-center justify-between gap-2">
             <h2 className="px-4 pt-4 font-extrabold text-slate-200">Output</h2>
           </div>
@@ -291,7 +291,7 @@ export default function WordSeparatorTool() {
         ].map(([title, body]) => (
           <div
             key={title}
-            className="rounded-2xl bg-slate-100 p-4"
+            className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]"
           >
             <p className="font-extrabold text-sky-950">{title}</p>
             <p className="mt-2 text-sm leading-relaxed text-slate-700">

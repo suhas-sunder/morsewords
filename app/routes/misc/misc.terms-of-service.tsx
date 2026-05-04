@@ -37,8 +37,8 @@ export const meta: Route.MetaFunction = () => {
 
 export default function TermsOfService() {
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 text-slate-800">
-      <header className="flex w-full flex-col gap-5 overflow-hidden rounded-2xl bg-white px-5 py-6 sm:px-8 sm:py-7">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-10 text-slate-800 sm:py-12">
+      <header className="flex w-full flex-col gap-5 px-1 py-3 sm:px-2">
         <nav aria-label="Breadcrumb" className="text-sm font-semibold text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
@@ -119,7 +119,7 @@ export default function TermsOfService() {
         </p>
       </header>
 
-      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-white p-5 sm:p-8">
+      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] sm:p-8">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">1. OUR SERVICES</h2>
           <p>
@@ -176,7 +176,7 @@ export default function TermsOfService() {
               "PROHIBITED ACTIVITIES" section below, we grant you a
               non-exclusive, non-transferable, revocable license to:
             </span>
-            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
               <li>access the Services; and</li>
               <li>
                 download or print a copy of any portion of the Content to which
@@ -284,7 +284,7 @@ export default function TermsOfService() {
               by linking your account through the Services to any of your social
               networking accounts, you:
             </span>
-            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
               <li>
                 confirm that you have read and agree with our "PROHIBITED
                 ACTIVITIES" and will not post, send, publish, upload, or
@@ -453,7 +453,7 @@ export default function TermsOfService() {
           </p>
           <p>As a user of the Services, you agree not to:</p>
 
-          <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+          <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
             <li>
               Systematically retrieve data or other content from the Services to
               create or compile, directly or indirectly, a collection,
@@ -590,7 +590,7 @@ export default function TermsOfService() {
             available any Contributions, you thereby represent and warrant that:
           </p>
 
-          <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 dark:text-gray-400">
+            <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
             <li>
               The creation, distribution, transmission, public display, or
               performance, and the accessing, downloading, or copying of your

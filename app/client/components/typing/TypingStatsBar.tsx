@@ -37,7 +37,7 @@ export default function TypingStatsBar({
       : Math.round((lettersDecoded / elapsedSec) * 60);
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white p-4">
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#fffdf8]/80 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
       <div className="flex flex-wrap items-center gap-4 text-sm">
         <div>
           <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">Time</div>

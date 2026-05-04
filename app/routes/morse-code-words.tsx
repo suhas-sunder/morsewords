@@ -79,16 +79,16 @@ export default function MorseCodeWords() {
  },
  ];
 
- const btnBase ="cursor-pointer inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 whitespace-nowrap";
+ const btnBase ="cursor-pointer inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 whitespace-nowrap ";
 
  const btnPrimary =
  btnBase +"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white";
 
  const btnSecondary =
- btnBase +"bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950";
+ btnBase +"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950";
 
  const btnGhost =
- btnBase +"bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950";
+ btnBase +"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950";
 
  const pClass ="my-3 text-slate-700 leading-relaxed";
  const linkClass ="font-semibold text-sky-900 underline underline-offset-4 hover:text-sky-950 hover:no-underline cursor-pointer";
@@ -226,7 +226,7 @@ export default function MorseCodeWords() {
  <li>
  <strong>One space between letters</strong> (example: H E L L O
  becomes{" "}
- <code className="mx-1 rounded bg-slate-100 px-1 py-0.5">
+ <code className="mx-1 rounded bg-[#fffaf2] px-1 py-0.5">
  .... . .-.. .-.. ---
  </code>
  ).
@@ -325,7 +325,7 @@ export default function MorseCodeWords() {
  <li>
  Use the slash separator for clarity when you expect beginners
  (example:{" "}
- <code className="mx-1 rounded bg-slate-100 px-1 py-0.5">
+ <code className="mx-1 rounded bg-[#fffaf2] px-1 py-0.5">
  .... .. / - .... . .-. .
  </code>
  ).

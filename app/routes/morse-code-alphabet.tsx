@@ -337,35 +337,35 @@ export default function Home() {
         />
       </PageHero>
 
-      <nav className="-mx-4 mb-8 mt-5 overflow-x-auto bg-white px-4 py-3">
+      <nav className="mb-8 mt-5 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
         <div className="flex gap-2 whitespace-nowrap text-sm">
           <a
             href="#letters"
-            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Letters
           </a>
           <a
             href="#numbers"
-            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Numbers
           </a>
           <a
             href="#symbols"
-            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Symbols
           </a>
           <a
             href="#how-it-works"
-            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             How It Works
           </a>
           <a
             href="#faq"
-            className="cursor-pointer rounded-lg bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             FAQ
           </a>
@@ -426,7 +426,7 @@ export default function Home() {
         </div>
       </div>
 
-      <nav aria-label="Breadcrumb" className="mt-10 mb-4 text-sm text-gray-600">
+      <nav aria-label="Breadcrumb" className="mt-10 mb-4 text-sm text-slate-600">
         <ol className="flex flex-wrap items-center gap-2">
           <li>
             <a href="/" className="underline hover:no-underline cursor-pointer">
@@ -434,7 +434,7 @@ export default function Home() {
             </a>
           </li>
           <li>/</li>
-          <li className="font-semibold text-gray-900">Morse Code Alphabet</li>
+          <li className="font-semibold text-sky-950">Morse Code Alphabet</li>
         </ol>
       </nav>
     </main>

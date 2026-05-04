@@ -131,7 +131,7 @@ export default function MorsePractice({
  <h1 className="text-3xl font-extrabold text-neutral-900">
  Morse Code Practice
  </h1>
- <p className="mt-3 text-gray-700 leading-relaxed">
+ <p className="mt-3 leading-relaxed text-slate-700">
  Practice decoding one prompt at a time. Choose the character set and
  whether you want visual prompts, audio prompts, or both.
  </p>
@@ -140,7 +140,7 @@ export default function MorsePractice({
  <div>
  <label className="font-semibold">Mode</label>
  <select
- className="w-full mt-1 rounded-md p-2 cursor-pointer hover:bg-gray-50" value={promptMode}
+ className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white" value={promptMode}
  onChange={(e) => setPromptMode(e.target.value as PromptMode)}
  >
  <option value="visual">Visual</option>
@@ -152,7 +152,7 @@ export default function MorsePractice({
  <div>
  <label className="font-semibold">Character set</label>
  <select
- className="w-full mt-1 rounded-md p-2 cursor-pointer hover:bg-gray-50" value={setMode}
+ className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white" value={setMode}
  onChange={(e) => setSetMode(e.target.value as SetMode)}
  >
  <option value="letters">Letters</option>
@@ -178,7 +178,7 @@ export default function MorsePractice({
  </button>
  <button
  onClick={stop}
- className="px-4 py-2 rounded-md cursor-pointer font-semibold bg-gray-200 hover:bg-gray-300 active:scale-95 transition">
+ className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white active:scale-95">
  Stop
  </button>
  </>

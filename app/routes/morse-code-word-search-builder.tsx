@@ -1133,8 +1133,8 @@ export default function MorseCodeWordSearchBuilder() {
  />
  </PageHero>
 
- <section className="mt-8 overflow-hidden rounded-2xl bg-white">
- <div className="px-5 pb-4 pt-6 sm:px-8 sm:pt-7">
+ <section className="mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
+ <div className="pb-4">
  <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
  <div>
  <div className="flex items-center gap-3">
@@ -1175,7 +1175,7 @@ export default function MorseCodeWordSearchBuilder() {
  ["Grid", `${size} x ${size}`],
  ["Difficulty", difficulty],
  ].map(([label, value]) => (
- <div key={label} className="rounded-xl bg-white p-3">
+ <div key={label} className="rounded-xl bg-[#fffdf8]/85 p-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
  {label}
  </p>
@@ -1187,7 +1187,7 @@ export default function MorseCodeWordSearchBuilder() {
  </div>
  </div>
 
- <div className="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[340px_minmax(0,1fr)]">
+ <div className="grid gap-6 py-6 lg:grid-cols-[340px_minmax(0,1fr)]">
  <aside className="space-y-4">
  <ControlGroup
  icon={<ListIcon size={18} title="Word list"/>}
@@ -1200,7 +1200,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={input}
  maxLength={MAX_WORD_SEARCH_INPUT_LENGTH}
  onChange={(event) => updatePuzzleInput(event.target.value)}
- className="mt-2 min-h-48 w-full rounded-xl bg-white p-4 font-mono text-base outline-none focus:ring-2 focus:ring-sky-100" spellCheck={false}
+ className="mt-2 min-h-48 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-base outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300" spellCheck={false}
  />
  </label>
  <p className="mt-2 text-xs leading-relaxed text-slate-500">
@@ -1225,7 +1225,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={title}
  maxLength={MAX_TITLE_LENGTH}
  onChange={(event) => setTitle(event.target.value)}
- className="mt-2 min-h-11 w-full rounded-xl bg-white px-3 font-semibold outline-none focus:ring-2 focus:ring-sky-100"/>
+ className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300"/>
  </label>
  <label className="mt-3 block">
  <span className="text-sm font-extrabold text-sky-950">
@@ -1235,7 +1235,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={instructions}
  maxLength={MAX_INSTRUCTIONS_LENGTH}
  onChange={(event) => setInstructions(event.target.value)}
- className="mt-2 min-h-24 w-full rounded-xl bg-white p-3 text-sm outline-none focus:ring-2 focus:ring-sky-100"/>
+ className="mt-2 min-h-24 w-full rounded-xl bg-[#fffdf8] p-3 text-sm outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300"/>
  </label>
  <p className="mt-1 text-xs font-semibold text-slate-500">
  {instructions.length}/{MAX_INSTRUCTIONS_LENGTH} characters
@@ -1275,9 +1275,9 @@ export default function MorseCodeWordSearchBuilder() {
  <button
  key={option}
  type="button" onClick={() => updateDifficulty(option)}
- className={"min-h-11 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold capitalize transition focus:outline-none focus:ring-2 focus:ring-sky-300"+
+ className={"min-h-11 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold capitalize transition focus:outline-none focus:ring-2 focus:ring-sky-300 "+
  (difficulty === option
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-white text-slate-900 hover:bg-sky-50")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white")
  }
  >
  {option}
@@ -1310,9 +1310,9 @@ export default function MorseCodeWordSearchBuilder() {
  <button
  key={value}
  type="button" onClick={() => setPrintSelection(value as PrintSelection)}
- className={"min-h-10 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300"+
+ className={"min-h-10 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 "+
  (printSelection === value
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-white text-slate-900 hover:bg-sky-50")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white")
  }
  aria-pressed={printSelection === value}
  >
@@ -1359,7 +1359,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={brandName}
  maxLength={MAX_BRAND_NAME_LENGTH}
  onChange={(event) => setBrandName(event.target.value)}
- className="mt-2 min-h-11 w-full rounded-xl bg-white px-3 font-semibold outline-none focus:ring-2 focus:ring-sky-100"/>
+ className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300"/>
  </label>
  </ControlGroup>
 
@@ -1491,8 +1491,8 @@ function WordSearchPreview({
  qrCodeDataUrl: string;
 }) {
  return (
- <div className="rounded-2xl bg-[#fffdf8] p-4">
- <article className="mx-auto max-w-3xl rounded-2xl bg-white p-5 text-slate-900 sm:p-7">
+ <div className="rounded-xl bg-[#fffaf2]/45 p-4">
+ <article className="mx-auto max-w-3xl rounded-xl bg-[#fffdf8]/90 p-5 text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:p-7">
  <div className="flex flex-col gap-4 pb-4 sm:flex-row sm:items-start sm:justify-between">
  <div>
  <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -1508,7 +1508,7 @@ function WordSearchPreview({
  {settings.includeBranding && settings.includeQrCode && qrCodeDataUrl ? (
  <img
  src={qrCodeDataUrl}
- alt="QR code to MorseWords" className="h-16 w-16 rounded-xl bg-white p-1"/>
+ alt="QR code to MorseWords" className="h-16 w-16 rounded-xl bg-[#fffdf8] p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]"/>
  ) : null}
  </div>
 
@@ -1557,7 +1557,7 @@ function WordSearchPreview({
  key={key}
  className={"flex aspect-square items-center justify-center rounded font-mono text-xs font-black sm:text-sm"+
  (isAnswer
- ?"bg-sky-100 text-sky-950":"bg-white text-slate-950")
+ ?"bg-sky-100 text-sky-950":"bg-[#fffdf8] text-slate-950")
  }
  >
  {letter}
@@ -1568,13 +1568,13 @@ function WordSearchPreview({
  </div>
 
  {showAnswerKey && puzzle.placements.length ? (
- <section className="mt-5 rounded-xl bg-[#f7fbff] p-4">
+ <section className="mt-5 rounded-xl bg-[#fffaf2]/70 p-4">
  <h3 className="text-lg font-extrabold text-sky-950">Answer key</h3>
  <div className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
  {puzzle.placements.map((placement) => (
  <div
  key={placement.word}
- className="flex justify-between gap-3 rounded-lg bg-white px-3 py-2">
+ className="flex justify-between gap-3 rounded-lg bg-[#fffdf8] px-3 py-2 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <strong>{placement.word}</strong>
  <span className="text-slate-600">
  R{placement.startRow + 1}, C{placement.startCol + 1} -{" "}
@@ -1617,7 +1617,7 @@ function ControlGroup({
  children: React.ReactNode;
 }) {
  return (
- <section className="rounded-2xl bg-[#fffdf8] p-4">
+ <section className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <div className="flex items-center gap-2 text-sky-950">
  {icon}
  <h3 className="text-lg font-extrabold">{title}</h3>
@@ -1641,9 +1641,9 @@ function CheckToggle({
  return (
  <button
  type="button" onClick={() => onChange(!checked)}
- className={"flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300"+
+ className={"flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 "+
  (checked
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-white text-slate-900 hover:bg-sky-50") +""+
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white") +" "+
  className
  }
  aria-pressed={checked}
@@ -1675,9 +1675,9 @@ function ToolButton({
  <button
  type="button" onClick={onClick}
  disabled={disabled}
- className={"inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50"+
+ className={"inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50 "+
  (primary
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-slate-100 text-slate-900 hover:bg-slate-200")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white")
  }
  >
  {icon}
@@ -1696,7 +1696,7 @@ function StatusNotice({
  return (
  <div
  className={"flex gap-3 rounded-xl p-3 text-sm font-semibold leading-relaxed"+
- (kind ==="error"?"bg-[#fffdf8] text-slate-700": kind ==="ok"?"bg-sky-50 text-sky-950":"bg-white text-slate-700")
+ (kind ==="error"?"bg-[#fffdf8] text-slate-700": kind ==="ok"?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]")
  }
  >
  {kind ==="ok"? (
