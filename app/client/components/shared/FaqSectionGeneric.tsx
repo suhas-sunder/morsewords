@@ -41,15 +41,15 @@ export default function FaqSectionGeneric({
           {items.map((it) => (
             <details
               key={it.q}
-              className="group rounded-xl bg-[#fffaf2] px-4 transition-colors open:bg-white hover:bg-white sm:px-5"
+              className="group rounded-xl bg-[#fffaf2] px-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition-colors open:bg-white hover:bg-white hover:outline-[rgba(11,36,71,0.24)] sm:px-5"
             >
-              <summary className="flex min-h-14 cursor-pointer list-none items-center gap-4 py-4 text-left text-lg font-extrabold leading-snug text-sky-950 transition hover:text-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:text-xl">
-                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-100 font-mono text-sm text-sky-950 transition group-open:rotate-90 group-hover:bg-sky-200">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 text-left text-lg font-extrabold leading-snug text-sky-950 transition hover:text-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:text-xl">
+                <span>{it.q}</span>
+                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center font-mono text-lg text-sky-700 transition group-open:rotate-90 group-hover:text-sky-900">
                   &gt;
                 </span>
-                <span>{it.q}</span>
               </summary>
-              <p className="pb-5 pl-11 pr-1 text-base leading-relaxed text-slate-700 sm:text-lg">
+              <p className="pb-5 pr-8 text-base leading-relaxed text-slate-700 sm:text-lg">
                 {it.a}
               </p>
             </details>

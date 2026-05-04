@@ -35,6 +35,12 @@ interface Props {
 }
 
 const STROBE_WARNING_ID = "translator-strobe-warning";
+const HOME_SOFT_CONTROL =
+  "bg-white/75 text-slate-800 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950 hover:outline-[rgba(11,36,71,0.22)]";
+const HOME_SOFT_CONTROL_DARK =
+  "bg-white/75 text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950 hover:outline-[rgba(11,36,71,0.22)]";
+const HOME_DISABLED_CONTROL =
+  "cursor-not-allowed bg-white/45 text-slate-400 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]";
 
 export default function TranslatorSectionsBasic({
   plainA,
@@ -342,7 +348,7 @@ export default function TranslatorSectionsBasic({
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
 
   return (
-    <div className={isHome ? "mb-10 sm:mb-12" : "mb-8"}>
+    <div className={isHome ? "mb-0" : "mb-8"}>
       {flashOn && (
         <div
           className="pointer-events-none fixed inset-0 z-[999]"
@@ -351,16 +357,16 @@ export default function TranslatorSectionsBasic({
       )}
 
       <section
-        className={
-          isHome
-            ? "mw-tool-section mt-5 overflow-hidden rounded-2xl bg-[#fffdf8]/95"
-            : "mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white"
-        }
-      >
+          className={
+            isHome
+              ? "mw-tool-section mt-0"
+              : "mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white"
+          }
+        >
         <div
           className={
             isHome
-              ? "tool-header px-5 pb-0 pt-7 sm:px-8 sm:pt-8 lg:px-10"
+              ? "tool-header px-0 pb-1 pt-2 sm:pt-3"
               : "tool-header px-5 pb-0 pt-6 sm:px-8 sm:pt-7"
           }
         >
@@ -391,12 +397,18 @@ export default function TranslatorSectionsBasic({
         <div
           className={
             isHome
-              ? "px-5 pb-6 pt-5 sm:px-8 sm:pb-8 sm:pt-6 lg:px-10"
+              ? "pb-4 pt-4 sm:pb-5 sm:pt-4"
               : "px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5"
           }
         >
-          <div className="flex flex-col gap-4">
-            <div className={isHome ? "pt-1" : "rounded-xl bg-white"}>
+          <div
+            className={
+              isHome
+                ? "flex flex-col gap-4"
+                : "flex flex-col gap-4"
+            }
+          >
+            <div className={isHome ? "pt-0" : "rounded-xl bg-white"}>
               <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
                 <div className="inline-flex w-full gap-2 rounded-lg sm:w-auto">
                   <button
@@ -405,7 +417,9 @@ export default function TranslatorSectionsBasic({
                     className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${focusOutline} ${
                       direction === "encode"
                         ? "bg-slate-950 text-sky-100"
-                        : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-950"
+                        : isHome
+                          ? HOME_SOFT_CONTROL
+                          : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-950"
                     }`}
                     aria-pressed={direction === "encode"}
                   >
@@ -418,7 +432,9 @@ export default function TranslatorSectionsBasic({
                     className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${focusOutline} ${
                       direction === "decode"
                         ? "bg-slate-950 text-sky-100"
-                        : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-950"
+                        : isHome
+                          ? HOME_SOFT_CONTROL
+                          : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-950"
                     }`}
                     aria-pressed={direction === "decode"}
                   >
@@ -432,7 +448,11 @@ export default function TranslatorSectionsBasic({
                       type="button"
                       key={ex.label}
                       onClick={ex.set}
-                      className={`cursor-pointer rounded-full bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 ${focusOutline}`}
+                      className={`cursor-pointer rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
+                        isHome
+                          ? HOME_SOFT_CONTROL
+                          : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
+                      }`}
                     >
                       Try “{ex.label}”
                     </button>
@@ -442,7 +462,11 @@ export default function TranslatorSectionsBasic({
                 <button
                   type="button"
                   onClick={handleSwap}
-                  className={`hidden cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 md:flex lg:ml-auto ${focusOutline}`}
+                  className={`hidden cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition active:scale-95 md:flex lg:ml-auto ${focusOutline} ${
+                    isHome
+                      ? HOME_SOFT_CONTROL_DARK
+                      : "bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950"
+                  }`}
                   title="Swap direction"
                 >
                   <span>Swap</span>
@@ -457,7 +481,7 @@ export default function TranslatorSectionsBasic({
               <div
                 className={
                   isHome
-                    ? "overflow-hidden rounded-xl bg-[#f7f4ee]"
+                    ? "overflow-hidden rounded-xl bg-white/85 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.16)]"
                     : "overflow-hidden rounded-xl bg-slate-100"
                 }
               >
@@ -502,7 +526,11 @@ export default function TranslatorSectionsBasic({
                       if (direction === "encode") setPlainA("");
                       else setMorseB("");
                     }}
-                    className={`cursor-pointer rounded-md bg-slate-200 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-300 hover:text-sky-950 active:scale-95 ${focusOutline}`}
+                    className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
+                      isHome
+                        ? HOME_SOFT_CONTROL
+                        : "bg-slate-200 text-slate-700 hover:bg-slate-300 hover:text-sky-950"
+                    }`}
                   >
                     Clear input
                   </button>
@@ -574,7 +602,7 @@ export default function TranslatorSectionsBasic({
             <div
               className={
                 isHome
-                  ? "flex flex-col gap-3 rounded-xl bg-[#fffaf2] px-4 py-3 sm:flex-row sm:items-center"
+                  ? "flex flex-col gap-3 rounded-xl bg-white/60 px-4 py-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:flex-row sm:items-center"
                   : "flex flex-col gap-3 rounded-xl bg-white px-4 py-3 sm:flex-row sm:items-center"
               }
             >
@@ -586,7 +614,9 @@ export default function TranslatorSectionsBasic({
                   className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${focusOutline} ${
                     outputValue
                       ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-                      : "cursor-not-allowed bg-slate-100 text-slate-400"
+                      : isHome
+                        ? HOME_DISABLED_CONTROL
+                        : "cursor-not-allowed bg-slate-100 text-slate-400"
                   }`}
                 >
                   <CopyIcon size={18} title="Copy output" />
@@ -599,8 +629,12 @@ export default function TranslatorSectionsBasic({
                   disabled={!outputValue}
                   className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${focusOutline} ${
                     outputValue
-                      ? "bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950"
-                      : "cursor-not-allowed bg-slate-100 text-slate-400"
+                      ? isHome
+                        ? HOME_SOFT_CONTROL_DARK
+                        : "bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950"
+                      : isHome
+                        ? HOME_DISABLED_CONTROL
+                        : "cursor-not-allowed bg-slate-100 text-slate-400"
                   }`}
                 >
                   <ShareIcon size={18} title="Share output" />
@@ -643,11 +677,17 @@ export default function TranslatorSectionsBasic({
                 className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
                   player.state === "playing"
                     ? player.isSupported
-                      ? "bg-slate-100 text-slate-950 hover:bg-slate-200 hover:text-sky-950"
-                      : "cursor-not-allowed bg-slate-100 text-slate-400"
+                      ? isHome
+                        ? HOME_SOFT_CONTROL_DARK
+                        : "bg-slate-100 text-slate-950 hover:bg-slate-200 hover:text-sky-950"
+                      : isHome
+                        ? HOME_DISABLED_CONTROL
+                        : "cursor-not-allowed bg-slate-100 text-slate-400"
                     : canPlay && player.isSupported
                       ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-                      : "cursor-not-allowed bg-slate-100 text-slate-400"
+                      : isHome
+                        ? HOME_DISABLED_CONTROL
+                        : "cursor-not-allowed bg-slate-100 text-slate-400"
                 }`}
               >
                 {player.state === "playing" ? (
@@ -678,8 +718,12 @@ export default function TranslatorSectionsBasic({
                 disabled={!player.isSupported || player.state === "idle"}
                 className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
                   player.isSupported && player.state !== "idle"
-                    ? "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
-                    : "cursor-not-allowed bg-slate-100 text-slate-400"
+                    ? isHome
+                      ? HOME_SOFT_CONTROL
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
+                    : isHome
+                      ? HOME_DISABLED_CONTROL
+                      : "cursor-not-allowed bg-slate-100 text-slate-400"
                 }`}
               >
                 <StopIcon size={22} title="Stop timer" />
@@ -692,8 +736,12 @@ export default function TranslatorSectionsBasic({
                 disabled={!canPlay || !soundOn}
                 className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
                   canPlay && soundOn
-                    ? "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
-                    : "cursor-not-allowed bg-slate-100 text-slate-400"
+                    ? isHome
+                      ? HOME_SOFT_CONTROL
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
+                    : isHome
+                      ? HOME_DISABLED_CONTROL
+                      : "cursor-not-allowed bg-slate-100 text-slate-400"
                 }`}
               >
                 <SaveIcon size={22} title="Save audio" />
@@ -704,7 +752,7 @@ export default function TranslatorSectionsBasic({
             <div
               className={
                 isHome
-                  ? "rounded-xl bg-[#fffaf2] p-4 sm:p-5"
+                  ? "px-1 pb-2 pt-1 sm:px-2 sm:pb-3 sm:pt-2"
                   : "rounded-2xl bg-white p-4"
               }
             >
@@ -757,6 +805,7 @@ export default function TranslatorSectionsBasic({
                     checked={soundOn}
                     onChange={setSoundOn}
                     icon={<SoundIcon size={16} title="Sound" />}
+                    isHome={isHome}
                   />
 
                   <TogglePill
@@ -764,6 +813,7 @@ export default function TranslatorSectionsBasic({
                     checked={repeat}
                     onChange={setRepeat}
                     icon={<LoopIcon size={16} title="Repeat" />}
+                    isHome={isHome}
                   />
 
                   <TogglePill
@@ -772,6 +822,7 @@ export default function TranslatorSectionsBasic({
                     onChange={setFlash}
                     icon={<LightBulbIcon size={16} title="Light" />}
                     describedBy={flash ? STROBE_WARNING_ID : undefined}
+                    isHome={isHome}
                   />
                 </div>
 
@@ -780,7 +831,11 @@ export default function TranslatorSectionsBasic({
                 <button
                   type="button"
                   onClick={() => setAdvancedOpen((v) => !v)}
-                  className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 sm:w-auto ${focusOutline}`}
+                  className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2 transition active:scale-95 sm:w-auto ${focusOutline} ${
+                    isHome
+                      ? HOME_SOFT_CONTROL_DARK
+                      : "bg-slate-100 hover:bg-slate-200 hover:text-sky-950"
+                  }`}
                   aria-expanded={advancedOpen}
                 >
                   <span className="text-sm font-semibold text-slate-900">
@@ -805,9 +860,11 @@ export default function TranslatorSectionsBasic({
                             setPreset(e.target.value as SoundPreset)
                           }
                           disabled={!soundOn}
-                          className={`mt-1 w-full rounded-xl bg-slate-100 p-2 transition hover:bg-slate-200 hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
+                          className={`mt-1 w-full rounded-xl p-2 transition hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
                             soundOn
-                              ? "cursor-pointer"
+                              ? isHome
+                                ? "cursor-pointer bg-white/75 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white"
+                                : "cursor-pointer bg-slate-100 hover:bg-slate-200"
                               : "cursor-not-allowed opacity-60"
                           }`}
                         >
@@ -855,12 +912,14 @@ function TogglePill({
   onChange,
   icon,
   describedBy,
+  isHome = false,
 }: {
   label: string;
   checked: boolean;
   onChange: (v: boolean) => void;
   icon?: React.ReactNode;
   describedBy?: string;
+  isHome?: boolean;
 }) {
   return (
     <button
@@ -869,7 +928,9 @@ function TogglePill({
       className={`flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
         checked
           ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-          : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
+          : isHome
+            ? HOME_SOFT_CONTROL
+            : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
       }`}
       aria-pressed={checked}
       aria-describedby={describedBy}

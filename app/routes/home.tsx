@@ -13,7 +13,7 @@ const CANONICAL_PATH = "/";
 
 const homeRelatedToolsStyles = `
   .mw-home-page ~ #morse-code-navigation {
-    margin-top: 3.25rem;
+    margin-top: 2.75rem;
     background: transparent !important;
     border-radius: 0 !important;
     overflow: visible !important;
@@ -23,30 +23,14 @@ const homeRelatedToolsStyles = `
     background: transparent !important;
   }
 
-  .mw-home-page ~ #morse-code-navigation a:has(h4) {
-    min-height: 0 !important;
-    background: transparent !important;
-    border-radius: 0 !important;
-    padding: 0.35rem 0 1rem !important;
-  }
-
-  .mw-home-page ~ #morse-code-navigation a:has(h4) p {
-    max-width: 34ch !important;
-    margin-top: 0.5rem !important;
-  }
-
-  .mw-home-page ~ #morse-code-navigation a:has(h4) span:last-child {
-    padding-top: 0.9rem !important;
-  }
-
   @media (max-width: 767px) {
     .mw-home-page ~ #morse-code-navigation {
-      margin-top: 2.25rem;
+      margin-top: 2rem;
     }
 
     .mw-home-page ~ #morse-code-navigation > div {
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
 `;
@@ -113,7 +97,7 @@ export default function Home() {
     <div className="mw-home-page" style={styles.page}>
       <style dangerouslySetInnerHTML={{ __html: homeRelatedToolsStyles }} />
 
-      <div className="mx-auto w-full max-w-[1120px] px-4 pb-4 pt-5 sm:px-6 sm:pt-7 lg:px-8">
+      <div className="mx-auto w-full max-w-[1120px] px-4 pb-0 pt-2 sm:px-6 sm:pt-4 lg:px-8">
         <TranslatorSectionsBasic
           variant="home"
           plainA={plainA}
@@ -133,7 +117,7 @@ export default function Home() {
 
       <HowItWorks />
 
-      <div className="mx-auto w-full max-w-[960px] px-4 pb-16 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1040px] px-4 pb-16 sm:px-6 lg:px-8">
         <FaqSectionGeneric
           title="Translator FAQ"
           items={faqItems}
