@@ -58,16 +58,68 @@ input[type="range"]:focus-visible {
   box-shadow: none !important;
 }
 
+main
+  :where(
+    .border,
+    .border-t,
+    .border-b,
+    .border-l,
+    .border-r,
+    [class*="border-"]
+  ) {
+  border-width: 0 !important;
+  border-color: transparent !important;
+}
+
+main :where([class*="shadow"], [style*="box-shadow"]) {
+  box-shadow: none !important;
+}
+
+main :where(.divide-y > :not([hidden]) ~ :not([hidden])) {
+  border-top-width: 0 !important;
+}
+
+main hr {
+  border: 0 !important;
+}
+
+main :where([style*="border:"]) {
+  border: 0 !important;
+}
+
+main :where([style*="border-bottom"], [style*="border-top"]) {
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+}
+
+main *,
+main *::before,
+main *::after {
+  border-width: 0 !important;
+  box-shadow: none !important;
+}
+
+.relative.z-10 *,
+.relative.z-10 *::before,
+.relative.z-10 *::after {
+  border-width: 0 !important;
+  box-shadow: none !important;
+}
+
+.relative.z-10 hr {
+  border: 0 !important;
+}
+
 .mw-how-section > .flex.flex-col:first-child {
-  margin: -1.25rem -1.25rem 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
-  background: #fffaf2;
-  padding: 1.5rem 1.25rem;
+  margin: 0 0 1.5rem;
+  border-bottom: 0;
+  background: transparent;
+  padding: 0;
 }
 
 @media (min-width: 640px) {
   .mw-how-section > .flex.flex-col:first-child {
-    margin: -2rem -2rem 1.75rem;
-    padding: 1.75rem 2rem;
+    margin: 0 0 1.75rem;
+    padding: 0;
   }
 }

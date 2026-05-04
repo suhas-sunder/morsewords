@@ -92,11 +92,6 @@ async function renderShareImage(args: Props): Promise<Blob> {
   const cardH = H - 110;
   const r = 34;
 
-  // Shadow
-  ctx.fillStyle = "rgba(15, 23, 42, 0.10)";
-  roundRect(ctx, cardX, cardY + 10, cardW, cardH, r);
-  ctx.fill();
-
   // Card background
   ctx.fillStyle = "#FFFFFF";
   roundRect(ctx, cardX, cardY, cardW, cardH, r);
@@ -138,18 +133,9 @@ async function renderShareImage(args: Props): Promise<Blob> {
   const rowH = 112;
 
   const card = (cx: number, cy: number, label: string, value: string) => {
-    ctx.fillStyle = "rgba(15, 23, 42, 0.06)";
-    roundRect(ctx, cx, cy + 6, colW, rowH, 20);
-    ctx.fill();
-
-    ctx.fillStyle = "#FFFFFF";
+    ctx.fillStyle = "#F1F5F9";
     roundRect(ctx, cx, cy, colW, rowH, 20);
     ctx.fill();
-
-    ctx.strokeStyle = "rgba(15, 23, 42, 0.10)";
-    ctx.lineWidth = 1;
-    roundRect(ctx, cx + 0.5, cy + 0.5, colW - 1, rowH - 1, 20);
-    ctx.stroke();
 
     ctx.fillStyle = "rgba(15, 23, 42, 0.70)";
     ctx.font =
@@ -275,15 +261,15 @@ export default function ShareResultsButton(props: Props) {
           role="dialog"
           aria-modal="true"
         >
-          <div className="w-full max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
-            <div className="flex items-center justify-between border-b border-slate-200 bg-[#fffaf2] p-4 sm:p-5">
+          <div className="w-full max-w-3xl overflow-hidden rounded-2xl bg-white">
+            <div className="flex items-center justify-between bg-[#fffaf2] p-4 sm:p-5">
               <div>
                 <div className="text-base font-extrabold text-sky-950">Share results</div>
                 <div className="text-sm text-slate-600">Generates a shareable image.</div>
               </div>
               <button
                 type="button"
-                className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="cursor-pointer rounded-lg bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 onClick={() => setOpen(false)}
               >
                 Close
@@ -306,7 +292,7 @@ export default function ShareResultsButton(props: Props) {
 
                 {pngBlob ? (
                   <a
-                    className="inline-flex cursor-pointer items-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                    className="inline-flex cursor-pointer items-center rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                     href={pngUrl || undefined}
                     download="morse-typing-results.png"
                   >
@@ -316,7 +302,7 @@ export default function ShareResultsButton(props: Props) {
               </div>
 
               {pngUrl ? (
-                <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-[#fffdf8]">
+                <div className="mt-4 overflow-hidden rounded-2xl bg-[#fffdf8]">
                   <img
                     src={pngUrl}
                     alt="Shareable results preview"
@@ -324,7 +310,7 @@ export default function ShareResultsButton(props: Props) {
                   />
                 </div>
               ) : (
-                <div className="mt-4 rounded-2xl border border-slate-200 bg-[#fffdf8] p-4 text-sm text-slate-700">
+                <div className="mt-4 rounded-2xl bg-[#fffdf8] p-4 text-sm text-slate-700">
                   {busy ? "Generating your share card..." : "Generating your share card..."}
                 </div>
               )}

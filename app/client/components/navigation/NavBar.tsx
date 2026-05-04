@@ -200,7 +200,7 @@ export default function NavBar(props: { pathname?: string }) {
             <a
               href="#morse-code-navigation"
               onClick={handleAllToolsClick}
-              className="text-sm font-semibold text-white transition cursor-pointer hover:text-sky-200"
+              className="cursor-pointer text-sm font-semibold text-white transition hover:text-sky-200"
             >
               All tools
             </a>
@@ -213,7 +213,7 @@ export default function NavBar(props: { pathname?: string }) {
                   key={item.href}
                   href={item.href}
                   className={
-                    "text-sm font-semibold transition cursor-pointer " +
+                    "cursor-pointer text-sm font-semibold transition " +
                     (active ? "text-sky-200" : "text-white hover:text-sky-200")
                   }
                   aria-current={active ? "page" : undefined}
@@ -228,7 +228,7 @@ export default function NavBar(props: { pathname?: string }) {
                 type="button"
                 onClick={() => setMoreOpen((v) => !v)}
                 className={
-                  "inline-flex items-center text-sm font-semibold transition cursor-pointer " +
+                  "inline-flex cursor-pointer items-center text-sm font-semibold transition " +
                   (moreActive || moreOpen
                     ? "text-sky-200"
                     : "text-white hover:text-sky-200")
@@ -243,9 +243,9 @@ export default function NavBar(props: { pathname?: string }) {
               {moreOpen ? (
                 <div
                   role="menu"
-                  className="absolute right-0 mt-4 w-80 overflow-hidden rounded-2xl border border-sky-200 bg-white shadow-xl ring-1 ring-black/5"
+                  className="absolute right-0 mt-4 w-80 overflow-hidden rounded-2xl bg-white"
                 >
-                  <div className="border-b border-sky-100 bg-sky-50 px-4 py-3">
+                  <div className="bg-sky-50 px-4 py-3">
                     <p className="text-sm font-extrabold text-sky-900">
                       More Morse tools
                     </p>
@@ -289,11 +289,11 @@ export default function NavBar(props: { pathname?: string }) {
                     })}
                   </div>
 
-                  <div className="border-t border-sky-100 bg-sky-50/70 p-2">
+                  <div className="bg-sky-50/70 p-2">
                     <a
                       href="#morse-code-navigation"
                       onClick={handleAllToolsClick}
-                      className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-sky-200 bg-white px-3 py-2.5 text-sm font-extrabold text-sky-900 transition hover:border-sky-300 hover:bg-sky-100"
+                      className="flex w-full cursor-pointer items-center justify-between rounded-xl bg-white px-3 py-2.5 text-sm font-extrabold text-sky-900 transition hover:bg-sky-100"
                     >
                       <span>View all tools</span>
                       <span aria-hidden="true">↓</span>
@@ -308,7 +308,7 @@ export default function NavBar(props: { pathname?: string }) {
             type="button"
             onClick={() => setOpen((v) => !v)}
             className={
-              "inline-flex items-center justify-center rounded-xl border border-gray-200 px-3 py-2 text-sm font-semibold transition cursor-pointer md:hidden " +
+              "inline-flex cursor-pointer items-center justify-center rounded-xl px-3 py-2 text-sm font-semibold transition md:hidden " +
               (open ? "bg-gray-100" : "bg-white") +
               " hover:bg-gray-100"
             }
@@ -326,7 +326,7 @@ export default function NavBar(props: { pathname?: string }) {
               <a
                 href="#morse-code-navigation"
                 onClick={handleAllToolsClick}
-                className="w-full rounded-xl px-3 py-2 text-sm font-semibold text-white transition cursor-pointer hover:bg-sky-200 hover:text-neutral-900"
+                className="w-full cursor-pointer rounded-xl px-3 py-2 text-sm font-semibold text-white transition hover:bg-sky-200 hover:text-neutral-900"
               >
                 All tools
               </a>
@@ -339,7 +339,7 @@ export default function NavBar(props: { pathname?: string }) {
                     key={item.href}
                     href={item.href}
                     className={
-                      "w-full rounded-xl px-3 py-2 text-sm font-semibold transition cursor-pointer " +
+                      "w-full cursor-pointer rounded-xl px-3 py-2 text-sm font-semibold transition " +
                       (active
                         ? "text-sky-200"
                         : "text-white hover:bg-sky-200 hover:text-neutral-900")
@@ -359,7 +359,7 @@ export default function NavBar(props: { pathname?: string }) {
                     key={item.href}
                     href={item.href}
                     className={
-                      "w-full rounded-xl px-3 py-2 text-sm font-semibold transition cursor-pointer " +
+                      "w-full cursor-pointer rounded-xl px-3 py-2 text-sm font-semibold transition " +
                       (active
                         ? "text-sky-200"
                         : "text-white hover:bg-sky-200 hover:text-neutral-900")

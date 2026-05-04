@@ -14,7 +14,7 @@ export default function StrobeWarning({
     <div
       id={id}
       className={
-        "flex gap-3 rounded-xl border border-slate-200 bg-[#fffdf8] p-3 text-sm leading-relaxed text-slate-700 " +
+        "flex gap-3 rounded-xl bg-[#fffdf8] p-3 text-sm leading-relaxed text-slate-700 " +
         className
       }
     >

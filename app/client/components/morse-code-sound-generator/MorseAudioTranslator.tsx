@@ -431,7 +431,7 @@ export default function MorseAudioTranslator({
                     else if (player.state === "paused") player.resume();
                   }}
                   disabled={player.state === "playing" ? !player.isSupported : !canPlay || !player.isSupported}
-                  className={`flex justify-center items-center gap-2 rounded-lg px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${player.state === "playing" ? player.isSupported ? "border border-slate-200 bg-white text-slate-900 hover:border-sky-300 hover:bg-sky-50" : "border border-slate-200 text-slate-400 cursor-not-allowed" : canPlay && player.isSupported ? "border border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "border border-slate-200 bg-slate-50 text-slate-400 cursor-not-allowed"}`}
+                  className={`flex justify-center items-center gap-2 rounded-lg px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${player.state === "playing" ? player.isSupported ? "bg-slate-100 text-slate-900 hover:bg-slate-200" : "bg-slate-100 text-slate-400 cursor-not-allowed" : canPlay && player.isSupported ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "bg-slate-100 text-slate-400 cursor-not-allowed"}`}
                 >
                   {player.state === "playing" ? <PauseIcon size={22} title="Pause audio" /> : <PlayIcon size={22} title={player.state === "paused" ? "Resume audio" : "Play audio"} />}
                   <span>{player.state === "playing" ? "Pause" : player.state === "paused" ? "Resume" : isSoundPage ? "Play sound" : "Play"}</span>
@@ -440,7 +440,7 @@ export default function MorseAudioTranslator({
                 <button
                   onClick={player.stop}
                   disabled={!player.isSupported || player.state === "idle"}
-                  className={`flex justify-center items-center gap-2 rounded-lg border px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${player.isSupported && player.state !== "idle" ? "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950" : "border-slate-200 text-slate-400 cursor-not-allowed"}`}
+                  className={`flex justify-center items-center gap-2 rounded-lg px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${player.isSupported && player.state !== "idle" ? "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950" : "bg-slate-100 text-slate-400 cursor-not-allowed"}`}
                 >
                   <StopIcon size={22} title="Stop audio" />
                   <span>Stop</span>
@@ -449,7 +449,7 @@ export default function MorseAudioTranslator({
                 <button
                   onClick={() => handleExport(exportFormats.includes("mp3") ? "mp3" : "wav")}
                   disabled={!canPlay || !soundOn}
-                  className={`flex justify-center items-center gap-2 rounded-lg border px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${canPlay && soundOn ? "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950" : "border-slate-200 text-slate-400 cursor-not-allowed"}`}
+                  className={`flex justify-center items-center gap-2 rounded-lg px-3 py-2 font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${canPlay && soundOn ? "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950" : "bg-slate-100 text-slate-400 cursor-not-allowed"}`}
                 >
                   <SaveIcon size={22} title="Export audio" />
                   <span>{exportFormats.includes("mp3") ? "Download MP3" : "Export WAV"}</span>
@@ -457,7 +457,7 @@ export default function MorseAudioTranslator({
               </div>
             </div>
 
-            <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+            <div className="mt-4 rounded-2xl bg-white p-4">
               <div className="flex items-center justify-between gap-2">
                 <h2 className="text-base font-extrabold text-sky-950">Sound controls</h2>
                 <span className="text-sm text-slate-600">{player.isSupported ? player.state === "idle" ? "Ready" : player.state === "playing" ? "Playing" : "Paused" : "Unavailable"}</span>
@@ -471,11 +471,11 @@ export default function MorseAudioTranslator({
               </div>
 
               {advancedOpen ? (
-                <div className="mt-4 border-t border-slate-200 pt-4">
+                <div className="mt-4 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-semibold text-slate-700">Tone preset</label>
-                      <select value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:border-sky-300 hover:bg-sky-50">
+                      <select value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full rounded-xl bg-slate-100 px-3 py-2 font-semibold cursor-pointer hover:bg-slate-200">
                         <option value="cw_radio">CW radio tone</option>
                         <option value="sine">Sine tone</option>
                         <option value="square">Square beep</option>
@@ -501,7 +501,7 @@ export default function MorseAudioTranslator({
               ) : null}
 
               <div className="mt-4">
-                <button onClick={() => setAdvancedOpen((v) => !v)} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer active:scale-95 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+                  <button onClick={() => setAdvancedOpen((v) => !v)} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 font-semibold cursor-pointer active:scale-95 transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
                   {advancedOpen ? "Hide advanced" : "Show advanced"}
                 </button>
               </div>
@@ -509,16 +509,16 @@ export default function MorseAudioTranslator({
               
 
               {exportOpen ? (
-                <div className="mt-4 border-t border-slate-200 pt-4">
+                <div className="mt-4 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-semibold text-slate-700">File name</label>
-                      <input value={fileName} onChange={(e) => setFileName(e.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold" placeholder={defaultFileName} />
+                      <input value={fileName} onChange={(e) => setFileName(e.target.value)} className="mt-2 w-full rounded-xl bg-slate-100 px-3 py-2 font-semibold" placeholder={defaultFileName} />
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="text-sm font-semibold text-slate-700">Sample rate</label>
-                        <select value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:border-sky-300 hover:bg-sky-50">
+                        <select value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full rounded-xl bg-slate-100 px-3 py-2 font-semibold cursor-pointer hover:bg-slate-200">
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
                           <option value={48000}>48000</option>
@@ -529,7 +529,7 @@ export default function MorseAudioTranslator({
                   </div>
 
                   {exportFormats.includes("mp3") ? (
-                    <div className="mt-4 rounded-2xl border border-slate-200 bg-[#fffdf8] p-4">
+                    <div className="mt-4 rounded-2xl bg-[#fffdf8] p-4">
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                           <h3 className="font-extrabold text-sky-900">Choose your audio download</h3>
@@ -537,7 +537,7 @@ export default function MorseAudioTranslator({
                         </div>
                         <div className="flex items-center gap-2">
                           <label className="text-sm font-semibold text-slate-700" htmlFor={`${safePrefix}_mp3_kbps`}>MP3 kbps</label>
-                          <select id={`${safePrefix}_mp3_kbps`} value={mp3Kbps} onChange={(e) => setMp3Kbps(Number(e.target.value))} className="rounded-xl border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer hover:border-sky-300 hover:bg-sky-50">
+                          <select id={`${safePrefix}_mp3_kbps`} value={mp3Kbps} onChange={(e) => setMp3Kbps(Number(e.target.value))} className="rounded-xl bg-slate-100 px-3 py-2 font-semibold cursor-pointer hover:bg-slate-200">
                             <option value={96}>96</option>
                             <option value={128}>128</option>
                             <option value={192}>192</option>
@@ -564,7 +564,7 @@ export default function MorseAudioTranslator({
               ) : null}
 
               <div className="mt-4">
-                <button onClick={() => setExportOpen((v) => !v)} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold cursor-pointer active:scale-95 transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+                  <button onClick={() => setExportOpen((v) => !v)} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 font-semibold cursor-pointer active:scale-95 transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
                   {exportOpen ? "Hide export" : "Show export"}
                 </button>
               </div>
@@ -580,14 +580,14 @@ export default function MorseAudioTranslator({
                 <>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {["sound generator", "audio generator", "sound maker", "MP3 generator", "beep generator", "tone generator"].map((label) => (
-                      <span key={label} className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-900">
+                      <span key={label} className="rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-900">
                         {label}
                       </span>
                     ))}
                   </div>
                   <div className="mt-5 grid gap-3 sm:grid-cols-4">
                     {heroStats.map(([label, value]) => (
-                      <div key={label} className="rounded-xl border border-slate-200 bg-white p-4">
+                      <div key={label} className="rounded-xl bg-slate-100 p-4">
                         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">{label}</p>
                         <p className="mt-1 text-lg font-extrabold text-sky-950">{value}</p>
                       </div>

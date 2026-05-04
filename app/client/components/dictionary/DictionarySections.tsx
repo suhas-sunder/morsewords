@@ -29,8 +29,7 @@ const responsiveCss = `
   }
 
   .mwDictCard{
-    border: 1px solid #e6e8ef;
-    background: #fff;
+    background: #f1f5f9;
     border-radius: 14px;
     padding: 12px;
   }
@@ -117,8 +116,7 @@ function ChipButton(props: {
   const [hover, setHover] = React.useState(false);
 
   const style: React.CSSProperties = {
-    border: "1px solid " + (active ? "#0b2447" : "#e6e8ef"),
-    background: active ? "#0b2447" : "#fff",
+    background: active ? "#0b2447" : "#f1f5f9",
     color: active ? "#fff" : "#0b2447",
     padding: "8px 10px",
     borderRadius: 999,
@@ -165,8 +163,7 @@ function SectionHeader(props: { title: string; id: string }) {
           color: "#0b2447",
           fontWeight: 800,
           textDecoration: "none",
-          border: "1px solid #e6e8ef",
-          background: "#fff",
+          background: "#f1f5f9",
           padding: "8px 10px",
           borderRadius: 999,
           cursor: "pointer",
@@ -234,7 +231,6 @@ function TableBase(props: {
                 textAlign: c.align ?? "left",
                 padding: "12px 12px",
                 background: "#fbfcff",
-                borderBottom: "1px solid #e6e8ef",
                 fontSize: ".9rem",
                 color: "#5a616c",
                 letterSpacing: 0.2,
@@ -263,7 +259,6 @@ function RowTd(props: {
     <td
       style={{
         padding: "12px 12px",
-        borderBottom: "1px solid #eef0f6",
         font: props.mono
           ? '700 0.98rem/1.25 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"'
           : undefined,
@@ -285,7 +280,6 @@ function QuickLinks(props: { items: { id: string; label: string }[] }) {
         zIndex: 5,
         background: "#f7f8fb",
         padding: "10px 0 12px",
-        borderBottom: "1px solid #e6e8ef",
         marginBottom: 14,
       }}
     >
@@ -306,8 +300,7 @@ function QuickLinks(props: { items: { id: string; label: string }[] }) {
             key={i.id}
             href={"#" + i.id}
             style={{
-              border: "1px solid #e6e8ef",
-              background: "#fff",
+              background: "#f1f5f9",
               color: "#0b2447",
               padding: "8px 10px",
               borderRadius: 999,

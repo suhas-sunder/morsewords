@@ -107,7 +107,7 @@ const LETTERS: CharacterRow[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     morse: TEXT_TO_MORSE[character] ?? "",
   }));
 
-const NUMBERS: CharacterRow[] = "0123456789".split("").map((character) => ({
+const NUMBERS: CharacterRow[] = "0123456789".split("") .map((character) => ({
   character,
   name: `Number ${character}`,
   morse: TEXT_TO_MORSE[character] ?? "",
@@ -2028,7 +2028,7 @@ function SettingsSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="min-w-0 rounded-2xl border border-slate-200 bg-[#fffdf8] p-4">
+    <section className="min-w-0 rounded-2xl bg-[#fffdf8] p-4">
       <h3 className="m-0 break-words text-lg font-extrabold text-sky-950">
         {title}
       </h3>
@@ -2065,7 +2065,7 @@ function ContentLimitNote({
   ].filter(Boolean);
 
   return (
-    <div className="mt-3 rounded-xl border border-slate-200 bg-[#fffdf8] p-3 text-xs leading-relaxed text-slate-600">
+    <div className="mt-3 rounded-xl bg-[#fffdf8] p-3 text-xs leading-relaxed text-slate-600">
       <div className="flex items-center gap-2 font-bold text-sky-900">
         <WarningIcon size={16} title={`${label} limits`} />
         Content limits
@@ -2089,7 +2089,7 @@ function ToggleField({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-3 transition hover:border-sky-300 hover:bg-sky-50/40">
+    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-2xl bg-slate-100 p-3 transition hover:bg-slate-200">
       <span className="min-w-0 break-words text-sm font-bold text-slate-800">
         {label}
       </span>
@@ -2148,7 +2148,7 @@ function NumberField({
 
 function PreviewReferenceTable({ rows }: { rows: CharacterRow[] }) {
   return (
-    <section className="min-w-0 rounded-2xl border border-sky-100 bg-white p-4">
+    <section className="min-w-0 rounded-2xl bg-white p-4">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Reference guide page
@@ -2158,7 +2158,7 @@ function PreviewReferenceTable({ rows }: { rows: CharacterRow[] }) {
         </span>
       </div>
       <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
-        {rows.slice(0, 15).map((row) => (
+        {rows.slice(0, 15) .map((row) => (
           <div
             key={`preview-chart-${row.character}`}
             className="min-w-0 rounded-xl bg-sky-50 px-2 py-2"
@@ -2181,7 +2181,7 @@ function WorksheetPaperPreview({
   const sentences = getWorksheetSentences(settings);
 
   return (
-    <section className="min-w-0 rounded-2xl border border-sky-100 bg-white p-4">
+    <section className="min-w-0 rounded-2xl bg-white p-4">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Worksheet page
@@ -2191,13 +2191,13 @@ function WorksheetPaperPreview({
         </span>
       </div>
 
-      <div className="mt-3 min-w-0 rounded-2xl border border-sky-100 bg-sky-50 p-3">
+      <div className="mt-3 min-w-0 rounded-2xl bg-sky-50 p-3">
         <div className="flex min-w-0 items-center gap-3">
           {settings.customLogoDataUrl ? (
             <img
               src={settings.customLogoDataUrl}
               alt={settings.customLogoName || `${getBrandName(settings)} logo`}
-              className="h-12 w-12 shrink-0 rounded-xl border border-sky-100 bg-white object-contain p-1"
+              className="h-12 w-12 shrink-0 rounded-xl bg-white object-contain p-1"
             />
           ) : (
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-800 text-lg font-black text-white">
@@ -2220,7 +2220,7 @@ function WorksheetPaperPreview({
       </div>
 
       <div className="mt-4 grid min-w-0 gap-2">
-        {words.slice(0, 4).map((word) => (
+        {words.slice(0, 4) .map((word) => (
           <div
             key={`preview-word-${word}`}
             className="min-w-0 rounded-xl bg-sky-50 px-3 py-2 text-xs"
@@ -2238,7 +2238,7 @@ function WorksheetPaperPreview({
         </div>
       ) : null}
 
-      <div className="mt-3 min-w-0 rounded-xl border border-sky-100 bg-white px-3 py-2 text-xs text-slate-700">
+        <div className="mt-3 min-w-0 rounded-xl bg-slate-100 px-3 py-2 text-xs text-slate-700">
         <strong>Own message fields:</strong>{" "}
         <span className="break-words">
           Plain text {settings.ownMessageTextLineCount} lines, Morse{" "}
@@ -2253,7 +2253,7 @@ function AnswerKeyPreview({ settings }: { settings: PrintableSettings }) {
   const sentences = getWorksheetSentences(settings);
 
   return (
-    <section className="min-w-0 rounded-2xl border border-sky-100 bg-white p-4">
+    <section className="min-w-0 rounded-2xl bg-white p-4">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Answer key page
@@ -2296,7 +2296,7 @@ function LivePreview({
   const isPdf = downloadFormat === "pdf";
 
   return (
-    <aside className="min-w-0 rounded-2xl border border-slate-200 bg-[#fffdf8] p-5 lg:sticky lg:top-4">
+    <aside className="min-w-0 rounded-2xl bg-[#fffdf8] p-5 lg:sticky lg:top-4">
       <div className="flex min-w-0 flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="m-0 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -2312,7 +2312,7 @@ function LivePreview({
         </div>
       </div>
 
-      <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-3">
+      <div className="mt-4 rounded-2xl bg-white p-3">
         <label className="block">
           <span className="block text-sm font-semibold text-sky-950">
             Download format
@@ -2354,7 +2354,7 @@ function LivePreview({
         </div>
 
         {statusMessage ? (
-          <p className="mt-3 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
+          <p className="mt-3 rounded-xl bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-700">
             {statusMessage}
           </p>
         ) : null}
@@ -2387,12 +2387,12 @@ function LivePreview({
       </div>
 
       {settings.includeBranding && qrCodeDataUrl ? (
-        <div className="mt-4 min-w-0 rounded-2xl border border-slate-200 bg-white p-3 text-xs text-slate-700">
+        <div className="mt-4 min-w-0 rounded-2xl bg-white p-3 text-xs text-slate-700">
           <div className="flex min-w-0 items-center gap-3">
             <img
               src={qrCodeDataUrl}
               alt="QR code to MorseWords"
-              className="h-12 w-12 shrink-0 rounded-lg border border-slate-200 bg-white p-1"
+              className="h-12 w-12 shrink-0 rounded-lg bg-white p-1"
             />
             <div className="min-w-0">
               <strong className="break-words text-sky-950">
@@ -2429,7 +2429,7 @@ function CharacterGrid({
         {rows.map((row) => (
           <article
             key={`${row.character}-${row.morse}`}
-            className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4"
+            className="min-w-0 rounded-2xl bg-slate-100 p-4"
           >
             <div className="flex min-w-0 items-start justify-between gap-3">
               <div className="min-w-0">
@@ -2819,13 +2819,11 @@ export default function MorseCodePrintableChart() {
           width: 100%;
           max-width: 100%;
           min-width: 0;
-          border: 1px solid #cbd5e1;
           border-radius: 0.9rem;
-          background: #ffffff;
+          background: #f1f5f9;
           color: #0f172a;
           font-weight: 700;
           transition:
-            border-color 160ms ease,
             background-color 160ms ease;
         }
 
@@ -2855,15 +2853,13 @@ export default function MorseCodePrintableChart() {
         .input-control:hover,
         .textarea-control:hover,
         .select-control:hover {
-          border-color: #38bdf8;
-          background: #f8fafc;
+          background: #e2e8f0;
         }
 
         .input-control:focus,
         .textarea-control:focus,
         .select-control:focus {
           outline: 3px solid rgba(14, 165, 233, 0.24);
-          border-color: #0284c7;
         }
 
         .action-primary,
@@ -2878,8 +2874,7 @@ export default function MorseCodePrintableChart() {
           text-decoration: none;
           transition:
             transform 160ms ease,
-            background-color 160ms ease,
-            border-color 160ms ease;
+            background-color 160ms ease;
         }
 
         .action-primary,
@@ -2890,7 +2885,6 @@ export default function MorseCodePrintableChart() {
         }
 
         .action-primary {
-          border: 1px solid #020617;
           background: #020617;
           color: #e0f2fe;
         }
@@ -2898,26 +2892,22 @@ export default function MorseCodePrintableChart() {
         .action-primary:hover {
           transform: translateY(-1px);
           background: #1e293b;
-          border-color: #1e293b;
           color: #ffffff;
         }
 
         .action-secondary {
-          border: 1px solid #e2e8f0;
-          background: #ffffff;
+          background: #f1f5f9;
           color: #0f172a;
         }
 
         .action-secondary:hover {
           transform: translateY(-1px);
-          border-color: #7dd3fc;
-          background: #f0f9ff;
+          background: #e2e8f0;
         }
 
         .quick-button {
           min-height: 2.35rem;
-          border: 1px solid #e2e8f0;
-          background: #ffffff;
+          background: #f1f5f9;
           padding: 0.55rem 0.9rem;
           color: #0f172a;
           font-size: 0.85rem;
@@ -2925,8 +2915,7 @@ export default function MorseCodePrintableChart() {
 
         .quick-button:hover {
           transform: translateY(-1px);
-          border-color: #7dd3fc;
-          background: #f0f9ff;
+          background: #e2e8f0;
         }
 
         .action-primary:disabled,
@@ -2942,24 +2931,21 @@ export default function MorseCodePrintableChart() {
           max-width: 100%;
           min-width: 0;
           cursor: pointer;
-          border: 1px dashed #7dd3fc;
           border-radius: 1rem;
-          background: #f0f9ff;
+          background: #f1f5f9;
           padding: 0.85rem;
           color: #075985;
           font-weight: 800;
         }
 
         .file-control:hover {
-          background: #e0f2fe;
-          border-color: #38bdf8;
+          background: #e2e8f0;
         }
 
         .content-card {
           min-width: 0;
-          border: 1px solid #dbeafe;
           border-radius: 1.25rem;
-          background: #f8fbff;
+          background: #f1f5f9;
           padding: 1rem;
         }
 
@@ -3017,7 +3003,7 @@ export default function MorseCodePrintableChart() {
         </PageHero>
 
         <section className="hidden">
-          <div className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4">
+          <div className="min-w-0 rounded-2xl bg-white p-4">
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-4">
               <div className="min-w-0">
                 <div className="text-sm font-extrabold uppercase tracking-wide text-sky-800">
@@ -3033,7 +3019,7 @@ export default function MorseCodePrintableChart() {
                 </p>
               </div>
 
-              <div className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900">
+              <div className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900">
                 PDF default · Answer key off by default
               </div>
             </div>
@@ -3045,7 +3031,7 @@ export default function MorseCodePrintableChart() {
           className="grid min-w-0 items-start gap-5 py-4 lg:grid-cols-[0.88fr_1.12fr]"
         >
           <div className="grid min-w-0 gap-4">
-            <section className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
+            <section className="min-w-0 rounded-2xl bg-white p-5">
               <p className="m-0 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                 Worksheet settings
               </p>
@@ -3342,7 +3328,7 @@ export default function MorseCodePrintableChart() {
               </FormField>
 
               {settings.customLogoDataUrl ? (
-                <div className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-sky-100 bg-sky-50 p-3">
+                <div className="flex min-w-0 items-center justify-between gap-4 rounded-2xl bg-slate-100 p-3">
                   <div className="flex min-w-0 items-center gap-3">
                     <img
                       src={settings.customLogoDataUrl}
@@ -3350,7 +3336,7 @@ export default function MorseCodePrintableChart() {
                         settings.customLogoName ||
                         `${getBrandName(settings)} logo preview`
                       }
-                      className="h-14 w-14 shrink-0 rounded-xl border border-sky-100 bg-white object-contain p-1"
+                      className="h-14 w-14 shrink-0 rounded-xl bg-white object-contain p-1"
                     />
                     <div className="min-w-0">
                       <div className="safe-text text-sm font-black text-sky-800">
@@ -3436,7 +3422,7 @@ export default function MorseCodePrintableChart() {
         </section>
 
         <section className="grid gap-4 py-4 md:grid-cols-3">
-          <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
+          <article className="min-w-0 rounded-2xl bg-[#f7f4ee] p-5">
             <h2 className="m-0 break-words text-xl font-bold text-sky-800">
               Teacher-ready defaults
             </h2>
@@ -3446,7 +3432,7 @@ export default function MorseCodePrintableChart() {
             </p>
           </article>
 
-          <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
+          <article className="min-w-0 rounded-2xl bg-[#f7f4ee] p-5">
             <h2 className="m-0 break-words text-xl font-bold text-sky-800">
               Cleaner own-message section
             </h2>
@@ -3457,7 +3443,7 @@ export default function MorseCodePrintableChart() {
             </p>
           </article>
 
-          <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
+          <article className="min-w-0 rounded-2xl bg-[#f7f4ee] p-5">
             <h2 className="m-0 break-words text-xl font-bold text-sky-800">
               PDF and image export
             </h2>
@@ -3487,7 +3473,7 @@ export default function MorseCodePrintableChart() {
         />
 
         <section className="pb-8">
-          <div className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5">
+          <div className="min-w-0 rounded-2xl bg-[#fffdf8] p-5">
             <h2 className="m-0 break-words text-2xl font-bold text-sky-800">
               How this printable works
             </h2>

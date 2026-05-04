@@ -266,8 +266,8 @@ export default function MorseCodeVisualQuiz() {
           </div>
 
           {gameOver ? (
-            <div className="px-5 py-6 sm:px-8">
-              <div className="rounded-2xl border border-slate-200 bg-sky-50/70 p-5 text-center">
+              <div className="px-5 py-6 sm:px-8">
+                <div className="rounded-2xl bg-sky-50/70 p-5 text-center">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
                   Quiz complete
                 </p>
@@ -285,7 +285,7 @@ export default function MorseCodeVisualQuiz() {
                   ].map(([label, value]) => (
                     <div
                       key={label}
-                      className="rounded-xl border border-slate-200 bg-white p-4 text-left"
+                        className="rounded-xl bg-white p-4 text-left"
                     >
                       <p className="text-sm font-semibold text-slate-600">
                         {label}
@@ -300,7 +300,7 @@ export default function MorseCodeVisualQuiz() {
                   <button
                     type="button"
                     onClick={resetQuiz}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                   >
                     <LoopIcon size={18} title="Try again" />
                     Try again
@@ -323,17 +323,15 @@ export default function MorseCodeVisualQuiz() {
             </div>
           ) : (
             <div className="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[320px_minmax(0,1fr)]">
-              <div className="flex flex-col items-center rounded-2xl border border-slate-200 bg-[#fffdf8] p-6">
+                <div className="flex flex-col items-center rounded-2xl bg-[#fffdf8] p-6">
                 {hasFlashed ? (
                   <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
                 ) : null}
                 <div
                   role="img"
                   className={
-                    "h-40 w-40 rounded-full border transition-all duration-75 " +
-                    (active
-                      ? "border-sky-300 bg-sky-200 shadow-[0_0_60px_rgba(56,189,248,0.95)]"
-                      : "border-slate-200 bg-slate-100 shadow-inner")
+                      "h-40 w-40 rounded-full transition-all duration-75 " +
+                      (active ? "bg-sky-200" : "bg-slate-100")
                   }
                   aria-label={active ? "Morse light on" : "Morse light off"}
                 />
@@ -341,7 +339,7 @@ export default function MorseCodeVisualQuiz() {
                   type="button"
                   onClick={flashPrompt}
                   aria-describedby={hasFlashed ? STROBE_WARNING_ID : undefined}
-                  className="mt-5 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                    className="mt-5 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 >
                   <LightBulbIcon size={20} title="Flash prompt" />
                   Flash prompt
@@ -364,7 +362,7 @@ export default function MorseCodeVisualQuiz() {
                         else if (answer.trim()) checkAnswer();
                       }
                     }}
-                    className="mt-2 min-h-12 w-full rounded-xl border border-slate-200 px-4 font-mono text-lg outline-none focus:border-sky-400"
+                    className="mt-2 min-h-12 w-full rounded-xl bg-slate-100 px-4 font-mono text-lg outline-none focus:ring-2 focus:ring-sky-300"
                   />
                 </label>
 
@@ -396,7 +394,7 @@ export default function MorseCodeVisualQuiz() {
                         type="button"
                         onClick={checkAnswer}
                         disabled={!answer.trim()}
-                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-4 py-2 font-semibold transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         <CheckCircleIcon size={18} title="Check answer" />
                         Check answer
@@ -405,7 +403,7 @@ export default function MorseCodeVisualQuiz() {
                       <button
                         type="button"
                         onClick={nextPrompt}
-                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-950 bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                       >
                         <LoopIcon size={18} title="Next prompt" />
                         {completed + 1 >= TOTAL_QUESTIONS
@@ -417,7 +415,7 @@ export default function MorseCodeVisualQuiz() {
                     type="button"
                     onClick={nextPrompt}
                     disabled={solved}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-sky-300 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-4 py-2 font-semibold transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <RefreshIcon size={18} title="Skip prompt" />
                     Skip
@@ -426,10 +424,8 @@ export default function MorseCodeVisualQuiz() {
                 {checked ? (
                   <p
                     className={
-                      "mt-4 inline-flex rounded-full border px-3 py-1 text-sm font-semibold " +
-                      (isCorrect
-                        ? "border-sky-200 bg-sky-50 text-sky-950"
-                        : "border-slate-200 bg-[#fffdf8] text-slate-800")
+                        "mt-4 inline-flex rounded-full px-3 py-1 text-sm font-semibold " +
+                        (isCorrect ? "bg-sky-50 text-sky-950" : "bg-[#fffdf8] text-slate-800")
                     }
                   >
                     {isCorrect

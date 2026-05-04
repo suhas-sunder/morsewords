@@ -38,7 +38,6 @@ function MiniGridCard({ title, desc }: { title: string; desc: string }) {
     <div
       style={{
         background: "#f7f8fb",
-        border: "1px solid #e6e8ef",
         borderRadius: 12,
         padding: 12,
       }}
@@ -209,7 +208,6 @@ export default function HomeLearningContent() {
             <div
               style={{
                 background: "#f7f8fb",
-                border: "1px solid #e6e8ef",
                 borderRadius: 12,
                 padding: 12,
               }}
@@ -231,7 +229,6 @@ export default function HomeLearningContent() {
             <div
               style={{
                 background: "#f7f8fb",
-                border: "1px solid #e6e8ef",
                 borderRadius: 12,
                 padding: 12,
               }}
@@ -294,7 +291,6 @@ export default function HomeLearningContent() {
                 key={i}
                 style={{
                   background: "#fff",
-                  border: "1px solid #e6e8ef",
                   borderRadius: 12,
                   padding: 12,
                 }}
@@ -431,7 +427,6 @@ export default function HomeLearningContent() {
               <div
                 style={{
                   background: "#fff",
-                  border: "1px solid #e6e8ef",
                   borderRadius: 12,
                   padding: 12,
                 }}
@@ -459,7 +454,6 @@ export default function HomeLearningContent() {
               <div
                 style={{
                   background: "#fff",
-                  border: "1px solid #e6e8ef",
                   borderRadius: 12,
                   padding: 12,
                 }}
@@ -724,7 +718,6 @@ export default function HomeLearningContent() {
             <div
               style={{
                 background: "#fff",
-                border: "1px solid #e6e8ef",
                 borderRadius: 12,
                 padding: 12,
               }}
@@ -748,7 +741,6 @@ export default function HomeLearningContent() {
             <div
               style={{
                 background: "#fff",
-                border: "1px solid #e6e8ef",
                 borderRadius: 12,
                 padding: 12,
               }}

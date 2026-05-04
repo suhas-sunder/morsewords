@@ -60,8 +60,8 @@ function CopyButton({ value, label }: { value: string; label: string }) {
         window.setTimeout(() => setCopied(false), 900);
       }}
       className={[
-        "rounded-lg border px-3 py-2 text-sm font-semibold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2",
-        "border-slate-950 bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900",
+        "rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2",
+        "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900",
       ].join(" ")}
       aria-label={`Copy ${label}`}
     >

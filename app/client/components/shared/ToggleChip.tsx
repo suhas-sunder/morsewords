@@ -27,7 +27,7 @@ export default function ToggleChip({
     cursor: "pointer",
     userSelect: "none",
     transition:
-      "background 120ms ease, color 120ms ease, border-color 120ms ease, transform 120ms ease",
+      "background 120ms ease, color 120ms ease, transform 120ms ease",
     transform: "translateY(0)",
   };
 

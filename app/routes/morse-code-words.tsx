@@ -4,376 +4,361 @@ import type { Route } from "./+types/morse-code-words";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
-  ActionLinks,
-  PageHero,
-  SectionCard as SharedSectionCard,
+ ActionLinks,
+ PageHero,
+ SectionCard as SharedSectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
 import MorsePhraseLookupTable from "~/client/components/morse-code-words/MorsePhraseLookupTable";
 import { Link } from "react-router";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import styles from "~/client/components/shared/pageStyles";
 
-const CANONICAL_PATH = "/morse-code-words";
+const CANONICAL_PATH ="/morse-code-words";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
-  return [{ rel: "canonical", href: CANONICAL_URL }];
+ return [{ rel:"canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
-  return seoMeta({
-    title: "Morse Code Words | Common Words, Q-Codes & Prosigns",
-    description:
-      "Look up common Morse code words, SOS, HELLO, THANK YOU, Q-codes, prosigns, and abbreviations. Copy phrases for practice, puzzles, and worksheets.",
-    path: CANONICAL_PATH,
-    keywords:
-      "morse code words, morse words, words in morse code, common morse code words, morse code phrases, morse code abbreviations",
-  });
+ return seoMeta({
+ title:"Morse Code Words | Common Words, Q-Codes & Prosigns",
+ description:"Look up common Morse code words, SOS, HELLO, THANK YOU, Q-codes, prosigns, and abbreviations. Copy phrases for practice, puzzles, and worksheets.",
+ path: CANONICAL_PATH,
+ keywords:"morse code words, morse words, words in morse code, common morse code words, morse code phrases, morse code abbreviations",
+ });
 }
 
 function CardSection(props: {
-  title: string;
-  children: React.ReactNode;
-  id?: string;
+ title: string;
+ children: React.ReactNode;
+ id?: string;
 }) {
-  return (
-    <SharedSectionCard eyebrow="Morse words" title={props.title}>
-      <div id={props.id}>{props.children}</div>
-    </SharedSectionCard>
-  );
+ return (
+ <SharedSectionCard eyebrow="Morse words" title={props.title}>
+ <div id={props.id}>{props.children}</div>
+ </SharedSectionCard>
+ );
 }
 
 export default function MorseCodeWords() {
-  const baseUrl = SITE_URL;
+ const baseUrl = SITE_URL;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Morse Code Words",
-    url: CANONICAL_URL,
-    description:
-      "Copy-ready Morse code words, phrases, prosigns, Q-codes, and CW abbreviations in International Morse, with links to encoder/decoder and practice tools.",
-    isPartOf: { "@type": "WebSite", name: "MorseWords", url: baseUrl },
-    about: [
-      { "@type": "Thing", name: "International Morse code" },
-      { "@type": "Thing", name: "Prosigns" },
-      { "@type": "Thing", name: "Q-codes" },
-    ],
-  };
+ const jsonLd = {"@context":"https://schema.org","@type":"WebPage",
+ name:"Morse Code Words",
+ url: CANONICAL_URL,
+ description:"Copy-ready Morse code words, phrases, prosigns, Q-codes, and CW abbreviations in International Morse, with links to encoder/decoder and practice tools.",
+ isPartOf: {"@type":"WebSite", name:"MorseWords", url: baseUrl },
+ about: [
+ {"@type":"Thing", name:"International Morse code"},
+ {"@type":"Thing", name:"Prosigns"},
+ {"@type":"Thing", name:"Q-codes"},
+ ],
+ };
 
-  const faqItems = [
-    {
-      q: "What are “Morse code words”?",
-      a: "A Morse code word is a normal word spelled letter by letter using International Morse code. There is no separate word vocabulary in Morse. It is a character encoding system that uses dots and dashes for each letter, number, and some punctuation.",
-    },
-    {
-      q: "How do you separate letters and words in Morse code text?",
-      a: "When written as dots and dashes, letters are typically separated with a single space. Words use a larger gap. Many people use a slash ( / ) as a clear word separator when copying and pasting into puzzles, worksheets, or chat.",
-    },
-    {
-      q: "Why does Morse decode incorrectly sometimes?",
-      a: "Most decoding errors come from spacing and separators. If the input mixes multiple spaces, slashes, or inconsistent gaps, a decoder may interpret the boundaries differently. Normalize your spacing, or use the word-separator guidance page before decoding.",
-    },
-    {
-      q: "Are prosigns and Q-codes real Morse “words”?",
-      a: "They are not words in the language sense, but they are real-world shorthand used by operators. Prosigns are procedural signals (like end of message). Q-codes are standardized abbreviations used in radio communication.",
-    },
-    {
-      q: "How should beginners practice Morse words?",
-      a: "Start with short, common words and repeat them. Use Audio to hear the rhythm, then use Typing or Practice to copy what you hear. Consistent accuracy beats speed early on.",
-    },
-  ];
+ const faqItems = [
+ {
+ q:"What are “Morse code words”?",
+ a:"A Morse code word is a normal word spelled letter by letter using International Morse code. There is no separate word vocabulary in Morse. It is a character encoding system that uses dots and dashes for each letter, number, and some punctuation.",
+ },
+ {
+ q:"How do you separate letters and words in Morse code text?",
+ a:"When written as dots and dashes, letters are typically separated with a single space. Words use a larger gap. Many people use a slash ( / ) as a clear word separator when copying and pasting into puzzles, worksheets, or chat.",
+ },
+ {
+ q:"Why does Morse decode incorrectly sometimes?",
+ a:"Most decoding errors come from spacing and separators. If the input mixes multiple spaces, slashes, or inconsistent gaps, a decoder may interpret the boundaries differently. Normalize your spacing, or use the word-separator guidance page before decoding.",
+ },
+ {
+ q:"Are prosigns and Q-codes real Morse “words”?",
+ a:"They are not words in the language sense, but they are real-world shorthand used by operators. Prosigns are procedural signals (like end of message). Q-codes are standardized abbreviations used in radio communication.",
+ },
+ {
+ q:"How should beginners practice Morse words?",
+ a:"Start with short, common words and repeat them. Use Audio to hear the rhythm, then use Typing or Practice to copy what you hear. Consistent accuracy beats speed early on.",
+ },
+ ];
 
-  const btnBase =
-    "cursor-pointer inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 whitespace-nowrap";
+ const btnBase ="cursor-pointer inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 whitespace-nowrap";
 
-  const btnPrimary =
-    btnBase +
-    " border border-slate-950 bg-slate-950 text-sky-100 shadow-sm hover:bg-slate-800 hover:text-white";
+ const btnPrimary =
+ btnBase +"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white";
 
-  const btnSecondary =
-    btnBase +
-    " border border-slate-200 bg-white text-slate-900 shadow-sm hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950";
+ const btnSecondary =
+ btnBase +"bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950";
 
-  const btnGhost =
-    btnBase +
-    " border border-slate-200 bg-white text-slate-900 shadow-sm hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950";
+ const btnGhost =
+ btnBase +"bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950";
 
-  const pClass = "my-3 text-slate-700 leading-relaxed";
-  const linkClass =
-    "font-semibold text-sky-900 underline underline-offset-4 hover:text-sky-950 hover:no-underline cursor-pointer";
+ const pClass ="my-3 text-slate-700 leading-relaxed";
+ const linkClass ="font-semibold text-sky-900 underline underline-offset-4 hover:text-sky-950 hover:no-underline cursor-pointer";
 
-  return (
-    <div style={styles.page}>
-      <div style={styles.wrap}>
-        <PageHero
-          eyebrow="Morse words"
-          title="Morse Code Words"
-          description="A practical, copy-ready collection of words, phrases, prosigns, and radio abbreviations in International Morse code. Use the converter pages for conversion, then use this page for ready-to-copy words, phrases, operator shorthand, and spacing rules that keep everything decodable."
-        >
-          <ActionLinks
-            links={[
-              { href: "#lookup", label: "Browse words", primary: true },
-              { href: "/morse-code-word-trainer", label: "Train words" },
-              { href: "/morse-code-word-search-builder", label: "Build puzzle" },
-            ]}
-          />
-        </PageHero>
+ return (
+ <div style={styles.page}>
+ <div style={styles.wrap}>
+ <PageHero
+ eyebrow="Morse words" title="Morse Code Words" description="A practical, copy-ready collection of words, phrases, prosigns, and radio abbreviations in International Morse code. Use the converter pages for conversion, then use this page for ready-to-copy words, phrases, operator shorthand, and spacing rules that keep everything decodable.">
+ <ActionLinks
+ links={[
+ { href:"#lookup", label:"Browse words", primary: true },
+ { href:"/morse-code-word-trainer", label:"Train words"},
+ { href:"/morse-code-word-search-builder", label:"Build puzzle"},
+ ]}
+ />
+ </PageHero>
 
-        <section className="hidden" aria-hidden="true">
-          <p className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
-            Morse Code Words
-          </p>
+ <section className="hidden" aria-hidden="true">
+ <p className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+ Morse Code Words
+ </p>
 
-          <p className="mt-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm text-slate-600 text-base sm:text-lg leading-relaxed">
-            A practical, copy-ready collection of words, phrases, prosigns, and
-            radio abbreviations in International Morse code. Use the converter
-            pages for conversion (text → Morse and Morse → text), then use this
-            page for the thing people actually mean by “morsewords”:
-            ready-to-copy words, phrases, and real operator shorthand, plus the
-            spacing rules that keep it decodable.
-          </p>
-        </section>
+ <p className="mt-3 rounded-2xl bg-[#fffdf8] p-5 text-slate-600 text-base sm:text-lg leading-relaxed">
+ A practical, copy-ready collection of words, phrases, prosigns, and
+ radio abbreviations in International Morse code. Use the converter
+ pages for conversion (text → Morse and Morse → text), then use this
+ page for the thing people actually mean by “morsewords”:
+ ready-to-copy words, phrases, and real operator shorthand, plus the
+ spacing rules that keep it decodable.
+ </p>
+ </section>
 
-        <section id="lookup">
-          <MorsePhraseLookupTable />
-        </section>
+ <section id="lookup">
+ <MorsePhraseLookupTable />
+ </section>
 
-        <CardSection title="Common Morse code words, plus real-world shorthand">
-          <p className={pClass}>
-            Common words are the best place to start because they show up
-            everywhere, and they train pattern recognition. Once you can hear
-            and recognize a few words without spelling every letter in your
-            head, you are moving from slow decoding to real reading. After the
-            basics, you will run into operator shorthand: prosigns, Q-codes, and
-            abbreviations used in CW (continuous wave) communication. These are
-            not “words” in a language sense, but they are extremely common in
-            practice material and real radio exchanges.
-          </p>
+ <CardSection title="Common Morse code words, plus real-world shorthand">
+ <p className={pClass}>
+ Common words are the best place to start because they show up
+ everywhere, and they train pattern recognition. Once you can hear
+ and recognize a few words without spelling every letter in your
+ head, you are moving from slow decoding to real reading. After the
+ basics, you will run into operator shorthand: prosigns, Q-codes, and
+ abbreviations used in CW (continuous wave) communication. These are
+ not “words” in a language sense, but they are extremely common in
+ practice material and real radio exchanges.
+ </p>
 
-          <p className={pClass}>
-            Below you will find a copy-ready lookup table that mixes everyday
-            words (HELLO, THANK YOU, PLEASE) with practical items like SOS, AR,
-            SK, QSL, QRZ, and “73.” That mix reflects how people actually learn.
-            Beginners start with words, then quickly run into standardized
-            shorthand. Keeping them together on one page makes the site feel
-            cohesive and reduces pogo-sticking between different resources.
-          </p>
+ <p className={pClass}>
+ Below you will find a copy-ready lookup table that mixes everyday
+ words (HELLO, THANK YOU, PLEASE) with practical items like SOS, AR,
+ SK, QSL, QRZ, and “73.” That mix reflects how people actually learn.
+ Beginners start with words, then quickly run into standardized
+ shorthand. Keeping them together on one page makes the site feel
+ cohesive and reduces pogo-sticking between different resources.
+ </p>
 
-          <p className={pClass}>
-            If you want to go deeper into learning, use{" "}
-            <a href="/how-to-use" className={linkClass}>
-              How to use
-            </a>{" "}
-            for the fundamentals, then switch to{" "}
-            <a href="/practice" className={linkClass}>
-              Practice
-            </a>{" "}
-            and{" "}
-            <a href="/typing" className={linkClass}>
-              Typing
-            </a>{" "}
-            to build speed. If you learn best by ear,{" "}
-            <a href="/audio" className={linkClass}>
-              Audio
-            </a>{" "}
-            turns any text or Morse into something you can listen to and copy.
-          </p>
-        </CardSection>
+ <p className={pClass}>
+ If you want to go deeper into learning, use{""}
+ <a href="/how-to-use" className={linkClass}>
+ How to use
+ </a>{""}
+ for the fundamentals, then switch to{""}
+ <a href="/practice" className={linkClass}>
+ Practice
+ </a>{""}
+ and{""}
+ <a href="/typing" className={linkClass}>
+ Typing
+ </a>{""}
+ to build speed. If you learn best by ear,{""}
+ <a href="/audio" className={linkClass}>
+ Audio
+ </a>{""}
+ turns any text or Morse into something you can listen to and copy.
+ </p>
+ </CardSection>
 
-        <CardSection title="Why people search for “morse words”">
-          <p className={pClass}>
-            Most people are not looking for a full alphabet chart when they type{" "}
-            <strong>morse code words</strong> into search. They want
-            ready-to-use output: words like HELLO, PLEASE, THANK YOU, OK, HELP,
-            and SOS in dots and dashes that they can copy into a message, a
-            quiz, a worksheet, or a practice session. This page is built for
-            that exact intent.
-          </p>
+ <CardSection title="Why people search for “morse words”">
+ <p className={pClass}>
+ Most people are not looking for a full alphabet chart when they type{""}
+ <strong>morse code words</strong> into search. They want
+ ready-to-use output: words like HELLO, PLEASE, THANK YOU, OK, HELP,
+ and SOS in dots and dashes that they can copy into a message, a
+ quiz, a worksheet, or a practice session. This page is built for
+ that exact intent.
+ </p>
 
-          <p className={pClass}>
-            If you want pure conversion, the dedicated routes are still the
-            fastest path. Use{" "}
-            <a href="/morse-code-encoder" className={linkClass}>
-              Morse code encoder
-            </a>{" "}
-            for text to Morse, and{" "}
-            <a href="/morse-code-decoder" className={linkClass}>
-              Morse code decoder
-            </a>{" "}
-            for Morse to text. The goal here is broader: give you a strong list
-            of common words and real operating shorthand, plus the context that
-            prevents formatting mistakes.
-          </p>
-        </CardSection>
+ <p className={pClass}>
+ If you want pure conversion, the dedicated routes are still the
+ fastest path. Use{""}
+ <a href="/morse-code-encoder" className={linkClass}>
+ Morse code encoder
+ </a>{""}
+ for text to Morse, and{""}
+ <a href="/morse-code-decoder" className={linkClass}>
+ Morse code decoder
+ </a>{""}
+ for Morse to text. The goal here is broader: give you a strong list
+ of common words and real operating shorthand, plus the context that
+ prevents formatting mistakes.
+ </p>
+ </CardSection>
 
-        <CardSection title="What “words in Morse code” actually means">
-          <p className={pClass}>
-            Morse code is an encoding system for characters. Each letter (A to
-            Z) and number (0 to 9) has a dot and dash pattern. A “word in Morse
-            code” is simply letters placed in sequence to spell the word. That
-            sounds obvious, but it matters because spacing is part of what makes
-            Morse readable.
-          </p>
+ <CardSection title="What “words in Morse code” actually means">
+ <p className={pClass}>
+ Morse code is an encoding system for characters. Each letter (A to
+ Z) and number (0 to 9) has a dot and dash pattern. A “word in Morse
+ code” is simply letters placed in sequence to spell the word. That
+ sounds obvious, but it matters because spacing is part of what makes
+ Morse readable.
+ </p>
 
-          <p className={pClass}>
-            When Morse is transmitted (audio, keying, flashing light), there are
-            timing rules for the gaps inside a letter, between letters, and
-            between words. When Morse is shown as text, we represent those gaps
-            with spaces and separators. If you copy Morse from different
-            sources, the dot and dash patterns usually match, but the spacing
-            rules might not. That is why two “correct” versions can look
-            different while still meaning the same thing.
-          </p>
-        </CardSection>
+ <p className={pClass}>
+ When Morse is transmitted (audio, keying, flashing light), there are
+ timing rules for the gaps inside a letter, between letters, and
+ between words. When Morse is shown as text, we represent those gaps
+ with spaces and separators. If you copy Morse from different
+ sources, the dot and dash patterns usually match, but the spacing
+ rules might not. That is why two “correct” versions can look
+ different while still meaning the same thing.
+ </p>
+ </CardSection>
 
-        <CardSection
-          title="Letter spacing, word spacing, and the slash separator"
-          id="spacing"
-        >
-          <p className={pClass}>
-            Clean spacing is the difference between something that decodes
-            instantly and something that turns into gibberish. In text form, the
-            safest convention is:
-          </p>
+ <CardSection
+ title="Letter spacing, word spacing, and the slash separator" id="spacing">
+ <p className={pClass}>
+ Clean spacing is the difference between something that decodes
+ instantly and something that turns into gibberish. In text form, the
+ safest convention is:
+ </p>
 
-          <ul className="my-3 ml-5 list-disc text-slate-700 leading-relaxed">
-            <li>
-              <strong>One space between letters</strong> (example: H E L L O
-              becomes{" "}
-              <code className="mx-1 rounded bg-slate-100 px-1 py-0.5">
-                .... . .-.. .-.. ---
-              </code>
-              ).
-            </li>
-            <li>
-              <strong>A larger gap between words</strong> (often multiple
-              spaces).
-            </li>
-            <li>
-              <strong>Optional slash for words</strong> when you need an
-              explicit separator in puzzles, posts, or notes.
-            </li>
-          </ul>
+ <ul className="my-3 ml-5 list-disc text-slate-700 leading-relaxed">
+ <li>
+ <strong>One space between letters</strong> (example: H E L L O
+ becomes{""}
+ <code className="mx-1 rounded bg-slate-100 px-1 py-0.5">
+ .... . .-.. .-.. ---
+ </code>
+ ).
+ </li>
+ <li>
+ <strong>A larger gap between words</strong> (often multiple
+ spaces).
+ </li>
+ <li>
+ <strong>Optional slash for words</strong> when you need an
+ explicit separator in puzzles, posts, or notes.
+ </li>
+ </ul>
 
-          <p className={pClass}>
-            If you are working with word boundaries a lot, the dedicated{" "}
-            <a href="/morse-code-word-separator" className={linkClass}>
-              Morse code word separator
-            </a>{" "}
-            page is the fastest reference. It explains how to normalize strings
-            that use slashes, pipes, double spaces, or inconsistent gaps.
-            Normalizing first saves time and avoids false “decode errors.”
-          </p>
+ <p className={pClass}>
+ If you are working with word boundaries a lot, the dedicated{""}
+ <a href="/morse-code-word-separator" className={linkClass}>
+ Morse code word separator
+ </a>{""}
+ page is the fastest reference. It explains how to normalize strings
+ that use slashes, pipes, double spaces, or inconsistent gaps.
+ Normalizing first saves time and avoids false “decode errors.”
+ </p>
 
-          <p className={pClass}>
-            Tip that actually helps: if you are building a list of words for
-            practice, keep one word per line in your source list. If you run it
-            through the{" "}
-            <a href="/morse-code-encoder" className={linkClass}>
-              encoder
-            </a>
-            , it keeps the output consistent. That makes the output easy to
-            copy, easy to re-order, and easy to feed into your own exercises.
-          </p>
-        </CardSection>
+ <p className={pClass}>
+ Tip that actually helps: if you are building a list of words for
+ practice, keep one word per line in your source list. If you run it
+ through the{""}
+ <a href="/morse-code-encoder" className={linkClass}>
+ encoder
+ </a>
+ , it keeps the output consistent. That makes the output easy to
+ copy, easy to re-order, and easy to feed into your own exercises.
+ </p>
+ </CardSection>
 
-        <CardSection title="How to learn Morse code words faster (the loop that works)">
-          <p className={pClass}>
-            If you feel stuck, it is usually because you are practicing the
-            wrong way. Random characters help you learn the alphabet, but words
-            build fluency. Use this simple loop and keep it boring on purpose:
-          </p>
+ <CardSection title="How to learn Morse code words faster (the loop that works)">
+ <p className={pClass}>
+ If you feel stuck, it is usually because you are practicing the
+ wrong way. Random characters help you learn the alphabet, but words
+ build fluency. Use this simple loop and keep it boring on purpose:
+ </p>
 
-          <ol className="my-3 ml-5 list-decimal text-slate-700 leading-relaxed">
-            <li>
-              Pick 10 short common words from the table (YES, NO, OK, HELP,
-              PLEASE, THANK YOU, HELLO).
-            </li>
-            <li>
-              Convert them on the{" "}
-              <a href="/morse-code-encoder" className={linkClass}>
-                Morse code encoder
-              </a>{" "}
-              (one word per line) so you get clean, consistent formatting.
-            </li>
-            <li>
-              Play them using{" "}
-              <a href="/audio" className={linkClass}>
-                Audio
-              </a>{" "}
-              at a speed where you can copy accurately without guessing.
-            </li>
-            <li>
-              Type what you hear on{" "}
-              <a href="/typing" className={linkClass}>
-                Typing
-              </a>{" "}
-              until you can stay accurate.
-            </li>
-            <li>
-              Switch to{" "}
-              <a href="/practice" className={linkClass}>
-                Practice
-              </a>{" "}
-              drills once accuracy is stable, then increase speed gradually.
-            </li>
-          </ol>
+ <ol className="my-3 ml-5 list-decimal text-slate-700 leading-relaxed">
+ <li>
+ Pick 10 short common words from the table (YES, NO, OK, HELP,
+ PLEASE, THANK YOU, HELLO).
+ </li>
+ <li>
+ Convert them on the{""}
+ <a href="/morse-code-encoder" className={linkClass}>
+ Morse code encoder
+ </a>{""}
+ (one word per line) so you get clean, consistent formatting.
+ </li>
+ <li>
+ Play them using{""}
+ <a href="/audio" className={linkClass}>
+ Audio
+ </a>{""}
+ at a speed where you can copy accurately without guessing.
+ </li>
+ <li>
+ Type what you hear on{""}
+ <a href="/typing" className={linkClass}>
+ Typing
+ </a>{""}
+ until you can stay accurate.
+ </li>
+ <li>
+ Switch to{""}
+ <a href="/practice" className={linkClass}>
+ Practice
+ </a>{""}
+ drills once accuracy is stable, then increase speed gradually.
+ </li>
+ </ol>
 
-          <p className={pClass}>
-            The point is repetition with feedback. You want your brain to
-            recognize the rhythm of common words, not just translate dots and
-            dashes. Short sessions done consistently beat long sessions done
-            occasionally.
-          </p>
-        </CardSection>
+ <p className={pClass}>
+ The point is repetition with feedback. You want your brain to
+ recognize the rhythm of common words, not just translate dots and
+ dashes. Short sessions done consistently beat long sessions done
+ occasionally.
+ </p>
+ </CardSection>
 
-        <CardSection title="Using Morse words in puzzles, worksheets, and games">
-          <p className={pClass}>
-            Many people land on this page because they are building a puzzle, a
-            scavenger hunt, a classroom worksheet, or a simple message in dots
-            and dashes. The main pitfalls are spacing and mixed punctuation.
-            Keep the content simple and your audience will decode it faster.
-          </p>
+ <CardSection title="Using Morse words in puzzles, worksheets, and games">
+ <p className={pClass}>
+ Many people land on this page because they are building a puzzle, a
+ scavenger hunt, a classroom worksheet, or a simple message in dots
+ and dashes. The main pitfalls are spacing and mixed punctuation.
+ Keep the content simple and your audience will decode it faster.
+ </p>
 
-          <ul className="my-3 ml-5 list-disc text-slate-700 leading-relaxed">
-            <li>
-              Use the slash separator for clarity when you expect beginners
-              (example:{" "}
-              <code className="mx-1 rounded bg-slate-100 px-1 py-0.5">
-                .... .. / - .... . .-. .
-              </code>
-              ).
-            </li>
-            <li>
-              Prefer short words with high familiarity before you introduce
-              longer phrases.
-            </li>
-            <li>
-              If you include punctuation, test it through the decoder so you
-              know it round-trips correctly.
-            </li>
-            <li>
-              For pangram practice, use the dedicated{" "}
-              <a href="/the-quick-brown-fox-morse-code" className={linkClass}>
-                quick brown fox page
-              </a>{" "}
-              as a reference.
-            </li>
-          </ul>
+ <ul className="my-3 ml-5 list-disc text-slate-700 leading-relaxed">
+ <li>
+ Use the slash separator for clarity when you expect beginners
+ (example:{""}
+ <code className="mx-1 rounded bg-slate-100 px-1 py-0.5">
+ .... .. / - .... . .-. .
+ </code>
+ ).
+ </li>
+ <li>
+ Prefer short words with high familiarity before you introduce
+ longer phrases.
+ </li>
+ <li>
+ If you include punctuation, test it through the decoder so you
+ know it round-trips correctly.
+ </li>
+ <li>
+ For pangram practice, use the dedicated{""}
+ <a href="/the-quick-brown-fox-morse-code" className={linkClass}>
+ quick brown fox page
+ </a>{""}
+ as a reference.
+ </li>
+ </ul>
 
-          <p className={pClass}>
-            If you are sharing content publicly, consider adding the plain-text
-            answer key below your Morse. It keeps the game fun while preventing
-            frustration, and it helps learners confirm that spacing is the only
-            barrier.
-          </p>
-        </CardSection>
+ <p className={pClass}>
+ If you are sharing content publicly, consider adding the plain-text
+ answer key below your Morse. It keeps the game fun while preventing
+ frustration, and it helps learners confirm that spacing is the only
+ barrier.
+ </p>
+ </CardSection>
 
-        <FaqSectionGeneric title="Morse Code Words FAQ" items={faqItems} />
+ <FaqSectionGeneric title="Morse Code Words FAQ" items={faqItems} />
 
-        <JsonLdScript jsonLd={jsonLd} />
-      </div>
-    </div>
-  );
+ <JsonLdScript jsonLd={jsonLd} />
+ </div>
+ </div>
+ );
 }

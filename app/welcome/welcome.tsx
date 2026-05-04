@@ -22,7 +22,7 @@ export function Welcome({ message }: { message: string }) {
             />
           </div>
         </header>
-        <nav className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
+        <nav className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-slate-100 p-6 dark:bg-gray-800">
           <p className="leading-6 text-gray-700 dark:text-gray-200">
             What&apos;s next?
           </p>
