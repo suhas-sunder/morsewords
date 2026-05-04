@@ -31,15 +31,15 @@ export function PageHero({
     : "grid gap-6";
 
   return (
-    <section className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
-      <div className="tool-header px-5 py-6 sm:px-8 sm:py-7">
+    <section className="mw-tool-section mt-4">
+      <div className="tool-header py-6 sm:py-7">
         <div className={headerGridClass}>
           <div className="min-w-0">
             <Eyebrow>{eyebrow}</Eyebrow>
             <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
               {title}
             </h1>
-            <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               {description}
             </p>
             {children ? <div className="mt-5">{children}</div> : null}
@@ -65,8 +65,8 @@ export function SectionCard({
   aside?: React.ReactNode;
 }) {
   return (
-    <section className="mt-8 overflow-hidden rounded-2xl bg-[#fffdf8]">
-      <div className="bg-[#fffaf2] px-5 py-6 sm:px-8 sm:py-7">
+    <section className="mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
+      <div>
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
           <div>
             <Eyebrow>{eyebrow}</Eyebrow>
@@ -82,7 +82,7 @@ export function SectionCard({
           {aside ? <div>{aside}</div> : null}
         </div>
       </div>
-      <div className="bg-[#fffdf8] px-5 py-6 sm:px-8 sm:py-7">{children}</div>
+      <div className="mt-7">{children}</div>
     </section>
   );
 }
@@ -97,7 +97,7 @@ export function DarkNote({
   children: React.ReactNode;
 }) {
   return (
-    <aside className="rounded-xl bg-[#171717] p-4 text-slate-200">
+    <aside className="rounded-xl bg-slate-950 p-4 text-slate-200">
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
         {label}
       </p>
@@ -126,7 +126,7 @@ export function ActionLinks({
             "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
             (link.primary
               ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-              : "bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950")
+              : "bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950 hover:outline-[rgba(11,36,71,0.22)]")
           }
         >
           {link.label}
@@ -167,7 +167,7 @@ export function SimpleGrid({
             <a
               key={item.title}
               href={item.href}
-              className="group block min-h-[150px] cursor-pointer rounded-xl bg-white p-5 no-underline transition hover:bg-sky-50"
+              className="group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:outline-[rgba(11,36,71,0.22)]"
             >
               {body}
               <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
@@ -181,7 +181,7 @@ export function SimpleGrid({
         }
 
         return (
-          <div key={item.title} className="rounded-xl bg-white p-5">
+          <div key={item.title} className="rounded-xl bg-[#fffdf8] p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]">
             {body}
           </div>
         );
@@ -198,8 +198,8 @@ export function ReferenceTable({
   onPlay?: (morse: string) => void;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl bg-white">
-      <div className="grid grid-cols-[1fr_1fr] bg-[#f7f4ee] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
+    <div className="overflow-hidden rounded-xl bg-[#fffdf8] outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]">
+      <div className="grid grid-cols-[1fr_1fr] bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
         <span>Name</span>
         <span>Morse</span>
         <span className="hidden sm:block">Use</span>
@@ -225,7 +225,7 @@ export function ReferenceTable({
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
-            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             disabled={!onPlay}
           >
             <PlayIcon size={16} title="Play" />

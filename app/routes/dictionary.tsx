@@ -67,7 +67,7 @@ function CopyButton({
  setCopied(true);
  window.setTimeout(() => setCopied(false), 800);
  }}
- className={["rounded-lg px-3 py-2 font-semibold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2","hover:bg-sky-50 active:bg-sky-100",
+ className={["rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2","hover:bg-white active:bg-[#fffaf2]",
  compact ?"text-sm":"text-base",
  copied ?"bg-sky-50":"",
  kind ==="Label"?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900":"",
@@ -168,11 +168,11 @@ function Section({
  items: Entry[];
 }) {
  return (
- <section id={id} className="mb-12 scroll-mt-28 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
- <div className="mb-4 flex items-center justify-between gap-3">
+ <section id={id} className="mb-12 scroll-mt-28">
+ <div className="mb-4 flex items-center justify-between gap-3 border-b border-transparent pb-1">
  <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
  <a
- href="#top" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+ href="#top" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  Top
  </a>
  </div>
@@ -182,7 +182,7 @@ function Section({
 
  <div className="pt-3 md:hidden">
  <a
- href="#top" className="block cursor-pointer rounded-lg bg-white px-3 py-2 text-center text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950">
+ href="#top" className="block cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-center text-sm font-semibold text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950">
  Back to top
  </a>
  </div>
@@ -621,7 +621,7 @@ export default function DictionaryRoute() {
  }, [q]);
 
  return (
- <main id="top" className="mx-auto max-w-5xl px-4 pt-6">
+ <main id="top" className="mx-auto max-w-[1120px] px-4 pt-4 sm:px-6 sm:pt-6 lg:px-8">
  <script
  type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
  />
@@ -638,7 +638,7 @@ export default function DictionaryRoute() {
  />
  </PageHero>
 
- <div className="mb-4 mt-5 rounded-xl bg-[#fffdf8]/80 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ <div className="mb-4 mt-3 rounded-xl bg-[#fffdf8]/80 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
  <label className="mb-2 block text-sm font-extrabold text-sky-950">
  Filter dictionary
  </label>

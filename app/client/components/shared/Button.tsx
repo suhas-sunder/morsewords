@@ -9,7 +9,7 @@ const base: React.CSSProperties = {
   cursor: "pointer",
   userSelect: "none",
   transition:
-    "background 120ms ease, color 120ms ease, transform 120ms ease, filter 120ms ease",
+    "background 120ms ease, color 120ms ease, outline-color 120ms ease, transform 120ms ease, filter 120ms ease",
 };
 
 const variants: Record<
@@ -35,24 +35,32 @@ const variants: Record<
   secondary: {
     normal: {
       border: 0,
-      background: "#eef2f6",
+      background: "#fffdf8",
       color: "#0f172a",
+      outline: "1px solid rgba(11, 36, 71, 0.1)",
+      outlineOffset: -1,
     },
     hover: {
-      background: "#e2e8f0",
+      background: "#ffffff",
       color: "#082f49",
+      outline: "1px solid rgba(11, 36, 71, 0.22)",
+      outlineOffset: -1,
     },
     disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
   ghost: {
     normal: {
       border: 0,
-      background: "#f8fafc",
+      background: "#fffaf2",
       color: "#0f172a",
+      outline: "1px solid rgba(11, 36, 71, 0.08)",
+      outlineOffset: -1,
     },
     hover: {
-      background: "#eef2f6",
+      background: "#fffdf8",
       color: "#082f49",
+      outline: "1px solid rgba(11, 36, 71, 0.18)",
+      outlineOffset: -1,
     },
     disabled: { opacity: 0.55, cursor: "not-allowed" },
   },

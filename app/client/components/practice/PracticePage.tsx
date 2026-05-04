@@ -281,7 +281,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   );
 
   return (
-    <div className=" ">
+    <div>
       <section className="mw-tool-section mt-4">
         <div className="tool-header pb-0 pt-6 sm:pt-7">
           <div className="flex items-center gap-3">
@@ -300,7 +300,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
         </div>
 
         <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
-        {/* Top control bar: match Audio page density */}
+        {/* Top control bar */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
           <div className="inline-flex w-full gap-2 rounded-lg bg-[#fffdf8]/75 p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:w-auto">
             <button
@@ -548,7 +548,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
 
           {/* Drill options (always visible) */}
             <div className="mt-6 pt-5">
-            <div className="text-sm font-semibold text-neutral-900">
+            <div className="text-sm font-extrabold text-sky-950">
               Drill options (Quiz settings)
             </div>
 
