@@ -11,6 +11,46 @@ import { seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/";
 
+const homeRelatedToolsStyles = `
+  .mw-home-page ~ #morse-code-navigation {
+    margin-top: 3.25rem;
+    background: transparent !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+
+  .mw-home-page ~ #morse-code-navigation > div {
+    background: transparent !important;
+  }
+
+  .mw-home-page ~ #morse-code-navigation a:has(h4) {
+    min-height: 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 0.35rem 0 1rem !important;
+  }
+
+  .mw-home-page ~ #morse-code-navigation a:has(h4) p {
+    max-width: 34ch !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .mw-home-page ~ #morse-code-navigation a:has(h4) span:last-child {
+    padding-top: 0.9rem !important;
+  }
+
+  @media (max-width: 767px) {
+    .mw-home-page ~ #morse-code-navigation {
+      margin-top: 2.25rem;
+    }
+
+    .mw-home-page ~ #morse-code-navigation > div {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+`;
+
 export function links() {
   return [{ rel: "canonical", href: SITE_URL + "/" }];
 }
@@ -70,20 +110,35 @@ export default function Home() {
   ];
 
   return (
-    <div style={styles.page}>
-      <div style={styles.wrap}>
+    <div className="mw-home-page" style={styles.page}>
+      <style dangerouslySetInnerHTML={{ __html: homeRelatedToolsStyles }} />
+
+      <div className="mx-auto w-full max-w-[1120px] px-4 pb-4 pt-5 sm:px-6 sm:pt-7 lg:px-8">
         <TranslatorSectionsBasic
+          variant="home"
           plainA={plainA}
           setPlainA={setPlainA}
           morseA={morseA}
           morseB={morseB}
           textB={textB}
           setMorseB={setMorseB}
+          subtitle={
+            <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              Translate plain text, decode Morse, and listen to the signal in
+              one focused workspace.
+            </p>
+          }
         />
+      </div>
 
-        <HowItWorks />
+      <HowItWorks />
 
-        <FaqSectionGeneric title="Translator FAQ" items={faqItems} />
+      <div className="mx-auto w-full max-w-[960px] px-4 pb-16 sm:px-6 lg:px-8">
+        <FaqSectionGeneric
+          title="Translator FAQ"
+          items={faqItems}
+          variant="home"
+        />
       </div>
 
       <JsonLdScript jsonLd={jsonLd} />

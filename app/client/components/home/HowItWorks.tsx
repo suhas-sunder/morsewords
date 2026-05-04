@@ -1,468 +1,229 @@
-export default function HowItWorks() {
-  const jumpLinks = [
-    ["Text → Morse", "#encode"],
-    ["Morse → Text", "#decode"],
-    ["Formatting", "#formatting"],
-    ["Supported", "#supported"],
-    ["Troubleshooting", "#troubleshooting"],
-  ] as const;
+const featureColumns = [
+  {
+    title: "Translate both directions",
+    body: "Type words to encode them into International Morse, or paste Morse to decode it back into readable text.",
+  },
+  {
+    title: "Hear the rhythm",
+    body: "Play the active message with adjustable speed, pitch, volume, repeat, and flash settings.",
+  },
+  {
+    title: "Keep spacing visible",
+    body: "The translator preserves the Morse gaps that make letters and words readable.",
+  },
+] as const;
 
+const workflow = [
+  {
+    step: "01",
+    title: "Choose a direction",
+    body: "Use Text to Morse for encoding or Morse to Text for decoding. The input and output labels change with the active mode.",
+  },
+  {
+    step: "02",
+    title: "Review the result",
+    body: "Unsupported text characters are surfaced near the input. Unknown Morse chunks decode to a question mark so mistakes do not disappear silently.",
+  },
+  {
+    step: "03",
+    title: "Copy, share, or listen",
+    body: "Copy the output, create a share image, or play the signal using the built-in audio controls.",
+  },
+] as const;
+
+const toolLinks = [
+  {
+    href: "/audio",
+    title: "Audio",
+    body: "Focused playback and timing controls for listening practice.",
+  },
+  {
+    href: "/practice",
+    title: "Practice",
+    body: "Short decoding drills for building recognition through repetition.",
+  },
+  {
+    href: "/typing",
+    title: "Typing",
+    body: "Keyboard practice for pairing Morse reading with fast text entry.",
+  },
+  {
+    href: "/dictionary",
+    title: "Dictionary",
+    body: "Lookup tables for letters, numbers, and supported punctuation.",
+  },
+  {
+    href: "/how-to-use",
+    title: "How to use",
+    body: "Suite-level notes for using the MorseWords tools together.",
+  },
+] as const;
+
+const punctuation = [
+  [".", "Period"],
+  [",", "Comma"],
+  ["?", "Question mark"],
+  ["/", "Slash"],
+  ["'", "Apostrophe"],
+  ["!", "Exclamation mark"],
+  ["-", "Hyphen"],
+  ["@", "At sign"],
+  [":", "Colon"],
+  [";", "Semicolon"],
+  ["=", "Equals sign"],
+  ["+", "Plus sign"],
+  ['"', "Quotation mark"],
+  ["(", "Opening parenthesis"],
+  [")", "Closing parenthesis"],
+  ["&", "Ampersand"],
+  ["_", "Underscore"],
+] as const;
+
+export default function HowItWorks() {
   return (
-    <section className="mt-8 overflow-hidden rounded-2xl bg-[#fffdf8]">
-      <div className="bg-[#fffaf2] px-5 py-6 sm:px-8 sm:py-7">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3">
+    <>
+      <section
+        className="px-4 py-10 sm:px-6 sm:py-14 lg:px-8"
+        aria-labelledby="home-toolkit-title"
+      >
+        <div className="mx-auto max-w-[1120px]">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="flex items-center justify-center gap-3">
               <span className="h-px w-8 bg-sky-800" />
               <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-                Translator spec
+                Morse toolkit
               </span>
+              <span className="h-px w-8 bg-sky-800" />
             </div>
 
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
-              How this Morse code translator works
+            <h2
+              id="home-toolkit-title"
+              className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
+            >
+              A focused workspace for Morse code
             </h2>
 
-            <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-              MorseWords is a two-way{" "}
-              <strong>Morse code translator and decoder</strong>. It converts
-              plain text to <strong>International Morse</strong> and converts
-              Morse back to readable text. It normalizes input, applies a fixed
-              character map, and keeps mistakes visible instead of guessing.
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
+              The translator stays at the center. The sections below explain
+              the rules, point to the right supporting tools, and keep the page
+              easy to scan.
             </p>
           </div>
 
-          <div className="rounded-xl bg-[#171717] px-4 py-3 text-white lg:w-64">
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
-              Reference signal
-            </p>
-            <p className="mt-2 font-mono text-lg font-bold tracking-[0.18em] text-sky-100">
-              ... --- ...
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-slate-200">
-              Spacing is part of the message, not decoration.
-            </p>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {featureColumns.map((item) => (
+              <article key={item.title} className="max-w-[34ch] md:max-w-none">
+                <span className="block h-1 w-10 rounded-full bg-sky-500" />
+                <h3 className="mt-4 text-xl font-extrabold text-sky-950">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                  {item.body}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
+      </section>
 
-        <nav
-          className="mt-5 flex flex-wrap gap-2"
-          aria-label="Translator notes"
-        >
-          {jumpLinks.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-                  className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+      <section
+        className="bg-[#fffaf2]/80 px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        aria-labelledby="home-process-title"
+      >
+        <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+              How it works
+            </p>
+            <h2
+              id="home-process-title"
+              className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
             >
-              {label}
-            </a>
-          ))}
-        </nav>
-      </div>
+              Simple controls, precise output
+            </h2>
+            <p className="mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              MorseWords normalizes input, applies a fixed International Morse
+              map, and uses clear separators so the result is predictable when
+              you copy or play it.
+            </p>
 
-      <div className="bg-[#fffdf8] px-5 py-6 sm:px-8 sm:py-7">
-        <dl className="grid gap-5 pb-6 md:grid-cols-3">
-          <div>
-            <dt className="text-base font-extrabold text-sky-950">
-              Spacing legend
-            </dt>
-            <dd className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
-              Output uses <strong>3 spaces</strong> between letters and{" "}
-              <strong>7 spaces</strong> between words.
-            </dd>
-          </div>
-
-          <div>
-            <dt className="text-base font-extrabold text-sky-950">
-              Decoder boundaries
-            </dt>
-            <dd className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
-              When decoding, <strong>1-6 spaces</strong> separates letters.{" "}
-              <strong>7+ spaces</strong>, <strong>/</strong>, and new lines
-              separate words.
-            </dd>
-          </div>
-
-          <div>
-            <dt className="text-base font-extrabold text-sky-950">
-              Errors stay visible
-            </dt>
-            <dd className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
-              Unknown Morse chunks decode to <strong>?</strong>. Unsupported
-              text characters are skipped and surfaced in the UI.
-            </dd>
-          </div>
-        </dl>
-
-        <div className="text-slate-700">
-          <section id="encode" className="py-7">
-            <div className="grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
-              <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                  Plain text input
-                </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
-                  Text → Morse
-                </h3>
-              </header>
-
-              <div className="max-w-[72ch]">
-                <ul className="list-disc space-y-2 pl-6 text-base leading-relaxed sm:text-lg">
-                  <li>
-                    Input text is normalized and uppercased, then each supported
-                    character is looked up in a fixed International Morse map.
-                  </li>
-                  <li>
-                    Any run of whitespace in the text input is treated as a word
-                    break.
-                  </li>
-                  <li>
-                    Output formatting is strict: <strong>3 spaces</strong>{" "}
-                    between letters, <strong>7 spaces</strong> between words.
-                  </li>
-                  <li>
-                    Unsupported characters are skipped and listed under the
-                    input so you can fix the source.
-                  </li>
-                </ul>
-
-                <div className="mt-5">
-                  <p className="text-base font-extrabold text-sky-950">
-                    Example
-                  </p>
-                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#171717] p-4 font-mono text-base leading-relaxed text-sky-50">
-                    {`HELLO WORLD
+            <pre className="mt-6 overflow-x-auto rounded-xl bg-slate-950 p-4 font-mono text-sm leading-relaxed text-sky-100 sm:text-base">
+              {`HELLO WORLD
 ....   .   .-..   .-..   ---       .--   ---   .-.   .-..   -..`}
-                  </pre>
-                  <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-600">
-                    The spacing is part of the output. If you copy this Morse
-                    elsewhere, keep the gaps.
+            </pre>
+          </div>
+
+          <ol className="grid gap-6">
+            {workflow.map((item) => (
+              <li key={item.step} className="grid gap-4 sm:grid-cols-[4rem_1fr]">
+                <span className="font-mono text-2xl font-black text-sky-700">
+                  {item.step}
+                </span>
+                <div>
+                  <h3 className="text-xl font-extrabold text-sky-950">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 max-w-[62ch] text-base leading-relaxed text-slate-700">
+                    {item.body}
                   </p>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="decode" className="py-7">
-            <div className="grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
-              <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                  Boundary based
-                </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
-                  Morse → Text
-                </h3>
-              </header>
-
-              <div className="max-w-[72ch]">
-                <p className="text-base leading-relaxed sm:text-lg">
-                  Decoding is boundary-driven. The tool reads chunks of dots and
-                  dashes, then uses separators to decide where each letter and
-                  word ends.
-                </p>
-
-                <ul className="mt-4 list-disc space-y-2 pl-6 text-base leading-relaxed sm:text-lg">
-                  <li>
-                    Valid Morse characters are dot and dash, plus whitespace and{" "}
-                    <strong>/</strong> for separation.
-                  </li>
-                  <li>
-                    Common lookalikes such as <strong>· • ∙</strong> become
-                    dots, and <strong>– — −</strong> become dashes.
-                  </li>
-                  <li>
-                    <strong>1-6 spaces</strong> means letter gap.{" "}
-                    <strong>7+ spaces</strong>, <strong>/</strong>, or a new
-                    line means word gap.
-                  </li>
-                  <li>
-                    Unknown Morse chunks output <strong>?</strong> so mistakes
-                    remain visible.
-                  </li>
-                </ul>
-
-                <div className="mt-5">
-                  <p className="text-base font-extrabold text-sky-950">
-                    Examples
-                  </p>
-                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 font-mono text-base leading-relaxed text-slate-900">
-                    {`...   ---   ...
-SOS
-
-... / --- / ...
-S O S`}
-                  </pre>
-                  <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-600">
-                    If everything runs together, add separators. The safest
-                    format is 3 spaces between letters and 7 spaces between
-                    words.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="formatting" className="py-7">
-            <div className="grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
-              <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                  Input rules
-                </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
-                  Formatting guide
-                </h3>
-              </header>
-
-              <div className="max-w-[72ch]">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <p className="text-base font-extrabold text-sky-950">
-                      For best decoding
-                    </p>
-                    <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed">
-                      <li>3 spaces between letters</li>
-                      <li>7 spaces between words</li>
-                      <li>/ can replace a word gap</li>
-                      <li>New lines count as word gaps</li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <p className="text-base font-extrabold text-sky-950">
-                      Common paste problems
-                    </p>
-                    <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed">
-                      <li>Fancy dashes from PDFs</li>
-                      <li>Dots rendered as bullets</li>
-                      <li>Mixed separators</li>
-                      <li>Extra punctuation mixed into Morse</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <p className="mt-5 max-w-[68ch] text-base leading-relaxed text-slate-600 sm:text-lg">
-                  If you need to preserve exact spacing inside a single word,
-                  this tool will not do that. It favors predictable
-                  normalization and consistent separators.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section id="supported" className="py-7">
-            <div className="grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
-              <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                  Character map
-                </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
-                  Supported characters
-                </h3>
-              </header>
-
-              <div className="max-w-[72ch]">
-                <p className="text-base leading-relaxed sm:text-lg">
-                  This translator supports A-Z, 0-9, and a core set of common
-                  punctuation. It intentionally does not guess at extended
-                  alphabets or locale-specific variants.
-                </p>
-
-                <div className="mt-4">
-                  <p className="text-base font-extrabold text-sky-950">
-                    Supported punctuation
-                  </p>
-
-                  <div
-                    className="mt-3 flex flex-wrap gap-2"
-                    aria-label="Supported punctuation"
-                  >
-                    {[
-                      [".", "Period"],
-                      [",", "Comma"],
-                      ["?", "Question mark"],
-                      ["/", "Slash"],
-                      ["'", "Apostrophe"],
-                      ["!", "Exclamation mark"],
-                      ["-", "Hyphen"],
-                      ["@", "At sign"],
-                      [":", "Colon"],
-                      [";", "Semicolon"],
-                      ["=", "Equals sign"],
-                      ["+", "Plus sign"],
-                      ['"', "Quotation mark"],
-                      ["(", "Opening parenthesis"],
-                      [")", "Closing parenthesis"],
-                      ["&", "Ampersand"],
-                      ["_", "Underscore"],
-                    ].map(([symbol, label]) => (
-                      <span
-                        key={symbol}
-                        title={label}
-                        className="inline-flex min-w-9 items-center justify-center rounded-md bg-[#f7f4ee] px-2.5 py-1.5 font-mono text-sm font-bold text-slate-900"
-                      >
-                        {symbol}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-5">
-                  <p className="text-base font-extrabold text-sky-950">
-                    Related tools
-                  </p>
-                  <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed">
-                    <li>
-                      <a
-                        href="/audio"
-                        className="cursor-pointer font-semibold text-sky-900 underline transition hover:text-sky-700 hover:no-underline"
-                      >
-                        Audio
-                      </a>{" "}
-                      for focused playback and timing controls.
-                    </li>
-                    <li>
-                      <a
-                        href="/dictionary"
-                        className="cursor-pointer font-semibold text-sky-900 underline transition hover:text-sky-700 hover:no-underline"
-                      >
-                        Dictionary
-                      </a>{" "}
-                      to look up characters and punctuation.
-                    </li>
-                    <li>
-                      <a
-                        href="/practice"
-                        className="cursor-pointer font-semibold text-sky-900 underline transition hover:text-sky-700 hover:no-underline"
-                      >
-                        Practice
-                      </a>{" "}
-                      and{" "}
-                      <a
-                        href="/typing"
-                        className="cursor-pointer font-semibold text-sky-900 underline transition hover:text-sky-700 hover:no-underline"
-                      >
-                        Typing
-                      </a>{" "}
-                      for drills and repetition.
-                    </li>
-                    <li>
-                      <a
-                        href="/how-to-use"
-                        className="cursor-pointer font-semibold text-sky-900 underline transition hover:text-sky-700 hover:no-underline"
-                      >
-                        How to use
-                      </a>{" "}
-                      for suite-level notes.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="troubleshooting" className="py-7">
-            <div className="grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
-              <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                  Fix mistakes
-                </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
-                  Troubleshooting
-                </h3>
-              </header>
-
-              <ul className="max-w-[72ch] list-disc space-y-2 pl-6 text-base leading-relaxed sm:text-lg">
-                <li>
-                  <strong>Decoded text looks wrong:</strong> check boundaries.
-                  Add 3 spaces between letters and 7 spaces between words.
-                </li>
-                <li>
-                  <strong>You see ? characters:</strong> at least one Morse
-                  chunk was not recognized.
-                </li>
-                <li>
-                  <strong>Encoding skipped characters:</strong> replace those
-                  characters with supported punctuation or plain letters.
-                </li>
-                <li>
-                  <strong>Pasted Morse has weird symbols:</strong> PDFs often
-                  replace hyphens with long dashes and dots with bullets.
-                </li>
-                <li>
-                  <strong>Audio is silent:</strong> confirm Sound is on, raise
-                  volume, and make sure your device is not muted.
-                </li>
-              </ul>
-            </div>
-          </section>
+              </li>
+            ))}
+          </ol>
         </div>
+      </section>
 
-        <div className="grid gap-6 px-0 pt-7 lg:grid-cols-[1fr_1.05fr]">
-          <section>
-            <h3 className="text-2xl font-extrabold text-sky-950">
-              Quick answers
-            </h3>
+      <section
+        className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        aria-labelledby="home-formatting-title"
+      >
+        <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+              Formatting
+            </p>
+            <h2
+              id="home-formatting-title"
+              className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
+            >
+              Spacing is part of the message
+            </h2>
+            <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              The safest format is three spaces between letters and seven
+              spaces between words. A slash or a new line can also mark a word
+              break when decoding pasted Morse.
+            </p>
 
-            <ul className="mt-4 max-w-[68ch] list-disc space-y-2 pl-6 text-base leading-relaxed text-slate-700 sm:text-lg">
-              <li>
-                <strong>What this tool does:</strong> Converts plain text to
-                International Morse code and decodes Morse back to readable
-                text.
-              </li>
-              <li>
-                <strong>Best output format:</strong> 3 spaces between letters, 7
-                spaces between words. You can also use <code>/</code>.
-              </li>
-              <li>
-                <strong>How decoding works:</strong> The decoder uses dots,
-                dashes, and separators to decide where letters and words end.
-              </li>
-              <li>
-                <strong>Errors and unknowns:</strong> Unknown Morse chunks
-                decode to <code>?</code>.
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-2xl font-extrabold text-sky-950">
-              Morse formatting rules
-            </h3>
-
-            <div className="mt-4 overflow-x-auto">
-              <table className="w-full text-base sm:text-lg">
-                <thead>
+            <div className="mt-7 overflow-x-auto">
+              <table className="w-full text-left text-base">
+                <thead className="text-sky-950">
                   <tr>
-                    <th className="py-2 pr-4 text-left font-extrabold text-sky-950">
-                      Rule
-                    </th>
-                    <th className="py-2 text-left font-extrabold text-sky-950">
-                      Behavior
-                    </th>
+                    <th className="pb-3 pr-6 font-extrabold">Rule</th>
+                    <th className="pb-3 font-extrabold">Behavior</th>
                   </tr>
                 </thead>
                 <tbody className="text-slate-700">
                   <tr>
-                    <td className="py-2 pr-4">Letter separator encode</td>
-                    <td className="py-2">3 spaces</td>
+                    <td className="py-2 pr-6">Letter gap when encoding</td>
+                    <td className="py-2 font-mono">3 spaces</td>
                   </tr>
                   <tr>
-                    <td className="py-2 pr-4">Word separator encode</td>
-                    <td className="py-2">7 spaces</td>
+                    <td className="py-2 pr-6">Word gap when encoding</td>
+                    <td className="py-2 font-mono">7 spaces</td>
                   </tr>
                   <tr>
-                    <td className="py-2 pr-4">Letter separator decode</td>
-                    <td className="py-2">1-6 spaces</td>
+                    <td className="py-2 pr-6">Letter gap when decoding</td>
+                    <td className="py-2 font-mono">1-6 spaces</td>
                   </tr>
                   <tr>
-                    <td className="py-2 pr-4">Word separator decode</td>
+                    <td className="py-2 pr-6">Word gap when decoding</td>
                     <td className="py-2">
-                      7+ spaces, <code>/</code>, or new line
+                      <span className="font-mono">7+</span> spaces,{" "}
+                      <code>/</code>, or a new line
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-2 pr-4">Unknown Morse chunk</td>
+                    <td className="py-2 pr-6">Unknown Morse chunk</td>
                     <td className="py-2">
                       Decodes to <code>?</code>
                     </td>
@@ -470,9 +231,116 @@ S O S`}
                 </tbody>
               </table>
             </div>
-          </section>
+          </div>
+
+          <div className="rounded-xl bg-[#fffaf2] p-5 sm:p-6">
+            <h3 className="text-xl font-extrabold text-sky-950">
+              Supported characters
+            </h3>
+            <p className="mt-3 text-base leading-relaxed text-slate-700">
+              The translator supports A-Z, 0-9, and common punctuation. It does
+              not guess at extended alphabets or locale-specific variants.
+            </p>
+
+            <p className="mt-6 text-sm font-extrabold uppercase tracking-[0.12em] text-slate-600">
+              Common punctuation
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2" aria-label="Supported punctuation">
+              {punctuation.map(([symbol, label]) => (
+                <span
+                  key={symbol}
+                  title={label}
+                  className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-md bg-white px-2.5 py-1.5 font-mono text-sm font-bold text-sky-950"
+                >
+                  {symbol}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section
+        className="bg-white/55 px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        aria-labelledby="home-tools-title"
+      >
+        <div className="mx-auto max-w-[1120px]">
+          <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+            <div>
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+                Next steps
+              </p>
+              <h2
+                id="home-tools-title"
+                className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
+              >
+                Use the right tool for the next task
+              </h2>
+              <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+                Move from translation into listening, drills, lookup, or guided
+                usage without digging through a wall of cards.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {toolLinks.map((tool) => (
+                <a
+                  key={tool.href}
+                  href={tool.href}
+                  className="group cursor-pointer rounded-xl px-1 py-2 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-500"
+                >
+                  <span className="text-lg font-extrabold text-sky-950 transition group-hover:text-sky-700">
+                    {tool.title}
+                  </span>
+                  <span className="mt-2 block text-base leading-relaxed text-slate-700">
+                    {tool.body}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        aria-labelledby="home-troubleshooting-title"
+      >
+        <div className="mx-auto grid max-w-[1120px] gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+              Troubleshooting
+            </p>
+            <h2
+              id="home-troubleshooting-title"
+              className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
+            >
+              Common fixes
+            </h2>
+          </div>
+
+          <ul className="grid gap-5 text-base leading-relaxed text-slate-700 sm:text-lg">
+            <li>
+              <strong className="text-sky-950">Decoded text looks wrong:</strong>{" "}
+              add clear boundaries between letters and words.
+            </li>
+            <li>
+              <strong className="text-sky-950">Question marks appear:</strong>{" "}
+              at least one Morse chunk was not recognized.
+            </li>
+            <li>
+              <strong className="text-sky-950">Encoding skipped symbols:</strong>{" "}
+              replace unsupported characters with supported punctuation or plain
+              letters.
+            </li>
+            <li>
+              <strong className="text-sky-950">Pasted Morse has odd symbols:</strong>{" "}
+              PDFs and documents can turn dots into bullets or hyphens into long
+              dashes; the decoder normalizes common lookalikes.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </>
   );
 }

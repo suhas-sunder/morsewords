@@ -31,6 +31,7 @@ interface Props {
   subtitle?: React.ReactNode;
   examples?: string[];
   plainValidationValue?: string;
+  variant?: "default" | "home";
 }
 
 const STROBE_WARNING_ID = "translator-strobe-warning";
@@ -46,6 +47,7 @@ export default function TranslatorSectionsBasic({
   subtitle,
   examples: exampleValues,
   plainValidationValue,
+  variant = "default",
 }: Props) {
   const [copied, setCopied] = useState<string | null>(null);
   const [direction, setDirection] = useState<"encode" | "decode">("encode");
@@ -335,8 +337,12 @@ export default function TranslatorSectionsBasic({
       : player.state
     : "Audio unavailable";
 
+  const isHome = variant === "home";
+  const focusOutline =
+    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+
   return (
-    <div className="mb-8">
+    <div className={isHome ? "mb-10 sm:mb-12" : "mb-8"}>
       {flashOn && (
         <div
           className="pointer-events-none fixed inset-0 z-[999]"
@@ -344,8 +350,20 @@ export default function TranslatorSectionsBasic({
         />
       )}
 
-      <section className="mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white">
-        <div className="tool-header px-5 pb-0 pt-6 sm:px-8 sm:pt-7">
+      <section
+        className={
+          isHome
+            ? "mw-tool-section mt-5 overflow-hidden rounded-2xl bg-[#fffdf8]/95"
+            : "mw-tool-section mt-6 overflow-hidden rounded-2xl bg-white"
+        }
+      >
+        <div
+          className={
+            isHome
+              ? "tool-header px-5 pb-0 pt-7 sm:px-8 sm:pt-8 lg:px-10"
+              : "tool-header px-5 pb-0 pt-6 sm:px-8 sm:pt-7"
+          }
+        >
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
             <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -353,7 +371,13 @@ export default function TranslatorSectionsBasic({
             </span>
           </div>
 
-          <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+          <h1
+            className={
+              isHome
+                ? "mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl"
+                : "mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl"
+            }
+          >
             {title}
           </h1>
 
@@ -364,15 +388,21 @@ export default function TranslatorSectionsBasic({
           )}
         </div>
 
-        <div className="px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
+        <div
+          className={
+            isHome
+              ? "px-5 pb-6 pt-5 sm:px-8 sm:pb-8 sm:pt-6 lg:px-10"
+              : "px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5"
+          }
+        >
           <div className="flex flex-col gap-4">
-            <div className="rounded-xl bg-white">
+            <div className={isHome ? "pt-1" : "rounded-xl bg-white"}>
               <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
                 <div className="inline-flex w-full gap-2 rounded-lg sm:w-auto">
                   <button
                     type="button"
                     onClick={() => setDirection("encode")}
-                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${
+                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${focusOutline} ${
                       direction === "encode"
                         ? "bg-slate-950 text-sky-100"
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-950"
@@ -385,7 +415,7 @@ export default function TranslatorSectionsBasic({
                   <button
                     type="button"
                     onClick={() => setDirection("decode")}
-                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${
+                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${focusOutline} ${
                       direction === "decode"
                         ? "bg-slate-950 text-sky-100"
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-950"
@@ -402,7 +432,7 @@ export default function TranslatorSectionsBasic({
                       type="button"
                       key={ex.label}
                       onClick={ex.set}
-                      className="cursor-pointer rounded-full bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95"
+                      className={`cursor-pointer rounded-full bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 ${focusOutline}`}
                     >
                       Try “{ex.label}”
                     </button>
@@ -412,7 +442,7 @@ export default function TranslatorSectionsBasic({
                 <button
                   type="button"
                   onClick={handleSwap}
-                  className="hidden cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 md:flex lg:ml-auto"
+                  className={`hidden cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 md:flex lg:ml-auto ${focusOutline}`}
                   title="Swap direction"
                 >
                   <span>Swap</span>
@@ -424,7 +454,13 @@ export default function TranslatorSectionsBasic({
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="overflow-hidden rounded-xl bg-slate-100">
+              <div
+                className={
+                  isHome
+                    ? "overflow-hidden rounded-xl bg-[#f7f4ee]"
+                    : "overflow-hidden rounded-xl bg-slate-100"
+                }
+              >
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <label
                     htmlFor={liveInputId}
@@ -440,7 +476,7 @@ export default function TranslatorSectionsBasic({
 
                 <textarea
                   id={liveInputId}
-                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0"
+                  className={`min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 ${focusOutline}`}
                   value={inputValue}
                   onChange={(e) =>
                     direction === "encode"
@@ -466,7 +502,7 @@ export default function TranslatorSectionsBasic({
                       if (direction === "encode") setPlainA("");
                       else setMorseB("");
                     }}
-                    className="cursor-pointer rounded-md bg-slate-200 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-300 hover:text-sky-950 active:scale-95"
+                    className={`cursor-pointer rounded-md bg-slate-200 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-300 hover:text-sky-950 active:scale-95 ${focusOutline}`}
                   >
                     Clear input
                   </button>
@@ -490,7 +526,13 @@ export default function TranslatorSectionsBasic({
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-xl bg-[#202020]">
+              <div
+                className={
+                  isHome
+                    ? "overflow-hidden rounded-xl bg-slate-950"
+                    : "overflow-hidden rounded-xl bg-[#202020]"
+                }
+              >
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <label
                     htmlFor="mw_output"
@@ -506,7 +548,7 @@ export default function TranslatorSectionsBasic({
 
                 <textarea
                   id="mw_output"
-                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0"
+                  className={`min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 ${focusOutline}`}
                   value={outputValue}
                   readOnly
                   placeholder={
@@ -521,7 +563,7 @@ export default function TranslatorSectionsBasic({
                       if (direction === "encode") setPlainA("");
                       else setMorseB("");
                     }}
-                    className="cursor-pointer rounded-md bg-slate-700 px-3 py-1.5 text-sm font-semibold text-slate-200 transition hover:bg-slate-600 active:scale-95"
+                    className={`cursor-pointer rounded-md bg-slate-700 px-3 py-1.5 text-sm font-semibold text-slate-200 transition hover:bg-slate-600 active:scale-95 ${focusOutline}`}
                   >
                     Clear output
                   </button>
@@ -529,13 +571,19 @@ export default function TranslatorSectionsBasic({
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 rounded-xl bg-white px-4 py-3 sm:flex-row sm:items-center">
+            <div
+              className={
+                isHome
+                  ? "flex flex-col gap-3 rounded-xl bg-[#fffaf2] px-4 py-3 sm:flex-row sm:items-center"
+                  : "flex flex-col gap-3 rounded-xl bg-white px-4 py-3 sm:flex-row sm:items-center"
+              }
+            >
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
                   onClick={() => handleCopy(outputValue, "output")}
                   disabled={!outputValue}
-                  className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${
+                  className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${focusOutline} ${
                     outputValue
                       ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
                       : "cursor-not-allowed bg-slate-100 text-slate-400"
@@ -549,7 +597,7 @@ export default function TranslatorSectionsBasic({
                   type="button"
                   onClick={handleShare}
                   disabled={!outputValue}
-                  className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${
+                  className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${focusOutline} ${
                     outputValue
                       ? "bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-sky-950"
                       : "cursor-not-allowed bg-slate-100 text-slate-400"
@@ -592,7 +640,7 @@ export default function TranslatorSectionsBasic({
                     ? !player.isSupported
                     : !canPlay || !player.isSupported
                 }
-                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${
+                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
                   player.state === "playing"
                     ? player.isSupported
                       ? "bg-slate-100 text-slate-950 hover:bg-slate-200 hover:text-sky-950"
@@ -628,7 +676,7 @@ export default function TranslatorSectionsBasic({
                 type="button"
                 onClick={player.stop}
                 disabled={!player.isSupported || player.state === "idle"}
-                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${
+                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
                   player.isSupported && player.state !== "idle"
                     ? "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
                     : "cursor-not-allowed bg-slate-100 text-slate-400"
@@ -642,7 +690,7 @@ export default function TranslatorSectionsBasic({
                 type="button"
                 onClick={handleSaveAudio}
                 disabled={!canPlay || !soundOn}
-                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${
+                className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
                   canPlay && soundOn
                     ? "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
                     : "cursor-not-allowed bg-slate-100 text-slate-400"
@@ -653,7 +701,13 @@ export default function TranslatorSectionsBasic({
               </button>
             </div>
 
-            <div className="rounded-2xl bg-white p-4">
+            <div
+              className={
+                isHome
+                  ? "rounded-xl bg-[#fffaf2] p-4 sm:p-5"
+                  : "rounded-2xl bg-white p-4"
+              }
+            >
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="text-base font-extrabold text-sky-950">
@@ -726,7 +780,7 @@ export default function TranslatorSectionsBasic({
                 <button
                   type="button"
                   onClick={() => setAdvancedOpen((v) => !v)}
-                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 sm:w-auto"
+                  className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-100 px-3 py-2 transition hover:bg-slate-200 hover:text-sky-950 active:scale-95 sm:w-auto ${focusOutline}`}
                   aria-expanded={advancedOpen}
                 >
                   <span className="text-sm font-semibold text-slate-900">
@@ -751,7 +805,7 @@ export default function TranslatorSectionsBasic({
                             setPreset(e.target.value as SoundPreset)
                           }
                           disabled={!soundOn}
-                          className={`mt-1 w-full rounded-xl bg-slate-100 p-2 transition hover:bg-slate-200 hover:text-sky-950 ${
+                          className={`mt-1 w-full rounded-xl bg-slate-100 p-2 transition hover:bg-slate-200 hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
                             soundOn
                               ? "cursor-pointer"
                               : "cursor-not-allowed opacity-60"
@@ -812,7 +866,7 @@ function TogglePill({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={`flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${
+      className={`flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
         checked
           ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
           : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-sky-950"
@@ -872,7 +926,7 @@ function SliderRow({
         onChange={(e) => onChange(Number(e.target.value))}
         disabled={disabled}
         style={{ accentColor: "#38bdf8" }}
-        className={`mt-2 w-full rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300 ${
+        className={`mt-2 w-full rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
           disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
         }`}
       />
