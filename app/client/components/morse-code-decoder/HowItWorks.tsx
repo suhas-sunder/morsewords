@@ -14,7 +14,7 @@ export default function HowItWorks() {
  </h2>
 
  <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
- This page is a focused <strong>Morse code decoder</strong>. It converts{""}
+ This page is a focused <strong>Morse code decoder</strong>. It converts{" "}
  <strong>International Morse</strong> (dots and dashes) back into readable
  text, emphasizing spacing and separators. It is built to be predictable:
  it normalizes inputs, applies a fixed character map, and keeps mistakes
@@ -34,7 +34,7 @@ export default function HowItWorks() {
  <a
  key={href}
  href={href}
- className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950">
+ className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  {label}
  </a>
  ))}
@@ -44,7 +44,7 @@ export default function HowItWorks() {
  <div className="rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-base font-extrabold text-sky-950">Input spacing</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- Separate <strong>letters</strong> with <strong>spaces</strong>. Separate{""}
+ Separate <strong>letters</strong> with <strong>spaces</strong>. Separate{" "}
  <strong>words</strong> with <strong>7+ spaces</strong>, <strong>/</strong>,
  or a <strong>new line</strong>.
  </p>
@@ -53,7 +53,7 @@ export default function HowItWorks() {
  <div className="rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-base font-extrabold text-sky-950">Decoder boundaries</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- When decoding, <strong>1–6 spaces</strong> separates letters.{""}
+ When decoding, <strong>1–6 spaces</strong> separates letters.{" "}
  <strong>7+ spaces</strong>, <strong>/</strong>, and new lines separate
  words.
  </p>
@@ -84,11 +84,11 @@ export default function HowItWorks() {
  <p className="text-base font-extrabold text-sky-950">Symbols</p>
  <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-slate-700">
  <li>
- Dots: <code>.</code>{""}
+ Dots: <code>.</code>{" "}
  <span className="text-slate-500">(also · • ∙)</span>
  </li>
  <li>
- Dashes: <code>-</code>{""}
+ Dashes: <code>-</code>{" "}
  <span className="text-slate-500">(also – — −)</span>
  </li>
  <li>
@@ -101,19 +101,19 @@ export default function HowItWorks() {
  <p className="text-base font-extrabold text-sky-950">Common paste patterns</p>
  <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-slate-700">
  <li>
- <code>.... ..</code>{""}
+ <code>.... ..</code>{" "}
  <span className="text-slate-500">(letters separated by a space)</span>
  </li>
  <li>
- <code>. . . . -</code>{""}
+ <code>. . . . -</code>{" "}
  <span className="text-slate-500">(extra spaces are okay)</span>
  </li>
  <li>
- <code>... --- ...</code>{""}
+ <code>... --- ...</code>{" "}
  <span className="text-slate-500">(classic SOS)</span>
  </li>
  <li>
- <code>.... . .-.. .-.. --- / .-- --- .-. .-.. -..</code>{""}
+ <code>.... . .-.. .-.. --- / .-- --- .-. .-.. -..</code>{" "}
  <span className="text-slate-500">(slash between words)</span>
  </li>
  </ul>
@@ -124,11 +124,11 @@ export default function HowItWorks() {
  <p className="text-base font-extrabold text-sky-950">Note</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  This decoder is <strong>separator-based</strong>. It does not infer timing.
- If your Morse has no spacing at all, use the{""}
+ If your Morse has no spacing at all, use the{" "}
  <Link
  to="/morse-code-word-separator" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  word separator tool
- </Link>{""}
+ </Link>{" "}
  to split it first.
  </p>
  </div>
@@ -149,8 +149,8 @@ export default function HowItWorks() {
  <div className="rounded-2xl p-5">
  <p className="text-base font-extrabold text-sky-950">Decode a single letter</p>
  <p className="mt-2 text-base sm:text-lg text-slate-700">
- <strong>Input:</strong>{""}
- <code>...</code>{""}
+ <strong>Input:</strong>{" "}
+ <code>...</code>{" "}
  <span className="text-slate-500">(S)</span>
  </p>
  </div>
@@ -158,8 +158,8 @@ export default function HowItWorks() {
  <div className="rounded-2xl p-5">
  <p className="text-base font-extrabold text-sky-950">Decode a word (spaces between letters)</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- <strong>Input:</strong>{""}
- <code>.... . .-.. .-.. ---</code>{""}
+ <strong>Input:</strong>{" "}
+ <code>.... . .-.. .-.. ---</code>{" "}
  <span className="text-slate-500">(HELLO)</span>
  </p>
  </div>
@@ -167,8 +167,8 @@ export default function HowItWorks() {
  <div className="rounded-2xl p-5">
  <p className="text-base font-extrabold text-sky-950">Decode two words (slash separator)</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- <strong>Input:</strong>{""}
- <code>.... . .-.. .-.. --- / .-- --- .-. .-.. -..</code>{""}
+ <strong>Input:</strong>{" "}
+ <code>.... . .-.. .-.. --- / .-- --- .-. .-.. -..</code>{" "}
  <span className="text-slate-500">(HELLO WORLD)</span>
  </p>
  </div>
@@ -176,8 +176,8 @@ export default function HowItWorks() {
  <div className="rounded-2xl p-5">
  <p className="text-base font-extrabold text-sky-950">Decode punctuation</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- <strong>Input:</strong>{""}
- <code>... --- ... -.-.--</code>{""}
+ <strong>Input:</strong>{" "}
+ <code>... --- ... -.-.--</code>{" "}
  <span className="text-slate-500">(SOS!)</span>
  </p>
  </div>
@@ -185,8 +185,8 @@ export default function HowItWorks() {
  <div className="rounded-2xl p-5">
  <p className="text-base font-extrabold text-sky-950">What an error looks like</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- <strong>Input:</strong>{""}
- <code>.... .. --..-- ..-.-</code>{""}
+ <strong>Input:</strong>{" "}
+ <code>.... .. --..-- ..-.-</code>{" "}
  <span className="text-slate-500">(the last chunk becomes ?)</span>
  </p>
  </div>
@@ -204,7 +204,7 @@ export default function HowItWorks() {
  </p>
 
  <Link
- to="/morse-code-encoder" className="inline-flex mt-4 items-center rounded-full bg-[#f7f4ee] px-4 py-2 text-base sm:text-lg font-extrabold text-sky-950 hover:bg-sky-50 cursor-pointer transition">
+          to="/morse-code-encoder" className="inline-flex mt-4 min-h-11 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-5 py-2.5 text-center text-base font-extrabold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 sm:text-lg">
  Switch to encoder
  </Link>
  </div>
@@ -222,7 +222,7 @@ export default function HowItWorks() {
  </li>
  <li>
  <strong>What to paste:</strong> Use dots and dashes, then separate
- letters with spaces. Separate words with <strong>7+ spaces</strong>,{""}
+ letters with spaces. Separate words with <strong>7+ spaces</strong>,{" "}
  <code>/</code>, or a new line.
  </li>
  <li>
@@ -295,11 +295,11 @@ export default function HowItWorks() {
  <p className="text-base font-extrabold text-sky-950">Tip for copy/paste</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  If you plan to paste your decoded result elsewhere, keep it as normal
- text. If you want to generate Morse again, use the{""}
+ text. If you want to generate Morse again, use the{" "}
  <Link
  to="/morse-code-encoder" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  encoder
- </Link>{""}
+ </Link>{" "}
  so spacing and separators are consistent.
  </p>
  </div>

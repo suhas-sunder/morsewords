@@ -364,10 +364,10 @@ function MorsePhraseLookupTable() {
  </div>
 
  <p className="text-sm text-slate-600">
- Showing{""}
+ Showing{" "}
  <span className="font-semibold text-neutral-900">
  {filtered.length}
- </span>{""}
+ </span>{" "}
  of {phrases.length}
  </p>
  </div>
@@ -427,7 +427,7 @@ function MorsePhraseLookupTable() {
  <div className="px-5 pb-6 pt-6 text-sm leading-relaxed text-slate-700 space-y-2 sm:px-8 sm:pb-7">
  <p>
  For puzzles and learning, the slash separator is intentionally
- explicit. If you prefer spacing-only Morse, you can replace{""}
+ explicit. If you prefer spacing-only Morse, you can replace{" "}
  <span className="font-mono">/</span> with a larger word gap. If a
  decoder chokes on mixed spacing, normalize your separators first.
  </p>

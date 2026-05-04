@@ -861,11 +861,11 @@ export default function MorseCodeWordTrainer() {
  <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)]">
  <div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
  <p>
- Start with{""}
+ Start with{" "}
  <a
  href="/practice" className="font-semibold text-sky-900 underline hover:no-underline">
  quick Morse drills
- </a>{""}
+ </a>{" "}
  when individual letters still feel slow. Move here once common
  symbols are familiar enough to combine into short words.
  </p>
@@ -873,12 +873,12 @@ export default function MorseCodeWordTrainer() {
  Use Morse-to-text mode for copy practice, then switch to
  text-to-Morse when you want to prove the spacing yourself. If a
  word keeps breaking your rhythm, add it to weak review and use
- the same list in{""}
+ the same list in{" "}
  <a
  href="/morse-code-audio-practice" className="font-semibold text-sky-900 underline hover:no-underline">
  audio practice
  </a>
- ,{""}
+ ,{" "}
  <a
  href="/morse-code-sentence-practice" className="font-semibold text-sky-900 underline hover:no-underline">
  sentence practice
@@ -888,11 +888,11 @@ export default function MorseCodeWordTrainer() {
  <p>
  Teachers can paste weekly vocabulary, radio clubs can paste
  Q-codes and callsign words, and puzzle makers can turn a review
- list into a{""}
+ list into a{" "}
  <a
  href="/morse-code-word-search-builder" className="font-semibold text-sky-900 underline hover:no-underline">
  Morse word search
- </a>{""}
+ </a>{" "}
  where clues are Morse and answers are hidden in a letter grid.
  </p>
  </div>
@@ -1011,13 +1011,13 @@ function FeedbackCard({
  </p>
  <p className="mt-2 text-sm leading-relaxed text-slate-700">
  {mode ==="morse_to_text"?"Plain word":"Morse answer"}
- :{""}
+ :{" "}
  <code className="font-mono font-bold tracking-[0.12em]">
  {mode ==="morse_to_text"? word : morse}
  </code>
  </p>
  <p className="mt-1 text-sm leading-relaxed text-slate-700">
- {mode ==="morse_to_text"?"Morse":"Plain word"}:{""}
+ {mode ==="morse_to_text"?"Morse":"Plain word"}:{" "}
  <code className="font-mono font-bold tracking-[0.12em]">
  {mode ==="morse_to_text"? morse : word}
  </code>
@@ -1095,7 +1095,7 @@ function MiniLink({
  return (
  <a
  href={href}
- className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300">
+                      className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  {children}
  </a>
  );

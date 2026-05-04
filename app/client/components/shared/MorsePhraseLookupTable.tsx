@@ -227,21 +227,21 @@ function MorsePhraseLookupTable() {
  <p>
  These Morse code phrases include <strong>Q-codes</strong> (used in
  amateur radio),
- <strong>prosigns</strong> (procedural signals), and{""}
+ <strong>prosigns</strong> (procedural signals), and{" "}
  <strong>abbreviations</strong> commonly exchanged during CW
  (continuous wave) transmissions. They make communication faster and
  more standardized worldwide.
  </p>
  <p>
- Practicing with these phrases improves both <em>copy speed</em> and{""}
+ Practicing with these phrases improves both <em>copy speed</em> and{" "}
  <em>transmit rhythm</em>. Focus first on SOS, QTH, QSL, and SK for
- real-world readiness, then build up to longer pangrams like{""}
+ real-world readiness, then build up to longer pangrams like{" "}
  <strong>THE QUICK BROWN FOX</strong>.
  </p>
  <p>
- This table follows the{""}
+ This table follows the{" "}
  <strong>International Telecommunication Union (ITU)</strong> standards
- and includes terms recognized by{""}
+ and includes terms recognized by{" "}
  <em>ham radio, aviation, and maritime</em> operators globally.
  Bookmark this chart to quickly look up any Morse prosign or radio
  abbreviation.

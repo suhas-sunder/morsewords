@@ -1209,7 +1209,7 @@ export default function MorseCodeWordSearchBuilder() {
  words and {MAX_WORD_SEARCH_INPUT_LENGTH} characters are used.
  </p>
  <p className="mt-1 text-xs font-semibold text-slate-500">
- {input.length}/{MAX_WORD_SEARCH_INPUT_LENGTH} characters -{""}
+ {input.length}/{MAX_WORD_SEARCH_INPUT_LENGTH} characters -{" "}
  {parsed.words.length}/{MAX_WORDS} valid words
  </p>
  </ControlGroup>
@@ -1441,26 +1441,26 @@ export default function MorseCodeWordSearchBuilder() {
  eyebrow="Teaching flow" title="Pair word searches with real Morse practice" description="Use the puzzle as a warm-up, station activity, homework sheet, sub plan, or review task, then connect the same words to active practice.">
  <div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
  <p>
- For beginners, start with the{""}
+ For beginners, start with the{" "}
  <a className="font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-alphabet">
  Morse code alphabet
- </a>{""}
- and a short grid. For classroom review, paste vocabulary into the{""}
+ </a>{" "}
+ and a short grid. For classroom review, paste vocabulary into the{" "}
  <a className="font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-word-trainer">
  word trainer
- </a>{""}
+ </a>{" "}
  first, then turn those same words into a printable puzzle.
  </p>
  <p>
- If students need listening practice, send the word list into{""}
+ If students need listening practice, send the word list into{" "}
  <a className="font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-audio-practice">
  audio practice
  </a>
- . If they need a printable reference or answer sheet, use the{""}
+ . If they need a printable reference or answer sheet, use the{" "}
  <a className="font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-printable-chart">
  printable worksheet builder
  </a>
- . For a longer routine, fold the puzzle into the{""}
+ . For a longer routine, fold the puzzle into the{" "}
  <a className="font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-practice-plan">
  Morse code practice plan
  </a>
@@ -1577,7 +1577,7 @@ function WordSearchPreview({
  className="flex justify-between gap-3 rounded-lg bg-white px-3 py-2">
  <strong>{placement.word}</strong>
  <span className="text-slate-600">
- R{placement.startRow + 1}, C{placement.startCol + 1} -{""}
+ R{placement.startRow + 1}, C{placement.startCol + 1} -{" "}
  {placement.directionLabel}
  </span>
  </div>

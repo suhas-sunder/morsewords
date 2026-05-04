@@ -24,7 +24,7 @@ export default function HowItWorks() {
  </h2>
 
  <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
- This page focuses on the classic pangram{""}
+ This page focuses on the classic pangram{" "}
  <strong>“the quick brown fox jumps over the lazy dog”</strong>. It is
  commonly used for typing tests and puzzles because it contains every
  letter A–Z. Here you can copy the Morse in two formats and verify it
@@ -46,7 +46,7 @@ export default function HowItWorks() {
  <a
  key={href}
  href={href}
- className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950">
+              className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  {label}
  </a>
  ))}
@@ -56,7 +56,7 @@ export default function HowItWorks() {
  <div className="rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-base font-extrabold text-sky-950">Copy-friendly</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- Uses <strong>3 spaces</strong> between letters and{""}
+ Uses <strong>3 spaces</strong> between letters and{" "}
  <strong>7 spaces</strong> between words.
  </p>
  </div>
@@ -74,7 +74,7 @@ export default function HowItWorks() {
  <div className="rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-base font-extrabold text-sky-950">Decode safety</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- If your platform collapses multiple spaces, use the{""}
+ If your platform collapses multiple spaces, use the{" "}
  <strong>/</strong> version to keep word boundaries intact.
  </p>
  </div>
@@ -116,8 +116,8 @@ export default function HowItWorks() {
  </h3>
 
  <p className="mt-4 text-base sm:text-lg">
- This version is designed for tools and copy/paste:{""}
- <strong>3 spaces</strong> between letters and{""}
+ This version is designed for tools and copy/paste:{" "}
+ <strong>3 spaces</strong> between letters and{" "}
  <strong>7 spaces</strong> between words.
  </p>
 
@@ -178,11 +178,11 @@ export default function HowItWorks() {
  Verify instantly
  </p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- Paste into the{""}
+ Paste into the{" "}
  <Link
  to="/morse-code-decoder" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  decoder
- </Link>{""}
+ </Link>{" "}
  to confirm spacing and token boundaries.
  </p>
  </div>
@@ -264,16 +264,16 @@ export default function HowItWorks() {
  Practice this phrase
  </p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- Use{""}
+ Use{" "}
  <Link
  to="/practice" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  Practice
- </Link>{""}
- for 10-question drills or{""}
+ </Link>{" "}
+ for 10-question drills or{" "}
  <Link
  to="/audio" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  Audio
- </Link>{""}
+ </Link>{" "}
  to hear timing at different speeds.
  </p>
  </div>
@@ -290,35 +290,35 @@ export default function HowItWorks() {
  <Link
  to="/morse-code-encoder" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Morse code encoder
- </Link>{""}
+ </Link>{" "}
  to generate Morse from your own text.
  </li>
  <li>
  <Link
  to="/morse-code-decoder" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Morse code decoder
- </Link>{""}
+ </Link>{" "}
  to decode dots and dashes back to text.
  </li>
  <li>
  <Link
  to="/audio" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Audio
- </Link>{""}
+ </Link>{" "}
  for playback and timing controls.
  </li>
  <li>
  <Link
  to="/practice" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Practice
- </Link>{""}
+ </Link>{" "}
  for drills and repetition.
  </li>
  <li>
  <Link
  to="/dictionary" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Dictionary
- </Link>{""}
+ </Link>{" "}
  to look up letters and punctuation.
  </li>
  </ul>

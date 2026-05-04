@@ -18,7 +18,7 @@ export default function HowItWorks() {
  online. In real Morse, meaning comes from <strong>timing</strong>:
  dots and dashes (short and long signals), plus the length of the
  pauses between them. When Morse is written as plain text, those pauses
- get approximated with spaces and sometimes visible separators like{""}
+ get approximated with spaces and sometimes visible separators like{" "}
  <strong>/</strong> or <strong>|</strong>. This page is focused on one
  specific problem: making word breaks consistent so Morse is easier to
  share, easier to paste into tools, and less likely to decode
@@ -38,7 +38,7 @@ export default function HowItWorks() {
  <a
  key={href}
  href={href}
- className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950">
+              className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  {label}
  </a>
  ))}
@@ -48,7 +48,7 @@ export default function HowItWorks() {
  <div className="rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-base font-extrabold text-sky-950">Letter gap</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- In pasted text, letters are usually separated by a short gap like{""}
+ In pasted text, letters are usually separated by a short gap like{" "}
  <strong>one space</strong>. Some sources use 2–3 spaces, which is
  still typically intended to mean “next letter.”
  </p>
@@ -57,8 +57,8 @@ export default function HowItWorks() {
  <div className="rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-base font-extrabold text-sky-950">Word gap</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- A word break is a longer pause. In text form, a common convention is{""}
- <strong>7 spaces</strong>. Another very common convention is{""}
+ A word break is a longer pause. In text form, a common convention is{" "}
+ <strong>7 spaces</strong>. Another very common convention is{" "}
  <strong>/</strong>, especially in puzzles and copied strings.
  </p>
  </div>
@@ -94,7 +94,7 @@ export default function HowItWorks() {
  </p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  Many decoders treat a long gap as a clear word boundary. If you
- are preparing Morse for consistent decoding,{""}
+ are preparing Morse for consistent decoding,{" "}
  <strong>7 spaces</strong> is usually the safest output.
  </p>
  <p className="mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] rounded-xl p-3 whitespace-pre-wrap">
@@ -207,11 +207,11 @@ Normalized output:
  If everything is run together (no spaces, no slashes, no line
  breaks), a tool cannot reliably know where letters end without
  timing data. In that case, normalize what you can, then verify using
- the{""}
+ the{" "}
  <Link
  to="/morse-code-decoder" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  decoder
- </Link>{""}
+ </Link>{" "}
  and adjust separators manually.
  </p>
  </div>
@@ -262,21 +262,21 @@ Normalized output:
  <Link
  to="/morse-code-encoder" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Encoder
- </Link>{""}
+ </Link>{" "}
  for full text → Morse conversion.
  </li>
  <li>
  <Link
  to="/morse-code-decoder" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Decoder
- </Link>{""}
+ </Link>{" "}
  to verify your output decodes correctly.
  </li>
  <li>
  <Link
  to="/dictionary" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Dictionary
- </Link>{""}
+ </Link>{" "}
  for character lookups (letters, numbers, punctuation).
  </li>
  </ul>
@@ -318,14 +318,14 @@ Normalized output:
 
  <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg text-slate-700">
  <li>
- <strong>Word separator options:</strong> 7+ spaces, <code>/</code>,{""}
+ <strong>Word separator options:</strong> 7+ spaces, <code>/</code>,{" "}
  <code>|</code>, or new lines (input).
  </li>
  <li>
  <strong>Most tool-friendly output:</strong> 7 spaces between words.
  </li>
  <li>
- <strong>Most human-friendly format:</strong> <code>/</code> (or{""}
+ <strong>Most human-friendly format:</strong> <code>/</code> (or{" "}
  <code>|</code>) so word breaks are visible.
  </li>
  <li>
@@ -388,16 +388,16 @@ Normalized output:
  Want full translation instead?
  </p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- Use the{""}
+ Use the{" "}
  <Link
  to="/morse-code-encoder" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  encoder
- </Link>{""}
- for text → Morse and the{""}
+ </Link>{" "}
+ for text → Morse and the{" "}
  <Link
  to="/morse-code-decoder" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  decoder
- </Link>{""}
+ </Link>{" "}
  for Morse → text.
  </p>
  </div>

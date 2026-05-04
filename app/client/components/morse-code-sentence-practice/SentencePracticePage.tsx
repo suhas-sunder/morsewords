@@ -87,8 +87,8 @@ function morseWithWordSlashes(text: string) {
 
 function canonicalizeSentenceMorse(input: string) {
  const raw = (input ??"")
- .replace(/[•·∙]/g,".")
- .replace(/[–—−]/g,"-")
+    .replace(/[•·∙]/g,".")
+    .replace(/[–—−]/g,"-")
  .replace(/\t/g,"")
  // Treat pasted line breaks as spacing, not automatic word breaks.
  // Long revealed answers can wrap when copied, and those inserted/newline
@@ -175,7 +175,7 @@ function makePrompt(mode: DrillMode, pool: SentenceDrill[]): Prompt {
  kind: pickKind(mode),
  plain: drill.text,
  morse: textToMorse(drill.text),
- label: `${difficultyLabels[drill.difficulty]} sentence · ${wordCount(drill.text)} words · ${drill.focus}`,
+      label: `${difficultyLabels[drill.difficulty]} sentence · ${wordCount(drill.text)} words · ${drill.focus}`,
  };
 }
 
@@ -227,7 +227,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 
  return (
  <button
- type="button" className="rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-[#f7f4ee] cursor-pointer transition" onClick={async () => {
+ type="button" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-3 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2" onClick={async () => {
  try {
  await navigator.clipboard.writeText(text);
  setCopied(true);
@@ -266,7 +266,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  kind:"morse_to_text",
  plain:"SEND SLOWER PLEASE",
  morse: textToMorse("SEND SLOWER PLEASE"),
- label:"Easy sentence · 3 words · Common request",
+    label:"Easy sentence · 3 words · Common request",
  }));
  const [answer, setAnswer] = React.useState("");
  const [attempts, setAttempts] = React.useState(0);
@@ -449,7 +449,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  feedback.ok
  ?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-800"}`}
  role="status" aria-live="polite">
- <span aria-hidden="true">{feedback.ok ?"✓":"!"}</span>
+              <span aria-hidden="true">{feedback.ok ?"✓":"!"}</span>
  <span>{feedback.msg}</span>
  </div>
  ) : null;
@@ -484,14 +484,14 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
  mode ==="text_to_morse"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-200"}`}
  >
- Text → Morse
+                    Text → Morse
  </button>
  <button
  type="button" onClick={() => setMode("morse_to_text")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
  mode ==="morse_to_text"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-200"}`}
  >
- Morse → Text
+                    Morse → Text
  </button>
  <button
  type="button" onClick={() => setMode("mixed")}
@@ -617,7 +617,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  Mode
  </div>
  <div className="mt-1 text-lg font-extrabold text-neutral-900">
- {mode ==="text_to_morse"?"Text → Morse": mode ==="morse_to_text"?"Morse → Text":"Mixed"}
+                    {mode ==="text_to_morse"?"Text → Morse": mode ==="morse_to_text"?"Morse → Text":"Mixed"}
  </div>
  </div>
  </div>
@@ -646,7 +646,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <div className="flex items-center gap-2 justify-between flex-wrap">
  <div className="inline-flex items-center gap-2 flex-wrap">
  <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
- {prompt.kind ==="text_to_morse"?"Text → Morse":"Morse → Text"}
+                  {prompt.kind ==="text_to_morse"?"Text → Morse":"Morse → Text"}
  </span>
  <span className="text-sm text-slate-600">
  {prompt.label}
@@ -731,7 +731,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <span>
  Tip:{""}
  <span className="font-semibold text-sky-950">
- Ctrl/⌘ + Enter checks
+                  Ctrl/⌘ + Enter checks
  </span>
  </span>
  </div>

@@ -42,6 +42,10 @@ Users expect a word-search builder to support a custom word list, title, grid si
 - Internal links must point only to existing routes.
 - Preserve canonical URLs and structured data patterns.
 - Do not send raw user-entered text, puzzle words, worksheet text, or Morse messages to analytics.
+- Flat design rule: do not add borders, shadows, or gradients unless the user explicitly asks for them.
+- Prefer spacing, typography, contrast, and solid fills from the existing MorseWords palette over outlines or elevation.
+- Avoid nested cards wherever possible; use whitespace and a single flat background fill when content needs grouping.
+- Do not reintroduce border-style divider lines in tool headers, SEO sections, FAQ sections, navigation blocks, or shared cards after they have been removed.
 
 ## Extra implementation guardrails before editing
 

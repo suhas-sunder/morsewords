@@ -148,29 +148,29 @@ export default function MorseCodeWords() {
  </p>
 
  <p className={pClass}>
- If you want to go deeper into learning, use{""}
+ If you want to go deeper into learning, use{" "}
  <a href="/how-to-use" className={linkClass}>
  How to use
- </a>{""}
- for the fundamentals, then switch to{""}
+ </a>{" "}
+ for the fundamentals, then switch to{" "}
  <a href="/practice" className={linkClass}>
  Practice
- </a>{""}
- and{""}
+ </a>{" "}
+ and{" "}
  <a href="/typing" className={linkClass}>
  Typing
- </a>{""}
- to build speed. If you learn best by ear,{""}
+ </a>{" "}
+ to build speed. If you learn best by ear,{" "}
  <a href="/audio" className={linkClass}>
  Audio
- </a>{""}
+ </a>{" "}
  turns any text or Morse into something you can listen to and copy.
  </p>
  </CardSection>
 
  <CardSection title="Why people search for “morse words”">
  <p className={pClass}>
- Most people are not looking for a full alphabet chart when they type{""}
+ Most people are not looking for a full alphabet chart when they type{" "}
  <strong>morse code words</strong> into search. They want
  ready-to-use output: words like HELLO, PLEASE, THANK YOU, OK, HELP,
  and SOS in dots and dashes that they can copy into a message, a
@@ -180,14 +180,14 @@ export default function MorseCodeWords() {
 
  <p className={pClass}>
  If you want pure conversion, the dedicated routes are still the
- fastest path. Use{""}
+ fastest path. Use{" "}
  <a href="/morse-code-encoder" className={linkClass}>
  Morse code encoder
- </a>{""}
- for text to Morse, and{""}
+ </a>{" "}
+ for text to Morse, and{" "}
  <a href="/morse-code-decoder" className={linkClass}>
  Morse code decoder
- </a>{""}
+ </a>{" "}
  for Morse to text. The goal here is broader: give you a strong list
  of common words and real operating shorthand, plus the context that
  prevents formatting mistakes.
@@ -225,7 +225,7 @@ export default function MorseCodeWords() {
  <ul className="my-3 ml-5 list-disc text-slate-700 leading-relaxed">
  <li>
  <strong>One space between letters</strong> (example: H E L L O
- becomes{""}
+ becomes{" "}
  <code className="mx-1 rounded bg-slate-100 px-1 py-0.5">
  .... . .-.. .-.. ---
  </code>
@@ -242,10 +242,10 @@ export default function MorseCodeWords() {
  </ul>
 
  <p className={pClass}>
- If you are working with word boundaries a lot, the dedicated{""}
+ If you are working with word boundaries a lot, the dedicated{" "}
  <a href="/morse-code-word-separator" className={linkClass}>
  Morse code word separator
- </a>{""}
+ </a>{" "}
  page is the fastest reference. It explains how to normalize strings
  that use slashes, pipes, double spaces, or inconsistent gaps.
  Normalizing first saves time and avoids false “decode errors.”
@@ -254,7 +254,7 @@ export default function MorseCodeWords() {
  <p className={pClass}>
  Tip that actually helps: if you are building a list of words for
  practice, keep one word per line in your source list. If you run it
- through the{""}
+ through the{" "}
  <a href="/morse-code-encoder" className={linkClass}>
  encoder
  </a>
@@ -276,31 +276,31 @@ export default function MorseCodeWords() {
  PLEASE, THANK YOU, HELLO).
  </li>
  <li>
- Convert them on the{""}
+ Convert them on the{" "}
  <a href="/morse-code-encoder" className={linkClass}>
  Morse code encoder
- </a>{""}
+ </a>{" "}
  (one word per line) so you get clean, consistent formatting.
  </li>
  <li>
- Play them using{""}
+ Play them using{" "}
  <a href="/audio" className={linkClass}>
  Audio
- </a>{""}
+ </a>{" "}
  at a speed where you can copy accurately without guessing.
  </li>
  <li>
- Type what you hear on{""}
+ Type what you hear on{" "}
  <a href="/typing" className={linkClass}>
  Typing
- </a>{""}
+ </a>{" "}
  until you can stay accurate.
  </li>
  <li>
- Switch to{""}
+ Switch to{" "}
  <a href="/practice" className={linkClass}>
  Practice
- </a>{""}
+ </a>{" "}
  drills once accuracy is stable, then increase speed gradually.
  </li>
  </ol>
@@ -324,7 +324,7 @@ export default function MorseCodeWords() {
  <ul className="my-3 ml-5 list-disc text-slate-700 leading-relaxed">
  <li>
  Use the slash separator for clarity when you expect beginners
- (example:{""}
+ (example:{" "}
  <code className="mx-1 rounded bg-slate-100 px-1 py-0.5">
  .... .. / - .... . .-. .
  </code>
@@ -339,10 +339,10 @@ export default function MorseCodeWords() {
  know it round-trips correctly.
  </li>
  <li>
- For pangram practice, use the dedicated{""}
+ For pangram practice, use the dedicated{" "}
  <a href="/the-quick-brown-fox-morse-code" className={linkClass}>
  quick brown fox page
- </a>{""}
+ </a>{" "}
  as a reference.
  </li>
  </ul>

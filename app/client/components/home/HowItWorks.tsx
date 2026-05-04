@@ -53,7 +53,7 @@ export default function HowItWorks() {
             <a
               key={href}
               href={href}
-              className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950"
+                  className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
             >
               {label}
             </a>
@@ -398,7 +398,7 @@ S O S`}
           </section>
         </div>
 
-        <div className="grid gap-6 bg-[#fffaf2] px-0 pt-7 lg:grid-cols-[1fr_1.05fr]">
+        <div className="grid gap-6 px-0 pt-7 lg:grid-cols-[1fr_1.05fr]">
           <section>
             <h3 className="text-2xl font-extrabold text-sky-950">
               Quick answers

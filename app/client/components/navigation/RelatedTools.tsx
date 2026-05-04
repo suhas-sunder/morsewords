@@ -260,21 +260,21 @@ export default function RelatedTools() {
  </p>
  </div>
 
- <aside className="rounded-xl bg-[#171717] p-4 text-white">
- <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
- Quick access
- </p>
+          <aside className="rounded-xl">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
+              Quick access
+            </p>
 
- <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
- {FEATURED_LINKS.map((item) => (
- <a
- key={item.href}
- href={item.href}
- className="group flex cursor-pointer items-center justify-between gap-3 rounded-lg bg-[#1d1d1d] px-3.5 py-3 transition hover:bg-[#232323]">
- <span className="text-base font-extrabold text-sky-50">
- {item.title}
- </span>
- <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-300 transition group-hover:text-sky-100">
+            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              {FEATURED_LINKS.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="group flex cursor-pointer items-center justify-between gap-4 rounded-xl bg-slate-950 px-5 py-4 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-[#fbf7ef] active:scale-[0.99]">
+                  <span className="text-lg font-semibold leading-snug text-current">
+                    {item.title}
+                  </span>
+ <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-sky-100 transition group-hover:text-white">
  {item.label}
  </span>
  </a>
@@ -328,7 +328,7 @@ export default function RelatedTools() {
  </p>
 
  <span className="mt-auto pt-5 text-sm font-extrabold text-sky-900">
- Open page{""}
+ Open page{" "}
  <span
  aria-hidden="true" className="inline-block transition group-hover:translate-x-1">
  →

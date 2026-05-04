@@ -33,7 +33,7 @@ export default function HowItWorks() {
  <a
  key={href}
  href={href}
- className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950">
+ className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  {label}
  </a>
  ))}
@@ -55,7 +55,7 @@ export default function HowItWorks() {
  Word breaks are strict
  </p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- Any run of whitespace in your text input is treated as a{""}
+ Any run of whitespace in your text input is treated as a{" "}
  <strong>word break</strong>. The Morse output uses a single,
  consistent word separator.
  </p>
@@ -66,7 +66,7 @@ export default function HowItWorks() {
  Unsupported stays visible
  </p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- Characters that are not in the supported set are{""}
+ Characters that are not in the supported set are{" "}
  <strong>skipped</strong> in output and surfaced in the UI so you can
  fix the source text.
  </p>
@@ -84,7 +84,7 @@ export default function HowItWorks() {
  </p>
 
  <Link
- to="/morse-code-decoder" className="inline-flex mt-4 items-center rounded-full bg-[#f7f4ee] px-4 py-2 text-base sm:text-lg font-extrabold text-sky-950 hover:bg-sky-50 cursor-pointer transition">
+          to="/morse-code-decoder" className="inline-flex mt-4 min-h-11 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-5 py-2.5 text-center text-base font-extrabold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 sm:text-lg">
  Switch to decoder
  </Link>
  </div>
@@ -163,7 +163,7 @@ export default function HowItWorks() {
  <li>Keep spacing intact when pasting into other tools</li>
  <li>Use a monospace field/editor if you can</li>
  <li>
- If you prefer slashes for word breaks, decode with{""}
+ If you prefer slashes for word breaks, decode with{" "}
  <code>/</code> support (this site does)
  </li>
  </ul>
@@ -175,11 +175,11 @@ export default function HowItWorks() {
  Decoder compatibility note
  </p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- Your output will decode correctly on this site’s{""}
+ Your output will decode correctly on this site’s{" "}
  <Link
  to="/morse-code-decoder" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  decoder
- </Link>{""}
+ </Link>{" "}
  because it recognizes <strong>1–6 spaces</strong> as letter breaks
  and <strong>7+ spaces</strong> as word breaks. Some third-party
  decoders only expect single spaces, so if something decodes wrong
@@ -201,7 +201,7 @@ export default function HowItWorks() {
  </p>
 
  <p className="mt-4 text-base sm:text-lg">
- Supported punctuation includes:{""}
+ Supported punctuation includes:{" "}
  <code className="rounded-md bg-[#f7f4ee] px-2 py-1">
  . , ? / ' ! - @ : ; = + &quot; ( ) &amp; _
  </code>
@@ -217,33 +217,33 @@ export default function HowItWorks() {
  <Link
  to="/audio" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Audio
- </Link>{""}
+ </Link>{" "}
  for playback and timing controls.
  </li>
  <li>
  <Link
  to="/dictionary" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Dictionary
- </Link>{""}
+ </Link>{" "}
  to look up characters and punctuation.
  </li>
  <li>
  <Link
  to="/practice" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Practice
- </Link>{""}
- and{""}
+ </Link>{" "}
+ and{" "}
  <Link
  to="/typing" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  Typing
- </Link>{""}
+ </Link>{" "}
  for drills and repetition.
  </li>
  <li>
  <Link
  to="/how-to-use" className="text-sky-950 underline hover:no-underline cursor-pointer font-semibold">
  How to use
- </Link>{""}
+ </Link>{" "}
  for suite-level notes.
  </li>
  </ul>
@@ -269,11 +269,11 @@ export default function HowItWorks() {
  </li>
  <li>
  <strong>Another site decodes it incorrectly:</strong> some tools
- assume single-space separation. Verify using this site’s{""}
+ assume single-space separation. Verify using this site’s{" "}
  <Link
  to="/morse-code-decoder" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  decoder
- </Link>{""}
+ </Link>{" "}
  which matches this encoder’s formatting.
  </li>
  <li>
@@ -366,11 +366,11 @@ export default function HowItWorks() {
  <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
  <p className="text-base font-extrabold text-sky-950">Tip</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
- If you want to generate sound from your output, switch to{""}
+ If you want to generate sound from your output, switch to{" "}
  <Link
  to="/audio" className="font-extrabold text-sky-950 hover:text-sky-800 underline cursor-pointer">
  Audio
- </Link>{""}
+ </Link>{" "}
  for playback controls and timing.
  </p>
  </div>

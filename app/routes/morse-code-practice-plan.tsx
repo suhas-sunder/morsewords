@@ -205,54 +205,54 @@ export default function MorseCodePracticePlan() {
  This routine is built for adults, students, radio learners,
  puzzle makers, and teachers in English-speaking audiences who
  want practical progress without turning Morse into a full-time
- course. Use the{""}
+ course. Use the{" "}
  <a
  href="/practice" className="font-semibold text-sky-900 underline hover:no-underline">
  quick practice drills
- </a>{""}
- for symbol recall, then move into the{""}
+ </a>{" "}
+ for symbol recall, then move into the{" "}
  <a
  href="/morse-code-word-trainer" className="font-semibold text-sky-900 underline hover:no-underline">
  word trainer
- </a>{""}
+ </a>{" "}
  so letters become useful chunks.
  </p>
  <p>
  For listening practice, start with a comfortable character
- speed and slower spacing. The{""}
+ speed and slower spacing. The{" "}
  <a
  href="/farnsworth-timing" className="font-semibold text-sky-900 underline hover:no-underline">
  Farnsworth timing guide
- </a>{""}
+ </a>{" "}
  explains why slowing gaps can help without ruining the shape of
- each character, while the{""}
+ each character, while the{" "}
  <a
  href="/morse-code-timing" className="font-semibold text-sky-900 underline hover:no-underline">
  Morse timing guide
- </a>{""}
+ </a>{" "}
  covers dots, dashes, letter gaps, word gaps, and WPM.
  </p>
  <p>
- Once a list feels familiar, switch to{""}
+ Once a list feels familiar, switch to{" "}
  <a
  href="/morse-code-audio-practice" className="font-semibold text-sky-900 underline hover:no-underline">
  audio practice
- </a>{""}
- or the{""}
+ </a>{" "}
+ or the{" "}
  <a
  href="/morse-code-audio-quiz" className="font-semibold text-sky-900 underline hover:no-underline">
  audio quiz
  </a>
- . End the week by printing review with the{""}
+ . End the week by printing review with the{" "}
  <a
  href="/morse-code-printable-chart" className="font-semibold text-sky-900 underline hover:no-underline">
  worksheet builder
- </a>{""}
- or by using{""}
+ </a>{" "}
+ or by using{" "}
  <a
  href="/morse-code-sentence-practice" className="font-semibold text-sky-900 underline hover:no-underline">
  sentence practice
- </a>{""}
+ </a>{" "}
  to copy longer phrases.
  </p>
  </div>
@@ -393,17 +393,17 @@ export default function MorseCodePracticePlan() {
  Handling weak symbols and weak words
  </h3>
  <p className="mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
- Do not hide mistakes. Move weak letters back into{""}
+ Do not hide mistakes. Move weak letters back into{" "}
  <a
  href="/practice" className="font-semibold text-sky-900 underline hover:no-underline">
  quick practice
  </a>
- , move weak words into the{""}
+ , move weak words into the{" "}
  <a
  href="/morse-code-word-trainer" className="font-semibold text-sky-900 underline hover:no-underline">
  word trainer
  </a>
- , and print stubborn lists with the{""}
+ , and print stubborn lists with the{" "}
  <a
  href="/morse-code-printable-chart" className="font-semibold text-sky-900 underline hover:no-underline">
  worksheet builder
