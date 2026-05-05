@@ -139,7 +139,7 @@ export default function MorseCodeVisualPractice() {
 
         <section className="mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
           <div className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-center">
-            <div className="flex flex-col items-center justify-center rounded-xl bg-[#fffdf8]/85 p-8 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+            <div className="flex flex-col items-center justify-center rounded-xl bg-[#fffdf8]/85 p-8 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
               {hasFlashed ? (
                 <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
               ) : null}
@@ -171,7 +171,7 @@ export default function MorseCodeVisualPractice() {
                     setMessage(event.target.value);
                     setShowAnswer(false);
                   }}
-                  className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"
+                  className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"
                 />
               </label>
               <div className="mt-5 grid gap-5">
@@ -198,7 +198,7 @@ export default function MorseCodeVisualPractice() {
               <button
                 type="button"
                 onClick={() => setShowAnswer((value) => !value)}
-                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
               >
                 {showAnswer ? (
                   <VisibilityOffIcon size={18} title="Hide answer" />

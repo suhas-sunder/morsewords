@@ -18,7 +18,7 @@ export default function TypingControls({
   setShowStats,
 }: Props) {
   return (
-    <div className="flex flex-col gap-3 rounded-xl bg-[#fffdf8]/80 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+    <div className="flex flex-col gap-3 rounded-xl bg-[#fffdf8]/80 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
       <div className="flex flex-wrap items-center gap-2">
         <div className="mr-2 font-extrabold text-sky-950">Input mode</div>
         <ToggleChip

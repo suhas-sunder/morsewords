@@ -36,14 +36,24 @@ interface Props {
 
 const STROBE_WARNING_ID = "translator-strobe-warning";
 const HOME_SOFT_CONTROL =
-  "bg-white/75 text-slate-800 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950 hover:outline-[rgba(11,36,71,0.22)]";
+  "bg-white/85 text-slate-800 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]";
 const HOME_SOFT_CONTROL_DARK =
-  "bg-white/75 text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950 hover:outline-[rgba(11,36,71,0.22)]";
+  "bg-white/88 text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.08)] hover:bg-slate-900 hover:text-sky-100 hover:shadow-[0_10px_24px_rgba(11,36,71,0.14)]";
 const HOME_DISABLED_CONTROL =
-  "cursor-not-allowed bg-white/45 text-slate-400 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]";
+  "cursor-not-allowed bg-white/55 text-slate-400 shadow-[0_5px_14px_rgba(11,36,71,0.04)]";
 const SOFT_CONTROL = HOME_SOFT_CONTROL;
 const SOFT_CONTROL_DARK = HOME_SOFT_CONTROL_DARK;
 const DISABLED_CONTROL = HOME_DISABLED_CONTROL;
+const ACTIVE_CONTROL =
+  "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)]";
+const SOFT_PANEL =
+  "overflow-hidden rounded-xl bg-white/88 shadow-[0_12px_30px_rgba(11,36,71,0.09)]";
+const DARK_PANEL =
+  "overflow-hidden rounded-xl bg-slate-950 shadow-[0_12px_30px_rgba(2,6,23,0.16)]";
+const DARK_PANEL_BUTTON =
+  "bg-slate-700/95 text-slate-100 shadow-[0_6px_18px_rgba(0,0,0,0.18)] hover:bg-slate-600 hover:text-white";
+const DARK_PANEL_DISABLED =
+  "cursor-not-allowed bg-slate-800/60 text-slate-500";
 
 export default function TranslatorSectionsBasic({
   plainA,
@@ -318,6 +328,8 @@ export default function TranslatorSectionsBasic({
           text: shareText,
           files: [file],
         });
+        setCopied("share");
+        setTimeout(() => setCopied(null), 1400);
         return;
       }
 
@@ -335,16 +347,6 @@ export default function TranslatorSectionsBasic({
       console.error("Share failed", e);
     }
   };
-
-  const handleSwap = () => {
-    setDirection((d) => (d === "encode" ? "decode" : "encode"));
-  };
-
-  const playbackStatus = player.isSupported
-    ? player.state === "idle"
-      ? "Ready"
-      : player.state
-    : "Audio unavailable";
 
   const isHome = variant === "home";
   const focusOutline =
@@ -417,12 +419,12 @@ export default function TranslatorSectionsBasic({
                   <button
                     type="button"
                     onClick={() => setDirection("encode")}
-                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${focusOutline} ${
+                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition active:scale-95 sm:w-auto ${focusOutline} ${
                       direction === "encode"
-                        ? "bg-slate-950 text-sky-100"
+                        ? ACTIVE_CONTROL
                         : isHome
-                          ? HOME_SOFT_CONTROL
-                          : SOFT_CONTROL
+                          ? HOME_SOFT_CONTROL_DARK
+                          : SOFT_CONTROL_DARK
                     }`}
                     aria-pressed={direction === "encode"}
                   >
@@ -432,12 +434,12 @@ export default function TranslatorSectionsBasic({
                   <button
                     type="button"
                     onClick={() => setDirection("decode")}
-                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition sm:w-auto ${focusOutline} ${
+                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition active:scale-95 sm:w-auto ${focusOutline} ${
                       direction === "decode"
-                        ? "bg-slate-950 text-sky-100"
+                        ? ACTIVE_CONTROL
                         : isHome
-                          ? HOME_SOFT_CONTROL
-                          : SOFT_CONTROL
+                          ? HOME_SOFT_CONTROL_DARK
+                          : SOFT_CONTROL_DARK
                     }`}
                     aria-pressed={direction === "decode"}
                   >
@@ -453,8 +455,8 @@ export default function TranslatorSectionsBasic({
                       onClick={ex.set}
                       className={`cursor-pointer rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
                         isHome
-                          ? HOME_SOFT_CONTROL
-                          : SOFT_CONTROL
+                          ? HOME_SOFT_CONTROL_DARK
+                          : SOFT_CONTROL_DARK
                       }`}
                     >
                       Try “{ex.label}”
@@ -464,30 +466,28 @@ export default function TranslatorSectionsBasic({
 
                 <button
                   type="button"
-                  onClick={handleSwap}
-                  className={`hidden cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition active:scale-95 md:flex lg:ml-auto ${focusOutline} ${
-                    isHome
-                      ? HOME_SOFT_CONTROL_DARK
-                      : SOFT_CONTROL_DARK
+                  onClick={handleShare}
+                  disabled={!outputValue}
+                  className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition active:scale-95 sm:w-auto lg:ml-auto ${focusOutline} ${
+                    outputValue
+                      ? isHome
+                        ? HOME_SOFT_CONTROL_DARK
+                        : SOFT_CONTROL_DARK
+                      : isHome
+                        ? HOME_DISABLED_CONTROL
+                        : DISABLED_CONTROL
                   }`}
-                  title="Swap direction"
+                  title="Share output"
+                  aria-label="Share output"
                 >
-                  <span>Swap</span>
-                  <span aria-hidden className="text-slate-500">
-                    ⇄
-                  </span>
+                  <ShareIcon size={18} title="Share output" />
+                  <span>{copied === "share" ? "Shared" : "Share"}</span>
                 </button>
               </div>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <div
-                className={
-                  isHome
-                    ? "overflow-hidden rounded-xl bg-white/85 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.16)]"
-                    : "overflow-hidden rounded-xl bg-white/85 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.16)]"
-                }
-              >
+              <div className={SOFT_PANEL}>
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <label
                     htmlFor={liveInputId}
@@ -523,20 +523,9 @@ export default function TranslatorSectionsBasic({
                 />
 
                 <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (direction === "encode") setPlainA("");
-                      else setMorseB("");
-                    }}
-                    className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
-                      isHome
-                        ? HOME_SOFT_CONTROL
-                        : SOFT_CONTROL
-                    }`}
-                  >
-                    Clear input
-                  </button>
+                  <p className="text-sm leading-relaxed text-slate-600">
+                    3 spaces = letters · 7 = words · / = word break
+                  </p>
 
                   {direction === "encode" &&
                     Object.keys(unsupportedPlain).length > 0 && (
@@ -557,13 +546,7 @@ export default function TranslatorSectionsBasic({
                 </div>
               </div>
 
-              <div
-                className={
-                  isHome
-                    ? "overflow-hidden rounded-xl bg-slate-950"
-                    : "overflow-hidden rounded-xl bg-slate-950"
-                }
-              >
+              <div className={DARK_PANEL}>
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <label
                     htmlFor="mw_output"
@@ -588,78 +571,35 @@ export default function TranslatorSectionsBasic({
                 />
 
                 <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (direction === "encode") setPlainA("");
-                      else setMorseB("");
-                    }}
-                    className={`cursor-pointer rounded-md bg-slate-700 px-3 py-1.5 text-sm font-semibold text-slate-200 transition hover:bg-slate-600 active:scale-95 ${focusOutline}`}
-                  >
-                    Clear output
-                  </button>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (direction === "encode") setPlainA("");
+                        else setMorseB("");
+                      }}
+                      className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${DARK_PANEL_BUTTON}`}
+                    >
+                      Clear output
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleCopy(outputValue, "output")}
+                      disabled={!outputValue}
+                      className={`flex cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
+                        outputValue ? DARK_PANEL_BUTTON : DARK_PANEL_DISABLED
+                      }`}
+                    >
+                      <CopyIcon size={16} title="Copy output" />
+                      <span>
+                        {copied === "output" ? "Copied" : "Copy Output"}
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div
-              className={
-                isHome
-                  ? "flex flex-col gap-3 rounded-xl bg-white/60 px-4 py-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:flex-row sm:items-center"
-                  : "flex flex-col gap-3 rounded-xl bg-white/60 px-4 py-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:flex-row sm:items-center"
-              }
-            >
-              <div className="flex flex-wrap items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => handleCopy(outputValue, "output")}
-                  disabled={!outputValue}
-                  className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${focusOutline} ${
-                    outputValue
-                      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-                      : isHome
-                        ? HOME_DISABLED_CONTROL
-                        : DISABLED_CONTROL
-                  }`}
-                >
-                  <CopyIcon size={18} title="Copy output" />
-                  <span>Copy Output</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleShare}
-                  disabled={!outputValue}
-                  className={`flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-semibold transition active:scale-95 ${focusOutline} ${
-                    outputValue
-                      ? isHome
-                        ? HOME_SOFT_CONTROL_DARK
-                        : SOFT_CONTROL_DARK
-                      : isHome
-                        ? HOME_DISABLED_CONTROL
-                        : DISABLED_CONTROL
-                  }`}
-                >
-                  <ShareIcon size={18} title="Share output" />
-                  <span>Share</span>
-                </button>
-
-                {copied === "output" && (
-                  <p className="text-sm font-semibold text-green-700">Copied</p>
-                )}
-
-                {copied === "share" && (
-                  <p className="text-sm font-semibold text-green-700">
-                    Saved image and copied text
-                  </p>
-                )}
-              </div>
-
-              <p className="text-right text-sm leading-relaxed text-slate-600 sm:ml-auto">
-                3 spaces = letters · 7 = words · / = word break
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               <button
                 type="button"
@@ -687,7 +627,7 @@ export default function TranslatorSectionsBasic({
                         ? HOME_DISABLED_CONTROL
                         : DISABLED_CONTROL
                     : canPlay && player.isSupported
-                      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+                      ? `${ACTIVE_CONTROL} hover:bg-slate-900 hover:text-white`
                       : isHome
                         ? HOME_DISABLED_CONTROL
                         : DISABLED_CONTROL
@@ -764,10 +704,6 @@ export default function TranslatorSectionsBasic({
                   <h3 className="text-base font-extrabold text-sky-950">
                     Playback Settings
                   </h3>
-
-                  <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
-                    {playbackStatus}
-                  </span>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -841,10 +777,10 @@ export default function TranslatorSectionsBasic({
                   }`}
                   aria-expanded={advancedOpen}
                 >
-                  <span className="text-sm font-semibold text-slate-900">
+                  <span className="text-sm font-semibold text-current">
                     Advanced settings
                   </span>
-                  <span aria-hidden className="text-slate-500">
+                  <span aria-hidden className="text-current opacity-80">
                     {advancedOpen ? "▴" : "▾"}
                   </span>
                 </button>
@@ -866,8 +802,8 @@ export default function TranslatorSectionsBasic({
                           className={`mt-1 w-full rounded-xl p-2 transition hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
                             soundOn
                               ? isHome
-                                ? "cursor-pointer bg-white/75 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white"
-                                : "cursor-pointer bg-white/75 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white"
+                                ? "cursor-pointer bg-white/85 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]"
+                                : "cursor-pointer bg-white/85 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]"
                               : "cursor-not-allowed opacity-60"
                           }`}
                         >
@@ -930,7 +866,7 @@ function TogglePill({
       onClick={() => onChange(!checked)}
       className={`flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
         checked
-          ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+          ? `${ACTIVE_CONTROL} hover:bg-slate-900 hover:text-white`
           : isHome
             ? HOME_SOFT_CONTROL
             : SOFT_CONTROL

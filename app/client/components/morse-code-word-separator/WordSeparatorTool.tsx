@@ -141,7 +141,7 @@ export default function WordSeparatorTool() {
 
       <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
       <div className="flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
-        <div className="inline-flex gap-2 rounded-lg bg-[#fffdf8]/75 p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+        <div className="inline-flex gap-2 rounded-lg bg-[#fffdf8]/75 p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
           <button
             onClick={() => setMode("normalizeMorse")}
             className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
@@ -166,7 +166,7 @@ export default function WordSeparatorTool() {
           </button>
         </div>
 
-        <div className="inline-flex flex-wrap gap-2 rounded-lg bg-[#fffdf8]/75 p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+        <div className="inline-flex flex-wrap gap-2 rounded-lg bg-[#fffdf8]/75 p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
           {sepOptions.map(([label, v]) => (
             <button
               key={v}
@@ -185,7 +185,7 @@ export default function WordSeparatorTool() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-[#fffdf8]/85 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)]">
+        <div className="overflow-hidden rounded-xl bg-[#fffdf8]/85 shadow-[0_7px_18px_rgba(11,36,71,0.08)]">
           <div className="flex items-center justify-between gap-2">
             <h2 className="px-4 pt-4 font-extrabold text-sky-950">
               {mode === "normalizeMorse" ? "Paste Morse" : "English input"}
@@ -291,7 +291,7 @@ export default function WordSeparatorTool() {
         ].map(([title, body]) => (
           <div
             key={title}
-            className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]"
+            className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]"
           >
             <p className="font-extrabold text-sky-950">{title}</p>
             <p className="mt-2 text-sm leading-relaxed text-slate-700">

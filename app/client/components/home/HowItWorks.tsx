@@ -173,7 +173,7 @@ export default function HowItWorks() {
                   <p className="text-base font-extrabold text-sky-950">
                     Examples
                   </p>
-                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#fffaf2] p-4 font-mono text-base leading-relaxed text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.14)]">
+                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#fffaf2] p-4 font-mono text-base leading-relaxed text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.09)]">
                     {`...   ---   ...
 SOS
 
@@ -192,9 +192,9 @@ S O S`}
 
           <section
             id="formatting"
-            className="-mx-4 bg-white/45 px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+            className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-white/45 py-8"
           >
-            <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
+            <div className="mx-auto grid max-w-[1160px] gap-6 px-4 sm:px-6 lg:grid-cols-[235px_minmax(0,1fr)] lg:px-8">
               <header>
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                   Input rules
@@ -272,7 +272,7 @@ S O S`}
                         <span
                           key={symbol}
                           title={label}
-                          className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-md bg-[#fffaf2] px-2.5 py-1.5 font-mono text-sm font-bold text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)]"
+                          className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-md bg-[#fffaf2] px-2.5 py-1.5 font-mono text-sm font-bold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.08)]"
                         >
                           {symbol}
                         </span>
@@ -322,7 +322,8 @@ S O S`}
           </section>
         </div>
 
-        <div className="-mx-4 mt-10 grid gap-8 bg-white/45 px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:grid-cols-[1fr_1.05fr] lg:px-8">
+        <div className="relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-white/45 py-8">
+          <div className="mx-auto grid max-w-[1160px] gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:px-8">
           <section>
             <h3 className="text-2xl font-extrabold text-sky-950">
               Quick answers
@@ -395,6 +396,7 @@ S O S`}
               </table>
             </div>
           </section>
+          </div>
         </div>
       </div>
     </section>

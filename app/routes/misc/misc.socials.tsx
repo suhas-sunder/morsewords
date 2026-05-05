@@ -55,9 +55,9 @@ function ExternalCard(props: { to: string; title: string; subtitle?: string }) {
         }
         className="
           group relative flex h-full flex-col justify-between rounded-xl
-          bg-[#fffdf8] p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]
+          bg-[#fffdf8] p-5 shadow-[0_7px_18px_rgba(11,36,71,0.07)]
           transition cursor-pointer
-          hover:bg-white hover:outline-[rgba(11,36,71,0.22)]
+          hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]
           focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300
           focus-visible:ring-offset-2 focus-visible:ring-offset-white
         "
@@ -102,7 +102,7 @@ export default function Socials() {
       </header>
 
       <main className="flex flex-col gap-12">
-        <section className="rounded-2xl bg-[#fffdf8]/75 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] sm:p-8">
+        <section className="rounded-2xl bg-[#fffdf8]/75 p-5 shadow-[0_7px_18px_rgba(11,36,71,0.07)] sm:p-8">
           <h2 className="mb-6 text-2xl font-extrabold text-sky-950">
             My Utility Sites
           </h2>

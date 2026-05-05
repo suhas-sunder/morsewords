@@ -119,7 +119,7 @@ export default function TermsOfService() {
         </p>
       </header>
 
-      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] sm:p-8">
+      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed shadow-[0_7px_18px_rgba(11,36,71,0.07)] sm:p-8">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">1. OUR SERVICES</h2>
           <p>

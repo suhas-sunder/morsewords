@@ -268,7 +268,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
         "mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold",
         feedback.ok
           ? "bg-[#e0f2fe] text-sky-950"
-          : "bg-[#fffaf2] text-slate-800 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]",
+          : "bg-[#fffaf2] text-slate-800 shadow-[0_7px_18px_rgba(11,36,71,0.07)]",
       ].join(" ")}
       role="status"
       aria-live="polite"
@@ -302,7 +302,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
         <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
         {/* Top control bar */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-          <div className="inline-flex w-full gap-2 rounded-lg bg-[#fffdf8]/75 p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:w-auto">
+          <div className="inline-flex w-full gap-2 rounded-lg bg-[#fffdf8]/75 p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:w-auto">
             <button
               type="button"
               onClick={() => setMode("text_to_morse")}
@@ -388,7 +388,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
           {gameOver ? (
             <div className="rounded-xl bg-[#fffaf2]/45 p-5 sm:p-6">
               <div className="flex flex-col items-center text-center">
-                <div className="inline-flex items-center rounded-full bg-[#fffdf8] px-3 py-1 text-sm font-semibold text-sky-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+                <div className="inline-flex items-center rounded-full bg-[#fffdf8] px-3 py-1 text-sm font-semibold text-sky-950 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
                   Quiz complete
                 </div>
                 <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
@@ -401,7 +401,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               </div>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+                <div className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Questions
                   </div>
@@ -409,7 +409,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {TOTAL_QUESTIONS}/{TOTAL_QUESTIONS}
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+                <div className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Attempts
                   </div>
@@ -417,7 +417,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {attempts}
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+                <div className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Correct
                   </div>
@@ -425,7 +425,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {correct}
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+                <div className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Accuracy
                   </div>
@@ -433,7 +433,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {accuracy}%
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+                <div className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Best streak
                   </div>
@@ -441,7 +441,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     {bestStreak}
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+                <div className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Final streak
                   </div>
@@ -493,7 +493,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}
                   placeholder={placeholder}
-                  className="mt-2 w-full rounded-xl bg-[#fffdf8]/90 p-3 font-mono outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"
+                  className="mt-2 w-full rounded-xl bg-[#fffdf8]/90 p-3 font-mono shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"
                   onKeyDown={(e) => {
                     if (e.key !== "Enter") return;
                     if (solvedThisQuestion) {

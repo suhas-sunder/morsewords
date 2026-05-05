@@ -176,7 +176,7 @@ function MorsePhraseLookupTable() {
 
  return (
  <section
- className="my-12 rounded-2xl bg-[#fffdf8]/80 p-6 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]" aria-labelledby="morse-phrases-title"itemScope
+ className="my-12 rounded-2xl bg-[#fffdf8]/80 p-6 shadow-[0_7px_18px_rgba(11,36,71,0.07)]" aria-labelledby="morse-phrases-title"itemScope
  itemType="https://schema.org/Table">
  <h2
  id="morse-phrases-title" className="text-2xl font-bold text-[#0b2447] mb-2" itemProp="name">
@@ -190,7 +190,7 @@ function MorsePhraseLookupTable() {
  its Morse code pattern, and its meaning or usage context.
  </p>
 
- <div className="overflow-x-auto rounded-xl bg-white/85 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]">
+ <div className="overflow-x-auto rounded-xl bg-white/85 shadow-[0_7px_18px_rgba(11,36,71,0.07)]">
  <table className="min-w-full -separate -spacing-0 text-sm md:text-base text-slate-800">
  <thead className="bg-[#f7f4ee]">
  <tr>

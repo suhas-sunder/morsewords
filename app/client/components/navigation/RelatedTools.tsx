@@ -350,7 +350,7 @@ function HomeToolkit() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className="group flex cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition hover:bg-white hover:outline-[rgba(11,36,71,0.24)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    className="group flex cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   >
                     <span>
                       <span className="block text-base font-extrabold leading-snug text-sky-950 transition group-hover:text-sky-800">
@@ -370,7 +370,7 @@ function HomeToolkit() {
           ))}
         </div>
 
-        <details className="mt-8 rounded-xl bg-[#fffdf8]/72 px-4 py-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)]">
+        <details className="mt-8 rounded-xl bg-[#fffdf8]/72 px-4 py-3 shadow-[0_7px_18px_rgba(11,36,71,0.08)]">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-2 font-extrabold text-sky-950 transition hover:text-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
             <span>View the full MorseWords toolkit</span>
             <span className="font-mono text-sm text-sky-700">+</span>

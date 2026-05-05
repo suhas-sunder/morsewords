@@ -34,14 +34,14 @@ export default function HowItWorks() {
  <a
  key={href}
  href={href}
- className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-700 hover:outline-[rgba(11,36,71,0.22)] active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+ className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-700 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  {label}
  </a>
  ))}
  </div>
 
  <div className="mt-7 grid gap-4 sm:grid-cols-3">
- <div className="rounded-xl bg-[#fffdf8]/75 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ <div className="rounded-xl bg-[#fffdf8]/75 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
  <p className="text-base font-extrabold text-sky-950">Input spacing</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  Separate <strong>letters</strong> with <strong>spaces</strong>. Separate{" "}
@@ -50,7 +50,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#fffdf8]/75 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ <div className="rounded-xl bg-[#fffdf8]/75 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
  <p className="text-base font-extrabold text-sky-950">Decoder boundaries</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  When decoding, <strong>1–6 spaces</strong> separates letters.{" "}
@@ -59,7 +59,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#fffdf8]/75 p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ <div className="rounded-xl bg-[#fffdf8]/75 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
  <p className="text-base font-extrabold text-sky-950">Errors stay visible</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  Unknown Morse chunks decode to <strong>?</strong>. Unsupported text
@@ -69,7 +69,7 @@ export default function HowItWorks() {
  </div>
 
  <div
- id="accepted-formats" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:p-7">
+ id="accepted-formats" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Accepted input formats
  </h3>
@@ -135,7 +135,7 @@ export default function HowItWorks() {
  </div>
 
  <div
- id="examples" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:p-7">
+ id="examples" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Examples you can copy
  </h3>
@@ -194,7 +194,7 @@ export default function HowItWorks() {
  </div>
 
  <div
- id="related-tool" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:p-7">
+ id="related-tool" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Need to encode text to Morse?
  </h3>
@@ -210,7 +210,7 @@ export default function HowItWorks() {
  </div>
 
  {/* AI-friendly: Quick answers + canonical decoding rules */}
- <div className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:p-7">
+ <div className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Quick answers (Morse decoding)
  </h3>
@@ -241,7 +241,7 @@ export default function HowItWorks() {
  </ul>
  </div>
 
- <div className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:p-7">
+ <div className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Decoder rules
  </h3>

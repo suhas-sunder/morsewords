@@ -337,7 +337,7 @@ export default function Home() {
         />
       </PageHero>
 
-      <nav className="mb-8 mt-5 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+      <nav className="mb-8 mt-5 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
         <div className="flex gap-2 whitespace-nowrap text-sm">
           <a
             href="#letters"

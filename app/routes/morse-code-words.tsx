@@ -85,10 +85,10 @@ export default function MorseCodeWords() {
  btnBase +"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white";
 
  const btnSecondary =
- btnBase +"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950";
+ btnBase +"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:text-sky-950";
 
  const btnGhost =
- btnBase +"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950";
+ btnBase +"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:text-sky-950";
 
  const pClass ="my-3 text-slate-700 leading-relaxed";
  const linkClass ="font-semibold text-sky-900 underline underline-offset-4 hover:text-sky-950 hover:no-underline cursor-pointer";

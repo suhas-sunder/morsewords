@@ -215,7 +215,7 @@ function ToggleButton({
  type="button" onClick={onClick}
  className={`rounded-full px-3 py-1.5 text-sm font-bold cursor-pointer transition ${
  active
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950"}`}
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:text-sky-950"}`}
  >
  {children}
  </button>
@@ -447,7 +447,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <div
  className={`mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${
  feedback.ok
- ?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-800 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]"}`}
+ ?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-800 shadow-[0_7px_18px_rgba(11,36,71,0.07)]"}`}
  role="status" aria-live="polite">
               <span aria-hidden="true">{feedback.ok ?"✓":"!"}</span>
  <span>{feedback.msg}</span>
@@ -478,7 +478,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
 
  <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
  <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
- <div className="inline-flex w-full rounded-xl bg-[#fffdf8]/75 p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:w-auto">
+ <div className="inline-flex w-full rounded-xl bg-[#fffdf8]/75 p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:w-auto">
  <button
  type="button" onClick={() => setMode("text_to_morse")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
@@ -657,7 +657,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </span>
  </div>
 
- <div className="mt-4 min-h-[120px] rounded-xl bg-[#fffdf8]/85 p-4 font-mono text-2xl leading-relaxed tracking-wide text-slate-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] break-words whitespace-pre-wrap sm:text-3xl">
+ <div className="mt-4 min-h-[120px] rounded-xl bg-[#fffdf8]/85 p-4 font-mono text-2xl leading-relaxed tracking-wide text-slate-950 shadow-[0_5px_14px_rgba(11,36,71,0.05)] break-words whitespace-pre-wrap sm:text-3xl">
  {prompt.kind ==="morse_to_text"? renderMorseSpacing(prompt.morse)
  : prompt.plain}
  </div>

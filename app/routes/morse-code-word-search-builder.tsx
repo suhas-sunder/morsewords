@@ -1175,7 +1175,7 @@ export default function MorseCodeWordSearchBuilder() {
  ["Grid", `${size} x ${size}`],
  ["Difficulty", difficulty],
  ].map(([label, value]) => (
- <div key={label} className="rounded-xl bg-[#fffdf8]/85 p-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ <div key={label} className="rounded-xl bg-[#fffdf8]/85 p-3 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
  {label}
  </p>
@@ -1200,7 +1200,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={input}
  maxLength={MAX_WORD_SEARCH_INPUT_LENGTH}
  onChange={(event) => updatePuzzleInput(event.target.value)}
- className="mt-2 min-h-48 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-base outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300" spellCheck={false}
+ className="mt-2 min-h-48 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-base shadow-[0_7px_18px_rgba(11,36,71,0.08)] focus:outline-none focus:ring-2 focus:ring-sky-300" spellCheck={false}
  />
  </label>
  <p className="mt-2 text-xs leading-relaxed text-slate-500">
@@ -1225,7 +1225,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={title}
  maxLength={MAX_TITLE_LENGTH}
  onChange={(event) => setTitle(event.target.value)}
- className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.08)] focus:outline-none focus:ring-2 focus:ring-sky-300"/>
  </label>
  <label className="mt-3 block">
  <span className="text-sm font-extrabold text-sky-950">
@@ -1235,7 +1235,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={instructions}
  maxLength={MAX_INSTRUCTIONS_LENGTH}
  onChange={(event) => setInstructions(event.target.value)}
- className="mt-2 min-h-24 w-full rounded-xl bg-[#fffdf8] p-3 text-sm outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ className="mt-2 min-h-24 w-full rounded-xl bg-[#fffdf8] p-3 text-sm shadow-[0_7px_18px_rgba(11,36,71,0.08)] focus:outline-none focus:ring-2 focus:ring-sky-300"/>
  </label>
  <p className="mt-1 text-xs font-semibold text-slate-500">
  {instructions.length}/{MAX_INSTRUCTIONS_LENGTH} characters
@@ -1277,7 +1277,7 @@ export default function MorseCodeWordSearchBuilder() {
  type="button" onClick={() => updateDifficulty(option)}
  className={"min-h-11 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold capitalize transition focus:outline-none focus:ring-2 focus:ring-sky-300 "+
  (difficulty === option
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white")
  }
  >
  {option}
@@ -1312,7 +1312,7 @@ export default function MorseCodeWordSearchBuilder() {
  type="button" onClick={() => setPrintSelection(value as PrintSelection)}
  className={"min-h-10 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 "+
  (printSelection === value
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white")
  }
  aria-pressed={printSelection === value}
  >
@@ -1359,7 +1359,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={brandName}
  maxLength={MAX_BRAND_NAME_LENGTH}
  onChange={(event) => setBrandName(event.target.value)}
- className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.08)] focus:outline-none focus:ring-2 focus:ring-sky-300"/>
  </label>
  </ControlGroup>
 
@@ -1492,7 +1492,7 @@ function WordSearchPreview({
 }) {
  return (
  <div className="rounded-xl bg-[#fffaf2]/45 p-4">
- <article className="mx-auto max-w-3xl rounded-xl bg-[#fffdf8]/90 p-5 text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] sm:p-7">
+ <article className="mx-auto max-w-3xl rounded-xl bg-[#fffdf8]/90 p-5 text-slate-900 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
  <div className="flex flex-col gap-4 pb-4 sm:flex-row sm:items-start sm:justify-between">
  <div>
  <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -1508,7 +1508,7 @@ function WordSearchPreview({
  {settings.includeBranding && settings.includeQrCode && qrCodeDataUrl ? (
  <img
  src={qrCodeDataUrl}
- alt="QR code to MorseWords" className="h-16 w-16 rounded-xl bg-[#fffdf8] p-1 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]"/>
+ alt="QR code to MorseWords" className="h-16 w-16 rounded-xl bg-[#fffdf8] p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)]"/>
  ) : null}
  </div>
 
@@ -1574,7 +1574,7 @@ function WordSearchPreview({
  {puzzle.placements.map((placement) => (
  <div
  key={placement.word}
- className="flex justify-between gap-3 rounded-lg bg-[#fffdf8] px-3 py-2 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ className="flex justify-between gap-3 rounded-lg bg-[#fffdf8] px-3 py-2 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
  <strong>{placement.word}</strong>
  <span className="text-slate-600">
  R{placement.startRow + 1}, C{placement.startCol + 1} -{" "}
@@ -1617,7 +1617,7 @@ function ControlGroup({
  children: React.ReactNode;
 }) {
  return (
- <section className="rounded-xl bg-[#fffdf8]/85 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ <section className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
  <div className="flex items-center gap-2 text-sky-950">
  {icon}
  <h3 className="text-lg font-extrabold">{title}</h3>
@@ -1643,7 +1643,7 @@ function CheckToggle({
  type="button" onClick={() => onChange(!checked)}
  className={"flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 "+
  (checked
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white") +" "+
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white") +" "+
  className
  }
  aria-pressed={checked}
@@ -1677,7 +1677,7 @@ function ToolButton({
  disabled={disabled}
  className={"inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50 "+
  (primary
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white")
  }
  >
  {icon}
@@ -1696,7 +1696,7 @@ function StatusNotice({
  return (
  <div
  className={"flex gap-3 rounded-xl p-3 text-sm font-semibold leading-relaxed"+
- (kind ==="error"?"bg-[#fffdf8] text-slate-700": kind ==="ok"?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]")
+ (kind ==="error"?"bg-[#fffdf8] text-slate-700": kind ==="ok"?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-700 shadow-[0_5px_14px_rgba(11,36,71,0.05)]")
  }
  >
  {kind ==="ok"? (

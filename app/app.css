@@ -30,11 +30,6 @@ input[type="range"]:focus-visible {
 .mw-tool-section,
 .mw-tool-section .tool-header {
   border: 0 !important;
-  box-shadow: none !important;
-}
-
-.mw-tool-section * {
-  box-shadow: none !important;
 }
 
 .mw-tool-section .tool-header {
@@ -54,10 +49,6 @@ input[type="range"]:focus-visible {
   border-color: transparent !important;
 }
 
-.mw-tool-section :where(.shadow, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl) {
-  box-shadow: none !important;
-}
-
 main
   :where(
     .border,
@@ -69,10 +60,6 @@ main
   ) {
   border-width: 0 !important;
   border-color: transparent !important;
-}
-
-main :where([class*="shadow"], [style*="box-shadow"]) {
-  box-shadow: none !important;
 }
 
 main :where(.divide-y > :not([hidden]) ~ :not([hidden])) {
@@ -96,14 +83,12 @@ main *,
 main *::before,
 main *::after {
   border-width: 0 !important;
-  box-shadow: none !important;
 }
 
 .relative.z-10 *,
 .relative.z-10 *::before,
 .relative.z-10 *::after {
   border-width: 0 !important;
-  box-shadow: none !important;
 }
 
 .relative.z-10 hr {

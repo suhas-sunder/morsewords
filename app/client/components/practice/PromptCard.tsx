@@ -53,7 +53,7 @@ export default function PromptCard({
     <div className="flex flex-col justify-center items-center">
       <div
         className={`flex w-full flex-col rounded-2xl p-4 ${
-          isMorsePrompt ? "bg-slate-950 text-slate-100" : "bg-[#fffdf8]/85 text-slate-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]"
+          isMorsePrompt ? "bg-slate-950 text-slate-100" : "bg-[#fffdf8]/85 text-slate-950 shadow-[0_7px_18px_rgba(11,36,71,0.07)]"
         }`}
       >
         <div className="flex items-center gap-2 justify-between">

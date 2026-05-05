@@ -34,7 +34,7 @@ const styles: Record<string, React.CSSProperties> = {
     background: "#fffdf8",
     border: 0,
     borderRadius: 16,
-    boxShadow: "none",
+    boxShadow: "0 7px 18px rgba(11, 36, 71, 0.07)",
   },
   cardPad: { padding: 16 },
   section: { padding: "8px 0 24px" },

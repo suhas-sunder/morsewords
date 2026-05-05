@@ -100,7 +100,7 @@ function ExampleCard({
             setCopied(true);
             window.setTimeout(() => setCopied(false), 1000);
           }}
-          className="cursor-pointer rounded-lg border border-slate-950 bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="cursor-pointer rounded-lg bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] transition hover:bg-slate-800 hover:text-white hover:shadow-[0_12px_28px_rgba(2,6,23,0.2)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           {copied ? "Copied" : "Copy"}
         </button>

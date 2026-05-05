@@ -267,7 +267,7 @@ export default function MorseCodeVisualQuiz() {
 
           {gameOver ? (
               <div className="py-6">
-                <div className="rounded-xl bg-[#fffdf8]/85 p-5 text-center outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+                <div className="rounded-xl bg-[#fffdf8]/85 p-5 text-center shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
                   Quiz complete
                 </p>
@@ -285,7 +285,7 @@ export default function MorseCodeVisualQuiz() {
                   ].map(([label, value]) => (
                     <div
                       key={label}
-                        className="rounded-xl bg-[#fffdf8] p-4 text-left outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]"
+                        className="rounded-xl bg-[#fffdf8] p-4 text-left shadow-[0_5px_14px_rgba(11,36,71,0.05)]"
                     >
                       <p className="text-sm font-semibold text-slate-600">
                         {label}
@@ -323,7 +323,7 @@ export default function MorseCodeVisualQuiz() {
             </div>
           ) : (
             <div className="grid gap-6 py-6 lg:grid-cols-[320px_minmax(0,1fr)]">
-                <div className="flex flex-col items-center rounded-xl bg-[#fffdf8]/85 p-6 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+                <div className="flex flex-col items-center rounded-xl bg-[#fffdf8]/85 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
                 {hasFlashed ? (
                   <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
                 ) : null}
@@ -362,7 +362,7 @@ export default function MorseCodeVisualQuiz() {
                         else if (answer.trim()) checkAnswer();
                       }
                     }}
-                    className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"
+                    className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"
                   />
                 </label>
 
@@ -394,7 +394,7 @@ export default function MorseCodeVisualQuiz() {
                         type="button"
                         onClick={checkAnswer}
                         disabled={!answer.trim()}
-                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         <CheckCircleIcon size={18} title="Check answer" />
                         Check answer
@@ -415,7 +415,7 @@ export default function MorseCodeVisualQuiz() {
                     type="button"
                     onClick={nextPrompt}
                     disabled={solved}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <RefreshIcon size={18} title="Skip prompt" />
                     Skip

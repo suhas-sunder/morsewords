@@ -12,6 +12,7 @@ export default function ToggleChip({
   title?: string;
 }) {
   const [hover, setHover] = React.useState(false);
+  const [focusVisible, setFocusVisible] = React.useState(false);
 
   const style: React.CSSProperties = {
     display: "inline-flex",
@@ -26,14 +27,15 @@ export default function ToggleChip({
     fontSize: ".9rem",
     cursor: "pointer",
     userSelect: "none",
-    outline: active
-      ? "1px solid rgba(2, 6, 23, 0.18)"
+    boxShadow: active
+      ? "0 10px 24px rgba(2, 6, 23, 0.16)"
       : hover
-        ? "1px solid rgba(11, 36, 71, 0.22)"
-        : "1px solid rgba(11, 36, 71, 0.1)",
-    outlineOffset: -1,
+        ? "0 10px 24px rgba(11, 36, 71, 0.12)"
+        : "0 7px 18px rgba(11, 36, 71, 0.07)",
+    outline: focusVisible ? "2px solid #7dd3fc" : "none",
+    outlineOffset: 2,
     transition:
-      "background 120ms ease, color 120ms ease, transform 120ms ease",
+      "background 120ms ease, color 120ms ease, box-shadow 120ms ease, transform 120ms ease",
     transform: "translateY(0)",
   };
 
@@ -45,8 +47,14 @@ export default function ToggleChip({
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
       onClick={onClick}
-      onFocus={() => setHover(true)}
-      onBlur={() => setHover(false)}
+      onFocus={() => {
+        setHover(true);
+        setFocusVisible(true);
+      }}
+      onBlur={() => {
+        setHover(false);
+        setFocusVisible(false);
+      }}
     >
       {label}
     </button>

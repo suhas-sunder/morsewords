@@ -65,8 +65,8 @@ export function SectionCard({
   aside?: React.ReactNode;
 }) {
   return (
-    <section className="mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
-      <div>
+    <section className="relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8 sm:py-10">
+      <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
           <div>
             <Eyebrow>{eyebrow}</Eyebrow>
@@ -81,8 +81,8 @@ export function SectionCard({
           </div>
           {aside ? <div>{aside}</div> : null}
         </div>
+        <div className="mt-7">{children}</div>
       </div>
-      <div className="mt-7">{children}</div>
     </section>
   );
 }
@@ -125,8 +125,8 @@ export function ActionLinks({
           className={
             "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
             (link.primary
-              ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-              : "bg-[#fffdf8] text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] hover:bg-white hover:text-sky-950 hover:outline-[rgba(11,36,71,0.22)]")
+              ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white hover:shadow-[0_12px_28px_rgba(2,6,23,0.2)]"
+              : "bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]")
           }
         >
           {link.label}
@@ -167,7 +167,7 @@ export function SimpleGrid({
             <a
               key={item.title}
               href={item.href}
-              className="group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:outline-[rgba(11,36,71,0.22)]"
+              className="group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]"
             >
               {body}
               <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
@@ -181,7 +181,7 @@ export function SimpleGrid({
         }
 
         return (
-          <div key={item.title} className="rounded-xl bg-[#fffdf8] p-5 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]">
+          <div key={item.title} className="rounded-xl bg-[#fffdf8] p-5 shadow-[0_7px_18px_rgba(11,36,71,0.07)]">
             {body}
           </div>
         );
@@ -198,7 +198,7 @@ export function ReferenceTable({
   onPlay?: (morse: string) => void;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl bg-[#fffdf8] outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)]">
+    <div className="overflow-hidden rounded-xl bg-[#fffdf8] shadow-[0_7px_18px_rgba(11,36,71,0.07)]">
       <div className="grid grid-cols-[1fr_1fr] bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
         <span>Name</span>
         <span>Morse</span>
@@ -225,7 +225,7 @@ export function ReferenceTable({
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
-            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
             disabled={!onPlay}
           >
             <PlayIcon size={16} title="Play" />

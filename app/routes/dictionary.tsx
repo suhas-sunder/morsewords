@@ -67,7 +67,7 @@ function CopyButton({
  setCopied(true);
  window.setTimeout(() => setCopied(false), 800);
  }}
- className={["rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2","hover:bg-white active:bg-[#fffaf2]",
+ className={["rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2","hover:bg-white active:bg-[#fffaf2]",
  compact ?"text-sm":"text-base",
  copied ?"bg-sky-50":"",
  kind ==="Label"?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900":"",
@@ -82,7 +82,7 @@ function CopyButton({
 
 function DesktopTable({ items }: { items: Entry[] }) {
  return (
- <div className="hidden overflow-x-auto rounded-xl bg-[#fffdf8] outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)] md:block">
+ <div className="hidden overflow-x-auto rounded-xl bg-[#fffdf8] shadow-[0_5px_14px_rgba(11,36,71,0.05)] md:block">
  <table className="w-full text-left">
  <thead className="bg-[#f7f4ee] font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">
  <tr>
@@ -122,7 +122,7 @@ function MobileCards({ items }: { items: Entry[] }) {
  {items.map((e) => (
  <article
  key={`${e.category}-${e.label}-${e.morse}`}
- className="rounded-xl bg-[#fffdf8] p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ className="rounded-xl bg-[#fffdf8] p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
  <div className="grid gap-3">
  <div className="grid gap-1">
  <div className="text-xs font-semibold tracking-wide text-slate-500">
@@ -172,7 +172,7 @@ function Section({
  <div className="mb-4 flex items-center justify-between gap-3 border-b border-transparent pb-1">
  <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
  <a
- href="#top" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+ href="#top" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  Top
  </a>
  </div>
@@ -182,7 +182,7 @@ function Section({
 
  <div className="pt-3 md:hidden">
  <a
- href="#top" className="block cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-center text-sm font-semibold text-slate-700 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.1)] transition hover:bg-white hover:text-sky-950">
+ href="#top" className="block cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-center text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950">
  Back to top
  </a>
  </div>
@@ -638,17 +638,17 @@ export default function DictionaryRoute() {
  />
  </PageHero>
 
- <div className="mb-4 mt-3 rounded-xl bg-[#fffdf8]/80 p-4 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ <div className="mb-4 mt-3 rounded-xl bg-[#fffdf8]/80 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
  <label className="mb-2 block text-sm font-extrabold text-sky-950">
  Filter dictionary
  </label>
  <input
  value={query}
  onChange={(e) => setQuery(e.target.value)}
- placeholder="Type to filter by label, Morse, or meaning…" className="w-full rounded-xl bg-[#fffdf8] px-4 py-3 text-slate-950 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.12)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ placeholder="Type to filter by label, Morse, or meaning…" className="w-full rounded-xl bg-[#fffdf8] px-4 py-3 text-slate-950 shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"/>
  </div>
 
- <nav className="mb-8 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3 outline outline-1 -outline-offset-1 outline-[rgba(11,36,71,0.08)]">
+ <nav className="mb-8 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
  <div className="flex gap-2 whitespace-nowrap text-sm">
  {sections.map((s) => (
  <a
