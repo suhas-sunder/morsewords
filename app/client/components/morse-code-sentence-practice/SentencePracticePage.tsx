@@ -215,7 +215,7 @@ function ToggleButton({
  type="button" onClick={onClick}
  className={`rounded-full px-3 py-1.5 text-sm font-bold cursor-pointer transition ${
  active
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"}`}
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
  >
  {children}
  </button>
@@ -227,7 +227,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 
  return (
  <button
- type="button" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-3 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2" onClick={async () => {
+ type="button" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-3 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none" onClick={async () => {
  try {
  await navigator.clipboard.writeText(text);
  setCopied(true);
@@ -245,7 +245,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 
 function MorseLine({ text }: { text: string }) {
  return (
- <code className="block rounded-xl bg-[#f7f4ee] p-3 text-sm sm:text-base font-mono text-neutral-900 whitespace-pre-wrap break-words leading-relaxed">
+ <code className="mw-static-code block rounded-xl bg-[#f7f4ee] p-3 text-sm sm:text-base font-mono text-neutral-900 whitespace-pre-wrap break-words leading-relaxed">
  {morseWithWordSlashes(text)}
  </code>
  );
@@ -447,7 +447,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <div
  className={`mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${
  feedback.ok
- ?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-800 shadow-[0_7px_18px_rgba(11,36,71,0.07)]"}`}
+ ?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-800"}`}
  role="status" aria-live="polite">
               <span aria-hidden="true">{feedback.ok ?"✓":"!"}</span>
  <span>{feedback.msg}</span>
@@ -458,8 +458,8 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <div>
  <JsonLdScript jsonLd={jsonLd} />
 
- <section className="mw-tool-section mt-4">
- <div className="tool-header flex flex-col gap-3 pb-0 pt-6 sm:pt-7">
+      <section className="mw-tool-section mt-0">
+ <div className="tool-header flex flex-col gap-3 pb-1 pt-2 sm:pt-3">
  <div className="flex items-center gap-3">
  <span className="h-px w-8 bg-sky-800"/>
  <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -478,7 +478,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
 
  <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
  <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
- <div className="inline-flex w-full rounded-xl bg-[#fffdf8]/75 p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:w-auto">
+ <div className="inline-flex w-full rounded-xl bg-[#fffdf8]/75 p-1 sm:w-auto">
  <button
  type="button" onClick={() => setMode("text_to_morse")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
@@ -547,11 +547,11 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  </div>
 
- <div className="mt-4 rounded-xl bg-[#fffaf2]/45 p-4 sm:p-5">
+ <div className="mw-static-surface-soft mt-4 rounded-xl bg-[#fffaf2]/45 p-4 sm:p-5">
  {gameOver ? (
- <div className="rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
+ <div className="mw-static-panel rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
  <div className="flex flex-col items-center text-center">
- <div className="inline-flex items-center rounded-full bg-[#f7f4ee] px-3 py-1 text-sm font-semibold text-neutral-900">
+ <div className="mw-static-tile inline-flex items-center rounded-full bg-[#f7f4ee] px-3 py-1 text-sm font-semibold text-neutral-900">
  Sentence session complete
  </div>
  <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
@@ -564,7 +564,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
 
  <div className="mt-5 grid gap-3 sm:grid-cols-3">
- <div className="rounded-2xl bg-[#f7f4ee] p-4">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-4">
  <div className="text-sm font-semibold text-slate-600">
  Questions
  </div>
@@ -572,7 +572,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  {TOTAL_QUESTIONS}/{TOTAL_QUESTIONS}
  </div>
  </div>
- <div className="rounded-2xl bg-[#f7f4ee] p-4">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-4">
  <div className="text-sm font-semibold text-slate-600">
  Attempts
  </div>
@@ -580,7 +580,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  {attempts}
  </div>
  </div>
- <div className="rounded-2xl bg-[#f7f4ee] p-4">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-4">
  <div className="text-sm font-semibold text-slate-600">
  Correct
  </div>
@@ -588,7 +588,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  {correct}
  </div>
  </div>
- <div className="rounded-2xl bg-[#f7f4ee] p-4">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-4">
  <div className="text-sm font-semibold text-slate-600">
  Skipped
  </div>
@@ -596,7 +596,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  {skipped}
  </div>
  </div>
- <div className="rounded-2xl bg-[#f7f4ee] p-4">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-4">
  <div className="text-sm font-semibold text-slate-600">
  Accuracy
  </div>
@@ -604,7 +604,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  {accuracy}%
  </div>
  </div>
- <div className="rounded-2xl bg-[#f7f4ee] p-4">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-4">
  <div className="text-sm font-semibold text-slate-600">
  Best streak
  </div>
@@ -612,7 +612,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  {bestStreak}
  </div>
  </div>
- <div className="rounded-2xl bg-[#f7f4ee] p-4">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-4">
  <div className="text-sm font-semibold text-slate-600">
  Mode
  </div>
@@ -642,10 +642,10 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  ) : (
  <>
- <div className="rounded-2xl bg-sky-50 p-4 sm:p-5">
+ <div className="mw-static-surface-soft rounded-2xl bg-sky-50 p-4 sm:p-5">
  <div className="flex items-center gap-2 justify-between flex-wrap">
  <div className="inline-flex items-center gap-2 flex-wrap">
- <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
+ <span className="mw-static-tile inline-flex items-center rounded-full bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
                   {prompt.kind ==="text_to_morse"?"Text → Morse":"Morse → Text"}
  </span>
  <span className="text-sm text-slate-600">
@@ -657,14 +657,14 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </span>
  </div>
 
- <div className="mt-4 min-h-[120px] rounded-xl bg-[#fffdf8]/85 p-4 font-mono text-2xl leading-relaxed tracking-wide text-slate-950 shadow-[0_5px_14px_rgba(11,36,71,0.05)] break-words whitespace-pre-wrap sm:text-3xl">
+ <div className="mw-static-panel mt-4 min-h-[120px] rounded-xl bg-[#fffdf8]/85 p-4 font-mono text-2xl leading-relaxed tracking-wide text-slate-950 break-words whitespace-pre-wrap sm:text-3xl">
  {prompt.kind ==="morse_to_text"? renderMorseSpacing(prompt.morse)
  : prompt.plain}
  </div>
 
  {showHint ? (
  <div className="mt-3 grid gap-3 sm:grid-cols-3">
- <div className="rounded-xl bg-white p-3">
+ <div className="mw-static-surface-soft rounded-xl bg-white p-3">
  <p className="text-xs font-extrabold uppercase tracking-wide text-sky-950">
  Sentence length
  </p>
@@ -672,7 +672,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  Target: {targetWordCount} words
  </p>
  </div>
- <div className="rounded-xl bg-white p-3">
+ <div className="mw-static-surface-soft rounded-xl bg-white p-3">
  <p className="text-xs font-extrabold uppercase tracking-wide text-sky-950">
  Spacing rule
  </p>
@@ -681,7 +681,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  slashes.
  </p>
  </div>
- <div className="rounded-xl bg-white p-3">
+ <div className="mw-static-surface-soft rounded-xl bg-white p-3">
  <p className="text-xs font-extrabold uppercase tracking-wide text-sky-950">
  Best habit
  </p>
@@ -737,7 +737,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
 
  {prompt.kind ==="text_to_morse"&& answer.trim() ? (
- <div className="mt-3 rounded-xl bg-[#f7f4ee] p-3">
+ <div className="mw-static-tile mt-3 rounded-xl bg-[#f7f4ee] p-3">
  <p className="text-sm font-bold text-sky-950">
  Normalized Morse preview
  </p>
@@ -792,7 +792,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
 
  {showAnswer ? (
- <div className="mt-4 rounded-2xl bg-[#fffdf8] p-4">
+ <div className="mw-static-panel mt-4 rounded-2xl bg-[#fffdf8] p-4">
  <p className="text-sm font-extrabold text-sky-950">
  Expected answer
  </p>
@@ -856,7 +856,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  </section>
 
- <section className="mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
+ <section className="mw-static-panel mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
  <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
  <div>
  <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
@@ -906,7 +906,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  </section>
 
- <section className="mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
+ <section className="mw-static-panel mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
  <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
  How spacing works in sentence Morse
  </h2>
@@ -934,7 +934,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  ))}
  </div>
 
- <div className="mt-5 rounded-2xl bg-[#f7f4ee] p-4">
+ <div className="mw-static-tile mt-5 rounded-2xl bg-[#f7f4ee] p-4">
  <h3 className="font-extrabold text-sky-950">
  Practical sentence spacing format
  </h3>
@@ -948,7 +948,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  </section>
 
- <section className="mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
+ <section className="mw-static-panel mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
  <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
  Common Morse code sentence practice sets
  </h2>
@@ -989,26 +989,26 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  </section>
 
- <section className="mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
+ <section className="mw-static-panel mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
  <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
  Why practice complete Morse code sentences?
  </h2>
  <div className="mt-4 grid gap-4 md:grid-cols-3">
- <div className="rounded-2xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-5">
  <h3 className="font-extrabold text-sky-950">You train rhythm</h3>
  <p className="mt-2 text-slate-700 leading-relaxed">
  Letters alone do not teach sentence rhythm. Full phrases force you
  to hold a steady pace across multiple words.
  </p>
  </div>
- <div className="rounded-2xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-5">
  <h3 className="font-extrabold text-sky-950">You learn word gaps</h3>
  <p className="mt-2 text-slate-700 leading-relaxed">
  Most sentence-copy mistakes come from weak spacing. Practicing
  phrases makes the gaps obvious.
  </p>
  </div>
- <div className="rounded-2xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-5">
  <h3 className="font-extrabold text-sky-950">You copy meaning</h3>
  <p className="mt-2 text-slate-700 leading-relaxed">
  Sentences train you to decode useful meaning instead of treating

@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function HowItWorks() {
  return (
- <section className="mw-how-section mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
+ <section className="mw-static-surface-soft mw-how-section mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
  <div className="flex flex-col gap-3">
  <div className="flex items-center gap-3">
  <span className="h-px w-8 bg-sky-800"/>
@@ -34,14 +34,14 @@ export default function HowItWorks() {
  <a
  key={href}
  href={href}
- className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+              className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 transition hover:bg-slate-900 hover:text-sky-100 active:scale-95 focus:outline-none">
  {label}
  </a>
  ))}
  </div>
 
  <div className="mt-7 grid gap-4 sm:grid-cols-3">
- <div className="rounded-xl bg-[#fffdf8]/75 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+ <div className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-5">
  <p className="text-base font-extrabold text-sky-950">Input spacing</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  Separate <strong>letters</strong> with <strong>spaces</strong>. Separate{" "}
@@ -50,7 +50,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#fffdf8]/75 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+ <div className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-5">
  <p className="text-base font-extrabold text-sky-950">Decoder boundaries</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  When decoding, <strong>1–6 spaces</strong> separates letters.{" "}
@@ -59,7 +59,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#fffdf8]/75 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+ <div className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-5">
  <p className="text-base font-extrabold text-sky-950">Errors stay visible</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  Unknown Morse chunks decode to <strong>?</strong>. Unsupported text
@@ -69,7 +69,7 @@ export default function HowItWorks() {
  </div>
 
  <div
- id="accepted-formats" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
+ id="accepted-formats" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Accepted input formats
  </h3>
@@ -80,7 +80,7 @@ export default function HowItWorks() {
  </p>
 
  <div className="mt-5 grid gap-4 sm:grid-cols-2">
- <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+ <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
  <p className="text-base font-extrabold text-sky-950">Symbols</p>
  <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-slate-700">
  <li>
@@ -97,7 +97,7 @@ export default function HowItWorks() {
  </ul>
  </div>
 
- <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+ <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
  <p className="text-base font-extrabold text-sky-950">Common paste patterns</p>
  <ul className="mt-3 list-disc pl-6 space-y-2 text-base sm:text-lg text-slate-700">
  <li>
@@ -120,7 +120,7 @@ export default function HowItWorks() {
  </div>
  </div>
 
- <div className="mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
+ <div className="mw-static-surface-soft mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
  <p className="text-base font-extrabold text-sky-950">Note</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  This decoder is <strong>separator-based</strong>. It does not infer timing.
@@ -135,7 +135,7 @@ export default function HowItWorks() {
  </div>
 
  <div
- id="examples" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
+ id="examples" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Examples you can copy
  </h3>
@@ -146,7 +146,7 @@ export default function HowItWorks() {
  </p>
 
  <div className="mt-5 grid gap-4">
- <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+ <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
  <p className="text-base font-extrabold text-sky-950">Decode a single letter</p>
  <p className="mt-2 text-base sm:text-lg text-slate-700">
  <strong>Input:</strong>{" "}
@@ -155,7 +155,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+ <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
  <p className="text-base font-extrabold text-sky-950">Decode a word (spaces between letters)</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  <strong>Input:</strong>{" "}
@@ -164,7 +164,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+ <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
  <p className="text-base font-extrabold text-sky-950">Decode two words (slash separator)</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  <strong>Input:</strong>{" "}
@@ -173,7 +173,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+ <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
  <p className="text-base font-extrabold text-sky-950">Decode punctuation</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  <strong>Input:</strong>{" "}
@@ -182,7 +182,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+ <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
  <p className="text-base font-extrabold text-sky-950">What an error looks like</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  <strong>Input:</strong>{" "}
@@ -194,7 +194,7 @@ export default function HowItWorks() {
  </div>
 
  <div
- id="related-tool" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
+ id="related-tool" className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Need to encode text to Morse?
  </h3>
@@ -204,13 +204,13 @@ export default function HowItWorks() {
  </p>
 
  <Link
-          to="/morse-code-encoder" className="inline-flex mt-4 min-h-11 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-5 py-2.5 text-center text-base font-extrabold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 sm:text-lg">
+          to="/morse-code-encoder" className="mw-button-outline inline-flex mt-4 min-h-11 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-5 py-2.5 text-center text-base font-extrabold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none sm:text-lg">
  Switch to encoder
  </Link>
  </div>
 
  {/* AI-friendly: Quick answers + canonical decoding rules */}
- <div className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
+ <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Quick answers (Morse decoding)
  </h3>
@@ -241,7 +241,7 @@ export default function HowItWorks() {
  </ul>
  </div>
 
- <div className="mt-8 rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
+ <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Decoder rules
  </h3>
@@ -291,7 +291,7 @@ export default function HowItWorks() {
  </table>
  </div>
 
- <div className="mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
+ <div className="mw-static-surface-soft mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
  <p className="text-base font-extrabold text-sky-950">Tip for copy/paste</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  If you plan to paste your decoded result elsewhere, keep it as normal

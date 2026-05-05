@@ -95,6 +95,116 @@ main *::after {
   border: 0 !important;
 }
 
+.mw-static-surface {
+  background: rgba(247, 244, 238, 0.72) !important;
+}
+
+.mw-static-surface-soft {
+  background: rgba(255, 250, 242, 0.48) !important;
+}
+
+.mw-static-panel {
+  background: rgba(247, 244, 238, 0.58) !important;
+}
+
+.mw-static-tile {
+  background: #f2eee6 !important;
+}
+
+.mw-static-code {
+  background: #f2eee6 !important;
+}
+
+.mw-page-content {
+  --mw-button-shadow: 0 1px 1px rgba(15, 23, 42, 0.14),
+    0 2px 3px rgba(11, 36, 71, 0.13);
+  --mw-button-shadow-disabled: 0 1px 1px rgba(15, 23, 42, 0.08),
+    0 2px 3px rgba(11, 36, 71, 0.07);
+}
+
+.mw-page-content
+  :where(button, [role="button"], summary, select, .mw-button-outline) {
+  border: 0 !important;
+  box-shadow: var(--mw-button-shadow) !important;
+  outline: none !important;
+  outline-offset: 0;
+}
+
+.mw-page-content
+  :where(
+    button,
+    [role="button"],
+    summary,
+    select,
+    .mw-button-outline
+  ):focus-visible {
+  box-shadow: var(--mw-button-shadow) !important;
+  outline: 2px solid color-mix(in srgb, currentColor 52%, #38bdf8) !important;
+  outline-offset: 2px;
+}
+
+.mw-page-content
+  :where(
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]),
+    summary,
+    select:not(:disabled),
+    .mw-button-outline:not([aria-disabled="true"])
+  ) {
+  cursor: pointer;
+}
+
+.mw-page-content
+  :where(
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]),
+    summary,
+    select:not(:disabled),
+    .mw-button-outline:not([aria-disabled="true"])
+  ):where(:hover, :active) {
+  box-shadow: var(--mw-button-shadow) !important;
+}
+
+.mw-page-content
+  :where(
+    button:not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]),
+    [role="button"]:not([aria-disabled="true"]):not([aria-pressed="true"])
+  ):hover {
+  background-color: #0f172a !important;
+  color: #e0f2fe !important;
+}
+
+.mw-page-content
+  :where(summary, select, a.mw-button-outline):not([aria-disabled="true"]):hover {
+  background-color: #0f172a !important;
+  color: #e0f2fe !important;
+}
+
+.mw-page-content
+  :where(button, [role="button"], summary, a.mw-button-outline):hover
+  :where(*) {
+  color: currentColor !important;
+}
+
+.mw-page-content :where(button, [role="button"]):disabled,
+.mw-page-content :where(button[aria-disabled="true"], [role="button"][aria-disabled="true"], .mw-button-outline[aria-disabled="true"]) {
+  box-shadow: var(--mw-button-shadow-disabled) !important;
+  cursor: not-allowed;
+}
+
+@supports not (outline-color: color-mix(in srgb, currentColor 28%, transparent)) {
+  .mw-page-content
+    :where(
+      button,
+      [role="button"],
+      summary,
+      select,
+      .mw-button-outline
+    ):focus-visible {
+    outline: 2px solid rgba(56, 189, 248, 0.9) !important;
+  }
+}
+
 .mw-how-section > .flex.flex-col:first-child {
   margin: 0 0 1.5rem;
   border-bottom: 0;

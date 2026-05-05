@@ -70,7 +70,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             style={paperBackground}
           >
             <PageBackdrop />
-            <div className="relative z-10">
+            <div className="mw-page-content relative z-10">
               {children}
               <RelatedTools />
             </div>

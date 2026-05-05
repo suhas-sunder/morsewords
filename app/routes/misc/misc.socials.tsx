@@ -86,7 +86,7 @@ function ExternalCard(props: { to: string; title: string; subtitle?: string }) {
 
 export default function Socials() {
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col px-4 py-10 sm:py-12">
+    <div className="mx-auto flex w-full max-w-6xl flex-col px-4 pb-10 pt-2 sm:pb-12 sm:pt-4">
       <header className="mb-10 px-1 py-3 sm:px-2">
         <p className="m-0 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900 before:h-px before:w-8 before:bg-sky-800 before:content-['']">
           MorseWords links
@@ -102,7 +102,7 @@ export default function Socials() {
       </header>
 
       <main className="flex flex-col gap-12">
-        <section className="rounded-2xl bg-[#fffdf8]/75 p-5 shadow-[0_7px_18px_rgba(11,36,71,0.07)] sm:p-8">
+        <section className="mw-static-panel rounded-2xl bg-[#fffdf8]/75 p-5 sm:p-8">
           <h2 className="mb-6 text-2xl font-extrabold text-sky-950">
             My Utility Sites
           </h2>

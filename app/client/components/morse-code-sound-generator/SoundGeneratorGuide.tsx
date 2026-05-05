@@ -59,8 +59,8 @@ const toneRows = [
 export default function SoundGeneratorGuide() {
   return (
     <>
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
-        <div className="inline-flex items-center rounded-full bg-[#f7f4ee] px-3 py-1.5 text-sm font-extrabold text-sky-950">
+    <section className="mw-static-panel mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
+        <div className="mw-static-tile inline-flex items-center rounded-full bg-[#f7f4ee] px-3 py-1.5 text-sm font-extrabold text-sky-950">
           Sound generator guide
         </div>
         <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
@@ -72,7 +72,7 @@ export default function SoundGeneratorGuide() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {searchIntentBlocks.map((item) => (
-            <article key={item.title} className="rounded-xl bg-[#f7f4ee] p-5">
+            <article key={item.title} className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <h3 className="font-extrabold text-sky-950">{item.title}</h3>
               <p className="mt-2 text-slate-700 leading-relaxed">{item.body}</p>
             </article>
@@ -80,13 +80,13 @@ export default function SoundGeneratorGuide() {
         </div>
       </section>
 
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
+    <section className="mw-static-panel mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           How to make Morse code audio
         </h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           {workflowSteps.map((item) => (
-            <article key={item.title} className="rounded-xl bg-[#f7f4ee] p-5">
+            <article key={item.title} className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <h3 className="font-extrabold text-sky-950">{item.title}</h3>
               <p className="mt-2 text-slate-700 leading-relaxed">{item.body}</p>
             </article>
@@ -94,7 +94,7 @@ export default function SoundGeneratorGuide() {
         </div>
       </section>
 
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
+    <section className="mw-static-panel mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           MP3 vs WAV export for Morse code
         </h2>
@@ -103,7 +103,7 @@ export default function SoundGeneratorGuide() {
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           {exportRows.map((row) => (
-            <article key={row.format} className="rounded-xl bg-[#f7f4ee] p-5">
+            <article key={row.format} className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <h3 className="text-xl font-extrabold text-sky-950">{row.format}</h3>
               <p className="mt-2 text-slate-700 leading-relaxed">{row.bestFor}</p>
               <p className="mt-3 text-sm font-semibold text-neutral-900">{row.note}</p>
@@ -112,7 +112,7 @@ export default function SoundGeneratorGuide() {
         </div>
       </section>
 
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
+    <section className="mw-static-panel mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-sky-950">
           Pick the right Morse beep or tone
         </h2>
@@ -121,7 +121,7 @@ export default function SoundGeneratorGuide() {
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {toneRows.map(([name, use]) => (
-            <article key={name} className="rounded-xl bg-[#f7f4ee] p-5">
+            <article key={name} className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <h3 className="font-extrabold text-sky-950">{name}</h3>
               <p className="mt-2 text-slate-700 leading-relaxed">{use}</p>
             </article>

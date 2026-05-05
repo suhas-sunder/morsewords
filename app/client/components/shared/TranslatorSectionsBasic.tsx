@@ -36,22 +36,22 @@ interface Props {
 
 const STROBE_WARNING_ID = "translator-strobe-warning";
 const HOME_SOFT_CONTROL =
-  "bg-white/85 text-slate-800 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100";
+  "bg-white/85 text-slate-800 hover:bg-slate-900 hover:text-sky-100";
 const HOME_SOFT_CONTROL_DARK =
-  "bg-white/88 text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.08)] hover:bg-slate-900 hover:text-sky-100";
+  "bg-white/88 text-slate-900 hover:bg-slate-900 hover:text-sky-100";
 const HOME_DISABLED_CONTROL =
-  "cursor-not-allowed bg-white/55 text-slate-400 shadow-[0_5px_14px_rgba(11,36,71,0.04)]";
+  "cursor-not-allowed bg-white/55 text-slate-400";
 const SOFT_CONTROL = HOME_SOFT_CONTROL;
 const SOFT_CONTROL_DARK = HOME_SOFT_CONTROL_DARK;
 const DISABLED_CONTROL = HOME_DISABLED_CONTROL;
 const ACTIVE_CONTROL =
-  "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)]";
+  "bg-slate-950 text-sky-100";
 const SOFT_PANEL =
-  "overflow-hidden rounded-xl bg-white/88 shadow-[0_12px_30px_rgba(11,36,71,0.09)]";
+  "overflow-hidden rounded-xl bg-white/88";
 const DARK_PANEL =
-  "overflow-hidden rounded-xl bg-slate-950 shadow-[0_12px_30px_rgba(2,6,23,0.16)]";
+  "overflow-hidden rounded-xl bg-slate-950";
 const DARK_PANEL_BUTTON =
-  "bg-slate-700/95 text-slate-100 shadow-[0_6px_18px_rgba(0,0,0,0.18)] hover:bg-slate-800 hover:text-white";
+  "bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white";
 const DARK_PANEL_DISABLED =
   "cursor-not-allowed bg-slate-800/60 text-slate-500";
 
@@ -365,14 +365,14 @@ export default function TranslatorSectionsBasic({
           className={
             isHome
               ? "mw-tool-section mt-0"
-              : "mw-tool-section mt-6"
+              : "mw-tool-section mt-0"
           }
         >
         <div
           className={
             isHome
               ? "tool-header px-0 pb-1 pt-2 sm:pt-3"
-              : "tool-header px-5 pb-0 pt-6 sm:px-8 sm:pt-7"
+              : "tool-header px-5 pb-1 pt-2 sm:px-8 sm:pt-3"
           }
         >
           <div className="flex items-center gap-3">
@@ -801,9 +801,7 @@ export default function TranslatorSectionsBasic({
                           disabled={!soundOn}
                           className={`mt-1 w-full rounded-xl p-2 transition hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
                             soundOn
-                              ? isHome
-                                ? "cursor-pointer bg-white/85 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white"
-                                : "cursor-pointer bg-white/85 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white"
+                              ? "cursor-pointer bg-white/85 hover:bg-white"
                               : "cursor-not-allowed opacity-60"
                           }`}
                         >

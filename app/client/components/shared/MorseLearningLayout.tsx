@@ -31,8 +31,8 @@ export function PageHero({
     : "grid gap-6";
 
   return (
-    <section className="mw-tool-section mt-4">
-      <div className="tool-header py-6 sm:py-7">
+    <section className="mw-tool-section mt-0">
+      <div className="tool-header py-2 sm:py-3">
         <div className={headerGridClass}>
           <div className="min-w-0">
             <Eyebrow>{eyebrow}</Eyebrow>
@@ -65,7 +65,7 @@ export function SectionCard({
   aside?: React.ReactNode;
 }) {
   return (
-    <section className="relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8 sm:py-10">
+    <section className="mw-static-surface-soft relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8 sm:py-10">
       <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
           <div>
@@ -123,10 +123,10 @@ export function ActionLinks({
           key={link.href + link.label}
           href={link.href}
           className={
-            "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
+            "mw-button-outline inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none " +
             (link.primary
-              ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white"
-              : "bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100")
+              ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+              : "bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100")
           }
         >
           {link.label}
@@ -151,7 +151,14 @@ export function SimpleGrid({
                 {item.title}
               </h3>
               {item.badge ? (
-                <span className="shrink-0 rounded-md bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
+                <span
+                  className={
+                    "shrink-0 rounded-md bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500" +
+                    (item.href
+                      ? " transition group-hover:bg-slate-800 group-hover:text-current"
+                      : " mw-static-tile")
+                  }
+                >
                   {item.badge}
                 </span>
               ) : null}
@@ -167,7 +174,7 @@ export function SimpleGrid({
             <a
               key={item.title}
               href={item.href}
-              className="group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-[#f7f4ee]"
+              className="mw-button-outline group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline transition hover:bg-slate-900 hover:text-sky-100"
             >
               {body}
               <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
@@ -181,7 +188,7 @@ export function SimpleGrid({
         }
 
         return (
-          <div key={item.title} className="rounded-xl bg-[#fffdf8] p-5 shadow-[0_7px_18px_rgba(11,36,71,0.07)]">
+          <div key={item.title} className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
             {body}
           </div>
         );
@@ -198,8 +205,8 @@ export function ReferenceTable({
   onPlay?: (morse: string) => void;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl bg-[#fffdf8] shadow-[0_7px_18px_rgba(11,36,71,0.07)]">
-      <div className="grid grid-cols-[1fr_1fr] bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
+    <div className="mw-static-panel overflow-hidden rounded-xl bg-[#fffdf8]">
+      <div className="mw-static-surface-soft grid grid-cols-[1fr_1fr] bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
         <span>Name</span>
         <span>Morse</span>
         <span className="hidden sm:block">Use</span>
@@ -225,7 +232,7 @@ export function ReferenceTable({
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
-            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
+            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             disabled={!onPlay}
           >
             <PlayIcon size={16} title="Play" />

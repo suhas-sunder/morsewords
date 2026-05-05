@@ -65,14 +65,14 @@ const rows: Row[] = [
 
 export default function MorseLookupTable() {
  return (
- <section className="mt-10 rounded-2xl bg-[#fffdf8] p-6">
+ <section className="mw-static-panel mt-10 rounded-2xl bg-[#fffdf8] p-6">
  <h2 className="text-2xl font-bold text-neutral-900">Morse Code Dictionary</h2>
  <p className="mt-2 leading-relaxed text-slate-700">
  Use this lookup table to copy a character&apos;s dot and dash pattern. For translation, use the
  main translator. This page is a quick reference only.
  </p>
 
- <div className="mt-6 overflow-x-auto rounded-xl bg-white">
+ <div className="mw-static-surface-soft mt-6 overflow-x-auto rounded-xl bg-white">
  <table className="min-w-[720px] w-full -separate -spacing-0">
  <thead>
  <tr className="text-left bg-[#f7f4ee]">

@@ -1,7 +1,7 @@
 export default function HowToUseSuiteGuide() {
   return (
     <div className="space-y-8">
-      <section className="mw-tool-section mt-4 py-6 sm:py-7">
+    <section className="mw-tool-section mt-0 py-2 sm:py-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -37,7 +37,7 @@ export default function HowToUseSuiteGuide() {
           <a
             key={href}
             href={href}
-            className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+            className="mw-button-outline inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
           >
             {label}
           </a>
@@ -45,7 +45,7 @@ export default function HowToUseSuiteGuide() {
       </nav>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl bg-[#fffdf8]/80 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/80 p-5">
           <p className="text-base font-extrabold text-sky-950">
             Copy-first design
           </p>
@@ -54,7 +54,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
 
-        <div className="rounded-xl bg-[#fffdf8]/80 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/80 p-5">
           <p className="text-base font-extrabold text-sky-950">
             Spacing matters
           </p>
@@ -64,7 +64,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
 
-        <div className="rounded-xl bg-[#fffdf8]/80 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/80 p-5">
           <p className="text-base font-extrabold text-sky-950">
             Suite, not one page
           </p>
@@ -115,7 +115,7 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Best for
               </p>
@@ -126,7 +126,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Common gotcha
               </p>
@@ -175,7 +175,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mt-5 rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+          <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8]/85 p-5">
             <p className="text-base font-extrabold text-sky-950">Tip</p>
             <p className="mt-2 text-base sm:text-lg text-slate-700">
               If a long message is hard to follow, shorten it first in the
@@ -221,7 +221,7 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 When to use it
               </p>
@@ -231,7 +231,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 When to switch tools
               </p>
@@ -280,7 +280,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mt-5 rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+          <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8]/85 p-5">
             <p className="text-base font-extrabold text-sky-950">
               Good use case
             </p>
@@ -322,7 +322,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mt-5 rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+          <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8]/85 p-5">
             <p className="text-base font-extrabold text-sky-950">
               Shortcut mindset
             </p>
@@ -349,7 +349,7 @@ export default function HowToUseSuiteGuide() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Recommended format
               </p>
@@ -361,7 +361,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Why this works
               </p>
@@ -391,7 +391,7 @@ export default function HowToUseSuiteGuide() {
           </h2>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Convert → Listen
               </p>
@@ -402,7 +402,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Hear → Confirm
               </p>
@@ -413,7 +413,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Manual entry → Decode
               </p>
@@ -424,7 +424,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Debug a bad paste
               </p>
@@ -456,7 +456,7 @@ export default function HowToUseSuiteGuide() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Safer places to paste
               </p>
@@ -467,7 +467,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="rounded-xl bg-[#fffdf8]/85 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Places that often mangle it
               </p>
@@ -530,7 +530,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
       </div>
-      <div className="mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
+      <div className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
         <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           Quick reference
         </h2>

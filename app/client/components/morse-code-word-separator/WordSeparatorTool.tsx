@@ -121,8 +121,8 @@ export default function WordSeparatorTool() {
         ];
 
   return (
-    <section className="mw-tool-section mt-4">
-      <div className="tool-header pb-0 pt-6 sm:pt-7">
+    <section className="mw-tool-section mt-0">
+      <div className="tool-header pb-1 pt-2 sm:pt-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -141,7 +141,7 @@ export default function WordSeparatorTool() {
 
       <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
       <div className="flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
-        <div className="inline-flex gap-2 rounded-lg bg-[#fffdf8]/75 p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+        <div className="inline-flex gap-2 rounded-lg bg-[#fffdf8]/75 p-1">
           <button
             onClick={() => setMode("normalizeMorse")}
             className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
@@ -166,7 +166,7 @@ export default function WordSeparatorTool() {
           </button>
         </div>
 
-        <div className="inline-flex flex-wrap gap-2 rounded-lg bg-[#fffdf8]/75 p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+        <div className="inline-flex flex-wrap gap-2 rounded-lg bg-[#fffdf8]/75 p-1">
           {sepOptions.map(([label, v]) => (
             <button
               key={v}
@@ -185,7 +185,7 @@ export default function WordSeparatorTool() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-[#fffdf8]/85 shadow-[0_7px_18px_rgba(11,36,71,0.08)]">
+        <div className="overflow-hidden rounded-xl bg-[#fffdf8]/85">
           <div className="flex items-center justify-between gap-2">
             <h2 className="px-4 pt-4 font-extrabold text-sky-950">
               {mode === "normalizeMorse" ? "Paste Morse" : "English input"}
@@ -291,7 +291,7 @@ export default function WordSeparatorTool() {
         ].map(([title, body]) => (
           <div
             key={title}
-            className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]"
+            className="rounded-xl bg-[#fffdf8]/85 p-4"
           >
             <p className="font-extrabold text-sky-950">{title}</p>
             <p className="mt-2 text-sm leading-relaxed text-slate-700">

@@ -293,7 +293,7 @@ export default function HtmlSitemap() {
               key={group.title}
               className="overflow-hidden rounded-2xl bg-[#fffdf8]"
             >
-              <div className="bg-[#fffaf2] px-5 py-5 sm:px-6">
+              <div className="mw-static-surface-soft bg-[#fffaf2] px-5 py-5 sm:px-6">
                 <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-sky-800" />
                   <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -313,12 +313,12 @@ export default function HtmlSitemap() {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="block cursor-pointer rounded-xl bg-white px-4 py-3 text-slate-900 no-underline transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                    className="mw-button-outline group block cursor-pointer rounded-xl bg-white px-4 py-3 text-slate-900 no-underline transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
                   >
-                    <span className="block font-extrabold text-sky-950">
+                    <span className="block font-extrabold text-sky-950 group-hover:text-current">
                       {link.label}
                     </span>
-                    <span className="mt-1 block text-sm leading-relaxed text-slate-600">
+                    <span className="mt-1 block text-sm leading-relaxed text-slate-600 group-hover:text-current">
                       {link.description}
                     </span>
                   </Link>

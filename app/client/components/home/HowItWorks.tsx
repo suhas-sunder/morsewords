@@ -173,7 +173,7 @@ export default function HowItWorks() {
                   <p className="text-base font-extrabold text-sky-950">
                     Examples
                   </p>
-                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#fffaf2] p-4 font-mono text-base leading-relaxed text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.09)]">
+                  <pre className="mw-static-code mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#fffaf2] p-4 font-mono text-base leading-relaxed text-slate-900">
                     {`...   ---   ...
 SOS
 
@@ -272,7 +272,7 @@ S O S`}
                         <span
                           key={symbol}
                           title={label}
-                          className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-md bg-[#fffaf2] px-2.5 py-1.5 font-mono text-sm font-bold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.08)]"
+                          className="mw-static-tile inline-flex min-h-9 min-w-9 items-center justify-center rounded-md bg-[#fffaf2] px-2.5 py-1.5 font-mono text-sm font-bold text-slate-900"
                         >
                           {symbol}
                         </span>

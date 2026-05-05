@@ -70,7 +70,7 @@ function ExampleCard({
   const morse = textToMorse(transliteration);
 
   return (
-    <article className="rounded-2xl bg-[#fffdf8] p-4">
+    <article className="mw-static-panel rounded-2xl bg-[#fffdf8] p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="m-0 text-xl font-extrabold text-sky-950">
@@ -83,12 +83,12 @@ function ExampleCard({
         <button
           type="button"
           onClick={() => onUse(item.word)}
-          className="cursor-pointer rounded-lg bg-white px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="cursor-pointer rounded-lg bg-white px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
         >
           Try
         </button>
       </div>
-      <code className="mt-4 block break-words rounded-xl bg-[#f7f4ee] px-3 py-3 text-sm font-black text-slate-950">
+      <code className="mw-static-code mt-4 block break-words rounded-xl bg-[#f7f4ee] px-3 py-3 text-sm font-black text-slate-950">
         {morse}
       </code>
       <div className="mt-3 flex items-center justify-between gap-3">
@@ -100,7 +100,7 @@ function ExampleCard({
             setCopied(true);
             window.setTimeout(() => setCopied(false), 1000);
           }}
-          className="cursor-pointer rounded-lg bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="cursor-pointer rounded-lg bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
         >
           {copied ? "Copied" : "Copy"}
         </button>
@@ -157,7 +157,7 @@ export default function InternationalTranslator() {
           plainValidationValue={transliterated}
         />
 
-        <section className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8">
+        <section className="mw-static-surface-soft relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8">
           <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
             <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-sky-800" />
@@ -198,7 +198,7 @@ export default function InternationalTranslator() {
         </section>
 
         <section className="pb-8">
-          <div className="rounded-2xl bg-[#fffdf8] p-5 text-slate-700">
+          <div className="mw-static-panel rounded-2xl bg-[#fffdf8] p-5 text-slate-700">
             <h2 className="m-0 text-xl font-extrabold text-sky-950">
               International translation disclaimer
             </h2>

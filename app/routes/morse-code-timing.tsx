@@ -57,7 +57,7 @@ export default function MorseCodeTiming() {
 
  <SectionCard
  eyebrow="Unit rules" title="The basic Morse timing ratios" description="International Morse timing uses fixed proportions. Speed changes the unit length, but the relationships stay the same.">
- <div className="space-y-2 rounded-xl bg-[#f7f4ee] p-3">
+ <div className="mw-static-tile space-y-2 rounded-xl bg-[#f7f4ee] p-3">
  {[
  ["Dot","1 unit","The shortest signal."],
  ["Dash","3 units","Three times as long as a dot."],

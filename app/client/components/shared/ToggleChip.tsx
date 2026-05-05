@@ -27,11 +27,8 @@ export default function ToggleChip({
     fontSize: ".9rem",
     cursor: "pointer",
     userSelect: "none",
-    boxShadow: active
-      ? "0 10px 24px rgba(2, 6, 23, 0.16)"
-      : "0 7px 18px rgba(11, 36, 71, 0.07)",
-    outline: focusVisible ? "2px solid #7dd3fc" : "none",
-    outlineOffset: 2,
+    outline: focusVisible ? "2px solid #7dd3fc" : "1px solid rgba(11, 36, 71, 0.18)",
+    outlineOffset: focusVisible ? 2 : 0,
     transition:
       "background 120ms ease, color 120ms ease, transform 120ms ease",
     transform: "translateY(0)",

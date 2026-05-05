@@ -12,7 +12,7 @@ export default function HowItWorks() {
  const morseWithSlashes = `- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.`;
 
  return (
- <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
+ <section className="mw-static-panel mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
  <div className="flex flex-col gap-3">
  <div className="flex items-center gap-3">
  <span className="h-px w-8 bg-sky-800"/>
@@ -46,14 +46,14 @@ export default function HowItWorks() {
  <a
  key={href}
  href={href}
-              className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+              className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none">
  {label}
  </a>
  ))}
  </div>
 
  <div className="mt-7 grid gap-4 sm:grid-cols-3">
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-base font-extrabold text-sky-950">Copy-friendly</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  Uses <strong>3 spaces</strong> between letters and{" "}
@@ -61,7 +61,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-base font-extrabold text-sky-950">
  Human-friendly
  </p>
@@ -71,7 +71,7 @@ export default function HowItWorks() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-base font-extrabold text-sky-950">Decode safety</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  If your platform collapses multiple spaces, use the{" "}
@@ -88,14 +88,14 @@ export default function HowItWorks() {
  </h3>
 
  <div className="mt-4 grid gap-4 sm:grid-cols-2">
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-sm font-extrabold text-sky-950">Lowercase</p>
  <pre className="mt-2 whitespace-pre-wrap text-base sm:text-lg font-mono">
  {phrase}
  </pre>
  </div>
 
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <p className="text-sm font-extrabold text-sky-950">Uppercase</p>
  <pre className="mt-2 whitespace-pre-wrap text-base sm:text-lg font-mono">
  {phraseUpper}
@@ -121,7 +121,7 @@ export default function HowItWorks() {
  <strong>7 spaces</strong> between words.
  </p>
 
- <pre className="mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+ <pre className="mw-static-code mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
  {morseCopyFriendly}
  </pre>
 
@@ -142,7 +142,7 @@ export default function HowItWorks() {
  “how many spaces is that?” problem.
  </p>
 
- <pre className="mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+ <pre className="mw-static-code mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
  {morseWithSlashes}
  </pre>
  </div>
@@ -157,7 +157,7 @@ export default function HowItWorks() {
  If you paste either Morse string into a decoder, you should get:
  </p>
 
- <pre className="mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+ <pre className="mw-static-code mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
  {phraseUpper}
  </pre>
 
@@ -173,7 +173,7 @@ export default function HowItWorks() {
  </li>
  </ul>
 
- <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
+ <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8] p-5">
  <p className="text-base font-extrabold text-sky-950">
  Verify instantly
  </p>
@@ -259,7 +259,7 @@ export default function HowItWorks() {
  </li>
  </ul>
 
- <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
+ <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8] p-5">
  <p className="text-base font-extrabold text-sky-950">
  Practice this phrase
  </p>
@@ -351,7 +351,7 @@ export default function HowItWorks() {
  </div>
  </div>
 
- <div className="mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
+ <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Quick reference
  </h3>

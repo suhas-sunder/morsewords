@@ -115,7 +115,7 @@ function PlanList({
  items: Array<{ week: string; task: string; href: string }>;
 }) {
  return (
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <h3 className="text-2xl font-extrabold text-sky-950">{title}</h3>
  <ol className="mt-4 space-y-3">
  {items.map((item) => (
@@ -257,7 +257,7 @@ export default function MorseCodePracticePlan() {
  </p>
  </div>
 
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <h3 className="text-xl font-extrabold text-sky-950">
  Weekly rhythm
  </h3>
@@ -321,7 +321,7 @@ export default function MorseCodePracticePlan() {
  <a
  key={item.title}
  href={item.href}
- className="cursor-pointer rounded-xl bg-[#f7f4ee] p-5 text-slate-700 transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300">
+ className="mw-button-outline cursor-pointer rounded-xl bg-[#f7f4ee] p-5 text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
  <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
  {item.time}
  </p>
@@ -341,7 +341,7 @@ export default function MorseCodePracticePlan() {
  <a
  key={tool.href}
  href={tool.href}
- className="cursor-pointer rounded-xl bg-[#f7f4ee] p-5 transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300">
+ className="mw-button-outline cursor-pointer rounded-xl bg-[#f7f4ee] p-5 text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
  <h3 className="text-xl font-extrabold text-sky-950">
  {tool.title}
  </h3>
@@ -356,7 +356,7 @@ export default function MorseCodePracticePlan() {
  <SectionCard
  eyebrow="Use cases" title="How beginners, radio learners, and teachers can adapt the plan" description="The same routine can support a self-study learner, a classroom, a homeschool lesson, a radio club, or a puzzle workflow. The key is changing the final proof task.">
  <div className="grid gap-6 lg:grid-cols-3">
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <h3 className="text-xl font-extrabold text-sky-950">
  Beginners and students
  </h3>
@@ -366,7 +366,7 @@ export default function MorseCodePracticePlan() {
  moving into sentences.
  </p>
  </div>
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <h3 className="text-xl font-extrabold text-sky-950">
  Radio learners
  </h3>
@@ -376,7 +376,7 @@ export default function MorseCodePracticePlan() {
  audio quiz and sentence practice pages.
  </p>
  </div>
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <h3 className="text-xl font-extrabold text-sky-950">
  Teachers and homeschoolers
  </h3>
@@ -388,7 +388,7 @@ export default function MorseCodePracticePlan() {
  </div>
  </div>
 
- <div className="mt-6 rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile mt-6 rounded-xl bg-[#f7f4ee] p-5">
  <h3 className="text-xl font-extrabold text-sky-950">
  Handling weak symbols and weak words
  </h3>

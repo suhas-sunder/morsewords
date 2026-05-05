@@ -37,7 +37,7 @@ export const meta: Route.MetaFunction = () => {
 
 export default function TermsOfService() {
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-10 text-slate-800 sm:py-12">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 pb-10 pt-2 text-slate-800 sm:pb-12 sm:pt-4">
       <header className="flex w-full flex-col gap-5 px-1 py-3 sm:px-2">
         <nav aria-label="Breadcrumb" className="text-sm font-semibold text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
@@ -119,7 +119,7 @@ export default function TermsOfService() {
         </p>
       </header>
 
-      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed shadow-[0_7px_18px_rgba(11,36,71,0.07)] sm:p-8">
+      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed sm:p-8">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">1. OUR SERVICES</h2>
           <p>

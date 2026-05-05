@@ -60,7 +60,7 @@ function CopyButton({ value, label }: { value: string; label: string }) {
         window.setTimeout(() => setCopied(false), 900);
       }}
       className={[
-        "rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2",
+        "rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition-colors focus-visible:outline-none",
         "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900",
       ].join(" ")}
       aria-label={`Copy ${label}`}
@@ -72,7 +72,7 @@ function CopyButton({ value, label }: { value: string; label: string }) {
 
 function AlphabetCard({ entry }: { entry: Entry }) {
   return (
-    <article className="rounded-xl bg-white p-4">
+    <article className="mw-static-surface-soft rounded-xl bg-white p-4">
       <div className="grid gap-3">
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -82,7 +82,7 @@ function AlphabetCard({ entry }: { entry: Entry }) {
             <div className="text-2xl font-bold text-sky-950">{entry.label}</div>
           </div>
 
-          <span className="rounded-md bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
+          <span className="mw-static-tile rounded-md bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
             {entry.category}
           </span>
         </div>
@@ -91,7 +91,7 @@ function AlphabetCard({ entry }: { entry: Entry }) {
           <div className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
             Morse
           </div>
-          <div className="mt-1 break-words rounded-xl bg-[#f7f4ee] px-3 py-3 font-mono text-base text-slate-900">
+          <div className="mw-static-tile mt-1 break-words rounded-xl bg-[#f7f4ee] px-3 py-3 font-mono text-base text-slate-900">
             {entry.morse}
           </div>
         </div>
@@ -124,7 +124,7 @@ function Section({
   items: Entry[];
 }) {
   return (
-    <section id={id} className="scroll-mt-28 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
+    <section id={id} className="mw-static-panel scroll-mt-28 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
       <div className="mb-5 flex items-start justify-between gap-3">
         <div>
           <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
@@ -133,7 +133,7 @@ function Section({
 
         <a
           href="#top"
-          className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
         >
           Top
         </a>
@@ -312,7 +312,7 @@ export default function Home() {
   ];
 
   return (
-    <main id="top" className="mx-auto max-w-[1120px] px-5 pb-10 pt-4 sm:px-8 sm:pt-6">
+      <main id="top" className="mx-auto max-w-[1120px] px-5 pb-10 pt-2 sm:px-8 sm:pt-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -337,35 +337,35 @@ export default function Home() {
         />
       </PageHero>
 
-      <nav className="mb-8 mt-5 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+      <nav className="mb-8 mt-5 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3">
         <div className="flex gap-2 whitespace-nowrap text-sm">
           <a
             href="#letters"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
           >
             Letters
           </a>
           <a
             href="#numbers"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
           >
             Numbers
           </a>
           <a
             href="#symbols"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
           >
             Symbols
           </a>
           <a
             href="#how-it-works"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
           >
             How It Works
           </a>
           <a
             href="#faq"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
           >
             FAQ
           </a>

@@ -54,9 +54,9 @@ export default function FaqSectionGeneric({
           {items.map((it) => (
             <details
               key={it.q}
-              className="group rounded-xl bg-[#fffaf2] px-4 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition-colors open:bg-white hover:bg-white sm:px-5"
+              className="group rounded-xl"
             >
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 text-left text-lg font-extrabold leading-snug text-sky-950 transition hover:text-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:text-xl">
+              <summary className="mw-button-outline flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-xl bg-[#fffaf2] px-4 py-4 text-left text-lg font-extrabold leading-snug text-sky-950 transition hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:px-5 sm:text-xl">
                 <span>{it.q}</span>
                 <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center font-mono text-lg text-sky-700 transition group-open:rotate-90 group-hover:text-sky-900">
                   &gt;
@@ -77,7 +77,7 @@ export default function FaqSectionGeneric({
       className="mt-8 overflow-hidden rounded-2xl bg-[#fffdf8]"
       aria-labelledby={headingId}
     >
-      <div className="bg-[#fffaf2] px-5 pt-6 pb-4 sm:px-8 sm:pt-7 sm:pb-5">
+      <div className="mw-static-surface-soft bg-[#fffaf2] px-5 pt-6 pb-4 sm:px-8 sm:pt-7 sm:pb-5">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -91,17 +91,17 @@ export default function FaqSectionGeneric({
           {title}
         </h2>
       </div>
-      <div className="space-y-4 bg-[#fffdf8] px-5 pt-5 pb-7 sm:px-8 sm:pt-5 sm:pb-8">
+      <div className="mw-static-panel space-y-4 bg-[#fffdf8] px-5 pt-5 pb-7 sm:px-8 sm:pt-5 sm:pb-8">
         {items.map((it) => (
           <details key={it.q} className="group">
-            <summary className="flex min-h-16 cursor-pointer list-none items-center gap-5 rounded-xl bg-slate-950 px-6 py-6 text-xl font-medium leading-snug text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-[#fffdf8] active:scale-[0.99]">
+            <summary className="mw-button-outline flex min-h-16 cursor-pointer list-none items-center gap-5 rounded-xl bg-slate-950 px-6 py-6 text-xl font-medium leading-snug text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none active:scale-[0.99]">
               <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-800 text-sky-100 transition group-open:rotate-90 group-hover:bg-slate-700 group-hover:text-white">
                 &gt;
               </span>
               <span className="leading-snug">{it.q}</span>
             </summary>
             <div className="px-1 pt-4">
-              <p className="w-full max-w-none rounded-xl bg-white px-6 py-5 text-lg leading-relaxed text-slate-700 sm:text-xl">
+              <p className="mw-static-surface-soft w-full max-w-none rounded-xl bg-white px-6 py-5 text-lg leading-relaxed text-slate-700 sm:text-xl">
                 {it.a}
               </p>
             </div>

@@ -62,7 +62,7 @@ export default function MorseCodeQCodes() {
  <SectionCard
  eyebrow="Question or statement" title="How Q-codes change meaning" description="A Q-code can work as a question or a statement. Punctuation and context do the work.">
  <div className="grid gap-3 md:grid-cols-2">
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <h2 className="text-lg font-extrabold text-sky-950">Question</h2>
  <p className="mt-3 font-mono text-base font-bold tracking-[0.14em] text-slate-950">
  QTH?
@@ -71,7 +71,7 @@ export default function MorseCodeQCodes() {
  Asks: what is your location?
  </p>
  </div>
- <div className="rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
  <h2 className="text-lg font-extrabold text-sky-950">Statement</h2>
  <p className="mt-3 font-mono text-base font-bold tracking-[0.14em] text-slate-950">
  QTH BOSTON

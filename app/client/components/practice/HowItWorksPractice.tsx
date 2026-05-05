@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export default function HowItWorksPractice() {
   return (
-    <section className="mw-how-section mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
+    <section className="mw-static-surface-soft mw-how-section mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -37,7 +37,7 @@ export default function HowItWorksPractice() {
           <a
             key={href}
             href={href}
-                className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+            className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 transition hover:bg-slate-900 hover:text-sky-100 active:scale-95 focus:outline-none"
           >
             {label}
           </a>
@@ -45,7 +45,7 @@ export default function HowItWorksPractice() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl bg-[#fffdf8]/75 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-5">
           <p className="text-base font-extrabold text-sky-950">
             10-question runs
           </p>
@@ -55,7 +55,7 @@ export default function HowItWorksPractice() {
           </p>
         </div>
 
-        <div className="rounded-xl bg-[#fffdf8]/75 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-5">
           <p className="text-base font-extrabold text-sky-950">
             Instant checks
           </p>
@@ -65,7 +65,7 @@ export default function HowItWorksPractice() {
           </p>
         </div>
 
-        <div className="rounded-xl bg-[#fffdf8]/75 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-5">
           <p className="text-base font-extrabold text-sky-950">
             Utility over tutorials
           </p>
@@ -79,7 +79,7 @@ export default function HowItWorksPractice() {
       <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="run-flow"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7"
+          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Run flow: what happens in a session
@@ -119,7 +119,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="modes"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7"
+          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Modes: practice the direction you actually need
@@ -134,7 +134,7 @@ export default function HowItWorksPractice() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+            <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Text → Morse
               </p>
@@ -144,7 +144,7 @@ export default function HowItWorksPractice() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+            <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Morse → Text
               </p>
@@ -164,7 +164,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="pools"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7"
+          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Pools: narrow focus or broad coverage
@@ -204,7 +204,7 @@ export default function HowItWorksPractice() {
             will not produce invalid prompt kinds.
           </p>
 
-          <div className="mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
+          <div className="mw-static-surface-soft mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
             <p className="text-base font-extrabold text-sky-950">
               Want more than drills?
             </p>
@@ -230,7 +230,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="sentences"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7"
+          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Sentence rules: spacing matters, but the checker stays practical
@@ -244,7 +244,7 @@ export default function HowItWorksPractice() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+            <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Text → Morse sentences
               </p>
@@ -255,7 +255,7 @@ export default function HowItWorksPractice() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#fffaf2]/45 p-5">
+            <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Morse → Text sentences
               </p>
@@ -266,7 +266,7 @@ export default function HowItWorksPractice() {
             </div>
           </div>
 
-          <div className="mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
+          <div className="mw-static-surface-soft mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
             <p className="text-base font-extrabold text-sky-950">
               Boundary rule of thumb
             </p>
@@ -281,7 +281,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="morse-input"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7"
+          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Morse input tips: type the way you naturally type
@@ -296,7 +296,7 @@ export default function HowItWorksPractice() {
 
           <div className="mt-5">
             <p className="text-base font-extrabold text-sky-950">Examples</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-[#fffaf2]/60 p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            <pre className="mw-static-code mt-3 whitespace-pre-wrap rounded-xl bg-[#fffaf2]/60 p-4 text-base sm:text-lg font-mono overflow-x-auto">
               {`.-
 . -
 • −`}
@@ -330,7 +330,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="scoring"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7"
+          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Scoring: attempts, accuracy, and what progress means here
@@ -350,7 +350,7 @@ export default function HowItWorksPractice() {
             advanced to the next prompt yet.
           </p>
 
-          <div className="mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
+          <div className="mw-static-surface-soft mt-5 rounded-xl bg-[#fffaf2]/45 p-5">
             <p className="text-base font-extrabold text-sky-950">
               Measure improvement the right way
             </p>
@@ -364,7 +364,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="skip"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7"
+          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Skip and streaks: deliberate rules to keep practice honest
@@ -386,7 +386,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="share"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7"
+          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Share: copy a clean progress snapshot
@@ -408,7 +408,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="troubleshooting"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7"
+          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting: common practice mistakes
@@ -457,7 +457,7 @@ export default function HowItWorksPractice() {
         </div>
       </div>
 
-      <div className="mt-8 rounded-xl bg-[#fffdf8]/70 p-5 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:p-7">
+      <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8]/70 p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>

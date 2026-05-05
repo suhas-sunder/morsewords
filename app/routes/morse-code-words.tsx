@@ -79,16 +79,16 @@ export default function MorseCodeWords() {
  },
  ];
 
- const btnBase ="cursor-pointer inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 whitespace-nowrap ";
+ const btnBase ="mw-button-outline cursor-pointer inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition active:scale-95 focus-visible:outline-none whitespace-nowrap ";
 
  const btnPrimary =
  btnBase +"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white";
 
  const btnSecondary =
- btnBase +"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100";
+ btnBase +"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100";
 
  const btnGhost =
- btnBase +"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100";
+ btnBase +"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100";
 
  const pClass ="my-3 text-slate-700 leading-relaxed";
  const linkClass ="font-semibold text-sky-900 underline underline-offset-4 hover:text-sky-950 hover:no-underline cursor-pointer";
@@ -112,7 +112,7 @@ export default function MorseCodeWords() {
  Morse Code Words
  </p>
 
- <p className="mt-3 rounded-2xl bg-[#fffdf8] p-5 text-slate-600 text-base sm:text-lg leading-relaxed">
+ <p className="mw-static-panel mt-3 rounded-2xl bg-[#fffdf8] p-5 text-slate-600 text-base sm:text-lg leading-relaxed">
  A practical, copy-ready collection of words, phrases, prosigns, and
  radio abbreviations in International Morse code. Use the converter
  pages for conversion (text → Morse and Morse → text), then use this
@@ -226,7 +226,7 @@ export default function MorseCodeWords() {
  <li>
  <strong>One space between letters</strong> (example: H E L L O
  becomes{" "}
- <code className="mx-1 rounded bg-[#fffaf2] px-1 py-0.5">
+ <code className="mw-static-code mx-1 rounded bg-[#fffaf2] px-1 py-0.5">
  .... . .-.. .-.. ---
  </code>
  ).
@@ -325,7 +325,7 @@ export default function MorseCodeWords() {
  <li>
  Use the slash separator for clarity when you expect beginners
  (example:{" "}
- <code className="mx-1 rounded bg-[#fffaf2] px-1 py-0.5">
+ <code className="mw-static-code mx-1 rounded bg-[#fffaf2] px-1 py-0.5">
  .... .. / - .... . .-. .
  </code>
  ).

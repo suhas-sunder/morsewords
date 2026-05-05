@@ -231,7 +231,7 @@ export default function MorseCodeVisualQuiz() {
           />
         </PageHero>
 
-        <section className="mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
+        <section className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
           <div className="pb-4">
             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
               <span>
@@ -267,7 +267,7 @@ export default function MorseCodeVisualQuiz() {
 
           {gameOver ? (
               <div className="py-6">
-                <div className="rounded-xl bg-[#fffdf8]/85 p-5 text-center shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+                <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5 text-center">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
                   Quiz complete
                 </p>
@@ -285,7 +285,7 @@ export default function MorseCodeVisualQuiz() {
                   ].map(([label, value]) => (
                     <div
                       key={label}
-                        className="rounded-xl bg-[#fffdf8] p-4 text-left shadow-[0_5px_14px_rgba(11,36,71,0.05)]"
+                        className="rounded-xl bg-[#fffdf8] p-4 text-left"
                     >
                       <p className="text-sm font-semibold text-slate-600">
                         {label}
@@ -300,7 +300,7 @@ export default function MorseCodeVisualQuiz() {
                   <button
                     type="button"
                     onClick={resetQuiz}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
                   >
                     <LoopIcon size={18} title="Try again" />
                     Try again
@@ -323,7 +323,7 @@ export default function MorseCodeVisualQuiz() {
             </div>
           ) : (
             <div className="grid gap-6 py-6 lg:grid-cols-[320px_minmax(0,1fr)]">
-                <div className="flex flex-col items-center rounded-xl bg-[#fffdf8]/85 p-6 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+                <div className="mw-static-panel flex flex-col items-center rounded-xl bg-[#fffdf8]/85 p-6">
                 {hasFlashed ? (
                   <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
                 ) : null}
@@ -339,7 +339,7 @@ export default function MorseCodeVisualQuiz() {
                   type="button"
                   onClick={flashPrompt}
                   aria-describedby={hasFlashed ? STROBE_WARNING_ID : undefined}
-                    className="mt-5 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                    className="mt-5 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
                 >
                   <LightBulbIcon size={20} title="Flash prompt" />
                   Flash prompt
@@ -362,7 +362,7 @@ export default function MorseCodeVisualQuiz() {
                         else if (answer.trim()) checkAnswer();
                       }
                     }}
-                    className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"
+                    className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg transition focus:outline-none focus:ring-2 focus:ring-sky-300"
                   />
                 </label>
 
@@ -394,7 +394,7 @@ export default function MorseCodeVisualQuiz() {
                         type="button"
                         onClick={checkAnswer}
                         disabled={!answer.trim()}
-                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         <CheckCircleIcon size={18} title="Check answer" />
                         Check answer
@@ -403,7 +403,7 @@ export default function MorseCodeVisualQuiz() {
                       <button
                         type="button"
                         onClick={nextPrompt}
-                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
                       >
                         <LoopIcon size={18} title="Next prompt" />
                         {completed + 1 >= TOTAL_QUESTIONS
@@ -415,7 +415,7 @@ export default function MorseCodeVisualQuiz() {
                     type="button"
                     onClick={nextPrompt}
                     disabled={solved}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <RefreshIcon size={18} title="Skip prompt" />
                     Skip

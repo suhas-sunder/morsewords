@@ -62,7 +62,7 @@ export default function SourcesPage() {
               <a
                 key={source.href}
                 href={source.href}
-                className="block rounded-xl bg-white p-5 no-underline transition"
+                className="mw-button-outline block rounded-xl bg-white p-5 no-underline transition hover:bg-slate-900 hover:text-sky-100"
                 rel="noreferrer"
                 target="_blank"
               >

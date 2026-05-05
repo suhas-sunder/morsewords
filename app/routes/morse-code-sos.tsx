@@ -37,8 +37,8 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="overflow-hidden rounded-2xl bg-[#fffdf8]">
-      <div className="bg-[#fffaf2] px-5 py-5 sm:px-8">
+    <section className="mw-static-panel overflow-hidden rounded-2xl bg-[#fffdf8]">
+      <div className="mw-static-surface-soft bg-[#fffaf2] px-5 py-5 sm:px-8">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -58,8 +58,8 @@ function Section({
 
 function SosReferenceCard() {
   return (
-    <section className="overflow-hidden rounded-2xl bg-[#fffdf8]">
-      <div className="bg-[#fffaf2] px-5 py-6 sm:px-8">
+    <section className="mw-static-panel overflow-hidden rounded-2xl bg-[#fffdf8]">
+      <div className="mw-static-surface-soft bg-[#fffaf2] px-5 py-6 sm:px-8">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="flex items-center gap-3">
@@ -93,7 +93,7 @@ function SosReferenceCard() {
         </div>
       </div>
 
-      <div className="grid gap-4 bg-[#fffdf8] px-5 py-6 sm:grid-cols-3 sm:px-8">
+      <div className="mw-static-panel grid gap-4 bg-[#fffdf8] px-5 py-6 sm:grid-cols-3 sm:px-8">
         {[
           { label: "S", marks: ["dot", "dot", "dot"] },
           { label: "O", marks: ["dash", "dash", "dash"] },

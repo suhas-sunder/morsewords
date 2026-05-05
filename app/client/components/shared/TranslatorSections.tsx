@@ -121,7 +121,7 @@ export default function TranslatorSections({
  return (
  <div className="flex flex-col gap-10 my-8">
  {/* TEXT → MORSE */}
- <section className="space-y-4 rounded-2xl bg-[#fffdf8] p-6">
+ <section className="mw-static-panel space-y-4 rounded-2xl bg-[#fffdf8] p-6">
  <h2 className="text-2xl font-bold text-neutral-900">Text → Morse</h2>
 
  <div className="flex flex-wrap gap-2 mt-2">
@@ -189,7 +189,7 @@ export default function TranslatorSections({
  </button>
  <button
  onClick={stop}
- className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
+ className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
  ⏹ Stop
  </button>
  </div>
@@ -205,7 +205,7 @@ export default function TranslatorSections({
  </section>
 
  {/* MORSE → TEXT */}
- <section className="space-y-4 rounded-2xl bg-[#fffdf8] p-6">
+ <section className="mw-static-panel space-y-4 rounded-2xl bg-[#fffdf8] p-6">
  <h2 className="text-2xl font-bold text-neutral-900">Morse → Text</h2>
 
  <div className="flex flex-wrap gap-2 mt-2">
@@ -269,7 +269,7 @@ export default function TranslatorSections({
  </button>
  <button
  onClick={stop}
- className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
+ className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
  ⏹ Stop
  </button>
  </div>

@@ -37,7 +37,7 @@ export const meta: MetaFunction = () => {
 
 export default function CookiesPolicy() {
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-10 text-slate-800 sm:py-12">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 pb-10 pt-2 text-slate-800 sm:pb-12 sm:pt-4">
       <header className="w-full px-1 py-3 sm:px-2">
         <p className="m-0 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900 before:h-px before:w-8 before:bg-sky-800 before:content-['']">
           MorseWords policy
@@ -65,7 +65,7 @@ export default function CookiesPolicy() {
         </p>
       </header>
 
-      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed shadow-[0_7px_18px_rgba(11,36,71,0.07)] sm:p-8">
+      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed sm:p-8">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl font-extrabold text-sky-950">What are cookies?</h2>
           <p>

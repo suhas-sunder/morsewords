@@ -137,9 +137,9 @@ export default function MorseCodeVisualPractice() {
           />
         </PageHero>
 
-        <section className="mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
+        <section className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
           <div className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-center">
-            <div className="flex flex-col items-center justify-center rounded-xl bg-[#fffdf8]/85 p-8 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+            <div className="mw-static-panel flex flex-col items-center justify-center rounded-xl bg-[#fffdf8]/85 p-8">
               {hasFlashed ? (
                 <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
               ) : null}
@@ -155,7 +155,7 @@ export default function MorseCodeVisualPractice() {
                 type="button"
                 onClick={flashMessage}
                 aria-describedby={hasFlashed ? STROBE_WARNING_ID : undefined}
-                className="mt-6 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="mt-6 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
               >
                 <LightBulbIcon size={20} title="Flash message" />
                 Flash message
@@ -171,7 +171,7 @@ export default function MorseCodeVisualPractice() {
                     setMessage(event.target.value);
                     setShowAnswer(false);
                   }}
-                  className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition focus:outline-none focus:ring-2 focus:ring-sky-300"
+                  className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg transition focus:outline-none focus:ring-2 focus:ring-sky-300"
                 />
               </label>
               <div className="mt-5 grid gap-5">
@@ -198,7 +198,7 @@ export default function MorseCodeVisualPractice() {
               <button
                 type="button"
                 onClick={() => setShowAnswer((value) => !value)}
-                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
               >
                 {showAnswer ? (
                   <VisibilityOffIcon size={18} title="Hide answer" />

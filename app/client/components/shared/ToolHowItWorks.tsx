@@ -37,7 +37,7 @@ export default function ToolHowItWorks({
  details: DetailItem[];
 }) {
  return (
-<section className="mw-how-section relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8 sm:py-10">
+<section className="mw-static-surface-soft mw-how-section relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8 sm:py-10">
  <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
  <div>
@@ -75,7 +75,7 @@ export default function ToolHowItWorks({
  <a
  key={chip.href + chip.label}
  href={chip.href}
-              className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+            className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 transition hover:bg-slate-900 hover:text-sky-100 active:scale-95 focus:outline-none">
  {chip.label}
  </a>
  ))}
@@ -83,7 +83,7 @@ export default function ToolHowItWorks({
 
  <dl className="mt-7 grid gap-4 md:grid-cols-3">
  {summary.map((item) => (
- <div key={item.title} className="rounded-xl bg-[#fffdf8]/75 p-4 shadow-[0_7px_18px_rgba(11,36,71,0.06)]">
+ <div key={item.title} className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-4">
  <dt className="text-base font-extrabold text-sky-950">
  {item.title}
  </dt>

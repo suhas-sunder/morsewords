@@ -25,39 +25,36 @@ const variants: Record<
       border: 0,
       background: "#020617",
       color: "#e0f2fe",
-      boxShadow: "0 10px 24px rgba(2, 6, 23, 0.16)",
     },
     hover: {
       background: "#0f172a",
       color: "#ffffff",
     },
-    disabled: { opacity: 0.55, cursor: "not-allowed", boxShadow: "none" },
+    disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
   secondary: {
     normal: {
       border: 0,
       background: "#fffdf8",
       color: "#0f172a",
-      boxShadow: "0 7px 18px rgba(11, 36, 71, 0.07)",
     },
     hover: {
       background: "#0f172a",
       color: "#e0f2fe",
     },
-    disabled: { opacity: 0.55, cursor: "not-allowed", boxShadow: "none" },
+    disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
   ghost: {
     normal: {
       border: 0,
       background: "#fffaf2",
       color: "#0f172a",
-      boxShadow: "0 5px 14px rgba(11, 36, 71, 0.05)",
     },
     hover: {
       background: "#0f172a",
       color: "#e0f2fe",
     },
-    disabled: { opacity: 0.55, cursor: "not-allowed", boxShadow: "none" },
+    disabled: { opacity: 0.55, cursor: "not-allowed" },
   },
 };
 

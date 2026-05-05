@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export default function HowItWorksTyping() {
   return (
-    <section className="mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
+    <section className="mw-static-panel mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -35,7 +35,7 @@ export default function HowItWorksTyping() {
           <a
             key={href}
             href={href}
-                className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none"
           >
             {label}
           </a>
@@ -43,7 +43,7 @@ export default function HowItWorksTyping() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl bg-[#f7f4ee] p-5">
+        <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Freeform production</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             You produce Morse like you would in real use. This is a typing scratchpad
@@ -51,7 +51,7 @@ export default function HowItWorksTyping() {
           </p>
         </div>
 
-        <div className="rounded-xl bg-[#f7f4ee] p-5">
+        <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Boundary-driven decode</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Decoding happens when you commit a boundary. That keeps output predictable
@@ -59,7 +59,7 @@ export default function HowItWorksTyping() {
           </p>
         </div>
 
-        <div className="rounded-xl bg-[#f7f4ee] p-5">
+        <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">Endurance sessions</p>
           <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
             Pick a duration and type continuously. When time is up, input locks and you
@@ -87,22 +87,22 @@ export default function HowItWorksTyping() {
           <ul className="mt-4 list-disc pl-6 space-y-3 text-base sm:text-lg">
             <li>
               Type{" "}
-              <code className="rounded-md bg-[#f7f4ee] px-2 py-1">
+              <code className="mw-static-code rounded-md bg-[#f7f4ee] px-2 py-1">
                 .
               </code>{" "}
               for dit and{" "}
-              <code className="rounded-md bg-[#f7f4ee] px-2 py-1">
+              <code className="mw-static-code rounded-md bg-[#f7f4ee] px-2 py-1">
                 -
               </code>{" "}
               for dah.
             </li>
             <li>
               Optional mapping:{" "}
-              <code className="rounded-md bg-[#f7f4ee] px-2 py-1">
+              <code className="mw-static-code rounded-md bg-[#f7f4ee] px-2 py-1">
                 F
               </code>{" "}
               enters a dit and{" "}
-              <code className="rounded-md bg-[#f7f4ee] px-2 py-1">
+              <code className="mw-static-code rounded-md bg-[#f7f4ee] px-2 py-1">
                 J
               </code>{" "}
               enters a dah.
@@ -119,7 +119,7 @@ export default function HowItWorksTyping() {
 
           <div className="mt-5">
             <p className="text-base font-extrabold text-sky-950">Example</p>
-            <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+            <pre className="mw-static-code mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
               {`. . . . (space) . (space) .-.. (space) .-.. (space) --- (/) .-- (space) --- (space) .-. (space) .-.. (space) -..`}
             </pre>
             <p className="mt-3 text-base sm:text-lg text-slate-600">
@@ -129,7 +129,7 @@ export default function HowItWorksTyping() {
             </p>
           </div>
 
-          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
+          <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">Need to convert text?</p>
             <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               This page is for continuous typing sessions. If you want a utility that
@@ -174,7 +174,7 @@ export default function HowItWorksTyping() {
             </li>
           </ul>
 
-          <div className="mt-5 rounded-xl bg-[#f7f4ee] p-5">
+          <div className="mw-static-tile mt-5 rounded-xl bg-[#f7f4ee] p-5">
             <p className="text-base sm:text-lg font-extrabold text-sky-950">
               Why this matters for fluent users
             </p>
@@ -230,7 +230,7 @@ export default function HowItWorksTyping() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-[#f7f4ee] p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Letters and words
               </p>
@@ -241,7 +241,7 @@ export default function HowItWorksTyping() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#f7f4ee] p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Letters per minute
               </p>
@@ -251,7 +251,7 @@ export default function HowItWorksTyping() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#f7f4ee] p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Invalid
               </p>
@@ -262,7 +262,7 @@ export default function HowItWorksTyping() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#f7f4ee] p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Minimal interference
               </p>
@@ -273,7 +273,7 @@ export default function HowItWorksTyping() {
             </div>
           </div>
 
-          <div className="mt-5 rounded-xl bg-[#fffdf8] p-5">
+          <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Want boundary cleanup?
             </p>
@@ -347,7 +347,7 @@ export default function HowItWorksTyping() {
         </div>
       </div>
 
-      <div className="mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>

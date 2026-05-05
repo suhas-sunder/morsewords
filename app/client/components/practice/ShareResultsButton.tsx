@@ -280,8 +280,8 @@ export default function ShareResultsButton(props: Props) {
           role="dialog"
           aria-modal="true"
         >
-          <div className="w-full max-w-3xl overflow-hidden rounded-xl bg-[#fffdf8] shadow-[0_7px_18px_rgba(11,36,71,0.07)]">
-            <div className="flex items-center justify-between bg-[#fffaf2] p-4 sm:p-5">
+          <div className="mw-static-panel w-full max-w-3xl overflow-hidden rounded-xl bg-[#fffdf8]">
+            <div className="mw-static-surface-soft flex items-center justify-between bg-[#fffaf2] p-4 sm:p-5">
               <div>
                 <div className="text-base font-extrabold text-sky-950">Share results</div>
                 <div className="text-sm text-slate-600">
@@ -290,7 +290,7 @@ export default function ShareResultsButton(props: Props) {
               </div>
               <button
                 type="button"
-                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
                 onClick={() => setOpen(false)}
               >
                 Close
@@ -316,7 +316,7 @@ export default function ShareResultsButton(props: Props) {
 
                 {pngBlob ? (
                   <a
-                    className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                    className="mw-button-outline inline-flex cursor-pointer items-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
                     href={pngUrl || undefined}
                     download="morse-practice-results.png"
                   >
@@ -327,7 +327,7 @@ export default function ShareResultsButton(props: Props) {
               </div>
 
               {pngUrl ? (
-                <div className="mt-4 overflow-hidden rounded-2xl bg-[#fffdf8]">
+                <div className="mw-static-panel mt-4 overflow-hidden rounded-2xl bg-[#fffdf8]">
                   <img
                     src={pngUrl}
                     alt="Shareable results preview"
@@ -335,7 +335,7 @@ export default function ShareResultsButton(props: Props) {
                   />
                 </div>
               ) : (
-                <div className="mt-4 rounded-2xl bg-[#fffdf8] p-4 text-sm text-slate-700">
+                <div className="mw-static-panel mt-4 rounded-2xl bg-[#fffdf8] p-4 text-sm text-slate-700">
                   {busy ? "Generating your share card..." : "Preparing your share card..."}
                 </div>
               )}

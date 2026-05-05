@@ -127,7 +127,7 @@ export default function MorsePractice({
  };
 
  return (
- <section className="mt-8 rounded-2xl bg-[#fffdf8] p-6">
+ <section className="mw-static-panel mt-8 rounded-2xl bg-[#fffdf8] p-6">
  <h1 className="text-3xl font-extrabold text-neutral-900">
  Morse Code Practice
  </h1>
@@ -140,7 +140,7 @@ export default function MorsePractice({
  <div>
  <label className="font-semibold">Mode</label>
  <select
- className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white" value={promptMode}
+ className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 hover:bg-white" value={promptMode}
  onChange={(e) => setPromptMode(e.target.value as PromptMode)}
  >
  <option value="visual">Visual</option>
@@ -152,7 +152,7 @@ export default function MorsePractice({
  <div>
  <label className="font-semibold">Character set</label>
  <select
- className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white" value={setMode}
+ className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 hover:bg-white" value={setMode}
  onChange={(e) => setSetMode(e.target.value as SetMode)}
  >
  <option value="letters">Letters</option>
@@ -178,7 +178,7 @@ export default function MorsePractice({
  </button>
  <button
  onClick={stop}
- className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
+ className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
  Stop
  </button>
  </>
@@ -186,7 +186,7 @@ export default function MorsePractice({
  </div>
  </div>
 
- <div className="mt-6 rounded-xl bg-[#f7f4ee] p-5">
+ <div className="mw-static-tile mt-6 rounded-xl bg-[#f7f4ee] p-5">
  {(promptMode ==="visual"|| promptMode ==="both") && (
  <div className="font-mono text-3xl tracking-widest text-neutral-900">
  {current.morse}

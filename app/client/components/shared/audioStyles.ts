@@ -8,7 +8,7 @@ const styles: Record<string, React.CSSProperties> = {
       "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
     margin: 0,
   },
-  wrap: { maxWidth: 1120, margin: "0 auto", padding: 24 },
+  wrap: { maxWidth: 1120, margin: "0 auto", padding: "16px 24px 36px" },
 
   breadcrumb: {
     display: "flex",
@@ -52,7 +52,6 @@ const styles: Record<string, React.CSSProperties> = {
     background: "#fffdf8",
     border: 0,
     borderRadius: 16,
-    boxShadow: "0 7px 18px rgba(11, 36, 71, 0.07)",
   },
   cardPad: { padding: 16 },
   section: { padding: "8px 0 24px" },

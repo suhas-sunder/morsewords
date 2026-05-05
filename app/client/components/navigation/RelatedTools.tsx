@@ -318,7 +318,7 @@ function HomeToolkit() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="group flex cursor-pointer items-center justify-between gap-4 rounded-xl bg-slate-950 px-4 py-3 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-[#f4efe5] active:scale-[0.99]"
+                  className="mw-button-outline group flex cursor-pointer items-center justify-between gap-4 rounded-xl bg-slate-950 px-4 py-3 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none active:scale-[0.99]"
                 >
                   <span className="text-base font-semibold leading-snug text-current">
                     {item.title}
@@ -350,17 +350,17 @@ function HomeToolkit() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className="group flex cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition hover:bg-[#f7f4ee] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    className="mw-button-outline group flex cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 transition hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   >
                     <span>
-                      <span className="block text-base font-extrabold leading-snug text-sky-950 transition group-hover:text-sky-800">
+                      <span className="block text-base font-extrabold leading-snug text-sky-950 transition group-hover:text-current">
                         {item.title}
                       </span>
-                      <span className="mt-1 block text-sm leading-relaxed text-slate-700">
+                      <span className="mt-1 block text-sm leading-relaxed text-slate-700 group-hover:text-current">
                         {item.description}
                       </span>
                     </span>
-                    <span className="shrink-0 rounded-md bg-[#f7f4ee] px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500">
+                    <span className="shrink-0 rounded-md bg-[#f7f4ee] px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500 transition group-hover:bg-slate-800 group-hover:text-current">
                       {item.badge}
                     </span>
                   </a>
@@ -370,8 +370,8 @@ function HomeToolkit() {
           ))}
         </div>
 
-        <details className="mt-8 rounded-xl bg-[#fffdf8]/72 px-4 py-3 shadow-[0_7px_18px_rgba(11,36,71,0.08)]">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-2 font-extrabold text-sky-950 transition hover:text-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
+        <details className="mt-8">
+          <summary className="mw-button-outline flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 transition hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
             <span>View the full MorseWords toolkit</span>
             <span className="font-mono text-sm text-sky-700">+</span>
           </summary>
@@ -387,7 +387,7 @@ function HomeToolkit() {
                     <a
                       key={item.href}
                       href={item.href}
-                      className="cursor-pointer rounded-lg px-1 py-1 text-sm font-semibold text-sky-900 transition hover:text-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                      className="mw-button-outline inline-flex cursor-pointer rounded-lg px-2 py-1 text-sm font-semibold text-sky-900 transition hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                     >
                       {item.title}
                     </a>
@@ -438,7 +438,7 @@ function FullToolkit() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="group flex cursor-pointer items-center justify-between gap-4 rounded-xl bg-slate-950 px-5 py-4 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-[#fbf7ef] active:scale-[0.99]"
+                  className="mw-button-outline group flex cursor-pointer items-center justify-between gap-4 rounded-xl bg-slate-950 px-5 py-4 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none active:scale-[0.99]"
                 >
                   <span className="text-lg font-semibold leading-snug text-current">
                     {item.title}
@@ -481,23 +481,23 @@ function FullToolkit() {
                     <a
                       key={item.href}
                       href={item.href}
-                      className="group flex min-h-[168px] cursor-pointer flex-col rounded-xl bg-[#fffdf8] p-5 transition hover:bg-[#f7f4ee]"
+                      className="mw-button-outline group flex min-h-[168px] cursor-pointer flex-col rounded-xl bg-[#fffdf8] p-5 text-slate-700 transition hover:bg-slate-900 hover:text-sky-100"
                     >
                       <div className="flex items-start justify-between gap-4">
-                        <h4 className="max-w-[17rem] text-[1.05rem] font-extrabold leading-snug text-sky-950 transition group-hover:text-sky-800 sm:text-[1.15rem]">
+                        <h4 className="max-w-[17rem] text-[1.05rem] font-extrabold leading-snug text-sky-950 transition group-hover:text-current sm:text-[1.15rem]">
                           {item.title}
                         </h4>
 
-                        <span className="shrink-0 rounded-md bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500 transition group-hover:bg-white group-hover:text-sky-900">
+                        <span className="shrink-0 rounded-md bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500 transition group-hover:bg-slate-800 group-hover:text-current">
                           {item.badge}
                         </span>
                       </div>
 
-                      <p className="mt-3 max-w-[30ch] text-base leading-relaxed text-slate-700">
+                      <p className="mt-3 max-w-[30ch] text-base leading-relaxed text-slate-700 group-hover:text-current">
                         {item.description}
                       </p>
 
-                      <span className="mt-auto pt-5 text-sm font-extrabold text-sky-900">
+                      <span className="mt-auto pt-5 text-sm font-extrabold text-sky-900 group-hover:text-current">
                         Open page{" "}
                         <span
                           aria-hidden="true"

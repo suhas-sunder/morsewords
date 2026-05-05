@@ -410,8 +410,8 @@ export default function TypingPage({ jsonLd }: Props) {
           aria-modal="true"
           aria-label="Session complete"
         >
-          <div className="w-full max-w-3xl overflow-hidden rounded-xl bg-[#fffdf8] shadow-[0_7px_18px_rgba(11,36,71,0.07)]">
-            <div className="flex items-center justify-between gap-3 bg-[#fffaf2]/70 p-4 sm:p-5">
+          <div className="mw-static-panel w-full max-w-3xl overflow-hidden rounded-xl bg-[#fffdf8]">
+            <div className="mw-static-surface-soft flex items-center justify-between gap-3 bg-[#fffaf2]/70 p-4 sm:p-5">
               <div>
                 <div className="text-xl font-extrabold text-sky-950 sm:text-2xl">
                   Session complete
@@ -423,7 +423,7 @@ export default function TypingPage({ jsonLd }: Props) {
               <button
                 type="button"
                 onClick={() => setShowEndScreen(false)}
-                className="cursor-pointer rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="cursor-pointer rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
                 aria-label="Close results"
               >
                 Close
@@ -432,7 +432,7 @@ export default function TypingPage({ jsonLd }: Props) {
 
             <div className="p-4 sm:p-6">
               <div className="grid gap-3 sm:grid-cols-3">
-                <div className="rounded-xl bg-[#fffaf2]/70 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+                <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/70 p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Letters
                   </div>
@@ -440,7 +440,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     {decoded.lettersDecoded}
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#fffaf2]/70 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+                <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/70 p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Words
                   </div>
@@ -448,7 +448,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     {decoded.wordsDecoded}
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#fffaf2]/70 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+                <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/70 p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Letters/min
                   </div>
@@ -456,7 +456,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     {lettersPerMin}
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#fffaf2]/70 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:col-span-2">
+                <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/70 p-4 sm:col-span-2">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Invalid
                   </div>
@@ -464,7 +464,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     {decoded.invalidSymbols}
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#fffaf2]/70 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+                <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/70 p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Time
                   </div>
@@ -510,8 +510,8 @@ export default function TypingPage({ jsonLd }: Props) {
       ) : null}
 
       <div className="">
-        <section className="mw-tool-section mt-4">
-          <div className="tool-header pb-0 pt-6 sm:pt-7">
+      <section className="mw-tool-section mt-0">
+        <div className="tool-header pb-1 pt-2 sm:pt-3">
             <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-sky-800" />
               <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -531,7 +531,7 @@ export default function TypingPage({ jsonLd }: Props) {
           {/* Top control bar: durations + session controls + input mode + stats */}
           <div className="flex flex-col gap-3">
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-              <div className="inline-flex w-full flex-wrap gap-2 rounded-lg bg-[#fffdf8]/75 p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:w-auto">
+              <div className="inline-flex w-full flex-wrap gap-2 rounded-lg bg-[#fffdf8]/75 p-1 sm:w-auto">
                 {DURATION_PRESETS.map((p) => (
                   <button
                     key={p.sec}
@@ -588,7 +588,7 @@ export default function TypingPage({ jsonLd }: Props) {
               </div>
 
               <div className="sm:ml-auto flex flex-wrap items-center gap-2 justify-end">
-                <div className="inline-flex w-full gap-2 rounded-lg bg-[#fffdf8]/75 p-1 shadow-[0_5px_14px_rgba(11,36,71,0.05)] sm:w-auto">
+                <div className="inline-flex w-full gap-2 rounded-lg bg-[#fffdf8]/75 p-1 sm:w-auto">
                   <button
                     type="button"
                     onClick={() => setInputMode("dotdash")}
@@ -658,7 +658,7 @@ export default function TypingPage({ jsonLd }: Props) {
               <button
                 type="button"
                 onClick={() => setShowStats((s) => !s)}
-                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
+                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
                 aria-label={showStats ? "Hide stats" : "Show stats"}
               >
                 {showStats ? "Hide stats" : "Show stats"}
@@ -755,7 +755,7 @@ export default function TypingPage({ jsonLd }: Props) {
               ) : null}
               </div>
 
-              <div className="rounded-xl bg-[#fffdf8]/85 p-4 shadow-[0_7px_18px_rgba(11,36,71,0.07)] sm:p-5">
+              <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-4 sm:p-5">
                 <label className="text-sky-900 font-bold">Input</label>
                 <textarea
                   ref={inputRef}
@@ -891,7 +891,7 @@ export default function TypingPage({ jsonLd }: Props) {
                 </div>
 
                 <div className="sm:justify-end">
-                  <div className="rounded-xl bg-[#fffaf2]/70 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+                  <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/70 p-4">
                     <div className="text-sm font-extrabold text-sky-950">
                       Keyboard tips
                     </div>
@@ -930,11 +930,11 @@ export default function TypingPage({ jsonLd }: Props) {
                     </ul>
                   </div>
 
-                  <details className="mt-4 rounded-xl bg-[#fffaf2]/70 p-4 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
-                    <summary className="cursor-pointer select-none font-bold text-sky-950">
+                  <details className="mt-4">
+                    <summary className="mw-button-outline cursor-pointer select-none rounded-xl bg-[#fffaf2]/70 p-4 font-bold text-sky-950 transition hover:bg-slate-900 hover:text-sky-100">
                       Show raw input
                     </summary>
-                    <pre className="mt-3 whitespace-pre-wrap break-words rounded-xl bg-[#fffdf8] p-4 font-mono text-sm text-slate-950 shadow-[0_5px_14px_rgba(11,36,71,0.05)]">
+                    <pre className="mw-static-code mt-3 whitespace-pre-wrap break-words rounded-xl bg-[#fffdf8] p-4 font-mono text-sm text-slate-950">
                       {decoded.normalizedRaw}
                     </pre>
                   </details>
