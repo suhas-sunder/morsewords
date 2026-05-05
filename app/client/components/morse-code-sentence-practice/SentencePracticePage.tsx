@@ -215,7 +215,7 @@ function ToggleButton({
  type="button" onClick={onClick}
  className={`rounded-full px-3 py-1.5 text-sm font-bold cursor-pointer transition ${
  active
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:text-sky-950"}`}
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"}`}
  >
  {children}
  </button>
@@ -482,21 +482,21 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <button
  type="button" onClick={() => setMode("text_to_morse")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="text_to_morse"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-white"}`}
+ mode ==="text_to_morse"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
  >
                     Text → Morse
  </button>
  <button
  type="button" onClick={() => setMode("morse_to_text")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="morse_to_text"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-white"}`}
+ mode ==="morse_to_text"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
  >
                     Morse → Text
  </button>
  <button
  type="button" onClick={() => setMode("mixed")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="mixed"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-white"}`}
+ mode ==="mixed"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
  >
  Mixed
  </button>

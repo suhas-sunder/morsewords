@@ -37,7 +37,7 @@ export default function HowToUseSuiteGuide() {
           <a
             key={href}
             href={href}
-            className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+            className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
           >
             {label}
           </a>

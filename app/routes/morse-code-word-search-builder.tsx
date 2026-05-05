@@ -1277,7 +1277,7 @@ export default function MorseCodeWordSearchBuilder() {
  type="button" onClick={() => updateDifficulty(option)}
  className={"min-h-11 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold capitalize transition focus:outline-none focus:ring-2 focus:ring-sky-300 "+
  (difficulty === option
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100")
  }
  >
  {option}
@@ -1312,7 +1312,7 @@ export default function MorseCodeWordSearchBuilder() {
  type="button" onClick={() => setPrintSelection(value as PrintSelection)}
  className={"min-h-10 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 "+
  (printSelection === value
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100")
  }
  aria-pressed={printSelection === value}
  >
@@ -1643,7 +1643,7 @@ function CheckToggle({
  type="button" onClick={() => onChange(!checked)}
  className={"flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 "+
  (checked
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white") +" "+
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100") +" "+
  className
  }
  aria-pressed={checked}
@@ -1677,7 +1677,7 @@ function ToolButton({
  disabled={disabled}
  className={"inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-50 "+
  (primary
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100")
  }
  >
  {icon}

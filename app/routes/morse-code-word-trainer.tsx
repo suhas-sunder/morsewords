@@ -756,7 +756,7 @@ export default function MorseCodeWordTrainer() {
  <button
  key={word}
  type="button" onClick={() => playWord(word)}
- className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-mono text-sm font-bold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300">
+ className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-mono text-sm font-bold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300">
  <PlayIcon size={14} title={`Play ${word}`} />
  {word}
  </button>
@@ -1053,7 +1053,7 @@ function ChoiceButton({
  type="button" onClick={onClick}
  className={"inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 "+
  (active
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white")
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100")
  }
  >
  {children}
@@ -1077,7 +1077,7 @@ function ToolButton({
  type="button" onClick={onClick}
  disabled={disabled}
  className={"inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "+
- (tone ==="primary"?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white")
+ (tone ==="primary"?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100")
  }
  >
  {children}

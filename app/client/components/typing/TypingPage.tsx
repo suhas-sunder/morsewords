@@ -423,7 +423,7 @@ export default function TypingPage({ jsonLd }: Props) {
               <button
                 type="button"
                 onClick={() => setShowEndScreen(false)}
-                className="cursor-pointer rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="cursor-pointer rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 aria-label="Close results"
               >
                 Close
@@ -543,7 +543,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition ${
                       durationSec === p.sec
                         ? "bg-slate-950 text-sky-100"
-                        : "text-slate-700 hover:bg-white hover:text-sky-950"
+                        : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
                     }`}
                     aria-label={`Set session duration to ${p.label}`}
                     title={
@@ -595,7 +595,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/2 sm:w-auto ${
                       inputMode === "dotdash"
                         ? "bg-slate-950 text-sky-100"
-                        : "text-slate-700 hover:bg-white hover:text-sky-950"
+                        : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
                     }`}
                     aria-label="Use dot and dash input"
                     title="Type . for dit and - for dah"
@@ -608,7 +608,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/2 sm:w-auto ${
                       inputMode === "fj"
                         ? "bg-slate-950 text-sky-100"
-                        : "text-slate-700 hover:bg-white hover:text-sky-950"
+                        : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
                     }`}
                     aria-label="Use F and J input"
                     title="Type F for dit and J for dah"
@@ -658,7 +658,7 @@ export default function TypingPage({ jsonLd }: Props) {
               <button
                 type="button"
                 onClick={() => setShowStats((s) => !s)}
-                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
                 aria-label={showStats ? "Hide stats" : "Show stats"}
               >
                 {showStats ? "Hide stats" : "Show stats"}

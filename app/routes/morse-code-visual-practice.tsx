@@ -198,7 +198,7 @@ export default function MorseCodeVisualPractice() {
               <button
                 type="button"
                 onClick={() => setShowAnswer((value) => !value)}
-                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
               >
                 {showAnswer ? (
                   <VisibilityOffIcon size={18} title="Hide answer" />

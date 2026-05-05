@@ -2089,7 +2089,7 @@ function ToggleField({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-xl bg-[#fffdf8] p-3 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white">
+    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-xl bg-[#fffdf8] p-3 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-[#f7f4ee]">
       <span className="min-w-0 break-words text-sm font-bold text-slate-800">
         {label}
       </span>

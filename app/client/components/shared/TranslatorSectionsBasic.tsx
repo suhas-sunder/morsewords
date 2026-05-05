@@ -36,9 +36,9 @@ interface Props {
 
 const STROBE_WARNING_ID = "translator-strobe-warning";
 const HOME_SOFT_CONTROL =
-  "bg-white/85 text-slate-800 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]";
+  "bg-white/85 text-slate-800 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100";
 const HOME_SOFT_CONTROL_DARK =
-  "bg-white/88 text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.08)] hover:bg-slate-900 hover:text-sky-100 hover:shadow-[0_10px_24px_rgba(11,36,71,0.14)]";
+  "bg-white/88 text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.08)] hover:bg-slate-900 hover:text-sky-100";
 const HOME_DISABLED_CONTROL =
   "cursor-not-allowed bg-white/55 text-slate-400 shadow-[0_5px_14px_rgba(11,36,71,0.04)]";
 const SOFT_CONTROL = HOME_SOFT_CONTROL;
@@ -51,7 +51,7 @@ const SOFT_PANEL =
 const DARK_PANEL =
   "overflow-hidden rounded-xl bg-slate-950 shadow-[0_12px_30px_rgba(2,6,23,0.16)]";
 const DARK_PANEL_BUTTON =
-  "bg-slate-700/95 text-slate-100 shadow-[0_6px_18px_rgba(0,0,0,0.18)] hover:bg-slate-600 hover:text-white";
+  "bg-slate-700/95 text-slate-100 shadow-[0_6px_18px_rgba(0,0,0,0.18)] hover:bg-slate-800 hover:text-white";
 const DARK_PANEL_DISABLED =
   "cursor-not-allowed bg-slate-800/60 text-slate-500";
 
@@ -802,8 +802,8 @@ export default function TranslatorSectionsBasic({
                           className={`mt-1 w-full rounded-xl p-2 transition hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
                             soundOn
                               ? isHome
-                                ? "cursor-pointer bg-white/85 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]"
-                                : "cursor-pointer bg-white/85 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]"
+                                ? "cursor-pointer bg-white/85 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white"
+                                : "cursor-pointer bg-white/85 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white"
                               : "cursor-not-allowed opacity-60"
                           }`}
                         >

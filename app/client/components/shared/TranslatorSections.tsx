@@ -129,7 +129,7 @@ export default function TranslatorSections({
  <button
  key={ex.label}
  onClick={() => setPlainA(ex.label)}
- className="cursor-pointer rounded-full bg-white px-3 py-1 text-sm hover:bg-sky-50 active:scale-95 transition">
+ className="cursor-pointer rounded-full bg-white px-3 py-1 text-sm transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
  Try “{ex.label}”
  </button>
  ))}
@@ -161,7 +161,7 @@ export default function TranslatorSections({
  Morse Output
  </label>
  <textarea
- id="morseA" className="w-full rounded-md p-3 font-mono h-40 bg-gray-50" value={morseA}
+ id="morseA" className="w-full rounded-md bg-[#fffdf8] p-3 font-mono h-40" value={morseA}
  readOnly
  placeholder=".... . .-.. .-.. --- .-- --- .-. .-.. -.."/>
  </div>
@@ -172,24 +172,24 @@ export default function TranslatorSections({
  <button
  onClick={() => handleCopy(morseA,"morseA")}
  disabled={!morseA}
- className={`px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition text-white ${
+ className={`px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition ${
  morseA
- ?"bg-neutral-900 hover:bg-neutral-800 hover:text-white":"bg-gray-400 cursor-not-allowed"}`}
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"cursor-not-allowed bg-[#fffaf2] text-slate-400"}`}
  >
  📋 Copy Morse
  </button>
  <button
  onClick={() => morseA && handlePlay(morseA)}
  disabled={!morseA}
- className={`px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition text-white ${
+ className={`px-4 py-2 cursor-pointer rounded-md font-semibold active:scale-95 transition ${
  morseA
- ?"bg-green-600 hover:bg-green-700":"bg-gray-400 cursor-not-allowed"}`}
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"cursor-not-allowed bg-[#fffaf2] text-slate-400"}`}
  >
  ▶ Play Audio
  </button>
  <button
  onClick={stop}
- className="bg-gray-200 cursor-pointer text-gray-800 font-semibold px-4 py-2 rounded-md hover:bg-gray-300 active:scale-95 transition">
+ className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
  ⏹ Stop
  </button>
  </div>
@@ -198,7 +198,7 @@ export default function TranslatorSections({
  ✓ Copied!
  </span>
  )}
- <span className="ml-auto text-sm text-gray-500">
+ <span className="ml-auto text-sm text-slate-500">
  3 spaces = letters, 7 spaces = words.
  </span>
  </div>
@@ -213,7 +213,7 @@ export default function TranslatorSections({
  <button
  key={ex.label}
  onClick={() => setMorseB(ex.morse)}
- className="cursor-pointer rounded-full bg-white px-3 py-1 text-sm hover:bg-sky-50 active:scale-95 transition">
+ className="cursor-pointer rounded-full bg-white px-3 py-1 text-sm transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
  Try “{ex.label}”
  </button>
  ))}
@@ -241,7 +241,7 @@ export default function TranslatorSections({
  Text Output
  </label>
  <textarea
- id="textB" className="w-full rounded-md p-3 font-mono h-40 bg-gray-50" value={textB}
+ id="textB" className="w-full rounded-md bg-[#fffdf8] p-3 font-mono h-40" value={textB}
  readOnly
  placeholder="Example: Hello World"/>
  </div>
@@ -252,24 +252,24 @@ export default function TranslatorSections({
  <button
  onClick={() => handleCopy(textB,"textB")}
  disabled={!textB}
- className={`px-4 py-2 rounded-md cursor-pointer font-semibold active:scale-95 transition text-white ${
+ className={`px-4 py-2 rounded-md cursor-pointer font-semibold active:scale-95 transition ${
  textB
- ?"bg-neutral-900 hover:bg-neutral-800 hover:text-white":"bg-gray-400 cursor-not-allowed"}`}
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"cursor-not-allowed bg-[#fffaf2] text-slate-400"}`}
  >
  📋 Copy Text
  </button>
  <button
  onClick={() => morseB && handlePlay(morseB)}
  disabled={!morseB}
- className={`px-4 py-2 rounded-md cursor-pointer font-semibold active:scale-95 transition text-white ${
+ className={`px-4 py-2 rounded-md cursor-pointer font-semibold active:scale-95 transition ${
  morseB
- ?"bg-green-600 hover:bg-green-700":"bg-gray-400 cursor-not-allowed"}`}
+ ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"cursor-not-allowed bg-[#fffaf2] text-slate-400"}`}
  >
  ▶ Play Audio
  </button>
  <button
  onClick={stop}
- className="bg-gray-200 text-gray-800 cursor-pointer font-semibold px-4 py-2 rounded-md hover:bg-gray-300 active:scale-95 transition">
+ className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
  ⏹ Stop
  </button>
  </div>
@@ -278,7 +278,7 @@ export default function TranslatorSections({
  ✓ Copied!
  </span>
  )}
- <span className="ml-auto text-sm text-gray-500">
+ <span className="ml-auto text-sm text-slate-500">
  3 spaces = letters, 7 spaces = words.
  </span>
  </div>

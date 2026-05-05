@@ -34,7 +34,7 @@ export default function HowItWorks() {
  <a
  key={href}
  href={href}
- className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-700 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+ className="inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  {label}
  </a>
  ))}

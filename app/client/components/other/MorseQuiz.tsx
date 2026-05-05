@@ -166,19 +166,19 @@ export default function MorsePractice({
  <div className="flex items-end gap-2">
  <button
  onClick={newPrompt}
- className="px-4 py-2 rounded-md cursor-pointer font-semibold text-white bg-neutral-900 hover:bg-neutral-800 hover:text-white active:scale-95 transition">
+ className="px-4 py-2 rounded-md cursor-pointer font-semibold bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:scale-95 transition">
  New prompt
  </button>
  {(promptMode ==="audio"|| promptMode ==="both") && (
  <>
  <button
  onClick={() => void playMorse(current.morse, wpm, freq)}
- className="px-4 py-2 rounded-md cursor-pointer font-semibold text-white bg-green-600 hover:bg-green-700 active:scale-95 transition">
+ className="px-4 py-2 rounded-md cursor-pointer font-semibold bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:scale-95 transition">
  Play
  </button>
  <button
  onClick={stop}
- className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white active:scale-95">
+ className="cursor-pointer rounded-md bg-[#fffdf8] px-4 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">
  Stop
  </button>
  </>
@@ -205,7 +205,7 @@ export default function MorsePractice({
  />
  <button
  onClick={check}
- className="px-4 py-2 rounded-md cursor-pointer font-semibold text-white bg-neutral-900 hover:bg-neutral-800 hover:text-white active:scale-95 transition">
+ className="px-4 py-2 rounded-md cursor-pointer font-semibold bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:scale-95 transition">
  Check
  </button>
  </div>

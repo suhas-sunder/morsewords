@@ -351,8 +351,8 @@ export default function MorseAudioTranslator() {
                   onClick={() => setSourceMode("text")}
                   className={`px-3 py-2 rounded-md font-semibold cursor-pointer active:scale-95 transition ${
                     sourceMode === "text"
-                      ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white hover:shadow-[0_12px_28px_rgba(2,6,23,0.2)]"
-                      : "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] hover:text-sky-950"
+                      ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white"
+                      : "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"
                   }`}
                 >
                   Text to Morse audio
@@ -362,8 +362,8 @@ export default function MorseAudioTranslator() {
                   onClick={() => setSourceMode("morse")}
                   className={`px-3 py-2 rounded-md font-semibold cursor-pointer active:scale-95 transition ${
                     sourceMode === "morse"
-                      ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white hover:shadow-[0_12px_28px_rgba(2,6,23,0.2)]"
-                      : "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] hover:text-sky-950"
+                      ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white"
+                      : "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"
                   }`}
                 >
                   Morse to audio
@@ -413,7 +413,7 @@ export default function MorseAudioTranslator() {
                           onClick={() =>
                             setText(isMobile ? "I love Morse code" : "sos help")
                           }
-                          className="cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] active:scale-95"
+                          className="cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95"
                         >
                           Use example
                         </button>
@@ -421,7 +421,7 @@ export default function MorseAudioTranslator() {
                           <button
                             type="button"
                             onClick={() => setText("I love Morse code")}
-                            className="cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] active:scale-95"
+                            className="cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95"
                           >
                             I love Morse code
                           </button>
@@ -429,7 +429,7 @@ export default function MorseAudioTranslator() {
                         <button
                           type="button"
                           onClick={() => setText("")}
-                          className="ml-auto cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] active:scale-95"
+                          className="ml-auto cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95"
                         >
                           Clear input
                         </button>
@@ -460,14 +460,14 @@ export default function MorseAudioTranslator() {
                         <button
                           type="button"
                           onClick={() => setMorse("... --- ...")}
-                          className="cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] active:scale-95"
+                          className="cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95"
                         >
                           Use example
                         </button>
                         <button
                           type="button"
                           onClick={() => setMorse("")}
-                          className="ml-auto cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] active:scale-95"
+                          className="ml-auto cursor-pointer rounded-md bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 active:scale-95"
                         >
                           Clear input
                         </button>
@@ -506,7 +506,7 @@ export default function MorseAudioTranslator() {
                   disabled={!canPlay}
                   className={`inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 font-semibold transition active:scale-95 ${
                     canPlay
-                      ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white hover:shadow-[0_12px_28px_rgba(2,6,23,0.2)]"
+                      ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white"
                       : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                   }`}
                 >
@@ -543,10 +543,10 @@ export default function MorseAudioTranslator() {
                   className={`flex justify-center items-center gap-2 px-3 py-2.5 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
                     player.state === "playing"
                       ? player.isSupported
-                        ? "bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]"
+                        ? "bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"
                         : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                       : canPlay && player.isSupported
-                        ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white hover:shadow-[0_12px_28px_rgba(2,6,23,0.2)]"
+                        ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white"
                         : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                   }`}
                 >
@@ -576,7 +576,7 @@ export default function MorseAudioTranslator() {
                   disabled={!player.isSupported || player.state === "idle"}
                   className={`flex justify-center items-center gap-2 px-3 py-2.5 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
                     player.isSupported && player.state !== "idle"
-                      ? "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] hover:text-sky-950"
+                      ? "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"
                       : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                   }`}
                 >
@@ -589,7 +589,7 @@ export default function MorseAudioTranslator() {
                   disabled={!canPlay || !soundOn}
                   className={`flex justify-center items-center gap-2 px-3 py-2.5 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
                     canPlay && soundOn
-                      ? "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] hover:text-sky-950"
+                      ? "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"
                       : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                   }`}
                 >
@@ -730,7 +730,7 @@ export default function MorseAudioTranslator() {
               <div className="mt-4">
                 <button
                   onClick={() => setAdvancedOpen((v) => !v)}
-                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 active:scale-95 sm:w-auto"
+                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 active:scale-95 sm:w-auto"
                 >
                   {advancedOpen ? "Hide advanced" : "Show advanced"}
                 </button>
@@ -751,7 +751,7 @@ export default function MorseAudioTranslator() {
                         label="Sample rate"
                         value={sampleRate}
                         onChange={(e) => setSampleRate(Number(e.target.value) as any)}
-                        className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.08)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300"
+                        className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.08)] hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300"
                       >
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
@@ -779,7 +779,7 @@ export default function MorseAudioTranslator() {
                       disabled={!canPlay || !soundOn}
                       className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
                         canPlay && soundOn
-                          ? "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] hover:text-sky-950"
+                          ? "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"
                           : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                       }`}
                     >
@@ -793,7 +793,7 @@ export default function MorseAudioTranslator() {
               <div className="mt-4">
                 <button
                   onClick={() => setExportOpen((v) => !v)}
-                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 active:scale-95 sm:w-auto"
+                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 active:scale-95 sm:w-auto"
                 >
                   {exportOpen ? "Hide export" : "Show export"}
                 </button>
@@ -828,8 +828,8 @@ function TogglePill({
       onClick={() => onChange(!checked)}
       className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold cursor-pointer active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${
         checked
-          ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white hover:shadow-[0_12px_28px_rgba(2,6,23,0.2)]"
-          : "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] hover:text-sky-950"
+          ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white"
+          : "bg-[#fffdf8] text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"
       }`}
       aria-pressed={checked}
       aria-describedby={describedBy}
@@ -918,7 +918,7 @@ function LabeledAudioSelect({
         onChange={onChange}
         className={
           className ??
-          "mt-2 w-full cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300"
+          "mt-2 w-full cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300"
         }
       >
         {children}

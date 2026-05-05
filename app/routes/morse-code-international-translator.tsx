@@ -83,7 +83,7 @@ function ExampleCard({
         <button
           type="button"
           onClick={() => onUse(item.word)}
-          className="cursor-pointer rounded-lg bg-white px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="cursor-pointer rounded-lg bg-white px-3 py-1.5 text-sm font-bold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           Try
         </button>
@@ -100,7 +100,7 @@ function ExampleCard({
             setCopied(true);
             window.setTimeout(() => setCopied(false), 1000);
           }}
-          className="cursor-pointer rounded-lg bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] transition hover:bg-slate-800 hover:text-white hover:shadow-[0_12px_28px_rgba(2,6,23,0.2)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="cursor-pointer rounded-lg bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] transition hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           {copied ? "Copied" : "Copy"}
         </button>
@@ -157,20 +157,18 @@ export default function InternationalTranslator() {
           plainValidationValue={transliterated}
         />
 
-        <section className="pb-6">
-          <div className="overflow-hidden rounded-2xl bg-[#fffdf8]">
-            <div className="bg-[#fffaf2] px-5 py-6 sm:px-8">
-              <div className="flex items-center gap-3">
-                <span className="h-px w-8 bg-sky-800" />
-                <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-                  International Morse
-                </span>
-              </div>
-              <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
-                Translate English and International Words into Morse Code
-              </h2>
+        <section className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8">
+          <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-sky-800" />
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+                International Morse
+              </span>
             </div>
-            <p className="max-w-3xl px-5 py-6 text-base leading-relaxed text-slate-700 sm:px-8 sm:text-lg">
+            <h2 className="mt-3 max-w-4xl text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+              Translate English and International Words into Morse Code
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg">
               Type English, accented Latin words, or common non-Latin scripts.
               MorseWords transliterates the text into readable Latin characters
               first, then converts that pronunciation-friendly text into

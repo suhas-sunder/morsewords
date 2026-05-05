@@ -351,7 +351,7 @@ function MorsePhraseLookupTable() {
  <select
  value={category}
  onChange={(e) => setCategory(e.target.value as Category |"All")}
- className="mt-1 cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 sm:ml-2 sm:mt-0">
+ className="mt-1 cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 sm:ml-2 sm:mt-0">
  <option value="All">All</option>
  <option value="Common">Common words</option>
  <option value="Emergency">Emergency</option>
@@ -411,7 +411,7 @@ function MorsePhraseLookupTable() {
  type="button" onClick={() => copy(p.morse, key)}
  className={`rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 ${
  copied
- ?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:text-sky-950"}`}
+ ?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100"}`}
  aria-label={`Copy Morse for ${p.phrase}`}
  >
  {copied ?"Copied":"Copy"}

@@ -133,7 +133,7 @@ function Section({
 
         <a
           href="#top"
-          className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+          className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
         >
           Top
         </a>
@@ -312,7 +312,7 @@ export default function Home() {
   ];
 
   return (
-    <main id="top" className="mx-auto max-w-6xl px-4 pt-6">
+    <main id="top" className="mx-auto max-w-[1120px] px-5 pb-10 pt-4 sm:px-8 sm:pt-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -341,31 +341,31 @@ export default function Home() {
         <div className="flex gap-2 whitespace-nowrap text-sm">
           <a
             href="#letters"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Letters
           </a>
           <a
             href="#numbers"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Numbers
           </a>
           <a
             href="#symbols"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             Symbols
           </a>
           <a
             href="#how-it-works"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             How It Works
           </a>
           <a
             href="#faq"
-            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+            className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300"
           >
             FAQ
           </a>

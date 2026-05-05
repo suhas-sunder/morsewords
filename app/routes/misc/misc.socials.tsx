@@ -57,7 +57,7 @@ function ExternalCard(props: { to: string; title: string; subtitle?: string }) {
           group relative flex h-full flex-col justify-between rounded-xl
           bg-[#fffdf8] p-5 shadow-[0_7px_18px_rgba(11,36,71,0.07)]
           transition cursor-pointer
-          hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]
+          hover:bg-[#f7f4ee]
           focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300
           focus-visible:ring-offset-2 focus-visible:ring-offset-white
         "
@@ -75,7 +75,7 @@ function ExternalCard(props: { to: string; title: string; subtitle?: string }) {
 
         <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-sky-800">
           <span>Visit site</span>
-          <span className="transition-transform group-hover:translate-x-1">
+          <span className="transition-colors">
             -&gt;
           </span>
         </div>

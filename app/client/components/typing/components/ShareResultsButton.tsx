@@ -269,7 +269,7 @@ export default function ShareResultsButton(props: Props) {
               </div>
               <button
                 type="button"
-                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 onClick={() => setOpen(false)}
               >
                 Close
@@ -292,7 +292,7 @@ export default function ShareResultsButton(props: Props) {
 
                 {pngBlob ? (
                   <a
-                    className="inline-flex cursor-pointer items-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                    className="inline-flex cursor-pointer items-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                     href={pngUrl || undefined}
                     download="morse-typing-results.png"
                   >

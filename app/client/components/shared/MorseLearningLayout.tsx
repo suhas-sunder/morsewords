@@ -125,8 +125,8 @@ export function ActionLinks({
           className={
             "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 " +
             (link.primary
-              ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white hover:shadow-[0_12px_28px_rgba(2,6,23,0.2)]"
-              : "bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]")
+              ? "bg-slate-950 text-sky-100 shadow-[0_10px_24px_rgba(2,6,23,0.16)] hover:bg-slate-800 hover:text-white"
+              : "bg-[#fffdf8] text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] hover:bg-slate-900 hover:text-sky-100")
           }
         >
           {link.label}
@@ -167,12 +167,12 @@ export function SimpleGrid({
             <a
               key={item.title}
               href={item.href}
-              className="group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)]"
+              className="group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-[#f7f4ee]"
             >
               {body}
               <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
                 Open page{" "}
-                <span aria-hidden="true" className="inline-block transition group-hover:translate-x-1">
+                <span aria-hidden="true" className="inline-block transition-colors">
                   -&gt;
                 </span>
               </span>
@@ -225,7 +225,7 @@ export function ReferenceTable({
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
-            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
+            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
             disabled={!onPlay}
           >
             <PlayIcon size={16} title="Play" />

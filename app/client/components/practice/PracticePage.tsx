@@ -309,7 +309,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "text_to_morse"
                   ? "bg-slate-950 text-sky-100"
-                  : "text-slate-700 hover:bg-white hover:text-sky-950"
+                  : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
               }`}
             >
               Text → Morse
@@ -320,7 +320,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "morse_to_text"
                   ? "bg-slate-950 text-sky-100"
-                  : "text-slate-700 hover:bg-white hover:text-sky-950"
+                  : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
               }`}
             >
               Morse → Text
@@ -331,7 +331,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "mixed"
                   ? "bg-slate-950 text-sky-100"
-                  : "text-slate-700 hover:bg-white hover:text-sky-950"
+                  : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
               }`}
             >
               Mixed

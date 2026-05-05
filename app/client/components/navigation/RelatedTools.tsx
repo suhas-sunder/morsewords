@@ -350,7 +350,7 @@ function HomeToolkit() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className="group flex cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition hover:bg-white hover:shadow-[0_10px_24px_rgba(11,36,71,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    className="group flex cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 shadow-[0_7px_18px_rgba(11,36,71,0.08)] transition hover:bg-[#f7f4ee] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   >
                     <span>
                       <span className="block text-base font-extrabold leading-snug text-sky-950 transition group-hover:text-sky-800">
@@ -481,7 +481,7 @@ function FullToolkit() {
                     <a
                       key={item.href}
                       href={item.href}
-                      className="group flex min-h-[168px] cursor-pointer flex-col rounded-xl bg-[#fffdf8] p-5 transition hover:bg-white"
+                      className="group flex min-h-[168px] cursor-pointer flex-col rounded-xl bg-[#fffdf8] p-5 transition hover:bg-[#f7f4ee]"
                     >
                       <div className="flex items-start justify-between gap-4">
                         <h4 className="max-w-[17rem] text-[1.05rem] font-extrabold leading-snug text-sky-950 transition group-hover:text-sky-800 sm:text-[1.15rem]">
@@ -501,7 +501,7 @@ function FullToolkit() {
                         Open page{" "}
                         <span
                           aria-hidden="true"
-                          className="inline-block transition group-hover:translate-x-1"
+                          className="inline-block transition-colors"
                         >
                           -&gt;
                         </span>

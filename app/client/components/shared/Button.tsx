@@ -9,7 +9,7 @@ const base: React.CSSProperties = {
   cursor: "pointer",
   userSelect: "none",
   transition:
-    "background 120ms ease, color 120ms ease, box-shadow 120ms ease, outline-color 120ms ease, transform 120ms ease, filter 120ms ease",
+    "background 120ms ease, color 120ms ease, outline-color 120ms ease, transform 120ms ease, filter 120ms ease",
 };
 
 const variants: Record<
@@ -30,7 +30,6 @@ const variants: Record<
     hover: {
       background: "#0f172a",
       color: "#ffffff",
-      boxShadow: "0 12px 28px rgba(2, 6, 23, 0.2)",
     },
     disabled: { opacity: 0.55, cursor: "not-allowed", boxShadow: "none" },
   },
@@ -42,9 +41,8 @@ const variants: Record<
       boxShadow: "0 7px 18px rgba(11, 36, 71, 0.07)",
     },
     hover: {
-      background: "#ffffff",
-      color: "#082f49",
-      boxShadow: "0 10px 24px rgba(11, 36, 71, 0.12)",
+      background: "#0f172a",
+      color: "#e0f2fe",
     },
     disabled: { opacity: 0.55, cursor: "not-allowed", boxShadow: "none" },
   },
@@ -56,9 +54,8 @@ const variants: Record<
       boxShadow: "0 5px 14px rgba(11, 36, 71, 0.05)",
     },
     hover: {
-      background: "#ffffff",
-      color: "#082f49",
-      boxShadow: "0 8px 20px rgba(11, 36, 71, 0.1)",
+      background: "#0f172a",
+      color: "#e0f2fe",
     },
     disabled: { opacity: 0.55, cursor: "not-allowed", boxShadow: "none" },
   },

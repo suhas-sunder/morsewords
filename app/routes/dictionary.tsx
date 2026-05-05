@@ -172,7 +172,7 @@ function Section({
  <div className="mb-4 flex items-center justify-between gap-3 border-b border-transparent pb-1">
  <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
  <a
- href="#top" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
+ href="#top" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2">
  Top
  </a>
  </div>
@@ -182,7 +182,7 @@ function Section({
 
  <div className="pt-3 md:hidden">
  <a
- href="#top" className="block cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-center text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-white hover:text-sky-950">
+ href="#top" className="block cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-center text-sm font-semibold text-slate-700 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-slate-900 hover:text-sky-100">
  Back to top
  </a>
  </div>
@@ -654,7 +654,7 @@ export default function DictionaryRoute() {
  <a
  key={s.id}
  href={`#${s.id}`}
- className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-white hover:text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-300">
+ className="cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300">
  {s.title}
  </a>
  ))}

@@ -147,7 +147,7 @@ export default function WordSeparatorTool() {
             className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
               mode === "normalizeMorse"
                 ? "bg-slate-950 text-sky-100"
-                : "text-slate-700 hover:bg-white hover:text-sky-950"
+                : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
             }`}
             aria-pressed={mode === "normalizeMorse"}
           >
@@ -158,7 +158,7 @@ export default function WordSeparatorTool() {
             className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
               mode === "englishToMorse"
                 ? "bg-slate-950 text-sky-100"
-                : "text-slate-700 hover:bg-white hover:text-sky-950"
+                : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
             }`}
             aria-pressed={mode === "englishToMorse"}
           >
@@ -174,7 +174,7 @@ export default function WordSeparatorTool() {
               className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
                 sep === v
                   ? "bg-slate-950 text-sky-100"
-                  : "text-slate-700 hover:bg-white hover:text-sky-950"
+                  : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
               }`}
               aria-pressed={sep === v}
             >
@@ -245,7 +245,7 @@ export default function WordSeparatorTool() {
                 setCopied(ok);
                 window.setTimeout(() => setCopied(false), 900);
               }}
-              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md bg-slate-700 px-3 py-2 text-slate-100 transition hover:bg-slate-600 active:scale-95"
+              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md bg-slate-700 px-3 py-2 text-slate-100 transition hover:bg-slate-800 hover:text-white active:scale-95"
             >
               Copy output
             </button>
