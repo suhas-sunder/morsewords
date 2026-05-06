@@ -5,6 +5,12 @@ import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import {
+  HOME_TOOL_EXAMPLES,
+  ToolHero,
+  ToolModeButton,
+  ToolSampleButtons,
+} from "~/client/components/shared/ToolWorkspace";
 import { audioBufferToMp3Blob, type ExportFormat } from "~/client/components/morse-code-sound-generator/audioExport";
 import {
   getUnsupportedTextCharacters,
@@ -38,9 +44,6 @@ type MorseAudioTranslatorProps = {
   morseModeLabel?: string;
   textInputLabel?: string;
   morseInputLabel?: string;
-  primaryExampleText?: string;
-  secondaryExampleText?: string;
-  morseExample?: string;
   pageIntent?: PageIntent;
   exportFormats?: ExportFormat[];
   introEyebrow?: string;
@@ -62,9 +65,6 @@ export default function MorseAudioTranslator({
   morseModeLabel = "Morse to audio",
   textInputLabel = "Message (Text)",
   morseInputLabel = "Morse input",
-  primaryExampleText = "sos help",
-  secondaryExampleText = "I love Morse code",
-  morseExample = "... --- ...",
   pageIntent = "audio",
   exportFormats = ["wav"],
   introEyebrow = "Audio tool",
@@ -78,9 +78,15 @@ export default function MorseAudioTranslator({
   const sourceInputId = `${safePrefix}_source`;
   const isSoundPage = pageIntent === "sound";
 
-  const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
-  const [text, setText] = React.useState(defaultText);
-  const [morse, setMorse] = React.useState(defaultMorse);
+  const [sourceMode, setSourceMode] = React.useState<SourceMode>(
+    () => (readStr(storageKey("source"), "text") as SourceMode) || "text",
+  );
+  const [text, setText] = React.useState(() =>
+    readStr(storageKey("text"), defaultText),
+  );
+  const [morse, setMorse] = React.useState(() =>
+    readStr(storageKey("morse"), defaultMorse),
+  );
   const computedMorse = React.useMemo(() => textToMorse(text), [text]);
 
   const activeCode = React.useMemo(
@@ -89,63 +95,60 @@ export default function MorseAudioTranslator({
   );
 
   const [copied, setCopied] = React.useState<null | "morse">(null);
-  const [charWpm, setCharWpm] = React.useState<number>(18);
-  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(12);
-  const [toneHz, setToneHz] = React.useState<number>(650);
-  const [volume, setVolume] = React.useState<number>(0.75);
-  const [preset, setPreset] = React.useState<SoundPreset>("cw_radio");
-  const [attackMs, setAttackMs] = React.useState<number>(8);
-  const [releaseMs, setReleaseMs] = React.useState<number>(12);
-  const [repeat, setRepeat] = React.useState<boolean>(false);
-  const [soundOn, setSoundOn] = React.useState<boolean>(true);
-  const [flash, setFlash] = React.useState<boolean>(false);
-  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(true);
-  const [exportOpen, setExportOpen] = React.useState<boolean>(true);
-  const [fileName, setFileName] = React.useState(defaultFileName);
-  const [sampleRate, setSampleRate] = React.useState<22050 | 44100 | 48000>(44100);
-  const [tailMs, setTailMs] = React.useState<number>(120);
-  const [mp3Kbps, setMp3Kbps] = React.useState<number>(128);
+  const [charWpm, setCharWpm] = React.useState<number>(() =>
+    readNum(storageKey("wpm"), 18),
+  );
+  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(() =>
+    readNum(storageKey("fwpm"), 12),
+  );
+  const [toneHz, setToneHz] = React.useState<number>(() =>
+    readNum(storageKey("hz"), 650),
+  );
+  const [volume, setVolume] = React.useState<number>(() =>
+    readNum(storageKey("vol"), 0.75),
+  );
+  const [preset, setPreset] = React.useState<SoundPreset>(
+    () => (readStr(storageKey("preset"), "cw_radio") as SoundPreset) || "cw_radio",
+  );
+  const [attackMs, setAttackMs] = React.useState<number>(() =>
+    readNum(storageKey("attack"), 8),
+  );
+  const [releaseMs, setReleaseMs] = React.useState<number>(() =>
+    readNum(storageKey("release"), 12),
+  );
+  const [repeat, setRepeat] = React.useState<boolean>(() =>
+    readBool(storageKey("repeat"), false),
+  );
+  const [soundOn, setSoundOn] = React.useState<boolean>(() =>
+    readBool(storageKey("sound"), true),
+  );
+  const [flash, setFlash] = React.useState<boolean>(() =>
+    readBool(storageKey("flash"), false),
+  );
+  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(() =>
+    readBool(storageKey("adv_open"), true),
+  );
+  const [exportOpen, setExportOpen] = React.useState<boolean>(() =>
+    readBool(storageKey("export_open"), true),
+  );
+  const [fileName, setFileName] = React.useState(() =>
+    readStr(storageKey("filename"), defaultFileName),
+  );
+  const [sampleRate, setSampleRate] = React.useState<22050 | 44100 | 48000>(() =>
+    validateSampleRate(readNum(storageKey("sr"), 44100)),
+  );
+  const [tailMs, setTailMs] = React.useState<number>(() =>
+    readNum(storageKey("tail"), 120),
+  );
+  const [mp3Kbps, setMp3Kbps] = React.useState<number>(() =>
+    readNum(storageKey("mp3_kbps"), 128),
+  );
   const [exportStatus, setExportStatus] = React.useState<null | { kind: "ok" | "error" | "working"; message: string }>(null);
   const [hydrated, setHydrated] = React.useState(false);
-  const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
-    setSourceMode((readStr(storageKey("source"), "text") as SourceMode) || "text");
-    setText(readStr(storageKey("text"), defaultText));
-    setMorse(readStr(storageKey("morse"), defaultMorse));
-    setCharWpm(readNum(storageKey("wpm"), 18));
-    setFarnsworthWpm(readNum(storageKey("fwpm"), 12));
-    setToneHz(readNum(storageKey("hz"), 650));
-    setVolume(readNum(storageKey("vol"), 0.75));
-    setPreset((readStr(storageKey("preset"), "cw_radio") as SoundPreset) || "cw_radio");
-    setAttackMs(readNum(storageKey("attack"), 8));
-    setReleaseMs(readNum(storageKey("release"), 12));
-    setRepeat(readBool(storageKey("repeat"), false));
-    setSoundOn(readBool(storageKey("sound"), true));
-    setFlash(readBool(storageKey("flash"), false));
-    setAdvancedOpen(readBool(storageKey("adv_open"), true));
-    setExportOpen(readBool(storageKey("export_open"), true));
-    setFileName(readStr(storageKey("filename"), defaultFileName));
-    setSampleRate(validateSampleRate(readNum(storageKey("sr"), 44100)));
-    setTailMs(readNum(storageKey("tail"), 120));
-    setMp3Kbps(readNum(storageKey("mp3_kbps"), 128));
     setHydrated(true);
-  }, [defaultFileName, defaultMorse, defaultText, storageKey]);
-
-  React.useEffect(() => {
-    if (!hydrated) return;
-    const mq = window.matchMedia?.("(max-width: 640px)");
-    const apply = () => setIsMobile(!!mq?.matches);
-    apply();
-    if (!mq) return;
-    try {
-      mq.addEventListener("change", apply);
-      return () => mq.removeEventListener("change", apply);
-    } catch {
-      mq.addListener?.(apply as any);
-      return () => mq.removeListener?.(apply as any);
-    }
-  }, [hydrated]);
+  }, []);
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -237,6 +240,12 @@ export default function MorseAudioTranslator({
     } catch {
       setCopied(null);
     }
+  };
+
+  const handleClearOutput = () => {
+    if (sourceMode === "text") setText("");
+    else setMorse("");
+    setCopied(null);
   };
 
   const handlePlay = async () => {
@@ -331,41 +340,40 @@ export default function MorseAudioTranslator({
     <div style={styles.page}>
       {flash && <div id="mw_flash_overlay" className="fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75" />}
 
-      <section className="pb-7">
-            <div className="mw-tool-section mt-0">
-              <div className="tool-header pb-1 pt-2 sm:pt-3">
-                <div className="flex items-center gap-3">
-                  <span className="h-px w-8 bg-sky-800" />
-                  <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-                    {introEyebrow}
-                  </span>
-                </div>
-              <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
-                {heading}
-              </h1>
-              
-              <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">{lead}</p>
-                </div>
-              <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
+      <section className="mw-tool-section mt-0">
+            <div>
+              <ToolHero eyebrow={introEyebrow} title={heading} lead={lead} />
+              <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
 
               <div className="flex flex-wrap items-center gap-2">
-                <ModeButton active={sourceMode === "text"} onClick={() => setSourceMode("text")}>{textModeLabel}</ModeButton>
-                <ModeButton active={sourceMode === "morse"} onClick={() => setSourceMode("morse")}>{morseModeLabel}</ModeButton>
+                <ToolModeButton active={sourceMode === "text"} onClick={() => setSourceMode("text")}>{textModeLabel}</ToolModeButton>
+                <ToolModeButton active={sourceMode === "morse"} onClick={() => setSourceMode("morse")}>{morseModeLabel}</ToolModeButton>
+                <ToolSampleButtons
+                  examples={HOME_TOOL_EXAMPLES}
+                  onPick={(example) =>
+                    sourceMode === "text" ? setText(example) : setMorse(textToMorse(example))
+                  }
+                />
                 <span className="ml-auto text-xs text-slate-500">
                   {player.isSupported ? <>Est. time: {formatMs(durationMs)}</> : <span>Audio unavailable in this browser</span>}
                 </span>
               </div>
 
-              <div className="grid gap-4 mt-4 lg:grid-cols-[minmax(0,1fr)_320px]">
-                <div>
-                  <label htmlFor={sourceInputId} className="font-semibold text-sky-950">
-                    {sourceMode === "text" ? textInputLabel : morseInputLabel}
-                  </label>
+              <div className="mt-4 grid gap-4 lg:grid-cols-2">
+                <div className="overflow-hidden rounded-xl bg-white/88">
+                  <div className="flex items-center justify-between gap-3 px-4 py-3">
+                    <label htmlFor={sourceInputId} className="text-sm font-extrabold text-sky-950">
+                      {sourceMode === "text" ? textInputLabel : morseInputLabel}
+                    </label>
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                      Source
+                    </span>
+                  </div>
                   {sourceMode === "text" ? (
                     <>
                       <textarea
                         id={sourceInputId}
-                        className="mt-2 min-h-[12rem] w-full resize-y rounded-xl bg-[#fffdf8]/90 p-4 font-mono focus:outline-none focus:ring-2 focus:ring-sky-300"
+                        className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Example: Hello world"
@@ -373,14 +381,13 @@ export default function MorseAudioTranslator({
                         autoCorrect="off"
                         spellCheck={false}
                       />
-                      <InputButtons
-                        onUseExample={() => setText(isMobile ? secondaryExampleText : primaryExampleText)}
-                        onUseSecond={!isMobile ? () => setText(secondaryExampleText) : undefined}
-                        secondLabel={secondaryExampleText}
-                        onClear={() => setText("")}
-                      />
+                      <div className="px-4 py-3">
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          3 spaces = letters · 7 = words · / = word break
+                        </p>
+                      </div>
                       {Object.keys(unsupportedPlain).length > 0 && (
-                        <p className="mt-2 text-xs font-medium text-slate-600">
+                        <p className="px-4 pb-3 text-xs font-medium text-slate-600">
                           Unsupported characters are ignored: {Object.entries(unsupportedPlain).map(([ch, n]) => `${ch}×${n}`).join(", ")}
                         </p>
                       )}
@@ -389,7 +396,7 @@ export default function MorseAudioTranslator({
                     <>
                       <textarea
                         id={sourceInputId}
-                        className="mt-2 min-h-[12rem] w-full resize-y rounded-xl bg-[#fffdf8]/90 p-4 font-mono focus:outline-none focus:ring-2 focus:ring-sky-300"
+                        className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
                         value={morse}
                         onChange={(e) => setMorse(e.target.value)}
                         placeholder="Example: ... --- ..."
@@ -397,29 +404,44 @@ export default function MorseAudioTranslator({
                         autoCorrect="off"
                         spellCheck={false}
                       />
-                      <InputButtons onUseExample={() => setMorse(morseExample)} onClear={() => setMorse("")} />
-                      {morseIssues.length > 0 && <p className="mt-2 text-xs font-medium text-slate-600">{morseIssues.join(" ")}</p>}
+                      <div className="px-4 py-3">
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          3 spaces = letters · 7 = words · / = word break
+                        </p>
+                      </div>
+                      {morseIssues.length > 0 && <p className="px-4 pb-3 text-xs font-medium text-slate-600">{morseIssues.join(" ")}</p>}
                     </>
                   )}
                 </div>
 
-                <div className="overflow-hidden rounded-xl bg-slate-950 p-4 text-slate-200">
-                  <h2 className="text-lg font-extrabold text-slate-200">Output (Morse)</h2>
-                  <p className="mt-1 text-sm text-slate-300">This is the exact dot-dash pattern used for playback and downloads.</p>
-                  <code className="mt-3 block max-h-44 overflow-auto whitespace-pre-wrap break-words bg-transparent font-mono text-sm text-sky-100">
+                <div className="overflow-hidden rounded-xl bg-slate-950 text-slate-200">
+                  <div className="flex items-center justify-between gap-3 px-4 py-3">
+                    <h2 className="text-sm font-extrabold text-slate-200">Output (Morse)</h2>
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
+                      Result
+                    </span>
+                  </div>
+                  <code className="block max-h-44 min-h-[10rem] overflow-auto whitespace-pre-wrap break-words bg-transparent p-4 font-mono text-sm leading-relaxed text-sky-100">
                     {activeCode.trim() || "Your Morse output will appear here."}
                   </code>
-                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2 px-4 py-3">
+                    <button
+                      type="button"
+                      onClick={handleClearOutput}
+                      className="cursor-pointer rounded-md bg-slate-700/95 px-3 py-1.5 text-sm font-semibold text-slate-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none"
+                    >
+                      Clear output
+                    </button>
+
                     <button
                       onClick={handleCopyMorse}
                       disabled={!canPlay}
-                      className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${canPlay ? "cursor-pointer bg-slate-700 text-slate-200 hover:bg-slate-800 hover:text-white" : "cursor-not-allowed bg-slate-800 text-slate-500"}`}
+                      className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus:outline-none ${canPlay ? "cursor-pointer bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white" : "cursor-not-allowed bg-slate-800 text-slate-500"}`}
                     >
-                      <CopyIcon size={18} title="Copy Morse" />
+                      <CopyIcon size={16} title="Copy Morse" />
                       <span>{copied === "morse" ? "Copied" : "Copy Morse"}</span>
                     </button>
                   </div>
-                  <p className="mt-3 text-xs text-slate-300">3 spaces = letters, 7 spaces = words, "/" = word break.</p>
                 </div>
               </div>
 
@@ -457,7 +479,7 @@ export default function MorseAudioTranslator({
               </div>
             </div>
 
-            <div className="mt-4 rounded-xl bg-[#fffaf2]/45 p-4">
+            <div className="mt-6">
               <div className="flex items-center justify-between gap-2">
                 <h2 className="text-base font-extrabold text-sky-950">Sound controls</h2>
                 <span className="text-sm text-slate-600">{player.isSupported ? player.state === "idle" ? "Ready" : player.state === "playing" ? "Playing" : "Paused" : "Unavailable"}</span>
@@ -501,7 +523,7 @@ export default function MorseAudioTranslator({
               ) : null}
 
               <div className="mt-4">
-                  <button onClick={() => setAdvancedOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95 sm:w-auto">
+                  <button onClick={() => setAdvancedOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95">
                   {advancedOpen ? "Hide advanced" : "Show advanced"}
                 </button>
               </div>
@@ -564,7 +586,7 @@ export default function MorseAudioTranslator({
               ) : null}
 
               <div className="mt-4">
-                  <button onClick={() => setExportOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95 sm:w-auto">
+                  <button onClick={() => setExportOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95">
                   {exportOpen ? "Hide export" : "Show export"}
                 </button>
               </div>
@@ -596,24 +618,6 @@ export default function MorseAudioTranslator({
                 </>
               ) : null}
             </div>
-    </div>
-  );
-}
-
-function ModeButton({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) {
-  return (
-    <button type="button" onClick={onClick} className={`cursor-pointer rounded-lg px-3 py-2 font-semibold transition focus:outline-none active:scale-95 ${active ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}>
-      {children}
-    </button>
-  );
-}
-
-function InputButtons({ onUseExample, onUseSecond, secondLabel, onClear }: { onUseExample: () => void; onUseSecond?: () => void; secondLabel?: string; onClear: () => void }) {
-  return (
-    <div className="mt-2 flex flex-wrap items-center gap-2">
-      <button type="button" onClick={onUseExample} className="cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">Use example</button>
-      {onUseSecond && secondLabel ? <button type="button" onClick={onUseSecond} className="cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">{secondLabel}</button> : null}
-      <button type="button" onClick={onClear} className="ml-auto cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-1.5 text-sm font-semibold transition hover:bg-slate-900 hover:text-sky-100 active:scale-95">Clear input</button>
     </div>
   );
 }

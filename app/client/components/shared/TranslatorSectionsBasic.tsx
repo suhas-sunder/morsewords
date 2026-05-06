@@ -75,44 +75,39 @@ export default function TranslatorSectionsBasic({
 
   const [isHydrated, setIsHydrated] = useState(false);
 
-  const [toneHz, setToneHz] = useState<number>(600);
-  const [volume, setVolume] = useState<number>(0.75);
-  const [soundOn, setSoundOn] = useState<boolean>(true);
-  const [repeat, setRepeat] = useState<boolean>(false);
-  const [flash, setFlash] = useState<boolean>(false);
+  const [toneHz, setToneHz] = useState<number>(() => readNum("mw_hz", 600));
+  const [volume, setVolume] = useState<number>(() => readNum("mw_vol", 0.75));
+  const [soundOn, setSoundOn] = useState<boolean>(() =>
+    readBool("mw_sound", true),
+  );
+  const [repeat, setRepeat] = useState<boolean>(() =>
+    readBool("mw_repeat", false),
+  );
+  const [flash, setFlash] = useState<boolean>(() =>
+    readBool("mw_flash", false),
+  );
 
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(() =>
+    typeof window !== "undefined"
+      ? !!window.matchMedia?.("(max-width: 1100px)")?.matches
+      : false,
+  );
 
-  const [preset, setPreset] = useState<SoundPreset>("cw_radio");
-  const [charWpm, setCharWpm] = useState<number>(20);
-  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(20);
-  const [advancedOpen, setAdvancedOpen] = useState<boolean>(false);
+  const [preset, setPreset] = useState<SoundPreset>(
+    () => (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio",
+  );
+  const [charWpm, setCharWpm] = useState<number>(() => {
+    const legacyWpm = readNum("mw_wpm", 20);
+    return readNum("mw_char_wpm", legacyWpm);
+  });
+  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(() =>
+    readNum("mw_fwpm", 20),
+  );
+  const [advancedOpen, setAdvancedOpen] = useState<boolean>(() =>
+    readBool("mw_adv_open", false),
+  );
 
   useEffect(() => {
-    const nextTone = readNum("mw_hz", 600);
-    const nextVol = readNum("mw_vol", 0.75);
-    const nextSound = readBool("mw_sound", true);
-    const nextRepeat = readBool("mw_repeat", false);
-    const nextFlash = readBool("mw_flash", false);
-    const nextPreset =
-      (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio";
-
-    const legacyWpm = readNum("mw_wpm", 20);
-    const nextChar = readNum("mw_char_wpm", legacyWpm);
-    const nextFwpm = readNum("mw_fwpm", 20);
-    const nextAdv = readBool("mw_adv_open", false);
-
-    setToneHz(nextTone);
-    setVolume(nextVol);
-    setPreset(nextPreset);
-    setCharWpm(nextChar);
-    setFarnsworthWpm(nextFwpm);
-    setAdvancedOpen(nextAdv);
-
-    setSoundOn(nextSound);
-    setRepeat(nextRepeat);
-    setFlash(nextFlash);
-
     setIsHydrated(true);
   }, []);
 
@@ -372,7 +367,7 @@ export default function TranslatorSectionsBasic({
           className={
             isHome
               ? "tool-header px-0 pb-1 pt-2 sm:pt-3"
-              : "tool-header px-5 pb-1 pt-2 sm:px-8 sm:pt-3"
+              : "tool-header px-0 pb-1 pt-2 sm:pt-3"
           }
         >
           <div className="flex items-center gap-3">
@@ -386,14 +381,14 @@ export default function TranslatorSectionsBasic({
             className={
               isHome
                 ? "mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl"
-                : "mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl"
+                : "mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl"
             }
           >
             {title}
           </h1>
 
           {subtitle ?? (
-            <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Encode text into Morse, decode Morse back to text, and play the signal with timing controls.
             </p>
           )}
@@ -403,7 +398,7 @@ export default function TranslatorSectionsBasic({
           className={
             isHome
               ? "pb-4 pt-4 sm:pb-5 sm:pt-4"
-              : "px-5 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5"
+              : "pb-4 pt-4 sm:pb-5 sm:pt-4"
           }
         >
           <div
@@ -503,7 +498,7 @@ export default function TranslatorSectionsBasic({
 
                 <textarea
                   id={liveInputId}
-                  className={`min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 ${focusOutline}`}
+                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
                   value={inputValue}
                   onChange={(e) =>
                     direction === "encode"
@@ -562,7 +557,7 @@ export default function TranslatorSectionsBasic({
 
                 <textarea
                   id="mw_output"
-                  className={`min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 ${focusOutline}`}
+                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 focus-visible:outline-none"
                   value={outputValue}
                   readOnly
                   placeholder={
