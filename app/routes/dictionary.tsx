@@ -96,7 +96,7 @@ function DesktopTable({ items }: { items: Entry[] }) {
  {items.map((e) => (
  <tr
  key={`${e.category}-${e.label}-${e.morse}`}
- className="transition odd:bg-white even:bg-[#fffaf2] hover:bg-sky-50">
+ className="odd:bg-[#fffdf8] even:bg-[#fffaf2]">
  <td className="px-4 py-3 font-semibold text-slate-900">
  {e.label}
  </td>
@@ -122,7 +122,7 @@ function MobileCards({ items }: { items: Entry[] }) {
  {items.map((e) => (
  <article
  key={`${e.category}-${e.label}-${e.morse}`}
- className="rounded-xl bg-[#fffdf8] p-4">
+ className="mw-static-panel rounded-xl bg-[#fffdf8] p-4">
  <div className="grid gap-3">
  <div className="grid gap-1">
  <div className="text-xs font-semibold tracking-wide text-slate-500">

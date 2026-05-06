@@ -395,7 +395,7 @@ function MorsePhraseLookupTable() {
  return (
  <tr
  key={key}
- className="odd:bg-white even:bg-[#fffdf8] transition hover:bg-sky-50">
+ className="odd:bg-[#fffdf8] even:bg-[#fffaf2]">
  <td className="py-3 px-3 font-semibold text-slate-950">
  {p.phrase}
  </td>

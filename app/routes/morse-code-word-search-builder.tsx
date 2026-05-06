@@ -1704,7 +1704,7 @@ function StatusNotice({
  return (
  <div
  className={"flex gap-3 rounded-xl p-3 text-sm font-semibold leading-relaxed"+
- (kind ==="error"?"bg-[#fffdf8] text-slate-700": kind ==="ok"?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-700")
+ (kind ==="error"?"bg-[#fffdf8] text-slate-700": kind ==="ok"?"mw-static-tile bg-[#f7f4ee] text-sky-950":"bg-[#fffdf8] text-slate-700")
  }
  >
  {kind ==="ok"? (

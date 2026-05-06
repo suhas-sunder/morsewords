@@ -413,7 +413,7 @@ export default function MorseCodeAudioPractice() {
               className={
                 "mt-4 rounded-xl px-4 py-3 text-sm font-semibold " +
                 (feedback === "correct"
-                  ? "bg-sky-50 text-sky-950"
+                  ? "mw-static-tile bg-[#f7f4ee] text-sky-950"
                   : "bg-[#fffaf2] text-slate-800")
               }
             >

@@ -993,7 +993,7 @@ function FeedbackCard({
  <div
  className={"mt-5 rounded-xl p-4 "+
  (isCorrect
- ?"bg-sky-50": isIncorrect
+ ?"mw-static-tile bg-[#f7f4ee]": isIncorrect
  ?"bg-[#fffdf8]":"bg-[#fffdf8]")
  }
  >

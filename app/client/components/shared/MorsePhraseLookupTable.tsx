@@ -209,7 +209,7 @@ function MorsePhraseLookupTable() {
  {phrases.map((p, i) => (
  <tr
  key={i}
- className="odd:bg-white even:bg-[#fffaf2] hover:bg-sky-50 transition">
+ className="odd:bg-[#fffdf8] even:bg-[#fffaf2]">
  <td className="py-2 px-3 font-semibold font-mono">
  {p.phrase}
  </td>

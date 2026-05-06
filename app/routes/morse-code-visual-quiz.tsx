@@ -424,7 +424,7 @@ export default function MorseCodeVisualQuiz() {
                   <p
                     className={
                         "mt-4 inline-flex rounded-full px-3 py-1 text-sm font-semibold " +
-                        (isCorrect ? "bg-sky-50 text-sky-950" : "bg-[#fffdf8] text-slate-800")
+                        (isCorrect ? "mw-static-tile bg-[#f7f4ee] text-sky-950" : "bg-[#fffdf8] text-slate-800")
                     }
                   >
                     {isCorrect

@@ -186,8 +186,8 @@ function countMorseSentenceWords(input: string) {
 
 function difficultyClass(difficulty: Difficulty) {
  if (difficulty ==="easy")
- return"bg-white text-slate-700";
- if (difficulty ==="medium") return"bg-sky-50 text-sky-950";
+ return"mw-static-tile bg-[#f7f4ee] text-slate-700";
+ if (difficulty ==="medium") return"mw-static-tile bg-[#f7f4ee] text-sky-950";
  return"bg-[#fffdf8] text-slate-800";
 }
 
@@ -467,7 +467,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <div
  className={`mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${
  feedback.ok
- ?"bg-sky-50 text-sky-950":"bg-[#fffdf8] text-slate-800"}`}
+ ?"mw-static-tile bg-[#f7f4ee] text-sky-950":"bg-[#fffdf8] text-slate-800"}`}
  role="status" aria-live="polite">
               <span aria-hidden="true">{feedback.ok ?"✓":"!"}</span>
  <span>{feedback.msg}</span>
@@ -668,10 +668,10 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  ) : (
  <>
- <div className="mw-static-surface-soft rounded-2xl bg-sky-50 p-4 sm:p-5">
+ <div className="mw-static-surface-soft rounded-2xl bg-[#fffaf2]/70 p-4 sm:p-5">
  <div className="flex items-center gap-2 justify-between flex-wrap">
  <div className="inline-flex items-center gap-2 flex-wrap">
- <span className="mw-static-tile inline-flex items-center rounded-full bg-white px-3 py-1 text-sm font-semibold text-neutral-900">
+ <span className="mw-static-tile inline-flex items-center rounded-full bg-[#f7f4ee] px-3 py-1 text-sm font-semibold text-neutral-900">
                   {prompt.kind ==="text_to_morse"?"Text → Morse":"Morse → Text"}
  </span>
  <span className="text-sm text-slate-600">

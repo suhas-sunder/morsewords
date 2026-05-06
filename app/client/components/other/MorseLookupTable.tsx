@@ -72,7 +72,7 @@ export default function MorseLookupTable() {
  main translator. This page is a quick reference only.
  </p>
 
- <div className="mw-static-surface-soft mt-6 overflow-x-auto rounded-xl bg-white">
+ <div className="mw-static-panel mt-6 overflow-x-auto rounded-xl bg-[#fffdf8]">
  <table className="min-w-[720px] w-full -separate -spacing-0">
  <thead>
  <tr className="text-left bg-[#f7f4ee]">
@@ -85,7 +85,7 @@ export default function MorseLookupTable() {
  {rows.map((r) => (
  <tr
  key={`${r.category}-${r.symbol}`}
- className="odd:bg-white even:bg-[#fffaf2] hover:bg-sky-50">
+ className="odd:bg-[#fffdf8] even:bg-[#fffaf2]">
  <td className="p-3 font-semibold">{r.symbol}</td>
  <td className="p-3 font-mono">{r.morse}</td>
  <td className="p-3">{r.category}</td>
