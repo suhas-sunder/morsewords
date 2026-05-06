@@ -39,51 +39,54 @@ const rightMorseRows = [
 
 export const paperBackground = {
   backgroundColor: "#f5f2eb",
-  backgroundImage:
-    "linear-gradient(180deg, #f8f6f1 0%, #f5f2eb 46%, #f7f4ef 100%)",
+};
+
+const sideRailStyle = {
+  width: "max(0px, calc((100vw - 1160px) / 2 - 48px))",
 };
 
 export default function PageBackdrop() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden lg:block"
+      className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden min-[1760px]:block"
     >
       <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 18% 12%, rgba(9,47,78,0.055) 0, rgba(9,47,78,0.055) 1px, transparent 1.4px), radial-gradient(circle at 78% 42%, rgba(9,47,78,0.04) 0, rgba(9,47,78,0.04) 1px, transparent 1.4px)",
-          backgroundSize: "26px 26px, 34px 34px",
-        }}
-      />
-
-      <div className="absolute left-[max(22px,calc(50%-760px))] top-28 w-[270px] rotate-[-7deg] space-y-7">
-        {leftMorseRows.map((row) => (
-          <div
-            key={row.plain}
-            className="font-mono text-[13px] font-extrabold uppercase tracking-[0.2em] text-sky-950/20"
-          >
-            <div className="mb-2 text-[9px] tracking-[0.26em] text-sky-950/24">
-              {row.plain}
+        className="absolute inset-y-0 left-0 overflow-hidden"
+        style={sideRailStyle}
+      >
+        <div className="absolute right-5 top-28 w-[320px] rotate-[-7deg] space-y-7">
+          {leftMorseRows.map((row) => (
+            <div
+              key={row.plain}
+              className="font-mono text-[13px] font-extrabold uppercase tracking-[0.2em] text-sky-950/34"
+            >
+              <div className="mb-2 text-[9px] tracking-[0.26em] text-sky-950/40">
+                {row.plain}
+              </div>
+              <div className="leading-6">{row.morse}</div>
             </div>
-            <div className="leading-6">{row.morse}</div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      <div className="absolute right-[max(22px,calc(50%-760px))] top-40 w-[295px] rotate-[7deg] space-y-7 text-right">
-        {rightMorseRows.map((row) => (
-          <div
-            key={row.plain}
-            className="font-mono text-[13px] font-extrabold uppercase tracking-[0.2em] text-sky-950/20"
-          >
-            <div className="mb-2 text-[9px] tracking-[0.26em] text-sky-950/24">
-              {row.plain}
+      <div
+        className="absolute inset-y-0 right-0 overflow-hidden"
+        style={sideRailStyle}
+      >
+        <div className="absolute left-5 top-40 w-[330px] rotate-[7deg] space-y-7 text-right">
+          {rightMorseRows.map((row) => (
+            <div
+              key={row.plain}
+              className="font-mono text-[13px] font-extrabold uppercase tracking-[0.2em] text-sky-950/34"
+            >
+              <div className="mb-2 text-[9px] tracking-[0.26em] text-sky-950/40">
+                {row.plain}
+              </div>
+              <div className="leading-6">{row.morse}</div>
             </div>
-            <div className="leading-6">{row.morse}</div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
