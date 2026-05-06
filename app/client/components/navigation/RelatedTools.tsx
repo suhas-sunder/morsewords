@@ -406,9 +406,9 @@ function FullToolkit() {
   return (
     <section
       id="morse-code-navigation"
-      className="mx-auto mt-8 max-w-[1040px] overflow-hidden rounded-2xl bg-[#f4efe5]"
+      className="mx-auto mt-8 max-w-[1040px] px-4 sm:px-6 lg:px-8"
     >
-      <div className="bg-[#fbf7ef] px-5 py-6 sm:px-8 sm:py-7">
+      <div className="bg-[#f4efe5]/65 px-1 py-8 sm:px-2 sm:py-10">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
           <div className="max-w-[44rem]">
             <div className="flex items-center gap-3">
@@ -433,14 +433,14 @@ function FullToolkit() {
               Quick access
             </p>
 
-            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
               {FEATURED_LINKS.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="mw-button-outline group flex cursor-pointer items-center justify-between gap-4 rounded-xl bg-slate-950 px-5 py-4 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none active:scale-[0.99]"
+                  className="mw-button-outline mw-related-quick-link group flex cursor-pointer items-center justify-between gap-4 rounded-xl bg-slate-950 px-4 py-3 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
                 >
-                  <span className="text-lg font-semibold leading-snug text-current">
+                  <span className="text-base font-semibold leading-snug text-current">
                     {item.title}
                   </span>
                   <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-sky-100 transition group-hover:text-white">
@@ -451,10 +451,8 @@ function FullToolkit() {
             </div>
           </aside>
         </div>
-      </div>
 
-      <div className="bg-[#f4efe5] px-5 py-6 sm:px-8 sm:py-7">
-        <div className="space-y-8">
+        <div className="mt-8 space-y-8">
           {ROUTE_GROUPS.map((group) => (
             <section key={group.title}>
               <div className="grid gap-5 lg:grid-cols-[240px_minmax(0,1fr)]">
@@ -481,7 +479,7 @@ function FullToolkit() {
                     <a
                       key={item.href}
                       href={item.href}
-                      className="mw-button-outline group flex min-h-[168px] cursor-pointer flex-col rounded-xl bg-[#fffdf8] p-5 text-slate-700 transition hover:bg-slate-900 hover:text-sky-100"
+                      className="mw-button-outline mw-related-tool-link group flex min-h-[150px] cursor-pointer flex-col rounded-xl bg-[#fffdf8]/86 p-5 text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                     >
                       <div className="flex items-start justify-between gap-4">
                         <h4 className="max-w-[17rem] text-[1.05rem] font-extrabold leading-snug text-sky-950 transition group-hover:text-current sm:text-[1.15rem]">

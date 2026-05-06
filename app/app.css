@@ -236,6 +236,41 @@ main *::after {
   box-shadow: none !important;
 }
 
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  :where(.mw-related-tool-link, .mw-related-quick-link, .mw-related-summary) {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  :where(
+    .mw-related-tool-link,
+    .mw-related-quick-link,
+    .mw-related-summary
+  ):where(:hover, :active) {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  :where(.mw-related-tool-link, .mw-related-quick-link, .mw-related-summary):focus-visible {
+  box-shadow: none !important;
+  outline: 2px solid rgba(11, 36, 71, 0.34) !important;
+  outline-offset: 2px;
+}
+
 .mw-page-content .mw-non-home-page :where(input, textarea, select) {
   box-shadow: none !important;
 }

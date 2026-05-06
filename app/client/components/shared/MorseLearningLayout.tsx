@@ -183,7 +183,7 @@ export function SimpleGrid({
             <a
               key={item.title}
               href={item.href}
-              className="mw-button-outline group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline transition hover:bg-slate-900 hover:text-sky-100"
+              className="mw-button-outline mw-related-tool-link group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline transition hover:bg-slate-900 hover:text-sky-100"
             >
               {body}
               <span className="mt-4 inline-block text-sm font-semibold text-sky-900">

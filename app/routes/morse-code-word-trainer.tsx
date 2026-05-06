@@ -1103,11 +1103,11 @@ function MiniLink({
  return (
  <a
  href={href}
- className={`${toolControlButtonClass({
+ className={`mw-related-quick-link ${toolControlButtonClass({
  tone: "dark",
  size: "sm",
  rounded: "full",
- })} whitespace-nowrap text-center leading-none active:scale-95`}>
+ })} whitespace-nowrap text-center leading-none`}>
  {children}
  </a>
  );
