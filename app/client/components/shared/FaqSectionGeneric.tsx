@@ -15,18 +15,15 @@ export default function FaqSectionGeneric({
   description?: React.ReactNode;
 }) {
   const headingId = React.useId();
-  const useLightStyle = variant === undefined || variant === "home";
 
-  if (useLightStyle) {
+  if (variant === "home") {
     const defaultDescription =
-      variant === "home"
-        ? "Quick answers for spacing, supported characters, and decoding pasted Morse."
-        : null;
+      "Quick answers for spacing, supported characters, and decoding pasted Morse.";
     const renderedDescription = description ?? defaultDescription;
 
     return (
       <section
-        className={variant === "home" ? "mt-12 sm:mt-16" : "mt-10 sm:mt-12"}
+        className="mt-12 sm:mt-16"
         aria-labelledby={headingId}
       >
         <div className="mx-auto max-w-3xl text-center">
@@ -74,15 +71,16 @@ export default function FaqSectionGeneric({
 
   return (
     <section
-      className="mt-8 overflow-hidden rounded-2xl bg-[#fffdf8]"
+      className="mt-10 sm:mt-12"
       aria-labelledby={headingId}
     >
-      <div className="mw-static-surface-soft bg-[#fffaf2] px-5 pt-6 pb-4 sm:px-8 sm:pt-7 sm:pb-5">
-        <div className="flex items-center gap-3">
+      <div className="mx-auto max-w-3xl text-center">
+        <div className="flex items-center justify-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
             FAQ
           </span>
+          <span className="h-px w-8 bg-sky-800" />
         </div>
         <h2
           id={headingId}
@@ -90,18 +88,24 @@ export default function FaqSectionGeneric({
         >
           {title}
         </h2>
+        {description ? (
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
+            {description}
+          </p>
+        ) : null}
       </div>
-      <div className="mw-static-panel space-y-4 bg-[#fffdf8] px-5 pt-5 pb-7 sm:px-8 sm:pt-5 sm:pb-8">
+
+      <div className="mt-7 space-y-3">
         {items.map((it) => (
-          <details key={it.q} className="group">
-            <summary className="mw-button-outline flex min-h-16 cursor-pointer list-none items-center gap-5 rounded-xl bg-slate-950 px-6 py-6 text-xl font-medium leading-snug text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none active:scale-[0.99]">
-              <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-800 text-sky-100 transition group-open:rotate-90 group-hover:bg-slate-700 group-hover:text-white">
+          <details key={it.q} className="group rounded-xl">
+            <summary className="mw-faq-trigger flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-xl bg-[#fffaf2] px-4 py-4 text-left text-lg font-extrabold leading-snug text-sky-950 transition hover:bg-slate-950 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 group-open:bg-slate-950 group-open:text-sky-100 sm:px-5 sm:text-xl">
+              <span>{it.q}</span>
+              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center font-mono text-lg text-sky-700 transition group-open:rotate-90 group-open:text-sky-100">
                 &gt;
               </span>
-              <span className="leading-snug">{it.q}</span>
             </summary>
-            <div className="px-1 pt-4">
-              <p className="mw-static-surface-soft w-full max-w-none rounded-xl bg-white px-6 py-5 text-lg leading-relaxed text-slate-700 sm:text-xl">
+            <div className="mw-faq-answer mw-static-surface-soft mt-2 rounded-xl px-5 py-4">
+              <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
                 {it.a}
               </p>
             </div>

@@ -219,6 +219,23 @@ main *::after {
   outline-offset: 2px;
 }
 
+.mw-page-content .mw-non-home-page .mw-faq-trigger,
+.mw-page-content .mw-non-home-page .mw-faq-trigger:where(:hover, :active),
+.mw-page-content .mw-non-home-page details[open] > .mw-faq-trigger {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.mw-page-content .mw-non-home-page .mw-faq-trigger:focus-visible {
+  box-shadow: none !important;
+  outline: 2px solid rgba(11, 36, 71, 0.34) !important;
+  outline-offset: 2px;
+}
+
+.mw-page-content .mw-non-home-page .mw-faq-answer {
+  box-shadow: none !important;
+}
+
 .mw-page-content .mw-non-home-page :where(input, textarea, select) {
   box-shadow: none !important;
 }
