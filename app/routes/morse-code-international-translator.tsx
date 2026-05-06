@@ -142,7 +142,7 @@ export default function InternationalTranslator() {
         <TranslatorSectionsBasic
           title="International Morse Code Translator"
           subtitle={
-            <p className="mt-2 max-w-none text-base leading-7 text-slate-700 sm:text-[1.08rem]">
+            <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Convert English and world-language words into Morse using
               readable transliteration before encoding.
             </p>

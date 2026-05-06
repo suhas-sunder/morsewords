@@ -153,6 +153,26 @@ function normalizeMorseAnswer(value: string) {
  .trim();
 }
 
+function readStoredString(key: string, fallback: string) {
+ if (typeof window ==="undefined") return fallback;
+ try {
+ return window.localStorage.getItem(key) || fallback;
+ } catch {
+ return fallback;
+ }
+}
+
+function readStoredInt(key: string, fallback: number) {
+ if (typeof window ==="undefined") return fallback;
+ try {
+ const raw = window.localStorage.getItem(key);
+ const parsed = raw ? Number(raw) : fallback;
+ return Number.isFinite(parsed) ? parsed : fallback;
+ } catch {
+ return fallback;
+ }
+}
+
 function listLabel(name: WordListName) {
  if (name ==="custom") return"Custom";
  if (name ==="beginner") return"Beginner";
@@ -168,7 +188,8 @@ function getBuiltInWords(name: Exclude<WordListName,"custom">) {
 
 export default function MorseCodeWordTrainer() {
  const [listName, setListName] = React.useState<WordListName>("beginner");
- const [customWords, setCustomWords] = React.useState("signal\nteacher\npractice\ncopy",
+ const [customWords, setCustomWords] = React.useState(() =>
+ readStoredString(CUSTOM_WORDS_STORAGE_KEY, "signal\nteacher\npractice\ncopy"),
  );
  const [mode, setMode] = React.useState<TrainerMode>("morse_to_text");
  const [deckSource, setDeckSource] = React.useState<DeckSource>("list");
@@ -182,7 +203,9 @@ export default function MorseCodeWordTrainer() {
  const [correct, setCorrect] = React.useState(0);
  const [completed, setCompleted] = React.useState(0);
  const [streak, setStreak] = React.useState(0);
- const [bestStreak, setBestStreak] = React.useState(0);
+ const [bestStreak, setBestStreak] = React.useState(() =>
+ readStoredInt(BEST_STREAK_STORAGE_KEY, 0),
+ );
  const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
  const [wpm, setWpm] = React.useState(18);
  const [farnsworthWpm, setFarnsworthWpm] = React.useState(12);
@@ -222,21 +245,6 @@ export default function MorseCodeWordTrainer() {
  const progressPercent = deck.length
  ? Math.round((progressValue / deck.length) * 100)
  : 0;
-
- React.useEffect(() => {
- try {
- const savedCustomWords = window.localStorage.getItem(
- CUSTOM_WORDS_STORAGE_KEY,
- );
- if (savedCustomWords) setCustomWords(savedCustomWords);
-
- const rawBest = window.localStorage.getItem(BEST_STREAK_STORAGE_KEY);
- const parsedBest = rawBest ? Number(rawBest) : 0;
- if (Number.isFinite(parsedBest)) setBestStreak(parsedBest);
- } catch {
- // Local storage is a convenience, not a requirement.
- }
- }, []);
 
  React.useEffect(() => {
  try {

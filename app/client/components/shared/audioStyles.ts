@@ -8,7 +8,12 @@ const styles: Record<string, React.CSSProperties> = {
       "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
     margin: 0,
   },
-  wrap: { maxWidth: 1120, margin: "0 auto", padding: "16px 24px 36px" },
+  wrap: {
+    boxSizing: "border-box",
+    maxWidth: 1120,
+    margin: "0 auto",
+    padding: "8px clamp(16px, 2vw, 32px) 36px",
+  },
 
   breadcrumb: {
     display: "flex",

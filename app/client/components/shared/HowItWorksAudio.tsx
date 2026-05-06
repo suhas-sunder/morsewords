@@ -2,7 +2,7 @@ import * as React from "react";
 
 export default function HowItWorksAudio() {
   return (
-    <section className="mw-static-panel mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
+    <section className="mw-static-surface-soft mw-how-section mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -85,7 +85,7 @@ export default function HowItWorksAudio() {
       <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="units"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Timing units
@@ -145,7 +145,7 @@ export default function HowItWorksAudio() {
           </div>
         </div>
 
-        <div id="wpm" className="mw-static-panel rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+        <div id="wpm" className="py-6 sm:py-7">
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Speed and WPM
           </h3>
@@ -231,7 +231,7 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="farnsworth"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Farnsworth spacing
@@ -288,7 +288,7 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="sound"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Sound settings
@@ -364,7 +364,7 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="export"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Audio export
@@ -416,7 +416,7 @@ dah(ms) = 3 * dit(ms)`}
 
         <div
           id="troubleshooting"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting
@@ -453,7 +453,7 @@ dah(ms) = 3 * dit(ms)`}
           </ul>
         </div>
       </div>
-      <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mt-8 pt-6 sm:pt-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>

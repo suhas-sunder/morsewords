@@ -71,6 +71,33 @@ function readInt(key: string, fallback: number) {
  return Number.isFinite(parsed) ? parsed : fallback;
 }
 
+function readStoredMode(): DrillMode {
+ const savedMode = readStr(LS_MODE,"morse_to_text");
+ return savedMode ==="text_to_morse"||
+ savedMode ==="morse_to_text"||
+ savedMode ==="mixed"? savedMode
+ :"morse_to_text";
+}
+
+function readStoredDifficulty(): Difficulty |"all" {
+ const savedDifficulty = readStr(LS_DIFFICULTY,"all");
+ return savedDifficulty ==="easy"||
+ savedDifficulty ==="medium"||
+ savedDifficulty ==="hard"||
+ savedDifficulty ==="all"? savedDifficulty
+ :"all";
+}
+
+function readStoredSetFilter(): SetFilter {
+ const savedSet = readStr(LS_SET,"all");
+ return savedSet ==="all"||
+ savedSet ==="beginner"||
+ savedSet ==="radio"||
+ savedSet ==="reports"||
+ savedSet ==="spacing"? savedSet
+ :"all";
+}
+
 function pickKind(mode: DrillMode): PromptKind {
  if (mode ==="mixed")
  return Math.random() < 0.5 ?"text_to_morse":"morse_to_text";
@@ -253,9 +280,13 @@ function MorseLine({ text }: { text: string }) {
 
 export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  const [hydrated, setHydrated] = React.useState(false);
- const [mode, setMode] = React.useState<DrillMode>("morse_to_text");
- const [difficulty, setDifficulty] = React.useState<Difficulty |"all">("all");
- const [setFilter, setSetFilter] = React.useState<SetFilter>("all");
+ const [mode, setMode] = React.useState<DrillMode>(() => readStoredMode());
+ const [difficulty, setDifficulty] = React.useState<Difficulty |"all">(() =>
+ readStoredDifficulty(),
+ );
+ const [setFilter, setSetFilter] = React.useState<SetFilter>(() =>
+ readStoredSetFilter(),
+ );
 
  const pool = React.useMemo(
  () => buildPool(difficulty, setFilter),
@@ -272,7 +303,9 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  const [attempts, setAttempts] = React.useState(0);
  const [correct, setCorrect] = React.useState(0);
  const [streak, setStreak] = React.useState(0);
- const [bestStreak, setBestStreak] = React.useState(0);
+ const [bestStreak, setBestStreak] = React.useState(() =>
+ readInt(LS_BEST_STREAK, 0),
+ );
  const [completed, setCompleted] = React.useState(0);
  const [skipped, setSkipped] = React.useState(0);
  const [solvedThisQuestion, setSolvedThisQuestion] = React.useState(false);
@@ -286,34 +319,6 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  const advanceLockedRef = React.useRef(false);
 
  React.useEffect(() => {
- const savedMode = readStr(LS_MODE,"morse_to_text");
- const nextMode: DrillMode =
- savedMode ==="text_to_morse"||
- savedMode ==="morse_to_text"||
- savedMode ==="mixed"? savedMode
- :"morse_to_text";
-
- const savedDifficulty = readStr(LS_DIFFICULTY,"all");
- const nextDifficulty: Difficulty |"all"=
- savedDifficulty ==="easy"||
- savedDifficulty ==="medium"||
- savedDifficulty ==="hard"||
- savedDifficulty ==="all"? savedDifficulty
- :"all";
-
- const savedSet = readStr(LS_SET,"all");
- const nextSet: SetFilter =
- savedSet ==="all"||
- savedSet ==="beginner"||
- savedSet ==="radio"||
- savedSet ==="reports"||
- savedSet ==="spacing"? savedSet
- :"all";
-
- setMode(nextMode);
- setDifficulty(nextDifficulty);
- setSetFilter(nextSet);
- setBestStreak(readInt(LS_BEST_STREAK, 0));
  setHydrated(true);
  }, []);
 
@@ -466,37 +471,37 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  Sentence practice
  </span>
  </div>
- <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+ <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
  Morse Code Sentence Practice
  </h1>
- <p className="max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
+ <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
  Decode and send complete Morse code sentences with a longer typing
  area, instant checking, sentence difficulty filters, and spacing
  hints built for full-phrase practice.
  </p>
  </div>
 
- <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
+ <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
  <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
- <div className="inline-flex w-full rounded-xl bg-[#fffdf8]/75 p-1 sm:w-auto">
+ <div className="flex w-full flex-wrap gap-2 sm:w-auto">
  <button
  type="button" onClick={() => setMode("text_to_morse")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="text_to_morse"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
+ mode ==="text_to_morse"?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
  >
                     Text → Morse
  </button>
  <button
  type="button" onClick={() => setMode("morse_to_text")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="morse_to_text"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
+ mode ==="morse_to_text"?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
  >
                     Morse → Text
  </button>
  <button
  type="button" onClick={() => setMode("mixed")}
  className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="mixed"?"bg-slate-950 text-sky-100":"text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
+ mode ==="mixed"?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
  >
  Mixed
  </button>

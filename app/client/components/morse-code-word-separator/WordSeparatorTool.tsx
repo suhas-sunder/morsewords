@@ -129,25 +129,25 @@ export default function WordSeparatorTool() {
             Separator tool
           </span>
         </div>
-        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
           Morse code word separator
         </h1>
-        <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
+        <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
           Normalize Morse word breaks and format English to Morse separators
           using <strong>7 spaces</strong>, <strong>/</strong>,{" "}
           <strong>|</strong>, or <strong>new lines</strong>.
         </p>
       </div>
 
-      <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
+      <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
       <div className="flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
-        <div className="inline-flex gap-2 rounded-lg bg-[#fffdf8]/75 p-1">
+        <div className="inline-flex gap-2 rounded-lg">
           <button
             onClick={() => setMode("normalizeMorse")}
             className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
               mode === "normalizeMorse"
                 ? "bg-slate-950 text-sky-100"
-                : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
+                : "bg-white/88 text-slate-700 hover:bg-slate-900 hover:text-sky-100"
             }`}
             aria-pressed={mode === "normalizeMorse"}
           >
@@ -158,7 +158,7 @@ export default function WordSeparatorTool() {
             className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
               mode === "englishToMorse"
                 ? "bg-slate-950 text-sky-100"
-                : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
+                : "bg-white/88 text-slate-700 hover:bg-slate-900 hover:text-sky-100"
             }`}
             aria-pressed={mode === "englishToMorse"}
           >
@@ -166,7 +166,7 @@ export default function WordSeparatorTool() {
           </button>
         </div>
 
-        <div className="inline-flex flex-wrap gap-2 rounded-lg bg-[#fffdf8]/75 p-1">
+        <div className="inline-flex flex-wrap gap-2 rounded-lg">
           {sepOptions.map(([label, v]) => (
             <button
               key={v}
@@ -174,7 +174,7 @@ export default function WordSeparatorTool() {
               className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
                 sep === v
                   ? "bg-slate-950 text-sky-100"
-                  : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
+                  : "bg-white/88 text-slate-700 hover:bg-slate-900 hover:text-sky-100"
               }`}
               aria-pressed={sep === v}
             >
@@ -185,7 +185,7 @@ export default function WordSeparatorTool() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-[#fffdf8]/85">
+        <div className="overflow-hidden rounded-xl bg-white/88">
           <div className="flex items-center justify-between gap-2">
             <h2 className="px-4 pt-4 font-extrabold text-sky-950">
               {mode === "normalizeMorse" ? "Paste Morse" : "English input"}
@@ -205,7 +205,7 @@ export default function WordSeparatorTool() {
               <textarea
                 value={morseInput}
                 onChange={(e) => setMorseInput(e.target.value)}
-                className="min-h-[180px] w-full bg-transparent p-4 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-sky-300 sm:text-base"
+                className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sm text-slate-950 outline-none focus:ring-0 focus-visible:outline-none sm:text-base"
                 spellCheck={false}
               />
               <p className="px-4 pb-4 text-xs text-slate-600">
@@ -218,7 +218,7 @@ export default function WordSeparatorTool() {
               <textarea
                 value={englishInput}
                 onChange={(e) => setEnglishInput(e.target.value)}
-                className="min-h-[180px] w-full bg-transparent p-4 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300 sm:text-base"
+                className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 text-sm text-slate-950 outline-none focus:ring-0 focus-visible:outline-none sm:text-base"
                 spellCheck={false}
               />
               <p className="px-4 pb-4 text-xs text-slate-600">
@@ -234,7 +234,7 @@ export default function WordSeparatorTool() {
             <h2 className="px-4 pt-4 font-extrabold text-slate-200">Output</h2>
           </div>
 
-          <pre className="min-h-[180px] w-full whitespace-pre-wrap bg-transparent p-4 font-mono text-sm text-sky-100 sm:text-base">
+          <pre className="min-h-[10rem] w-full whitespace-pre-wrap bg-transparent p-4 font-mono text-sm text-sky-100 sm:text-base">
             {out || "-"}
           </pre>
 

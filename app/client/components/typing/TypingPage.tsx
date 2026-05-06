@@ -65,8 +65,12 @@ type Props = {
 export default function TypingPage({ jsonLd }: Props) {
   const inputRef = React.useRef<HTMLTextAreaElement | null>(null);
 
-  const [inputMode, setInputMode] = React.useState<InputMode>("dotdash");
-  const [showStats, setShowStats] = React.useState(true);
+  const [inputMode, setInputMode] = React.useState<InputMode>(
+    () => (readStr(LS_INPUT_MODE, "dotdash") as InputMode) || "dotdash",
+  );
+  const [showStats, setShowStats] = React.useState(() =>
+    readBool(LS_SHOW_STATS, true),
+  );
 
   // Session timer (endurance typing)
   const DURATION_PRESETS: Array<{ label: string; sec: number }> = React.useMemo(
@@ -81,7 +85,9 @@ export default function TypingPage({ jsonLd }: Props) {
     [],
   );
 
-  const [durationSec, setDurationSec] = React.useState<number>(30);
+  const [durationSec, setDurationSec] = React.useState<number>(() =>
+    readNum(LS_TYPING_DURATION, 30),
+  );
   const [sessionState, setSessionState] = React.useState<
     "idle" | "running" | "paused" | "done"
   >("idle");
@@ -97,12 +103,6 @@ export default function TypingPage({ jsonLd }: Props) {
   const [showEndScreen, setShowEndScreen] = React.useState(false);
 
   const [raw, setRaw] = React.useState("");
-
-  React.useEffect(() => {
-    setInputMode((readStr(LS_INPUT_MODE, "dotdash") as InputMode) || "dotdash");
-    setShowStats(readBool(LS_SHOW_STATS, true));
-    setDurationSec(readNum(LS_TYPING_DURATION, 30));
-  }, []);
 
   React.useEffect(() => {
     writeStr(LS_INPUT_MODE, inputMode);
@@ -518,20 +518,20 @@ export default function TypingPage({ jsonLd }: Props) {
                 Typing practice
               </span>
             </div>
-            <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+            <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
               Morse Code Typing
             </h1>
-            <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Freeform, input-first Morse typing with real-time decoding. Built
               for fluent users who want repetition, rhythm, and endurance.
             </p>
           </div>
 
-          <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
+          <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
           {/* Top control bar: durations + session controls + input mode + stats */}
           <div className="flex flex-col gap-3">
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-              <div className="inline-flex w-full flex-wrap gap-2 rounded-lg bg-[#fffdf8]/75 p-1 sm:w-auto">
+              <div className="flex w-full flex-wrap gap-2 sm:w-auto">
                 {DURATION_PRESETS.map((p) => (
                   <button
                     key={p.sec}
@@ -543,7 +543,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition ${
                       durationSec === p.sec
                         ? "bg-slate-950 text-sky-100"
-                        : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
+                        : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
                     }`}
                     aria-label={`Set session duration to ${p.label}`}
                     title={
@@ -588,14 +588,14 @@ export default function TypingPage({ jsonLd }: Props) {
               </div>
 
               <div className="sm:ml-auto flex flex-wrap items-center gap-2 justify-end">
-                <div className="inline-flex w-full gap-2 rounded-lg bg-[#fffdf8]/75 p-1 sm:w-auto">
+                <div className="flex w-full flex-wrap gap-2 sm:w-auto">
                   <button
                     type="button"
                     onClick={() => setInputMode("dotdash")}
                     className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/2 sm:w-auto ${
                       inputMode === "dotdash"
                         ? "bg-slate-950 text-sky-100"
-                        : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
+                        : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
                     }`}
                     aria-label="Use dot and dash input"
                     title="Type . for dit and - for dah"
@@ -608,7 +608,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/2 sm:w-auto ${
                       inputMode === "fj"
                         ? "bg-slate-950 text-sky-100"
-                        : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
+                        : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
                     }`}
                     aria-label="Use F and J input"
                     title="Type F for dit and J for dah"
@@ -755,8 +755,15 @@ export default function TypingPage({ jsonLd }: Props) {
               ) : null}
               </div>
 
-              <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-4 sm:p-5">
-                <label className="text-sky-900 font-bold">Input</label>
+              <div className="overflow-hidden rounded-xl bg-white/88">
+                <div className="flex items-center justify-between gap-3 px-4 py-3">
+                  <label className="text-sm font-extrabold text-sky-950">
+                    Input
+                  </label>
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                    Source
+                  </span>
+                </div>
                 <textarea
                   ref={inputRef}
                   value={raw}
@@ -780,7 +787,7 @@ export default function TypingPage({ jsonLd }: Props) {
                   autoCapitalize="off"
                   autoCorrect="off"
                   spellCheck={false}
-                  className="mt-3 box-border min-h-[140px] max-h-[260px] w-full max-w-full min-w-0 resize-y overflow-auto rounded-lg bg-transparent p-0 font-mono outline-none focus:ring-0"
+                  className="box-border min-h-[10rem] max-h-[260px] w-full max-w-full min-w-0 resize-y overflow-auto border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
                   style={{
                     whiteSpace: "pre-wrap",
                     overflowX: "hidden",

@@ -30,6 +30,27 @@ const defaultModeForPool = (pool: Pool): DrillMode => {
   return pool === "words" || pool === "sentences" ? "text_to_morse" : "mixed";
 };
 
+function readStoredPool(): Pool {
+  const poolRaw = readStr(LS_POOL, "all");
+  return poolRaw === "all" ||
+    poolRaw === "letters" ||
+    poolRaw === "numbers" ||
+    poolRaw === "signals" ||
+    poolRaw === "words" ||
+    poolRaw === "sentences"
+    ? (poolRaw as Pool)
+    : "all";
+}
+
+function readStoredMode(pool: Pool): DrillMode {
+  const modeRaw = readStr(lsModeKey(pool), defaultModeForPool(pool));
+  return modeRaw === "text_to_morse" ||
+    modeRaw === "morse_to_text" ||
+    modeRaw === "mixed"
+    ? (modeRaw as DrillMode)
+    : defaultModeForPool(pool);
+}
+
 function readStr(key: string, fallback: string) {
   if (typeof window === "undefined") return fallback;
   try {
@@ -59,12 +80,15 @@ function writeInt(key: string, val: number) {
 }
 
 export default function PracticePage({ jsonLd }: { jsonLd: any }) {
-  // Hydration safety: do not read localStorage or generate random prompts during SSR/first paint.
-  // Load persisted settings after mount.
+  const initialPool = React.useMemo(() => readStoredPool(), []);
+  const initialMode = React.useMemo(
+    () => readStoredMode(initialPool),
+    [initialPool],
+  );
   const [hydrated, setHydrated] = React.useState(false);
 
-  const [pool, setPool] = React.useState<Pool>("all");
-  const [mode, setMode] = React.useState<DrillMode>(defaultModeForPool("all"));
+  const [pool, setPool] = React.useState<Pool>(initialPool);
+  const [mode, setMode] = React.useState<DrillMode>(initialMode);
 
   const [prompt, setPrompt] = React.useState<Prompt>(() => ({
     kind: "text_to_morse",
@@ -89,34 +113,11 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
   const [correct, setCorrect] = React.useState(0);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(0);
+  const [bestStreak, setBestStreak] = React.useState(() =>
+    readInt(lsBestStreakKey(initialPool), 0),
+  );
 
   React.useEffect(() => {
-    // Load persisted settings once on mount.
-    const poolRaw = readStr(LS_POOL, "all");
-    const nextPool: Pool =
-      poolRaw === "all" ||
-      poolRaw === "letters" ||
-      poolRaw === "numbers" ||
-      poolRaw === "signals" ||
-      poolRaw === "words" ||
-      poolRaw === "sentences"
-        ? (poolRaw as Pool)
-        : "all";
-
-    const modeRaw = readStr(lsModeKey(nextPool), defaultModeForPool(nextPool));
-    const nextMode: DrillMode =
-      modeRaw === "text_to_morse" ||
-      modeRaw === "morse_to_text" ||
-      modeRaw === "mixed"
-        ? (modeRaw as DrillMode)
-        : defaultModeForPool(nextPool);
-
-    const nextBest = readInt(lsBestStreakKey(nextPool), 0);
-
-    setPool((p) => (p === nextPool ? p : nextPool));
-    setMode((m) => (m === nextMode ? m : nextMode));
-    setBestStreak((b) => (b === nextBest ? b : nextBest));
     setHydrated(true);
   }, []);
 
@@ -290,26 +291,26 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               Practice drill
             </span>
           </div>
-          <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+          <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
             Morse Code Practice (Quiz)
           </h1>
-          <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
+          <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
             A focused 10-question Morse quiz. One prompt at a time with instant
             feedback.
           </p>
         </div>
 
-        <div className="pb-6 pt-4 sm:pb-7 sm:pt-5">
+        <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
         {/* Top control bar */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-          <div className="inline-flex w-full gap-2 rounded-lg bg-[#fffdf8]/75 p-1 sm:w-auto">
+          <div className="flex w-full flex-wrap gap-2 sm:w-auto">
             <button
               type="button"
               onClick={() => setMode("text_to_morse")}
               className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "text_to_morse"
                   ? "bg-slate-950 text-sky-100"
-                  : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
+                  : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
               }`}
             >
               Text → Morse
@@ -320,7 +321,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "morse_to_text"
                   ? "bg-slate-950 text-sky-100"
-                  : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
+                  : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
               }`}
             >
               Morse → Text
@@ -331,7 +332,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
                 mode === "mixed"
                   ? "bg-slate-950 text-sky-100"
-                  : "text-slate-700 hover:bg-slate-900 hover:text-sky-100"
+                  : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
               }`}
             >
               Mixed
@@ -493,7 +494,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}
                   placeholder={placeholder}
-                  className="mt-2 w-full rounded-xl bg-[#fffdf8]/90 p-3 font-mono transition focus:outline-none focus:ring-2 focus:ring-sky-300"
+                  className="mt-2 w-full rounded-xl border-0 bg-white/88 p-4 font-mono text-slate-950 outline-none transition focus:ring-0 focus-visible:outline-none"
                   onKeyDown={(e) => {
                     if (e.key !== "Enter") return;
                     if (solvedThisQuestion) {

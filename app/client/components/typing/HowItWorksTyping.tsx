@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export default function HowItWorksTyping() {
   return (
-    <section className="mw-static-panel mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
+    <section className="mw-static-surface-soft mw-how-section mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
@@ -71,7 +71,7 @@ export default function HowItWorksTyping() {
       <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="typing-input"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Input rules
@@ -147,7 +147,7 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-boundaries"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Boundaries
@@ -188,7 +188,7 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-timer"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Timed sessions
@@ -217,7 +217,7 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-stats"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             What the stats mean
@@ -293,7 +293,7 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-pitfalls"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Common pitfalls (and quick fixes)
@@ -326,7 +326,7 @@ export default function HowItWorksTyping() {
 
         <div
           id="typing-sharing"
-          className="rounded-xl bg-[#fffdf8] p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Sharing your results
@@ -347,7 +347,7 @@ export default function HowItWorksTyping() {
         </div>
       </div>
 
-      <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
+      <div className="mt-8 pt-6 sm:pt-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>

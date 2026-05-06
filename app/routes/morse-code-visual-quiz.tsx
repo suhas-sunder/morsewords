@@ -106,7 +106,9 @@ export default function MorseCodeVisualQuiz() {
   const [completed, setCompleted] = React.useState(0);
   const [solved, setSolved] = React.useState(false);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(0);
+  const [bestStreak, setBestStreak] = React.useState(() =>
+    readStoredInt("mw_visual_quiz_best_streak", 0),
+  );
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
   const [wpm, setWpm] = React.useState(14);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
@@ -118,16 +120,6 @@ export default function MorseCodeVisualQuiz() {
   const isCorrect = answer.trim().toLowerCase() === prompt;
   const gameOver = completed >= TOTAL_QUESTIONS;
   const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
-
-  React.useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem("mw_visual_quiz_best_streak");
-      const parsed = raw ? Number(raw) : 0;
-      if (Number.isFinite(parsed)) setBestStreak(parsed);
-    } catch {
-      // ignore
-    }
-  }, []);
 
   React.useEffect(() => {
     try {
@@ -511,6 +503,17 @@ export default function MorseCodeVisualQuiz() {
       </main>
     </div>
   );
+}
+
+function readStoredInt(key: string, fallback: number) {
+  if (typeof window === "undefined") return fallback;
+  try {
+    const raw = window.localStorage.getItem(key);
+    const parsed = raw ? Number(raw) : fallback;
+    return Number.isFinite(parsed) ? parsed : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 function SliderRow({

@@ -166,9 +166,6 @@ export default function MorseCodeSoundGeneratorRoute() {
           morseModeLabel="Morse to beep audio"
           textInputLabel="Message to turn into Morse sound"
           morseInputLabel="Morse code to play as sound"
-          primaryExampleText="CQ CQ DE MORSEWORDS TEST 123"
-          secondaryExampleText="SEND HELP SLOWLY"
-          morseExample="... --- ...   .... . .-.. .--."
           exportFormats={["wav", "mp3"]}
         />
         <SoundGeneratorGuide />

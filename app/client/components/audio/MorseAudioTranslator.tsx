@@ -7,9 +7,13 @@ import useMorseAudio, {
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import {
   HOME_TOOL_EXAMPLES,
+  ToolButton,
   ToolHero,
   ToolModeButton,
+  ToolOutputPanel,
+  ToolPanel,
   ToolSampleButtons,
+  ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
 import {
   getUnsupportedTextCharacters,
@@ -377,24 +381,14 @@ export default function MorseAudioTranslator() {
               </div>
 
               <div className="mt-4 grid gap-4 lg:grid-cols-2">
-                <div className="overflow-hidden rounded-xl bg-white/88">
-                  <div className="flex items-center justify-between gap-3 px-4 py-3">
-                    <label
-                      htmlFor="mw_audio_source"
-                      className="text-sm font-extrabold text-sky-950"
-                    >
-                      {sourceMode === "text" ? "Input (Text)" : "Input (Morse)"}
-                    </label>
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
-                      Source
-                    </span>
-                  </div>
-
+                <ToolPanel
+                  label={sourceMode === "text" ? "Input (Text)" : "Input (Morse)"}
+                  badge="Source"
+                >
                   {sourceMode === "text" ? (
                     <>
-                      <textarea
+                      <ToolTextarea
                         id="mw_audio_source"
-                        className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Example: Hello world"
@@ -419,9 +413,8 @@ export default function MorseAudioTranslator() {
                     </>
                   ) : (
                     <>
-                      <textarea
+                      <ToolTextarea
                         id="mw_audio_source"
-                        className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
                         value={morse}
                         onChange={(e) => setMorse(e.target.value)}
                         placeholder="Example: ... --- ..."
@@ -442,50 +435,42 @@ export default function MorseAudioTranslator() {
                       )}
                     </>
                   )}
-                </div>
+                </ToolPanel>
 
-                <div className="overflow-hidden rounded-xl bg-slate-950">
-                  <div className="flex items-center justify-between gap-3 px-4 py-3">
-                    <h2 className="text-sm font-extrabold text-slate-200">
-                      Output (Morse)
-                    </h2>
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
-                      Result
-                    </span>
-                  </div>
+                <ToolOutputPanel
+                  label="Output (Morse)"
+                  footer={
+                    <>
+                      <ToolButton
+                        type="button"
+                        tone="darkPanel"
+                        onClick={handleClearOutput}
+                        className="rounded-md px-3 py-1.5 text-sm"
+                      >
+                        Clear output
+                      </ToolButton>
 
+                      <ToolButton
+                        type="button"
+                        tone="darkPanel"
+                        onClick={handleCopyMorse}
+                        disabled={!canPlay}
+                        className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm"
+                      >
+                        <CopyIcon size={16} title="Copy Morse" />
+                        <span>{copied === "morse" ? "Copied" : "Copy Morse"}</span>
+                      </ToolButton>
+                    </>
+                  }
+                >
                   <pre className="min-h-[10rem] max-h-[18rem] overflow-auto whitespace-pre-wrap break-words bg-transparent p-4 font-mono text-sm leading-relaxed text-sky-100 sm:text-base">
                     {activeCode.trim() || "Your Morse output will appear here."}
                   </pre>
-
-                  <div className="flex flex-wrap items-center gap-2 px-4 py-3">
-                    <button
-                      type="button"
-                      onClick={handleClearOutput}
-                      className="cursor-pointer rounded-md bg-slate-700/95 px-3 py-1.5 text-sm font-semibold text-slate-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none"
-                    >
-                      Clear output
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={handleCopyMorse}
-                      disabled={!canPlay}
-                      className={`inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus:outline-none ${
-                        canPlay
-                          ? "bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white"
-                          : "cursor-not-allowed bg-slate-800 text-slate-500"
-                      }`}
-                    >
-                      <CopyIcon size={16} title="Copy Morse" />
-                      <span>{copied === "morse" ? "Copied" : "Copy Morse"}</span>
-                    </button>
-                  </div>
-                </div>
+                </ToolOutputPanel>
               </div>
 
               <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
-                <button
+                <ToolButton
                   onClick={() => {
                     if (player.state === "idle") {
                       handlePlay();
@@ -500,15 +485,9 @@ export default function MorseAudioTranslator() {
                       ? !player.isSupported
                       : !canPlay || !player.isSupported
                   }
-                  className={`flex justify-center items-center gap-2 px-3 py-2.5 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
-                    player.state === "playing"
-                      ? player.isSupported
-                        ? "bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100"
-                        : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
-                      : canPlay && player.isSupported
-                        ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-                        : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
-                  }`}
+                  active={player.state !== "playing" && canPlay && player.isSupported}
+                  className="flex justify-center items-center gap-2 rounded-xl py-2.5"
+                  tone={player.state === "playing" ? "light" : "dark"}
                 >
                   {player.state === "playing" ? (
                     <PauseIcon size={22} title="Pause audio" />
@@ -529,33 +508,27 @@ export default function MorseAudioTranslator() {
                         ? "Resume"
                         : "Play"}
                   </span>
-                </button>
+                </ToolButton>
 
-                <button
+                <ToolButton
                   onClick={player.stop}
                   disabled={!player.isSupported || player.state === "idle"}
-                  className={`flex justify-center items-center gap-2 px-3 py-2.5 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
-                    player.isSupported && player.state !== "idle"
-                      ? "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-                      : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
-                  }`}
+                  tone="light"
+                  className="flex justify-center items-center gap-2 rounded-xl py-2.5"
                 >
                   <StopIcon size={22} title="Stop audio" />
                   <span>Stop</span>
-                </button>
+                </ToolButton>
 
-                <button
+                <ToolButton
                   onClick={handleExportWav}
                   disabled={!canPlay || !soundOn}
-                  className={`flex justify-center items-center gap-2 px-3 py-2.5 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
-                    canPlay && soundOn
-                      ? "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-                      : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
-                  }`}
+                  tone="light"
+                  className="flex justify-center items-center gap-2 rounded-xl py-2.5"
                 >
                   <SaveIcon size={22} title="Export WAV" />
                   <span>Export WAV</span>
-                </button>
+                </ToolButton>
               </div>
             </div>
 

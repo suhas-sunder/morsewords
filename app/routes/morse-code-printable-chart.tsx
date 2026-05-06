@@ -344,6 +344,16 @@ function mergeSettings(value: unknown): PrintableSettings {
   };
 }
 
+function readInitialPrintableSettings(): PrintableSettings {
+  if (typeof window === "undefined") return DEFAULT_SETTINGS;
+  try {
+    const stored = window.localStorage.getItem(SETTINGS_STORAGE_KEY);
+    return stored ? mergeSettings(JSON.parse(stored)) : DEFAULT_SETTINGS;
+  } catch {
+    return DEFAULT_SETTINGS;
+  }
+}
+
 function chunkRows<T>(rows: T[], columns: number) {
   const chunkSize = Math.ceil(rows.length / columns);
   return Array.from({ length: columns }, (_, columnIndex) =>
@@ -2028,7 +2038,7 @@ function SettingsSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="mw-static-panel min-w-0 rounded-2xl bg-[#fffdf8] p-4">
+    <section className="mw-static-surface-soft min-w-0 rounded-xl bg-[#fffaf2]/45 p-4">
       <h3 className="m-0 break-words text-lg font-extrabold text-sky-950">
         {title}
       </h3>
@@ -2065,7 +2075,7 @@ function ContentLimitNote({
   ].filter(Boolean);
 
   return (
-    <div className="mw-static-panel mt-3 rounded-xl bg-[#fffdf8] p-3 text-xs leading-relaxed text-slate-600">
+    <div className="mw-static-tile mt-3 rounded-xl bg-[#f7f4ee] p-3 text-xs leading-relaxed text-slate-600">
       <div className="flex items-center gap-2 font-bold text-sky-900">
         <WarningIcon size={16} title={`${label} limits`} />
         Content limits
@@ -2148,12 +2158,12 @@ function NumberField({
 
 function PreviewReferenceTable({ rows }: { rows: CharacterRow[] }) {
   return (
-    <section className="mw-static-panel min-w-0 rounded-xl bg-[#fffdf8]/85 p-4">
+    <section className="mw-static-surface-soft min-w-0 rounded-xl bg-[#fffaf2]/45 p-4">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Reference guide page
         </h3>
-        <span className="mw-static-tile shrink-0 rounded-full bg-sky-50 px-3 py-1 text-xs font-black text-sky-800">
+        <span className="mw-static-tile shrink-0 rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-black text-sky-800">
           Included
         </span>
       </div>
@@ -2161,7 +2171,7 @@ function PreviewReferenceTable({ rows }: { rows: CharacterRow[] }) {
         {rows.slice(0, 15) .map((row) => (
           <div
             key={`preview-chart-${row.character}`}
-            className="min-w-0 rounded-xl bg-sky-50 px-2 py-2"
+            className="mw-static-tile min-w-0 rounded-xl bg-[#f7f4ee] px-2 py-2"
           >
             <strong>{row.character}</strong>{" "}
             <code className="break-words font-bold">{row.morse}</code>
@@ -2181,17 +2191,17 @@ function WorksheetPaperPreview({
   const sentences = getWorksheetSentences(settings);
 
   return (
-    <section className="mw-static-panel min-w-0 rounded-xl bg-[#fffdf8]/85 p-4">
+    <section className="mw-static-surface-soft min-w-0 rounded-xl bg-[#fffaf2]/45 p-4">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Worksheet page
         </h3>
-        <span className="mw-static-tile shrink-0 rounded-full bg-sky-50 px-3 py-1 text-xs font-black text-sky-800">
+        <span className="mw-static-tile shrink-0 rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-black text-sky-800">
           {worksheetLevelLabel(settings.worksheetLevel)}
         </span>
       </div>
 
-      <div className="mw-static-surface-soft mt-3 min-w-0 rounded-2xl bg-sky-50 p-3">
+      <div className="mw-static-tile mt-3 min-w-0 rounded-2xl bg-[#f7f4ee] p-3">
         <div className="flex min-w-0 items-center gap-3">
           {settings.customLogoDataUrl ? (
             <img
@@ -2223,7 +2233,7 @@ function WorksheetPaperPreview({
         {words.slice(0, 4) .map((word) => (
           <div
             key={`preview-word-${word}`}
-            className="min-w-0 rounded-xl bg-sky-50 px-3 py-2 text-xs"
+            className="mw-static-tile min-w-0 rounded-xl bg-[#f7f4ee] px-3 py-2 text-xs"
           >
             <strong className="break-words">{cleanMorseInput(word)}</strong>{" "}
             <code className="break-words font-bold">{encodeToMorse(word)}</code>
@@ -2232,7 +2242,7 @@ function WorksheetPaperPreview({
       </div>
 
       {sentences.length > 0 ? (
-        <div className="mw-static-surface-soft mt-3 min-w-0 rounded-xl bg-sky-50 px-3 py-2 text-xs text-slate-700">
+        <div className="mw-static-tile mt-3 min-w-0 rounded-xl bg-[#f7f4ee] px-3 py-2 text-xs text-slate-700">
           <strong>Sentences:</strong>{" "}
           <span className="break-words">{sentences.join(" · ")}</span>
         </div>
@@ -2253,17 +2263,17 @@ function AnswerKeyPreview({ settings }: { settings: PrintableSettings }) {
   const sentences = getWorksheetSentences(settings);
 
   return (
-    <section className="mw-static-panel min-w-0 rounded-xl bg-[#fffdf8]/85 p-4">
+    <section className="mw-static-surface-soft min-w-0 rounded-xl bg-[#fffaf2]/45 p-4">
       <div className="flex min-w-0 items-center justify-between gap-3">
         <h3 className="m-0 min-w-0 break-words text-base font-black text-sky-800">
           Answer key page
         </h3>
-        <span className="mw-static-tile shrink-0 rounded-full bg-sky-50 px-3 py-1 text-xs font-black text-sky-800">
+        <span className="mw-static-tile shrink-0 rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-black text-sky-800">
           Last page
         </span>
       </div>
 
-      <div className="mw-static-surface-soft mt-3 rounded-xl bg-sky-50 p-3 text-xs text-slate-700">
+      <div className="mw-static-tile mt-3 rounded-xl bg-[#f7f4ee] p-3 text-xs text-slate-700">
         <div className="font-black text-sky-800">Included at the very end</div>
         <div className="mt-2">
           Answers for decode words, encode words, and sentence practice
@@ -2296,7 +2306,7 @@ function LivePreview({
   const isPdf = downloadFormat === "pdf";
 
   return (
-    <aside className="mw-static-panel min-w-0 rounded-2xl bg-[#fffdf8] p-5 lg:sticky lg:top-4">
+    <aside className="mw-static-surface-soft min-w-0 rounded-xl bg-[#fffaf2]/45 p-5 lg:sticky lg:top-4">
       <div className="flex min-w-0 flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="m-0 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -2312,7 +2322,7 @@ function LivePreview({
         </div>
       </div>
 
-      <div className="mw-static-panel mt-4 rounded-xl bg-[#fffdf8] p-3">
+      <div className="mt-4 rounded-xl p-0">
         <label className="block">
           <span className="block text-sm font-semibold text-sky-950">
             Download format
@@ -2387,7 +2397,7 @@ function LivePreview({
       </div>
 
       {settings.includeBranding && qrCodeDataUrl ? (
-        <div className="mw-static-panel mt-4 min-w-0 rounded-xl bg-[#fffdf8] p-3 text-xs text-slate-700">
+        <div className="mw-static-tile mt-4 min-w-0 rounded-xl bg-[#f7f4ee] p-3 text-xs text-slate-700">
           <div className="flex min-w-0 items-center gap-3">
             <img
               src={qrCodeDataUrl}
@@ -2429,7 +2439,7 @@ function CharacterGrid({
         {rows.map((row) => (
           <article
             key={`${row.character}-${row.morse}`}
-            className="min-w-0 rounded-xl bg-[#fffaf2]/70 p-4"
+            className="mw-static-tile min-w-0 rounded-xl bg-[#f7f4ee] p-4"
           >
             <div className="flex min-w-0 items-start justify-between gap-3">
               <div className="min-w-0">
@@ -2440,7 +2450,7 @@ function CharacterGrid({
                   {row.character}
                 </div>
               </div>
-              <code className="mw-static-code shrink-0 rounded-xl bg-slate-50 px-3 py-2 text-base font-black text-slate-900">
+              <code className="mw-static-code shrink-0 rounded-xl bg-[#f2eee6] px-3 py-2 text-base font-black text-slate-900">
                 {row.morse}
               </code>
             </div>
@@ -2452,8 +2462,9 @@ function CharacterGrid({
 }
 
 export default function MorseCodePrintableChart() {
-  const [settings, setSettings] =
-    React.useState<PrintableSettings>(DEFAULT_SETTINGS);
+  const [settings, setSettings] = React.useState<PrintableSettings>(() =>
+    readInitialPrintableSettings(),
+  );
   const [qrCodeDataUrl, setQrCodeDataUrl] = React.useState("");
   const [hasLoadedStorage, setHasLoadedStorage] = React.useState(false);
   const [downloadFormat, setDownloadFormat] =
@@ -2472,17 +2483,7 @@ export default function MorseCodePrintableChart() {
   });
 
   React.useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(SETTINGS_STORAGE_KEY);
-
-      if (stored) {
-        setSettings(mergeSettings(JSON.parse(stored)));
-      }
-    } catch {
-      setSettings(DEFAULT_SETTINGS);
-    } finally {
-      setHasLoadedStorage(true);
-    }
+    setHasLoadedStorage(true);
   }, []);
 
   React.useEffect(() => {
@@ -2943,7 +2944,7 @@ export default function MorseCodePrintableChart() {
         .content-card {
           min-width: 0;
           border-radius: 1.25rem;
-          background: #fffaf2;
+          background: #f7f4ee;
           padding: 1rem;
         }
 
@@ -3029,7 +3030,7 @@ export default function MorseCodePrintableChart() {
           className="grid min-w-0 items-start gap-5 py-4 lg:grid-cols-[0.88fr_1.12fr]"
         >
           <div className="grid min-w-0 gap-4">
-            <section className="mw-static-panel min-w-0 rounded-xl bg-[#fffdf8]/85 p-5">
+            <section className="mw-static-surface-soft min-w-0 rounded-xl bg-[#fffaf2]/45 p-5">
               <p className="m-0 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                 Worksheet settings
               </p>
@@ -3471,7 +3472,7 @@ export default function MorseCodePrintableChart() {
         />
 
         <section className="pb-8">
-          <div className="mw-static-panel min-w-0 rounded-2xl bg-[#fffdf8] p-5">
+          <div className="mw-static-surface-soft min-w-0 rounded-xl bg-[#fffaf2]/45 p-5">
             <h2 className="m-0 break-words text-2xl font-bold text-sky-800">
               How this printable works
             </h2>

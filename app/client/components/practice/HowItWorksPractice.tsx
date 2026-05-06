@@ -45,7 +45,7 @@ export default function HowItWorksPractice() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-5">
+        <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             10-question runs
           </p>
@@ -55,7 +55,7 @@ export default function HowItWorksPractice() {
           </p>
         </div>
 
-        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-5">
+        <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Instant checks
           </p>
@@ -65,7 +65,7 @@ export default function HowItWorksPractice() {
           </p>
         </div>
 
-        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-5">
+        <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Utility over tutorials
           </p>
@@ -79,7 +79,7 @@ export default function HowItWorksPractice() {
       <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         <div
           id="run-flow"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Run flow: what happens in a session
@@ -119,7 +119,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="modes"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Modes: practice the direction you actually need
@@ -164,7 +164,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="pools"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Pools: narrow focus or broad coverage
@@ -230,7 +230,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="sentences"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Sentence rules: spacing matters, but the checker stays practical
@@ -281,7 +281,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="morse-input"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Morse input tips: type the way you naturally type
@@ -330,7 +330,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="scoring"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Scoring: attempts, accuracy, and what progress means here
@@ -364,7 +364,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="skip"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Skip and streaks: deliberate rules to keep practice honest
@@ -386,7 +386,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="share"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Share: copy a clean progress snapshot
@@ -408,7 +408,7 @@ export default function HowItWorksPractice() {
 
         <div
           id="troubleshooting"
-          className="rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7"
+          className="py-6 sm:py-7"
         >
           <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
             Troubleshooting: common practice mistakes
@@ -457,7 +457,7 @@ export default function HowItWorksPractice() {
         </div>
       </div>
 
-      <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8]/70 p-5 sm:p-7">
+      <div className="mt-8 pt-6 sm:pt-7">
         <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
           Quick reference
         </h3>

@@ -32,11 +32,11 @@ export function PageHero({
 
   return (
     <section className="mw-tool-section mt-0">
-      <div className="tool-header py-2 sm:py-3">
+      <div className="tool-header pb-1 pt-2 sm:pt-3">
         <div className={headerGridClass}>
           <div className="min-w-0">
             <Eyebrow>{eyebrow}</Eyebrow>
-            <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+            <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
               {title}
             </h1>
             <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">

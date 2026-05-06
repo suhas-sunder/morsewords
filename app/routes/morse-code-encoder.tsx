@@ -79,7 +79,7 @@ export default function Home() {
         <TranslatorSectionsBasic
           title="Text to Morse Code Encoder"
           subtitle={
-            <p className="mt-2 max-w-none text-base leading-7 text-slate-700 sm:text-[1.08rem]">
+            <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Encode plain text into predictable International Morse output,
               then copy it, play it as audio, or turn it into a worksheet.
             </p>

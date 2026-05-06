@@ -1,7 +1,7 @@
 export default function HowToUseSuiteGuide() {
   return (
     <div className="space-y-8">
-    <section className="mw-tool-section mt-0 py-2 sm:py-3">
+    <section className="mw-tool-section mt-0 pb-1 pt-2 sm:pt-3">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-sky-800" />
           <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
@@ -9,11 +9,11 @@ export default function HowToUseSuiteGuide() {
           </span>
         </div>
 
-        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
           How to use MorseWords
         </h1>
 
-        <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
+        <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
           This page is a practical guide to the MorseWords toolkit. It is not a
           history lesson and it is not trying to teach you Morse from zero. It
           is here so you can move quickly between tools, format input the way
@@ -45,7 +45,7 @@ export default function HowToUseSuiteGuide() {
       </nav>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
-        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/80 p-5">
+        <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Copy-first design
           </p>
@@ -54,7 +54,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
 
-        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/80 p-5">
+        <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Spacing matters
           </p>
@@ -64,7 +64,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
 
-        <div className="mw-static-panel rounded-xl bg-[#fffdf8]/80 p-5">
+        <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
           <p className="text-base font-extrabold text-sky-950">
             Suite, not one page
           </p>
@@ -77,10 +77,7 @@ export default function HowToUseSuiteGuide() {
 
       <div className="mt-8 space-y-6 text-slate-700 leading-relaxed">
         {/* Translator */}
-        <section
-          id="translator"
-          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
-        >
+        <section id="translator" className="py-6 sm:py-7">
           <div className="flex flex-col gap-2">
             <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
               1) Translator
@@ -115,7 +112,7 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Best for
               </p>
@@ -126,7 +123,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Common gotcha
               </p>
@@ -140,10 +137,7 @@ export default function HowToUseSuiteGuide() {
         </section>
 
         {/* Audio */}
-        <section
-          id="audio"
-          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
-        >
+        <section id="audio" className="py-6 sm:py-7">
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             2) Audio translator
           </h2>
@@ -175,7 +169,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8]/85 p-5">
+          <div className="mw-static-tile mt-5 rounded-xl bg-[#f7f4ee] p-5">
             <p className="text-base font-extrabold text-sky-950">Tip</p>
             <p className="mt-2 text-base sm:text-lg text-slate-700">
               If a long message is hard to follow, shorten it first in the
@@ -185,10 +179,7 @@ export default function HowToUseSuiteGuide() {
         </section>
 
         {/* Practice */}
-        <section
-          id="practice"
-          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
-        >
+        <section id="practice" className="py-6 sm:py-7">
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             3) Practice
           </h2>
@@ -221,7 +212,7 @@ export default function HowToUseSuiteGuide() {
           </ol>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 When to use it
               </p>
@@ -231,7 +222,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 When to switch tools
               </p>
@@ -244,10 +235,7 @@ export default function HowToUseSuiteGuide() {
         </section>
 
         {/* Typing */}
-        <section
-          id="typing"
-          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
-        >
+        <section id="typing" className="py-6 sm:py-7">
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             4) Typing tool
           </h2>
@@ -280,7 +268,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8]/85 p-5">
+          <div className="mw-static-tile mt-5 rounded-xl bg-[#f7f4ee] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Good use case
             </p>
@@ -292,10 +280,7 @@ export default function HowToUseSuiteGuide() {
         </section>
 
         {/* Dictionary */}
-        <section
-          id="dictionary"
-          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
-        >
+        <section id="dictionary" className="py-6 sm:py-7">
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             5) Dictionary
           </h2>
@@ -322,7 +307,7 @@ export default function HowToUseSuiteGuide() {
             </li>
           </ol>
 
-          <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8]/85 p-5">
+          <div className="mw-static-tile mt-5 rounded-xl bg-[#f7f4ee] p-5">
             <p className="text-base font-extrabold text-sky-950">
               Shortcut mindset
             </p>
@@ -334,10 +319,7 @@ export default function HowToUseSuiteGuide() {
         </section>
 
         {/* Spacing */}
-        <section
-          id="spacing"
-          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
-        >
+        <section id="spacing" className="py-6 sm:py-7">
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             Spacing rules you actually need
           </h2>
@@ -349,7 +331,7 @@ export default function HowToUseSuiteGuide() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Recommended format
               </p>
@@ -361,7 +343,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Why this works
               </p>
@@ -382,16 +364,13 @@ export default function HowToUseSuiteGuide() {
         </section>
 
         {/* Workflows */}
-        <section
-          id="workflows"
-          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
-        >
+        <section id="workflows" className="py-6 sm:py-7">
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             Fast workflows
           </h2>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Convert → Listen
               </p>
@@ -402,7 +381,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Hear → Confirm
               </p>
@@ -413,7 +392,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Manual entry → Decode
               </p>
@@ -424,7 +403,7 @@ export default function HowToUseSuiteGuide() {
               </p>
             </div>
 
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Debug a bad paste
               </p>
@@ -438,10 +417,7 @@ export default function HowToUseSuiteGuide() {
         </section>
 
         {/* Copy + share */}
-        <section
-          id="copy"
-          className="rounded-xl bg-[#fffaf2]/45 p-6 sm:p-7"
-        >
+        <section id="copy" className="py-6 sm:py-7">
           <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             Copying, pasting, and sharing without breaking the spacing
           </h2>
@@ -456,7 +432,7 @@ export default function HowToUseSuiteGuide() {
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Safer places to paste
               </p>
@@ -467,7 +443,7 @@ export default function HowToUseSuiteGuide() {
               </ul>
             </div>
 
-            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-5">
+            <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
               <p className="text-base sm:text-lg font-extrabold text-sky-950">
                 Places that often mangle it
               </p>
@@ -530,7 +506,7 @@ export default function HowToUseSuiteGuide() {
           </p>
         </div>
       </div>
-      <div className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
+      <div className="mw-static-surface-soft mt-8 bg-[#fffaf2]/45 px-5 py-7 sm:px-7">
         <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           Quick reference
         </h2>

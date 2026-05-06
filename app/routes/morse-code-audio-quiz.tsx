@@ -93,7 +93,9 @@ export default function MorseCodeAudioQuiz() {
   const [completed, setCompleted] = React.useState(0);
   const [skipped, setSkipped] = React.useState(0);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(0);
+  const [bestStreak, setBestStreak] = React.useState(() =>
+    readStoredInt(BEST_STREAK_STORAGE_KEY, 0),
+  );
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
 
   const [charWpm, setCharWpm] = React.useState(18);
@@ -134,16 +136,6 @@ export default function MorseCodeAudioQuiz() {
       // local-only preference; ignore storage failures
     }
   }, [difficulty]);
-
-  React.useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(BEST_STREAK_STORAGE_KEY);
-      const parsed = raw ? Number(raw) : 0;
-      if (Number.isFinite(parsed)) setBestStreak(parsed);
-    } catch {
-      // ignore
-    }
-  }, []);
 
   React.useEffect(() => {
     try {
@@ -893,6 +885,17 @@ function readStoredDifficulty(key: string, fallback: AudioDifficulty): AudioDiff
   try {
     const stored = window.localStorage.getItem(key);
     return isAudioDifficulty(stored) ? stored : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function readStoredInt(key: string, fallback: number) {
+  if (typeof window === "undefined") return fallback;
+  try {
+    const raw = window.localStorage.getItem(key);
+    const parsed = raw ? Number(raw) : fallback;
+    return Number.isFinite(parsed) ? parsed : fallback;
   } catch {
     return fallback;
   }
