@@ -12,6 +12,7 @@ import {
  HERO_SECTION_CLASS,
  HERO_TITLE_CLASS,
 } from "~/client/components/shared/heroStyles";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import type {
  Prompt,
  PromptKind,
@@ -249,9 +250,11 @@ function ToggleButton({
  return (
  <button
  type="button" onClick={onClick}
- className={`rounded-full px-3 py-1.5 text-sm font-bold cursor-pointer transition ${
- active
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
+ className={`${toolControlButtonClass({
+ active,
+ size: "sm",
+ rounded: "full",
+ })} active:scale-95`}
  >
  {children}
  </button>
@@ -263,7 +266,10 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 
  return (
  <button
- type="button" className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-3 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none" onClick={async () => {
+ type="button" className={`${toolControlButtonClass({
+ tone: "dark",
+ size: "sm",
+ })} text-center leading-none active:scale-95`} onClick={async () => {
  try {
  await navigator.clipboard.writeText(text);
  setCopied(true);
@@ -495,22 +501,28 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <div className="flex w-full flex-wrap gap-2 sm:w-auto">
  <button
  type="button" onClick={() => setMode("text_to_morse")}
- className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="text_to_morse"?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
+ className={`${toolControlButtonClass({
+ active: mode ==="text_to_morse",
+ size: "md",
+ })} w-1/3 sm:w-auto`}
  >
                     Text → Morse
  </button>
  <button
  type="button" onClick={() => setMode("morse_to_text")}
- className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="morse_to_text"?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
+ className={`${toolControlButtonClass({
+ active: mode ==="morse_to_text",
+ size: "md",
+ })} w-1/3 sm:w-auto`}
  >
                     Morse → Text
  </button>
  <button
  type="button" onClick={() => setMode("mixed")}
- className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
- mode ==="mixed"?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`}
+ className={`${toolControlButtonClass({
+ active: mode ==="mixed",
+ size: "md",
+ })} w-1/3 sm:w-auto`}
  >
  Mixed
  </button>

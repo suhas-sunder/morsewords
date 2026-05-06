@@ -140,8 +140,8 @@ export default function TranslatorSections({
  <label htmlFor="plainA" className="font-semibold">
  Plain Text
  </label>
- <textarea
- id="plainA" className="w-full rounded-md p-3 font-mono h-40 focus:ring-2 focus:ring-neutral-900" value={plainA}
+<textarea
+id="plainA" className="w-full rounded-md p-3 font-mono h-40 outline-none focus:ring-0 focus-visible:outline-none" value={plainA}
  onChange={(e) => setPlainA(e.target.value)}
  placeholder="Example: Hello World" autoCapitalize="characters" autoCorrect="off" spellCheck={false}
  />
@@ -160,8 +160,8 @@ export default function TranslatorSections({
  <label htmlFor="morseA" className="font-semibold">
  Morse Output
  </label>
- <textarea
- id="morseA" className="w-full rounded-md bg-[#fffdf8] p-3 font-mono h-40" value={morseA}
+<textarea
+id="morseA" className="w-full rounded-md bg-[#fffdf8] p-3 font-mono h-40 outline-none focus:ring-0 focus-visible:outline-none" value={morseA}
  readOnly
  placeholder=".... . .-.. .-.. --- .-- --- .-. .-.. -.."/>
  </div>
@@ -224,8 +224,8 @@ export default function TranslatorSections({
  <label htmlFor="morseB" className="font-semibold">
  Morse Input
  </label>
- <textarea
- id="morseB" className="w-full rounded-md p-3 font-mono h-40 focus:ring-2 focus:ring-neutral-900" value={morseB}
+<textarea
+id="morseB" className="w-full rounded-md p-3 font-mono h-40 outline-none focus:ring-0 focus-visible:outline-none" value={morseB}
  onChange={(e) => setMorseB(e.target.value)}
  placeholder=".... . .-.. .-.. --- .-- --- .-. .-.. -.." spellCheck={false}
  />
@@ -240,8 +240,8 @@ export default function TranslatorSections({
  <label htmlFor="textB" className="font-semibold">
  Text Output
  </label>
- <textarea
- id="textB" className="w-full rounded-md bg-[#fffdf8] p-3 font-mono h-40" value={textB}
+<textarea
+id="textB" className="w-full rounded-md bg-[#fffdf8] p-3 font-mono h-40 outline-none focus:ring-0 focus-visible:outline-none" value={textB}
  readOnly
  placeholder="Example: Hello World"/>
  </div>

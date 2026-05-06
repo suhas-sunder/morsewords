@@ -9,6 +9,12 @@ import {
   HERO_SECTION_CLASS,
   HERO_TITLE_CLASS,
 } from "~/client/components/shared/heroStyles";
+import {
+  ToolOutputPanel,
+  ToolPanel,
+  ToolTextarea,
+  toolControlButtonClass,
+} from "~/client/components/shared/ToolWorkspace";
 
 type OutputSep = "standard" | "slash" | "pipe" | "newline";
 type Mode = "normalizeMorse" | "englishToMorse";
@@ -152,23 +158,23 @@ export default function WordSeparatorTool() {
       <div className="flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center">
         <div className="inline-flex gap-2 rounded-lg">
           <button
+            type="button"
             onClick={() => setMode("normalizeMorse")}
-            className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
-              mode === "normalizeMorse"
-                ? "bg-slate-950 text-sky-100"
-                : "bg-white/88 text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-            }`}
+            className={`${toolControlButtonClass({
+              active: mode === "normalizeMorse",
+              size: "sm",
+            })} active:scale-95`}
             aria-pressed={mode === "normalizeMorse"}
           >
             Normalize Morse
           </button>
           <button
+            type="button"
             onClick={() => setMode("englishToMorse")}
-            className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
-              mode === "englishToMorse"
-                ? "bg-slate-950 text-sky-100"
-                : "bg-white/88 text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-            }`}
+            className={`${toolControlButtonClass({
+              active: mode === "englishToMorse",
+              size: "sm",
+            })} active:scale-95`}
             aria-pressed={mode === "englishToMorse"}
           >
             English to Morse
@@ -178,13 +184,13 @@ export default function WordSeparatorTool() {
         <div className="inline-flex flex-wrap gap-2 rounded-lg">
           {sepOptions.map(([label, v]) => (
             <button
+              type="button"
               key={v}
               onClick={() => setSep(v)}
-              className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition ${
-                sep === v
-                  ? "bg-slate-950 text-sky-100"
-                  : "bg-white/88 text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-              }`}
+              className={`${toolControlButtonClass({
+                active: sep === v,
+                size: "sm",
+              })} active:scale-95`}
               aria-pressed={sep === v}
             >
               {label}
@@ -194,27 +200,21 @@ export default function WordSeparatorTool() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-white/88">
-          <div className="flex items-center justify-between gap-2">
-            <h2 className="px-4 pt-4 font-extrabold text-sky-950">
-              {mode === "normalizeMorse" ? "Paste Morse" : "English input"}
-            </h2>
-
-            {mode === "normalizeMorse" ? (
-              <span className="px-4 pt-4 text-xs text-slate-600">
-                Words: {wordCount} | Letters: {letterCount}
-              </span>
-            ) : (
-              <span className="px-4 pt-4 text-xs text-slate-600">Words: {wordCount}</span>
-            )}
-          </div>
+        <ToolPanel
+          label={mode === "normalizeMorse" ? "Paste Morse" : "English input"}
+          badge={
+            mode === "normalizeMorse"
+              ? `Words: ${wordCount} | Letters: ${letterCount}`
+              : `Words: ${wordCount}`
+          }
+        >
 
           {mode === "normalizeMorse" ? (
             <>
-              <textarea
+              <ToolTextarea
                 value={morseInput}
                 onChange={(e) => setMorseInput(e.target.value)}
-                className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sm text-slate-950 outline-none focus:ring-0 focus-visible:outline-none sm:text-base"
+                className="text-sm sm:text-base"
                 spellCheck={false}
               />
               <p className="px-4 pb-4 text-xs text-slate-600">
@@ -224,10 +224,10 @@ export default function WordSeparatorTool() {
             </>
           ) : (
             <>
-              <textarea
+              <ToolTextarea
                 value={englishInput}
                 onChange={(e) => setEnglishInput(e.target.value)}
-                className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 text-sm text-slate-950 outline-none focus:ring-0 focus-visible:outline-none sm:text-base"
+                className="font-sans text-sm sm:text-base"
                 spellCheck={false}
               />
               <p className="px-4 pb-4 text-xs text-slate-600">
@@ -236,34 +236,37 @@ export default function WordSeparatorTool() {
               </p>
             </>
           )}
-        </div>
+        </ToolPanel>
 
-        <div className="overflow-hidden rounded-xl bg-slate-950 text-slate-200">
-          <div className="flex items-center justify-between gap-2">
-            <h2 className="px-4 pt-4 font-extrabold text-slate-200">Output</h2>
-          </div>
-
+        <ToolOutputPanel
+          label="Output"
+          footer={
+            <>
+              <button
+                type="button"
+                onClick={async () => {
+                  const ok = await copyToClipboard(out);
+                  setCopied(ok);
+                  window.setTimeout(() => setCopied(false), 900);
+                }}
+                className={`${toolControlButtonClass({
+                  tone: "darkPanel",
+                  size: "sm",
+                })} active:scale-95`}
+              >
+                Copy output
+              </button>
+              {copied && (
+                <span className="text-sm font-semibold text-emerald-300">
+                  Copied
+                </span>
+              )}
+            </>
+          }
+        >
           <pre className="min-h-[10rem] w-full whitespace-pre-wrap bg-transparent p-4 font-mono text-sm text-sky-100 sm:text-base">
             {out || "-"}
           </pre>
-
-          <div className="flex flex-wrap items-center gap-2 px-4 pb-4">
-            <button
-              onClick={async () => {
-                const ok = await copyToClipboard(out);
-                setCopied(ok);
-                window.setTimeout(() => setCopied(false), 900);
-              }}
-              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md bg-slate-700 px-3 py-2 text-slate-100 transition hover:bg-slate-800 hover:text-white active:scale-95"
-            >
-              Copy output
-            </button>
-            {copied && (
-              <span className="text-sm font-semibold text-emerald-700">
-                Copied
-              </span>
-            )}
-          </div>
 
           <div className="mx-4 mb-4 rounded-xl bg-slate-800/70 p-3 text-sm text-slate-200">
             <strong className="text-sky-100">Note:</strong>{" "}
@@ -280,7 +283,7 @@ export default function WordSeparatorTool() {
               </>
             )}
           </div>
-        </div>
+        </ToolOutputPanel>
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">

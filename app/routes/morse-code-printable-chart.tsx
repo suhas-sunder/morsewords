@@ -9,6 +9,7 @@ import {
   PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
 import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
@@ -2121,7 +2122,11 @@ function QuickButton({
   onClick: () => void;
 }) {
   return (
-    <button type="button" onClick={onClick} className="quick-button">
+    <button
+      type="button"
+      onClick={onClick}
+      className={`${toolControlButtonClass({ size: "sm" })} active:scale-95`}
+    >
       {children}
     </button>
   );
@@ -2346,7 +2351,10 @@ function LivePreview({
           <button
             type="button"
             onClick={onDownload}
-            className="action-primary"
+            className={`${toolControlButtonClass({
+              tone: "dark",
+              disabled: isExporting,
+            })} active:scale-95`}
             disabled={isExporting}
           >
             <DownloadIcon size={18} title="Download printable" />
@@ -2357,7 +2365,11 @@ function LivePreview({
                 : `Download ${downloadFormat.toUpperCase()}`}
           </button>
 
-          <button type="button" onClick={onShare} className="action-secondary">
+          <button
+            type="button"
+            onClick={onShare}
+            className={`${toolControlButtonClass()} active:scale-95`}
+          >
             <ShareIcon size={18} title="Share printable" />
             Share
           </button>
@@ -2863,68 +2875,6 @@ export default function MorseCodePrintableChart() {
           outline: none;
         }
 
-        .action-primary,
-        .action-secondary,
-        .quick-button {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          border-radius: 0.5rem;
-          font-weight: 600;
-          text-decoration: none;
-          transition:
-            background-color 160ms ease;
-        }
-
-        .action-primary,
-        .action-secondary {
-          min-height: 2.75rem;
-          padding: 0.75rem 1.15rem;
-          gap: 0.55rem;
-        }
-
-        .action-primary {
-          background: #020617;
-          color: #e0f2fe;
-        }
-
-        .action-primary:hover {
-          background: #1e293b;
-          color: #ffffff;
-        }
-
-        .action-secondary {
-          background: #fffdf8;
-          color: #0f172a;
-        }
-
-        .action-secondary:hover {
-          background: #0f172a;
-          color: #e0f2fe;
-        }
-
-        .quick-button {
-          min-height: 2.35rem;
-          background: #fffdf8;
-          padding: 0.55rem 0.9rem;
-          color: #0f172a;
-          font-size: 0.85rem;
-        }
-
-        .quick-button:hover {
-          background: #0f172a;
-          color: #e0f2fe;
-        }
-
-        .action-primary:disabled,
-        .action-secondary:disabled,
-        .quick-button:disabled {
-          cursor: not-allowed;
-          opacity: 0.65;
-          transform: none;
-        }
-
         .file-control {
           width: 100%;
           max-width: 100%;
@@ -3349,7 +3299,9 @@ export default function MorseCodePrintableChart() {
                   <button
                     type="button"
                     onClick={clearCustomLogo}
-                    className="quick-button shrink-0"
+                    className={`${toolControlButtonClass({
+                      size: "sm",
+                    })} shrink-0 active:scale-95`}
                   >
                     Remove
                   </button>

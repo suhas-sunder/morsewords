@@ -88,6 +88,8 @@ const styles: Record<string, React.CSSProperties> = {
     background: "#fffdf8",
     color: "#111317",
     font: '650 1.05rem/1.1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+    outline: "none",
+    boxShadow: "none",
   },
 
   row: {

@@ -7,6 +7,7 @@ import useMorseAudio, {
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import {
   HOME_TOOL_EXAMPLES,
+  TOOL_SPACING_HELPER,
   ToolButton,
   ToolHero,
   ToolModeButton,
@@ -367,6 +368,11 @@ export default function MorseAudioTranslator({
                 <ToolPanel
                   label={sourceMode === "text" ? textInputLabel : morseInputLabel}
                   badge="Source"
+                  footer={
+                    <p className="text-sm leading-relaxed text-slate-600">
+                      {TOOL_SPACING_HELPER}
+                    </p>
+                  }
                 >
                   {sourceMode === "text" ? (
                     <>
@@ -379,11 +385,6 @@ export default function MorseAudioTranslator({
                         autoCorrect="off"
                         spellCheck={false}
                       />
-                      <div className="px-4 py-3">
-                        <p className="text-sm leading-relaxed text-slate-600">
-                          3 spaces = letters · 7 = words · / = word break
-                        </p>
-                      </div>
                       {Object.keys(unsupportedPlain).length > 0 && (
                         <p className="px-4 pb-3 text-xs font-medium text-slate-600">
                           Unsupported characters are ignored: {Object.entries(unsupportedPlain).map(([ch, n]) => `${ch}×${n}`).join(", ")}
@@ -401,11 +402,6 @@ export default function MorseAudioTranslator({
                         autoCorrect="off"
                         spellCheck={false}
                       />
-                      <div className="px-4 py-3">
-                        <p className="text-sm leading-relaxed text-slate-600">
-                          3 spaces = letters · 7 = words · / = word break
-                        </p>
-                      </div>
                       {morseIssues.length > 0 && <p className="px-4 pb-3 text-xs font-medium text-slate-600">{morseIssues.join(" ")}</p>}
                     </>
                   )}
@@ -431,8 +427,8 @@ export default function MorseAudioTranslator({
                       tone="darkPanel"
                       className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm"
                     >
-                      <CopyIcon size={16} title="Copy Morse" />
-                      <span>{copied === "morse" ? "Copied" : "Copy Morse"}</span>
+                      <CopyIcon size={16} title="Copy Output" />
+                      <span>{copied === "morse" ? "Copied" : "Copy Output"}</span>
                     </ToolButton>
                     </>
                   }

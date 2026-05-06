@@ -195,8 +195,8 @@ export default function MorsePractice({
  <div className="mt-4">
  <label className="font-semibold">Your answer</label>
  <div className="flex gap-2 mt-1">
- <input
- className="flex-1 rounded-md p-3 font-mono" value={answer}
+<input
+className="flex-1 rounded-md p-3 font-mono outline-none focus:ring-0 focus-visible:outline-none" value={answer}
  onChange={(e) => setAnswer(e.target.value)}
  placeholder="Type the character" onKeyDown={(e) => {
  if (e.key ==="Enter") check();

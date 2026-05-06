@@ -66,6 +66,8 @@ const styles: Record<string, React.CSSProperties> = {
     background: "#fffdf8",
     color: "#111317",
     font: '500 0.98rem/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+    outline: "none",
+    boxShadow: "none",
   },
   input: {
     width: "100%",
@@ -76,6 +78,8 @@ const styles: Record<string, React.CSSProperties> = {
     background: "#fffdf8",
     color: "#111317",
     font: '600 0.98rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+    outline: "none",
+    boxShadow: "none",
   },
   controls: {
     display: "flex",
