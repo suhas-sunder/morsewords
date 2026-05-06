@@ -12,6 +12,7 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import {
   audioDifficultyOptions,
   buildPromptDeck,
@@ -321,12 +322,10 @@ export default function MorseCodeAudioQuiz() {
                   key={option.value}
                   type="button"
                   onClick={() => setDifficulty(option.value)}
-                  className={
-                    "min-h-11 cursor-pointer rounded-xl px-4 py-2 font-semibold transition focus:outline-none " +
-                    (difficulty === option.value
-                      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-                      : "bg-[#fffdf8] text-slate-800 hover:bg-slate-900 hover:text-sky-100")
-                  }
+                  className={toolControlButtonClass({
+                    active: difficulty === option.value,
+                    rounded: "xl",
+                  })}
                   aria-pressed={difficulty === option.value}
                   title={option.description}
                 >
@@ -409,7 +408,7 @@ export default function MorseCodeAudioQuiz() {
                     }}
                     placeholder="Type what you heard"
                     readOnly={feedback !== "idle"}
-                    className="min-h-[11rem] w-full resize-y bg-transparent font-mono text-lg text-slate-950 outline-none placeholder:text-slate-500 focus:ring-0 read-only:cursor-default"
+                    className="min-h-[11rem] w-full resize-y bg-transparent font-mono text-lg text-slate-950 outline-none placeholder:text-slate-500 focus:ring-0 focus-visible:outline-none read-only:cursor-default"
                   />
                 </div>
 
@@ -456,7 +455,7 @@ export default function MorseCodeAudioQuiz() {
                 <button
                   type="button"
                   onClick={playPrompt}
-                  className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
+                  className={toolControlButtonClass({ tone: "dark", size: "lg", rounded: "xl" })}
                 >
                   <PlayIcon size={20} title="Play prompt" />
                   {player.state === "playing" ? "Restart prompt" : "Play prompt"}
@@ -465,7 +464,7 @@ export default function MorseCodeAudioQuiz() {
                   type="button"
                   onClick={player.stop}
                   disabled={player.state === "idle"}
-                  className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:text-slate-400"
+                  className={toolControlButtonClass({ disabled: player.state === "idle", size: "lg", rounded: "xl" })}
                 >
                   <StopIcon size={20} title="Stop audio" />
                   Stop
@@ -475,7 +474,11 @@ export default function MorseCodeAudioQuiz() {
                     type="button"
                     onClick={checkAnswer}
                     disabled={!normalizedAnswer}
-                    className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:text-slate-400"
+                    className={toolControlButtonClass({
+                      disabled: !normalizedAnswer,
+                      size: "lg",
+                      rounded: "xl",
+                    })}
                   >
                     <CheckCircleIcon size={20} title="Check answer" />
                     Check answer
@@ -484,7 +487,7 @@ export default function MorseCodeAudioQuiz() {
                   <button
                     type="button"
                     onClick={nextQuestion}
-                    className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
+                    className={toolControlButtonClass({ tone: "dark", size: "lg", rounded: "xl" })}
                   >
                     <LoopIcon size={20} title="Next question" />
                     {completed + 1 >= TOTAL_QUESTIONS ? "Finish quiz" : "Next question"}
@@ -513,7 +516,10 @@ export default function MorseCodeAudioQuiz() {
                   type="button"
                   onClick={nextQuestion}
                   disabled={feedback !== "idle"}
-                  className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:text-slate-400"
+                  className={toolControlButtonClass({
+                    disabled: feedback !== "idle",
+                    rounded: "xl",
+                  })}
                 >
                   <RefreshIcon size={18} title="Skip question" />
                   Skip question
@@ -775,7 +781,7 @@ function QuizComplete({
         <button
           type="button"
           onClick={onReset}
-          className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
+          className={toolControlButtonClass({ tone: "dark" })}
         >
           <LoopIcon size={18} title="Try again" />
           Try again
@@ -815,12 +821,11 @@ function TogglePill({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={
-        "inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition focus:outline-none " +
-        (checked
-          ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-          : "bg-[#fffdf8] text-slate-800 hover:bg-slate-900 hover:text-sky-100")
-      }
+      className={toolControlButtonClass({
+        active: checked,
+        size: "sm",
+        rounded: "full",
+      })}
       aria-pressed={checked}
       aria-describedby={describedBy}
     >

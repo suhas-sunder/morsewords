@@ -17,8 +17,62 @@ export const HOME_TOOL_EXAMPLES = [
   "TEST 123",
 ];
 
+export const TOOL_SPACING_HELPER =
+  "3 spaces = letters · 7 = words · / = word break";
+
 const focusClass =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+
+export function toolControlButtonClass({
+  active = false,
+  tone = "light",
+  disabled = false,
+  size = "md",
+  full = false,
+  rounded = "lg",
+}: {
+  active?: boolean;
+  tone?: "light" | "dark" | "darkPanel";
+  disabled?: boolean;
+  size?: "sm" | "md" | "lg";
+  full?: boolean;
+  rounded?: "lg" | "xl" | "full";
+} = {}) {
+  const sizeClass =
+    size === "lg"
+      ? "min-h-12 px-4 py-2"
+      : size === "sm"
+        ? "min-h-10 px-3 py-1.5 text-sm"
+        : "min-h-11 px-4 py-2 text-sm";
+  const roundedClass =
+    rounded === "full"
+      ? "rounded-full"
+      : rounded === "xl"
+        ? "rounded-xl"
+        : "rounded-lg";
+  const enabledClass = active
+    ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+    : tone === "dark"
+      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+      : tone === "darkPanel"
+        ? "bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white"
+        : "bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100";
+  const disabledClass =
+    tone === "darkPanel"
+      ? "cursor-not-allowed bg-slate-800/60 text-slate-500"
+      : "cursor-not-allowed bg-white/55 text-slate-400";
+
+  return [
+    "inline-flex cursor-pointer items-center justify-center gap-2 font-semibold transition",
+    focusClass,
+    sizeClass,
+    roundedClass,
+    full ? "w-full" : "",
+    disabled ? disabledClass : enabledClass,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
 
 export function ToolHero({
   eyebrow,
@@ -59,27 +113,14 @@ export function ToolButton({
   active?: boolean;
   tone?: "light" | "dark" | "darkPanel";
 }) {
-  const enabledClass = active
-    ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-    : tone === "dark"
-      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-      : tone === "darkPanel"
-        ? "bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white"
-        : "bg-white/88 text-slate-900 hover:bg-slate-900 hover:text-sky-100";
-  const disabledClass =
-    tone === "darkPanel"
-      ? "cursor-not-allowed bg-slate-800/60 text-slate-500"
-      : "cursor-not-allowed bg-white/55 text-slate-400";
-
   return (
     <button
       {...props}
       type={type}
       disabled={disabled}
       className={[
-        "cursor-pointer rounded-lg px-3 py-2 font-semibold transition active:scale-95",
-        focusClass,
-        disabled ? disabledClass : enabledClass,
+        toolControlButtonClass({ active, tone, disabled }),
+        "active:scale-95",
         className,
       ]
         .filter(Boolean)
@@ -120,7 +161,10 @@ export function ToolSampleButtons({
           type="button"
           key={example}
           onClick={() => onPick(example)}
-          className={`cursor-pointer rounded-full bg-white/88 px-3 py-1.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 active:scale-95 ${focusClass}`}
+          className={`${toolControlButtonClass({
+            size: "sm",
+            rounded: "full",
+          })} active:scale-95`}
         >
           Try &ldquo;{example}&rdquo;
         </button>
@@ -153,7 +197,11 @@ export function ToolPanel({
         ) : null}
       </div>
       {children}
-      {footer ? <div className="px-4 py-3">{footer}</div> : null}
+      {footer ? (
+        <div className="flex flex-wrap items-center gap-2 px-4 py-3">
+          {footer}
+        </div>
+      ) : null}
     </div>
   );
 }

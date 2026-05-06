@@ -11,6 +11,7 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
@@ -315,12 +316,10 @@ export default function MorseCodeAudioPractice() {
                   key={option.value}
                   type="button"
                   onClick={() => setDifficulty(option.value)}
-                  className={
-                    "min-h-11 cursor-pointer rounded-xl px-4 py-2 font-semibold transition focus:outline-none " +
-                    (difficulty === option.value
-                      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-                      : "bg-[#fffdf8] text-slate-800 hover:bg-slate-900 hover:text-sky-100")
-                  }
+                  className={toolControlButtonClass({
+                    active: difficulty === option.value,
+                    rounded: "xl",
+                  })}
                   aria-pressed={difficulty === option.value}
                   title={option.description}
                 >
@@ -372,7 +371,7 @@ export default function MorseCodeAudioPractice() {
                   }
                 }}
                 placeholder="Type what you hear"
-                className="min-h-[10rem] w-full resize-y bg-transparent font-mono text-lg text-slate-950 outline-none placeholder:text-slate-500 focus:ring-0"
+                className="min-h-[10rem] w-full resize-y bg-transparent font-mono text-lg text-slate-950 outline-none placeholder:text-slate-500 focus:ring-0 focus-visible:outline-none"
               />
             </div>
 
@@ -430,7 +429,7 @@ export default function MorseCodeAudioPractice() {
             <button
               type="button"
               onClick={playPrompt}
-              className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
+              className={toolControlButtonClass({ tone: "dark", size: "lg", rounded: "xl" })}
             >
               <PlayIcon size={20} title="Play prompt" />
               {player.state === "playing" ? "Restart prompt" : "Play prompt"}
@@ -439,7 +438,7 @@ export default function MorseCodeAudioPractice() {
               type="button"
               onClick={player.stop}
               disabled={player.state === "idle"}
-              className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:text-slate-400"
+              className={toolControlButtonClass({ disabled: player.state === "idle", size: "lg", rounded: "xl" })}
             >
               <StopIcon size={20} title="Stop audio" />
               Stop
@@ -448,7 +447,11 @@ export default function MorseCodeAudioPractice() {
               type="button"
               onClick={checkAnswer}
               disabled={!normalizedAnswer || feedback === "correct" || feedback === "revealed"}
-              className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:text-slate-400"
+              className={toolControlButtonClass({
+                disabled: !normalizedAnswer || feedback === "correct" || feedback === "revealed",
+                size: "lg",
+                rounded: "xl",
+              })}
             >
               <CheckCircleIcon size={20} title="Check answer" />
               Check answer
@@ -461,7 +464,10 @@ export default function MorseCodeAudioPractice() {
                 type="button"
                 onClick={revealAnswer}
                 disabled={feedback !== "idle"}
-                className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:text-slate-400"
+                className={toolControlButtonClass({
+                  disabled: feedback !== "idle",
+                  rounded: "xl",
+                })}
               >
                 <VisibilityIcon size={18} title="Reveal answer" />
                 Reveal answer
@@ -469,7 +475,7 @@ export default function MorseCodeAudioPractice() {
               <button
                 type="button"
                 onClick={() => nextPrompt()}
-                className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+                className={toolControlButtonClass({ rounded: "xl" })}
               >
                 <RefreshIcon size={18} title="Next prompt" />
                 Next prompt
@@ -477,7 +483,7 @@ export default function MorseCodeAudioPractice() {
               <button
                 type="button"
                 onClick={() => nextPrompt({ skippedPrompt: true })}
-                className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+                className={toolControlButtonClass({ rounded: "xl" })}
               >
                 Skip
               </button>
@@ -485,7 +491,7 @@ export default function MorseCodeAudioPractice() {
             <button
               type="button"
               onClick={resetSession}
-              className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+              className={toolControlButtonClass({ rounded: "xl" })}
             >
               <LoopIcon size={18} title="Reset session" />
               Reset session
@@ -560,7 +566,7 @@ export default function MorseCodeAudioPractice() {
             <button
               type="button"
               onClick={() => setAdvancedOpen((value) => !value)}
-              className="mt-5 min-h-11 w-full cursor-pointer rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+              className={`${toolControlButtonClass({ full: true })} mt-5`}
             >
               {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
             </button>
@@ -659,10 +665,11 @@ function TogglePill({
       type="button"
       onClick={() => onChange(!checked)}
       className={
-        "inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition focus:outline-none " +
-        (checked
-          ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-          : "bg-[#fffdf8] text-slate-800 hover:bg-slate-900 hover:text-sky-100")
+        toolControlButtonClass({
+          active: checked,
+          size: "sm",
+          rounded: "full",
+        })
       }
       aria-pressed={checked}
       aria-describedby={describedBy}

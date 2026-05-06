@@ -11,6 +11,7 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
@@ -155,7 +156,11 @@ export default function MorseCodeVisualPractice() {
                 type="button"
                 onClick={flashMessage}
                 aria-describedby={hasFlashed ? STROBE_WARNING_ID : undefined}
-                className="mt-6 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
+                className={`${toolControlButtonClass({
+                  tone: "dark",
+                  size: "lg",
+                  full: true,
+                })} mt-6`}
               >
                 <LightBulbIcon size={20} title="Flash message" />
                 Flash message
@@ -198,7 +203,7 @@ export default function MorseCodeVisualPractice() {
               <button
                 type="button"
                 onClick={() => setShowAnswer((value) => !value)}
-                className="mt-5 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+                className={`${toolControlButtonClass()} mt-5`}
               >
                 {showAnswer ? (
                   <VisibilityOffIcon size={18} title="Hide answer" />

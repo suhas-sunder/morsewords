@@ -24,6 +24,7 @@ import {
  SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
@@ -498,7 +499,7 @@ export default function MorseCodeWordTrainer() {
  <textarea
  value={customWords}
  onChange={(event) => updateCustomWords(event.target.value)}
- className="mt-2 min-h-36 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-sm transition focus:outline-none" placeholder="SIGNAL, RADIO, PRACTICE"/>
+className="mt-2 min-h-36 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-sm transition focus:outline-none focus:ring-0 focus-visible:outline-none" placeholder="SIGNAL, RADIO, PRACTICE"/>
  <span className="mt-2 block text-sm leading-relaxed text-slate-600">
  Split words with commas or new lines. Unsupported
  characters are removed before the deck is built.
@@ -624,7 +625,7 @@ export default function MorseCodeWordTrainer() {
  disabled={!activeWord || roundComplete}
  placeholder={
  mode ==="morse_to_text"?"Type the word":"-- --- .-. ..."}
- className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg transition focus:outline-none disabled:cursor-not-allowed disabled:bg-[#fffaf2] disabled:text-slate-400"/>
+className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg transition focus:outline-none focus:ring-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-[#fffaf2] disabled:text-slate-400"/>
  </label>
 
  <div className="mt-4 flex flex-wrap gap-2">
@@ -1059,10 +1060,7 @@ function ChoiceButton({
  return (
  <button
  type="button" onClick={onClick}
- className={"inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none "+
- (active
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100")
- }
+ className={toolControlButtonClass({ active })}
  >
  {children}
  </button>
@@ -1084,9 +1082,11 @@ function ToolButton({
  <button
  type="button" onClick={onClick}
  disabled={disabled}
- className={"inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 "+
- (tone ==="primary"?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100")
- }
+ className={toolControlButtonClass({
+ active: tone ==="primary",
+ tone: tone ==="primary"?"dark":"light",
+ disabled,
+ })}
  >
  {children}
  </button>
@@ -1103,7 +1103,11 @@ function MiniLink({
  return (
  <a
  href={href}
-                      className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-4 py-2 text-center text-sm font-semibold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none">
+ className={`${toolControlButtonClass({
+ tone: "dark",
+ size: "sm",
+ rounded: "full",
+ })} whitespace-nowrap text-center leading-none active:scale-95`}>
  {children}
  </a>
  );
@@ -1149,7 +1153,7 @@ function SliderRow({
  value={value}
  onChange={(event) => onChange(Number(event.target.value))}
  style={{ accentColor:"#38bdf8"}}
- className="mt-2 w-full cursor-pointer rounded-full focus:outline-none"/>
+className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none"/>
  </div>
  );
 }

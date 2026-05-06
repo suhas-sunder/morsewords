@@ -25,6 +25,7 @@ import {
  SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -1275,10 +1276,13 @@ export default function MorseCodeWordSearchBuilder() {
  <button
  key={option}
  type="button" onClick={() => updateDifficulty(option)}
- className={"min-h-11 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold capitalize transition focus:outline-none "+
- (difficulty === option
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100")
- }
+ className={[
+ toolControlButtonClass({
+ active: difficulty === option,
+ size:"md",
+ }),
+ "justify-start text-left capitalize",
+ ].join(" ")}
  >
  {option}
  </button>
@@ -1310,10 +1314,13 @@ export default function MorseCodeWordSearchBuilder() {
  <button
  key={value}
  type="button" onClick={() => setPrintSelection(value as PrintSelection)}
- className={"min-h-10 cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none "+
- (printSelection === value
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100")
- }
+ className={[
+ toolControlButtonClass({
+ active: printSelection === value,
+ size:"sm",
+ }),
+ "justify-start text-left",
+ ].join(" ")}
  aria-pressed={printSelection === value}
  >
  {label}
@@ -1641,11 +1648,11 @@ function CheckToggle({
  return (
  <button
  type="button" onClick={() => onChange(!checked)}
- className={"flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition focus:outline-none "+
- (checked
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100") +" "+
- className
- }
+ className={[
+ toolControlButtonClass({ active: checked, full: true }),
+ "justify-between text-left",
+ className,
+ ].filter(Boolean).join(" ")}
  aria-pressed={checked}
  >
  <span>{label}</span>
@@ -1675,10 +1682,11 @@ function ToolButton({
  <button
  type="button" onClick={onClick}
  disabled={disabled}
- className={"inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 "+
- (primary
- ?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white":"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100")
- }
+ className={toolControlButtonClass({
+ active: primary,
+ tone: primary?"dark":"light",
+ disabled,
+ })}
  >
  {icon}
  {children}

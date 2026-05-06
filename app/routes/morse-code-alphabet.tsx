@@ -6,6 +6,7 @@ import {
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-alphabet";
@@ -72,7 +73,7 @@ function CopyButton({ value, label }: { value: string; label: string }) {
 
 function AlphabetCard({ entry }: { entry: Entry }) {
   return (
-    <article className="mw-static-surface-soft rounded-xl bg-white p-4">
+    <article className="mw-static-surface-soft min-w-0 rounded-xl bg-white p-4">
       <div className="grid gap-3">
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -124,7 +125,11 @@ function Section({
   items: Entry[];
 }) {
   return (
-    <section id={id} className="mw-static-panel scroll-mt-28 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
+    <section
+      id={id}
+      className="mw-static-panel w-full max-w-full min-w-0 overflow-hidden scroll-mt-28 rounded-2xl bg-[#fffdf8] p-5 sm:p-6"
+      style={{ width: "100%", maxWidth: "100%", overflow: "hidden" }}
+    >
       <div className="mb-5 flex items-start justify-between gap-3">
         <div>
           <h2 className="text-2xl font-extrabold text-sky-950">{title}</h2>
@@ -139,7 +144,7 @@ function Section({
         </a>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid min-w-0 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {items.map((entry) => (
           <AlphabetCard
             key={`${entry.category}-${entry.label}-${entry.morse}`}
@@ -312,7 +317,7 @@ export default function Home() {
   ];
 
   return (
-      <main id="top" className="mw-non-home-page mx-auto w-full max-w-[1120px] px-4 pb-10 pt-2 sm:px-6 sm:pt-4 lg:px-8">
+      <main id="top" className="mw-non-home-page" style={styles.wrap}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -372,7 +377,10 @@ export default function Home() {
         </div>
       </nav>
 
-      <div className="grid gap-12">
+      <div
+        className="grid min-w-0 gap-12"
+        style={{ gridTemplateColumns: "minmax(0, 1fr)" }}
+      >
         <Section
           id="letters"
           title="Letters A–Z"

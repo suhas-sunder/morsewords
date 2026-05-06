@@ -12,6 +12,7 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
@@ -292,7 +293,7 @@ export default function MorseCodeVisualQuiz() {
                   <button
                     type="button"
                     onClick={resetQuiz}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
+                    className={toolControlButtonClass({ tone: "dark" })}
                   >
                     <LoopIcon size={18} title="Try again" />
                     Try again
@@ -331,7 +332,11 @@ export default function MorseCodeVisualQuiz() {
                   type="button"
                   onClick={flashPrompt}
                   aria-describedby={hasFlashed ? STROBE_WARNING_ID : undefined}
-                    className="mt-5 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
+                    className={`${toolControlButtonClass({
+                      tone: "dark",
+                      size: "lg",
+                      full: true,
+                    })} mt-5`}
                 >
                   <LightBulbIcon size={20} title="Flash prompt" />
                   Flash prompt
@@ -386,7 +391,9 @@ export default function MorseCodeVisualQuiz() {
                         type="button"
                         onClick={checkAnswer}
                         disabled={!answer.trim()}
-                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        className={toolControlButtonClass({
+                          disabled: !answer.trim(),
+                        })}
                       >
                         <CheckCircleIcon size={18} title="Check answer" />
                         Check answer
@@ -395,7 +402,7 @@ export default function MorseCodeVisualQuiz() {
                       <button
                         type="button"
                         onClick={nextPrompt}
-                        className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2 font-semibold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
+                        className={toolControlButtonClass({ tone: "dark" })}
                       >
                         <LoopIcon size={18} title="Next prompt" />
                         {completed + 1 >= TOTAL_QUESTIONS
@@ -407,7 +414,7 @@ export default function MorseCodeVisualQuiz() {
                     type="button"
                     onClick={nextPrompt}
                     disabled={solved}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                    className={toolControlButtonClass({ disabled: solved })}
                   >
                     <RefreshIcon size={18} title="Skip prompt" />
                     Skip
