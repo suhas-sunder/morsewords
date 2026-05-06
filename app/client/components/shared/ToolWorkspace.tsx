@@ -1,5 +1,14 @@
 import * as React from "react";
 
+import {
+  HERO_EYEBROW_LINE_CLASS,
+  HERO_EYEBROW_ROW_CLASS,
+  HERO_EYEBROW_TEXT_CLASS,
+  HERO_HEADER_CLASS,
+  HERO_LEAD_CLASS,
+  HERO_TITLE_CLASS,
+} from "./heroStyles";
+
 export const HOME_TOOL_EXAMPLES = [
   "I love Morse code",
   "HELLO WORLD",
@@ -21,17 +30,17 @@ export function ToolHero({
   lead: React.ReactNode;
 }) {
   return (
-    <div className="tool-header pb-1 pt-2 sm:pt-3">
-      <div className="flex items-center gap-3">
-        <span className="h-px w-8 bg-sky-800" />
-        <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+    <div className={HERO_HEADER_CLASS}>
+      <div className={HERO_EYEBROW_ROW_CLASS}>
+        <span className={HERO_EYEBROW_LINE_CLASS} />
+        <span className={HERO_EYEBROW_TEXT_CLASS}>
           {eyebrow}
         </span>
       </div>
-      <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
+      <h1 className={HERO_TITLE_CLASS}>
         {title}
       </h1>
-      <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+      <p className={HERO_LEAD_CLASS}>
         {lead}
       </p>
     </div>

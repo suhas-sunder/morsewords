@@ -3,6 +3,15 @@ import * as React from "react";
 import Button from "~/client/components/shared/Button";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
+import {
+ HERO_EYEBROW_LINE_CLASS,
+ HERO_EYEBROW_ROW_CLASS,
+ HERO_EYEBROW_TEXT_CLASS,
+ HERO_HEADER_CLASS,
+ HERO_LEAD_CLASS,
+ HERO_SECTION_CLASS,
+ HERO_TITLE_CLASS,
+} from "~/client/components/shared/heroStyles";
 import type {
  Prompt,
  PromptKind,
@@ -463,18 +472,18 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <div>
  <JsonLdScript jsonLd={jsonLd} />
 
-      <section className="mw-tool-section mt-0">
- <div className="tool-header flex flex-col gap-3 pb-1 pt-2 sm:pt-3">
- <div className="flex items-center gap-3">
- <span className="h-px w-8 bg-sky-800"/>
- <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+      <section className={HERO_SECTION_CLASS}>
+ <div className={HERO_HEADER_CLASS}>
+ <div className={HERO_EYEBROW_ROW_CLASS}>
+ <span className={HERO_EYEBROW_LINE_CLASS}/>
+ <span className={HERO_EYEBROW_TEXT_CLASS}>
  Sentence practice
  </span>
  </div>
- <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
+ <h1 className={HERO_TITLE_CLASS}>
  Morse Code Sentence Practice
  </h1>
- <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+ <p className={HERO_LEAD_CLASS}>
  Decode and send complete Morse code sentences with a longer typing
  area, instant checking, sentence difficulty filters, and spacing
  hints built for full-phrase practice.

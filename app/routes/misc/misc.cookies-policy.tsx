@@ -1,6 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { Link, type MetaFunction } from "react-router";
+import {
+  HERO_EYEBROW_LINE_CLASS,
+  HERO_EYEBROW_ROW_CLASS,
+  HERO_EYEBROW_TEXT_CLASS,
+  HERO_TITLE_CLASS,
+} from "~/client/components/shared/heroStyles";
 
 export const meta: MetaFunction = () => {
   const canonical = "https://www.morsewords.com/misc/cookies-policy";
@@ -39,10 +45,11 @@ export default function CookiesPolicy() {
   return (
     <div className="mw-non-home-page mx-auto flex w-full max-w-[1120px] flex-col gap-8 px-4 pb-10 pt-2 text-slate-800 sm:px-6 sm:pb-12 sm:pt-4 lg:px-8">
       <header className="w-full px-1 py-3 sm:px-2">
-        <p className="m-0 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900 before:h-px before:w-8 before:bg-sky-800 before:content-['']">
-          MorseWords policy
-        </p>
-        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+        <div className={HERO_EYEBROW_ROW_CLASS}>
+          <span className={HERO_EYEBROW_LINE_CLASS} />
+          <span className={HERO_EYEBROW_TEXT_CLASS}>MorseWords policy</span>
+        </div>
+        <h1 className={HERO_TITLE_CLASS}>
           Cookies Policy
         </h1>
         <h2 className="mt-3 text-lg font-bold text-slate-700">

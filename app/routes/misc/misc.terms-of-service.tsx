@@ -1,5 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router";
+import {
+  HERO_EYEBROW_LINE_CLASS,
+  HERO_EYEBROW_ROW_CLASS,
+  HERO_EYEBROW_TEXT_CLASS,
+  HERO_TITLE_CLASS,
+} from "~/client/components/shared/heroStyles";
 import type { Route } from "./+types/misc.terms-of-service";
 
 export const meta: Route.MetaFunction = () => {
@@ -59,10 +65,11 @@ export default function TermsOfService() {
           </ol>
         </nav>
 
-        <p className="flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900 before:h-px before:w-8 before:bg-sky-800 before:content-['']">
-          MorseWords terms
-        </p>
-        <h1 className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+        <div className={HERO_EYEBROW_ROW_CLASS}>
+          <span className={HERO_EYEBROW_LINE_CLASS} />
+          <span className={HERO_EYEBROW_TEXT_CLASS}>MorseWords terms</span>
+        </div>
+        <h1 className={HERO_TITLE_CLASS}>
           Terms of Service
         </h1>
         <h3 className="text-lg font-bold text-slate-700">

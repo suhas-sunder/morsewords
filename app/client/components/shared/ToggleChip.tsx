@@ -27,11 +27,10 @@ export default function ToggleChip({
     fontSize: ".9rem",
     cursor: "pointer",
     userSelect: "none",
-    outline: focusVisible ? "2px solid #7dd3fc" : "1px solid rgba(11, 36, 71, 0.18)",
+    outline: focusVisible ? "2px solid rgba(11, 36, 71, 0.34)" : "1px solid rgba(11, 36, 71, 0.18)",
     outlineOffset: focusVisible ? 2 : 0,
     transition:
-      "background 120ms ease, color 120ms ease, transform 120ms ease",
-    transform: "translateY(0)",
+      "background 120ms ease, color 120ms ease, outline-color 120ms ease",
   };
 
   return (
@@ -42,9 +41,8 @@ export default function ToggleChip({
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
       onClick={onClick}
-      onFocus={() => {
-        setHover(true);
-        setFocusVisible(true);
+      onFocus={(event) => {
+        setFocusVisible(event.currentTarget.matches(":focus-visible"));
       }}
       onBlur={() => {
         setHover(false);

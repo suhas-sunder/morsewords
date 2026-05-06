@@ -1,19 +1,30 @@
+import {
+  HERO_EYEBROW_LINE_CLASS,
+  HERO_EYEBROW_ROW_CLASS,
+  HERO_EYEBROW_TEXT_CLASS,
+  HERO_HEADER_CLASS,
+  HERO_LEAD_CLASS,
+  HERO_SECTION_CLASS,
+  HERO_TITLE_CLASS,
+} from "~/client/components/shared/heroStyles";
+
 export default function HowToUseSuiteGuide() {
   return (
     <div className="space-y-8">
-    <section className="mw-tool-section mt-0 pb-1 pt-2 sm:pt-3">
-        <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-sky-800" />
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+    <section className={HERO_SECTION_CLASS}>
+      <div className={HERO_HEADER_CLASS}>
+        <div className={HERO_EYEBROW_ROW_CLASS}>
+          <span className={HERO_EYEBROW_LINE_CLASS} />
+          <span className={HERO_EYEBROW_TEXT_CLASS}>
             Toolkit guide
           </span>
         </div>
 
-        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
+        <h1 className={HERO_TITLE_CLASS}>
           How to use MorseWords
         </h1>
 
-        <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+        <p className={HERO_LEAD_CLASS}>
           This page is a practical guide to the MorseWords toolkit. It is not a
           history lesson and it is not trying to teach you Morse from zero. It
           is here so you can move quickly between tools, format input the way
@@ -21,6 +32,7 @@ export default function HowToUseSuiteGuide() {
           “broken.” If you just want a fast conversion, start with the
           Translator and copy the output.
         </p>
+      </div>
       </section>
 
       <nav className="flex flex-wrap gap-2" aria-label="How to use sections">

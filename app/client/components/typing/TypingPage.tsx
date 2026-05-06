@@ -6,6 +6,15 @@ import {
   ToolOutputPanel,
   ToolPanel,
 } from "~/client/components/shared/ToolWorkspace";
+import {
+  HERO_EYEBROW_LINE_CLASS,
+  HERO_EYEBROW_ROW_CLASS,
+  HERO_EYEBROW_TEXT_CLASS,
+  HERO_HEADER_CLASS,
+  HERO_LEAD_CLASS,
+  HERO_SECTION_CLASS,
+  HERO_TITLE_CLASS,
+} from "~/client/components/shared/heroStyles";
 import ShareResultsButton from "./components/ShareResultsButton";
 
 import { type InputMode } from "./TypingControls";
@@ -514,18 +523,18 @@ export default function TypingPage({ jsonLd }: Props) {
       ) : null}
 
       <div className="">
-      <section className="mw-tool-section mt-0">
-        <div className="tool-header pb-1 pt-2 sm:pt-3">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-sky-800" />
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+      <section className={HERO_SECTION_CLASS}>
+        <div className={HERO_HEADER_CLASS}>
+            <div className={HERO_EYEBROW_ROW_CLASS}>
+              <span className={HERO_EYEBROW_LINE_CLASS} />
+              <span className={HERO_EYEBROW_TEXT_CLASS}>
                 Typing practice
               </span>
             </div>
-            <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
+            <h1 className={HERO_TITLE_CLASS}>
               Morse Code Typing
             </h1>
-            <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className={HERO_LEAD_CLASS}>
               Freeform, input-first Morse typing with real-time decoding. Built
               for fluent users who want repetition, rhythm, and endurance.
             </p>

@@ -1,6 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { Link } from "react-router";
+import {
+  HERO_EYEBROW_LINE_CLASS,
+  HERO_EYEBROW_ROW_CLASS,
+  HERO_EYEBROW_TEXT_CLASS,
+  HERO_TITLE_CLASS,
+} from "~/client/components/shared/heroStyles";
 import type { Route } from "./+types/misc.privacy-policy";
 export const meta: Route.MetaFunction = () => {
   const canonical = "https://www.morsewords.com/misc/privacy-policy";
@@ -59,10 +65,11 @@ export default function PrivacyPolicy() {
           </ol>
         </nav>
 
-        <p className="mt-6 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900 before:h-px before:w-8 before:bg-sky-800 before:content-['']">
-          MorseWords privacy
-        </p>
-        <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
+        <div className={`${HERO_EYEBROW_ROW_CLASS} mt-6`}>
+          <span className={HERO_EYEBROW_LINE_CLASS} />
+          <span className={HERO_EYEBROW_TEXT_CLASS}>MorseWords privacy</span>
+        </div>
+        <h1 className={HERO_TITLE_CLASS}>
           Privacy Policy
         </h1>
         <h2 className="mt-3 text-lg font-bold text-slate-700">

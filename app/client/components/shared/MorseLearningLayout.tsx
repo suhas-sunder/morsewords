@@ -1,12 +1,21 @@
 import * as React from "react";
 
 import { PlayIcon } from "~/client/assets/svg/Icons";
+import {
+  HERO_EYEBROW_LINE_CLASS,
+  HERO_EYEBROW_ROW_CLASS,
+  HERO_EYEBROW_TEXT_CLASS,
+  HERO_HEADER_CLASS,
+  HERO_LEAD_CLASS,
+  HERO_SECTION_CLASS,
+  HERO_TITLE_CLASS,
+} from "./heroStyles";
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-3">
-      <span className="h-px w-8 bg-sky-800" />
-      <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+    <div className={HERO_EYEBROW_ROW_CLASS}>
+      <span className={HERO_EYEBROW_LINE_CLASS} />
+      <span className={HERO_EYEBROW_TEXT_CLASS}>
         {children}
       </span>
     </div>
@@ -31,15 +40,15 @@ export function PageHero({
     : "grid gap-6";
 
   return (
-    <section className="mw-tool-section mt-0">
-      <div className="tool-header pb-1 pt-2 sm:pt-3">
+    <section className={HERO_SECTION_CLASS}>
+      <div className={HERO_HEADER_CLASS}>
         <div className={headerGridClass}>
           <div className="min-w-0">
             <Eyebrow>{eyebrow}</Eyebrow>
-            <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl">
+            <h1 className={HERO_TITLE_CLASS}>
               {title}
             </h1>
-            <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className={HERO_LEAD_CLASS}>
               {description}
             </p>
             {children ? <div className="mt-5">{children}</div> : null}

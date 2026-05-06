@@ -48,11 +48,19 @@ const styles: Record<string, React.CSSProperties> = {
   tagline: { color: "#5a616c", fontSize: ".95rem" },
 
   h1: {
-    fontSize: "clamp(1.8rem, 2.6vw + 1rem, 3rem)",
+    fontSize: "clamp(2.25rem, 2.2vw + 1rem, 4rem)",
     lineHeight: 1.15,
     margin: 0,
+    color: "#08324f",
+    fontWeight: 900,
   },
-  lead: { marginTop: 8, color: "#5a616c", fontSize: "1.05rem" },
+  lead: {
+    marginTop: 12,
+    color: "#334155",
+    fontSize: "1.08rem",
+    lineHeight: 1.7,
+    maxWidth: 760,
+  },
   card: {
     background: "#fffdf8",
     border: 0,

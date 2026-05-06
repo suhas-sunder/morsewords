@@ -200,6 +200,25 @@ main *::after {
   }
 }
 
+.mw-page-content
+  .mw-non-home-page
+  :where(button, [role="button"], summary, .mw-button-outline) {
+  transform: none !important;
+}
+
+.mw-page-content
+  .mw-non-home-page
+  :where(
+    button,
+    [role="button"],
+    summary,
+    .mw-button-outline
+  ):focus-visible {
+  box-shadow: var(--mw-button-shadow) !important;
+  outline: 2px solid rgba(11, 36, 71, 0.34) !important;
+  outline-offset: 2px;
+}
+
 .mw-page-content .mw-non-home-page :where(input, textarea, select) {
   box-shadow: none !important;
 }

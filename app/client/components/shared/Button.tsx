@@ -9,7 +9,7 @@ const base: React.CSSProperties = {
   cursor: "pointer",
   userSelect: "none",
   transition:
-    "background 120ms ease, color 120ms ease, outline-color 120ms ease, transform 120ms ease",
+    "background 120ms ease, color 120ms ease, outline-color 120ms ease",
 };
 
 const variants: Record<
@@ -77,7 +77,7 @@ export default function Button({
     ...(hover && !disabled ? v.hover : null),
     ...(disabled ? v.disabled : null),
     ...(focusVisible && !disabled
-      ? { outline: "2px solid #7dd3fc", outlineOffset: 2 }
+      ? { outline: "2px solid rgba(11, 36, 71, 0.34)", outlineOffset: 2 }
       : null),
     ...style,
   };
@@ -87,26 +87,16 @@ export default function Button({
       {...rest}
       disabled={disabled}
       style={computed}
-      onPointerDown={(e) => {
-        // Keep the same "active" feel as the rest of the site.
-        if (!disabled) (e.currentTarget as HTMLButtonElement).style.transform = "scale(0.98)";
-        rest.onPointerDown?.(e);
-      }}
-      onPointerUp={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-        rest.onPointerUp?.(e);
-      }}
       onPointerEnter={(e) => {
         setHover(true);
         rest.onPointerEnter?.(e);
       }}
       onPointerLeave={(e) => {
         setHover(false);
-        (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
         rest.onPointerLeave?.(e);
       }}
       onFocus={(e) => {
-        setFocusVisible(true);
+        setFocusVisible(e.currentTarget.matches(":focus-visible"));
         rest.onFocus?.(e);
       }}
       onBlur={(e) => {
