@@ -220,7 +220,9 @@ export default function MorseCodeAudioPractice() {
   }
 
   function checkAnswer() {
-    if (!normalizedAnswer) return;
+    if (!normalizedAnswer || feedback === "correct" || feedback === "revealed") {
+      return;
+    }
     setAttempts((value) => value + 1);
     if (normalizedAnswer === expectedAnswer) {
       setCorrect((value) => value + 1);
@@ -237,6 +239,7 @@ export default function MorseCodeAudioPractice() {
   }
 
   function revealAnswer() {
+    if (feedback !== "idle") return;
     setFeedback("revealed");
     setStreak(0);
   }
@@ -452,7 +455,7 @@ export default function MorseCodeAudioPractice() {
             <button
               type="button"
               onClick={checkAnswer}
-              disabled={!normalizedAnswer}
+              disabled={!normalizedAnswer || feedback === "correct" || feedback === "revealed"}
               className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#fffdf8] px-4 py-2 font-semibold text-slate-800 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:text-slate-400"
             >
               <CheckCircleIcon size={20} title="Check answer" />

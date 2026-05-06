@@ -36,6 +36,30 @@ test("flash/strobe warnings are hidden until the user enables flash", async ({ p
   ).toBeVisible();
 });
 
+test("audio practice locks scoring after correct and revealed prompts", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.setItem("mw_audio_practice_difficulty", "beginner");
+    Math.random = () => 0;
+  });
+
+  await page.goto("/morse-code-audio-practice");
+  await page.waitForLoadState("networkidle");
+
+  const answer = page.getByLabel("Your answer");
+  const checkAnswer = page.getByRole("button", { name: "Check answer" });
+
+  await answer.fill("A");
+  await checkAnswer.click();
+  await expect(page.getByText("Correct. Move to the next hidden prompt when ready.")).toBeVisible();
+  await expect(page.getByText(/Streak\s*1/)).toBeVisible();
+  await expect(checkAnswer).toBeDisabled();
+
+  await page.getByRole("button", { name: "Next prompt" }).click();
+  await page.getByRole("button", { name: "Reveal answer" }).click();
+  await answer.fill("B");
+  await expect(checkAnswer).toBeDisabled();
+});
+
 test("visual practice does not show strobe warning before first flash", async ({ page }) => {
   await page.goto("/morse-code-visual-practice");
   await page.waitForLoadState("networkidle");
