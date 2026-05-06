@@ -97,7 +97,7 @@ export default function MorseCodeSentencePracticeRoute() {
   ];
 
   return (
-    <div style={styles.page}>
+    <div className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <SentencePracticePage jsonLd={jsonLd} />
       </div>

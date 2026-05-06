@@ -52,7 +52,7 @@ const styles: Record<string, React.CSSProperties> = {
     border: 0,
     borderRadius: 14,
     padding: 16,
-    background: "linear-gradient(180deg, #fffdf8 0%, #fffaf2 100%)",
+    background: "#fffdf8",
   },
   promptKind: {
     display: "inline-flex",

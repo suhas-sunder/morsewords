@@ -206,7 +206,7 @@ export default function MorseCodeVisualQuiz() {
   };
 
   return (
-    <div style={styles.page}>
+    <div className="mw-non-home-page" style={styles.page}>
       <main style={styles.wrap}>
         <PageHero
           eyebrow="Visual test"

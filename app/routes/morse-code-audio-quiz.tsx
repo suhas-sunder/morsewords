@@ -289,7 +289,7 @@ export default function MorseCodeAudioQuiz() {
   };
 
   return (
-    <div style={styles.page}>
+    <div className="mw-non-home-page" style={styles.page}>
       {flash ? (
         <div
           id="mw_audio_quiz_flash"
@@ -611,7 +611,7 @@ export default function MorseCodeAudioQuiz() {
                     <select
                       value={preset}
                       onChange={(event) => setPreset(event.target.value as SoundPreset)}
-                className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 transition hover:bg-white"
+                className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 transition hover:bg-slate-900 hover:text-sky-100"
                     >
                       <option value="cw_radio">CW (Radio)</option>
                       <option value="sine">Sine</option>

@@ -65,7 +65,7 @@ export default function PracticeRoute() {
   ];
 
   return (
-    <div style={styles.page}>
+    <div className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <PracticePage jsonLd={jsonLd} />
       </div>

@@ -94,7 +94,7 @@ export default function MorseCodeWords() {
  const linkClass ="font-semibold text-sky-900 underline underline-offset-4 hover:text-sky-950 hover:no-underline cursor-pointer";
 
  return (
- <div style={styles.page}>
+ <div className="mw-non-home-page" style={styles.page}>
  <div style={styles.wrap}>
  <PageHero
  eyebrow="Morse words" title="Morse Code Words" description="A practical, copy-ready collection of words, phrases, prosigns, and radio abbreviations in International Morse code. Use the converter pages for conversion, then use this page for ready-to-copy words, phrases, operator shorthand, and spacing rules that keep everything decodable.">

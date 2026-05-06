@@ -147,7 +147,7 @@ export default function MorseCodePracticePlan() {
  };
 
  return (
- <div style={styles.page}>
+ <div className="mw-non-home-page" style={styles.page}>
  <main style={styles.wrap}>
  <PageHero
  eyebrow="Practice routine" title="Morse code practice plan" description="Use this plan to turn MorseWords from a set of tools into a repeatable routine. Pick the short plan for a focused reset or the longer plan for steadier progress." aside={

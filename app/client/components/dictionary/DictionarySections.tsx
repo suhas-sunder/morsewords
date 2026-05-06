@@ -29,7 +29,7 @@ const responsiveCss = `
   }
 
   .mwDictCard{
-    background: #f1f5f9;
+    background: #fffaf2;
     border-radius: 14px;
     padding: 12px;
   }
@@ -86,10 +86,9 @@ function ActionButton(props: {
     borderRadius: 10,
     whiteSpace: "nowrap",
     lineHeight: 1.15,
-    transition:
-      "transform 120ms ease, filter 120ms ease, background 120ms ease, color 120ms ease",
-    filter: hover ? "brightness(0.96)" : "none",
-    transform: hover ? "translateY(-1px)" : "translateY(0px)",
+    background: hover ? "#0f172a" : base.background,
+    color: hover ? "#e0f2fe" : base.color,
+    transition: "background 120ms ease, color 120ms ease",
     cursor: "pointer",
   };
 
@@ -116,7 +115,7 @@ function ChipButton(props: {
   const [hover, setHover] = React.useState(false);
 
   const style: React.CSSProperties = {
-    background: active ? "#0b2447" : "#f1f5f9",
+    background: active ? "#0b2447" : "#fffdf8",
     color: active ? "#fff" : "#0b2447",
     padding: "8px 10px",
     borderRadius: 999,
@@ -124,10 +123,7 @@ function ChipButton(props: {
     fontSize: ".92rem",
     cursor: "pointer",
     whiteSpace: "nowrap",
-    transition:
-      "filter 120ms ease, transform 120ms ease, background 120ms ease, color 120ms ease",
-    filter: hover ? "brightness(0.96)" : "none",
-    transform: hover ? "translateY(-1px)" : "translateY(0px)",
+    transition: "background 120ms ease, color 120ms ease",
   };
 
   return (
@@ -163,22 +159,19 @@ function SectionHeader(props: { title: string; id: string }) {
           color: "#0b2447",
           fontWeight: 800,
           textDecoration: "none",
-          background: "#f1f5f9",
+          background: "#fffdf8",
           padding: "8px 10px",
           borderRadius: 999,
           cursor: "pointer",
-          transition: "filter 120ms ease, transform 120ms ease",
+          transition: "background 120ms ease, color 120ms ease",
         }}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.filter =
-            "brightness(0.96)";
-          (e.currentTarget as HTMLAnchorElement).style.transform =
-            "translateY(-1px)";
+          (e.currentTarget as HTMLAnchorElement).style.background = "#0f172a";
+          (e.currentTarget as HTMLAnchorElement).style.color = "#e0f2fe";
         }}
         onMouseLeave={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.filter = "none";
-          (e.currentTarget as HTMLAnchorElement).style.transform =
-            "translateY(0px)";
+          (e.currentTarget as HTMLAnchorElement).style.background = "#fffdf8";
+          (e.currentTarget as HTMLAnchorElement).style.color = "#0b2447";
         }}
       >
         Top
@@ -230,7 +223,7 @@ function TableBase(props: {
               style={{
                 textAlign: c.align ?? "left",
                 padding: "12px 12px",
-                background: "#fbfcff",
+                background: "#f7f4ee",
                 fontSize: ".9rem",
                 color: "#5a616c",
                 letterSpacing: 0.2,
@@ -278,7 +271,7 @@ function QuickLinks(props: { items: { id: string; label: string }[] }) {
         position: "sticky",
         top: 0,
         zIndex: 5,
-        background: "#f7f8fb",
+        background: "#f5f2eb",
         padding: "10px 0 12px",
         marginBottom: 14,
       }}
@@ -300,7 +293,7 @@ function QuickLinks(props: { items: { id: string; label: string }[] }) {
             key={i.id}
             href={"#" + i.id}
             style={{
-              background: "#f1f5f9",
+              background: "#fffdf8",
               color: "#0b2447",
               padding: "8px 10px",
               borderRadius: 999,
@@ -308,18 +301,15 @@ function QuickLinks(props: { items: { id: string; label: string }[] }) {
               textDecoration: "none",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              transition: "filter 120ms ease, transform 120ms ease",
+              transition: "background 120ms ease, color 120ms ease",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.filter =
-                "brightness(0.96)";
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "translateY(-1px)";
+              (e.currentTarget as HTMLAnchorElement).style.background = "#0f172a";
+              (e.currentTarget as HTMLAnchorElement).style.color = "#e0f2fe";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.filter = "none";
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "translateY(0px)";
+              (e.currentTarget as HTMLAnchorElement).style.background = "#fffdf8";
+              (e.currentTarget as HTMLAnchorElement).style.color = "#0b2447";
             }}
           >
             {i.label}

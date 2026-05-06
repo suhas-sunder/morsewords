@@ -10,7 +10,6 @@ body {
   margin: 0;
   min-height: 100%;
   background-color: #f5f2eb;
-  background-image: linear-gradient(180deg, #f8f6f1 0%, #f5f2eb 46%, #f7f4ef 100%);
   /* @apply bg-white dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {
@@ -203,6 +202,67 @@ main *::after {
     ):focus-visible {
     outline: 2px solid rgba(56, 189, 248, 0.9) !important;
   }
+}
+
+.mw-page-content .mw-non-home-page {
+  --mw-non-home-control-outline: rgba(15, 23, 42, 0.24);
+  --mw-non-home-focus-outline: rgba(56, 189, 248, 0.85);
+}
+
+.mw-page-content
+  .mw-non-home-page
+  :where(button, [role="button"], summary, a.mw-button-outline) {
+  box-shadow: none !important;
+  outline: 1px solid var(--mw-non-home-control-outline) !important;
+  outline-offset: 0;
+}
+
+.mw-page-content
+  .mw-non-home-page
+  :where(button, [role="button"], summary, a.mw-button-outline):where(
+    :hover,
+    :active
+  ) {
+  box-shadow: none !important;
+}
+
+.mw-page-content
+  .mw-non-home-page
+  :where(button, [role="button"], summary, a.mw-button-outline):focus-visible {
+  box-shadow: none !important;
+  outline: 2px solid var(--mw-non-home-focus-outline) !important;
+  outline-offset: 2px;
+}
+
+.mw-page-content
+  .mw-non-home-page
+  :where(
+    button:disabled,
+    button[aria-disabled="true"],
+    [role="button"][aria-disabled="true"],
+    .mw-button-outline[aria-disabled="true"]
+  ) {
+  box-shadow: none !important;
+  outline-color: rgba(100, 116, 139, 0.22) !important;
+}
+
+.mw-page-content .mw-non-home-page :where(input, textarea, select) {
+  box-shadow: none !important;
+}
+
+.mw-page-content .mw-non-home-page :where(select) {
+  outline: 1px solid rgba(15, 23, 42, 0.18) !important;
+  outline-offset: 0;
+}
+
+.mw-page-content .mw-non-home-page :where(select):hover {
+  background-color: #f7f4ee !important;
+  color: #0f172a !important;
+}
+
+.mw-page-content .mw-non-home-page :where(input, textarea, select):focus-visible {
+  outline: 2px solid var(--mw-non-home-focus-outline) !important;
+  outline-offset: 2px;
 }
 
 .mw-how-section > .flex.flex-col:first-child {

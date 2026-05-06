@@ -110,7 +110,7 @@ export default function About() {
   const jsonLd = [pageJsonLd, breadcrumbJsonLd];
 
   return (
-    <div style={styles.page}>
+    <div className="mw-non-home-page" style={styles.page}>
       <JsonLdScript jsonLd={jsonLd} />
       <div style={styles.wrap}>
         <PageHero
@@ -283,7 +283,7 @@ export default function About() {
                 ...styles.card,
                 padding: 14,
                 borderRadius: 14,
-                background: "#fbfcff",
+                background: "#fffaf2",
               }}
             >
               <div style={{ fontWeight: 800 }}>

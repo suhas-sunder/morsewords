@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 //Using this to group all misc routes like legal stuff, sitemap, etc.
 export default function Misc() {
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="mw-non-home-page min-h-screen bg-transparent">
       <Outlet />
     </div>
   );

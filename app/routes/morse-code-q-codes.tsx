@@ -36,7 +36,7 @@ export default function MorseCodeQCodes() {
  };
 
  return (
- <div style={styles.page}>
+ <div className="mw-non-home-page" style={styles.page}>
  <main style={styles.wrap}>
  <PageHero
  eyebrow="Radio shorthand" title="Morse code Q-codes" description="Q-codes are short three-letter signals used to compress radio and Morse messages. Many can be used as statements or questions depending on context." aside={

@@ -172,7 +172,7 @@ export default function MorseCodeSos() {
   ];
 
   return (
-    <div style={styles.page}>
+    <div className="mw-non-home-page" style={styles.page}>
       <main style={styles.wrap}>
         <TranslatorSectionsBasic
           title="SOS Morse Code Translator"

@@ -67,7 +67,7 @@ function CopyButton({
  setCopied(true);
  window.setTimeout(() => setCopied(false), 800);
  }}
- className={["rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold cursor-pointer transition-colors focus-visible:outline-none","hover:bg-white active:bg-[#fffaf2]",
+ className={["rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold cursor-pointer transition-colors focus-visible:outline-none","hover:bg-slate-900 hover:text-sky-100 active:bg-[#fffaf2]",
  compact ?"text-sm":"text-base",
  copied ?"bg-sky-50":"",
  kind ==="Label"?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900":"",
@@ -621,7 +621,7 @@ export default function DictionaryRoute() {
  }, [q]);
 
  return (
-      <main id="top" className="mx-auto max-w-[1120px] px-4 pt-2 sm:px-6 sm:pt-4 lg:px-8">
+      <main id="top" className="mw-non-home-page mx-auto max-w-[1120px] px-4 pt-2 sm:px-6 sm:pt-4 lg:px-8">
  <script
  type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
  />

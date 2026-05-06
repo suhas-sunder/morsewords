@@ -105,7 +105,7 @@ export default function AudioRoute() {
   }));
 
   return (
-    <div style={styles.page}>
+    <div className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <MorseAudioTranslator />
         <HowItWorksAudio />

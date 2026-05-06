@@ -74,7 +74,7 @@ export default function Home() {
   ];
 
   return (
-    <div style={styles.page}>
+    <div className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <TranslatorSectionsBasic
           title="Text to Morse Code Encoder"

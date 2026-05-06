@@ -2089,7 +2089,7 @@ function ToggleField({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-xl bg-[#fffdf8] p-3 shadow-[0_7px_18px_rgba(11,36,71,0.07)] transition hover:bg-[#f7f4ee]">
+    <label className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-xl bg-[#fffdf8] p-3 transition hover:bg-[#f7f4ee]">
       <span className="min-w-0 break-words text-sm font-bold text-slate-800">
         {label}
       </span>
@@ -2804,7 +2804,7 @@ export default function MorseCodePrintableChart() {
   };
 
   return (
-    <div style={styles.page}>
+    <div className="mw-non-home-page" style={styles.page}>
       <style>{`
         .mw-printable-chart-page,
         .mw-printable-chart-page * {
@@ -2820,7 +2820,7 @@ export default function MorseCodePrintableChart() {
           max-width: 100%;
           min-width: 0;
           border-radius: 0.9rem;
-          background: #f1f5f9;
+          background: #fffdf8;
           color: #0f172a;
           font-weight: 700;
           transition:
@@ -2853,7 +2853,7 @@ export default function MorseCodePrintableChart() {
         .input-control:hover,
         .textarea-control:hover,
         .select-control:hover {
-          background: #e2e8f0;
+          background: #f7f4ee;
         }
 
         .input-control:focus,
@@ -2894,7 +2894,7 @@ export default function MorseCodePrintableChart() {
         }
 
         .action-secondary {
-          background: #f1f5f9;
+          background: #fffdf8;
           color: #0f172a;
         }
 
@@ -2905,7 +2905,7 @@ export default function MorseCodePrintableChart() {
 
         .quick-button {
           min-height: 2.35rem;
-          background: #f1f5f9;
+          background: #fffdf8;
           padding: 0.55rem 0.9rem;
           color: #0f172a;
           font-size: 0.85rem;
@@ -2930,20 +2930,20 @@ export default function MorseCodePrintableChart() {
           min-width: 0;
           cursor: pointer;
           border-radius: 1rem;
-          background: #f1f5f9;
+          background: #fffdf8;
           padding: 0.85rem;
-          color: #075985;
+          color: #0f172a;
           font-weight: 800;
         }
 
         .file-control:hover {
-          background: #e2e8f0;
+          background: #f7f4ee;
         }
 
         .content-card {
           min-width: 0;
           border-radius: 1.25rem;
-          background: #f1f5f9;
+          background: #fffaf2;
           padding: 1rem;
         }
 

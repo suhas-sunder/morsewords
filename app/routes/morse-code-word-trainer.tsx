@@ -403,7 +403,7 @@ export default function MorseCodeWordTrainer() {
  };
 
  return (
- <div style={styles.page}>
+ <div className="mw-non-home-page" style={styles.page}>
  <main style={styles.wrap}>
  <PageHero
  eyebrow="Word practice" title="Morse code word trainer" description="Practice Morse at the word level with a shuffled deck, audio playback, typed answers, weak-word review, and shareable results. Use a built-in list or paste your own words for classroom, radio, puzzle, or worksheet practice." aside={

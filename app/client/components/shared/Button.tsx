@@ -9,7 +9,7 @@ const base: React.CSSProperties = {
   cursor: "pointer",
   userSelect: "none",
   transition:
-    "background 120ms ease, color 120ms ease, outline-color 120ms ease, transform 120ms ease, filter 120ms ease",
+    "background 120ms ease, color 120ms ease, outline-color 120ms ease, transform 120ms ease",
 };
 
 const variants: Record<

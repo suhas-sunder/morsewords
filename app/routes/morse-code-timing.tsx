@@ -35,7 +35,7 @@ export default function MorseCodeTiming() {
  };
 
  return (
- <div style={styles.page}>
+ <div className="mw-non-home-page" style={styles.page}>
  <main style={styles.wrap}>
  <PageHero
  eyebrow="Timing reference" title="Morse code timing, WPM, and the PARIS standard" description="Morse timing is built from one unit: the dot. Dashes, gaps, words, and speed all come from that unit, which is why clean spacing matters when you translate, listen, practice, or print Morse." aside={

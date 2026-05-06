@@ -1108,7 +1108,7 @@ export default function MorseCodeWordSearchBuilder() {
  };
 
  return (
- <div style={styles.page}>
+ <div className="mw-non-home-page" style={styles.page}>
  <main style={styles.wrap}>
  <PageHero
  eyebrow="Printable puzzle" title="Morse code word search builder" description="Create a classroom-ready Morse word search where the clues are Morse code and the grid is alphabet letters. Print a student copy, reveal the solved grid, or print a separate answer key." aside={

@@ -751,7 +751,7 @@ export default function MorseAudioTranslator() {
                         label="Sample rate"
                         value={sampleRate}
                         onChange={(e) => setSampleRate(Number(e.target.value) as any)}
-                        className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-white focus:outline-none"
+                        className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
                       >
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
@@ -918,7 +918,7 @@ function LabeledAudioSelect({
         onChange={onChange}
           className={
             className ??
-          "mt-2 w-full cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-white focus:outline-none"
+          "mt-2 w-full cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
         }
       >
         {children}

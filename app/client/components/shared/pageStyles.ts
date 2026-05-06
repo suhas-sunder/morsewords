@@ -90,7 +90,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   btnSecondary: {
     border: 0,
-    background: "#eef2f6",
+    background: "#fffdf8",
     color: "#0b2447",
     padding: "10px 14px",
     borderRadius: 10,
@@ -99,7 +99,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   btnGhost: {
     border: 0,
-    background: "#f8fafc",
+    background: "#fffaf2",
     color: "#111317",
     padding: "10px 14px",
     borderRadius: 10,

@@ -475,7 +475,7 @@ export default function MorseAudioTranslator({
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-semibold text-slate-700">Tone preset</label>
-<select value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-white focus:outline-none">
+                      <select value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
                         <option value="cw_radio">CW radio tone</option>
                         <option value="sine">Sine tone</option>
                         <option value="square">Square beep</option>
@@ -518,7 +518,7 @@ export default function MorseAudioTranslator({
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="text-sm font-semibold text-slate-700">Sample rate</label>
-<select value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-white focus:outline-none">
+                        <select value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
                           <option value={48000}>48000</option>
@@ -537,7 +537,7 @@ export default function MorseAudioTranslator({
                         </div>
                         <div className="flex items-center gap-2">
                           <label className="text-sm font-semibold text-slate-700" htmlFor={`${safePrefix}_mp3_kbps`}>MP3 kbps</label>
-<select id={`${safePrefix}_mp3_kbps`} value={mp3Kbps} onChange={(e) => setMp3Kbps(Number(e.target.value))} className="cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-white focus:outline-none">
+                          <select id={`${safePrefix}_mp3_kbps`} value={mp3Kbps} onChange={(e) => setMp3Kbps(Number(e.target.value))} className="cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
                             <option value={96}>96</option>
                             <option value={128}>128</option>
                             <option value={192}>192</option>

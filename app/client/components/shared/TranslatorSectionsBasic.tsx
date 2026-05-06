@@ -801,7 +801,7 @@ export default function TranslatorSectionsBasic({
                           disabled={!soundOn}
                           className={`mt-1 w-full rounded-xl p-2 transition hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
                             soundOn
-                              ? "cursor-pointer bg-white/85 hover:bg-white"
+                              ? "cursor-pointer bg-white/85 hover:bg-slate-900 hover:text-sky-100"
                               : "cursor-not-allowed opacity-60"
                           }`}
                         >
