@@ -140,7 +140,7 @@ export default function MorsePractice({
  <div>
  <label className="font-semibold">Mode</label>
  <select
- className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 hover:bg-slate-900 hover:text-sky-100" value={promptMode}
+ className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none" value={promptMode}
  onChange={(e) => setPromptMode(e.target.value as PromptMode)}
  >
  <option value="visual">Visual</option>
@@ -152,7 +152,7 @@ export default function MorsePractice({
  <div>
  <label className="font-semibold">Character set</label>
  <select
- className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 hover:bg-slate-900 hover:text-sky-100" value={setMode}
+ className="mt-1 w-full cursor-pointer rounded-md bg-[#fffdf8] p-2 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none" value={setMode}
  onChange={(e) => setSetMode(e.target.value as SetMode)}
  >
  <option value="letters">Letters</option>

@@ -189,6 +189,7 @@ export default function MorseCodeSos() {
           morseB={morseB}
           textB={textB}
           setMorseB={setMorseB}
+          quietInputFocus
         />
 
         <div className="grid gap-6">

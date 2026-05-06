@@ -1,5 +1,10 @@
 import * as React from "react";
 
+import {
+  ToolOutputPanel,
+  ToolPanel,
+} from "~/client/components/shared/ToolWorkspace";
+
 export type PromptKind = "text_to_morse" | "morse_to_text";
 
 export type Prompt = {
@@ -19,7 +24,8 @@ export default function PromptCard({
   totalQuestions: number;
 }) {
   const kindLabel =
-    prompt.kind === "text_to_morse" ? "Text → Morse" : "Morse → Text";
+    prompt.kind === "text_to_morse" ? "Text -> Morse" : "Morse -> Text";
+  const questionLabel = `Question ${questionNumber}/${totalQuestions}`;
 
   const renderMorse = (morse: string) => {
     return morse.split("").map((ch, i) => {
@@ -47,36 +53,48 @@ export default function PromptCard({
     });
   };
 
-  return (
-    <div className="flex flex-col justify-center items-center">
-      <div
-        className="flex w-full flex-col rounded-xl bg-slate-950 p-4 text-slate-100"
-      >
-        <div className="flex items-center gap-2 justify-between">
-          <div className="inline-flex items-center gap-2">
-            <span
-              className="inline-flex items-center rounded-md bg-slate-700 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-slate-200"
-            >
-              {kindLabel}
-            </span>
-            <span className="text-sm text-slate-300">
-              {prompt.label}
-            </span>
-          </div>
-
-          <span className="text-sm font-semibold text-slate-200">
-            Question {questionNumber}/{totalQuestions}
-          </span>
-        </div>
-
-        <div
-          className="mt-4 min-h-[4.5rem] break-words whitespace-pre-wrap font-mono text-2xl tracking-wide text-sky-100 sm:text-3xl"
-        >
-          {prompt.kind === "morse_to_text"
-            ? renderMorse(prompt.morse)
-            : prompt.plain}
-        </div>
-      </div>
+  const body = (
+    <div
+      className={[
+        "min-h-[4.5rem] break-words whitespace-pre-wrap px-4 pb-5 pt-2 font-mono tracking-wide",
+        prompt.kind === "morse_to_text"
+          ? "text-2xl text-sky-100 sm:text-3xl"
+          : "text-2xl text-slate-950 sm:text-3xl",
+      ].join(" ")}
+    >
+      {prompt.kind === "morse_to_text"
+        ? renderMorse(prompt.morse)
+        : prompt.plain}
     </div>
+  );
+
+  return prompt.kind === "morse_to_text" ? (
+    <ToolOutputPanel
+      label={
+        <span className="inline-flex flex-wrap items-center gap-2">
+          <span>{kindLabel}</span>
+          <span className="text-sm font-medium text-slate-300">
+            {prompt.label}
+          </span>
+        </span>
+      }
+      badge={questionLabel}
+    >
+      {body}
+    </ToolOutputPanel>
+  ) : (
+    <ToolPanel
+      label={
+        <span className="inline-flex flex-wrap items-center gap-2">
+          <span>{kindLabel}</span>
+          <span className="text-sm font-medium text-slate-600">
+            {prompt.label}
+          </span>
+        </span>
+      }
+      badge={questionLabel}
+    >
+      {body}
+    </ToolPanel>
   );
 }

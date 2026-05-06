@@ -2860,7 +2860,7 @@ export default function MorseCodePrintableChart() {
         .input-control:focus,
         .textarea-control:focus,
         .select-control:focus {
-          outline: 3px solid rgba(14, 165, 233, 0.24);
+          outline: none;
         }
 
         .action-primary,

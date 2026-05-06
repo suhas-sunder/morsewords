@@ -12,7 +12,7 @@ const styles: Record<string, React.CSSProperties> = {
     boxSizing: "border-box",
     maxWidth: 1120,
     margin: "0 auto",
-    padding: "8px clamp(16px, 2vw, 32px) 36px",
+    padding: "8px clamp(16px, 3vw, 32px) 36px",
   },
 
   hero: {

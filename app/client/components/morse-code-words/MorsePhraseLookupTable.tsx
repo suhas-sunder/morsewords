@@ -343,7 +343,7 @@ function MorsePhraseLookupTable() {
  value={query}
  onChange={(e) => setQuery(e.target.value)}
  placeholder='Try"SOS","QSL", or"thank"'
- className="mt-1 w-full rounded-xl bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 transition focus:outline-none focus:ring-2 focus:ring-sky-300 sm:ml-2 sm:mt-0 sm:w-80"/>
+ className="mt-1 w-full rounded-xl bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 transition focus:outline-none focus:ring-0 focus-visible:outline-none sm:ml-2 sm:mt-0 sm:w-80"/>
  </label>
 
  <label className="text-sm font-semibold text-sky-950">
@@ -351,7 +351,7 @@ function MorsePhraseLookupTable() {
  <select
  value={category}
  onChange={(e) => setCategory(e.target.value as Category |"All")}
- className="mt-1 cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none sm:ml-2 sm:mt-0">
+ className="mt-1 cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none sm:ml-2 sm:mt-0">
  <option value="All">All</option>
  <option value="Common">Common words</option>
  <option value="Emergency">Emergency</option>

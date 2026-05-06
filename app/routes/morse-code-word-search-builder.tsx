@@ -1200,7 +1200,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={input}
  maxLength={MAX_WORD_SEARCH_INPUT_LENGTH}
  onChange={(event) => updatePuzzleInput(event.target.value)}
- className="mt-2 min-h-48 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-base focus:outline-none focus:ring-2 focus:ring-sky-300" spellCheck={false}
+ className="mt-2 min-h-48 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-base focus:outline-none focus:ring-0 focus-visible:outline-none" spellCheck={false}
  />
  </label>
  <p className="mt-2 text-xs leading-relaxed text-slate-500">
@@ -1225,7 +1225,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={title}
  maxLength={MAX_TITLE_LENGTH}
  onChange={(event) => setTitle(event.target.value)}
- className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold focus:outline-none focus:ring-0 focus-visible:outline-none"/>
  </label>
  <label className="mt-3 block">
  <span className="text-sm font-extrabold text-sky-950">
@@ -1235,7 +1235,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={instructions}
  maxLength={MAX_INSTRUCTIONS_LENGTH}
  onChange={(event) => setInstructions(event.target.value)}
- className="mt-2 min-h-24 w-full rounded-xl bg-[#fffdf8] p-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ className="mt-2 min-h-24 w-full rounded-xl bg-[#fffdf8] p-3 text-sm focus:outline-none focus:ring-0 focus-visible:outline-none"/>
  </label>
  <p className="mt-1 text-xs font-semibold text-slate-500">
  {instructions.length}/{MAX_INSTRUCTIONS_LENGTH} characters
@@ -1268,7 +1268,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={size}
  onChange={(event) => updateSize(Number(event.target.value))}
  style={{ accentColor:"#38bdf8"}}
- className="mt-3 w-full cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ className="mt-3 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none"/>
  </label>
  <div className="mt-4 grid gap-2">
  {(["easy","standard","challenge"] as const) .map((option) => (
@@ -1359,7 +1359,7 @@ export default function MorseCodeWordSearchBuilder() {
  value={brandName}
  maxLength={MAX_BRAND_NAME_LENGTH}
  onChange={(event) => setBrandName(event.target.value)}
- className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold focus:outline-none focus:ring-0 focus-visible:outline-none"/>
  </label>
  </ControlGroup>
 

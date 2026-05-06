@@ -718,7 +718,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  rows={prompt.kind ==="text_to_morse"? 5 : 4}
  placeholder={placeholder}
  autoComplete="off" spellCheck={false}
- inputMode="text" aria-label="Sentence practice answer" className="mt-2 w-full rounded-xl bg-white p-4 font-mono text-base text-slate-950 outline-none transition focus:ring-2 focus:ring-sky-100 disabled:bg-[#f7f4ee] disabled:text-slate-500 sm:text-lg"/>
+ inputMode="text" aria-label="Sentence practice answer" className="mt-2 w-full rounded-xl bg-white p-4 font-mono text-base text-slate-950 outline-none transition focus:ring-0 focus-visible:outline-none disabled:bg-[#f7f4ee] disabled:text-slate-500 sm:text-lg"/>
 
  <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-600">
  <span>

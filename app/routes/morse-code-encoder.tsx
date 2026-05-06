@@ -90,6 +90,7 @@ export default function Home() {
           morseB={morseB}
           textB={textB}
           setMorseB={setMorseB}
+          quietInputFocus
         />
 
         <HowItWorks />

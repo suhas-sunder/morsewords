@@ -2,6 +2,7 @@ import * as React from "react";
 
 import Button from "~/client/components/shared/Button";
 import ToggleChip from "~/client/components/shared/ToggleChip";
+import { ToolPanel } from "~/client/components/shared/ToolWorkspace";
 import type {
   DrillMode,
   Pool,
@@ -485,30 +486,30 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               />
 
               <div className="mt-5">
-                <label className="text-sky-900 font-bold">
-                  Your answer (
-                  {prompt.kind === "text_to_morse" ? "Morse" : "Text"})
-                </label>
-
-                <input
-                  value={answer}
-                  onChange={(e) => setAnswer(e.target.value)}
-                  placeholder={placeholder}
-                  className="mt-2 w-full rounded-xl border-0 bg-white/88 p-4 font-mono text-slate-950 outline-none transition focus:ring-0 focus-visible:outline-none"
-                  onKeyDown={(e) => {
-                    if (e.key !== "Enter") return;
-                    if (solvedThisQuestion) {
-                      next();
-                      return;
-                    }
-                    if (!answer.trim()) return;
-                    doCheck();
-                  }}
-                  autoComplete="off"
-                  spellCheck={false}
-                  inputMode="text"
-                  aria-label="Practice answer"
-                />
+                <ToolPanel
+                  label={`Your answer (${prompt.kind === "text_to_morse" ? "Morse" : "Text"})`}
+                  badge="Source"
+                >
+                  <input
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    placeholder={placeholder}
+                    className="w-full border-0 bg-transparent px-4 pb-5 pt-2 font-mono text-slate-950 outline-none transition focus:ring-0 focus-visible:outline-none"
+                    onKeyDown={(e) => {
+                      if (e.key !== "Enter") return;
+                      if (solvedThisQuestion) {
+                        next();
+                        return;
+                      }
+                      if (!answer.trim()) return;
+                      doCheck();
+                    }}
+                    autoComplete="off"
+                    spellCheck={false}
+                    inputMode="text"
+                    aria-label="Practice answer"
+                  />
+                </ToolPanel>
 
                 <div className="mt-3 flex flex-wrap gap-3">
                   {!solvedThisQuestion ? (

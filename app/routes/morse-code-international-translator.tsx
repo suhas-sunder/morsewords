@@ -155,6 +155,7 @@ export default function InternationalTranslator() {
           textB={textB}
           setMorseB={setMorseB}
           plainValidationValue={transliterated}
+          quietInputFocus
         />
 
         <section className="mw-static-surface-soft relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8">

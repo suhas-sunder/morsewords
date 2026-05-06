@@ -621,7 +621,7 @@ export default function DictionaryRoute() {
  }, [q]);
 
  return (
-      <main id="top" className="mw-non-home-page mx-auto max-w-[1120px] px-4 pt-2 sm:px-6 sm:pt-4 lg:px-8">
+      <main id="top" className="mw-non-home-page mx-auto w-full max-w-[1120px] px-4 pt-2 sm:px-6 sm:pt-4 lg:px-8">
  <script
  type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
  />
@@ -645,7 +645,7 @@ export default function DictionaryRoute() {
  <input
  value={query}
  onChange={(e) => setQuery(e.target.value)}
- placeholder="Type to filter by label, Morse, or meaning…" className="w-full rounded-xl bg-[#fffdf8] px-4 py-3 text-slate-950 transition focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+ placeholder="Type to filter by label, Morse, or meaning…" className="w-full rounded-xl bg-[#fffdf8] px-4 py-3 text-slate-950 transition focus:outline-none focus:ring-0 focus-visible:outline-none"/>
  </div>
 
  <nav className="mb-8 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3">

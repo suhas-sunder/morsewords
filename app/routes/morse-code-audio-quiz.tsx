@@ -603,7 +603,7 @@ export default function MorseCodeAudioQuiz() {
                     <select
                       value={preset}
                       onChange={(event) => setPreset(event.target.value as SoundPreset)}
-                className="mt-2 min-h-11 w-full rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 transition hover:bg-slate-900 hover:text-sky-100"
+                className="mt-2 min-h-11 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none"
                     >
                       <option value="cw_radio">CW (Radio)</option>
                       <option value="sine">Sine</option>
@@ -874,7 +874,7 @@ function SliderRow({
         onChange={(event) => onChange(Number(event.target.value))}
         disabled={disabled}
         style={{ accentColor: "#38bdf8" }}
-        className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-60"
+ className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60"
       />
     </div>
   );

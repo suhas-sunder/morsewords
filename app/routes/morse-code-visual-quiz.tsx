@@ -354,7 +354,7 @@ export default function MorseCodeVisualQuiz() {
                         else if (answer.trim()) checkAnswer();
                       }
                     }}
-                    className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg transition focus:outline-none focus:ring-2 focus:ring-sky-300"
+ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg transition focus:outline-none focus:ring-0 focus-visible:outline-none"
                   />
                 </label>
 
@@ -557,7 +557,7 @@ function SliderRow({
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
         style={{ accentColor: "#38bdf8" }}
-        className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-sky-300"
+ className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none"
       />
     </div>
   );

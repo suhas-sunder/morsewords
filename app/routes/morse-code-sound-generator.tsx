@@ -176,7 +176,7 @@ export default function MorseCodeSoundGeneratorRoute() {
       </div>
       <nav
         aria-label="Breadcrumb"
-        className="mx-auto max-w-5xl pb-4 text-sm text-slate-600"
+        className="mx-auto w-full max-w-[1120px] px-4 pb-4 text-sm text-slate-600 sm:px-6 lg:px-8"
       >
         <ol className="flex flex-wrap items-center gap-2">
           <li>

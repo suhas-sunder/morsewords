@@ -312,7 +312,7 @@ export default function Home() {
   ];
 
   return (
-      <main id="top" className="mw-non-home-page mx-auto max-w-[1120px] px-5 pb-10 pt-2 sm:px-8 sm:pt-4">
+      <main id="top" className="mw-non-home-page mx-auto w-full max-w-[1120px] px-4 pb-10 pt-2 sm:px-6 sm:pt-4 lg:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}

@@ -2,6 +2,10 @@ import * as React from "react";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import Button from "~/client/components/shared/Button";
+import {
+  ToolOutputPanel,
+  ToolPanel,
+} from "~/client/components/shared/ToolWorkspace";
 import ShareResultsButton from "./components/ShareResultsButton";
 
 import { type InputMode } from "./TypingControls";
@@ -684,26 +688,16 @@ export default function TypingPage({ jsonLd }: Props) {
           {/* Main typing panel */}
           <div className="mt-4">
             <div className="space-y-4">
-              <div className="rounded-xl bg-slate-950 p-4 text-slate-100 sm:p-5">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div className="text-sm font-extrabold text-white">
-                  Decoded output
-                </div>
-
-                <div className="text-right">
-                  <div className="text-xs text-slate-400">Current symbol</div>
-                  <div className="font-mono text-lg font-extrabold text-sky-100">
-                    {decoded.currentSymbol || "·"}
-                  </div>
-                </div>
-              </div>
-
-              <pre className="mt-4 min-h-[160px] max-h-[320px] overflow-auto whitespace-pre-wrap break-words rounded-lg bg-transparent p-0 font-mono text-base leading-relaxed text-sky-50">
+              <ToolOutputPanel
+                label="Decoded output"
+                badge={`Current symbol ${decoded.currentSymbol || "."}`}
+              >
+              <pre className="min-h-[160px] max-h-[320px] overflow-auto whitespace-pre-wrap break-words bg-transparent px-4 pb-5 pt-2 font-mono text-base leading-relaxed text-sky-50">
                 {decoded.decoded || ""}
               </pre>
 
               {sessionState === "done" ? (
-                <div className="mt-4 rounded-xl bg-slate-900 p-4">
+                <div className="mx-4 mb-4 rounded-xl bg-slate-900 p-4">
                   <div className="text-sm font-extrabold text-white">
                     Session complete
                   </div>
@@ -753,17 +747,9 @@ export default function TypingPage({ jsonLd }: Props) {
                   </div>
                 </div>
               ) : null}
-              </div>
+              </ToolOutputPanel>
 
-              <div className="overflow-hidden rounded-xl bg-white/88">
-                <div className="flex items-center justify-between gap-3 px-4 py-3">
-                  <label className="text-sm font-extrabold text-sky-950">
-                    Input
-                  </label>
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
-                    Source
-                  </span>
-                </div>
+              <ToolPanel label="Input" badge="Source">
                 <textarea
                   ref={inputRef}
                   value={raw}
@@ -807,7 +793,7 @@ export default function TypingPage({ jsonLd }: Props) {
                   }
                   aria-label="Morse typing input"
                 />
-              </div>
+              </ToolPanel>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <div className="flex flex-wrap gap-3">

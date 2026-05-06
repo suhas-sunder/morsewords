@@ -819,7 +819,7 @@ function SliderRow({
         style={{ accentColor: "#38bdf8" }}
         className={`w-full mt-2 ${
           disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
-        } focus:outline-none focus:ring-2 focus:ring-sky-300 rounded-full`}
+        } focus:outline-none focus:ring-0 focus-visible:outline-none rounded-full`}
       />
     </div>
   );
@@ -851,7 +851,7 @@ function LabeledAudioSelect({
         onChange={onChange}
           className={
             className ??
-          "mt-2 w-full cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+          "mt-2 w-full cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none"
         }
       >
         {children}
@@ -882,7 +882,7 @@ function LabeledAudioInput({
         id={id}
         value={value}
         onChange={onChange}
-        className="mt-2 w-full rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-sky-300"
+        className="mt-2 w-full rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold focus:outline-none focus:ring-0 focus-visible:outline-none"
         placeholder={placeholder}
       />
     </div>

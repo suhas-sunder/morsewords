@@ -32,6 +32,7 @@ interface Props {
   examples?: string[];
   plainValidationValue?: string;
   variant?: "default" | "home";
+  quietInputFocus?: boolean;
 }
 
 const STROBE_WARNING_ID = "translator-strobe-warning";
@@ -67,6 +68,7 @@ export default function TranslatorSectionsBasic({
   examples: exampleValues,
   plainValidationValue,
   variant = "default",
+  quietInputFocus = false,
 }: Props) {
   const [copied, setCopied] = useState<string | null>(null);
   const [direction, setDirection] = useState<"encode" | "decode">("encode");
@@ -346,6 +348,9 @@ export default function TranslatorSectionsBasic({
   const isHome = variant === "home";
   const focusOutline =
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+  const inputFocusClass = quietInputFocus
+    ? "focus:outline-none focus:ring-0 focus-visible:outline-none"
+    : focusOutline;
 
   return (
     <div className={isHome ? "mb-0" : "mb-8"}>
@@ -710,6 +715,7 @@ export default function TranslatorSectionsBasic({
                     step={1}
                     unit="WPM"
                     onChange={setCharWpm}
+                    quietInputFocus={quietInputFocus}
                   />
                   <SliderRow
                     label="Pitch"
@@ -720,6 +726,7 @@ export default function TranslatorSectionsBasic({
                     unit="Hz"
                     onChange={setToneHz}
                     disabled={!soundOn}
+                    quietInputFocus={quietInputFocus}
                   />
                   <SliderRow
                     label="Volume"
@@ -730,6 +737,7 @@ export default function TranslatorSectionsBasic({
                     unit="%"
                     onChange={(v) => setVolume(v / 100)}
                     disabled={!soundOn}
+                    quietInputFocus={quietInputFocus}
                   />
                 </div>
 
@@ -794,7 +802,7 @@ export default function TranslatorSectionsBasic({
                             setPreset(e.target.value as SoundPreset)
                           }
                           disabled={!soundOn}
-                          className={`mt-1 w-full rounded-xl p-2 transition hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
+                          className={`mt-1 w-full rounded-xl p-2 transition hover:text-sky-950 ${inputFocusClass} ${
                             soundOn
                               ? "cursor-pointer bg-white/85 hover:bg-slate-900 hover:text-sky-100"
                               : "cursor-not-allowed opacity-60"
@@ -818,6 +826,7 @@ export default function TranslatorSectionsBasic({
                         unit="WPM"
                         onChange={setFarnsworthWpm}
                         help="Slows spacing only."
+                        quietInputFocus={quietInputFocus}
                       />
                     </div>
 
@@ -883,6 +892,7 @@ function SliderRow({
   onChange,
   help,
   disabled,
+  quietInputFocus = false,
 }: {
   label: string;
   value: number;
@@ -893,8 +903,12 @@ function SliderRow({
   onChange: (v: number) => void;
   help?: string;
   disabled?: boolean;
+  quietInputFocus?: boolean;
 }) {
   const id = React.useId();
+  const inputFocusClass = quietInputFocus
+    ? "focus:outline-none focus:ring-0 focus-visible:outline-none"
+    : "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
 
   return (
     <div>
@@ -919,7 +933,7 @@ function SliderRow({
         onChange={(e) => onChange(Number(e.target.value))}
         disabled={disabled}
         style={{ accentColor: "#38bdf8" }}
-        className={`mt-2 w-full rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
+        className={`mt-2 w-full rounded-full ${inputFocusClass} ${
           disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
         }`}
       />

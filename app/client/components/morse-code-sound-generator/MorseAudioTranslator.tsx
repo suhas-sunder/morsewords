@@ -499,7 +499,7 @@ export default function MorseAudioTranslator({
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-semibold text-slate-700">Tone preset</label>
-                      <select value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
+                      <select value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
                         <option value="cw_radio">CW radio tone</option>
                         <option value="sine">Sine tone</option>
                         <option value="square">Square beep</option>
@@ -537,12 +537,12 @@ export default function MorseAudioTranslator({
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-semibold text-slate-700">File name</label>
-                      <input value={fileName} onChange={(e) => setFileName(e.target.value)} className="mt-2 w-full rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-sky-300" placeholder={defaultFileName} />
+<input value={fileName} onChange={(e) => setFileName(e.target.value)} className="mt-2 w-full rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold focus:outline-none focus:ring-0 focus-visible:outline-none" placeholder={defaultFileName} />
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="text-sm font-semibold text-slate-700">Sample rate</label>
-                        <select value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
+                        <select value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
                           <option value={48000}>48000</option>
@@ -561,7 +561,7 @@ export default function MorseAudioTranslator({
                         </div>
                         <div className="flex items-center gap-2">
                           <label className="text-sm font-semibold text-slate-700" htmlFor={`${safePrefix}_mp3_kbps`}>MP3 kbps</label>
-                          <select id={`${safePrefix}_mp3_kbps`} value={mp3Kbps} onChange={(e) => setMp3Kbps(Number(e.target.value))} className="cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
+                          <select id={`${safePrefix}_mp3_kbps`} value={mp3Kbps} onChange={(e) => setMp3Kbps(Number(e.target.value))} className="cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
                             <option value={96}>96</option>
                             <option value={128}>128</option>
                             <option value={192}>192</option>
@@ -652,7 +652,7 @@ function SliderRow({ label, value, min, max, step, unit, onChange, help, disable
         <span className="text-sm text-slate-600">{value} {unit}</span>
       </div>
       {help ? <p className="mt-0.5 text-xs text-slate-500">{help}</p> : null}
-      <input id={id} type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} disabled={disabled} style={{ accentColor: "#38bdf8" }} className={`w-full mt-2 ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-sky-300 rounded-full`} />
+<input id={id} type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} disabled={disabled} style={{ accentColor: "#38bdf8" }} className={`w-full mt-2 ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"} focus:outline-none focus:ring-0 focus-visible:outline-none rounded-full`} />
     </div>
   );
 }
