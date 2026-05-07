@@ -1,9 +1,12 @@
 import * as React from "react";
 import type { Route } from "./+types/dictionary";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
  ActionLinks,
  PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH ="/dictionary";
@@ -15,8 +18,8 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
  return seoMeta({
- title:"Morse Code Dictionary | Letters, Numbers, Signals & Q-Codes",
- description:"Look up Morse code letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and phrases in one clean reference built for fast copying and practice.",
+ title:"Morse Code Dictionary | Search Letters, Numbers, and Symbols | MorseWords",
+ description:"Use the Morse code dictionary to look up letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common entries for copying and practice.",
  path: CANONICAL_PATH,
  keywords:"morse code dictionary, morse dictionary, morse code letters, morse code numbers, q codes, morse abbreviations",
  });
@@ -190,6 +193,29 @@ function Section({
  );
 }
 
+const faqItems = [
+ {
+ q:"What is included in this Morse code dictionary?",
+ a:"The dictionary includes letters, numbers, common punctuation, prosigns, Q-codes, abbreviations, and practice phrases so you can look up a specific entry quickly.",
+ },
+ {
+ q:"Is this the same as the Morse code alphabet page?",
+ a:"No. The alphabet page is focused on A-Z letter memorization. The dictionary is broader and is better when you need to search or copy one specific entry.",
+ },
+ {
+ q:"Can I search punctuation in the dictionary?",
+ a:"Yes. You can filter by the punctuation mark, its Morse pattern, or its meaning. For a focused punctuation table, use the Morse punctuation page.",
+ },
+ {
+ q:"Why do some entries have longer Morse patterns?",
+ a:"Numbers, punctuation, Q-codes, and phrases are longer because they are made from multiple signals or less common symbol patterns, not just one short letter.",
+ },
+ {
+ q:"What should I use after looking up a symbol?",
+ a:"Use the decoder to check pasted Morse, the practice page to drill recall, or the international reference when you want the full supported set in one place.",
+ },
+];
+
 export default function DictionaryRoute() {
  const breadcrumbJsonLd = {"@context":"https://schema.org","@type":"BreadcrumbList",
  itemListElement: [
@@ -201,6 +227,19 @@ export default function DictionaryRoute() {
  },
  ],
  };
+ const pageJsonLd = {"@context":"https://schema.org","@type":"CollectionPage",
+ name:"Morse Code Dictionary",
+ url: CANONICAL_URL,
+ description:"A searchable Morse code lookup reference for letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common entries.",
+ isPartOf: {"@type":"WebSite", name:"MorseWords", url: SITE_URL },
+ };
+ const faqJsonLd = {"@context":"https://schema.org","@type":"FAQPage",
+ mainEntity: faqItems.map((item) => ({"@type":"Question",
+ name: item.q,
+ acceptedAnswer: {"@type":"Answer", text: item.a },
+ })),
+ };
+ const jsonLd = [breadcrumbJsonLd, pageJsonLd, faqJsonLd];
 
  const characterEntries: Entry[] = [
  // Letters
@@ -622,18 +661,17 @@ export default function DictionaryRoute() {
 
  return (
       <main id="top" className="mw-non-home-page mx-auto w-full max-w-[1120px] px-4 pt-2 sm:px-6 sm:pt-4 lg:px-8">
- <script
- type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
- />
+ <JsonLdScript jsonLd={jsonLd} />
 
  <PageHero
- eyebrow="Reference" title="Morse Code Dictionary" description="Look up Morse letters, numbers, punctuation, prosigns, Q-codes, and practice phrases in one clean reference.">
+ eyebrow="Lookup reference" title="Morse Code Dictionary" description="Search and look up Morse letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common entries when you need one specific pattern fast.">
  <ActionLinks
  links={[
  { href:"#characters", label:"Characters", primary: true },
  { href:"#prosigns", label:"Prosigns"},
  { href:"#qcodes", label:"Q-codes"},
  { href:"/morse-code-alphabet", label:"Alphabet chart"},
+ { href:"#faq", label:"FAQ"},
  ]}
  />
  </PageHero>
@@ -664,6 +702,61 @@ export default function DictionaryRoute() {
  {filtered.map((s) => (
  <Section key={s.id} id={s.id} title={s.title} items={s.filteredItems} />
  ))}
+
+ <ReferenceSupportSections
+ guide={{
+ eyebrow:"Dictionary guide",
+ title:"How to use the Morse code dictionary",
+ description:"Use this page as a lookup utility. It is built for finding one character, signal, abbreviation, or phrase quickly, then copying or comparing the result.",
+ items:[
+ { title:"Who it is for", text:"Use the dictionary when you know what you want to check and need the Morse pattern or meaning without reading a full lesson." },
+ { title:"What it includes", text:"The dictionary covers letters, numbers, punctuation, prosigns, Q-codes, abbreviations, and common practice phrases." },
+ { title:"How to search", text:"Filter by label, Morse pattern, meaning, or category. Copy the label or Morse pattern from the matching row." },
+ ],
+ }}
+ examples={{
+ title:"Worked lookup examples",
+ description:"These examples show when the dictionary is useful and when a focused reference page is a better next stop.",
+ items:[
+ { title:"Look up A", morse:".-", children:<p>A is the letter pattern <strong>.-</strong>. Use the <a href="/morse-code-alphabet" className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline">alphabet page</a> when you want A-Z memorization context.</p> },
+ { title:"Look up 5", morse:".....", children:<p>The number 5 is five dits. Compare it with other digits in the <a href="/international-morse-code-reference" className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline">international reference</a> when number spacing matters.</p> },
+ { title:"Look up ?", morse:"..--..", children:<p>The question mark has a longer punctuation pattern. The <a href="/morse-code-punctuation" className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline">punctuation page</a> keeps symbol-only examples together.</p> },
+ ],
+ }}
+ mistakes={{
+ title:"Common lookup mistakes and fixes",
+ description:"Most lookup errors come from using the wrong reference for the task.",
+ items:[
+ { title:"Using lookup for full messages", children:<p>Use this dictionary for one entry at a time. For full text, use the translator, encoder, or decoder so spacing is handled consistently.</p> },
+ { title:"Treating Q-codes as characters", children:<p>Q-codes are shorthand groups made from letters. They are useful in radio-style examples, but they are not single-character Morse symbols.</p> },
+ { title:"Mixing slash meanings", children:<p>A slash can be punctuation in text, while written Morse often uses / as a word separator. Check the word separator guide when spacing is the issue.</p> },
+ ],
+ }}
+ comparison={{
+ title:"Which Morse reference should I use?",
+ description:"The dictionary is the fastest route for lookup, but the alphabet and international reference have different jobs.",
+ items:[
+ { title:"Dictionary", text:"Use this page when you want to search for a specific character, signal, abbreviation, or phrase.", href:"/dictionary", badge:"Lookup" },
+ { title:"Alphabet", text:"Use the alphabet page when you only want to learn or review A-Z letter patterns.", href:"/morse-code-alphabet", badge:"A-Z" },
+ { title:"International reference", text:"Use the international reference when you want the broader supported set in one place.", href:"/international-morse-code-reference", badge:"Full set" },
+ ],
+ }}
+ nextStep={{
+ title:"Best next step after a lookup",
+ description:"After you find the entry, use a tool that matches what you are trying to do with it.",
+ links:[
+ { href:"/morse-code-decoder", label:"Decode pasted Morse", primary:true },
+ { href:"/practice", label:"Practice recall" },
+ { href:"/morse-code-punctuation", label:"Punctuation reference" },
+ { href:"/morse-code-prosigns", label:"Prosigns" },
+ { href:"/morse-code-q-codes", label:"Q-codes" },
+ ],
+ }}
+ />
+
+ <div id="faq">
+ <FaqSectionGeneric title="Dictionary FAQ" items={faqItems} />
+ </div>
 
  <nav aria-label="Breadcrumb" className="mb-4 text-sm text-slate-600">
  <ol className="flex flex-wrap items-center gap-2">

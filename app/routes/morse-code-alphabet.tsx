@@ -1,11 +1,12 @@
 import * as React from "react";
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/morse-code-alphabet";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   ActionLinks,
   PageHero,
-  SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
@@ -18,12 +19,13 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Alphabet Chart | Letters, Numbers & Symbols",
+    title:
+      "Morse Code Alphabet | A-Z Letter Chart and Learning Guide | MorseWords",
     description:
-      "View a clean International Morse code alphabet chart for A-Z letters, numbers, and symbols. Copy characters, play audio, or open the translator.",
+      "Learn the Morse code alphabet from A to Z with a clear letter chart, beginner examples, memorization tips, and links to practice tools.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code alphabet, morse code chart, morse code letters, morse code numbers, international morse code, morse alphabet",
+      "morse code alphabet, morse code letters, morse alphabet, learn morse code alphabet, A-Z morse code",
   });
 }
 
@@ -31,7 +33,7 @@ type Entry = {
   label: string;
   morse: string;
   meaning: string;
-  category: "Letters" | "Numbers" | "Symbols";
+  category: "Letters";
 };
 
 async function copyToClipboard(text: string) {
@@ -156,21 +158,34 @@ function Section({
   );
 }
 
-function InfoBox({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <SectionCard eyebrow="Reference flow" title={title}>
-      {children}
-    </SectionCard>
-  );
-}
+const faqItems = [
+  {
+    q: "What is the Morse code alphabet?",
+    a: "The Morse code alphabet is the standard A-Z letter set represented as dots and dashes in International Morse code.",
+  },
+  {
+    q: "Does this page include numbers and punctuation?",
+    a: "No. This page focuses on A-Z letters for memorization. Use the dictionary or international reference when you need numbers, punctuation, prosigns, or Q-codes.",
+  },
+  {
+    q: "What is the easiest Morse letter to learn first?",
+    a: "E and T are the easiest starting points because E is one dit and T is one dah. They help you hear the basic signal lengths before longer patterns.",
+  },
+  {
+    q: "Should I memorize dots and dashes visually or by sound?",
+    a: "Use the chart to recognize patterns, but practice by sound as soon as possible. Morse is easier to use when letters become rhythms instead of visual strings.",
+  },
+  {
+    q: "How is this different from the dictionary?",
+    a: "The alphabet page is a focused A-Z learning chart. The dictionary is better for quick lookup across letters, numbers, punctuation, prosigns, Q-codes, and phrases.",
+  },
+  {
+    q: "What should I practice after A-Z?",
+    a: "After reviewing the alphabet, use the practice page for recall, the typing page for rhythm, or the SOS page to see S and O in a recognizable signal.",
+  },
+];
 
-export default function Home() {
+export default function MorseCodeAlphabetRoute() {
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -187,14 +202,25 @@ export default function Home() {
 
   const pageJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": "CollectionPage",
     name: "Morse Code Alphabet",
     url: CANONICAL_URL,
     description:
-      "A clean Morse code alphabet chart with letters, numbers, and symbols.",
+      "A focused A-Z Morse code alphabet chart for learning and memorizing letter patterns.",
     breadcrumb: {
       "@id": CANONICAL_URL + "#breadcrumb",
     },
+    isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 
   const letters: Entry[] = [
@@ -226,118 +252,21 @@ export default function Home() {
     { label: "Z", morse: "--..", meaning: "Letter Z", category: "Letters" },
   ];
 
-  const numbers: Entry[] = [
-    { label: "0", morse: "-----", meaning: "Number 0", category: "Numbers" },
-    { label: "1", morse: ".----", meaning: "Number 1", category: "Numbers" },
-    { label: "2", morse: "..---", meaning: "Number 2", category: "Numbers" },
-    { label: "3", morse: "...--", meaning: "Number 3", category: "Numbers" },
-    { label: "4", morse: "....-", meaning: "Number 4", category: "Numbers" },
-    { label: "5", morse: ".....", meaning: "Number 5", category: "Numbers" },
-    { label: "6", morse: "-....", meaning: "Number 6", category: "Numbers" },
-    { label: "7", morse: "--...", meaning: "Number 7", category: "Numbers" },
-    { label: "8", morse: "---..", meaning: "Number 8", category: "Numbers" },
-    { label: "9", morse: "----.", meaning: "Number 9", category: "Numbers" },
-  ];
-
-  const symbols: Entry[] = [
-    { label: ".", morse: ".-.-.-", meaning: "Period", category: "Symbols" },
-    { label: ",", morse: "--..--", meaning: "Comma", category: "Symbols" },
-    {
-      label: "?",
-      morse: "..--..",
-      meaning: "Question mark",
-      category: "Symbols",
-    },
-    {
-      label: "!",
-      morse: "-.-.--",
-      meaning: "Exclamation mark",
-      category: "Symbols",
-    },
-    { label: "/", morse: "-..-.", meaning: "Slash", category: "Symbols" },
-    { label: "@", morse: ".--.-.", meaning: "At sign", category: "Symbols" },
-    { label: "-", morse: "-....-", meaning: "Hyphen", category: "Symbols" },
-    { label: "+", morse: ".-.-.", meaning: "Plus", category: "Symbols" },
-    { label: "=", morse: "-...-", meaning: "Equals", category: "Symbols" },
-    { label: ":", morse: "---...", meaning: "Colon", category: "Symbols" },
-    { label: ";", morse: "-.-.-.", meaning: "Semicolon", category: "Symbols" },
-    {
-      label: "(",
-      morse: "-.--.",
-      meaning: "Open parenthesis",
-      category: "Symbols",
-    },
-    {
-      label: ")",
-      morse: "-.--.-",
-      meaning: "Close parenthesis",
-      category: "Symbols",
-    },
-    {
-      label: "&",
-      morse: ".-...",
-      meaning: "Ampersand",
-      category: "Symbols",
-    },
-    {
-      label: "'",
-      morse: ".----.",
-      meaning: "Apostrophe",
-      category: "Symbols",
-    },
-    {
-      label: '"',
-      morse: ".-..-.",
-      meaning: "Quotation mark",
-      category: "Symbols",
-    },
-  ];
-
-  const faqItems = [
-    {
-      q: "What is the Morse code alphabet?",
-      a: "The Morse code alphabet is the standard A–Z letter set represented as dots and dashes in International Morse code.",
-    },
-    {
-      q: "Does this page include numbers and symbols too?",
-      a: "Yes. This chart includes letters, numbers, and common punctuation so you can copy or check each character quickly.",
-    },
-    {
-      q: "What is the difference between this alphabet page and the dictionary?",
-      a: "This page is a clean chart for quick lookup. The dictionary goes deeper with prosigns, Q-codes, abbreviations, and phrases.",
-    },
-    {
-      q: "Can I copy individual Morse code entries?",
-      a: "Yes. Each card includes copy buttons for both the Morse pattern and the character.",
-    },
-    {
-      q: "Can I translate full words or sentences here?",
-      a: "For full text conversion, use the Morse code translator, encoder, or decoder pages linked below.",
-    },
-  ];
-
   return (
-      <main id="top" className="mw-non-home-page" style={styles.wrap}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }}
-      />
+    <main id="top" className="mw-non-home-page" style={styles.wrap}>
+      <JsonLdScript jsonLd={[breadcrumbJsonLd, pageJsonLd, faqJsonLd]} />
 
       <PageHero
-        eyebrow="Reference chart"
+        eyebrow="Letter chart"
         title="Morse Code Alphabet"
-        description="Browse a clean Morse code alphabet chart with letters, numbers, and common symbols. Copy any entry instantly, then jump to the translator, encoder, or decoder if you want to convert full text."
+        description="Learn the A-Z Morse letter patterns in one focused chart. This page is for letter memorization; use the dictionary or international reference when you need numbers, punctuation, prosigns, or Q-codes."
       >
         <ActionLinks
           links={[
-            { href: "#letters", label: "Letters", primary: true },
-            { href: "#numbers", label: "Numbers" },
-            { href: "#symbols", label: "Symbols" },
-            { href: "/", label: "Translator" },
+            { href: "#letters", label: "Letters A-Z", primary: true },
+            { href: "/dictionary", label: "Dictionary" },
+            { href: "/international-morse-code-reference", label: "Full reference" },
+            { href: "#faq", label: "FAQ" },
           ]}
         />
       </PageHero>
@@ -348,25 +277,13 @@ export default function Home() {
             href="#letters"
             className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
           >
-            Letters
+            Letters A-Z
           </a>
           <a
-            href="#numbers"
+            href="#examples"
             className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
           >
-            Numbers
-          </a>
-          <a
-            href="#symbols"
-            className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
-          >
-            Symbols
-          </a>
-          <a
-            href="#how-it-works"
-            className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
-          >
-            How It Works
+            Examples
           </a>
           <a
             href="#faq"
@@ -383,50 +300,148 @@ export default function Home() {
       >
         <Section
           id="letters"
-          title="Letters A–Z"
-          description="Use this section to look up each letter in the Morse code alphabet."
+          title="Letters A-Z"
+          description="Use this section to review and copy the standard International Morse letter alphabet."
           items={letters}
         />
 
-        <Section
-          id="numbers"
-          title="Numbers 0–9"
-          description="These are the standard International Morse code patterns for numbers."
-          items={numbers}
-        />
-
-        <Section
-          id="symbols"
-          title="Common Symbols"
-          description="These are common punctuation and symbol entries used in International Morse code."
-          items={symbols}
-        />
-
-        <div id="how-it-works" className="grid gap-6">
-          <InfoBox title="How It Works">
-            <div className="grid gap-3">
-              <p>
-                Each letter, number, or symbol is represented by a pattern of
-                dots and dashes. Short signals are dots, longer signals are
-                dashes.
-              </p>
-              <p>
-                Use this page as a quick lookup chart. If you want to convert
-                full text, translate Morse back to English, or listen to audio,
-                use the dedicated tools below.
-              </p>
-              <div className="flex flex-wrap gap-3 pt-2">
-                <ActionLinks
-                  links={[
-                    { href: "/", label: "Morse Code Translator", primary: true },
-                    { href: "/morse-code-encoder", label: "Text to Morse Code" },
-                    { href: "/morse-code-decoder", label: "Decode Morse Code" },
-                    { href: "/dictionary", label: "Morse Code Dictionary" },
-                  ]}
-                />
-              </div>
-            </div>
-          </InfoBox>
+        <div id="examples">
+          <ReferenceSupportSections
+            guide={{
+              eyebrow: "Alphabet guide",
+              title: "How to use the A-Z Morse alphabet",
+              description:
+                "This page keeps the learning target narrow: letters only. That makes it easier to compare patterns, spot mirrored pairs, and start practicing by sound.",
+              items: [
+                {
+                  title: "Who it is for",
+                  text: "Use this chart when you are learning or reviewing letter patterns before moving into words and sentences.",
+                },
+                {
+                  title: "What it includes",
+                  text: "The chart includes A-Z letters only. Numbers, punctuation, prosigns, and Q-codes live in broader reference pages.",
+                },
+                {
+                  title: "How to study it",
+                  text: "Start with short letters, compare pairs, then use practice and typing drills to turn visual patterns into recall.",
+                },
+              ],
+            }}
+            examples={{
+              title: "Worked letter examples",
+              description:
+                "These beginner patterns show why a letter-only chart is useful for memorization.",
+              items: [
+                {
+                  title: "E and T",
+                  morse: ".  -",
+                  children: (
+                    <p>
+                      E is one dit and T is one dah. They are the shortest
+                      patterns and the best first contrast for learning signal
+                      length.
+                    </p>
+                  ),
+                },
+                {
+                  title: "A and N",
+                  morse: ".-  -.",
+                  children: (
+                    <p>
+                      A and N are mirrored short patterns. Pairing them helps
+                      you avoid reversing the order while reading or sending.
+                    </p>
+                  ),
+                },
+                {
+                  title: "S and O",
+                  morse: "...  ---",
+                  children: (
+                    <p>
+                      S and O are the building blocks of{" "}
+                      <a
+                        href="/morse-code-sos"
+                        className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                      >
+                        SOS in Morse code
+                      </a>
+                      , one of the easiest complete signals to recognize.
+                    </p>
+                  ),
+                },
+              ],
+            }}
+            mistakes={{
+              title: "Common alphabet learning mistakes",
+              description:
+                "The alphabet is small, but the learning method matters.",
+              items: [
+                {
+                  title: "Learning only by sight",
+                  children: (
+                    <p>
+                      Visual lookup is useful, but Morse becomes practical when
+                      the letters are remembered as sound patterns.
+                    </p>
+                  ),
+                },
+                {
+                  title: "Adding symbols too early",
+                  children: (
+                    <p>
+                      Keep the first pass focused on A-Z. Add numbers and
+                      punctuation after letter recall is stable.
+                    </p>
+                  ),
+                },
+                {
+                  title: "Skipping practice",
+                  children: (
+                    <p>
+                      Reading the chart is not the same as recall. Use drills
+                      after each small group of letters.
+                    </p>
+                  ),
+                },
+              ],
+            }}
+            comparison={{
+              title: "Which Morse reference should I use?",
+              description:
+                "Use this alphabet chart for letter learning. Use the other reference pages when your task is broader.",
+              items: [
+                {
+                  title: "Alphabet",
+                  text: "Use this page when you want to learn the A-Z letter patterns without extra symbol categories.",
+                  href: "/morse-code-alphabet",
+                  badge: "Letters",
+                },
+                {
+                  title: "Dictionary",
+                  text: "Use the dictionary for quick lookup across letters, numbers, punctuation, prosigns, Q-codes, and phrases.",
+                  href: "/dictionary",
+                  badge: "Lookup",
+                },
+                {
+                  title: "International reference",
+                  text: "Use the international reference when you need the broader supported Morse set in one place.",
+                  href: "/international-morse-code-reference",
+                  badge: "Full set",
+                },
+              ],
+            }}
+            nextStep={{
+              title: "Best next step after reviewing A-Z",
+              description:
+                "Move from recognition into recall, rhythm, and short complete signals.",
+              links: [
+                { href: "/practice", label: "Practice letters", primary: true },
+                { href: "/typing", label: "Typing rhythm" },
+                { href: "/learn-morse-code", label: "Learning path" },
+                { href: "/morse-code-sos", label: "Study SOS" },
+              ],
+            }}
+          />
         </div>
 
         <div id="faq">
