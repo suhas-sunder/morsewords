@@ -134,7 +134,7 @@ function SocialLinks() {
  </div>
  </div>
 
- <div className="px-5 py-5 sm:px-8 sm:py-6">
+ <div className="px-5 pb-8 pt-5 sm:px-8 sm:pb-10 sm:pt-6">
  <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
  {linksData.map((link) => (
  <li key={link.id}>

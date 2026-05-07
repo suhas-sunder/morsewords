@@ -350,17 +350,17 @@ function HomeToolkit() {
             Quick access
           </p>
 
-          <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-3 grid auto-rows-fr gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURED_LINKS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="mw-button-outline group relative flex min-h-[76px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none active:scale-[0.99]"
+                className="mw-button-outline group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 transition-[background-color,box-shadow,transform] hover:bg-slate-800 hover:text-white focus:outline-none active:scale-[0.99]"
               >
                 <span className="text-base font-semibold leading-snug text-current sm:text-lg">
                   {item.title}
                 </span>
-                <span className="absolute right-4 top-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-sky-100/80 transition group-hover:text-white">
+                <span className="absolute right-4 top-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-sky-100/80 group-hover:text-white">
                   {item.label}
                 </span>
               </a>
@@ -431,17 +431,17 @@ function FullToolkit() {
               Quick access
             </p>
 
-            <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="mt-3 grid auto-rows-fr gap-2 sm:grid-cols-2 lg:grid-cols-1">
               {FEATURED_LINKS.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="mw-button-outline mw-related-quick-link group flex cursor-pointer items-center justify-between gap-4 rounded-xl bg-slate-950 px-4 py-3 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none"
+                  className="mw-button-outline mw-related-quick-link group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 transition-[background-color,box-shadow,transform] hover:bg-slate-800 hover:text-white focus:outline-none"
                 >
-                  <span className="text-base font-semibold leading-snug text-current">
+                  <span className="text-base font-semibold leading-snug text-current sm:text-lg">
                     {item.title}
                   </span>
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-sky-100 transition group-hover:text-white">
+                  <span className="absolute right-4 top-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-sky-100/80 group-hover:text-white">
                     {item.label}
                   </span>
                 </a>
