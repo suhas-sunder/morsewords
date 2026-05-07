@@ -1,15 +1,15 @@
 import * as React from "react";
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/morse-code-decoder";
 
-import styles from "~/client/components/shared/pageStyles";
-import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
+import styles from "~/client/components/shared/pageStyles";
+import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import {
   morseToText,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
-import HowItWorks from "~/client/components/morse-code-decoder/HowItWorks";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-decoder";
@@ -21,25 +21,59 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Decoder | Convert Dots and Dashes to Text",
+    title: "Morse Code Decoder | Convert Dots and Dashes to Text | MorseWords",
     description:
-      "Decode dots, dashes, spaces, slashes, and pasted Morse into readable text. Clean messy separators and keep uncertain characters visible.",
+      "Paste Morse code dots and dashes into the decoder to convert them into readable text, troubleshoot spacing, and identify unknown sequences.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code decoder, morse to text, morse code to text, decode morse code, convert morse code to text, morse decoder",
+      "morse code decoder, morse to text, morse code to text, decode morse code, convert dots and dashes to text",
   });
 }
 
-export default function Home() {
-  // Translator state (conversion logic stays in morseUtils)
+const faqItems = [
+  {
+    q: "What is a Morse code decoder?",
+    a: "A Morse code decoder converts dots and dashes into readable text using International Morse patterns.",
+  },
+  {
+    q: "Why did my decoded text show a question mark?",
+    a: "A question mark appears when a dot-dash group does not match a supported Morse character. The decoder keeps the uncertainty visible instead of guessing silently.",
+  },
+  {
+    q: "How many spaces should I use between Morse letters?",
+    a: "Use a visible gap between letter patterns. MorseWords treats 1 to 6 spaces as letter boundaries and 7 or more spaces as a word boundary.",
+  },
+  {
+    q: "Can I decode Morse without spaces?",
+    a: "No decoder can reliably split unspaced Morse into the intended letters because many different words can share the same run of dots and dashes.",
+  },
+  {
+    q: "Should I use the decoder or word separator page?",
+    a: "Use the decoder when your Morse is already separated enough to read. Use the word separator page when the main problem is fixing slashes, line breaks, or word gaps.",
+  },
+];
+
+export default function MorseCodeDecoder() {
   const [plainA, setPlainA] = React.useState("sos help");
   const morseA = React.useMemo(() => textToMorse(plainA), [plainA]);
 
   const [morseB, setMorseB] = React.useState("... --- ...");
   const textB = React.useMemo(() => morseToText(morseB), [morseB]);
 
-  const baseUrl = SITE_URL;
-  const jsonLd = {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Morse Code Decoder",
+        item: CANONICAL_URL,
+      },
+    ],
+  };
+  const webAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "MorseWords Morse Code Decoder",
@@ -47,31 +81,20 @@ export default function Home() {
     operatingSystem: "All",
     url: CANONICAL_URL,
     description:
-      "Browser-based Morse code decoder for converting Morse into readable text.",
+      "Morse-to-text decoder for converting separated dots and dashes into readable text while keeping unknown sequences visible.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
   };
-  const faqItems = [
-    {
-      q: "What does a Morse code decoder do?",
-      a: "A decoder converts dots and dashes (International Morse) into readable text using a fixed character map.",
-    },
-    {
-      q: "How should I format Morse for best results?",
-      a: "Separate letters with spaces and words with longer gaps. Slashes (/) are also treated as word separators when decoding.",
-    },
-    {
-      q: "Can I decode Morse with / between words?",
-      a: "Yes. A slash is interpreted as a word break, which is common in puzzles and copied Morse strings.",
-    },
-    {
-      q: "Why do I see “?” in the output sometimes?",
-      a: "Unknown or invalid Morse sequences decode to “?” so mistakes stay visible instead of being guessed silently.",
-    },
-    {
-      q: "Is this decoder private?",
-      a: "Yes. Decoding runs locally in your browser and does not require sending your Morse input to a server.",
-    },
-  ];
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+  const jsonLd = [breadcrumbJsonLd, webAppJsonLd, faqJsonLd];
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
@@ -80,8 +103,9 @@ export default function Home() {
           title="Morse Code Decoder"
           subtitle={
             <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-              Paste Morse from a puzzle, worksheet, screenshot, or message and
-              turn it back into readable text with visible separator handling.
+              Paste Morse code dots and dashes, then convert them into readable
+              text. Use this page when you already have Morse and need to
+              interpret the message, check spacing, or spot unknown sequences.
             </p>
           }
           plainA={plainA}
@@ -93,7 +117,156 @@ export default function Home() {
           quietInputFocus
         />
 
-        <HowItWorks />
+        <ReferenceSupportSections
+          guide={{
+            eyebrow: "Morse to text",
+            title: "How to use the Morse code decoder",
+            description:
+              "Use this page when the input already contains Morse symbols and you need readable text back.",
+            items: [
+              {
+                title: "Who it is for",
+                text: "Puzzle solvers, learners, and operators checking copied dots and dashes from a message, worksheet, screenshot, or practice drill.",
+              },
+              {
+                title: "What it accepts",
+                text: "The decoder accepts dots, dashes, spaces, slashes, and new lines. Slashes and new lines are treated as word boundaries.",
+              },
+              {
+                title: "How to use it",
+                text: "Paste Morse into the Morse-to-text side, preserve letter gaps, then review the decoded text and any unknown groups.",
+              },
+            ],
+          }}
+          examples={{
+            title: "Worked decoding examples",
+            description:
+              "These examples show how separators change the decoded result.",
+            items: [
+              {
+                title: "SOS",
+                morse: "... --- ...",
+                children: (
+                  <p>
+                    With spaces between the three letter patterns, the decoder
+                    reads this as SOS. See the{" "}
+                    <a
+                      href="/morse-code-sos"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      SOS guide
+                    </a>{" "}
+                    for the signal meaning.
+                  </p>
+                ),
+              },
+              {
+                title: "HELLO",
+                morse: ".... . .-.. .-.. ---",
+                children: (
+                  <p>
+                    Each separated group maps to one letter. If those spaces are
+                    removed, the message becomes ambiguous.
+                  </p>
+                ),
+              },
+              {
+                title: "Slash word break",
+                morse: "... --- ... / .... . .-.. .--.",
+                children: (
+                  <p>
+                    The slash becomes a word boundary, so the decoder reads two
+                    words instead of one continuous stream.
+                  </p>
+                ),
+              },
+            ],
+          }}
+          mistakes={{
+            title: "Common decoding mistakes",
+            description:
+              "Decoding is usually wrong when separators are missing, symbols are invalid, or the wrong tool is used.",
+            items: [
+              {
+                title: "No letter gaps",
+                children: (
+                  <p>
+                    Morse without spaces can often be split more than one way.
+                    Add letter gaps before expecting a reliable decode.
+                  </p>
+                ),
+              },
+              {
+                title: "Unknown groups",
+                children: (
+                  <p>
+                    A question mark means one group is not a supported Morse
+                    pattern. Compare it with the{" "}
+                    <a
+                      href="/dictionary"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      Morse code dictionary
+                    </a>
+                    .
+                  </p>
+                ),
+              },
+              {
+                title: "Spacing cleanup first",
+                children: (
+                  <p>
+                    If pasted Morse mixes slashes, pipes, and line breaks, clean
+                    it with the{" "}
+                    <a
+                      href="/morse-code-word-separator"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      word separator
+                    </a>{" "}
+                    before decoding.
+                  </p>
+                ),
+              },
+            ],
+          }}
+          comparison={{
+            title: "Decoder vs encoder vs word separator",
+            description:
+              "Start with the page that matches your current input format.",
+            items: [
+              {
+                title: "Decoder",
+                text: "Use this page when you already have Morse code and want readable text.",
+                href: "/morse-code-decoder",
+                badge: "Morse to text",
+              },
+              {
+                title: "Encoder",
+                text: "Use the encoder when you are starting with normal text.",
+                href: "/morse-code-encoder",
+                badge: "Text to Morse",
+              },
+              {
+                title: "Word separator",
+                text: "Use the separator page when pasted Morse needs cleaner spaces or visible word breaks.",
+                href: "/morse-code-word-separator",
+                badge: "Spacing",
+              },
+            ],
+          }}
+          nextStep={{
+            title: "Best next step after decoding",
+            description:
+              "After you have readable text, choose the tool that checks, practices, or explains the message.",
+            links: [
+              { href: "/", label: "Open the main translator", primary: true },
+              { href: "/morse-code-encoder", label: "Encode a reply" },
+              { href: "/morse-code-punctuation", label: "Check punctuation" },
+              { href: "/morse-code-sos", label: "Read the SOS guide" },
+            ],
+          }}
+        />
 
         <FaqSectionGeneric title="Decoder FAQ" items={faqItems} />
       </div>

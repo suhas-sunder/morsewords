@@ -84,7 +84,7 @@ export default function ReferenceSupportSections({
               <h3 className="text-lg font-extrabold leading-snug text-sky-950">
                 {example.title}
               </h3>
-              <p className="mt-3 font-mono text-base font-bold tracking-[0.14em] text-slate-950">
+              <p className="mt-3 whitespace-pre-wrap font-mono text-base font-bold tracking-[0.14em] text-slate-950">
                 {example.morse}
               </p>
               <div className="mt-3 text-base leading-relaxed text-slate-700">
