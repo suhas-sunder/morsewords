@@ -174,7 +174,7 @@ export default function NavBar(props: { pathname?: string }) {
   }
 
   return (
-    <header className="z-50 bg-neutral-900 backdrop-blur">
+    <header className="relative z-50 bg-neutral-900 backdrop-blur">
       <div className="mx-auto max-w-5xl px-4">
         <div className="flex items-center justify-between py-3">
           <a
@@ -243,7 +243,7 @@ export default function NavBar(props: { pathname?: string }) {
               {moreOpen ? (
                 <div
                   role="menu"
-                  className="absolute right-0 mt-4 w-80 overflow-hidden rounded-2xl bg-white"
+                  className="absolute right-0 z-50 mt-4 w-80 overflow-hidden rounded-2xl bg-white"
                 >
                   <div className="bg-sky-50 px-4 py-3">
                     <p className="text-sm font-extrabold text-sky-900">
