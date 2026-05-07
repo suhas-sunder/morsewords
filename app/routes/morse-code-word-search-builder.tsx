@@ -24,6 +24,7 @@ import {
  PageHero,
  SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import { textToMorse } from "~/client/components/shared/morseUtils";
@@ -105,20 +106,24 @@ const DIRECTIONS: Record<string, Direction> = {
 
 const faqItems = [
  {
- q:"How does a Morse code word search work?",
- a:"Students read each Morse clue, translate it into a plain word, then find that alphabetic word in the letter grid.",
+ q:"What is a Morse code word search?",
+ a:"It is a printable puzzle where each clue is written in Morse code and the answer is hidden as plain letters in a word-search grid.",
  },
  {
- q:"Are the plain answers shown on the student copy?",
- a:"No. Plain answers are hidden by default. Teachers can optionally include them on the student copy, or print a separate answered version.",
+ q:"Can I use my own words?",
+ a:"Yes. Add A-Z words separated by commas or new lines. The builder removes unsupported characters and reports words that do not fit.",
  },
  {
- q:"Can I make a new puzzle from the same words?",
- a:"Yes. Generate new puzzle keeps your words and settings but changes the seed, placements, and filler letters.",
+ q:"Should the puzzle use Morse code or normal words?",
+ a:"The clues use Morse code and the grid uses normal letters. That forces learners to decode each clue before searching the grid.",
  },
  {
- q:"What words work best?",
- a:"Use A-Z words with at least two letters. Short and medium words print best, especially for 10 x 10 or 12 x 12 grids.",
+ q:"Is this useful for classroom activities?",
+ a:"Yes. Teachers can print a student copy, reveal the solved grid, or print a separate answer sheet for review.",
+ },
+ {
+ q:"How is this different from the word trainer?",
+ a:"The word search builder creates a printable puzzle. The word trainer is for repeated on-screen practice with custom or weak words.",
  },
 ];
 
@@ -128,8 +133,8 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
  return seoMeta({
- title:"Morse Code Word Search Builder | Printable Morse Puzzles",
- description:"Create printable Morse code word searches with Morse clues, alphabet grids, answer keys, QR branding, and classroom-ready print versions.",
+ title:"Morse Code Word Search Builder | Create Printable Morse Puzzles | MorseWords",
+ description:"Build a printable Morse code word search with custom words, classroom activity ideas, and export guidance for practice.",
  path: CANONICAL_PATH,
  keywords:"morse code word search, morse word search builder, printable morse code puzzle, morse code puzzle maker",
  });
@@ -1098,6 +1103,7 @@ export default function MorseCodeWordSearchBuilder() {
  const jsonLd = {"@context":"https://schema.org","@type":"WebApplication",
  name:"Morse Code Word Search Builder",
  url: CANONICAL,
+ description:"Create printable Morse code word searches with Morse clues, custom A-Z word lists, student copies, answer keys, and classroom puzzle settings.",
  applicationCategory:"EducationalApplication",
  isPartOf: {"@type":"WebSite", name:"MorseWords", url: SITE_URL },
  };
@@ -1112,7 +1118,7 @@ export default function MorseCodeWordSearchBuilder() {
  <div className="mw-non-home-page" style={styles.page}>
  <main style={styles.wrap}>
  <PageHero
- eyebrow="Printable puzzle" title="Morse code word search builder" description="Create a classroom-ready Morse word search where the clues are Morse code and the grid is alphabet letters. Print a student copy, reveal the solved grid, or print a separate answer key." aside={
+ eyebrow="Printable puzzle" title="Morse Code Word Search Builder" description="Create a printable Morse learning puzzle from custom words. The clues are Morse code, the grid uses alphabet letters, and teachers can print student or answer copies." aside={
  <DarkNote
  label="Puzzle status" value={`${puzzle.placements.length}/${parsed.words.length || 0} PLACED`}
  >
@@ -1125,11 +1131,11 @@ export default function MorseCodeWordSearchBuilder() {
  links={[
  {
  href:"/morse-code-word-trainer",
- label:"Word trainer",
+ label:"Practice word lists",
  primary: true,
  },
- { href:"/morse-code-printable-chart", label:"Worksheet builder"},
- { href:"/morse-code-alphabet", label:"Alphabet chart"},
+ { href:"/morse-code-printable-chart", label:"Printable chart"},
+ { href:"/morse-code-words", label:"Common words"},
  ]}
  />
  </PageHero>
@@ -1475,6 +1481,140 @@ export default function MorseCodeWordSearchBuilder() {
  </p>
  </div>
  </SectionCard>
+
+ <ReferenceSupportSections
+ guide={{
+ eyebrow:"Puzzle export",
+ title:"How to use the Morse word search builder",
+ description:"Use this page when the goal is a printable activity, not a live translator or a static chart.",
+ items:[
+ {
+ title:"Who it is for",
+ text:"Teachers, parents, club leaders, puzzle makers, and learners who want a printable activity built from Morse learning vocabulary.",
+ },
+ {
+ title:"What it creates",
+ text:"The builder turns your A-Z word list into Morse clues, places the plain answers in a grid, and can print student and answer-key versions.",
+ },
+ {
+ title:"How to choose words",
+ text:"Use short, familiar words for beginners. Save longer words and reverse directions for review sessions after learners know the alphabet.",
+ },
+ ],
+ }}
+ examples={{
+ title:"Word search scenarios",
+ description:"These examples show when a puzzle works better than a normal chart or drill.",
+ items:[
+ {
+ title:"Beginner vocabulary puzzle",
+ morse:"SOS, CODE, RADIO",
+ children:(
+ <p>
+ Start with words the learner can already decode. A smaller grid and
+ easy directions keep the focus on reading the Morse clues.
+ </p>
+ ),
+ },
+ {
+ title:"Classroom review sheet",
+ morse:"SIGNAL, MORSE, BEACON",
+ children:(
+ <p>
+ Use a themed word list, print the student copy, and keep the answer
+ sheet for quick review after the activity.
+ </p>
+ ),
+ },
+ {
+ title:"Weak-word follow-up",
+ morse:"CUSTOM LIST",
+ children:(
+ <p>
+ Put missed practice words into the puzzle, then repeat them later in
+ the{" "}
+ <a className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-word-trainer">
+ word trainer
+ </a>
+ .
+ </p>
+ ),
+ },
+ ],
+ }}
+ mistakes={{
+ title:"Common puzzle-building mistakes",
+ description:"Most puzzle problems come from word choice, grid size, or hiding too much support from beginners.",
+ items:[
+ {
+ title:"Words are too long",
+ children:(
+ <p>
+ If words are skipped, increase the grid size or use shorter terms.
+ Long words are harder to place and harder to read in print.
+ </p>
+ ),
+ },
+ {
+ title:"Too many new letters",
+ children:(
+ <p>
+ A puzzle works best as review. If learners are still learning A-Z,
+ start with the{" "}
+ <a className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-alphabet">
+ alphabet chart
+ </a>{" "}
+ first.
+ </p>
+ ),
+ },
+ {
+ title:"Wrong activity type",
+ children:(
+ <p>
+ Use this builder for printable puzzles. Use the word trainer when
+ you need repeated on-screen recall instead of a handout.
+ </p>
+ ),
+ },
+ ],
+ }}
+ comparison={{
+ eyebrow:"Choose an activity",
+ title:"Word search vs printable chart vs word trainer",
+ description:"Pick the page based on whether you need a static reference, a printable puzzle, or active word repetition.",
+ items:[
+ {
+ title:"Word search builder",
+ text:"Use this page for printable puzzle activities with Morse clues and a hidden letter grid.",
+ href:"/morse-code-word-search-builder",
+ badge:"Puzzle",
+ },
+ {
+ title:"Printable chart",
+ text:"Use the chart builder when learners need a reference sheet, worksheet packet, or answer-key handout.",
+ href:"/morse-code-printable-chart",
+ badge:"Handout",
+ },
+ {
+ title:"Word trainer",
+ text:"Use the trainer when custom or weak words need repeated active recall.",
+ href:"/morse-code-word-trainer",
+ badge:"Practice",
+ },
+ ],
+ }}
+ nextStep={{
+ title:"Best next step after building a puzzle",
+ description:"Connect the printable activity to a short practice loop so learners reinforce the same words.",
+ links:[
+ { href:"/morse-code-printable-chart", label:"Print a reference chart", primary:true },
+ { href:"/morse-code-word-trainer", label:"Practice the word list" },
+ { href:"/morse-code-words", label:"Find common Morse words" },
+ { href:"/practice", label:"Start general practice" },
+ ],
+ }}
+ />
 
  <FaqSectionGeneric title="Word search FAQ" items={faqItems} />
 

@@ -2,7 +2,9 @@ import * as React from "react";
 import QRCode from "qrcode";
 
 import { DownloadIcon, ShareIcon, WarningIcon } from "~/client/assets/svg/Icons";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ActionLinks,
   DarkNote,
@@ -194,14 +196,37 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "Printable Morse Code Worksheets & Chart Builder | MorseWords",
+    title: "Morse Code Printable Chart | Study Sheet and Reference PDF | MorseWords",
     description:
-      "Create polished Morse code worksheets with answer keys, student fields, QR codes, branding, and PDF or image export for classrooms, clubs, and homeschool lessons.",
+      "Print a Morse code chart for studying, teaching, or offline reference, with tips for using it alongside practice tools.",
     path: CANONICAL_PATH,
     keywords:
       "printable morse code chart, morse code worksheet, custom morse code worksheet, teacher morse code worksheet, morse code printable, morse code alphabet printable, morse code practice sheet",
   });
 }
+
+const faqItems = [
+  {
+    q: "Can I print the Morse code chart?",
+    a: "Yes. Use the builder to create a chart, worksheet, or combined packet, then choose PDF export to open the browser print dialog.",
+  },
+  {
+    q: "Is this printable chart for beginners?",
+    a: "Yes. The beginner preset focuses the handout on shorter practice content and can leave numbers and punctuation out until the learner is ready.",
+  },
+  {
+    q: "Does the printable chart replace the dictionary?",
+    a: "No. The chart is best for offline study and classroom handouts. Use the Morse code dictionary when you need quick lookup across more entries.",
+  },
+  {
+    q: "Should I print letters only or include more symbols?",
+    a: "Start with letters only for brand-new learners. Add numbers and punctuation once the student can read the A-Z patterns reliably.",
+  },
+  {
+    q: "What should I do after printing the chart?",
+    a: "Use the chart beside short practice drills, a word search activity, or the practice plan so the handout supports real recall instead of passive review.",
+  },
+];
 
 function escapeHtml(value: string) {
   return value
@@ -2605,15 +2630,24 @@ export default function MorseCodePrintableChart() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LearningResource",
-    name: "Printable Morse Code Chart and Custom Worksheet",
+    name: "Morse Code Printable Chart",
     url: CANONICAL_URL,
     description:
-      "A free printable Morse code chart and customizable worksheet generator for learners, teachers, classroom scoring, custom logo branding, QR codes, custom line counts, sharing, PDF export, and practice activities.",
+      "A printable Morse code chart and worksheet builder for study sheets, classroom handouts, offline reference, and practice packets.",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
     learningResourceType: ["Worksheet", "Reference chart"],
     educationalUse: ["Practice", "Classroom activity", "Self-study"],
     teaches:
       "International Morse code letters, numbers, punctuation, spacing, encoding, and decoding",
+  };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 
   const updateSettings = <Key extends keyof PrintableSettings>(
@@ -2933,9 +2967,9 @@ export default function MorseCodePrintableChart() {
 
       <main className="mw-printable-chart-page" style={styles.wrap}>
         <PageHero
-          eyebrow="MorseWords"
-          title="Printable Morse Code Chart and Worksheet Builder"
-          description="Create a clean teacher-ready printable with student fields, answer key controls, own-message sections, branding, QR code, sharing, PDF export, and image exports."
+          eyebrow="Printable chart"
+          title="Morse Code Printable Chart"
+          description="Build a study sheet, classroom handout, or offline Morse reference with chart, worksheet, answer key, PDF, and image export controls."
           aside={
             <DarkNote label="Print defaults" value="PDF">
               <p>Answer keys stay off until you include them.</p>
@@ -2946,7 +2980,8 @@ export default function MorseCodePrintableChart() {
             links={[
               { href: "#builder", label: "Build printable", primary: true },
               { href: "/morse-code-word-search-builder", label: "Word search" },
-              { href: "/morse-code-practice-plan", label: "Practice plan" },
+              { href: "/morse-code-alphabet", label: "Alphabet chart" },
+              { href: "/practice", label: "Practice drills" },
             ]}
           />
         </PageHero>
@@ -3463,7 +3498,155 @@ export default function MorseCodePrintableChart() {
           </div>
         </section>
 
-        <JsonLdScript jsonLd={jsonLd} />
+        <ReferenceSupportSections
+          guide={{
+            eyebrow: "Teaching export",
+            title: "How to use the printable Morse chart",
+            description:
+              "Use this page when the output needs to leave the screen as a study sheet, class handout, or offline reference.",
+            items: [
+              {
+                title: "Who it is for",
+                text: "Teachers, parents, club leaders, and learners who want a printable Morse chart or worksheet for practice away from the live tools.",
+              },
+              {
+                title: "What it includes",
+                text: "Choose chart-only, worksheet-only, or a packet with letters, optional numbers, optional punctuation, custom words, answer keys, and export controls.",
+              },
+              {
+                title: "How to use it",
+                text: "Pick a preset, trim the chart to the learner's level, add practice words or sentences, then export the version you want to print or share.",
+              },
+            ],
+          }}
+          examples={{
+            title: "Printable chart scenarios",
+            description:
+              "These are the main ways the chart supports teaching and self-study.",
+            items: [
+              {
+                title: "Student study sheet",
+                morse: "A-Z",
+                children: (
+                  <p>
+                    Print the letter chart first, then pair it with short
+                    drills from the{" "}
+                    <a
+                      href="/morse-code-alphabet"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      Morse code alphabet
+                    </a>{" "}
+                    page.
+                  </p>
+                ),
+              },
+              {
+                title: "Classroom handout",
+                morse: "SOS, HELP, RADIO",
+                children: (
+                  <p>
+                    Add familiar practice words, leave the answer key off on
+                    the student copy, and keep a separate solved packet for
+                    review.
+                  </p>
+                ),
+              },
+              {
+                title: "Offline quick reference",
+                morse: "PDF / PNG",
+                children: (
+                  <p>
+                    Export a compact reference before a practice session so the
+                    live{" "}
+                    <a
+                      href="/practice"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      practice tools
+                    </a>{" "}
+                    can stay focused on recall.
+                  </p>
+                ),
+              },
+            ],
+          }}
+          mistakes={{
+            title: "Common printable chart mistakes",
+            description:
+              "A good handout should match the learner's level and the activity that follows it.",
+            items: [
+              {
+                title: "Printing too much",
+                children: (
+                  <p>
+                    Brand-new learners usually need letters first. Add numbers
+                    and punctuation after the A-Z patterns are familiar.
+                  </p>
+                ),
+              },
+              {
+                title: "Wrong answer-key setting",
+                children: (
+                  <p>
+                    Keep answer keys off for student copies. Turn them on only
+                    when you are printing a teacher packet or review sheet.
+                  </p>
+                ),
+              },
+              {
+                title: "Using it as the only activity",
+                children: (
+                  <p>
+                    A chart helps lookup, but recall grows through practice.
+                    Follow the printout with short drills or a puzzle.
+                  </p>
+                ),
+              },
+            ],
+          }}
+          comparison={{
+            eyebrow: "Choose an export",
+            title: "Printable chart vs word search vs lookup pages",
+            description:
+              "Use the export page that matches the classroom or study job.",
+            items: [
+              {
+                title: "Printable chart",
+                text: "Use this page for static reference sheets, worksheets, answer keys, and printable study packets.",
+                href: "/morse-code-printable-chart",
+                badge: "Handout",
+              },
+              {
+                title: "Word search builder",
+                text: "Use the puzzle builder when you want a printable activity based on custom words.",
+                href: "/morse-code-word-search-builder",
+                badge: "Puzzle",
+              },
+              {
+                title: "Dictionary",
+                text: "Use the dictionary when you need quick on-screen lookup instead of a handout.",
+                href: "/dictionary",
+                badge: "Lookup",
+              },
+            ],
+          }}
+          nextStep={{
+            title: "Best next step after printing",
+            description:
+              "Turn the handout into active recall by pairing it with a short task.",
+            links: [
+              { href: "/morse-code-word-search-builder", label: "Create a word search", primary: true },
+              { href: "/learn-morse-code", label: "Review the learning path" },
+              { href: "/practice", label: "Start practice drills" },
+              { href: "/dictionary", label: "Open the dictionary" },
+            ],
+          }}
+        />
+
+        <FaqSectionGeneric title="Printable chart FAQ" items={faqItems} />
+
+        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
       </main>
     </div>
   );

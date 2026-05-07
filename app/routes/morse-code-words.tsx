@@ -8,8 +8,8 @@ import {
  PageHero,
  SectionCard as SharedSectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import MorsePhraseLookupTable from "~/client/components/morse-code-words/MorsePhraseLookupTable";
-import { Link } from "react-router";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import styles from "~/client/components/shared/pageStyles";
 
@@ -22,8 +22,8 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
  return seoMeta({
- title:"Morse Code Words | Common Words, Q-Codes & Prosigns",
- description:"Look up common Morse code words, SOS, HELLO, THANK YOU, Q-codes, prosigns, and abbreviations. Copy phrases for practice, puzzles, and worksheets.",
+ title:"Morse Code Words | Common Word Examples and Practice Ideas | MorseWords",
+ description:"Explore common words in Morse code, word spacing tips, practice ideas, and links to trainer and sentence tools.",
  path: CANONICAL_PATH,
  keywords:"morse code words, morse words, words in morse code, common morse code words, morse code phrases, morse code abbreviations",
  });
@@ -47,37 +47,43 @@ export default function MorseCodeWords() {
  const jsonLd = {"@context":"https://schema.org","@type":"WebPage",
  name:"Morse Code Words",
  url: CANONICAL_URL,
- description:"Copy-ready Morse code words, phrases, prosigns, Q-codes, and CW abbreviations in International Morse, with links to encoder/decoder and practice tools.",
+ description:"Common Morse code word examples, spacing guidance, practice ideas, and links to word trainer and sentence practice tools.",
  isPartOf: {"@type":"WebSite", name:"MorseWords", url: baseUrl },
  about: [
  {"@type":"Thing", name:"International Morse code"},
- {"@type":"Thing", name:"Prosigns"},
- {"@type":"Thing", name:"Q-codes"},
+ {"@type":"Thing", name:"Morse code words"},
+ {"@type":"Thing", name:"Morse code practice"},
  ],
  };
 
  const faqItems = [
  {
- q:"What are “Morse code words”?",
- a:"A Morse code word is a normal word spelled letter by letter using International Morse code. There is no separate word vocabulary in Morse. It is a character encoding system that uses dots and dashes for each letter, number, and some punctuation.",
+ q:"What are good words to practice in Morse code?",
+ a:"Short familiar words such as HELLO, HELP, TEST, YES, NO, and CODE work well because they are easy to check and repeat.",
  },
  {
- q:"How do you separate letters and words in Morse code text?",
- a:"When written as dots and dashes, letters are typically separated with a single space. Words use a larger gap. Many people use a slash ( / ) as a clear word separator when copying and pasting into puzzles, worksheets, or chat.",
+ q:"Should beginners practice words or letters first?",
+ a:"Beginners should learn a small set of letters first, then use short words to make those letter patterns feel useful.",
  },
  {
- q:"Why does Morse decode incorrectly sometimes?",
- a:"Most decoding errors come from spacing and separators. If the input mixes multiple spaces, slashes, or inconsistent gaps, a decoder may interpret the boundaries differently. Normalize your spacing, or use the word-separator guidance page before decoding.",
+ q:"How are words separated in Morse code?",
+ a:"Written Morse usually separates letters with spaces and words with a larger gap or a slash. Clear word boundaries keep the decoder from joining separate words.",
  },
  {
- q:"Are prosigns and Q-codes real Morse “words”?",
- a:"They are not words in the language sense, but they are real-world shorthand used by operators. Prosigns are procedural signals (like end of message). Q-codes are standardized abbreviations used in radio communication.",
+ q:"Is this the same as the word trainer?",
+ a:"No. This page gives common word examples and context. The word trainer is the interactive page for repeated custom-word practice.",
  },
  {
- q:"How should beginners practice Morse words?",
- a:"Start with short, common words and repeat them. Use Audio to hear the rhythm, then use Typing or Practice to copy what you hear. Consistent accuracy beats speed early on.",
+ q:"What should I practice after common words?",
+ a:"Move into the word trainer for repetition, sentence practice for phrase flow, or audio practice if you want to recognize words by sound.",
  },
  ];
+ const faqJsonLd = {"@context":"https://schema.org","@type":"FAQPage",
+ mainEntity: faqItems.map((item) => ({"@type":"Question",
+ name: item.q,
+ acceptedAnswer: {"@type":"Answer", text: item.a },
+ })),
+ };
 
  const btnBase ="mw-button-outline cursor-pointer inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition active:scale-95 focus-visible:outline-none whitespace-nowrap ";
 
@@ -97,11 +103,12 @@ export default function MorseCodeWords() {
  <div className="mw-non-home-page" style={styles.page}>
  <div style={styles.wrap}>
  <PageHero
- eyebrow="Morse words" title="Morse Code Words" description="A practical, copy-ready collection of words, phrases, prosigns, and radio abbreviations in International Morse code. Use the converter pages for conversion, then use this page for ready-to-copy words, phrases, operator shorthand, and spacing rules that keep everything decodable.">
+ eyebrow="Word examples" title="Morse Code Words" description="Explore common word-level Morse examples, spacing guidance, and practice ideas. Use this page for useful words, then move into trainer, sentence, typing, or audio practice.">
  <ActionLinks
  links={[
  { href:"#lookup", label:"Browse words", primary: true },
  { href:"/morse-code-word-trainer", label:"Train words"},
+ { href:"/morse-code-sentence-practice", label:"Sentence practice"},
  { href:"/morse-code-word-search-builder", label:"Build puzzle"},
  ]}
  />
@@ -125,6 +132,146 @@ export default function MorseCodeWords() {
  <section id="lookup">
  <MorsePhraseLookupTable />
  </section>
+
+ <ReferenceSupportSections
+ guide={{
+ eyebrow:"Word practice",
+ title:"How to use Morse word examples",
+ description:"Use this page when you want useful words and phrase ideas before moving into active practice.",
+ items:[
+ {
+ title:"Who it is for",
+ text:"Learners, teachers, puzzle makers, and anyone who wants ready word-level examples instead of a blank translator.",
+ },
+ {
+ title:"What words help with",
+ text:"Words connect individual letters into patterns, expose spacing mistakes, and make practice feel closer to real messages.",
+ },
+ {
+ title:"How to use it",
+ text:"Pick a few short words, check their spacing, listen or type them, then repeat the weak ones in a focused trainer.",
+ },
+ ],
+ }}
+ examples={{
+ title:"Worked word examples",
+ description:"These words are useful because they are short, recognizable, and easy to reuse in practice.",
+ items:[
+ {
+ title:"HELLO",
+ morse:".... . .-.. .-.. ---",
+ children:(
+ <p>
+ A common greeting with repeated L patterns. Use it after reviewing
+ the{" "}
+ <a className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-alphabet">
+ alphabet chart
+ </a>
+ .
+ </p>
+ ),
+ },
+ {
+ title:"HELP",
+ morse:".... . .-.. .--.",
+ children:(
+ <p>
+ A short practical word. Keep it separate from emergency signaling
+ context unless you specifically need the{" "}
+ <a className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-sos">
+ SOS pattern
+ </a>
+ .
+ </p>
+ ),
+ },
+ {
+ title:"TEST",
+ morse:"- . ... -",
+ children:(
+ <p>
+ A useful check word for translation, audio, typing, and puzzle
+ workflows because each letter is easy to verify.
+ </p>
+ ),
+ },
+ ],
+ }}
+ mistakes={{
+ title:"Common word-practice mistakes",
+ description:"Word practice works best when spacing and difficulty stay under control.",
+ items:[
+ {
+ title:"Skipping letters too soon",
+ children:(
+ <p>
+ If a word feels impossible, return to the letters inside it before
+ repeating the full word.
+ </p>
+ ),
+ },
+ {
+ title:"Losing word gaps",
+ children:(
+ <p>
+ Use the{" "}
+ <a className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-word-separator">
+ word separator
+ </a>{" "}
+ when copied Morse collapses spaces or mixes slashes with gaps.
+ </p>
+ ),
+ },
+ {
+ title:"Only practicing visually",
+ children:(
+ <p>
+ Visual examples are useful, but hearing the rhythm in{" "}
+ <a className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline" href="/morse-code-audio-practice">
+ audio practice
+ </a>{" "}
+ builds a different skill.
+ </p>
+ ),
+ },
+ ],
+ }}
+ comparison={{
+ eyebrow:"Choose a word tool",
+ title:"Words vs word trainer vs sentence practice",
+ description:"Use the page that matches the level of practice you need.",
+ items:[
+ {
+ title:"Morse words",
+ text:"Use this page for common examples, spacing reminders, and ideas for what to practice next.",
+ href:"/morse-code-words",
+ badge:"Examples",
+ },
+ {
+ title:"Word trainer",
+ text:"Use the trainer when you want repeated practice with custom or weak words.",
+ href:"/morse-code-word-trainer",
+ badge:"Repetition",
+ },
+ {
+ title:"Sentence practice",
+ text:"Use sentence practice when you are ready to read or type words in context.",
+ href:"/morse-code-sentence-practice",
+ badge:"Context",
+ },
+ ],
+ }}
+ nextStep={{
+ title:"Best next step after common words",
+ description:"Choose the next tool based on whether you need repetition, context, spacing, or speed.",
+ links:[
+ { href:"/morse-code-word-trainer", label:"Train custom words", primary:true },
+ { href:"/morse-code-sentence-practice", label:"Practice sentences" },
+ { href:"/typing", label:"Build typed recall" },
+ { href:"/practice", label:"Start general practice" },
+ ],
+ }}
+ />
 
  <CardSection title="Common Morse code words, plus real-world shorthand">
  <p className={pClass}>
@@ -357,7 +504,7 @@ export default function MorseCodeWords() {
 
  <FaqSectionGeneric title="Morse Code Words FAQ" items={faqItems} />
 
- <JsonLdScript jsonLd={jsonLd} />
+ <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
  </div>
  </div>
  );

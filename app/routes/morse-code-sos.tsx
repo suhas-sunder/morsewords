@@ -2,6 +2,7 @@ import * as React from "react";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
@@ -18,9 +19,9 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "SOS in Morse Code | Play, Copy & Learn the Distress Signal",
+    title: "Morse Code SOS | Distress Signal Pattern and Examples | MorseWords",
     description:
-      "See SOS in Morse code, play the continuous distress signal with sound or flash, copy the dots and dashes, and learn what SOS means.",
+      "Learn SOS in Morse code, how the pattern is written and recognized, common mistakes, and ways to hear or practice it.",
     path: CANONICAL_PATH,
     keywords:
       "sos in morse code, sos morse code, what is sos in morse code, sos distress signal, save our souls morse code, morse code sos sound",
@@ -134,15 +135,23 @@ export default function MorseCodeSos() {
   const faqItems = [
     {
       q: "What is SOS in Morse code?",
-      a: "SOS in Morse code is three dots, three dashes, and three dots: ... --- ... . As a distress prosign it may be sent continuously as ...---... .",
+      a: "SOS in Morse code is three dots, three dashes, and three dots: ... --- ... . It is widely recognized as a distress signal.",
     },
     {
-      q: "Does SOS stand for Save Our Souls?",
-      a: "No. Save Our Souls and Save Our Ship are popular memory phrases, but SOS was chosen because the Morse pattern is simple, symmetrical, and recognizable.",
+      q: "Is SOS three letters or one distress signal?",
+      a: "It can be written as the letters S O S, but in distress signaling the pattern is often treated as one continuous, recognizable signal.",
     },
     {
-      q: "Can SOS be sent with a flashlight?",
-      a: "Yes. Use the same rhythm: three short flashes, three long flashes, and three short flashes.",
+      q: "What does SOS stand for?",
+      a: "Officially, SOS does not stand for a phrase. Save Our Souls and Save Our Ship are memory aids, not the original meaning.",
+    },
+    {
+      q: "How do you hear SOS?",
+      a: "Listen for three short beeps, three longer beeps, and three short beeps. The long beeps are dashes and last about three dot units.",
+    },
+    {
+      q: "Is SOS the same as a prosign?",
+      a: "SOS is a special distress signal. Prosign pages explain normal operating procedure signals such as wait, end, or correction.",
     },
   ];
 
@@ -150,10 +159,10 @@ export default function MorseCodeSos() {
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      name: "SOS in Morse Code",
+      name: "Morse Code SOS",
       url: CANONICAL_URL,
       description:
-        "Interactive guide to SOS in Morse code with audio playback, flash, copy-ready dots and dashes, and plain-English history.",
+        "Guide to the SOS Morse distress signal pattern, how it is written, how it sounds, common mistakes, and ways to practice it.",
       isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
       about: [
         { "@type": "Thing", name: "SOS distress signal" },
@@ -175,11 +184,12 @@ export default function MorseCodeSos() {
     <div className="mw-non-home-page" style={styles.page}>
       <main style={styles.wrap}>
         <TranslatorSectionsBasic
-          title="SOS Morse Code Translator"
+          title="Morse Code SOS"
           subtitle={
             <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-              Translate SOS, play the signal, copy the Morse, or use Flash
-              Light with the same controls as the main MorseWords translator.
+              See the SOS distress pattern, play it as sound, copy the dots
+              and dashes, or compare the spaced letter form with the continuous
+              signal form.
             </p>
           }
           examples={["SOS", "HELP", "MAYDAY", "CQD", "TEST SOS"]}
@@ -220,6 +230,157 @@ export default function MorseCodeSos() {
               <li>By writing: use SOS or the Morse pattern ... --- ... .</li>
             </ul>
           </Section>
+
+          <ReferenceSupportSections
+            guide={{
+              eyebrow: "Distress pattern",
+              title: "How to use this SOS page",
+              description:
+                "Use this page when you need the specific SOS pattern, not a broad prosign list or a general practice drill.",
+              items: [
+                {
+                  title: "Who it is for",
+                  text: "Learners, teachers, puzzle makers, and anyone checking the SOS pattern, meaning, sound, and spacing.",
+                },
+                {
+                  title: "What it explains",
+                  text: "The page shows SOS as spaced letters, the continuous distress pattern, and the short-long-short rhythm that makes it recognizable.",
+                },
+                {
+                  title: "How to apply it",
+                  text: "Copy the pattern, play it, compare the spacing, then move into audio or visual practice if you want to recognize it faster.",
+                },
+              ],
+            }}
+            examples={{
+              title: "Worked SOS examples",
+              description:
+                "These examples separate the written letters, continuous signal, and practice use.",
+              items: [
+                {
+                  title: "Written SOS",
+                  morse: "... --- ...",
+                  children: (
+                    <p>
+                      This is the letter-by-letter form: S, then O, then S. It
+                      is easiest to read in normal text and translators.
+                    </p>
+                  ),
+                },
+                {
+                  title: "Continuous distress signal",
+                  morse: "...---...",
+                  children: (
+                    <p>
+                      Operators often recognize SOS as one continuous distress
+                      pattern: three short, three long, three short.
+                    </p>
+                  ),
+                },
+                {
+                  title: "Practice by sound",
+                  morse: "short short short / long long long / short short short",
+                  children: (
+                    <p>
+                      Use{" "}
+                      <a
+                        href="/morse-code-audio-practice"
+                        className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                      >
+                        audio practice
+                      </a>{" "}
+                      or{" "}
+                      <a
+                        href="/morse-code-visual-practice"
+                        className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                      >
+                        visual practice
+                      </a>{" "}
+                      after you understand the pattern.
+                    </p>
+                  ),
+                },
+              ],
+            }}
+            mistakes={{
+              title: "Common SOS mistakes",
+              description:
+                "SOS is simple, but people often mix up the meaning, spacing, or page type.",
+              items: [
+                {
+                  title: "Inventing a phrase",
+                  children: (
+                    <p>
+                      Treat Save Our Souls as a memory aid, not the official
+                      origin of the signal.
+                    </p>
+                  ),
+                },
+                {
+                  title: "Confusing signal and text",
+                  children: (
+                    <p>
+                      The spaced letter form is easiest for copying. The
+                      continuous pattern is the recognizable distress rhythm.
+                    </p>
+                  ),
+                },
+                {
+                  title: "Using the wrong reference",
+                  children: (
+                    <p>
+                      Use{" "}
+                      <a
+                        href="/morse-code-prosigns"
+                        className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                      >
+                        prosigns
+                      </a>{" "}
+                      for operating procedure signals, not for the SOS pattern
+                      alone.
+                    </p>
+                  ),
+                },
+              ],
+            }}
+            comparison={{
+              eyebrow: "Choose a signal page",
+              title: "SOS vs prosigns vs practice pages",
+              description:
+                "Use the page that matches the signal or learning task.",
+              items: [
+                {
+                  title: "SOS",
+                  text: "Use this page for the specific distress signal pattern, meaning, sound, and practice links.",
+                  href: "/morse-code-sos",
+                  badge: "Distress",
+                },
+                {
+                  title: "Prosigns",
+                  text: "Use the prosigns page for procedural signals that control operating flow.",
+                  href: "/morse-code-prosigns",
+                  badge: "Procedure",
+                },
+                {
+                  title: "Practice",
+                  text: "Use practice pages when you already know the pattern and want recall drills.",
+                  href: "/practice",
+                  badge: "Drill",
+                },
+              ],
+            }}
+            nextStep={{
+              title: "Best next step after SOS",
+              description:
+                "Practice recognizing the pattern in the format you plan to use.",
+              links: [
+                { href: "/audio", label: "Play SOS as audio", primary: true },
+                { href: "/morse-code-sound-generator", label: "Test the beep tone" },
+                { href: "/morse-code-audio-practice", label: "Practice by ear" },
+                { href: "/morse-code-prosigns", label: "Compare prosigns" },
+              ],
+            }}
+          />
 
           <FaqSectionGeneric title="SOS FAQ" items={faqItems} />
         </div>
