@@ -75,7 +75,7 @@ export default function ToolHowItWorks({
  <a
  key={chip.href + chip.label}
  href={chip.href}
-            className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 transition hover:bg-slate-900 hover:text-sky-100 active:scale-95 focus:outline-none">
+            className="mw-button-outline mw-light-interactive-link inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none">
  {chip.label}
  </a>
  ))}

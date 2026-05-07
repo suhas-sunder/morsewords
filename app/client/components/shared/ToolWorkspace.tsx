@@ -56,14 +56,14 @@ export function toolControlButtonClass({
       ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
       : tone === "darkPanel"
         ? "bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white"
-        : "bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100";
+        : "bg-[#fffdf8] text-slate-900 hover:bg-[#fffaf2] hover:text-sky-950";
   const disabledClass =
     tone === "darkPanel"
       ? "cursor-not-allowed bg-slate-800/60 text-slate-500"
       : "cursor-not-allowed bg-white/55 text-slate-400";
 
   return [
-    "inline-flex cursor-pointer items-center justify-center gap-2 font-semibold transition",
+    "inline-flex cursor-pointer items-center justify-center gap-2 font-semibold transition-[background-color,border-color,color] duration-100 ease-out",
     focusClass,
     sizeClass,
     roundedClass,
@@ -114,7 +114,6 @@ export function ToolButton({
       disabled={disabled}
       className={[
         toolControlButtonClass({ active, tone, disabled }),
-        "active:scale-95",
         className,
       ]
         .filter(Boolean)
@@ -158,7 +157,7 @@ export function ToolSampleButtons({
           className={`${toolControlButtonClass({
             size: "sm",
             rounded: "full",
-          })} active:scale-95`}
+          })}`}
         >
           Try &ldquo;{example}&rdquo;
         </button>

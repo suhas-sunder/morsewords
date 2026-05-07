@@ -49,7 +49,7 @@ export default function HowToUseSuiteGuide() {
           <a
             key={href}
             href={href}
-            className="mw-button-outline inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+            className="mw-button-outline mw-light-interactive-link inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none"
           >
             {label}
           </a>

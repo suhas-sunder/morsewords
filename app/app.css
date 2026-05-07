@@ -150,6 +150,24 @@ main *::after {
 }
 
 .mw-page-content
+  :where(button, [role="button"], summary, .mw-button-outline),
+.mw-page-content
+  :where(button, [role="button"], summary, .mw-button-outline)
+  :where(*) {
+  animation: none !important;
+  transition: none !important;
+}
+
+.mw-page-content
+  :where(button, [role="button"], summary, .mw-button-outline):where(
+    :hover,
+    :active
+  ) {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.mw-page-content
   :where(
     button,
     [role="button"],
@@ -263,7 +281,31 @@ main *::after {
   )
   :where(.mw-related-tool-link, .mw-related-quick-link, .mw-related-summary) {
   box-shadow: none !important;
+  transition: none !important;
   transform: none !important;
+}
+
+.mw-page-content
+  #morse-code-navigation
+  :where(
+    .mw-toolkit-card,
+    .mw-toolkit-summary,
+    .mw-related-tool-link,
+    .mw-related-quick-link,
+    .mw-related-summary
+  ),
+.mw-page-content
+  #morse-code-navigation
+  :where(
+    .mw-toolkit-card,
+    .mw-toolkit-summary,
+    .mw-related-tool-link,
+    .mw-related-quick-link,
+    .mw-related-summary
+  )
+  :where(*) {
+  animation: none !important;
+  transition: none !important;
 }
 
 .mw-page-content
@@ -277,6 +319,20 @@ main *::after {
     .mw-related-summary
   ):where(:hover, :active) {
   box-shadow: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+.mw-page-content
+  #morse-code-navigation
+  :where(
+    .mw-toolkit-card,
+    .mw-toolkit-summary,
+    .mw-related-tool-link,
+    .mw-related-quick-link,
+    .mw-related-summary
+  ):where(:hover, :active) {
+  opacity: 1 !important;
   transform: none !important;
 }
 
@@ -289,6 +345,74 @@ main *::after {
   box-shadow: none !important;
   outline: 2px solid rgba(11, 36, 71, 0.34) !important;
   outline-offset: 2px;
+}
+
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  .mw-related-badge {
+  background-color: transparent !important;
+}
+
+.mw-page-content #morse-code-navigation :where(.mw-toolkit-badge, .mw-related-badge) {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.mw-page-content #morse-code-navigation .mw-toolkit-card-light:not([aria-disabled="true"]):hover,
+.mw-page-content #morse-code-navigation .mw-toolkit-summary:not([aria-disabled="true"]):hover {
+  background-color: #0f172a !important;
+  color: #e0f2fe !important;
+}
+
+.mw-page-content #morse-code-navigation .mw-toolkit-card-light:hover .mw-toolkit-badge {
+  background: transparent !important;
+  color: currentColor !important;
+}
+
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  :where(.mw-related-tool-link, .mw-related-summary):not([aria-disabled="true"]):hover {
+  background-color: #fffaf2 !important;
+  color: #082f49 !important;
+}
+
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  :where(.mw-related-tool-link, .mw-related-summary):hover
+  :where(*) {
+  color: currentColor !important;
+}
+
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  :where(.mw-related-tool-link, .mw-related-summary):hover
+  .mw-related-badge {
+  background-color: transparent !important;
+  color: #64748b !important;
+}
+
+.mw-page-content
+  .mw-non-home-page
+  .mw-light-interactive-link:not([aria-disabled="true"]):hover {
+  background-color: #fffaf2 !important;
+  color: #082f49 !important;
+}
+
+.mw-page-content .mw-non-home-page .mw-light-interactive-link:hover :where(*) {
+  color: currentColor !important;
 }
 
 .mw-page-content .mw-non-home-page :where(input, textarea, select) {

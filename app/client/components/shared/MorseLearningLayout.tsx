@@ -134,8 +134,8 @@ export function ActionLinks({
           className={
             "mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold transition focus:outline-none sm:min-h-11 sm:px-4 " +
             (link.primary
-              ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-              : "bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100")
+              ? "bg-slate-950 text-sky-100 transition-[background-color,color] duration-100 ease-out hover:bg-slate-800 hover:text-white"
+              : "mw-light-interactive-link bg-[#fffdf8] text-slate-900 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] hover:text-sky-950")
           }
         >
           {link.label}
@@ -162,10 +162,8 @@ export function SimpleGrid({
               {item.badge ? (
                 <span
                   className={
-                    "shrink-0 rounded-md bg-[#f7f4ee] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500" +
-                    (item.href
-                      ? " transition group-hover:bg-slate-800 group-hover:text-current"
-                      : " mw-static-tile")
+                    "shrink-0 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500" +
+                    (item.href ? " mw-related-badge" : " mw-static-tile")
                   }
                 >
                   {item.badge}
@@ -183,12 +181,12 @@ export function SimpleGrid({
             <a
               key={item.title}
               href={item.href}
-              className="mw-button-outline mw-related-tool-link group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline transition hover:bg-slate-900 hover:text-sky-100"
+              className="mw-button-outline mw-related-tool-link group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline hover:bg-[#fffaf2] hover:text-sky-950"
             >
               {body}
               <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
                 Open page{" "}
-                <span aria-hidden="true" className="inline-block transition-colors">
+                <span aria-hidden="true" className="inline-block">
                   -&gt;
                 </span>
               </span>
@@ -241,7 +239,7 @@ export function ReferenceTable({
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
-            className="inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            className="mw-light-interactive-link inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             disabled={!onPlay}
           >
             <PlayIcon size={16} title="Play" />

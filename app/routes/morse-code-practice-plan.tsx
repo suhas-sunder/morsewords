@@ -321,7 +321,7 @@ export default function MorseCodePracticePlan() {
  <a
  key={item.title}
  href={item.href}
- className="mw-button-outline mw-related-tool-link cursor-pointer rounded-xl bg-[#f7f4ee] p-5 text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
+ className="mw-button-outline mw-related-tool-link cursor-pointer rounded-xl bg-[#f7f4ee] p-5 text-slate-700 hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none">
  <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
  {item.time}
  </p>
@@ -341,7 +341,7 @@ export default function MorseCodePracticePlan() {
  <a
  key={tool.href}
  href={tool.href}
- className="mw-button-outline mw-related-tool-link cursor-pointer rounded-xl bg-[#f7f4ee] p-5 text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none">
+ className="mw-button-outline mw-related-tool-link cursor-pointer rounded-xl bg-[#f7f4ee] p-5 text-slate-700 hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none">
  <h3 className="text-xl font-extrabold text-sky-950">
  {tool.title}
  </h3>

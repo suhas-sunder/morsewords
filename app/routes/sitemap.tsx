@@ -319,7 +319,7 @@ export default function HtmlSitemap() {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="mw-button-outline group block cursor-pointer rounded-xl bg-white px-4 py-3 text-slate-900 no-underline transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+                    className="mw-button-outline mw-light-interactive-link group block cursor-pointer rounded-xl bg-white px-4 py-3 text-slate-900 no-underline hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none"
                   >
                     <span className="block font-extrabold text-sky-950 group-hover:text-current">
                       {link.label}
