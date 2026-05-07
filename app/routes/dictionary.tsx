@@ -648,8 +648,8 @@ export default function DictionaryRoute() {
  placeholder="Type to filter by label, Morse, or meaning…" className="w-full rounded-xl bg-[#fffdf8] px-4 py-3 text-slate-950 transition focus:outline-none focus:ring-0 focus-visible:outline-none"/>
  </div>
 
- <nav className="mb-8 overflow-x-auto rounded-xl bg-[#fffdf8]/70 px-3 py-3">
- <div className="flex gap-2 whitespace-nowrap text-sm">
+ <nav className="mb-8 rounded-xl bg-[#fffdf8]/70 px-3 py-3">
+ <div className="flex flex-wrap gap-2 text-sm">
  {sections.map((s) => (
  <a
  key={s.id}

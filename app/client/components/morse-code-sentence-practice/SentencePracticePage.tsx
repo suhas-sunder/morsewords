@@ -287,7 +287,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 
 function MorseLine({ text }: { text: string }) {
  return (
- <code className="mw-static-code block rounded-xl bg-[#f7f4ee] p-3 text-sm sm:text-base font-mono text-neutral-900 whitespace-pre-wrap break-words leading-relaxed">
+ <code className="mw-static-code block min-w-0 rounded-xl bg-[#f7f4ee] p-3 text-sm sm:text-base font-mono text-neutral-900 whitespace-pre-wrap break-words [overflow-wrap:anywhere] leading-relaxed">
  {morseWithWordSlashes(text)}
  </code>
  );
@@ -903,13 +903,13 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  </div>
 
- <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+ <div className="mt-5 grid min-w-0 gap-4 md:grid-cols-2 xl:grid-cols-3">
  {sentenceDrills.map((drill) => (
  <article
  key={drill.text}
- className="rounded-2xl bg-[#f7f4ee] p-4">
- <div className="flex items-start justify-between gap-3">
- <h3 className="font-mono text-base font-extrabold text-neutral-900">
+ className="min-w-0 overflow-hidden rounded-2xl bg-[#f7f4ee] p-4">
+ <div className="flex min-w-0 items-start justify-between gap-3">
+ <h3 className="min-w-0 break-words [overflow-wrap:anywhere] font-mono text-base font-extrabold text-neutral-900">
  {drill.text}
  </h3>
  <span
@@ -950,13 +950,13 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  readable at a steady rhythm.
  </p>
 
- <div className="mt-5 grid gap-4 md:grid-cols-3">
+ <div className="mt-5 grid min-w-0 gap-4 md:grid-cols-3">
  {spacingExamples.map((example) => (
  <div
  key={example.label}
- className="rounded-2xl bg-[#f7f4ee] p-4">
+ className="min-w-0 overflow-hidden rounded-2xl bg-[#f7f4ee] p-4">
  <h3 className="font-extrabold text-sky-950">{example.label}</h3>
- <p className="mt-2 font-mono text-xl font-bold text-neutral-900">
+ <p className="mt-2 min-w-0 break-words [overflow-wrap:anywhere] font-mono text-xl font-bold text-neutral-900">
  {example.plain}
  </p>
  <MorseLine text={example.plain} />
@@ -992,11 +992,11 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  natural.
  </p>
 
- <div className="mt-5 grid gap-4 md:grid-cols-2">
+ <div className="mt-5 grid min-w-0 gap-4 md:grid-cols-2">
  {commonPracticeSets.map((set) => (
  <article
  key={set.title}
- className="rounded-2xl bg-[#f7f4ee] p-4">
+ className="min-w-0 overflow-hidden rounded-2xl bg-[#f7f4ee] p-4">
  <h3 className="text-lg font-extrabold text-sky-950">
  {set.title}
  </h3>
@@ -1008,10 +1008,10 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  <li
  key={item}
  className="rounded-xl bg-white p-3">
- <p className="font-mono text-sm font-bold text-neutral-900">
+ <p className="min-w-0 break-words [overflow-wrap:anywhere] font-mono text-sm font-bold text-neutral-900">
  {item}
  </p>
- <p className="mt-1 font-mono text-xs text-slate-600 break-words">
+ <p className="mt-1 min-w-0 break-words [overflow-wrap:anywhere] font-mono text-xs text-slate-600">
  {morseWithWordSlashes(item)}
  </p>
  </li>
