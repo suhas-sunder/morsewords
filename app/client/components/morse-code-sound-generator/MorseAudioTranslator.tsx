@@ -49,6 +49,9 @@ type MorseAudioTranslatorProps = {
   morseModeLabel?: string;
   textInputLabel?: string;
   morseInputLabel?: string;
+  primaryExampleText?: string;
+  secondaryExampleText?: string;
+  morseExample?: string;
   pageIntent?: PageIntent;
   exportFormats?: ExportFormat[];
   introEyebrow?: string;
@@ -70,6 +73,9 @@ export default function MorseAudioTranslator({
   morseModeLabel = "Morse to audio",
   textInputLabel = "Message (Text)",
   morseInputLabel = "Morse input",
+  primaryExampleText,
+  secondaryExampleText,
+  morseExample,
   pageIntent = "audio",
   exportFormats = ["wav"],
   introEyebrow = "Audio tool",

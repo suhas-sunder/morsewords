@@ -87,16 +87,10 @@ export function ToolHero({
     <div className={HERO_HEADER_CLASS}>
       <div className={HERO_EYEBROW_ROW_CLASS}>
         <span className={HERO_EYEBROW_LINE_CLASS} />
-        <span className={HERO_EYEBROW_TEXT_CLASS}>
-          {eyebrow}
-        </span>
+        <span className={HERO_EYEBROW_TEXT_CLASS}>{eyebrow}</span>
       </div>
-      <h1 className={HERO_TITLE_CLASS}>
-        {title}
-      </h1>
-      <p className={HERO_LEAD_CLASS}>
-        {lead}
-      </p>
+      <h1 className={HERO_TITLE_CLASS}>{title}</h1>
+      <p className={HERO_LEAD_CLASS}>{lead}</p>
     </div>
   );
 }
@@ -187,7 +181,11 @@ export function ToolPanel({
   className?: string;
 }) {
   return (
-    <div className={["overflow-hidden rounded-xl bg-white/88", className].filter(Boolean).join(" ")}>
+    <div
+      className={["overflow-hidden rounded-xl bg-white/88", className]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <div className="flex items-center justify-between gap-3 px-4 py-3">
         <div className="text-sm font-extrabold text-sky-950">{label}</div>
         {badge ? (
@@ -237,7 +235,11 @@ export function ToolOutputPanel({
   className?: string;
 }) {
   return (
-    <div className={["overflow-hidden rounded-xl bg-slate-950", className].filter(Boolean).join(" ")}>
+    <div
+      className={["overflow-hidden rounded-xl bg-slate-950", className]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <div className="flex items-center justify-between gap-3 px-4 py-3">
         <h2 className="text-sm font-extrabold text-slate-200">{label}</h2>
         <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
@@ -245,7 +247,11 @@ export function ToolOutputPanel({
         </span>
       </div>
       {children}
-      {footer ? <div className="flex flex-wrap items-center gap-2 px-4 py-3">{footer}</div> : null}
+      {footer ? (
+        <div className="flex flex-wrap items-center gap-2 px-4 py-3">
+          {footer}
+        </div>
+      ) : null}
     </div>
   );
 }
