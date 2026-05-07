@@ -44,6 +44,8 @@ const STROBE_WARNING_ID = "audio-quiz-strobe-warning";
 const DIFFICULTY_STORAGE_KEY = "mw_audio_quiz_difficulty";
 const BEST_STREAK_STORAGE_KEY = "mw_audio_quiz_best_streak";
 const TOTAL_QUESTIONS = 10;
+const DEFAULT_AUDIO_DIFFICULTY: AudioDifficulty = "easy";
+const INITIAL_AUDIO_QUIZ_SEED = 12053;
 
 type FeedbackState = "idle" | "correct" | "missed";
 
@@ -87,14 +89,11 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioQuiz() {
   const player = useMorseAudio();
-  const initialDifficulty = React.useMemo(
-    () => readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"),
-    [],
-  );
   const didResetInitialDifficulty = React.useRef(false);
+  const [hydrated, setHydrated] = React.useState(false);
   const [difficulty, setDifficulty] =
-    React.useState<AudioDifficulty>(initialDifficulty);
-  const [deckSeed, setDeckSeed] = React.useState(() => Date.now());
+    React.useState<AudioDifficulty>(DEFAULT_AUDIO_DIFFICULTY);
+  const [deckSeed, setDeckSeed] = React.useState(INITIAL_AUDIO_QUIZ_SEED);
   const [index, setIndex] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
   const [feedback, setFeedback] = React.useState<FeedbackState>("idle");
@@ -103,9 +102,7 @@ export default function MorseCodeAudioQuiz() {
   const [completed, setCompleted] = React.useState(0);
   const [skipped, setSkipped] = React.useState(0);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(() =>
-    readStoredInt(BEST_STREAK_STORAGE_KEY, 0),
-  );
+  const [bestStreak, setBestStreak] = React.useState(0);
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
 
   const [charWpm, setCharWpm] = React.useState(18);
@@ -140,29 +137,39 @@ export default function MorseCodeAudioQuiz() {
   });
 
   React.useEffect(() => {
+    setDifficulty(readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"));
+    setBestStreak(readStoredInt(BEST_STREAK_STORAGE_KEY, 0));
+    setDeckSeed(Date.now());
+    setHydrated(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (!hydrated) return;
     try {
       window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
     } catch {
       // local-only preference; ignore storage failures
     }
-  }, [difficulty]);
+  }, [difficulty, hydrated]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     try {
       window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
     } catch {
       // ignore
     }
-  }, [bestStreak]);
+  }, [bestStreak, hydrated]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     if (!didResetInitialDifficulty.current) {
       didResetInitialDifficulty.current = true;
       return;
     }
     resetQuiz({ preserveDifficulty: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [difficulty]);
+  }, [difficulty, hydrated]);
 
   React.useEffect(() => {
     const anyPlayer = player as typeof player & {

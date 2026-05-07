@@ -23,6 +23,18 @@ export function randomPrompt(mode: DrillMode, pool: Pool): Prompt {
   return { kind, plain, morse, label };
 }
 
+export function deterministicPrompt(mode: DrillMode, pool: Pool): Prompt {
+  const kind: PromptKind =
+    mode === "text_to_morse" || mode === "morse_to_text"
+      ? mode
+      : "morse_to_text";
+  const plain = firstPlain(pool);
+  const morse = textToMorse(plain);
+  const label = labelFor(pool, plain);
+
+  return { kind, plain, morse, label };
+}
+
 function pickPlain(pool: Pool): string {
   const bank =
     pool === "letters"
@@ -37,6 +49,22 @@ function pickPlain(pool: Pool): string {
               ? SENTENCES
               : [...LETTERS, ...NUMBERS, ...SIGNALS, ...WORDS, ...SENTENCES];
   return bank[Math.floor(Math.random() * bank.length)] ?? "SOS";
+}
+
+function firstPlain(pool: Pool): string {
+  const bank =
+    pool === "letters"
+      ? LETTERS
+      : pool === "numbers"
+        ? NUMBERS
+        : pool === "signals"
+          ? SIGNALS
+          : pool === "words"
+            ? WORDS
+            : pool === "sentences"
+              ? SENTENCES
+              : [...LETTERS, ...NUMBERS, ...SIGNALS, ...WORDS, ...SENTENCES];
+  return bank[0] ?? "SOS";
 }
 
 function labelFor(pool: Pool, plain: string): string {

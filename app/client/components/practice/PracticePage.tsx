@@ -27,6 +27,7 @@ import ShareResultsButton from "~/client/components/practice/ShareResultsButton"
 
 import {
   checkAnswer,
+  deterministicPrompt,
   randomPrompt,
 } from "~/client/components/practice/practiceEngine";
 
@@ -35,11 +36,13 @@ const lsModeKey = (pool: string) => `mw_practice_mode_${pool}`;
 const lsBestStreakKey = (pool: string) => `mw_practice_best_streak_${pool}`;
 
 const TOTAL_QUESTIONS = 10;
+const DEFAULT_POOL: Pool = "all";
 
 const defaultModeForPool = (pool: Pool): DrillMode => {
   // Words are primarily an encoding drill; default to Text → Morse.
   return pool === "words" || pool === "sentences" ? "text_to_morse" : "mixed";
 };
+const DEFAULT_MODE: DrillMode = defaultModeForPool(DEFAULT_POOL);
 
 function readStoredPool(): Pool {
   const poolRaw = readStr(LS_POOL, "all");
@@ -91,19 +94,14 @@ function writeInt(key: string, val: number) {
 }
 
 export default function PracticePage({ jsonLd }: { jsonLd: any }) {
-  const initialPool = React.useMemo(() => readStoredPool(), []);
-  const initialMode = React.useMemo(
-    () => readStoredMode(initialPool),
-    [initialPool],
-  );
   const didBuildInitialPrompt = React.useRef(false);
   const [hydrated, setHydrated] = React.useState(false);
 
-  const [pool, setPool] = React.useState<Pool>(initialPool);
-  const [mode, setMode] = React.useState<DrillMode>(initialMode);
+  const [pool, setPool] = React.useState<Pool>(DEFAULT_POOL);
+  const [mode, setMode] = React.useState<DrillMode>(DEFAULT_MODE);
 
   const [prompt, setPrompt] = React.useState<Prompt>(() =>
-    randomPrompt(initialMode, initialPool),
+    deterministicPrompt(DEFAULT_MODE, DEFAULT_POOL),
   );
   const [answer, setAnswer] = React.useState("");
 
@@ -122,11 +120,15 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
   const [correct, setCorrect] = React.useState(0);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(() =>
-    readInt(lsBestStreakKey(initialPool), 0),
-  );
+  const [bestStreak, setBestStreak] = React.useState(0);
 
   React.useEffect(() => {
+    const storedPool = readStoredPool();
+    const storedMode = readStoredMode(storedPool);
+    setPool(storedPool);
+    setMode(storedMode);
+    setBestStreak(readInt(lsBestStreakKey(storedPool), 0));
+    setPrompt(randomPrompt(storedMode, storedPool));
     setHydrated(true);
   }, []);
 
@@ -172,6 +174,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   }, [bestStreak, pool, hydrated]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     if (!didBuildInitialPrompt.current) {
       didBuildInitialPrompt.current = true;
       return;
@@ -187,7 +190,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
     setRunStartedAt(null);
     setCorrect(0);
     setStreak(0);
-  }, [mode, pool]);
+  }, [mode, pool, hydrated]);
 
   const next = React.useCallback(() => {
     setCompleted((c) => {

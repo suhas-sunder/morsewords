@@ -178,7 +178,7 @@ export default function TermsOfService() {
           </p>
 
           <h3 className="flex py-2 text-2xl">Your use of our Services</h3>
-          <p>
+          <div className="flex flex-col gap-4">
             <span>
               Subject to your compliance with these Legal Terms, including the
               "PROHIBITED ACTIVITIES" section below, we grant you a
@@ -191,7 +191,7 @@ export default function TermsOfService() {
                 you have properly gained access.
               </li>
             </ul>
-          </p>
+          </div>
           <p>solely for your personal, non-commercial use.</p>
 
           <p>
@@ -284,7 +284,7 @@ export default function TermsOfService() {
             provide.
           </p>
 
-          <p>
+          <div className="flex flex-col gap-4">
             <span>
               You are responsible for what you post or upload: By sending us
               Submissions and/or posting Contributions through any part of the
@@ -318,7 +318,7 @@ export default function TermsOfService() {
                 do not constitute confidential information.
               </li>
             </ul>
-          </p>
+          </div>
 
           <p>
             You are solely responsible for your Submissions and/or Contributions

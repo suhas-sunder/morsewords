@@ -41,6 +41,9 @@ const LS_MODE ="mw_sentence_practice_mode";
 const LS_DIFFICULTY ="mw_sentence_practice_difficulty";
 const LS_SET ="mw_sentence_practice_set";
 const LS_BEST_STREAK ="mw_sentence_practice_best_streak";
+const DEFAULT_MODE: DrillMode ="morse_to_text";
+const DEFAULT_DIFFICULTY: Difficulty |"all" ="all";
+const DEFAULT_SET_FILTER: SetFilter ="all";
 
 const difficultyOrder: Difficulty[] = ["easy","medium","hard"];
 
@@ -217,6 +220,18 @@ function makePrompt(mode: DrillMode, pool: SentenceDrill[]): Prompt {
  };
 }
 
+function makeInitialPrompt(mode: DrillMode, pool: SentenceDrill[]): Prompt {
+ const source = pool.length > 0 ? pool : sentenceDrills;
+ const drill = source[0] ?? sentenceDrills[0];
+ const kind: PromptKind = mode ==="mixed"?"morse_to_text":mode;
+ return {
+ kind,
+ plain: drill.text,
+ morse: textToMorse(drill.text),
+      label: `${difficultyLabels[drill.difficulty]} sentence Â· ${wordCount(drill.text)} words Â· ${drill.focus}`,
+ };
+}
+
 function renderMorseSpacing(morse: string) {
  return morse.split("") .map((ch, index) => {
  if (ch !=="") return <span key={index}>{ch}</span>;
@@ -295,20 +310,17 @@ function MorseLine({ text }: { text: string }) {
 }
 
 export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
- const initialMode = React.useMemo(() => readStoredMode(), []);
- const initialDifficulty = React.useMemo(() => readStoredDifficulty(), []);
- const initialSetFilter = React.useMemo(() => readStoredSetFilter(), []);
  const initialPool = React.useMemo(
- () => buildPool(initialDifficulty, initialSetFilter),
- [initialDifficulty, initialSetFilter],
+ () => buildPool(DEFAULT_DIFFICULTY, DEFAULT_SET_FILTER),
+ [],
  );
  const didResetForInitialSettings = React.useRef(false);
  const [hydrated, setHydrated] = React.useState(false);
- const [mode, setMode] = React.useState<DrillMode>(initialMode);
+ const [mode, setMode] = React.useState<DrillMode>(DEFAULT_MODE);
  const [difficulty, setDifficulty] =
- React.useState<Difficulty |"all">(initialDifficulty);
+ React.useState<Difficulty |"all">(DEFAULT_DIFFICULTY);
  const [setFilter, setSetFilter] =
- React.useState<SetFilter>(initialSetFilter);
+ React.useState<SetFilter>(DEFAULT_SET_FILTER);
 
  const pool = React.useMemo(
  () => buildPool(difficulty, setFilter),
@@ -316,15 +328,13 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  );
 
  const [prompt, setPrompt] = React.useState<Prompt>(() =>
- makePrompt(initialMode, initialPool),
+ makeInitialPrompt(DEFAULT_MODE, initialPool),
  );
  const [answer, setAnswer] = React.useState("");
  const [attempts, setAttempts] = React.useState(0);
  const [correct, setCorrect] = React.useState(0);
  const [streak, setStreak] = React.useState(0);
- const [bestStreak, setBestStreak] = React.useState(() =>
- readInt(LS_BEST_STREAK, 0),
- );
+ const [bestStreak, setBestStreak] = React.useState(0);
  const [completed, setCompleted] = React.useState(0);
  const [skipped, setSkipped] = React.useState(0);
  const [solvedThisQuestion, setSolvedThisQuestion] = React.useState(false);
@@ -338,6 +348,15 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  const advanceLockedRef = React.useRef(false);
 
  React.useEffect(() => {
+ const storedMode = readStoredMode();
+ const storedDifficulty = readStoredDifficulty();
+ const storedSetFilter = readStoredSetFilter();
+ const storedPool = buildPool(storedDifficulty, storedSetFilter);
+ setMode(storedMode);
+ setDifficulty(storedDifficulty);
+ setSetFilter(storedSetFilter);
+ setBestStreak(readInt(LS_BEST_STREAK, 0));
+ setPrompt(makePrompt(storedMode, storedPool));
  setHydrated(true);
  }, []);
 

@@ -77,7 +77,7 @@ export default function PrivacyPolicy() {
           Last updated January 10, 2026
         </h2>
 
-        <p className="flex flex-col gap-4 py-2">
+        <div className="flex flex-col gap-4 py-2">
           <span>
             This privacy notice for MorseWords (https://www.morsewords.com)
             ("we", "us", or "our"), describes how and why we might collect,
@@ -102,7 +102,7 @@ export default function PrivacyPolicy() {
             understand your privacy rights and choices. If you do not agree with
             our policies and practices, please do not use our Services.
           </span>
-        </p>
+        </div>
 
         <p className="flex flex-col gap-2 py-2">
           <span>
@@ -166,7 +166,7 @@ export default function PrivacyPolicy() {
             the Services, or otherwise when you contact us.
           </p>
 
-          <p>
+          <div className="flex flex-col gap-4">
             <span>
               Personal Information Provided by You. The personal information
               that we collect depends on the context of your interactions with
@@ -186,7 +186,7 @@ export default function PrivacyPolicy() {
               <li>names</li>
               <li>contact or authentication data</li>
             </ul>
-          </p>
+          </div>
 
           <p>Sensitive Information. We do not process sensitive information.</p>
 
@@ -273,7 +273,7 @@ export default function PrivacyPolicy() {
             </span>
           </p>
 
-          <p className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <span>The information we collect includes:</span>
             <ul className="flex list-inside list-disc flex-col gap-5 py-2 pl-5 text-slate-700">
               <li>
@@ -314,7 +314,7 @@ export default function PrivacyPolicy() {
                 frequency, and help detect fraud.
               </li>
             </ul>
-          </p>
+          </div>
         </section>
 
         <section className="flex flex-col gap-4">
@@ -328,7 +328,7 @@ export default function PrivacyPolicy() {
             information for other purposes with your consent.
           </p>
 
-          <p>
+          <div className="flex flex-col gap-4">
             <span>
               We process your personal information for a variety of reasons,
               depending on how you interact with our Services, including:
@@ -375,7 +375,7 @@ export default function PrivacyPolicy() {
               </li>
               <li>To comply with legal obligations and enforce our rights.</li>
             </ul>
-          </p>
+          </div>
         </section>
 
         <section className="flex flex-col gap-4">

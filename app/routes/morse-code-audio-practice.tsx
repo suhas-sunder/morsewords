@@ -44,6 +44,7 @@ const CANONICAL_PATH = "/morse-code-audio-practice";
 const STROBE_WARNING_ID = "audio-practice-strobe-warning";
 const DIFFICULTY_STORAGE_KEY = "mw_audio_practice_difficulty";
 const BEST_STREAK_STORAGE_KEY = "mw_audio_practice_best_streak";
+const DEFAULT_AUDIO_DIFFICULTY: AudioDifficulty = "easy";
 
 const faqItems = [
   {
@@ -85,16 +86,13 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioPractice() {
   const player = useMorseAudio();
-  const initialDifficulty = React.useMemo(
-    () => readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"),
-    [],
-  );
   const didSyncInitialDifficulty = React.useRef(false);
+  const [hydrated, setHydrated] = React.useState(false);
   const [difficulty, setDifficulty] =
-    React.useState<AudioDifficulty>(initialDifficulty);
+    React.useState<AudioDifficulty>(DEFAULT_AUDIO_DIFFICULTY);
   const promptPool = React.useMemo(() => getAudioPrompts(difficulty), [difficulty]);
   const [prompt, setPrompt] = React.useState<AudioPrompt>(() =>
-    pickPrompt(getAudioPrompts(initialDifficulty)),
+    getAudioPrompts(DEFAULT_AUDIO_DIFFICULTY)[0],
   );
   const [answer, setAnswer] = React.useState("");
   const [feedback, setFeedback] = React.useState<"idle" | "correct" | "missed" | "revealed">(
@@ -105,9 +103,7 @@ export default function MorseCodeAudioPractice() {
   const [completed, setCompleted] = React.useState(0);
   const [skipped, setSkipped] = React.useState(0);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(() =>
-    readStoredInt(BEST_STREAK_STORAGE_KEY, 0),
-  );
+  const [bestStreak, setBestStreak] = React.useState(0);
 
   const [charWpm, setCharWpm] = React.useState(18);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(12);
@@ -132,22 +128,36 @@ export default function MorseCodeAudioPractice() {
   });
 
   React.useEffect(() => {
+    const storedDifficulty = readStoredDifficulty(
+      DIFFICULTY_STORAGE_KEY,
+      DEFAULT_AUDIO_DIFFICULTY,
+    );
+    setDifficulty(storedDifficulty);
+    setBestStreak(readStoredInt(BEST_STREAK_STORAGE_KEY, 0));
+    setPrompt(pickPrompt(getAudioPrompts(storedDifficulty)));
+    setHydrated(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (!hydrated) return;
     try {
       window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
     } catch {
       // local-only preference; ignore storage failures
     }
-  }, [difficulty]);
+  }, [difficulty, hydrated]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     try {
       window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
     } catch {
       // ignore
     }
-  }, [bestStreak]);
+  }, [bestStreak, hydrated]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     if (!didSyncInitialDifficulty.current) {
       didSyncInitialDifficulty.current = true;
       return;
@@ -156,7 +166,7 @@ export default function MorseCodeAudioPractice() {
     setAnswer("");
     setFeedback("idle");
     player.stop();
-  }, [difficulty, promptPool]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [difficulty, promptPool, hydrated]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
     const anyPlayer = player as typeof player & {
