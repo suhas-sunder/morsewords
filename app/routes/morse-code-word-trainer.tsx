@@ -17,6 +17,7 @@ import {
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
  ActionLinks,
  DarkNote,
@@ -49,23 +50,23 @@ type ParsedTrainerWords = {
 const faqItems = [
  {
  q:"What is the Morse code word trainer for?",
- a:"The word trainer moves beyond single letters. It helps you practice whole words, hear the audio, type the answer, mark weak words, and turn misses into focused review material.",
+ a:"The word trainer is for word-level repetition. It helps you practice custom words, built-in lists, audio playback, typed answers, and weak-word review without switching to sentence prompts.",
  },
  {
- q:"Can I use my own word list?",
+ q:"Can I practice my own word list?",
  a:"Yes. Choose Custom and paste words separated by commas or new lines. MorseWords keeps the custom list locally in your browser.",
  },
  {
- q:"Should I answer with text or Morse?",
- a:"Use Morse to text when you want copy practice. Use text to Morse when you want encoding recall and cleaner written output.",
+ q:"What should I do with weak words?",
+ a:"Turn missed words into a weak-word round, replay them as audio, copy the list, or clear the list after review. Weak words are useful because they make the next session specific.",
  },
  {
- q:"How do weak words work?",
- a:"Missed words and words you mark manually are saved in a weak-word list. You can copy them, play them, clear them, or turn them into their own review round.",
+ q:"How is the word trainer different from sentence practice?",
+ a:"The word trainer repeats isolated words and weak vocabulary. Sentence practice adds full phrases, context, and word-gap rhythm.",
  },
  {
- q:"Does the word trainer support Farnsworth timing?",
- a:"Yes. Character speed controls the shape of each letter, while Farnsworth spacing slows the gaps only so learners can copy without changing the character rhythm.",
+ q:"Should I use word training before audio practice?",
+ a:"Use word training first when the vocabulary itself is weak. Move to audio practice when the words are familiar enough and the next challenge is recognizing them by ear.",
  },
 ];
 
@@ -75,8 +76,8 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
  return seoMeta({
- title:"Morse Code Word Trainer | Custom Word Lists and Audio Review",
- description:"Practice Morse words with built-in or custom lists, audio playback, Farnsworth spacing, weak-word review, shareable results, and worksheet-ready review sets.",
+ title:"Morse Code Word Trainer | Practice Custom and Weak Words | MorseWords",
+ description:"Train Morse code words with custom lists, repeated practice, weak-word review, and links to sentence and audio drills.",
  path: CANONICAL_PATH,
  keywords:"morse code word trainer, morse code words practice, custom morse word list, morse code word practice, morse word audio practice",
  });
@@ -398,10 +399,17 @@ export default function MorseCodeWordTrainer() {
  setCopyStatus("");
  }
 
+ const breadcrumbJsonLd = {"@context":"https://schema.org","@type":"BreadcrumbList",
+ itemListElement:[
+ {"@type":"ListItem", position:1, name:"Home", item:SITE_URL +"/"},
+ {"@type":"ListItem", position:2, name:"Morse Code Word Trainer", item:canonicalUrl(CANONICAL_PATH)},
+ ],
+ };
  const jsonLd = {"@context":"https://schema.org","@type":"WebApplication",
  name:"Morse Code Word Trainer",
  url: canonicalUrl(CANONICAL_PATH),
  applicationCategory:"EducationalApplication",
+ description:"A Morse code word trainer for custom word lists, weak-word repetition, audio playback, and typed recall.",
  isPartOf: {"@type":"WebSite", name:"MorseWords", url: SITE_URL },
  };
  const faqJsonLd = {"@context":"https://schema.org","@type":"FAQPage",
@@ -415,7 +423,7 @@ export default function MorseCodeWordTrainer() {
  <div className="mw-non-home-page" style={styles.page}>
  <main style={styles.wrap}>
  <PageHero
- eyebrow="Word practice" title="Morse code word trainer" description="Practice Morse at the word level with a shuffled deck, audio playback, typed answers, weak-word review, and shareable results. Use a built-in list or paste your own words for classroom, radio, puzzle, or worksheet practice." aside={
+ eyebrow="Word practice" title="Morse Code Word Trainer" description="Repeat custom words, built-in word lists, and weak words with shuffled prompts, audio playback, typed answers, and focused review rounds." aside={
  <DarkNote
  label={deckSource ==="weak"?"Weak round":"Current list"}
  value={deckSource ==="weak"?"REVIEW": listLabel(listName).toUpperCase()}
@@ -865,6 +873,99 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  ]}
  />
 
+ <ReferenceSupportSections
+ guide={{
+ eyebrow:"Word trainer guide",
+ title:"Use this page for targeted word repetition",
+ description:"Word training narrows practice to vocabulary. It is useful when single characters are familiar but specific words still slow down recall.",
+ items:[
+ {
+ title:"Who it is for",
+ text:"Learners who want custom word lists, repeated weak words, and word-level recall before moving into sentence or audio drills.",
+ },
+ {
+ title:"What it does",
+ text:"The trainer builds a shuffled deck, shows or plays each word, checks typed answers, and saves misses into a weak-word review round.",
+ },
+ {
+ title:"How to use it",
+ text:"Choose a built-in or custom list, pick the answer direction, listen or read the prompt, then repeat missed words until they stop feeling slow.",
+ },
+ ],
+ }}
+ examples={{
+ title:"Word trainer scenarios",
+ description:"Use word-level practice when the problem is a repeatable vocabulary set, not a full sentence yet.",
+ items:[
+ {
+ title:"Custom word list",
+ morse:"SIGNAL / RADIO / COPY",
+ children:"Paste words you actually need for a class, contact, worksheet, or puzzle so the practice round matches the vocabulary you care about.",
+ },
+ {
+ title:"Weak-word review",
+ morse:"MISSED WORDS",
+ children:"After a miss, keep the word in the weak deck and run a shorter review round before returning to the full list.",
+ },
+ {
+ title:"Words to sentences",
+ morse:"COPY -> COPY THIS MESSAGE",
+ children:"Once a word is reliable by itself, move it into sentence practice so you also train context and word gaps.",
+ },
+ ],
+ }}
+ mistakes={{
+ title:"Common word practice mistakes",
+ description:"Word drills work best when the list is focused and the next step is clear.",
+ items:[
+ {
+ title:"Using too many custom words",
+ children:"Keep custom lists short enough to repeat. A smaller set exposes weak words faster than a long mixed list.",
+ },
+ {
+ title:"Skipping weak-word rounds",
+ children:"A missed word should come back soon. Use the weak deck before starting a new full list.",
+ },
+ {
+ title:"Staying at word level too long",
+ children:"When words are reliable, move to sentence or audio practice so recall transfers into real message flow.",
+ },
+ ],
+ }}
+ comparison={{
+ eyebrow:"Choose a practice mode",
+ title:"Word trainer vs sentence practice and typing",
+ description:"Use the word trainer for repeated vocabulary. Use neighboring pages when the practice target changes.",
+ items:[
+ {
+ title:"Typing practice",
+ text:"Use typing practice for continuous keyboard recall and timed input flow.",
+ href:"/typing",
+ },
+ {
+ title:"Sentence practice",
+ text:"Use sentence practice when word gaps and phrase context matter more than isolated vocabulary.",
+ href:"/morse-code-sentence-practice",
+ },
+ {
+ title:"Audio practice",
+ text:"Use audio practice when familiar words need to become recognizable by ear.",
+ href:"/morse-code-audio-practice",
+ },
+ ],
+ }}
+ nextStep={{
+ title:"Move weak words into the right next drill",
+ description:"After word review, choose the next mode based on what still feels difficult: typing, listening, or sentence flow.",
+ links:[
+ { href:"/morse-code-sentence-practice", label:"Sentence practice", primary:true },
+ { href:"/typing", label:"Typing practice" },
+ { href:"/morse-code-audio-practice", label:"Audio practice" },
+ { href:"/morse-code-practice-plan", label:"Practice plan" },
+ ],
+ }}
+ />
+
  <SectionCard
  eyebrow="Practice path" title="Use word practice after alphabet drills" description="Alphabet recall tells you whether you know each symbol. Word practice tells you whether you can recognize useful chunks quickly enough to read real messages.">
  <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)]">
@@ -927,7 +1028,7 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
 
  <FaqSectionGeneric title="Word trainer FAQ" items={faqItems} />
 
- <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
+ <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
  </main>
  </div>
  );

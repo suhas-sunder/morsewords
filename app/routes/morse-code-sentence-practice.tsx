@@ -14,12 +14,12 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Sentence Practice | Full Message Drills",
+    title: "Morse Code Sentence Practice | Practice Full Morse Phrases | MorseWords",
     description:
-      "Practice Morse code with complete sentences, realistic spacing, beginner sets, radio-style prompts, answer checks, and longer-message confidence drills.",
+      "Practice Morse code with sentence-style prompts, word spacing, phrase context, and links to word trainer and decoder tools.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code sentence practice, morse code sentences, morse code practice sentences, morse code sentence, morse code spacing",
+      "morse code sentence practice, morse code sentences, morse code phrase practice, morse code spacing practice, morse full message practice",
   });
 }
 
@@ -83,7 +83,7 @@ export default function MorseCodeSentencePracticeRoute() {
       educationalUse: "Practice",
       url: CANONICAL_URL,
       description:
-        "Sentence-focused Morse code drills with example sentences, difficulty levels, spacing guidance, and common practice sets.",
+        "Sentence-focused Morse code drills for phrase flow, word spacing, full-message copying, and contextual Morse practice.",
       teaches: [
         "Morse code sentence practice",
         "Morse code spacing",

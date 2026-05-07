@@ -3,6 +3,7 @@ import type { Route } from "./+types/morse-code-audio-practice";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ActionLinks,
   DarkNote,
@@ -46,20 +47,24 @@ const BEST_STREAK_STORAGE_KEY = "mw_audio_practice_best_streak";
 
 const faqItems = [
   {
-    q: "What is audio practice for?",
-    a: "Audio practice plays hidden Morse prompts so you can train listening recall without seeing the answer first. It is open-ended, unlike the scored audio quiz.",
+    q: "What does Morse code audio practice train?",
+    a: "Audio practice trains listening recall. You hear a hidden Morse prompt first, type what you copied, and review the answer without a fixed scored quiz format.",
   },
   {
-    q: "What do the difficulty levels change?",
-    a: "Beginner starts with letters, numbers, and tiny groups. Easy adds short words and signals. Medium adds longer words and short sentences. Hard adds Q-codes, longer words, and fuller sentences.",
+    q: "Should I use audio practice before audio quiz?",
+    a: "Yes, if listening recall is still uneven. Practice mode is open-ended, so it is better for repetition before taking the scored audio quiz.",
   },
   {
-    q: "What does Farnsworth spacing do?",
-    a: "Farnsworth keeps the character speed crisp but stretches the gaps between letters and words. It slows spacing only, which helps learners hear characters without rushing the copy.",
+    q: "What speed should I start with for audio practice?",
+    a: "Start at a speed where characters sound clear and use Farnsworth spacing if the gaps feel rushed. Raise speed only after answers stay accurate.",
   },
   {
-    q: "Does the audio upload my answers?",
-    a: "No. Prompts, answers, and audio playback stay in your browser. Difficulty and best streak are saved locally only.",
+    q: "Why do I recognize visual Morse but not audio Morse?",
+    a: "Visual recall and sound recall are different skills. Audio practice forces you to recognize rhythm by ear instead of reading dots and dashes.",
+  },
+  {
+    q: "What should I do after listening practice?",
+    a: "Move to the audio quiz when recall feels steady, or return to word trainer and timing pages when certain words or spacing settings still cause misses.",
   },
 ];
 
@@ -69,9 +74,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Audio Practice | Hidden Listening Drills",
+    title: "Morse Code Audio Practice | Listen and Recognize Morse by Ear | MorseWords",
     description:
-      "Practice Morse by ear with hidden audio prompts for letters, words, and sentences. Choose difficulty, use WPM and Farnsworth controls, and build listening recall.",
+      "Practice recognizing Morse code by sound with listening drills, common mistake tips, and links to quiz and timing tools.",
     path: CANONICAL_PATH,
     keywords:
       "morse code audio practice, listen to morse code, morse code by ear, morse audio drills, morse listening practice",
@@ -275,7 +280,22 @@ export default function MorseCodeAudioPractice() {
     name: "Morse Code Audio Practice",
     url: canonicalUrl(CANONICAL_PATH),
     applicationCategory: "EducationalApplication",
+    description:
+      "An open-ended Morse code audio practice tool for listening recall, hidden prompts, timing controls, and repeated review.",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Morse Code Audio Practice",
+        item: canonicalUrl(CANONICAL_PATH),
+      },
+    ],
   };
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -299,8 +319,8 @@ export default function MorseCodeAudioPractice() {
       <main style={styles.wrap}>
         <PageHero
           eyebrow="Audio practice"
-          title="Morse code audio practice"
-          description="Practice hidden audio prompts by ear. Choose a difficulty, play a random letter, word, or sentence, then type what you copied."
+          title="Morse Code Audio Practice"
+          description="Listen first, type what you copied, and repeat hidden prompts until Morse patterns become recognizable by ear."
           aside={
             <DarkNote label="Practice mode" value="Endless">
               {promptPool.length} prompts available. Answers stay hidden until you
@@ -632,6 +652,110 @@ export default function MorseCodeAudioPractice() {
           ]}
         />
 
+        <ReferenceSupportSections
+          guide={{
+            eyebrow: "Audio practice guide",
+            title: "Use this page for open-ended listening",
+            description:
+              "Audio practice is for hearing Morse first, answering from memory, and repeating prompts until listening recall becomes more reliable.",
+            items: [
+              {
+                title: "Who it is for",
+                text: "Learners who can read some Morse but need to recognize the same patterns by ear.",
+              },
+              {
+                title: "What it trains",
+                text: "Hidden audio prompts, answer recall, WPM choice, Farnsworth spacing, tone comfort, and repeated listening without a fixed quiz cap.",
+              },
+              {
+                title: "How to use it",
+                text: "Choose a difficulty, play the prompt, type what you heard, check or reveal, then repeat at a comfortable speed.",
+              },
+            ],
+          }}
+          examples={{
+            title: "Listening practice scenarios",
+            description:
+              "Use these patterns to decide how difficult the next listening session should be.",
+            items: [
+              {
+                title: "Short letters by sound",
+                morse: ". / - / ...",
+                children:
+                  "Start with short character groups if the rhythm of individual letters is still unfamiliar.",
+              },
+              {
+                title: "Slower copy",
+                morse: "18 WPM / 12 WPM",
+                children:
+                  "Keep the character speed crisp and lower Farnsworth spacing when you need more time between letters.",
+              },
+              {
+                title: "Practice to quiz",
+                morse: "OPEN -> SCORED",
+                children:
+                  "Move to the audio quiz after a practice run feels calm enough that scoring will be useful.",
+              },
+            ],
+          }}
+          mistakes={{
+            title: "Common listening mistakes",
+            description:
+              "Audio practice gets more useful when the speed and prompt choice match your current recall level.",
+            items: [
+              {
+                title: "Starting too fast",
+                children:
+                  "If every prompt turns into guessing, lower the difficulty or use more Farnsworth spacing before raising speed.",
+              },
+              {
+                title: "Reading instead of hearing",
+                children:
+                  "Keep the answer hidden until after the first listen. The goal is rhythm recognition, not visual Morse reading.",
+              },
+              {
+                title: "Skipping timing review",
+                children:
+                  "If gaps feel crowded, review standard timing and Farnsworth timing before changing several controls at once.",
+              },
+            ],
+          }}
+          comparison={{
+            eyebrow: "Choose a practice mode",
+            title: "Audio practice vs audio quiz and generator",
+            description:
+              "Use this page for repetition. Use related audio pages when the goal is testing or sound creation.",
+            items: [
+              {
+                title: "Audio quiz",
+                text: "Use the audio quiz for a fixed scored listening test with results.",
+                href: "/morse-code-audio-quiz",
+              },
+              {
+                title: "Audio generator",
+                text: "Use the audio generator when you want to play or save a specific message as audio.",
+                href: "/audio",
+              },
+              {
+                title: "Sound generator",
+                text: "Use the sound generator when tone shape and beep settings are the main task.",
+                href: "/morse-code-sound-generator",
+              },
+            ],
+          }}
+          nextStep={{
+            title: "Turn listening misses into a focused drill",
+            description:
+              "After a practice session, choose a scored quiz, a timing guide, or a word-level review based on what caused the misses.",
+            links: [
+              { href: "/morse-code-audio-quiz", label: "Audio quiz", primary: true },
+              { href: "/morse-code-timing", label: "Timing guide" },
+              { href: "/farnsworth-timing", label: "Farnsworth timing" },
+              { href: "/morse-code-word-trainer", label: "Word trainer" },
+            ],
+          }}
+        />
+
         <SectionCard
           eyebrow="Listening flow"
           title="Practice until it feels easy, then test it"
@@ -649,7 +773,7 @@ export default function MorseCodeAudioPractice() {
 
         <FaqSectionGeneric title="Audio practice FAQ" items={faqItems} />
 
-        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
+        <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
     </div>
   );

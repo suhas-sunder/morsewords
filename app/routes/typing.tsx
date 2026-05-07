@@ -15,12 +15,12 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Typing Tool | Real-Time Dot and Dash Decoder",
+    title: "Morse Code Typing Practice | Build Recall and Accuracy | MorseWords",
     description:
-      "Type dots, dashes, spaces, and slashes to decode Morse in real time. Use the scratchpad for Morse typing practice, rhythm drills, and quick checks.",
+      "Use Morse code typing practice to build keyboard recall, improve accuracy, and move from recognition to faster answers.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code typer, morse code typing, morse code typewriter, morse code typing practice, real time morse code translator",
+      "morse code typing practice, morse typing, morse code keyboard practice, morse recall practice, morse typing tool",
   });
 }
 
@@ -59,7 +59,7 @@ export default function TypingRoute() {
       operatingSystem: "All",
       url: CANONICAL_URL,
       description:
-        "A freeform Morse code typing scratchpad with real-time decoding for fluent users.",
+        "A Morse code typing practice scratchpad for keyboard recall, timed sessions, and real-time decoded output.",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     },
     breadcrumbJsonLd,

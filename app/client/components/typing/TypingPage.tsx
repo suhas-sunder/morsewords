@@ -2,6 +2,7 @@ import * as React from "react";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import Button from "~/client/components/shared/Button";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ToolOutputPanel,
   ToolPanel,
@@ -532,11 +533,12 @@ export default function TypingPage({ jsonLd }: Props) {
               </span>
             </div>
             <h1 className={HERO_TITLE_CLASS}>
-              Morse Code Typing
+              Morse Code Typing Practice
             </h1>
             <p className={HERO_LEAD_CLASS}>
-              Freeform, input-first Morse typing with real-time decoding. Built
-              for fluent users who want repetition, rhythm, and endurance.
+              Build keyboard recall and accuracy with freeform Morse typing,
+              real-time decoding, timed sessions, and optional F/J keying
+              practice.
             </p>
           </div>
 
@@ -954,6 +956,109 @@ export default function TypingPage({ jsonLd }: Props) {
       </div>
 
       <HowItWorksTyping />
+      <ReferenceSupportSections
+        guide={{
+          eyebrow: "Typing guide",
+          title: "Use this page for keyboard recall",
+          description:
+            "Typing practice is for learners who want continuous Morse entry instead of one checked prompt at a time. It helps turn recognition into cleaner typed answers.",
+          items: [
+            {
+              title: "Who it is for",
+              text: "Learners who know the basic patterns and want to build rhythm, accuracy, and endurance at the keyboard.",
+            },
+            {
+              title: "What it measures",
+              text: "The page tracks decoded letters, spacing, session time, and output flow while you type dots and dashes or F/J keying input.",
+            },
+            {
+              title: "How to use it",
+              text: "Pick a duration, choose dot-dash or F/J input, type continuously, then review the decoded output for spacing or recall mistakes.",
+            },
+          ],
+        }}
+        examples={{
+          title: "Typing practice scenarios",
+          description:
+            "Use typing practice when the answer is not the problem yet; the flow and keyboard rhythm are.",
+          items: [
+            {
+              title: "Letters from memory",
+              morse: ".- -... -.-.",
+              children:
+                "Type short letter groups without checking the alphabet until the decoded output confirms whether the pattern was right.",
+            },
+            {
+              title: "Accuracy before speed",
+              morse: "... --- ...",
+              children:
+                "Use a short timed session and keep the input clean. Speed is useful only after spacing and character entry are reliable.",
+            },
+            {
+              title: "Visual to typed recall",
+              morse: "F/J input",
+              children:
+                "Switch to F/J mode when you want a keying-friendly motion instead of reaching for punctuation keys on every dit and dah.",
+            },
+          ],
+        }}
+        mistakes={{
+          title: "Common typing mistakes",
+          description:
+            "Typing errors usually come from rushing the separators, not from the dot-dash patterns alone.",
+          items: [
+            {
+              title: "Forgetting letter gaps",
+              children:
+                "A space commits a letter. Without it, multiple characters can merge into a different or unknown pattern.",
+            },
+            {
+              title: "Chasing speed too early",
+              children:
+                "Use short, accurate sessions first. Increase duration or pace only when the decoded output stays clean.",
+            },
+            {
+              title: "Using typing for weak words",
+              children:
+                "If the same words keep failing, switch to the word trainer so the prompts repeat intentionally.",
+            },
+          ],
+        }}
+        comparison={{
+          eyebrow: "Choose a practice mode",
+          title: "Typing vs general practice and word training",
+          description:
+            "Typing practice is freeform. Use a prompt-based page when you need directed review.",
+          items: [
+            {
+              title: "General practice",
+              text: "Use general practice for checked prompts across letters, numbers, words, and sentences.",
+              href: "/practice",
+            },
+            {
+              title: "Word trainer",
+              text: "Use the word trainer when repeated weak words matter more than continuous typing flow.",
+              href: "/morse-code-word-trainer",
+            },
+            {
+              title: "Visual practice",
+              text: "Use visual practice when you need sight-based pattern recognition before typing answers.",
+              href: "/morse-code-visual-practice",
+            },
+          ],
+        }}
+        nextStep={{
+          title: "Turn typing results into targeted practice",
+          description:
+            "Use your decoded output to decide whether the next session should focus on weak words, visual recall, or a structured routine.",
+          links: [
+            { href: "/morse-code-word-trainer", label: "Word trainer", primary: true },
+            { href: "/practice", label: "General practice" },
+            { href: "/learn-morse-code", label: "Learning path" },
+            { href: "/morse-code-practice-plan", label: "Practice plan" },
+          ],
+        }}
+      />
       <TypingFaq />
     </main>
   );

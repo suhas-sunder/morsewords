@@ -2,6 +2,7 @@ import * as React from "react";
 
 import Button from "~/client/components/shared/Button";
 import ToggleChip from "~/client/components/shared/ToggleChip";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import { ToolPanel } from "~/client/components/shared/ToolWorkspace";
 import {
   HERO_EYEBROW_LINE_CLASS,
@@ -304,11 +305,12 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
             </span>
           </div>
           <h1 className={HERO_TITLE_CLASS}>
-            Morse Code Practice (Quiz)
+            Morse Code Practice
           </h1>
           <p className={HERO_LEAD_CLASS}>
-            A focused 10-question Morse quiz. One prompt at a time with instant
-            feedback.
+            Flexible drills for letters, numbers, signals, words, and
+            sentences. Use this page when you want broad practice before moving
+            into typing, audio, visual, or word-specific drills.
           </p>
         </div>
 
@@ -629,6 +631,110 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
       </section>
 
       <HowItWorksPractice />
+      <ReferenceSupportSections
+        guide={{
+          eyebrow: "Practice guide",
+          title: "Use this page for broad Morse recall",
+          description:
+            "General practice is the middle ground between a reference chart and a scored specialty quiz. It gives you one prompt at a time, checks your answer, and helps you decide what to drill next.",
+          items: [
+            {
+              title: "Who it is for",
+              text: "Learners who know some letters or words and want fast feedback without choosing a specialized audio, visual, or typing mode first.",
+            },
+            {
+              title: "What it trains",
+              text: "Two-way recall across text-to-Morse and Morse-to-text prompts, including letters, numbers, signals, words, and short sentences.",
+            },
+            {
+              title: "How to use it",
+              text: "Pick a direction, choose a prompt pool, answer the current card, then use misses to choose the next focused drill.",
+            },
+          ],
+        }}
+        examples={{
+          title: "Practice scenarios",
+          description:
+            "These are the common ways to use general practice before moving into a more specific tool.",
+          items: [
+            {
+              title: "Beginner letter recall",
+              morse: ". / - / .- / -.",
+              children:
+                "Start with letters when the alphabet chart is still fresh. Keep the run short and restart once misses show a pattern.",
+            },
+            {
+              title: "Mixed review",
+              morse: "... --- ...",
+              children:
+                "Use mixed mode after reviewing the Morse alphabet so you practice reading and writing instead of only recognizing one direction.",
+            },
+            {
+              title: "Daily short session",
+              morse: "10 questions",
+              children:
+                "Treat a run as a quick check-in. If the score drops, switch to the word trainer, audio practice, or visual practice for targeted repetition.",
+            },
+          ],
+        }}
+        mistakes={{
+          title: "Common practice mistakes",
+          description:
+            "Most practice problems come from choosing the wrong drill for the weakness you are seeing.",
+          items: [
+            {
+              title: "Practicing too broadly",
+              children:
+                "If the same letters or words keep failing, move them into focused word or typing practice instead of repeating mixed runs.",
+            },
+            {
+              title: "Skipping spacing review",
+              children:
+                "Morse-to-text prompts still depend on clean letter and word spacing. Use the word separator page when spacing causes wrong answers.",
+            },
+            {
+              title: "Testing before training",
+              children:
+                "Use audio and visual quizzes after practice feels steady. A quiz should confirm progress, not replace repetition.",
+            },
+          ],
+        }}
+        comparison={{
+          eyebrow: "Choose a practice mode",
+          title: "Practice vs typing, trainers, and quizzes",
+          description:
+            "Use the general page for broad drills. Choose a more specific page when the weakness is already clear.",
+          items: [
+            {
+              title: "Typing",
+              text: "Use typing practice for keyboard recall and continuous input flow.",
+              href: "/typing",
+            },
+            {
+              title: "Word trainer",
+              text: "Use the word trainer for custom word lists, weak words, and repeated vocabulary.",
+              href: "/morse-code-word-trainer",
+            },
+            {
+              title: "Audio or visual",
+              text: "Use audio practice for listening and visual practice for dot-dash recognition by sight.",
+              href: "/morse-code-audio-practice",
+            },
+          ],
+        }}
+        nextStep={{
+          title: "Pick the next drill from your misses",
+          description:
+            "A general practice run should tell you what to do next: type, listen, watch, or repeat weak words.",
+          links: [
+            { href: "/morse-code-practice-plan", label: "Practice plan", primary: true },
+            { href: "/typing", label: "Typing practice" },
+            { href: "/morse-code-audio-practice", label: "Audio practice" },
+            { href: "/morse-code-visual-practice", label: "Visual practice" },
+            { href: "/morse-code-word-trainer", label: "Word trainer" },
+          ],
+        }}
+      />
       <PracticeFaq />
       <JsonLdScript jsonLd={jsonLd} />
     </div>

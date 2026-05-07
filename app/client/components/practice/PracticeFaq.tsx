@@ -4,32 +4,24 @@ import FaqSectionGeneric, {
 
 export const items: FaqItem[] = [
   {
-    q: "What makes this different from the translator?",
-    a: "The translator converts anything you paste in. Practice mode gives you one prompt at a time and checks your answer, so you can drill and repeat without a full conversion UI.",
+    q: "What should I practice first on this page?",
+    a: "Start with letters if you are new, then add numbers, signals, words, and sentences as recall gets steadier. Mixed mode is best after both directions feel familiar.",
   },
   {
-    q: "Do I need perfect spacing when I type Morse?",
-    a: "No. Practice mode accepts common spacing styles and normalizes your input before checking. A single space between letters is fine.",
+    q: "Is Morse code practice scored here?",
+    a: "Yes. Each run checks answers, tracks attempts, accuracy, streak, and progress, then lets you restart for another focused practice round.",
   },
   {
-    q: "What does Mixed mode do?",
-    a: "Mixed alternates between Text to Morse and Morse to Text prompts so you practice both directions.",
+    q: "Should I use practice mode or a quiz?",
+    a: "Use this page for broad drill work and quick feedback. Use audio quiz or visual quiz when you specifically want a test-like session for listening or visual recognition.",
   },
   {
-    q: "How is accuracy calculated?",
-    a: "Accuracy is correct answers divided by attempts, shown as a percentage. Streak counts consecutive correct answers.",
+    q: "How often should I practice Morse code?",
+    a: "Short daily sessions usually work better than occasional long sessions. Ten focused questions are enough to reveal which characters or words need review.",
   },
   {
-    q: "How many questions are in a run?",
-    a: "A run is always 10 questions. Your progress shows Questions X/10 until you finish the run.",
-  },
-  {
-    q: "What happens if I skip a question?",
-    a: "Skip advances to the next prompt without marking the current one correct, and it breaks your streak for this run.",
-  },
-  {
-    q: "Can I share my results?",
-    a: "Yes. Share copies a compact summary of your run progress and stats so you can paste it anywhere.",
+    q: "Which tool should I use after general practice?",
+    a: "Move to typing practice for keyboard recall, audio practice for listening, visual practice for dot-dash recognition, or the word trainer for repeated weak words.",
   },
 ];
 

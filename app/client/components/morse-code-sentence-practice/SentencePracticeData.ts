@@ -574,31 +574,23 @@ export const spacingExamples = [
 
 export const faqItems = [
   {
-    q: "How should I practice Morse code sentences?",
-    a: "Start with short complete sentences, send or copy them slowly, and focus on clean spacing before speed. Once you can copy a sentence without guessing the word breaks, move to longer drills.",
+    q: "What is Morse code sentence practice for?",
+    a: "Sentence practice helps you move from isolated characters and words into full-message flow. It trains word gaps, phrase rhythm, and meaning across a complete prompt.",
   },
   {
-    q: "What spacing should I use for Morse code sentences?",
-    a: "A practical text format is one visible gap between letters and a slash or wider gap between words. In strict timing terms, Morse uses short element gaps inside characters, longer gaps between characters, and the longest gaps between words.",
+    q: "Should I practice words before sentences?",
+    a: "Yes, if single words still feel slow. Use the word trainer first, then move to sentence practice when short words are readable enough to combine into phrases.",
   },
   {
-    q: "Are sentences better than random letter practice?",
-    a: "They train different skills. Random letters are better for raw recognition. Sentences are better for rhythm, word spacing, and copying meaning across a complete phrase.",
+    q: "Does sentence practice help with real messages?",
+    a: "Yes. Real Morse messages depend on context, word spacing, and steady rhythm. Sentence drills make those skills visible in a way single-character practice cannot.",
   },
   {
-    q: "Should I practice Text to Morse or Morse to Text first?",
-    a: "Use both. Text to Morse builds sending recall, while Morse to Text builds copy speed. If you are weak at hearing word boundaries, spend more time decoding sentence drills.",
+    q: "How is sentence practice different from the word trainer?",
+    a: "The word trainer repeats individual words and weak vocabulary. Sentence practice adds complete phrases, word boundaries, punctuation-like spacing decisions, and longer memory load.",
   },
   {
-    q: "Why are these sentences written in uppercase?",
-    a: "Uppercase keeps the drills consistent with common Morse training material and avoids distractions from capitalization. The Morse pattern is the same either way.",
-  },
-  {
-    q: "When should I move from word drills to sentence drills?",
-    a: "Move to sentence drills once you can recognize common letters and short words without stopping on every character. Sentence practice is especially useful when your main problem is losing word breaks or rhythm.",
-  },
-  {
-    q: "How long should a Morse code sentence drill be?",
-    a: "Beginners should start with four to six words. Intermediate learners can use six to nine words. Hard drills can be longer, but the sentence should still be readable and natural.",
+    q: "What should I use after sentence practice?",
+    a: "Move to audio practice when you want to hear full messages, or use the decoder and word separator pages when spacing in pasted Morse is the main problem.",
   },
 ];

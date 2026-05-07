@@ -4,6 +4,7 @@ import type { Route } from "./+types/morse-code-visual-quiz";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ActionLinks,
   DarkNote,
@@ -42,19 +43,27 @@ const TOTAL_QUESTIONS = 10;
 
 const faqItems = [
   {
-    q: "How does the visual Morse quiz work?",
-    a: "The quiz flashes a hidden prompt. You type what you saw, check the answer, and the page tracks attempts, accuracy, streak, and a shareable result card.",
+    q: "Is the visual Morse quiz scored?",
+    a: "Yes. The quiz flashes a hidden prompt, checks your typed answer, and tracks attempts, accuracy, streak, and a shareable result card.",
   },
   {
-    q: "Does visual quiz use Farnsworth spacing?",
-    a: "Yes. Character speed controls each flashed Morse character, while Farnsworth spacing slows the gaps only.",
+    q: "Should I use visual practice or visual quiz first?",
+    a: "Use visual practice first if the flashes still feel unfamiliar. Use the quiz when you want a scored check of dot-dash recognition.",
   },
   {
-    q: "Can I practice before taking the quiz?",
-    a: "Yes. Use visual practice first so you can see the answer, tune the speed, and get comfortable with the flash rhythm.",
+    q: "What should I do when I miss a visual prompt?",
+    a: "Replay short visual prompts in practice mode, lower the speed or Farnsworth pressure, then retake the quiz after the pattern feels clearer.",
   },
   {
-    q: "Is this safe for light-sensitive users?",
+    q: "Is visual quiz enough for audio Morse?",
+    a: "No. Visual quiz measures sight-based recognition. Use audio practice or audio quiz separately for listening recall.",
+  },
+  {
+    q: "How often should I retake the visual quiz?",
+    a: "Retake it after a short practice session, not repeatedly without review. The score is most useful when it checks whether targeted practice worked.",
+  },
+  {
+    q: "Is the visual quiz safe for light-sensitive users?",
     a: "Strobe warning: flashing light may be uncomfortable or unsafe for people with photosensitive epilepsy or light sensitivity. Turn off Flash or use audio-only practice if you are sensitive to strobing.",
   },
 ];
@@ -65,9 +74,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Visual Quiz | Flashing Light Test",
+    title: "Morse Code Visual Quiz | Test Dot-Dash Recognition | MorseWords",
     description:
-      "Take a scored visual Morse code quiz with flashing-light prompts, WPM, Farnsworth spacing, answer checks, streaks, and shareable results.",
+      "Use the Morse code visual quiz to test dot-dash recognition, review missed patterns, and improve recall.",
     path: CANONICAL_PATH,
     keywords:
       "morse code visual quiz, flashing morse quiz, morse code light test, farnsworth visual morse",
@@ -183,10 +192,26 @@ export default function MorseCodeVisualQuiz() {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Quiz",
+    "@type": "WebApplication",
     name: "Morse Code Visual Quiz",
     url: canonicalUrl(CANONICAL_PATH),
+    applicationCategory: "EducationalApplication",
+    description:
+      "A scored visual Morse quiz for testing dot-dash recognition with flashing prompts, answer checks, and score feedback.",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Morse Code Visual Quiz",
+        item: canonicalUrl(CANONICAL_PATH),
+      },
+    ],
   };
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -203,8 +228,8 @@ export default function MorseCodeVisualQuiz() {
       <main style={styles.wrap}>
         <PageHero
           eyebrow="Visual test"
-          title="Morse code visual quiz"
-          description="Watch the flashing bulb, type the message you saw, then check the answer. The quiz uses the same speed and Farnsworth spacing controls as visual practice."
+          title="Morse Code Visual Quiz"
+          description="Test dot-dash recognition with hidden flashing prompts, score feedback, and follow-up review for missed patterns."
           aside={
             <DarkNote label="Score" value={`${correct}/${TOTAL_QUESTIONS}`}>
               Ten prompts, attempts, accuracy, streak, and a share card. Set
@@ -488,6 +513,110 @@ export default function MorseCodeVisualQuiz() {
           ]}
         />
 
+        <ReferenceSupportSections
+          guide={{
+            eyebrow: "Visual quiz guide",
+            title: "Use this page to test dot-dash recognition",
+            description:
+              "The visual quiz is the scored version of flash practice. It hides the prompt, flashes the Morse signal, checks your answer, and shows whether sight-based recall is holding.",
+            items: [
+              {
+                title: "Who it is for",
+                text: "Learners who have practiced visual Morse and want a fixed scored check instead of open-ended reveal practice.",
+              },
+              {
+                title: "What it tests",
+                text: "Visual prompt recall, answer accuracy, streak consistency, and whether current flash timing is readable.",
+              },
+              {
+                title: "How to use it",
+                text: "Watch the full flash sequence, type the prompt from memory, check the answer, and review missed patterns afterward.",
+              },
+            ],
+          }}
+          examples={{
+            title: "Visual quiz scenarios",
+            description:
+              "Use these scenarios to decide when a quiz score is useful.",
+            items: [
+              {
+                title: "A-Z recognition check",
+                morse: ".- -... -.-.",
+                children:
+                  "Take a visual quiz after alphabet review to confirm short letter patterns are recognizable as flashes.",
+              },
+              {
+                title: "Missed character review",
+                morse: "MISS -> PRACTICE",
+                children:
+                  "When a pattern is missed, go back to visual practice instead of retaking the same quiz immediately.",
+              },
+              {
+                title: "Combine with word trainer",
+                morse: "FLASH -> WORD",
+                children:
+                  "If missed prompts are actual words, repeat them in the word trainer so visual recognition connects to vocabulary.",
+              },
+            ],
+          }}
+          mistakes={{
+            title: "Common visual quiz mistakes",
+            description:
+              "Visual quiz scores are most useful when they follow targeted visual practice.",
+            items: [
+              {
+                title: "Quizzing before practicing",
+                children:
+                  "Use open-ended visual practice first if flash timing or prompt length still feels unfamiliar.",
+              },
+              {
+                title: "Ignoring missed prompts",
+                children:
+                  "A miss should send you to visual practice, typing, or word trainer review. Repeating the quiz alone is less efficient.",
+              },
+              {
+                title: "Confusing visual and audio skill",
+                children:
+                  "A strong visual score does not prove listening recall. Use audio practice separately.",
+              },
+            ],
+          }}
+          comparison={{
+            eyebrow: "Choose a practice mode",
+            title: "Visual quiz vs visual practice",
+            description:
+              "Both use flashes. Practice is for learning the pattern; quiz is for checking recall.",
+            items: [
+              {
+                title: "Visual practice",
+                text: "Use visual practice when you need answer reveal and repeated flash review.",
+                href: "/morse-code-visual-practice",
+              },
+              {
+                title: "Typing practice",
+                text: "Use typing practice when the prompt is recognizable but answer entry is slow.",
+                href: "/typing",
+              },
+              {
+                title: "General practice",
+                text: "Use general practice for mixed written prompts outside the flash mode.",
+                href: "/practice",
+              },
+            ],
+          }}
+          nextStep={{
+            title: "Use missed flashes as the next review set",
+            description:
+              "A visual quiz should point to a follow-up drill, especially when certain words or patterns keep failing.",
+            links: [
+              { href: "/morse-code-visual-practice", label: "Visual practice", primary: true },
+              { href: "/morse-code-word-trainer", label: "Word trainer" },
+              { href: "/typing", label: "Typing practice" },
+              { href: "/learn-morse-code", label: "Learning path" },
+            ],
+          }}
+        />
+
         <SectionCard eyebrow="Review" title="Build review from missed visual prompts">
           <ActionLinks
             links={[
@@ -506,7 +635,7 @@ export default function MorseCodeVisualQuiz() {
 
         <FaqSectionGeneric title="Visual quiz FAQ" items={faqItems} />
 
-        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
+        <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
     </div>
   );

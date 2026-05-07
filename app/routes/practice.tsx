@@ -14,12 +14,12 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Practice Test | Quiz Letters, Words and Signals",
+    title: "Morse Code Practice | Flexible Drills for Learning Morse | MorseWords",
     description:
-      "Practice Morse code with scored quizzes, instant feedback, streaks, shareable results, and drills for letters, numbers, signals, words, and sentences.",
+      "Practice Morse code with flexible drills for letters, words, and recall, plus guidance on what to practice next.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code practice test, morse code quiz, morse code practice, morse code drills, morse code words, morse code test",
+      "morse code practice, morse code drills, learn morse practice, morse code recall practice, morse practice tools",
   });
 }
 
@@ -57,7 +57,7 @@ export default function PracticeRoute() {
       operatingSystem: "All",
       url: CANONICAL_URL,
       description:
-        "A focused 10-question Morse code quiz with instant feedback.",
+        "A flexible Morse code practice hub for drilling letters, numbers, signals, words, and sentences with feedback.",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     },
     breadcrumbJsonLd,

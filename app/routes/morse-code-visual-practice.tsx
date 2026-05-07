@@ -3,6 +3,7 @@ import type { Route } from "./+types/morse-code-visual-practice";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ActionLinks,
   DarkNote,
@@ -27,19 +28,23 @@ const STROBE_WARNING_ID = "visual-practice-strobe-warning";
 
 const faqItems = [
   {
-    q: "What is visual Morse practice?",
-    a: "Visual practice shows Morse as flashes instead of tones. It is useful for learning light signals, checking spacing, and practicing without audio.",
+    q: "What does visual Morse practice train?",
+    a: "Visual practice trains dot-dash recognition by sight. It shows Morse as timed flashes so you can practice pattern recall without relying on sound.",
   },
   {
-    q: "Why does visual practice include Farnsworth spacing?",
-    a: "Farnsworth spacing slows the gaps between flashed characters and words while keeping each character shape crisp. It slows spacing only.",
+    q: "Is visual practice enough to learn Morse?",
+    a: "No. Visual practice helps with pattern recognition, but learners should also practice by sound because Morse is usually copied by rhythm.",
   },
   {
-    q: "Should I use short messages?",
-    a: "Yes. Visual Morse is easiest with short prompts because long flashing sequences are harder to hold in memory.",
+    q: "Should I also practice Morse by sound?",
+    a: "Yes. Move to audio practice once visual patterns are familiar so you build listening recall and not only visual memory.",
   },
   {
-    q: "Is flashing light safe for everyone?",
+    q: "How is visual practice different from visual quiz?",
+    a: "Visual practice is open-ended and lets you reveal the answer. Visual quiz hides prompts in a scored test.",
+  },
+  {
+    q: "Is visual practice safe for light-sensitive users?",
     a: "Strobe warning: flashing light may be uncomfortable or unsafe for people with photosensitive epilepsy or light sensitivity. Turn off Flash or use audio-only practice if you are sensitive to strobing.",
   },
 ];
@@ -50,9 +55,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Visual Morse Code Practice | Flashing Light Trainer",
+    title: "Morse Code Visual Practice | Dot-Dash Recognition Drills | MorseWords",
     description:
-      "Practice Morse code visually with a flashing-light trainer. Set speed, watch the signal, reveal the answer, and move into the scored visual quiz.",
+      "Practice visual Morse code recognition with dot-dash prompts, beginner tips, and links to typing, audio, and quiz tools.",
     path: CANONICAL_PATH,
     keywords:
       "visual morse code practice, flashing morse code, morse code light practice, morse code visual trainer",
@@ -103,7 +108,22 @@ export default function MorseCodeVisualPractice() {
     name: "Visual Morse Code Practice",
     url: canonicalUrl(CANONICAL_PATH),
     applicationCategory: "EducationalApplication",
+    description:
+      "An open-ended visual Morse practice tool for flashing dot-dash prompts, reveal-based review, and timing adjustment.",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Morse Code Visual Practice",
+        item: canonicalUrl(CANONICAL_PATH),
+      },
+    ],
   };
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -120,8 +140,8 @@ export default function MorseCodeVisualPractice() {
       <main style={styles.wrap}>
         <PageHero
           eyebrow="Visual practice"
-          title="Visual Morse code practice"
-          description="Practice reading Morse as flashes instead of tones. Choose a short message, watch the bulb, then reveal the text and Morse when you are ready."
+          title="Morse Code Visual Practice"
+          description="Practice recognizing dot-dash patterns by sight with short flash prompts, reveal-based review, and timing controls."
           aside={
             <DarkNote label="Flash mode" value={active ? "ON" : "READY"}>
               Use short messages at first. Visual Morse is easiest when the
@@ -277,6 +297,110 @@ export default function MorseCodeVisualPractice() {
           ]}
         />
 
+        <ReferenceSupportSections
+          guide={{
+            eyebrow: "Visual practice guide",
+            title: "Use this page for sight-based Morse recall",
+            description:
+              "Visual practice turns Morse into flashes so you can rehearse dot-dash patterns without audio. It is useful for light-signal familiarity and visual memory work.",
+            items: [
+              {
+                title: "Who it is for",
+                text: "Learners who want to recognize Morse by sight before moving into a scored visual quiz or typing answers.",
+              },
+              {
+                title: "What it trains",
+                text: "Flash rhythm, visual pattern recognition, Farnsworth spacing, and answer reveal discipline.",
+              },
+              {
+                title: "How to use it",
+                text: "Enter a short message, flash it, watch the full sequence, then reveal only after trying to recall the pattern.",
+              },
+            ],
+          }}
+          examples={{
+            title: "Visual practice scenarios",
+            description:
+              "Keep visual prompts short enough that the pattern is readable and not just a memory overload.",
+            items: [
+              {
+                title: "A-Z recognition",
+                morse: ".- / -... / -.-.",
+                children:
+                  "Practice short letter groups after reviewing the alphabet chart so visual recall is tied to known patterns.",
+              },
+              {
+                title: "Short signal",
+                morse: "... --- ...",
+                children:
+                  "SOS is compact and easy to recognize, so it works well for testing flash timing before longer prompts.",
+              },
+              {
+                title: "Typed answer flow",
+                morse: "FLASH -> TYPE",
+                children:
+                  "After watching the pattern, move into typing practice if the next weakness is entering the answer cleanly.",
+              },
+            ],
+          }}
+          mistakes={{
+            title: "Common visual practice mistakes",
+            description:
+              "Visual practice works best as one part of a larger routine, not as the only Morse skill.",
+            items: [
+              {
+                title: "Using long messages too soon",
+                children:
+                  "Long flash sequences are hard to hold in memory. Start with short words and signals.",
+              },
+              {
+                title: "Relying only on sight",
+                children:
+                  "Visual recognition does not automatically become listening skill. Add audio practice once patterns are familiar.",
+              },
+              {
+                title: "Ignoring light sensitivity",
+                children:
+                  "If flashing is uncomfortable, stop visual practice and use audio or text-based drills instead.",
+              },
+            ],
+          }}
+          comparison={{
+            eyebrow: "Choose a practice mode",
+            title: "Visual practice vs visual quiz and typing",
+            description:
+              "Use visual practice for open-ended pattern work. Use other modes when you need scoring or keyboard recall.",
+            items: [
+              {
+                title: "Visual quiz",
+                text: "Use visual quiz for scored flash recognition after practice feels steady.",
+                href: "/morse-code-visual-quiz",
+              },
+              {
+                title: "Typing practice",
+                text: "Use typing practice when visual recall is fine but typed input needs accuracy.",
+                href: "/typing",
+              },
+              {
+                title: "Audio practice",
+                text: "Use audio practice to build listening recall after visual recognition improves.",
+                href: "/morse-code-audio-practice",
+              },
+            ],
+          }}
+          nextStep={{
+            title: "Move from visual recognition into recall testing",
+            description:
+              "Once short flashes are readable, test visual recall or connect the same patterns to typing and audio practice.",
+            links: [
+              { href: "/morse-code-visual-quiz", label: "Visual quiz", primary: true },
+              { href: "/typing", label: "Typing practice" },
+              { href: "/morse-code-alphabet", label: "Alphabet chart" },
+              { href: "/learn-morse-code", label: "Learning path" },
+            ],
+          }}
+        />
+
         <SectionCard eyebrow="Visual flow" title="Practice flashes, then test recall">
           <ActionLinks
             links={[
@@ -289,7 +413,7 @@ export default function MorseCodeVisualPractice() {
 
         <FaqSectionGeneric title="Visual practice FAQ" items={faqItems} />
 
-        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
+        <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
     </div>
   );

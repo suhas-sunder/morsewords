@@ -4,6 +4,7 @@ import type { Route } from "./+types/morse-code-audio-quiz";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ActionLinks,
   DarkNote,
@@ -48,20 +49,24 @@ type FeedbackState = "idle" | "correct" | "missed";
 
 const faqItems = [
   {
-    q: "How does the Morse code audio quiz work?",
-    a: "The quiz plays a hidden Morse prompt. You type what you heard, check the answer, and MorseWords tracks score, attempts, accuracy, streak, and shareable results.",
+    q: "Is the Morse code audio quiz scored?",
+    a: "Yes. The audio quiz uses a fixed run, checks typed answers, and tracks score, attempts, accuracy, streak, and shareable results.",
   },
   {
-    q: "What do the audio quiz difficulty levels change?",
-    a: "Beginner uses letters, numbers, and tiny groups. Easy adds short words and common signals. Medium adds longer words and short sentences. Hard adds Q-codes, longer copy, and tougher sentences.",
+    q: "Should beginners start with quiz mode?",
+    a: "Beginners should usually start with audio practice first. Use the quiz when you want a test-like check of listening recall.",
   },
   {
-    q: "Does the audio quiz support Farnsworth spacing?",
-    a: "Yes. Character speed controls the dits and dahs, while Farnsworth spacing slows only the gaps between letters and words.",
+    q: "What should I do after missed audio quiz answers?",
+    a: "Drop the difficulty, return to audio practice for repetition, or move missed words into the word trainer before taking another quiz.",
   },
   {
-    q: "How is this different from audio practice?",
+    q: "How is the audio quiz different from audio practice?",
     a: "Audio practice is open-ended and built for repetition. The audio quiz is a fixed scored test, so it is better for checking your current listening level.",
+  },
+  {
+    q: "Does pitch affect the correct answer?",
+    a: "No. Pitch changes the tone you hear, not the dots, dashes, letters, or correct decoded answer.",
   },
 ];
 
@@ -71,9 +76,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Audio Quiz | Test Listening Accuracy",
+    title: "Morse Code Audio Quiz | Test Listening Recall | MorseWords",
     description:
-      "Take a scored Morse code audio quiz with hidden prompts, difficulty levels, WPM, Farnsworth spacing, streak tracking, and shareable results.",
+      "Take a Morse code audio quiz to test listening recall, review missed answers, and decide what to practice next.",
     path: CANONICAL_PATH,
     keywords:
       "morse code audio quiz, morse listening test, morse code test audio, farnsworth morse quiz",
@@ -274,10 +279,26 @@ export default function MorseCodeAudioQuiz() {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Quiz",
+    "@type": "WebApplication",
     name: "Morse Code Audio Quiz",
     url: canonicalUrl(CANONICAL_PATH),
+    applicationCategory: "EducationalApplication",
+    description:
+      "A scored Morse code audio quiz for testing listening recall with hidden prompts, difficulty levels, and score feedback.",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Morse Code Audio Quiz",
+        item: canonicalUrl(CANONICAL_PATH),
+      },
+    ],
   };
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -301,8 +322,8 @@ export default function MorseCodeAudioQuiz() {
       <main style={styles.wrap}>
         <PageHero
           eyebrow="Audio test"
-          title="Morse code audio quiz"
-          description="Test Morse listening recall with hidden audio prompts. Pick a difficulty, play each signal, type what you copied, and get a scored result."
+          title="Morse Code Audio Quiz"
+          description="Test listening recall with hidden Morse audio prompts, answer checks, score feedback, and a clear path back to practice."
           aside={
             <DarkNote label="Score" value={`${correct}/${TOTAL_QUESTIONS}`}>
               {audioDifficultyOptions.find((option) => option.value === difficulty)?.label}{" "}
@@ -715,6 +736,110 @@ export default function MorseCodeAudioQuiz() {
           ]}
         />
 
+        <ReferenceSupportSections
+          guide={{
+            eyebrow: "Audio quiz guide",
+            title: "Use this page to test listening recall",
+            description:
+              "The audio quiz is a scored checkpoint. It keeps prompts hidden, plays the signal, checks your answer, and turns results into a clearer next practice choice.",
+            items: [
+              {
+                title: "Who it is for",
+                text: "Learners who have practiced by ear and now want a fixed score instead of open-ended repetition.",
+              },
+              {
+                title: "What it tests",
+                text: "Listening recall, answer accuracy, difficulty readiness, streak consistency, and whether current timing settings are workable.",
+              },
+              {
+                title: "How to use it",
+                text: "Choose a difficulty, play each hidden prompt, answer from memory, and use the final score to decide what to repeat.",
+              },
+            ],
+          }}
+          examples={{
+            title: "Audio quiz scenarios",
+            description:
+              "Use the quiz when a measurable result helps you choose the next drill.",
+            items: [
+              {
+                title: "Known character set",
+                morse: "E T A N S O",
+                children:
+                  "Test a difficulty only after the underlying character set feels familiar in practice mode.",
+              },
+              {
+                title: "Score feedback",
+                morse: "7 / 10",
+                children:
+                  "A score near the middle means the level is useful but still needs repetition before increasing speed or difficulty.",
+              },
+              {
+                title: "Return after misses",
+                morse: "QUIZ -> PRACTICE",
+                children:
+                  "Missed prompts should become the next audio practice or word trainer set instead of another blind quiz run.",
+              },
+            ],
+          }}
+          mistakes={{
+            title: "Common audio quiz mistakes",
+            description:
+              "A quiz is useful when it measures practiced skill, not when it becomes guessing.",
+            items: [
+              {
+                title: "Testing too early",
+                children:
+                  "If you miss most prompts, move back to audio practice and lower difficulty before retesting.",
+              },
+              {
+                title: "Changing every setting",
+                children:
+                  "Adjust one variable at a time. Changing speed, Farnsworth, pitch, and waveform together makes results harder to interpret.",
+              },
+              {
+                title: "Ignoring the miss pattern",
+                children:
+                  "A final score is less useful than the pattern behind it. Review whether misses came from speed, words, or listening fatigue.",
+              },
+            ],
+          }}
+          comparison={{
+            eyebrow: "Choose a practice mode",
+            title: "Audio quiz vs audio practice",
+            description:
+              "Both pages use listening prompts, but the quiz is the test and practice is the repetition space.",
+            items: [
+              {
+                title: "Audio practice",
+                text: "Use audio practice when you want unlimited repetition and answer reveals.",
+                href: "/morse-code-audio-practice",
+              },
+              {
+                title: "Sound generator",
+                text: "Use the sound generator when tone shape and beep settings matter more than score.",
+                href: "/morse-code-sound-generator",
+              },
+              {
+                title: "Practice plan",
+                text: "Use the practice plan when you need a routine instead of another test.",
+                href: "/morse-code-practice-plan",
+              },
+            ],
+          }}
+          nextStep={{
+            title: "Use the score to choose the next session",
+            description:
+              "A quiz should create a decision: repeat by ear, review words, adjust timing, or move into sentence-level practice.",
+            links: [
+              { href: "/morse-code-audio-practice", label: "Audio practice", primary: true },
+              { href: "/morse-code-word-trainer", label: "Word trainer" },
+              { href: "/morse-code-practice-plan", label: "Practice plan" },
+              { href: "/learn-morse-code", label: "Learning path" },
+            ],
+          }}
+        />
+
         <SectionCard
           eyebrow="After the test"
           title="Use the score to pick the next drill"
@@ -735,7 +860,7 @@ export default function MorseCodeAudioQuiz() {
 
         <FaqSectionGeneric title="Audio quiz FAQ" items={faqItems} />
 
-        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
+        <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
     </div>
   );

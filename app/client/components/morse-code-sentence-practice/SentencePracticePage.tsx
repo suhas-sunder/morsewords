@@ -2,6 +2,7 @@ import * as React from "react";
 
 import Button from "~/client/components/shared/Button";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
 import {
  HERO_EYEBROW_LINE_CLASS,
@@ -497,9 +498,9 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  Morse Code Sentence Practice
  </h1>
  <p className={HERO_LEAD_CLASS}>
- Decode and send complete Morse code sentences with a longer typing
- area, instant checking, sentence difficulty filters, and spacing
- hints built for full-phrase practice.
+ Build context and phrase flow with complete Morse code sentences,
+ instant answer checks, difficulty filters, and spacing hints for
+ full-message practice.
  </p>
  </div>
 
@@ -888,6 +889,111 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
  </div>
  </div>
  </section>
+
+ <ReferenceSupportSections
+ guide={{
+ eyebrow: "Sentence guide",
+ title: "Use this page for phrase and context practice",
+ description:
+ "Sentence practice is the bridge between word drills and real messages. It keeps the task focused on full prompts, word gaps, and meaning across a complete phrase.",
+ items: [
+ {
+ title: "Who it is for",
+ text: "Learners who can copy short words and now need sentence rhythm, phrase memory, and cleaner word boundaries.",
+ },
+ {
+ title: "What it trains",
+ text: "Full-message copying, text-to-Morse sentence recall, Morse-to-text decoding, and spacing decisions across multiple words.",
+ },
+ {
+ title: "How to use it",
+ text: "Choose a direction, filter the sentence set, answer the full prompt, then reveal only after trying the complete sentence.",
+ },
+ ],
+ }}
+ examples={{
+ title: "Sentence practice scenarios",
+ description:
+ "Use complete prompts when single-word practice no longer exposes the spacing problems.",
+ items: [
+ {
+ title: "Short sentence",
+ morse: "THIS / IS / A / SHORT / TEST",
+ children:
+ "Start with short sentences when you are learning to hold several word gaps in memory without losing the overall meaning.",
+ },
+ {
+ title: "Spacing in context",
+ morse: "SEND / HELP",
+ children:
+ "Slash-separated words make it clear where one word ends. This is useful before decoding pasted Morse with uncertain spacing.",
+ },
+ {
+ title: "Move beyond words",
+ morse: "PLEASE / SEND / AGAIN",
+ children:
+ "Use sentence prompts after word trainer rounds so repeated words become useful message fragments.",
+ },
+ ],
+ }}
+ mistakes={{
+ title: "Common sentence practice mistakes",
+ description:
+ "Most sentence errors come from treating a phrase as disconnected characters instead of a message with word boundaries.",
+ items: [
+ {
+ title: "Practicing sentences too early",
+ children:
+ "If every word is slow, return to the word trainer. Sentences work best after common words are already recognizable.",
+ },
+ {
+ title: "Ignoring word gaps",
+ children:
+ "Sentence copy depends on word spacing. Mark word breaks clearly with slashes while reviewing.",
+ },
+ {
+ title: "Revealing too soon",
+ children:
+ "Reveal is useful for spacing review, but try the full sentence first so you train context and memory.",
+ },
+ ],
+ }}
+ comparison={{
+ eyebrow: "Choose a practice mode",
+ title: "Sentence practice vs word trainer and general practice",
+ description:
+ "Use sentence practice for phrase flow. Use nearby tools when the problem is smaller or more specific.",
+ items: [
+ {
+ title: "Word trainer",
+ text: "Use word trainer for custom words, weak words, and repeated vocabulary before complete phrases.",
+ href: "/morse-code-word-trainer",
+ },
+ {
+ title: "General practice",
+ text: "Use general practice for shorter mixed prompts across letters, numbers, words, and signals.",
+ href: "/practice",
+ },
+ {
+ title: "Decoder and spacing",
+ text: "Use the decoder or word separator when pasted Morse has unclear spaces or slashes.",
+ href: "/morse-code-word-separator",
+ },
+ ],
+ }}
+ nextStep={{
+ title: "Move from sentences into real-message practice",
+ description:
+ "Once sentence spacing feels readable, train the same flow by ear or troubleshoot copied Morse with the conversion tools.",
+ links: [
+ { href: "/morse-code-word-trainer", label: "Word trainer", primary: true },
+ { href: "/morse-code-audio-practice", label: "Audio practice" },
+ { href: "/typing", label: "Typing practice" },
+ { href: "/morse-code-decoder", label: "Decoder" },
+ { href: "/learn-morse-code", label: "Learning path" },
+ ],
+ }}
+ />
 
  <section className="mw-static-panel mt-8 rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
  <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
