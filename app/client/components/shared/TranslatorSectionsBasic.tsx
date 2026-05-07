@@ -454,6 +454,8 @@ export default function TranslatorSectionsBasic({
                       key={ex.label}
                       onClick={ex.set}
                       className={`cursor-pointer rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
+                        isHome ? "" : "min-h-10 sm:min-h-0"
+                      } ${
                         isHome
                           ? HOME_SOFT_CONTROL_DARK
                           : SOFT_CONTROL_DARK
@@ -578,7 +580,9 @@ export default function TranslatorSectionsBasic({
                         if (direction === "encode") setPlainA("");
                         else setMorseB("");
                       }}
-                      className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${DARK_PANEL_BUTTON}`}
+                      className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
+                        isHome ? "" : "min-h-10 sm:min-h-0"
+                      } ${DARK_PANEL_BUTTON}`}
                     >
                       Clear output
                     </button>
@@ -588,6 +592,8 @@ export default function TranslatorSectionsBasic({
                       onClick={() => handleCopy(outputValue, "output")}
                       disabled={!outputValue}
                       className={`flex cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
+                        isHome ? "" : "min-h-10 sm:min-h-0"
+                      } ${
                         outputValue ? DARK_PANEL_BUTTON : DARK_PANEL_DISABLED
                       }`}
                     >
@@ -867,6 +873,8 @@ function TogglePill({
       type="button"
       onClick={() => onChange(!checked)}
       className={`flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
+        isHome ? "" : "min-h-10 sm:min-h-0"
+      } ${
         checked
           ? `${ACTIVE_CONTROL} hover:bg-slate-900 hover:text-white`
           : isHome
