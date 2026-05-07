@@ -51,7 +51,7 @@ export function PageHero({
             <p className={HERO_LEAD_CLASS}>
               {description}
             </p>
-            {children ? <div className="mt-5">{children}</div> : null}
+            {children ? <div className="mt-4 sm:mt-5">{children}</div> : null}
           </div>
           {aside ? <div>{aside}</div> : null}
         </div>
@@ -126,13 +126,13 @@ export function ActionLinks({
   links: Array<{ href: string; label: string; primary?: boolean }>;
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-1.5 sm:gap-2">
       {links.map((link) => (
         <a
           key={link.href + link.label}
           href={link.href}
           className={
-            "mw-button-outline inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none " +
+            "mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold transition focus:outline-none sm:min-h-11 sm:px-4 " +
             (link.primary
               ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
               : "bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100")
