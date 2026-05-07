@@ -289,47 +289,22 @@ function HomeToolkit() {
       className="mx-auto mt-8 max-w-[1040px] px-4 sm:px-6 lg:px-8"
     >
       <div className="bg-[#f4efe5]/65 px-1 py-8 sm:px-2 sm:py-10">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
-          <div className="max-w-[42rem]">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-sky-800" />
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-                Morse code navigation
-              </span>
-            </div>
-
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
-              Explore the Morse code toolkit
-            </h2>
-
-            <p className="mt-4 max-w-[38rem] text-base leading-relaxed text-slate-700 sm:text-lg">
-              Start with the core translator, then move into practice, audio,
-              worksheets, and reference pages as needed.
-            </p>
+        <div className="max-w-[42rem]">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-sky-800" />
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+              Morse code navigation
+            </span>
           </div>
 
-          <aside>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
-              Quick access
-            </p>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+            Explore the Morse code toolkit
+          </h2>
 
-            <div className="mt-3 grid gap-2">
-              {FEATURED_LINKS.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="mw-button-outline group flex cursor-pointer items-center justify-between gap-4 rounded-xl bg-slate-950 px-4 py-3 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none active:scale-[0.99]"
-                >
-                  <span className="text-base font-semibold leading-snug text-current">
-                    {item.title}
-                  </span>
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-sky-100 transition group-hover:text-white">
-                    {item.label}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </aside>
+          <p className="mt-4 max-w-[38rem] text-base leading-relaxed text-slate-700 sm:text-lg">
+            Start with the core translator, then move into practice, audio,
+            worksheets, and reference pages as needed.
+          </p>
         </div>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-3">
@@ -369,6 +344,29 @@ function HomeToolkit() {
             </section>
           ))}
         </div>
+
+        <aside className="mt-8">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
+            Quick access
+          </p>
+
+          <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {FEATURED_LINKS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="mw-button-outline group relative flex min-h-[76px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none active:scale-[0.99]"
+              >
+                <span className="text-base font-semibold leading-snug text-current sm:text-lg">
+                  {item.title}
+                </span>
+                <span className="absolute right-4 top-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-sky-100/80 transition group-hover:text-white">
+                  {item.label}
+                </span>
+              </a>
+            ))}
+          </div>
+        </aside>
 
         <details className="mt-8">
           <summary className="mw-button-outline flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 transition hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">

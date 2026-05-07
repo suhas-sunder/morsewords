@@ -161,7 +161,7 @@ export default function NavBar(props: { pathname?: string }) {
 
     e.preventDefault();
 
-    const headerOffset = 100;
+    const headerOffset = 16;
     const targetTop = target.getBoundingClientRect().top + window.scrollY;
     const scrollTo = Math.max(targetTop - headerOffset, 0);
 
@@ -174,7 +174,7 @@ export default function NavBar(props: { pathname?: string }) {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-neutral-900 backdrop-blur">
+    <header className="z-50 bg-neutral-900 backdrop-blur">
       <div className="mx-auto max-w-5xl px-4">
         <div className="flex items-center justify-between py-3">
           <a
