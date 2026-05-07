@@ -70,13 +70,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <PageBackdrop />
             <div className="mw-page-content relative z-10">
               {children}
-              <RelatedTools />
+              <div data-nosnippet>
+                <RelatedTools />
+              </div>
             </div>
           </div>
           <ScrollRestoration />
           <Scripts />
         </PHogProvider>
-        <Footer />
+        <div data-nosnippet>
+          <Footer />
+        </div>
       </body>
     </html>
   );

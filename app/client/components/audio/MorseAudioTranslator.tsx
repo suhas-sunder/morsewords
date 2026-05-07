@@ -341,8 +341,8 @@ export default function MorseAudioTranslator() {
             <div>
               <ToolHero
                 eyebrow="Audio tool"
-                title="Morse Audio Generator"
-                lead="Convert text or Morse into audio. Adjust speed, pitch, waveform, and export a WAV file."
+                title="Morse Code Audio Generator"
+                lead="Convert text or pasted Morse into playable audio. Adjust listening settings, then export a WAV file from your browser."
               />
               <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

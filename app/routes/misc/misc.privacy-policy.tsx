@@ -7,15 +7,16 @@ import {
   HERO_EYEBROW_TEXT_CLASS,
   HERO_TITLE_CLASS,
 } from "~/client/components/shared/heroStyles";
+import { canonicalUrl, SITE_URL } from "~/client/seo";
 import type { Route } from "./+types/misc.privacy-policy";
 export const meta: Route.MetaFunction = () => {
-  const canonical = "https://www.morsewords.com/misc/privacy-policy";
+  const canonical = canonicalUrl("/misc/privacy-policy");
 
   const title = "Privacy Policy | MorseWords";
   const description =
     "See what MorseWords stores locally, how analytics are handled, and what is not collected from Morse messages, audio exports, or worksheet content.";
 
-  const ogImage = "https://www.morsewords.com/og/morsewords-privacy.jpg";
+  const ogImage = `${SITE_URL}/og/morsewords-privacy.jpg`;
 
   return [
     { title },

@@ -2,15 +2,16 @@
 
 import { Link } from "react-router";
 import type { Route } from "./+types/misc.socials";
+import { canonicalUrl, SITE_URL } from "~/client/seo";
 
 export const meta: Route.MetaFunction = () => {
-  const canonical = "https://www.morsewords.com/misc/socials";
+  const canonical = canonicalUrl("/misc/socials");
 
   const title = "MorseWords Social Links | Official Profiles and Updates";
   const description =
     "Find official MorseWords profiles, community links, project updates, and related places to follow the Morse toolkit.";
 
-  const ogImage = "https://www.morsewords.com/og/morsewords-links.jpg";
+  const ogImage = `${SITE_URL}/og/morsewords-links.jpg`;
 
   return [
     { title },
@@ -33,8 +34,7 @@ export const meta: Route.MetaFunction = () => {
 
     {
       name: "robots",
-      content:
-        "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      content: "noindex,follow",
     },
   ];
 };

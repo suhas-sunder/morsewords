@@ -257,6 +257,7 @@ export function meta() {
     description:
       "Browse MorseWords translator, audio, practice, worksheet, quiz, and reference pages from one clean HTML sitemap.",
     path: CANONICAL_PATH,
+    robots: "noindex,follow",
     keywords:
       "morsewords sitemap, morse code tools, morse code translator sitemap, morse code practice pages",
   });

@@ -7,15 +7,16 @@ import {
   HERO_EYEBROW_TEXT_CLASS,
   HERO_TITLE_CLASS,
 } from "~/client/components/shared/heroStyles";
+import { canonicalUrl, SITE_URL } from "~/client/seo";
 
 export const meta: MetaFunction = () => {
-  const canonical = "https://www.morsewords.com/misc/cookies-policy";
+  const canonical = canonicalUrl("/misc/cookies-policy");
 
   const title = "Cookies Policy | MorseWords";
   const description =
     "Learn how MorseWords uses cookies and similar technologies for essential site behavior and privacy-conscious analytics.";
 
-  const ogImage = "https://www.morsewords.com/og/morsewords-cookies.jpg";
+  const ogImage = `${SITE_URL}/og/morsewords-cookies.jpg`;
 
   return [
     { title },

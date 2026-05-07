@@ -17,12 +17,12 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Audio Generator with WAV Export | MorseWords",
+    title: "Morse Code Audio Generator | Play, Tune, and Save Morse Sound | MorseWords",
     description:
-      "Create clean Morse code audio from text or Morse input. Adjust WPM, Farnsworth spacing, pitch, waveform, volume, and export WAV files locally in your browser.",
+      "Generate Morse code audio from text or dots and dashes. Play the signal, adjust listening settings, and save WAV audio for practice or sharing.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code audio generator, text to morse audio, morse code to audio, morse audio generator, morse wav, morse code sound",
+      "morse code audio generator, text to morse audio, morse code to audio, morse wav export, morse listening practice",
   });
 }
 
@@ -38,8 +38,16 @@ export default function AudioRoute() {
         operatingSystem: "All",
         url: CANONICAL_URL,
         description:
-          "Browser-based Morse audio generator with adjustable timing and local audio export.",
+          "Browser-based Morse code audio generator for playing full messages, tuning listening settings, and exporting WAV practice audio.",
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        featureList: [
+          "Text to Morse audio playback",
+          "Pasted Morse code audio playback",
+          "Adjustable WPM and Farnsworth spacing",
+          "Adjustable pitch, waveform, volume, attack, and release",
+          "Local WAV export",
+          "Browser-based audio generation",
+        ],
       },
       {
         "@type": "BreadcrumbList",
@@ -69,32 +77,32 @@ export default function AudioRoute() {
 
   const faqItems = [
     {
-      q: "Is this just a translator with sound, or an audio tool?",
-      a: "It is audio-first. The Morse preview exists so you can verify what will be played, but the main output is sound and the exported WAV file.",
+      q: "Can I save the Morse audio from this page?",
+      a: "Yes. This page exports a WAV file rendered in your browser, so the timing in the saved file matches the Morse pattern and settings you preview.",
     },
     {
-      q: "What is the difference between Character speed and Farnsworth spacing?",
-      a: "Character speed sets the dit length (the core sound timing). Farnsworth spacing stretches the pauses between letters and words without changing the dit and dah lengths, which is useful for learning.",
+      q: "Can I paste Morse code directly and hear it?",
+      a: "Yes. Switch to Morse input and paste dots, dashes, spaces, or slash-separated word gaps. The page plays the pasted pattern using the same timing grid shown in the preview.",
     },
     {
-      q: "What file format do exports use?",
-      a: "Exports are standard PCM WAV files generated in your browser using an offline render, so timing is consistent even if your device is busy.",
+      q: "What speed should I use for listening practice?",
+      a: "Start with a character speed you can recognize cleanly, often 12 to 18 WPM for early listening. If the characters sound clear but words feel rushed, increase Farnsworth spacing before lowering character speed.",
     },
     {
-      q: "Why does my Morse spacing matter if I am only making audio?",
-      a: "Spacing controls the gaps in the audio. 3 units separates letters and 7 units separates words. If you paste Morse, using 3 spaces for letters and 7 spaces for words produces predictable timing.",
+      q: "Why does changing pitch not change the Morse message?",
+      a: "Pitch changes the frequency of the tone, not the dot, dash, letter, or word timing. Use speed and Farnsworth controls for timing changes, and use pitch only for listening comfort or tone character.",
+    },
+    {
+      q: "Should I use the audio generator or the sound generator?",
+      a: "Use this page when you want to hear or save a full Morse message as audio. Use the sound generator when you mainly want to shape the beep or tone signal for practice and testing.",
+    },
+    {
+      q: "Why does the exported WAV sound larger than an MP3?",
+      a: "WAV is uncompressed, which keeps symbol timing and short dits clean for editing. If you need a smaller shareable file, use the sound generator page, which includes MP3 export.",
     },
     {
       q: "Does this upload my message or audio anywhere?",
-      a: "No. Audio generation and export happen locally in your browser.",
-    },
-    {
-      q: "What are good default settings for a clean practice tone?",
-      a: "Start with a sine waveform around 600 Hz, moderate volume, and a small attack and release to reduce clicks. Set character speed to your target WPM, then adjust Farnsworth spacing if you want extra thinking time between letters and words.",
-    },
-    {
-      q: "Can I paste Morse directly and export the exact timing?",
-      a: "Yes. If you paste dots and dashes, the generator uses the same unit grid for symbols and gaps. The exported WAV is rendered offline, so what you hear is what the file contains.",
+      a: "No. Playback and WAV export happen locally in your browser.",
     },
   ];
 

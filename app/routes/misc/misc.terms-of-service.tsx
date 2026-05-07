@@ -6,16 +6,17 @@ import {
   HERO_EYEBROW_TEXT_CLASS,
   HERO_TITLE_CLASS,
 } from "~/client/components/shared/heroStyles";
+import { canonicalUrl, SITE_URL } from "~/client/seo";
 import type { Route } from "./+types/misc.terms-of-service";
 
 export const meta: Route.MetaFunction = () => {
-  const canonical = "https://www.morsewords.com/misc/terms-of-service";
+  const canonical = canonicalUrl("/misc/terms-of-service");
 
   const title = "Terms of Service | MorseWords";
   const description =
     "Review the terms for using MorseWords translator, audio, practice, worksheet, and reference tools.";
 
-  const ogImage = "https://www.morsewords.com/og/morsewords-terms.jpg";
+  const ogImage = `${SITE_URL}/og/morsewords-terms.jpg`;
 
   return [
     { title },

@@ -5,13 +5,20 @@ type SeoMetaInput = {
   description: string;
   path: string;
   keywords?: string;
+  robots?: string;
 };
 
 export function canonicalUrl(path: string) {
   return `${SITE_URL}${path}`;
 }
 
-export function seoMeta({ title, description, path, keywords }: SeoMetaInput) {
+export function seoMeta({
+  title,
+  description,
+  path,
+  keywords,
+  robots = "index,follow",
+}: SeoMetaInput) {
   const url = canonicalUrl(path);
   const tags: Array<Record<string, string>> = [
     { title },
@@ -21,7 +28,7 @@ export function seoMeta({ title, description, path, keywords }: SeoMetaInput) {
   if (keywords) tags.push({ name: "keywords", content: keywords });
 
   tags.push(
-    { name: "robots", content: "index,follow" },
+    { name: "robots", content: robots },
     { name: "theme-color", content: "#0b2447" },
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "MorseWords" },
