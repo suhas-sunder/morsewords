@@ -294,26 +294,29 @@ function MorseLine({ text }: { text: string }) {
 }
 
 export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
+ const initialMode = React.useMemo(() => readStoredMode(), []);
+ const initialDifficulty = React.useMemo(() => readStoredDifficulty(), []);
+ const initialSetFilter = React.useMemo(() => readStoredSetFilter(), []);
+ const initialPool = React.useMemo(
+ () => buildPool(initialDifficulty, initialSetFilter),
+ [initialDifficulty, initialSetFilter],
+ );
+ const didResetForInitialSettings = React.useRef(false);
  const [hydrated, setHydrated] = React.useState(false);
- const [mode, setMode] = React.useState<DrillMode>(() => readStoredMode());
- const [difficulty, setDifficulty] = React.useState<Difficulty |"all">(() =>
- readStoredDifficulty(),
- );
- const [setFilter, setSetFilter] = React.useState<SetFilter>(() =>
- readStoredSetFilter(),
- );
+ const [mode, setMode] = React.useState<DrillMode>(initialMode);
+ const [difficulty, setDifficulty] =
+ React.useState<Difficulty |"all">(initialDifficulty);
+ const [setFilter, setSetFilter] =
+ React.useState<SetFilter>(initialSetFilter);
 
  const pool = React.useMemo(
  () => buildPool(difficulty, setFilter),
  [difficulty, setFilter],
  );
 
- const [prompt, setPrompt] = React.useState<Prompt>(() => ({
- kind:"morse_to_text",
- plain:"SEND SLOWER PLEASE",
- morse: textToMorse("SEND SLOWER PLEASE"),
-    label:"Easy sentence · 3 words · Common request",
- }));
+ const [prompt, setPrompt] = React.useState<Prompt>(() =>
+ makePrompt(initialMode, initialPool),
+ );
  const [answer, setAnswer] = React.useState("");
  const [attempts, setAttempts] = React.useState(0);
  const [correct, setCorrect] = React.useState(0);
@@ -363,6 +366,10 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
 
  React.useEffect(() => {
  if (!hydrated) return;
+ if (!didResetForInitialSettings.current) {
+ didResetForInitialSettings.current = true;
+ return;
+ }
  resetRun();
  }, [mode, difficulty, setFilter, hydrated, resetRun]);
 

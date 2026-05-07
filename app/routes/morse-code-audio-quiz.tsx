@@ -82,9 +82,13 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioQuiz() {
   const player = useMorseAudio();
-  const [difficulty, setDifficulty] = React.useState<AudioDifficulty>(() =>
-    readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"),
+  const initialDifficulty = React.useMemo(
+    () => readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"),
+    [],
   );
+  const didResetInitialDifficulty = React.useRef(false);
+  const [difficulty, setDifficulty] =
+    React.useState<AudioDifficulty>(initialDifficulty);
   const [deckSeed, setDeckSeed] = React.useState(() => Date.now());
   const [index, setIndex] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
@@ -147,6 +151,10 @@ export default function MorseCodeAudioQuiz() {
   }, [bestStreak]);
 
   React.useEffect(() => {
+    if (!didResetInitialDifficulty.current) {
+      didResetInitialDifficulty.current = true;
+      return;
+    }
     resetQuiz({ preserveDifficulty: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [difficulty]);

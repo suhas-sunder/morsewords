@@ -80,12 +80,16 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioPractice() {
   const player = useMorseAudio();
-  const [difficulty, setDifficulty] = React.useState<AudioDifficulty>(() =>
-    readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"),
+  const initialDifficulty = React.useMemo(
+    () => readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"),
+    [],
   );
+  const didSyncInitialDifficulty = React.useRef(false);
+  const [difficulty, setDifficulty] =
+    React.useState<AudioDifficulty>(initialDifficulty);
   const promptPool = React.useMemo(() => getAudioPrompts(difficulty), [difficulty]);
   const [prompt, setPrompt] = React.useState<AudioPrompt>(() =>
-    pickPrompt(getAudioPrompts(readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"))),
+    pickPrompt(getAudioPrompts(initialDifficulty)),
   );
   const [answer, setAnswer] = React.useState("");
   const [feedback, setFeedback] = React.useState<"idle" | "correct" | "missed" | "revealed">(
@@ -139,6 +143,10 @@ export default function MorseCodeAudioPractice() {
   }, [bestStreak]);
 
   React.useEffect(() => {
+    if (!didSyncInitialDifficulty.current) {
+      didSyncInitialDifficulty.current = true;
+      return;
+    }
     setPrompt((current) => pickPrompt(promptPool, current.text));
     setAnswer("");
     setFeedback("idle");

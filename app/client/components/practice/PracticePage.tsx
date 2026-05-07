@@ -95,17 +95,15 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
     () => readStoredMode(initialPool),
     [initialPool],
   );
+  const didBuildInitialPrompt = React.useRef(false);
   const [hydrated, setHydrated] = React.useState(false);
 
   const [pool, setPool] = React.useState<Pool>(initialPool);
   const [mode, setMode] = React.useState<DrillMode>(initialMode);
 
-  const [prompt, setPrompt] = React.useState<Prompt>(() => ({
-    kind: "text_to_morse",
-    plain: "SOS",
-    morse: "... --- ...",
-    label: "Practice",
-  }));
+  const [prompt, setPrompt] = React.useState<Prompt>(() =>
+    randomPrompt(initialMode, initialPool),
+  );
   const [answer, setAnswer] = React.useState("");
 
   // Quiz flow
@@ -173,6 +171,10 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   }, [bestStreak, pool, hydrated]);
 
   React.useEffect(() => {
+    if (!didBuildInitialPrompt.current) {
+      didBuildInitialPrompt.current = true;
+      return;
+    }
     // When settings change, generate a new prompt to match intent.
     setPrompt(randomPrompt(mode, pool));
     setAnswer("");
