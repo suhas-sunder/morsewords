@@ -16,8 +16,8 @@ const CANONICAL_PATH ="/morse-code-practice-plan";
 
 const faqItems = [
  {
- q:"How often should I practice Morse code?",
- a:"Short daily sessions work better than occasional long sessions. Start with 10 minutes most days, then add a second short block only when accuracy stays steady.",
+ q:"How often should this practice plan repeat drills?",
+ a:"Repeat the core drill mix most days, then rotate the focus when accuracy stays steady. Ten focused minutes is enough for the plan to work better than occasional long catch-up sessions.",
  },
  {
  q:"Should I practice letters, words, or audio first?",
@@ -54,7 +54,7 @@ const toolMap = [
  {
  href:"/morse-code-alphabet",
  title:"Alphabet chart",
- text:"Use when you need a quick reference for letters, numbers, and common symbols before a drill.",
+ text:"Use when you need a focused A-Z letter reference before a beginner drill.",
  },
  {
  href:"/practice",
