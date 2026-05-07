@@ -36,7 +36,7 @@ const responsiveCss = `
   .mwDictCardRow{display:flex; gap:10px; align-items:flex-start; justify-content:space-between}
   .mwDictCardLabel{color:#5a616c; font-size:.82rem; font-weight:800; letter-spacing:.2px}
   .mwDictCardValue{color:#0b2447; font-weight:900; margin-top:2px}
-  .mwDictMono{font: 800 0.98rem/1.25 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"}
+  .mwDictMono{font: 800 0.98rem/1.25 var(--font-mono)}
   .mwDictCardBtns{display:flex; gap:10px; margin-top:10px}
   .mwDictCardBtns > button{flex:1}
 `;
@@ -252,9 +252,7 @@ function RowTd(props: {
     <td
       style={{
         padding: "12px 12px",
-        font: props.mono
-          ? '700 0.98rem/1.25 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"'
-          : undefined,
+        font: props.mono ? "700 0.98rem/1.25 var(--font-mono)" : undefined,
         textAlign: props.align ?? "left",
         verticalAlign: "top",
       }}

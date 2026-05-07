@@ -1150,10 +1150,10 @@ async function makeShareImagePng({
     <style>
       .bg { fill: #f8fafc; }
       .card { fill: #ffffff; stroke: #e5e7eb; stroke-width: 2; }
-      .h1 { font: 700 42px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Arial,sans-serif; fill: #0b2447; }
-      .muted { font: 600 18px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Arial,sans-serif; fill: #64748b; }
-      .label { font: 700 20px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Arial,sans-serif; fill: #334155; }
-      .mono { font: 600 24px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; fill: #0f172a; }
+      .h1 { font: 700 42px "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0b2447; }
+      .muted { font: 600 18px "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }
+      .label { font: 700 20px "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #334155; }
+      .mono { font: 600 24px "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; fill: #0f172a; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="1200" height="${svgHeight}"/>

@@ -16,6 +16,10 @@ type Props = {
 };
 
 const SHARE_URL = "www.morsewords.com";
+const CANVAS_BODY_FONT =
+  '"DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+const CANVAS_HEADING_FONT =
+  '"Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
 function fmtMMSS(sec: number) {
   const s = Math.max(0, Math.floor(sec));
@@ -109,15 +113,13 @@ async function renderShareImage(args: Props): Promise<Blob> {
   // Title
   ctx.fillStyle = "#0F172A";
   ctx.textBaseline = "top";
-  ctx.font =
-    "800 64px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+  ctx.font = `800 64px ${CANVAS_HEADING_FONT}`;
   ctx.fillText(args.title, left, y);
   y += 74;
 
   // Subtitle
   ctx.fillStyle = "rgba(15, 23, 42, 0.72)";
-  ctx.font =
-    "600 28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+  ctx.font = `600 28px ${CANVAS_BODY_FONT}`;
   ctx.fillText(args.subtitle || "Results summary", left, y);
   y += 52;
 
@@ -138,16 +140,14 @@ async function renderShareImage(args: Props): Promise<Blob> {
     ctx.fill();
 
     ctx.fillStyle = "rgba(15, 23, 42, 0.70)";
-    ctx.font =
-      "700 22px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+    ctx.font = `700 22px ${CANVAS_BODY_FONT}`;
     ctx.fillText(label, cx + 28, cy + 24);
 
     ctx.fillStyle = "#0F172A";
     // Dynamic sizing to avoid overflow (e.g., large counts like 12345).
     // Keep the design aligned with Practice, but slightly more conservative.
     const valueSize = clamp(74 - value.length * 6, 40, 52);
-    ctx.font =
-      `900 ${valueSize}px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial`;
+    ctx.font = `900 ${valueSize}px ${CANVAS_HEADING_FONT}`;
     ctx.fillText(value, cx + 28, cy + 56);
   };
 
@@ -178,15 +178,13 @@ async function renderShareImage(args: Props): Promise<Blob> {
   });
 
   ctx.fillStyle = "rgba(15, 23, 42, 0.70)";
-  ctx.font =
-    "600 22px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+  ctx.font = `600 22px ${CANVAS_BODY_FONT}`;
   ctx.textAlign = "left";
   ctx.fillText(dateStr, left, footerY);
 
   ctx.textAlign = "right";
   ctx.fillStyle = "rgba(15, 23, 42, 0.90)";
-  ctx.font =
-    "800 22px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+  ctx.font = `800 22px ${CANVAS_BODY_FONT}`;
   ctx.fillText(SHARE_URL, cardX + cardW - pad, footerY);
   ctx.textAlign = "left";
 

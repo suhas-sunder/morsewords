@@ -11,6 +11,9 @@
     "typecheck": "react-router typegen && tsc -b"
   },
   "dependencies": {
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/space-grotesk": "^5.2.10",
+    "@fontsource/space-mono": "^5.2.9",
     "@react-router/express": "^7.14.2",
     "@react-router/node": "^7.14.2",
     "compression": "^1.7.5",

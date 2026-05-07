@@ -1079,7 +1079,7 @@ function getPrintableCss({
       padding: 0;
       background: ${forImageExport ? "#eaf6ff" : "#ffffff"};
       color: #0f172a;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
@@ -1373,7 +1373,7 @@ function getPrintableCss({
 
     code {
       color: #0f172a;
-      font-family: "Courier New", Courier, monospace;
+      font-family: "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
       font-weight: 900;
       letter-spacing: 0.04em;
       overflow-wrap: anywhere;

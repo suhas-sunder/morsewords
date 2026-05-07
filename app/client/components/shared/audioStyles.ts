@@ -5,7 +5,7 @@ const styles: Record<string, React.CSSProperties> = {
     background: "transparent",
     color: "#111317",
     fontFamily:
-      "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+      'var(--font-body, "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif)',
     margin: 0,
   },
   wrap: {
@@ -79,7 +79,7 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 10,
     background: "#fffdf8",
     color: "#111317",
-    font: '500 0.98rem/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+    font: "500 0.98rem/1.45 var(--font-mono)",
     outline: "none",
     boxShadow: "none",
   },
@@ -91,7 +91,7 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 10,
     background: "#fffdf8",
     color: "#111317",
-    font: '600 0.98rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+    font: "600 0.98rem/1 var(--font-mono)",
     outline: "none",
     boxShadow: "none",
   },

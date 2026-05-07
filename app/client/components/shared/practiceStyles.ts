@@ -5,7 +5,7 @@ const styles: Record<string, React.CSSProperties> = {
     background: "transparent",
     color: "#111317",
     fontFamily:
-      "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+      'var(--font-body, "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif)',
     margin: 0,
   },
   wrap: {
@@ -68,7 +68,7 @@ const styles: Record<string, React.CSSProperties> = {
     marginBottom: 10,
   },
   promptMain: {
-    font: '800 clamp(1.6rem, 2.2vw + 1rem, 2.6rem)/1.15 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+    font: "800 clamp(1.6rem, 2.2vw + 1rem, 2.6rem)/1.15 var(--font-mono)",
     letterSpacing: 0.4,
     margin: 0,
     wordBreak: "break-word",
@@ -87,7 +87,7 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 10,
     background: "#fffdf8",
     color: "#111317",
-    font: '650 1.05rem/1.1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+    font: "650 1.05rem/1.1 var(--font-mono)",
     outline: "none",
     boxShadow: "none",
   },

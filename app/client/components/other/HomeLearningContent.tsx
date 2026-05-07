@@ -218,8 +218,7 @@ export default function HomeLearningContent() {
               <div
                 style={{
                   color: "#333",
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+                  fontFamily: "var(--font-mono)",
                   fontSize: "0.95rem",
                 }}
               >
@@ -239,8 +238,7 @@ export default function HomeLearningContent() {
               <div
                 style={{
                   color: "#333",
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+                  fontFamily: "var(--font-mono)",
                   fontSize: "0.95rem",
                 }}
               >
@@ -303,8 +301,7 @@ export default function HomeLearningContent() {
                 <div
                   style={{
                     color: "#333",
-                    fontFamily:
-                      'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+                    fontFamily: "var(--font-mono)",
                   }}
                 >
                   {ex.code}
@@ -728,8 +725,7 @@ export default function HomeLearningContent() {
               <div
                 style={{
                   color: "#333",
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+                  fontFamily: "var(--font-mono)",
                 }}
               >
                 .... . .-.. .-.. --- .-- --- .-. .-.. -..
@@ -751,8 +747,7 @@ export default function HomeLearningContent() {
               <div
                 style={{
                   color: "#333",
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New"',
+                  fontFamily: "var(--font-mono)",
                 }}
               >
                 .---- ..--- ...-- .-.-.- --..-- ..--..

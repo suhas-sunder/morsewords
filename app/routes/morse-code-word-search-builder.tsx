@@ -525,7 +525,7 @@ function buildWordSearchPrintHtml({
  body {
  margin: 0;
  color: #111317;
- font-family: Arial, Helvetica, sans-serif;
+ font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
  -webkit-print-color-adjust: exact;
  print-color-adjust: exact;
  }
@@ -563,7 +563,7 @@ function buildWordSearchPrintHtml({
  .eyebrow {
  margin: 0;
  color: #075985;
- font: 700 10px/1.4"Courier New", monospace;
+ font: 700 10px/1.4 "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
  letter-spacing: 0.16em;
  }
  h1 { margin: 6px 0 6px; color: #082f49; font-size: 25px; line-height: 1.08; }
@@ -595,7 +595,7 @@ function buildWordSearchPrintHtml({
  .morse-clue {
  display: inline-block;
  min-width: 125px;
- font: 700 10.5px/1.18"Courier New", monospace;
+ font: 700 10.5px/1.18 "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
  letter-spacing: 0.06em;
  }
  .word-grid {
@@ -612,7 +612,7 @@ function buildWordSearchPrintHtml({
  justify-content: center;
  : 1px solid #94a3b8;
  -radius: 3px;
- font-family:"Courier New", monospace;
+ font-family:"Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
  font-weight: 800;
  font-size: clamp(7px, calc(14px - var(--grid-size) * 0.18px), 12px);
  line-height: 1;
@@ -773,15 +773,15 @@ async function renderWordSearchShareImage({
 
  context.fillStyle ="#075985";
  context.fillRect(108, 112, 54, 3);
- context.font ="700 20px Courier New, monospace";
+ context.font ='700 20px "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace';
  context.fillText("MORSEWORDS PUZZLE", 184, 122);
 
  context.fillStyle ="#082f49";
- context.font ="900 58px Arial, Helvetica, sans-serif";
+ context.font ='900 58px "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
  drawWrappedText(context, settings.title, 108, 198, 680, 62, 2);
 
  context.fillStyle ="#334155";
- context.font ="400 26px Arial, Helvetica, sans-serif";
+ context.font ='400 26px "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
  drawWrappedText(
  context,"Decode the Morse clues, then find each answer in the letter grid.",
  108,
@@ -802,7 +802,7 @@ async function renderWordSearchShareImage({
  drawRoundRect(context, x, 422, 178, 54, 18);
  context.fill();
  context.fillStyle ="#082f49";
- context.font ="700 21px Arial, Helvetica, sans-serif";
+ context.font ='700 21px "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
  context.fillText(stat, x + 22, 456);
  });
 
@@ -811,9 +811,9 @@ async function renderWordSearchShareImage({
  context.fill();
 
  context.fillStyle ="#f8fafc";
- context.font ="700 18px Courier New, monospace";
+ context.font ='700 18px "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace';
  context.fillText("SAMPLE CLUES", 850, 154);
- context.font ="700 21px Courier New, monospace";
+ context.font ='700 21px "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace';
  puzzle.placements.slice(0, 4).forEach((placement, index) => {
  context.fillText(placement.morse.slice(0, 20), 850, 198 + index * 36);
  });
@@ -827,7 +827,7 @@ async function renderWordSearchShareImage({
  }
 
  context.fillStyle ="#475569";
- context.font ="700 20px Arial, Helvetica, sans-serif";
+ context.font ='700 20px "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
  context.fillText(DISPLAY_URL, 740, 538);
 
  return new Promise<Blob>((resolve, reject) => {
