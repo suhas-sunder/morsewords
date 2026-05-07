@@ -42,6 +42,7 @@ type ReferenceSupportSectionsProps = {
     items: Mistake[];
   };
   comparison: {
+    eyebrow?: string;
     title: string;
     description: string;
     items: SupportTile[];
@@ -118,7 +119,7 @@ export default function ReferenceSupportSections({
       </SectionCard>
 
       <SectionCard
-        eyebrow="Choose a reference"
+        eyebrow={comparison.eyebrow ?? "Choose a reference"}
         title={comparison.title}
         description={comparison.description}
       >

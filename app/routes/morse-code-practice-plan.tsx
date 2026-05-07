@@ -8,6 +8,7 @@ import {
  SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
@@ -15,24 +16,24 @@ const CANONICAL_PATH ="/morse-code-practice-plan";
 
 const faqItems = [
  {
- q:"How long should each session be?",
- a:"Start with 10 minutes. If accuracy stays strong, add another short block for audio, sentence copy, or worksheet review.",
+ q:"How often should I practice Morse code?",
+ a:"Short daily sessions work better than occasional long sessions. Start with 10 minutes most days, then add a second short block only when accuracy stays steady.",
  },
  {
- q:"When should I use worksheets?",
- a:"Use worksheets after practice sessions to review weak words, classroom lists, or sentence patterns away from the screen.",
+ q:"Should I practice letters, words, or audio first?",
+ a:"Begin with letters and a few short words, then add audio once the basic patterns are familiar. Audio should enter early, but it is easier when you already recognize the simplest shapes.",
  },
  {
- q:"Should I practice visually or by audio?",
- a:"Use both. Visual practice helps you understand written Morse, while audio practice builds the rhythm needed for real copy.",
+ q:"What should I do if I keep missing the same characters?",
+ a:"Pull those characters into a smaller drill instead of repeating the full set. Review the pattern, run focused practice, then test it again in words or audio.",
  },
  {
- q:"How should I use Farnsworth timing?",
- a:"Keep the character speed comfortable and lower the Farnsworth spacing speed when you need more time between letters or words. That slows spacing only, not the sound of each character.",
+ q:"Is speed more important than accuracy?",
+ a:"No. Accuracy comes first. Increase speed only after you can copy a short set cleanly, because rushing usually hides spacing and recognition problems.",
  },
  {
- q:"Can teachers use this as a classroom plan?",
- a:"Yes. Use short drills for warm-ups, audio or visual practice for stations, and printable worksheets or word searches for homework, substitute plans, and review.",
+ q:"Which tool should I use for a short practice session?",
+ a:"Use quick practice when you want immediate recall drills, word trainer when weak words are the problem, and audio practice when listening recognition needs work.",
  },
 ];
 
@@ -42,8 +43,8 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
  return seoMeta({
- title:"Morse Code Practice Plan | 2-Week and 6-Week Routines",
- description:"Follow a practical Morse code routine for beginners, students, teachers, and radio learners using drills, audio copy, visual practice, quizzes, and printable worksheets.",
+ title:"Morse Code Practice Plan | Daily Drills and Learning Routine | MorseWords",
+ description:"Follow a Morse code practice plan with short drills, learning sequences, mistake fixes, and links to audio, typing, and quiz tools.",
  path: CANONICAL_PATH,
  keywords:"morse code practice plan, learn morse code schedule, morse code drills, morse code audio practice",
  });
@@ -134,10 +135,23 @@ function PlanList({
 }
 
 export default function MorseCodePracticePlan() {
- const jsonLd = {"@context":"https://schema.org","@type":"HowTo",
+ const breadcrumbJsonLd = {"@context":"https://schema.org","@type":"BreadcrumbList",
+ itemListElement: [
+ {"@type":"ListItem", position:1, name:"Home", item: SITE_URL + "/"},
+ {"@type":"ListItem", position:2, name:"Morse Code Practice Plan", item: canonicalUrl(CANONICAL_PATH)},
+ ],
+ };
+ const howToJsonLd = {"@context":"https://schema.org","@type":"HowTo",
  name:"Morse Code Practice Plan",
  url: canonicalUrl(CANONICAL_PATH),
+ description:"A short Morse code practice routine that combines review, recall drills, listening practice, and a small proof task.",
  isPartOf: {"@type":"WebSite", name:"MorseWords", url: SITE_URL },
+ step: [
+ {"@type":"HowToStep", name:"Review weak symbols", text:"Start with a short review of letters, numbers, or words that slowed you down in the previous session."},
+ {"@type":"HowToStep", name:"Run focused recall", text:"Use quick practice or the word trainer for a few minutes of immediate feedback."},
+ {"@type":"HowToStep", name:"Add listening practice", text:"Use audio practice with comfortable timing so Morse becomes a sound pattern, not only a visual pattern."},
+ {"@type":"HowToStep", name:"Finish with proof", text:"End with one quiz, sentence prompt, worksheet, or printed review task."},
+ ],
  };
  const faqJsonLd = {"@context":"https://schema.org","@type":"FAQPage",
  mainEntity: faqItems.map((item) => ({"@type":"Question",
@@ -150,7 +164,7 @@ export default function MorseCodePracticePlan() {
  <div className="mw-non-home-page" style={styles.page}>
  <main style={styles.wrap}>
  <PageHero
- eyebrow="Practice routine" title="Morse code practice plan" description="Use this plan to turn MorseWords from a set of tools into a repeatable routine. Pick the short plan for a focused reset or the longer plan for steadier progress." aside={
+ eyebrow="Practice routine" title="Morse code practice plan" description="Use this page when you want to know what to practice today, how long to practice, and how to move from alphabet recall into listening, typing, and quiz work." aside={
  <DarkNote label="Best habit" value="10 MINUTES">
  Short daily sessions beat rare marathon sessions. Review weak
  symbols, then end with one small success.
@@ -334,6 +348,59 @@ export default function MorseCodePracticePlan() {
  </div>
  </SectionCard>
 
+ <ReferenceSupportSections
+ guide={{
+ eyebrow:"Practice guide",
+ title:"What this practice plan helps you do",
+ description:"The plan gives each short session a job so practice does not become random repetition. Use it after the learning guide when you are ready for a routine.",
+ items:[
+ { title:"Choose today\'s focus", text:"Pick one target for the session: weak letters, short words, listening copy, typing recall, or a small quiz.", href:"/practice", badge:"DRILL" },
+ { title:"Keep the session short", text:"Use 10-minute blocks so review stays repeatable. Add more time only when accuracy and attention are still good." },
+ { title:"Move across modes", text:"Rotate from visual recall into audio practice and typing so Morse becomes readable, hearable, and writable.", href:"/typing", badge:"TYPE" },
+ { title:"End with proof", text:"Close the session with one quiz, sentence prompt, or printable worksheet so weak spots are visible for tomorrow.", href:"/morse-code-audio-quiz", badge:"QUIZ" },
+ ],
+ }}
+ examples={{
+ title:"Three practical practice scenarios",
+ description:"Use these scenarios as templates rather than rules. The goal is to make the next session obvious.",
+ items:[
+ { title:"10-minute beginner session", morse:"E T A N", children:<>Spend 3 minutes reviewing the simplest letters, 4 minutes in <a href="/practice" className="font-semibold text-sky-900 underline hover:no-underline">quick practice</a>, and 3 minutes hearing or typing only those characters.</> },
+ { title:"Weak-letter review", morse:"B D G Q", children:<>When the same letters keep failing, remove everything else for one focused block, then test them again in the <a href="/morse-code-word-trainer" className="font-semibold text-sky-900 underline hover:no-underline">word trainer</a>.</> },
+ { title:"Listening progression", morse:"CQ CQ TEST", children:<>After visual recall feels stable, use <a href="/morse-code-audio-practice" className="font-semibold text-sky-900 underline hover:no-underline">audio practice</a> with comfortable spacing, then tighten timing only after accuracy stays clean.</> },
+ ],
+ }}
+ mistakes={{
+ title:"Common practice mistakes and fixes",
+ description:"Most practice stalls come from doing too much at once. Keep the set small enough that mistakes can be diagnosed.",
+ items:[
+ { title:"Practicing the full alphabet every time", children:<>Full review is useful occasionally, but daily sessions should isolate weak symbols so improvement is measurable.</> },
+ { title:"Chasing speed too early", children:<>Raise WPM only after you can copy a short set accurately. Use the <a href="/morse-code-timing" className="font-semibold text-sky-900 underline hover:no-underline">timing guide</a> when spacing starts causing misses.</> },
+ { title:"Avoiding audio practice", children:<>Visual charts help with early memory, but real recognition depends on sound. Add short listening blocks before the symbols feel perfect.</> },
+ ],
+ }}
+ comparison={{
+ eyebrow:"Choose a guide",
+ title:"Practice plan vs learning guide vs timing pages",
+ description:"Use this page for the routine itself. Use nearby guides when you need a broader path or a specific timing explanation.",
+ items:[
+ { title:"Learn Morse Code", text:"Use the learning guide when you need the bigger beginner sequence before choosing a daily routine.", href:"/learn-morse-code", badge:"LEARN" },
+ { title:"Practice Plan", text:"Use this page when you already know the next skill area and need a repeatable session structure." },
+ { title:"Morse Code Timing", text:"Use the timing guide when dot length, dash length, WPM, or spacing is causing confusion.", href:"/morse-code-timing", badge:"TIMING" },
+ { title:"Farnsworth Timing", text:"Use Farnsworth timing when you want clear character rhythm with wider gaps for learning.", href:"/farnsworth-timing", badge:"SPACING" },
+ ],
+ }}
+ nextStep={{
+ title:"Choose your next practice page",
+ description:"Start with a short recall drill, then add typing or audio once the day\'s target is clear.",
+ links:[
+ { href:"/practice", label:"Start quick practice", primary:true },
+ { href:"/morse-code-word-trainer", label:"Train words" },
+ { href:"/morse-code-audio-practice", label:"Practice audio" },
+ { href:"/morse-code-visual-practice", label:"Practice visual" },
+ ],
+ }}
+ />
+
  <SectionCard
  eyebrow="Tool map" title="When to use each MorseWords tool" description="A practice plan is easier to follow when every tool has a job. Use this map to pick the next page instead of repeating the same drill until it gets stale.">
  <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -418,7 +485,7 @@ export default function MorseCodePracticePlan() {
  title="Practice plan FAQ" items={faqItems}
  />
 
- <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
+ <JsonLdScript jsonLd={[breadcrumbJsonLd, howToJsonLd, faqJsonLd]} />
  </main>
  </div>
  );

@@ -16,9 +16,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "How to Use MorseWords | Translator, Audio, Practice & Worksheets",
+    title: "How to Use MorseWords | Choose the Right Morse Code Tool | MorseWords",
     description:
-      "Learn how to translate Morse, generate audio, run practice drills, type dots and dashes, and build printable Morse worksheets with consistent spacing.",
+      "Learn which MorseWords tool to use for translating, decoding, listening, practicing, typing, printing, or looking up Morse code.",
     path: CANONICAL_PATH,
     keywords:
       "how to use morse code translator, morse code tools, how to read morse code, how to write morse code, morse code practice",
@@ -30,24 +30,24 @@ export default function HowToUse() {
 
   const faqItems = [
     {
-      q: "Do I have to format spacing a specific way when decoding?",
-      a: "No, but clean spacing makes decoding reliable. The safest format is 3 spaces between letters and 7 spaces between words. A slash (/) and new lines also work as word breaks.",
+      q: "Which MorseWords tool should I start with?",
+      a: "Start with the main translator when you want a quick conversion. If your goal is learning, open the learning guide or practice page after you understand the basic pattern.",
     },
     {
-      q: "Why do you recommend 3 spaces and 7 spaces?",
-      a: "It prevents ambiguity when you paste Morse from different sources. Three spaces keeps letter chunks separate, and seven spaces makes word breaks obvious even when apps compress whitespace.",
+      q: "What should I use if I only have dots and dashes?",
+      a: "Use the decoder when the Morse is already separated. If spacing is messy or missing, use the word separator page first so letters and words are easier to read.",
     },
     {
-      q: "What is the fastest way to go from text to audio?",
-      a: "Translate your text on the main translator, copy the Morse output, then paste it into the Audio tool and press Play Audio. Set WPM and tone first if you want a specific sound.",
+      q: "What should I use if I want to hear Morse?",
+      a: "Use the audio page when you want to play or save a full message as sound. Use the sound generator when you are testing tone and beep settings for practice.",
     },
     {
-      q: "The audio is silent. What should I check first?",
-      a: "Make sure your device volume is up and not muted. If you are on Bluetooth, reconnect. Then confirm you have a non-empty Morse string and press Play Audio again.",
+      q: "What should I use for learning?",
+      a: "Use the learning guide for the overall path, the practice plan for a short routine, and the timing pages when speed or spacing starts causing mistakes.",
     },
     {
-      q: "Which tool should I use if I only have dots and dashes and want to decode quickly?",
-      a: "Use the Translator if you already have clean separators. If you are entering it manually and want full control over spacing, use the Typing tool.",
+      q: "What should I use for printing or teaching?",
+      a: "Use the printable chart for reference sheets and the word search builder for classroom or practice handouts.",
     },
   ];
 
@@ -71,7 +71,7 @@ export default function HowToUse() {
     name: "How to Use MorseWords",
     url: CANONICAL_URL,
     description:
-      "A practical guide to using MorseWords tools: translator, audio translator, practice drills, typing tool, and dictionary.",
+      "A practical guide to choosing the right MorseWords tool for translating, decoding, listening, practicing, typing, printing, and looking up Morse code.",
     isPartOf: {
       "@type": "WebSite",
       name: "MorseWords",
@@ -94,10 +94,10 @@ export default function HowToUse() {
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
-      <div style={styles.wrap}>
+      <main style={styles.wrap}>
         <HowToUseSuiteGuide />
         <FaqSectionGeneric title="How to Use FAQ" items={faqItems} />
-      </div>
+      </main>
       <nav
         aria-label="Breadcrumb"
         className="mx-auto w-full max-w-[1120px] px-4 pb-4 text-sm text-slate-600 sm:px-6 lg:px-8"
