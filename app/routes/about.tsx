@@ -1,19 +1,45 @@
-import * as React from "react";
 import type { Route } from "./+types/about";
 
-import styles from "~/client/components/shared/pageStyles";
+import FaqSectionGeneric, {
+  type FaqItem,
+} from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   ActionLinks,
   PageHero,
-  SectionCard as SharedSectionCard,
+  SectionCard,
+  SimpleGrid,
 } from "~/client/components/shared/MorseLearningLayout";
+import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/about";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 const CREATOR_URL = "https://www.suhassunder.com";
 const CREATOR_LINKEDIN = "https://www.linkedin.com/in/s-sunder";
+
+const aboutFaqItems: FaqItem[] = [
+  {
+    q: "What is MorseWords?",
+    a: "MorseWords is a browser-based Morse code toolkit for translating, hearing, practicing, typing, printing, and looking up International Morse code.",
+  },
+  {
+    q: "Who is MorseWords for?",
+    a: "It is built for beginners, teachers, casual users, puzzle makers, and learners who want practical Morse tools without a dense radio-operator interface.",
+  },
+  {
+    q: "Is MorseWords an official Morse code standards body?",
+    a: "No. MorseWords uses standard International Morse references and practical learning guidance, but it is not an official standards organization or certification provider.",
+  },
+  {
+    q: "Does MorseWords store my Morse messages?",
+    a: "Core tool input is handled in the browser. MorseWords should not send raw messages, puzzle words, worksheet text, or learner answers to analytics.",
+  },
+  {
+    q: "Where should a beginner start?",
+    a: "Start with the translator or alphabet chart, then hear the result with audio practice and move into short practice sessions when the patterns begin to feel familiar.",
+  },
+];
 
 export function links() {
   return [
@@ -26,27 +52,13 @@ export function links() {
 
 export function meta(_: Route.MetaArgs) {
   return seoMeta({
-    title: "About MorseWords | Practical Morse Code Tools",
+    title: "About MorseWords | Friendly Morse Code Tools and Practice",
     description:
-      "Learn how MorseWords supports clean Morse translation, audio generation, practice drills, and printable worksheets for learners, teachers, radio clubs, and puzzle makers.",
+      "Learn what MorseWords is, who it helps, and how its translator, audio, practice, and reference tools support beginner-friendly Morse learning.",
     path: CANONICAL_PATH,
     keywords:
-      "about morsewords, morse code tools, morse code translator, morse code decoder, morse code audio, morse code practice",
+      "about MorseWords, Morse code tools, Morse code translator, Morse code decoder, Morse code audio, Morse code practice",
   });
-}
-
-function SectionCard(props: {
-  title: string;
-  children: React.ReactNode;
-  id?: string;
-}) {
-  return (
-    <SharedSectionCard eyebrow="About" title={props.title}>
-      <div id={props.id} className="space-y-3 text-base leading-relaxed text-slate-700 sm:text-lg">
-        {props.children}
-      </div>
-    </SharedSectionCard>
-  );
 }
 
 export default function About() {
@@ -57,12 +69,16 @@ export default function About() {
     url: CANONICAL_URL,
     inLanguage: "en",
     description:
-      "MorseWords is a practical Morse code toolkit for translating, decoding, listening, typing, practicing, and looking up International Morse code.",
-    isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL + "/" },
-    about: {
-      "@type": "SoftwareApplication",
+      "MorseWords is a friendly Morse code toolkit for translating messages, hearing real Morse audio, practicing recognition, and using reference pages while learning.",
+    isPartOf: {
+      "@type": "WebSite",
       name: "MorseWords",
-      applicationCategory: "UtilityApplication",
+      url: SITE_URL + "/",
+    },
+    about: {
+      "@type": "WebApplication",
+      name: "MorseWords",
+      applicationCategory: "EducationalApplication",
       operatingSystem: "All",
       url: SITE_URL + "/",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
@@ -70,9 +86,10 @@ export default function About() {
         "Text to Morse code translation",
         "Morse code decoding",
         "Morse code audio playback",
+        "Morse code practice drills",
         "Morse code typing practice",
-        "Morse code drills",
-        "Morse code symbol lookup",
+        "Morse code reference lookup",
+        "Printable Morse code learning resources",
       ],
     },
     author: {
@@ -82,7 +99,6 @@ export default function About() {
       url: CREATOR_URL,
       sameAs: [CREATOR_URL, CREATOR_LINKEDIN],
       knowsAbout: [
-        "Full-stack web development",
         "React",
         "TypeScript",
         "Remix",
@@ -107,236 +123,235 @@ export default function About() {
     ],
   };
 
-  const jsonLd = [pageJsonLd, breadcrumbJsonLd];
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: aboutFaqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
-      <JsonLdScript jsonLd={jsonLd} />
-      <div style={styles.wrap}>
+      <JsonLdScript jsonLd={[pageJsonLd, breadcrumbJsonLd, faqJsonLd]} />
+      <main style={styles.wrap}>
         <PageHero
           eyebrow="About MorseWords"
           title="About MorseWords"
-          description="MorseWords is a practical Morse code toolkit for converting text, decoding Morse, playing audio, practicing patterns, and looking up symbols without extra setup."
+          description="MorseWords is the friendly way to learn and use Morse code: translate a message, hear the rhythm, understand the spacing, and build confidence through short practice sessions."
         >
           <ActionLinks
             links={[
-              { href: "/how-to-use", label: "How to use", primary: true },
-              { href: "#what-morsewords-does", label: "What MorseWords does" },
-              { href: "#tool-design", label: "Tool design" },
-              { href: "#what-this-is-not", label: "What this is not" },
-              { href: "#author", label: "Author" },
+              { href: "/", label: "Open translator", primary: true },
+              { href: "/audio", label: "Hear Morse audio" },
+              { href: "/practice", label: "Practice patterns" },
+              { href: "/sources", label: "Review sources" },
             ]}
           />
         </PageHero>
 
-        <SectionCard id="what-morsewords-does" title="What MorseWords does">
-          <p>
-            MorseWords is built for people who need a direct way to work with
-            Morse code. The site focuses on common jobs: converting plain text
-            into Morse, decoding Morse back into readable text, listening to
-            generated Morse audio, practicing recognition, typing dots and
-            dashes, and checking symbols in a reference table.
-          </p>
-
-          <p style={{ marginTop: 10 }}>
-            The goal is not to make Morse code feel complicated. The goal is to
-            make the result easy to generate, check, copy, hear, and reuse. Each
-            tool is designed around a specific task so you can get the output
-            without digging through scattered charts, PDF tables, or overloaded
-            training pages.
-          </p>
-
-          <ul style={{ marginTop: 10, paddingLeft: 18 }}>
-            <li>
-              <strong>Translator:</strong> convert letters, numbers, and
-              supported punctuation into Morse code.
-            </li>
-            <li>
-              <strong>Decoder:</strong> turn dots, dashes, letter gaps, and word
-              gaps back into readable text.
-            </li>
-            <li>
-              <strong>Audio:</strong> listen to Morse playback with practical
-              speed and tone controls.
-            </li>
-            <li>
-              <strong>Typing:</strong> type Morse patterns and see the decoded
-              result as you work.
-            </li>
-            <li>
-              <strong>Practice:</strong> run focused drills for recognition and
-              recall.
-            </li>
-            <li>
-              <strong>Dictionary:</strong> look up Morse symbols quickly and
-              copy what you need.
-            </li>
-          </ul>
+        <SectionCard
+          eyebrow="Purpose"
+          title="A friendly way to learn and use Morse code"
+          description="MorseWords is broader than a single translator, but every page still starts from a practical job a user is trying to finish."
+        >
+          <SimpleGrid
+            items={[
+              {
+                title: "Translate it",
+                text: "Use the translator, encoder, and decoder when you need clean dots and dashes or readable text from pasted Morse.",
+                href: "/",
+              },
+              {
+                title: "Hear it",
+                text: "Use audio tools when the pattern needs to become sound, not just a visual string on the page.",
+                href: "/audio",
+              },
+              {
+                title: "Practice it",
+                text: "Use short drills, typing, audio practice, and visual practice to build recognition over time.",
+                href: "/practice",
+              },
+              {
+                title: "Check it",
+                text: "Use the alphabet, dictionary, and reference pages when you need to verify a symbol, spacing rule, or signal.",
+                href: "/dictionary",
+              },
+            ]}
+          />
         </SectionCard>
 
-        <SectionCard id="tool-design" title="How the tools are designed">
-          <p>
-            MorseWords is meant to behave like a utility, not a maze. The pages
-            are intentionally simple, with clear inputs, readable outputs, and
-            copy-friendly formatting. Settings are included when they materially
-            change the result, such as playback speed or tone, but the tools
-            avoid unnecessary controls that slow down basic use.
-          </p>
-
-          <p style={{ marginTop: 10 }}>
-            The site uses International Morse code conventions and keeps spacing
-            rules predictable across the toolkit. That matters because Morse
-            code is not only about dots and dashes. Letter gaps, word gaps,
-            slash separators, and unsupported characters can all affect whether
-            a decoded result is understandable.
-          </p>
-
-          <ul style={{ marginTop: 10, paddingLeft: 18 }}>
-            <li>
-              <strong>Fast first:</strong> pages are built to load quickly and
-              avoid unnecessary friction.
-            </li>
-            <li>
-              <strong>Clear output:</strong> results are formatted so they are
-              easy to read, copy, paste, or listen to.
-            </li>
-            <li>
-              <strong>Predictable rules:</strong> translation and decoding
-              behavior should be consistent from tool to tool.
-            </li>
-            <li>
-              <strong>No account required:</strong> the core tools are available
-              without sign-up or a user profile.
-            </li>
-          </ul>
-
-          <p style={{ marginTop: 12 }}>
-            <a
-              href="/how-to-use"
-              className="underline hover:no-underline cursor-pointer font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
-            >
-              Open the MorseWords usage guide
-            </a>
-          </p>
+        <SectionCard
+          eyebrow="Audience"
+          title="Built for beginners, teachers, and quick lookups"
+          description="The site is intended for people who want a direct browser workflow, not a dense radio manual before they can hear or use a pattern."
+        >
+          <SimpleGrid
+            items={[
+              {
+                title: "Beginners",
+                text: "Start with the alphabet, convert short messages, hear the rhythm, and move into practice when the patterns start to stick.",
+                href: "/learn-morse-code",
+              },
+              {
+                title: "Teachers",
+                text: "Use printable charts, word searches, and practice pages for handouts, warm-ups, and low-prep classroom activities.",
+                href: "/morse-code-printable-chart",
+              },
+              {
+                title: "Casual users",
+                text: "Decode a pasted message, check SOS, copy a phrase, or generate audio without creating an account.",
+                href: "/morse-code-decoder",
+              },
+              {
+                title: "Practice-focused learners",
+                text: "Move from visual lookup into audio and typing drills so Morse becomes recognizable instead of only readable.",
+                href: "/morse-code-practice-plan",
+              },
+            ]}
+          />
         </SectionCard>
 
-        <SectionCard id="what-this-is-not" title="What this is not">
-          <p>
-            MorseWords is not trying to replace every Morse code learning
-            resource. It is a focused tool site. That means it is useful for
-            quick conversion, playback, practice, and lookup, but it does not
-            claim to be a full training program or certification path.
-          </p>
-
-          <ul style={{ marginTop: 10, paddingLeft: 18 }}>
-            <li>
-              <strong>Not a full course:</strong> there is no long curriculum,
-              progress path, or formal lesson system.
-            </li>
-            <li>
-              <strong>Not certification prep:</strong> the tools do not promise
-              exam readiness or official qualification.
-            </li>
-            <li>
-              <strong>Not emergency guidance:</strong> the site is for learning,
-              reference, and utility use, not safety-critical communication.
-            </li>
-            <li>
-              <strong>Not a community platform:</strong> there are no accounts,
-              feeds, messages, or social features.
-            </li>
-          </ul>
-
-          <p style={{ marginTop: 10 }}>
-            That narrow scope is intentional. MorseWords should stay useful by
-            doing a small set of Morse code tasks clearly and reliably.
-          </p>
-        </SectionCard>
-
-        <SectionCard id="author" title="Built and maintained by">
-          <p>
-            MorseWords is built and maintained by <strong>Suhas Sunder</strong>,
-            a software developer based in the Toronto area. I build production
-            web applications and focused web utilities with an emphasis on
-            practical workflows, fast interfaces, and clear user experience.
-          </p>
-
-          <p style={{ marginTop: 10 }}>
-            My background includes full-stack web development with React,
-            TypeScript, Remix, Node.js, Express, PostgreSQL, Prisma, and
-            responsive UI development. I also have a Master’s degree in
-            Electrical and Computer Engineering from Ontario Tech University.
-          </p>
-
-          <p style={{ marginTop: 10 }}>
-            MorseWords exists because Morse code tools often fall into two
-            extremes: overly basic converters with weak surrounding utilities,
-            or dense training resources that are more than someone needs for a
-            quick task. This site is meant to sit in the middle: useful enough
-            for repeated use, but simple enough that the main action is always
-            obvious.
-          </p>
-
-          <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
-            <div
-              style={{
-                ...styles.card,
-                padding: 14,
-                borderRadius: 14,
-                background: "#fffaf2",
-              }}
-            >
-              <div style={{ fontWeight: 800 }}>
-                Suhas Sunder - Software Developer
-              </div>
-              <div style={{ color: "#5a616c", marginTop: 4 }}>
-                Full-stack web development: React, TypeScript, Remix, Node.js,
-                Express, PostgreSQL, Prisma, and responsive interface work.
-              </div>
-              <div style={{ color: "#5a616c", marginTop: 4 }}>
-                Master’s in Electrical and Computer Engineering, Ontario Tech
-                University.
-              </div>
-            </div>
-
-            <div style={{ ...styles.card, padding: 14, borderRadius: 14 }}>
-              <div style={{ fontWeight: 800 }}>More about the developer</div>
-              <div
-                style={{
-                  marginTop: 8,
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: 10,
-                }}
-              >
-                <a
-                  href={CREATOR_URL}
-                  className="underline hover:no-underline cursor-pointer font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
-                >
-                  Portfolio
-                </a>
-                <a
-                  href={CREATOR_LINKEDIN}
-                  className="underline hover:no-underline cursor-pointer font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
-                >
-                  LinkedIn
-                </a>
-              </div>
-              <div style={{ color: "#5a616c", marginTop: 8 }}>
-                The point is simple: MorseWords is not an anonymous throwaway
-                converter. It is a maintained utility site with a real person
-                behind it and a narrow product direction.
-              </div>
-            </div>
+        <SectionCard
+          eyebrow="Learning"
+          title="Why hearing and practice matter"
+          description="A chart can tell you what a letter is, but practice teaches you to recognize the rhythm without pausing on every dot and dash."
+        >
+          <div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p>
+              MorseWords keeps visual tools, audio tools, and practice tools close
+              together because Morse code is easier to use when those steps are
+              connected. A learner can translate a short word, listen to it,
+              compare the spacing, and then test the same pattern in a drill.
+            </p>
+            <p>
+              The site favors short sessions over heavy lesson screens. That
+              makes it easier to review weak spots, repeat a small set of
+              patterns, and return later without rebuilding a complicated setup.
+            </p>
+            <ActionLinks
+              links={[
+                { href: "/morse-code-alphabet", label: "Review alphabet" },
+                { href: "/morse-code-audio-practice", label: "Try audio practice" },
+                { href: "/typing", label: "Try typing practice" },
+              ]}
+            />
           </div>
         </SectionCard>
 
-        <nav aria-label="Breadcrumb" className="mb-4 text-sm text-slate-600">
+        <SectionCard
+          eyebrow="Boundaries"
+          title="What MorseWords does not claim to be"
+          description="Trust comes from being clear about the site's limits as well as its purpose."
+        >
+          <SimpleGrid
+            items={[
+              {
+                title: "Not an official authority",
+                text: "MorseWords uses standard references, but it is not an official standards body or regulator.",
+              },
+              {
+                title: "Not certification prep",
+                text: "The tools can support learning and practice, but they do not promise exam readiness or professional qualification.",
+              },
+              {
+                title: "Not emergency guidance",
+                text: "Signal pages such as SOS are educational references, not safety-critical communication instructions.",
+              },
+              {
+                title: "Not a social platform",
+                text: "There are no accounts, feeds, messages, or community profiles required to use the core tools.",
+              },
+            ]}
+          />
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Privacy"
+          title="User input stays practical and local where possible"
+          description="MorseWords tools are designed for browser-based use without turning learner input into a product."
+        >
+          <div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p>
+              Tool input such as Morse messages, puzzle words, worksheet text,
+              and learner answers should not be sent to analytics. Some settings
+              may be kept in browser storage so the tool can remember a local
+              preference, but the core workflow does not require an account.
+            </p>
+            <p>
+              For policy details, use the dedicated privacy and cookie pages.
+              This about page only summarizes the product direction at a high
+              level.
+            </p>
+            <ActionLinks
+              links={[
+                { href: "/misc/privacy-policy", label: "Privacy policy" },
+                { href: "/misc/cookies-policy", label: "Cookies policy" },
+              ]}
+            />
+          </div>
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Start here"
+          title="Best next steps"
+          description="Choose the page based on the task you are trying to finish now."
+        >
+          <ActionLinks
+            links={[
+              { href: "/", label: "Translate text", primary: true },
+              { href: "/audio", label: "Hear a message" },
+              { href: "/learn-morse-code", label: "Learn the path" },
+              { href: "/morse-code-alphabet", label: "Review A-Z" },
+              { href: "/dictionary", label: "Look up symbols" },
+              { href: "/sources", label: "Check sources" },
+            ]}
+          />
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Maintainer"
+          title="Built and maintained by Suhas Sunder"
+          description="MorseWords is maintained as a focused web utility with a real person behind the product direction."
+        >
+          <div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p>
+              Suhas Sunder is a software developer who builds production web
+              applications and focused browser utilities with React, TypeScript,
+              Remix, Node.js, and responsive interface work.
+            </p>
+            <p>
+              MorseWords exists because many Morse code sites are either very
+              sparse converters or dense training resources. This site is meant
+              to sit between those extremes: practical enough for repeated use,
+              but approachable enough for a beginner's first session.
+            </p>
+            <ActionLinks
+              links={[
+                { href: CREATOR_URL, label: "Developer portfolio" },
+                { href: CREATOR_LINKEDIN, label: "LinkedIn" },
+              ]}
+            />
+          </div>
+        </SectionCard>
+
+        <FaqSectionGeneric
+          title="About MorseWords FAQ"
+          description="Short answers about what the site is, what it is not, and how to use it safely."
+          items={aboutFaqItems}
+        />
+
+        <nav aria-label="Breadcrumb" className="mb-4 mt-10 text-sm text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
               <a
                 href="/"
-                className="underline hover:no-underline cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                className="cursor-pointer underline hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
               >
                 Home
               </a>
@@ -345,7 +360,7 @@ export default function About() {
             <li className="font-semibold text-sky-950">About</li>
           </ol>
         </nav>
-      </div>
+      </main>
     </div>
   );
 }
