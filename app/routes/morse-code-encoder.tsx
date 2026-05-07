@@ -264,12 +264,12 @@ export default function MorseCodeEncoder() {
           nextStep={{
             title: "Best next step after encoding",
             description:
-              "Once the text is encoded, test it in the channel where you plan to use it.",
+              "Once the text is encoded, hear the rhythm or practice the words so the output becomes recognizable, not just copyable.",
             links: [
               { href: "/", label: "Open the main translator", primary: true },
               { href: "/audio", label: "Play the message as audio" },
+              { href: "/morse-code-word-trainer", label: "Practice encoded words" },
               { href: "/morse-code-word-separator", label: "Change word separators" },
-              { href: "/morse-code-punctuation", label: "Check punctuation" },
             ],
           }}
         />

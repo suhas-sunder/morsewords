@@ -258,12 +258,12 @@ export default function MorseCodeDecoder() {
           nextStep={{
             title: "Best next step after decoding",
             description:
-              "After you have readable text, choose the tool that checks, practices, or explains the message.",
+              "After you have readable text, fix any spacing problems, then use the message for a short recall or typing session.",
             links: [
               { href: "/", label: "Open the main translator", primary: true },
+              { href: "/morse-code-word-separator", label: "Clean up spacing" },
+              { href: "/typing", label: "Practice typed recall" },
               { href: "/morse-code-encoder", label: "Encode a reply" },
-              { href: "/morse-code-punctuation", label: "Check punctuation" },
-              { href: "/morse-code-sos", label: "Read the SOS guide" },
             ],
           }}
         />

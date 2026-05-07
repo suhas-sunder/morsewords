@@ -288,7 +288,7 @@ function HomeToolkit() {
       id="morse-code-navigation"
       className="mx-auto mt-8 max-w-[1040px] px-4 sm:px-6 lg:px-8"
     >
-      <div className="bg-[#f4efe5]/65 px-1 py-8 sm:px-2 sm:py-10">
+      <div className="px-1 py-8 sm:px-2 sm:py-10">
         <div className="max-w-[42rem]">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
@@ -406,7 +406,7 @@ function FullToolkit() {
       id="morse-code-navigation"
       className="mx-auto mt-8 max-w-[1040px] px-4 sm:px-6 lg:px-8"
     >
-      <div className="bg-[#f4efe5]/65 px-1 py-8 sm:px-2 sm:py-10">
+      <div className="px-1 py-8 sm:px-2 sm:py-10">
         <div className="max-w-[42rem]">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />

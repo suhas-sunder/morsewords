@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const summaryPoints = [
   {
     title: "Spacing legend",
@@ -318,6 +320,85 @@ S O S`}
                   volume, and make sure your device is not muted.
                 </li>
               </ul>
+            </div>
+          </section>
+
+          <section id="learning-flow">
+            <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
+              <header>
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Learning flow
+                </p>
+                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
+                  After translation, hear and practice it
+                </h3>
+              </header>
+
+              <div className="max-w-none">
+                <p className="max-w-[82ch] text-base leading-relaxed sm:text-lg">
+                  A translation is useful immediately, but it becomes easier to
+                  remember when you turn the pattern into sound and repeat it in
+                  a short focused session.
+                </p>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-4">
+                  {[
+                    {
+                      title: "Translate it",
+                      body: "Start with a short word, phrase, or pasted Morse message.",
+                    },
+                    {
+                      title: "Hear it",
+                      body: "Play the signal so the rhythm is not only a visual string.",
+                    },
+                    {
+                      title: "Practice it",
+                      body: "Use a quick drill when you want recall instead of lookup.",
+                    },
+                    {
+                      title: "Review weak spots",
+                      body: "Move repeated misses into word, typing, audio, or visual practice.",
+                    },
+                  ].map((item) => (
+                    <article
+                      key={item.title}
+                      className="mw-static-tile rounded-xl bg-[#fffaf2] p-5"
+                    >
+                      <h4 className="text-base font-extrabold text-sky-950">
+                        {item.title}
+                      </h4>
+                      <p className="mt-2 text-base leading-relaxed text-slate-700">
+                        {item.body}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+
+                <p className="mt-5 max-w-[82ch] text-base leading-relaxed text-slate-600 sm:text-lg">
+                  For the next step, open{" "}
+                  <Link
+                    to="/audio"
+                    className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                  >
+                    Morse code audio
+                  </Link>
+                  , try a{" "}
+                  <Link
+                    to="/practice"
+                    className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                  >
+                    short practice drill
+                  </Link>
+                  , or use the{" "}
+                  <Link
+                    to="/morse-code-word-trainer"
+                    className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                  >
+                    word trainer
+                  </Link>{" "}
+                  when the same words keep needing lookup.
+                </p>
+              </div>
             </div>
           </section>
         </div>
