@@ -1,3 +1,5 @@
+import { useLocation } from "react-router";
+
 const leftMorseRows = [
   { plain: "MorseWords", morse: "-- --- .-. ... . .-- --- .-. -.. ..." },
   { plain: "text to morse", morse: "- . -..- -   - ---   -- --- .-. ... ." },
@@ -45,17 +47,34 @@ const sideRailStyle = {
   width: "max(0px, calc((100vw - 1160px) / 2 - 48px))",
 };
 
+const nonHomeSideRailStyle = {
+  width: "max(0px, calc((100vw - 1480px) / 2 - 64px))",
+};
+
 export default function PageBackdrop() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+  const backdropClassName = isHome
+    ? "pointer-events-none absolute inset-0 z-0 hidden overflow-hidden min-[1760px]:block"
+    : "pointer-events-none absolute inset-0 z-0 hidden overflow-hidden min-[1900px]:block";
+  const railStyle = isHome ? sideRailStyle : nonHomeSideRailStyle;
+  const leftRailClassName = isHome
+    ? "absolute right-5 top-28 w-[320px] rotate-[-7deg] space-y-7"
+    : "absolute right-2 top-28 w-[320px] rotate-[-7deg] space-y-7";
+  const rightRailClassName = isHome
+    ? "absolute left-5 top-40 w-[330px] rotate-[7deg] space-y-7 text-right"
+    : "absolute left-2 top-40 w-[330px] rotate-[7deg] space-y-7 text-right";
+
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden min-[1760px]:block"
+      className={backdropClassName}
     >
       <div
         className="absolute inset-y-0 left-0 overflow-hidden"
-        style={sideRailStyle}
+        style={railStyle}
       >
-        <div className="absolute right-5 top-28 w-[320px] rotate-[-7deg] space-y-7">
+        <div className={leftRailClassName}>
           {leftMorseRows.map((row) => (
             <div
               key={row.plain}
@@ -72,9 +91,9 @@ export default function PageBackdrop() {
 
       <div
         className="absolute inset-y-0 right-0 overflow-hidden"
-        style={sideRailStyle}
+        style={railStyle}
       >
-        <div className="absolute left-5 top-40 w-[330px] rotate-[7deg] space-y-7 text-right">
+        <div className={rightRailClassName}>
           {rightMorseRows.map((row) => (
             <div
               key={row.plain}
