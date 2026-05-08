@@ -289,6 +289,7 @@ main *::after {
   #morse-code-navigation
   :where(
     .mw-toolkit-card,
+    .mw-toolkit-subcard,
     .mw-toolkit-summary,
     .mw-related-tool-link,
     .mw-related-quick-link,
@@ -298,6 +299,7 @@ main *::after {
   #morse-code-navigation
   :where(
     .mw-toolkit-card,
+    .mw-toolkit-subcard,
     .mw-toolkit-summary,
     .mw-related-tool-link,
     .mw-related-quick-link,
@@ -327,6 +329,7 @@ main *::after {
   #morse-code-navigation
   :where(
     .mw-toolkit-card,
+    .mw-toolkit-subcard,
     .mw-toolkit-summary,
     .mw-related-tool-link,
     .mw-related-quick-link,

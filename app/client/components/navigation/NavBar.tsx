@@ -175,7 +175,7 @@ export default function NavBar(props: { pathname?: string }) {
 
   return (
     <header className="relative z-50 bg-neutral-900 backdrop-blur">
-      <div className="mx-auto max-w-5xl px-4">
+      <div className="mx-auto max-w-[1680px] px-4 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between py-3">
           <a
             href="/"
@@ -196,7 +196,7 @@ export default function NavBar(props: { pathname?: string }) {
             </div>
           </a>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-5 lg:gap-6 md:flex">
             <a
               href="#morse-code-navigation"
               onClick={handleAllToolsClick}

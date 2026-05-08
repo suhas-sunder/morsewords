@@ -23,7 +23,7 @@ export default function FaqSectionGeneric({
 
     return (
       <section
-        className="mt-12 sm:mt-16"
+        className="mt-8 sm:mt-10"
         aria-labelledby={headingId}
       >
         <div className="mx-auto max-w-3xl text-center">

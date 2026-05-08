@@ -204,13 +204,6 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Example",
       },
       {
-        title: "Morse Code Word Separator",
-        description:
-          "Understand spacing, slashes, and word separation in Morse code.",
-        href: "/morse-code-word-separator",
-        badge: "Formatting",
-      },
-      {
         title: "Sources",
         description: "See the standards and references used by MorseWords pages.",
         href: "/sources",
@@ -286,9 +279,9 @@ function HomeToolkit() {
   return (
     <section
       id="morse-code-navigation"
-      className="mx-auto mt-8 max-w-[1040px] px-4 sm:px-6 lg:px-8"
+      className="mx-auto mt-0 max-w-[1040px] px-4 sm:px-6 lg:px-8"
     >
-      <div className="px-1 py-8 sm:px-2 sm:py-10">
+      <div className="px-1 pb-8 pt-0 sm:px-2 sm:pb-10 sm:pt-0">
         <div className="max-w-[42rem]">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
@@ -380,14 +373,24 @@ function HomeToolkit() {
                 <h4 className="text-lg font-extrabold text-sky-950">
                   {group.title}
                 </h4>
-                <div className="mt-3 grid gap-2">
+                <div className="mt-3 grid gap-2 sm:grid-cols-2">
                   {group.links.map((item) => (
                     <a
                       key={item.href}
                       href={item.href}
-                      className="mw-button-outline mw-toolkit-card mw-toolkit-card-light inline-flex cursor-pointer rounded-lg px-2 py-1 text-sm font-semibold text-sky-900 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                      className="mw-button-outline mw-toolkit-subcard block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                     >
-                      {item.title}
+                      <span className="flex items-start justify-between gap-3">
+                        <span className="text-sm font-extrabold leading-snug">
+                          {item.title}
+                        </span>
+                        <span className="shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500">
+                          {item.badge}
+                        </span>
+                      </span>
+                      <span className="mt-1 block text-xs leading-relaxed text-slate-600">
+                        {item.description}
+                      </span>
                     </a>
                   ))}
                 </div>
@@ -404,9 +407,9 @@ function FullToolkit() {
   return (
     <section
       id="morse-code-navigation"
-      className="mx-auto mt-8 max-w-[1040px] px-4 sm:px-6 lg:px-8"
+      className="mx-auto mt-0 max-w-[1040px] px-4 sm:px-6 lg:px-8"
     >
-      <div className="px-1 py-8 sm:px-2 sm:py-10">
+      <div className="px-1 pb-8 pt-0 sm:px-2 sm:pb-10 sm:pt-0">
         <div className="max-w-[42rem]">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-sky-800" />
@@ -498,14 +501,24 @@ function FullToolkit() {
                 <h4 className="text-lg font-extrabold text-sky-950">
                   {group.title}
                 </h4>
-                <div className="mt-3 grid gap-2">
+                <div className="mt-3 grid gap-2 sm:grid-cols-2">
                   {group.links.map((item) => (
                     <a
                       key={item.href}
                       href={item.href}
-                      className="mw-button-outline mw-related-tool-link inline-flex cursor-pointer rounded-lg px-2 py-1 text-sm font-semibold text-sky-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                      className="mw-button-outline mw-related-tool-link block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                     >
-                      {item.title}
+                      <span className="flex items-start justify-between gap-3">
+                        <span className="text-sm font-extrabold leading-snug">
+                          {item.title}
+                        </span>
+                        <span className="mw-related-badge shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500">
+                          {item.badge}
+                        </span>
+                      </span>
+                      <span className="mt-1 block text-xs leading-relaxed text-slate-600">
+                        {item.description}
+                      </span>
                     </a>
                   ))}
                 </div>

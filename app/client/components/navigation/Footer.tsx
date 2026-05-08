@@ -1,85 +1,83 @@
 import { Link } from "react-router";
+
+import logoUrl from "~/client/assets/images/logo.png";
 import SocialLinks from "./SocialLinks";
 
+const footerLinks = [
+  { label: "About", to: "/about" },
+  { label: "Sitemap", to: "/sitemap" },
+  { label: "Sources", to: "/sources" },
+  { label: "Socials", to: "/misc/socials" },
+  { label: "Privacy", to: "/misc/privacy-policy" },
+  { label: "Terms", to: "/misc/terms-of-service" },
+  { label: "Cookies", to: "/misc/cookies-policy" },
+];
+
 export default function Footer() {
- const year = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
- return (
- <div>
- <SocialLinks />
- <footer className="w-full bg-neutral-900 text-sm text-gray-300">
- <div className="mx-auto max-w-5xl px-4 py-10">
- <nav
- aria-label="Footer navigation" className="mb-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
- <Link
- to="/" className="cursor-pointer font-semibold text-white transition hover:text-sky-200">
- Home
- </Link>
+  return (
+    <div>
+      <SocialLinks />
+      <footer className="w-full bg-neutral-900 text-sm text-gray-300">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="mb-7 flex flex-col items-center gap-5 md:flex-row md:items-center md:justify-between">
+            <Link
+              to="/"
+              className="flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
+              aria-label="MorseWords home"
+            >
+              <img
+                src={logoUrl}
+                alt=""
+                className="h-9 w-9 rounded-sm"
+                loading="lazy"
+              />
+              <span className="leading-tight">
+                <span className="block text-base font-extrabold">
+                  MorseWords
+                </span>
+                <span className="block text-xs text-sky-200">
+                  Translate, listen, practice
+                </span>
+              </span>
+            </Link>
 
- <Link
- to="/learn-morse-code" className="cursor-pointer transition hover:text-sky-200">
- Learn
- </Link>
+            <nav
+              aria-label="Footer navigation"
+              className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-center"
+            >
+              {footerLinks.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="cursor-pointer transition hover:text-sky-200"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
 
- <Link
- to="/morse-code-printable-chart" className="cursor-pointer transition hover:text-sky-200">
- Worksheets
- </Link>
+          <div className="text-center leading-relaxed">
+            <div className="mb-1 text-gray-400">
+              &copy; 2025-{year}{" "}
+              <span className="font-semibold text-white">MorseWords</span>
+              <span className=""> ~</span>
+              <span className=""> By Suhas Sunder</span>
+            </div>
 
- <Link
- to="/sources" className="cursor-pointer transition hover:text-sky-200">
- Sources
- </Link>
+            <div className="text-sky-200">
+              Fast, practical tools for translating, listening to, and
+              practicing Morse code.
+            </div>
 
- <Link
- to="/sitemap" className="cursor-pointer transition hover:text-sky-200">
- Sitemap
- </Link>
-
- <Link
- to="/misc/privacy-policy" className="cursor-pointer transition hover:text-sky-200">
- Privacy Policy
- </Link>
-
- <Link
- to="/misc/terms-of-service" className="cursor-pointer transition hover:text-sky-200">
- Terms of Service
- </Link>
-
- <Link
- to="/misc/cookies-policy" className="cursor-pointer transition hover:text-sky-200">
- Cookies Policy
- </Link>
-
- <Link
- to="/misc/socials" className="cursor-pointer transition hover:text-sky-200">
- Socials
- </Link>
- <Link
- to="/about" className="cursor-pointer transition hover:text-sky-200">
- About
- </Link>
- </nav>
-
- <div className="text-center leading-relaxed">
- <div className="mb-1 text-gray-400">
- &copy; 2025-{year}{" "}
- <span className="font-semibold text-white">MorseWords</span>
- <span className=""> ~</span>
- <span className=""> By Suhas Sunder</span>
- </div>
-
- <div className="text-sky-200">
- Fast, practical tools for translating, listening to, and
- practicing Morse code.
- </div>
-
- <div className="mt-2 text-xs text-gray-500">
- -- .- -.. . / .-- .. - .... / 💖
- </div>
- </div>
- </div>
- </footer>
- </div>
- );
+            <div className="mt-2 text-xs text-gray-500">
+              -- .- -.. . / .-- .. - .... / 💖
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 }

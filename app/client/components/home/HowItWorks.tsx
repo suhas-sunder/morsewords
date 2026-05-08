@@ -38,7 +38,7 @@ const supportedPunctuation = [
 export default function HowItWorks() {
   return (
     <section
-      className="bg-[#fffaf2]/35 px-4 pb-12 pt-9 sm:px-6 sm:pb-14 sm:pt-12 lg:px-8"
+      className="bg-[#fffaf2]/35 px-4 pb-8 pt-9 sm:px-6 sm:pb-10 sm:pt-12 lg:px-8"
       aria-labelledby="how-it-works-title"
     >
       <div className="mx-auto max-w-[1160px]">
@@ -58,7 +58,7 @@ export default function HowItWorks() {
               How this Morse code translator works
             </h2>
 
-            <p className="mt-4 max-w-[82ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className="mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               MorseWords is a two-way{" "}
               <strong>Morse code translator and decoder</strong>. It converts
               plain text to <strong>International Morse</strong> and converts
@@ -129,7 +129,7 @@ export default function HowItWorks() {
                     {`HELLO WORLD
 ....   .   .-..   .-..   ---       .--   ---   .-.   .-..   -..`}
                   </pre>
-                  <p className="mt-3 max-w-[78ch] text-base leading-relaxed text-slate-600">
+                  <p className="mt-3 max-w-[58ch] text-base leading-relaxed text-slate-600">
                     The spacing is part of the output. If you copy this Morse
                     elsewhere, keep the gaps.
                   </p>
@@ -150,7 +150,7 @@ export default function HowItWorks() {
               </header>
 
               <div className="max-w-none">
-                <p className="max-w-[82ch] text-base leading-relaxed sm:text-lg">
+                <p className="max-w-[58ch] text-base leading-relaxed sm:text-lg">
                   Decoding is boundary-driven. The tool reads chunks of dots and
                   dashes, then uses separators to decide where each letter and
                   word ends.
@@ -182,7 +182,7 @@ SOS
 ... / --- / ...
 S O S`}
                   </pre>
-                  <p className="mt-3 max-w-[78ch] text-base leading-relaxed text-slate-600">
+                  <p className="mt-3 max-w-[58ch] text-base leading-relaxed text-slate-600">
                     If everything runs together, add separators. The safest
                     format is 3 spaces between letters and 7 spaces between
                     words.
@@ -196,7 +196,7 @@ S O S`}
             id="formatting"
             className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-white/45 py-8"
           >
-            <div className="mx-auto grid max-w-[1160px] gap-6 px-4 sm:px-6 lg:grid-cols-[235px_minmax(0,1fr)] lg:px-8">
+            <div className="mx-auto grid max-w-[1160px] gap-8 px-4 sm:px-6 lg:grid-cols-[235px_minmax(0,1fr)] lg:gap-12 lg:px-8">
               <header>
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                   Input rules
@@ -233,7 +233,7 @@ S O S`}
                   </div>
                 </div>
 
-                <p className="mt-6 max-w-[82ch] text-base leading-relaxed text-slate-600 sm:text-lg">
+                <p className="mt-6 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
                   If you need to preserve exact spacing inside a single word,
                   this tool favors predictable normalization and consistent
                   separators instead.
@@ -255,7 +255,7 @@ S O S`}
 
               <div className="max-w-none">
                 <div>
-                  <p className="max-w-[78ch] text-base leading-relaxed sm:text-lg">
+                  <p className="max-w-[58ch] text-base leading-relaxed sm:text-lg">
                     This translator supports A-Z, 0-9, and a core set of common
                     punctuation. It intentionally does not guess at extended
                     alphabets or locale-specific variants.
@@ -335,7 +335,7 @@ S O S`}
               </header>
 
               <div className="max-w-none">
-                <p className="max-w-[82ch] text-base leading-relaxed sm:text-lg">
+                <p className="max-w-[58ch] text-base leading-relaxed sm:text-lg">
                   A translation is useful immediately, but it becomes easier to
                   remember when you turn the pattern into sound and repeat it in
                   a short focused session.
@@ -374,7 +374,7 @@ S O S`}
                   ))}
                 </div>
 
-                <p className="mt-5 max-w-[82ch] text-base leading-relaxed text-slate-600 sm:text-lg">
+                <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
                   For the next step, open{" "}
                   <Link
                     to="/audio"
@@ -404,13 +404,13 @@ S O S`}
         </div>
 
         <div className="relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-white/45 py-8">
-          <div className="mx-auto grid max-w-[1160px] gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:px-8">
+          <div className="mx-auto grid max-w-[1160px] gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-16 lg:px-8">
           <section>
             <h3 className="text-2xl font-extrabold text-sky-950">
               Quick answers
             </h3>
 
-            <ul className="mt-4 max-w-[68ch] list-disc space-y-2 pl-6 text-base leading-relaxed text-slate-700 sm:text-lg">
+            <ul className="mt-4 max-w-none list-disc space-y-2 pl-6 text-base leading-relaxed text-slate-700 sm:text-lg">
               <li>
                 <strong>What this tool does:</strong> Converts plain text to
                 International Morse code and decodes Morse back to readable

@@ -13,7 +13,7 @@ const CANONICAL_PATH = "/";
 
 const homeRelatedToolsStyles = `
   .mw-home-page ~ #morse-code-navigation {
-    margin-top: 2.75rem;
+    margin-top: 1.75rem;
     background: transparent !important;
     border-radius: 0 !important;
     overflow: visible !important;
@@ -25,7 +25,7 @@ const homeRelatedToolsStyles = `
 
   @media (max-width: 767px) {
     .mw-home-page ~ #morse-code-navigation {
-      margin-top: 2rem;
+      margin-top: 1.25rem;
     }
 
     .mw-home-page ~ #morse-code-navigation > div {
@@ -117,7 +117,7 @@ export default function Home() {
 
       <HowItWorks />
 
-      <div className="mx-auto w-full max-w-[1040px] px-4 pb-16 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1040px] px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8">
         <FaqSectionGeneric
           title="Translator FAQ"
           items={faqItems}

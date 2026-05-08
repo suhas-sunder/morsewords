@@ -89,11 +89,7 @@ export default function TranslatorSectionsBasic({
     readBool("mw_flash", false),
   );
 
-  const [isMobile, setIsMobile] = useState<boolean>(() =>
-    typeof window !== "undefined"
-      ? !!window.matchMedia?.("(max-width: 1100px)")?.matches
-      : false,
-  );
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const [preset, setPreset] = useState<SoundPreset>(
     () => (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio",
@@ -701,15 +697,42 @@ export default function TranslatorSectionsBasic({
             <div
               className={
                 isHome
-                  ? "px-1 pb-2 pt-1 sm:px-2 sm:pb-3 sm:pt-2"
+                  ? "px-1 pb-5 pt-1 sm:px-2 sm:pb-6 sm:pt-2"
                   : "px-1 pb-2 pt-1 sm:px-2 sm:pb-3 sm:pt-2"
               }
             >
               <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <h3 className="text-base font-extrabold text-sky-950">
                     Playback Settings
                   </h3>
+
+                  <div className="flex flex-wrap gap-2 sm:justify-end">
+                    <TogglePill
+                      label="Sound"
+                      checked={soundOn}
+                      onChange={setSoundOn}
+                      icon={<SoundIcon size={16} title="Sound" />}
+                      isHome={isHome}
+                    />
+
+                    <TogglePill
+                      label="Repeat"
+                      checked={repeat}
+                      onChange={setRepeat}
+                      icon={<LoopIcon size={16} title="Repeat" />}
+                      isHome={isHome}
+                    />
+
+                    <TogglePill
+                      label="Flash Light"
+                      checked={flash}
+                      onChange={setFlash}
+                      icon={<LightBulbIcon size={16} title="Light" />}
+                      describedBy={flash ? STROBE_WARNING_ID : undefined}
+                      isHome={isHome}
+                    />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -744,33 +767,6 @@ export default function TranslatorSectionsBasic({
                     onChange={(v) => setVolume(v / 100)}
                     disabled={!soundOn}
                     quietInputFocus={quietInputFocus}
-                  />
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  <TogglePill
-                    label="Sound"
-                    checked={soundOn}
-                    onChange={setSoundOn}
-                    icon={<SoundIcon size={16} title="Sound" />}
-                    isHome={isHome}
-                  />
-
-                  <TogglePill
-                    label="Repeat"
-                    checked={repeat}
-                    onChange={setRepeat}
-                    icon={<LoopIcon size={16} title="Repeat" />}
-                    isHome={isHome}
-                  />
-
-                  <TogglePill
-                    label="Flash Light"
-                    checked={flash}
-                    onChange={setFlash}
-                    icon={<LightBulbIcon size={16} title="Light" />}
-                    describedBy={flash ? STROBE_WARNING_ID : undefined}
-                    isHome={isHome}
                   />
                 </div>
 

@@ -55,7 +55,7 @@ export default function PageBackdrop() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const backdropClassName = isHome
-    ? "pointer-events-none absolute inset-0 z-0 hidden overflow-hidden min-[1760px]:block"
+    ? "pointer-events-none absolute inset-0 z-0 hidden overflow-hidden min-[1360px]:block"
     : "pointer-events-none absolute inset-0 z-0 hidden overflow-hidden min-[1900px]:block";
   const railStyle = isHome ? sideRailStyle : nonHomeSideRailStyle;
   const leftRailClassName = isHome
