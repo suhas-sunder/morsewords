@@ -252,6 +252,22 @@ Approved button treatment is centralized by `app/app.css` and
   lead copy.
 - Do not compress the header row to keep too many buttons.
 
+### Navigation/header dropdown
+
+- Keep direct top-nav links focused on highest-value destinations: All tools,
+  Translator, Audio, Practice, Worksheets, Typing, How to use, and More.
+- Secondary destinations belong in the More/tools dropdown, grouped by user
+  intent. Do not promote niche/reference pages into the top nav unless the user
+  explicitly asks.
+- The More dropdown must follow the approved home palette, spacing, typography,
+  and button behavior. When it opens from the dark header, prefer a dark
+  nav-matched surface with sky text; no gradients, outlines, nested cards, or
+  new shadow systems.
+- As the page count grows, the dropdown should support lightweight client-side
+  search and stay easy to scan on desktop without breaking mobile navigation.
+- Top-nav hit areas should be forgiving like normal website navigation. Increase
+  clickable padding without changing the visible text styling.
+
 ### How-it-works/support/SEO
 
 - Follow home and audio: generous spacing, max width `1160px`, readable
