@@ -10,10 +10,8 @@ import {
   TOOL_SPACING_HELPER,
   ToolButton,
   ToolHero,
-  ToolModeButton,
   ToolOutputPanel,
   ToolPanel,
-  ToolSampleButtons,
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
 import {
@@ -35,6 +33,18 @@ import {
 
 type SourceMode = "text" | "morse";
 const STROBE_WARNING_ID = "audio-translator-strobe-warning";
+const AUDIO_TOOL_EXAMPLES = HOME_TOOL_EXAMPLES.filter(
+  (example) => example !== "I love Morse code",
+);
+const focusOutline =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+const ACTIVE_CONTROL = "bg-slate-950 text-sky-100";
+const HOME_SOFT_CONTROL_DARK =
+  "bg-white/88 text-slate-900 hover:bg-slate-900 hover:text-sky-100";
+const DARK_PANEL_BUTTON =
+  "bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white";
+const DARK_PANEL_DISABLED =
+  "cursor-not-allowed bg-slate-800/60 text-slate-500";
 
 export default function MorseAudioTranslator() {
   const player = useMorseAudio();
@@ -224,6 +234,10 @@ export default function MorseAudioTranslator() {
     });
   }, [player, activeCode, canPlay, charWpm, farnsworthWpm]);
 
+  const renderedSoundOn = hydrated ? soundOn : true;
+  const renderedRepeat = hydrated ? repeat : false;
+  const renderedFlash = hydrated ? flash : false;
+
   const unsupportedPlain = React.useMemo(
     () => getUnsupportedTextCharacters(text),
     [text],
@@ -330,7 +344,7 @@ export default function MorseAudioTranslator() {
 
   return (
     <div style={styles.page}>
-      {flash && (
+      {renderedFlash && (
         <div
           id="mw_flash_overlay"
           className="fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75"
@@ -345,40 +359,55 @@ export default function MorseAudioTranslator() {
                 lead="Convert text or pasted Morse into playable audio. Adjust listening settings, then export a WAV file from your browser."
               />
               <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <div className="flex flex-wrap items-center gap-2">
-                <ToolModeButton
-                  type="button"
-                  onClick={() => setSourceMode("text")}
-                  active={sourceMode === "text"}
-                >
-                  Text to Morse audio
-                </ToolModeButton>
-                <ToolModeButton
-                  type="button"
-                  onClick={() => setSourceMode("morse")}
-                  active={sourceMode === "morse"}
-                >
-                  Morse to audio
-                </ToolModeButton>
-
-                <ToolSampleButtons
-                  examples={HOME_TOOL_EXAMPLES}
-                  onPick={(example) =>
-                    sourceMode === "text" ? setText(example) : setMorse(textToMorse(example))
-                  }
-                />
-
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="inline-flex w-full gap-2 rounded-lg sm:w-auto">
+                  <button
+                    type="button"
+                    onClick={() => setSourceMode("text")}
+                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition active:scale-95 sm:w-auto ${focusOutline} ${
+                      sourceMode === "text"
+                        ? ACTIVE_CONTROL
+                        : HOME_SOFT_CONTROL_DARK
+                    }`}
+                    aria-pressed={sourceMode === "text"}
+                  >
+                    Text to Morse audio
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSourceMode("morse")}
+                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition active:scale-95 sm:w-auto ${focusOutline} ${
+                      sourceMode === "morse"
+                        ? ACTIVE_CONTROL
+                        : HOME_SOFT_CONTROL_DARK
+                    }`}
+                    aria-pressed={sourceMode === "morse"}
+                  >
+                    Morse to audio
+                  </button>
                 </div>
-                <p className="text-right text-sm leading-relaxed text-slate-600 sm:ml-auto">
-                  {player.isSupported ? (
-                    <>Est. time: {formatMs(durationMs).toString()}</>
-                  ) : (
-                    <span className="text-slate-500">
-                      Audio unavailable in this browser
-                    </span>
-                  )}
+
+                <div className="flex flex-wrap gap-2">
+                  {AUDIO_TOOL_EXAMPLES.map((example) => (
+                    <button
+                      type="button"
+                      key={example}
+                      onClick={() =>
+                        sourceMode === "text"
+                          ? setText(example)
+                          : setMorse(textToMorse(example))
+                      }
+                      className={`cursor-pointer rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${HOME_SOFT_CONTROL_DARK}`}
+                    >
+                      Try &ldquo;{example}&rdquo;
+                    </button>
+                  ))}
+                </div>
+
+                <p className="shrink-0 text-sm leading-relaxed text-slate-600 lg:ml-auto lg:text-right">
+                  Est. time: {formatMs(durationMs).toString()}
                 </p>
+              </div>
               </div>
 
               <div className="mt-4 grid gap-4 lg:grid-cols-2">
@@ -435,25 +464,27 @@ export default function MorseAudioTranslator() {
                   label="Output (Morse)"
                   footer={
                     <>
-                      <ToolButton
+                      <button
                         type="button"
-                        tone="darkPanel"
                         onClick={handleClearOutput}
-                        className="rounded-md px-3 py-1.5 text-sm"
+                        className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${DARK_PANEL_BUTTON}`}
                       >
                         Clear output
-                      </ToolButton>
+                      </button>
 
-                      <ToolButton
+                      <button
                         type="button"
-                        tone="darkPanel"
                         onClick={handleCopyMorse}
                         disabled={!canPlay}
-                        className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm"
+                        className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
+                          canPlay
+                            ? `cursor-pointer ${DARK_PANEL_BUTTON}`
+                            : DARK_PANEL_DISABLED
+                        }`}
                       >
                         <CopyIcon size={16} title="Copy Output" />
                         <span>{copied === "morse" ? "Copied" : "Copy Output"}</span>
-                      </ToolButton>
+                      </button>
                     </>
                   }
                 >
@@ -516,7 +547,7 @@ export default function MorseAudioTranslator() {
 
                 <ToolButton
                   onClick={handleExportWav}
-                  disabled={!canPlay || !soundOn}
+                  disabled={!canPlay || !renderedSoundOn}
                   tone="light"
                   className="flex justify-center items-center gap-2 rounded-xl py-2.5"
                 >
@@ -527,19 +558,32 @@ export default function MorseAudioTranslator() {
             </div>
 
             <div className="mt-6">
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <h2 className="text-base font-extrabold text-sky-950">
                   Audio controls
                 </h2>
-                <span className="text-sm text-slate-600">
-                  {player.isSupported
-                    ? player.state === "idle"
-                      ? "Ready"
-                      : player.state === "playing"
-                        ? "Playing"
-                        : "Paused"
-                    : "Unavailable"}
-                </span>
+
+                <div className="flex flex-wrap gap-2 sm:justify-end">
+                  <TogglePill
+                    label="Sound"
+                    checked={renderedSoundOn}
+                    onChange={(v) => setFeedback("sound", v)}
+                    icon={<SoundIcon size={16} title="Sound" />}
+                  />
+                  <TogglePill
+                    label="Repeat"
+                    checked={renderedRepeat}
+                    onChange={(v) => setFeedback("repeat", v)}
+                    icon={<LoopIcon size={16} title="Repeat" />}
+                  />
+                  <TogglePill
+                    label="Flash"
+                    checked={renderedFlash}
+                    onChange={(v) => setFeedback("flash", v)}
+                    icon={<LightBulbIcon size={16} title="Flash" />}
+                    describedBy={renderedFlash ? STROBE_WARNING_ID : undefined}
+                  />
+                </div>
               </div>
 
               <div className="mt-4 grid sm:grid-cols-2 gap-4">
@@ -560,7 +604,6 @@ export default function MorseAudioTranslator() {
                   step={1}
                   unit="WPM"
                   onChange={setFarnsworthWpm}
-                  help="Slower spacing, same character speed"
                 />
                 <SliderRow
                   label="Pitch"
@@ -570,7 +613,7 @@ export default function MorseAudioTranslator() {
                   step={10}
                   unit="Hz"
                   onChange={setToneHz}
-                  disabled={!soundOn || preset === "sounder"}
+                    disabled={!renderedSoundOn || preset === "sounder"}
                 />
                 <SliderRow
                   label="Volume"
@@ -580,7 +623,7 @@ export default function MorseAudioTranslator() {
                   step={1}
                   unit="%"
                   onChange={(v) => setVolume(v / 100)}
-                  disabled={!soundOn}
+                  disabled={!renderedSoundOn}
                 />
               </div>
 
@@ -609,7 +652,7 @@ export default function MorseAudioTranslator() {
                         step={1}
                         unit="ms"
                         onChange={setAttackMs}
-                        disabled={!soundOn || preset === "sounder"}
+                        disabled={!renderedSoundOn || preset === "sounder"}
                         help="Softens clicks at the start."
                       />
                       <SliderRow
@@ -620,35 +663,13 @@ export default function MorseAudioTranslator() {
                         step={1}
                         unit="ms"
                         onChange={setReleaseMs}
-                        disabled={!soundOn || preset === "sounder"}
+                        disabled={!renderedSoundOn || preset === "sounder"}
                         help="Softens clicks at the end."
                       />
                     </div>
                   </div>
 
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <TogglePill
-                      label="Sound"
-                      checked={soundOn}
-                      onChange={(v) => setFeedback("sound", v)}
-                      icon={<SoundIcon size={16} title="Sound" />}
-                    />
-                    <TogglePill
-                      label="Repeat"
-                      checked={repeat}
-                      onChange={(v) => setFeedback("repeat", v)}
-                      icon={<LoopIcon size={16} title="Repeat" />}
-                    />
-                    <TogglePill
-                      label="Flash"
-                      checked={flash}
-                      onChange={(v) => setFeedback("flash", v)}
-                      icon={<LightBulbIcon size={16} title="Flash" />}
-                      describedBy={flash ? STROBE_WARNING_ID : undefined}
-                    />
-                  </div>
-
-                  {flash ? (
+                  {renderedFlash ? (
                     <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
                   ) : null}
                 </div>
@@ -694,7 +715,7 @@ export default function MorseAudioTranslator() {
                         unit="ms"
                         onChange={setTailMs}
                         help="Extra silence to avoid clipped tails."
-                        disabled={!soundOn}
+                        disabled={!renderedSoundOn}
                       />
                     </div>
                   </div>
@@ -703,9 +724,9 @@ export default function MorseAudioTranslator() {
                     <button
                       type="button"
                       onClick={handleExportWav}
-                      disabled={!canPlay || !soundOn}
+                      disabled={!canPlay || !renderedSoundOn}
                       className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
-                        canPlay && soundOn
+                        canPlay && renderedSoundOn
                           ? "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
                           : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                       }`}
@@ -726,10 +747,6 @@ export default function MorseAudioTranslator() {
                 </button>
               </div>
 
-              <p className="mt-4 text-xs text-slate-500">
-                Audio is generated in your browser. Nothing is uploaded.
-              </p>
-              </div>
             </div>
       </section>
     </div>

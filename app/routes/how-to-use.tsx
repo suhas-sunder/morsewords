@@ -100,7 +100,7 @@ export default function HowToUse() {
       </main>
       <nav
         aria-label="Breadcrumb"
-        className="mx-auto w-full max-w-[1120px] px-4 pb-4 text-sm text-slate-600 sm:px-6 lg:px-8"
+        className="mx-auto w-full max-w-[1120px] px-4 pb-12 text-sm text-slate-600 sm:px-6 lg:px-8"
       >
         <ol className="flex flex-wrap items-center gap-2">
           <li>

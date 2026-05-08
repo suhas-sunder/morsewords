@@ -346,7 +346,7 @@ export default function About() {
           items={aboutFaqItems}
         />
 
-        <nav aria-label="Breadcrumb" className="mb-4 mt-10 text-sm text-slate-600">
+        <nav aria-label="Breadcrumb" className="mb-12 mt-10 text-sm text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
               <a

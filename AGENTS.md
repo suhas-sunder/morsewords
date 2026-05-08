@@ -44,6 +44,8 @@ Use this idea as directional guidance, but do not repeat it everywhere verbatim:
 
 The approved home page is the visual source of truth.
 
+When matching another page to the home page, inspect the actual home implementation and computed styles instead of guessing colors, spacing, button sizes, or layout rhythm.
+
 Follow the existing home page for:
 
 - color palette

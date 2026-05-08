@@ -46,7 +46,7 @@ export default function TermsOfService() {
   return (
     <div className="mw-non-home-page mx-auto flex w-full max-w-[1120px] flex-col gap-8 px-4 pb-10 pt-2 text-slate-800 sm:px-6 sm:pb-12 sm:pt-4 lg:px-8">
       <header className="flex w-full flex-col gap-5 px-1 py-3 sm:px-2">
-        <nav aria-label="Breadcrumb" className="text-sm font-semibold text-slate-600">
+        <nav aria-label="Breadcrumb" className="mb-12 text-sm font-semibold text-slate-600">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
               <Link to="/" className="hover:underline">

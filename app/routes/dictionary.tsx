@@ -758,7 +758,7 @@ export default function DictionaryRoute() {
  <FaqSectionGeneric title="Dictionary FAQ" items={faqItems} />
  </div>
 
- <nav aria-label="Breadcrumb" className="mb-4 text-sm text-slate-600">
+ <nav aria-label="Breadcrumb" className="mb-12 text-sm text-slate-600">
  <ol className="flex flex-wrap items-center gap-2">
  <li>
  <a href="/" className="underline hover:no-underline cursor-pointer">

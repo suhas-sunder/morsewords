@@ -4,233 +4,277 @@ const workedExamples = [
   {
     title: "Message audio",
     input: "HELLO WORLD",
-    body: "Use this for a full phrase you want to hear as Morse. The page converts the text into dot-dash timing, then plays the whole message as audio.",
+    body: "Use this for a complete phrase you want to hear. Preview the timing, then export the same signal when it sounds right.",
   },
   {
     title: "Practice call",
     input: "CQ CQ",
-    body: "Use a short repeated call when you want to test speed and spacing before exporting a longer practice clip.",
+    body: "Use a short repeated call to check speed and spacing before saving a longer listening clip.",
   },
   {
     title: "Short alert",
     input: "SOS",
-    body: "SOS is compact and recognizable, so it is useful for checking tone, volume, and export timing before saving a file.",
+    body: "SOS is compact and recognizable, so it is useful for testing tone, volume, and WAV export.",
   },
 ];
 
 const settingRows = [
   {
     name: "Character speed",
-    body: "Sets the basic dit length. Raise it when the symbols should form faster, and lower it when the dits and dahs are too hard to separate.",
+    body: "Sets the dit length. Raise it when symbols should form faster, and lower it when the characters are hard to separate.",
   },
   {
     name: "Farnsworth spacing",
-    body: "Adds extra silence between letters and words while keeping the characters crisp. This is useful for listening practice.",
+    body: "Adds silence between letters and words while keeping each character crisp for listening practice.",
   },
   {
     name: "Pitch, waveform, and volume",
-    body: "Change how the audio feels to your ear. These controls affect tone quality, not the Morse message itself.",
+    body: "Change how the signal feels to your ear. These controls affect tone quality, not the Morse message.",
   },
   {
     name: "Attack, release, and tail padding",
-    body: "Soften clicks and keep the final symbol from being clipped when the WAV is opened in another editor.",
+    body: "Soften clicks and leave enough room so the final symbol is not clipped in the exported WAV.",
   },
 ];
 
 export default function HowItWorksAudio() {
   return (
-    <section className="mw-static-surface-soft mw-how-section mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-sky-800" />
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-            Audio spec
-          </span>
+    <section className="relative left-1/2 mt-14 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/35 px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1160px]">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-sky-800" />
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+                Audio spec
+              </span>
+            </div>
+
+            <h2 className="mt-4 max-w-[18ch] text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+              How this Morse code audio generator works
+            </h2>
+
+            <p className="mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              This page turns a message into playable Morse audio. Type text or
+              paste Morse, listen to the signal, tune the timing and tone, then
+              export a WAV file when you need a reusable clip.
+            </p>
+          </div>
+
+          <p className="max-w-[30ch] text-base leading-relaxed text-slate-700">
+            Playback and WAV export happen locally in your browser; your message
+            is not uploaded.
+          </p>
         </div>
 
-        <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
-          How this Morse code audio generator works
-        </h2>
+        <div className="mt-10 grid gap-7 md:grid-cols-3">
+          <section>
+            <h3 className="text-base font-extrabold text-sky-950">
+              Who this page is for
+            </h3>
+            <p className="mt-2 max-w-[34ch] text-base leading-relaxed text-slate-700">
+              Use it when you want to hear a complete Morse message or save a
+              WAV file for practice, lessons, demos, videos, or sharing.
+            </p>
+          </section>
 
-        <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
-          This page is for turning a message into playable Morse audio. Type
-          text, paste Morse, listen to the signal, tune the timing and tone, and
-          export a WAV file when you need a reusable practice or sharing clip.
-        </p>
-      </div>
+          <section>
+            <h3 className="text-base font-extrabold text-sky-950">
+              What it accepts
+            </h3>
+            <p className="mt-2 max-w-[34ch] text-base leading-relaxed text-slate-700">
+              The tool accepts plain text or pasted Morse. Spaces in pasted
+              Morse control the letter and word gaps used for playback.
+            </p>
+          </section>
 
-      <div className="mt-7 grid gap-4 md:grid-cols-3">
-        <section className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
-          <h3 className="text-base font-extrabold text-sky-950">
-            Who this page is for
-          </h3>
-          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
-            Use it when you want to hear a complete Morse message or save a WAV
-            file for practice, lessons, demos, videos, or sharing.
-          </p>
-        </section>
+          <section>
+            <h3 className="text-base font-extrabold text-sky-950">
+              What it exports
+            </h3>
+            <p className="mt-2 max-w-[34ch] text-base leading-relaxed text-slate-700">
+              WAV export is rendered locally, so the saved file preserves the
+              same speed, spacing, and tone you preview.
+            </p>
+          </section>
+        </div>
 
-        <section className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
-          <h3 className="text-base font-extrabold text-sky-950">
-            What it accepts
-          </h3>
-          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
-            The tool accepts plain text or pasted Morse. Spaces in pasted Morse
-            control the letter and word gaps used for playback.
-          </p>
-        </section>
+        <div className="mt-14 space-y-14 text-slate-700">
+          <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                Build audio
+              </span>
+              <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
+                How to generate Morse audio
+              </h3>
+            </div>
+            <ol className="max-w-[58ch] list-decimal space-y-3 pl-6 text-base leading-relaxed sm:text-lg">
+              <li>Choose text input or Morse input.</li>
+              <li>Enter the message and verify the generated Morse preview.</li>
+              <li>Set speed, Farnsworth spacing, pitch, waveform, and volume.</li>
+              <li>Play the audio, then export WAV when the timing sounds right.</li>
+            </ol>
+          </section>
 
-        <section className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
-          <h3 className="text-base font-extrabold text-sky-950">
-            What it exports
-          </h3>
-          <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
-            WAV export is rendered locally in the browser so the saved file
-            preserves the same speed, spacing, and tone you preview.
-          </p>
-        </section>
-      </div>
-
-      <div className="mt-10 space-y-10 text-slate-700">
-        <section>
-          <h3 className="text-xl font-extrabold text-sky-950 sm:text-2xl">
-            How to generate Morse audio
-          </h3>
-          <ol className="mt-4 list-decimal space-y-3 pl-6 text-base leading-relaxed sm:text-lg">
-            <li>Choose text input or Morse input.</li>
-            <li>Enter the message and verify the generated Morse preview.</li>
-            <li>Set speed, Farnsworth spacing, pitch, waveform, and volume.</li>
-            <li>Play the audio, then export WAV when the timing sounds right.</li>
-          </ol>
-        </section>
-
-        <section>
-          <h3 className="text-xl font-extrabold text-sky-950 sm:text-2xl">
-            Worked audio examples
-          </h3>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            {workedExamples.map((item) => (
-              <article
-                key={item.title}
-                className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5"
-              >
-                <h4 className="font-extrabold text-sky-950">{item.title}</h4>
-                <pre className="mw-static-code mt-3 whitespace-pre-wrap rounded-lg bg-[#fffdf8] p-3 font-mono text-sm text-slate-900">{item.input}</pre>
-                <p className="mt-3 text-base leading-relaxed text-slate-700">
-                  {item.body}
-                </p>
-              </article>
-            ))}
-          </div>
-          <p className="mt-4 text-base leading-relaxed text-slate-700 sm:text-lg">
-            For more context on the short emergency pattern, see{" "}
-            <a
-              href="/morse-code-sos"
-              className="font-semibold text-sky-900 underline-offset-4 hover:underline"
-            >
-              SOS in Morse code
-            </a>
-            .
-          </p>
-        </section>
-
-        <section>
-          <h3 className="text-xl font-extrabold text-sky-950 sm:text-2xl">
-            Audio settings explained
-          </h3>
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            {settingRows.map((row) => (
-              <div key={row.name} className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
-                <h4 className="font-extrabold text-sky-950">{row.name}</h4>
-                <p className="mt-2 text-base leading-relaxed text-slate-700">
-                  {row.body}
-                </p>
+          <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                Examples
+              </span>
+              <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
+                Worked audio examples
+              </h3>
+            </div>
+            <div>
+              <div className="grid gap-5 md:grid-cols-3">
+                {workedExamples.map((item) => (
+                  <article key={item.title}>
+                    <h4 className="font-extrabold text-sky-950">
+                      {item.title}
+                    </h4>
+                    <pre className="mw-static-code mt-3 whitespace-pre-wrap rounded-lg bg-[#fffdf8] p-3 font-mono text-sm text-slate-900">
+                      {item.input}
+                    </pre>
+                    <p className="mt-3 max-w-[32ch] text-base leading-relaxed text-slate-700">
+                      {item.body}
+                    </p>
+                  </article>
+                ))}
               </div>
-            ))}
-          </div>
-          <p className="mt-4 text-base leading-relaxed text-slate-700 sm:text-lg">
-            For deeper timing rules, use the{" "}
-            <a
-              href="/morse-code-timing"
-              className="font-semibold text-sky-900 underline-offset-4 hover:underline"
-            >
-              Morse code timing guide
-            </a>{" "}
-            and the{" "}
-            <a
-              href="/farnsworth-timing"
-              className="font-semibold text-sky-900 underline-offset-4 hover:underline"
-            >
-              Farnsworth timing guide
-            </a>
-            .
-          </p>
-        </section>
+              <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+                For more context on the short emergency pattern, see{" "}
+                <a
+                  href="/morse-code-sos"
+                  className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                >
+                  SOS in Morse code
+                </a>
+                .
+              </p>
+            </div>
+          </section>
 
-        <section>
-          <h3 className="text-xl font-extrabold text-sky-950 sm:text-2xl">
-            Common audio mistakes and fixes
-          </h3>
-          <ul className="mt-4 list-disc space-y-3 pl-6 text-base leading-relaxed sm:text-lg">
-            <li>
-              <strong>Audio sounds cramped:</strong> increase Farnsworth spacing
-              before lowering character speed.
-            </li>
-            <li>
-              <strong>Pitch feels uncomfortable:</strong> change pitch in small
-              steps; this does not change the Morse message.
-            </li>
-            <li>
-              <strong>Symbols click:</strong> add a little attack and release,
-              or use a smoother waveform.
-            </li>
-            <li>
-              <strong>Export clips the ending:</strong> increase tail padding so
-              the final release has room to finish.
-            </li>
-          </ul>
-        </section>
+          <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                Settings
+              </span>
+              <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
+                Audio settings explained
+              </h3>
+            </div>
+            <div>
+              <div className="grid gap-6 md:grid-cols-2">
+                {settingRows.map((row) => (
+                  <div key={row.name}>
+                    <h4 className="font-extrabold text-sky-950">{row.name}</h4>
+                    <p className="mt-2 max-w-[36ch] text-base leading-relaxed text-slate-700">
+                      {row.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+                For deeper timing rules, use the{" "}
+                <a
+                  href="/morse-code-timing"
+                  className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                >
+                  Morse code timing guide
+                </a>{" "}
+                and the{" "}
+                <a
+                  href="/farnsworth-timing"
+                  className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                >
+                  Farnsworth timing guide
+                </a>
+                .
+              </p>
+            </div>
+          </section>
 
-        <section className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
-          <h3 className="text-xl font-extrabold text-sky-950 sm:text-2xl">
-            Audio generator vs sound generator
-          </h3>
-          <p className="mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
-            Use this page when you want to hear or save a Morse message as WAV
-            audio. Use the{" "}
-            <a
-              href="/morse-code-sound-generator"
-              className="font-semibold text-sky-900 underline-offset-4 hover:underline"
-            >
-              Morse code sound generator
-            </a>{" "}
-            when you mainly want to shape the beep, waveform, tone, or MP3/WAV
-            practice signal.
-          </p>
-        </section>
+          <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                Fix mistakes
+              </span>
+              <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
+                Common audio mistakes and fixes
+              </h3>
+            </div>
+            <ul className="grid max-w-[58rem] list-disc gap-x-10 gap-y-4 pl-6 text-base leading-relaxed sm:text-lg md:grid-cols-2">
+              <li>
+                <strong>Audio sounds cramped:</strong> increase Farnsworth
+                spacing before lowering character speed.
+              </li>
+              <li>
+                <strong>Pitch feels uncomfortable:</strong> change pitch in
+                small steps; this does not change the message.
+              </li>
+              <li>
+                <strong>Symbols click:</strong> add a little attack and release,
+                or use a smoother waveform.
+              </li>
+              <li>
+                <strong>Export clips the ending:</strong> increase tail padding
+                so the final release has room to finish.
+              </li>
+            </ul>
+          </section>
 
-        <section>
-          <h3 className="text-xl font-extrabold text-sky-950 sm:text-2xl">
-            Best next step after creating audio
-          </h3>
-          <p className="mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
-            If the file is for listening drills, move into{" "}
-            <a
-              href="/morse-code-audio-practice"
-              className="font-semibold text-sky-900 underline-offset-4 hover:underline"
-            >
-              Morse audio practice
-            </a>{" "}
-            or test recognition with the{" "}
-            <a
-              href="/morse-code-audio-quiz"
-              className="font-semibold text-sky-900 underline-offset-4 hover:underline"
-            >
-              Morse audio quiz
-            </a>
-            .
-          </p>
-        </section>
+          <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                Compare
+              </span>
+              <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
+                Audio generator vs sound generator
+              </h3>
+            </div>
+            <p className="max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              Use this page when you want to hear or save a full Morse message
+              as WAV audio. Use the{" "}
+              <a
+                href="/morse-code-sound-generator"
+                className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+              >
+                Morse code sound generator
+              </a>{" "}
+              when you mainly want to shape the beep, waveform, tone, or
+              MP3/WAV practice signal.
+            </p>
+          </section>
+
+          <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                Next step
+              </span>
+              <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
+                Best next step after creating audio
+              </h3>
+            </div>
+            <p className="max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              If the file is for listening drills, move into{" "}
+              <a
+                href="/morse-code-audio-practice"
+                className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+              >
+                Morse audio practice
+              </a>{" "}
+              or test recognition with the{" "}
+              <a
+                href="/morse-code-audio-quiz"
+                className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+              >
+                Morse audio quiz
+              </a>
+              .
+            </p>
+          </section>
+        </div>
       </div>
     </section>
   );
