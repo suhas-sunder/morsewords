@@ -18,14 +18,17 @@ export default function PromptCard({
   prompt,
   questionNumber,
   totalQuestions,
+  forceDarkPrompt = false,
 }: {
   prompt: Prompt;
   questionNumber: number;
   totalQuestions: number;
+  forceDarkPrompt?: boolean;
 }) {
   const kindLabel =
     prompt.kind === "text_to_morse" ? "Text -> Morse" : "Morse -> Text";
   const questionLabel = `Question ${questionNumber}/${totalQuestions}`;
+  const useDarkPanel = prompt.kind === "morse_to_text" || forceDarkPrompt;
 
   const renderMorse = (morse: string) => {
     return morse.split("").map((ch, i) => {
@@ -36,13 +39,6 @@ export default function PromptCard({
             style={{
               display: "inline-block",
               width: "0.6em",
-              // Only spaces get a subtle tint so users can visually count gaps.
-              // Dots and dashes remain completely unstyled.
-              backgroundColor: "#dbeaf6",
-              opacity: 0.3,
-              borderRadius: "6px",
-              // Tiny separation so consecutive spaces don't look like a single block.
-              marginRight: "3px",
             }}
           >
             &nbsp;
@@ -57,7 +53,7 @@ export default function PromptCard({
     <div
       className={[
         "min-h-[4.5rem] break-words whitespace-pre-wrap px-4 pb-5 pt-2 font-mono tracking-wide",
-        prompt.kind === "morse_to_text"
+        useDarkPanel
           ? "text-2xl text-sky-100 sm:text-3xl"
           : "text-2xl text-slate-950 sm:text-3xl",
       ].join(" ")}
@@ -68,7 +64,7 @@ export default function PromptCard({
     </div>
   );
 
-  return prompt.kind === "morse_to_text" ? (
+  return useDarkPanel ? (
     <ToolOutputPanel
       label={
         <span className="inline-flex flex-wrap items-center gap-2">
