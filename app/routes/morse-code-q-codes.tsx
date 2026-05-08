@@ -14,6 +14,7 @@ import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import { Q_CODES } from "~/client/data/morseLearning";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/morse-code-q-codes";
 
@@ -270,6 +271,7 @@ export default function MorseCodeQCodes() {
 
         <JsonLdScript jsonLd={jsonLd} />
       </main>
+      <BreadcrumbTrail current="Morse Code Q-Codes" />
     </div>
   );
 }

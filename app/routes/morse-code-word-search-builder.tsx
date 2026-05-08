@@ -17,6 +17,7 @@ import {
  WarningIcon,
 } from "~/client/assets/svg/Icons";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
  ActionLinks,
@@ -1107,6 +1108,12 @@ export default function MorseCodeWordSearchBuilder() {
  applicationCategory:"EducationalApplication",
  isPartOf: {"@type":"WebSite", name:"MorseWords", url: SITE_URL },
  };
+ const breadcrumbJsonLd = {"@context":"https://schema.org","@type":"BreadcrumbList",
+ itemListElement: [
+ {"@type":"ListItem", position: 1, name:"Home", item: SITE_URL +"/"},
+ {"@type":"ListItem", position: 2, name:"Morse Code Word Search Builder", item: CANONICAL},
+ ],
+ };
  const faqJsonLd = {"@context":"https://schema.org","@type":"FAQPage",
  mainEntity: faqItems.map((item) => ({"@type":"Question",
  name: item.q,
@@ -1618,8 +1625,9 @@ export default function MorseCodeWordSearchBuilder() {
 
  <FaqSectionGeneric title="Word search FAQ" items={faqItems} />
 
- <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
+ <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
  </main>
+ <BreadcrumbTrail current="Morse Code Word Search Builder" />
  </div>
  );
 }

@@ -12,6 +12,7 @@ import {
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/learn-morse-code";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -309,6 +310,7 @@ export default function LearnMorseCode() {
 
         <JsonLdScript jsonLd={jsonLd} />
       </main>
+      <BreadcrumbTrail current="Learn Morse Code" />
     </div>
   );
 }

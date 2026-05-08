@@ -2,7 +2,9 @@
 
 import { Link } from "react-router";
 import type { Route } from "./+types/misc.socials";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { canonicalUrl, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 export const meta: Route.MetaFunction = () => {
   const canonical = canonicalUrl("/misc/socials");
@@ -85,6 +87,21 @@ function ExternalCard(props: { to: string; title: string; subtitle?: string }) {
 }
 
 export default function Socials() {
+  const canonical = canonicalUrl("/misc/socials");
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Socials",
+        item: canonical,
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col px-4 pb-10 pt-2 sm:pb-12 sm:pt-4">
       <header className="mb-10 px-1 py-3 sm:px-2">
@@ -216,6 +233,8 @@ export default function Socials() {
           </ul>
         </section>
       </main>
+      <BreadcrumbTrail current="Socials" />
+      <JsonLdScript jsonLd={breadcrumbJsonLd} />
     </div>
   );
 }

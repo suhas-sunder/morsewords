@@ -5,6 +5,7 @@ import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { PageHero } from "~/client/components/shared/MorseLearningLayout";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/sitemap";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -285,6 +286,20 @@ export default function HtmlSitemap() {
     },
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "HTML Sitemap",
+        item: CANONICAL_URL,
+      },
+    ],
+  };
+
   return (
     <div className="mw-non-home-page" style={styles.page}>
       <main style={styles.wrap}>
@@ -336,8 +351,9 @@ export default function HtmlSitemap() {
           ))}
         </div>
 
-        <JsonLdScript jsonLd={jsonLd} />
+        <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd]} />
       </main>
+      <BreadcrumbTrail current="HTML Sitemap" />
     </div>
   );
 }

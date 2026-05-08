@@ -38,6 +38,7 @@ import {
   StopIcon,
 } from "~/client/assets/svg/Icons";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/morse-code-audio-quiz";
 const STROBE_WARNING_ID = "audio-quiz-strobe-warning";
@@ -869,6 +870,7 @@ export default function MorseCodeAudioQuiz() {
 
         <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
+      <BreadcrumbTrail current="Morse Code Audio Quiz" />
     </div>
   );
 }

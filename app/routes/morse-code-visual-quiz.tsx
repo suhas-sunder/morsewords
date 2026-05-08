@@ -2,6 +2,7 @@ import * as React from "react";
 import type { Route } from "./+types/morse-code-visual-quiz";
 
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
@@ -637,6 +638,7 @@ export default function MorseCodeVisualQuiz() {
 
         <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
+      <BreadcrumbTrail current="Morse Code Visual Quiz" />
     </div>
   );
 }

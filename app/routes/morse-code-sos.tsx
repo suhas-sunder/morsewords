@@ -7,6 +7,7 @@ import { morseToText, textToMorse } from "~/client/components/shared/morseUtils"
 import styles from "~/client/components/shared/pageStyles";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/morse-code-sos";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -167,6 +168,19 @@ export default function MorseCodeSos() {
       about: [
         { "@type": "Thing", name: "SOS distress signal" },
         { "@type": "Thing", name: "International Morse code" },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Morse Code SOS",
+          item: CANONICAL_URL,
+        },
       ],
     },
     {
@@ -389,6 +403,7 @@ export default function MorseCodeSos() {
           <JsonLdScript key={index} jsonLd={item} />
         ))}
       </main>
+      <BreadcrumbTrail current="Morse Code SOS" />
     </div>
   );
 }

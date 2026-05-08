@@ -15,6 +15,7 @@ import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import { DIGITS, LETTERS, PROSIGNS, PUNCTUATION, Q_CODES } from "~/client/data/morseLearning";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/international-morse-code-reference";
 
@@ -297,6 +298,7 @@ export default function InternationalMorseCodeReference() {
 
         <JsonLdScript jsonLd={jsonLd} />
       </main>
+      <BreadcrumbTrail current="International Morse Code Reference" />
     </div>
   );
 }

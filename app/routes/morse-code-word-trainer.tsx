@@ -16,6 +16,7 @@ import {
 } from "~/client/assets/svg/Icons";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
@@ -1030,6 +1031,7 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
 
  <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
  </main>
+ <BreadcrumbTrail current="Morse Code Word Trainer" />
  </div>
  );
 }

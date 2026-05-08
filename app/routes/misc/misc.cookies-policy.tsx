@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { Link, type MetaFunction } from "react-router";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   HERO_EYEBROW_LINE_CLASS,
   HERO_EYEBROW_ROW_CLASS,
@@ -8,6 +9,7 @@ import {
   HERO_TITLE_CLASS,
 } from "~/client/components/shared/heroStyles";
 import { canonicalUrl, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 export const meta: MetaFunction = () => {
   const canonical = canonicalUrl("/misc/cookies-policy");
@@ -43,6 +45,21 @@ export const meta: MetaFunction = () => {
 };
 
 export default function CookiesPolicy() {
+  const canonical = canonicalUrl("/misc/cookies-policy");
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Cookies Policy",
+        item: canonical,
+      },
+    ],
+  };
+
   return (
     <div className="mw-non-home-page mx-auto flex w-full max-w-[1120px] flex-col gap-8 px-4 pb-10 pt-2 text-slate-800 sm:px-6 sm:pb-12 sm:pt-4 lg:px-8">
       <header className="w-full px-1 py-3 sm:px-2">
@@ -263,6 +280,8 @@ export default function CookiesPolicy() {
           </p>
         </section>
       </main>
+      <BreadcrumbTrail current="Cookies Policy" />
+      <JsonLdScript jsonLd={breadcrumbJsonLd} />
     </div>
   );
 }

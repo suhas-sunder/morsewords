@@ -2,6 +2,7 @@ import * as React from "react";
 import type { Route } from "./+types/morse-code-words";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
  ActionLinks,
@@ -53,6 +54,12 @@ export default function MorseCodeWords() {
  {"@type":"Thing", name:"International Morse code"},
  {"@type":"Thing", name:"Morse code words"},
  {"@type":"Thing", name:"Morse code practice"},
+ ],
+ };
+ const breadcrumbJsonLd = {"@context":"https://schema.org","@type":"BreadcrumbList",
+ itemListElement: [
+ {"@type":"ListItem", position: 1, name:"Home", item: SITE_URL +"/"},
+ {"@type":"ListItem", position: 2, name:"Morse Code Words", item: CANONICAL_URL},
  ],
  };
 
@@ -504,8 +511,9 @@ export default function MorseCodeWords() {
 
  <FaqSectionGeneric title="Morse Code Words FAQ" items={faqItems} />
 
- <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
+ <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
  </div>
+ <BreadcrumbTrail current="Morse Code Words" />
  </div>
  );
 }

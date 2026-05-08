@@ -2,6 +2,7 @@ import type { Route } from "./+types/morse-code-word-separator";
 
 import WordSeparatorTool from "~/client/components/morse-code-word-separator/WordSeparatorTool";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import styles from "~/client/components/shared/pageStyles";
@@ -247,6 +248,7 @@ export default function MorseCodeWordSeparator() {
         <FaqSectionGeneric title="Word Separator FAQ" items={faqItems} />
       </div>
 
+      <BreadcrumbTrail current="Morse Code Word Separator" />
       <JsonLdScript jsonLd={jsonLd} />
     </div>
   );

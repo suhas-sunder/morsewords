@@ -6,6 +6,7 @@ import { morseToText, textToMorse } from "~/client/components/shared/morseUtils"
 import styles from "~/client/components/shared/pageStyles";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/morse-code-international-translator";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -135,6 +136,19 @@ export default function InternationalTranslator() {
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "International Morse Code Translator",
+        item: CANONICAL_URL,
+      },
+    ],
+  };
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
@@ -213,8 +227,9 @@ export default function InternationalTranslator() {
           </div>
         </section>
 
-        <JsonLdScript jsonLd={jsonLd} />
+        <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd]} />
       </main>
+      <BreadcrumbTrail current="International Morse Code Translator" />
     </div>
   );
 }

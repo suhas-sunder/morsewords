@@ -22,6 +22,7 @@ import {
   VisibilityOffIcon,
 } from "~/client/assets/svg/Icons";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/morse-code-visual-practice";
 const STROBE_WARNING_ID = "visual-practice-strobe-warning";
@@ -415,6 +416,7 @@ export default function MorseCodeVisualPractice() {
 
         <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
+      <BreadcrumbTrail current="Morse Code Visual Practice" />
     </div>
   );
 }

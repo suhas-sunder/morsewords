@@ -13,6 +13,7 @@ import {
 import { SOURCE_LINKS } from "~/client/data/morseLearning";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/sources";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -282,6 +283,7 @@ export default function SourcesPage() {
           items={sourcesFaqItems}
         />
       </main>
+      <BreadcrumbTrail current="Sources" />
     </div>
   );
 }

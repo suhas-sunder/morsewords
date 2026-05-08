@@ -14,6 +14,7 @@ import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/morse-code-printable-chart";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -2640,6 +2641,19 @@ export default function MorseCodePrintableChart() {
     teaches:
       "International Morse code letters, numbers, punctuation, spacing, encoding, and decoding",
   };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Morse Code Printable Chart",
+        item: CANONICAL_URL,
+      },
+    ],
+  };
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -3646,8 +3660,9 @@ export default function MorseCodePrintableChart() {
 
         <FaqSectionGeneric title="Printable chart FAQ" items={faqItems} />
 
-        <JsonLdScript jsonLd={[jsonLd, faqJsonLd]} />
+        <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
+      <BreadcrumbTrail current="Morse Code Printable Chart" />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import type { Route } from "./+types/home";
 import styles from "~/client/components/shared/pageStyles";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
@@ -56,6 +57,19 @@ export default function Home() {
       { "@type": "Thing", name: "International Morse code" },
       { "@type": "Thing", name: "Pangram" },
       { "@type": "Thing", name: "Alphabet practice" },
+    ],
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "The Quick Brown Fox in Morse Code",
+        item: CANONICAL_URL,
+      },
     ],
   };
   const faqItems = [
@@ -275,7 +289,8 @@ export default function Home() {
         />
       </div>
 
-      <JsonLdScript jsonLd={[pageJsonLd, faqJsonLd]} />
+      <BreadcrumbTrail current="The Quick Brown Fox in Morse Code" />
+      <JsonLdScript jsonLd={[pageJsonLd, breadcrumbJsonLd, faqJsonLd]} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import * as React from "react";
 import type { Route } from "./+types/morse-code-decoder";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import styles from "~/client/components/shared/pageStyles";
@@ -271,6 +272,7 @@ export default function MorseCodeDecoder() {
         <FaqSectionGeneric title="Decoder FAQ" items={faqItems} />
       </div>
 
+      <BreadcrumbTrail current="Morse Code Decoder" />
       <JsonLdScript jsonLd={jsonLd} />
     </div>
   );

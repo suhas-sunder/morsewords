@@ -11,6 +11,7 @@ import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH ="/morse-code-practice-plan";
 
@@ -487,6 +488,7 @@ export default function MorseCodePracticePlan() {
 
  <JsonLdScript jsonLd={[breadcrumbJsonLd, howToJsonLd, faqJsonLd]} />
  </main>
+ <BreadcrumbTrail current="Morse Code Practice Plan" />
  </div>
  );
 }

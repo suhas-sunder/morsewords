@@ -10,6 +10,7 @@ import {
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/farnsworth-timing";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -251,6 +252,7 @@ export default function FarnsworthTiming() {
 
         <JsonLdScript jsonLd={jsonLd} />
       </main>
+      <BreadcrumbTrail current="Farnsworth Timing" />
     </div>
   );
 }
