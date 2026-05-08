@@ -279,6 +279,7 @@ export default function NavBar(props: { pathname?: string }) {
   const pathname = normalizePathname(props.pathname ?? location.pathname);
 
   const moreWrapRef = React.useRef<HTMLDivElement | null>(null);
+  const moreDialogRef = React.useRef<HTMLDivElement | null>(null);
   const moreSearchRef = React.useRef<HTMLInputElement | null>(null);
 
   React.useEffect(() => {
@@ -308,11 +309,19 @@ export default function NavBar(props: { pathname?: string }) {
     if (!moreOpen) return;
 
     function onDocMouseDown(e: MouseEvent) {
-      const el = moreWrapRef.current;
-      if (!el) return;
-
       const target = e.target as Node | null;
-      if (target && !el.contains(target)) setMoreOpen(false);
+      const trigger = moreWrapRef.current;
+      const dialog = moreDialogRef.current;
+
+      if (
+        target &&
+        ((trigger && trigger.contains(target)) ||
+          (dialog && dialog.contains(target)))
+      ) {
+        return;
+      }
+
+      setMoreOpen(false);
     }
 
     function onDocKeyDown(e: KeyboardEvent) {
@@ -439,11 +448,13 @@ export default function NavBar(props: { pathname?: string }) {
                 <ChevronDown open={moreOpen} />
               </button>
 
-              {moreOpen ? (
+              {moreOpen && typeof document !== "undefined" ? (
+                createPortal(
                 <div
+                  ref={moreDialogRef}
                   role="dialog"
                   aria-label="More MorseWords tools"
-                  className="fixed left-1/2 top-16 z-50 w-[min(96vw,1680px)] -translate-x-1/2 overflow-hidden rounded-2xl bg-neutral-900 text-sky-100"
+                  className="fixed left-1/2 top-16 z-[9999] w-[min(96vw,1680px)] -translate-x-1/2 overflow-hidden rounded-2xl bg-neutral-900 text-sky-100"
                 >
                   <div className="px-5 py-5">
                     <label className="block w-full">
@@ -522,7 +533,9 @@ export default function NavBar(props: { pathname?: string }) {
                       </p>
                     )}
                   </div>
-                </div>
+                </div>,
+                document.body,
+                )
               ) : null}
             </div>
           </nav>
