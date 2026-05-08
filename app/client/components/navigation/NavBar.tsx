@@ -328,12 +328,18 @@ export default function NavBar(props: { pathname?: string }) {
       if (e.key === "Escape") setMoreOpen(false);
     }
 
+    function onPageScroll() {
+      setMoreOpen(false);
+    }
+
     document.addEventListener("mousedown", onDocMouseDown);
     document.addEventListener("keydown", onDocKeyDown);
+    window.addEventListener("scroll", onPageScroll, { passive: true });
 
     return () => {
       document.removeEventListener("mousedown", onDocMouseDown);
       document.removeEventListener("keydown", onDocKeyDown);
+      window.removeEventListener("scroll", onPageScroll);
     };
   }, [moreOpen]);
 
@@ -341,11 +347,12 @@ export default function NavBar(props: { pathname?: string }) {
   function filterGroups(rawQuery: string, groups = MORE_GROUPS) {
     const normalizedQuery = rawQuery.trim().toLowerCase();
 
-    if (!normalizedQuery) return groups;
-
     return groups.map((group) => ({
       ...group,
       items: group.items.filter((item) => {
+        if (isActive(pathname, item.href)) return false;
+        if (!normalizedQuery) return true;
+
         const haystack = `${group.title} ${item.label} ${
           item.description ?? ""
         } ${item.href}`.toLowerCase();
