@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { SaveIcon, ShareIcon } from "~/client/assets/svg/Icons";
-import Button from "~/client/components/shared/Button";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 
 type Props = {
   title: string;
@@ -258,19 +258,19 @@ export default function ShareResultsButton(props: Props) {
 
   return (
     <>
-      <Button
+      <button
         type="button"
-        variant="secondary"
+        className={toolControlButtonClass({ size: "sm" })}
         onClick={() => {
           setOpen(true);
         }}
         aria-label="Share results"
       >
         <span className="inline-flex items-center gap-2">
-          <ShareIcon size={18} title="Share results" />
-          Share results
+          <ShareIcon size={16} title="Share results" />
+          Share
         </span>
-      </Button>
+      </button>
 
       {open ? (
         <div
@@ -288,7 +288,7 @@ export default function ShareResultsButton(props: Props) {
               </div>
               <button
                 type="button"
-                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+                className={toolControlButtonClass({ size: "sm" })}
                 onClick={() => setOpen(false)}
               >
                 Close
@@ -298,27 +298,32 @@ export default function ShareResultsButton(props: Props) {
             <div className="p-4 sm:p-5">
               <div className="flex flex-wrap items-center gap-3">
                 {canShare ? (
-                  <Button
+                  <button
                     type="button"
-                    variant="secondary"
+                    className={toolControlButtonClass({
+                      disabled: busy || !pngBlob,
+                      size: "sm",
+                    })}
                     onClick={shareNative}
                     disabled={busy || !pngBlob}
                     aria-label="Share via system dialog"
                   >
                     <span className="inline-flex items-center gap-2">
-                      <ShareIcon size={18} title="Share" />
+                      <ShareIcon size={16} title="Share" />
                       Share
                     </span>
-                  </Button>
+                  </button>
                 ) : null}
 
                 {pngBlob ? (
                   <a
-                    className="mw-button-outline inline-flex cursor-pointer items-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+                    className={`mw-button-outline ${toolControlButtonClass({
+                      size: "sm",
+                    })}`}
                     href={pngUrl || undefined}
                     download="morse-practice-results.png"
                   >
-                    <SaveIcon size={18} title="Download PNG" />
+                    <SaveIcon size={16} title="Download PNG" />
                     Download PNG
                   </a>
                 ) : null}

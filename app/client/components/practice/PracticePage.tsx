@@ -1,9 +1,11 @@
 import * as React from "react";
 
-import Button from "~/client/components/shared/Button";
 import ToggleChip from "~/client/components/shared/ToggleChip";
-import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
-import { ToolPanel } from "~/client/components/shared/ToolWorkspace";
+import {
+  ToolButton,
+  ToolPanel,
+  toolControlButtonClass,
+} from "~/client/components/shared/ToolWorkspace";
 import {
   HERO_EYEBROW_LINE_CLASS,
   HERO_EYEBROW_ROW_CLASS,
@@ -311,52 +313,48 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
             Morse Code Practice
           </h1>
           <p className={HERO_LEAD_CLASS}>
-            Flexible drills for letters, numbers, signals, words, and
-            sentences. Use this page when you want broad practice before moving
-            into typing, audio, visual, or word-specific drills.
+            Flexible 10-question drills for letters, words, spacing, and Morse
+            recall.
           </p>
         </div>
 
-        <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
+        <div className="pb-2 pt-4 sm:pb-3 sm:pt-4">
         {/* Top control bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-          <div className="flex w-full flex-wrap gap-2 sm:w-auto">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex w-full flex-wrap gap-2 lg:w-auto">
             <button
               type="button"
               onClick={() => setMode("text_to_morse")}
-              className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
-                mode === "text_to_morse"
-                  ? "bg-slate-950 text-sky-100"
-                  : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-              }`}
+              className={`${toolControlButtonClass({
+                active: mode === "text_to_morse",
+                size: "sm",
+              })} flex-1 sm:flex-none`}
             >
               Text → Morse
             </button>
             <button
               type="button"
               onClick={() => setMode("morse_to_text")}
-              className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
-                mode === "morse_to_text"
-                  ? "bg-slate-950 text-sky-100"
-                  : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-              }`}
+              className={`${toolControlButtonClass({
+                active: mode === "morse_to_text",
+                size: "sm",
+              })} flex-1 sm:flex-none`}
             >
               Morse → Text
             </button>
             <button
               type="button"
               onClick={() => setMode("mixed")}
-              className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition w-1/3 sm:w-auto ${
-                mode === "mixed"
-                  ? "bg-slate-950 text-sky-100"
-                  : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-              }`}
+              className={`${toolControlButtonClass({
+                active: mode === "mixed",
+                size: "sm",
+              })} flex-1 sm:flex-none`}
             >
               Mixed
             </button>
           </div>
 
-          <div className="sm:ml-auto text-sm text-slate-700 flex flex-wrap items-center gap-3 justify-end">
+          <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700 lg:justify-end">
             <span className="hidden sm:inline">
               Questions:{" "}
               <span className="font-semibold text-sky-900">
@@ -470,14 +468,14 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               </div>
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <Button
+                <ToolButton
                   type="button"
-                  variant="primary"
+                  tone="dark"
                   onClick={resetStats}
                   aria-label="Try again"
                 >
                   Try again
-                </Button>
+                </ToolButton>
                 <ShareResultsButton
                   title="Morse Code Practice"
                   subtitle="Results summary"
@@ -499,12 +497,12 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                 prompt={prompt}
                 questionNumber={questionNumber}
                 totalQuestions={TOTAL_QUESTIONS}
+                forceDarkPrompt
               />
 
               <div className="mt-5">
                 <ToolPanel
                   label={`Your answer (${prompt.kind === "text_to_morse" ? "Morse" : "Text"})`}
-                  badge="Source"
                 >
                   <input
                     value={answer}
@@ -527,36 +525,90 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                   />
                 </ToolPanel>
 
-                <div className="mt-3 flex flex-wrap gap-3">
-                  {!solvedThisQuestion ? (
-                    <Button
+                <div className="mt-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                  <div className="flex flex-wrap gap-2">
+                    {!solvedThisQuestion ? (
+                      <ToolButton
+                        type="button"
+                        tone="dark"
+                        onClick={doCheck}
+                        disabled={!answer.trim()}
+                        aria-label="Check answer"
+                      >
+                        Check
+                      </ToolButton>
+                    ) : (
+                      <ToolButton
+                        type="button"
+                        tone="dark"
+                        onClick={next}
+                        aria-label="Next prompt"
+                      >
+                        {progress + 1 >= TOTAL_QUESTIONS ? "Finish" : "Next"}
+                      </ToolButton>
+                    )}
+                    <ToolButton
                       type="button"
-                      variant="primary"
-                      onClick={doCheck}
-                      disabled={!answer.trim()}
-                      aria-label="Check answer"
+                      onClick={() => setAnswer("")}
+                      disabled={!answer}
+                      aria-label="Clear answer"
                     >
-                      Check
-                    </Button>
-                  ) : (
-                    <Button
+                      Clear
+                    </ToolButton>
+                    <ToolButton
                       type="button"
-                      variant="primary"
                       onClick={next}
-                      aria-label="Next prompt"
+                      disabled={solvedThisQuestion}
+                      aria-label="Skip question"
                     >
-                      {progress + 1 >= TOTAL_QUESTIONS ? "Finish" : "Next"}
-                    </Button>
-                  )}
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    onClick={() => setAnswer("")}
-                    disabled={!answer}
-                    aria-label="Clear answer"
+                      Skip
+                    </ToolButton>
+                    <ToolButton
+                      type="button"
+                      onClick={resetStats}
+                      aria-label="Restart quiz"
+                    >
+                      Restart
+                    </ToolButton>
+                  </div>
+
+                  <div
+                    className="flex flex-wrap gap-2 lg:justify-end"
+                    aria-label="Drill options"
                   >
-                    Clear
-                  </Button>
+                    <ToggleChip
+                      label="All"
+                      active={pool === "all"}
+                      onClick={() => setPool("all")}
+                      title="Mixes letters, numbers, signals, words, and sentences"
+                    />
+                    <ToggleChip
+                      label="Letters"
+                      active={pool === "letters"}
+                      onClick={() => setPool("letters")}
+                    />
+                    <ToggleChip
+                      label="Numbers"
+                      active={pool === "numbers"}
+                      onClick={() => setPool("numbers")}
+                    />
+                    <ToggleChip
+                      label="Signals"
+                      active={pool === "signals"}
+                      onClick={() => setPool("signals")}
+                    />
+                    <ToggleChip
+                      label="Words"
+                      active={pool === "words"}
+                      onClick={() => setPool("words")}
+                    />
+                    <ToggleChip
+                      label="Sentences"
+                      active={pool === "sentences"}
+                      onClick={() => setPool("sentences")}
+                      title="Short, radio-realistic sentences"
+                    />
+                  </div>
                 </div>
 
                 {statusBadge}
@@ -564,180 +616,11 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
             </>
           )}
 
-          {/* Drill options (always visible) */}
-            <div className="mt-6 pt-5">
-            <div className="text-sm font-extrabold text-sky-950">
-              Drill options (Quiz settings)
-            </div>
-
-            <div className="mt-3 grid gap-4 sm:grid-cols-2 sm:items-start">
-              <div>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <ToggleChip
-                    label="All"
-                    active={pool === "all"}
-                    onClick={() => setPool("all")}
-                    title="Mixes letters, numbers, signals, words, and sentences"
-                  />
-                  <ToggleChip
-                    label="Letters"
-                    active={pool === "letters"}
-                    onClick={() => setPool("letters")}
-                  />
-                  <ToggleChip
-                    label="Numbers"
-                    active={pool === "numbers"}
-                    onClick={() => setPool("numbers")}
-                  />
-                  <ToggleChip
-                    label="Signals"
-                    active={pool === "signals"}
-                    onClick={() => setPool("signals")}
-                  />
-                  <ToggleChip
-                    label="Words"
-                    active={pool === "words"}
-                    onClick={() => setPool("words")}
-                  />
-                  <ToggleChip
-                    label="Sentences"
-                    active={pool === "sentences"}
-                    onClick={() => setPool("sentences")}
-                    title="Short, radio-realistic sentences"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-3 sm:justify-end">
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={next}
-                  disabled={gameOver || solvedThisQuestion}
-                  aria-label="Skip question"
-                >
-                  Skip question
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  onClick={resetStats}
-                  aria-label="Restart quiz"
-                >
-                  Restart (10 questions)
-                </Button>
-              </div>
-            </div>
-          </div>
         </div>
         </div>
       </section>
 
       <HowItWorksPractice />
-      <ReferenceSupportSections
-        guide={{
-          eyebrow: "Practice guide",
-          title: "Use this page for broad Morse recall",
-          description:
-            "General practice is the middle ground between a reference chart and a scored specialty quiz. It gives you one prompt at a time, checks your answer, and helps you decide what to drill next.",
-          items: [
-            {
-              title: "Who it is for",
-              text: "Learners who know some letters or words and want fast feedback without choosing a specialized audio, visual, or typing mode first.",
-            },
-            {
-              title: "What it trains",
-              text: "Two-way recall across text-to-Morse and Morse-to-text prompts, including letters, numbers, signals, words, and short sentences.",
-            },
-            {
-              title: "How to use it",
-              text: "Pick a direction, choose a prompt pool, answer the current card, then use misses to choose the next focused drill.",
-            },
-          ],
-        }}
-        examples={{
-          title: "Practice scenarios",
-          description:
-            "These are the common ways to use general practice before moving into a more specific tool.",
-          items: [
-            {
-              title: "Beginner letter recall",
-              morse: ". / - / .- / -.",
-              children:
-                "Start with letters when the alphabet chart is still fresh. Keep the run short and restart once misses show a pattern.",
-            },
-            {
-              title: "Mixed review",
-              morse: "... --- ...",
-              children:
-                "Use mixed mode after reviewing the Morse alphabet so you practice reading and writing instead of only recognizing one direction.",
-            },
-            {
-              title: "Daily short session",
-              morse: "10 questions",
-              children:
-                "Treat a run as a quick check-in. If the score drops, switch to the word trainer, audio practice, or visual practice for targeted repetition.",
-            },
-          ],
-        }}
-        mistakes={{
-          title: "Common practice mistakes",
-          description:
-            "Most practice problems come from choosing the wrong drill for the weakness you are seeing.",
-          items: [
-            {
-              title: "Practicing too broadly",
-              children:
-                "If the same letters or words keep failing, move them into focused word or typing practice instead of repeating mixed runs.",
-            },
-            {
-              title: "Skipping spacing review",
-              children:
-                "Morse-to-text prompts still depend on clean letter and word spacing. Use the word separator page when spacing causes wrong answers.",
-            },
-            {
-              title: "Testing before training",
-              children:
-                "Use audio and visual quizzes after practice feels steady. A quiz should confirm progress, not replace repetition.",
-            },
-          ],
-        }}
-        comparison={{
-          eyebrow: "Choose a practice mode",
-          title: "Practice vs typing, trainers, and quizzes",
-          description:
-            "Use the general page for broad drills. Choose a more specific page when the weakness is already clear.",
-          items: [
-            {
-              title: "Typing",
-              text: "Use typing practice for keyboard recall and continuous input flow.",
-              href: "/typing",
-            },
-            {
-              title: "Word trainer",
-              text: "Use the word trainer for custom word lists, weak words, and repeated vocabulary.",
-              href: "/morse-code-word-trainer",
-            },
-            {
-              title: "Audio or visual",
-              text: "Use audio practice for listening and visual practice for dot-dash recognition by sight.",
-              href: "/morse-code-audio-practice",
-            },
-          ],
-        }}
-        nextStep={{
-          title: "Pick the next drill from your misses",
-          description:
-            "A general practice run should tell you what to do next: type, listen, watch, or repeat weak words.",
-          links: [
-            { href: "/morse-code-practice-plan", label: "Practice plan", primary: true },
-            { href: "/typing", label: "Typing practice" },
-            { href: "/morse-code-audio-practice", label: "Audio practice" },
-            { href: "/morse-code-visual-practice", label: "Visual practice" },
-            { href: "/morse-code-word-trainer", label: "Word trainer" },
-          ],
-        }}
-      />
       <PracticeFaq />
       <JsonLdScript jsonLd={jsonLd} />
     </div>
