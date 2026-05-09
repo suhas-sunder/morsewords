@@ -225,18 +225,6 @@ const GROUPS: SitemapGroup[] = [
           "See the standards and references used for MorseWords timing and reference pages.",
       },
       {
-        label: "Blog",
-        to: "/blog",
-        description:
-          "Browse the restored WordSkull article archive preserved from last-best-version.",
-      },
-      {
-        label: "Lore",
-        to: "/lore",
-        description:
-          "Browse the restored WordSkull lore archive preserved from last-best-version.",
-      },
-      {
         label: "Socials",
         to: "/misc/socials",
         description: "Find MorseWords social links.",

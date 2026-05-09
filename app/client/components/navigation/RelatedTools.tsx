@@ -210,18 +210,6 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Trust",
       },
       {
-        title: "Blog archive",
-        description: "Open the restored WordSkull comparison article archive.",
-        href: "/blog",
-        badge: "Archive",
-      },
-      {
-        title: "Lore archive",
-        description: "Open the restored WordSkull lore chapter archive.",
-        href: "/lore",
-        badge: "Lore",
-      },
-      {
         title: "About",
         description: "Learn more about the site and its Morse code tools.",
         href: "/about",

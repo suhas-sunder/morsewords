@@ -50,32 +50,6 @@ export default [
   route("morse-code-visual-quiz", "routes/morse-code-visual-quiz.tsx"),
   route("morse-code-vidual-quiz", "routes/morse-code-vidual-quiz.tsx"),
   route("morse-code-sound-generator", "routes/morse-code-sound-generator.tsx"),
-  route("blog", "routes/blog.tsx"),
-  route(
-    "blog/wordskull-vs-absurdle-outwitting-the-adversarial-puzzle",
-    "routes/blog.wordskull-vs-absurdle-outwitting-the-adversarial-puzzle.tsx",
-  ),
-  route(
-    "blog/wordskull-vs-nyt-connections",
-    "routes/blog.wordskull-vs-nyt-connections.tsx",
-  ),
-  route(
-    "blog/wordskull-vs-nyt-spelling-bee",
-    "routes/blog.wordskull-vs-nyt-spelling-bee.tsx",
-  ),
-  route(
-    "blog/wordskull-vs-quordle-multi-grid-madness",
-    "routes/blog.wordskull-vs-quordle-multi-grid-madness.tsx",
-  ),
-  route(
-    "blog/wordskull-vs-wordle-fantasy-twist",
-    "routes/blog.wordskull-vs-wordle-fantasy-twist.tsx",
-  ),
-  route("lore", "routes/lore.tsx"),
-  route(
-    "lore/wordskull-chapter-1-the-wizards-rise-who-was-atriocsoul",
-    "routes/lore.wordskull-chapter-1-the-wizards-rise-who-was-atriocsoul.tsx",
-  ),
   route("sitemap", "routes/sitemap.tsx"),
 
   // Redirects for old URLs. Ignore these routes

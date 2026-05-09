@@ -3,28 +3,9 @@
   to = "/:splat"
   status = 301
 
-[[redirects]]
-  from = "/morse-code-translator"
-  to = "/"
-  status = 301
-
-[[redirects]]
-  from = "/morse-code-audio-generator"
-  to = "/audio"
-  status = 301
-
-[[redirects]]
-  from = "/morse-code-vidual-quiz"
-  to = "/morse-code-visual-quiz"
-  status = 301
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
 
 [build]
-  command = "npm run build"
+  command = "react-router build"
   publish = "build/client"
 
 [dev]
