@@ -64,20 +64,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <PHogProvider>
           <NavBar />
           <div
-            style={{
-              background: "#fff200",
-              color: "#000000",
-              fontSize: "24px",
-              fontWeight: 800,
-              lineHeight: "32px",
-              padding: "16px 48px",
-              position: "relative",
-              zIndex: 60,
-            }}
-          >
-            Impact-Site-Verification: f327aaae-7fdb-496f-b6dd-6dbca05f9d4d
-          </div>
-          <div
             className="relative min-h-screen overflow-hidden"
             style={paperBackground}
           >
