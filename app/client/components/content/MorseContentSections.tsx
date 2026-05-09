@@ -26,6 +26,7 @@ import {
   type ContentFaqItem,
   type ContentTile,
   type GuidePageContent,
+  type LetterContentItem,
   type MorseLeafContent,
   NUMBER_ITEMS,
   NUMBER_PAGE_FAQ_ITEMS,
@@ -120,7 +121,7 @@ export function MorseGuidePage({
   jsonLd: unknown;
 }) {
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
       <main style={styles.wrap}>
         <PageHero
           eyebrow={content.eyebrow}
@@ -174,7 +175,11 @@ export function MorseGuidePage({
           }}
         />
 
-        <FaqSectionGeneric title={`${content.h1} FAQ`} items={content.faqItems} />
+        <FaqSectionGeneric
+          title={`${content.h1} FAQ`}
+          items={content.faqItems}
+          variant="home"
+        />
         <JsonLdScript jsonLd={jsonLd} />
       </main>
       <BreadcrumbTrail current={content.h1} />
@@ -249,7 +254,7 @@ export function MorseLeafPage({
   const queryValue = encodeToolQueryValue(content.plainTextValue);
 
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
       <main style={styles.wrap}>
         <PageHero
           eyebrow={content.eyebrow}
@@ -336,6 +341,178 @@ export function MorseLeafPage({
         <FaqSectionGeneric
           title={`${content.displayTitle} FAQ`}
           items={content.faqItems}
+          variant="home"
+        />
+        <JsonLdScript jsonLd={jsonLd} />
+      </main>
+      <BreadcrumbTrail current={content.displayTitle} />
+    </div>
+  );
+}
+
+export function MorseLetterPage({
+  content,
+  jsonLd,
+}: {
+  content: LetterContentItem;
+  jsonLd: unknown;
+}) {
+  const queryValue = encodeToolQueryValue(content.plainTextValue);
+
+  return (
+    <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
+      <main style={styles.wrap}>
+        <PageHero
+          eyebrow="Letter guide"
+          title={content.displayTitle}
+          description={content.answerSummary}
+        >
+          <ActionLinks
+            links={[
+              { href: "#answer", label: "Direct answer", primary: true },
+              { href: "/morse-code-alphabet", label: "Alphabet chart" },
+              { href: `/audio?text=${queryValue}`, label: "Hear it" },
+              { href: "/practice", label: "Practice" },
+            ]}
+          />
+        </PageHero>
+
+        <div id="answer">
+          <MorseAnswerCard
+            label={`Letter ${content.letter}`}
+            plainText={content.plainTextValue}
+            morse={content.morseValue}
+            summary={content.answerSummary}
+            translatorHref={`/?text=${queryValue}`}
+            audioHref={`/audio?text=${queryValue}`}
+            encoderHref={`/morse-code-encoder?text=${queryValue}`}
+            breakdown={[
+              {
+                label: content.letter,
+                morse: content.morseValue,
+                note: `${content.letter} is spoken as ${content.spokenRhythm}.`,
+              },
+            ]}
+          />
+        </div>
+
+        <SectionCard
+          eyebrow="Letter details"
+          title={`What ${content.letter} is in Morse code`}
+          description={content.whatItIs}
+        >
+          <div className="grid gap-3">
+            <div className="grid gap-3 md:grid-cols-3">
+              <article className="mw-static-panel rounded-xl bg-[#fffdf8] p-4 sm:p-5">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Character
+                </p>
+                <p className="mt-2 text-3xl font-black text-sky-950">
+                  {content.letter}
+                </p>
+              </article>
+              <article className="mw-static-panel rounded-xl bg-[#fffdf8] p-4 sm:p-5">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Dot dash pattern
+                </p>
+                <p className="mt-2 break-words font-mono text-2xl font-bold tracking-[0.14em] text-slate-950">
+                  {content.morseValue}
+                </p>
+              </article>
+              <article className="mw-static-panel rounded-xl bg-[#fffdf8] p-4 sm:p-5">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Spoken rhythm
+                </p>
+                <p className="mt-2 text-xl font-extrabold text-sky-950">
+                  {content.spokenRhythm}
+                </p>
+              </article>
+            </div>
+
+            <div className="grid gap-3 lg:grid-cols-2">
+              <div>
+                <h3 className="text-lg font-extrabold text-sky-950">
+                  How it sounds
+                </h3>
+                <div className="mt-3">
+                  <SimpleGrid items={textLinkTiles(content.soundNotes)} />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-lg font-extrabold text-sky-950">
+                  How to type it
+                </h3>
+                <div className="mt-3">
+                  <SimpleGrid items={textLinkTiles(content.typingNotes)} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Avoid mixups"
+          title="Common mistakes and confused letters"
+          description="Small spacing or mark-count changes can turn one Morse letter into another."
+        >
+          <SimpleGrid items={textLinkTiles(content.commonConfusions)} />
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Examples"
+          title={`Words that contain ${content.letter}`}
+          description="Use short words to practice the letter in real context instead of memorizing it only as a lookup."
+        >
+          <div className="grid gap-3 md:grid-cols-2">
+            {content.exampleWords.map((example) => (
+              <article
+                key={example.title}
+                className="mw-static-panel rounded-xl bg-[#fffdf8] p-5"
+              >
+                <h3 className="text-lg font-extrabold text-sky-950">
+                  {example.title}
+                </h3>
+                <p className="mt-2 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
+                  {example.morse}
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                  {example.note}
+                </p>
+              </article>
+            ))}
+          </div>
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Mini practice"
+          title={content.miniPracticePrompt.title}
+          description={content.miniPracticePrompt.text}
+        >
+          <ActionLinks
+            links={[
+              {
+                href: content.miniPracticePrompt.href ?? "/practice",
+                label: "Practice now",
+                primary: true,
+              },
+              { href: "/typing", label: "Typing drill" },
+              { href: `/audio?text=${queryValue}`, label: "Hear it again" },
+            ]}
+          />
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Next step"
+          title="Related Morse tools"
+          description="Compare the letter with the full alphabet, then move into audio, typing, and practice."
+        >
+          <ActionLinks links={content.relatedLinks} />
+        </SectionCard>
+
+        <FaqSectionGeneric
+          title={`${content.displayTitle} FAQ`}
+          items={content.faqItems}
+          variant="home"
         />
         <JsonLdScript jsonLd={jsonLd} />
       </main>
@@ -433,7 +610,7 @@ export function MorseNumbersPage({
   jsonLd: unknown;
 }) {
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
       <main style={styles.wrap}>
         <PageHero
           eyebrow="Number chart"
@@ -573,7 +750,11 @@ export function MorseNumbersPage({
           />
         </SectionCard>
 
-        <FaqSectionGeneric title="Morse Code Numbers FAQ" items={NUMBER_PAGE_FAQ_ITEMS} />
+        <FaqSectionGeneric
+          title="Morse Code Numbers FAQ"
+          items={NUMBER_PAGE_FAQ_ITEMS}
+          variant="home"
+        />
         <JsonLdScript jsonLd={jsonLd} />
       </main>
       <BreadcrumbTrail current="Morse Code Numbers" />

@@ -105,6 +105,29 @@ export type NumberContentItem = {
   keywords: string;
 };
 
+export type LetterContentItem = {
+  letter: string;
+  slug: string;
+  path: string;
+  displayTitle: string;
+  plainTextValue: string;
+  morseValue: string;
+  spokenRhythm: string;
+  answerSummary: string;
+  whatItIs: string;
+  soundNotes: ContentTile[];
+  typingNotes: ContentTile[];
+  commonConfusions: ContentTile[];
+  exampleWords: WorkedExample[];
+  miniPracticePrompt: ContentTile;
+  relatedLinks: RelatedLink[];
+  faqItems: ContentFaqItem[];
+  metaTitle: string;
+  metaDescription: string;
+  keywords: string;
+  isPublicSample: boolean;
+};
+
 function assertMorseCharacter(value: string) {
   const normalized = normalizeTextForEncoding(value);
   const morse = TEXT_TO_MORSE[normalized];
@@ -168,6 +191,533 @@ export function getWordBreakdown(value: string) {
       note: `${word} is encoded one character at a time.`,
     }));
 }
+
+const LETTER_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const PUBLIC_SAMPLE_LETTERS = ["A", "E", "S", "O", "Q"] as const;
+type PublicSampleLetter = (typeof PUBLIC_SAMPLE_LETTERS)[number];
+
+const LETTER_EXAMPLE_WORDS: Record<string, readonly string[]> = {
+  A: ["A", "NAME", "RADIO", "MAY"],
+  B: ["BEE", "BAND", "CAB", "BRAVO"],
+  C: ["CQ", "CODE", "COPY", "CAT"],
+  D: ["DAY", "CODE", "RADIO", "DASH"],
+  E: ["E", "SEE", "TREE", "MEET"],
+  F: ["FAR", "FAST", "FOX", "FIVE"],
+  G: ["GO", "SIGN", "GAP", "GOLF"],
+  H: ["HI", "HELP", "HEAR", "HAT"],
+  I: ["I", "SIGN", "TIME", "DIT"],
+  J: ["JAM", "JOSH", "JULIET", "JOIN"],
+  K: ["KEY", "KATIE", "SKY", "KILO"],
+  L: ["LOVE", "CALL", "LINE", "LIMA"],
+  M: ["ME", "MAY", "MORSE", "MIKE"],
+  N: ["NO", "NAME", "TONE", "NOVEMBER"],
+  O: ["O", "SOS", "CODE", "ZERO"],
+  P: ["PEN", "COPY", "PULSE", "PAPA"],
+  Q: ["Q", "CQ", "QTH", "QUEBEC"],
+  R: ["RADIO", "READ", "RING", "ROMEO"],
+  S: ["S", "SOS", "SIGN", "TEST"],
+  T: ["T", "TEST", "TONE", "TIME"],
+  U: ["USE", "TUNE", "UNIT", "UNIFORM"],
+  V: ["VIA", "VOICE", "OVER", "VICTOR"],
+  W: ["WORD", "WAVE", "TWO", "WHISKEY"],
+  X: ["X", "TEXT", "FOX", "XRAY"],
+  Y: ["YES", "YARD", "KEY", "YANKEE"],
+  Z: ["ZERO", "ZONE", "BUZZ", "ZULU"],
+};
+
+function spokenLetterRhythm(morse: string) {
+  return morse
+    .split("")
+    .map((mark, index, marks) => {
+      if (mark === "-") return "dah";
+      return index === marks.length - 1 ? "dit" : "di";
+    })
+    .join("-");
+}
+
+function letterPatternLengthText(letter: string, morseValue: string) {
+  const markCount = morseValue.length;
+  const markLabel = markCount === 1 ? "mark" : "marks";
+  return `${letter} uses ${markCount} ${markLabel}: ${morseValue}.`;
+}
+
+function buildLetterExamples(letter: string) {
+  return (LETTER_EXAMPLE_WORDS[letter] ?? [letter]).map((word) => ({
+    title: word,
+    text: word,
+    morse: morseForText(word).replace(/\s{7,}/g, " / "),
+    note:
+      word === letter
+        ? `${letter} by itself is the cleanest way to check the pattern.`
+        : `${word} gives you ${letter} inside a short word instead of as an isolated lookup.`,
+  }));
+}
+
+function defaultLetterFaq({
+  letter,
+  morseValue,
+  spokenRhythm,
+}: {
+  letter: string;
+  morseValue: string;
+  spokenRhythm: string;
+}): ContentFaqItem[] {
+  return [
+    {
+      q: `What is ${letter} in Morse code?`,
+      a: `${letter} in Morse code is ${morseValue}.`,
+    },
+    {
+      q: `How do you say ${letter} in Morse rhythm?`,
+      a: `${letter} is commonly spoken as ${spokenRhythm} when practicing the sound pattern.`,
+    },
+    {
+      q: `Can I type ${letter} in Morse code?`,
+      a: `Yes. Type ${morseValue} with periods for dots and hyphens for dashes, then keep spaces between letters when you type a word.`,
+    },
+    {
+      q: `Should I learn ${letter} by sight or sound?`,
+      a: "Use the visual pattern for lookup, then practice the rhythm so you can recognize it by ear.",
+    },
+  ];
+}
+
+function buildLetterRelatedLinks(letter: string): RelatedLink[] {
+  const queryLetter = letter;
+  const links: RelatedLink[] = [
+    {
+      href: "/morse-code-alphabet",
+      label: "Alphabet chart",
+      description: "Compare this letter with the rest of A-Z.",
+      primary: true,
+    },
+    {
+      href: `/audio?text=${queryLetter}`,
+      label: "Hear this letter",
+      description: "Open the audio tool with this letter preloaded.",
+    },
+    {
+      href: `/morse-code-encoder?text=${queryLetter}`,
+      label: "Open in encoder",
+      description: "Convert the letter in the encoder.",
+    },
+    {
+      href: "/morse-code-decoder",
+      label: "Decoder",
+      description: "Decode typed dots and dashes after adding separators.",
+    },
+    {
+      href: "/morse-code-numbers",
+      label: "Numbers",
+      description: "Review the 0-9 chart after letters.",
+    },
+    {
+      href: "/practice",
+      label: "Practice",
+      description: "Turn lookup into recall.",
+    },
+    {
+      href: "/typing",
+      label: "Typing practice",
+      description: "Practice keyboard rhythm with dots and dashes.",
+    },
+  ];
+
+  if (letter === "S" || letter === "O") {
+    links.push({
+      href: "/morse-code-sos",
+      label: "Study SOS",
+      description: "See S and O inside a complete emergency signal.",
+    });
+  }
+
+  if (letter === "Q") {
+    links.push(
+      {
+        href: "/cq-in-morse-code",
+        label: "CQ in Morse",
+        description: "See Q inside a common calling signal.",
+      },
+      {
+        href: "/morse-code-q-codes",
+        label: "Q-codes",
+        description: "Review common Q-code abbreviations.",
+      },
+    );
+  }
+
+  return links;
+}
+
+type LetterOverride = Partial<
+  Pick<
+    LetterContentItem,
+    | "answerSummary"
+    | "whatItIs"
+    | "soundNotes"
+    | "typingNotes"
+    | "commonConfusions"
+    | "miniPracticePrompt"
+    | "faqItems"
+    | "metaDescription"
+  >
+>;
+
+const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
+  A: {
+    answerSummary:
+      "A in Morse code is .- (di-dah): one short dit followed by one longer dah.",
+    whatItIs:
+      "The letter A is a two-mark Morse character. Keep the dot first and the dash second; reversing the order turns it into N.",
+    soundNotes: [
+      {
+        title: "Hear short then long",
+        text: "A should feel like a quick pickup followed by a longer finish: di-dah.",
+      },
+      {
+        title: "Pair it with N",
+        text: "Practice A with N because .- and -. are mirrored patterns.",
+        href: "/morse-code-alphabet",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "N reverses the order",
+        text: "A is .- and N is -., so read the marks from left to right before copying.",
+      },
+      {
+        title: "R adds one more dot",
+        text: "R is .-. If you hear or type a final dot after A, the letter changes.",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Mini practice",
+      text: "Listen for short-long, type A, then compare it with N to avoid reversing the pattern.",
+      href: "/practice",
+    },
+    faqItems: [
+      { q: "What is A in Morse code?", a: "A in Morse code is .-." },
+      { q: "How do you say A in Morse rhythm?", a: "A is spoken as di-dah." },
+      {
+        q: "What letter is the opposite of A in Morse?",
+        a: "N is the mirrored pattern of A. A is .- and N is -.",
+      },
+      {
+        q: "Can I copy A in Morse code for a design?",
+        a: "Yes, but check that the dot comes before the dash before using it in jewelry, engraving, or a tattoo.",
+      },
+      {
+        q: "Where should I practice A next?",
+        a: "Practice A inside short words such as MAY, NAME, and RADIO so the rhythm is not only an isolated lookup.",
+      },
+    ],
+    metaDescription:
+      "A in Morse code is .- (di-dah). Learn the sound, copy the pattern, compare A with N, and practice short words that contain A.",
+  },
+  E: {
+    answerSummary:
+      "E in Morse code is . (one dot). It is the shortest Morse character: one quick dit.",
+    whatItIs:
+      "The letter E is a single dot. Because it is only one mark, spacing matters more than complexity.",
+    soundNotes: [
+      {
+        title: "Shortest character",
+        text: "E is one dit, so it is the quickest Morse letter to recognize and send.",
+      },
+      {
+        title: "Spacing protects it",
+        text: "Two E letters need a letter gap between them. Without a gap, two dots become I.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "I is two dots",
+        text: "E is one dot. I is two dots, so missing or extra spacing changes the letter.",
+      },
+      {
+        title: "T is one dash",
+        text: "E and T are the first contrast: one short mark versus one long mark.",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Mini practice",
+      text: "Alternate E and T until one dit and one dah feel different without looking at the chart.",
+      href: "/typing",
+    },
+    faqItems: [
+      { q: "What is E in Morse code?", a: "E in Morse code is . (one dot)." },
+      {
+        q: "Why is E the shortest Morse letter?",
+        a: "E is represented by a single dit, which is the shortest possible Morse character.",
+      },
+      {
+        q: "What is E often confused with?",
+        a: "E is commonly confused with I when spacing is missing, and with T when a dot is mistaken for a dash.",
+      },
+      {
+        q: "How do I type E in Morse?",
+        a: "Type one period for E, then add a space before the next Morse character.",
+      },
+    ],
+    metaDescription:
+      "E in Morse code is . (one dot). Learn why E is the shortest Morse character, hear the one-dit rhythm, and avoid spacing mistakes with I.",
+  },
+  S: {
+    answerSummary:
+      "S in Morse code is ... (three dots). It sounds like three quick dits and appears at both ends of SOS.",
+    whatItIs:
+      "The letter S is a three-dot Morse character. It is useful early because it is easy to hear and appears in many short practice words.",
+    soundNotes: [
+      {
+        title: "Three quick dits",
+        text: "S should sound compact: di-di-dit, with the three dots inside one letter.",
+      },
+      {
+        title: "Useful in SOS",
+        text: "SOS uses S, then O, then S. Learn S by itself before treating SOS as one complete signal.",
+        href: "/morse-code-sos",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "H has four dots",
+        text: "S is three dots. H is four dots, so one extra dit changes the letter.",
+      },
+      {
+        title: "V ends with a dash",
+        text: "V starts with the S rhythm but adds a dash: ...-.",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Mini practice",
+      text: "Send S, pause, then send O, pause, then S again to feel why SOS is easy to recognize.",
+      href: "/morse-code-sos",
+    },
+    faqItems: [
+      { q: "What is S in Morse code?", a: "S in Morse code is three dots: ..." },
+      {
+        q: "Is S the same as SOS?",
+        a: "No. S is one letter. SOS is three letters: S, O, and S.",
+      },
+      {
+        q: "How do you say S in Morse rhythm?",
+        a: "S is spoken as di-di-dit.",
+      },
+      {
+        q: "What letters are close to S?",
+        a: "I has two dots, H has four dots, and V starts with three dots before a dash.",
+      },
+      {
+        q: "How should I practice S?",
+        a: "Practice S inside short words such as SIGN and TEST, then compare it with O in SOS.",
+      },
+    ],
+    metaDescription:
+      "S in Morse code is ... (three dots). Learn the three-dit rhythm, see how S fits into SOS, and practice words that keep the spacing clear.",
+  },
+  O: {
+    answerSummary:
+      "O in Morse code is ---. It sounds like three steady dahs and forms the middle of SOS.",
+    whatItIs:
+      "The letter O is a three-dash Morse character. Keep it separate from zero, which is five dashes.",
+    soundNotes: [
+      {
+        title: "Three steady dahs",
+        text: "O should sound longer and heavier than S: dah-dah-dah.",
+      },
+      {
+        title: "Middle of SOS",
+        text: "In SOS, O is the three-dash center between two S letters.",
+        href: "/morse-code-sos",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Zero has five dashes",
+        text: "O is ---. The digit 0 is -----, so count the dashes when reading copied Morse.",
+        href: "/morse-code-numbers",
+      },
+      {
+        title: "M has two dashes",
+        text: "M is --. O adds one more dash, making three total.",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Mini practice",
+      text: "Alternate O and zero aloud: dah-dah-dah, then five dahs. Count before decoding.",
+      href: "/audio?text=O0",
+    },
+    faqItems: [
+      { q: "What is O in Morse code?", a: "O in Morse code is three dashes: ---." },
+      {
+        q: "Is O the same as zero in Morse?",
+        a: "No. O is three dashes, while the digit 0 is five dashes.",
+      },
+      {
+        q: "How do you say O in Morse rhythm?",
+        a: "O is spoken as dah-dah-dah.",
+      },
+      {
+        q: "Why is O useful for beginners?",
+        a: "O gives beginners a clean three-dash pattern and pairs naturally with S in SOS.",
+      },
+    ],
+    metaDescription:
+      "O in Morse code is ---. Learn the three-dah sound, compare O with zero, and practice O inside SOS and short words.",
+  },
+  Q: {
+    answerSummary:
+      "Q in Morse code is --.-. It sounds like dah-dah-di-dah and is useful in CQ and Q-code context.",
+    whatItIs:
+      "The letter Q is a four-mark Morse character. It is less common in everyday words, but it matters in radio-style abbreviations such as CQ and QTH.",
+    soundNotes: [
+      {
+        title: "Long-long-short-long",
+        text: "Q starts with two dahs, adds one dit, then ends with a dah: dah-dah-di-dah.",
+      },
+      {
+        title: "Useful in CQ",
+        text: "CQ includes Q and is a common calling signal to learn for Morse context.",
+        href: "/cq-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "G stops earlier",
+        text: "G is --. while Q is --.-. Q adds a final dash after the dot.",
+      },
+      {
+        title: "O is all dashes",
+        text: "O is ---. Q interrupts the dashes with a dot before the final dash.",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Mini practice",
+      text: "Practice CQ, then isolate Q so the final dot-dash ending stays clear.",
+      href: "/cq-in-morse-code",
+    },
+    faqItems: [
+      { q: "What is Q in Morse code?", a: "Q in Morse code is --.-." },
+      {
+        q: "How do you say Q in Morse rhythm?",
+        a: "Q is spoken as dah-dah-di-dah.",
+      },
+      {
+        q: "Why learn Q if it is less common?",
+        a: "Q appears in CQ, QTH, and other radio-style abbreviations, so it is useful beyond ordinary word frequency.",
+      },
+      {
+        q: "What is Q commonly confused with?",
+        a: "Q can be confused with G if the final dash is missed, or with O if the dot is not heard clearly.",
+      },
+      {
+        q: "Does Q mean CQ?",
+        a: "No. Q is one letter. CQ is a two-letter calling signal that includes Q.",
+      },
+    ],
+    metaDescription:
+      "Q in Morse code is --.-. Learn the dah-dah-di-dah rhythm, see why Q matters in CQ and Q-codes, and avoid common decoding mistakes.",
+  },
+};
+
+function buildLetterContent(letter: string): LetterContentItem {
+  const morseValue = assertMorseCharacter(letter);
+  const spokenRhythm = spokenLetterRhythm(morseValue);
+  const slug = `${letter.toLowerCase()}-in-morse-code`;
+  const isPublicSample = PUBLIC_SAMPLE_LETTERS.includes(letter as PublicSampleLetter);
+  const override = LETTER_CONTENT_OVERRIDES[letter] ?? {};
+
+  return {
+    letter,
+    slug,
+    path: `/${slug}`,
+    displayTitle: `${letter} in Morse Code`,
+    plainTextValue: letter,
+    morseValue,
+    spokenRhythm,
+    answerSummary:
+      override.answerSummary ??
+      `${letter} in Morse code is ${morseValue}. It is spoken as ${spokenRhythm} when you practice by sound.`,
+    whatItIs:
+      override.whatItIs ??
+      `The letter ${letter} is a standard International Morse letter. ${letterPatternLengthText(
+        letter,
+        morseValue,
+      )}`,
+    soundNotes:
+      override.soundNotes ??
+      [
+        {
+          title: "Listen for the rhythm",
+          text: `${letter} is easier to recognize when ${morseValue} becomes the sound ${spokenRhythm}.`,
+        },
+        {
+          title: "Compare nearby patterns",
+          text: "Use the alphabet chart to compare letters with a similar number of marks.",
+          href: "/morse-code-alphabet",
+        },
+      ],
+    typingNotes:
+      override.typingNotes ??
+      [
+        {
+          title: "Use keyboard-safe marks",
+          text: `Type ${morseValue} with periods for dots and hyphens for dashes.`,
+        },
+        {
+          title: "Keep letter gaps visible",
+          text: "Add a space after the letter when typing a word so the next Morse character stays separate.",
+        },
+      ],
+    commonConfusions:
+      override.commonConfusions ??
+      [
+        {
+          title: "Missing a mark",
+          text: "Counting each dot and dash prevents a nearby shorter letter from being read by mistake.",
+        },
+        {
+          title: "Adding a mark",
+          text: "Extra dots or dashes can change the letter, especially inside fast copied text.",
+        },
+      ],
+    exampleWords: buildLetterExamples(letter),
+    miniPracticePrompt:
+      override.miniPracticePrompt ??
+      {
+        title: "Mini practice",
+        text: `Copy ${letter}, say ${spokenRhythm}, then find the same rhythm inside a short word from the examples.`,
+        href: "/practice",
+      },
+    relatedLinks: buildLetterRelatedLinks(letter),
+    faqItems:
+      override.faqItems ??
+      defaultLetterFaq({ letter, morseValue, spokenRhythm }),
+    metaTitle: `${letter} in Morse Code | Symbol, Sound, and Examples | MorseWords`,
+    metaDescription:
+      override.metaDescription ??
+      `${letter} in Morse code is ${morseValue}. Learn the ${spokenRhythm} sound, copy the pattern, hear it as audio, and practice short words containing ${letter}.`,
+    keywords: `${letter} in morse code, morse code ${letter}, ${letter} morse code, ${letter} morse letter`,
+    isPublicSample,
+  };
+}
+
+export const LETTER_ITEMS: LetterContentItem[] =
+  LETTER_ALPHABET.map(buildLetterContent);
+
+export const LETTER_PAGES: Record<string, LetterContentItem> =
+  Object.fromEntries(LETTER_ITEMS.map((item) => [item.slug, item])) as Record<
+    string,
+    LetterContentItem
+  >;
+
+export const PUBLIC_SAMPLE_LETTER_PAGES = LETTER_ITEMS.filter(
+  (item) => item.isPublicSample,
+);
+
+export const PUBLIC_SAMPLE_LETTER_PATHS = PUBLIC_SAMPLE_LETTER_PAGES.map(
+  (item) => item.path,
+);
 
 const numberNames = [
   "zero",
@@ -419,6 +969,7 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
     relatedLinks: [
       { href: "/?text=CQ", label: "Open in translator", primary: true },
       { href: "/audio?text=CQ", label: "Hear CQ" },
+      { href: "/q-in-morse-code", label: "Study Q" },
       { href: "/morse-code-q-codes", label: "Q-codes" },
       { href: "/morse-code-prosigns", label: "Prosigns" },
       { href: "/morse-code-words", label: "More Morse words" },

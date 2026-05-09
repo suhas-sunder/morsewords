@@ -74,24 +74,22 @@ export function SectionCard({
   aside?: React.ReactNode;
 }) {
   return (
-    <section className="mw-static-surface-soft relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8 sm:py-10">
-      <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
-          <div>
-            <Eyebrow>{eyebrow}</Eyebrow>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
-              {title}
-            </h2>
-            {description ? (
-              <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-                {description}
-              </p>
-            ) : null}
-          </div>
-          {aside ? <div>{aside}</div> : null}
+    <section className="mt-8 sm:mt-10">
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
+        <div>
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-sky-950 sm:text-3xl">
+            {title}
+          </h2>
+          {description ? (
+            <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              {description}
+            </p>
+          ) : null}
         </div>
-        <div className="mt-7">{children}</div>
+        {aside ? <div>{aside}</div> : null}
       </div>
+      <div className="mt-5">{children}</div>
     </section>
   );
 }
@@ -181,7 +179,7 @@ export function SimpleGrid({
             <a
               key={item.title}
               href={item.href}
-              className="mw-button-outline mw-related-tool-link group block min-h-[142px] cursor-pointer rounded-xl bg-[#fffdf8] p-5 no-underline hover:bg-[#fffaf2] hover:text-sky-950"
+              className="mw-button-outline mw-related-tool-link group block min-h-[128px] cursor-pointer rounded-xl bg-[#fffdf8] p-4 no-underline hover:bg-[#fffaf2] hover:text-sky-950 sm:p-5"
             >
               {body}
               <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
@@ -195,7 +193,7 @@ export function SimpleGrid({
         }
 
         return (
-          <div key={item.title} className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
+          <div key={item.title} className="mw-static-panel rounded-xl bg-[#fffdf8] p-4 sm:p-5">
             {body}
           </div>
         );

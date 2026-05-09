@@ -21,6 +21,11 @@ export default [
   route("morse-code-word-separator", "routes/morse-code-word-separator.tsx"),
   route("morse-code-words", "routes/morse-code-words.tsx"),
   route("morse-code-alphabet", "routes/morse-code-alphabet.tsx"),
+  route("a-in-morse-code", "routes/a-in-morse-code.tsx"),
+  route("e-in-morse-code", "routes/e-in-morse-code.tsx"),
+  route("s-in-morse-code", "routes/s-in-morse-code.tsx"),
+  route("o-in-morse-code", "routes/o-in-morse-code.tsx"),
+  route("q-in-morse-code", "routes/q-in-morse-code.tsx"),
   route("morse-code-numbers", "routes/morse-code-numbers.tsx"),
   route("morse-code-printable-chart", "routes/morse-code-printable-chart.tsx"),
   route(

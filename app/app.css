@@ -418,6 +418,13 @@ main *::after {
   color: currentColor !important;
 }
 
+.mw-page-content
+  .mw-wave-content-page
+  ~ #morse-code-navigation
+  :where(.mw-related-tool-link, .mw-related-quick-link, .mw-related-summary) {
+  box-shadow: var(--mw-button-shadow) !important;
+}
+
 .mw-page-content .mw-non-home-page :where(input, textarea, select) {
   box-shadow: none !important;
 }

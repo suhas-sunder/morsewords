@@ -13,6 +13,7 @@ type MorseAnswerCardProps = {
   morse: string;
   summary: string;
   audioHref?: string;
+  encoderHref?: string;
   translatorHref?: string;
   breakdown?: Array<{ label: string; morse: string; note?: string }>;
 };
@@ -70,11 +71,12 @@ export default function MorseAnswerCard({
   morse,
   summary,
   audioHref,
+  encoderHref,
   translatorHref,
   breakdown = [],
 }: MorseAnswerCardProps) {
   return (
-    <section className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,0.45fr)]">
+    <section className="mt-5 grid gap-3 lg:grid-cols-[minmax(0,0.72fr)_minmax(250px,0.28fr)]">
       <ToolOutputPanel
         label="Direct answer"
         badge={label}
@@ -93,25 +95,25 @@ export default function MorseAnswerCard({
           </>
         }
       >
-        <div className="space-y-5 px-4 pb-4 text-slate-100">
+        <div className="space-y-4 px-4 pb-4 text-slate-100">
           <p className="max-w-[64ch] text-base leading-relaxed text-slate-200">
             {summary}
           </p>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-lg bg-slate-900/70 px-3 py-2">
               <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
                 Plain text
               </p>
-              <p className="mt-2 break-words font-mono text-lg font-bold tracking-[0.08em] text-sky-100">
+              <p className="mt-1 break-words font-mono text-lg font-bold tracking-[0.08em] text-sky-100">
                 {plainText}
               </p>
             </div>
-            <div>
+            <div className="rounded-lg bg-slate-900/70 px-3 py-2">
               <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
                 Morse
               </p>
-              <p className="mt-2 break-words font-mono text-lg font-bold tracking-[0.12em] text-sky-100">
+              <p className="mt-1 break-words font-mono text-lg font-bold tracking-[0.12em] text-sky-100">
                 {morse}
               </p>
             </div>
@@ -119,11 +121,11 @@ export default function MorseAnswerCard({
         </div>
       </ToolOutputPanel>
 
-      <aside className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
+      <aside className="mw-static-panel rounded-xl bg-[#fffdf8] p-4">
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
           Next action
         </p>
-        <div className="mt-4 grid gap-2">
+        <div className="mt-3 grid gap-2">
           {translatorHref ? (
             <a
               href={translatorHref}
@@ -140,12 +142,20 @@ export default function MorseAnswerCard({
               Hear in audio
             </a>
           ) : null}
+          {encoderHref ? (
+            <a
+              href={encoderHref}
+              className={toolControlButtonClass({ size: "sm", full: true })}
+            >
+              Open in encoder
+            </a>
+          ) : null}
         </div>
 
         {breakdown.length > 0 ? (
-          <div className="mt-5">
+          <div className="mt-4">
             <p className="text-sm font-extrabold text-sky-950">Quick breakdown</p>
-            <div className="mt-3 grid gap-2">
+            <div className="mt-2 grid gap-2">
               {breakdown.slice(0, 4).map((item, index) => (
                 <div
                   key={`${item.label}-${item.morse}-${index}`}
