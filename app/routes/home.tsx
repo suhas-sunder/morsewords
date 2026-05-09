@@ -106,6 +106,7 @@ export default function Home() {
           morseB={morseB}
           textB={textB}
           setMorseB={setMorseB}
+          enableQueryPrefill
           subtitle={
             <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Translate plain text, decode Morse, and listen to the signal in

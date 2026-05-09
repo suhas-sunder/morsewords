@@ -109,6 +109,8 @@ export default function MorseCodePunctuation() {
           <ActionLinks
             links={[
               { href: "/morse-code-encoder", label: "Encode text", primary: true },
+              { href: "/question-mark-in-morse-code", label: "Question mark" },
+              { href: "/at-sign-in-morse-code", label: "At sign" },
               { href: "/morse-code-decoder", label: "Decode Morse" },
               { href: "/morse-code-word-separator", label: "Spacing guide" },
               { href: "/morse-code-prosigns", label: "Prosigns" },
@@ -160,7 +162,14 @@ export default function MorseCodePunctuation() {
                 children: (
                   <p>
                     Use the question mark pattern when translated text contains
-                    a real written question, such as QTH? or COPY?
+                    a real written question, such as QTH? or COPY? See the{" "}
+                    <a
+                      href="/question-mark-in-morse-code"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      question mark page
+                    </a>{" "}
+                    for examples.
                   </p>
                 ),
               },
@@ -193,6 +202,13 @@ export default function MorseCodePunctuation() {
                       className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
                     >
                       word separator guide
+                    </a>
+                    . For @ examples, open the{" "}
+                    <a
+                      href="/at-sign-in-morse-code"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      at sign page
                     </a>
                     .
                   </p>
@@ -265,6 +281,8 @@ export default function MorseCodePunctuation() {
               "Once the punctuation pattern is clear, test the surrounding message in a tool that handles full text or pasted Morse.",
             links: [
               { href: "/morse-code-encoder", label: "Encode text", primary: true },
+              { href: "/question-mark-in-morse-code", label: "Question mark" },
+              { href: "/at-sign-in-morse-code", label: "At sign" },
               { href: "/morse-code-decoder", label: "Decode Morse" },
               { href: "/dictionary", label: "Search dictionary" },
               { href: "/international-morse-code-reference", label: "Full reference" },

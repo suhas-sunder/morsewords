@@ -5,6 +5,7 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
+import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
 import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 
@@ -33,6 +34,8 @@ interface Props {
   plainValidationValue?: string;
   variant?: "default" | "home";
   quietInputFocus?: boolean;
+  enableQueryPrefill?: boolean;
+  preferredDirection?: "encode" | "decode";
 }
 
 const STROBE_WARNING_ID = "translator-strobe-warning";
@@ -69,9 +72,14 @@ export default function TranslatorSectionsBasic({
   plainValidationValue,
   variant = "default",
   quietInputFocus = false,
+  enableQueryPrefill = false,
+  preferredDirection = "encode",
 }: Props) {
   const [copied, setCopied] = useState<string | null>(null);
-  const [direction, setDirection] = useState<"encode" | "decode">("encode");
+  const [direction, setDirection] = useState<"encode" | "decode">(
+    preferredDirection,
+  );
+  const queryPrefillApplied = React.useRef(false);
 
   const player = useAudio();
 
@@ -108,6 +116,26 @@ export default function TranslatorSectionsBasic({
   useEffect(() => {
     setIsHydrated(true);
   }, []);
+
+  useEffect(() => {
+    if (!enableQueryPrefill || queryPrefillApplied.current) return;
+    queryPrefillApplied.current = true;
+    if (typeof window === "undefined") return;
+
+    const textParam = readQueryPrefillValue(window.location.search, "text");
+    const morseParam = readQueryPrefillValue(window.location.search, "morse");
+
+    if (textParam) {
+      setDirection("encode");
+      setPlainA(textParam);
+      return;
+    }
+
+    if (morseParam) {
+      setDirection("decode");
+      setMorseB(morseParam);
+    }
+  }, [enableQueryPrefill, setMorseB, setPlainA]);
 
   useEffect(() => {
     if (!isHydrated) return;

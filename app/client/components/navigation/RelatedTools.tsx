@@ -47,6 +47,12 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Reference",
       },
       {
+        title: "Name to Morse Code",
+        description: "Convert names, copy the Morse, and hear the result.",
+        href: "/name-to-morse-code",
+        badge: "Names",
+      },
+      {
         title: "International Morse Reference",
         description:
           "Browse letters, digits, punctuation, prosigns, Q-codes, and standards notes.",
@@ -85,6 +91,18 @@ const ROUTE_GROUPS: RouteGroup[] = [
         description: "Build speed and accuracy with typing-based Morse drills.",
         href: "/typing",
         badge: "Typing",
+      },
+      {
+        title: "How to Read Morse Code",
+        description: "Learn rhythm, spacing, and worked examples.",
+        href: "/how-to-read-morse-code",
+        badge: "Read",
+      },
+      {
+        title: "How to Write in Morse Code",
+        description: "Write letters, words, punctuation, and separators.",
+        href: "/how-to-write-in-morse-code",
+        badge: "Write",
       },
       {
         title: "Sentence Practice",
@@ -152,6 +170,12 @@ const ROUTE_GROUPS: RouteGroup[] = [
         href: "/morse-code-word-separator",
         badge: "Formatting",
       },
+      {
+        title: "Morse Code Numbers",
+        description: "Review 0-9 number patterns with examples and audio links.",
+        href: "/morse-code-numbers",
+        badge: "0-9",
+      },
     ],
   },
   {
@@ -165,6 +189,24 @@ const ROUTE_GROUPS: RouteGroup[] = [
         description: "Understand dot, dash, WPM, PARIS, and spacing ratios.",
         href: "/morse-code-timing",
         badge: "Timing",
+      },
+      {
+        title: "How to Type in Morse Code",
+        description: "Use safe keyboard characters and typing practice.",
+        href: "/how-to-type-in-morse-code",
+        badge: "Typing",
+      },
+      {
+        title: "Copy and Paste Morse Code",
+        description: "Keep dots, dashes, spaces, and slashes compatible.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+      {
+        title: "Morse Code Without Spaces",
+        description: "Understand why unspaced Morse cannot always decode.",
+        href: "/morse-code-without-spaces",
+        badge: "Spacing",
       },
       {
         title: "Farnsworth Timing",

@@ -115,6 +115,8 @@ export default function MorseCodeDecoder() {
           morseB={morseB}
           textB={textB}
           setMorseB={setMorseB}
+          enableQueryPrefill
+          preferredDirection="decode"
           quietInputFocus
         />
 
@@ -262,6 +264,8 @@ export default function MorseCodeDecoder() {
               "After you have readable text, fix any spacing problems, then use the message for a short recall or typing session.",
             links: [
               { href: "/", label: "Open the main translator", primary: true },
+              { href: "/morse-code-without-spaces", label: "Unspaced Morse" },
+              { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
               { href: "/morse-code-word-separator", label: "Clean up spacing" },
               { href: "/typing", label: "Practice typed recall" },
               { href: "/morse-code-encoder", label: "Encode a reply" },

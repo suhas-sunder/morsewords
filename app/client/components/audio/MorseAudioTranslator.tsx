@@ -19,6 +19,7 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
+import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
 
 import {
   CopyIcon,
@@ -46,8 +47,13 @@ const DARK_PANEL_BUTTON =
 const DARK_PANEL_DISABLED =
   "cursor-not-allowed bg-slate-800/60 text-slate-500";
 
-export default function MorseAudioTranslator() {
+export default function MorseAudioTranslator({
+  enableQueryPrefill = false,
+}: {
+  enableQueryPrefill?: boolean;
+}) {
   const player = useMorseAudio();
+  const queryPrefillApplied = React.useRef(false);
 
   const [sourceMode, setSourceMode] = React.useState<SourceMode>(
     () => (readStr("mw_audio_source", "text") as SourceMode) || "text",
@@ -118,6 +124,26 @@ export default function MorseAudioTranslator() {
   React.useEffect(() => {
     setHydrated(true);
   }, []);
+
+  React.useEffect(() => {
+    if (!enableQueryPrefill || queryPrefillApplied.current) return;
+    queryPrefillApplied.current = true;
+    if (typeof window === "undefined") return;
+
+    const textParam = readQueryPrefillValue(window.location.search, "text");
+    const morseParam = readQueryPrefillValue(window.location.search, "morse");
+
+    if (textParam) {
+      setSourceMode("text");
+      setText(textParam);
+      return;
+    }
+
+    if (morseParam) {
+      setSourceMode("morse");
+      setMorse(morseParam);
+    }
+  }, [enableQueryPrefill]);
 
   // Live update audio settings during playback/paused
   React.useEffect(() => {
@@ -424,6 +450,7 @@ export default function MorseAudioTranslator() {
                     <>
                       <ToolTextarea
                         id="mw_audio_source"
+                        aria-label="Input (Text)"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Example: Hello world"
@@ -444,6 +471,7 @@ export default function MorseAudioTranslator() {
                     <>
                       <ToolTextarea
                         id="mw_audio_source"
+                        aria-label="Input (Morse)"
                         value={morse}
                         onChange={(e) => setMorse(e.target.value)}
                         placeholder="Example: ... --- ..."

@@ -13,6 +13,7 @@ import ReferenceSupportSections from "~/client/components/shared/ReferenceSuppor
 import MorsePhraseLookupTable from "~/client/components/morse-code-words/MorsePhraseLookupTable";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import styles from "~/client/components/shared/pageStyles";
+import { morseForText } from "~/client/data/morseContent";
 
 const CANONICAL_PATH ="/morse-code-words";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -114,6 +115,8 @@ export default function MorseCodeWords() {
  <ActionLinks
  links={[
  { href:"#lookup", label:"Browse words", primary: true },
+ { href:"/i-love-you-in-morse-code", label:"I love you"},
+ { href:"/cq-in-morse-code", label:"CQ"},
  { href:"/morse-code-word-trainer", label:"Train words"},
  { href:"/morse-code-sentence-practice", label:"Sentence practice"},
  { href:"/morse-code-word-search-builder", label:"Build puzzle"},
@@ -175,6 +178,32 @@ export default function MorseCodeWords() {
  alphabet chart
  </a>
  .
+ </p>
+ ),
+ },
+ {
+ title:"I LOVE YOU",
+ morse:morseForText("I LOVE YOU").replace(/\s{7,}/g, " / "),
+ children:(
+ <p>
+ A phrase people often copy for cards, gifts, or engravings. Use the{" "}
+ <a className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline" href="/i-love-you-in-morse-code">
+ I Love You page
+ </a>{" "}
+ to check spacing.
+ </p>
+ ),
+ },
+ {
+ title:"CQ",
+ morse:morseForText("CQ"),
+ children:(
+ <p>
+ A common radio calling phrase. See{" "}
+ <a className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline" href="/cq-in-morse-code">
+ CQ in Morse code
+ </a>{" "}
+ for meaning and examples.
  </p>
  ),
  },
@@ -273,6 +302,8 @@ export default function MorseCodeWords() {
  description:"Choose the next tool based on whether you need repetition, context, spacing, or speed.",
  links:[
  { href:"/morse-code-word-trainer", label:"Train custom words", primary:true },
+ { href:"/i-love-you-in-morse-code", label:"I love you in Morse" },
+ { href:"/cq-in-morse-code", label:"CQ in Morse" },
  { href:"/morse-code-sentence-practice", label:"Practice sentences" },
  { href:"/typing", label:"Build typed recall" },
  { href:"/practice", label:"Start general practice" },

@@ -11,6 +11,7 @@ export default [
   route("how-to-use", "routes/how-to-use.tsx"),
   route("dictionary", "routes/dictionary.tsx"),
   route("about", "routes/about.tsx"),
+  route("name-to-morse-code", "routes/name-to-morse-code.tsx"),
   route("morse-code-encoder", "routes/morse-code-encoder.tsx"),
   route("morse-code-decoder", "routes/morse-code-decoder.tsx"),
   route(
@@ -20,6 +21,7 @@ export default [
   route("morse-code-word-separator", "routes/morse-code-word-separator.tsx"),
   route("morse-code-words", "routes/morse-code-words.tsx"),
   route("morse-code-alphabet", "routes/morse-code-alphabet.tsx"),
+  route("morse-code-numbers", "routes/morse-code-numbers.tsx"),
   route("morse-code-printable-chart", "routes/morse-code-printable-chart.tsx"),
   route(
     "morse-code-international-translator",
@@ -50,6 +52,15 @@ export default [
   route("morse-code-visual-quiz", "routes/morse-code-visual-quiz.tsx"),
   route("morse-code-vidual-quiz", "routes/morse-code-vidual-quiz.tsx"),
   route("morse-code-sound-generator", "routes/morse-code-sound-generator.tsx"),
+  route("how-to-read-morse-code", "routes/how-to-read-morse-code.tsx"),
+  route("how-to-write-in-morse-code", "routes/how-to-write-in-morse-code.tsx"),
+  route("how-to-type-in-morse-code", "routes/how-to-type-in-morse-code.tsx"),
+  route("copy-and-paste-morse-code", "routes/copy-and-paste-morse-code.tsx"),
+  route("morse-code-without-spaces", "routes/morse-code-without-spaces.tsx"),
+  route("i-love-you-in-morse-code", "routes/i-love-you-in-morse-code.tsx"),
+  route("cq-in-morse-code", "routes/cq-in-morse-code.tsx"),
+  route("question-mark-in-morse-code", "routes/question-mark-in-morse-code.tsx"),
+  route("at-sign-in-morse-code", "routes/at-sign-in-morse-code.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
 
   // Redirects for old URLs. Ignore these routes

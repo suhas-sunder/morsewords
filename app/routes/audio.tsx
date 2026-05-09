@@ -6,6 +6,10 @@ import MorseAudioTranslator from "~/client/components/audio/MorseAudioTranslator
 import HowItWorksAudio from "~/client/components/shared/HowItWorksAudio";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import {
+  ActionLinks,
+  SectionCard,
+} from "~/client/components/shared/MorseLearningLayout";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/audio";
@@ -115,8 +119,23 @@ export default function AudioRoute() {
   return (
     <div className="mw-non-home-page" style={styles.page}>
       <div style={{ ...styles.wrap, paddingTop: 16 }}>
-        <MorseAudioTranslator />
+        <MorseAudioTranslator enableQueryPrefill />
         <HowItWorksAudio />
+        <SectionCard
+          eyebrow="Try useful audio"
+          title="Load common examples into audio"
+          description="Use these links when you want to hear a name, short phrase, radio call, or punctuation mark without retyping it."
+        >
+          <ActionLinks
+            links={[
+              { href: "/name-to-morse-code", label: "Name to Morse", primary: true },
+              { href: "/audio?text=I%20LOVE%20YOU", label: "I love you" },
+              { href: "/audio?text=CQ", label: "CQ" },
+              { href: "/audio?text=%3F", label: "Question mark" },
+              { href: "/audio?text=%40", label: "At sign" },
+            ]}
+          />
+        </SectionCard>
         <FaqSectionGeneric title="Audio FAQ" items={faqItems} />
       </div>
       <nav
