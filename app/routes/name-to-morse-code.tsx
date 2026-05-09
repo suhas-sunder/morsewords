@@ -87,7 +87,7 @@ export default function NameToMorseCodeRoute() {
   ];
 
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
       <main style={styles.wrap}>
         <ToolHero
           eyebrow="Name utility"
@@ -234,7 +234,11 @@ export default function NameToMorseCodeRoute() {
           }}
         />
 
-        <FaqSectionGeneric title="Name to Morse Code FAQ" items={faqItems} />
+        <FaqSectionGeneric
+          title="Name to Morse Code FAQ"
+          items={faqItems}
+          variant="home"
+        />
         <JsonLdScript jsonLd={jsonLd} />
       </main>
       <BreadcrumbTrail current="Name to Morse Code" />

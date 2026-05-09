@@ -7,6 +7,7 @@ import {
   PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
+import { LETTER_ITEMS } from "~/client/data/morseContent";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
@@ -34,6 +35,7 @@ type Entry = {
   morse: string;
   meaning: string;
   category: "Letters";
+  href?: string;
 };
 
 async function copyToClipboard(text: string) {
@@ -110,6 +112,15 @@ function AlphabetCard({ entry }: { entry: Entry }) {
           <CopyButton value={entry.morse} label="Morse" />
           <CopyButton value={entry.label} label="Character" />
         </div>
+
+        {entry.href ? (
+          <a
+            href={entry.href}
+            className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+          >
+            Study {entry.label}
+          </a>
+        ) : null}
       </div>
     </article>
   );
@@ -223,34 +234,13 @@ export default function MorseCodeAlphabetRoute() {
     })),
   };
 
-  const letters: Entry[] = [
-    { label: "A", morse: ".-", meaning: "Letter A", category: "Letters" },
-    { label: "B", morse: "-...", meaning: "Letter B", category: "Letters" },
-    { label: "C", morse: "-.-.", meaning: "Letter C", category: "Letters" },
-    { label: "D", morse: "-..", meaning: "Letter D", category: "Letters" },
-    { label: "E", morse: ".", meaning: "Letter E", category: "Letters" },
-    { label: "F", morse: "..-.", meaning: "Letter F", category: "Letters" },
-    { label: "G", morse: "--.", meaning: "Letter G", category: "Letters" },
-    { label: "H", morse: "....", meaning: "Letter H", category: "Letters" },
-    { label: "I", morse: "..", meaning: "Letter I", category: "Letters" },
-    { label: "J", morse: ".---", meaning: "Letter J", category: "Letters" },
-    { label: "K", morse: "-.-", meaning: "Letter K", category: "Letters" },
-    { label: "L", morse: ".-..", meaning: "Letter L", category: "Letters" },
-    { label: "M", morse: "--", meaning: "Letter M", category: "Letters" },
-    { label: "N", morse: "-.", meaning: "Letter N", category: "Letters" },
-    { label: "O", morse: "---", meaning: "Letter O", category: "Letters" },
-    { label: "P", morse: ".--.", meaning: "Letter P", category: "Letters" },
-    { label: "Q", morse: "--.-", meaning: "Letter Q", category: "Letters" },
-    { label: "R", morse: ".-.", meaning: "Letter R", category: "Letters" },
-    { label: "S", morse: "...", meaning: "Letter S", category: "Letters" },
-    { label: "T", morse: "-", meaning: "Letter T", category: "Letters" },
-    { label: "U", morse: "..-", meaning: "Letter U", category: "Letters" },
-    { label: "V", morse: "...-", meaning: "Letter V", category: "Letters" },
-    { label: "W", morse: ".--", meaning: "Letter W", category: "Letters" },
-    { label: "X", morse: "-..-", meaning: "Letter X", category: "Letters" },
-    { label: "Y", morse: "-.--", meaning: "Letter Y", category: "Letters" },
-    { label: "Z", morse: "--..", meaning: "Letter Z", category: "Letters" },
-  ];
+  const letters: Entry[] = LETTER_ITEMS.map((item) => ({
+    label: item.letter,
+    morse: item.morseValue,
+    meaning: "Letter " + item.letter,
+    category: "Letters" as const,
+    href: item.isPublicSample ? item.path : undefined,
+  }));
 
   return (
     <main id="top" className="mw-non-home-page" style={styles.wrap}>

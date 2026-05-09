@@ -276,8 +276,22 @@ export default function MorseCodeSos() {
                   morse: "... --- ...",
                   children: (
                     <p>
-                      This is the letter-by-letter form: S, then O, then S. It
-                      is easiest to read in normal text and translators.
+                      This is the letter-by-letter form:{" "}
+                      <a
+                        href="/s-in-morse-code"
+                        className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                      >
+                        S
+                      </a>
+                      , then{" "}
+                      <a
+                        href="/o-in-morse-code"
+                        className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                      >
+                        O
+                      </a>
+                      , then S. It is easiest to read in normal text and
+                      translators.
                     </p>
                   ),
                 },

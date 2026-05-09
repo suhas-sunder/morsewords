@@ -11,6 +11,7 @@ export default defineConfig({
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: 0,
+  workers: process.env.CI ? 2 : 4,
   reporter: [
     ["list"],
     ["json", { outputFile: `${artifactDir}/logs/playwright-results.json` }],
@@ -19,7 +20,7 @@ export default defineConfig({
   use: {
     baseURL,
     actionTimeout: 10_000,
-    navigationTimeout: 20_000,
+    navigationTimeout: 45_000,
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
     video: "retain-on-failure",

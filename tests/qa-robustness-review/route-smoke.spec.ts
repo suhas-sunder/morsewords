@@ -27,7 +27,59 @@ const FIRST_BATCH_LINK_CHECK_ROUTES = [
   "/cq-in-morse-code",
   "/question-mark-in-morse-code",
   "/at-sign-in-morse-code",
+  "/a-in-morse-code",
+  "/e-in-morse-code",
+  "/s-in-morse-code",
+  "/o-in-morse-code",
+  "/q-in-morse-code",
 ] as const;
+
+const SAMPLE_LETTER_ROUTE_EXPECTATIONS = [
+  {
+    path: "/a-in-morse-code",
+    h1: "A in Morse Code",
+    title: "A in Morse Code | Symbol, Sound, and Examples | MorseWords",
+    descriptionIncludes: "A in Morse code is .-",
+    morse: ".-",
+    letter: "A",
+  },
+  {
+    path: "/e-in-morse-code",
+    h1: "E in Morse Code",
+    title: "E in Morse Code | Symbol, Sound, and Examples | MorseWords",
+    descriptionIncludes: "E in Morse code is .",
+    morse: ".",
+    letter: "E",
+  },
+  {
+    path: "/s-in-morse-code",
+    h1: "S in Morse Code",
+    title: "S in Morse Code | Symbol, Sound, and Examples | MorseWords",
+    descriptionIncludes: "S in Morse code is ...",
+    morse: "...",
+    letter: "S",
+  },
+  {
+    path: "/o-in-morse-code",
+    h1: "O in Morse Code",
+    title: "O in Morse Code | Symbol, Sound, and Examples | MorseWords",
+    descriptionIncludes: "O in Morse code is ---",
+    morse: "---",
+    letter: "O",
+  },
+  {
+    path: "/q-in-morse-code",
+    h1: "Q in Morse Code",
+    title: "Q in Morse Code | Symbol, Sound, and Examples | MorseWords",
+    descriptionIncludes: "Q in Morse code is --.-",
+    morse: "--.-",
+    letter: "Q",
+  },
+] as const;
+
+const SAMPLE_LETTER_PATHS = SAMPLE_LETTER_ROUTE_EXPECTATIONS.map(
+  (route) => route.path,
+);
 
 const FIRST_BATCH_ROUTE_EXPECTATIONS = [
   {
@@ -135,10 +187,12 @@ const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   "/contact",
 ] as const;
 
-const deferredPatterns = [
-  /^\/[a-z]-in-morse-code$/,
-  /^\/[0-9]-in-morse-code$/,
-];
+function isDeferredLetterPath(pathname: string) {
+  return (
+    /^\/[a-z]-in-morse-code$/.test(pathname) &&
+    !SAMPLE_LETTER_PATHS.includes(pathname as (typeof SAMPLE_LETTER_PATHS)[number])
+  );
+}
 
 function collectJsonLdTypes(value: unknown): string[] {
   if (Array.isArray(value)) return value.flatMap(collectJsonLdTypes);
@@ -234,12 +288,14 @@ test.describe("query prefill support", () => {
     await expect(page.getByLabel("Input (Morse)")).toHaveValue("... --- ...");
   });
 
-  test("query prefill handles encoded spaces, plus signs, empty values, and unsupported characters", async ({
+  test("query prefill handles encoded spaces", async ({
     page,
   }) => {
     await page.goto("/?text=I%20LOVE%20YOU", { waitUntil: "domcontentloaded" });
     await expect(page.getByLabel("Input (Text)")).toHaveValue("I LOVE YOU");
+  });
 
+  test("query prefill keeps literal plus signs", async ({ page }) => {
     await page.goto("/?text=A+B", { waitUntil: "domcontentloaded" });
     await expect(page.getByLabel("Input (Text)")).toHaveValue("A+B");
     await expect(page.locator("#mw_output")).toHaveValue(".-   .-.-.   -...");
@@ -248,18 +304,24 @@ test.describe("query prefill support", () => {
       waitUntil: "domcontentloaded",
     });
     await expect(page.getByLabel("Input (Text)")).toHaveValue("A+B");
+  });
 
+  test("query prefill ignores empty values", async ({ page }) => {
     await page.goto("/?text=", { waitUntil: "domcontentloaded" });
     await expect(page.getByLabel("Input (Text)")).toHaveValue("sos help");
+  });
 
+  test("query prefill ignores unsupported text values without crashing", async ({
+    page,
+  }) => {
     await page.goto("/?text=HELLO%20%23", {
       waitUntil: "domcontentloaded",
     });
-    await expect(page.getByLabel("Input (Text)")).toHaveValue("HELLO #");
-    await expect(page.getByText("Unsupported:", { exact: false })).toBeVisible();
+    await expect(page.getByLabel("Input (Text)")).toHaveValue("sos help");
+    await expect(page.getByText("Unsupported:", { exact: false })).toHaveCount(0);
   });
 
-  test("query prefill wins over localStorage only when a value is present", async ({
+  test("audio query prefill keeps localStorage when no query is present", async ({
     page,
   }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
@@ -270,12 +332,27 @@ test.describe("query prefill support", () => {
 
     await page.goto("/audio", { waitUntil: "domcontentloaded" });
     await expect(page.getByLabel("Input (Text)")).toHaveValue("STORED VALUE");
+  });
+
+  test("audio query prefill wins over localStorage when text has a value", async ({
+    page,
+  }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.evaluate(() => {
+      window.localStorage.setItem("mw_audio_source", "text");
+      window.localStorage.setItem("mw_audio_text", "STORED VALUE");
+    });
 
     await page.goto("/audio?text=QUERY%20VALUE", {
       waitUntil: "domcontentloaded",
     });
     await expect(page.getByLabel("Input (Text)")).toHaveValue("QUERY VALUE");
+  });
 
+  test("audio query prefill ignores empty values and keeps localStorage", async ({
+    page,
+  }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.evaluate(() => {
       window.localStorage.setItem("mw_audio_source", "text");
       window.localStorage.setItem("mw_audio_text", "STORED EMPTY CHECK");
@@ -374,6 +451,145 @@ test.describe("first-batch SEO metadata and schema", () => {
   });
 });
 
+test.describe("sample letter SEO metadata and schema", () => {
+  test.beforeEach(async ({ page }) => {
+    await blockExternalNetwork(page);
+  });
+
+  for (const route of SAMPLE_LETTER_ROUTE_EXPECTATIONS) {
+    test(`${route.path} exposes title, description, canonical, H1, and JSON-LD`, async ({
+      page,
+    }) => {
+      await page.goto(route.path, { waitUntil: "domcontentloaded" });
+
+      await expect(page).toHaveTitle(route.title);
+      await expect(page.locator("h1")).toHaveCount(1);
+      await expect(page.locator("h1")).toHaveText(route.h1);
+
+      const canonical = `https://morsewords.com${route.path}`;
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        "href",
+        canonical,
+      );
+      await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
+        "content",
+        canonical,
+      );
+
+      const title = await page.title();
+      const description = await page
+        .locator('meta[name="description"]')
+        .getAttribute("content");
+      expect(description, `${route.path} meta description`).toContain(
+        route.descriptionIncludes,
+      );
+      expect(description?.length, `${route.path} description length`).toBeGreaterThan(90);
+      expect(title).toBe(route.title);
+
+      const jsonLdTexts = await page
+        .locator('script[type="application/ld+json"]')
+        .evaluateAll((scripts) =>
+          scripts.map((script) => script.textContent ?? ""),
+        );
+      expect(jsonLdTexts.length, `${route.path} JSON-LD script count`).toBeGreaterThan(0);
+
+      const parsedJsonLd = jsonLdTexts.map((text) => JSON.parse(text));
+      const types = parsedJsonLd.flatMap(collectJsonLdTypes);
+      expect(types, `${route.path} has BreadcrumbList`).toContain("BreadcrumbList");
+      expect(types, `${route.path} has WebPage`).toContain("WebPage");
+      expect(types, `${route.path} has FAQPage`).toContain("FAQPage");
+
+      const faqQuestions = await page.locator("details summary").allTextContents();
+      const faqSchemaQuestions = parsedJsonLd
+        .flatMap((jsonLd) => (Array.isArray(jsonLd) ? jsonLd : [jsonLd]))
+        .filter((jsonLd) => jsonLd?.["@type"] === "FAQPage")
+        .flatMap((jsonLd) => jsonLd.mainEntity ?? [])
+        .map((item) => item.name);
+
+      for (const question of faqSchemaQuestions) {
+        expect(
+          faqQuestions.some((visibleQuestion) => visibleQuestion.includes(question)),
+          `${route.path} visible FAQ includes schema question: ${question}`,
+        ).toBe(true);
+      }
+    });
+
+    test(`${route.path} exposes expected Morse answer and tool CTAs`, async ({
+      page,
+    }) => {
+      await page.goto(route.path, { waitUntil: "domcontentloaded" });
+
+      await expect(page.getByText(route.morse, { exact: true }).first()).toBeVisible();
+      await expect(page.getByRole("button", { name: "Copy Morse" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "Play Morse" })).toBeVisible();
+      await expect(
+        page.locator(`a[href="/?text=${route.letter}"]`).first(),
+      ).toBeVisible();
+      await expect(
+        page.locator(`a[href="/audio?text=${route.letter}"]`).first(),
+      ).toBeVisible();
+      await expect(
+        page.locator(`a[href="/morse-code-encoder?text=${route.letter}"]`).first(),
+      ).toBeVisible();
+    });
+  }
+
+  test("sample letter titles and descriptions are unique", () => {
+    const titles = new Set(SAMPLE_LETTER_ROUTE_EXPECTATIONS.map((route) => route.title));
+    const descriptions = new Set(
+      SAMPLE_LETTER_ROUTE_EXPECTATIONS.map((route) => route.descriptionIncludes),
+    );
+
+    expect(titles.size).toBe(SAMPLE_LETTER_ROUTE_EXPECTATIONS.length);
+    expect(descriptions.size).toBe(SAMPLE_LETTER_ROUTE_EXPECTATIONS.length);
+  });
+
+  test("HTML and XML sitemaps include only the launched sample letter routes", async ({
+    page,
+    request,
+  }) => {
+    await page.goto("/sitemap", { waitUntil: "domcontentloaded" });
+
+    for (const route of SAMPLE_LETTER_ROUTE_EXPECTATIONS) {
+      await expect(page.locator(`a[href="${route.path}"]`).first()).toBeVisible();
+    }
+
+    const htmlHrefs = await page.locator("a[href]").evaluateAll((anchors) =>
+      anchors.map((anchor) => (anchor as HTMLAnchorElement).getAttribute("href") ?? ""),
+    );
+    const exposedDeferred = htmlHrefs.filter((href) => isDeferredLetterPath(href));
+    expect(exposedDeferred, "HTML sitemap deferred letter links").toEqual([]);
+
+    const xmlResponse = await request.get("/sitemap.xml");
+    expect(xmlResponse.ok()).toBe(true);
+    const xml = await xmlResponse.text();
+
+    for (const route of SAMPLE_LETTER_ROUTE_EXPECTATIONS) {
+      expect(xml).toContain(`https://morsewords.com${route.path}`);
+    }
+
+    for (const letter of "bcdfghijklm nprtuvwxyz".replace(/\s/g, "").split("")) {
+      expect(xml).not.toContain(`https://morsewords.com/${letter}-in-morse-code`);
+    }
+  });
+
+  test("alphabet links to the sample letter pages only", async ({ page }) => {
+    await page.goto("/morse-code-alphabet", { waitUntil: "domcontentloaded" });
+
+    for (const route of SAMPLE_LETTER_ROUTE_EXPECTATIONS) {
+      await expect(page.locator(`a[href="${route.path}"]`).first()).toBeVisible();
+    }
+
+    const hrefs = await page.locator("a[href]").evaluateAll((anchors) =>
+      anchors
+        .map((anchor) => (anchor as HTMLAnchorElement).href)
+        .map((href) => new URL(href).pathname),
+    );
+    const deferredLetterLinks = hrefs.filter(isDeferredLetterPath);
+    expect(deferredLetterLinks, "alphabet deferred letter links").toEqual([]);
+  });
+});
+
 test.describe("first-batch utility interactions", () => {
   test.beforeEach(async ({ page }) => {
     await blockExternalNetwork(page);
@@ -452,7 +668,9 @@ test.describe("first-batch link hygiene", () => {
         (href) =>
           DEFERRED_OR_REDIRECT_ONLY_ROUTES.includes(
             href as (typeof DEFERRED_OR_REDIRECT_ONLY_ROUTES)[number],
-          ) || deferredPatterns.some((pattern) => pattern.test(href)),
+          ) ||
+          isDeferredLetterPath(href) ||
+          /^\/[0-9]-in-morse-code$/.test(href),
       );
 
       expect(badLinks, `${route} bad internal links`).toEqual([]);

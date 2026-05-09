@@ -176,6 +176,35 @@ const GROUPS: SitemapGroup[] = [
         description: "Browse A-Z letter patterns for Morse alphabet learning.",
       },
       {
+        label: "A in Morse Code",
+        to: "/a-in-morse-code",
+        description: "Study A as .- with sound, examples, and practice links.",
+      },
+      {
+        label: "E in Morse Code",
+        to: "/e-in-morse-code",
+        description:
+          "Study E as one dot with spacing notes and beginner examples.",
+      },
+      {
+        label: "S in Morse Code",
+        to: "/s-in-morse-code",
+        description:
+          "Study S as three dots with SOS context and common mixups.",
+      },
+      {
+        label: "O in Morse Code",
+        to: "/o-in-morse-code",
+        description:
+          "Study O as three dashes with zero comparison and SOS context.",
+      },
+      {
+        label: "Q in Morse Code",
+        to: "/q-in-morse-code",
+        description:
+          "Study Q as --.- with CQ and Q-code context.",
+      },
+      {
         label: "Morse Code Numbers",
         to: "/morse-code-numbers",
         description:
