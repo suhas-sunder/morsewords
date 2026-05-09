@@ -57,6 +57,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="impact-site-verification"
+          content="Impact-Site-Verification: f327aaae-7fdb-496f-b6dd-6dbca05f9d4d"
+        />
         <Meta />
         <Links />
       </head>
