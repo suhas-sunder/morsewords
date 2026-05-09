@@ -1,10 +1,16 @@
-// app/routes/rent-calculator.tsx
-import { redirect, type LoaderFunction } from "react-router";
+import { Navigate } from "react-router";
 
-export const loader: LoaderFunction = async () => {
-  throw redirect("/", { status: 301 });
-};
+export function links() {
+  return [{ rel: "canonical", href: "https://morsewords.com/" }];
+}
+
+export function meta() {
+  return [
+    { title: "Morse Code Translator | MorseWords" },
+    { name: "robots", content: "noindex,follow" },
+  ];
+}
 
 export default function MorseCodeTranslatorRedirect() {
-  return null;
+  return <Navigate to="/" replace />;
 }

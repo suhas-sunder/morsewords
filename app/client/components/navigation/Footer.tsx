@@ -7,6 +7,8 @@ const footerLinks = [
   { label: "About", to: "/about" },
   { label: "Sitemap", to: "/sitemap" },
   { label: "Sources", to: "/sources" },
+  { label: "Blog", to: "/blog" },
+  { label: "Lore", to: "/lore" },
   { label: "Socials", to: "/misc/socials" },
   { label: "Privacy", to: "/misc/privacy-policy" },
   { label: "Terms", to: "/misc/terms-of-service" },

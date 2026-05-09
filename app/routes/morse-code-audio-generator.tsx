@@ -1,10 +1,16 @@
-// app/routes/rent-calculator.tsx
-import { redirect, type LoaderFunction } from "react-router";
+import { Navigate } from "react-router";
 
-export const loader: LoaderFunction = async () => {
-  throw redirect("/audio", { status: 301 });
-};
+export function links() {
+  return [{ rel: "canonical", href: "https://morsewords.com/audio" }];
+}
 
-export default function MorseCodeTranslatorRedirect() {
-  return null;
+export function meta() {
+  return [
+    { title: "Morse Code Audio Generator | MorseWords" },
+    { name: "robots", content: "noindex,follow" },
+  ];
+}
+
+export default function MorseCodeAudioGeneratorRedirect() {
+  return <Navigate to="/audio" replace />;
 }

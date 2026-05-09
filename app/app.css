@@ -134,6 +134,75 @@ main *::after {
   background: #f2eee6 !important;
 }
 
+.mw-legacy-content {
+  color: #334155;
+}
+
+.mw-legacy-content :where(header) {
+  background: transparent !important;
+}
+
+.mw-legacy-content :where(article, section, aside, div) {
+  box-shadow: none !important;
+}
+
+.mw-legacy-content *,
+.mw-legacy-content *::before,
+.mw-legacy-content *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+.mw-legacy-content :where(h1, h2, h3, h4) {
+  color: #082f49 !important;
+  font-family: var(--font-heading) !important;
+  letter-spacing: 0 !important;
+}
+
+.mw-legacy-content :where(p, li, td, figcaption, summary) {
+  color: #334155 !important;
+}
+
+.mw-legacy-content :where(a) {
+  color: #0c4a6e !important;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+
+.mw-legacy-content :where(a:hover) {
+  text-decoration: underline;
+}
+
+.mw-legacy-content :where(article) {
+  max-width: 68rem;
+}
+
+.mw-legacy-content :where(img) {
+  border-radius: 0.75rem;
+}
+
+.mw-legacy-content :where(details) {
+  background: rgba(255, 250, 242, 0.48) !important;
+  border-radius: 0.75rem;
+}
+
+.mw-legacy-content :where(table) {
+  background: #fffdf8;
+}
+
+.mw-legacy-content :where(thead) {
+  background: #fffaf2 !important;
+}
+
+.mw-legacy-content :where(.bg-white, .bg-stone-50, .bg-stone-100) {
+  background: #fffdf8 !important;
+}
+
+.mw-legacy-content :where([class*="bg-gradient"]) {
+  background-image: none !important;
+  background-color: #0c4a6e !important;
+}
+
 .mw-page-content {
   --mw-button-shadow: 0 1px 1px rgba(15, 23, 42, 0.14),
     0 2px 3px rgba(11, 36, 71, 0.13);

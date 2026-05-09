@@ -184,6 +184,16 @@ const MORE_GROUPS: NavGroup[] = [
         description: "Review reference approach and site notes.",
       },
       {
+        label: "Blog",
+        href: "/blog",
+        description: "Read restored WordSkull archive articles.",
+      },
+      {
+        label: "Lore",
+        href: "/lore",
+        description: "Browse restored WordSkull lore chapters.",
+      },
+      {
         label: "Sitemap",
         href: "/sitemap",
         description: "See the public page index.",
