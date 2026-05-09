@@ -264,6 +264,7 @@ export default function MorseCodeAlphabetRoute() {
         <ActionLinks
           links={[
             { href: "#letters", label: "Letters A-Z", primary: true },
+            { href: "/morse-code-numbers", label: "Numbers 0-9" },
             { href: "/dictionary", label: "Dictionary" },
             { href: "/international-morse-code-reference", label: "Full reference" },
             { href: "#faq", label: "FAQ" },
@@ -284,6 +285,12 @@ export default function MorseCodeAlphabetRoute() {
             className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
           >
             Examples
+          </a>
+          <a
+            href="/morse-code-numbers"
+            className="mw-button-outline cursor-pointer rounded-lg px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+          >
+            Numbers 0-9
           </a>
           <a
             href="#faq"
@@ -389,8 +396,14 @@ export default function MorseCodeAlphabetRoute() {
                   title: "Adding symbols too early",
                   children: (
                     <p>
-                      Keep the first pass focused on A-Z. Add numbers and
-                      punctuation after letter recall is stable.
+                      Keep the first pass focused on A-Z. Add{" "}
+                      <a
+                        href="/morse-code-numbers"
+                        className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                      >
+                        numbers
+                      </a>{" "}
+                      and punctuation after letter recall is stable.
                     </p>
                   ),
                 },
@@ -436,6 +449,7 @@ export default function MorseCodeAlphabetRoute() {
                 "Move from recognition into recall, rhythm, and short complete signals.",
               links: [
                 { href: "/practice", label: "Practice letters", primary: true },
+                { href: "/morse-code-numbers", label: "Review numbers" },
                 { href: "/typing", label: "Typing rhythm" },
                 { href: "/learn-morse-code", label: "Learning path" },
                 { href: "/morse-code-sos", label: "Study SOS" },

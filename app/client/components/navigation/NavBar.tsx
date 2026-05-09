@@ -34,6 +34,16 @@ const MORE_GROUPS: NavGroup[] = [
         description: "Start with letters, sound, words, and short sessions.",
       },
       {
+        label: "How to read Morse",
+        href: "/how-to-read-morse-code",
+        description: "Read rhythm, spacing, and beginner examples.",
+      },
+      {
+        label: "How to write Morse",
+        href: "/how-to-write-in-morse-code",
+        description: "Write letters, words, punctuation, and word gaps.",
+      },
+      {
         label: "Practice plan",
         href: "/morse-code-practice-plan",
         description: "Follow a 2-week or 6-week practice path.",
@@ -94,6 +104,11 @@ const MORE_GROUPS: NavGroup[] = [
         description: "View A-Z Morse patterns in one place.",
       },
       {
+        label: "Morse code numbers",
+        href: "/morse-code-numbers",
+        description: "Review the 0-9 number chart and pattern logic.",
+      },
+      {
         label: "Dictionary",
         href: "/dictionary",
         description: "Look up letters, numbers, punctuation, and signals.",
@@ -144,6 +159,11 @@ const MORE_GROUPS: NavGroup[] = [
         description: "Turn regular text into clean Morse output.",
       },
       {
+        label: "Name to Morse code",
+        href: "/name-to-morse-code",
+        description: "Convert names and open them in audio or translator tools.",
+      },
+      {
         label: "Morse code decoder",
         href: "/morse-code-decoder",
         description: "Decode dots, dashes, spaces, and separators.",
@@ -152,6 +172,11 @@ const MORE_GROUPS: NavGroup[] = [
         label: "Word separator",
         href: "/morse-code-word-separator",
         description: "Fix Morse word and letter spacing.",
+      },
+      {
+        label: "Copy and paste Morse",
+        href: "/copy-and-paste-morse-code",
+        description: "Use safe dots, dashes, spaces, and slashes.",
       },
       {
         label: "Sound generator",

@@ -152,7 +152,14 @@ export default function MorseCodeWordSeparator() {
                     >
                       decoder
                     </a>{" "}
-                    result.
+                    result. The{" "}
+                    <a
+                      href="/morse-code-without-spaces"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      unspaced Morse guide
+                    </a>{" "}
+                    explains why.
                   </p>
                 ),
               },
@@ -237,6 +244,8 @@ export default function MorseCodeWordSeparator() {
               "Once the Morse is separated cleanly, decode it, compare symbols, or learn the timing rules behind the gaps.",
             links: [
               { href: "/morse-code-decoder", label: "Decode cleaned Morse", primary: true },
+              { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+              { href: "/morse-code-without-spaces", label: "Unspaced Morse" },
               { href: "/morse-code-encoder", label: "Encode from text" },
               { href: "/dictionary", label: "Look up a symbol" },
               { href: "/morse-code-timing", label: "Review timing gaps" },

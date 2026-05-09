@@ -33,6 +33,12 @@ const GROUPS: SitemapGroup[] = [
           "Generate Morse code audio from text or Morse input for practice and downloads.",
       },
       {
+        label: "Name to Morse Code",
+        to: "/name-to-morse-code",
+        description:
+          "Convert names into Morse code, copy the output, and open it in audio tools.",
+      },
+      {
         label: "Morse Code Sound Generator",
         to: "/morse-code-sound-generator",
         description:
@@ -129,6 +135,24 @@ const GROUPS: SitemapGroup[] = [
         description: "Learn the site workflow and common Morse conventions.",
       },
       {
+        label: "How to Read Morse Code",
+        to: "/how-to-read-morse-code",
+        description:
+          "Learn rhythm, letter boundaries, word boundaries, and worked examples.",
+      },
+      {
+        label: "How to Write in Morse Code",
+        to: "/how-to-write-in-morse-code",
+        description:
+          "Write letters, words, punctuation, and spaces in readable Morse.",
+      },
+      {
+        label: "How to Type in Morse Code",
+        to: "/how-to-type-in-morse-code",
+        description:
+          "Use keyboard-safe dots, dashes, spaces, and slashes for typed Morse.",
+      },
+      {
         label: "Printable Morse Code Worksheets",
         to: "/morse-code-printable-chart",
         description:
@@ -149,7 +173,13 @@ const GROUPS: SitemapGroup[] = [
       {
         label: "Morse Code Alphabet",
         to: "/morse-code-alphabet",
-        description: "Browse letters, numbers, and common Morse symbols.",
+        description: "Browse A-Z letter patterns for Morse alphabet learning.",
+      },
+      {
+        label: "Morse Code Numbers",
+        to: "/morse-code-numbers",
+        description:
+          "Review the 0-9 Morse number chart with pattern logic and examples.",
       },
       {
         label: "Dictionary",
@@ -165,6 +195,18 @@ const GROUPS: SitemapGroup[] = [
         label: "Morse Code Word Separator",
         to: "/morse-code-word-separator",
         description: "Understand spaces, slashes, and word breaks in Morse.",
+      },
+      {
+        label: "Copy and Paste Morse Code",
+        to: "/copy-and-paste-morse-code",
+        description:
+          "Use safe dots, dashes, spaces, and slashes when copying Morse.",
+      },
+      {
+        label: "Morse Code Without Spaces",
+        to: "/morse-code-without-spaces",
+        description:
+          "Understand why unspaced Morse is ambiguous and how to add separators.",
       },
       {
         label: "Morse Code Timing",
@@ -206,6 +248,30 @@ const GROUPS: SitemapGroup[] = [
         to: "/morse-code-sos",
         description:
           "Play, copy, and learn the SOS Morse code distress signal.",
+      },
+      {
+        label: "I Love You in Morse Code",
+        to: "/i-love-you-in-morse-code",
+        description:
+          "Copy and hear I LOVE YOU in Morse with spacing notes for gifts.",
+      },
+      {
+        label: "CQ in Morse Code",
+        to: "/cq-in-morse-code",
+        description:
+          "Learn CQ in Morse code with radio context and examples.",
+      },
+      {
+        label: "Question Mark in Morse Code",
+        to: "/question-mark-in-morse-code",
+        description:
+          "Copy the question mark pattern and review question examples.",
+      },
+      {
+        label: "At Sign in Morse Code",
+        to: "/at-sign-in-morse-code",
+        description:
+          "Copy the at sign pattern for email-like or contact text.",
       },
     ],
   },
