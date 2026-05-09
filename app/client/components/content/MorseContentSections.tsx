@@ -10,6 +10,7 @@ import {
   PageHero,
   SectionCard,
   SimpleGrid,
+  WAVE_PAGE_MAIN_CLASS,
 } from "~/client/components/shared/MorseLearningLayout";
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import { encodeToolQueryValue } from "~/client/components/shared/queryPrefill";
@@ -122,7 +123,7 @@ export function MorseGuidePage({
 }) {
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
-      <main style={styles.wrap}>
+      <main className={WAVE_PAGE_MAIN_CLASS}>
         <PageHero
           eyebrow={content.eyebrow}
           title={content.h1}
@@ -192,17 +193,17 @@ function BreakdownGrid({ content }: { content: MorseLeafContent }) {
   const characterBreakdown = getCharacterBreakdown(content.plainTextValue);
 
   return (
-    <div className="grid gap-5 lg:grid-cols-2">
+    <div className="grid gap-7 lg:grid-cols-2">
       {content.kind === "phrase" ? (
         <div>
           <h3 className="text-lg font-extrabold text-sky-950">
             Word-level breakdown
           </h3>
-          <div className="mt-3 grid gap-2">
+          <div className="mt-3 grid gap-0">
             {wordBreakdown.map((item) => (
               <div
                 key={item.label}
-                className="mw-static-panel rounded-xl bg-[#fffdf8] p-4"
+                className="py-3"
               >
                 <p className="font-bold text-sky-950">{item.label}</p>
                 <p className="mt-2 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
@@ -221,11 +222,11 @@ function BreakdownGrid({ content }: { content: MorseLeafContent }) {
         <h3 className="text-lg font-extrabold text-sky-950">
           Character-level breakdown
         </h3>
-        <div className="mt-3 grid gap-2">
+        <div className="mt-3 grid gap-0">
           {characterBreakdown.map((item, index) => (
             <div
               key={`${item.label}-${index}`}
-              className="mw-static-panel rounded-xl bg-[#fffdf8] p-4"
+              className="py-3"
             >
               <div className="flex items-start justify-between gap-3">
                 <p className="font-bold text-sky-950">{item.label}</p>
@@ -255,7 +256,7 @@ export function MorseLeafPage({
 
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
-      <main style={styles.wrap}>
+      <main className={WAVE_PAGE_MAIN_CLASS}>
         <PageHero
           eyebrow={content.eyebrow}
           title={content.displayTitle}
@@ -298,8 +299,9 @@ export function MorseLeafPage({
           eyebrow="Worked examples"
           title={`${content.label} examples`}
           description="These examples keep the pattern in useful message contexts."
+          layout="stacked"
         >
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3">
             {content.examples.map((example) => (
               <article
                 key={example.title}
@@ -361,7 +363,7 @@ export function MorseLetterPage({
 
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
-      <main style={styles.wrap}>
+      <main className={WAVE_PAGE_MAIN_CLASS}>
         <PageHero
           eyebrow="Letter guide"
           title={content.displayTitle}
@@ -400,6 +402,7 @@ export function MorseLetterPage({
           eyebrow="Letter details"
           title={`What ${content.letter} is in Morse code`}
           description={content.whatItIs}
+          layout="stacked"
         >
           <div className="grid gap-3">
             <div className="grid gap-3 md:grid-cols-3">
@@ -462,8 +465,9 @@ export function MorseLetterPage({
           eyebrow="Examples"
           title={`Words that contain ${content.letter}`}
           description="Use short words to practice the letter in real context instead of memorizing it only as a lookup."
+          layout="stacked"
         >
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {content.exampleWords.map((example) => (
               <article
                 key={example.title}
@@ -611,7 +615,7 @@ export function MorseNumbersPage({
 }) {
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
-      <main style={styles.wrap}>
+      <main className={WAVE_PAGE_MAIN_CLASS}>
         <PageHero
           eyebrow="Number chart"
           title="Morse Code Numbers"
@@ -628,14 +632,14 @@ export function MorseNumbersPage({
         </PageHero>
 
         <section className="mt-6">
-          <ToolOutputPanel label="Direct answer" badge="0-9">
-            <div className="space-y-4 px-4 pb-4 text-slate-200">
+          <ToolOutputPanel label="Direct answer" badge="0-9" className="h-fit">
+            <div className="grid gap-4 px-4 pb-4 text-slate-200 lg:grid-cols-[minmax(0,0.72fr)_minmax(220px,0.28fr)]">
               <p className="max-w-[68ch] text-base leading-relaxed">
                 The Morse number chart is 0 = -----, 1 = .----, 2 = ..---,
                 3 = ...--, 4 = ....-, 5 = ....., 6 = -...., 7 = --...,
                 8 = ---.., and 9 = ----.
               </p>
-              <p className="max-w-[68ch] text-base leading-relaxed">
+              <p className="max-w-[34ch] text-base leading-relaxed text-sky-100">
                 Learn them as one five-mark system instead of ten unrelated
                 patterns.
               </p>
@@ -647,6 +651,7 @@ export function MorseNumbersPage({
           eyebrow="Lookup chart"
           title="0-9 Morse number chart"
           description="Copy or play each digit, then open the exact value in the translator or audio tool."
+          layout="stacked"
         >
           <div
             id="number-chart"
@@ -689,6 +694,7 @@ export function MorseNumbersPage({
           eyebrow="Worked examples"
           title="Number examples in Morse"
           description="Numbers appear in practical text when you write dates, counts, codes, and radio-style copy."
+          layout="stacked"
         >
           <div className="grid gap-3 md:grid-cols-3">
             {[

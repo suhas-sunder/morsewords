@@ -42,6 +42,30 @@ the implementation. Do not paste one-off phase prompts here.
   `app/root.tsx`, `app/client/components/navigation/NavBar.tsx`, and
   `app/client/components/navigation/Footer.tsx`.
 
+## MorseWords page design rules
+
+- The homepage is the visual source of truth for new pages.
+- New SEO/content routes must not use narrow article containers unless the
+  homepage uses that pattern for the same job.
+- Avoid nested cards, decorative background boxes inside cards, and filled
+  mini-surfaces that do not function as inputs, outputs, or code/reference
+  blocks.
+- Reuse shared site sections before creating new ones. Do not invent separate
+  toolkit, all-tools, or social sections when existing shared components can be
+  reused or given a small variant.
+- Match homepage spacing, max widths, section rhythm, and card padding before
+  adjusting route-specific details.
+- Buttons and interactive elements must use shared button patterns, include
+  `cursor-pointer`, visible hover behavior, focus-visible states, and honest
+  disabled behavior.
+- New pages must provide user-first content that directly answers the query,
+  gives practical examples, and offers a useful next action without thin SEO
+  filler.
+- Route-specific content should be substantial enough for search quality while
+  staying specific, accurate, and not spammy.
+- Before completing any new route, compare it visually against the homepage and
+  at least one approved tool page such as `/audio`.
+
 ## 3. Color profile
 
 Use the existing palette only.

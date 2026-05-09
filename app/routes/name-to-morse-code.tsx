@@ -12,6 +12,7 @@ import {
   ActionLinks,
   SectionCard,
   SimpleGrid,
+  WAVE_PAGE_MAIN_CLASS,
 } from "~/client/components/shared/MorseLearningLayout";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import { ToolHero } from "~/client/components/shared/ToolWorkspace";
@@ -88,7 +89,7 @@ export default function NameToMorseCodeRoute() {
 
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
-      <main style={styles.wrap}>
+      <main className={WAVE_PAGE_MAIN_CLASS}>
         <ToolHero
           eyebrow="Name utility"
           title="Name to Morse Code"
@@ -111,6 +112,7 @@ export default function NameToMorseCodeRoute() {
           eyebrow="Direct guidance"
           title="What a name converter does"
           description="Morse converts spelling, not meaning. That makes it useful for checking how a name looks and sounds in dots and dashes before you copy it into another format."
+          layout="stacked"
         >
           <SimpleGrid
             items={[
