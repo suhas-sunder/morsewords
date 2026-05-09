@@ -474,75 +474,26 @@ function CompactToolkit() {
       className="mx-auto mt-0 max-w-[1040px] px-4 sm:px-6 lg:px-8"
     >
       <div className="px-1 pb-8 pt-4 sm:px-2 sm:pb-10 sm:pt-6">
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,0.7fr)_minmax(300px,0.3fr)] lg:items-end">
-          <div className="max-w-[42rem]">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-sky-800" />
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-                Next steps
-              </span>
-            </div>
-
-            <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-sky-950 sm:text-3xl">
-              Keep using MorseWords
-            </h2>
-
-            <p className="mt-3 max-w-[38rem] text-base leading-relaxed text-slate-700">
-              Move from the answer into translation, audio, practice, or the
-              main reference chart.
-            </p>
+        <div className="max-w-[42rem]">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-sky-800" />
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+              Morse code navigation
+            </span>
           </div>
 
-          <details className="lg:justify-self-end">
-            <summary className="mw-button-outline mw-related-summary inline-flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
-              <span>View all tools</span>
-              <span className="font-mono text-sm text-sky-700">+</span>
-            </summary>
+          <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-sky-950 sm:text-3xl">
+            Explore the Morse code toolkit
+          </h2>
 
-            <div className="mt-3 grid min-w-[min(90vw,360px)] gap-2 rounded-xl bg-[#fffdf8]/86 p-3">
-              {FEATURED_LINKS.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="mw-button-outline mw-related-tool-link block cursor-pointer rounded-lg bg-[#fffaf2]/70 px-3 py-3 text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                >
-                  <span className="flex items-center justify-between gap-3">
-                    <span className="text-sm font-extrabold leading-snug">
-                      {item.title}
-                    </span>
-                    <span className="mw-related-badge shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500">
-                      {item.label}
-                    </span>
-                  </span>
-                </a>
-              ))}
-            </div>
-          </details>
+          <p className="mt-3 max-w-[38rem] text-base leading-relaxed text-slate-700">
+            Move from this page into the same translator, audio, practice, and
+            worksheet tools used across MorseWords.
+          </p>
         </div>
 
         <div className="mt-5 grid auto-rows-fr gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              title: "Translator",
-              href: "/",
-              label: "Text",
-            },
-            {
-              title: "Audio",
-              href: "/audio",
-              label: "Listen",
-            },
-            {
-              title: "Alphabet",
-              href: "/morse-code-alphabet",
-              label: "A-Z",
-            },
-            {
-              title: "Practice",
-              href: "/practice",
-              label: "Drills",
-            },
-          ].map((item) => (
+          {FEATURED_LINKS.map((item) => (
             <a
               key={item.href}
               href={item.href}

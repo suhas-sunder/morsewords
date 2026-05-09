@@ -76,10 +76,11 @@ export default function MorseAnswerCard({
   breakdown = [],
 }: MorseAnswerCardProps) {
   return (
-    <section className="mt-5 grid gap-3 lg:grid-cols-[minmax(0,0.72fr)_minmax(250px,0.28fr)]">
+    <section className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
       <ToolOutputPanel
         label="Direct answer"
         badge={label}
+        className="h-fit"
         footer={
           <>
             <CopyButton value={plainText} label="Copy text" />
@@ -95,25 +96,25 @@ export default function MorseAnswerCard({
           </>
         }
       >
-        <div className="space-y-4 px-4 pb-4 text-slate-100">
+        <div className="px-4 pb-4 text-slate-100">
           <p className="max-w-[64ch] text-base leading-relaxed text-slate-200">
             {summary}
           </p>
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-lg bg-slate-900/70 px-3 py-2">
+          <div className="mt-5 grid gap-5 sm:grid-cols-[minmax(0,0.36fr)_minmax(0,0.64fr)]">
+            <div>
               <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
                 Plain text
               </p>
-              <p className="mt-1 break-words font-mono text-lg font-bold tracking-[0.08em] text-sky-100">
+              <p className="mt-2 break-words font-mono text-xl font-bold tracking-[0.08em] text-sky-100">
                 {plainText}
               </p>
             </div>
-            <div className="rounded-lg bg-slate-900/70 px-3 py-2">
+            <div>
               <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
                 Morse
               </p>
-              <p className="mt-1 break-words font-mono text-lg font-bold tracking-[0.12em] text-sky-100">
+              <p className="mt-2 break-words font-mono text-xl font-bold tracking-[0.14em] text-sky-100">
                 {morse}
               </p>
             </div>
@@ -121,7 +122,7 @@ export default function MorseAnswerCard({
         </div>
       </ToolOutputPanel>
 
-      <aside className="mw-static-panel rounded-xl bg-[#fffdf8] p-4">
+      <aside className="mw-static-panel h-fit rounded-xl bg-[#fffdf8] p-4">
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
           Next action
         </p>
@@ -154,12 +155,13 @@ export default function MorseAnswerCard({
 
         {breakdown.length > 0 ? (
           <div className="mt-4">
-            <p className="text-sm font-extrabold text-sky-950">Quick breakdown</p>
-            <div className="mt-2 grid gap-2">
+            <div className="h-px bg-slate-200/80" />
+            <p className="mt-3 text-sm font-extrabold text-sky-950">Quick breakdown</p>
+            <div className="mt-2 grid gap-0">
               {breakdown.slice(0, 4).map((item, index) => (
                 <div
                   key={`${item.label}-${item.morse}-${index}`}
-                  className="mw-static-tile rounded-lg bg-[#fffaf2] px-3 py-2"
+                  className="py-2"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span className="font-bold text-sky-950">{item.label}</span>

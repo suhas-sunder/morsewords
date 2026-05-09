@@ -86,7 +86,7 @@ export default function NameToMorseTool() {
   const encodedName = encodeToolQueryValue(normalizedName);
 
   return (
-    <section className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+    <section className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
       <ToolPanel
         label={<label htmlFor="mw_name_input">Name</label>}
         badge="Input"

@@ -22,6 +22,9 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
+export const WAVE_PAGE_MAIN_CLASS =
+  "mx-auto w-full max-w-[1120px] px-4 pb-0 pt-2 sm:px-6 sm:pt-4 lg:px-8";
+
 export function PageHero({
   eyebrow,
   title,
@@ -66,30 +69,56 @@ export function SectionCard({
   description,
   children,
   aside,
+  layout = "split",
 }: {
   eyebrow: string;
   title: string;
   description?: string;
   children: React.ReactNode;
   aside?: React.ReactNode;
+  layout?: "split" | "stacked";
 }) {
+  if (layout === "stacked") {
+    return (
+      <section className="mt-9 sm:mt-11">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.72fr)_minmax(260px,0.28fr)] lg:items-end">
+          <div className="min-w-0">
+            <Eyebrow>{eyebrow}</Eyebrow>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+              {title}
+            </h2>
+            {description ? (
+              <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+                {description}
+              </p>
+            ) : null}
+          </div>
+          {aside ? <div className="min-w-0 lg:justify-self-end">{aside}</div> : null}
+        </div>
+        <div className="mt-6">{children}</div>
+      </section>
+    );
+  }
+
   return (
-    <section className="mt-8 sm:mt-10">
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
-        <div>
+    <section className="mt-9 sm:mt-11">
+      <div className="grid gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-8">
+        <div className="min-w-0">
           <Eyebrow>{eyebrow}</Eyebrow>
           <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-sky-950 sm:text-3xl">
             {title}
           </h2>
           {description ? (
-            <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
               {description}
             </p>
           ) : null}
         </div>
-        {aside ? <div>{aside}</div> : null}
+        <div className="min-w-0">
+          {aside ? <div className="mb-5">{aside}</div> : null}
+          {children}
+        </div>
       </div>
-      <div className="mt-5">{children}</div>
     </section>
   );
 }
@@ -145,11 +174,13 @@ export function ActionLinks({
 
 export function SimpleGrid({
   items,
+  variant = "plain",
 }: {
   items: Array<{ title: string; text: string; href?: string; badge?: string }>;
+  variant?: "plain" | "cards";
 }) {
   return (
-    <div className="grid gap-3 md:grid-cols-2">
+    <div className="grid gap-x-6 gap-y-5 md:grid-cols-2">
       {items.map((item) => {
         const body = (
           <>
@@ -192,8 +223,16 @@ export function SimpleGrid({
           );
         }
 
+        if (variant === "cards") {
+          return (
+            <div key={item.title} className="mw-static-panel rounded-xl bg-[#fffdf8] p-4 sm:p-5">
+              {body}
+            </div>
+          );
+        }
+
         return (
-          <div key={item.title} className="mw-static-panel rounded-xl bg-[#fffdf8] p-4 sm:p-5">
+          <div key={item.title} className="py-1">
             {body}
           </div>
         );

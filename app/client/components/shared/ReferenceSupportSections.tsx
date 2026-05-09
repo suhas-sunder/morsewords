@@ -75,8 +75,9 @@ export default function ReferenceSupportSections({
         eyebrow="Worked examples"
         title={examples.title}
         description={examples.description}
+        layout="stacked"
       >
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-3">
           {examples.items.map((example) => (
             <article
               key={example.title}
@@ -100,8 +101,9 @@ export default function ReferenceSupportSections({
         eyebrow="Use it well"
         title={mistakes.title}
         description={mistakes.description}
+        layout="stacked"
       >
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-3">
           {mistakes.items.map((mistake) => (
             <article
               key={mistake.title}
