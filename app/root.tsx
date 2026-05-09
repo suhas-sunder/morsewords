@@ -57,27 +57,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="impact-site-verification"
-          content="Impact-Site-Verification: f327aaae-7fdb-496f-b6dd-6dbca05f9d4d"
-        />
         <Meta />
         <Links />
       </head>
       <body>
-        <div
-          style={{
-            background: "#f5f2eb",
-            color: "#111317",
-            fontSize: "12px",
-            lineHeight: "16px",
-            padding: "4px 8px",
-          }}
-        >
-          Impact-Site-Verification: f327aaae-7fdb-496f-b6dd-6dbca05f9d4d
-        </div>
         <PHogProvider>
           <NavBar />
+          <div
+            style={{
+              background: "#fff200",
+              color: "#000000",
+              fontSize: "24px",
+              fontWeight: 800,
+              lineHeight: "32px",
+              padding: "16px 48px",
+              position: "relative",
+              zIndex: 60,
+            }}
+          >
+            Impact-Site-Verification: f327aaae-7fdb-496f-b6dd-6dbca05f9d4d
+          </div>
           <div
             className="relative min-h-screen overflow-hidden"
             style={paperBackground}
