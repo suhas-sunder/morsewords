@@ -65,6 +65,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <div
+          style={{
+            background: "#f5f2eb",
+            color: "#111317",
+            fontSize: "12px",
+            lineHeight: "16px",
+            padding: "4px 8px",
+          }}
+        >
+          Impact-Site-Verification: f327aaae-7fdb-496f-b6dd-6dbca05f9d4d
+        </div>
         <PHogProvider>
           <NavBar />
           <div
