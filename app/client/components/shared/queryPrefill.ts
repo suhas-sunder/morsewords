@@ -1,3 +1,5 @@
+import { getUnsupportedTextCharacters } from "./morseUtils";
+
 function safeDecodeQueryPart(value: string) {
   try {
     return decodeURIComponent(value);
@@ -20,6 +22,12 @@ export function readQueryPrefillValue(search: string, key: "text" | "morse") {
 
     const rawValue = separatorIndex >= 0 ? part.slice(separatorIndex + 1) : "";
     const decodedValue = safeDecodeQueryPart(rawValue).trim();
+    if (
+      key === "text" &&
+      Object.keys(getUnsupportedTextCharacters(decodedValue)).length > 0
+    ) {
+      return null;
+    }
 
     return decodedValue || null;
   }

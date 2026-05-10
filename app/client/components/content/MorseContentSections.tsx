@@ -27,12 +27,20 @@ import {
   type ContentFaqItem,
   type ContentTile,
   type GuidePageContent,
+  LETTER_ITEMS,
   type LetterContentItem,
   type MorseLeafContent,
   type NumberContentItem,
   NUMBER_ITEMS,
   NUMBER_PAGE_FAQ_ITEMS,
+  PHRASE_PAGES,
+  SYMBOL_PAGES,
 } from "~/client/data/morseContent";
+
+type BreadcrumbParent = {
+  name: string;
+  path: string;
+};
 
 type JsonLdInput = {
   siteUrl: string;
@@ -42,25 +50,75 @@ type JsonLdInput = {
   description: string;
   faqItems?: ContentFaqItem[];
   schemaType?: "WebPage" | "LearningResource" | "CollectionPage" | "WebApplication";
+  breadcrumbParent?: BreadcrumbParent;
 };
+
+const phrasePaths = new Set(Object.values(PHRASE_PAGES).map((item) => item.path));
+const symbolPaths = new Set(Object.values(SYMBOL_PAGES).map((item) => item.path));
+const spacingGuidePaths = new Set([
+  "/copy-and-paste-morse-code",
+  "/how-to-separate-words-in-morse-code",
+  "/morse-code-without-spaces",
+  "/slash-in-morse-code",
+  "/space-in-morse-code",
+]);
+
+export function getMorseContentBreadcrumbParent(path: string): BreadcrumbParent | undefined {
+  if (LETTER_ITEMS.some((item) => item.path === path)) {
+    return { name: "Morse Code Alphabet", path: "/morse-code-alphabet" };
+  }
+
+  if (NUMBER_ITEMS.some((item) => item.path === path)) {
+    return { name: "Morse Code Numbers", path: "/morse-code-numbers" };
+  }
+
+  if (phrasePaths.has(path)) {
+    return { name: "Morse Code Words", path: "/morse-code-words" };
+  }
+
+  if (spacingGuidePaths.has(path)) {
+    return { name: "Morse Code Word Separator", path: "/morse-code-word-separator" };
+  }
+
+  if (symbolPaths.has(path)) {
+    return { name: "Morse Code Punctuation", path: "/morse-code-punctuation" };
+  }
+
+  return undefined;
+}
 
 export function buildBreadcrumbJsonLd({
   siteUrl,
   canonicalUrl,
   name,
-}: Pick<JsonLdInput, "siteUrl" | "canonicalUrl" | "name">) {
+  path,
+  breadcrumbParent,
+}: Pick<JsonLdInput, "siteUrl" | "canonicalUrl" | "name" | "path" | "breadcrumbParent">) {
+  const parent = breadcrumbParent ?? getMorseContentBreadcrumbParent(path);
+  const itemListElement = [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl + "/" },
+  ];
+
+  if (parent) {
+    itemListElement.push({
+      "@type": "ListItem",
+      position: 2,
+      name: parent.name,
+      item: `${siteUrl}${parent.path}`,
+    });
+  }
+
+  itemListElement.push({
+    "@type": "ListItem",
+    position: parent ? 3 : 2,
+    name,
+    item: canonicalUrl,
+  });
+
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl + "/" },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name,
-        item: canonicalUrl,
-      },
-    ],
+    itemListElement,
   };
 }
 
@@ -122,6 +180,8 @@ export function MorseGuidePage({
   content: GuidePageContent;
   jsonLd: unknown;
 }) {
+  const breadcrumbParent = getMorseContentBreadcrumbParent(content.path);
+
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
       <main className={WAVE_PAGE_MAIN_CLASS}>
@@ -185,7 +245,14 @@ export function MorseGuidePage({
         />
         <JsonLdScript jsonLd={jsonLd} />
       </main>
-      <BreadcrumbTrail current={content.h1} />
+      <BreadcrumbTrail
+        current={content.h1}
+        parent={
+          breadcrumbParent
+            ? { href: breadcrumbParent.path, label: breadcrumbParent.name }
+            : undefined
+        }
+      />
     </div>
   );
 }
@@ -255,6 +322,7 @@ export function MorseLeafPage({
   jsonLd: unknown;
 }) {
   const queryValue = encodeToolQueryValue(content.plainTextValue);
+  const breadcrumbParent = getMorseContentBreadcrumbParent(content.path);
 
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
@@ -350,7 +418,14 @@ export function MorseLeafPage({
         />
         <JsonLdScript jsonLd={jsonLd} />
       </main>
-      <BreadcrumbTrail current={content.displayTitle} />
+      <BreadcrumbTrail
+        current={content.displayTitle}
+        parent={
+          breadcrumbParent
+            ? { href: breadcrumbParent.path, label: breadcrumbParent.name }
+            : undefined
+        }
+      />
     </div>
   );
 }
@@ -363,6 +438,7 @@ export function MorseLetterPage({
   jsonLd: unknown;
 }) {
   const queryValue = encodeToolQueryValue(content.plainTextValue);
+  const breadcrumbParent = getMorseContentBreadcrumbParent(content.path);
 
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
@@ -550,7 +626,14 @@ export function MorseLetterPage({
         />
         <JsonLdScript jsonLd={jsonLd} />
       </main>
-      <BreadcrumbTrail current={content.displayTitle} />
+      <BreadcrumbTrail
+        current={content.displayTitle}
+        parent={
+          breadcrumbParent
+            ? { href: breadcrumbParent.path, label: breadcrumbParent.name }
+            : undefined
+        }
+      />
     </div>
   );
 }
@@ -563,6 +646,7 @@ export function MorseNumberPage({
   jsonLd: unknown;
 }) {
   const queryValue = encodeToolQueryValue(content.plainTextValue);
+  const breadcrumbParent = getMorseContentBreadcrumbParent(content.path);
 
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
@@ -755,7 +839,14 @@ export function MorseNumberPage({
         />
         <JsonLdScript jsonLd={jsonLd} />
       </main>
-      <BreadcrumbTrail current={content.displayTitle} />
+      <BreadcrumbTrail
+        current={content.displayTitle}
+        parent={
+          breadcrumbParent
+            ? { href: breadcrumbParent.path, label: breadcrumbParent.name }
+            : undefined
+        }
+      />
     </div>
   );
 }

@@ -257,6 +257,37 @@ const FINAL_ROUTE_EXPECTATIONS = [
 
 const FINAL_ROUTE_PATHS = FINAL_ROUTE_EXPECTATIONS.map((route) => route.path);
 
+const BREADCRUMB_SCHEMA_EXPECTATIONS = [
+  {
+    path: "/a-in-morse-code",
+    names: ["Home", "Morse Code Alphabet", "A in Morse Code"],
+  },
+  {
+    path: "/7-in-morse-code",
+    names: ["Home", "Morse Code Numbers", "7 in Morse Code"],
+  },
+  {
+    path: "/hello-in-morse-code",
+    names: ["Home", "Morse Code Words", "Hello in Morse Code"],
+  },
+  {
+    path: "/colon-in-morse-code",
+    names: ["Home", "Morse Code Punctuation", "Colon in Morse Code"],
+  },
+  {
+    path: "/how-to-separate-words-in-morse-code",
+    names: [
+      "Home",
+      "Morse Code Word Separator",
+      "How to Separate Words in Morse Code",
+    ],
+  },
+  {
+    path: "/contact",
+    names: ["Home", "Contact MorseWords"],
+  },
+] as const;
+
 const FIRST_BATCH_LINK_CHECK_ROUTES = [
   "/",
   "/audio",
@@ -385,6 +416,27 @@ function collectJsonLdTypes(value: unknown): string[] {
   ];
 }
 
+function collectBreadcrumbNameTrails(value: unknown): string[][] {
+  if (Array.isArray(value)) return value.flatMap(collectBreadcrumbNameTrails);
+  if (!value || typeof value !== "object") return [];
+
+  const record = value as Record<string, unknown>;
+  const trails =
+    record["@type"] === "BreadcrumbList" && Array.isArray(record.itemListElement)
+      ? [
+          record.itemListElement
+            .map((item) =>
+              item && typeof item === "object"
+                ? (item as Record<string, unknown>).name
+                : undefined,
+            )
+            .filter((name): name is string => typeof name === "string"),
+        ]
+      : [];
+
+  return [...trails, ...collectBreadcrumbNameTrails(record["@graph"])];
+}
+
 test.describe("route smoke and console stability", () => {
   for (const route of APP_ROUTES) {
     test(`${route} loads without server error`, async ({ page }, testInfo) => {
@@ -413,6 +465,34 @@ test.describe("route smoke and console stability", () => {
         `console-${route === "/" ? "home" : route.slice(1).replaceAll("/", "-")}.json`,
         consoleEntries,
       );
+    });
+  }
+});
+
+test.describe("breadcrumb schema hierarchy", () => {
+  test.beforeEach(async ({ page }) => {
+    await blockExternalNetwork(page);
+  });
+
+  for (const route of BREADCRUMB_SCHEMA_EXPECTATIONS) {
+    test(`${route.path} uses the expected breadcrumb hierarchy`, async ({
+      page,
+    }) => {
+      await page.goto(route.path, { waitUntil: "domcontentloaded" });
+
+      const jsonLdTexts = await page
+        .locator('script[type="application/ld+json"]')
+        .evaluateAll((scripts) =>
+          scripts.map((script) => script.textContent ?? ""),
+        );
+      const trails = jsonLdTexts
+        .map((text) => JSON.parse(text))
+        .flatMap(collectBreadcrumbNameTrails);
+
+      expect(
+        trails.some((trail) => JSON.stringify(trail) === JSON.stringify(route.names)),
+        `${route.path} breadcrumb trails: ${JSON.stringify(trails)}`,
+      ).toBe(true);
     });
   }
 });
@@ -481,6 +561,24 @@ test.describe("query prefill support", () => {
       waitUntil: "domcontentloaded",
     });
     await expect(page.getByLabel("Input (Text)")).toHaveValue("A+B");
+  });
+
+  test("query prefill keeps supported punctuation edge cases", async ({
+    page,
+  }) => {
+    const supportedCases = [
+      { url: "/?text=DON%27T", value: "DON'T" },
+      { url: "/?text=X-RAY", value: "X-RAY" },
+      { url: "/?text=%22SOS%22", value: '"SOS"' },
+      { url: "/?text=%28NOTE%29", value: "(NOTE)" },
+      { url: "/?text=CALL_SIGN", value: "CALL_SIGN" },
+    ];
+
+    for (const item of supportedCases) {
+      await page.goto(item.url, { waitUntil: "domcontentloaded" });
+      await expect(page.getByLabel("Input (Text)")).toHaveValue(item.value);
+      await expect(page.locator("#mw_output")).not.toHaveValue("");
+    }
   });
 
   test("query prefill ignores empty values", async ({ page }) => {

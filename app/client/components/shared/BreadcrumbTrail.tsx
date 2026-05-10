@@ -1,8 +1,12 @@
 type BreadcrumbTrailProps = {
   current: string;
+  parent?: {
+    href: string;
+    label: string;
+  };
 };
 
-export default function BreadcrumbTrail({ current }: BreadcrumbTrailProps) {
+export default function BreadcrumbTrail({ current, parent }: BreadcrumbTrailProps) {
   return (
     <nav
       aria-label="Breadcrumb"
@@ -15,6 +19,19 @@ export default function BreadcrumbTrail({ current }: BreadcrumbTrailProps) {
           </a>
         </li>
         <li>/</li>
+        {parent ? (
+          <>
+            <li>
+              <a
+                href={parent.href}
+                className="cursor-pointer underline hover:no-underline"
+              >
+                {parent.label}
+              </a>
+            </li>
+            <li>/</li>
+          </>
+        ) : null}
         <li className="font-semibold text-sky-950">{current}</li>
       </ol>
     </nav>

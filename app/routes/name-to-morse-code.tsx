@@ -70,6 +70,7 @@ export default function NameToMorseCodeRoute() {
     buildBreadcrumbJsonLd({
       siteUrl: SITE_URL,
       canonicalUrl: CANONICAL_URL,
+      path: CANONICAL_PATH,
       name: "Name to Morse Code",
     }),
     {
