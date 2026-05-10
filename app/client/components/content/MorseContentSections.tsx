@@ -174,6 +174,7 @@ export function MorseGuidePage({
             description: content.nextStepDescription,
             links: content.relatedLinks,
           }}
+          linkedItemStyle="inline"
         />
 
         <FaqSectionGeneric
@@ -269,6 +270,7 @@ export function MorseLeafPage({
           label={content.label}
           plainText={content.plainTextValue}
           morse={content.morseValue}
+          rhythm={content.spokenRhythm}
           summary={content.answerSummary}
           translatorHref={`/?text=${queryValue}`}
           audioHref={`/audio?text=${queryValue}`}
@@ -292,7 +294,10 @@ export function MorseLeafPage({
           title={content.contextTitle}
           description="Use the exact pattern, then check the spacing before copying it into another app or permanent design."
         >
-          <SimpleGrid items={textLinkTiles(content.context)} />
+          <SimpleGrid
+            items={textLinkTiles(content.context)}
+            linkedItemStyle="inline"
+          />
         </SectionCard>
 
         <SectionCard
@@ -329,15 +334,10 @@ export function MorseLeafPage({
           title="Common mistakes"
           description="Check these details before copying the result into a message, worksheet, gift, or practice drill."
         >
-          <SimpleGrid items={textLinkTiles(content.commonMistakes)} />
-        </SectionCard>
-
-        <SectionCard
-          eyebrow="Next step"
-          title="Related Morse tools"
-          description="Open the exact value in a tool, or move to the closest reference page."
-        >
-          <ActionLinks links={content.relatedLinks} />
+          <SimpleGrid
+            items={textLinkTiles(content.commonMistakes)}
+            linkedItemStyle="inline"
+          />
         </SectionCard>
 
         <FaqSectionGeneric
@@ -384,10 +384,12 @@ export function MorseLetterPage({
             label={`Letter ${content.letter}`}
             plainText={content.plainTextValue}
             morse={content.morseValue}
+            rhythm={content.spokenRhythm}
             summary={content.answerSummary}
             translatorHref={`/?text=${queryValue}`}
             audioHref={`/audio?text=${queryValue}`}
             encoderHref={`/morse-code-encoder?text=${queryValue}`}
+            practiceHref={content.miniPracticePrompt.href ?? "/practice"}
             breakdown={[
               {
                 label: content.letter,
@@ -404,41 +406,44 @@ export function MorseLetterPage({
           description={content.whatItIs}
           layout="stacked"
         >
-          <div className="grid gap-3">
-            <div className="grid gap-3 md:grid-cols-3">
-              <article className="mw-static-panel rounded-xl bg-[#fffdf8] p-4 sm:p-5">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+          <div className="grid gap-7">
+            <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-3">
+              <div>
+                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                   Character
-                </p>
-                <p className="mt-2 text-3xl font-black text-sky-950">
+                </dt>
+                <dd className="mt-2 text-4xl font-black text-sky-950">
                   {content.letter}
-                </p>
-              </article>
-              <article className="mw-static-panel rounded-xl bg-[#fffdf8] p-4 sm:p-5">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                   Dot dash pattern
-                </p>
-                <p className="mt-2 break-words font-mono text-2xl font-bold tracking-[0.14em] text-slate-950">
+                </dt>
+                <dd className="mt-2 break-words font-mono text-3xl font-bold tracking-[0.14em] text-slate-950">
                   {content.morseValue}
-                </p>
-              </article>
-              <article className="mw-static-panel rounded-xl bg-[#fffdf8] p-4 sm:p-5">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                   Spoken rhythm
-                </p>
-                <p className="mt-2 text-xl font-extrabold text-sky-950">
+                </dt>
+                <dd className="mt-2 text-2xl font-extrabold text-sky-950">
                   {content.spokenRhythm}
-                </p>
-              </article>
-            </div>
+                </dd>
+              </div>
+            </dl>
 
-            <div className="grid gap-3 lg:grid-cols-2">
+            <div className="grid gap-7 lg:grid-cols-2">
               <div>
                 <h3 className="text-lg font-extrabold text-sky-950">
                   How it sounds
                 </h3>
                 <div className="mt-3">
-                  <SimpleGrid items={textLinkTiles(content.soundNotes)} />
+                  <SimpleGrid
+                    items={textLinkTiles(content.soundNotes)}
+                    linkedItemStyle="inline"
+                  />
                 </div>
               </div>
               <div>
@@ -446,7 +451,10 @@ export function MorseLetterPage({
                   How to type it
                 </h3>
                 <div className="mt-3">
-                  <SimpleGrid items={textLinkTiles(content.typingNotes)} />
+                  <SimpleGrid
+                    items={textLinkTiles(content.typingNotes)}
+                    linkedItemStyle="inline"
+                  />
                 </div>
               </div>
             </div>
@@ -458,7 +466,10 @@ export function MorseLetterPage({
           title="Common mistakes and confused letters"
           description="Small spacing or mark-count changes can turn one Morse letter into another."
         >
-          <SimpleGrid items={textLinkTiles(content.commonConfusions)} />
+          <SimpleGrid
+            items={textLinkTiles(content.commonConfusions)}
+            linkedItemStyle="inline"
+          />
         </SectionCard>
 
         <SectionCard
@@ -467,11 +478,11 @@ export function MorseLetterPage({
           description="Use short words to practice the letter in real context instead of memorizing it only as a lookup."
           layout="stacked"
         >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:grid-cols-4">
             {content.exampleWords.map((example) => (
               <article
                 key={example.title}
-                className="mw-static-panel rounded-xl bg-[#fffdf8] p-5"
+                className="py-1"
               >
                 <h3 className="text-lg font-extrabold text-sky-950">
                   {example.title}
@@ -491,26 +502,33 @@ export function MorseLetterPage({
           eyebrow="Mini practice"
           title={content.miniPracticePrompt.title}
           description={content.miniPracticePrompt.text}
+          layout="stacked"
         >
-          <ActionLinks
-            links={[
-              {
-                href: content.miniPracticePrompt.href ?? "/practice",
-                label: "Practice now",
-                primary: true,
-              },
-              { href: "/typing", label: "Typing drill" },
-              { href: `/audio?text=${queryValue}`, label: "Hear it again" },
-            ]}
-          />
-        </SectionCard>
-
-        <SectionCard
-          eyebrow="Next step"
-          title="Related Morse tools"
-          description="Compare the letter with the full alphabet, then move into audio, typing, and practice."
-        >
-          <ActionLinks links={content.relatedLinks} />
+          <div className="grid gap-x-8 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] lg:items-start">
+            {[content.listeningDrill, content.typingDrill].map((drill) => (
+              <div key={drill.title} className="py-1">
+                <h3 className="text-lg font-extrabold leading-snug text-sky-950">
+                  {drill.title}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                  {drill.text}
+                </p>
+              </div>
+            ))}
+            <div className="flex flex-wrap gap-2 lg:justify-end">
+              <ActionLinks
+                links={[
+                  {
+                    href: content.miniPracticePrompt.href ?? "/practice",
+                    label: "Practice now",
+                    primary: true,
+                  },
+                  { href: content.listeningDrill.href ?? `/audio?text=${queryValue}`, label: "Hear drill" },
+                  { href: content.typingDrill.href ?? "/typing", label: "Type drill" },
+                ]}
+              />
+            </div>
+          </div>
         </SectionCard>
 
         <FaqSectionGeneric

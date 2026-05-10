@@ -11,9 +11,11 @@ type MorseAnswerCardProps = {
   label: string;
   plainText: string;
   morse: string;
+  rhythm?: string;
   summary: string;
   audioHref?: string;
   encoderHref?: string;
+  practiceHref?: string;
   translatorHref?: string;
   breakdown?: Array<{ label: string; morse: string; note?: string }>;
 };
@@ -69,14 +71,25 @@ export default function MorseAnswerCard({
   label,
   plainText,
   morse,
+  rhythm,
   summary,
   audioHref,
   encoderHref,
+  practiceHref,
   translatorHref,
   breakdown = [],
 }: MorseAnswerCardProps) {
+  const actionLinks = [
+    translatorHref
+      ? { href: translatorHref, label: "Open in translator" }
+      : null,
+    audioHref ? { href: audioHref, label: "Hear in audio" } : null,
+    encoderHref ? { href: encoderHref, label: "Open in encoder" } : null,
+    practiceHref ? { href: practiceHref, label: "Practice" } : null,
+  ].filter(Boolean) as Array<{ href: string; label: string }>;
+
   return (
-    <section className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+    <section className="mt-5">
       <ToolOutputPanel
         label="Direct answer"
         badge={label}
@@ -97,11 +110,11 @@ export default function MorseAnswerCard({
         }
       >
         <div className="px-4 pb-4 text-slate-100">
-          <p className="max-w-[64ch] text-base leading-relaxed text-slate-200">
+          <p className="max-w-[72ch] text-base leading-relaxed text-slate-200">
             {summary}
           </p>
 
-          <div className="mt-5 grid gap-5 sm:grid-cols-[minmax(0,0.36fr)_minmax(0,0.64fr)]">
+          <div className="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-3">
             <div>
               <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
                 Plain text
@@ -118,68 +131,80 @@ export default function MorseAnswerCard({
                 {morse}
               </p>
             </div>
+            {rhythm ? (
+              <div>
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
+                  Rhythm
+                </p>
+                <p className="mt-2 break-words text-xl font-extrabold text-sky-100">
+                  {rhythm}
+                </p>
+              </div>
+            ) : null}
           </div>
         </div>
       </ToolOutputPanel>
 
-      <aside className="mw-static-panel h-fit rounded-xl bg-[#fffdf8] p-4">
-        <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
-          Next action
-        </p>
-        <div className="mt-3 grid gap-2">
-          {translatorHref ? (
-            <a
-              href={translatorHref}
-              className={toolControlButtonClass({ size: "sm", full: true })}
-            >
-              Open in translator
-            </a>
+      {actionLinks.length > 0 || breakdown.length > 0 ? (
+        <div className="mt-4 flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
+          {actionLinks.length > 0 ? (
+            <div className="min-w-0 flex-1 py-1">
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                Next actions
+              </p>
+              <div className="mt-3 flex max-w-[720px] flex-wrap gap-2">
+                {actionLinks.map((link, index) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={toolControlButtonClass({
+                      tone: index === 0 ? "dark" : "light",
+                      size: "sm",
+                    })}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           ) : null}
-          {audioHref ? (
-            <a
-              href={audioHref}
-              className={toolControlButtonClass({ size: "sm", full: true })}
-            >
-              Hear in audio
-            </a>
-          ) : null}
-          {encoderHref ? (
-            <a
-              href={encoderHref}
-              className={toolControlButtonClass({ size: "sm", full: true })}
-            >
-              Open in encoder
-            </a>
+
+          {breakdown.length > 0 ? (
+            <div className="min-w-0 py-1 lg:ml-auto lg:w-fit lg:max-w-[420px]">
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                Quick breakdown
+              </p>
+              <div
+                className={[
+                  "mt-2 grid gap-x-6 gap-y-2",
+                  breakdown.length > 1 ? "sm:grid-cols-2 lg:grid-cols-1" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                {breakdown.slice(0, 4).map((item, index) => (
+                  <div
+                    key={`${item.label}-${item.morse}-${index}`}
+                    className="py-2"
+                  >
+                    <div className="inline-grid grid-cols-[auto_auto] items-baseline gap-8">
+                      <span className="font-bold text-sky-950">{item.label}</span>
+                      <span className="font-mono text-sm font-bold tracking-[0.12em] text-slate-900">
+                        {item.morse}
+                      </span>
+                    </div>
+                    {item.note ? (
+                      <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                        {item.note}
+                      </p>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </div>
           ) : null}
         </div>
-
-        {breakdown.length > 0 ? (
-          <div className="mt-4">
-            <div className="h-px bg-slate-200/80" />
-            <p className="mt-3 text-sm font-extrabold text-sky-950">Quick breakdown</p>
-            <div className="mt-2 grid gap-0">
-              {breakdown.slice(0, 4).map((item, index) => (
-                <div
-                  key={`${item.label}-${item.morse}-${index}`}
-                  className="py-2"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="font-bold text-sky-950">{item.label}</span>
-                    <span className="font-mono text-sm font-bold tracking-[0.12em] text-slate-900">
-                      {item.morse}
-                    </span>
-                  </div>
-                  {item.note ? (
-                    <p className="mt-1 text-xs leading-relaxed text-slate-600">
-                      {item.note}
-                    </p>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : null}
-      </aside>
+      ) : null}
     </section>
   );
 }

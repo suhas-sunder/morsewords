@@ -334,8 +334,7 @@ export default function RelatedTools() {
   const isHome = location.pathname === "/";
   const isCompactContent = COMPACT_TOOLKIT_PATHS.has(location.pathname);
 
-  if (isHome) return <HomeToolkit />;
-  if (isCompactContent) return <CompactToolkit />;
+  if (isHome || isCompactContent) return <HomeToolkit />;
   return <FullToolkit />;
 }
 
@@ -462,52 +461,6 @@ function HomeToolkit() {
             ))}
           </div>
         </details>
-      </div>
-    </section>
-  );
-}
-
-function CompactToolkit() {
-  return (
-    <section
-      id="morse-code-navigation"
-      className="mx-auto mt-0 max-w-[1040px] px-4 sm:px-6 lg:px-8"
-    >
-      <div className="px-1 pb-8 pt-4 sm:px-2 sm:pb-10 sm:pt-6">
-        <div className="max-w-[42rem]">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-sky-800" />
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-              Morse code navigation
-            </span>
-          </div>
-
-          <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-sky-950 sm:text-3xl">
-            Explore the Morse code toolkit
-          </h2>
-
-          <p className="mt-3 max-w-[38rem] text-base leading-relaxed text-slate-700">
-            Move from this page into the same translator, audio, practice, and
-            worksheet tools used across MorseWords.
-          </p>
-        </div>
-
-        <div className="mt-5 grid auto-rows-fr gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURED_LINKS.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="mw-button-outline mw-related-quick-link group relative flex h-full min-h-[82px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-7 text-sky-100 hover:bg-slate-800 hover:text-white focus:outline-none"
-            >
-              <span className="text-base font-semibold leading-snug text-current">
-                {item.title}
-              </span>
-              <span className="absolute right-4 top-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-sky-100/80">
-                {item.label}
-              </span>
-            </a>
-          ))}
-        </div>
       </div>
     </section>
   );

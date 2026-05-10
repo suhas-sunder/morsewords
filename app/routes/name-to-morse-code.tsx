@@ -234,6 +234,7 @@ export default function NameToMorseCodeRoute() {
               { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
             ],
           }}
+          linkedItemStyle="inline"
         />
 
         <FaqSectionGeneric

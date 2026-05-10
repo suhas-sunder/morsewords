@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { PlayIcon } from "~/client/assets/svg/Icons";
+import { toolControlButtonClass } from "./ToolWorkspace";
 import {
   HERO_EYEBROW_LINE_CLASS,
   HERO_EYEBROW_ROW_CLASS,
@@ -158,12 +159,10 @@ export function ActionLinks({
         <a
           key={link.href + link.label}
           href={link.href}
-          className={
-            "mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold transition focus:outline-none sm:min-h-11 sm:px-4 " +
-            (link.primary
-              ? "bg-slate-950 text-sky-100 transition-[background-color,color] duration-100 ease-out hover:bg-slate-800 hover:text-white"
-              : "mw-light-interactive-link bg-[#fffdf8] text-slate-900 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] hover:text-sky-950")
-          }
+          className={toolControlButtonClass({
+            tone: link.primary ? "dark" : "light",
+            size: "md",
+          })}
         >
           {link.label}
         </a>
@@ -175,9 +174,11 @@ export function ActionLinks({
 export function SimpleGrid({
   items,
   variant = "plain",
+  linkedItemStyle = "card",
 }: {
   items: Array<{ title: string; text: string; href?: string; badge?: string }>;
   variant?: "plain" | "cards";
+  linkedItemStyle?: "card" | "inline";
 }) {
   return (
     <div className="grid gap-x-6 gap-y-5 md:grid-cols-2">
@@ -206,20 +207,41 @@ export function SimpleGrid({
         );
 
         if (item.href) {
-          return (
-            <a
-              key={item.title}
-              href={item.href}
-              className="mw-button-outline mw-related-tool-link group block min-h-[128px] cursor-pointer rounded-xl bg-[#fffdf8] p-4 no-underline hover:bg-[#fffaf2] hover:text-sky-950 sm:p-5"
-            >
-              {body}
-              <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
-                Open page{" "}
-                <span aria-hidden="true" className="inline-block">
-                  -&gt;
+          if (linkedItemStyle === "card") {
+            return (
+              <a
+                key={item.title}
+                href={item.href}
+                className="mw-button-outline mw-related-tool-link group block min-h-[128px] cursor-pointer rounded-xl bg-[#fffdf8] p-4 no-underline hover:bg-[#fffaf2] hover:text-sky-950 sm:p-5"
+              >
+                {body}
+                <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
+                  Open page{" "}
+                  <span aria-hidden="true" className="inline-block">
+                    -&gt;
+                  </span>
                 </span>
-              </span>
-            </a>
+              </a>
+            );
+          }
+
+          return (
+            <div key={item.title} className="py-1">
+              <a
+                href={item.href}
+                className="inline-flex cursor-pointer text-lg font-extrabold leading-snug text-sky-950 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+              >
+                {item.title}
+              </a>
+              {item.badge ? (
+                <span className="ml-3 inline-flex align-middle font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
+                  {item.badge}
+                </span>
+              ) : null}
+              <p className="mt-3 text-base leading-relaxed text-slate-700">
+                {item.text}
+              </p>
+            </div>
           );
         }
 

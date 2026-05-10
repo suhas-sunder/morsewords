@@ -120,6 +120,8 @@ export type LetterContentItem = {
   commonConfusions: ContentTile[];
   exampleWords: WorkedExample[];
   miniPracticePrompt: ContentTile;
+  listeningDrill: ContentTile;
+  typingDrill: ContentTile;
   relatedLinks: RelatedLink[];
   faqItems: ContentFaqItem[];
   metaTitle: string;
@@ -358,6 +360,8 @@ type LetterOverride = Partial<
     | "typingNotes"
     | "commonConfusions"
     | "miniPracticePrompt"
+    | "listeningDrill"
+    | "typingDrill"
     | "faqItems"
     | "metaDescription"
   >
@@ -368,32 +372,42 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     answerSummary:
       "A in Morse code is .- (di-dah): one short dit followed by one longer dah.",
     whatItIs:
-      "The letter A is a two-mark Morse character. Keep the dot first and the dash second; reversing the order turns it into N.",
+      "The letter A is a two-mark Morse character. The order matters: the dot comes first and the dash comes second. Reversing the order turns it into N, and adding one final dot turns it into R.",
     soundNotes: [
       {
         title: "Hear short then long",
-        text: "A should feel like a quick pickup followed by a longer finish: di-dah.",
+        text: "A should feel like a quick pickup followed by a longer finish: di-dah. Do not let the first dit stretch into a dash.",
       },
       {
-        title: "Pair it with N",
-        text: "Practice A with N because .- and -. are mirrored patterns.",
+        title: "Compare it with N",
+        text: "Practice A with N because .- and -. are mirrored patterns. The first sound tells you which letter you heard.",
         href: "/morse-code-alphabet",
       },
     ],
     commonConfusions: [
       {
         title: "N reverses the order",
-        text: "A is .- and N is -., so read the marks from left to right before copying.",
+        text: "A is .- and N is -., so read or type the marks from left to right instead of only remembering that both have one dot and one dash.",
       },
       {
         title: "R adds one more dot",
-        text: "R is .-. If you hear or type a final dot after A, the letter changes.",
+        text: "R is .-. If you hear or type a final dot after A, the pattern changes from A to R.",
       },
     ],
     miniPracticePrompt: {
       title: "Mini practice",
-      text: "Listen for short-long, type A, then compare it with N to avoid reversing the pattern.",
+      text: "Listen for A versus N, identify A inside MAY, NAME, and RADIO, then type A, N, and R in order so the reversal and extra-dot mistakes are obvious.",
       href: "/practice",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play A, N, and R in short bursts. Call out whether the first mark is the short dit for A, the long dah for N, or the extra final dit that makes R.",
+      href: "/audio?text=ANR",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type .- for A, -. for N, and .-. for R. Then type MAY, NAME, and RADIO so A appears inside real words.",
+      href: "/typing",
     },
     faqItems: [
       { q: "What is A in Morse code?", a: "A in Morse code is .-." },
@@ -418,11 +432,11 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     answerSummary:
       "E in Morse code is . (one dot). It is the shortest Morse character: one quick dit.",
     whatItIs:
-      "The letter E is a single dot. Because it is only one mark, spacing matters more than complexity.",
+      "The letter E is a single dot. Because it is only one mark, timing and spacing matter more than pattern complexity.",
     soundNotes: [
       {
         title: "Shortest character",
-        text: "E is one dit, so it is the quickest Morse letter to recognize and send.",
+        text: "E is one dit, so it is the quickest Morse letter to recognize and send. Stop after one mark.",
       },
       {
         title: "Spacing protects it",
@@ -432,7 +446,7 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     commonConfusions: [
       {
         title: "I is two dots",
-        text: "E is one dot. I is two dots, so missing or extra spacing changes the letter.",
+        text: "E is one dot. I is two dots, so an accidental extra mark or missing letter gap changes the letter.",
       },
       {
         title: "T is one dash",
@@ -441,7 +455,17 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     ],
     miniPracticePrompt: {
       title: "Mini practice",
-      text: "Alternate E and T until one dit and one dah feel different without looking at the chart.",
+      text: "Alternate E and T, then type E, I, and S so you can hear how one extra dit changes the decoded letter.",
+      href: "/typing",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play E, I, and S. Stop after one dit for E, two dits for I, and three dits for S so extra marks become obvious.",
+      href: "/audio?text=EIS",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type ., .., and ... with clear spaces between them. The drill is about stopping cleanly, not speed.",
       href: "/typing",
     },
     faqItems: [
@@ -466,11 +490,11 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     answerSummary:
       "S in Morse code is ... (three dots). It sounds like three quick dits and appears at both ends of SOS.",
     whatItIs:
-      "The letter S is a three-dot Morse character. It is useful early because it is easy to hear and appears in many short practice words.",
+      "The letter S is a three-dot Morse character. It is useful early because the rhythm is easy to hear, but it still needs a clean letter gap after the third dit.",
     soundNotes: [
       {
         title: "Three quick dits",
-        text: "S should sound compact: di-di-dit, with the three dots inside one letter.",
+        text: "S should sound compact: di-di-dit, with the three dots grouped inside one letter.",
       },
       {
         title: "Useful in SOS",
@@ -481,7 +505,7 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     commonConfusions: [
       {
         title: "H has four dots",
-        text: "S is three dots. H is four dots, so one extra dit changes the letter.",
+        text: "S is three dots. H is four dots, so one extra dit changes the letter and can make copied Morse decode incorrectly.",
       },
       {
         title: "V ends with a dash",
@@ -490,8 +514,18 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     ],
     miniPracticePrompt: {
       title: "Mini practice",
-      text: "Send S, pause, then send O, pause, then S again to feel why SOS is easy to recognize.",
+      text: "Send S, pause, send H, then return to S. After that, try S-O-S so the three-dot rhythm stays separate from the full SOS signal.",
       href: "/morse-code-sos",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play S and H back to back. S stops at three dits; H keeps going for a fourth dit.",
+      href: "/audio?text=SHSOS",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type ... for S, .... for H, and ... --- ... for SOS. Keep the letter spaces visible.",
+      href: "/typing",
     },
     faqItems: [
       { q: "What is S in Morse code?", a: "S in Morse code is three dots: ..." },
@@ -519,11 +553,11 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     answerSummary:
       "O in Morse code is ---. It sounds like three steady dahs and forms the middle of SOS.",
     whatItIs:
-      "The letter O is a three-dash Morse character. Keep it separate from zero, which is five dashes.",
+      "The letter O is a three-dash Morse character. It is all long marks, but it is not the digit zero, which has five dashes.",
     soundNotes: [
       {
         title: "Three steady dahs",
-        text: "O should sound longer and heavier than S: dah-dah-dah.",
+        text: "O should sound longer and heavier than S: dah-dah-dah. Count three long marks, then stop.",
       },
       {
         title: "Middle of SOS",
@@ -534,7 +568,7 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     commonConfusions: [
       {
         title: "Zero has five dashes",
-        text: "O is ---. The digit 0 is -----, so count the dashes when reading copied Morse.",
+        text: "O is ---. The digit 0 is -----, so count the dashes when reading copied Morse in codes, dates, or call signs.",
         href: "/morse-code-numbers",
       },
       {
@@ -544,8 +578,18 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     ],
     miniPracticePrompt: {
       title: "Mini practice",
-      text: "Alternate O and zero aloud: dah-dah-dah, then five dahs. Count before decoding.",
+      text: "Alternate O and zero aloud: three dahs, then five dahs. Then decode SOS and CODE 0 to practice letter and number context.",
       href: "/audio?text=O0",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play O, M, and zero. O has three dahs, M has two, and zero has five.",
+      href: "/audio?text=OM0",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type --- for O, -- for M, and ----- for zero. Use CODE 0 to practice context.",
+      href: "/typing",
     },
     faqItems: [
       { q: "What is O in Morse code?", a: "O in Morse code is three dashes: ---." },
@@ -573,7 +617,7 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     soundNotes: [
       {
         title: "Long-long-short-long",
-        text: "Q starts with two dahs, adds one dit, then ends with a dah: dah-dah-di-dah.",
+        text: "Q starts with two dahs, adds one dit, then ends with a dah: dah-dah-di-dah. The final dash is part of the letter.",
       },
       {
         title: "Useful in CQ",
@@ -584,7 +628,7 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     commonConfusions: [
       {
         title: "G stops earlier",
-        text: "G is --. while Q is --.-. Q adds a final dash after the dot.",
+        text: "G is --. while Q is --.-. Q adds a final dash after the dot, so stopping early changes the letter.",
       },
       {
         title: "O is all dashes",
@@ -593,8 +637,18 @@ const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
     ],
     miniPracticePrompt: {
       title: "Mini practice",
-      text: "Practice CQ, then isolate Q so the final dot-dash ending stays clear.",
+      text: "Practice CQ, then isolate Q. Listen for the last two marks, dit-dah, because that ending separates Q from G and O.",
       href: "/cq-in-morse-code",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play CQ, Q, G, and O. The Q ending is dit-dah, while G stops earlier and O stays all dashes.",
+      href: "/audio?text=CQ%20QGO",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type --.- for Q, then type CQ and QTH. Check that the final dash is not missing.",
+      href: "/typing",
     },
     faqItems: [
       { q: "What is Q in Morse code?", a: "Q in Morse code is --.-." },
@@ -688,6 +742,20 @@ function buildLetterContent(letter: string): LetterContentItem {
         title: "Mini practice",
         text: `Copy ${letter}, say ${spokenRhythm}, then find the same rhythm inside a short word from the examples.`,
         href: "/practice",
+      },
+    listeningDrill:
+      override.listeningDrill ??
+      {
+        title: "Listening drill",
+        text: `Play ${letter}, say ${spokenRhythm}, then compare it with one nearby pattern from the alphabet chart.`,
+        href: `/audio?text=${letter}`,
+      },
+    typingDrill:
+      override.typingDrill ??
+      {
+        title: "Typing drill",
+        text: `Type ${morseValue} for ${letter}, add a letter space, then type one short example word that contains ${letter}.`,
+        href: "/typing",
       },
     relatedLinks: buildLetterRelatedLinks(letter),
     faqItems:

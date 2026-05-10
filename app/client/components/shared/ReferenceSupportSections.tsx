@@ -52,6 +52,7 @@ type ReferenceSupportSectionsProps = {
     description: string;
     links: Array<{ href: string; label: string; primary?: boolean }>;
   };
+  linkedItemStyle?: "card" | "inline";
 };
 
 export default function ReferenceSupportSections({
@@ -60,6 +61,7 @@ export default function ReferenceSupportSections({
   mistakes,
   comparison,
   nextStep,
+  linkedItemStyle = "card",
 }: ReferenceSupportSectionsProps) {
   return (
     <>
@@ -68,7 +70,7 @@ export default function ReferenceSupportSections({
         title={guide.title}
         description={guide.description}
       >
-        <SimpleGrid items={guide.items} />
+        <SimpleGrid items={guide.items} linkedItemStyle={linkedItemStyle} />
       </SectionCard>
 
       <SectionCard
@@ -125,7 +127,7 @@ export default function ReferenceSupportSections({
         title={comparison.title}
         description={comparison.description}
       >
-        <SimpleGrid items={comparison.items} />
+        <SimpleGrid items={comparison.items} linkedItemStyle={linkedItemStyle} />
       </SectionCard>
 
       <SectionCard

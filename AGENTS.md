@@ -255,6 +255,13 @@ Approved button treatment is centralized by `app/app.css` and
 - No nested cards.
 - No heavy boxed layouts.
 - No unnecessary outer background containers around support/SEO content.
+- Do not place secondary action panels beside a primary answer panel when that
+  creates cramped columns, awkward dead space, or a weaker first screen. Prefer
+  a full-width answer panel with below-panel action rows when it uses desktop
+  space more cleanly.
+- Avoid decorative filled cards inside other content surfaces. Use simple
+  columns, rows, dividers, or inline notes unless the nested surface is a real
+  input, output, code block, or warning.
 - Static surfaces should not look interactive.
 - Dark backgrounds are reserved for actual output/code/reference signal panels,
   not generic support copy.
@@ -375,6 +382,9 @@ Approved button treatment is centralized by `app/app.css` and
 
 - Edited buttons need readable default, hover, active, focus-visible, and
   disabled states.
+- Buttons and CTA links on SEO/content pages must use the same homepage-aligned
+  button patterns as the tools. Do not make static cards look like buttons, and
+  do not make actionable links look like passive content.
 - No black text on dark backgrounds.
 - No nested buttons.
 - No nested links.
@@ -425,6 +435,30 @@ Approved button treatment is centralized by `app/app.css` and
 - For shared component changes, check shared side effects.
 - For visual matching, inspect the current home/audio implementation and
   rendered computed styles before editing.
+- Visual QA for new content pages must use actual screenshots. Class or
+  component consistency is not enough if the rendered page still looks cramped,
+  card-heavy, or generic.
+- Breadcrumbs need intentional spacing above and below them. They should not be
+  jammed against FAQ, related tools, or footer sections.
+- SEO sections should be substantial and useful for the query without generic
+  padding, repeated article filler, or decorative markup.
 - Report files changed, protected files, and verification results.
 - Do not claim success from a build alone when rendered behavior was part of the
   task.
+
+## 17. MorseWords page design rules
+
+- Homepage is the source of truth for page width, spacing, buttons, toolkit
+  sections, social sections, and footer rhythm.
+- Do not create Wave-specific or route-specific toolkit, all-tools, or social
+  sections when a homepage or shared version exists.
+- Extract homepage sections into shared components when reuse is needed.
+- Do not use narrow article containers for tool or reference pages.
+- Do not use decorative nested cards.
+- Do not use random card-like buttons or chip-like CTAs.
+- Buttons must reuse shared homepage-aligned styles.
+- SEO sections must provide actual user value: concrete explanations, examples,
+  mistakes, practice guidance, and next actions.
+- Every new page must be visually checked against the homepage before
+  completion.
+- Passing tests is not enough. Screenshots must be reviewed.

@@ -63,7 +63,8 @@ export function toolControlButtonClass({
       : "cursor-not-allowed bg-white/55 text-slate-400";
 
   return [
-    "inline-flex cursor-pointer items-center justify-center gap-2 font-semibold transition-[background-color,border-color,color] duration-100 ease-out",
+    "mw-button-outline inline-flex cursor-pointer items-center justify-center gap-2 font-semibold transition-[background-color,border-color,color] duration-100 ease-out",
+    !active && tone === "light" && !disabled ? "mw-light-interactive-link" : "",
     focusClass,
     sizeClass,
     roundedClass,
