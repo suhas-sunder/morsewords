@@ -51,6 +51,10 @@ const featuredPhraseSlugs = [
  "yes-in-morse-code",
  "no-in-morse-code",
  "ok-in-morse-code",
+ "sorry-in-morse-code",
+ "love-in-morse-code",
+ "hello-world-in-morse-code",
+ "test-in-morse-code",
  "i-love-you-in-morse-code",
  "cq-in-morse-code",
 ] as const;

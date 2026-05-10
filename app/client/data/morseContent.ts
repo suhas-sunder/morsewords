@@ -2677,6 +2677,7 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
     relatedLinks: [
       { href: "/?text=I%20LOVE%20YOU", label: "Open in translator", primary: true },
       { href: "/audio?text=I%20LOVE%20YOU", label: "Hear it as audio" },
+      { href: "/love-in-morse-code", label: "LOVE" },
       { href: "/morse-code-encoder", label: "Morse encoder" },
       { href: "/morse-code-words", label: "More Morse words" },
     ],
@@ -2873,6 +2874,7 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
       { href: "/audio?text=HELLO", label: "Hear HELLO" },
       { href: "/morse-code-encoder?text=HELLO", label: "Open in encoder" },
       { href: "/hi-in-morse-code", label: "Compare HI" },
+      { href: "/hello-world-in-morse-code", label: "HELLO WORLD" },
       { href: "/morse-code-words", label: "More Morse words" },
       { href: "/practice", label: "Practice words" },
     ],
@@ -3491,6 +3493,401 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
       "See OK in Morse code, copy and hear the two-letter response, review O K spacing, and compare it with YES and NO.",
     keywords:
       "ok in morse code, ok morse code, morse code ok, okay in morse code",
+  }),
+  "sorry-in-morse-code": makePhrasePage({
+    slug: "sorry-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "SORRY",
+    displayTitle: "Sorry in Morse Code",
+    plainTextValue: "SORRY",
+    answerSummary:
+      "SORRY in Morse code is ... --- .-. .-. -.-- for S O R R Y. It is one word, so keep letter gaps clear and do not add a slash inside it.",
+    breakdownIntro:
+      "SORRY is encoded one letter at a time: S, O, R, R, and Y. The repeated R pattern is the part to check before copying.",
+    contextTitle: "Using SORRY in Morse",
+    context: [
+      {
+        title: "Common lookup word",
+        text: "SORRY is a common word people copy for puzzles, notes, classroom examples, and short practice sets.",
+      },
+      {
+        title: "One-word spacing",
+        text: "Keep normal letter gaps between S, O, R, R, and Y. A slash belongs between words, not inside SORRY.",
+      },
+      {
+        title: "Listen for contrast",
+        text: "SORRY starts with S and O, so the sound moves from three short dits to three longer dahs before the repeated R.",
+        href: "/audio?text=SORRY",
+      },
+    ],
+    examples: [
+      {
+        title: "Direct word",
+        text: "SORRY",
+        morse: morseForText("SORRY"),
+        note: "The one-word form, ready to copy after you check the repeated R.",
+      },
+      {
+        title: "Short response pair",
+        text: "SORRY NO",
+        morse: morseForText("SORRY NO").replace(/\s{7,}/g, " / "),
+        note: "The slash shows the word gap before NO in copied text.",
+      },
+      {
+        title: "Greeting context",
+        text: "HELLO SORRY",
+        morse: morseForText("HELLO SORRY").replace(/\s{7,}/g, " / "),
+        note: "Useful for classroom or puzzle examples with two familiar words.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Dropping the second R",
+        text: "SORRY has two R letters. If one .-. pattern is missing, the word is not spelled correctly.",
+        href: "/r-in-morse-code",
+      },
+      {
+        title: "Confusing S and O",
+        text: "S is three dits and O is three dahs. The first two letters need a clear short-to-long contrast.",
+        href: "/s-in-morse-code",
+      },
+      {
+        title: "Adding a word separator",
+        text: "SORRY is one word. Do not place a slash between the letters unless you are intentionally showing a training split.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=SORRY", label: "Open in translator", primary: true },
+      { href: "/audio?text=SORRY", label: "Hear SORRY" },
+      { href: "/morse-code-encoder?text=SORRY", label: "Open in encoder" },
+      { href: "/hello-in-morse-code", label: "HELLO" },
+      { href: "/yes-in-morse-code", label: "YES" },
+      { href: "/no-in-morse-code", label: "NO" },
+      { href: "/morse-code-words", label: "More Morse words" },
+    ],
+    faqItems: [
+      {
+        q: "What is SORRY in Morse code?",
+        a: "SORRY in Morse code is ... --- .-. .-. -.-- for S O R R Y.",
+      },
+      {
+        q: "Does SORRY need a slash in Morse code?",
+        a: "No. SORRY is one word, so it needs letter spaces but no slash inside the word.",
+      },
+      {
+        q: "What is easy to miss in SORRY?",
+        a: "The repeated R is easy to shorten. Check that the .-. pattern appears twice.",
+      },
+      {
+        q: "How should I practice SORRY by sound?",
+        a: "Listen for S as three short dits, O as three dahs, then the repeated R rhythm before Y.",
+      },
+      {
+        q: "Can I copy SORRY into a puzzle or note?",
+        a: "Yes. Use periods, hyphens, and spaces between letters so the word stays decodable.",
+      },
+    ],
+    metaTitle: "Sorry in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    metaDescription:
+      "See SORRY in Morse code, copy and hear the word, review S O R R Y spacing, and practice the repeated R with S and O contrast.",
+    keywords:
+      "sorry in morse code, sorry morse code, morse code sorry, sorry dots and dashes",
+  }),
+  "love-in-morse-code": makePhrasePage({
+    slug: "love-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "LOVE",
+    displayTitle: "Love in Morse Code",
+    plainTextValue: "LOVE",
+    answerSummary:
+      "LOVE in Morse code is .-.. --- ...- . for L O V E. LOVE is one word; I LOVE YOU adds word breaks around it.",
+    breakdownIntro:
+      "LOVE is encoded as L, O, V, and E. It is not a single special Morse symbol for the idea of love.",
+    contextTitle: "Using LOVE in Morse",
+    context: [
+      {
+        title: "One word, not a phrase",
+        text: "LOVE has no internal word slash. Compare it with I LOVE YOU when you need a full three-word phrase.",
+        href: "/i-love-you-in-morse-code",
+      },
+      {
+        title: "Design and gift checks",
+        text: "For cards, engraving, tattoos, or jewelry, verify every dot, dash, and letter gap before final use.",
+      },
+      {
+        title: "Listen before copying",
+        text: "Hearing L O V E helps you catch missing gaps that may be hard to see in a decorative design.",
+        href: "/audio?text=LOVE",
+      },
+    ],
+    examples: [
+      {
+        title: "Single word",
+        text: "LOVE",
+        morse: morseForText("LOVE"),
+        note: "Use this when you only want the word LOVE.",
+      },
+      {
+        title: "Full phrase comparison",
+        text: "I LOVE YOU",
+        morse: morseForText("I LOVE YOU").replace(/\s{7,}/g, " / "),
+        note: "The phrase adds word separators around LOVE.",
+      },
+      {
+        title: "Design check",
+        text: "LOVE",
+        morse: morseForText("LOVE"),
+        note: "Copy the plain Morse first, then check any styled version against it.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Treating LOVE as one symbol",
+        text: "Morse spells L, O, V, and E. It does not use one combined symbol for LOVE.",
+      },
+      {
+        title: "Losing letter spaces in designs",
+        text: "Decorative layouts can collapse L O V E into one run. Keep each letter pattern readable.",
+        href: "/copy-and-paste-morse-code",
+      },
+      {
+        title: "Mixing LOVE with I LOVE YOU",
+        text: "LOVE is one word. I LOVE YOU has three words and needs word breaks.",
+        href: "/i-love-you-in-morse-code",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=LOVE", label: "Open in translator", primary: true },
+      { href: "/audio?text=LOVE", label: "Hear LOVE" },
+      { href: "/morse-code-encoder?text=LOVE", label: "Open in encoder" },
+      { href: "/i-love-you-in-morse-code", label: "I LOVE YOU" },
+      { href: "/copy-and-paste-morse-code", label: "Copy safely" },
+      { href: "/morse-code-words", label: "More Morse words" },
+    ],
+    faqItems: [
+      {
+        q: "What is LOVE in Morse code?",
+        a: "LOVE in Morse code is .-.. --- ...- . for L O V E.",
+      },
+      {
+        q: "Is LOVE the same as I LOVE YOU in Morse code?",
+        a: "No. LOVE is one word, while I LOVE YOU is a three-word phrase with word gaps.",
+      },
+      {
+        q: "Should I use slashes for LOVE?",
+        a: "No slash is needed inside LOVE because it is one word. Use slashes only between words.",
+      },
+      {
+        q: "How should I check LOVE before engraving or tattooing it?",
+        a: "Compare the final design against the plain .-.. --- ...- . pattern and keep letter gaps visible.",
+      },
+      {
+        q: "Can I hear LOVE in Morse code?",
+        a: "Yes. Use the audio link to load LOVE into the MorseWords audio tool.",
+      },
+    ],
+    metaTitle: "Love in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    metaDescription:
+      "See LOVE in Morse code, copy and hear the one-word pattern, compare it with I LOVE YOU, and check spacing for gifts or designs.",
+    keywords:
+      "love in morse code, love morse code, morse code love, love dots and dashes",
+  }),
+  "hello-world-in-morse-code": makePhrasePage({
+    slug: "hello-world-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "HELLO WORLD",
+    displayTitle: "Hello World in Morse Code",
+    plainTextValue: "HELLO WORLD",
+    answerSummary:
+      "HELLO WORLD in Morse code is .... . .-.. .-.. --- / .-- --- .-. .-.. -.. when the word break is shown with a slash.",
+    breakdownIntro:
+      "HELLO WORLD has two words. The word boundary between HELLO and WORLD is the main thing to preserve.",
+    contextTitle: "Using HELLO WORLD in Morse",
+    context: [
+      {
+        title: "Programming-style practice phrase",
+        text: "HELLO WORLD is familiar from coding examples and works well as a two-word Morse spacing drill.",
+      },
+      {
+        title: "Word boundary example",
+        text: "Use a slash or a larger gap between HELLO and WORLD so the copied phrase does not merge into one run.",
+        href: "/morse-code-word-separator",
+      },
+      {
+        title: "Classroom and puzzle use",
+        text: "The phrase is familiar enough for learners to check, while still forcing them to handle repeated letters and a word gap.",
+      },
+    ],
+    examples: [
+      {
+        title: "Slash-separated phrase",
+        text: "HELLO WORLD",
+        morse: morseForText("HELLO WORLD").replace(/\s{7,}/g, " / "),
+        note: "This is the clearest format for posts, worksheets, and puzzles.",
+      },
+      {
+        title: "Timing-style spacing",
+        text: "HELLO WORLD",
+        morse: morseForText("HELLO WORLD"),
+        note: "The wider gap between O and W represents the word boundary.",
+      },
+      {
+        title: "Single-word comparison",
+        text: "HELLO",
+        morse: morseForText("HELLO"),
+        note: "HELLO by itself has no word separator.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Dropping the word boundary",
+        text: "HELLO WORLD needs a word gap between O and W. Without it, the phrase becomes hard to decode.",
+        href: "/morse-code-word-separator",
+      },
+      {
+        title: "Missing repeated L",
+        text: "HELLO has two L letters and WORLD has one L. Check every .-.. pattern before copying.",
+        href: "/l-in-morse-code",
+      },
+      {
+        title: "Using styled separators",
+        text: "For copy and paste, a plain slash is more reliable than decorative dividers.",
+        href: "/copy-and-paste-morse-code",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=HELLO%20WORLD", label: "Open in translator", primary: true },
+      { href: "/audio?text=HELLO%20WORLD", label: "Hear HELLO WORLD" },
+      { href: "/morse-code-encoder?text=HELLO%20WORLD", label: "Open in encoder" },
+      { href: "/hello-in-morse-code", label: "HELLO" },
+      { href: "/morse-code-word-separator", label: "Word spacing" },
+      { href: "/morse-code-words", label: "More Morse words" },
+    ],
+    faqItems: [
+      {
+        q: "What is HELLO WORLD in Morse code?",
+        a: "HELLO WORLD in Morse code is .... . .-.. .-.. --- / .-- --- .-. .-.. -.. with a slash word separator.",
+      },
+      {
+        q: "Why is there a slash in HELLO WORLD?",
+        a: "The slash shows the word break between HELLO and WORLD in copied Morse text.",
+      },
+      {
+        q: "Is HELLO WORLD useful for Morse practice?",
+        a: "Yes. It is familiar, includes repeated letters, and gives beginners a clear two-word spacing example.",
+      },
+      {
+        q: "Can I write HELLO WORLD without a slash?",
+        a: "Yes, but you still need a wider word gap between HELLO and WORLD so the phrase stays readable.",
+      },
+      {
+        q: "What should I compare HELLO WORLD with?",
+        a: "Compare it with HELLO alone and with the word separator guide to understand the word boundary.",
+      },
+    ],
+    metaTitle: "Hello World in Morse Code | Copy, Audio, and Word Spacing | MorseWords",
+    metaDescription:
+      "See HELLO WORLD in Morse code, copy and hear the two-word phrase, review slash word spacing, and use it for coding or classroom practice.",
+    keywords:
+      "hello world in morse code, hello world morse code, morse code hello world, coding phrase morse",
+  }),
+  "test-in-morse-code": makePhrasePage({
+    slug: "test-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "TEST",
+    displayTitle: "Test in Morse Code",
+    plainTextValue: "TEST",
+    answerSummary:
+      "TEST in Morse code is - . ... - for T E S T. It is a practical check word for the translator, decoder, audio tool, and spacing practice.",
+    breakdownIntro:
+      "TEST is encoded as T, E, S, and T. The short T and E contrast makes it useful for quick tool checks.",
+    contextTitle: "Using TEST in Morse",
+    context: [
+      {
+        title: "Tool check word",
+        text: "TEST is short enough to use when trying the translator, decoder, audio playback, or a worksheet example.",
+      },
+      {
+        title: "T and E contrast",
+        text: "T is one dah and E is one dit, so TEST is useful for hearing long versus short single-mark letters.",
+        href: "/t-in-morse-code",
+      },
+      {
+        title: "Simple spacing practice",
+        text: "TEST is one word. Keep letter gaps clear, then compare it with two-word examples when you need word spacing.",
+      },
+    ],
+    examples: [
+      {
+        title: "Direct word",
+        text: "TEST",
+        morse: morseForText("TEST"),
+        note: "A compact check word for conversion and audio playback.",
+      },
+      {
+        title: "Number check",
+        text: "TEST 123",
+        morse: morseForText("TEST 123").replace(/\s{7,}/g, " / "),
+        note: "Useful when you want to verify both letters and number spacing.",
+      },
+      {
+        title: "Audio drill",
+        text: "T E S T",
+        morse: morseForText("T E S T").replace(/\s{7,}/g, " / "),
+        note: "Separated letters help beginners hear the building blocks before the word.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Mixing up T and E",
+        text: "T is a single dash and E is a single dot. In TEST they appear right next to each other.",
+        href: "/e-in-morse-code",
+      },
+      {
+        title: "Flattening S",
+        text: "S is three dits. If the three short marks collapse, TEST becomes harder to check by ear.",
+        href: "/s-in-morse-code",
+      },
+      {
+        title: "Using TEST as a word-gap check",
+        text: "TEST is one word, so it checks letter spacing. Use a two-word phrase when you need word-boundary practice.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=TEST", label: "Open in translator", primary: true },
+      { href: "/audio?text=TEST", label: "Hear TEST" },
+      { href: "/morse-code-encoder?text=TEST", label: "Open in encoder" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+      { href: "/practice", label: "Practice" },
+      { href: "/morse-code-words", label: "More Morse words" },
+    ],
+    faqItems: [
+      {
+        q: "What is TEST in Morse code?",
+        a: "TEST in Morse code is - . ... - for T E S T.",
+      },
+      {
+        q: "Why is TEST useful for practice?",
+        a: "TEST is short, familiar, and checks T, E, and S timing without needing a long phrase.",
+      },
+      {
+        q: "Can TEST check word spacing?",
+        a: "TEST is one word, so it mainly checks letter spacing. Use a phrase like HELLO WORLD for word gaps.",
+      },
+      {
+        q: "What is the common mistake in TEST?",
+        a: "The common mistake is confusing T and E or flattening the three dits in S.",
+      },
+      {
+        q: "Which tool should I use after copying TEST?",
+        a: "Use the decoder to check typed Morse, the audio tool to hear it, or practice mode to build recall.",
+      },
+    ],
+    metaTitle: "Test in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    metaDescription:
+      "See TEST in Morse code, copy and hear the check word, review T E S T spacing, and use it with the encoder, decoder, audio, and practice tools.",
+    keywords:
+      "test in morse code, test morse code, morse code test, test dots and dashes",
   }),
 };
 

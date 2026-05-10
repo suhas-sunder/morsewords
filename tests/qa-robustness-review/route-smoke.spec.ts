@@ -115,6 +115,30 @@ const PHRASE_ROUTE_EXPECTATIONS = [
     title: "OK in Morse Code | Copy, Audio, and Breakdown | MorseWords",
     textQuery: "OK",
   },
+  {
+    path: "/sorry-in-morse-code",
+    h1: "Sorry in Morse Code",
+    title: "Sorry in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    textQuery: "SORRY",
+  },
+  {
+    path: "/love-in-morse-code",
+    h1: "Love in Morse Code",
+    title: "Love in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    textQuery: "LOVE",
+  },
+  {
+    path: "/hello-world-in-morse-code",
+    h1: "Hello World in Morse Code",
+    title: "Hello World in Morse Code | Copy, Audio, and Word Spacing | MorseWords",
+    textQuery: "HELLO%20WORLD",
+  },
+  {
+    path: "/test-in-morse-code",
+    h1: "Test in Morse Code",
+    title: "Test in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    textQuery: "TEST",
+  },
 ] as const;
 
 const PHRASE_ROUTE_PATHS = PHRASE_ROUTE_EXPECTATIONS.map((route) => route.path);
@@ -222,10 +246,6 @@ const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   "/morse-code-audio-generator",
   "/morse-code-wav-generator",
   "/morse-code-mp3-generator",
-  "/love-in-morse-code",
-  "/sorry-in-morse-code",
-  "/hello-world-in-morse-code",
-  "/test-in-morse-code",
   "/space-in-morse-code",
   "/slash-in-morse-code",
   "/period-in-morse-code",
