@@ -174,6 +174,11 @@ const MORE_GROUPS: NavGroup[] = [
         description: "Fix Morse word and letter spacing.",
       },
       {
+        label: "How to separate words",
+        href: "/how-to-separate-words-in-morse-code",
+        description: "Follow step-by-step spacing and slash examples.",
+      },
+      {
         label: "Copy and paste Morse",
         href: "/copy-and-paste-morse-code",
         description: "Use safe dots, dashes, spaces, and slashes.",

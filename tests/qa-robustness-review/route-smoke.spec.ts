@@ -385,12 +385,17 @@ const FIRST_BATCH_ROUTE_EXPECTATIONS = [
   },
 ] as const;
 
+const REDIRECT_ROUTE_EXPECTATIONS = [
+  { from: "/morse-code-letters", to: "/morse-code-alphabet" },
+  { from: "/text-to-morse-code", to: "/morse-code-encoder" },
+  { from: "/morse-to-text", to: "/morse-code-decoder" },
+  { from: "/morse-code-translator", to: "/" },
+  { from: "/morse-code-audio-generator", to: "/audio" },
+  { from: "/morse-code-vidual-quiz", to: "/morse-code-visual-quiz" },
+] as const;
+
 const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
-  "/morse-code-letters",
-  "/text-to-morse-code",
-  "/morse-to-text",
-  "/morse-code-translator",
-  "/morse-code-audio-generator",
+  ...REDIRECT_ROUTE_EXPECTATIONS.map((route) => route.from),
   "/morse-code-wav-generator",
   "/morse-code-mp3-generator",
 ] as const;
@@ -1378,18 +1383,22 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
       await expect(page.locator(`a[href="${route.path}"]`).first()).toBeVisible();
     }
 
-    await expect(page.locator('a[href="/morse-code-letters"]')).toHaveCount(0);
+    for (const route of REDIRECT_ROUTE_EXPECTATIONS) {
+      await expect(page.locator(`a[href="${route.from}"]`)).toHaveCount(0);
+    }
 
     const xmlResponse = await request.get("/sitemap.xml");
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
+    const xmlUrls = [...xml.matchAll(/<loc>[^<]+<\/loc>/g)];
+    expect(xmlUrls).toHaveLength(108);
 
     for (const route of FINAL_ROUTE_EXPECTATIONS) {
       expect(xml).toContain(`https://morsewords.com${route.path}`);
     }
-    expect(xml).not.toContain("https://morsewords.com/morse-code-letters");
-    expect(xml).not.toContain("https://morsewords.com/text-to-morse-code");
-    expect(xml).not.toContain("https://morsewords.com/morse-to-text");
+    for (const route of REDIRECT_ROUTE_EXPECTATIONS) {
+      expect(xml).not.toContain(`https://morsewords.com${route.from}`);
+    }
   });
 
   test("word spacing pages link to the instructional separation guide", async ({
@@ -1418,21 +1427,17 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     await expect(page.locator("h1")).toHaveText("Morse Code Alphabet");
   });
 
-  test("translator alias redirects point to the canonical encoder and decoder", async ({
+  test("redirect-only aliases point to canonical destinations", async ({
     page,
     request,
   }) => {
-    const textToMorseResponse = await request.get("/text-to-morse-code", {
-      maxRedirects: 0,
-    });
-    expect(textToMorseResponse.status()).toBe(301);
-    expect(textToMorseResponse.headers().location).toBe("/morse-code-encoder");
-
-    const morseToTextResponse = await request.get("/morse-to-text", {
-      maxRedirects: 0,
-    });
-    expect(morseToTextResponse.status()).toBe(301);
-    expect(morseToTextResponse.headers().location).toBe("/morse-code-decoder");
+    for (const route of REDIRECT_ROUTE_EXPECTATIONS) {
+      const response = await request.get(route.from, { maxRedirects: 0 });
+      expect(response.status(), `${route.from} redirect status`).toBe(301);
+      expect(response.headers().location, `${route.from} redirect location`).toBe(
+        route.to,
+      );
+    }
 
     await page.goto("/text-to-morse-code", { waitUntil: "domcontentloaded" });
     await expect(page).toHaveURL(/\/morse-code-encoder$/);
@@ -1541,4 +1546,48 @@ test.describe("first-batch link hygiene", () => {
       expect(badLinks, `${route} bad internal links`).toEqual([]);
     });
   }
+});
+
+test.describe("canonical navigation surfaces", () => {
+  test("more menu links canonical tools and excludes redirect-only aliases", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await blockExternalNetwork(page);
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+
+    await page.getByRole("button", { name: /^More$/ }).click();
+    const dialog = page.getByRole("dialog", {
+      name: "More MorseWords tools",
+    });
+    await expect(dialog).toBeVisible();
+
+    const hrefs = await dialog.locator("a[href]").evaluateAll((anchors) =>
+      anchors.map((anchor) => (anchor as HTMLAnchorElement).getAttribute("href") ?? ""),
+    );
+
+    expect(hrefs).toEqual(
+      expect.arrayContaining([
+        "/morse-code-encoder",
+        "/morse-code-decoder",
+        "/morse-code-alphabet",
+        "/morse-code-numbers",
+        "/morse-code-words",
+        "/morse-code-punctuation",
+        "/morse-code-word-separator",
+        "/name-to-morse-code",
+        "/how-to-read-morse-code",
+        "/copy-and-paste-morse-code",
+        "/how-to-separate-words-in-morse-code",
+      ]),
+    );
+
+    const redirectLinks = hrefs.filter((href) =>
+      DEFERRED_OR_REDIRECT_ONLY_ROUTES.includes(
+        href as (typeof DEFERRED_OR_REDIRECT_ONLY_ROUTES)[number],
+      ),
+    );
+    expect(redirectLinks).toEqual([]);
+  });
 });
