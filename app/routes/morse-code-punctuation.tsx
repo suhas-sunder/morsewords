@@ -37,7 +37,7 @@ export function meta({}: Route.MetaArgs) {
 const faqItems = [
   {
     q: "Does Morse code include punctuation?",
-    a: "Yes. International Morse includes common punctuation marks such as period, comma, question mark, slash, apostrophe, parentheses, colon, semicolon, equals, plus, at sign, and quotation mark.",
+    a: "Yes. International Morse includes common punctuation marks such as period, comma, question mark, slash, apostrophe, parentheses, colon, semicolon, equals, plus, at sign, ampersand, underscore, and quotation mark.",
   },
   {
     q: "Why are punctuation patterns longer than letters?",
@@ -97,7 +97,7 @@ export default function MorseCodePunctuation() {
         <PageHero
           eyebrow="Symbol lookup"
           title="Morse Code Punctuation"
-          description="Look up the Morse patterns for written symbols used in real messages: question marks, periods, commas, slashes, apostrophes, parentheses, and other punctuation marks."
+          description="Look up the Morse patterns for written symbols used in real messages: question marks, periods, commas, slashes, apostrophes, parentheses, quotation marks, technical symbols, and other punctuation marks."
           aside={
             <DarkNote label="Common search" value="..--..">
               The question mark is one of the most-searched punctuation marks
@@ -144,6 +144,14 @@ export default function MorseCodePunctuation() {
               { href: "/exclamation-mark-in-morse-code", label: "Exclamation mark" },
               { href: "/apostrophe-in-morse-code", label: "Apostrophe" },
               { href: "/hyphen-in-morse-code", label: "Hyphen" },
+              { href: "/colon-in-morse-code", label: "Colon" },
+              { href: "/semicolon-in-morse-code", label: "Semicolon" },
+              { href: "/equals-sign-in-morse-code", label: "Equals sign" },
+              { href: "/plus-sign-in-morse-code", label: "Plus sign" },
+              { href: "/quotation-mark-in-morse-code", label: "Quotation mark" },
+              { href: "/parentheses-in-morse-code", label: "Parentheses" },
+              { href: "/ampersand-in-morse-code", label: "Ampersand" },
+              { href: "/underscore-in-morse-code", label: "Underscore" },
               { href: "/slash-in-morse-code", label: "Slash" },
               { href: "/space-in-morse-code", label: "Space" },
             ]}
@@ -159,7 +167,7 @@ export default function MorseCodePunctuation() {
             items: [
               {
                 title: "Who it is for",
-                text: "Use this reference when pasted text includes marks like ?, ., comma, slash, apostrophe, parentheses, colon, or @.",
+                text: "Use this reference when pasted text includes marks like ?, ., comma, slash, apostrophe, parentheses, colon, plus, underscore, quote marks, or @.",
               },
               {
                 title: "What it includes",
@@ -248,6 +256,38 @@ export default function MorseCodePunctuation() {
                   </p>
                 ),
               },
+              {
+                title: "Technical and quote marks",
+                morse: "-...- / .-.-. / .-..-.",
+                children: (
+                  <p>
+                    Equals, plus, quotation marks, ampersand, and underscore are
+                    supported symbols in MorseWords, but they are easy to break
+                    when pasted into forms or URLs. Check the{" "}
+                    <a
+                      href="/equals-sign-in-morse-code"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      equals sign
+                    </a>
+                    ,{" "}
+                    <a
+                      href="/plus-sign-in-morse-code"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      plus sign
+                    </a>
+                    , and{" "}
+                    <a
+                      href="/quotation-mark-in-morse-code"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      quotation mark
+                    </a>{" "}
+                    pages before sharing code-like text.
+                  </p>
+                ),
+              },
             ],
           }}
           mistakes={{
@@ -322,6 +362,10 @@ export default function MorseCodePunctuation() {
               { href: "/exclamation-mark-in-morse-code", label: "Exclamation mark" },
               { href: "/apostrophe-in-morse-code", label: "Apostrophe" },
               { href: "/hyphen-in-morse-code", label: "Hyphen" },
+              { href: "/colon-in-morse-code", label: "Colon" },
+              { href: "/semicolon-in-morse-code", label: "Semicolon" },
+              { href: "/plus-sign-in-morse-code", label: "Plus sign" },
+              { href: "/quotation-mark-in-morse-code", label: "Quotation mark" },
               { href: "/morse-code-decoder", label: "Decode Morse" },
               { href: "/morse-code-word-separator", label: "Spacing guide" },
             ],

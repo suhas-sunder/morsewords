@@ -186,6 +186,54 @@ const SPACING_PUNCTUATION_ROUTE_EXPECTATIONS = [
     title: "Hyphen in Morse Code | Names, Dashes, and Examples | MorseWords",
     textQuery: "-",
   },
+  {
+    path: "/colon-in-morse-code",
+    h1: "Colon in Morse Code",
+    title: "Colon in Morse Code | Copy, Decode, and Examples | MorseWords",
+    textQuery: "%3A",
+  },
+  {
+    path: "/semicolon-in-morse-code",
+    h1: "Semicolon in Morse Code",
+    title: "Semicolon in Morse Code | Copy, Decode, and Examples | MorseWords",
+    textQuery: "%3B",
+  },
+  {
+    path: "/equals-sign-in-morse-code",
+    h1: "Equals Sign in Morse Code",
+    title: "Equals Sign in Morse Code | Copy, Decode, and Examples | MorseWords",
+    textQuery: "%3D",
+  },
+  {
+    path: "/plus-sign-in-morse-code",
+    h1: "Plus Sign in Morse Code",
+    title: "Plus Sign in Morse Code | Copy, Decode, and URL Tips | MorseWords",
+    textQuery: "%2B",
+  },
+  {
+    path: "/quotation-mark-in-morse-code",
+    h1: "Quotation Mark in Morse Code",
+    title: "Quotation Mark in Morse Code | Copy, Decode, and Examples | MorseWords",
+    textQuery: "%22",
+  },
+  {
+    path: "/parentheses-in-morse-code",
+    h1: "Parentheses in Morse Code",
+    title: "Parentheses in Morse Code | Copy, Decode, and Examples | MorseWords",
+    textQuery: "%28%29",
+  },
+  {
+    path: "/ampersand-in-morse-code",
+    h1: "Ampersand in Morse Code",
+    title: "Ampersand in Morse Code | Copy, Decode, and Examples | MorseWords",
+    textQuery: "%26",
+  },
+  {
+    path: "/underscore-in-morse-code",
+    h1: "Underscore in Morse Code",
+    title: "Underscore in Morse Code | Usernames, Files, and Examples | MorseWords",
+    textQuery: "_",
+  },
 ] as const;
 
 const SPACING_PUNCTUATION_ROUTE_PATHS =
@@ -295,14 +343,6 @@ const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   "/morse-code-audio-generator",
   "/morse-code-wav-generator",
   "/morse-code-mp3-generator",
-  "/colon-in-morse-code",
-  "/semicolon-in-morse-code",
-  "/equals-sign-in-morse-code",
-  "/plus-sign-in-morse-code",
-  "/quotation-mark-in-morse-code",
-  "/parentheses-in-morse-code",
-  "/ampersand-in-morse-code",
-  "/underscore-in-morse-code",
   "/contact",
 ] as const;
 
@@ -1132,6 +1172,14 @@ test.describe("spacing and punctuation SEO metadata and schema", () => {
       "/exclamation-mark-in-morse-code",
       "/apostrophe-in-morse-code",
       "/hyphen-in-morse-code",
+      "/colon-in-morse-code",
+      "/semicolon-in-morse-code",
+      "/equals-sign-in-morse-code",
+      "/plus-sign-in-morse-code",
+      "/quotation-mark-in-morse-code",
+      "/parentheses-in-morse-code",
+      "/ampersand-in-morse-code",
+      "/underscore-in-morse-code",
     ]) {
       await expect(page.locator(`a[href="${path}"]`).first()).toBeVisible();
     }

@@ -4665,6 +4665,7 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
       { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
       { href: "/name-to-morse-code", label: "Name converter" },
       { href: "/hyphen-in-morse-code", label: "Hyphen" },
+      { href: "/quotation-mark-in-morse-code", label: "Quotation mark" },
       { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
       { href: "/morse-code-decoder", label: "Decoder" },
     ],
@@ -4765,6 +4766,7 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
       { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
       { href: "/name-to-morse-code", label: "Name converter" },
       { href: "/apostrophe-in-morse-code", label: "Apostrophe" },
+      { href: "/underscore-in-morse-code", label: "Underscore" },
       { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
       { href: "/morse-code-decoder", label: "Decoder" },
     ],
@@ -4791,6 +4793,820 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
       "See hyphen in Morse code, copy -....-, and learn how hyphen punctuation differs from Morse dash marks in names and compound words.",
     keywords:
       "hyphen in morse code, morse code hyphen, dash in morse code, hyphenated name morse",
+  },
+  "colon-in-morse-code": {
+    slug: "colon-in-morse-code",
+    path: "/colon-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Colon",
+    displayTitle: "Colon in Morse Code",
+    plainTextValue: ":",
+    morseValue: assertMorseCharacter(":"),
+    spokenRhythm: rhythmFor(assertMorseCharacter(":")),
+    answerSummary:
+      "The colon in Morse code is ---... Use it for supported times, labels, and short text where the colon is part of the written message.",
+    breakdownIntro:
+      "The colon is punctuation. MorseWords encodes it as its own separated group, not as a word gap or letter.",
+    contextTitle: "Using a colon in Morse",
+    context: [
+      {
+        title: "Times and labels",
+        text: "Use colon punctuation in compact text such as TIME: 10:30 when the mark is part of the source text.",
+        href: "/morse-code-punctuation",
+        badge: "Chart",
+      },
+      {
+        title: "Spacing around it",
+        text: "Keep the colon pattern separated from nearby letters or numbers so it decodes as punctuation.",
+        href: "/morse-code-word-separator",
+        badge: "Spacing",
+      },
+      {
+        title: "Simpler alternatives",
+        text: "If you are sharing Morse through an app that may not support punctuation, consider spelling the label out instead.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+    ],
+    examples: [
+      {
+        title: "TIME: 10:30",
+        text: "TIME: 10:30",
+        morse: morseForText("TIME: 10:30").replace(/\s{7,}/g, " / "),
+        note: "A practical time-style example with two supported colon marks.",
+      },
+      {
+        title: "QTH: HOME",
+        text: "QTH: HOME",
+        morse: morseForText("QTH: HOME").replace(/\s{7,}/g, " / "),
+        note: "A label-style example where the colon separates the prompt from the value.",
+      },
+      {
+        title: "A: B",
+        text: "A: B",
+        morse: morseForText("A: B").replace(/\s{7,}/g, " / "),
+        note: "A short copy test that makes the colon pattern easy to locate.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Merging with numbers",
+        text: "In time strings, keep ---... separated from each number group before decoding.",
+      },
+      {
+        title: "Confusing colon and semicolon",
+        text: "Colon is ---... while semicolon is -.-.-. They are both punctuation, but the patterns differ.",
+        href: "/semicolon-in-morse-code",
+        badge: "Compare",
+      },
+      {
+        title: "Assuming every app supports it",
+        text: "MorseWords supports colon punctuation, but another decoder may omit it or use a smaller punctuation set.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/semicolon-in-morse-code", label: "Semicolon" },
+      { href: "/period-in-morse-code", label: "Period" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is a colon in Morse code?",
+        a: "A colon in Morse code is ---...",
+      },
+      {
+        q: "Can MorseWords encode times with colons?",
+        a: "Yes. A string such as TIME: 10:30 uses supported letters, numbers, spaces, and colon punctuation.",
+      },
+      {
+        q: "Is colon Morse the same as semicolon Morse?",
+        a: "No. Colon is ---..., while semicolon is -.-.-.",
+      },
+      {
+        q: "Why did my colon not decode somewhere else?",
+        a: "The other tool may not support colon punctuation, or the copied Morse may have lost spacing around the colon group.",
+      },
+    ],
+    metaTitle: "Colon in Morse Code | Copy, Decode, and Examples | MorseWords",
+    metaDescription:
+      "See colon in Morse code, copy ---..., use examples such as TIME: 10:30, and learn how spacing affects copied punctuation.",
+    keywords:
+      "colon in morse code, morse code colon, time colon morse, punctuation colon morse",
+  },
+  "semicolon-in-morse-code": {
+    slug: "semicolon-in-morse-code",
+    path: "/semicolon-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Semicolon",
+    displayTitle: "Semicolon in Morse Code",
+    plainTextValue: ";",
+    morseValue: assertMorseCharacter(";"),
+    spokenRhythm: rhythmFor(assertMorseCharacter(";")),
+    answerSummary:
+      "The semicolon in Morse code is -.-.-. It is supported by MorseWords, but it is less common than period, comma, and question mark.",
+    breakdownIntro:
+      "The semicolon is a sentence punctuation mark with its own MorseWords-supported pattern.",
+    contextTitle: "Using a semicolon in Morse",
+    context: [
+      {
+        title: "Sentence-style text",
+        text: "Use semicolon only when the written punctuation matters in the text you are converting.",
+        href: "/morse-code-punctuation",
+        badge: "Chart",
+      },
+      {
+        title: "Sharing compatibility",
+        text: "For broad compatibility across apps, period or comma may be easier for a beginner to read and verify.",
+        href: "/period-in-morse-code",
+        badge: "Simpler",
+      },
+      {
+        title: "Decode spacing",
+        text: "Keep -.-.-. as its own group. Without separators, it can merge into surrounding letter patterns.",
+        href: "/morse-code-decoder",
+        badge: "Decode",
+      },
+    ],
+    examples: [
+      {
+        title: "YES; NO",
+        text: "YES; NO",
+        morse: morseForText("YES; NO").replace(/\s{7,}/g, " / "),
+        note: "A compact sentence-style example with a visible word break.",
+      },
+      {
+        title: "GO; WAIT",
+        text: "GO; WAIT",
+        morse: morseForText("GO; WAIT").replace(/\s{7,}/g, " / "),
+        note: "A practice phrase where the semicolon separates two short ideas.",
+      },
+      {
+        title: "A; B",
+        text: "A; B",
+        morse: morseForText("A; B").replace(/\s{7,}/g, " / "),
+        note: "A short way to check the punctuation pattern in context.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Using it when a comma is clearer",
+        text: "Semicolon is valid in MorseWords, but comma is more familiar for many learners and readers.",
+        href: "/comma-in-morse-code",
+        badge: "Comma",
+      },
+      {
+        title: "Mixing it with colon",
+        text: "Semicolon is -.-.-. Colon is ---... Check the mark before copying.",
+        href: "/colon-in-morse-code",
+        badge: "Colon",
+      },
+      {
+        title: "Dropping separators",
+        text: "The semicolon pattern needs normal spaces around it when typed as Morse.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/colon-in-morse-code", label: "Colon" },
+      { href: "/comma-in-morse-code", label: "Comma" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is a semicolon in Morse code?",
+        a: "A semicolon in Morse code is -.-.-.",
+      },
+      {
+        q: "Is semicolon common in Morse practice?",
+        a: "It is less common than letters, numbers, period, comma, and question mark, so beginners usually learn it later.",
+      },
+      {
+        q: "Can MorseWords encode semicolon punctuation?",
+        a: "Yes. MorseWords supports the normal ASCII semicolon character.",
+      },
+      {
+        q: "Should I use a semicolon in copied Morse?",
+        a: "Use it when the punctuation matters, but consider simpler punctuation if the message must work across tools with limited symbol support.",
+      },
+    ],
+    metaTitle: "Semicolon in Morse Code | Copy, Decode, and Examples | MorseWords",
+    metaDescription:
+      "See semicolon in Morse code, copy -.-.-., compare it with colon and comma, and learn when simpler punctuation may be clearer.",
+    keywords:
+      "semicolon in morse code, morse code semicolon, semicolon punctuation morse",
+  },
+  "equals-sign-in-morse-code": {
+    slug: "equals-sign-in-morse-code",
+    path: "/equals-sign-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Equals sign",
+    displayTitle: "Equals Sign in Morse Code",
+    plainTextValue: "=",
+    morseValue: assertMorseCharacter("="),
+    spokenRhythm: rhythmFor(assertMorseCharacter("=")),
+    answerSummary:
+      "The equals sign in Morse code is -...-. MorseWords treats = as punctuation in text, not as a word separator.",
+    breakdownIntro:
+      "The equals sign is useful in codes, practice strings, and technical text when the written symbol itself matters.",
+    contextTitle: "Using equals sign in Morse",
+    context: [
+      {
+        title: "Codes and checks",
+        text: "Use = in compact code-like strings such as A=B or CODE=123 when the symbol is part of the message.",
+        href: "/morse-code-punctuation",
+        badge: "Symbol",
+      },
+      {
+        title: "Not a separator",
+        text: "Equals is encoded punctuation. Use spaces or slash conventions when you need word boundaries.",
+        href: "/morse-code-word-separator",
+        badge: "Spacing",
+      },
+      {
+        title: "Copy compatibility",
+        text: "Equals is plain ASCII, but the Morse pattern still needs normal dots, dashes, and separators.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+    ],
+    examples: [
+      {
+        title: "A=B",
+        text: "A=B",
+        morse: morseForText("A=B"),
+        note: "A short example where equals is clearly punctuation between letters.",
+      },
+      {
+        title: "5=5",
+        text: "5=5",
+        morse: morseForText("5=5"),
+        note: "A number example for checking the symbol around digit groups.",
+      },
+      {
+        title: "CODE=123",
+        text: "CODE=123",
+        morse: morseForText("CODE=123"),
+        note: "A technical-style string that stays readable when spacing is preserved.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Treating it like spacing",
+        text: "Equals is not a word break in MorseWords. It encodes as its own punctuation group.",
+      },
+      {
+        title: "Confusing equals and plus",
+        text: "Equals is -...-. Plus is .-.-. They are different supported symbols.",
+        href: "/plus-sign-in-morse-code",
+        badge: "Plus",
+      },
+      {
+        title: "Dropping punctuation in codes",
+        text: "If the equals sign matters in a code or worksheet, keep it and verify the full string before sharing.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/plus-sign-in-morse-code", label: "Plus sign" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-encoder", label: "Encoder" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is an equals sign in Morse code?",
+        a: "An equals sign in Morse code is -...-.",
+      },
+      {
+        q: "Does equals sign separate Morse words?",
+        a: "No. MorseWords encodes = as punctuation. Use spaces or slash separators for word boundaries.",
+      },
+      {
+        q: "Can MorseWords encode technical strings with =?",
+        a: "Yes, if the rest of the string uses supported letters, numbers, spaces, and punctuation.",
+      },
+      {
+        q: "Is equals sign Morse the same as plus sign Morse?",
+        a: "No. Equals is -...-, while plus is .-.-.",
+      },
+    ],
+    metaTitle: "Equals Sign in Morse Code | Copy, Decode, and Examples | MorseWords",
+    metaDescription:
+      "See equals sign in Morse code, copy -...-, and learn how to use = in codes, practice strings, and technical text without treating it as a separator.",
+    keywords:
+      "equals sign in morse code, morse code equals, equals punctuation morse, = in morse code",
+  },
+  "plus-sign-in-morse-code": {
+    slug: "plus-sign-in-morse-code",
+    path: "/plus-sign-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Plus sign",
+    displayTitle: "Plus Sign in Morse Code",
+    plainTextValue: "+",
+    morseValue: assertMorseCharacter("+"),
+    spokenRhythm: rhythmFor(assertMorseCharacter("+")),
+    answerSummary:
+      "The plus sign in Morse code is .-.-. Use it for supported technical strings, math-like text, and puzzles that need the + symbol.",
+    breakdownIntro:
+      "Plus is supported punctuation in MorseWords. In URLs and query strings, encode + carefully because some systems treat plus as a space.",
+    contextTitle: "Using plus sign in Morse",
+    context: [
+      {
+        title: "Technical strings",
+        text: "Use plus in strings such as A+B or 2+3 when the symbol itself is part of the source text.",
+        href: "/morse-code-punctuation",
+        badge: "Symbol",
+      },
+      {
+        title: "URL copy warning",
+        text: "When sharing links, + may be interpreted as a space unless it is encoded as %2B.",
+        href: "/copy-and-paste-morse-code",
+        badge: "URL",
+      },
+      {
+        title: "Prosign context",
+        text: "The plus sign pattern .-.-. is also associated with AR in prosign contexts, but punctuation and prosigns have different jobs.",
+        href: "/morse-code-prosigns",
+        badge: "Prosigns",
+      },
+    ],
+    examples: [
+      {
+        title: "A+B",
+        text: "A+B",
+        morse: morseForText("A+B"),
+        note: "A compact example where plus separates two letters.",
+      },
+      {
+        title: "2+3",
+        text: "2+3",
+        morse: morseForText("2+3"),
+        note: "A number example for math-like practice text.",
+      },
+      {
+        title: "TEST+OK",
+        text: "TEST+OK",
+        morse: morseForText("TEST+OK"),
+        note: "A puzzle-style example that keeps plus as punctuation, not a word gap.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Letting + become a space",
+        text: "In some URL or form contexts, plus can decode as a space. Use encoded links or the direct page buttons when possible.",
+      },
+      {
+        title: "Confusing plus and equals",
+        text: "Plus is .-.-. Equals is -...-. Check the symbol before copying.",
+        href: "/equals-sign-in-morse-code",
+        badge: "Equals",
+      },
+      {
+        title: "Mixing punctuation and prosigns",
+        text: "Plus as text punctuation is not the same use case as AR as an operating signal.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/equals-sign-in-morse-code", label: "Equals sign" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-prosigns", label: "Prosigns" },
+      { href: "/morse-code-encoder", label: "Encoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is a plus sign in Morse code?",
+        a: "A plus sign in Morse code is .-.-.",
+      },
+      {
+        q: "Can I type + into the MorseWords encoder?",
+        a: "Yes. MorseWords supports the normal plus sign character as punctuation.",
+      },
+      {
+        q: "Why can plus signs break in links?",
+        a: "Some query-string parsers treat + as a space. Encode it as %2B when a URL needs the literal plus sign.",
+      },
+      {
+        q: "Is plus sign Morse the same as AR?",
+        a: "The pattern overlaps with AR in prosign contexts, but a typed plus sign and a prosign are used differently.",
+      },
+    ],
+    metaTitle: "Plus Sign in Morse Code | Copy, Decode, and URL Tips | MorseWords",
+    metaDescription:
+      "See plus sign in Morse code, copy .-.-., use examples such as A+B and 2+3, and avoid URL copy issues where + can become a space.",
+    keywords:
+      "plus sign in morse code, morse code plus, + in morse code, plus url morse",
+  },
+  "quotation-mark-in-morse-code": {
+    slug: "quotation-mark-in-morse-code",
+    path: "/quotation-mark-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Quotation mark",
+    displayTitle: "Quotation Mark in Morse Code",
+    plainTextValue: "\"",
+    morseValue: assertMorseCharacter("\""),
+    spokenRhythm: rhythmFor(assertMorseCharacter("\"")),
+    answerSummary:
+      "The straight quotation mark in Morse code is .-..-. Use it for supported quoted text, and avoid curly quote lookalikes when copying.",
+    breakdownIntro:
+      "MorseWords supports the straight double quotation mark. Curly quotes from word processors or mobile keyboards may not encode the same way.",
+    contextTitle: "Using quotation marks in Morse",
+    context: [
+      {
+        title: "Straight quotes",
+        text: "Use the plain ASCII double quote when you want MorseWords to encode quotation punctuation.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+      {
+        title: "Quoted words",
+        text: "Keep the quote pattern separated from the letters inside and around the quoted text.",
+        href: "/morse-code-punctuation",
+        badge: "Chart",
+      },
+      {
+        title: "Apostrophe comparison",
+        text: "Quotation mark and apostrophe are different characters with different Morse patterns.",
+        href: "/apostrophe-in-morse-code",
+        badge: "Compare",
+      },
+    ],
+    examples: [
+      {
+        title: "\"HI\"",
+        text: "\"HI\"",
+        morse: morseForText("\"HI\""),
+        note: "A short quoted word with quotation marks on both sides.",
+      },
+      {
+        title: "SAY \"OK\"",
+        text: "SAY \"OK\"",
+        morse: morseForText("SAY \"OK\"").replace(/\s{7,}/g, " / "),
+        note: "A two-word phrase with quoted text at the end.",
+      },
+      {
+        title: "\"TEST\"",
+        text: "\"TEST\"",
+        morse: morseForText("\"TEST\""),
+        note: "A practice word wrapped in supported straight quotes.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Using curly quotes",
+        text: "Curly opening and closing quotes may not be supported. Replace them with straight quotes before encoding.",
+      },
+      {
+        title: "Confusing quote and apostrophe",
+        text: "A quotation mark is .-..-. Apostrophe is .----. They are not interchangeable.",
+        href: "/apostrophe-in-morse-code",
+        badge: "Apostrophe",
+      },
+      {
+        title: "Dropping quote spacing",
+        text: "The quote pattern must remain separated from the first or last letter in the quoted word.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/apostrophe-in-morse-code", label: "Apostrophe" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-encoder", label: "Encoder" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is a quotation mark in Morse code?",
+        a: "A straight quotation mark in Morse code is .-..-.",
+      },
+      {
+        q: "Can MorseWords encode curly quotes?",
+        a: "Use straight quotes for reliable encoding. Curly quotes from word processors and phones may not match the supported map.",
+      },
+      {
+        q: "Are quotation mark and apostrophe Morse the same?",
+        a: "No. Quotation mark is .-..-. and apostrophe is .----.",
+      },
+      {
+        q: "How should I copy quoted Morse text?",
+        a: "Keep the quotation mark pattern separated from the letters it surrounds, then test the full string in the decoder.",
+      },
+    ],
+    metaTitle: "Quotation Mark in Morse Code | Copy, Decode, and Examples | MorseWords",
+    metaDescription:
+      "See quotation mark in Morse code, copy .-..-., compare straight quotes with curly quotes, and review quoted-word examples.",
+    keywords:
+      "quotation mark in morse code, quote in morse code, morse code quotation mark, straight quote morse",
+  },
+  "parentheses-in-morse-code": {
+    slug: "parentheses-in-morse-code",
+    path: "/parentheses-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Parentheses",
+    displayTitle: "Parentheses in Morse Code",
+    plainTextValue: "()",
+    morseValue: morseForText("()"),
+    spokenRhythm: `left ${rhythmFor(assertMorseCharacter("("))}; right ${rhythmFor(assertMorseCharacter(")"))}`,
+    answerSummary:
+      "Parentheses in MorseWords use different patterns: left parenthesis is -.--. and right parenthesis is -.--.-.",
+    breakdownIntro:
+      "MorseWords supports both ( and ). They are punctuation marks, and each side should be kept as a separated Morse group.",
+    contextTitle: "Using parentheses in Morse",
+    context: [
+      {
+        title: "Both sides are supported",
+        text: "The left parenthesis and right parenthesis are encoded separately, so check each side when copying a parenthetical phrase.",
+        href: "/morse-code-punctuation",
+        badge: "Chart",
+      },
+      {
+        title: "Parenthetical text",
+        text: "Use parentheses when the source text needs the marks, such as a note, label, or puzzle clue.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+      {
+        title: "Spacing matters",
+        text: "Keep each parenthesis pattern separated from the words or letters inside it.",
+        href: "/morse-code-decoder",
+        badge: "Decode",
+      },
+    ],
+    examples: [
+      {
+        title: "(OK)",
+        text: "(OK)",
+        morse: morseForText("(OK)"),
+        note: "A short parenthetical word with both supported parenthesis marks.",
+      },
+      {
+        title: "A (B)",
+        text: "A (B)",
+        morse: morseForText("A (B)").replace(/\s{7,}/g, " / "),
+        note: "A spaced example where parentheses wrap a single letter.",
+      },
+      {
+        title: "(TEST)",
+        text: "(TEST)",
+        morse: morseForText("(TEST)"),
+        note: "A practice word that makes the opening and closing marks easy to compare.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Assuming both sides match",
+        text: "In MorseWords, ( and ) are not identical: left is -.--. and right is -.--.-.",
+      },
+      {
+        title: "Dropping the closing mark",
+        text: "If the source text includes a closing parenthesis, keep it and check that the final pattern is present.",
+      },
+      {
+        title: "Using decorative brackets",
+        text: "This page covers parentheses. Brackets and other marks may not be part of the supported map.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/quotation-mark-in-morse-code", label: "Quotation mark" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-encoder", label: "Encoder" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What are parentheses in Morse code?",
+        a: "In MorseWords, left parenthesis is -.--. and right parenthesis is -.--.-.",
+      },
+      {
+        q: "Do ( and ) have the same Morse pattern?",
+        a: "No. MorseWords supports separate patterns for left and right parentheses.",
+      },
+      {
+        q: "Can I encode text inside parentheses?",
+        a: "Yes, if the inside text uses supported letters, numbers, spaces, and punctuation.",
+      },
+      {
+        q: "Why did my parentheses not decode?",
+        a: "The most common issue is lost spacing between the parenthesis pattern and the adjacent letter pattern.",
+      },
+    ],
+    metaTitle: "Parentheses in Morse Code | Copy, Decode, and Examples | MorseWords",
+    metaDescription:
+      "See left and right parentheses in Morse code, compare -.--. with -.--.-, and review parenthetical examples for copied text.",
+    keywords:
+      "parentheses in morse code, parenthesis morse code, left parenthesis morse, right parenthesis morse",
+  },
+  "ampersand-in-morse-code": {
+    slug: "ampersand-in-morse-code",
+    path: "/ampersand-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Ampersand",
+    displayTitle: "Ampersand in Morse Code",
+    plainTextValue: "&",
+    morseValue: assertMorseCharacter("&"),
+    spokenRhythm: rhythmFor(assertMorseCharacter("&")),
+    answerSummary:
+      "The ampersand in Morse code is .-... Use it for supported names, brands, labels, and puzzle text where & should remain a symbol.",
+    breakdownIntro:
+      "The ampersand is supported punctuation in MorseWords, but spelling AND may be more compatible in some copied messages.",
+    contextTitle: "Using ampersand in Morse",
+    context: [
+      {
+        title: "Names and labels",
+        text: "Use & when the symbol is part of a name, brand-style label, or short puzzle prompt.",
+        href: "/morse-code-punctuation",
+        badge: "Symbol",
+      },
+      {
+        title: "AND may be clearer",
+        text: "For beginner practice or broad tool compatibility, spelling AND can be easier than relying on punctuation support.",
+        href: "/morse-code-words",
+        badge: "Words",
+      },
+      {
+        title: "URL copy caution",
+        text: "Ampersand has special meaning in URLs, so use encoded tool links instead of hand-editing query strings.",
+        href: "/copy-and-paste-morse-code",
+        badge: "URL",
+      },
+    ],
+    examples: [
+      {
+        title: "A&B",
+        text: "A&B",
+        morse: morseForText("A&B"),
+        note: "A short symbol test between two letters.",
+      },
+      {
+        title: "R&D",
+        text: "R&D",
+        morse: morseForText("R&D"),
+        note: "A common label-style example that keeps the ampersand visible.",
+      },
+      {
+        title: "MOM & DAD",
+        text: "MOM & DAD",
+        morse: morseForText("MOM & DAD").replace(/\s{7,}/g, " / "),
+        note: "A readable phrase where the ampersand appears as its own symbol group.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Using & when AND is safer",
+        text: "If the message needs to work in a simple decoder, spelling AND may be easier to read and share.",
+      },
+      {
+        title: "Breaking query strings",
+        text: "An unescaped & can split URL query parameters. Use the generated tool links for the literal symbol.",
+      },
+      {
+        title: "Lost separators",
+        text: "Keep .-... separated from surrounding letters so it decodes as ampersand.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-encoder", label: "Encoder" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+      { href: "/morse-code-words", label: "Word examples" },
+    ],
+    faqItems: [
+      {
+        q: "What is an ampersand in Morse code?",
+        a: "An ampersand in Morse code is .-...",
+      },
+      {
+        q: "Should I use & or spell AND in Morse?",
+        a: "Use & when the symbol matters. Spell AND when you want maximum readability or compatibility for beginners.",
+      },
+      {
+        q: "Can ampersand break copied links?",
+        a: "Yes. In URLs, ampersand separates query parameters, so the literal symbol should be encoded.",
+      },
+      {
+        q: "Can MorseWords decode ampersand punctuation?",
+        a: "Yes, when the .-... group is separated clearly from surrounding Morse groups.",
+      },
+    ],
+    metaTitle: "Ampersand in Morse Code | Copy, Decode, and Examples | MorseWords",
+    metaDescription:
+      "See ampersand in Morse code, copy .-..., compare & with spelling AND, and avoid URL or spacing mistakes when sharing Morse.",
+    keywords:
+      "ampersand in morse code, & in morse code, morse code ampersand, and symbol morse",
+  },
+  "underscore-in-morse-code": {
+    slug: "underscore-in-morse-code",
+    path: "/underscore-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Underscore",
+    displayTitle: "Underscore in Morse Code",
+    plainTextValue: "_",
+    morseValue: assertMorseCharacter("_"),
+    spokenRhythm: rhythmFor(assertMorseCharacter("_")),
+    answerSummary:
+      "The underscore in MorseWords is ..--.-. Use it for supported usernames, file names, and code-like text that needs the _ character.",
+    breakdownIntro:
+      "Underscore punctuation support can vary across Morse references and apps. This page documents the pattern supported by MorseWords.",
+    contextTitle: "Using underscore in Morse",
+    context: [
+      {
+        title: "Usernames and files",
+        text: "Use underscore in strings such as CALL_SIGN or TEST_FILE when the character itself matters.",
+        href: "/morse-code-punctuation",
+        badge: "Symbol",
+      },
+      {
+        title: "Hyphen comparison",
+        text: "Underscore and hyphen are different characters with different Morse patterns.",
+        href: "/hyphen-in-morse-code",
+        badge: "Compare",
+      },
+      {
+        title: "Compatibility check",
+        text: "Some tools omit underscore punctuation. Test the full string before using it in a worksheet or design.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+    ],
+    examples: [
+      {
+        title: "CALL_SIGN",
+        text: "CALL_SIGN",
+        morse: morseForText("CALL_SIGN"),
+        note: "A username-style example with one underscore between words.",
+      },
+      {
+        title: "TEST_FILE",
+        text: "TEST_FILE",
+        morse: morseForText("TEST_FILE"),
+        note: "A file-name style example for code-like text.",
+      },
+      {
+        title: "A_B",
+        text: "A_B",
+        morse: morseForText("A_B"),
+        note: "A compact test that makes the underscore pattern easy to find.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Confusing underscore and hyphen",
+        text: "Underscore is ..--.-. Hyphen is -....-. They are not the same in MorseWords.",
+        href: "/hyphen-in-morse-code",
+        badge: "Hyphen",
+      },
+      {
+        title: "Assuming universal support",
+        text: "Underscore support may vary across references. This page reflects the MorseWords supported map.",
+      },
+      {
+        title: "Losing the symbol in copied text",
+        text: "Some formatting systems hide underscores in links or usernames. Verify the exact source text before encoding.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/hyphen-in-morse-code", label: "Hyphen" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-encoder", label: "Encoder" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is an underscore in Morse code?",
+        a: "In MorseWords, underscore is ..--.-.",
+      },
+      {
+        q: "Do all Morse tools support underscore?",
+        a: "No. Punctuation support can vary. This page reflects the MorseWords supported punctuation map.",
+      },
+      {
+        q: "Is underscore the same as hyphen in Morse?",
+        a: "No. Underscore is ..--.-. and hyphen is -....-.",
+      },
+      {
+        q: "Can I encode usernames with underscores?",
+        a: "Yes, when the username uses supported letters, numbers, and the normal underscore character.",
+      },
+    ],
+    metaTitle: "Underscore in Morse Code | Usernames, Files, and Examples | MorseWords",
+    metaDescription:
+      "See underscore in Morse code as supported by MorseWords, copy ..--.-, and review username, file-name, and hyphen comparison examples.",
+    keywords:
+      "underscore in morse code, morse code underscore, _ in morse code, username morse code",
   },
 };
 
@@ -5257,7 +6073,7 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       },
       {
         title: "Punctuation",
-        text: "Check symbols such as period, comma, ?, @, apostrophe, and hyphen.",
+        text: "Check symbols such as period, comma, ?, @, quotes, plus, underscore, apostrophe, and hyphen.",
         href: "/morse-code-punctuation",
         badge: "Symbols",
       },
@@ -5273,6 +6089,9 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       { href: "/morse-code-encoder", label: "Encode clean Morse" },
       { href: "/period-in-morse-code", label: "Period" },
       { href: "/hyphen-in-morse-code", label: "Hyphen" },
+      { href: "/quotation-mark-in-morse-code", label: "Quotation mark" },
+      { href: "/plus-sign-in-morse-code", label: "Plus sign" },
+      { href: "/underscore-in-morse-code", label: "Underscore" },
       { href: "/morse-code-punctuation", label: "Punctuation" },
     ],
     faqItems: [

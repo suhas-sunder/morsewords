@@ -118,6 +118,17 @@ export default [
   ),
   route("apostrophe-in-morse-code", "routes/apostrophe-in-morse-code.tsx"),
   route("hyphen-in-morse-code", "routes/hyphen-in-morse-code.tsx"),
+  route("colon-in-morse-code", "routes/colon-in-morse-code.tsx"),
+  route("semicolon-in-morse-code", "routes/semicolon-in-morse-code.tsx"),
+  route("equals-sign-in-morse-code", "routes/equals-sign-in-morse-code.tsx"),
+  route("plus-sign-in-morse-code", "routes/plus-sign-in-morse-code.tsx"),
+  route(
+    "quotation-mark-in-morse-code",
+    "routes/quotation-mark-in-morse-code.tsx",
+  ),
+  route("parentheses-in-morse-code", "routes/parentheses-in-morse-code.tsx"),
+  route("ampersand-in-morse-code", "routes/ampersand-in-morse-code.tsx"),
+  route("underscore-in-morse-code", "routes/underscore-in-morse-code.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
 
   // Redirects for old URLs. Ignore these routes
