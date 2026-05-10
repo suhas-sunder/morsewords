@@ -130,6 +130,26 @@ export default function MorseCodePunctuation() {
           />
         </SectionCard>
 
+        <SectionCard
+          eyebrow="Focused lookups"
+          title="Detailed punctuation and spacing pages"
+          description="Use these pages when you need examples, copy-paste notes, or a clearer distinction between typed punctuation and Morse separators."
+        >
+          <ActionLinks
+            links={[
+              { href: "/period-in-morse-code", label: "Period", primary: true },
+              { href: "/comma-in-morse-code", label: "Comma" },
+              { href: "/question-mark-in-morse-code", label: "Question mark" },
+              { href: "/at-sign-in-morse-code", label: "At sign" },
+              { href: "/exclamation-mark-in-morse-code", label: "Exclamation mark" },
+              { href: "/apostrophe-in-morse-code", label: "Apostrophe" },
+              { href: "/hyphen-in-morse-code", label: "Hyphen" },
+              { href: "/slash-in-morse-code", label: "Slash" },
+              { href: "/space-in-morse-code", label: "Space" },
+            ]}
+          />
+        </SectionCard>
+
         <ReferenceSupportSections
           guide={{
             eyebrow: "Formatting guide",
@@ -179,7 +199,21 @@ export default function MorseCodePunctuation() {
                 children: (
                   <p>
                     Sentence punctuation is longer than most letters, so it is
-                    worth checking before copying a full message into the{" "}
+                    worth checking on the{" "}
+                    <a
+                      href="/period-in-morse-code"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      period
+                    </a>{" "}
+                    and{" "}
+                    <a
+                      href="/comma-in-morse-code"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      comma
+                    </a>{" "}
+                    pages before copying a full message into the{" "}
                     <a
                       href="/morse-code-encoder"
                       className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
@@ -281,11 +315,14 @@ export default function MorseCodePunctuation() {
               "Once the punctuation pattern is clear, test the surrounding message in a tool that handles full text or pasted Morse.",
             links: [
               { href: "/morse-code-encoder", label: "Encode text", primary: true },
+              { href: "/period-in-morse-code", label: "Period" },
+              { href: "/comma-in-morse-code", label: "Comma" },
               { href: "/question-mark-in-morse-code", label: "Question mark" },
               { href: "/at-sign-in-morse-code", label: "At sign" },
+              { href: "/exclamation-mark-in-morse-code", label: "Exclamation mark" },
+              { href: "/apostrophe-in-morse-code", label: "Apostrophe" },
+              { href: "/hyphen-in-morse-code", label: "Hyphen" },
               { href: "/morse-code-decoder", label: "Decode Morse" },
-              { href: "/dictionary", label: "Search dictionary" },
-              { href: "/international-morse-code-reference", label: "Full reference" },
               { href: "/morse-code-word-separator", label: "Spacing guide" },
             ],
           }}

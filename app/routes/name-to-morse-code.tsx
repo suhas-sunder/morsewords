@@ -231,6 +231,8 @@ export default function NameToMorseCodeRoute() {
               { href: "/?text=AVERY", label: "Open translator", primary: true },
               { href: "/audio?text=AVERY", label: "Hear a name" },
               { href: "/morse-code-encoder", label: "Encode a full message" },
+              { href: "/apostrophe-in-morse-code", label: "Apostrophe" },
+              { href: "/hyphen-in-morse-code", label: "Hyphen" },
               { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
             ],
           }}

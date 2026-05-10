@@ -124,7 +124,14 @@ export default function MorseCodeWordSeparator() {
                 children: (
                   <p>
                     The slash marks the word break. Without that break, the
-                    decoder would see one continuous word of Morse groups.
+                    decoder would see one continuous word of Morse groups. The{" "}
+                    <a
+                      href="/slash-in-morse-code"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      slash guide
+                    </a>{" "}
+                    explains when / is a separator and when it is punctuation.
                   </p>
                 ),
               },
@@ -135,7 +142,14 @@ export default function MorseCodeWordSeparator() {
                   <p>
                     Seven spaces are the text version of a Morse word gap. This
                     is useful when you want timing-style spacing instead of a
-                    slash.
+                    slash. The{" "}
+                    <a
+                      href="/space-in-morse-code"
+                      className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+                    >
+                      space guide
+                    </a>{" "}
+                    compares letter gaps and word gaps.
                   </p>
                 ),
               },
@@ -244,6 +258,8 @@ export default function MorseCodeWordSeparator() {
               "Once the Morse is separated cleanly, decode it, compare symbols, or learn the timing rules behind the gaps.",
             links: [
               { href: "/morse-code-decoder", label: "Decode cleaned Morse", primary: true },
+              { href: "/space-in-morse-code", label: "Space guide" },
+              { href: "/slash-in-morse-code", label: "Slash guide" },
               { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
               { href: "/morse-code-without-spaces", label: "Unspaced Morse" },
               { href: "/morse-code-encoder", label: "Encode from text" },

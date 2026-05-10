@@ -3714,6 +3714,18 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
         href: "/morse-code-word-separator",
       },
       {
+        title: "Space and slash check",
+        text: "Compare the space and slash pages if you are deciding whether to show the word break as spacing or as /.",
+        href: "/space-in-morse-code",
+        badge: "Gaps",
+      },
+      {
+        title: "Slash separator",
+        text: "Use the slash page when you need to distinguish separator / from a slash that is encoded as punctuation.",
+        href: "/slash-in-morse-code",
+        badge: "Slash",
+      },
+      {
         title: "Classroom and puzzle use",
         text: "The phrase is familiar enough for learners to check, while still forcing them to handle repeated letters and a word gap.",
       },
@@ -3761,6 +3773,8 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
       { href: "/morse-code-encoder?text=HELLO%20WORLD", label: "Open in encoder" },
       { href: "/hello-in-morse-code", label: "HELLO" },
       { href: "/morse-code-word-separator", label: "Word spacing" },
+      { href: "/space-in-morse-code", label: "Space guide" },
+      { href: "/slash-in-morse-code", label: "Slash guide" },
       { href: "/morse-code-words", label: "More Morse words" },
     ],
     faqItems: [
@@ -4079,6 +4093,704 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
       "See the at sign in Morse code, copy .--.-., hear it as audio, and use examples for email-like or contact text.",
     keywords:
       "at sign in morse code, @ in morse code, morse code at sign, email morse code",
+  },
+  "space-in-morse-code": {
+    slug: "space-in-morse-code",
+    path: "/space-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Spacing guide",
+    label: "Space",
+    displayTitle: "Space in Morse Code",
+    plainTextValue: "HI OK",
+    morseValue: morseForText("HI OK").replace(/\s{7,}/g, " / "),
+    spokenRhythm: "letter gaps / word gap",
+    answerSummary:
+      "A space in Morse code is not a dit or dah. In copied Morse, spaces separate letters, and a slash or wider gap usually shows the word break.",
+    breakdownIntro:
+      "The direct example uses HI OK so you can see letter spacing inside each word and a visible slash at the word gap.",
+    contextTitle: "Using spaces in Morse",
+    context: [
+      {
+        title: "Letter gaps",
+        text: "One visible space between Morse groups usually separates letters when dots and dashes are typed.",
+        href: "/morse-code-word-separator",
+        badge: "Spacing",
+      },
+      {
+        title: "Word gaps",
+        text: "A word gap is a longer pause in audio. In copied Morse, a slash makes that gap visible when repeated spaces might be collapsed.",
+        href: "/slash-in-morse-code",
+        badge: "Slash",
+      },
+      {
+        title: "Paste safety",
+        text: "Preserve spaces before decoding. If an app removes them, add slashes or use the word separator tool before reading the message.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+    ],
+    examples: [
+      {
+        title: "HELLO WORLD",
+        text: "HELLO WORLD",
+        morse: morseForText("HELLO WORLD").replace(/\s{7,}/g, " / "),
+        note: "The slash makes the word gap visible between HELLO and WORLD.",
+      },
+      {
+        title: "Letter-separated",
+        text: "HELLO",
+        morse: morseForText("HELLO"),
+        note: "Single spaces keep the letters separate inside one word.",
+      },
+      {
+        title: "Timing-style gap",
+        text: "HI OK",
+        morse: morseForText("HI OK"),
+        note: "Seven spaces represent the longer word pause in timing-style typed Morse.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Calling space a symbol",
+        text: "A text space does not have a normal dot-dash Morse pattern. It is a gap between letters or words.",
+      },
+      {
+        title: "Collapsing repeated spaces",
+        text: "Some apps trim repeated spaces. Use a slash word separator when you need the word boundary to survive copying.",
+      },
+      {
+        title: "Decoding without boundaries",
+        text: "If spaces are missing, the decoder cannot always know where letters or words begin and end.",
+        href: "/morse-code-without-spaces",
+        badge: "Unspaced",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-word-separator", label: "Word separator", primary: true },
+      { href: "/slash-in-morse-code", label: "Slash separator" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-without-spaces", label: "Unspaced Morse" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is a space in Morse code?",
+        a: "A space is not a dit or dah. It is a gap: short gaps separate marks, letter gaps separate characters, and longer word gaps separate words.",
+      },
+      {
+        q: "Should I use a slash for a Morse space?",
+        a: "Use a slash when you need a visible word separator in copied Morse. Letter gaps still need spaces between Morse character groups.",
+      },
+      {
+        q: "Why does pasted Morse fail when spaces disappear?",
+        a: "Without letter and word gaps, the same run of dots and dashes can often be split into different valid messages.",
+      },
+      {
+        q: "Can I type HELLO WORLD into the encoder?",
+        a: "Yes. MorseWords converts the text space into a word gap, and copied examples often display that word gap as a slash.",
+      },
+    ],
+    metaTitle: "Space in Morse Code | Word Gaps, Slashes, and Examples | MorseWords",
+    metaDescription:
+      "Learn what a space means in Morse code, how letter gaps and word gaps work, when to use slash separators, and how to preserve spacing when copying Morse.",
+    keywords:
+      "space in morse code, morse code space, morse word gap, morse letter spacing, morse code slash separator",
+  },
+  "slash-in-morse-code": {
+    slug: "slash-in-morse-code",
+    path: "/slash-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Separator guide",
+    label: "Slash",
+    displayTitle: "Slash in Morse Code",
+    plainTextValue: "/",
+    morseValue: assertMorseCharacter("/"),
+    spokenRhythm: rhythmFor(assertMorseCharacter("/")),
+    answerSummary:
+      "The slash punctuation mark in Morse code is -..-. In copied Morse, / is also commonly used as a visible word separator, so check which job it is doing.",
+    breakdownIntro:
+      "Slash can be encoded as punctuation, but the same typed character is often used visually between Morse words.",
+    contextTitle: "Using slash in Morse",
+    context: [
+      {
+        title: "As punctuation",
+        text: "When slash is part of the plain text itself, MorseWords encodes it as -..-.",
+        href: "/morse-code-punctuation",
+        badge: "Symbol",
+      },
+      {
+        title: "As a word separator",
+        text: "When slash appears between Morse groups, it usually marks a word gap rather than a sounded punctuation mark.",
+        href: "/morse-code-word-separator",
+        badge: "Spacing",
+      },
+      {
+        title: "Before decoding",
+        text: "Keep separator slashes between words. Do not merge them into letter patterns.",
+        href: "/morse-code-decoder",
+        badge: "Decode",
+      },
+    ],
+    examples: [
+      {
+        title: "Slash punctuation",
+        text: "A/B",
+        morse: morseForText("A/B"),
+        note: "Here slash is an encoded punctuation mark between A and B.",
+      },
+      {
+        title: "Word separator",
+        text: "HELLO WORLD",
+        morse: morseForText("HELLO WORLD").replace(/\s{7,}/g, " / "),
+        note: "Here slash is a visual word break in copied Morse.",
+      },
+      {
+        title: "Decoder help",
+        text: "HI OK",
+        morse: morseForText("HI OK").replace(/\s{7,}/g, " / "),
+        note: "The slash keeps the decoder from reading both words as one run.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Mixing the two meanings",
+        text: "Slash punctuation is -..-. Separator slash is a written word gap. The context determines which one you mean.",
+      },
+      {
+        title: "Removing separator slashes",
+        text: "Deleting slashes can make copied Morse harder to decode because word boundaries disappear.",
+      },
+      {
+        title: "Encoding separator slash by accident",
+        text: "If you type / inside normal text, the encoder treats it as punctuation, not as a silent word gap.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-word-separator", label: "Word separator", primary: true },
+      { href: "/space-in-morse-code", label: "Space guide" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+      { href: "/morse-code-punctuation", label: "Punctuation chart" },
+    ],
+    faqItems: [
+      {
+        q: "What is slash in Morse code?",
+        a: "Slash as punctuation is -..-. In copied Morse, / is also often used as a visible word separator.",
+      },
+      {
+        q: "Is slash the same as a Morse word gap?",
+        a: "Not exactly. A real word gap is a longer pause. Slash is a typed convention that makes that pause visible.",
+      },
+      {
+        q: "Should I decode / as punctuation or a word break?",
+        a: "If / appears inside plain text, it can be punctuation. If it appears between Morse groups, it usually marks a word break.",
+      },
+      {
+        q: "Can the encoder convert a slash character?",
+        a: "Yes. If you type / as part of the source text, MorseWords encodes it as -..-.",
+      },
+    ],
+    metaTitle: "Slash in Morse Code | Separator, Punctuation, and Examples | MorseWords",
+    metaDescription:
+      "See slash in Morse code, compare slash punctuation with slash word separators, and learn how / affects copying, decoding, and word spacing.",
+    keywords:
+      "slash in morse code, morse code slash, slash separator morse, morse word separator slash",
+  },
+  "period-in-morse-code": {
+    slug: "period-in-morse-code",
+    path: "/period-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Period",
+    displayTitle: "Period in Morse Code",
+    plainTextValue: ".",
+    morseValue: assertMorseCharacter("."),
+    spokenRhythm: rhythmFor(assertMorseCharacter(".")),
+    answerSummary:
+      "The period in Morse code is .-.-.- Use it for sentence-ending punctuation, not for the dots inside Morse notation.",
+    breakdownIntro:
+      "A period is a written punctuation mark with its own six-mark Morse pattern.",
+    contextTitle: "Using a period in Morse",
+    context: [
+      {
+        title: "Sentence punctuation",
+        text: "Use the period pattern when the source text includes a real sentence-ending mark.",
+      },
+      {
+        title: "Dot lookalike warning",
+        text: "The period symbol can mean text punctuation, while periods inside Morse notation are dits. Keep the roles separate.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+      {
+        title: "Decoding notes",
+        text: "Separate .-.-.- from the previous letter group so the decoder reads it as punctuation.",
+        href: "/morse-code-decoder",
+        badge: "Decode",
+      },
+    ],
+    examples: [
+      {
+        title: "END.",
+        text: "END.",
+        morse: morseForText("END."),
+        note: "A short sentence-style ending.",
+      },
+      {
+        title: "GO.",
+        text: "GO.",
+        morse: morseForText("GO."),
+        note: "Useful for hearing a word followed by sentence punctuation.",
+      },
+      {
+        title: "HI.",
+        text: "HI.",
+        morse: morseForText("HI."),
+        note: "A compact greeting with a period at the end.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Confusing dot and period",
+        text: "A Morse dot is one mark inside a pattern. A period is a full punctuation character: .-.-.-",
+      },
+      {
+        title: "Dropping separators",
+        text: "The period pattern must stay separated from the final letter.",
+      },
+      {
+        title: "Using styled dots",
+        text: "Use the normal period key when copying Morse. Decorative dots may fail in decoders.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/comma-in-morse-code", label: "Comma" },
+      { href: "/question-mark-in-morse-code", label: "Question mark" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is a period in Morse code?",
+        a: "A period in Morse code is .-.-.-",
+      },
+      {
+        q: "Is a period the same as a Morse dot?",
+        a: "No. A Morse dot is one short mark. A period is punctuation and uses the full pattern .-.-.-",
+      },
+      {
+        q: "Can I type a period into the encoder?",
+        a: "Yes. MorseWords supports the normal ASCII period as punctuation.",
+      },
+      {
+        q: "Why did my period not decode?",
+        a: "The period pattern probably lost its separator from the previous letter or was copied with incompatible characters.",
+      },
+    ],
+    metaTitle: "Period in Morse Code | Copy, Decode, and Examples | MorseWords",
+    metaDescription:
+      "See period in Morse code, copy .-.-.-, learn how it differs from a Morse dot, and review sentence examples with punctuation spacing.",
+    keywords:
+      "period in morse code, morse code period, dot punctuation morse, full stop morse code",
+  },
+  "comma-in-morse-code": {
+    slug: "comma-in-morse-code",
+    path: "/comma-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Comma",
+    displayTitle: "Comma in Morse Code",
+    plainTextValue: ",",
+    morseValue: assertMorseCharacter(","),
+    spokenRhythm: rhythmFor(assertMorseCharacter(",")),
+    answerSummary:
+      "The comma in Morse code is --..-- Use it when a written comma is part of the message you are encoding or decoding.",
+    breakdownIntro:
+      "The comma is punctuation, so it is encoded as one separated six-mark group.",
+    contextTitle: "Using a comma in Morse",
+    context: [
+      {
+        title: "Sentence fragments",
+        text: "Commas can appear in normal text before it is converted to Morse, especially in classroom examples and practice sentences.",
+      },
+      {
+        title: "Spacing check",
+        text: "Keep the comma group separate from the previous and next letters so it does not merge into surrounding patterns.",
+        href: "/morse-code-word-separator",
+        badge: "Spacing",
+      },
+      {
+        title: "Copy compatibility",
+        text: "The comma itself is safe ASCII, but the Morse pattern still depends on normal dots, hyphens, and spaces.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+    ],
+    examples: [
+      {
+        title: "YES, NO",
+        text: "YES, NO",
+        morse: morseForText("YES, NO").replace(/\s{7,}/g, " / "),
+        note: "A comma between short response words.",
+      },
+      {
+        title: "HI, SAM",
+        text: "HI, SAM",
+        morse: morseForText("HI, SAM").replace(/\s{7,}/g, " / "),
+        note: "A greeting example with a visible word gap after the comma.",
+      },
+      {
+        title: "COPY, OK",
+        text: "COPY, OK",
+        morse: morseForText("COPY, OK").replace(/\s{7,}/g, " / "),
+        note: "Useful for checking punctuation inside copied practice text.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Using a period pattern",
+        text: "Comma is --..--. Period is .-.-.-. They are both six marks but not interchangeable.",
+        href: "/period-in-morse-code",
+        badge: "Period",
+      },
+      {
+        title: "Dropping the comma from plain text",
+        text: "If the comma is part of the written message, removing it changes the Morse output.",
+      },
+      {
+        title: "Lost gaps",
+        text: "A comma needs normal Morse separators around it before decoding.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/period-in-morse-code", label: "Period" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+      { href: "/morse-code-word-separator", label: "Spacing guide" },
+    ],
+    faqItems: [
+      {
+        q: "What is a comma in Morse code?",
+        a: "A comma in Morse code is --..--",
+      },
+      {
+        q: "Can I encode a comma in MorseWords?",
+        a: "Yes. Type a normal comma in the source text and MorseWords encodes it as punctuation.",
+      },
+      {
+        q: "Why is comma Morse so long?",
+        a: "Punctuation marks are usually longer than letters because they are less common and need distinct patterns.",
+      },
+      {
+        q: "Is comma Morse the same as period Morse?",
+        a: "No. Comma is --..--, while period is .-.-.-",
+      },
+    ],
+    metaTitle: "Comma in Morse Code | Copy, Decode, and Examples | MorseWords",
+    metaDescription:
+      "See comma in Morse code, copy --..--, compare it with period punctuation, and review examples for copied text and decoder spacing.",
+    keywords:
+      "comma in morse code, morse code comma, comma punctuation morse, comma dots and dashes",
+  },
+  "exclamation-mark-in-morse-code": {
+    slug: "exclamation-mark-in-morse-code",
+    path: "/exclamation-mark-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Exclamation mark",
+    displayTitle: "Exclamation Mark in Morse Code",
+    plainTextValue: "!",
+    morseValue: assertMorseCharacter("!"),
+    spokenRhythm: rhythmFor(assertMorseCharacter("!")),
+    answerSummary:
+      "The exclamation mark in MorseWords is -.-.--. Use it when your source text includes ! and you want Morse output that matches this supported punctuation map.",
+    breakdownIntro:
+      "The exclamation mark is a supported punctuation character in MorseWords. Some references vary by punctuation set, so check the tool you are using.",
+    contextTitle: "Using an exclamation mark in Morse",
+    context: [
+      {
+        title: "Supported map",
+        text: "MorseWords supports ! as -.-.-- in its encoder, decoder, audio tool, and punctuation table.",
+        href: "/morse-code-punctuation",
+        badge: "Chart",
+      },
+      {
+        title: "Compatibility check",
+        text: "If another reference omits exclamation mark, use MorseWords output consistently for your copy or worksheet.",
+      },
+      {
+        title: "Spacing note",
+        text: "Keep -.-.-- separated from the final letter before decoding.",
+        href: "/morse-code-decoder",
+        badge: "Decode",
+      },
+    ],
+    examples: [
+      {
+        title: "HI!",
+        text: "HI!",
+        morse: morseForText("HI!"),
+        note: "A short example where the symbol is clearly punctuation.",
+      },
+      {
+        title: "OK!",
+        text: "OK!",
+        morse: morseForText("OK!"),
+        note: "Useful for comparing OK with and without punctuation.",
+      },
+      {
+        title: "TEST!",
+        text: "TEST!",
+        morse: morseForText("TEST!"),
+        note: "A practical tool-check word followed by the exclamation mark.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Assuming every chart includes it",
+        text: "Punctuation support can vary across references. This page documents the pattern supported by MorseWords.",
+      },
+      {
+        title: "Dropping the final dashes",
+        text: "The exclamation mark pattern is six marks: -.-.--",
+      },
+      {
+        title: "Overusing punctuation in practice",
+        text: "Learn letters and numbers first, then add punctuation as needed for real copied text.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/question-mark-in-morse-code", label: "Question mark" },
+      { href: "/period-in-morse-code", label: "Period" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is an exclamation mark in Morse code?",
+        a: "In MorseWords, an exclamation mark is -.-.--",
+      },
+      {
+        q: "Do all Morse references include exclamation mark?",
+        a: "Not all punctuation sets are identical. This page reflects the MorseWords supported punctuation map.",
+      },
+      {
+        q: "Can I type ! into the encoder?",
+        a: "Yes. MorseWords supports a normal exclamation mark in source text.",
+      },
+      {
+        q: "Why did ! not decode in another tool?",
+        a: "The other tool may not support exclamation mark punctuation or the copied Morse may have lost separators.",
+      },
+    ],
+    metaTitle: "Exclamation Mark in Morse Code | Copy, Decode, and Examples | MorseWords",
+    metaDescription:
+      "See exclamation mark in Morse code as supported by MorseWords, copy -.-.--, and review examples, spacing notes, and compatibility cautions.",
+    keywords:
+      "exclamation mark in morse code, morse code exclamation mark, ! in morse code, exclamation punctuation morse",
+  },
+  "apostrophe-in-morse-code": {
+    slug: "apostrophe-in-morse-code",
+    path: "/apostrophe-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Apostrophe",
+    displayTitle: "Apostrophe in Morse Code",
+    plainTextValue: "'",
+    morseValue: assertMorseCharacter("'"),
+    spokenRhythm: rhythmFor(assertMorseCharacter("'")),
+    answerSummary:
+      "The apostrophe in Morse code is .----. Use it for supported contractions, possessives, and names that include a normal apostrophe.",
+    breakdownIntro:
+      "The apostrophe is punctuation and should stay separated from the letters around it.",
+    contextTitle: "Using an apostrophe in Morse",
+    context: [
+      {
+        title: "Names",
+        text: "Names such as O'NEIL can be converted when they use a normal apostrophe.",
+        href: "/name-to-morse-code",
+        badge: "Names",
+      },
+      {
+        title: "Contractions",
+        text: "Contractions such as DON'T can be encoded, but check the punctuation group before copying.",
+      },
+      {
+        title: "Paste safety",
+        text: "Smart quotes can break compatibility. Use the straight ASCII apostrophe when possible.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+    ],
+    examples: [
+      {
+        title: "DON'T",
+        text: "DON'T",
+        morse: morseForText("DON'T"),
+        note: "A contraction that needs the apostrophe pattern between N and T.",
+      },
+      {
+        title: "SAM'S",
+        text: "SAM'S",
+        morse: morseForText("SAM'S"),
+        note: "A possessive example with normal letter spacing around punctuation.",
+      },
+      {
+        title: "O'NEIL",
+        text: "O'NEIL",
+        morse: morseForText("O'NEIL"),
+        note: "A name example that should be checked before engraving, printing, or sharing.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Using curly apostrophes",
+        text: "Curly quotes may not be recognized. Replace them with a straight apostrophe before encoding.",
+      },
+      {
+        title: "Merging with letters",
+        text: "Apostrophe Morse must remain its own group between surrounding letters.",
+      },
+      {
+        title: "Skipping punctuation in names",
+        text: "If the apostrophe matters in a name, keep it and verify the full output.",
+        href: "/name-to-morse-code",
+        badge: "Names",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/name-to-morse-code", label: "Name converter" },
+      { href: "/hyphen-in-morse-code", label: "Hyphen" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is an apostrophe in Morse code?",
+        a: "An apostrophe in Morse code is .----.",
+      },
+      {
+        q: "Can MorseWords convert names with apostrophes?",
+        a: "Yes, when the name uses a normal straight apostrophe supported by the MorseWords map.",
+      },
+      {
+        q: "Why did my apostrophe not encode?",
+        a: "It may be a curly quote or another lookalike character. Replace it with a straight apostrophe and try again.",
+      },
+      {
+        q: "Should I keep apostrophes in names for gifts?",
+        a: "If the apostrophe is part of the name, keep it and verify the full Morse output before engraving, printing, or sharing.",
+      },
+    ],
+    metaTitle: "Apostrophe in Morse Code | Names, Contractions, and Examples | MorseWords",
+    metaDescription:
+      "See apostrophe in Morse code, copy .----., and learn how to use it in names, contractions, possessives, and copy-paste safe text.",
+    keywords:
+      "apostrophe in morse code, morse code apostrophe, contraction morse code, names apostrophe morse",
+  },
+  "hyphen-in-morse-code": {
+    slug: "hyphen-in-morse-code",
+    path: "/hyphen-in-morse-code",
+    kind: "symbol",
+    eyebrow: "Symbol lookup",
+    label: "Hyphen",
+    displayTitle: "Hyphen in Morse Code",
+    plainTextValue: "-",
+    morseValue: assertMorseCharacter("-"),
+    spokenRhythm: rhythmFor(assertMorseCharacter("-")),
+    answerSummary:
+      "The hyphen in Morse code is -....-. Hyphen is text punctuation, while a dash or dah is a long mark inside Morse notation.",
+    breakdownIntro:
+      "The hyphen has its own punctuation pattern. Do not confuse the typed hyphen in source text with the dash marks used to write Morse.",
+    contextTitle: "Using a hyphen in Morse",
+    context: [
+      {
+        title: "Names and compounds",
+        text: "Use hyphen punctuation for names and compound words such as ANNE-MARIE or X-RAY.",
+        href: "/name-to-morse-code",
+        badge: "Names",
+      },
+      {
+        title: "Dash notation",
+        text: "A Morse dash is a long sound. A typed hyphen in source text is punctuation and encodes as -....-.",
+      },
+      {
+        title: "Copy-paste safety",
+        text: "Use a normal hyphen-minus key. Long dashes and styled dashes may not decode consistently.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+    ],
+    examples: [
+      {
+        title: "X-RAY",
+        text: "X-RAY",
+        morse: morseForText("X-RAY"),
+        note: "A compound-style word with hyphen punctuation between X and RAY.",
+      },
+      {
+        title: "ANNE-MARIE",
+        text: "ANNE-MARIE",
+        morse: morseForText("ANNE-MARIE"),
+        note: "A name example where punctuation should be checked before permanent use.",
+      },
+      {
+        title: "A-B",
+        text: "A-B",
+        morse: morseForText("A-B"),
+        note: "A short test that makes the hyphen group easy to locate.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Confusing hyphen and dah",
+        text: "Hyphen in source text is punctuation. Dah is the long mark used inside Morse patterns.",
+      },
+      {
+        title: "Using an em dash or en dash",
+        text: "Styled dashes are different characters. Use the normal hyphen for reliable encoding.",
+      },
+      {
+        title: "Skipping punctuation in names",
+        text: "If a hyphen is part of a name, keep it and verify the full output before final use.",
+        href: "/name-to-morse-code",
+        badge: "Names",
+      },
+    ],
+    relatedLinks: [
+      { href: "/morse-code-punctuation", label: "Punctuation chart", primary: true },
+      { href: "/name-to-morse-code", label: "Name converter" },
+      { href: "/apostrophe-in-morse-code", label: "Apostrophe" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+    ],
+    faqItems: [
+      {
+        q: "What is a hyphen in Morse code?",
+        a: "A hyphen in Morse code is -....-",
+      },
+      {
+        q: "Is a hyphen the same as a Morse dash?",
+        a: "No. A hyphen is text punctuation. A Morse dash, or dah, is the long mark inside a Morse pattern.",
+      },
+      {
+        q: "Can I encode hyphenated names?",
+        a: "Yes. Use a normal hyphen and verify the full name in the name converter or encoder.",
+      },
+      {
+        q: "Why did my hyphen not decode?",
+        a: "It may have been copied as a styled dash or merged into surrounding Morse because separators were missing.",
+      },
+    ],
+    metaTitle: "Hyphen in Morse Code | Names, Dashes, and Examples | MorseWords",
+    metaDescription:
+      "See hyphen in Morse code, copy -....-, and learn how hyphen punctuation differs from Morse dash marks in names and compound words.",
+    keywords:
+      "hyphen in morse code, morse code hyphen, dash in morse code, hyphenated name morse",
   },
 };
 
@@ -4520,6 +5232,18 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
         badge: "Spacing",
       },
       {
+        title: "Space guide",
+        text: "Compare letter gaps, word gaps, and slash-separated copied Morse.",
+        href: "/space-in-morse-code",
+        badge: "Gaps",
+      },
+      {
+        title: "Slash guide",
+        text: "Tell separator slash apart from slash punctuation before decoding.",
+        href: "/slash-in-morse-code",
+        badge: "Slash",
+      },
+      {
         title: "Decoder",
         text: "Check whether pasted Morse decodes to the expected text.",
         href: "/morse-code-decoder",
@@ -4533,7 +5257,7 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       },
       {
         title: "Punctuation",
-        text: "Check symbols such as ?, @, slash, and period.",
+        text: "Check symbols such as period, comma, ?, @, apostrophe, and hyphen.",
         href: "/morse-code-punctuation",
         badge: "Symbols",
       },
@@ -4543,8 +5267,12 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       "Decode or play the copied result to make sure the spacing survived.",
     relatedLinks: [
       { href: "/morse-code-word-separator", label: "Spacing guide", primary: true },
+      { href: "/space-in-morse-code", label: "Space guide" },
+      { href: "/slash-in-morse-code", label: "Slash guide" },
       { href: "/morse-code-decoder", label: "Decode pasted Morse" },
       { href: "/morse-code-encoder", label: "Encode clean Morse" },
+      { href: "/period-in-morse-code", label: "Period" },
+      { href: "/hyphen-in-morse-code", label: "Hyphen" },
       { href: "/morse-code-punctuation", label: "Punctuation" },
     ],
     faqItems: [
@@ -4642,6 +5370,18 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
         badge: "Spacing",
       },
       {
+        title: "Space guide",
+        text: "Learn why letter gaps and word gaps must stay visible.",
+        href: "/space-in-morse-code",
+        badge: "Gaps",
+      },
+      {
+        title: "Slash guide",
+        text: "Use slash separators when repeated spaces are hard to preserve.",
+        href: "/slash-in-morse-code",
+        badge: "Slash",
+      },
+      {
         title: "Dictionary",
         text: "Compare possible dot-dash groups with supported characters.",
         href: "/dictionary",
@@ -4660,6 +5400,8 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
     relatedLinks: [
       { href: "/morse-code-decoder", label: "Decode separated Morse", primary: true },
       { href: "/morse-code-word-separator", label: "Spacing guide" },
+      { href: "/space-in-morse-code", label: "Space guide" },
+      { href: "/slash-in-morse-code", label: "Slash guide" },
       { href: "/dictionary", label: "Dictionary" },
       { href: "/morse-code-timing", label: "Timing guide" },
     ],

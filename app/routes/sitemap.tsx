@@ -8,6 +8,7 @@ import {
   LETTER_ITEMS,
   NUMBER_ITEMS,
   PHRASE_PAGES,
+  SYMBOL_PAGES,
 } from "~/client/data/morseContent";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -28,6 +29,12 @@ const numberSitemapLinks = NUMBER_ITEMS.map((item) => ({
 }));
 
 const phraseSitemapLinks = Object.values(PHRASE_PAGES).map((item) => ({
+  label: item.displayTitle,
+  to: item.path,
+  description: item.metaDescription,
+}));
+
+const symbolSitemapLinks = Object.values(SYMBOL_PAGES).map((item) => ({
   label: item.displayTitle,
   to: item.path,
   description: item.metaDescription,
@@ -264,6 +271,7 @@ const GROUPS: SitemapGroup[] = [
         description:
           "Find Morse punctuation for period, comma, question mark, slash, and symbols.",
       },
+      ...symbolSitemapLinks,
       {
         label: "The Quick Brown Fox in Morse Code",
         to: "/the-quick-brown-fox-morse-code",
@@ -286,18 +294,6 @@ const GROUPS: SitemapGroup[] = [
         to: "/cq-in-morse-code",
         description:
           "Learn CQ in Morse code with radio context and examples.",
-      },
-      {
-        label: "Question Mark in Morse Code",
-        to: "/question-mark-in-morse-code",
-        description:
-          "Copy the question mark pattern and review question examples.",
-      },
-      {
-        label: "At Sign in Morse Code",
-        to: "/at-sign-in-morse-code",
-        description:
-          "Copy the at sign pattern for email-like or contact text.",
       },
     ],
   },

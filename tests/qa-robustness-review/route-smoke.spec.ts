@@ -143,6 +143,54 @@ const PHRASE_ROUTE_EXPECTATIONS = [
 
 const PHRASE_ROUTE_PATHS = PHRASE_ROUTE_EXPECTATIONS.map((route) => route.path);
 
+const SPACING_PUNCTUATION_ROUTE_EXPECTATIONS = [
+  {
+    path: "/space-in-morse-code",
+    h1: "Space in Morse Code",
+    title: "Space in Morse Code | Word Gaps, Slashes, and Examples | MorseWords",
+    textQuery: "HI%20OK",
+  },
+  {
+    path: "/slash-in-morse-code",
+    h1: "Slash in Morse Code",
+    title: "Slash in Morse Code | Separator, Punctuation, and Examples | MorseWords",
+    textQuery: "%2F",
+  },
+  {
+    path: "/period-in-morse-code",
+    h1: "Period in Morse Code",
+    title: "Period in Morse Code | Copy, Decode, and Examples | MorseWords",
+    textQuery: ".",
+  },
+  {
+    path: "/comma-in-morse-code",
+    h1: "Comma in Morse Code",
+    title: "Comma in Morse Code | Copy, Decode, and Examples | MorseWords",
+    textQuery: "%2C",
+  },
+  {
+    path: "/exclamation-mark-in-morse-code",
+    h1: "Exclamation Mark in Morse Code",
+    title: "Exclamation Mark in Morse Code | Copy, Decode, and Examples | MorseWords",
+    textQuery: "!",
+  },
+  {
+    path: "/apostrophe-in-morse-code",
+    h1: "Apostrophe in Morse Code",
+    title: "Apostrophe in Morse Code | Names, Contractions, and Examples | MorseWords",
+    textQuery: "%27",
+  },
+  {
+    path: "/hyphen-in-morse-code",
+    h1: "Hyphen in Morse Code",
+    title: "Hyphen in Morse Code | Names, Dashes, and Examples | MorseWords",
+    textQuery: "-",
+  },
+] as const;
+
+const SPACING_PUNCTUATION_ROUTE_PATHS =
+  SPACING_PUNCTUATION_ROUTE_EXPECTATIONS.map((route) => route.path);
+
 const FIRST_BATCH_LINK_CHECK_ROUTES = [
   "/",
   "/audio",
@@ -167,6 +215,7 @@ const FIRST_BATCH_LINK_CHECK_ROUTES = [
   ...LETTER_ROUTE_PATHS,
   ...NUMBER_ROUTE_PATHS,
   ...PHRASE_ROUTE_PATHS,
+  ...SPACING_PUNCTUATION_ROUTE_PATHS,
 ];
 
 const FIRST_BATCH_ROUTE_EXPECTATIONS = [
@@ -246,13 +295,6 @@ const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   "/morse-code-audio-generator",
   "/morse-code-wav-generator",
   "/morse-code-mp3-generator",
-  "/space-in-morse-code",
-  "/slash-in-morse-code",
-  "/period-in-morse-code",
-  "/comma-in-morse-code",
-  "/exclamation-mark-in-morse-code",
-  "/apostrophe-in-morse-code",
-  "/hyphen-in-morse-code",
   "/colon-in-morse-code",
   "/semicolon-in-morse-code",
   "/equals-sign-in-morse-code",
@@ -949,6 +991,164 @@ test.describe("phrase SEO metadata and schema", () => {
 
   test("phrase pages use shared toolkit only once", async ({ page }) => {
     await page.goto("/hello-in-morse-code", { waitUntil: "domcontentloaded" });
+
+    await expect(
+      page.locator(".mw-wave-content-page").getByText("Explore the Morse code toolkit"),
+    ).toHaveCount(0);
+    await expect(page.getByText("Keep using MorseWords")).toHaveCount(0);
+    await expect(page.getByText("Explore the Morse code toolkit")).toHaveCount(1);
+  });
+});
+
+test.describe("spacing and punctuation SEO metadata and schema", () => {
+  test.beforeEach(async ({ page }) => {
+    await blockExternalNetwork(page);
+  });
+
+  for (const route of SPACING_PUNCTUATION_ROUTE_EXPECTATIONS) {
+    test(`${route.path} exposes title, description, canonical, H1, and JSON-LD`, async ({
+      page,
+    }) => {
+      await page.goto(route.path, { waitUntil: "domcontentloaded" });
+
+      await expect(page).toHaveTitle(route.title);
+      await expect(page.locator("h1")).toHaveCount(1);
+      await expect(page.locator("h1")).toHaveText(route.h1);
+
+      const canonical = `https://morsewords.com${route.path}`;
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        "href",
+        canonical,
+      );
+      await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
+        "content",
+        canonical,
+      );
+
+      const description = await page
+        .locator('meta[name="description"]')
+        .getAttribute("content");
+      expect(description, `${route.path} meta description`).toBeTruthy();
+      expect(description?.length, `${route.path} description length`).toBeGreaterThan(90);
+
+      const jsonLdTexts = await page
+        .locator('script[type="application/ld+json"]')
+        .evaluateAll((scripts) =>
+          scripts.map((script) => script.textContent ?? ""),
+        );
+      expect(jsonLdTexts.length, `${route.path} JSON-LD script count`).toBeGreaterThan(0);
+
+      const parsedJsonLd = jsonLdTexts.map((text) => JSON.parse(text));
+      const types = parsedJsonLd.flatMap(collectJsonLdTypes);
+      expect(types, `${route.path} has BreadcrumbList`).toContain("BreadcrumbList");
+      expect(types, `${route.path} has WebPage`).toContain("WebPage");
+      expect(types, `${route.path} has FAQPage`).toContain("FAQPage");
+
+      const faqQuestions = await page.locator("details summary").allTextContents();
+      const faqSchemaQuestions = parsedJsonLd
+        .flatMap((jsonLd) => (Array.isArray(jsonLd) ? jsonLd : [jsonLd]))
+        .filter((jsonLd) => jsonLd?.["@type"] === "FAQPage")
+        .flatMap((jsonLd) => jsonLd.mainEntity ?? [])
+        .map((item) => item.name);
+
+      for (const question of faqSchemaQuestions) {
+        expect(
+          faqQuestions.some((visibleQuestion) => visibleQuestion.includes(question)),
+          `${route.path} visible FAQ includes schema question: ${question}`,
+        ).toBe(true);
+      }
+    });
+
+    test(`${route.path} exposes copy, play, and open-in-tool CTAs`, async ({
+      page,
+    }) => {
+      await page.goto(route.path, { waitUntil: "domcontentloaded" });
+
+      await expect(page.getByRole("button", { name: "Copy text" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "Copy Morse" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "Play Morse" })).toBeVisible();
+      await expect(
+        page.locator(`a[href="/?text=${route.textQuery}"]`).first(),
+      ).toBeVisible();
+      await expect(
+        page.locator(`a[href="/audio?text=${route.textQuery}"]`).first(),
+      ).toBeVisible();
+      await expect(
+        page.locator(`a[href="/morse-code-encoder?text=${route.textQuery}"]`).first(),
+      ).toBeVisible();
+    });
+  }
+
+  test("spacing and punctuation titles and descriptions are unique", async ({
+    request,
+  }) => {
+    const titles = new Set(
+      SPACING_PUNCTUATION_ROUTE_EXPECTATIONS.map((route) => route.title),
+    );
+    const descriptions = new Set<string>();
+
+    for (const route of SPACING_PUNCTUATION_ROUTE_EXPECTATIONS) {
+      const response = await request.get(route.path);
+      expect(response.ok(), `${route.path} response`).toBe(true);
+      const html = await response.text();
+      const description = html.match(
+        /<meta\s+name="description"\s+content="([^"]+)"/,
+      );
+      expect(description?.[1], `${route.path} meta description`).toBeTruthy();
+      descriptions.add(description?.[1] ?? "");
+    }
+
+    expect(titles.size).toBe(SPACING_PUNCTUATION_ROUTE_EXPECTATIONS.length);
+    expect(descriptions.size).toBe(SPACING_PUNCTUATION_ROUTE_EXPECTATIONS.length);
+  });
+
+  test("HTML and XML sitemaps include every new spacing and punctuation route", async ({
+    page,
+    request,
+  }) => {
+    await page.goto("/sitemap", { waitUntil: "domcontentloaded" });
+
+    for (const route of SPACING_PUNCTUATION_ROUTE_EXPECTATIONS) {
+      await expect(page.locator(`a[href="${route.path}"]`).first()).toBeVisible();
+    }
+
+    const xmlResponse = await request.get("/sitemap.xml");
+    expect(xmlResponse.ok()).toBe(true);
+    const xml = await xmlResponse.text();
+
+    for (const route of SPACING_PUNCTUATION_ROUTE_EXPECTATIONS) {
+      expect(xml).toContain(`https://morsewords.com${route.path}`);
+    }
+  });
+
+  test("punctuation and word separator hubs link to the new pages", async ({
+    page,
+  }) => {
+    await page.goto("/morse-code-punctuation", { waitUntil: "domcontentloaded" });
+
+    for (const path of [
+      "/period-in-morse-code",
+      "/comma-in-morse-code",
+      "/exclamation-mark-in-morse-code",
+      "/apostrophe-in-morse-code",
+      "/hyphen-in-morse-code",
+    ]) {
+      await expect(page.locator(`a[href="${path}"]`).first()).toBeVisible();
+    }
+
+    await page.goto("/morse-code-word-separator", {
+      waitUntil: "domcontentloaded",
+    });
+
+    for (const path of ["/space-in-morse-code", "/slash-in-morse-code"]) {
+      await expect(page.locator(`a[href="${path}"]`).first()).toBeVisible();
+    }
+  });
+
+  test("spacing and punctuation pages use shared toolkit only once", async ({
+    page,
+  }) => {
+    await page.goto("/space-in-morse-code", { waitUntil: "domcontentloaded" });
 
     await expect(
       page.locator(".mw-wave-content-page").getByText("Explore the Morse code toolkit"),

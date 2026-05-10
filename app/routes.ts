@@ -108,6 +108,16 @@ export default [
   route("test-in-morse-code", "routes/test-in-morse-code.tsx"),
   route("question-mark-in-morse-code", "routes/question-mark-in-morse-code.tsx"),
   route("at-sign-in-morse-code", "routes/at-sign-in-morse-code.tsx"),
+  route("space-in-morse-code", "routes/space-in-morse-code.tsx"),
+  route("slash-in-morse-code", "routes/slash-in-morse-code.tsx"),
+  route("period-in-morse-code", "routes/period-in-morse-code.tsx"),
+  route("comma-in-morse-code", "routes/comma-in-morse-code.tsx"),
+  route(
+    "exclamation-mark-in-morse-code",
+    "routes/exclamation-mark-in-morse-code.tsx",
+  ),
+  route("apostrophe-in-morse-code", "routes/apostrophe-in-morse-code.tsx"),
+  route("hyphen-in-morse-code", "routes/hyphen-in-morse-code.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
 
   // Redirects for old URLs. Ignore these routes
