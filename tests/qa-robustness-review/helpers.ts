@@ -40,6 +40,8 @@ export const APP_ROUTES = [
   "/morse-code-sound-generator",
   "/morse-code-translator",
   "/morse-code-audio-generator",
+  "/text-to-morse-code",
+  "/morse-to-text",
   "/name-to-morse-code",
   "/morse-code-numbers",
   "/how-to-read-morse-code",

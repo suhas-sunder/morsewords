@@ -1388,6 +1388,8 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
       expect(xml).toContain(`https://morsewords.com${route.path}`);
     }
     expect(xml).not.toContain("https://morsewords.com/morse-code-letters");
+    expect(xml).not.toContain("https://morsewords.com/text-to-morse-code");
+    expect(xml).not.toContain("https://morsewords.com/morse-to-text");
   });
 
   test("word spacing pages link to the instructional separation guide", async ({
@@ -1414,6 +1416,31 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     await page.goto("/morse-code-letters", { waitUntil: "domcontentloaded" });
     await expect(page).toHaveURL(/\/morse-code-alphabet$/);
     await expect(page.locator("h1")).toHaveText("Morse Code Alphabet");
+  });
+
+  test("translator alias redirects point to the canonical encoder and decoder", async ({
+    page,
+    request,
+  }) => {
+    const textToMorseResponse = await request.get("/text-to-morse-code", {
+      maxRedirects: 0,
+    });
+    expect(textToMorseResponse.status()).toBe(301);
+    expect(textToMorseResponse.headers().location).toBe("/morse-code-encoder");
+
+    const morseToTextResponse = await request.get("/morse-to-text", {
+      maxRedirects: 0,
+    });
+    expect(morseToTextResponse.status()).toBe(301);
+    expect(morseToTextResponse.headers().location).toBe("/morse-code-decoder");
+
+    await page.goto("/text-to-morse-code", { waitUntil: "domcontentloaded" });
+    await expect(page).toHaveURL(/\/morse-code-encoder$/);
+    await expect(page.locator("h1")).toHaveText("Morse Code Encoder");
+
+    await page.goto("/morse-to-text", { waitUntil: "domcontentloaded" });
+    await expect(page).toHaveURL(/\/morse-code-decoder$/);
+    await expect(page.locator("h1")).toHaveText("Morse Code Decoder");
   });
 
   test("final routes use the shared toolkit only once", async ({ page }) => {
