@@ -29,6 +29,7 @@ import {
   type GuidePageContent,
   type LetterContentItem,
   type MorseLeafContent,
+  type NumberContentItem,
   NUMBER_ITEMS,
   NUMBER_PAGE_FAQ_ITEMS,
 } from "~/client/data/morseContent";
@@ -552,6 +553,211 @@ export function MorseLetterPage({
   );
 }
 
+export function MorseNumberPage({
+  content,
+  jsonLd,
+}: {
+  content: NumberContentItem;
+  jsonLd: unknown;
+}) {
+  const queryValue = encodeToolQueryValue(content.plainTextValue);
+
+  return (
+    <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
+      <main className={WAVE_PAGE_MAIN_CLASS}>
+        <PageHero
+          eyebrow="Number guide"
+          title={content.displayTitle}
+          description={content.answerSummary}
+        >
+          <ActionLinks
+            links={[
+              { href: "#answer", label: "Direct answer", primary: true },
+              { href: "/morse-code-numbers", label: "Number chart" },
+              { href: `/audio?text=${queryValue}`, label: "Hear it" },
+              { href: "/practice", label: "Practice" },
+            ]}
+          />
+        </PageHero>
+
+        <div id="answer">
+          <MorseAnswerCard
+            label={`Number ${content.digit}`}
+            plainText={content.plainTextValue}
+            morse={content.morseValue}
+            rhythm={content.spokenRhythm}
+            summary={content.answerSummary}
+            translatorHref={`/?text=${queryValue}`}
+            audioHref={`/audio?text=${queryValue}`}
+            encoderHref={`/morse-code-encoder?text=${queryValue}`}
+            practiceHref={content.miniPracticePrompt.href ?? "/practice"}
+            breakdown={[
+              {
+                label: content.digit,
+                morse: content.morseValue,
+                note: `${content.digit} is spoken as ${content.spokenRhythm}.`,
+              },
+              {
+                label: "Pattern",
+                morse: content.morseValue,
+                note: content.patternExplanation,
+              },
+            ]}
+          />
+        </div>
+
+        <SectionCard
+          eyebrow="Number details"
+          title={`What ${content.digit} is in Morse code`}
+          description={content.patternExplanation}
+          layout="stacked"
+        >
+          <div className="grid gap-7">
+            <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-3">
+              <div>
+                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Digit
+                </dt>
+                <dd className="mt-2 text-4xl font-black text-sky-950">
+                  {content.digit}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Dot dash pattern
+                </dt>
+                <dd className="mt-2 break-words font-mono text-3xl font-bold tracking-[0.14em] text-slate-950">
+                  {content.morseValue}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Spoken rhythm
+                </dt>
+                <dd className="mt-2 text-2xl font-extrabold text-sky-950">
+                  {content.spokenRhythm}
+                </dd>
+              </div>
+            </dl>
+
+            <div className="grid gap-7 lg:grid-cols-2">
+              <div>
+                <h3 className="text-lg font-extrabold text-sky-950">
+                  How it sounds
+                </h3>
+                <div className="mt-3">
+                  <SimpleGrid
+                    items={textLinkTiles(content.soundNotes)}
+                    linkedItemStyle="inline"
+                  />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-lg font-extrabold text-sky-950">
+                  How to type it
+                </h3>
+                <div className="mt-3">
+                  <SimpleGrid
+                    items={textLinkTiles(content.typingNotes)}
+                    linkedItemStyle="inline"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Avoid mixups"
+          title="Common number mistakes"
+          description="Every Morse digit uses five marks, so missing one dot or dash can change the answer."
+        >
+          <SimpleGrid
+            items={textLinkTiles(content.commonConfusions)}
+            linkedItemStyle="inline"
+          />
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Examples"
+          title={`${content.digit} in practical Morse strings`}
+          description="Use short examples to practice the number in dates, codes, counts, and callsign-style text."
+          layout="stacked"
+        >
+          <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:grid-cols-4">
+            {content.exampleUses.map((example) => (
+              <article key={example.title} className="py-1">
+                <h3 className="text-lg font-extrabold text-sky-950">
+                  {example.title}
+                </h3>
+                <p className="mt-2 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
+                  {example.morse}
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                  {example.note}
+                </p>
+              </article>
+            ))}
+          </div>
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Mini practice"
+          title={content.miniPracticePrompt.title}
+          description={content.miniPracticePrompt.text}
+          layout="stacked"
+        >
+          <div className="grid gap-x-8 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] lg:items-start">
+            {[content.listeningDrill, content.typingDrill].map((drill) => (
+              <div key={drill.title} className="py-1">
+                <h3 className="text-lg font-extrabold leading-snug text-sky-950">
+                  {drill.title}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                  {drill.text}
+                </p>
+              </div>
+            ))}
+            <div className="flex flex-wrap gap-2 lg:justify-end">
+              <ActionLinks
+                links={[
+                  {
+                    href: content.miniPracticePrompt.href ?? "/practice",
+                    label: "Practice now",
+                    primary: true,
+                  },
+                  {
+                    href: content.listeningDrill.href ?? `/audio?text=${queryValue}`,
+                    label: "Hear drill",
+                  },
+                  { href: content.typingDrill.href ?? "/typing", label: "Type drill" },
+                ]}
+              />
+            </div>
+          </div>
+        </SectionCard>
+
+        <SectionCard
+          eyebrow="Next steps"
+          title={`Keep practicing ${content.digit}`}
+          description="Compare nearby digits, hear the signal, then move from lookup to recall in the tools."
+          layout="stacked"
+        >
+          <ActionLinks links={content.relatedLinks} />
+        </SectionCard>
+
+        <FaqSectionGeneric
+          title={`${content.displayTitle} FAQ`}
+          items={content.faqItems}
+          variant="home"
+        />
+        <JsonLdScript jsonLd={jsonLd} />
+      </main>
+      <BreadcrumbTrail current={content.displayTitle} />
+    </div>
+  );
+}
+
 async function copyText(value: string) {
   try {
     await navigator.clipboard.writeText(value);
@@ -603,6 +809,12 @@ function NumberCard({ item }: { item: (typeof NUMBER_ITEMS)[number] }) {
       </p>
 
       <div className="mt-4 grid gap-2">
+        <a
+          href={item.path}
+          className={toolControlButtonClass({ tone: "dark", size: "sm", full: true })}
+        >
+          Study {item.label}
+        </a>
         <button
           type="button"
           onClick={async () => {
@@ -640,6 +852,10 @@ export function MorseNumbersPage({
 }: {
   jsonLd: unknown;
 }) {
+  const chartSummary = NUMBER_ITEMS.map(
+    (item) => `${item.label} = ${item.morseValue}`,
+  ).join(", ");
+
   return (
     <div className="mw-non-home-page mw-wave-content-page" style={styles.page}>
       <main className={WAVE_PAGE_MAIN_CLASS}>
@@ -662,9 +878,7 @@ export function MorseNumbersPage({
           <ToolOutputPanel label="Direct answer" badge="0-9" className="h-fit">
             <div className="grid gap-4 px-4 pb-4 text-slate-200 lg:grid-cols-[minmax(0,0.72fr)_minmax(220px,0.28fr)]">
               <p className="max-w-[68ch] text-base leading-relaxed">
-                The Morse number chart is 0 = -----, 1 = .----, 2 = ..---,
-                3 = ...--, 4 = ....-, 5 = ....., 6 = -...., 7 = --...,
-                8 = ---.., and 9 = ----.
+                The Morse number chart is {chartSummary}.
               </p>
               <p className="max-w-[34ch] text-base leading-relaxed text-sky-100">
                 Learn them as one five-mark system instead of ten unrelated

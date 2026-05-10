@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { PageHero } from "~/client/components/shared/MorseLearningLayout";
 import styles from "~/client/components/shared/pageStyles";
-import { LETTER_ITEMS } from "~/client/data/morseContent";
+import { LETTER_ITEMS, NUMBER_ITEMS } from "~/client/data/morseContent";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
@@ -15,6 +15,12 @@ const letterSitemapLinks = LETTER_ITEMS.map((item) => ({
   label: `${item.letter} in Morse Code`,
   to: item.path,
   description: `Study ${item.letter} as ${item.morseValue} with sound, examples, and practice links.`,
+}));
+
+const numberSitemapLinks = NUMBER_ITEMS.map((item) => ({
+  label: `${item.digit} in Morse Code`,
+  to: item.path,
+  description: `Study ${item.digit} as ${item.morseValue} with rhythm, examples, and practice links.`,
 }));
 
 type SitemapGroup = {
@@ -189,6 +195,7 @@ const GROUPS: SitemapGroup[] = [
         description:
           "Review the 0-9 Morse number chart with pattern logic and examples.",
       },
+      ...numberSitemapLinks,
       {
         label: "Dictionary",
         to: "/dictionary",

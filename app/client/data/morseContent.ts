@@ -89,6 +89,8 @@ export type MorseLeafContent = {
 
 export type NumberContentItem = {
   slug: string;
+  path: string;
+  digit: string;
   label: string;
   displayTitle: string;
   plainTextValue: string;
@@ -96,8 +98,13 @@ export type NumberContentItem = {
   spokenRhythm: string;
   answerSummary: string;
   patternExplanation: string;
-  examples: WorkedExample[];
-  commonMistakes: string[];
+  soundNotes: ContentTile[];
+  typingNotes: ContentTile[];
+  commonConfusions: ContentTile[];
+  exampleUses: WorkedExample[];
+  miniPracticePrompt: ContentTile;
+  listeningDrill: ContentTile;
+  typingDrill: ContentTile;
   relatedLinks: RelatedLink[];
   faqItems: ContentFaqItem[];
   metaTitle: string;
@@ -1871,54 +1878,690 @@ const numberNames = [
   "nine",
 ] as const;
 
-function numberPatternExplanation(digit: number) {
-  if (digit === 0) return "0 is five dashes.";
-  if (digit <= 5) {
-    return `${digit} starts with ${digit} dot${digit === 1 ? "" : "s"} and fills the five-mark pattern with dashes.`;
-  }
-  const dashes = digit - 5;
-  return `${digit} starts with ${dashes} dash${dashes === 1 ? "" : "es"} and fills the five-mark pattern with dots.`;
+type NumberStudyGuidance = {
+  patternExplanation: string;
+  soundNotes: ContentTile[];
+  typingNotes: ContentTile[];
+  commonConfusions: ContentTile[];
+  exampleTexts: string[];
+  listeningDrill: ContentTile;
+  typingDrill: ContentTile;
+  faqCompare: string;
+  faqPractice: string;
+  relatedNumbers: string[];
+  relatedLetters?: string[];
+  metaDescription: string;
+};
+
+function spokenNumberRhythm(morse: string) {
+  return morse
+    .split("")
+    .map((mark) => (mark === "-" ? "dah" : "dit"))
+    .join("-");
+}
+
+const NUMBER_STUDY_GUIDANCE: Record<string, NumberStudyGuidance> = {
+  "0": {
+    patternExplanation:
+      "0 is the all-dash Morse number: five long dahs in a row.",
+    soundNotes: [
+      {
+        title: "Hear five long marks",
+        text: "Listen for a steady run of five dahs. If a short dit appears, it is not zero.",
+      },
+      {
+        title: "Separate 0 from O",
+        text: "O is a letter with three dahs. 0 is a digit with five dahs.",
+        href: "/o-in-morse-code",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "Type five hyphens",
+        text: "Use five keyboard hyphens for zero, then add a space before the next Morse character.",
+      },
+      {
+        title: "Keep digit context visible",
+        text: "In copied text, write the plain digit as 0, not the letter O, before converting.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Stopping at three dahs",
+        text: "Three dahs is O. Count all five dahs before calling it zero.",
+        href: "/o-in-morse-code",
+      },
+      {
+        title: "Missing the final dah",
+        text: "Four dahs and one dit is 9, so the final mark matters.",
+        href: "/9-in-morse-code",
+      },
+    ],
+    exampleTexts: ["CODE 0", "N0CALL", "ZERO 0", "2020"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play O, 0, 9, and 8. Count the long dahs before deciding whether the sound is a letter or a digit.",
+      href: "/audio?text=O%200%209%208",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the five-dah pattern for 0, then type CODE 0 and N0CALL to check that the digit stays clear in context.",
+      href: "/typing",
+    },
+    faqCompare: "0 is most often confused with O in plain text and with 9 or 8 if one of the long marks is shortened or missed.",
+    faqPractice: "Practice 0 beside O, 8, and 9 so you learn both mark count and digit context.",
+    relatedNumbers: ["9", "8"],
+    relatedLetters: ["O"],
+    metaDescription:
+      "Learn the five-dah zero pattern, compare it with O and 9, copy it safely, and practice zero in codes, callsigns, and dates.",
+  },
+  "1": {
+    patternExplanation:
+      "1 starts the 1-5 build-up pattern with one dit followed by four dahs.",
+    soundNotes: [
+      {
+        title: "Hear the opening dit",
+        text: "The first short mark announces 1. After that, the rhythm stretches into four dahs.",
+      },
+      {
+        title: "Compare nearby digits",
+        text: "2 has two opening dits, so the number of short marks at the start tells you which early digit you heard.",
+        href: "/2-in-morse-code",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "Start with one dot",
+        text: "Type one period, then four hyphens, with no extra space inside the digit.",
+      },
+      {
+        title: "Use it inside short strings",
+        text: "Practice 1 in compact examples like A1 or CODE 1 before using longer dates.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Adding a second dit",
+        text: "Two opening dits turns 1 into 2.",
+        href: "/2-in-morse-code",
+      },
+      {
+        title: "Missing the opening dit",
+        text: "If the first short mark is missed, the remaining sound can feel like a partial run of dahs.",
+      },
+    ],
+    exampleTexts: ["COUNT 1", "A1", "2021", "K1 TEST"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play 1, 2, and 0. Focus on whether the digit begins with one short dit or with a long dah.",
+      href: "/audio?text=1%202%200",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the one-dit four-dah pattern for 1, then type A1, 21, and CODE 1 with clear spaces between Morse characters.",
+      href: "/typing",
+    },
+    faqCompare: "1 is most often confused with 2 when an extra opening dit is added or when the first two short marks run together.",
+    faqPractice: "Practice 1 beside 2 and 0 so the opening dit becomes the main recognition cue.",
+    relatedNumbers: ["2", "0"],
+    metaDescription:
+      "Learn the one-dit four-dah pattern for 1, compare it with 2 and 0, and practice copying 1 in short codes and dates.",
+  },
+  "2": {
+    patternExplanation:
+      "2 uses two dits followed by three dahs, continuing the 1-5 dot build-up.",
+    soundNotes: [
+      {
+        title: "Count two opening dits",
+        text: "The first two short marks are the giveaway. The remaining three marks are dahs.",
+      },
+      {
+        title: "Compare 1 and 3",
+        text: "1 has one opening dit; 3 has three. 2 sits directly between them.",
+        href: "/3-in-morse-code",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "Two dots, three dashes",
+        text: "Type two periods followed by three hyphens as one five-mark digit.",
+      },
+      {
+        title: "Check copied spacing",
+        text: "Keep a letter gap after 2 so the following character does not attach to the number pattern.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "One too few dits",
+        text: "One opening dit is 1, not 2.",
+        href: "/1-in-morse-code",
+      },
+      {
+        title: "One extra dit",
+        text: "Three opening dits changes 2 into 3.",
+        href: "/3-in-morse-code",
+      },
+    ],
+    exampleTexts: ["2 TONES", "A2", "2026", "CODE 12"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play 1, 2, 3, and 2 again. Say the count of opening dits out loud before checking the digit.",
+      href: "/audio?text=1%202%203%202",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the two-dit three-dah pattern for 2, then type 12, 23, and CODE 12 to practice digit boundaries.",
+      href: "/typing",
+    },
+    faqCompare: "2 is most often confused with 1 or 3 because those digits differ by only one opening dit.",
+    faqPractice: "Practice 2 in a 1-2-3 set so the dot build-up pattern becomes automatic.",
+    relatedNumbers: ["1", "3"],
+    metaDescription:
+      "Learn 2 in Morse code with the two-dit three-dah rhythm, compare it with 1 and 3, and practice it in dates and short codes.",
+  },
+  "3": {
+    patternExplanation:
+      "3 uses three dits followed by two dahs, right before the 4 and 5 end of the dot build-up.",
+    soundNotes: [
+      {
+        title: "Hear three short dits",
+        text: "The opening is close to S, but 3 keeps going with two dahs after the three dits.",
+      },
+      {
+        title: "Do not stop at S",
+        text: "S is only three dits. 3 adds two long marks after that.",
+        href: "/s-in-morse-code",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "Three dots, two dashes",
+        text: "Type three periods followed by two hyphens without spaces inside the digit.",
+      },
+      {
+        title: "Use adjacent digits",
+        text: "Practice 2, 3, and 4 together because the opening dit count changes by one.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Stopping at S",
+        text: "Three dits alone is S. Add two dahs to make 3.",
+        href: "/s-in-morse-code",
+      },
+      {
+        title: "Sliding to 2 or 4",
+        text: "Two opening dits is 2. Four opening dits is 4.",
+        href: "/4-in-morse-code",
+      },
+    ],
+    exampleTexts: ["3 DITS", "R3", "73", "CODE 303"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play S, 3, 2, and 4. Listen for whether the three dits are the whole character or only the start.",
+      href: "/audio?text=S%203%202%204",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the three-dit two-dah pattern for 3, then type 303 and 73 with clear spaces between each Morse digit.",
+      href: "/typing",
+    },
+    faqCompare: "3 can be confused with S when the two final dahs are dropped, or with 2 and 4 when the dot count is off.",
+    faqPractice: "Practice 3 beside S, 2, and 4 so you can hear both the opening dits and the final dahs.",
+    relatedNumbers: ["2", "4"],
+    relatedLetters: ["S"],
+    metaDescription:
+      "Learn 3 in Morse code, hear the three-dit two-dah rhythm, compare it with S, 2, and 4, and practice short number strings.",
+  },
+  "4": {
+    patternExplanation:
+      "4 uses four dits followed by one dah, the last mixed digit before 5.",
+    soundNotes: [
+      {
+        title: "Hear four short dits first",
+        text: "The digit begins like H, then adds one final dah.",
+      },
+      {
+        title: "Compare with H and 5",
+        text: "H is four dits. 5 is five dits. 4 changes direction with one final dah.",
+        href: "/h-in-morse-code",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "Four dots, one dash",
+        text: "Type four periods and one hyphen as a single number character.",
+      },
+      {
+        title: "Watch the ending",
+        text: "The last mark must be a dash. A dot at the end changes the digit to 5.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "H is not 4",
+        text: "H stops after four dits. 4 adds a dah at the end.",
+        href: "/h-in-morse-code",
+      },
+      {
+        title: "5 has no dah",
+        text: "If all five marks are dits, the digit is 5.",
+        href: "/5-in-morse-code",
+      },
+    ],
+    exampleTexts: ["4 MARKS", "H4", "144", "CODE 40"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play H, 4, and 5. Listen for the final long mark that separates 4 from both neighbors.",
+      href: "/audio?text=H%204%205",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the four-dit one-dah pattern for 4, then type H4, 44, and CODE 40 to practice the final dash.",
+      href: "/typing",
+    },
+    faqCompare: "4 is commonly confused with H when the final dash is missed, and with 5 when the final dash is typed as a dot.",
+    faqPractice: "Practice 4 beside H and 5 so the final dash becomes the cue.",
+    relatedNumbers: ["3", "5"],
+    relatedLetters: ["H"],
+    metaDescription:
+      "Learn 4 in Morse code with four dits and one dah, compare it with H and 5, and practice the final dash in codes and counts.",
+  },
+  "5": {
+    patternExplanation:
+      "5 is five dits, the midpoint where the 1-5 dot build-up becomes all dots.",
+    soundNotes: [
+      {
+        title: "Hear five short dits",
+        text: "5 is a quick run of five short marks. It should not have any long dahs.",
+      },
+      {
+        title: "Compare with H and S",
+        text: "S is three dits and H is four dits. 5 continues to five.",
+        href: "/h-in-morse-code",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "Type five periods",
+        text: "Use exactly five periods for 5. Any dash changes it to a nearby number.",
+      },
+      {
+        title: "Count before copying",
+        text: "When copying 5 into a design or code, count all five dots before saving it.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Stopping at H",
+        text: "Four dits is H. 5 needs one more short dit.",
+        href: "/h-in-morse-code",
+      },
+      {
+        title: "Adding a dah",
+        text: "Four dits and a dah is 4, not 5.",
+        href: "/4-in-morse-code",
+      },
+    ],
+    exampleTexts: ["COUNT 5", "S5", "555", "CODE 15"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play S, H, 5, and 4. Count the short dits, then check whether a final dah appears.",
+      href: "/audio?text=S%20H%205%204",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the five-dit pattern for 5, then type 15, 55, and COUNT 5 without merging digit gaps.",
+      href: "/typing",
+    },
+    faqCompare: "5 is most often confused with S or H when the copied sound is cut short.",
+    faqPractice: "Practice 5 beside S, H, and 4 so you can count short marks without rushing.",
+    relatedNumbers: ["4", "6"],
+    relatedLetters: ["H", "S"],
+    metaDescription:
+      "Learn 5 in Morse code as five short dits, compare it with S, H, and 4, and practice copying five-dot number patterns.",
+  },
+  "6": {
+    patternExplanation:
+      "6 begins the reverse side of the number system with one dah followed by four dits.",
+    soundNotes: [
+      {
+        title: "Hear the opening dah",
+        text: "6 starts long, then finishes with four short dits.",
+      },
+      {
+        title: "Reverse of the early numbers",
+        text: "The 6-9 group counts dahs at the start instead of dits.",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "One dash, four dots",
+        text: "Type one hyphen followed by four periods as one five-mark digit.",
+      },
+      {
+        title: "Do not confuse count with digit",
+        text: "Even though the digit is 6, the Morse character still has five marks.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Dropping a final dit",
+        text: "Missing one of the final dits makes the copied rhythm feel incomplete.",
+      },
+      {
+        title: "Mixing with 7",
+        text: "7 has two opening dahs, so count the long marks at the start.",
+        href: "/7-in-morse-code",
+      },
+    ],
+    exampleTexts: ["CODE 6", "K6 TEST", "66", "GRID 6"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play 6, 7, and 5. Notice how 6 starts with one dah while 5 has no dah at all.",
+      href: "/audio?text=6%207%205",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the one-dah four-dit pattern for 6, then type 66, K6, and CODE 6 with visible spacing.",
+      href: "/typing",
+    },
+    faqCompare: "6 is commonly confused with 7 when a second opening dah is added or heard by mistake.",
+    faqPractice: "Practice 6 beside 7 and 5 so you can hear the shift from dot-built to dash-built digits.",
+    relatedNumbers: ["5", "7"],
+    metaDescription:
+      "Learn 6 in Morse code with one dah and four dits, understand the 6-9 reverse pattern, and practice 6 in codes and callsign-style text.",
+  },
+  "7": {
+    patternExplanation:
+      "7 uses two dahs followed by three dits, continuing the 6-9 reverse pattern.",
+    soundNotes: [
+      {
+        title: "Hear two long marks first",
+        text: "The two opening dahs make 7 feel heavier than 6 before the three short dits arrive.",
+      },
+      {
+        title: "Compare with Z",
+        text: "Z is also two dahs then two dits. 7 adds one extra dit.",
+        href: "/z-in-morse-code",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "Two dashes, three dots",
+        text: "Type two hyphens followed by three periods without a gap inside the digit.",
+      },
+      {
+        title: "Check the final dot count",
+        text: "The ending has three dits. Stopping at two can look like Z in learning context.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Z is shorter",
+        text: "Z is --.. with two final dits. 7 is --... with three.",
+        href: "/z-in-morse-code",
+      },
+      {
+        title: "Sliding to 8",
+        text: "8 has three opening dahs, so count the long marks at the start.",
+        href: "/8-in-morse-code",
+      },
+    ],
+    exampleTexts: ["73", "K7 Q", "CODE 7", "Z7"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play Z, 7, and 8. Count both the opening dahs and the final dits before deciding.",
+      href: "/audio?text=Z%207%208",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the two-dah three-dit pattern for 7, then type 73, Z7, and CODE 7 with clean digit gaps.",
+      href: "/typing",
+    },
+    faqCompare: "7 can be confused with Z if the final dit count is missed, or with 8 if one extra opening dah is added.",
+    faqPractice: "Practice 7 beside Z and 8 so you hear both halves of the pattern.",
+    relatedNumbers: ["6", "8"],
+    relatedLetters: ["Z"],
+    metaDescription:
+      "Learn 7 in Morse code with two dahs and three dits, compare it with Z and 8, and practice 7 in short codes like 73.",
+  },
+  "8": {
+    patternExplanation:
+      "8 uses three dahs followed by two dits, one step before the four-dah pattern for 9.",
+    soundNotes: [
+      {
+        title: "Hear three long dahs",
+        text: "8 begins like O, then adds two short dits at the end.",
+      },
+      {
+        title: "Compare with O",
+        text: "O is only three dahs. 8 continues with two final dits.",
+        href: "/o-in-morse-code",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "Three dashes, two dots",
+        text: "Type three hyphens followed by two periods as one five-mark digit.",
+      },
+      {
+        title: "Keep the dits attached",
+        text: "The two final dots belong to 8. Do not separate them as another Morse letter.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "O stops earlier",
+        text: "O is three dahs. 8 has two extra dits after those dahs.",
+        href: "/o-in-morse-code",
+      },
+      {
+        title: "7 and 9 flank it",
+        text: "7 starts with two dahs. 9 starts with four. 8 sits between them.",
+        href: "/9-in-morse-code",
+      },
+    ],
+    exampleTexts: ["8 TONES", "88", "O8", "CODE 80"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play O, 8, 7, and 9. Listen for the number of opening dahs and the final dits.",
+      href: "/audio?text=O%208%207%209",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the three-dah two-dit pattern for 8, then type O8, 88, and CODE 80 without splitting the final dots.",
+      href: "/typing",
+    },
+    faqCompare: "8 is commonly confused with O when the final dits are missed, or with 7 and 9 when the opening dah count is off.",
+    faqPractice: "Practice 8 beside O, 7, and 9 so the long-short transition is clear.",
+    relatedNumbers: ["7", "9"],
+    relatedLetters: ["O"],
+    metaDescription:
+      "Learn 8 in Morse code with three dahs and two dits, compare it with O, 7, and 9, and practice copying 8 in codes.",
+  },
+  "9": {
+    patternExplanation:
+      "9 uses four dahs followed by one dit, the last mixed number before 0.",
+    soundNotes: [
+      {
+        title: "Hear four long marks",
+        text: "9 almost feels like 0, but it ends with one short dit instead of a fifth dah.",
+      },
+      {
+        title: "Compare with 0",
+        text: "0 is five dahs. 9 changes the final mark to a dit.",
+        href: "/0-in-morse-code",
+      },
+    ],
+    typingNotes: [
+      {
+        title: "Four dashes, one dot",
+        text: "Type four hyphens followed by one period as one complete digit.",
+      },
+      {
+        title: "Check the last mark",
+        text: "The final dot is the difference between 9 and 0.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Final dit vs final dah",
+        text: "If the final mark is a dah, the pattern becomes 0.",
+        href: "/0-in-morse-code",
+      },
+      {
+        title: "One fewer dah",
+        text: "8 starts with three dahs, so count the long marks before the final short marks.",
+        href: "/8-in-morse-code",
+      },
+    ],
+    exampleTexts: ["9 COUNT", "99", "N9 TEST", "CODE 90"],
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play 9, 0, and 8. Focus on the final mark and the number of opening dahs.",
+      href: "/audio?text=9%200%208",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type the four-dah one-dit pattern for 9, then type 90, 99, and CODE 90 with clear digit boundaries.",
+      href: "/typing",
+    },
+    faqCompare: "9 is most often confused with 0 when the final dit is copied as a dah, and with 8 when one opening dah is missed.",
+    faqPractice: "Practice 9 beside 0 and 8 so the final dot is obvious.",
+    relatedNumbers: ["8", "0"],
+    metaDescription:
+      "Learn 9 in Morse code with four dahs and one dit, compare it with 0 and 8, and practice the final-dot number rhythm.",
+  },
+};
+
+function normalizeExampleMorse(value: string) {
+  return morseForText(value).replace(/\s{7,}/g, " / ");
+}
+
+function buildNumberExamples(digit: string, examples: string[]): WorkedExample[] {
+  return examples.map((text) => ({
+    title: text,
+    text,
+    morse: normalizeExampleMorse(text),
+    note:
+      text === digit
+        ? `${digit} by itself is the cleanest way to check the five-mark number pattern.`
+        : `${text} shows ${digit} in a practical short string with letters or other digits.`,
+  }));
+}
+
+function buildNumberRelatedLinks(
+  digit: string,
+  guidance: NumberStudyGuidance,
+): RelatedLink[] {
+  return [
+    { href: "/morse-code-numbers", label: "Numbers hub", primary: true },
+    { href: "/morse-code-alphabet", label: "Alphabet" },
+    { href: "/audio", label: "Audio" },
+    { href: "/practice", label: "Practice" },
+    { href: "/typing", label: "Typing" },
+    { href: "/morse-code-encoder", label: "Encoder" },
+    { href: "/morse-code-decoder", label: "Decoder" },
+    ...guidance.relatedNumbers.map((relatedDigit) => ({
+      href: `/${relatedDigit}-in-morse-code`,
+      label: `${relatedDigit} in Morse`,
+    })),
+    ...(guidance.relatedLetters ?? []).map((letter) => ({
+      href: `/${letter.toLowerCase()}-in-morse-code`,
+      label: `${letter} in Morse`,
+    })),
+  ];
+}
+
+function defaultNumberFaq({
+  digit,
+  morseValue,
+  spokenRhythm,
+  guidance,
+}: {
+  digit: string;
+  morseValue: string;
+  spokenRhythm: string;
+  guidance: NumberStudyGuidance;
+}): ContentFaqItem[] {
+  return [
+    {
+      q: `What is ${digit} in Morse code?`,
+      a: `${digit} in Morse code is ${morseValue}.`,
+    },
+    {
+      q: `How do you say ${digit} in Morse rhythm?`,
+      a: `${digit} is spoken as ${spokenRhythm}.`,
+    },
+    {
+      q: `What pattern does ${digit} follow?`,
+      a: guidance.patternExplanation,
+    },
+    {
+      q: `What is ${digit} commonly confused with?`,
+      a: guidance.faqCompare,
+    },
+    {
+      q: `How should I practice ${digit} in Morse code?`,
+      a: guidance.faqPractice,
+    },
+  ];
 }
 
 export const NUMBER_ITEMS: NumberContentItem[] = Array.from(
   { length: 10 },
-  (_, digit) => {
-    const label = String(digit);
-    const morseValue = assertMorseCharacter(label);
+  (_, digitIndex) => {
+    const digit = String(digitIndex);
+    const guidance = NUMBER_STUDY_GUIDANCE[digit];
+    const morseValue = assertMorseCharacter(digit);
+    const spokenRhythm = spokenNumberRhythm(morseValue);
+    const slug = `${digit}-in-morse-code`;
 
     return {
-      slug: `${label}-in-morse-code`,
-      label,
-      displayTitle: `${label} in Morse code`,
-      plainTextValue: label,
+      slug,
+      path: `/${slug}`,
+      digit,
+      label: digit,
+      displayTitle: `${digit} in Morse Code`,
+      plainTextValue: digit,
       morseValue,
-      spokenRhythm: rhythmFor(morseValue),
-      answerSummary: `${label} in Morse code is ${morseValue}.`,
-      patternExplanation: numberPatternExplanation(digit),
-      examples: [
-        {
-          title: `${label} as a count`,
-          text: `COUNT ${label}`,
-          morse: morseForText(`COUNT ${label}`),
-          note: "Numbers can appear beside normal letters when counts or scores matter.",
-        },
-      ],
-      commonMistakes: [
-        "Dropping one mark from a five-mark number pattern.",
-        "Copying a digit without preserving the space before the next letter.",
-      ],
-      relatedLinks: [
-        { href: "/morse-code-numbers", label: "Numbers hub", primary: true },
-        { href: "/audio", label: "Hear number audio" },
-        { href: "/", label: "Open translator" },
-      ],
-      faqItems: [],
-      metaTitle: `${label} in Morse Code | MorseWords`,
-      metaDescription: `${label} in Morse code is ${morseValue}. Use the numbers hub for the full 0-9 chart, examples, and audio links.`,
-      keywords: `${numberNames[digit]} in morse code, ${label} in morse code, morse code number ${label}`,
+      spokenRhythm,
+      answerSummary: `${digit} in Morse code is ${morseValue}. It is spoken as ${spokenRhythm} and uses one standard five-mark number pattern.`,
+      patternExplanation: guidance.patternExplanation,
+      soundNotes: guidance.soundNotes,
+      typingNotes: guidance.typingNotes,
+      commonConfusions: guidance.commonConfusions,
+      exampleUses: buildNumberExamples(digit, guidance.exampleTexts),
+      miniPracticePrompt: {
+        title: `Practice ${digit} in context`,
+        text: `Hear ${digit}, type ${morseValue}, then compare it with nearby number and letter patterns so it becomes more than a lookup.`,
+        href: "/practice",
+      },
+      listeningDrill: guidance.listeningDrill,
+      typingDrill: guidance.typingDrill,
+      relatedLinks: buildNumberRelatedLinks(digit, guidance),
+      faqItems: defaultNumberFaq({
+        digit,
+        morseValue,
+        spokenRhythm,
+        guidance,
+      }),
+      metaTitle: `${digit} in Morse Code | Number, Sound, and Examples | MorseWords`,
+      metaDescription: `${digit} in Morse code is ${morseValue}. ${guidance.metaDescription}`,
+      keywords: `${numberNames[digitIndex]} in morse code, ${digit} in morse code, morse code number ${digit}, morse code digit ${digit}`,
     };
   },
 );
+
+export const NUMBER_PAGES: Record<string, NumberContentItem> =
+  Object.fromEntries(NUMBER_ITEMS.map((item) => [item.slug, item])) as Record<
+    string,
+    NumberContentItem
+  >;
+
+export const PUBLIC_NUMBER_PATHS = NUMBER_ITEMS.map((item) => item.path);
 
 export const NAME_EXAMPLES = ["Avery", "Diego", "Josh", "Katie", "Kyle"].map(
   (name) => ({
@@ -1946,7 +2589,7 @@ export const NUMBER_PAGE_FAQ_ITEMS: ContentFaqItem[] = [
   },
   {
     q: "Are individual number pages available?",
-    a: "Not in this pass. This hub keeps the full 0-9 chart together so learners can compare the number pattern.",
+    a: "Yes. Each digit has its own page with the direct pattern, sound notes, examples, practice drills, and links back to the full 0-9 chart.",
   },
 ];
 
