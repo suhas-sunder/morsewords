@@ -203,6 +203,12 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Copy",
       },
       {
+        title: "How to Separate Words",
+        description: "Learn letter gaps, word gaps, slashes, and decoder-safe spacing.",
+        href: "/how-to-separate-words-in-morse-code",
+        badge: "Spacing",
+      },
+      {
         title: "Morse Code Without Spaces",
         description: "Understand why unspaced Morse cannot always decode.",
         href: "/morse-code-without-spaces",
@@ -318,6 +324,7 @@ const COMPACT_TOOLKIT_PATHS = new Set([
   "/how-to-type-in-morse-code",
   "/copy-and-paste-morse-code",
   "/morse-code-without-spaces",
+  "/how-to-separate-words-in-morse-code",
   "/i-love-you-in-morse-code",
   "/cq-in-morse-code",
   "/hello-in-morse-code",
@@ -348,6 +355,7 @@ const COMPACT_TOOLKIT_PATHS = new Set([
   "/parentheses-in-morse-code",
   "/ampersand-in-morse-code",
   "/underscore-in-morse-code",
+  "/contact",
   "/a-in-morse-code",
   "/e-in-morse-code",
   "/s-in-morse-code",

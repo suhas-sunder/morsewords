@@ -21,6 +21,7 @@ export default [
   route("morse-code-word-separator", "routes/morse-code-word-separator.tsx"),
   route("morse-code-words", "routes/morse-code-words.tsx"),
   route("morse-code-alphabet", "routes/morse-code-alphabet.tsx"),
+  route("morse-code-letters", "routes/morse-code-letters.tsx"),
   route("a-in-morse-code", "routes/a-in-morse-code.tsx"),
   route("b-in-morse-code", "routes/b-in-morse-code.tsx"),
   route("c-in-morse-code", "routes/c-in-morse-code.tsx"),
@@ -93,6 +94,10 @@ export default [
   route("how-to-type-in-morse-code", "routes/how-to-type-in-morse-code.tsx"),
   route("copy-and-paste-morse-code", "routes/copy-and-paste-morse-code.tsx"),
   route("morse-code-without-spaces", "routes/morse-code-without-spaces.tsx"),
+  route(
+    "how-to-separate-words-in-morse-code",
+    "routes/how-to-separate-words-in-morse-code.tsx",
+  ),
   route("i-love-you-in-morse-code", "routes/i-love-you-in-morse-code.tsx"),
   route("cq-in-morse-code", "routes/cq-in-morse-code.tsx"),
   route("hello-in-morse-code", "routes/hello-in-morse-code.tsx"),
@@ -129,6 +134,7 @@ export default [
   route("parentheses-in-morse-code", "routes/parentheses-in-morse-code.tsx"),
   route("ampersand-in-morse-code", "routes/ampersand-in-morse-code.tsx"),
   route("underscore-in-morse-code", "routes/underscore-in-morse-code.tsx"),
+  route("contact", "routes/contact.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
 
   // Redirects for old URLs. Ignore these routes

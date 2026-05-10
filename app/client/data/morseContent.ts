@@ -4128,6 +4128,12 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
         href: "/copy-and-paste-morse-code",
         badge: "Copy",
       },
+      {
+        title: "Step-by-step separation",
+        text: "Use the word separation guide when you need to write, copy, and decode multi-word Morse from scratch.",
+        href: "/how-to-separate-words-in-morse-code",
+        badge: "Guide",
+      },
     ],
     examples: [
       {
@@ -4167,6 +4173,7 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
     ],
     relatedLinks: [
       { href: "/morse-code-word-separator", label: "Word separator", primary: true },
+      { href: "/how-to-separate-words-in-morse-code", label: "Separate words" },
       { href: "/slash-in-morse-code", label: "Slash separator" },
       { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
       { href: "/morse-code-without-spaces", label: "Unspaced Morse" },
@@ -4230,6 +4237,12 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
         href: "/morse-code-decoder",
         badge: "Decode",
       },
+      {
+        title: "Step-by-step word gaps",
+        text: "Use the word separation guide when you need examples for slash-separated and timing-style word gaps.",
+        href: "/how-to-separate-words-in-morse-code",
+        badge: "Guide",
+      },
     ],
     examples: [
       {
@@ -4267,6 +4280,7 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
     ],
     relatedLinks: [
       { href: "/morse-code-word-separator", label: "Word separator", primary: true },
+      { href: "/how-to-separate-words-in-morse-code", label: "Separate words" },
       { href: "/space-in-morse-code", label: "Space guide" },
       { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
       { href: "/morse-code-decoder", label: "Decoder" },
@@ -6048,6 +6062,12 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
         badge: "Spacing",
       },
       {
+        title: "How to separate words",
+        text: "Follow a step-by-step guide for writing, copying, and decoding Morse word gaps.",
+        href: "/how-to-separate-words-in-morse-code",
+        badge: "Guide",
+      },
+      {
         title: "Space guide",
         text: "Compare letter gaps, word gaps, and slash-separated copied Morse.",
         href: "/space-in-morse-code",
@@ -6083,6 +6103,7 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       "Decode or play the copied result to make sure the spacing survived.",
     relatedLinks: [
       { href: "/morse-code-word-separator", label: "Spacing guide", primary: true },
+      { href: "/how-to-separate-words-in-morse-code", label: "Separate words" },
       { href: "/space-in-morse-code", label: "Space guide" },
       { href: "/slash-in-morse-code", label: "Slash guide" },
       { href: "/morse-code-decoder", label: "Decode pasted Morse" },
@@ -6189,6 +6210,12 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
         badge: "Spacing",
       },
       {
+        title: "How to separate words",
+        text: "Use the instructional guide when you need examples, steps, and common spacing mistakes.",
+        href: "/how-to-separate-words-in-morse-code",
+        badge: "Guide",
+      },
+      {
         title: "Space guide",
         text: "Learn why letter gaps and word gaps must stay visible.",
         href: "/space-in-morse-code",
@@ -6218,6 +6245,7 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       "Add likely separators, then check the result in the decoder.",
     relatedLinks: [
       { href: "/morse-code-decoder", label: "Decode separated Morse", primary: true },
+      { href: "/how-to-separate-words-in-morse-code", label: "Separate words" },
       { href: "/morse-code-word-separator", label: "Spacing guide" },
       { href: "/space-in-morse-code", label: "Space guide" },
       { href: "/slash-in-morse-code", label: "Slash guide" },
@@ -6243,6 +6271,178 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       },
     ],
     schemaType: "WebPage",
+  },
+  "how-to-separate-words-in-morse-code": {
+    slug: "how-to-separate-words-in-morse-code",
+    path: "/how-to-separate-words-in-morse-code",
+    eyebrow: "Spacing guide",
+    h1: "How to Separate Words in Morse Code",
+    metaTitle:
+      "How to Separate Words in Morse Code | Spaces, Slashes, and Examples | MorseWords",
+    metaDescription:
+      "Learn how to separate words in Morse code with letter gaps, word gaps, slash separators, timing examples, copied Morse examples, and decoder-safe steps.",
+    keywords:
+      "how to separate words in morse code, morse word spacing, morse slash separator, morse code spaces, morse word gaps",
+    answerSummary:
+      "Separate Morse words by keeping each letter group visible, then marking each word break with a longer gap or a slash when writing or copying Morse as text.",
+    guideTitle: "Separate Morse words without breaking the message",
+    guideDescription:
+      "This guide is for writing, copying, listening to, and decoding multi-word Morse when the word boundaries matter.",
+    steps: [
+      {
+        title: "Convert each letter",
+        text: "Start by turning every supported character into its Morse group. Do not merge the groups yet.",
+      },
+      {
+        title: "Keep letter groups separated",
+        text: "A normal visible space between groups marks the end of one letter and the start of the next.",
+      },
+      {
+        title: "Add a word separator",
+        text: "Use a slash between words in copied Morse, or preserve the longer word gap when timing or audio matters.",
+      },
+      {
+        title: "Preserve spacing when copying",
+        text: "Messaging apps may trim repeated spaces, so slash separators are often safer for pasted Morse.",
+      },
+      {
+        title: "Decode after boundaries are clear",
+        text: "Use the decoder only after letter groups and word breaks are visible enough to read.",
+      },
+    ],
+    examplesTitle: "Word separation examples",
+    examplesDescription:
+      "These examples show single-word, two-word, phrase, slash-separated, and bad no-space Morse.",
+    examples: [
+      {
+        title: "HELLO WORLD",
+        text: "HELLO WORLD",
+        morse: morseForText("HELLO WORLD").replace(/\s{7,}/g, " / "),
+        note: "The slash marks the word break between HELLO and WORLD.",
+      },
+      {
+        title: "HELP ME",
+        text: "HELP ME",
+        morse: morseForText("HELP ME").replace(/\s{7,}/g, " / "),
+        note: "Two short words stay readable because the word gap is explicit.",
+      },
+      {
+        title: "I LOVE YOU",
+        text: "I LOVE YOU",
+        morse: morseForText("I LOVE YOU").replace(/\s{7,}/g, " / "),
+        note: "Each word is separated, while each letter inside the word remains grouped.",
+      },
+      {
+        title: "Timing-style spacing",
+        text: "HI OK",
+        morse: morseForText("HI OK"),
+        note: "The wider typed gap represents the longer word pause used in Morse timing.",
+      },
+      {
+        title: "Bad no-space copy",
+        text: "HELLO WORLD",
+        morse: morseForText("HELLO WORLD").replace(/\s+/g, ""),
+        note: "Removing all separators makes the stream hard to decode because the boundaries are gone.",
+      },
+    ],
+    mistakesTitle: "Common word-spacing mistakes",
+    mistakesDescription:
+      "Most spacing errors come from treating Morse as only dots and dashes instead of dots, dashes, and gaps.",
+    commonMistakes: [
+      {
+        title: "Removing all spaces",
+        text: "Collapsed Morse is ambiguous. Several letter splits can match the same dot-dash stream.",
+      },
+      {
+        title: "Confusing slash roles",
+        text: "A slash between Morse groups is usually a word separator. A slash in plain source text can also be encoded as punctuation.",
+      },
+      {
+        title: "Using inconsistent spaces",
+        text: "A single space for letters and a clear slash or longer gap for words is easier to copy and decode.",
+      },
+      {
+        title: "Assuming every app agrees",
+        text: "Some apps collapse repeated spaces or alter punctuation, so check copied Morse before sharing it.",
+      },
+    ],
+    comparisonTitle: "Which spacing page should I use?",
+    comparisonDescription:
+      "Use the guide for learning the rule, the tool page for cleanup, and the copy pages for app compatibility.",
+    comparisonItems: [
+      {
+        title: "Word separator tool",
+        text: "Normalize pasted Morse spaces, slashes, pipes, or line breaks before decoding.",
+        href: "/morse-code-word-separator",
+        badge: "Tool",
+      },
+      {
+        title: "Space guide",
+        text: "Understand letter gaps, word gaps, and why a text space is not a dit or dah.",
+        href: "/space-in-morse-code",
+        badge: "Space",
+      },
+      {
+        title: "Slash guide",
+        text: "Compare slash as a word separator with slash as actual punctuation.",
+        href: "/slash-in-morse-code",
+        badge: "Slash",
+      },
+      {
+        title: "Copy and paste guide",
+        text: "Keep spaces, slash separators, dots, and dashes compatible between apps.",
+        href: "/copy-and-paste-morse-code",
+        badge: "Copy",
+      },
+      {
+        title: "Unspaced Morse",
+        text: "See why no-space Morse cannot always be decoded perfectly.",
+        href: "/morse-code-without-spaces",
+        badge: "Warning",
+      },
+      {
+        title: "Decoder",
+        text: "Decode the Morse after letter and word separators are visible.",
+        href: "/morse-code-decoder",
+        badge: "Decode",
+      },
+    ],
+    nextStepTitle: "Best next step for separated words",
+    nextStepDescription:
+      "Create clean Morse, preserve the word gaps, then verify the result by decoding or listening.",
+    relatedLinks: [
+      { href: "/morse-code-word-separator", label: "Word separator", primary: true },
+      { href: "/space-in-morse-code", label: "Space guide" },
+      { href: "/slash-in-morse-code", label: "Slash guide" },
+      { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-without-spaces", label: "Unspaced Morse" },
+      { href: "/morse-code-decoder", label: "Decoder" },
+      { href: "/morse-code-encoder", label: "Encoder" },
+      { href: "/audio", label: "Audio" },
+    ],
+    faqItems: [
+      {
+        q: "How do you separate words in Morse code?",
+        a: "Keep one visible gap between letter groups, then use a longer word gap or a slash between words when Morse is copied as text.",
+      },
+      {
+        q: "Is slash the correct separator between Morse words?",
+        a: "Slash is a common typed convention for a word break. In audio, the word break is a longer pause rather than a sounded slash.",
+      },
+      {
+        q: "How does MorseWords handle spaces?",
+        a: "MorseWords converts plain text spaces into word gaps and often displays those gaps as slashes in copy-friendly examples.",
+      },
+      {
+        q: "Can no-space Morse be decoded perfectly?",
+        a: "No. Without letter and word boundaries, the same stream can often be split into different valid messages.",
+      },
+      {
+        q: "What should I do before using the Morse decoder?",
+        a: "Make sure the letter groups are separated and word gaps are visible with slashes or consistent spacing.",
+      },
+    ],
+    schemaType: "LearningResource",
   },
 };
 

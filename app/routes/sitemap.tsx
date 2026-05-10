@@ -183,6 +183,12 @@ const GROUPS: SitemapGroup[] = [
           "Use keyboard-safe dots, dashes, spaces, and slashes for typed Morse.",
       },
       {
+        label: "How to Separate Words in Morse Code",
+        to: "/how-to-separate-words-in-morse-code",
+        description:
+          "Learn letter gaps, word gaps, slash separators, timing gaps, and decoder-safe spacing.",
+      },
+      {
         label: "Printable Morse Code Worksheets",
         to: "/morse-code-printable-chart",
         description:
@@ -305,6 +311,12 @@ const GROUPS: SitemapGroup[] = [
         label: "About",
         to: "/about",
         description: "Learn what MorseWords is built for.",
+      },
+      {
+        label: "Contact",
+        to: "/contact",
+        description:
+          "Send MorseWords feedback, correction requests, bug reports, and classroom notes.",
       },
       {
         label: "Sources",

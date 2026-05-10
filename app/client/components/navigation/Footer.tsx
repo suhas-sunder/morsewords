@@ -5,6 +5,7 @@ import SocialLinks from "./SocialLinks";
 
 const footerLinks = [
   { label: "About", to: "/about" },
+  { label: "Contact", to: "/contact" },
   { label: "Sitemap", to: "/sitemap" },
   { label: "Sources", to: "/sources" },
   { label: "Socials", to: "/misc/socials" },

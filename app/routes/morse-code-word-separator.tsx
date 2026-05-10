@@ -111,6 +111,12 @@ export default function MorseCodeWordSeparator() {
                 title: "How to use it",
                 text: "Paste the Morse, choose the separator style, then copy the cleaned output before decoding or sharing it.",
               },
+              {
+                title: "Need the rule first?",
+                text: "Use the step-by-step guide when you are writing new Morse and need to decide where letters, words, and slashes belong.",
+                href: "/how-to-separate-words-in-morse-code",
+                badge: "Guide",
+              },
             ],
           }}
           examples={{
@@ -258,6 +264,7 @@ export default function MorseCodeWordSeparator() {
               "Once the Morse is separated cleanly, decode it, compare symbols, or learn the timing rules behind the gaps.",
             links: [
               { href: "/morse-code-decoder", label: "Decode cleaned Morse", primary: true },
+              { href: "/how-to-separate-words-in-morse-code", label: "Separate words guide" },
               { href: "/space-in-morse-code", label: "Space guide" },
               { href: "/slash-in-morse-code", label: "Slash guide" },
               { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
