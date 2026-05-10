@@ -239,7 +239,7 @@ export default function MorseCodeAlphabetRoute() {
     morse: item.morseValue,
     meaning: "Letter " + item.letter,
     category: "Letters" as const,
-    href: item.isPublicSample ? item.path : undefined,
+    href: item.path,
   }));
 
   return (

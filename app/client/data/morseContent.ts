@@ -127,7 +127,7 @@ export type LetterContentItem = {
   metaTitle: string;
   metaDescription: string;
   keywords: string;
-  isPublicSample: boolean;
+  isPublicLetter: boolean;
 };
 
 function assertMorseCharacter(value: string) {
@@ -195,8 +195,8 @@ export function getWordBreakdown(value: string) {
 }
 
 const LETTER_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-const PUBLIC_SAMPLE_LETTERS = ["A", "E", "S", "O", "Q"] as const;
-type PublicSampleLetter = (typeof PUBLIC_SAMPLE_LETTERS)[number];
+const PUBLIC_LETTERS = LETTER_ALPHABET;
+type PublicLetter = (typeof PUBLIC_LETTERS)[number];
 
 const LETTER_EXAMPLE_WORDS: Record<string, readonly string[]> = {
   A: ["A", "NAME", "RADIO", "MAY"],
@@ -259,12 +259,16 @@ function defaultLetterFaq({
   letter,
   morseValue,
   spokenRhythm,
+  faqCompare,
+  faqPractice,
 }: {
   letter: string;
   morseValue: string;
   spokenRhythm: string;
+  faqCompare?: string;
+  faqPractice?: string;
 }): ContentFaqItem[] {
-  return [
+  const items: ContentFaqItem[] = [
     {
       q: `What is ${letter} in Morse code?`,
       a: `${letter} in Morse code is ${morseValue}.`,
@@ -282,7 +286,52 @@ function defaultLetterFaq({
       a: "Use the visual pattern for lookup, then practice the rhythm so you can recognize it by ear.",
     },
   ];
+
+  if (faqCompare) {
+    items.push({
+      q: `What should I compare ${letter} with?`,
+      a: faqCompare,
+    });
+  }
+
+  if (faqPractice) {
+    items.push({
+      q: `How should I practice ${letter}?`,
+      a: faqPractice,
+    });
+  }
+
+  return items;
 }
+
+const LETTER_RELATED_LETTERS: Record<string, string[]> = {
+  A: ["N", "R"],
+  B: ["D", "G"],
+  C: ["Q", "K"],
+  D: ["B", "G"],
+  E: ["I", "T"],
+  F: ["L", "S"],
+  G: ["D", "O"],
+  H: ["S", "I"],
+  I: ["E", "S"],
+  J: ["W", "P"],
+  K: ["C", "X"],
+  L: ["F", "R"],
+  M: ["T", "O"],
+  N: ["A", "D"],
+  O: ["S", "G"],
+  P: ["W", "J"],
+  Q: ["C", "Y"],
+  R: ["A", "L"],
+  S: ["E", "H", "O"],
+  T: ["E", "M"],
+  U: ["V", "D"],
+  V: ["S", "U"],
+  W: ["J", "P"],
+  X: ["K", "D"],
+  Y: ["Q", "C"],
+  Z: ["G"],
+};
 
 function buildLetterRelatedLinks(letter: string): RelatedLink[] {
   const queryLetter = letter;
@@ -293,6 +342,38 @@ function buildLetterRelatedLinks(letter: string): RelatedLink[] {
       description: "Compare this letter with the rest of A-Z.",
       primary: true,
     },
+    ...(LETTER_RELATED_LETTERS[letter] ?? []).map((relatedLetter) => ({
+      href: `/${relatedLetter.toLowerCase()}-in-morse-code`,
+      label: `${relatedLetter} in Morse`,
+      description: `Compare ${letter} with ${relatedLetter}.`,
+    })),
+  ];
+
+  if (letter === "S" || letter === "O") {
+    links.push({
+      href: "/morse-code-sos",
+      label: "Study SOS",
+      description: "See this letter inside a complete emergency signal.",
+    });
+  }
+
+  if (letter === "C" || letter === "Q") {
+    links.push({
+      href: "/cq-in-morse-code",
+      label: "CQ in Morse",
+      description: "See this letter inside a common calling signal.",
+    });
+  }
+
+  if (letter === "Q") {
+    links.push({
+      href: "/morse-code-q-codes",
+      label: "Q-codes",
+      description: "Review common Q-code abbreviations.",
+    });
+  }
+
+  links.push(
     {
       href: `/audio?text=${queryLetter}`,
       label: "Hear this letter",
@@ -323,30 +404,7 @@ function buildLetterRelatedLinks(letter: string): RelatedLink[] {
       label: "Typing practice",
       description: "Practice keyboard rhythm with dots and dashes.",
     },
-  ];
-
-  if (letter === "S" || letter === "O") {
-    links.push({
-      href: "/morse-code-sos",
-      label: "Study SOS",
-      description: "See S and O inside a complete emergency signal.",
-    });
-  }
-
-  if (letter === "Q") {
-    links.push(
-      {
-        href: "/cq-in-morse-code",
-        label: "CQ in Morse",
-        description: "See Q inside a common calling signal.",
-      },
-      {
-        href: "/morse-code-q-codes",
-        label: "Q-codes",
-        description: "Review common Q-code abbreviations.",
-      },
-    );
-  }
+  );
 
   return links;
 }
@@ -366,6 +424,1005 @@ type LetterOverride = Partial<
     | "metaDescription"
   >
 >;
+
+type LetterStudyGuidance = {
+  whatItIs: string;
+  soundNotes: ContentTile[];
+  commonConfusions: ContentTile[];
+  miniPracticePrompt: ContentTile;
+  listeningDrill: ContentTile;
+  typingDrill: ContentTile;
+  metaDescription: string;
+  faqCompare: string;
+  faqPractice: string;
+};
+
+const LETTER_STUDY_GUIDANCE: Record<string, LetterStudyGuidance> = {
+  B: {
+    whatItIs:
+      "B starts with one long dah and then snaps through three short dits. That shape makes the first sound the anchor, then the rest of the letter runs quickly.",
+    soundNotes: [
+      {
+        title: "Hear the opening dah",
+        text: "Listen for the long first mark before the three quick marks. If the first mark is not clearly longer, B can blur into a run of short dits.",
+      },
+      {
+        title: "Keep it separate from 6",
+        text: "B and the number 6 share a long-first feel, but numbers are five-mark characters. Count the total marks before deciding.",
+        href: "/morse-code-numbers",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "B vs D",
+        text: "D has the same long-first opening but stops after two short marks. B has one extra dit at the end.",
+        href: "/d-in-morse-code",
+      },
+      {
+        title: "B vs 6",
+        text: "The number 6 is longer. If you hear five marks, treat it as a number candidate instead of a letter.",
+        href: "/morse-code-numbers",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice B in short bursts",
+      text: "Alternate B with D, then copy B inside BRAVO, CAB, and BEE so the extra final dit becomes obvious.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play B, D, and 6 in a mixed order. Call out whether the signal has three, four, or five total marks.",
+      href: "/audio?text=B%20D%206",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type BEE, CAB, and BRAVO, then check that every B keeps the long mark first and three short marks after it.",
+      href: "/morse-code-encoder?text=BEE%20CAB%20BRAVO",
+    },
+    metaDescription:
+      "Learn B in Morse code with its long-first rhythm, common B vs D and B vs 6 mistakes, copy tips, audio practice, and examples.",
+    faqCompare:
+      "B is most often mixed with D because both start with a dah. Count the short marks after the opening dah: B has three, while D has two.",
+    faqPractice:
+      "Practice B by mixing it with D first, then add number 6 once you are comfortable counting four-mark versus five-mark signals.",
+  },
+  C: {
+    whatItIs:
+      "C is an alternating long-short-long-short Morse letter. The back-and-forth rhythm matters more than trying to memorize it as four separate symbols.",
+    soundNotes: [
+      {
+        title: "Hear the alternating rhythm",
+        text: "C should feel like a steady switch between dah and dit. If the spacing gets uneven, it can sound like two smaller letter fragments.",
+      },
+      {
+        title: "Useful in CQ practice",
+        text: "C is one half of CQ, a common radio-style calling pattern, but the letter is useful outside that phrase too.",
+        href: "/cq-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "C vs Q",
+        text: "C alternates all the way through. Q starts with two long marks, so the first half of the sound is heavier.",
+        href: "/q-in-morse-code",
+      },
+      {
+        title: "C vs K",
+        text: "K has the same long-short-long start, but it stops there. C adds one final short mark.",
+        href: "/k-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice C without relying on CQ",
+      text: "Copy C inside CODE, CAT, and COPY, then compare it with Q so you hear the lighter alternating rhythm.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play C, Q, and K together. Listen for whether the signal alternates or starts with two long marks.",
+      href: "/audio?text=C%20Q%20K",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode CODE, COPY, and CQ, then check that C keeps the long-short-long-short order.",
+      href: "/morse-code-encoder?text=CODE%20COPY%20CQ",
+    },
+    metaDescription:
+      "Learn C in Morse code with its alternating rhythm, CQ context, C vs Q and C vs K comparisons, examples, and practice drills.",
+    faqCompare:
+      "C is commonly confused with Q and K. Q begins with two long marks, while K is the shorter long-short-long pattern.",
+    faqPractice:
+      "Practice C by mixing CODE and CQ, then add K so you learn when the alternating pattern stops and when it continues.",
+  },
+  D: {
+    whatItIs:
+      "D is one long dah followed by two short dits. It is compact, but the opening long mark must stay clear.",
+    soundNotes: [
+      {
+        title: "Start strong, finish short",
+        text: "Hear D as one long sound followed by two quick taps. The letter should not trail into a fourth mark.",
+      },
+      {
+        title: "Useful dash practice",
+        text: "D helps beginners practice starting a letter with a long mark and then switching quickly to shorter marks.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "D vs B",
+        text: "B has the same opening but one extra short mark. If you count only two dits after the dah, it is D.",
+        href: "/b-in-morse-code",
+      },
+      {
+        title: "D vs G",
+        text: "G starts with two long marks before the final short mark. D has only one long mark.",
+        href: "/g-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice D by counting the tail",
+      text: "Alternate D with B and G, then encode DAY, CODE, and DASH to lock in the two-dit ending.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play D, B, and G. First identify how many long marks you hear, then count the short tail.",
+      href: "/audio?text=D%20B%20G",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Type DAY, CODE, and DASH, then verify each D has one dah and two dits.",
+      href: "/morse-code-encoder?text=DAY%20CODE%20DASH",
+    },
+    metaDescription:
+      "Learn D in Morse code with its one-dah two-dit rhythm, B and G confusion checks, typing tips, examples, and audio drills.",
+    faqCompare:
+      "D is often confused with B and G. B adds another short mark, while G changes the opening into two long marks.",
+    faqPractice:
+      "Practice D by mixing it with B and G until you can identify the one-long, two-short rhythm without counting slowly.",
+  },
+  F: {
+    whatItIs:
+      "F starts with two short dits, moves to one longer dah, and finishes with one dit. The turn in the middle is the part to listen for.",
+    soundNotes: [
+      {
+        title: "Hear the middle dah",
+        text: "F should not sound like a flat run of short marks. The third mark is longer and gives the letter its shape.",
+      },
+      {
+        title: "Keep spacing even",
+        text: "Weak spacing can make F sound like separate fragments instead of one four-mark letter.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "F vs L",
+        text: "L starts with a dit, then a dah, then two dits. F starts with two dits before the dah.",
+        href: "/l-in-morse-code",
+      },
+      {
+        title: "F vs S",
+        text: "S is only three short dits. F adds a longer mark before the final dit.",
+        href: "/s-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice F with L",
+      text: "Copy F and L back to back, then encode FAR, FAST, and FOX to practice the middle-dah shape.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play F, L, and S. Listen for whether the dah appears after one dit or after two dits.",
+      href: "/audio?text=F%20L%20S",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode FAR, FAST, and FOX, then check that F starts with two short marks.",
+      href: "/morse-code-encoder?text=FAR%20FAST%20FOX",
+    },
+    metaDescription:
+      "Learn F in Morse code with its two-dit opening, middle dah, F vs L comparison, copy guidance, examples, and practice drills.",
+    faqCompare:
+      "F is often confused with L. The easiest check is where the dah appears: F has two short marks before it, L has one.",
+    faqPractice:
+      "Practice F by alternating F and L, then add real words like FAR and FAST so the rhythm appears in context.",
+  },
+  G: {
+    whatItIs:
+      "G is two long dahs followed by one short dit. It has a heavier opening than D and a shorter ending than O.",
+    soundNotes: [
+      {
+        title: "Hear the double dah",
+        text: "The first half of G is two long marks. Do not rush them into a single long blur.",
+      },
+      {
+        title: "Finish with one short mark",
+        text: "The final dit is what separates G from O, which stays long for all three marks.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "G vs D",
+        text: "D starts with one long mark. G starts with two.",
+        href: "/d-in-morse-code",
+      },
+      {
+        title: "G vs O",
+        text: "O is three long marks. G changes the last mark to a short dit.",
+        href: "/o-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice G by hearing the ending",
+      text: "Alternate G with O, then type GO, SIGN, and GOLF so the final short mark becomes automatic.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play G, O, and D. Decide whether the signal starts with one dah or two, then listen to the final mark.",
+      href: "/audio?text=G%20O%20D",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode GO, SIGN, and GOLF, then verify the final mark in G is short.",
+      href: "/morse-code-encoder?text=GO%20SIGN%20GOLF",
+    },
+    metaDescription:
+      "Learn G in Morse code with its two-dah opening, G vs D and G vs O comparisons, examples, audio practice, and copy tips.",
+    faqCompare:
+      "G is most often mixed with D and O. D has only one opening dah, while O has three dahs and no final dit.",
+    faqPractice:
+      "Practice G by alternating G and O first, then add D to train both the opening and the ending.",
+  },
+  H: {
+    whatItIs:
+      "H is four short dits in a row. It is simple to write, but it requires clean timing so it does not collapse into S.",
+    soundNotes: [
+      {
+        title: "Hear all four dits",
+        text: "H should sound like four short, evenly spaced taps. Missing the last tap changes the letter.",
+      },
+      {
+        title: "Do not rush the run",
+        text: "Fast practice is fine, but the marks still need enough separation to stay countable.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "H vs S",
+        text: "S is three short dits. H is the same short sound with one more dit.",
+        href: "/s-in-morse-code",
+      },
+      {
+        title: "H vs 5",
+        text: "The number 5 is five short dits, so H sits between S and 5 by count.",
+        href: "/morse-code-numbers",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice H by counting short marks",
+      text: "Copy S, H, and 5 in a mixed order, then encode HI, HELP, and HEAR.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play S, H, and 5. Count short marks only, without looking at the text.",
+      href: "/audio?text=S%20H%205",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode HI, HELP, and HEAR, then check that H has exactly four short marks.",
+      href: "/morse-code-encoder?text=HI%20HELP%20HEAR",
+    },
+    metaDescription:
+      "Learn H in Morse code with its four-dit rhythm, H vs S and H vs 5 mistakes, typing guidance, examples, and drills.",
+    faqCompare:
+      "H is commonly confused with S and 5 because all three use only short marks. Count three for S, four for H, and five for 5.",
+    faqPractice:
+      "Practice H by mixing it with S first, then add 5 once the four-dit count feels reliable.",
+  },
+  I: {
+    whatItIs:
+      "I is two short dits. It is one of the shortest Morse letters, so extra marks or loose spacing quickly change what the listener hears.",
+    soundNotes: [
+      {
+        title: "Hear two clean dits",
+        text: "I should sound like two short taps with a clear stop after the second one.",
+      },
+      {
+        title: "Keep it distinct from E",
+        text: "E is only one dit. If a second short mark appears, the letter is I.",
+        href: "/e-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "I vs E",
+        text: "E is one short mark. I is two short marks.",
+        href: "/e-in-morse-code",
+      },
+      {
+        title: "I vs S",
+        text: "S is three short marks. I stops after two.",
+        href: "/s-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice I in tiny groups",
+      text: "Alternate E, I, and S, then encode I, SIGN, and TIME to practice stopping after two dits.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play E, I, and S. Count only short marks and stop as soon as the letter ends.",
+      href: "/audio?text=E%20I%20S",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode I, SIGN, and TIME, then verify I never receives a third dit.",
+      href: "/morse-code-encoder?text=I%20SIGN%20TIME",
+    },
+    metaDescription:
+      "Learn I in Morse code with its two-dit sound, I vs E and I vs S comparisons, copy tips, examples, and practice drills.",
+    faqCompare:
+      "I is most often confused with E and S. The difference is only the count: one, two, or three short marks.",
+    faqPractice:
+      "Practice I in short groups with E and S before using it inside longer words.",
+  },
+  J: {
+    whatItIs:
+      "J begins with one short dit and then holds three longer dahs. The long ending makes it feel larger than W.",
+    soundNotes: [
+      {
+        title: "Hear the long tail",
+        text: "After the first short mark, J stays long for the rest of the letter.",
+      },
+      {
+        title: "Check it against 1",
+        text: "The number 1 starts the same way but has four long marks after the first dit.",
+        href: "/morse-code-numbers",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "J vs W",
+        text: "W has one short mark and two long marks. J adds one more long mark.",
+        href: "/w-in-morse-code",
+      },
+      {
+        title: "J vs 1",
+        text: "The number 1 is a five-mark number, so it keeps going after J would stop.",
+        href: "/morse-code-numbers",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice J by feeling the length",
+      text: "Alternate J with W and 1, then encode JOSH, JOIN, and JULIET.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play W, J, and 1. Listen for how many long marks follow the first dit.",
+      href: "/audio?text=W%20J%201",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode JOSH, JOIN, and JULIET, then check that J has one short mark and three long marks.",
+      href: "/morse-code-encoder?text=JOSH%20JOIN%20JULIET",
+    },
+    metaDescription:
+      "Learn J in Morse code with its one-short three-long rhythm, J vs W and J vs 1 comparisons, examples, and drills.",
+    faqCompare:
+      "J is commonly confused with W and 1. W stops one dah earlier, while 1 continues one dah longer.",
+    faqPractice:
+      "Practice J by grouping W, J, and 1 so the letter length becomes easy to hear.",
+  },
+  K: {
+    whatItIs:
+      "K is long-short-long. It has a balanced rhythm that is useful in procedural and radio-style Morse practice.",
+    soundNotes: [
+      {
+        title: "Hear the center dit",
+        text: "K is built around the short mark in the middle. The two outside marks are longer.",
+      },
+      {
+        title: "Keep it from turning into C",
+        text: "C starts with the same three marks but adds a final short mark.",
+        href: "/c-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "K vs C",
+        text: "C is K plus one final dit. If the signal stops after long-short-long, it is K.",
+        href: "/c-in-morse-code",
+      },
+      {
+        title: "K vs X",
+        text: "X starts with a long mark and includes two short marks in the middle before the final dah.",
+        href: "/x-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice K as a centered rhythm",
+      text: "Copy K, C, and X, then encode KEY, KATIE, and KILO.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play K, C, and X. Listen for whether there is one center dit or two short marks in the middle.",
+      href: "/audio?text=K%20C%20X",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode KEY, KATIE, and KILO, then verify K ends with a long mark.",
+      href: "/morse-code-encoder?text=KEY%20KATIE%20KILO",
+    },
+    metaDescription:
+      "Learn K in Morse code with its long-short-long rhythm, K vs C and K vs X comparisons, examples, and practice tips.",
+    faqCompare:
+      "K is commonly confused with C and X. C adds a final short mark, while X has two short marks in the middle.",
+    faqPractice:
+      "Practice K by mixing it with C first, then add X when you are ready to compare the middle of the rhythm.",
+  },
+  L: {
+    whatItIs:
+      "L starts short, moves long, and then finishes with two short marks. It is a four-mark letter where the middle turn matters.",
+    soundNotes: [
+      {
+        title: "Hear the early dah",
+        text: "The second mark in L is long. If the long mark comes later, you may be hearing F instead.",
+      },
+      {
+        title: "Do not drop the ending",
+        text: "L needs two short marks after the dah. Dropping one can make the rhythm feel like R.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "L vs F",
+        text: "F has two short marks before the dah. L has only one short mark before the dah.",
+        href: "/f-in-morse-code",
+      },
+      {
+        title: "L vs R",
+        text: "R is short-long-short. L adds one more short mark at the end.",
+        href: "/r-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice L with F and R",
+      text: "Alternate L, F, and R, then encode LOVE, CALL, and LIMA.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play L, F, and R. Notice where the long mark appears and whether the letter has three or four marks.",
+      href: "/audio?text=L%20F%20R",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode LOVE, CALL, and LIMA, then check the two short marks after the dah.",
+      href: "/morse-code-encoder?text=LOVE%20CALL%20LIMA",
+    },
+    metaDescription:
+      "Learn L in Morse code with its early-dah rhythm, L vs F and L vs R comparisons, examples, copy tips, and drills.",
+    faqCompare:
+      "L is usually confused with F or R. Check where the dah appears and whether there are two final short marks.",
+    faqPractice:
+      "Practice L by mixing L, F, and R, then use words like LOVE and CALL to hear L in context.",
+  },
+  M: {
+    whatItIs:
+      "M is two long dahs. It is the long-mark partner to I, which uses two short marks.",
+    soundNotes: [
+      {
+        title: "Hear two full dahs",
+        text: "M should sound like two separate long marks, not one stretched tone.",
+      },
+      {
+        title: "Stop before O",
+        text: "O is three long marks. M stops after two.",
+        href: "/o-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "M vs T",
+        text: "T is one long mark. M is two.",
+        href: "/t-in-morse-code",
+      },
+      {
+        title: "M vs O",
+        text: "O adds a third long mark after M.",
+        href: "/o-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice M by counting dahs",
+      text: "Alternate T, M, and O, then encode ME, MAY, and MORSE.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play T, M, and O. Count long marks only.",
+      href: "/audio?text=T%20M%20O",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode ME, MAY, and MORSE, then verify M has exactly two dahs.",
+      href: "/morse-code-encoder?text=ME%20MAY%20MORSE",
+    },
+    metaDescription:
+      "Learn M in Morse code with its two-dah sound, M vs T and M vs O comparisons, examples, copy tips, and practice drills.",
+    faqCompare:
+      "M is commonly confused with T and O because all three use long marks. Count one for T, two for M, and three for O.",
+    faqPractice:
+      "Practice M in the T-M-O group so long-mark counting becomes automatic.",
+  },
+  N: {
+    whatItIs:
+      "N is one long dah followed by one short dit. It is the exact reverse of A, so order is the main thing to protect.",
+    soundNotes: [
+      {
+        title: "Hear the reversal",
+        text: "N starts long and ends short. A starts short and ends long.",
+        href: "/a-in-morse-code",
+      },
+      {
+        title: "Keep the stop clean",
+        text: "Do not add extra dits after N. Extra short marks can turn the sound toward D or B.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "N vs A",
+        text: "A is short-long. N is long-short.",
+        href: "/a-in-morse-code",
+      },
+      {
+        title: "N vs D",
+        text: "D keeps going with one more short mark after N.",
+        href: "/d-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice N against A",
+      text: "Alternate A and N until the reversal is automatic, then encode NO, NAME, and TONE.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play A, N, and D. Identify whether the first mark is short or long before counting the rest.",
+      href: "/audio?text=A%20N%20D",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode NO, NAME, and TONE, then verify N starts with the dah.",
+      href: "/morse-code-encoder?text=NO%20NAME%20TONE",
+    },
+    metaDescription:
+      "Learn N in Morse code with its long-short rhythm, N vs A reversal, N vs D mistake check, examples, and drills.",
+    faqCompare:
+      "N is most often confused with A because they use the same two marks in reverse order.",
+    faqPractice:
+      "Practice N by alternating A and N slowly, then add D to avoid adding an accidental extra dit.",
+  },
+  P: {
+    whatItIs:
+      "P starts short, holds two long marks, and finishes short. It has a centered long section with short marks on both ends.",
+    soundNotes: [
+      {
+        title: "Hear the two middle dahs",
+        text: "P should feel like a short opening, a long middle, and a short close.",
+      },
+      {
+        title: "Separate it from W",
+        text: "W starts the same way but stops after two long marks instead of closing with a final dit.",
+        href: "/w-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "P vs W",
+        text: "W is short-long-long. P adds one final short mark.",
+        href: "/w-in-morse-code",
+      },
+      {
+        title: "P vs J",
+        text: "J has one short mark followed by three long marks. P closes with a short mark instead.",
+        href: "/j-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice P by hearing the close",
+      text: "Alternate P, W, and J, then encode PEN, COPY, and PAPA.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play P, W, and J. Listen to whether the final mark is short, long, or absent.",
+      href: "/audio?text=P%20W%20J",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode PEN, COPY, and PAPA, then verify P ends with a short mark.",
+      href: "/morse-code-encoder?text=PEN%20COPY%20PAPA",
+    },
+    metaDescription:
+      "Learn P in Morse code with its short-long-long-short rhythm, P vs W and P vs J comparisons, examples, and drills.",
+    faqCompare:
+      "P is commonly confused with W and J. W stops earlier, while J replaces the closing short mark with another dah.",
+    faqPractice:
+      "Practice P by mixing P, W, and J, then use short words like PEN and COPY for context.",
+  },
+  R: {
+    whatItIs:
+      "R is short-long-short. It is a compact three-mark letter with one longer sound in the center.",
+    soundNotes: [
+      {
+        title: "Hear the center dah",
+        text: "R should sound balanced: short, long, short. The middle mark gives the letter its shape.",
+      },
+      {
+        title: "Avoid turning A into R",
+        text: "A is short-long. R adds one more short mark at the end.",
+        href: "/a-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "R vs A",
+        text: "A stops after short-long. R adds a final short mark.",
+        href: "/a-in-morse-code",
+      },
+      {
+        title: "R vs L",
+        text: "L also has an early dah, but it has four total marks.",
+        href: "/l-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice R by stopping cleanly",
+      text: "Alternate A, R, and L, then encode RADIO, READ, and ROMEO.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play A, R, and L. Listen for whether the signal stops after two, three, or four marks.",
+      href: "/audio?text=A%20R%20L",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode RADIO, READ, and ROMEO, then verify R is short-long-short.",
+      href: "/morse-code-encoder?text=RADIO%20READ%20ROMEO",
+    },
+    metaDescription:
+      "Learn R in Morse code with its short-long-short rhythm, R vs A and R vs L comparisons, examples, and practice drills.",
+    faqCompare:
+      "R is often confused with A and L. A is missing the final dit, while L has one extra dit at the end.",
+    faqPractice:
+      "Practice R in the A-R-L group so you learn when the same early rhythm should stop.",
+  },
+  T: {
+    whatItIs:
+      "T is one long dah. It is the shortest dash letter, so duration is the entire signal.",
+    soundNotes: [
+      {
+        title: "Hear one full dah",
+        text: "T should be longer than E, but it still stops after a single mark.",
+        href: "/e-in-morse-code",
+      },
+      {
+        title: "Do not accidentally make M",
+        text: "A second long mark changes T into M.",
+        href: "/m-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "T vs E",
+        text: "E is one short mark. T is one long mark.",
+        href: "/e-in-morse-code",
+      },
+      {
+        title: "T vs M",
+        text: "M is two long marks. T is only one.",
+        href: "/m-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice T by contrasting duration",
+      text: "Alternate E, T, and M, then encode TEST, TONE, and TIME.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play E, T, and M. Focus on short versus long, then count whether there is a second dah.",
+      href: "/audio?text=E%20T%20M",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode TEST, TONE, and TIME, then verify T is a single dash.",
+      href: "/morse-code-encoder?text=TEST%20TONE%20TIME",
+    },
+    metaDescription:
+      "Learn T in Morse code with its one-dah signal, T vs E and T vs M comparisons, copy guidance, examples, and drills.",
+    faqCompare:
+      "T is most often confused with E by duration and with M by count. T is one long mark only.",
+    faqPractice:
+      "Practice T by grouping E, T, and M so you hear both mark length and mark count.",
+  },
+  U: {
+    whatItIs:
+      "U has two short dits followed by one long dah. It starts like I and then opens into a longer final mark.",
+    soundNotes: [
+      {
+        title: "Hear the final dah",
+        text: "U should sound like two quick taps followed by a held mark.",
+      },
+      {
+        title: "Keep it from becoming V",
+        text: "V starts with three short marks before the final dah.",
+        href: "/v-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "U vs V",
+        text: "V adds one extra short mark before the final dah.",
+        href: "/v-in-morse-code",
+      },
+      {
+        title: "U vs D",
+        text: "D has the same count but starts with a dah instead of ending with one.",
+        href: "/d-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice U by hearing the ending",
+      text: "Alternate U, V, and D, then encode USE, TUNE, and UNIT.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play U, V, and D. Listen for whether the long mark comes first or last, then count the short marks.",
+      href: "/audio?text=U%20V%20D",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode USE, TUNE, and UNIT, then check that U ends with the dah.",
+      href: "/morse-code-encoder?text=USE%20TUNE%20UNIT",
+    },
+    metaDescription:
+      "Learn U in Morse code with its two-dit then dah rhythm, U vs V and U vs D comparisons, examples, and practice drills.",
+    faqCompare:
+      "U is commonly confused with V and D. V adds another opening dit, while D puts the dah at the start.",
+    faqPractice:
+      "Practice U by alternating U and V first, then add D to train the position of the dah.",
+  },
+  V: {
+    whatItIs:
+      "V is three short dits followed by one long dah. It starts like S and then extends into a long final mark.",
+    soundNotes: [
+      {
+        title: "Hear S plus a dah",
+        text: "V begins with the same three short marks as S, then adds one longer ending.",
+        href: "/s-in-morse-code",
+      },
+      {
+        title: "Do not drop the final mark",
+        text: "If the final dah is missing, the signal becomes S.",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "V vs S",
+        text: "S is three short marks. V adds one long mark after them.",
+        href: "/s-in-morse-code",
+      },
+      {
+        title: "V vs U",
+        text: "U has two short marks before the dah. V has three.",
+        href: "/u-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice V by extending S",
+      text: "Alternate S, U, and V, then encode VIA, VOICE, and VICTOR.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play S, U, and V. Listen for how many short marks occur before the final dah.",
+      href: "/audio?text=S%20U%20V",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode VIA, VOICE, and VICTOR, then check that V ends long.",
+      href: "/morse-code-encoder?text=VIA%20VOICE%20VICTOR",
+    },
+    metaDescription:
+      "Learn V in Morse code with its three-dits then dah rhythm, V vs S and V vs U comparisons, examples, and drills.",
+    faqCompare:
+      "V is often confused with S and U. S has no final dah, while U has only two opening dits.",
+    faqPractice:
+      "Practice V by listening to S, U, and V together so you hear both the count and the ending.",
+  },
+  W: {
+    whatItIs:
+      "W is one short dit followed by two long dahs. It starts like A and then holds one more long mark.",
+    soundNotes: [
+      {
+        title: "Hear A plus one dah",
+        text: "W begins short-long like A, then adds another long mark.",
+        href: "/a-in-morse-code",
+      },
+      {
+        title: "Stop before J",
+        text: "J keeps the long ending going for one more dah.",
+        href: "/j-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "W vs J",
+        text: "J has one short mark followed by three long marks. W has only two long marks after the dit.",
+        href: "/j-in-morse-code",
+      },
+      {
+        title: "W vs P",
+        text: "P closes with a short mark after the two dahs. W stops after the second dah.",
+        href: "/p-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice W by hearing the stop",
+      text: "Alternate W, J, and P, then encode WORD, WAVE, and WHISKEY.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play W, J, and P. Listen for what happens after the two long marks.",
+      href: "/audio?text=W%20J%20P",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode WORD, WAVE, and WHISKEY, then verify W stops after two dahs.",
+      href: "/morse-code-encoder?text=WORD%20WAVE%20WHISKEY",
+    },
+    metaDescription:
+      "Learn W in Morse code with its dit-dah-dah sound, W vs J and W vs P comparisons, examples, and practice drills.",
+    faqCompare:
+      "W is commonly confused with J and P. J keeps going with another dah, while P adds a final dit.",
+    faqPractice:
+      "Practice W by mixing it with J and P so the end of the signal becomes clear.",
+  },
+  X: {
+    whatItIs:
+      "X starts long, has two short marks in the middle, and closes long. The matching long marks frame the letter.",
+    soundNotes: [
+      {
+        title: "Hear the framed rhythm",
+        text: "X has a long opening and long ending, with two short marks between them.",
+      },
+      {
+        title: "Do not reduce the middle",
+        text: "If the middle collapses to one short mark, the rhythm moves toward K.",
+        href: "/k-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "X vs K",
+        text: "K is long-short-long. X adds one more short mark in the middle.",
+        href: "/k-in-morse-code",
+      },
+      {
+        title: "X vs D",
+        text: "D starts the same but stops after the two short marks. X adds a final dah.",
+        href: "/d-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice X by framing the middle",
+      text: "Alternate X, K, and D, then encode TEXT, FOX, and XRAY.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play X, K, and D. Listen for the long mark at the end and count the middle dits.",
+      href: "/audio?text=X%20K%20D",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode TEXT, FOX, and XRAY, then check that X has the closing dah.",
+      href: "/morse-code-encoder?text=TEXT%20FOX%20XRAY",
+    },
+    metaDescription:
+      "Learn X in Morse code with its long-short-short-long rhythm, X vs K and X vs D comparisons, examples, and drills.",
+    faqCompare:
+      "X is often confused with K and D. K has only one short mark in the middle, while D has no closing dah.",
+    faqPractice:
+      "Practice X by comparing it with K and D, then encode words where X appears at the end, such as FOX.",
+  },
+  Y: {
+    whatItIs:
+      "Y starts long, moves short, and finishes with two long marks. It has a heavier ending than C.",
+    soundNotes: [
+      {
+        title: "Hear the long ending",
+        text: "After the short second mark, Y holds two long marks to close the letter.",
+      },
+      {
+        title: "Keep it distinct from Q",
+        text: "Q starts with two long marks, while Y has only one long mark before the short mark.",
+        href: "/q-in-morse-code",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Y vs Q",
+        text: "Q begins with two dahs. Y begins with one dah, then a dit.",
+        href: "/q-in-morse-code",
+      },
+      {
+        title: "Y vs C",
+        text: "C alternates long-short-long-short. Y changes the final short mark into a long one.",
+        href: "/c-in-morse-code",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice Y by hearing the close",
+      text: "Alternate Y, Q, and C, then encode YES, YARD, and YANKEE.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play Y, Q, and C. Focus on the first two marks, then decide whether the ending is long or short.",
+      href: "/audio?text=Y%20Q%20C",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode YES, YARD, and YANKEE, then verify Y finishes with two dahs.",
+      href: "/morse-code-encoder?text=YES%20YARD%20YANKEE",
+    },
+    metaDescription:
+      "Learn Y in Morse code with its dah-dit-dah-dah rhythm, Y vs Q and Y vs C comparisons, examples, and drills.",
+    faqCompare:
+      "Y is commonly confused with Q and C. Q starts with two dahs, while C has a short final mark instead of a long one.",
+    faqPractice:
+      "Practice Y by mixing it with Q and C so the opening and ending both become recognizable.",
+  },
+  Z: {
+    whatItIs:
+      "Z is two long dahs followed by two short dits. It starts like G but continues with one more short mark.",
+    soundNotes: [
+      {
+        title: "Hear the heavy start",
+        text: "Z begins with two long marks, then ends with two short marks.",
+      },
+      {
+        title: "Check it against 7",
+        text: "The number 7 starts with two long marks too, but it is a five-mark number with three short marks after them.",
+        href: "/morse-code-numbers",
+      },
+    ],
+    commonConfusions: [
+      {
+        title: "Z vs G",
+        text: "G has two dahs and one dit. Z adds one more dit after G.",
+        href: "/g-in-morse-code",
+      },
+      {
+        title: "Z vs 7",
+        text: "7 keeps going with three short marks after the two dahs. Z has only two.",
+        href: "/morse-code-numbers",
+      },
+    ],
+    miniPracticePrompt: {
+      title: "Practice Z by counting the tail",
+      text: "Alternate Z, G, and 7, then encode ZERO, ZONE, and ZULU.",
+    },
+    listeningDrill: {
+      title: "Listening drill",
+      text: "Play G, Z, and 7. Count how many short marks follow the two opening dahs.",
+      href: "/audio?text=G%20Z%207",
+    },
+    typingDrill: {
+      title: "Typing drill",
+      text: "Encode ZERO, ZONE, and ZULU, then check that Z has two short marks after the two dahs.",
+      href: "/morse-code-encoder?text=ZERO%20ZONE%20ZULU",
+    },
+    metaDescription:
+      "Learn Z in Morse code with its two-dah two-dit rhythm, Z vs G and Z vs 7 comparisons, examples, and practice drills.",
+    faqCompare:
+      "Z is often confused with G and 7. G has one final dit, while 7 has three final dits.",
+    faqPractice:
+      "Practice Z by comparing G, Z, and 7 until the number of final short marks is automatic.",
+  },
+};
 
 const LETTER_CONTENT_OVERRIDES: Record<string, LetterOverride> = {
   A: {
@@ -678,8 +1735,9 @@ function buildLetterContent(letter: string): LetterContentItem {
   const morseValue = assertMorseCharacter(letter);
   const spokenRhythm = spokenLetterRhythm(morseValue);
   const slug = `${letter.toLowerCase()}-in-morse-code`;
-  const isPublicSample = PUBLIC_SAMPLE_LETTERS.includes(letter as PublicSampleLetter);
+  const isPublicLetter = PUBLIC_LETTERS.includes(letter as PublicLetter);
   const override = LETTER_CONTENT_OVERRIDES[letter] ?? {};
+  const guidance = LETTER_STUDY_GUIDANCE[letter];
 
   return {
     letter,
@@ -694,12 +1752,14 @@ function buildLetterContent(letter: string): LetterContentItem {
       `${letter} in Morse code is ${morseValue}. It is spoken as ${spokenRhythm} when you practice by sound.`,
     whatItIs:
       override.whatItIs ??
+      guidance?.whatItIs ??
       `The letter ${letter} is a standard International Morse letter. ${letterPatternLengthText(
         letter,
         morseValue,
       )}`,
     soundNotes:
       override.soundNotes ??
+      guidance?.soundNotes ??
       [
         {
           title: "Listen for the rhythm",
@@ -725,6 +1785,7 @@ function buildLetterContent(letter: string): LetterContentItem {
       ],
     commonConfusions:
       override.commonConfusions ??
+      guidance?.commonConfusions ??
       [
         {
           title: "Missing a mark",
@@ -738,6 +1799,7 @@ function buildLetterContent(letter: string): LetterContentItem {
     exampleWords: buildLetterExamples(letter),
     miniPracticePrompt:
       override.miniPracticePrompt ??
+      guidance?.miniPracticePrompt ??
       {
         title: "Mini practice",
         text: `Copy ${letter}, say ${spokenRhythm}, then find the same rhythm inside a short word from the examples.`,
@@ -745,6 +1807,7 @@ function buildLetterContent(letter: string): LetterContentItem {
       },
     listeningDrill:
       override.listeningDrill ??
+      guidance?.listeningDrill ??
       {
         title: "Listening drill",
         text: `Play ${letter}, say ${spokenRhythm}, then compare it with one nearby pattern from the alphabet chart.`,
@@ -752,6 +1815,7 @@ function buildLetterContent(letter: string): LetterContentItem {
       },
     typingDrill:
       override.typingDrill ??
+      guidance?.typingDrill ??
       {
         title: "Typing drill",
         text: `Type ${morseValue} for ${letter}, add a letter space, then type one short example word that contains ${letter}.`,
@@ -760,13 +1824,20 @@ function buildLetterContent(letter: string): LetterContentItem {
     relatedLinks: buildLetterRelatedLinks(letter),
     faqItems:
       override.faqItems ??
-      defaultLetterFaq({ letter, morseValue, spokenRhythm }),
+      defaultLetterFaq({
+        letter,
+        morseValue,
+        spokenRhythm,
+        faqCompare: guidance?.faqCompare,
+        faqPractice: guidance?.faqPractice,
+      }),
     metaTitle: `${letter} in Morse Code | Symbol, Sound, and Examples | MorseWords`,
     metaDescription:
       override.metaDescription ??
+      guidance?.metaDescription ??
       `${letter} in Morse code is ${morseValue}. Learn the ${spokenRhythm} sound, copy the pattern, hear it as audio, and practice short words containing ${letter}.`,
     keywords: `${letter} in morse code, morse code ${letter}, ${letter} morse code, ${letter} morse letter`,
-    isPublicSample,
+    isPublicLetter,
   };
 }
 
@@ -779,11 +1850,11 @@ export const LETTER_PAGES: Record<string, LetterContentItem> =
     LetterContentItem
   >;
 
-export const PUBLIC_SAMPLE_LETTER_PAGES = LETTER_ITEMS.filter(
-  (item) => item.isPublicSample,
+export const PUBLIC_LETTER_PAGES = LETTER_ITEMS.filter(
+  (item) => item.isPublicLetter,
 );
 
-export const PUBLIC_SAMPLE_LETTER_PATHS = PUBLIC_SAMPLE_LETTER_PAGES.map(
+export const PUBLIC_LETTER_PATHS = PUBLIC_LETTER_PAGES.map(
   (item) => item.path,
 );
 

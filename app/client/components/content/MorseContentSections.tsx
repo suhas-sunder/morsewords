@@ -531,6 +531,15 @@ export function MorseLetterPage({
           </div>
         </SectionCard>
 
+        <SectionCard
+          eyebrow="Next steps"
+          title={`Keep practicing ${content.letter}`}
+          description="Compare nearby letters, hear the signal, then move from lookup to recall in the tools."
+          layout="stacked"
+        >
+          <ActionLinks links={content.relatedLinks} />
+        </SectionCard>
+
         <FaqSectionGeneric
           title={`${content.displayTitle} FAQ`}
           items={content.faqItems}

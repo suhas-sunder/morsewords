@@ -6,6 +6,47 @@ import {
   writeArtifact,
 } from "./helpers";
 
+const LETTER_MORSE = {
+  A: ".-",
+  B: "-...",
+  C: "-.-.",
+  D: "-..",
+  E: ".",
+  F: "..-.",
+  G: "--.",
+  H: "....",
+  I: "..",
+  J: ".---",
+  K: "-.-",
+  L: ".-..",
+  M: "--",
+  N: "-.",
+  O: "---",
+  P: ".--.",
+  Q: "--.-",
+  R: ".-.",
+  S: "...",
+  T: "-",
+  U: "..-",
+  V: "...-",
+  W: ".--",
+  X: "-..-",
+  Y: "-.--",
+  Z: "--..",
+} as const;
+
+const LETTER_ROUTE_EXPECTATIONS = Object.entries(LETTER_MORSE).map(
+  ([letter, morse]) => ({
+    path: `/${letter.toLowerCase()}-in-morse-code`,
+    h1: `${letter} in Morse Code`,
+    title: `${letter} in Morse Code | Symbol, Sound, and Examples | MorseWords`,
+    morse,
+    letter,
+  }),
+);
+
+const LETTER_ROUTE_PATHS = LETTER_ROUTE_EXPECTATIONS.map((route) => route.path);
+
 const FIRST_BATCH_LINK_CHECK_ROUTES = [
   "/",
   "/audio",
@@ -27,59 +68,8 @@ const FIRST_BATCH_LINK_CHECK_ROUTES = [
   "/cq-in-morse-code",
   "/question-mark-in-morse-code",
   "/at-sign-in-morse-code",
-  "/a-in-morse-code",
-  "/e-in-morse-code",
-  "/s-in-morse-code",
-  "/o-in-morse-code",
-  "/q-in-morse-code",
-] as const;
-
-const SAMPLE_LETTER_ROUTE_EXPECTATIONS = [
-  {
-    path: "/a-in-morse-code",
-    h1: "A in Morse Code",
-    title: "A in Morse Code | Symbol, Sound, and Examples | MorseWords",
-    descriptionIncludes: "A in Morse code is .-",
-    morse: ".-",
-    letter: "A",
-  },
-  {
-    path: "/e-in-morse-code",
-    h1: "E in Morse Code",
-    title: "E in Morse Code | Symbol, Sound, and Examples | MorseWords",
-    descriptionIncludes: "E in Morse code is .",
-    morse: ".",
-    letter: "E",
-  },
-  {
-    path: "/s-in-morse-code",
-    h1: "S in Morse Code",
-    title: "S in Morse Code | Symbol, Sound, and Examples | MorseWords",
-    descriptionIncludes: "S in Morse code is ...",
-    morse: "...",
-    letter: "S",
-  },
-  {
-    path: "/o-in-morse-code",
-    h1: "O in Morse Code",
-    title: "O in Morse Code | Symbol, Sound, and Examples | MorseWords",
-    descriptionIncludes: "O in Morse code is ---",
-    morse: "---",
-    letter: "O",
-  },
-  {
-    path: "/q-in-morse-code",
-    h1: "Q in Morse Code",
-    title: "Q in Morse Code | Symbol, Sound, and Examples | MorseWords",
-    descriptionIncludes: "Q in Morse code is --.-",
-    morse: "--.-",
-    letter: "Q",
-  },
-] as const;
-
-const SAMPLE_LETTER_PATHS = SAMPLE_LETTER_ROUTE_EXPECTATIONS.map(
-  (route) => route.path,
-);
+  ...LETTER_ROUTE_PATHS,
+];
 
 const FIRST_BATCH_ROUTE_EXPECTATIONS = [
   {
@@ -190,7 +180,7 @@ const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
 function isDeferredLetterPath(pathname: string) {
   return (
     /^\/[a-z]-in-morse-code$/.test(pathname) &&
-    !SAMPLE_LETTER_PATHS.includes(pathname as (typeof SAMPLE_LETTER_PATHS)[number])
+    !LETTER_ROUTE_PATHS.includes(pathname)
   );
 }
 
@@ -451,12 +441,12 @@ test.describe("first-batch SEO metadata and schema", () => {
   });
 });
 
-test.describe("sample letter SEO metadata and schema", () => {
+test.describe("letter SEO metadata and schema", () => {
   test.beforeEach(async ({ page }) => {
     await blockExternalNetwork(page);
   });
 
-  for (const route of SAMPLE_LETTER_ROUTE_EXPECTATIONS) {
+  for (const route of LETTER_ROUTE_EXPECTATIONS) {
     test(`${route.path} exposes title, description, canonical, H1, and JSON-LD`, async ({
       page,
     }) => {
@@ -480,9 +470,7 @@ test.describe("sample letter SEO metadata and schema", () => {
       const description = await page
         .locator('meta[name="description"]')
         .getAttribute("content");
-      expect(description, `${route.path} meta description`).toContain(
-        route.descriptionIncludes,
-      );
+      expect(description, `${route.path} meta description`).toContain(route.letter);
       expect(description?.length, `${route.path} description length`).toBeGreaterThan(90);
       expect(title).toBe(route.title);
 
@@ -534,23 +522,32 @@ test.describe("sample letter SEO metadata and schema", () => {
     });
   }
 
-  test("sample letter titles and descriptions are unique", () => {
-    const titles = new Set(SAMPLE_LETTER_ROUTE_EXPECTATIONS.map((route) => route.title));
-    const descriptions = new Set(
-      SAMPLE_LETTER_ROUTE_EXPECTATIONS.map((route) => route.descriptionIncludes),
-    );
+  test("letter titles and descriptions are unique", async ({ request }) => {
+    const titles = new Set(LETTER_ROUTE_EXPECTATIONS.map((route) => route.title));
+    const descriptions = new Set<string>();
 
-    expect(titles.size).toBe(SAMPLE_LETTER_ROUTE_EXPECTATIONS.length);
-    expect(descriptions.size).toBe(SAMPLE_LETTER_ROUTE_EXPECTATIONS.length);
+    for (const route of LETTER_ROUTE_EXPECTATIONS) {
+      const response = await request.get(route.path);
+      expect(response.ok(), `${route.path} response`).toBe(true);
+      const html = await response.text();
+      const description = html.match(
+        /<meta\s+name="description"\s+content="([^"]+)"/,
+      );
+      expect(description?.[1], `${route.path} meta description`).toBeTruthy();
+      descriptions.add(description?.[1] ?? "");
+    }
+
+    expect(titles.size).toBe(LETTER_ROUTE_EXPECTATIONS.length);
+    expect(descriptions.size).toBe(LETTER_ROUTE_EXPECTATIONS.length);
   });
 
-  test("HTML and XML sitemaps include only the launched sample letter routes", async ({
+  test("HTML and XML sitemaps include every launched letter route", async ({
     page,
     request,
   }) => {
     await page.goto("/sitemap", { waitUntil: "domcontentloaded" });
 
-    for (const route of SAMPLE_LETTER_ROUTE_EXPECTATIONS) {
+    for (const route of LETTER_ROUTE_EXPECTATIONS) {
       await expect(page.locator(`a[href="${route.path}"]`).first()).toBeVisible();
     }
 
@@ -564,19 +561,15 @@ test.describe("sample letter SEO metadata and schema", () => {
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
 
-    for (const route of SAMPLE_LETTER_ROUTE_EXPECTATIONS) {
+    for (const route of LETTER_ROUTE_EXPECTATIONS) {
       expect(xml).toContain(`https://morsewords.com${route.path}`);
-    }
-
-    for (const letter of "bcdfghijklm nprtuvwxyz".replace(/\s/g, "").split("")) {
-      expect(xml).not.toContain(`https://morsewords.com/${letter}-in-morse-code`);
     }
   });
 
-  test("alphabet links to the sample letter pages only", async ({ page }) => {
+  test("alphabet links to every launched letter page", async ({ page }) => {
     await page.goto("/morse-code-alphabet", { waitUntil: "domcontentloaded" });
 
-    for (const route of SAMPLE_LETTER_ROUTE_EXPECTATIONS) {
+    for (const route of LETTER_ROUTE_EXPECTATIONS) {
       await expect(page.locator(`a[href="${route.path}"]`).first()).toBeVisible();
     }
 
@@ -587,6 +580,18 @@ test.describe("sample letter SEO metadata and schema", () => {
     );
     const deferredLetterLinks = hrefs.filter(isDeferredLetterPath);
     expect(deferredLetterLinks, "alphabet deferred letter links").toEqual([]);
+  });
+
+  test("letter pages do not render a duplicate Wave-only toolkit section", async ({
+    page,
+  }) => {
+    await page.goto("/b-in-morse-code", { waitUntil: "domcontentloaded" });
+
+    await expect(
+      page.locator(".mw-wave-content-page").getByText("Explore the Morse code toolkit"),
+    ).toHaveCount(0);
+    await expect(page.getByText("Keep using MorseWords")).toHaveCount(0);
+    await expect(page.getByText("Explore the Morse code toolkit")).toHaveCount(1);
   });
 });
 

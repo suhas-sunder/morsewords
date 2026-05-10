@@ -4,11 +4,18 @@ import { Link } from "react-router";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { PageHero } from "~/client/components/shared/MorseLearningLayout";
 import styles from "~/client/components/shared/pageStyles";
+import { LETTER_ITEMS } from "~/client/data/morseContent";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/sitemap";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+
+const letterSitemapLinks = LETTER_ITEMS.map((item) => ({
+  label: `${item.letter} in Morse Code`,
+  to: item.path,
+  description: `Study ${item.letter} as ${item.morseValue} with sound, examples, and practice links.`,
+}));
 
 type SitemapGroup = {
   title: string;
@@ -175,35 +182,7 @@ const GROUPS: SitemapGroup[] = [
         to: "/morse-code-alphabet",
         description: "Browse A-Z letter patterns for Morse alphabet learning.",
       },
-      {
-        label: "A in Morse Code",
-        to: "/a-in-morse-code",
-        description: "Study A as .- with sound, examples, and practice links.",
-      },
-      {
-        label: "E in Morse Code",
-        to: "/e-in-morse-code",
-        description:
-          "Study E as one dot with spacing notes and beginner examples.",
-      },
-      {
-        label: "S in Morse Code",
-        to: "/s-in-morse-code",
-        description:
-          "Study S as three dots with SOS context and common mixups.",
-      },
-      {
-        label: "O in Morse Code",
-        to: "/o-in-morse-code",
-        description:
-          "Study O as three dashes with zero comparison and SOS context.",
-      },
-      {
-        label: "Q in Morse Code",
-        to: "/q-in-morse-code",
-        description:
-          "Study Q as --.- with CQ and Q-code context.",
-      },
+      ...letterSitemapLinks,
       {
         label: "Morse Code Numbers",
         to: "/morse-code-numbers",
