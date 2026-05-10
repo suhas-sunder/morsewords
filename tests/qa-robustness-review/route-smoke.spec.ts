@@ -72,6 +72,53 @@ const NUMBER_ROUTE_EXPECTATIONS = Object.entries(NUMBER_MORSE).map(
 
 const NUMBER_ROUTE_PATHS = NUMBER_ROUTE_EXPECTATIONS.map((route) => route.path);
 
+const PHRASE_ROUTE_EXPECTATIONS = [
+  {
+    path: "/hello-in-morse-code",
+    h1: "Hello in Morse Code",
+    title: "Hello in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    textQuery: "HELLO",
+  },
+  {
+    path: "/hi-in-morse-code",
+    h1: "Hi in Morse Code",
+    title: "Hi in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    textQuery: "HI",
+  },
+  {
+    path: "/help-in-morse-code",
+    h1: "Help in Morse Code",
+    title: "Help in Morse Code | Copy, Audio, and SOS Difference | MorseWords",
+    textQuery: "HELP",
+  },
+  {
+    path: "/help-me-in-morse-code",
+    h1: "Help Me in Morse Code",
+    title: "Help Me in Morse Code | Copy, Audio, and Word Spacing | MorseWords",
+    textQuery: "HELP%20ME",
+  },
+  {
+    path: "/yes-in-morse-code",
+    h1: "Yes in Morse Code",
+    title: "Yes in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    textQuery: "YES",
+  },
+  {
+    path: "/no-in-morse-code",
+    h1: "No in Morse Code",
+    title: "No in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    textQuery: "NO",
+  },
+  {
+    path: "/ok-in-morse-code",
+    h1: "OK in Morse Code",
+    title: "OK in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    textQuery: "OK",
+  },
+] as const;
+
+const PHRASE_ROUTE_PATHS = PHRASE_ROUTE_EXPECTATIONS.map((route) => route.path);
+
 const FIRST_BATCH_LINK_CHECK_ROUTES = [
   "/",
   "/audio",
@@ -95,6 +142,7 @@ const FIRST_BATCH_LINK_CHECK_ROUTES = [
   "/at-sign-in-morse-code",
   ...LETTER_ROUTE_PATHS,
   ...NUMBER_ROUTE_PATHS,
+  ...PHRASE_ROUTE_PATHS,
 ];
 
 const FIRST_BATCH_ROUTE_EXPECTATIONS = [
@@ -174,14 +222,7 @@ const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   "/morse-code-audio-generator",
   "/morse-code-wav-generator",
   "/morse-code-mp3-generator",
-  "/hello-in-morse-code",
-  "/hi-in-morse-code",
-  "/help-in-morse-code",
-  "/help-me-in-morse-code",
   "/love-in-morse-code",
-  "/yes-in-morse-code",
-  "/no-in-morse-code",
-  "/ok-in-morse-code",
   "/sorry-in-morse-code",
   "/hello-world-in-morse-code",
   "/test-in-morse-code",
@@ -752,6 +793,142 @@ test.describe("number SEO metadata and schema", () => {
     page,
   }) => {
     await page.goto("/7-in-morse-code", { waitUntil: "domcontentloaded" });
+
+    await expect(
+      page.locator(".mw-wave-content-page").getByText("Explore the Morse code toolkit"),
+    ).toHaveCount(0);
+    await expect(page.getByText("Keep using MorseWords")).toHaveCount(0);
+    await expect(page.getByText("Explore the Morse code toolkit")).toHaveCount(1);
+  });
+});
+
+test.describe("phrase SEO metadata and schema", () => {
+  test.beforeEach(async ({ page }) => {
+    await blockExternalNetwork(page);
+  });
+
+  for (const route of PHRASE_ROUTE_EXPECTATIONS) {
+    test(`${route.path} exposes title, description, canonical, H1, and JSON-LD`, async ({
+      page,
+    }) => {
+      await page.goto(route.path, { waitUntil: "domcontentloaded" });
+
+      await expect(page).toHaveTitle(route.title);
+      await expect(page.locator("h1")).toHaveCount(1);
+      await expect(page.locator("h1")).toHaveText(route.h1);
+
+      const canonical = `https://morsewords.com${route.path}`;
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        "href",
+        canonical,
+      );
+      await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
+        "content",
+        canonical,
+      );
+
+      const description = await page
+        .locator('meta[name="description"]')
+        .getAttribute("content");
+      expect(description, `${route.path} meta description`).toBeTruthy();
+      expect(description?.length, `${route.path} description length`).toBeGreaterThan(90);
+
+      const jsonLdTexts = await page
+        .locator('script[type="application/ld+json"]')
+        .evaluateAll((scripts) =>
+          scripts.map((script) => script.textContent ?? ""),
+        );
+      expect(jsonLdTexts.length, `${route.path} JSON-LD script count`).toBeGreaterThan(0);
+
+      const parsedJsonLd = jsonLdTexts.map((text) => JSON.parse(text));
+      const types = parsedJsonLd.flatMap(collectJsonLdTypes);
+      expect(types, `${route.path} has BreadcrumbList`).toContain("BreadcrumbList");
+      expect(types, `${route.path} has WebPage`).toContain("WebPage");
+      expect(types, `${route.path} has FAQPage`).toContain("FAQPage");
+
+      const faqQuestions = await page.locator("details summary").allTextContents();
+      const faqSchemaQuestions = parsedJsonLd
+        .flatMap((jsonLd) => (Array.isArray(jsonLd) ? jsonLd : [jsonLd]))
+        .filter((jsonLd) => jsonLd?.["@type"] === "FAQPage")
+        .flatMap((jsonLd) => jsonLd.mainEntity ?? [])
+        .map((item) => item.name);
+
+      for (const question of faqSchemaQuestions) {
+        expect(
+          faqQuestions.some((visibleQuestion) => visibleQuestion.includes(question)),
+          `${route.path} visible FAQ includes schema question: ${question}`,
+        ).toBe(true);
+      }
+    });
+
+    test(`${route.path} exposes copy, play, and open-in-tool CTAs`, async ({
+      page,
+    }) => {
+      await page.goto(route.path, { waitUntil: "domcontentloaded" });
+
+      await expect(page.getByRole("button", { name: "Copy text" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "Copy Morse" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "Play Morse" })).toBeVisible();
+      await expect(
+        page.locator(`a[href="/?text=${route.textQuery}"]`).first(),
+      ).toBeVisible();
+      await expect(
+        page.locator(`a[href="/audio?text=${route.textQuery}"]`).first(),
+      ).toBeVisible();
+      await expect(
+        page.locator(`a[href="/morse-code-encoder?text=${route.textQuery}"]`).first(),
+      ).toBeVisible();
+    });
+  }
+
+  test("phrase titles and descriptions are unique", async ({ request }) => {
+    const titles = new Set(PHRASE_ROUTE_EXPECTATIONS.map((route) => route.title));
+    const descriptions = new Set<string>();
+
+    for (const route of PHRASE_ROUTE_EXPECTATIONS) {
+      const response = await request.get(route.path);
+      expect(response.ok(), `${route.path} response`).toBe(true);
+      const html = await response.text();
+      const description = html.match(
+        /<meta\s+name="description"\s+content="([^"]+)"/,
+      );
+      expect(description?.[1], `${route.path} meta description`).toBeTruthy();
+      descriptions.add(description?.[1] ?? "");
+    }
+
+    expect(titles.size).toBe(PHRASE_ROUTE_EXPECTATIONS.length);
+    expect(descriptions.size).toBe(PHRASE_ROUTE_EXPECTATIONS.length);
+  });
+
+  test("HTML and XML sitemaps include every new phrase route", async ({
+    page,
+    request,
+  }) => {
+    await page.goto("/sitemap", { waitUntil: "domcontentloaded" });
+
+    for (const route of PHRASE_ROUTE_EXPECTATIONS) {
+      await expect(page.locator(`a[href="${route.path}"]`).first()).toBeVisible();
+    }
+
+    const xmlResponse = await request.get("/sitemap.xml");
+    expect(xmlResponse.ok()).toBe(true);
+    const xml = await xmlResponse.text();
+
+    for (const route of PHRASE_ROUTE_EXPECTATIONS) {
+      expect(xml).toContain(`https://morsewords.com${route.path}`);
+    }
+  });
+
+  test("words hub links to every new phrase route", async ({ page }) => {
+    await page.goto("/morse-code-words", { waitUntil: "domcontentloaded" });
+
+    for (const route of PHRASE_ROUTE_EXPECTATIONS) {
+      await expect(page.locator(`a[href="${route.path}"]`).first()).toBeVisible();
+    }
+  });
+
+  test("phrase pages use shared toolkit only once", async ({ page }) => {
+    await page.goto("/hello-in-morse-code", { waitUntil: "domcontentloaded" });
 
     await expect(
       page.locator(".mw-wave-content-page").getByText("Explore the Morse code toolkit"),

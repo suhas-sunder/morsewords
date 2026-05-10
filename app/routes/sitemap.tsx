@@ -4,7 +4,11 @@ import { Link } from "react-router";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { PageHero } from "~/client/components/shared/MorseLearningLayout";
 import styles from "~/client/components/shared/pageStyles";
-import { LETTER_ITEMS, NUMBER_ITEMS } from "~/client/data/morseContent";
+import {
+  LETTER_ITEMS,
+  NUMBER_ITEMS,
+  PHRASE_PAGES,
+} from "~/client/data/morseContent";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
@@ -21,6 +25,12 @@ const numberSitemapLinks = NUMBER_ITEMS.map((item) => ({
   label: `${item.digit} in Morse Code`,
   to: item.path,
   description: `Study ${item.digit} as ${item.morseValue} with rhythm, examples, and practice links.`,
+}));
+
+const phraseSitemapLinks = Object.values(PHRASE_PAGES).map((item) => ({
+  label: item.displayTitle,
+  to: item.path,
+  description: item.metaDescription,
 }));
 
 type SitemapGroup = {
@@ -206,6 +216,7 @@ const GROUPS: SitemapGroup[] = [
         to: "/morse-code-words",
         description: "Copy common words, phrases, prosigns, and Q-codes.",
       },
+      ...phraseSitemapLinks,
       {
         label: "Morse Code Word Separator",
         to: "/morse-code-word-separator",

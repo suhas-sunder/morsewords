@@ -403,6 +403,8 @@ export default function MorseCodeSos() {
                 "Practice recognizing the pattern in the format you plan to use.",
               links: [
                 { href: "/audio", label: "Play SOS as audio", primary: true },
+                { href: "/help-in-morse-code", label: "HELP in Morse" },
+                { href: "/help-me-in-morse-code", label: "HELP ME in Morse" },
                 { href: "/morse-code-sound-generator", label: "Test the beep tone" },
                 { href: "/morse-code-audio-practice", label: "Practice by ear" },
                 { href: "/morse-code-prosigns", label: "Compare prosigns" },

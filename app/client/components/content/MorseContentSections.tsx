@@ -275,6 +275,8 @@ export function MorseLeafPage({
           summary={content.answerSummary}
           translatorHref={`/?text=${queryValue}`}
           audioHref={`/audio?text=${queryValue}`}
+          encoderHref={`/morse-code-encoder?text=${queryValue}`}
+          practiceHref="/practice"
           breakdown={
             content.kind === "phrase"
               ? getWordBreakdown(content.plainTextValue)

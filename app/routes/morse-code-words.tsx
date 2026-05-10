@@ -13,7 +13,7 @@ import ReferenceSupportSections from "~/client/components/shared/ReferenceSuppor
 import MorsePhraseLookupTable from "~/client/components/morse-code-words/MorsePhraseLookupTable";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import styles from "~/client/components/shared/pageStyles";
-import { morseForText } from "~/client/data/morseContent";
+import { PHRASE_PAGES, morseForText } from "~/client/data/morseContent";
 
 const CANONICAL_PATH ="/morse-code-words";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -42,6 +42,20 @@ function CardSection(props: {
  </SharedSectionCard>
  );
 }
+
+const featuredPhraseSlugs = [
+ "hello-in-morse-code",
+ "hi-in-morse-code",
+ "help-in-morse-code",
+ "help-me-in-morse-code",
+ "yes-in-morse-code",
+ "no-in-morse-code",
+ "ok-in-morse-code",
+ "i-love-you-in-morse-code",
+ "cq-in-morse-code",
+] as const;
+
+const featuredPhrasePages = featuredPhraseSlugs.map((slug) => PHRASE_PAGES[slug]);
 
 export default function MorseCodeWords() {
  const baseUrl = SITE_URL;
@@ -115,11 +129,11 @@ export default function MorseCodeWords() {
  <ActionLinks
  links={[
  { href:"#lookup", label:"Browse words", primary: true },
+ { href:"/hello-in-morse-code", label:"HELLO"},
+ { href:"/help-in-morse-code", label:"HELP"},
+ { href:"/yes-in-morse-code", label:"YES"},
  { href:"/i-love-you-in-morse-code", label:"I love you"},
  { href:"/cq-in-morse-code", label:"CQ"},
- { href:"/morse-code-word-trainer", label:"Train words"},
- { href:"/morse-code-sentence-practice", label:"Sentence practice"},
- { href:"/morse-code-word-search-builder", label:"Build puzzle"},
  ]}
  />
  </PageHero>
@@ -142,6 +156,30 @@ export default function MorseCodeWords() {
  <section id="lookup">
  <MorsePhraseLookupTable />
  </section>
+
+ <CardSection title="Phrase pages with copy, audio, and breakdowns">
+ <p className={pClass}>
+ Use these focused phrase pages when you need the exact Morse output,
+ clear word spacing, audio links, and a short explanation before copying a
+ word into a message, worksheet, puzzle, or practice set.
+ </p>
+ <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+ {featuredPhrasePages.map((page) => (
+ <a
+ key={page.path}
+ href={page.path}
+ className="mw-button-outline mw-related-tool-link block cursor-pointer rounded-xl bg-[#fffdf8] p-4 text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
+ <span className="block text-lg font-extrabold">{page.label}</span>
+ <span className="mt-2 block break-words font-mono text-sm font-bold tracking-[0.12em] text-slate-950">
+ {page.morseValue.replace(/\s{7,}/g, " / ")}
+ </span>
+ <span className="mt-3 block text-sm leading-relaxed text-slate-700">
+ {page.context[0]?.text ?? page.metaDescription}
+ </span>
+ </a>
+ ))}
+ </div>
+ </CardSection>
 
  <ReferenceSupportSections
  guide={{
@@ -302,6 +340,9 @@ export default function MorseCodeWords() {
  description:"Choose the next tool based on whether you need repetition, context, spacing, or speed.",
  links:[
  { href:"/morse-code-word-trainer", label:"Train custom words", primary:true },
+ { href:"/hello-in-morse-code", label:"HELLO in Morse" },
+ { href:"/help-me-in-morse-code", label:"HELP ME in Morse" },
+ { href:"/yes-in-morse-code", label:"YES in Morse" },
  { href:"/i-love-you-in-morse-code", label:"I love you in Morse" },
  { href:"/cq-in-morse-code", label:"CQ in Morse" },
  { href:"/morse-code-sentence-practice", label:"Practice sentences" },

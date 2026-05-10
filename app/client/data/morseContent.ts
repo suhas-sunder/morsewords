@@ -152,18 +152,24 @@ export function morseForText(value: string) {
 
 function rhythmFor(morse: string) {
   return morse
-    .replace(/\s{7,}/g, " / ")
-    .split("")
-    .map((character) => {
-      if (character === ".") return "dit";
-      if (character === "-") return "dah";
-      if (character === "/") return "/";
-      return " ";
-    })
-    .join("")
-    .replace(/\s+/g, " ")
-    .replace(/\s\/\s/g, " / ")
-    .trim();
+    .trim()
+    .split(/\s{7,}/)
+    .map((word) =>
+      word
+        .split(/\s{3,}/)
+        .filter(Boolean)
+        .map((pattern) =>
+          pattern
+            .split("")
+            .map((mark, index, marks) => {
+              if (mark === "-") return "dah";
+              return index === marks.length - 1 ? "dit" : "di";
+            })
+            .join("-"),
+        )
+        .join("  "),
+    )
+    .join(" / ");
 }
 
 function breakdownForText(value: string): CharacterBreakdown[] {
@@ -2593,6 +2599,23 @@ export const NUMBER_PAGE_FAQ_ITEMS: ContentFaqItem[] = [
   },
 ];
 
+type PhrasePageInput = Omit<
+  MorseLeafContent,
+  "path" | "kind" | "morseValue" | "spokenRhythm"
+>;
+
+function makePhrasePage(input: PhrasePageInput): MorseLeafContent {
+  const morseValue = morseForText(input.plainTextValue);
+
+  return {
+    ...input,
+    path: `/${input.slug}`,
+    kind: "phrase",
+    morseValue,
+    spokenRhythm: rhythmFor(morseValue),
+  };
+}
+
 export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
   "i-love-you-in-morse-code": {
     slug: "i-love-you-in-morse-code",
@@ -2784,6 +2807,691 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
     keywords:
       "cq in morse code, cq morse code, cq meaning morse, radio cq morse",
   },
+  "hello-in-morse-code": makePhrasePage({
+    slug: "hello-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "HELLO",
+    displayTitle: "Hello in Morse Code",
+    plainTextValue: "HELLO",
+    answerSummary:
+      "HELLO in Morse code is .... . .-.. .-.. --- for H E L L O. It is a one-word greeting, so there is no word slash inside the phrase.",
+    breakdownIntro:
+      "HELLO is encoded letter by letter: H, E, L, L, and O. The repeated L pattern is the part most learners need to check.",
+    contextTitle: "Using HELLO in Morse",
+    context: [
+      {
+        title: "Greeting and practice word",
+        text: "HELLO is useful for cards, classroom puzzles, audio playback, and first word-level Morse practice.",
+      },
+      {
+        title: "One word, simple spacing",
+        text: "Because HELLO is one word, keep normal letter gaps between H, E, L, L, and O. No slash is needed.",
+      },
+      {
+        title: "Listen for repeated L",
+        text: "The two L characters appear back to back. Use audio practice to hear the same .-.. rhythm twice.",
+        href: "/l-in-morse-code",
+      },
+    ],
+    examples: [
+      {
+        title: "Plain greeting",
+        text: "HELLO",
+        morse: morseForText("HELLO"),
+        note: "The direct one-word greeting, useful for copy and paste checks.",
+      },
+      {
+        title: "Greeting pair",
+        text: "HELLO HI",
+        morse: morseForText("HELLO HI").replace(/\s{7,}/g, " / "),
+        note: "Compare HELLO with the shorter HI page when you want a compact greeting.",
+      },
+      {
+        title: "Practice word",
+        text: "HELLO",
+        morse: morseForText("HELLO"),
+        note: "Play it slowly and listen for H, E, L, L, O instead of memorizing the full string visually.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Dropping one L",
+        text: "HELLO has two L letters. If one .-.. pattern is missing, the word is not HELLO.",
+      },
+      {
+        title: "Adding a word slash",
+        text: "A slash marks a word boundary. HELLO is one word, so a slash inside it would break the spelling.",
+      },
+      {
+        title: "Rushing H and E together",
+        text: "H is four dits and E is one dit. Keep a letter gap so they do not become one longer run of dots.",
+        href: "/h-in-morse-code",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=HELLO", label: "Open in translator", primary: true },
+      { href: "/audio?text=HELLO", label: "Hear HELLO" },
+      { href: "/morse-code-encoder?text=HELLO", label: "Open in encoder" },
+      { href: "/hi-in-morse-code", label: "Compare HI" },
+      { href: "/morse-code-words", label: "More Morse words" },
+      { href: "/practice", label: "Practice words" },
+    ],
+    faqItems: [
+      {
+        q: "What is HELLO in Morse code?",
+        a: "HELLO in Morse code is .... . .-.. .-.. ---.",
+      },
+      {
+        q: "Does HELLO need a slash in Morse code?",
+        a: "No. HELLO is one word, so it only needs letter spacing between H, E, L, L, and O.",
+      },
+      {
+        q: "Why is HELLO useful for practice?",
+        a: "HELLO is familiar and includes repeated L patterns, which makes it useful for checking spacing and rhythm.",
+      },
+      {
+        q: "Can I hear HELLO in Morse code?",
+        a: "Yes. Use the audio link on this page to load HELLO into the MorseWords audio tool.",
+      },
+      {
+        q: "What should I compare HELLO with?",
+        a: "Compare it with HI for a shorter greeting and with the L page if the repeated L pattern is the hard part.",
+      },
+    ],
+    metaTitle: "Hello in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    metaDescription:
+      "See HELLO in Morse code, copy the exact greeting, hear the audio, review H E L L O spacing, and practice the repeated L pattern.",
+    keywords:
+      "hello in morse code, hello morse code, morse code hello, hello in dots and dashes",
+  }),
+  "hi-in-morse-code": makePhrasePage({
+    slug: "hi-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "HI",
+    displayTitle: "Hi in Morse Code",
+    plainTextValue: "HI",
+    answerSummary:
+      "HI in Morse code is .... ... for H I. It is a short greeting with H followed by I.",
+    breakdownIntro:
+      "HI is two letters, H and I. The whole phrase is compact, but the letter gap still matters.",
+    contextTitle: "Using HI in Morse",
+    context: [
+      {
+        title: "Short greeting",
+        text: "HI is quicker to copy than HELLO and works well for short practice messages.",
+      },
+      {
+        title: "Keep H and I separate",
+        text: "H is .... and I is ... Keep the letter gap visible so the two dot groups do not collapse.",
+      },
+      {
+        title: "Compare with HELLO",
+        text: "Use HELLO when you want a fuller greeting or a word with repeated L practice.",
+        href: "/hello-in-morse-code",
+      },
+    ],
+    examples: [
+      {
+        title: "Short greeting",
+        text: "HI",
+        morse: morseForText("HI"),
+        note: "The shortest casual greeting in this batch.",
+      },
+      {
+        title: "Greeting contrast",
+        text: "HI HELLO",
+        morse: morseForText("HI HELLO").replace(/\s{7,}/g, " / "),
+        note: "Use the slash to show the word break between two greetings.",
+      },
+      {
+        title: "Dot-group drill",
+        text: "H I",
+        morse: morseForText("H I").replace(/\s{7,}/g, " / "),
+        note: "Practice hearing four dits, then two dits.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Collapsing the dots",
+        text: "Without a letter gap, H and I can look like a long run of dots instead of two letters.",
+      },
+      {
+        title: "Reading I as E",
+        text: "I is two dits. E is one dit, so do not stop early when copying the second letter.",
+        href: "/i-in-morse-code",
+      },
+      {
+        title: "Overusing slash separators",
+        text: "HI is one word. Use slashes only between words, not between H and I.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=HI", label: "Open in translator", primary: true },
+      { href: "/audio?text=HI", label: "Hear HI" },
+      { href: "/morse-code-encoder?text=HI", label: "Open in encoder" },
+      { href: "/hello-in-morse-code", label: "Compare HELLO" },
+      { href: "/h-in-morse-code", label: "Study H" },
+      { href: "/i-in-morse-code", label: "Study I" },
+    ],
+    faqItems: [
+      {
+        q: "What is HI in Morse code?",
+        a: "HI in Morse code is .... ... for H I.",
+      },
+      {
+        q: "Is HI shorter than HELLO in Morse code?",
+        a: "Yes. HI uses only two letters, while HELLO uses five letters.",
+      },
+      {
+        q: "Why can HI be hard to read?",
+        a: "Both letters are made only of dits, so the gap between H and I must stay clear.",
+      },
+      {
+        q: "Can I copy HI into another app?",
+        a: "Yes. Use periods for dots and keep one clear space between H and I.",
+      },
+      {
+        q: "What should I practice after HI?",
+        a: "Practice H, I, and HELLO so short dot groups stay easy to separate.",
+      },
+    ],
+    metaTitle: "Hi in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    metaDescription:
+      "See HI in Morse code, copy the short greeting, hear the H-I rhythm, compare it with HELLO, and avoid collapsed dot spacing.",
+    keywords:
+      "hi in morse code, hi morse code, morse code hi, short morse greeting",
+  }),
+  "help-in-morse-code": makePhrasePage({
+    slug: "help-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "HELP",
+    displayTitle: "Help in Morse Code",
+    plainTextValue: "HELP",
+    answerSummary:
+      "HELP in Morse code is .... . .-.. .--. for H E L P. It is the word HELP, not the international SOS distress signal.",
+    breakdownIntro:
+      "HELP is encoded as H, E, L, and P. Keep the spelling separate from the special SOS signal.",
+    contextTitle: "Using HELP in Morse",
+    context: [
+      {
+        title: "Word, not SOS",
+        text: "HELP is a normal word in Morse. SOS is the internationally recognized distress signal pattern.",
+        href: "/morse-code-sos",
+      },
+      {
+        title: "Spacing matters",
+        text: "Keep H, E, L, and P as four separate letter patterns so the word decodes cleanly.",
+      },
+      {
+        title: "Practice caution",
+        text: "Use this page for learning, puzzles, and practice. Do not rely on a web page as an emergency communication method.",
+      },
+    ],
+    examples: [
+      {
+        title: "Single word",
+        text: "HELP",
+        morse: morseForText("HELP"),
+        note: "The plain word, useful for spelling and spacing practice.",
+      },
+      {
+        title: "Compare with HELP ME",
+        text: "HELP ME",
+        morse: morseForText("HELP ME").replace(/\s{7,}/g, " / "),
+        note: "The slash makes the word break visible in the two-word phrase.",
+      },
+      {
+        title: "Compare with SOS",
+        text: "SOS",
+        morse: morseForText("SOS"),
+        note: "SOS is shorter and has a different emergency-signal role.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Treating HELP as SOS",
+        text: "HELP and SOS are different. HELP spells a word; SOS is a recognized distress signal.",
+      },
+      {
+        title: "Losing the P ending",
+        text: "The final P is .--. If it is missing, the word becomes HEL, not HELP.",
+        href: "/p-in-morse-code",
+      },
+      {
+        title: "Removing letter gaps",
+        text: "HELP contains four letters. Each letter pattern needs its own gap for decoding.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=HELP", label: "Open in translator", primary: true },
+      { href: "/audio?text=HELP", label: "Hear HELP" },
+      { href: "/morse-code-encoder?text=HELP", label: "Open in encoder" },
+      { href: "/help-me-in-morse-code", label: "HELP ME" },
+      { href: "/morse-code-sos", label: "Compare SOS" },
+      { href: "/morse-code-words", label: "More Morse words" },
+    ],
+    faqItems: [
+      {
+        q: "What is HELP in Morse code?",
+        a: "HELP in Morse code is .... . .-.. .--. for H E L P.",
+      },
+      {
+        q: "Is HELP the same as SOS?",
+        a: "No. HELP is the word HELP encoded letter by letter. SOS is a special distress signal pattern.",
+      },
+      {
+        q: "How do I write HELP ME in Morse code?",
+        a: "Use HELP, a word separator, then ME. The HELP ME page shows the full two-word phrase.",
+      },
+      {
+        q: "Can I use this page in an emergency?",
+        a: "No. This page is for learning and reference, not for emergency communication.",
+      },
+      {
+        q: "Which letter is easiest to miss in HELP?",
+        a: "P is easy to shorten or drop because it comes at the end. Check the final .--. pattern.",
+      },
+    ],
+    metaTitle: "Help in Morse Code | Copy, Audio, and SOS Difference | MorseWords",
+    metaDescription:
+      "See HELP in Morse code, copy and hear the word, review H E L P spacing, and learn how HELP differs from the SOS distress signal.",
+    keywords:
+      "help in morse code, help morse code, morse code help, help vs sos morse",
+  }),
+  "help-me-in-morse-code": makePhrasePage({
+    slug: "help-me-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "HELP ME",
+    displayTitle: "Help Me in Morse Code",
+    plainTextValue: "HELP ME",
+    answerSummary:
+      "HELP ME in Morse code is .... . .-.. .--. / -- . when you show the word break with a slash.",
+    breakdownIntro:
+      "HELP ME has two words. The word boundary is the most important part to keep visible when copying it.",
+    contextTitle: "Using HELP ME in Morse",
+    context: [
+      {
+        title: "Two-word spacing",
+        text: "Use a slash or a larger word gap between HELP and ME so the phrase does not collapse into one unreadable group.",
+        href: "/morse-code-word-separator",
+      },
+      {
+        title: "Reference, not emergency service",
+        text: "This page explains the phrase for learning, puzzles, and checking output. It is not a substitute for emergency communication.",
+      },
+      {
+        title: "Compare HELP and SOS",
+        text: "HELP ME is a normal phrase. SOS is a specific distress signal with its own page and context.",
+        href: "/morse-code-sos",
+      },
+    ],
+    examples: [
+      {
+        title: "Slash-separated phrase",
+        text: "HELP ME",
+        morse: morseForText("HELP ME").replace(/\s{7,}/g, " / "),
+        note: "This is the clearest written form for most copy and paste uses.",
+      },
+      {
+        title: "Spacing-only Morse",
+        text: "HELP ME",
+        morse: morseForText("HELP ME"),
+        note: "The larger gap between P and M marks the word boundary.",
+      },
+      {
+        title: "Single-word comparison",
+        text: "HELP",
+        morse: morseForText("HELP"),
+        note: "HELP by itself has no word separator.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Dropping the word boundary",
+        text: "Without the word gap, HELP ME can be difficult to decode because the letters run together.",
+      },
+      {
+        title: "Mixing HELP ME with SOS",
+        text: "HELP ME spells two words. SOS is a different signal and should not be treated as the same output.",
+      },
+      {
+        title: "Using decorative separators",
+        text: "For compatibility, use a plain slash or clear spaces instead of decorative dividers.",
+        href: "/copy-and-paste-morse-code",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=HELP%20ME", label: "Open in translator", primary: true },
+      { href: "/audio?text=HELP%20ME", label: "Hear HELP ME" },
+      { href: "/morse-code-encoder?text=HELP%20ME", label: "Open in encoder" },
+      { href: "/help-in-morse-code", label: "HELP" },
+      { href: "/morse-code-sos", label: "Compare SOS" },
+      { href: "/morse-code-word-separator", label: "Word spacing" },
+    ],
+    faqItems: [
+      {
+        q: "What is HELP ME in Morse code?",
+        a: "HELP ME in Morse code is .... . .-.. .--. / -- . when written with a slash word separator.",
+      },
+      {
+        q: "Why is there a slash in HELP ME?",
+        a: "The slash marks the word break between HELP and ME in copied text.",
+      },
+      {
+        q: "Is HELP ME the same as SOS?",
+        a: "No. HELP ME is a two-word phrase. SOS is a special distress signal pattern.",
+      },
+      {
+        q: "Can I hear HELP ME in Morse code?",
+        a: "Yes. Use the audio link to load HELP ME into the MorseWords audio tool.",
+      },
+      {
+        q: "What is the biggest spacing mistake with HELP ME?",
+        a: "The biggest mistake is losing the word boundary between HELP and ME.",
+      },
+    ],
+    metaTitle: "Help Me in Morse Code | Copy, Audio, and Word Spacing | MorseWords",
+    metaDescription:
+      "See HELP ME in Morse code with a clear word separator, copy or hear the phrase, compare it with HELP and SOS, and avoid spacing mistakes.",
+    keywords:
+      "help me in morse code, help me morse code, morse code help me, help me dots and dashes",
+  }),
+  "yes-in-morse-code": makePhrasePage({
+    slug: "yes-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "YES",
+    displayTitle: "Yes in Morse Code",
+    plainTextValue: "YES",
+    answerSummary:
+      "YES in Morse code is -.-- . ... for Y E S. It is a short affirmative word for practice, quizzes, and simple messages.",
+    breakdownIntro:
+      "YES is encoded as Y, E, and S. The middle E is a single dit, so it is easy to skip if you rush.",
+    contextTitle: "Using YES in Morse",
+    context: [
+      {
+        title: "Short response",
+        text: "YES works well in quizzes, short-response messages, and beginner practice sets.",
+      },
+      {
+        title: "Compare with NO and OK",
+        text: "Use YES beside NO and OK to practice short answer words with different rhythms.",
+        href: "/no-in-morse-code",
+      },
+      {
+        title: "Listen for the E",
+        text: "The single E in the middle is brief. Keep it audible between Y and S.",
+        href: "/e-in-morse-code",
+      },
+    ],
+    examples: [
+      {
+        title: "Direct answer",
+        text: "YES",
+        morse: morseForText("YES"),
+        note: "A compact positive response.",
+      },
+      {
+        title: "Answer pair",
+        text: "YES NO",
+        morse: morseForText("YES NO").replace(/\s{7,}/g, " / "),
+        note: "Use the slash to separate opposite short answers.",
+      },
+      {
+        title: "Quiz response",
+        text: "YES OK",
+        morse: morseForText("YES OK").replace(/\s{7,}/g, " / "),
+        note: "A practical phrase pair for short-answer drills.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Skipping E",
+        text: "YES has three letters. Do not jump from Y directly to S.",
+        href: "/e-in-morse-code",
+      },
+      {
+        title: "Confusing Y and Q",
+        text: "Y is -.--. Q is --.-. The first two marks are different.",
+        href: "/y-in-morse-code",
+      },
+      {
+        title: "Running YES into NO",
+        text: "When practicing answer pairs, keep a word gap or slash between YES and NO.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=YES", label: "Open in translator", primary: true },
+      { href: "/audio?text=YES", label: "Hear YES" },
+      { href: "/morse-code-encoder?text=YES", label: "Open in encoder" },
+      { href: "/no-in-morse-code", label: "NO" },
+      { href: "/ok-in-morse-code", label: "OK" },
+      { href: "/practice", label: "Practice answers" },
+    ],
+    faqItems: [
+      {
+        q: "What is YES in Morse code?",
+        a: "YES in Morse code is -.-- . ... for Y E S.",
+      },
+      {
+        q: "Why is YES useful for practice?",
+        a: "YES is short, familiar, and includes three different letter rhythms.",
+      },
+      {
+        q: "What is easy to miss in YES?",
+        a: "The single E in the middle is easy to skip because it is only one dit.",
+      },
+      {
+        q: "Should I practice YES with NO?",
+        a: "Yes. Practicing YES, NO, and OK together helps with short-response recognition.",
+      },
+      {
+        q: "Can I copy YES into another app?",
+        a: "Yes. Use periods and hyphens and keep letter spaces visible.",
+      },
+    ],
+    metaTitle: "Yes in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    metaDescription:
+      "See YES in Morse code, copy and hear the short affirmative word, review Y E S spacing, and compare it with NO and OK.",
+    keywords:
+      "yes in morse code, yes morse code, morse code yes, yes dots and dashes",
+  }),
+  "no-in-morse-code": makePhrasePage({
+    slug: "no-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "NO",
+    displayTitle: "No in Morse Code",
+    plainTextValue: "NO",
+    answerSummary:
+      "NO in Morse code is -. --- for N O. N is the reverse of A, and O is three dahs.",
+    breakdownIntro:
+      "NO is two letters: N followed by O. It is short, but both letters depend on getting dash timing right.",
+    contextTitle: "Using NO in Morse",
+    context: [
+      {
+        title: "Short negative response",
+        text: "NO is useful in quizzes, short messages, and answer-pair practice with YES and OK.",
+      },
+      {
+        title: "N versus A",
+        text: "N is -. and A is .-. The order is reversed, so listen for the dash first.",
+        href: "/n-in-morse-code",
+      },
+      {
+        title: "O as three dahs",
+        text: "O is ---. Count three long marks, not the five long marks used by zero.",
+        href: "/o-in-morse-code",
+      },
+    ],
+    examples: [
+      {
+        title: "Direct answer",
+        text: "NO",
+        morse: morseForText("NO"),
+        note: "A compact negative response.",
+      },
+      {
+        title: "Answer pair",
+        text: "NO YES",
+        morse: morseForText("NO YES").replace(/\s{7,}/g, " / "),
+        note: "Use this to practice opposite short answers.",
+      },
+      {
+        title: "Compare with OK",
+        text: "NO OK",
+        morse: morseForText("NO OK").replace(/\s{7,}/g, " / "),
+        note: "Both include O, but the surrounding letters change the rhythm.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Reversing N into A",
+        text: "N starts with a dash. If you send dot-dash, you sent A instead.",
+        href: "/a-in-morse-code",
+      },
+      {
+        title: "Confusing O with zero",
+        text: "O is three dahs. Zero is five dahs, so count the marks when context is unclear.",
+        href: "/0-in-morse-code",
+      },
+      {
+        title: "Losing the letter gap",
+        text: "Keep the gap between N and O so -. --- does not run together.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=NO", label: "Open in translator", primary: true },
+      { href: "/audio?text=NO", label: "Hear NO" },
+      { href: "/morse-code-encoder?text=NO", label: "Open in encoder" },
+      { href: "/yes-in-morse-code", label: "YES" },
+      { href: "/ok-in-morse-code", label: "OK" },
+      { href: "/n-in-morse-code", label: "Study N" },
+    ],
+    faqItems: [
+      {
+        q: "What is NO in Morse code?",
+        a: "NO in Morse code is -. ---.",
+      },
+      {
+        q: "Why mention A when learning NO?",
+        a: "The N in NO is dash-dot, while A is dot-dash. The reversal is a common beginner mixup.",
+      },
+      {
+        q: "Is O the same as zero in Morse code?",
+        a: "No. O is three dashes, while zero is five dashes.",
+      },
+      {
+        q: "What should I practice with NO?",
+        a: "Practice NO with YES and OK so short responses become easy to hear.",
+      },
+      {
+        q: "Can I hear NO in Morse code?",
+        a: "Yes. Use the audio link on this page to load NO into the audio tool.",
+      },
+    ],
+    metaTitle: "No in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    metaDescription:
+      "See NO in Morse code, copy and hear the short negative word, review N and O timing, and compare it with YES and OK.",
+    keywords:
+      "no in morse code, no morse code, morse code no, no dots and dashes",
+  }),
+  "ok-in-morse-code": makePhrasePage({
+    slug: "ok-in-morse-code",
+    eyebrow: "Phrase lookup",
+    label: "OK",
+    displayTitle: "OK in Morse Code",
+    plainTextValue: "OK",
+    answerSummary:
+      "OK in Morse code is --- -.- for O K. It is short and practical, but the letter gap between O and K must stay clear.",
+    breakdownIntro:
+      "OK is two letters: O and K. O is three dahs, and K is dah-dit-dah.",
+    contextTitle: "Using OK in Morse",
+    context: [
+      {
+        title: "Short acknowledgment",
+        text: "OK is useful for simple practice messages, quizzes, and short response sets.",
+      },
+      {
+        title: "Keep O and K separate",
+        text: "O is --- and K is -.-. Without the letter gap, the two dash-heavy patterns become harder to read.",
+      },
+      {
+        title: "Practice with YES and NO",
+        text: "Use OK beside YES and NO to practice short everyday responses.",
+        href: "/yes-in-morse-code",
+      },
+    ],
+    examples: [
+      {
+        title: "Direct answer",
+        text: "OK",
+        morse: morseForText("OK"),
+        note: "A compact acknowledgment word.",
+      },
+      {
+        title: "Response set",
+        text: "YES NO OK",
+        morse: morseForText("YES NO OK").replace(/\s{7,}/g, " / "),
+        note: "A useful short-answer drill with clear word separators.",
+      },
+      {
+        title: "Letter comparison",
+        text: "O K",
+        morse: morseForText("O K").replace(/\s{7,}/g, " / "),
+        note: "Practice O and K as separate units before sending OK as a word.",
+      },
+    ],
+    commonMistakes: [
+      {
+        title: "Blending O into K",
+        text: "Both letters use dahs. Keep the O pattern and K pattern separated by a letter gap.",
+      },
+      {
+        title: "Shortening O",
+        text: "O has three dahs. Two dahs is M, so count the long marks.",
+        href: "/o-in-morse-code",
+      },
+      {
+        title: "Dropping the middle dit in K",
+        text: "K is -.-. If you miss the middle dit, it can sound like a dash-heavy blur.",
+        href: "/k-in-morse-code",
+      },
+    ],
+    relatedLinks: [
+      { href: "/?text=OK", label: "Open in translator", primary: true },
+      { href: "/audio?text=OK", label: "Hear OK" },
+      { href: "/morse-code-encoder?text=OK", label: "Open in encoder" },
+      { href: "/yes-in-morse-code", label: "YES" },
+      { href: "/no-in-morse-code", label: "NO" },
+      { href: "/practice", label: "Practice responses" },
+    ],
+    faqItems: [
+      {
+        q: "What is OK in Morse code?",
+        a: "OK in Morse code is --- -.-.",
+      },
+      {
+        q: "Why can OK be tricky?",
+        a: "OK is short, but both O and K use long dahs, so the letter gap must stay clear.",
+      },
+      {
+        q: "Should OK be written as one word?",
+        a: "Yes. OK is usually written as the two letters O and K with a letter gap between them.",
+      },
+      {
+        q: "What should I compare OK with?",
+        a: "Compare OK with YES and NO for short-response practice.",
+      },
+      {
+        q: "Can I hear OK in Morse code?",
+        a: "Yes. Use the audio link on this page to hear the O K rhythm.",
+      },
+    ],
+    metaTitle: "OK in Morse Code | Copy, Audio, and Breakdown | MorseWords",
+    metaDescription:
+      "See OK in Morse code, copy and hear the two-letter response, review O K spacing, and compare it with YES and NO.",
+    keywords:
+      "ok in morse code, ok morse code, morse code ok, okay in morse code",
+  }),
 };
 
 export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
