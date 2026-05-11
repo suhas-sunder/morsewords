@@ -13,6 +13,9 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
 - The decorative Morse side accents are shared through
   `MorseAmbientBackground` and rendered by `PageBackdrop`; future theme work
   should treat that as one shared decorative surface, not a route-local patch.
+- Hero, page-heading, section-heading, and eyebrow surfaces are mapped in
+  `docs/hero-heading-surface-map.md`. Future theme work should use that map
+  before changing heading colors or introducing tokens.
 - Current styling still depends heavily on Tailwind color classes, style
   objects, route-local button classes, and global CSS overrides.
 
@@ -101,6 +104,9 @@ These surfaces need planned light and dark theme coverage.
   icons, link hover states, and footer copy.
 - Hero sections: `ToolHero`, `PageHero`, hero eyebrow line, H1, lead text,
   aside panels, and header action rows.
+- Section headings: left-aligned section eyebrows, centered FAQ eyebrows,
+  support-section H2s, route-local reference section headings, and toolkit
+  headings. These need consolidation before heading color tokens are applied.
 - Dark answer panels: `ToolOutputPanel`, `DarkNote`, pre/code blocks, output
   footer buttons, and status text.
 - Tool panels: `ToolPanel`, `ToolTextarea`, text inputs, select inputs, range
@@ -193,6 +199,9 @@ These surfaces need planned light and dark theme coverage.
 
 - `TranslatorSectionsBasic` has many local constants that duplicate
   `ToolWorkspace` behavior.
+- Hero and heading duplication is mapped in
+  `docs/hero-heading-surface-map.md`; repeated line-plus-label eyebrow markup
+  should be consolidated before heading colors are tokenized.
 - `MorseAudioTranslator` has route-local button constants and local labeled
   input/select helpers.
 - `/morse-code-alphabet` has route-local copy buttons, sections, and cards.
@@ -314,6 +323,9 @@ Additional tokens may be useful after consolidation:
 
 - Move repeated button, action-link, card, static-panel, FAQ, breadcrumb, and
   reference-table patterns into shared components.
+- Consolidate the mapped hero, heading, and eyebrow primitives in small
+  screenshot-backed batches. Start with the left-aligned section-eyebrow
+  primitive before broad hero wrappers.
 - Keep home and `/audio` visually unchanged.
 - Verify route groups with screenshots before and after each extraction.
 

@@ -44,6 +44,12 @@ broad component refactor.
   `MorseAmbientBackground` and rendering it through `PageBackdrop` on all
   routes. This removed the stale non-home breakpoint and rail-width branch
   while keeping the homepage visual output unchanged.
+- Completed the hero and heading surface mapping in
+  `docs/hero-heading-surface-map.md`. This documented the current `ToolHero`,
+  `PageHero`, `Eyebrow`, section-heading, FAQ-heading, and toolkit-heading
+  surfaces without changing runtime source. The next safe implementation batch
+  is a narrow left-aligned section-eyebrow primitive pass for low-risk tool
+  support sections.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -76,10 +82,18 @@ broad component refactor.
 
 - `ToolHero` and `PageHero` both use the same hero constants from
   `heroStyles.ts`, but some pages still build headers manually.
+- `docs/hero-heading-surface-map.md` is the current detailed map for hero,
+  page-heading, section-heading, and eyebrow surfaces.
 - `TranslatorSectionsBasic` manually renders the live translator header.
 - `WordSeparatorTool` manually renders a hero using the same hero constants.
-- Consolidation target: a single hero primitive with optional action row and
-  optional aside, while preserving current spacing.
+- Repeated section eyebrow markup exists in home support sections, audio/tool
+  support sections, FAQ headings, related tools, and selected route files.
+- Near-term consolidation target: create or expose a small left-aligned
+  section-eyebrow primitive first, then migrate only low-risk support sections
+  with screenshots.
+- Longer-term consolidation target: evaluate whether `ToolHero` and `PageHero`
+  need a shared lower-level primitive with optional action row and optional
+  aside, while preserving current spacing.
 
 ### Homepage Support Sections
 
@@ -262,9 +276,22 @@ broad component refactor.
 - Replace route-local `bg-[#fffdf8]` and `bg-[#fffaf2]` card patterns with
   shared static panel classes or shared components.
 - Keep content unchanged and compare screenshots route by route.
-- A narrow visual follow-up can map manual `ToolHero`/`PageHero` usages before
-  changing them. Do not move broad page wrappers until the hero spacing and
-  homepage first viewport have screenshot coverage.
+- The manual `ToolHero`/`PageHero` and heading usage map now lives in
+  `docs/hero-heading-surface-map.md`. Do not move broad page wrappers until
+  the section-eyebrow pass and hero-spacing screenshot coverage are complete.
+
+### 5a. Hero and Heading Primitives
+
+- Start with the left-aligned line-plus-label section eyebrow used across
+  support sections.
+- Do not include section margins, H2 classes, FAQ centered headings, toolkit
+  headings, action rows, or broad hero wrappers in the first eyebrow batch.
+- Verify `/audio`, `/morse-code-encoder`, `/morse-code-decoder`,
+  `/morse-code-sound-generator`, and `/morse-code-word-separator` on desktop
+  and mobile.
+- Leave `TranslatorSectionsBasic`, home support headings, FAQ headings,
+  toolkit headings, practice, typing, and sentence-practice headings for later
+  dedicated passes.
 
 ### 6. FAQ, Breadcrumb, and Toolkit
 
