@@ -15,6 +15,10 @@ import {
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
 import {
+  ActionButton,
+  ActionRow,
+} from "~/client/components/shared/ActionControls";
+import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
   textToMorse,
@@ -495,18 +499,20 @@ export default function MorseAudioTranslator({
                 <ToolOutputPanel
                   label="Output (Morse)"
                   footer={
-                    <>
-                      <button
-                        type="button"
+                    <ActionRow className="items-center">
+                      <ActionButton
+                        unstyled
                         onClick={handleClearOutput}
                         className={`inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${DARK_PANEL_BUTTON}`}
+                        leadingIcon={
+                          <TrashIcon size={16} title={undefined} aria-hidden="true" />
+                        }
                       >
-                        <TrashIcon size={16} title={undefined} aria-hidden="true" />
                         Clear output
-                      </button>
+                      </ActionButton>
 
-                      <button
-                        type="button"
+                      <ActionButton
+                        unstyled
                         onClick={handleCopyMorse}
                         disabled={!canPlay}
                         className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
@@ -514,15 +520,21 @@ export default function MorseAudioTranslator({
                             ? `cursor-pointer ${DARK_PANEL_BUTTON}`
                             : DARK_PANEL_DISABLED
                         }`}
+                        leadingIcon={
+                          copied === "morse" ? (
+                            <CheckCircleIcon
+                              size={16}
+                              title={undefined}
+                              aria-hidden="true"
+                            />
+                          ) : (
+                            <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                          )
+                        }
                       >
-                        {copied === "morse" ? (
-                          <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
-                        ) : (
-                          <CopyIcon size={16} title={undefined} aria-hidden="true" />
-                        )}
                         <span>{copied === "morse" ? "Copied" : "Copy Output"}</span>
-                      </button>
-                    </>
+                      </ActionButton>
+                    </ActionRow>
                   }
                 >
                   <pre className="min-h-[10rem] max-h-[18rem] overflow-auto whitespace-pre-wrap break-words bg-transparent p-4 font-mono text-sm leading-relaxed text-sky-100 sm:text-base">
@@ -719,13 +731,16 @@ export default function MorseAudioTranslator({
               )}
 
               <div className="mt-4">
-                <button
+                <ActionButton
+                  unstyled
                   onClick={() => setAdvancedOpen((v) => !v)}
                   className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95"
+                  leadingIcon={
+                    <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
+                  }
                 >
-                  <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
                   {advancedOpen ? "Hide advanced" : "Show advanced"}
-                </button>
+                </ActionButton>
               </div>
 
               {exportOpen && (
@@ -765,8 +780,8 @@ export default function MorseAudioTranslator({
                   </div>
 
                   <div className="mt-4 flex flex-wrap gap-2">
-                    <button
-                      type="button"
+                    <ActionButton
+                      unstyled
                       onClick={handleExportWav}
                       disabled={!canPlay || !renderedSoundOn}
                       className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
@@ -774,22 +789,27 @@ export default function MorseAudioTranslator({
                           ? "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
                           : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                       }`}
+                      leadingIcon={
+                        <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                      }
                     >
-                      <DownloadIcon size={18} title={undefined} aria-hidden="true" />
                       <span>Download WAV</span>
-                    </button>
+                    </ActionButton>
                   </div>
                 </div>
               )}
 
               <div className="mt-4">
-                <button
+                <ActionButton
+                  unstyled
                   onClick={() => setExportOpen((v) => !v)}
                   className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95"
+                  leadingIcon={
+                    <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                  }
                 >
-                  <DownloadIcon size={18} title={undefined} aria-hidden="true" />
                   {exportOpen ? "Hide export" : "Show export"}
-                </button>
+                </ActionButton>
               </div>
 
             </div>

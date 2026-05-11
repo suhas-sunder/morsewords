@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { PlayIcon } from "~/client/assets/svg/Icons";
-import { toolControlButtonClass } from "./ToolWorkspace";
+import { ActionLinkButton } from "./ActionControls";
 import {
   HERO_EYEBROW_LINE_CLASS,
   HERO_EYEBROW_ROW_CLASS,
@@ -151,21 +151,25 @@ export function DarkNote({
 export function ActionLinks({
   links,
 }: {
-  links: Array<{ href: string; label: string; primary?: boolean }>;
+  links: Array<{
+    href: string;
+    icon?: React.ReactNode;
+    label: string;
+    primary?: boolean;
+  }>;
 }) {
   return (
     <div className="flex flex-wrap gap-1.5 sm:gap-2">
       {links.map((link) => (
-        <a
+        <ActionLinkButton
           key={link.href + link.label}
           href={link.href}
-          className={toolControlButtonClass({
-            tone: link.primary ? "dark" : "light",
-            size: "md",
-          })}
+          tone={link.primary ? "dark" : "light"}
+          size="md"
+          leadingIcon={link.icon}
         >
           {link.label}
-        </a>
+        </ActionLinkButton>
       ))}
     </div>
   );

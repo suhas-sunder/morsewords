@@ -8,6 +8,10 @@ import {
 import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
 import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import {
+  ActionButton,
+  ActionRow,
+} from "~/client/components/shared/ActionControls";
 
 import {
   CheckCircleIcon,
@@ -601,9 +605,9 @@ export default function TranslatorSectionsBasic({
                 />
 
                 <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <button
-                      type="button"
+                  <ActionRow className="items-center">
+                    <ActionButton
+                      unstyled
                       onClick={() => {
                         if (direction === "encode") setPlainA("");
                         else setMorseB("");
@@ -611,13 +615,15 @@ export default function TranslatorSectionsBasic({
                       className={`inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
                         isHome ? "" : "min-h-10 sm:min-h-0"
                       } ${DARK_PANEL_BUTTON}`}
+                      leadingIcon={
+                        <TrashIcon size={16} title={undefined} aria-hidden="true" />
+                      }
                     >
-                      <TrashIcon size={16} title={undefined} aria-hidden="true" />
                       Clear output
-                    </button>
+                    </ActionButton>
 
-                    <button
-                      type="button"
+                    <ActionButton
+                      unstyled
                       onClick={() => handleCopy(outputValue, "output")}
                       disabled={!outputValue}
                       className={`flex cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
@@ -625,23 +631,29 @@ export default function TranslatorSectionsBasic({
                       } ${
                         outputValue ? DARK_PANEL_BUTTON : DARK_PANEL_DISABLED
                       }`}
+                      leadingIcon={
+                        copied === "output" ? (
+                          <CheckCircleIcon
+                            size={16}
+                            title={undefined}
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                        )
+                      }
                     >
-                      {copied === "output" ? (
-                        <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
-                      ) : (
-                        <CopyIcon size={16} title={undefined} aria-hidden="true" />
-                      )}
                       <span>
                         {copied === "output" ? "Copied" : "Copy Output"}
                       </span>
-                    </button>
-                  </div>
+                    </ActionButton>
+                  </ActionRow>
                 </div>
               </div>
             </div>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-              <button
-                type="button"
+              <ActionButton
+                unstyled
                 onClick={() => {
                   if (player.state === "idle") {
                     handlePlay();
@@ -671,20 +683,21 @@ export default function TranslatorSectionsBasic({
                         ? HOME_DISABLED_CONTROL
                         : DISABLED_CONTROL
                 }`}
+                leadingIcon={
+                  player.state === "playing" ? (
+                    <PauseIcon size={22} title="Pause timer" />
+                  ) : (
+                    <PlayIcon
+                      size={22}
+                      title={
+                        player.state === "paused"
+                          ? "Resume timer"
+                          : "Start timer"
+                      }
+                    />
+                  )
+                }
               >
-                {player.state === "playing" ? (
-                  <PauseIcon size={22} title="Pause timer" />
-                ) : (
-                  <PlayIcon
-                    size={22}
-                    title={
-                      player.state === "paused"
-                        ? "Resume timer"
-                        : "Start timer"
-                    }
-                  />
-                )}
-
                 <span>
                   {player.state === "playing"
                     ? "Pause"
@@ -692,10 +705,10 @@ export default function TranslatorSectionsBasic({
                       ? "Resume"
                       : "Play"}
                 </span>
-              </button>
+              </ActionButton>
 
-              <button
-                type="button"
+              <ActionButton
+                unstyled
                 onClick={player.stop}
                 disabled={!player.isSupported || player.state === "idle"}
                 className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
@@ -707,13 +720,13 @@ export default function TranslatorSectionsBasic({
                       ? HOME_DISABLED_CONTROL
                       : DISABLED_CONTROL
                 }`}
+                leadingIcon={<StopIcon size={22} title="Stop timer" />}
               >
-                <StopIcon size={22} title="Stop timer" />
                 <span>Stop</span>
-              </button>
+              </ActionButton>
 
-              <button
-                type="button"
+              <ActionButton
+                unstyled
                 onClick={handleSaveAudio}
                 disabled={!canPlay || !soundOn}
                 className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
@@ -725,10 +738,12 @@ export default function TranslatorSectionsBasic({
                       ? HOME_DISABLED_CONTROL
                       : DISABLED_CONTROL
                 }`}
+                leadingIcon={
+                  <DownloadIcon size={22} title={undefined} aria-hidden="true" />
+                }
               >
-                <DownloadIcon size={22} title={undefined} aria-hidden="true" />
                 <span>Save Audio</span>
-              </button>
+              </ActionButton>
             </div>
 
             <div

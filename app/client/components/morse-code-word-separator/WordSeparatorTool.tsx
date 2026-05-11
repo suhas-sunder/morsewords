@@ -1,5 +1,4 @@
 import * as React from "react";
-import { CheckCircleIcon, CopyIcon } from "~/client/assets/svg/Icons";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import {
   HERO_EYEBROW_LINE_CLASS,
@@ -16,6 +15,7 @@ import {
   ToolTextarea,
   toolControlButtonClass,
 } from "~/client/components/shared/ToolWorkspace";
+import { CopyActionButton } from "~/client/components/shared/ActionControls";
 
 type OutputSep = "standard" | "slash" | "pipe" | "newline";
 type Mode = "normalizeMorse" | "englishToMorse";
@@ -243,25 +243,16 @@ export default function WordSeparatorTool() {
           label="Output"
           footer={
             <>
-              <button
-                type="button"
-                onClick={async () => {
-                  const ok = await copyToClipboard(out);
-                  setCopied(ok);
-                  window.setTimeout(() => setCopied(false), 900);
-                }}
-                className={`${toolControlButtonClass({
-                  tone: "darkPanel",
-                  size: "sm",
-                })} active:scale-95`}
-              >
-                {copied ? (
-                  <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
-                ) : (
-                  <CopyIcon size={16} title={undefined} aria-hidden="true" />
-                )}
-                Copy output
-              </button>
+              <CopyActionButton
+                value={out}
+                label="Copy output"
+                copiedLabel={null}
+                onCopy={copyToClipboard}
+                onCopiedChange={setCopied}
+                tone="darkPanel"
+                size="sm"
+                className="active:scale-95"
+              />
               {copied && (
                 <span className="text-sm font-semibold text-emerald-300">
                   Copied

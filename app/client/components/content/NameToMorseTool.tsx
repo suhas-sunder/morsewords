@@ -1,8 +1,6 @@
 import * as React from "react";
 
 import {
-  CheckCircleIcon,
-  CopyIcon,
   HeadphonesIcon,
   PlayIcon,
   SignalPathIcon,
@@ -21,64 +19,12 @@ import {
   ToolOutputPanel,
   ToolPanel,
   ToolSampleButtons,
-  toolControlButtonClass,
 } from "~/client/components/shared/ToolWorkspace";
-
-async function copyText(value: string) {
-  try {
-    await navigator.clipboard.writeText(value);
-    return true;
-  } catch {
-    if (typeof document === "undefined") return false;
-    const textarea = document.createElement("textarea");
-    textarea.value = value;
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
-    document.body.appendChild(textarea);
-    textarea.select();
-    const copied = document.execCommand("copy");
-    document.body.removeChild(textarea);
-    return copied;
-  }
-}
-
-function CopyButton({
-  value,
-  label,
-  disabled,
-}: {
-  value: string;
-  label: string;
-  disabled?: boolean;
-}) {
-  const [copied, setCopied] = React.useState(false);
-
-  return (
-    <button
-      type="button"
-      disabled={disabled}
-      onClick={async () => {
-        if (disabled) return;
-        const ok = await copyText(value);
-        if (!ok) return;
-        setCopied(true);
-        window.setTimeout(() => setCopied(false), 900);
-      }}
-      className={toolControlButtonClass({
-        tone: "darkPanel",
-        size: "sm",
-        disabled,
-      })}
-    >
-      {copied ? (
-        <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
-      ) : (
-        <CopyIcon size={16} title={undefined} aria-hidden="true" />
-      )}
-      {copied ? "Copied" : label}
-    </button>
-  );
-}
+import {
+  ActionButton,
+  ActionLinkButton,
+  CopyActionButton,
+} from "~/client/components/shared/ActionControls";
 
 export default function NameToMorseTool() {
   const [name, setName] = React.useState("Avery");
@@ -141,29 +87,31 @@ export default function NameToMorseTool() {
         label="Name in Morse"
         footer={
           <>
-            <CopyButton
+            <CopyActionButton
               value={normalizedName}
               label="Copy name"
               disabled={!canUseOutput}
+              tone="darkPanel"
+              size="sm"
             />
-            <CopyButton
+            <CopyActionButton
               value={morse}
               label="Copy Morse"
               disabled={!canUseOutput}
+              tone="darkPanel"
+              size="sm"
             />
-            <button
-              type="button"
+            <ActionButton
               disabled={!canUseOutput}
               onClick={() => playMorsePattern(morse)}
-              className={toolControlButtonClass({
-                tone: "darkPanel",
-                size: "sm",
-                disabled: !canUseOutput,
-              })}
+              tone="darkPanel"
+              size="sm"
+              leadingIcon={
+                <PlayIcon size={16} title={undefined} aria-hidden="true" />
+              }
             >
-              <PlayIcon size={16} title="Play Morse" />
               Play Morse
-            </button>
+            </ActionButton>
           </>
         }
       >
@@ -187,40 +135,30 @@ export default function NameToMorseTool() {
           </div>
 
           <div className="grid gap-2 sm:grid-cols-2">
-            <a
+            <ActionLinkButton
               href={canUseOutput ? `/?text=${encodedName}` : "/"}
-              className={toolControlButtonClass({
-                tone: "darkPanel",
-                size: "sm",
-                full: true,
-                disabled: !canUseOutput,
-              })}
-              aria-disabled={!canUseOutput}
-              tabIndex={canUseOutput ? undefined : -1}
-              onClick={(event) => {
-                if (!canUseOutput) event.preventDefault();
-              }}
+              disabled={!canUseOutput}
+              tone="darkPanel"
+              size="sm"
+              full
+              leadingIcon={
+                <SignalPathIcon size={16} title={undefined} aria-hidden="true" />
+              }
             >
-              <SignalPathIcon size={16} title={undefined} aria-hidden="true" />
               Open in translator
-            </a>
-            <a
+            </ActionLinkButton>
+            <ActionLinkButton
               href={canUseOutput ? `/audio?text=${encodedName}` : "/audio"}
-              className={toolControlButtonClass({
-                tone: "darkPanel",
-                size: "sm",
-                full: true,
-                disabled: !canUseOutput,
-              })}
-              aria-disabled={!canUseOutput}
-              tabIndex={canUseOutput ? undefined : -1}
-              onClick={(event) => {
-                if (!canUseOutput) event.preventDefault();
-              }}
+              disabled={!canUseOutput}
+              tone="darkPanel"
+              size="sm"
+              full
+              leadingIcon={
+                <HeadphonesIcon size={16} title={undefined} aria-hidden="true" />
+              }
             >
-              <HeadphonesIcon size={16} title={undefined} aria-hidden="true" />
               Hear in audio
-            </a>
+            </ActionLinkButton>
           </div>
         </div>
       </ToolOutputPanel>

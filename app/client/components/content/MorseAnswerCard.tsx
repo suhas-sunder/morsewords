@@ -1,8 +1,6 @@
 import * as React from "react";
 
 import {
-  CheckCircleIcon,
-  CopyIcon,
   HeadphonesIcon,
   PlayIcon,
   SparklesIcon,
@@ -10,8 +8,13 @@ import {
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import {
   ToolOutputPanel,
-  toolControlButtonClass,
 } from "~/client/components/shared/ToolWorkspace";
+import {
+  ActionButton,
+  ActionLinkButton,
+  ActionRow,
+  CopyActionButton,
+} from "~/client/components/shared/ActionControls";
 
 type MorseAnswerCardProps = {
   label: string;
@@ -25,57 +28,6 @@ type MorseAnswerCardProps = {
   translatorHref?: string;
   breakdown?: Array<{ label: string; morse: string; note?: string }>;
 };
-
-async function copyText(value: string) {
-  if (typeof navigator !== "undefined" && navigator.clipboard) {
-    await navigator.clipboard.writeText(value);
-    return;
-  }
-
-  if (typeof document === "undefined") return;
-
-  const textarea = document.createElement("textarea");
-  textarea.value = value;
-  textarea.style.position = "fixed";
-  textarea.style.opacity = "0";
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
-}
-
-function CopyButton({
-  value,
-  label,
-}: {
-  value: string;
-  label: string;
-}) {
-  const [copied, setCopied] = React.useState(false);
-
-  return (
-    <button
-      type="button"
-      onClick={async () => {
-        try {
-          await copyText(value);
-          setCopied(true);
-          window.setTimeout(() => setCopied(false), 900);
-        } catch {
-          setCopied(false);
-        }
-      }}
-      className={toolControlButtonClass({ tone: "darkPanel", size: "sm" })}
-    >
-      {copied ? (
-        <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
-      ) : (
-        <CopyIcon size={16} title={undefined} aria-hidden="true" />
-      )}
-      {copied ? "Copied" : label}
-    </button>
-  );
-}
 
 export default function MorseAnswerCard({
   label,
@@ -122,16 +74,28 @@ export default function MorseAnswerCard({
         className="h-fit"
         footer={
           <>
-            <CopyButton value={plainText} label="Copy text" />
-            <CopyButton value={morse} label="Copy Morse" />
-            <button
-              type="button"
+            <CopyActionButton
+              value={plainText}
+              label="Copy text"
+              tone="darkPanel"
+              size="sm"
+            />
+            <CopyActionButton
+              value={morse}
+              label="Copy Morse"
+              tone="darkPanel"
+              size="sm"
+            />
+            <ActionButton
               onClick={() => playMorsePattern(morse)}
-              className={toolControlButtonClass({ tone: "darkPanel", size: "sm" })}
+              tone="darkPanel"
+              size="sm"
+              leadingIcon={
+                <PlayIcon size={16} title={undefined} aria-hidden="true" />
+              }
             >
-              <PlayIcon size={16} title="Play Morse" />
               Play Morse
-            </button>
+            </ActionButton>
           </>
         }
       >
@@ -178,21 +142,19 @@ export default function MorseAnswerCard({
               <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                 Next actions
               </p>
-              <div className="mt-3 flex max-w-[720px] flex-wrap gap-2">
+              <ActionRow className="mt-3 max-w-[720px]">
                 {actionLinks.map((link, index) => (
-                  <a
+                  <ActionLinkButton
                     key={link.href}
                     href={link.href}
-                    className={toolControlButtonClass({
-                      tone: index === 0 ? "dark" : "light",
-                      size: "sm",
-                    })}
+                    tone={index === 0 ? "dark" : "light"}
+                    size="sm"
+                    leadingIcon={link.icon}
                   >
-                    {link.icon}
                     {link.label}
-                  </a>
+                  </ActionLinkButton>
                 ))}
-              </div>
+              </ActionRow>
             </div>
           ) : null}
 
