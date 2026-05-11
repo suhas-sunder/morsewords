@@ -31,13 +31,18 @@ broad component refactor.
 - Completed the narrow typing result share/download modal cleanup by replacing
   its local modal action controls with shared action controls while preserving
   typing timer, scoring, generated image, filename, and share behavior.
+- Completed the narrow word-trainer weak-word result-review cleanup by moving
+  only the Copy weak words and Clear weak words controls to shared
+  `ActionButton` while preserving generated copy text, copied/error status,
+  weak-list clearing, button order, and visual classes.
 - Removed legacy `TranslatorSections.tsx` after search confirmed active routes
   and components import `TranslatorSectionsBasic` instead.
 - Remaining duplicated controls are mostly behavior-specific practice, quiz,
   typing, trainer, audio/visual practice, and word-search controls. The map
   keeps scoring, timer, playback, reveal, skip, and flash controls local for
   now. The next implementation batch should stay similarly narrow, such as
-  weak-word copy/clear controls or another isolated result-action surface.
+  practice clear/restart visual buttons after focused interaction coverage, or
+  a non-visual type-helper cleanup.
 
 ## Duplicated Homepage-Only or Home-Like Components
 

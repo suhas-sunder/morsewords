@@ -28,11 +28,11 @@ visual systems.
 | `/practice` | `app/routes/practice.tsx` -> `app/client/components/practice/PracticePage.tsx` | `PromptCard.tsx`, `PracticeControls.tsx` types, `practiceEngine.ts`, `ToggleChip`, `ShareResultsButton.tsx` | mode, pool, answer input, check, next, clear, skip, restart, share | scoring, attempts, completed count, streak, best streak, solved state, prompt state | localStorage for pool, per-pool mode, per-pool best streak. No query params found. | Uses `ShareResultsButton`, which uses `ActionControls`. Uses `ToolButton`, `ToggleChip`, and `toolControlButtonClass` locally. |
 | practice helper surface | `app/client/components/practice/PracticeControls.tsx` | `Button`, `ToggleChip` | mode, pool, new prompt, reset stats | props only | No persistence. Imported for `DrillMode` and `Pool` types by active code. Default component is not rendered by active page. | Does not use `ActionControls`. Leave until a separate type/helper cleanup pass. |
 | practice stats helper | `app/client/components/practice/StatsBar.tsx` | none | static stat chips | props only | No persistence. No active import found. | No action controls. Leave until a separate removal validation pass. |
-| `/typing` | `app/routes/typing.tsx` -> `app/client/components/typing/TypingPage.tsx` | `TypingControls.tsx` type, `typingEngine.ts`, `Button`, `typing/components/ShareResultsButton.tsx` | duration buttons, pause/resume, reset, input-mode buttons, stats toggle, textarea, copy decoded, clear, on-screen keys, completion modal, share/download result controls | timer/session machine, raw input, decoded output, mode, stats visibility, completion modal, elapsed time, remaining time | localStorage for input mode, stats visibility, duration. No query params found. | Uses `copyTextToClipboard`. Uses local `Button`. Typing share modal does not yet use `ActionControls`. |
+| `/typing` | `app/routes/typing.tsx` -> `app/client/components/typing/TypingPage.tsx` | `TypingControls.tsx` type, `typingEngine.ts`, `Button`, `typing/components/ShareResultsButton.tsx` | duration buttons, pause/resume, reset, input-mode buttons, stats toggle, textarea, copy decoded, clear, on-screen keys, completion modal, share/download result controls | timer/session machine, raw input, decoded output, mode, stats visibility, completion modal, elapsed time, remaining time | localStorage for input mode, stats visibility, duration. No query params found. | Uses `copyTextToClipboard`. Typing result share/download modal uses `ActionControls`; timer, decoded-output, clear, and keyboard controls still use local `Button`. |
 | typing helper surface | `app/client/components/typing/TypingControls.tsx` | `ToggleChip` | input mode, show/hide stats | props only | No persistence. Imported for `InputMode` type by active page. Default component is not rendered by active page. | Does not use `ActionControls`. Leave until a separate type/helper cleanup pass. |
 | typing stats helper | `app/client/components/typing/TypingStatsBar.tsx` | none | static stats | interval clock | No active import found. | No action controls. Leave until a separate removal validation pass. |
 | `/morse-code-sentence-practice` | `app/routes/morse-code-sentence-practice.tsx` -> `app/client/components/morse-code-sentence-practice/SentencePracticePage.tsx` | `SentencePracticeData.ts`, `SentencePracticeFaq.tsx`, `ShareResultsButton.tsx`, local `CopyButton`, local `ToggleButton` | mode, difficulty, set filter, answer textarea, check, next, clear, hints, reveal, skip, restart, share, library copy | scoring, attempts, skipped count, completed count, streak, best streak, active prompt, reveal/hint flags, answer feedback | localStorage for mode, difficulty, set, best streak. No query params found. | Uses shared `copyTextToClipboard` and shared practice `ShareResultsButton`. Local copy button already wraps `ActionButton`. |
-| `/morse-code-word-trainer` | `app/routes/morse-code-word-trainer.tsx` | local `ChoiceButton`, local `ToolButton`, `FeedbackCard`, `SliderRow`, `MiniLink`, shared practice `ShareResultsButton` | shuffle, reset, practice weak words, word-list choices, custom input, answer mode, play, reveal, mark weak, answer input, check, try again, skip/next, new round, weak-word copy/clear/play | deck source, deck seed, prompt index, answer state, feedback, show answer, weak words, scoring, streak, best streak, round complete, audio settings | localStorage for custom words and best streak. No query params found. | Uses `copyTextToClipboard` for weak words and shared practice `ShareResultsButton`. Most action buttons are route-local. |
+| `/morse-code-word-trainer` | `app/routes/morse-code-word-trainer.tsx` | local `ChoiceButton`, local `ToolButton`, `FeedbackCard`, `SliderRow`, `MiniLink`, shared practice `ShareResultsButton` | shuffle, reset, practice weak words, word-list choices, custom input, answer mode, play, reveal, mark weak, answer input, check, try again, skip/next, new round, weak-word copy/clear/play | deck source, deck seed, prompt index, answer state, feedback, show answer, weak words, scoring, streak, best streak, round complete, audio settings | localStorage for custom words and best streak. No query params found. | Weak-word copy/clear now use `ActionButton` plus `copyTextToClipboard`; shared practice `ShareResultsButton` remains in use. Most behavior-heavy action buttons are route-local. |
 | `/morse-code-audio-practice` | `app/routes/morse-code-audio-practice.tsx` | `useMorseAudio`, `audioPromptBank`, local `TogglePill`, local `SliderRow`, `StrobeWarning` | difficulty, answer textarea, play, stop, check, reveal, next, skip, reset, advanced settings, sound/repeat/flash toggles, sliders | audio player state, hidden prompt, feedback, attempts, completed, skipped, correct, streak, best streak, flash event state, advanced panel | localStorage for difficulty and best streak. No query params found. | Does not use `ActionControls` for primary controls. Uses shared icons and `toolControlButtonClass`. |
 | `/morse-code-audio-quiz` | `app/routes/morse-code-audio-quiz.tsx` | `useMorseAudio`, `audioPromptBank`, `QuizComplete`, local `TogglePill`, local `SliderRow`, shared practice `ShareResultsButton` | difficulty, share, answer textarea, play, stop, check, next/finish, skip, try again, advanced settings, sound/repeat/flash toggles, sliders | fixed deck, deck seed, index, feedback, scoring, skipped count, streak, best streak, run start, game over, audio player state, flash event state | localStorage for difficulty and best streak. No query params found. | Uses shared practice `ShareResultsButton`. Other controls are local. |
 | `/morse-code-visual-practice` | `app/routes/morse-code-visual-practice.tsx` | local `useVisualPlayback`, local `SliderRow`, `StrobeWarning` | message input, flash message, reveal/hide answer, speed sliders | flash timers, active light, show answer, has-flashed warning gate | No localStorage and no query params found. | Does not use `ActionControls`. Uses shared icons and `toolControlButtonClass`. |
@@ -105,7 +105,7 @@ visual systems.
 | Check answer | Local `ToolButton` with `CheckCircleIcon` | Disabled for no active word or empty answer. Correct answer sets show answer. | `checkAnswer`, `feedback`, `answer`, scoring state | Enter key also checks or advances. | C: scoring side effects. |
 | Try again | Local `ToolButton` | Disabled when there is nothing to clear. Clears answer and feedback. | `setAnswer`, `setFeedback` | Native disabled button. | B: possible with interaction tests. |
 | Skip / next | Local `ToolButton` | Advances prompt or finishes round. | `nextWord`, `roundComplete`, `activeWord` | Native disabled behavior. | C: deck progression. |
-| Weak word play/copy/clear | Raw icon buttons and local `ToolButton`s | Individual play starts audio. Copy uses clipboard status. Clear empties weak list. | `playWord`, `copyWeakWords`, `clearWeakWords`, `weakWordCopyStatus` | Buttons have visible text or icon titles. | B for copy/clear only, C for play. |
+| Weak word play/copy/clear | Raw word play buttons; copy and clear use shared `ActionButton` | Individual play starts audio. Copy uses clipboard status. Clear empties weak list. | `playWord`, `copyWeakWords`, `clearWeakWords`, `copyStatus` | Buttons have visible text or icon titles. | Copy/clear consolidated. Keep play local because it starts audio playback. |
 | Share results | Shared practice `ShareResultsButton` | Uses stats, not custom word text. | `runStartedAt`, scoring state | Shared modal semantics. | Already consolidated. |
 
 ### Audio Practice: `/morse-code-audio-practice`
@@ -248,10 +248,10 @@ visual systems.
 
 | Class | Control group | Target component or helper | Exact files | Expected visual impact | Tests and screenshots needed |
 | --- | --- | --- | --- | --- | --- |
-| A | Typing result share modal buttons and download link | `ActionButton`, `ActionLinkButton`, shared `ShareIcon`/`SaveIcon` | `app/client/components/typing/components/ShareResultsButton.tsx` | None. Should match practice share modal control treatment. | `/typing` desktop/mobile screenshots in completed state and share modal. Interaction smoke for modal open, native share disabled/fallback state, and `morse-typing-results.png` download link. |
+| A (done) | Typing result share modal buttons and download link | `ActionButton`, `ActionLinkButton`, shared `ShareIcon`/`SaveIcon` | `app/client/components/typing/components/ShareResultsButton.tsx` | None. Matches practice share modal control treatment. | `/typing` desktop/mobile screenshots in completed state and share modal. Interaction smoke for modal open, native share disabled/fallback state, and `morse-typing-results.png` download link. |
 | A | Sentence library copy buttons are already using `ActionButton` and `copyTextToClipboard` | No source change needed | `app/client/components/morse-code-sentence-practice/SentencePracticePage.tsx` | None | Keep as reference for future copy controls. |
 | B | Practice Clear/Restart visual buttons | `ActionButton` or existing `ToolButton` alignment only | `PracticePage.tsx` | Should be none, but verify button row wrapping. | `/practice` desktop/mobile, check answer, clear, skip, restart, share modal. |
-| B | Word trainer weak-word Copy/Clear buttons | `ActionButton`, possibly `ActionRow` | `app/routes/morse-code-word-trainer.tsx` | Should be none if classes are preserved. | `/morse-code-word-trainer` desktop/mobile, weak-word creation, copy status, clear. |
+| A (done) | Word trainer weak-word Copy/Clear buttons | `ActionButton` | `app/routes/morse-code-word-trainer.tsx` | None; the shared control uses the same `toolControlButtonClass` output as the prior local `ToolButton`. | `/morse-code-word-trainer` desktop/mobile, weak-word creation, copy status, clear. |
 | B | Word search non-print toggles and top buttons | `ActionButton` only where local `ToolButton` maps exactly | `app/routes/morse-code-word-search-builder.tsx` | Should be none, but answer-key and preview state must match. | Existing word-search tests plus screenshots before/after. |
 | B | Audio and visual advanced settings show/hide controls | `ActionButton` or `ActionRow` only after settings snapshot | audio/visual practice and quiz route files | Should be none. | Strobe-warning tests plus screenshots with advanced settings open and closed. |
 | C | Check, Next, Skip, Reveal, Play, Flash, and timer controls that affect scoring, playback, or reveal state | Leave local for now | practice, sentence, trainer, audio quiz/practice, visual quiz/practice, typing | None | Need route-specific interaction tests before any visual replacement. |
@@ -261,42 +261,40 @@ visual systems.
 
 ## Suggested Next Refactor Batch
 
-Recommended next batch: consolidate only the typing result share controls.
+Recommended next batch: consolidate only the simplest `/practice` clear or
+restart visual buttons after focused interaction coverage.
 
 Files:
 
-- `app/client/components/typing/components/ShareResultsButton.tsx`
+- `app/client/components/practice/PracticePage.tsx`
 
 Routes/screens:
 
-- `/typing`
+- `/practice`
 
 Why this is the smallest safe batch:
 
-- It is isolated from typing timer, input, keyboard, and scoring state.
-- It duplicates the already-consolidated practice share modal control pattern.
-- It should not touch generated canvas output, share text, file name, session
-  timing, raw input, decoded output, or completion logic.
-- It can reuse `ActionButton`, `ActionLinkButton`, and shared icons without
-  adding variants.
+- The visible controls are small and already use the approved button treatment.
+- The batch can avoid check, next, skip, reveal, scoring, and share controls.
+- It still needs focused coverage because clear and restart touch answer and
+  session state.
+- It should reuse existing shared action controls without adding variants.
 
 Required checks for that batch:
 
-- Before/after screenshots of `/typing` desktop and mobile after reaching a
-  completed session state.
-- Before/after screenshots of the typing share modal.
-- Interaction smoke that the modal opens, closes, shows the generated preview,
-  and keeps the download filename `morse-typing-results.png`.
+- Before/after screenshots of `/practice` desktop and mobile with answer input
+  populated and the relevant clear/restart controls visible.
+- Interaction smoke that clear removes only the current answer and restart/reset
+  preserves the current scoring semantics.
 - Existing validation: typecheck, build, lint if present, tests if present, and
   `git diff --check`.
 
 Explicitly not in the next batch:
 
-- Duration buttons.
-- Pause/resume/reset timer controls.
-- On-screen keyboard controls.
-- Textarea keyboard mapping.
-- Audio, flash, check, reveal, skip, or scoring controls.
+- Check, next, skip, reveal, or scoring controls.
+- Practice share image controls.
+- Typing timer, input, keyboard, and decoded-output controls.
+- Audio, flash, playback, print, or generated-output controls.
 
 ## Dark-Mode Implications
 

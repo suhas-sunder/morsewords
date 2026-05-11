@@ -15,7 +15,10 @@ import {
  VisibilityOffIcon,
 } from "~/client/assets/svg/Icons";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
-import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
+import {
+ ActionButton,
+ copyTextToClipboard,
+} from "~/client/components/shared/ActionControls";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
@@ -786,14 +789,18 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  <ShuffleIcon size={18} title="Practice weak words"/>
  Practice weak words
  </ToolButton>
- <ToolButton onClick={copyWeakWords} tone="secondary">
- <CopyIcon size={18} title="Copy weak words"/>
+ <ActionButton
+ onClick={copyWeakWords}
+ leadingIcon={<CopyIcon size={18} title="Copy weak words"/>}
+ >
  Copy weak words
- </ToolButton>
- <ToolButton onClick={clearWeakWords} tone="secondary">
- <CloseIcon size={18} title="Clear weak words"/>
+ </ActionButton>
+ <ActionButton
+ onClick={clearWeakWords}
+ leadingIcon={<CloseIcon size={18} title="Clear weak words"/>}
+ >
  Clear weak words
- </ToolButton>
+ </ActionButton>
  </div>
  {copyStatus ? (
  <p className="mw-static-panel mt-3 rounded-xl bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700">
