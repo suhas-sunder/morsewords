@@ -337,12 +337,12 @@ Approved button treatment is centralized by `app/app.css` and
 
 ## 10. Background accents
 
-- `PageBackdrop` controls the subtle Morse side accents.
+- `PageBackdrop` renders `MorseAmbientBackground`, the shared subtle Morse side
+  accent surface.
 - Accents use `paperBackground` (`#f5f2eb`) and pale sky/navy text.
-- Home accents show from `min-[1360px]:block`; non-home accents show from
-  `min-[1900px]:block`.
-- Home side rail width: `max(0px, calc((100vw - 1160px) / 2 - 48px))`.
-- Non-home side rail width: `max(0px, calc((100vw - 1480px) / 2 - 64px))`.
+- Accents use the homepage-approved implementation on every route and show
+  from `min-[1360px]:block`.
+- Side rail width: `max(0px, calc((100vw - 1160px) / 2 - 48px))`.
 - Accent labels use mono uppercase, low opacity (`text-sky-950/34` and
   `text-sky-950/40`).
 - Accents should remain subtle and must not crowd content.

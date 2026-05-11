@@ -88,6 +88,9 @@ export default function MorseAudioTranslator({
   );
   const safePrefix = storagePrefix.replace(/[^a-zA-Z0-9_-]/g, "_");
   const sourceInputId = `${safePrefix}_source`;
+  const tonePresetId = `${safePrefix}_tone_preset`;
+  const fileNameId = `${safePrefix}_file_name`;
+  const sampleRateId = `${safePrefix}_sample_rate`;
   const isSoundPage = pageIntent === "sound";
 
   const [sourceMode, setSourceMode] = React.useState<SourceMode>(
@@ -501,8 +504,8 @@ export default function MorseAudioTranslator({
                 <div className="mt-4 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-semibold text-slate-700">Tone preset</label>
-                      <select value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
+                      <label htmlFor={tonePresetId} className="text-sm font-semibold text-slate-700">Tone preset</label>
+                      <select id={tonePresetId} value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
                         <option value="cw_radio">CW radio tone</option>
                         <option value="sine">Sine tone</option>
                         <option value="square">Square beep</option>
@@ -539,13 +542,13 @@ export default function MorseAudioTranslator({
                 <div className="mt-4 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-semibold text-slate-700">File name</label>
-<input value={fileName} onChange={(e) => setFileName(e.target.value)} className="mt-2 w-full rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold focus:outline-none focus:ring-0 focus-visible:outline-none" placeholder={defaultFileName} />
+                      <label htmlFor={fileNameId} className="text-sm font-semibold text-slate-700">File name</label>
+<input id={fileNameId} value={fileName} onChange={(e) => setFileName(e.target.value)} className="mt-2 w-full rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold focus:outline-none focus:ring-0 focus-visible:outline-none" placeholder={defaultFileName} />
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="text-sm font-semibold text-slate-700">Sample rate</label>
-                        <select value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
+                        <label htmlFor={sampleRateId} className="text-sm font-semibold text-slate-700">Sample rate</label>
+                        <select id={sampleRateId} value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
                           <option value={48000}>48000</option>

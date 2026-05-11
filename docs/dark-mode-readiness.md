@@ -10,6 +10,9 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
 - The approved homepage remains the visual source of truth.
 - `/audio` remains the closest approved tool-page reference.
 - The shared icon library is `app/client/assets/svg/Icons.tsx`.
+- The decorative Morse side accents are shared through
+  `MorseAmbientBackground` and rendered by `PageBackdrop`; future theme work
+  should treat that as one shared decorative surface, not a route-local patch.
 - Current styling still depends heavily on Tailwind color classes, style
   objects, route-local button classes, and global CSS overrides.
 
@@ -90,8 +93,8 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
 
 These surfaces need planned light and dark theme coverage.
 
-- Body and page background: `body`, `PageBackdrop.paperBackground`, and
-  `styles.page`.
+- Body and page background: `body`, `PageBackdrop.paperBackground`,
+  `MorseAmbientBackground`, and `styles.page`.
 - Navbar: desktop links, More dropdown, search input, active states, mobile
   overlay, mobile search, close/open buttons, and logo area.
 - Footer and social area: neutral footer, social cards, image-backed social
@@ -142,6 +145,10 @@ These surfaces need planned light and dark theme coverage.
 - `app/app.css` defines `body` background and the static surface classes with
   fixed cream values.
 - `PageBackdrop.tsx` exports `paperBackground` as `#f5f2eb`.
+- `MorseAmbientBackground.tsx` uses the homepage-approved hard-coded pale
+  sky/navy opacity classes for decorative side accents. These must become
+  shared decorative-accent roles during token work rather than route-local
+  overrides.
 - Shared components use direct classes such as `bg-[#fffdf8]`,
   `bg-[#fffaf2]`, `bg-slate-950`, `text-sky-950`, `text-slate-700`,
   `text-sky-100`, and `bg-neutral-900`.

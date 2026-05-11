@@ -39,6 +39,11 @@ broad component refactor.
   active Clear, active Restart, and completed-results Try again controls to
   shared `ActionButton` while preserving scoring, session state, disabled
   states, keyboard behavior, and visual button bounds.
+- Completed the shared visual-surface pass for the decorative Morse background
+  by extracting the homepage-approved side accents into
+  `MorseAmbientBackground` and rendering it through `PageBackdrop` on all
+  routes. This removed the stale non-home breakpoint and rail-width branch
+  while keeping the homepage visual output unchanged.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -53,6 +58,19 @@ broad component refactor.
   coverage, or a non-visual type-helper cleanup.
 
 ## Duplicated Homepage-Only or Home-Like Components
+
+### Decorative Morse Background
+
+- `MorseAmbientBackground` is now the shared implementation for the subtle
+  Morse side accents.
+- `PageBackdrop` owns root rendering of that shared surface so routes do not
+  need page-local decorative Morse markup.
+- Verified routes in this pass: `/`, `/audio`, `/morse-code-encoder`,
+  `/morse-code-decoder`, `/morse-code-sound-generator`,
+  `/name-to-morse-code`, and `/a-in-morse-code`.
+- Future work should not add new page-specific Morse background arrays or
+  route-local decorative accent components. Adjust the shared surface only
+  after visual checks against the homepage.
 
 ### Hero and Header Patterns
 
@@ -200,8 +218,8 @@ broad component refactor.
 
 - `NavBar`: contains routing, More dropdown search, mobile overlay, scroll
   locking, active-state logic, and future theme-toggle placement.
-- `PageBackdrop`: controls route-specific side accent visibility and should not
-  be merged into page sections.
+- `PageBackdrop`: owns the shared root backdrop and should not be merged into
+  page sections or replaced with route-local decorative markup.
 - `TranslatorSectionsBasic`: central translator logic is mature but dense.
   Refactor it only in small, verified slices.
 - `MorseAudioTranslator`: audio export, timing, localStorage, strobe warning,
@@ -244,6 +262,9 @@ broad component refactor.
 - Replace route-local `bg-[#fffdf8]` and `bg-[#fffaf2]` card patterns with
   shared static panel classes or shared components.
 - Keep content unchanged and compare screenshots route by route.
+- A narrow visual follow-up can map manual `ToolHero`/`PageHero` usages before
+  changing them. Do not move broad page wrappers until the hero spacing and
+  homepage first viewport have screenshot coverage.
 
 ### 6. FAQ, Breadcrumb, and Toolkit
 
