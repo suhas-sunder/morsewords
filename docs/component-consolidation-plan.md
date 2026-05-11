@@ -22,9 +22,14 @@ broad component refactor.
   share, and action patterns in dictionary, phrase lookup, number cards,
   practice share controls, typing, sentence practice, word trainer, word-search
   sharing, and sound-generator copy behavior.
-- Deferred the printable chart export/share controls and unused legacy
-  `TranslatorSections.tsx` because they are route-specific or inactive and
-  should be handled in a separate chart/legacy cleanup pass.
+- Completed the printable chart action cleanup by moving export, share,
+  quick-preset, and uploaded-logo remove controls to shared action controls
+  without changing chart behavior or file output.
+- Removed legacy `TranslatorSections.tsx` after search confirmed active routes
+  and components import `TranslatorSectionsBasic` instead.
+- Remaining duplicated controls are mostly behavior-specific practice, quiz,
+  typing, and printable-chart settings controls that should stay local until
+  their state machines and screenshots are mapped.
 
 ## Duplicated Homepage-Only or Home-Like Components
 

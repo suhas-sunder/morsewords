@@ -29,8 +29,8 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
 - Main translator surface: `TranslatorSectionsBasic`.
 - Audio page: `app/client/components/audio/MorseAudioTranslator.tsx`.
 - Word separator: `WordSeparatorTool`.
-- Legacy or older surfaces still exist in `TranslatorSections.tsx`,
-  `morse-code-sound-generator`, and some route-local tool implementations.
+- Older route-local surfaces still exist in `morse-code-sound-generator` and
+  some route-local tool implementations.
 - These tools combine warm panels, dark output panels, sliders, toggles, copy
   buttons, export/download buttons, strobe warnings, and localStorage-backed
   controls.

@@ -6,12 +6,15 @@ import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
+  ActionButton,
+  copyTextToClipboard,
+} from "~/client/components/shared/ActionControls";
+import {
   ActionLinks,
   DarkNote,
   PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
 import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
-import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -2025,8 +2028,8 @@ async function sharePrintable({
     return "";
   }
 
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(url);
+  const didCopy = await copyTextToClipboard(url);
+  if (didCopy) {
     return "Link copied to clipboard.";
   }
 
@@ -2148,13 +2151,13 @@ function QuickButton({
   onClick: () => void;
 }) {
   return (
-    <button
-      type="button"
+    <ActionButton
+      size="sm"
       onClick={onClick}
-      className={`${toolControlButtonClass({ size: "sm" })} active:scale-95`}
+      className="active:scale-95"
     >
       {children}
-    </button>
+    </ActionButton>
   );
 }
 
@@ -2374,31 +2377,27 @@ function LivePreview({
         </label>
 
         <div className="mt-3 flex flex-wrap gap-2">
-          <button
-            type="button"
+          <ActionButton
             onClick={onDownload}
-            className={`${toolControlButtonClass({
-              tone: "dark",
-              disabled: isExporting,
-            })} active:scale-95`}
+            tone="dark"
             disabled={isExporting}
+            className="active:scale-95"
+            leadingIcon={<DownloadIcon size={18} title="Download printable" />}
           >
-            <DownloadIcon size={18} title="Download printable" />
             {isExporting
               ? "Preparing export..."
               : isPdf
                 ? "Download PDF"
                 : `Download ${downloadFormat.toUpperCase()}`}
-          </button>
+          </ActionButton>
 
-          <button
-            type="button"
+          <ActionButton
             onClick={onShare}
-            className={`${toolControlButtonClass()} active:scale-95`}
+            className="active:scale-95"
+            leadingIcon={<ShareIcon size={18} title="Share printable" />}
           >
-            <ShareIcon size={18} title="Share printable" />
             Share
-          </button>
+          </ActionButton>
         </div>
 
         {statusMessage ? (
@@ -3345,15 +3344,13 @@ export default function MorseCodePrintableChart() {
                       </div>
                     </div>
                   </div>
-                  <button
-                    type="button"
+                  <ActionButton
+                    size="sm"
                     onClick={clearCustomLogo}
-                    className={`${toolControlButtonClass({
-                      size: "sm",
-                    })} shrink-0 active:scale-95`}
+                    className="shrink-0 active:scale-95"
                   >
                     Remove
-                  </button>
+                  </ActionButton>
                 </div>
               ) : null}
             </SettingsSection>
