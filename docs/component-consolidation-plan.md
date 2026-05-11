@@ -35,14 +35,22 @@ broad component refactor.
   only the Copy weak words and Clear weak words controls to shared
   `ActionButton` while preserving generated copy text, copied/error status,
   weak-list clearing, button order, and visual classes.
+- Completed the narrow `/practice` reset-action cleanup by moving only the
+  active Clear, active Restart, and completed-results Try again controls to
+  shared `ActionButton` while preserving scoring, session state, disabled
+  states, keyboard behavior, and visual button bounds.
+- Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
+  out of that batch: Check, Next/Finish, and Skip are scoring/session
+  transitions; mode and pool chips reset prompt state; share was already using
+  the shared result-action component.
 - Removed legacy `TranslatorSections.tsx` after search confirmed active routes
   and components import `TranslatorSectionsBasic` instead.
 - Remaining duplicated controls are mostly behavior-specific practice, quiz,
   typing, trainer, audio/visual practice, and word-search controls. The map
   keeps scoring, timer, playback, reveal, skip, and flash controls local for
   now. The next implementation batch should stay similarly narrow, such as
-  practice clear/restart visual buttons after focused interaction coverage, or
-  a non-visual type-helper cleanup.
+  sentence-practice clear/restart visual buttons after focused interaction
+  coverage, or a non-visual type-helper cleanup.
 
 ## Duplicated Homepage-Only or Home-Like Components
 

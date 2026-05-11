@@ -250,7 +250,7 @@ visual systems.
 | --- | --- | --- | --- | --- | --- |
 | A (done) | Typing result share modal buttons and download link | `ActionButton`, `ActionLinkButton`, shared `ShareIcon`/`SaveIcon` | `app/client/components/typing/components/ShareResultsButton.tsx` | None. Matches practice share modal control treatment. | `/typing` desktop/mobile screenshots in completed state and share modal. Interaction smoke for modal open, native share disabled/fallback state, and `morse-typing-results.png` download link. |
 | A | Sentence library copy buttons are already using `ActionButton` and `copyTextToClipboard` | No source change needed | `app/client/components/morse-code-sentence-practice/SentencePracticePage.tsx` | None | Keep as reference for future copy controls. |
-| B | Practice Clear/Restart visual buttons | `ActionButton` or existing `ToolButton` alignment only | `PracticePage.tsx` | Should be none, but verify button row wrapping. | `/practice` desktop/mobile, check answer, clear, skip, restart, share modal. |
+| A (done) | Practice Clear/Restart/Try again visual buttons | `ActionButton` | `PracticePage.tsx` | None. Button bounds and labels matched before/after metrics. | `/practice` desktop/mobile active and completed-result screenshots. Interaction smoke for clear, restart, and completed-state try again. |
 | A (done) | Word trainer weak-word Copy/Clear buttons | `ActionButton` | `app/routes/morse-code-word-trainer.tsx` | None; the shared control uses the same `toolControlButtonClass` output as the prior local `ToolButton`. | `/morse-code-word-trainer` desktop/mobile, weak-word creation, copy status, clear. |
 | B | Word search non-print toggles and top buttons | `ActionButton` only where local `ToolButton` maps exactly | `app/routes/morse-code-word-search-builder.tsx` | Should be none, but answer-key and preview state must match. | Existing word-search tests plus screenshots before/after. |
 | B | Audio and visual advanced settings show/hide controls | `ActionButton` or `ActionRow` only after settings snapshot | audio/visual practice and quiz route files | Should be none. | Strobe-warning tests plus screenshots with advanced settings open and closed. |
@@ -261,29 +261,32 @@ visual systems.
 
 ## Suggested Next Refactor Batch
 
-Recommended next batch: consolidate only the simplest `/practice` clear or
-restart visual buttons after focused interaction coverage.
+Recommended next batch: consolidate only the simplest
+`/morse-code-sentence-practice` clear/restart visual buttons after focused
+interaction coverage.
 
 Files:
 
-- `app/client/components/practice/PracticePage.tsx`
+- `app/client/components/morse-code-sentence-practice/SentencePracticePage.tsx`
 
 Routes/screens:
 
-- `/practice`
+- `/morse-code-sentence-practice`
 
 Why this is the smallest safe batch:
 
 - The visible controls are small and already use the approved button treatment.
-- The batch can avoid check, next, skip, reveal, scoring, and share controls.
-- It still needs focused coverage because clear and restart touch answer and
-  session state.
+- The batch can avoid check, next, skip, reveal, hints, scoring, and share
+  controls.
+- It still needs focused coverage because clear and restart touch answer,
+  feedback, and run state.
 - It should reuse existing shared action controls without adding variants.
 
 Required checks for that batch:
 
-- Before/after screenshots of `/practice` desktop and mobile with answer input
-  populated and the relevant clear/restart controls visible.
+- Before/after screenshots of `/morse-code-sentence-practice` desktop and
+  mobile with answer input populated and the relevant clear/restart controls
+  visible.
 - Interaction smoke that clear removes only the current answer and restart/reset
   preserves the current scoring semantics.
 - Existing validation: typecheck, build, lint if present, tests if present, and

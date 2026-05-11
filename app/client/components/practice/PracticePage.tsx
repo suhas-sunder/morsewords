@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import ToggleChip from "~/client/components/shared/ToggleChip";
+import { ActionButton } from "~/client/components/shared/ActionControls";
 import {
   ToolButton,
   ToolPanel,
@@ -468,14 +469,14 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
               </div>
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <ToolButton
+                <ActionButton
                   type="button"
                   tone="dark"
                   onClick={resetStats}
                   aria-label="Try again"
                 >
                   Try again
-                </ToolButton>
+                </ActionButton>
                 <ShareResultsButton
                   title="Morse Code Practice"
                   subtitle="Results summary"
@@ -547,14 +548,14 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                         {progress + 1 >= TOTAL_QUESTIONS ? "Finish" : "Next"}
                       </ToolButton>
                     )}
-                    <ToolButton
+                    <ActionButton
                       type="button"
                       onClick={() => setAnswer("")}
                       disabled={!answer}
                       aria-label="Clear answer"
                     >
                       Clear
-                    </ToolButton>
+                    </ActionButton>
                     <ToolButton
                       type="button"
                       onClick={next}
@@ -563,13 +564,13 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
                     >
                       Skip
                     </ToolButton>
-                    <ToolButton
+                    <ActionButton
                       type="button"
                       onClick={resetStats}
                       aria-label="Restart quiz"
                     >
                       Restart
-                    </ToolButton>
+                    </ActionButton>
                   </div>
 
                   <div
