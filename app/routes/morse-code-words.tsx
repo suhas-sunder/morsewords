@@ -111,17 +111,6 @@ export default function MorseCodeWords() {
  })),
  };
 
- const btnBase ="mw-button-outline cursor-pointer inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition active:scale-95 focus-visible:outline-none whitespace-nowrap ";
-
- const btnPrimary =
- btnBase +"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white";
-
- const btnSecondary =
- btnBase +"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100";
-
- const btnGhost =
- btnBase +"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100";
-
  const pClass ="my-3 text-slate-700 leading-relaxed";
  const linkClass ="font-semibold text-sky-900 underline underline-offset-4 hover:text-sky-950 hover:no-underline cursor-pointer";
 
@@ -141,21 +130,6 @@ export default function MorseCodeWords() {
  ]}
  />
  </PageHero>
-
- <section className="hidden" aria-hidden="true">
- <p className="text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl">
- Morse Code Words
- </p>
-
- <p className="mw-static-panel mt-3 rounded-2xl bg-[#fffdf8] p-5 text-slate-600 text-base sm:text-lg leading-relaxed">
- A practical, copy-ready collection of words, phrases, prosigns, and
- radio abbreviations in International Morse code. Use the converter
- pages for conversion (text → Morse and Morse → text), then use this
- page for the thing people actually mean by “morsewords”:
- ready-to-copy words, phrases, and real operator shorthand, plus the
- spacing rules that keep it decodable.
- </p>
- </section>
 
  <section id="lookup">
  <MorsePhraseLookupTable />
@@ -358,23 +332,22 @@ export default function MorseCodeWords() {
 
  <CardSection title="Common Morse code words, plus real-world shorthand">
  <p className={pClass}>
- Common words are the best place to start because they show up
- everywhere, and they train pattern recognition. Once you can hear
- and recognize a few words without spelling every letter in your
- head, you are moving from slow decoding to real reading. After the
+ Common words are a useful next step after the alphabet because they
+ train spacing, repeated letters, and real recognition. Once you can
+ hear a few short words without spelling every letter in your head,
+ you are moving from slow decoding toward practical reading. After the
  basics, you will run into operator shorthand: prosigns, Q-codes, and
- abbreviations used in CW (continuous wave) communication. These are
- not “words” in a language sense, but they are extremely common in
- practice material and real radio exchanges.
+ abbreviations used in CW (continuous wave) communication. Those items
+ are shorthand rather than ordinary words, but they appear often in
+ practice material and radio examples.
  </p>
 
  <p className={pClass}>
  Below you will find a copy-ready lookup table that mixes everyday
  words (HELLO, THANK YOU, PLEASE) with practical items like SOS, AR,
- SK, QSL, QRZ, and “73.” That mix reflects how people actually learn.
- Beginners start with words, then quickly run into standardized
- shorthand. Keeping them together on one page makes the site feel
- cohesive and reduces pogo-sticking between different resources.
+ SK, QSL, QRZ, and 73. Start with the everyday words, then use the
+ shorthand entries when you are ready to compare operating-style terms,
+ word spacing, and meaning in one place.
  </p>
 
  <p className={pClass}>
@@ -398,14 +371,12 @@ export default function MorseCodeWords() {
  </p>
  </CardSection>
 
- <CardSection title="Why people search for “morse words”">
+ <CardSection title="Choosing useful Morse words">
  <p className={pClass}>
- Most people are not looking for a full alphabet chart when they type{" "}
- <strong>morse code words</strong> into search. They want
- ready-to-use output: words like HELLO, PLEASE, THANK YOU, OK, HELP,
- and SOS in dots and dashes that they can copy into a message, a
- quiz, a worksheet, or a practice session. This page is built for
- that exact intent.
+ Use this page when an alphabet chart is too broad and a blank
+ translator gives too little context. Words like HELLO, PLEASE, THANK
+ YOU, OK, HELP, and SOS are short enough to copy, hear, and check in a
+ quiz, worksheet, message, or practice session.
  </p>
 
  <p className={pClass}>
@@ -419,16 +390,16 @@ export default function MorseCodeWords() {
  Morse code decoder
  </a>{" "}
  for Morse to text. The goal here is broader: give you a strong list
- of common words and real operating shorthand, plus the context that
+ of common words and operating shorthand, plus the context that
  prevents formatting mistakes.
  </p>
  </CardSection>
 
- <CardSection title="What “words in Morse code” actually means">
+ <CardSection title="What words in Morse code actually means">
  <p className={pClass}>
  Morse code is an encoding system for characters. Each letter (A to
- Z) and number (0 to 9) has a dot and dash pattern. A “word in Morse
- code” is simply letters placed in sequence to spell the word. That
+ Z) and number (0 to 9) has a dot and dash pattern. A word in Morse
+ code is simply letters placed in sequence to spell the word. That
  sounds obvious, but it matters because spacing is part of what makes
  Morse readable.
  </p>
@@ -439,7 +410,7 @@ export default function MorseCodeWords() {
  between words. When Morse is shown as text, we represent those gaps
  with spaces and separators. If you copy Morse from different
  sources, the dot and dash patterns usually match, but the spacing
- rules might not. That is why two “correct” versions can look
+ rules might not. That is why two correct versions can look
  different while still meaning the same thing.
  </p>
  </CardSection>

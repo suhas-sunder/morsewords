@@ -296,7 +296,7 @@ function defaultLetterFaq({
     },
     {
       q: `Should I learn ${letter} by sight or sound?`,
-      a: "Use the visual pattern for lookup, then practice the rhythm so you can recognize it by ear.",
+      a: `Use ${morseValue} for quick lookup, then practice ${letter} as the ${spokenRhythm} sound so it becomes recognizable by ear.`,
     },
   ];
 
@@ -366,7 +366,7 @@ function buildLetterRelatedLinks(letter: string): RelatedLink[] {
     links.push({
       href: "/morse-code-sos",
       label: "Study SOS",
-      description: "See this letter inside a complete emergency signal.",
+      description: "See this letter inside the recognized SOS pattern.",
     });
   }
 

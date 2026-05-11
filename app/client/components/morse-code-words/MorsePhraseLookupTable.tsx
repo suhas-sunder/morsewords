@@ -1,7 +1,7 @@
 import * as React from "react";
 
 type Category =
- |"Common"|"Emergency"|"Prosign"|"Q-code"|"CW"|"Practice";
+ |"Common"|"Distress"|"Prosign"|"Q-code"|"CW"|"Practice";
 
 type Phrase = {
  phrase: string;
@@ -75,30 +75,30 @@ function MorsePhraseLookupTable() {
  category:"Common",
  },
 
- // Emergency / distress
+ // Distress references
  {
  phrase:"SOS",
  morse:"... --- ...",
- meaning:"Universal distress signal",
- category:"Emergency",
+ meaning:"Distress signal reference",
+ category:"Distress",
  },
  {
  phrase:"MAYDAY",
  morse:"-- .- -.-- -.. .- -.--",
- meaning:"Distress call (aviation/maritime)",
- category:"Emergency",
+ meaning:"Distress word reference for aviation or maritime context",
+ category:"Distress",
  },
  {
  phrase:"HELP",
  morse:".... . .-.. .--.",
- meaning:"Request for assistance",
- category:"Emergency",
+ meaning:"Assistance word for learning and reference",
+ category:"Distress",
  },
  {
  phrase:"NEED ASSISTANCE",
  morse:"-. . . -.. / .- ... ... .. ... - .- -. -.-. .",
- meaning:"Emergency request",
- category:"Emergency",
+ meaning:"Assistance phrase reference",
+ category:"Distress",
  },
 
  // Prosigns (procedure signals)
@@ -328,9 +328,8 @@ function MorsePhraseLookupTable() {
  </h2>
  <p
  className="mb-5 max-w-[72ch] px-5 pt-4 text-base leading-relaxed text-slate-700 sm:px-8 sm:text-lg" itemProp="description">
- This list focuses on what people mean by “morsewords”: common everyday
- words, plus the real shorthand you see in CW practice and radio
- exchanges. Word boundaries are shown with a slash (
+ This list combines common everyday words with shorthand used in CW
+ practice and radio examples. Word boundaries are shown with a slash (
  <span className="font-mono">/</span>) so it stays readable when copying
  into puzzles, worksheets, or notes.
  </p>
@@ -354,7 +353,7 @@ function MorsePhraseLookupTable() {
  className="mt-1 cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none sm:ml-2 sm:mt-0">
  <option value="All">All</option>
  <option value="Common">Common words</option>
- <option value="Emergency">Emergency</option>
+ <option value="Distress">Distress references</option>
  <option value="Prosign">Prosigns</option>
  <option value="Q-code">Q-codes</option>
  <option value="CW">CW abbreviations</option>
@@ -432,11 +431,28 @@ function MorsePhraseLookupTable() {
  decoder chokes on mixed spacing, normalize your separators first.
  </p>
  <p>
+ Distress-related entries are reference examples only. In a real
+ emergency, use official emergency services and reliable communication
+ channels instead of a web lookup page.
+ </p>
+ <p>
  If you want to generate your own custom word list (for example a class
- roster, a scavenger hunt, or a training set), use the text-to-Morse
- encoder and keep one entry per line. If you want to decode something
- you found online, use the Morse-to-text decoder and clean up word
- boundaries.
+ roster, a scavenger hunt, or a training set), use the{" "}
+ <a
+ href="/morse-code-encoder"
+ className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+ >
+ Morse code encoder
+ </a>{" "}
+ and keep one entry per line. If you want to decode something you found
+ online, use the{" "}
+ <a
+ href="/morse-code-decoder"
+ className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+ >
+ Morse code decoder
+ </a>{" "}
+ and clean up word boundaries.
  </p>
  </div>
  </section>
