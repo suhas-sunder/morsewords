@@ -1,5 +1,9 @@
 import * as React from "react";
 
+import {
+  ActionButton,
+  copyTextToClipboard,
+} from "~/client/components/shared/ActionControls";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { transliterateForInternationalMorse } from "~/client/components/shared/internationalMorse";
 import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
@@ -54,10 +58,6 @@ export function meta() {
   });
 }
 
-async function copyText(text: string) {
-  await navigator.clipboard.writeText(text);
-}
-
 function ExampleCard({
   item,
   onUse,
@@ -94,17 +94,18 @@ function ExampleCard({
       </code>
       <div className="mt-3 flex items-center justify-between gap-3">
         <span className="text-sm text-slate-600">{transliteration}</span>
-        <button
-          type="button"
+        <ActionButton
+          unstyled
           onClick={async () => {
-            await copyText(morse);
+            const didCopy = await copyTextToClipboard(morse);
+            if (!didCopy) return;
             setCopied(true);
             window.setTimeout(() => setCopied(false), 1000);
           }}
           className="min-h-10 cursor-pointer rounded-lg bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 transition hover:bg-slate-800 hover:text-white focus:outline-none sm:min-h-0"
         >
           {copied ? "Copied" : "Copy"}
-        </button>
+        </ActionButton>
       </div>
     </article>
   );

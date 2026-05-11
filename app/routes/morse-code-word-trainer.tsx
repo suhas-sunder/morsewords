@@ -15,6 +15,7 @@ import {
  VisibilityOffIcon,
 } from "~/client/assets/svg/Icons";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
+import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
@@ -387,10 +388,10 @@ export default function MorseCodeWordTrainer() {
 
  async function copyWeakWords() {
  if (!weakWords.length) return;
- try {
- await navigator.clipboard?.writeText(weakWords.join("\n"));
+ const didCopy = await copyTextToClipboard(weakWords.join("\n"));
+ if (didCopy) {
  setCopyStatus("Weak words copied.");
- } catch {
+ } else {
  setCopyStatus("Clipboard copy failed. Select the text and copy it manually.");
  }
  }

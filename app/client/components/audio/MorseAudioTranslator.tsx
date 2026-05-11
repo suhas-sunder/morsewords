@@ -17,6 +17,7 @@ import {
 import {
   ActionButton,
   ActionRow,
+  copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
 import {
   getUnsupportedTextCharacters,
@@ -312,13 +313,10 @@ export default function MorseAudioTranslator({
   const handleCopyMorse = async () => {
     const s = activeCode.trim();
     if (!s) return;
-    try {
-      await navigator.clipboard.writeText(s);
-      setCopied("morse");
-      setTimeout(() => setCopied(null), 1200);
-    } catch {
-      // ignore
-    }
+    const didCopy = await copyTextToClipboard(s);
+    if (!didCopy) return;
+    setCopied("morse");
+    setTimeout(() => setCopied(null), 1200);
   };
 
   const handleClearOutput = () => {

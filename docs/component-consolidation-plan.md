@@ -13,6 +13,19 @@ broad component refactor.
   consolidation.
 - Avoid page-by-page dark-mode patches.
 
+## Phase 2 Progress Notes
+
+- Completed the first shared action-control pass in commit `59800a1`, covering
+  the main translator, audio, word separator, name tool, answer cards, and
+  alphabet copy controls.
+- Completed a follow-up action-control pass for the remaining safe copy,
+  share, and action patterns in dictionary, phrase lookup, number cards,
+  practice share controls, typing, sentence practice, word trainer, word-search
+  sharing, and sound-generator copy behavior.
+- Deferred the printable chart export/share controls and unused legacy
+  `TranslatorSections.tsx` because they are route-specific or inactive and
+  should be handled in a separate chart/legacy cleanup pass.
+
 ## Duplicated Homepage-Only or Home-Like Components
 
 ### Hero and Header Patterns

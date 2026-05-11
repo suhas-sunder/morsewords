@@ -1,7 +1,12 @@
 import * as React from "react";
 
-import { CopyIcon, PlayIcon } from "~/client/assets/svg/Icons";
+import { PlayIcon } from "~/client/assets/svg/Icons";
 import MorseAnswerCard from "~/client/components/content/MorseAnswerCard";
+import {
+  ActionButton,
+  ActionLinkButton,
+  CopyActionButton,
+} from "~/client/components/shared/ActionControls";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
@@ -15,10 +20,7 @@ import {
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import { encodeToolQueryValue } from "~/client/components/shared/queryPrefill";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
-import {
-  ToolOutputPanel,
-  toolControlButtonClass,
-} from "~/client/components/shared/ToolWorkspace";
+import { ToolOutputPanel } from "~/client/components/shared/ToolWorkspace";
 import styles from "~/client/components/shared/pageStyles";
 import {
   getCharacterBreakdown,
@@ -851,26 +853,7 @@ export function MorseNumberPage({
   );
 }
 
-async function copyText(value: string) {
-  try {
-    await navigator.clipboard.writeText(value);
-    return true;
-  } catch {
-    if (typeof document === "undefined") return false;
-    const textarea = document.createElement("textarea");
-    textarea.value = value;
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
-    document.body.appendChild(textarea);
-    textarea.select();
-    const copied = document.execCommand("copy");
-    document.body.removeChild(textarea);
-    return copied;
-  }
-}
-
 function NumberCard({ item }: { item: (typeof NUMBER_ITEMS)[number] }) {
-  const [copied, setCopied] = React.useState(false);
   const queryValue = encodeToolQueryValue(item.label);
 
   return (
@@ -884,14 +867,13 @@ function NumberCard({ item }: { item: (typeof NUMBER_ITEMS)[number] }) {
             {item.label}
           </h3>
         </div>
-        <button
-          type="button"
+        <ActionButton
           onClick={() => playMorsePattern(item.morseValue)}
-          className={toolControlButtonClass({ size: "sm" })}
+          size="sm"
+          leadingIcon={<PlayIcon size={16} title={`Play ${item.label}`} />}
         >
-          <PlayIcon size={16} title={`Play ${item.label}`} />
           Play
-        </button>
+        </ActionButton>
       </div>
 
       <p className="mt-4 break-words font-mono text-lg font-bold tracking-[0.14em] text-slate-950">
@@ -902,38 +884,36 @@ function NumberCard({ item }: { item: (typeof NUMBER_ITEMS)[number] }) {
       </p>
 
       <div className="mt-4 grid gap-2">
-        <a
+        <ActionLinkButton
           href={item.path}
-          className={toolControlButtonClass({ tone: "dark", size: "sm", full: true })}
+          tone="dark"
+          size="sm"
+          full
         >
           Study {item.label}
-        </a>
-        <button
-          type="button"
-          onClick={async () => {
-            const ok = await copyText(item.morseValue);
-            if (!ok) return;
-            setCopied(true);
-            window.setTimeout(() => setCopied(false), 900);
-          }}
-          className={toolControlButtonClass({ size: "sm", full: true })}
-        >
-          <CopyIcon size={16} title="Copy Morse" />
-          {copied ? "Copied" : "Copy Morse"}
-        </button>
+        </ActionLinkButton>
+        <CopyActionButton
+          value={item.morseValue}
+          label="Copy Morse"
+          size="sm"
+          full
+          resetDelayMs={900}
+        />
         <div className="grid grid-cols-2 gap-2">
-          <a
+          <ActionLinkButton
             href={`/?text=${queryValue}`}
-            className={toolControlButtonClass({ size: "sm", full: true })}
+            size="sm"
+            full
           >
             Translator
-          </a>
-          <a
+          </ActionLinkButton>
+          <ActionLinkButton
             href={`/audio?text=${queryValue}`}
-            className={toolControlButtonClass({ size: "sm", full: true })}
+            size="sm"
+            full
           >
             Audio
-          </a>
+          </ActionLinkButton>
         </div>
       </div>
     </article>

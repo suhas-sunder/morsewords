@@ -1,4 +1,5 @@
 import * as React from "react";
+import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import styles from "~/client/components/shared/pageStyles";
 import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
 import { PHRASE_ROWS, type PhraseRow } from "./dictionaryData";
@@ -45,23 +46,9 @@ function useCopy() {
   const [copied, setCopied] = React.useState<CopyState>(null);
 
   const copy = React.useCallback(async (value: string, key: string) => {
-    try {
-      await navigator.clipboard.writeText(value);
+    const didCopy = await copyTextToClipboard(value);
+    if (didCopy) {
       setCopied({ key, at: Date.now() });
-    } catch {
-      // Fallback
-      const ta = document.createElement("textarea");
-      ta.value = value;
-      ta.style.position = "fixed";
-      ta.style.left = "-9999px";
-      document.body.appendChild(ta);
-      ta.select();
-      try {
-        document.execCommand("copy");
-        setCopied({ key, at: Date.now() });
-      } finally {
-        document.body.removeChild(ta);
-      }
     }
   }, []);
 

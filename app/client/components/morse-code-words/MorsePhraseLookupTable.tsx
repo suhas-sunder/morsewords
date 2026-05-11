@@ -1,5 +1,10 @@
 import * as React from "react";
 
+import {
+ ActionButton,
+ copyTextToClipboard,
+} from "~/client/components/shared/ActionControls";
+
 type Category =
  |"Common"|"Distress"|"Prosign"|"Q-code"|"CW"|"Practice";
 
@@ -306,16 +311,13 @@ function MorsePhraseLookupTable() {
 
  async function copy(text: string, key: string) {
  const value = normalizeForCopy(text);
- try {
- await navigator.clipboard.writeText(value);
+ const didCopy = await copyTextToClipboard(value);
+ if (!didCopy) return;
  setCopiedKey(key);
  window.setTimeout(
  () => setCopiedKey((k) => (k === key ? null : k)),
  1100,
  );
- } catch {
- // No-op. If clipboard is blocked, the user can still select and copy.
- }
  }
 
  return (
@@ -406,15 +408,16 @@ function MorsePhraseLookupTable() {
  {p.meaning}
  </td>
  <td className="py-3 px-3">
- <button
- type="button" onClick={() => copy(p.morse, key)}
+ <ActionButton
+ unstyled
+ onClick={() => copy(p.morse, key)}
  className={`rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition focus:outline-none ${
  copied
  ?"bg-slate-950 text-sky-100":"bg-[#fffdf8] text-slate-900 hover:bg-slate-900 hover:text-sky-100"}`}
  aria-label={`Copy Morse for ${p.phrase}`}
  >
  {copied ?"Copied":"Copy"}
- </button>
+ </ActionButton>
  </td>
  </tr>
  );

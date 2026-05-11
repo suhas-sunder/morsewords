@@ -1,7 +1,10 @@
 import * as React from "react";
 
 import { SaveIcon, ShareIcon } from "~/client/assets/svg/Icons";
-import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
+import {
+  ActionButton,
+  ActionLinkButton,
+} from "~/client/components/shared/ActionControls";
 
 type Props = {
   title: string;
@@ -209,6 +212,7 @@ async function renderShareImage(args: Props): Promise<Blob> {
 }
 
 export default function ShareResultsButton(props: Props) {
+  const dialogTitleId = React.useId();
   const [open, setOpen] = React.useState(false);
   const [pngUrl, setPngUrl] = React.useState<string | null>(null);
   const [pngBlob, setPngBlob] = React.useState<Blob | null>(null);
@@ -258,74 +262,68 @@ export default function ShareResultsButton(props: Props) {
 
   return (
     <>
-      <button
-        type="button"
-        className={toolControlButtonClass({ size: "sm" })}
+      <ActionButton
+        size="sm"
         onClick={() => {
           setOpen(true);
         }}
         aria-label="Share results"
+        leadingIcon={<ShareIcon size={16} title="Share results" />}
       >
-        <span className="inline-flex items-center gap-2">
-          <ShareIcon size={16} title="Share results" />
-          Share
-        </span>
-      </button>
+        Share
+      </ActionButton>
 
       {open ? (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
           role="dialog"
           aria-modal="true"
+          aria-labelledby={dialogTitleId}
         >
           <div className="mw-static-panel w-full max-w-3xl overflow-hidden rounded-xl bg-[#fffdf8]">
             <div className="mw-static-surface-soft flex items-center justify-between bg-[#fffaf2] p-4 sm:p-5">
               <div>
-                <div className="text-base font-extrabold text-sky-950">Share results</div>
+                <div
+                  id={dialogTitleId}
+                  className="text-base font-extrabold text-sky-950"
+                >
+                  Share results
+                </div>
                 <div className="text-sm text-slate-600">
                   Generates a shareable image.
                 </div>
               </div>
-              <button
-                type="button"
-                className={toolControlButtonClass({ size: "sm" })}
+              <ActionButton
+                size="sm"
                 onClick={() => setOpen(false)}
               >
                 Close
-              </button>
+              </ActionButton>
             </div>
 
             <div className="p-4 sm:p-5">
               <div className="flex flex-wrap items-center gap-3">
                 {canShare ? (
-                  <button
-                    type="button"
-                    className={toolControlButtonClass({
-                      disabled: busy || !pngBlob,
-                      size: "sm",
-                    })}
+                  <ActionButton
+                    size="sm"
                     onClick={shareNative}
                     disabled={busy || !pngBlob}
                     aria-label="Share via system dialog"
+                    leadingIcon={<ShareIcon size={16} title="Share" />}
                   >
-                    <span className="inline-flex items-center gap-2">
-                      <ShareIcon size={16} title="Share" />
-                      Share
-                    </span>
-                  </button>
+                    Share
+                  </ActionButton>
                 ) : null}
 
                 {pngBlob ? (
-                  <a
-                    className={`mw-button-outline ${toolControlButtonClass({
-                      size: "sm",
-                    })}`}
+                  <ActionLinkButton
                     href={pngUrl || undefined}
                     download="morse-practice-results.png"
+                    size="sm"
+                    leadingIcon={<SaveIcon size={16} title="Download PNG" />}
                   >
-                    <SaveIcon size={16} title="Download PNG" />
                     Download PNG
-                  </a>
+                  </ActionLinkButton>
                 ) : null}
               </div>
 

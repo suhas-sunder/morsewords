@@ -2,6 +2,7 @@ import * as React from "react";
 
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import Button from "~/client/components/shared/Button";
+import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ToolOutputPanel,
@@ -297,11 +298,7 @@ export default function TypingPage({ jsonLd }: Props) {
   }, [focusInput]);
 
   const copyDecoded = React.useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(decoded.decoded);
-    } catch {
-      // ignore
-    }
+    await copyTextToClipboard(decoded.decoded);
     focusInput();
   }, [decoded.decoded, focusInput]);
 

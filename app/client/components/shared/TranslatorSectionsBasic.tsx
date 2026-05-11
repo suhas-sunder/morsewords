@@ -11,6 +11,7 @@ import StrobeWarning from "~/client/components/shared/StrobeWarning";
 import {
   ActionButton,
   ActionRow,
+  copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
 
 import {
@@ -216,13 +217,10 @@ export default function TranslatorSectionsBasic({
   const handleCopy = async (text: string, label: string) => {
     if (!text) return;
 
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(label);
-      setTimeout(() => setCopied(null), 1200);
-    } catch (e) {
-      console.error("Copy failed", e);
-    }
+    const didCopy = await copyTextToClipboard(text);
+    if (!didCopy) return;
+    setCopied(label);
+    setTimeout(() => setCopied(null), 1200);
   };
 
   const unsupportedPlain = useMemo(() => {
@@ -369,7 +367,8 @@ export default function TranslatorSectionsBasic({
       a.click();
       URL.revokeObjectURL(url);
 
-      await navigator.clipboard.writeText(shareText);
+      const didCopy = await copyTextToClipboard(shareText);
+      if (!didCopy) return;
       setCopied("share");
       setTimeout(() => setCopied(null), 1400);
     } catch (e) {

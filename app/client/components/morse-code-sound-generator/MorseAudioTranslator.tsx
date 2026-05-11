@@ -17,6 +17,7 @@ import {
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
 import { audioBufferToMp3Blob, type ExportFormat } from "~/client/components/morse-code-sound-generator/audioExport";
+import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
@@ -244,13 +245,13 @@ export default function MorseAudioTranslator({
   const handleCopyMorse = async () => {
     const s = activeCode.trim();
     if (!s) return;
-    try {
-      await navigator.clipboard.writeText(s);
-      setCopied("morse");
-      setTimeout(() => setCopied(null), 1200);
-    } catch {
+    const didCopy = await copyTextToClipboard(s);
+    if (!didCopy) {
       setCopied(null);
+      return;
     }
+    setCopied("morse");
+    setTimeout(() => setCopied(null), 1200);
   };
 
   const handleClearOutput = () => {

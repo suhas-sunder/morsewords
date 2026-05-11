@@ -3,6 +3,10 @@ import type { Route } from "./+types/dictionary";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
+ ActionButton as SharedActionButton,
+ copyTextToClipboard,
+} from "~/client/components/shared/ActionControls";
+import {
  ActionLinks,
  PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
@@ -36,22 +40,6 @@ function normalize(s: string) {
  return s.trim().toLowerCase();
 }
 
-async function copyToClipboard(text: string) {
- try {
- await navigator.clipboard.writeText(text);
- } catch {
- // Fallback for older browsers
- const ta = document.createElement("textarea");
- ta.value = text;
- ta.style.position ="fixed";
- ta.style.opacity ="0";
- document.body.appendChild(ta);
- ta.select();
- document.execCommand("copy");
- document.body.removeChild(ta);
- }
-}
-
 function CopyButton({
  kind,
  value,
@@ -64,9 +52,11 @@ function CopyButton({
  const [copied, setCopied] = React.useState(false);
 
  return (
- <button
- type="button" onClick={async () => {
- await copyToClipboard(value);
+ <SharedActionButton
+ unstyled
+ onClick={async () => {
+ const didCopy = await copyTextToClipboard(value);
+ if (!didCopy) return;
  setCopied(true);
  window.setTimeout(() => setCopied(false), 800);
  }}
@@ -79,7 +69,7 @@ function CopyButton({
  aria-label={`Copy ${kind}`}
  >
  {copied ?"Copied": `Copy ${kind}`}
- </button>
+ </SharedActionButton>
  );
 }
 

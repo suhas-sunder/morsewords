@@ -15,7 +15,10 @@ import {
   ToolTextarea,
   toolControlButtonClass,
 } from "~/client/components/shared/ToolWorkspace";
-import { CopyActionButton } from "~/client/components/shared/ActionControls";
+import {
+  CopyActionButton,
+  copyTextToClipboard,
+} from "~/client/components/shared/ActionControls";
 
 type OutputSep = "standard" | "slash" | "pipe" | "newline";
 type Mode = "normalizeMorse" | "englishToMorse";
@@ -62,15 +65,6 @@ function countEnglishWords(input: string) {
   const trimmed = input.trim();
   if (!trimmed) return 0;
   return trimmed.split(/\s+/).filter(Boolean).length;
-}
-
-async function copyToClipboard(text: string) {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch {
-    return false;
-  }
 }
 
 export default function WordSeparatorTool() {
@@ -247,7 +241,7 @@ export default function WordSeparatorTool() {
                 value={out}
                 label="Copy output"
                 copiedLabel={null}
-                onCopy={copyToClipboard}
+                onCopy={copyTextToClipboard}
                 onCopiedChange={setCopied}
                 tone="darkPanel"
                 size="sm"

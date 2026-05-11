@@ -1,5 +1,9 @@
 import * as React from "react";
 
+import {
+ ActionButton,
+ copyTextToClipboard,
+} from "~/client/components/shared/ActionControls";
 import Button from "~/client/components/shared/Button";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
@@ -281,23 +285,21 @@ function CopyButton({ text, label }: { text: string; label: string }) {
  const [copied, setCopied] = React.useState(false);
 
  return (
- <button
- type="button" className={`${toolControlButtonClass({
- tone: "dark",
- size: "sm",
- })} text-center leading-none active:scale-95`} onClick={async () => {
- try {
- await navigator.clipboard.writeText(text);
- setCopied(true);
+ <ActionButton
+ tone="dark"
+ size="sm"
+ className="text-center leading-none active:scale-95"
+ onClick={async () => {
+ const didCopy = await copyTextToClipboard(text);
+ setCopied(didCopy);
+ if (didCopy) {
  window.setTimeout(() => setCopied(false), 1200);
- } catch {
- setCopied(false);
  }
  }}
  aria-label={label}
  >
  {copied ?"Copied":"Copy"}
- </button>
+ </ActionButton>
  );
 }
 

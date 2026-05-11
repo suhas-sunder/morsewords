@@ -17,6 +17,7 @@ import {
  WarningIcon,
 } from "~/client/assets/svg/Icons";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -1063,7 +1064,7 @@ export default function MorseCodeWordSearchBuilder() {
  setStatus({ kind:"ok", message:"Share sheet opened."});
  } else {
  downloadBlob(blob, filename);
- await navigator.clipboard?.writeText(CANONICAL);
+ await copyTextToClipboard(CANONICAL);
  setStatus({
  kind:"ok",
  message:"Share image downloaded and the page link was copied.",
