@@ -1,6 +1,11 @@
 import * as React from "react";
 
-import Button from "~/client/components/shared/Button";
+import { DownloadIcon } from "~/client/assets/svg/Icons";
+import {
+  ActionButton,
+  ActionLinkButton,
+  ActionRow,
+} from "~/client/components/shared/ActionControls";
 
 type Props = {
   title: string;
@@ -196,6 +201,7 @@ async function renderShareImage(args: Props): Promise<Blob> {
 }
 
 export default function ShareResultsButton(props: Props) {
+  const dialogTitleId = React.useId();
   const [open, setOpen] = React.useState(false);
   const [pngUrl, setPngUrl] = React.useState<string | null>(null);
   const [pngBlob, setPngBlob] = React.useState<Blob | null>(null);
@@ -244,60 +250,69 @@ export default function ShareResultsButton(props: Props) {
 
   return (
     <>
-      <Button
-        type="button"
-        variant="secondary"
+      <ActionButton
         onClick={() => setOpen(true)}
         aria-label="Share results"
       >
         Share results
-      </Button>
+      </ActionButton>
 
       {open ? (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
           role="dialog"
           aria-modal="true"
+          aria-labelledby={dialogTitleId}
         >
           <div className="mw-static-panel w-full max-w-3xl overflow-hidden rounded-xl bg-[#fffdf8]">
             <div className="mw-static-surface-soft flex items-center justify-between bg-[#fffaf2] p-4 sm:p-5">
               <div>
-                <div className="text-base font-extrabold text-sky-950">Share results</div>
+                <div
+                  id={dialogTitleId}
+                  className="text-base font-extrabold text-sky-950"
+                >
+                  Share results
+                </div>
                 <div className="text-sm text-slate-600">Generates a shareable image.</div>
               </div>
-              <button
-                type="button"
-                className="cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+              <ActionButton
+                size="sm"
                 onClick={() => setOpen(false)}
               >
                 Close
-              </button>
+              </ActionButton>
             </div>
 
             <div className="p-4 sm:p-5">
-              <div className="flex flex-wrap items-center gap-3">
+              <ActionRow className="items-center gap-3">
                 {canShare ? (
-                  <Button
-                    type="button"
-                    variant="secondary"
+                  <ActionButton
+                    size="sm"
                     onClick={shareNative}
                     disabled={busy || !pngBlob}
                     aria-label="Share via system dialog"
                   >
                     Share
-                  </Button>
+                  </ActionButton>
                 ) : null}
 
                 {pngBlob ? (
-                  <a
-                    className="mw-button-outline inline-flex cursor-pointer items-center rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
+                  <ActionLinkButton
                     href={pngUrl || undefined}
                     download="morse-typing-results.png"
+                    size="sm"
+                    leadingIcon={
+                      <DownloadIcon
+                        size={16}
+                        title={undefined}
+                        aria-hidden="true"
+                      />
+                    }
                   >
                     Download PNG
-                  </a>
+                  </ActionLinkButton>
                 ) : null}
-              </div>
+              </ActionRow>
 
               {pngUrl ? (
                 <div className="mw-static-panel mt-4 overflow-hidden rounded-2xl bg-[#fffdf8]">
