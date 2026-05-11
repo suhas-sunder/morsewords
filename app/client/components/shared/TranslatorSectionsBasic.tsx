@@ -10,15 +10,19 @@ import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio"
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
 
 import {
+  CheckCircleIcon,
   CopyIcon,
+  DownloadIcon,
   LightBulbIcon,
   LoopIcon,
   PauseIcon,
   PlayIcon,
-  SaveIcon,
   ShareIcon,
-  SoundIcon,
   StopIcon,
+  TrashIcon,
+  TuneIcon,
+  VolumeIcon,
+  VolumeOffIcon,
 } from "../../assets/svg/Icons";
 
 interface Props {
@@ -604,10 +608,11 @@ export default function TranslatorSectionsBasic({
                         if (direction === "encode") setPlainA("");
                         else setMorseB("");
                       }}
-                      className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
+                      className={`inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${
                         isHome ? "" : "min-h-10 sm:min-h-0"
                       } ${DARK_PANEL_BUTTON}`}
                     >
+                      <TrashIcon size={16} title={undefined} aria-hidden="true" />
                       Clear output
                     </button>
 
@@ -621,7 +626,11 @@ export default function TranslatorSectionsBasic({
                         outputValue ? DARK_PANEL_BUTTON : DARK_PANEL_DISABLED
                       }`}
                     >
-                      <CopyIcon size={16} title="Copy output" />
+                      {copied === "output" ? (
+                        <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
+                      ) : (
+                        <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                      )}
                       <span>
                         {copied === "output" ? "Copied" : "Copy Output"}
                       </span>
@@ -717,7 +726,7 @@ export default function TranslatorSectionsBasic({
                       : DISABLED_CONTROL
                 }`}
               >
-                <SaveIcon size={22} title="Save audio" />
+                <DownloadIcon size={22} title={undefined} aria-hidden="true" />
                 <span>Save Audio</span>
               </button>
             </div>
@@ -740,7 +749,13 @@ export default function TranslatorSectionsBasic({
                       label="Sound"
                       checked={soundOn}
                       onChange={setSoundOn}
-                      icon={<SoundIcon size={16} title="Sound" />}
+                      icon={
+                        soundOn ? (
+                          <VolumeIcon size={16} title={undefined} aria-hidden="true" />
+                        ) : (
+                          <VolumeOffIcon size={16} title={undefined} aria-hidden="true" />
+                        )
+                      }
                       isHome={isHome}
                     />
 
@@ -810,6 +825,7 @@ export default function TranslatorSectionsBasic({
                   }`}
                   aria-expanded={advancedOpen}
                 >
+                  <TuneIcon size={16} title={undefined} aria-hidden="true" />
                   <span className="text-sm font-semibold text-current">
                     Advanced settings
                   </span>

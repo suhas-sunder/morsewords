@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { Route } from "./+types/morse-code-alphabet";
+import { CheckCircleIcon, CopyIcon } from "~/client/assets/svg/Icons";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -65,11 +66,16 @@ function CopyButton({ value, label }: { value: string; label: string }) {
         window.setTimeout(() => setCopied(false), 900);
       }}
       className={[
-        "rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition-colors focus-visible:outline-none",
+        "inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition-colors focus-visible:outline-none",
         "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900",
       ].join(" ")}
       aria-label={`Copy ${label}`}
     >
+      {copied ? (
+        <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
+      ) : (
+        <CopyIcon size={16} title={undefined} aria-hidden="true" />
+      )}
       {copied ? "Copied" : `Copy ${label}`}
     </button>
   );

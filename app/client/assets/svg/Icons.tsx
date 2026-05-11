@@ -58,6 +58,45 @@ export const LightBulbIcon = React.memo(function LightBulbIcon(
   );
 });
 
+export const SparklesIcon = React.memo(function SparklesIcon(
+  props: SvgIconProps,
+) {
+  return (
+    <SvgIconBase title="Sparkles" {...props}>
+      <path d="m19 9 1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25zm0 6-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25zm-7.5-5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12zm-1.51 3.49L9 15.17l-.99-2.18L5.83 12l2.18-.99L9 8.83l.99 2.18 2.18.99z" />
+    </SvgIconBase>
+  );
+});
+
+export const SmartSettingsIcon = React.memo(function SmartSettingsIcon(
+  props: SvgIconProps,
+) {
+  return (
+    <SvgIconBase title="Smart settings" {...props}>
+      <path d="M10 13c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1m0-2c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3m8.5-2 1.09-2.41L22 5.5l-2.41-1.09L18.5 2l-1.09 2.41L15 5.5l2.41 1.09zm2.78 3.72L20.5 11l-.78 1.72-1.72.78 1.72.78.78 1.72.78-1.72L23 13.5zM16.25 14c0-.12 0-.25-.01-.37l1.94-1.47-2.5-4.33-2.24.94c-.2-.13-.42-.26-.64-.37L12.5 6h-5l-.3 2.41c-.22.11-.43.24-.64.37l-2.24-.95-2.5 4.33 1.94 1.47c-.01.12-.01.25-.01.37s0 .25.01.37l-1.94 1.47 2.5 4.33 2.24-.94c.2.13.42.26.64.37l.3 2.4h5l.3-2.41c.22-.11.43-.23.64-.37l2.24.94 2.5-4.33-1.94-1.47c.01-.11.01-.24.01-.36m-1.42 3.64-1.73-.73c-.56.6-1.3 1.04-2.13 1.23L10.73 20H9.27l-.23-1.86c-.83-.19-1.57-.63-2.13-1.23l-1.73.73-.73-1.27 1.49-1.13q-.18-.585-.18-1.23t.18-1.23l-1.49-1.13.73-1.27 1.73.73c.56-.6 1.3-1.04 2.13-1.23L9.27 8h1.47l.23 1.86c.83.19 1.57.63 2.13 1.23l1.73-.73.73 1.27-1.49 1.13q.18.585.18 1.23t-.18 1.23l1.49 1.13z" />
+    </SvgIconBase>
+  );
+});
+
+export const SignalPathIcon = React.memo(function SignalPathIcon(
+  props: SvgIconProps,
+) {
+  return (
+    <SvgIconBase title="Signal path" {...props}>
+      <path d="M21 8c-1.45 0-2.26 1.44-1.93 2.51l-3.55 3.56c-.3-.09-.74-.09-1.04 0l-2.55-2.55C12.27 10.45 11.46 9 10 9c-1.45 0-2.27 1.44-1.93 2.52l-4.56 4.55C2.44 15.74 1 16.55 1 18c0 1.1.9 2 2 2 1.45 0 2.26-1.44 1.93-2.51l4.55-4.56c.3.09.74.09 1.04 0l2.55 2.55C12.73 16.55 13.54 18 15 18c1.45 0 2.27-1.44 1.93-2.52l3.56-3.55c1.07.33 2.51-.48 2.51-1.93 0-1.1-.9-2-2-2" />
+      <path d="m15 9 .94-2.07L18 6l-2.06-.93L15 3l-.92 2.07L12 6l2.08.93zM3.5 11 4 9l2-.5L4 8l-.5-2L3 8l-2 .5L3 9z" />
+    </SvgIconBase>
+  );
+});
+
+export const SunIcon = React.memo(function SunIcon(props: SvgIconProps) {
+  return (
+    <SvgIconBase title="Sun" {...props}>
+      <path d="m6.76 4.84-1.8-1.79-1.41 1.41 1.79 1.79zM1 10.5h3v2H1zM11 .55h2V3.5h-2zm8.04 2.495 1.408 1.407-1.79 1.79-1.407-1.408zm-1.8 15.115 1.79 1.8 1.41-1.41-1.8-1.79zM20 10.5h3v2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6m0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4m-1 4h2v2.95h-2zm-7.45-.96 1.41 1.41 1.79-1.8-1.41-1.41z" />
+    </SvgIconBase>
+  );
+});
+
 export const SoundIcon = React.memo(function SoundIcon(props: SvgIconProps) {
   return (
     <SvgIconBase title="Sound" {...props}>
@@ -73,6 +112,32 @@ export const VibrateIcon = React.memo(function VibrateIcon(
   return (
     <SvgIconBase title="Vibrate" {...props}>
       <path d="M3 7h2v7H3zm-3 3h2v7H0zm22-3h2v7h-2zm-3 3h2v7h-2zm-3-7.99L8 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V4c0-1.1-.9-1.99-2-1.99M16 17H8V7h8z" />
+    </SvgIconBase>
+  );
+});
+
+export const TrashIcon = React.memo(function TrashIcon(props: SvgIconProps) {
+  return (
+    <SvgIconBase title="Trash" {...props}>
+      <path d="M16 9v10H8V9zm-1.5-6h-5l-1 1H5v2h14V4h-3.5zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2z" />
+    </SvgIconBase>
+  );
+});
+
+export const UploadIcon = React.memo(function UploadIcon(props: SvgIconProps) {
+  return (
+    <SvgIconBase title="Upload" {...props}>
+      <path d="M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5z" />
+    </SvgIconBase>
+  );
+});
+
+export const EqualizerIcon = React.memo(function EqualizerIcon(
+  props: SvgIconProps,
+) {
+  return (
+    <SvgIconBase title="Equalizer" {...props}>
+      <path d="M5 2c0-.55-.45-1-1-1s-1 .45-1 1v4H1v10c0 1.3.84 2.4 2 2.82V23h2v-4.18C6.16 18.4 7 17.3 7 16V6H5zM4 17c-.55 0-1-.45-1-1v-2h2v2c0 .55-.45 1-1 1m-1-5V8h2v4zM13 2c0-.55-.45-1-1-1s-1 .45-1 1v4H9v10c0 1.3.84 2.4 2 2.82V23h2v-4.18c1.16-.42 2-1.52 2-2.82V6h-2zm-1 15c-.55 0-1-.45-1-1v-2h2v2c0 .55-.45 1-1 1m-1-5V8h2v4zm10-6V2c0-.55-.45-1-1-1s-1 .45-1 1v4h-2v10c0 1.3.84 2.4 2 2.82V23h2v-4.18c1.16-.42 2-1.52 2-2.82V6zm-1 11c-.55 0-1-.45-1-1v-2h2v2c0 .55-.45 1-1 1m-1-5V8h2v4z" />
     </SvgIconBase>
   );
 });
@@ -156,7 +221,7 @@ export const DownloadIcon = React.memo(function DownloadIcon(
 ) {
   return (
     <SvgIconBase title="Download" {...props}>
-      <path d="M5 20h14v-2H5zm14-9h-4V3H9v8H5l7 7z" />
+      <path d="M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3zm-1-4-1.41-1.41L13 12.17V4h-2v8.17L8.41 9.59 7 11l5 5z" />
     </SvgIconBase>
   );
 });
@@ -214,7 +279,7 @@ export const CheckCircleIcon = React.memo(function CheckCircleIcon(
 ) {
   return (
     <SvgIconBase title="Check" {...props}>
-      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z" />
     </SvgIconBase>
   );
 });
@@ -246,7 +311,53 @@ export const ListIcon = React.memo(function ListIcon(props: SvgIconProps) {
 export const TuneIcon = React.memo(function TuneIcon(props: SvgIconProps) {
   return (
     <SvgIconBase title="Settings" {...props}>
-      <path d="M3 17v2h6v-2zm0-12v2h10V5zm10 16v-2h8v-2h-8v-2h-2v6zm-6-8v2h2V9H7v2H3v2zm4 0h10v-2H11zm4-4h2V7h4V5h-4V3h-2z" />
+      <path d="M3 17v2h6v-2zM3 5v2h10V5zm10 16v-2h8v-2h-8v-2h-2v6zM7 9v2H3v2h4v2h2V9zm14 4v-2H11v2zm-6-4h2V7h4V5h-4V3h-2z" />
+    </SvgIconBase>
+  );
+});
+
+export const VolumeIcon = React.memo(function VolumeIcon(props: SvgIconProps) {
+  return (
+    <SvgIconBase title="Volume" {...props}>
+      <path d="M14 8.83v6.34L11.83 13H9v-2h2.83zM16 4l-5 5H7v6h4l5 5z" />
+    </SvgIconBase>
+  );
+});
+
+export const VolumeOffIcon = React.memo(function VolumeOffIcon(
+  props: SvgIconProps,
+) {
+  return (
+    <SvgIconBase title="Volume off" {...props}>
+      <path d="M4.34 2.93 2.93 4.34 7.29 8.7 7 9H3v6h4l5 5v-6.59l4.18 4.18c-.65.49-1.38.88-2.18 1.11v2.06c1.34-.3 2.57-.92 3.61-1.75l2.05 2.05 1.41-1.41zM10 15.17 7.83 13H5v-2h2.83l.88-.88L10 11.41zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71m-7-8-1.88 1.88L12 7.76zm4.5 8c0-1.77-1.02-3.29-2.5-4.03v1.79l2.48 2.48c.01-.08.02-.16.02-.24" />
+    </SvgIconBase>
+  );
+});
+
+export const HeadphonesIcon = React.memo(function HeadphonesIcon(
+  props: SvgIconProps,
+) {
+  return (
+    <SvgIconBase title="Headphones" {...props}>
+      <path d="M12 3c-4.97 0-9 4.03-9 9v7c0 1.1.9 2 2 2h4v-8H5v-1c0-3.87 3.13-7 7-7s7 3.13 7 7v1h-4v8h4c1.1 0 2-.9 2-2v-7c0-4.97-4.03-9-9-9M7 15v4H5v-4zm12 4h-2v-4h2z" />
+    </SvgIconBase>
+  );
+});
+
+export const MoonIcon = React.memo(function MoonIcon(props: SvgIconProps) {
+  return (
+    <SvgIconBase title="Moon" {...props}>
+      <path d="M12.34 2.02C6.59 1.82 2 6.42 2 12c0 5.52 4.48 10 10 10 3.71 0 6.93-2.02 8.66-5.02-7.51-.25-12.09-8.43-8.32-14.96" />
+    </SvgIconBase>
+  );
+});
+
+export const ThemeSunIcon = React.memo(function ThemeSunIcon(
+  props: SvgIconProps,
+) {
+  return (
+    <SvgIconBase title="Theme sun" {...props}>
+      <path d="M11 4V2c0-.55.45-1 1-1s1 .45 1 1v2c0 .55-.45 1-1 1s-1-.45-1-1m7.36 3.05 1.41-1.42c.39-.39.39-1.02 0-1.41a.996.996 0 0 0-1.41 0l-1.41 1.42c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0M22 11h-2c-.55 0-1 .45-1 1s.45 1 1 1h2c.55 0 1-.45 1-1s-.45-1-1-1m-10 8c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1M5.64 7.05 4.22 5.64c-.39-.39-.39-1.03 0-1.41s1.03-.39 1.41 0l1.41 1.41c.39.39.39 1.03 0 1.41s-1.02.39-1.4 0m11.31 9.9c-.39.39-.39 1.03 0 1.41l1.41 1.41c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.41-1.41c-.38-.39-1.02-.39-1.41 0M2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1m3.64 6.78 1.41-1.41c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.41 1.41c-.39.39-.39 1.03 0 1.41.38.39 1.02.39 1.41 0M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6" />
     </SvgIconBase>
   );
 });
@@ -272,8 +383,15 @@ export const KeyboardIcon = React.memo(function KeyboardIcon(
 /** Optional convenience map */
 export const Icons = {
   LightBulbIcon,
+  SparklesIcon,
+  SmartSettingsIcon,
+  SignalPathIcon,
+  SunIcon,
   SoundIcon,
   VibrateIcon,
+  TrashIcon,
+  UploadIcon,
+  EqualizerIcon,
   LoopIcon,
   SaveIcon,
   CopyIcon,
@@ -294,6 +412,11 @@ export const Icons = {
   SearchIcon,
   ListIcon,
   TuneIcon,
+  VolumeIcon,
+  VolumeOffIcon,
+  HeadphonesIcon,
+  MoonIcon,
+  ThemeSunIcon,
   SchoolIcon,
   KeyboardIcon,
 } as const;

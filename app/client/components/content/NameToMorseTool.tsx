@@ -1,6 +1,12 @@
 import * as React from "react";
 
-import { CopyIcon, PlayIcon } from "~/client/assets/svg/Icons";
+import {
+  CheckCircleIcon,
+  CopyIcon,
+  HeadphonesIcon,
+  PlayIcon,
+  SignalPathIcon,
+} from "~/client/assets/svg/Icons";
 import {
   NAME_EXAMPLES,
   morseForText,
@@ -64,7 +70,11 @@ function CopyButton({
         disabled,
       })}
     >
-      <CopyIcon size={16} title={label} />
+      {copied ? (
+        <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
+      ) : (
+        <CopyIcon size={16} title={undefined} aria-hidden="true" />
+      )}
       {copied ? "Copied" : label}
     </button>
   );
@@ -191,6 +201,7 @@ export default function NameToMorseTool() {
                 if (!canUseOutput) event.preventDefault();
               }}
             >
+              <SignalPathIcon size={16} title={undefined} aria-hidden="true" />
               Open in translator
             </a>
             <a
@@ -207,6 +218,7 @@ export default function NameToMorseTool() {
                 if (!canUseOutput) event.preventDefault();
               }}
             >
+              <HeadphonesIcon size={16} title={undefined} aria-hidden="true" />
               Hear in audio
             </a>
           </div>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { CheckCircleIcon, CopyIcon } from "~/client/assets/svg/Icons";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import {
   HERO_EYEBROW_LINE_CLASS,
@@ -254,6 +255,11 @@ export default function WordSeparatorTool() {
                   size: "sm",
                 })} active:scale-95`}
               >
+                {copied ? (
+                  <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
+                ) : (
+                  <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                )}
                 Copy output
               </button>
               {copied && (

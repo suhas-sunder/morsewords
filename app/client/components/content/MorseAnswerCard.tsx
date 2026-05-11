@@ -1,6 +1,12 @@
 import * as React from "react";
 
-import { CopyIcon, PlayIcon } from "~/client/assets/svg/Icons";
+import {
+  CheckCircleIcon,
+  CopyIcon,
+  HeadphonesIcon,
+  PlayIcon,
+  SparklesIcon,
+} from "~/client/assets/svg/Icons";
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import {
   ToolOutputPanel,
@@ -61,7 +67,11 @@ function CopyButton({
       }}
       className={toolControlButtonClass({ tone: "darkPanel", size: "sm" })}
     >
-      <CopyIcon size={16} title={label} />
+      {copied ? (
+        <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
+      ) : (
+        <CopyIcon size={16} title={undefined} aria-hidden="true" />
+      )}
       {copied ? "Copied" : label}
     </button>
   );
@@ -83,10 +93,26 @@ export default function MorseAnswerCard({
     translatorHref
       ? { href: translatorHref, label: "Open in translator" }
       : null,
-    audioHref ? { href: audioHref, label: "Hear in audio" } : null,
+    audioHref
+      ? {
+          href: audioHref,
+          label: "Hear in audio",
+          icon: <HeadphonesIcon size={16} title={undefined} aria-hidden="true" />,
+        }
+      : null,
     encoderHref ? { href: encoderHref, label: "Open in encoder" } : null,
-    practiceHref ? { href: practiceHref, label: "Practice" } : null,
-  ].filter(Boolean) as Array<{ href: string; label: string }>;
+    practiceHref
+      ? {
+          href: practiceHref,
+          label: "Practice",
+          icon: <SparklesIcon size={16} title={undefined} aria-hidden="true" />,
+        }
+      : null,
+  ].filter(Boolean) as Array<{
+    href: string;
+    label: string;
+    icon?: React.ReactNode;
+  }>;
 
   return (
     <section className="mt-5">
@@ -162,6 +188,7 @@ export default function MorseAnswerCard({
                       size: "sm",
                     })}
                   >
+                    {link.icon}
                     {link.label}
                   </a>
                 ))}

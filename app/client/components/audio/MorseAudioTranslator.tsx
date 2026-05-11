@@ -22,14 +22,18 @@ import {
 import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
 
 import {
+  CheckCircleIcon,
   CopyIcon,
+  DownloadIcon,
+  EqualizerIcon,
   LoopIcon,
   PauseIcon,
   PlayIcon,
-  SaveIcon,
-  SoundIcon,
   StopIcon,
+  TrashIcon,
   LightBulbIcon,
+  VolumeIcon,
+  VolumeOffIcon,
 } from "~/client/assets/svg/Icons";
 
 type SourceMode = "text" | "morse";
@@ -495,8 +499,9 @@ export default function MorseAudioTranslator({
                       <button
                         type="button"
                         onClick={handleClearOutput}
-                        className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${DARK_PANEL_BUTTON}`}
+                        className={`inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold transition active:scale-95 ${focusOutline} ${DARK_PANEL_BUTTON}`}
                       >
+                        <TrashIcon size={16} title={undefined} aria-hidden="true" />
                         Clear output
                       </button>
 
@@ -510,7 +515,11 @@ export default function MorseAudioTranslator({
                             : DARK_PANEL_DISABLED
                         }`}
                       >
-                        <CopyIcon size={16} title="Copy Output" />
+                        {copied === "morse" ? (
+                          <CheckCircleIcon size={16} title={undefined} aria-hidden="true" />
+                        ) : (
+                          <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                        )}
                         <span>{copied === "morse" ? "Copied" : "Copy Output"}</span>
                       </button>
                     </>
@@ -579,7 +588,7 @@ export default function MorseAudioTranslator({
                   tone="light"
                   className="flex justify-center items-center gap-2 rounded-xl py-2.5"
                 >
-                  <SaveIcon size={22} title="Export WAV" />
+                  <DownloadIcon size={22} title={undefined} aria-hidden="true" />
                   <span>Export WAV</span>
                 </ToolButton>
               </div>
@@ -596,7 +605,13 @@ export default function MorseAudioTranslator({
                     label="Sound"
                     checked={renderedSoundOn}
                     onChange={(v) => setFeedback("sound", v)}
-                    icon={<SoundIcon size={16} title="Sound" />}
+                    icon={
+                      renderedSoundOn ? (
+                        <VolumeIcon size={16} title={undefined} aria-hidden="true" />
+                      ) : (
+                        <VolumeOffIcon size={16} title={undefined} aria-hidden="true" />
+                      )
+                    }
                   />
                   <TogglePill
                     label="Repeat"
@@ -708,6 +723,7 @@ export default function MorseAudioTranslator({
                   onClick={() => setAdvancedOpen((v) => !v)}
                   className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95"
                 >
+                  <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
                   {advancedOpen ? "Hide advanced" : "Show advanced"}
                 </button>
               </div>
@@ -759,7 +775,7 @@ export default function MorseAudioTranslator({
                           : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                       }`}
                     >
-                      <SaveIcon size={18} title="Export WAV" />
+                      <DownloadIcon size={18} title={undefined} aria-hidden="true" />
                       <span>Download WAV</span>
                     </button>
                   </div>
@@ -771,6 +787,7 @@ export default function MorseAudioTranslator({
                   onClick={() => setExportOpen((v) => !v)}
                   className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95"
                 >
+                  <DownloadIcon size={18} title={undefined} aria-hidden="true" />
                   {exportOpen ? "Hide export" : "Show export"}
                 </button>
               </div>

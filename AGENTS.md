@@ -462,3 +462,20 @@ Approved button treatment is centralized by `app/app.css` and
 - Every new page must be visually checked against the homepage before
   completion.
 - Passing tests is not enough. Screenshots must be reviewed.
+
+## 18. Dark mode, icons, and refactor readiness
+
+- Do not implement dark mode page-by-page.
+- Consolidate shared surfaces before adding dark tokens.
+- Dark mode must use shared tokens and shared classes, not scattered `dark:`
+  classes across route files.
+- Light mode must remain the default.
+- Theme choice must eventually persist locally.
+- The theme toggle must live in the navbar and use the shared Moon and Sun
+  icons.
+- Icons must come from the shared icon library.
+- Do not paste inline SVGs into route or page files.
+- Icons must use `currentColor`, accessible labels where needed, and consistent
+  sizing.
+- Component refactors must preserve existing logic, layout, and styling unless
+  the task explicitly allows visual changes.
