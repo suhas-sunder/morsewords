@@ -1,4 +1,5 @@
 import * as React from "react";
+import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 
 const workedExamples = [
   {
@@ -43,12 +44,7 @@ export default function HowItWorksAudio() {
       <div className="mx-auto max-w-[1160px]">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-sky-800" />
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-                Audio spec
-              </span>
-            </div>
+            <SectionEyebrow>Audio spec</SectionEyebrow>
 
             <h2 className="mt-4 max-w-[18ch] text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
               How this Morse code audio generator works

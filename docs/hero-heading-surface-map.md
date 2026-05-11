@@ -7,8 +7,9 @@ changes, or tool behavior changes are implemented here.
 
 ## Scope and Outcome
 
-- Source pass type: audit and planning.
-- Runtime source changes in this pass: none.
+- Source pass type: audit, planning, and narrow primitive extraction.
+- Runtime source changes from the follow-up implementation pass:
+  `SectionEyebrow` was added and reused in selected low-risk support sections.
 - Existing shared hero assets found:
   - `app/client/components/shared/heroStyles.ts`
   - `app/client/components/shared/ToolWorkspace.tsx`
@@ -17,10 +18,9 @@ changes, or tool behavior changes are implemented here.
   - `app/client/components/shared/PageBackdrop.tsx`
 - Current approved decorative Morse background:
   `MorseAmbientBackground`, rendered by `PageBackdrop`.
-- Tiny extraction decision: deferred. The repeated line-plus-label eyebrow
-  pattern is a good candidate, but using it outside `MorseLearningLayout` would
-  touch enough routes that it deserves screenshot coverage as its own narrow
-  implementation pass.
+- Tiny extraction decision: completed for the first low-risk support-section
+  batch. Home, hero, FAQ, toolkit, practice, typing, and sentence-practice
+  labels remain local for later focused passes.
 
 ## 1. Inventory of Current Hero and Heading Systems
 
@@ -32,6 +32,7 @@ changes, or tool behavior changes are implemented here.
 | Tool hero primitive | `app/client/components/shared/ToolWorkspace.tsx` | `/audio`, `/morse-code-sound-generator`, `/name-to-morse-code` | Tool-page H1, eyebrow, and intro copy | H1 only | Line-plus-label from constants | Header only, parent owns outer section and action rows | Yes where parent matches home | Some routes still render same markup manually | Safe only with route screenshots | High, because tool pages should receive future heading tokens through this layer |
 | Page hero primitive | `app/client/components/shared/MorseLearningLayout.tsx` | Guides, leaf pages, contact, about, dictionary, reference hubs, word trainer, word search builder, many newer routes | Content/reference page H1 with optional actions and aside | H1 only | Shared `Eyebrow` component | Wraps `mw-tool-section mt-0`, header spacing, optional side grid | Mostly matches the home heading style, with content-page layout needs | Coexists with `ToolHero` and manual hero shells | Safe only by route family | High, because most content pages already flow through this surface |
 | Learning layout eyebrow | `app/client/components/shared/MorseLearningLayout.tsx` | `PageHero`, `SectionCard` | Shared line-plus-label primitive | None | Approved line, text size, tracking, and color | No outer spacing by itself | Matches homepage eyebrow styling | Same markup still duplicated elsewhere | Candidate for next narrow batch | High, because one token-ready eyebrow surface would remove many scattered text color classes |
+| Section eyebrow primitive | `app/client/components/shared/SectionEyebrow.tsx` | `/audio`, `/morse-code-encoder`, `/morse-code-decoder`, `/morse-code-word-separator`, `/morse-code-sound-generator` support sections | Shared support-section line-plus-label primitive | None | Imports approved hero eyebrow constants | No margins or wrapper layout beyond the existing eyebrow row | Matches homepage eyebrow styling | First low-risk batch consolidated | Completed for selected support sections | High, because future heading color work can target this shared surface |
 
 ### Homepage Source-of-Truth Surfaces
 
@@ -193,12 +194,17 @@ Repeated class group:
 Found in:
 
 - `app/client/components/home/HowItWorks.tsx`
-- `app/client/components/shared/HowItWorksAudio.tsx`
+- `app/client/components/shared/HowItWorksAudio.tsx` now uses
+  `SectionEyebrow`.
 - `app/client/components/shared/ToolHowItWorks.tsx`
-- `app/client/components/morse-code-encoder/HowItWorks.tsx`
-- `app/client/components/morse-code-decoder/HowItWorks.tsx`
-- `app/client/components/morse-code-word-separator/HowItWorks.tsx`
+- `app/client/components/morse-code-encoder/HowItWorks.tsx` now uses
+  `SectionEyebrow`.
+- `app/client/components/morse-code-decoder/HowItWorks.tsx` now uses
+  `SectionEyebrow`.
+- `app/client/components/morse-code-word-separator/HowItWorks.tsx` now uses
+  `SectionEyebrow`.
 - `app/client/components/morse-code-sound-generator/SoundGeneratorGuide.tsx`
+  now uses `SectionEyebrow`.
 - `app/client/components/practice/HowItWorksPractice.tsx`
 - `app/client/components/typing/HowItWorksTyping.tsx`
 - `app/client/components/navigation/RelatedTools.tsx`
@@ -206,9 +212,9 @@ Found in:
   `morse-code-word-search-builder.tsx`, `morse-code-sos.tsx`,
   `morse-code-international-translator.tsx`, and sitemap sections.
 
-The repeated visual pattern is intentional. The route-local copies are the
-problem. The safest fix is a small `SectionEyebrow` primitive that uses the
-same classes and leaves all outer section layout untouched.
+The repeated visual pattern is intentional. The first safe route-local copies
+were replaced with `SectionEyebrow`, which uses the same classes and leaves all
+outer section layout untouched.
 
 ### Repeated Section H2 Classes
 
@@ -255,7 +261,7 @@ because H2 spacing and max-width differ by section type.
 
 | Candidate | Classification | Reason | Exact files to change later | Tests and screenshots needed |
 | --- | --- | --- | --- | --- |
-| `SectionEyebrow` primitive for left-aligned line-plus-label sections | A, safe to consolidate now in a narrow pass | Existing `Eyebrow` already proves the class stack, but moving usage outside `MorseLearningLayout` should have screenshots | Start with `ToolHowItWorks.tsx`, `morse-code-encoder/HowItWorks.tsx`, `morse-code-decoder/HowItWorks.tsx`, `morse-code-word-separator/HowItWorks.tsx`, `morse-code-sound-generator/SoundGeneratorGuide.tsx` | Desktop/mobile screenshots for `/audio`, `/morse-code-encoder`, `/morse-code-decoder`, `/morse-code-sound-generator`, `/morse-code-word-separator`; typecheck, build, route smoke |
+| `SectionEyebrow` primitive for left-aligned line-plus-label sections | A, completed for first low-risk batch | Existing `Eyebrow` proved the class stack; `SectionEyebrow` now reuses the same constants without margins | Completed in `HowItWorksAudio.tsx`, `morse-code-encoder/HowItWorks.tsx`, `morse-code-decoder/HowItWorks.tsx`, `morse-code-word-separator/HowItWorks.tsx`, `morse-code-sound-generator/SoundGeneratorGuide.tsx` | Desktop/mobile screenshots for `/`, `/audio`, `/morse-code-encoder`, `/morse-code-decoder`, `/morse-code-sound-generator`, `/morse-code-word-separator` matched before and after |
 | Centered FAQ eyebrow/header primitive | B, safe only with screenshot comparison | FAQ wrapper margins and trigger styling differ by variant | `FaqSectionGeneric.tsx` only at first | Home and one non-home FAQ screenshot with closed and open FAQ state |
 | Reuse `ToolHero` in `TranslatorSectionsBasic` | C, needs dedicated implementation pass | This protects the homepage H1 and primary translator first viewport | `TranslatorSectionsBasic.tsx` | Home, encoder, decoder screenshots, query-prefill checks, translator interaction smoke |
 | Reuse `ToolHero` in `WordSeparatorTool` | B, safe only with screenshot comparison | It is a simple duplicate hero, but the page owns tool state and query behavior | `WordSeparatorTool.tsx` | `/morse-code-word-separator` desktop/mobile screenshots and interaction smoke |
@@ -265,30 +271,33 @@ because H2 spacing and max-width differ by section type.
 | Practice/typing hero consolidation | D, leave unique for now | The pages are behavior-heavy and current instruction excludes practice/typing controls | Practice, typing, sentence-practice components | Separate stateful-page pass after control consolidation |
 | Static utility/legal heading cleanup | E, needs more investigation | Some pages are older and may intentionally differ from the core product surfaces | misc/legal, sitemap, socials | Static route screenshot audit |
 
-## 5. Recommended Next Implementation Batch
+## 5. Completed Batch and Next Target
 
-Recommended next batch: consolidate the left-aligned section eyebrow primitive
-only.
+Completed batch: consolidate the left-aligned section eyebrow primitive for
+selected low-risk support sections only.
 
 ### Proposed Scope
 
-- Create or expose a shared component named `SectionEyebrow` or move the
-  existing `Eyebrow` primitive to a clearer shared heading module.
+- Created `app/client/components/shared/SectionEyebrow.tsx`.
 - Keep the rendered markup and classes identical:
   - `flex items-center gap-3`
   - `h-px w-8 bg-sky-800`
   - `font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900`
-- Update only low-risk support sections first:
-  - `app/client/components/shared/ToolHowItWorks.tsx`
+- Updated only low-risk support sections first:
+  - `app/client/components/shared/HowItWorksAudio.tsx`
   - `app/client/components/morse-code-encoder/HowItWorks.tsx`
   - `app/client/components/morse-code-decoder/HowItWorks.tsx`
   - `app/client/components/morse-code-word-separator/HowItWorks.tsx`
   - `app/client/components/morse-code-sound-generator/SoundGeneratorGuide.tsx`
-- Leave home, FAQ, toolkit, practice, typing, and translator hero surfaces
-  unchanged in that first implementation batch.
+- `ToolHowItWorks.tsx` was intentionally left local in this pass because it is
+  shared by audio/visual practice, quiz, trainer, and word-search route
+  families that need their own screenshot batch.
+- Home, FAQ, toolkit, practice, typing, sentence-practice, and translator hero
+  surfaces remain unchanged.
 
 ### Routes to Screenshot
 
+- `/`
 - `/audio`
 - `/morse-code-encoder`
 - `/morse-code-decoder`
@@ -297,13 +306,14 @@ only.
 
 Optional comparison routes:
 
-- `/`
 - `/name-to-morse-code`
 
-### Expected Visual Impact
+### Visual Impact
 
-- None. The component should render the same elements with the same classes.
-- No section wrapper, H2, description, spacing, or layout classes should move.
+- None. The component renders the same elements with the same classes.
+- Before and after screenshots were byte-identical for required desktop and
+  mobile pages.
+- No section wrapper, H2, description, spacing, or layout classes moved.
 
 ### Risks
 
@@ -397,11 +407,11 @@ Optional comparison routes:
 - `app/client/components/navigation/RelatedTools.tsx`
 - `app/client/components/shared/FaqSectionGeneric.tsx`
 
-## 8. Decision for This Pass
+## 8. Current Decision
 
-No source extraction was performed. The safest next step is a dedicated
-section-eyebrow primitive pass with before/after screenshots on the small set
-of low-risk tool support sections listed above. That keeps homepage, FAQ,
-toolkit, translator, practice, typing, route content, and tool behavior
-unchanged while still reducing one high-value visual duplication cluster before
-dark-mode token work.
+`SectionEyebrow` is now the shared primitive for the selected low-risk
+left-aligned support-section labels. Remaining eyebrow duplication is
+intentional until each broader surface has its own focused screenshot-backed
+pass. The next recommended target is either a dedicated `ToolHowItWorks`
+consumer audit, because that component spans multiple training route families,
+or a centered FAQ heading pass contained to `FaqSectionGeneric`.

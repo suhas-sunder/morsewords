@@ -207,6 +207,7 @@ export default function WordSeparatorTool() {
           {mode === "normalizeMorse" ? (
             <>
               <ToolTextarea
+                aria-label="Paste Morse"
                 value={morseInput}
                 onChange={(e) => setMorseInput(e.target.value)}
                 className="text-sm sm:text-base"
@@ -220,6 +221,7 @@ export default function WordSeparatorTool() {
           ) : (
             <>
               <ToolTextarea
+                aria-label="English input"
                 value={englishInput}
                 onChange={(e) => setEnglishInput(e.target.value)}
                 className="font-sans text-sm sm:text-base"

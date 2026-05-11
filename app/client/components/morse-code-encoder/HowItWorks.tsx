@@ -1,13 +1,11 @@
 import { Link } from "react-router";
+import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 
 export default function HowItWorks() {
  return (
  <section className="mw-static-panel mw-how-section mt-8 overflow-hidden rounded-2xl bg-[#fffdf8] p-5 sm:p-8">
  <div className="flex flex-col gap-3">
- <div className="flex items-center gap-3">
- <span className="h-px w-8 bg-sky-800"/>
- <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">Encoder spec</span>
- </div>
+ <SectionEyebrow>Encoder spec</SectionEyebrow>
 
  <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
  How this Morse code encoder works

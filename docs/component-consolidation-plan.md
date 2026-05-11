@@ -50,6 +50,11 @@ broad component refactor.
   surfaces without changing runtime source. The next safe implementation batch
   is a narrow left-aligned section-eyebrow primitive pass for low-risk tool
   support sections.
+- Completed the first `SectionEyebrow` implementation pass by adding
+  `app/client/components/shared/SectionEyebrow.tsx` and reusing it in the
+  audio, encoder, decoder, word-separator, and sound-generator support
+  sections. Homepage and touched page screenshots were byte-identical before
+  and after.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -88,9 +93,12 @@ broad component refactor.
 - `WordSeparatorTool` manually renders a hero using the same hero constants.
 - Repeated section eyebrow markup exists in home support sections, audio/tool
   support sections, FAQ headings, related tools, and selected route files.
-- Near-term consolidation target: create or expose a small left-aligned
-  section-eyebrow primitive first, then migrate only low-risk support sections
-  with screenshots.
+- `SectionEyebrow` now covers the first low-risk support-section batch:
+  `HowItWorksAudio`, encoder support, decoder support, word-separator support,
+  and sound-generator support.
+- Remaining section-eyebrow consolidation should stay batch-specific.
+  `ToolHowItWorks` spans audio/visual practice, quiz, trainer, and word-search
+  pages, so it needs its own screenshot plan before migration.
 - Longer-term consolidation target: evaluate whether `ToolHero` and `PageHero`
   need a shared lower-level primitive with optional action row and optional
   aside, while preserving current spacing.
@@ -282,16 +290,17 @@ broad component refactor.
 
 ### 5a. Hero and Heading Primitives
 
-- Start with the left-aligned line-plus-label section eyebrow used across
-  support sections.
+- The first left-aligned line-plus-label section eyebrow batch is complete.
 - Do not include section margins, H2 classes, FAQ centered headings, toolkit
-  headings, action rows, or broad hero wrappers in the first eyebrow batch.
-- Verify `/audio`, `/morse-code-encoder`, `/morse-code-decoder`,
+  headings, action rows, or broad hero wrappers in follow-up eyebrow batches.
+- Verified `/`, `/audio`, `/morse-code-encoder`, `/morse-code-decoder`,
   `/morse-code-sound-generator`, and `/morse-code-word-separator` on desktop
-  and mobile.
+  and mobile with byte-identical before/after screenshots.
 - Leave `TranslatorSectionsBasic`, home support headings, FAQ headings,
   toolkit headings, practice, typing, and sentence-practice headings for later
   dedicated passes.
+- Next safe target: audit `ToolHowItWorks` consumers as a route-family batch,
+  or consolidate the centered FAQ header inside `FaqSectionGeneric`.
 
 ### 6. FAQ, Breadcrumb, and Toolkit
 

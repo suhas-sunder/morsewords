@@ -16,6 +16,9 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
 - Hero, page-heading, section-heading, and eyebrow surfaces are mapped in
   `docs/hero-heading-surface-map.md`. Future theme work should use that map
   before changing heading colors or introducing tokens.
+- The first low-risk support-section eyebrow batch now uses
+  `SectionEyebrow`, covering audio, encoder, decoder, word-separator, and
+  sound-generator support sections.
 - Current styling still depends heavily on Tailwind color classes, style
   objects, route-local button classes, and global CSS overrides.
 
@@ -107,6 +110,8 @@ These surfaces need planned light and dark theme coverage.
 - Section headings: left-aligned section eyebrows, centered FAQ eyebrows,
   support-section H2s, route-local reference section headings, and toolkit
   headings. These need consolidation before heading color tokens are applied.
+  `SectionEyebrow` is the first shared primitive for the left-aligned
+  support-section eyebrow role.
 - Dark answer panels: `ToolOutputPanel`, `DarkNote`, pre/code blocks, output
   footer buttons, and status text.
 - Tool panels: `ToolPanel`, `ToolTextarea`, text inputs, select inputs, range
@@ -201,7 +206,8 @@ These surfaces need planned light and dark theme coverage.
   `ToolWorkspace` behavior.
 - Hero and heading duplication is mapped in
   `docs/hero-heading-surface-map.md`; repeated line-plus-label eyebrow markup
-  should be consolidated before heading colors are tokenized.
+  is being consolidated before heading colors are tokenized. The first
+  `SectionEyebrow` batch covers low-risk support sections only.
 - `MorseAudioTranslator` has route-local button constants and local labeled
   input/select helpers.
 - `/morse-code-alphabet` has route-local copy buttons, sections, and cards.
@@ -325,7 +331,9 @@ Additional tokens may be useful after consolidation:
   reference-table patterns into shared components.
 - Consolidate the mapped hero, heading, and eyebrow primitives in small
   screenshot-backed batches. Start with the left-aligned section-eyebrow
-  primitive before broad hero wrappers.
+  primitive before broad hero wrappers. The first `SectionEyebrow` batch is
+  complete; keep FAQ, toolkit, hero, practice, typing, and trainer headings in
+  later focused batches.
 - Keep home and `/audio` visually unchanged.
 - Verify route groups with screenshots before and after each extraction.
 
