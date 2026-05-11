@@ -25,11 +25,16 @@ broad component refactor.
 - Completed the printable chart action cleanup by moving export, share,
   quick-preset, and uploaded-logo remove controls to shared action controls
   without changing chart behavior or file output.
+- Completed the practice, typing, quiz, trainer, audio/visual practice, and
+  word-search control-state mapping in `docs/practice-typing-control-map.md`
+  before starting behavior-heavy control consolidation.
 - Removed legacy `TranslatorSections.tsx` after search confirmed active routes
   and components import `TranslatorSectionsBasic` instead.
 - Remaining duplicated controls are mostly behavior-specific practice, quiz,
-  typing, and printable-chart settings controls that should stay local until
-  their state machines and screenshots are mapped.
+  typing, trainer, audio/visual practice, and word-search controls. The map
+  identifies the typing result share modal as the smallest next safe batch and
+  keeps scoring, timer, playback, reveal, skip, and flash controls local for
+  now.
 
 ## Duplicated Homepage-Only or Home-Like Components
 
@@ -186,8 +191,8 @@ broad component refactor.
 - `MorseAudioTranslator`: audio export, timing, localStorage, strobe warning,
   and generated WAV behavior make it high-risk.
 - Practice, quiz, typing, word trainer, and word-search builder pages: keep
-  behavior-specific controls local until their state machines and screenshots
-  are mapped.
+  behavior-specific controls local unless the limited control-state map in
+  `docs/practice-typing-control-map.md` marks the batch safe.
 - `SocialLinks`: image-backed external links need a separate asset and brand
   review before being generalized.
 
