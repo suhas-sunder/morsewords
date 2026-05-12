@@ -1,14 +1,12 @@
 import * as React from "react";
 import { Link } from "react-router";
+import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 
 export default function HowItWorksTyping() {
   return (
     <section className="mw-static-surface-soft mw-how-section mt-10 bg-[#fffaf2]/40 px-5 py-8 sm:px-8 sm:py-10">
       <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-sky-800" />
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">Typing tool spec</span>
-        </div>
+        <SectionEyebrow>Typing tool spec</SectionEyebrow>
 
         <h2 className="text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
           How MorseWords Typing Practice works

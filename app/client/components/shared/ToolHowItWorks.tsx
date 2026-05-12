@@ -1,3 +1,5 @@
+import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
+
 type SummaryItem = {
  title: string;
  text: string;
@@ -41,12 +43,7 @@ export default function ToolHowItWorks({
  <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
  <div>
- <div className="flex items-center gap-3">
- <span className="h-px w-8 bg-sky-800"/>
- <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
- {eyebrow}
- </span>
- </div>
+ <SectionEyebrow>{eyebrow}</SectionEyebrow>
 
  <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
  {title}

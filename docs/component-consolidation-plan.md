@@ -55,6 +55,11 @@ broad component refactor.
   audio, encoder, decoder, word-separator, and sound-generator support
   sections. Homepage and touched page screenshots were byte-identical before
   and after.
+- Completed the `ToolHowItWorks` consumer map in
+  `docs/tool-how-it-works-consumer-map.md` and migrated the shared
+  `ToolHowItWorks`, `/practice`, and `/typing` static support-section eyebrow
+  labels to `SectionEyebrow` without moving section wrappers, cards, controls,
+  scoring, timers, playback, generated output, or route content.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -97,8 +102,9 @@ broad component refactor.
   `HowItWorksAudio`, encoder support, decoder support, word-separator support,
   and sound-generator support.
 - Remaining section-eyebrow consolidation should stay batch-specific.
-  `ToolHowItWorks` spans audio/visual practice, quiz, trainer, and word-search
-  pages, so it needs its own screenshot plan before migration.
+  `ToolHowItWorks` now uses `SectionEyebrow` internally across its six active
+  consumers. Full `/practice` and `/typing` support-section migration remains
+  deferred because their bodies intentionally differ from `ToolHowItWorks`.
 - Longer-term consolidation target: evaluate whether `ToolHero` and `PageHero`
   need a shared lower-level primitive with optional action row and optional
   aside, while preserving current spacing.
@@ -299,8 +305,8 @@ broad component refactor.
 - Leave `TranslatorSectionsBasic`, home support headings, FAQ headings,
   toolkit headings, practice, typing, and sentence-practice headings for later
   dedicated passes.
-- Next safe target: audit `ToolHowItWorks` consumers as a route-family batch,
-  or consolidate the centered FAQ header inside `FaqSectionGeneric`.
+- Next safe target: audit and consolidate non-interactive static panel/card
+  wrappers, or consolidate the centered FAQ header inside `FaqSectionGeneric`.
 
 ### 6. FAQ, Breadcrumb, and Toolkit
 

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
+import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 
 const summaryPoints = [
   {
@@ -81,12 +82,7 @@ export default function HowItWorksPractice() {
       <div className="mx-auto max-w-[1160px]">
         <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-sky-800" />
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-                Practice spec
-              </span>
-            </div>
+            <SectionEyebrow>Practice spec</SectionEyebrow>
 
             <h2
               id="practice-how-title"
