@@ -12,7 +12,10 @@ changes, or tool behavior changes are implemented here.
   `SectionEyebrow` was added and reused in selected low-risk support sections,
   then wired into `ToolHowItWorks`, `/practice`, and `/typing` static support
   labels. A later dedicated FAQ/toolkit pass centralized FAQ header/list/item
-  wrappers and moved `RelatedTools` to a shared home/full renderer.
+  wrappers and moved `RelatedTools` to a shared home/full renderer. The
+  visible breadcrumb UI pass then routed simple Home/current breadcrumb blocks
+  through `BreadcrumbTrail` spacing variants without touching BreadcrumbList
+  JSON-LD.
 - Existing shared hero assets found:
   - `app/client/components/shared/heroStyles.ts`
   - `app/client/components/shared/ToolWorkspace.tsx`
@@ -84,7 +87,7 @@ changes, or tool behavior changes are implemented here.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | FAQ section heading | `app/client/components/shared/FaqSectionGeneric.tsx` | Home and many non-home pages | FAQ heading and accordion wrapper | H2 centered | Centered line-plus-label with two side lines | Variant-specific margins and FAQ styling | Home variant is approved | Shared internal header, list, and item wrappers now preserve the variants | Completed in dedicated FAQ pass | Medium |
 | Related tools headings | `app/client/components/navigation/RelatedTools.tsx` | Global related tools area | Toolkit and navigation headings | H2 `text-3xl sm:text-4xl` | Shared `SectionEyebrow` | Home and full toolkit variants differ | Home toolkit is source | Shared renderer now preserves compact/full class hooks | Completed in dedicated toolkit pass | High |
-| Breadcrumb headings and utility pages | `app/routes/sitemap.tsx`, misc legal routes, socials route | Sitemap, legal, static utility pages | Static utility page headings | Mixed H1/H2, some use `PageHero`, some manual | Mixed manual eyebrows | Route-local legal/static wrappers | Often not homepage-like | Duplicated, but utility routes need separate audit | Leave for static utility pass | Low to medium |
+| Breadcrumb headings and utility pages | `app/client/components/shared/BreadcrumbTrail.tsx`, misc legal routes | Sitemap, legal, static utility pages | Static utility page headings and visible breadcrumb UI | Mixed H1/H2, some use `PageHero`, some manual | Mixed manual eyebrows | `BreadcrumbTrail` owns simple bottom/content breadcrumb spacing; legal noindex routes keep local top breadcrumbs | Often not homepage-like | Simple Home/current breadcrumb wrappers are consolidated; legal utility breadcrumbs remain local | Utility-route pass only if needed | Low to medium |
 
 ## 2. Homepage Source-of-Truth Notes
 
@@ -262,6 +265,10 @@ because H2 spacing and max-width differ by section type.
 
 - Legal, socials, sitemap, and some static utility pages use older manual H1
   or H2 structures.
+- Simple visible breadcrumb wrappers are now centralized in `BreadcrumbTrail`.
+  The remaining local breadcrumb blocks are the noindex privacy and terms
+  pages, which use a Misc parent crumb and `>` separators near the top of the
+  legal document header.
 - These pages are lower priority than the main tool, reference, guide, and leaf
   surfaces, but they should be included before token rollout so dark mode does
   not require page-local patches.
@@ -277,6 +284,7 @@ because H2 spacing and max-width differ by section type.
 | Unify `ToolHero` and `PageHero` into one broader hero API | C, needs dedicated implementation pass | Tool pages and content pages place action rows and asides differently | `ToolWorkspace.tsx`, `MorseLearningLayout.tsx`, selected routes | Broad route screenshot batch after smaller primitives are stable |
 | Section H2 component for static support sections | C, needs dedicated implementation pass | H2 margin, max width, and size variants are meaningful | Home support, audio support, guide support files | Section-by-section screenshots, no content changes |
 | Toolkit heading consolidation | A, completed in dedicated toolkit pass | `RelatedTools` keeps home/full hover and badge classes in a variant map | Completed in `RelatedTools.tsx` | Home and non-home toolkit screenshots, hover/focus check |
+| Visible breadcrumb UI consolidation | A, completed for simple Home/current breadcrumbs | `BreadcrumbTrail` now owns the active visible breadcrumb link, separator, current-page, and spacing variants while JSON-LD stays route-owned | Completed in `BreadcrumbTrail.tsx` and simple manual breadcrumb routes | Home plus required breadcrumb route screenshots, structured-data tests, link hygiene |
 | Practice/typing hero consolidation | D, leave unique for now | The pages are behavior-heavy and current instruction excludes practice/typing controls | Practice, typing, sentence-practice components | Separate stateful-page pass after control consolidation |
 | Static utility/legal heading cleanup | E, needs more investigation | Some pages are older and may intentionally differ from the core product surfaces | misc/legal, sitemap, socials | Static route screenshot audit |
 

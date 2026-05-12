@@ -72,6 +72,12 @@ broad component refactor.
   the home/default visual variants, and `RelatedTools` now uses one toolkit
   renderer with a home/full class map plus `SectionEyebrow`. FAQPage JSON-LD
   policy and visible FAQ content were left unchanged.
+- Completed the visible breadcrumb UI consolidation pass. `BreadcrumbTrail`
+  now owns the shared link, separator, current-page, and spacing variants for
+  standalone bottom breadcrumbs, page-bottom breadcrumbs, and content-footer
+  breadcrumbs. Simple manual Home/current breadcrumb blocks were migrated to
+  that shared surface while BreadcrumbList JSON-LD generation was left
+  unchanged.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -238,10 +244,16 @@ broad component refactor.
 ### Breadcrumbs
 
 - `BreadcrumbTrail` exists and is used by many expanded routes.
-- `/audio`, `/morse-code-alphabet`, `/about`, and misc pages still use manual
-  breadcrumb markup in places.
-- Consolidation target: migrate manual breadcrumb blocks to `BreadcrumbTrail`
-  where spacing and structured data remain unchanged.
+- `BreadcrumbTrail` is the active visible breadcrumb component. There is no
+  duplicate `navigation/BreadcrumbTrail` component.
+- The simple manual Home/current blocks on `/audio`, `/morse-code-alphabet`,
+  `/about`, `/dictionary`, `/how-to-use`, `/misc`, `/practice`, `/typing`,
+  `/morse-code-sentence-practice`, and `/morse-code-sound-generator` now use
+  `BreadcrumbTrail` with the existing spacing preserved.
+- Noindex legal utility pages keep their local top breadcrumbs for now because
+  they include a Misc parent crumb and a different separator/font treatment.
+- BreadcrumbList JSON-LD remains route-owned and was not rewritten in this
+  visual-only pass.
 
 ### Toolkit
 
@@ -340,7 +352,9 @@ broad component refactor.
 
 ### 6. FAQ, Breadcrumb, and Toolkit
 
-- Migrate manual breadcrumbs to `BreadcrumbTrail`.
+- Manual Home/current breadcrumbs are migrated to `BreadcrumbTrail`; remaining
+  legal utility breadcrumbs need a dedicated utility-route pass if they should
+  adopt the shared surface.
 - Keep the unified toolkit renderer stable while later passes audit compact
   path selection.
 - Preserve bottom breadcrumb placement and related-tools spacing.

@@ -2,6 +2,7 @@ import * as React from "react";
 import type { Route } from "./+types/how-to-use";
 
 import styles from "~/client/components/shared/pageStyles";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import HowToUseSuiteGuide from "~/client/components/how-to-use/HowToUseSuiteGuide";
@@ -98,20 +99,10 @@ export default function HowToUse() {
         <HowToUseSuiteGuide />
         <FaqSectionGeneric title="How to Use FAQ" items={faqItems} />
       </main>
-      <nav
-        aria-label="Breadcrumb"
-        className="mx-auto w-full max-w-[1120px] px-4 pb-12 text-sm text-slate-600 sm:px-6 lg:px-8"
-      >
-        <ol className="flex flex-wrap items-center gap-2">
-          <li>
-            <a href="/" className="underline hover:no-underline cursor-pointer">
-              Home
-            </a>
-          </li>
-          <li>/</li>
-          <li className="font-semibold text-sky-950">How to Use MorseWords</li>
-        </ol>
-      </nav>
+      <BreadcrumbTrail
+        current="How to Use MorseWords"
+        placement="pageBottom"
+      />
       <JsonLdScript jsonLd={jsonLd} />
     </div>
   );

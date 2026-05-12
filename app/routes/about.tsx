@@ -3,6 +3,7 @@ import type { Route } from "./+types/about";
 import FaqSectionGeneric, {
   type FaqItem,
 } from "~/client/components/shared/FaqSectionGeneric";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   ActionLinks,
@@ -346,20 +347,7 @@ export default function About() {
           items={aboutFaqItems}
         />
 
-        <nav aria-label="Breadcrumb" className="mb-12 mt-10 text-sm text-slate-600">
-          <ol className="flex flex-wrap items-center gap-2">
-            <li>
-              <a
-                href="/"
-                className="cursor-pointer underline hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
-              >
-                Home
-              </a>
-            </li>
-            <li>/</li>
-            <li className="font-semibold text-sky-950">About</li>
-          </ol>
-        </nav>
+        <BreadcrumbTrail current="About" placement="contentFooter" />
       </main>
     </div>
   );

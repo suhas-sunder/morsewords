@@ -33,6 +33,9 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
   wrappers inside `FaqSectionGeneric` and routes home/full `RelatedTools`
   rendering through one variant map while preserving current FAQPage JSON-LD
   policy.
+- The visible breadcrumb UI pass now centralizes simple breadcrumb link,
+  separator, current-page, and spacing variants in `BreadcrumbTrail` while
+  preserving the route-owned BreadcrumbList JSON-LD policy.
 - Current styling still depends heavily on Tailwind color classes, style
   objects, route-local button classes, and global CSS overrides.
 
@@ -147,8 +150,9 @@ These surfaces need planned light and dark theme coverage.
 - FAQ items: `FaqSectionGeneric` now owns shared header/list/item wrappers for
   the home and default variants, including non-home shadow suppression, open
   states, answer surfaces, arrow indicators, and JSON-LD parity.
-- Breadcrumbs: `BreadcrumbTrail`, manual breadcrumb navs, spacing below related
-  tools, text colors, and link hover states.
+- Breadcrumbs: `BreadcrumbTrail`, its standalone/page-bottom/content-footer
+  spacing variants, remaining noindex legal breadcrumb navs, spacing below
+  related tools, text colors, separators, focus rings, and link hover states.
 - Tables and grids: `ReferenceTable`, alphabet chart, phrase lookup table,
   sitemap groups, dictionary tables, and route-local lookup grids.
 - Code and Morse output blocks: `StaticCodeBlock`, `mw-static-code`,
@@ -236,6 +240,9 @@ These surfaces need planned light and dark theme coverage.
 - `NavBar` still owns route-local navigation surfaces. `RelatedTools` and
   `FaqSectionGeneric` now have shared boundaries, but their class maps still
   need tokenization before dark mode.
+- `BreadcrumbTrail` now owns simple visible breadcrumb variants. Remaining
+  local breadcrumb markup is limited to noindex legal utility pages with a
+  parent Misc crumb and should be audited before token rollout.
 
 ### Duplicated Button, Card, and Panel Styles
 
@@ -363,6 +370,8 @@ Additional tokens may be useful after consolidation:
   `ToolHowItWorks` now uses that primitive, and the FAQ/toolkit surface pass is
   complete. Keep hero wrappers, trainer workspace headers, and behavior-heavy
   practice or typing controls in later focused batches.
+- Keep the shared `BreadcrumbTrail` spacing variants stable until token work;
+  do not reintroduce route-local Home/current breadcrumb markup.
 - Keep home and `/audio` visually unchanged.
 - Verify route groups with screenshots before and after each extraction.
 

@@ -3,6 +3,7 @@ import type { Route } from "./+types/audio";
 
 import styles from "~/client/components/shared/audioStyles";
 import MorseAudioTranslator from "~/client/components/audio/MorseAudioTranslator";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import HowItWorksAudio from "~/client/components/shared/HowItWorksAudio";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
@@ -138,22 +139,10 @@ export default function AudioRoute() {
         </SectionCard>
         <FaqSectionGeneric title="Audio FAQ" items={faqItems} />
       </div>
-      <nav
-        aria-label="Breadcrumb"
-        className="mx-auto w-full max-w-[1120px] px-4 pb-12 text-sm text-slate-600 sm:px-6 lg:px-8"
-      >
-        <ol className="flex flex-wrap items-center gap-2">
-          <li>
-            <a href="/" className="underline hover:no-underline cursor-pointer">
-              Home
-            </a>
-          </li>
-          <li>/</li>
-          <li className="font-semibold text-sky-950">
-            Morse Code Audio Generator
-          </li>
-        </ol>
-      </nav>
+      <BreadcrumbTrail
+        current="Morse Code Audio Generator"
+        placement="pageBottom"
+      />
       <JsonLdScript jsonLd={jsonLd} />
     </div>
   );

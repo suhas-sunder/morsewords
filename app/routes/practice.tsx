@@ -3,6 +3,7 @@ import type { Route } from "./+types/practice";
 
 import styles from "../client/components/shared/practiceStyles";
 import PracticePage from "../client/components/practice/PracticePage";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/practice";
@@ -70,20 +71,7 @@ export default function PracticeRoute() {
         <PracticePage jsonLd={jsonLd} />
       </div>
 
-      <nav
-        aria-label="Breadcrumb"
-        className="mx-auto w-full max-w-[1120px] px-4 pb-12 text-sm text-slate-600 sm:px-6 lg:px-8"
-      >
-        <ol className="flex flex-wrap items-center gap-2">
-          <li>
-            <a href="/" className="underline hover:no-underline cursor-pointer">
-              Home
-            </a>
-          </li>
-          <li>/</li>
-          <li className="font-semibold text-sky-950">Morse Code Practice</li>
-        </ol>
-      </nav>
+      <BreadcrumbTrail current="Morse Code Practice" placement="pageBottom" />
     </div>
   );
 }

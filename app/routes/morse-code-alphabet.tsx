@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { Route } from "./+types/morse-code-alphabet";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { CopyActionButton } from "~/client/components/shared/ActionControls";
@@ -434,17 +435,10 @@ export default function MorseCodeAlphabetRoute() {
         </div>
       </div>
 
-      <nav aria-label="Breadcrumb" className="mb-12 mt-10 text-sm text-slate-600">
-        <ol className="flex flex-wrap items-center gap-2">
-          <li>
-            <a href="/" className="underline hover:no-underline cursor-pointer">
-              Home
-            </a>
-          </li>
-          <li>/</li>
-          <li className="font-semibold text-sky-950">Morse Code Alphabet</li>
-        </ol>
-      </nav>
+      <BreadcrumbTrail
+        current="Morse Code Alphabet"
+        placement="contentFooter"
+      />
     </main>
   );
 }

@@ -1,5 +1,6 @@
-import { Link, Outlet, useLocation } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import {
   ActionLinks,
   PageHero,
@@ -86,20 +87,10 @@ export default function Misc() {
           />
         </SectionCard>
 
-        <nav aria-label="Breadcrumb" className="mb-12 mt-10 text-sm text-slate-600">
-          <ol className="flex flex-wrap items-center gap-2">
-            <li>
-              <Link
-                to="/"
-                className="cursor-pointer underline hover:no-underline"
-              >
-                Home
-              </Link>
-            </li>
-            <li>/</li>
-            <li className="font-semibold text-sky-950">Site information</li>
-          </ol>
-        </nav>
+        <BreadcrumbTrail
+          current="Site information"
+          placement="contentFooter"
+        />
       </main>
     </div>
   );
