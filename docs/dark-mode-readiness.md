@@ -29,6 +29,10 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
   `MorseLearningLayout`. Migrated surfaces include shared reference support
   cards, generated leaf/reference example cards, encoder support panels, and
   word-separator support panels.
+- The FAQ/toolkit visual-surface pass now centralizes FAQ header/list/item
+  wrappers inside `FaqSectionGeneric` and routes home/full `RelatedTools`
+  rendering through one variant map while preserving current FAQPage JSON-LD
+  policy.
 - Current styling still depends heavily on Tailwind color classes, style
   objects, route-local button classes, and global CSS overrides.
 
@@ -140,7 +144,8 @@ These surfaces need planned light and dark theme coverage.
   `aria-disabled` links, and native disabled buttons.
 - Focus rings: global `.mw-page-content` focus rules, input focus suppression,
   range input focus, and route-local focus classes.
-- FAQ items: home variant, default variant, non-home shadow suppression, open
+- FAQ items: `FaqSectionGeneric` now owns shared header/list/item wrappers for
+  the home and default variants, including non-home shadow suppression, open
   states, answer surfaces, arrow indicators, and JSON-LD parity.
 - Breadcrumbs: `BreadcrumbTrail`, manual breadcrumb navs, spacing below related
   tools, text colors, and link hover states.
@@ -228,8 +233,9 @@ These surfaces need planned light and dark theme coverage.
 - `/morse-code-alphabet` has route-local copy buttons, sections, and cards.
 - `/morse-code-words` has a local `CardSection` wrapper and a route-local link
   class.
-- `NavBar`, `RelatedTools`, and `FaqSectionGeneric` each own behavior that
-  should be tokenized before dark mode.
+- `NavBar` still owns route-local navigation surfaces. `RelatedTools` and
+  `FaqSectionGeneric` now have shared boundaries, but their class maps still
+  need tokenization before dark mode.
 
 ### Duplicated Button, Card, and Panel Styles
 
@@ -238,17 +244,18 @@ These surfaces need planned light and dark theme coverage.
 - `ActionLinks` creates button-like links but has no icon slot or variant map.
 - `ToolPanel`, `ToolOutputPanel`, `SectionCard`, `SimpleGrid`,
   `ReferenceSupportSections`, and route-local sections overlap in purpose.
-- Static panels now use shared primitives for the first exact-match batch, but
-  rounded-2xl panels, opacity-specific cards, smaller inline code tiles,
-  printable chart panels, FAQ items, toolkit cards, and behavior-heavy
-  practice/typing/quiz panels remain local by design.
+- Static panels now use shared primitives for the first exact-match batch, and
+  FAQ/toolkit wrappers have shared component boundaries. Rounded-2xl panels,
+  opacity-specific cards, smaller inline code tiles, printable chart panels,
+  and behavior-heavy practice/typing/quiz panels remain local by design.
 
 ### Homepage-Only Components That Should Become Shared Later
 
 - Home `HowItWorks` contains polished section rhythm and surface treatment that
   route support sections partially duplicate.
-- The compact home toolkit and full non-home toolkit in `RelatedTools` are
-  almost the same shape but use different class names and hover behavior.
+- The compact home toolkit and full non-home toolkit in `RelatedTools` now use
+  one renderer with different class names and hover behavior preserved through
+  the variant map.
 - Hero constants in `heroStyles.ts` are the right source for future shared
   hero variants.
 
@@ -352,11 +359,10 @@ Additional tokens may be useful after consolidation:
   is complete for low-risk exact matches; remaining local surfaces should be
   migrated only after screenshot-backed parity checks.
 - Consolidate the mapped hero, heading, and eyebrow primitives in small
-  screenshot-backed batches. Start with the left-aligned section-eyebrow
-  primitive before broad hero wrappers. The first `SectionEyebrow` batch is
-  complete and `ToolHowItWorks` now uses that primitive. Keep FAQ, toolkit,
-  hero wrappers, trainer workspace headers, and behavior-heavy practice or
-  typing controls in later focused batches.
+  screenshot-backed batches. The first `SectionEyebrow` batch is complete,
+  `ToolHowItWorks` now uses that primitive, and the FAQ/toolkit surface pass is
+  complete. Keep hero wrappers, trainer workspace headers, and behavior-heavy
+  practice or typing controls in later focused batches.
 - Keep home and `/audio` visually unchanged.
 - Verify route groups with screenshots before and after each extraction.
 

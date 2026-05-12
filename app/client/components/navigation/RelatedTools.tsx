@@ -1,4 +1,5 @@
 import { useLocation } from "react-router";
+import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 
 type SiteRouteLink = {
   title: string;
@@ -363,16 +364,73 @@ const COMPACT_TOOLKIT_PATHS = new Set([
   "/q-in-morse-code",
 ]);
 
+type ToolkitVariant = "home" | "full";
+
+type ToolkitClassNames = {
+  primaryCard: string;
+  primaryBadge: string;
+  quickLink: string;
+  summary: string;
+  subcard: string;
+  subcardBadge: string;
+};
+
+type ToolkitConfig = {
+  description: string;
+  classNames: ToolkitClassNames;
+};
+
+const TOOLKIT_CONFIG: Record<ToolkitVariant, ToolkitConfig> = {
+  home: {
+    description:
+      "Start with the core translator, then move into practice, audio, worksheets, and reference pages as needed.",
+    classNames: {
+      primaryCard:
+        "mw-button-outline mw-toolkit-card mw-toolkit-card-light group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+      primaryBadge:
+        "mw-toolkit-badge shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500",
+      quickLink:
+        "mw-button-outline mw-toolkit-card mw-toolkit-card-dark group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 hover:bg-slate-800 hover:text-white focus:outline-none",
+      summary:
+        "mw-button-outline mw-toolkit-summary flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+      subcard:
+        "mw-button-outline mw-toolkit-subcard block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+      subcardBadge:
+        "shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500",
+    },
+  },
+  full: {
+    description:
+      "Jump between the translator, encoder, decoder, practice pages, printable charts, audio tools, and Morse code reference guides.",
+    classNames: {
+      primaryCard:
+        "mw-button-outline mw-related-tool-link group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+      primaryBadge:
+        "mw-related-badge shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500",
+      quickLink:
+        "mw-button-outline mw-related-quick-link group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 hover:bg-slate-800 hover:text-white focus:outline-none",
+      summary:
+        "mw-button-outline mw-related-summary flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+      subcard:
+        "mw-button-outline mw-related-tool-link block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+      subcardBadge:
+        "mw-related-badge shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500",
+    },
+  },
+};
+
 export default function RelatedTools() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isCompactContent = COMPACT_TOOLKIT_PATHS.has(location.pathname);
+  const variant = isHome || isCompactContent ? "home" : "full";
 
-  if (isHome || isCompactContent) return <HomeToolkit />;
-  return <FullToolkit />;
+  return <ToolkitNavigation variant={variant} />;
 }
 
-function HomeToolkit() {
+function ToolkitNavigation({ variant }: { variant: ToolkitVariant }) {
+  const { description, classNames } = TOOLKIT_CONFIG[variant];
+
   return (
     <section
       id="morse-code-navigation"
@@ -380,250 +438,143 @@ function HomeToolkit() {
     >
       <div className="px-1 pb-8 pt-0 sm:px-2 sm:pb-10 sm:pt-0">
         <div className="max-w-[42rem]">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-sky-800" />
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-              Morse code navigation
-            </span>
-          </div>
+          <SectionEyebrow>Morse code navigation</SectionEyebrow>
 
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             Explore the Morse code toolkit
           </h2>
 
           <p className="mt-4 max-w-[38rem] text-base leading-relaxed text-slate-700 sm:text-lg">
-            Start with the core translator, then move into practice, audio,
-            worksheets, and reference pages as needed.
+            {description}
           </p>
         </div>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-3">
           {HOME_GROUPS.map((group) => (
-            <section key={group.title}>
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                {group.eyebrow}
-              </p>
-              <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-sky-950">
-                {group.title}
-              </h3>
-              <p className="mt-3 max-w-[22rem] text-base leading-relaxed text-slate-600">
-                {group.description}
-              </p>
-
-              <div className="mt-5 grid gap-2">
-                {group.links.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="mw-button-outline mw-toolkit-card mw-toolkit-card-light group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                  >
-                    <span>
-                      <span className="block text-base font-extrabold leading-snug text-sky-950">
-                        {item.title}
-                      </span>
-                      <span className="mt-1 block text-sm leading-relaxed text-slate-700">
-                        {item.description}
-                      </span>
-                    </span>
-                    <span className="mw-toolkit-badge shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500">
-                      {item.badge}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </section>
+            <ToolkitGroupColumn
+              key={group.title}
+              group={group}
+              classNames={classNames}
+            />
           ))}
         </div>
 
-        <aside className="mt-8">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
-            Quick access
-          </p>
-
-          <div className="mt-3 grid auto-rows-fr gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            {FEATURED_LINKS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="mw-button-outline mw-toolkit-card mw-toolkit-card-dark group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 hover:bg-slate-800 hover:text-white focus:outline-none"
-              >
-                <span className="text-base font-semibold leading-snug text-current sm:text-lg">
-                  {item.title}
-                </span>
-                <span className="absolute right-4 top-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-sky-100/80">
-                  {item.label}
-                </span>
-              </a>
-            ))}
-          </div>
-        </aside>
-
-        <details className="mt-8">
-          <summary className="mw-button-outline mw-toolkit-summary flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
-            <span>View the full MorseWords toolkit</span>
-            <span className="font-mono text-sm text-sky-700">+</span>
-          </summary>
-
-          <div className="grid gap-7 py-5 lg:grid-cols-2">
-            {ROUTE_GROUPS.map((group) => (
-              <section key={group.title}>
-                <h4 className="text-lg font-extrabold text-sky-950">
-                  {group.title}
-                </h4>
-                <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                  {group.links.map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className="mw-button-outline mw-toolkit-subcard block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                    >
-                      <span className="flex items-start justify-between gap-3">
-                        <span className="text-sm font-extrabold leading-snug">
-                          {item.title}
-                        </span>
-                        <span className="shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500">
-                          {item.badge}
-                        </span>
-                      </span>
-                      <span className="mt-1 block text-xs leading-relaxed text-slate-600">
-                        {item.description}
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-        </details>
+        <ToolkitQuickAccess quickLinkClassName={classNames.quickLink} />
+        <ToolkitDetails classNames={classNames} />
       </div>
     </section>
   );
 }
 
-function FullToolkit() {
+function ToolkitGroupColumn({
+  group,
+  classNames,
+}: {
+  group: RouteGroup;
+  classNames: ToolkitClassNames;
+}) {
   return (
-    <section
-      id="morse-code-navigation"
-      className="mx-auto mt-0 max-w-[1040px] px-4 sm:px-6 lg:px-8"
-    >
-      <div className="px-1 pb-8 pt-0 sm:px-2 sm:pb-10 sm:pt-0">
-        <div className="max-w-[42rem]">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-sky-800" />
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-              Morse code navigation
+    <section>
+      <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+        {group.eyebrow}
+      </p>
+      <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-sky-950">
+        {group.title}
+      </h3>
+      <p className="mt-3 max-w-[22rem] text-base leading-relaxed text-slate-600">
+        {group.description}
+      </p>
+
+      <div className="mt-5 grid gap-2">
+        {group.links.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            className={classNames.primaryCard}
+          >
+            <span>
+              <span className="block text-base font-extrabold leading-snug text-sky-950">
+                {item.title}
+              </span>
+              <span className="mt-1 block text-sm leading-relaxed text-slate-700">
+                {item.description}
+              </span>
             </span>
-          </div>
-
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
-            Explore the Morse code toolkit
-          </h2>
-
-          <p className="mt-4 max-w-[38rem] text-base leading-relaxed text-slate-700 sm:text-lg">
-            Jump between the translator, encoder, decoder, practice pages,
-            printable charts, audio tools, and Morse code reference guides.
-          </p>
-        </div>
-
-        <div className="mt-8 grid gap-8 lg:grid-cols-3">
-          {HOME_GROUPS.map((group) => (
-            <section key={group.title}>
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                {group.eyebrow}
-              </p>
-              <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-sky-950">
-                {group.title}
-              </h3>
-              <p className="mt-3 max-w-[22rem] text-base leading-relaxed text-slate-600">
-                {group.description}
-              </p>
-
-              <div className="mt-5 grid gap-2">
-                {group.links.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="mw-button-outline mw-related-tool-link group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                  >
-                    <span>
-                      <span className="block text-base font-extrabold leading-snug text-sky-950">
-                        {item.title}
-                      </span>
-                      <span className="mt-1 block text-sm leading-relaxed text-slate-700">
-                        {item.description}
-                      </span>
-                    </span>
-                    <span className="mw-related-badge shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500">
-                      {item.badge}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-
-        <aside className="mt-8">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
-            Quick access
-          </p>
-
-          <div className="mt-3 grid auto-rows-fr gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            {FEATURED_LINKS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="mw-button-outline mw-related-quick-link group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 hover:bg-slate-800 hover:text-white focus:outline-none"
-              >
-                <span className="text-base font-semibold leading-snug text-current sm:text-lg">
-                  {item.title}
-                </span>
-                <span className="absolute right-4 top-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-sky-100/80">
-                  {item.label}
-                </span>
-              </a>
-            ))}
-          </div>
-        </aside>
-
-        <details className="mt-8">
-          <summary className="mw-button-outline mw-related-summary flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
-            <span>View the full MorseWords toolkit</span>
-            <span className="font-mono text-sm text-sky-700">+</span>
-          </summary>
-
-          <div className="grid gap-7 py-5 lg:grid-cols-2">
-            {ROUTE_GROUPS.map((group) => (
-              <section key={group.title}>
-                <h4 className="text-lg font-extrabold text-sky-950">
-                  {group.title}
-                </h4>
-                <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                  {group.links.map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className="mw-button-outline mw-related-tool-link block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                    >
-                      <span className="flex items-start justify-between gap-3">
-                        <span className="text-sm font-extrabold leading-snug">
-                          {item.title}
-                        </span>
-                        <span className="mw-related-badge shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500">
-                          {item.badge}
-                        </span>
-                      </span>
-                      <span className="mt-1 block text-xs leading-relaxed text-slate-600">
-                        {item.description}
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-        </details>
+            <span className={classNames.primaryBadge}>{item.badge}</span>
+          </a>
+        ))}
       </div>
     </section>
+  );
+}
+
+function ToolkitQuickAccess({
+  quickLinkClassName,
+}: {
+  quickLinkClassName: string;
+}) {
+  return (
+    <aside className="mt-8">
+      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
+        Quick access
+      </p>
+
+      <div className="mt-3 grid auto-rows-fr gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        {FEATURED_LINKS.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            className={quickLinkClassName}
+          >
+            <span className="text-base font-semibold leading-snug text-current sm:text-lg">
+              {item.title}
+            </span>
+            <span className="absolute right-4 top-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-sky-100/80">
+              {item.label}
+            </span>
+          </a>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
+function ToolkitDetails({ classNames }: { classNames: ToolkitClassNames }) {
+  return (
+    <details className="mt-8">
+      <summary className={classNames.summary}>
+        <span>View the full MorseWords toolkit</span>
+        <span className="font-mono text-sm text-sky-700">+</span>
+      </summary>
+
+      <div className="grid gap-7 py-5 lg:grid-cols-2">
+        {ROUTE_GROUPS.map((group) => (
+          <section key={group.title}>
+            <h4 className="text-lg font-extrabold text-sky-950">
+              {group.title}
+            </h4>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {group.links.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={classNames.subcard}
+                >
+                  <span className="flex items-start justify-between gap-3">
+                    <span className="text-sm font-extrabold leading-snug">
+                      {item.title}
+                    </span>
+                    <span className={classNames.subcardBadge}>{item.badge}</span>
+                  </span>
+                  <span className="mt-1 block text-xs leading-relaxed text-slate-600">
+                    {item.description}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </details>
   );
 }

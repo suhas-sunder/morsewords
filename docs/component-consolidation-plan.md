@@ -67,6 +67,11 @@ broad component refactor.
   panels, and word-separator support panels. The batch only replaced exact
   non-interactive wrapper patterns and left FAQ, toolkit, printable chart,
   rounded-2xl, opacity-specific, and behavior-heavy surfaces local.
+- Completed the dedicated FAQ/toolkit visual-surface pass. `FaqSectionGeneric`
+  now centralizes its centered header, item, and list wrappers while preserving
+  the home/default visual variants, and `RelatedTools` now uses one toolkit
+  renderer with a home/full class map plus `SectionEyebrow`. FAQPage JSON-LD
+  policy and visible FAQ content were left unchanged.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -128,11 +133,12 @@ broad component refactor.
 
 ### Toolkit and Related Tools
 
-- `RelatedTools` has `HomeToolkit` and `FullToolkit` with very similar markup.
-- Classes differ for home and non-home hover behavior, badges, and shadow
-  handling.
-- Consolidation target: a shared toolkit renderer with a variant map for home
-  and non-home behavior.
+- `RelatedTools` now uses a shared toolkit renderer with an explicit home/full
+  class map.
+- Home and non-home hover behavior, badges, and shadow hooks remain separate
+  through the existing `mw-toolkit-*` and `mw-related-*` classes.
+- The compact-path set remains route-driven and should be audited separately
+  before any navigation or route expansion work.
 
 ## Duplicated Button Patterns
 
@@ -222,11 +228,12 @@ broad component refactor.
 
 ### FAQ
 
-- `FaqSectionGeneric` has home and default variants.
+- `FaqSectionGeneric` has home and default variants, now backed by shared
+  internal header, list, and item wrappers.
 - Some pages pass `variant="home"` to align with the current route system.
 - FAQ shadows are controlled by route and global CSS.
-- Consolidation target: preserve JSON-LD parity and create token-ready FAQ
-  states before dark mode.
+- FAQPage JSON-LD policy remains unchanged: generated leaf pages keep visible
+  FAQs without reintroducing FAQPage schema.
 
 ### Breadcrumbs
 
@@ -240,6 +247,8 @@ broad component refactor.
 
 - Related tools are global in `root.tsx`.
 - Compact content pages are selected by path in `RelatedTools`.
+- The compact and full variants now share one renderer while preserving their
+  existing class hooks.
 - The compact-path set should be reviewed after route expansion so future
   route additions do not require hidden layout decisions.
 
@@ -322,17 +331,18 @@ broad component refactor.
 - Verified `/`, `/audio`, `/morse-code-encoder`, `/morse-code-decoder`,
   `/morse-code-sound-generator`, and `/morse-code-word-separator` on desktop
   and mobile with byte-identical before/after screenshots.
-- Leave `TranslatorSectionsBasic`, home support headings, FAQ headings,
-  toolkit headings, practice, typing, and sentence-practice headings for later
-  dedicated passes.
-- Next safe target: audit and consolidate non-interactive static panel/card
-  wrappers in the guide/static utility route family, or consolidate the centered
-  FAQ header inside `FaqSectionGeneric`.
+- Leave `TranslatorSectionsBasic`, home support headings, practice, typing,
+  sentence-practice headings, and remaining utility/static route headings for
+  later dedicated passes.
+- Next safe target: audit manual breadcrumb UI wrappers or remaining
+  static-utility/legal route surfaces with screenshot and structured-data
+  checks.
 
 ### 6. FAQ, Breadcrumb, and Toolkit
 
 - Migrate manual breadcrumbs to `BreadcrumbTrail`.
-- Unify toolkit rendering with variants.
+- Keep the unified toolkit renderer stable while later passes audit compact
+  path selection.
 - Preserve bottom breadcrumb placement and related-tools spacing.
 
 ### 7. Token Introduction

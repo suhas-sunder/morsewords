@@ -11,7 +11,8 @@ changes, or tool behavior changes are implemented here.
 - Runtime source changes from follow-up implementation passes:
   `SectionEyebrow` was added and reused in selected low-risk support sections,
   then wired into `ToolHowItWorks`, `/practice`, and `/typing` static support
-  labels.
+  labels. A later dedicated FAQ/toolkit pass centralized FAQ header/list/item
+  wrappers and moved `RelatedTools` to a shared home/full renderer.
 - Existing shared hero assets found:
   - `app/client/components/shared/heroStyles.ts`
   - `app/client/components/shared/ToolWorkspace.tsx`
@@ -21,8 +22,9 @@ changes, or tool behavior changes are implemented here.
 - Current approved decorative Morse background:
   `MorseAmbientBackground`, rendered by `PageBackdrop`.
 - Tiny extraction decision: completed for the first low-risk support-section
-  batches. Home, hero, FAQ, toolkit, sentence-practice, and other customized
-  labels remain local for later focused passes.
+  batches. FAQ and toolkit heading surfaces have also received their dedicated
+  pass. Home, hero, sentence-practice, and other customized labels remain local
+  for later focused passes.
 
 ## 1. Inventory of Current Hero and Heading Systems
 
@@ -80,8 +82,8 @@ changes, or tool behavior changes are implemented here.
 
 | Surface | File | Routes using it | Purpose | Heading usage | Eyebrow usage | Max width and spacing | Homepage match | Duplication | Safe to consolidate | Dark-mode relevance |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| FAQ section heading | `app/client/components/shared/FaqSectionGeneric.tsx` | Home and many non-home pages | FAQ heading and accordion wrapper | H2 centered | Centered line-plus-label with two side lines | Variant-specific margins and FAQ styling | Home variant is approved | Home/default branches duplicate much of the heading markup | Dedicated FAQ heading pass | Medium |
-| Related tools headings | `app/client/components/navigation/RelatedTools.tsx` | Global related tools area | Toolkit and navigation headings | H2 `text-3xl sm:text-4xl` | Manual approved eyebrow | Home and full toolkit variants differ | Home toolkit is source | Duplicate headings in compact/full toolkit blocks | No-go for this pass, toolkit pass later | High |
+| FAQ section heading | `app/client/components/shared/FaqSectionGeneric.tsx` | Home and many non-home pages | FAQ heading and accordion wrapper | H2 centered | Centered line-plus-label with two side lines | Variant-specific margins and FAQ styling | Home variant is approved | Shared internal header, list, and item wrappers now preserve the variants | Completed in dedicated FAQ pass | Medium |
+| Related tools headings | `app/client/components/navigation/RelatedTools.tsx` | Global related tools area | Toolkit and navigation headings | H2 `text-3xl sm:text-4xl` | Shared `SectionEyebrow` | Home and full toolkit variants differ | Home toolkit is source | Shared renderer now preserves compact/full class hooks | Completed in dedicated toolkit pass | High |
 | Breadcrumb headings and utility pages | `app/routes/sitemap.tsx`, misc legal routes, socials route | Sitemap, legal, static utility pages | Static utility page headings | Mixed H1/H2, some use `PageHero`, some manual | Mixed manual eyebrows | Route-local legal/static wrappers | Often not homepage-like | Duplicated, but utility routes need separate audit | Leave for static utility pass | Low to medium |
 
 ## 2. Homepage Source-of-Truth Notes
@@ -212,7 +214,8 @@ Found in:
   `SectionEyebrow` for the static support label only.
 - `app/client/components/typing/HowItWorksTyping.tsx` now uses
   `SectionEyebrow` for the static support label only.
-- `app/client/components/navigation/RelatedTools.tsx`
+- `app/client/components/navigation/RelatedTools.tsx` now uses
+  `SectionEyebrow` for the toolkit heading label.
 - selected route files such as `morse-code-word-trainer.tsx`,
   `morse-code-word-search-builder.tsx`, `morse-code-sos.tsx`,
   `morse-code-international-translator.tsx`, and sitemap sections.
@@ -242,17 +245,18 @@ because H2 spacing and max-width differ by section type.
 ### FAQ Heading Duplication
 
 - `FaqSectionGeneric` renders a centered eyebrow with two side lines.
-- The home and default branches duplicate much of the heading markup, but their
-  wrapper margins and FAQ item classes differ.
-- This is a good future target, but it should stay in a dedicated FAQ pass
-  because FAQ trigger shadows and open-state spacing are easy to regress.
+- The home and default variants now share the centered header, list, and item
+  wrappers internally while preserving variant-specific section margins,
+  trigger classes, answer wrappers, and open-state styling.
+- FAQ content and FAQPage structured-data policy remain outside this visual
+  consolidation.
 
 ### Toolkit Heading Duplication
 
-- `RelatedTools` repeats similar toolkit heading markup in home and full
+- `RelatedTools` now uses one shared toolkit renderer for the home and full
   toolkit variants.
-- This is intentionally left out of the current pass because toolkit rendering
-  is a no-go area for this audit and needs its own visual QA.
+- Variant-specific class hooks preserve home hover behavior, non-home shadow
+  suppression, badges, summary rows, and related-link styling.
 
 ### Static Utility Heading Drift
 
@@ -267,12 +271,12 @@ because H2 spacing and max-width differ by section type.
 | Candidate | Classification | Reason | Exact files to change later | Tests and screenshots needed |
 | --- | --- | --- | --- | --- |
 | `SectionEyebrow` primitive for left-aligned line-plus-label sections | A, completed for low-risk support batches | Existing `Eyebrow` proved the class stack; `SectionEyebrow` now reuses the same constants without margins | Completed in `HowItWorksAudio.tsx`, encoder, decoder, word-separator, sound-generator, `ToolHowItWorks.tsx`, `HowItWorksPractice.tsx`, and `HowItWorksTyping.tsx` | Desktop/mobile screenshots covered each changed batch |
-| Centered FAQ eyebrow/header primitive | B, safe only with screenshot comparison | FAQ wrapper margins and trigger styling differ by variant | `FaqSectionGeneric.tsx` only at first | Home and one non-home FAQ screenshot with closed and open FAQ state |
+| Centered FAQ eyebrow/header primitive | A, completed in dedicated FAQ pass | FAQ wrapper margins and trigger styling differ by variant, so the extraction stayed inside `FaqSectionGeneric` | Completed in `FaqSectionGeneric.tsx` | Home and non-home FAQ screenshots with closed and open FAQ state |
 | Reuse `ToolHero` in `TranslatorSectionsBasic` | C, needs dedicated implementation pass | This protects the homepage H1 and primary translator first viewport | `TranslatorSectionsBasic.tsx` | Home, encoder, decoder screenshots, query-prefill checks, translator interaction smoke |
 | Reuse `ToolHero` in `WordSeparatorTool` | B, safe only with screenshot comparison | It is a simple duplicate hero, but the page owns tool state and query behavior | `WordSeparatorTool.tsx` | `/morse-code-word-separator` desktop/mobile screenshots and interaction smoke |
 | Unify `ToolHero` and `PageHero` into one broader hero API | C, needs dedicated implementation pass | Tool pages and content pages place action rows and asides differently | `ToolWorkspace.tsx`, `MorseLearningLayout.tsx`, selected routes | Broad route screenshot batch after smaller primitives are stable |
 | Section H2 component for static support sections | C, needs dedicated implementation pass | H2 margin, max width, and size variants are meaningful | Home support, audio support, guide support files | Section-by-section screenshots, no content changes |
-| Toolkit heading consolidation | C, needs dedicated implementation pass | RelatedTools has home/full variants and hover behavior | `RelatedTools.tsx` | Home and non-home toolkit screenshots, hover/focus check |
+| Toolkit heading consolidation | A, completed in dedicated toolkit pass | `RelatedTools` keeps home/full hover and badge classes in a variant map | Completed in `RelatedTools.tsx` | Home and non-home toolkit screenshots, hover/focus check |
 | Practice/typing hero consolidation | D, leave unique for now | The pages are behavior-heavy and current instruction excludes practice/typing controls | Practice, typing, sentence-practice components | Separate stateful-page pass after control consolidation |
 | Static utility/legal heading cleanup | E, needs more investigation | Some pages are older and may intentionally differ from the core product surfaces | misc/legal, sitemap, socials | Static route screenshot audit |
 
@@ -296,9 +300,10 @@ selected low-risk support sections only.
   - `app/client/components/morse-code-sound-generator/SoundGeneratorGuide.tsx`
 - `ToolHowItWorks.tsx` now uses `SectionEyebrow` internally after its
   consumer map and screenshot batch.
-- Home, FAQ, toolkit, practice, typing, sentence-practice, and translator hero
-  wrappers remain unchanged. Practice and typing support-section bodies remain
-  local; only their static eyebrow labels moved to `SectionEyebrow`.
+- Home, practice, typing, sentence-practice, and translator hero wrappers
+  remain unchanged. FAQ and toolkit surfaces were handled in a later dedicated
+  pass. Practice and typing support-section bodies remain local; only their
+  static eyebrow labels moved to `SectionEyebrow`.
 
 ### Routes to Screenshot
 
@@ -347,8 +352,9 @@ Optional comparison routes:
   before token work.
 - Section H2 and support copy classes should be tokenized only after the
   wrappers are consolidated enough to avoid scattered route-level overrides.
-- FAQ and toolkit headings need separate variants because their centered
-  headings, shadows, cards, and hover states affect dark-mode contrast.
+- FAQ and toolkit headings now have shared component boundaries, but their
+  centered headings, shadows, cards, and hover states still need careful token
+  mapping because they affect dark-mode contrast.
 - Practice and typing hero headings should remain local until behavior-heavy
   controls are stable, but their text color and disabled states will matter in
   later dark QA.
@@ -416,7 +422,6 @@ Optional comparison routes:
 
 `SectionEyebrow` is now the shared primitive for the selected low-risk
 left-aligned support-section labels, including the `ToolHowItWorks` route
-family. Remaining eyebrow duplication is intentional until each broader surface
-has its own focused screenshot-backed pass. The next recommended target is a
-static panel/card wrapper audit or a centered FAQ heading pass contained to
-`FaqSectionGeneric`.
+family and the `RelatedTools` toolkit label. FAQ and toolkit surfaces have been
+consolidated in their own focused pass. Remaining eyebrow duplication is
+intentional until each broader surface has its own screenshot-backed pass.
