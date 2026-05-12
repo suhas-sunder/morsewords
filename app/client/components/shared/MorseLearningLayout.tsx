@@ -148,6 +148,71 @@ export function DarkNote({
   );
 }
 
+type StaticSurfaceElement = "article" | "aside" | "div" | "section";
+
+type StaticSurfaceProps = React.HTMLAttributes<HTMLElement> & {
+  as?: StaticSurfaceElement;
+  children: React.ReactNode;
+};
+
+function createStaticSurface({
+  as = "div",
+  baseClassName,
+  className = "",
+  children,
+  ...props
+}: StaticSurfaceProps & { baseClassName: string }) {
+  return React.createElement(
+    as,
+    {
+      ...props,
+      className: [baseClassName, className].filter(Boolean).join(" "),
+    },
+    children,
+  );
+}
+
+export function StaticPanel(props: StaticSurfaceProps) {
+  return createStaticSurface({
+    ...props,
+    baseClassName: "mw-static-panel rounded-xl bg-[#fffdf8] p-5",
+  });
+}
+
+export function StaticTile(props: StaticSurfaceProps) {
+  return createStaticSurface({
+    ...props,
+    baseClassName: "mw-static-tile rounded-xl bg-[#f7f4ee] p-5",
+  });
+}
+
+export function StaticSectionPanel(props: StaticSurfaceProps) {
+  return createStaticSurface({
+    ...props,
+    baseClassName: "rounded-xl bg-[#fffdf8] p-6 sm:p-7",
+  });
+}
+
+export function StaticCodeBlock({
+  className = "",
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLPreElement> & { children: React.ReactNode }) {
+  return (
+    <pre
+      {...props}
+      className={[
+        "mw-static-code whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 font-mono overflow-x-auto",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      {children}
+    </pre>
+  );
+}
+
 export function ActionLinks({
   links,
 }: {

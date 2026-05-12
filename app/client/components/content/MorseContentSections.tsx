@@ -15,6 +15,7 @@ import {
   PageHero,
   SectionCard,
   SimpleGrid,
+  StaticPanel,
   WAVE_PAGE_MAIN_CLASS,
 } from "~/client/components/shared/MorseLearningLayout";
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
@@ -391,9 +392,9 @@ export function MorseLeafPage({
         >
           <div className="grid gap-4 md:grid-cols-3">
             {content.examples.map((example) => (
-              <article
+              <StaticPanel
+                as="article"
                 key={example.title}
-                className="mw-static-panel rounded-xl bg-[#fffdf8] p-5"
               >
                 <h3 className="text-lg font-extrabold text-sky-950">
                   {example.title}
@@ -407,7 +408,7 @@ export function MorseLeafPage({
                 <p className="mt-3 text-base leading-relaxed text-slate-700">
                   {example.note}
                 </p>
-              </article>
+              </StaticPanel>
             ))}
           </div>
         </SectionCard>
@@ -867,7 +868,7 @@ function NumberCard({ item }: { item: (typeof NUMBER_ITEMS)[number] }) {
   const queryValue = encodeToolQueryValue(item.label);
 
   return (
-    <article className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
+    <StaticPanel as="article">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
@@ -926,7 +927,7 @@ function NumberCard({ item }: { item: (typeof NUMBER_ITEMS)[number] }) {
           </ActionLinkButton>
         </div>
       </div>
-    </article>
+    </StaticPanel>
   );
 }
 
@@ -1042,9 +1043,9 @@ export function MorseNumbersPage({
               },
             ].map((example) => {
               return (
-                <article
+                <StaticPanel
+                  as="article"
                   key={example.title}
-                  className="mw-static-panel rounded-xl bg-[#fffdf8] p-5"
                 >
                   <h3 className="text-lg font-extrabold text-sky-950">
                     {example.title}
@@ -1058,7 +1059,7 @@ export function MorseNumbersPage({
                   <p className="mt-3 text-base leading-relaxed text-slate-700">
                     {example.note}
                   </p>
-                </article>
+                </StaticPanel>
               );
             })}
           </div>

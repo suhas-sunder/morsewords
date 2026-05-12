@@ -23,6 +23,12 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
   `docs/tool-how-it-works-consumer-map.md` and routes `ToolHowItWorks`,
   `/practice`, and `/typing` static support-section labels through
   `SectionEyebrow`.
+- The first static surface consolidation pass now routes exact-match
+  non-interactive wrapper patterns through shared `StaticPanel`, `StaticTile`,
+  `StaticSectionPanel`, and `StaticCodeBlock` primitives in
+  `MorseLearningLayout`. Migrated surfaces include shared reference support
+  cards, generated leaf/reference example cards, encoder support panels, and
+  word-separator support panels.
 - Current styling still depends heavily on Tailwind color classes, style
   objects, route-local button classes, and global CSS overrides.
 
@@ -120,8 +126,8 @@ These surfaces need planned light and dark theme coverage.
   footer buttons, and status text.
 - Tool panels: `ToolPanel`, `ToolTextarea`, text inputs, select inputs, range
   inputs, panel headers, badges, and footers.
-- Cards: static panels, toolkit cards, related tool cards, reference cards,
-  social cards, and route-local cards.
+- Cards: `StaticPanel`, `StaticTile`, `StaticSectionPanel`, toolkit cards,
+  related tool cards, reference cards, social cards, and route-local cards.
 - Nested output and input areas: Morse output blocks, inline code chips,
   static tiles, table cells, and generated preview areas.
 - Forms: inputs, textareas, selects, labels, placeholders, disabled fields,
@@ -140,8 +146,8 @@ These surfaces need planned light and dark theme coverage.
   tools, text colors, and link hover states.
 - Tables and grids: `ReferenceTable`, alphabet chart, phrase lookup table,
   sitemap groups, dictionary tables, and route-local lookup grids.
-- Code and Morse output blocks: `mw-static-code`, `mw-static-tile`, dark pre
-  blocks, Morse rhythm labels, and inline examples.
+- Code and Morse output blocks: `StaticCodeBlock`, `mw-static-code`,
+  `mw-static-tile`, dark pre blocks, Morse rhythm labels, and inline examples.
 - Alert, error, and success states: strobe warnings, unsupported character
   messages, copied feedback, puzzle notices, quiz feedback, and status banners.
 - Shadows, borders, and dividers: button shadow variables, shadow suppression,
@@ -191,6 +197,10 @@ These surfaces need planned light and dark theme coverage.
 - Warm surfaces are fixed through `.mw-static-surface`,
   `.mw-static-surface-soft`, `.mw-static-panel`, `.mw-static-tile`, and
   `.mw-static-code`.
+- Exact-match non-interactive static wrappers now have shared component
+  boundaries through `StaticPanel`, `StaticTile`, `StaticSectionPanel`, and
+  `StaticCodeBlock`, but those primitives still intentionally use light-mode
+  hard-coded classes until the token phase.
 - Dark output panels are fixed with `bg-slate-950`.
 - Navbar and footer are fixed with `bg-neutral-900`.
 - Route-local cards often use direct `bg-[#fffdf8]` or `bg-white` classes.
@@ -228,7 +238,10 @@ These surfaces need planned light and dark theme coverage.
 - `ActionLinks` creates button-like links but has no icon slot or variant map.
 - `ToolPanel`, `ToolOutputPanel`, `SectionCard`, `SimpleGrid`,
   `ReferenceSupportSections`, and route-local sections overlap in purpose.
-- Static panels use both shared classes and direct Tailwind classes.
+- Static panels now use shared primitives for the first exact-match batch, but
+  rounded-2xl panels, opacity-specific cards, smaller inline code tiles,
+  printable chart panels, FAQ items, toolkit cards, and behavior-heavy
+  practice/typing/quiz panels remain local by design.
 
 ### Homepage-Only Components That Should Become Shared Later
 
@@ -334,6 +347,10 @@ Additional tokens may be useful after consolidation:
 
 - Move repeated button, action-link, card, static-panel, FAQ, breadcrumb, and
   reference-table patterns into shared components.
+- Continue static surface consolidation in narrow route-family batches. The
+  first `StaticPanel`/`StaticTile`/`StaticSectionPanel`/`StaticCodeBlock` batch
+  is complete for low-risk exact matches; remaining local surfaces should be
+  migrated only after screenshot-backed parity checks.
 - Consolidate the mapped hero, heading, and eyebrow primitives in small
   screenshot-backed batches. Start with the left-aligned section-eyebrow
   primitive before broad hero wrappers. The first `SectionEyebrow` batch is

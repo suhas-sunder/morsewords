@@ -1,5 +1,11 @@
 import { Link } from "react-router";
 import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
+import {
+ StaticCodeBlock,
+ StaticPanel,
+ StaticSectionPanel,
+ StaticTile,
+} from "~/client/components/shared/MorseLearningLayout";
 
 export default function HowItWorks() {
  return (
@@ -43,25 +49,25 @@ export default function HowItWorks() {
  </div>
 
  <div id="why" className="mt-6 grid gap-4 sm:grid-cols-3">
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
+ <StaticTile>
  <p className="text-base font-extrabold text-sky-950">Letter gap</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  In pasted text, letters are usually separated by a short gap like{" "}
  <strong>one space</strong>. Some sources use 2–3 spaces, which is
  still typically intended to mean “next letter.”
  </p>
- </div>
+ </StaticTile>
 
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
+ <StaticTile>
  <p className="text-base font-extrabold text-sky-950">Word gap</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  A word break is a longer pause. In text form, a common convention is{" "}
  <strong>7 spaces</strong>. Another very common convention is{" "}
  <strong>/</strong>, especially in puzzles and copied strings.
  </p>
- </div>
+ </StaticTile>
 
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
+ <StaticTile>
  <p className="text-base font-extrabold text-sky-950">
  Why normalize?
  </p>
@@ -70,11 +76,10 @@ export default function HowItWorks() {
  separators are inconsistent, decoders either fail or produce
  confusing output. Normalizing makes results predictable.
  </p>
- </div>
+ </StaticTile>
  </div>
 
- <div
- id="formats" className="mt-8 rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+ <StaticSectionPanel id="formats" className="mt-8">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Common word separator formats and when to use them
  </h3>
@@ -86,7 +91,7 @@ export default function HowItWorks() {
  </p>
 
  <div className="mt-5 grid gap-4 md:grid-cols-2">
- <div className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
+ <StaticPanel>
  <p className="font-extrabold text-sky-950">
  7 spaces (tool-friendly)
  </p>
@@ -98,9 +103,9 @@ export default function HowItWorks() {
  <p className="mw-static-tile mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] rounded-xl p-3 whitespace-pre-wrap">
  .... . .-.. .-.. --- .-- --- .-. .-.. -..
  </p>
- </div>
+ </StaticPanel>
 
- <div className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
+ <StaticPanel>
  <p className="font-extrabold text-sky-950">
  Slash / (human-friendly)
  </p>
@@ -112,9 +117,9 @@ export default function HowItWorks() {
  <p className="mw-static-tile mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] rounded-xl p-3 whitespace-pre-wrap">
  .... . .-.. .-.. --- / .-- --- .-. .-.. -..
  </p>
- </div>
+ </StaticPanel>
 
- <div className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
+ <StaticPanel>
  <p className="font-extrabold text-sky-950">
  Pipe | (visible divider)
  </p>
@@ -126,9 +131,9 @@ export default function HowItWorks() {
  <p className="mw-static-tile mt-3 text-sm text-slate-700 leading-relaxed font-mono bg-[#f7f4ee] rounded-xl p-3 whitespace-pre-wrap">
  .... . .-.. .-.. --- | .-- --- .-. .-.. -..
  </p>
- </div>
+ </StaticPanel>
 
- <div className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
+ <StaticPanel>
  <p className="font-extrabold text-sky-950">
  New lines (input only)
  </p>
@@ -143,12 +148,11 @@ export default function HowItWorks() {
  avoids generating them as a “word separator” when converting from
  English.
  </p>
+ </StaticPanel>
  </div>
- </div>
- </div>
+ </StaticSectionPanel>
 
- <div
- id="normalize" className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+ <StaticSectionPanel id="normalize" className="mt-6">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Normalize pasted Morse (the main job)
  </h3>
@@ -183,7 +187,7 @@ export default function HowItWorks() {
  <p className="text-base font-extrabold text-sky-950">
  Example: normalize to slash
  </p>
- <pre className="mw-static-code mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+ <StaticCodeBlock className="mt-3 text-base sm:text-lg">
  {`Raw input (messy):
 .... . .-.. .-.. --- .-- --- .-. .-.. -..
 or
@@ -194,10 +198,10 @@ or
 
 Normalized output:
 .... . .-.. .-.. --- / .-- --- .-. .-.. -..`}
- </pre>
+ </StaticCodeBlock>
  </div>
 
- <div className="mw-static-tile mt-5 rounded-xl bg-[#f7f4ee] p-5 text-slate-700">
+ <StaticTile className="mt-5 text-slate-700">
  <p className="text-base font-extrabold text-sky-950">
  If your Morse has no spacing at all
  </p>
@@ -212,11 +216,10 @@ Normalized output:
  </Link>{" "}
  and adjust separators manually.
  </p>
- </div>
- </div>
+ </StaticTile>
+ </StaticSectionPanel>
 
- <div
- id="english-to-morse" className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+ <StaticSectionPanel id="english-to-morse" className="mt-6">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  English → Morse with the word separator you want
  </h3>
@@ -245,13 +248,13 @@ Normalized output:
  <p className="text-base font-extrabold text-sky-950">
  Example: puzzle-style output with /
  </p>
- <pre className="mw-static-code mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+ <StaticCodeBlock className="mt-3 text-base sm:text-lg">
  {`MEET AT NOON
 -- . . - / .- - / -. --- --- -.`}
- </pre>
+ </StaticCodeBlock>
  </div>
 
- <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8] p-5">
+ <StaticPanel className="mt-5">
  <p className="text-base font-extrabold text-sky-950">
  Related tools
  </p>
@@ -278,11 +281,10 @@ Normalized output:
  for character lookups (letters, numbers, punctuation).
  </li>
  </ul>
- </div>
- </div>
+ </StaticPanel>
+ </StaticSectionPanel>
 
- <div
- id="troubleshooting" className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+ <StaticSectionPanel id="troubleshooting" className="mt-6">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Troubleshooting
  </h3>
@@ -307,7 +309,7 @@ Normalized output:
  stick to it end-to-end (input, sharing, decoding).
  </li>
  </ul>
- </div>
+ </StaticSectionPanel>
 
  <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8] p-5 sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
@@ -381,7 +383,7 @@ Normalized output:
  </table>
  </div>
 
- <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8] p-5">
+ <StaticPanel className="mt-5">
  <p className="text-base font-extrabold text-sky-950">
  Want full translation instead?
  </p>
@@ -398,7 +400,7 @@ Normalized output:
  </Link>{" "}
  for Morse → text.
  </p>
- </div>
+ </StaticPanel>
  </div>
  </section>
  );

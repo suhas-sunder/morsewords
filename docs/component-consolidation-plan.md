@@ -60,6 +60,13 @@ broad component refactor.
   `ToolHowItWorks`, `/practice`, and `/typing` static support-section eyebrow
   labels to `SectionEyebrow` without moving section wrappers, cards, controls,
   scoring, timers, playback, generated output, or route content.
+- Completed the first static surface consolidation pass by adding shared
+  `StaticPanel`, `StaticTile`, `StaticSectionPanel`, and `StaticCodeBlock`
+  primitives in `MorseLearningLayout` and reusing them in generated
+  leaf/reference examples, shared reference support cards, encoder support
+  panels, and word-separator support panels. The batch only replaced exact
+  non-interactive wrapper patterns and left FAQ, toolkit, printable chart,
+  rounded-2xl, opacity-specific, and behavior-heavy surfaces local.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -163,8 +170,18 @@ broad component refactor.
   `mw-static-tile`, and `mw-static-code` exist in `app/app.css`.
 - Many routes still add direct `bg-[#fffdf8]`, `bg-[#fffaf2]`, `bg-white`, and
   `rounded-xl` combinations.
-- Consolidation target: shared `StaticPanel`, `StaticTile`, and `CodeSurface`
-  primitives or strict guidance on when to use the existing classes directly.
+- First shared wrappers now exist in `MorseLearningLayout`:
+  `StaticPanel`, `StaticTile`, `StaticSectionPanel`, and `StaticCodeBlock`.
+- Migrated low-risk exact matches in `ReferenceSupportSections`,
+  `MorseContentSections`, encoder support content, and word-separator support
+  content.
+- Intentionally left local in this pass: rounded-2xl wrapper sections,
+  `p-5 sm:p-7` route-specific panels, opacity-adjusted cards, smaller inline
+  `p-3` code examples, printable chart surfaces tied to output generation, FAQ
+  items, toolkit cards, and practice/typing/quiz panels.
+- Consolidation target: continue replacing exact static wrappers in small
+  route-family batches, then token the shared wrappers before route-local
+  leftovers.
 
 ### Tool Panels
 
@@ -287,8 +304,11 @@ broad component refactor.
 
 ### 5. Static Panels and Section Wrappers
 
-- Replace route-local `bg-[#fffdf8]` and `bg-[#fffaf2]` card patterns with
-  shared static panel classes or shared components.
+- The first exact-match static wrapper batch is complete for shared reference
+  sections, generated Morse content pages, encoder support sections, and
+  word-separator support sections.
+- Continue replacing route-local `bg-[#fffdf8]`, `bg-[#fffaf2]`, and
+  `bg-[#f7f4ee]` wrapper patterns only where visual parity is direct.
 - Keep content unchanged and compare screenshots route by route.
 - The manual `ToolHero`/`PageHero` and heading usage map now lives in
   `docs/hero-heading-surface-map.md`. Do not move broad page wrappers until
@@ -306,7 +326,8 @@ broad component refactor.
   toolkit headings, practice, typing, and sentence-practice headings for later
   dedicated passes.
 - Next safe target: audit and consolidate non-interactive static panel/card
-  wrappers, or consolidate the centered FAQ header inside `FaqSectionGeneric`.
+  wrappers in the guide/static utility route family, or consolidate the centered
+  FAQ header inside `FaqSectionGeneric`.
 
 ### 6. FAQ, Breadcrumb, and Toolkit
 

@@ -4,6 +4,7 @@ import {
   ActionLinks,
   SectionCard,
   SimpleGrid,
+  StaticPanel,
 } from "~/client/components/shared/MorseLearningLayout";
 
 type SupportTile = {
@@ -81,9 +82,9 @@ export default function ReferenceSupportSections({
       >
         <div className="grid gap-4 md:grid-cols-3">
           {examples.items.map((example) => (
-            <article
+            <StaticPanel
+              as="article"
               key={example.title}
-              className="mw-static-panel rounded-xl bg-[#fffdf8] p-5"
             >
               <h3 className="text-lg font-extrabold leading-snug text-sky-950">
                 {example.title}
@@ -94,7 +95,7 @@ export default function ReferenceSupportSections({
               <div className="mt-3 text-base leading-relaxed text-slate-700">
                 {example.children}
               </div>
-            </article>
+            </StaticPanel>
           ))}
         </div>
       </SectionCard>
@@ -107,9 +108,9 @@ export default function ReferenceSupportSections({
       >
         <div className="grid gap-4 md:grid-cols-3">
           {mistakes.items.map((mistake) => (
-            <article
+            <StaticPanel
+              as="article"
               key={mistake.title}
-              className="mw-static-panel rounded-xl bg-[#fffdf8] p-5"
             >
               <h3 className="text-lg font-extrabold leading-snug text-sky-950">
                 {mistake.title}
@@ -117,7 +118,7 @@ export default function ReferenceSupportSections({
               <div className="mt-3 text-base leading-relaxed text-slate-700">
                 {mistake.children}
               </div>
-            </article>
+            </StaticPanel>
           ))}
         </div>
       </SectionCard>

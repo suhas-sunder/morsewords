@@ -1,4 +1,10 @@
 import { Link } from "react-router";
+import {
+ StaticCodeBlock,
+ StaticPanel,
+ StaticSectionPanel,
+ StaticTile,
+} from "~/client/components/shared/MorseLearningLayout";
 import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 
 export default function HowItWorks() {
@@ -38,7 +44,7 @@ export default function HowItWorks() {
  </div>
 
  <div className="mt-7 grid gap-4 sm:grid-cols-3">
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
+ <StaticTile>
  <p className="text-base font-extrabold text-sky-950">
  Predictable output
  </p>
@@ -46,9 +52,9 @@ export default function HowItWorks() {
  The encoder re-emits Morse with consistent separators so copy/paste
  behaves the same across tools.
  </p>
- </div>
+ </StaticTile>
 
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
+ <StaticTile>
  <p className="text-base font-extrabold text-sky-950">
  Word breaks are strict
  </p>
@@ -57,9 +63,9 @@ export default function HowItWorks() {
  <strong>word break</strong>. The Morse output uses a single,
  consistent word separator.
  </p>
- </div>
+ </StaticTile>
 
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
+ <StaticTile>
  <p className="text-base font-extrabold text-sky-950">
  Unsupported stays visible
  </p>
@@ -68,11 +74,10 @@ export default function HowItWorks() {
  <strong>skipped</strong> in output and surfaced in the UI so you can
  fix the source text.
  </p>
- </div>
+ </StaticTile>
  </div>
 
- <div
- id="related-tool" className="mt-6 rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+ <StaticSectionPanel as="div" id="related-tool" className="mt-6">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Need to decode Morse back to text?
  </h3>
@@ -85,11 +90,10 @@ export default function HowItWorks() {
           to="/morse-code-decoder" className="mw-button-outline inline-flex mt-4 min-h-11 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-slate-950 px-5 py-2.5 text-center text-base font-extrabold leading-none text-sky-100 transition hover:bg-slate-800 hover:text-white active:scale-95 focus:outline-none sm:text-lg">
  Switch to decoder
  </Link>
- </div>
+ </StaticSectionPanel>
 
  <div className="mt-6 space-y-6 text-slate-700 leading-relaxed">
- <div
- id="encode" className="rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+ <StaticSectionPanel as="div" id="encode">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Text → Morse (encode)
  </h3>
@@ -116,19 +120,18 @@ export default function HowItWorks() {
 
  <div className="mt-5">
  <p className="text-base font-extrabold text-sky-950">Example</p>
- <pre className="mw-static-code mt-3 whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 text-base sm:text-lg font-mono overflow-x-auto">
+ <StaticCodeBlock className="mt-3 text-base sm:text-lg">
  {`HELLO WORLD
 .... . .-.. .-.. --- .-- --- .-. .-.. -..`}
- </pre>
+ </StaticCodeBlock>
  <p className="mt-3 text-base sm:text-lg text-slate-600">
  The gaps are part of Morse formatting. If you copy this elsewhere,
  keep the separators so it decodes correctly.
  </p>
  </div>
- </div>
+ </StaticSectionPanel>
 
- <div
- id="output-format" className="rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+ <StaticSectionPanel as="div" id="output-format">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Output format (spacing and separators)
  </h3>
@@ -138,7 +141,7 @@ export default function HowItWorks() {
  </p>
 
  <div className="mt-5 grid gap-4 sm:grid-cols-2">
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
+ <StaticTile>
  <p className="text-base sm:text-lg font-extrabold text-sky-950">
  Standard output spacing
  </p>
@@ -151,9 +154,9 @@ export default function HowItWorks() {
  </li>
  <li>New lines are treated as word breaks in your input</li>
  </ul>
- </div>
+ </StaticTile>
 
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
+ <StaticTile>
  <p className="text-base sm:text-lg font-extrabold text-sky-950">
  Copy &amp; share tips
  </p>
@@ -165,10 +168,10 @@ export default function HowItWorks() {
  <code>/</code> support (this site does)
  </li>
  </ul>
- </div>
+ </StaticTile>
  </div>
 
- <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8] p-5">
+ <StaticPanel className="mt-5">
  <p className="text-base font-extrabold text-sky-950">
  Decoder compatibility note
  </p>
@@ -183,11 +186,10 @@ export default function HowItWorks() {
  decoders only expect single spaces, so if something decodes wrong
  elsewhere, paste it into this site’s decoder to verify.
  </p>
- </div>
- </div>
+ </StaticPanel>
+ </StaticSectionPanel>
 
- <div
- id="supported" className="rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+ <StaticSectionPanel as="div" id="supported">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Supported characters and assumptions
  </h3>
@@ -206,7 +208,7 @@ export default function HowItWorks() {
  .
  </p>
 
- <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8] p-5">
+ <StaticPanel className="mt-5">
  <p className="text-base font-extrabold text-sky-950">
  Related tools
  </p>
@@ -245,11 +247,10 @@ export default function HowItWorks() {
  for suite-level notes.
  </li>
  </ul>
- </div>
- </div>
+ </StaticPanel>
+ </StaticSectionPanel>
 
- <div
- id="troubleshooting" className="rounded-xl bg-[#fffdf8] p-6 sm:p-7">
+ <StaticSectionPanel as="div" id="troubleshooting">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Troubleshooting
  </h3>
@@ -285,7 +286,7 @@ export default function HowItWorks() {
  Bluetooth, reconnect and try again.
  </li>
  </ul>
- </div>
+ </StaticSectionPanel>
 
  <div className="mw-static-panel mt-8 rounded-2xl bg-[#fffdf8] p-6 sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
@@ -361,7 +362,7 @@ export default function HowItWorks() {
  </table>
  </div>
 
- <div className="mw-static-panel mt-5 rounded-xl bg-[#fffdf8] p-5">
+ <StaticPanel className="mt-5">
  <p className="text-base font-extrabold text-sky-950">Tip</p>
  <p className="mt-2 text-base leading-relaxed text-slate-700 sm:text-lg">
  If you want to generate sound from your output, switch to{" "}
@@ -371,7 +372,7 @@ export default function HowItWorks() {
  </Link>{" "}
  for playback controls and timing.
  </p>
- </div>
+ </StaticPanel>
  </div>
  </div>
  </section>
