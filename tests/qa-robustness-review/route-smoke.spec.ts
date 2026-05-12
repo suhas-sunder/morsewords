@@ -400,6 +400,17 @@ const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   "/morse-code-mp3-generator",
 ] as const;
 
+const GENERATED_LEAF_SCHEMA_SUPPRESSED_PATHS = new Set<string>([
+  ...LETTER_ROUTE_PATHS,
+  ...NUMBER_ROUTE_PATHS,
+  ...PHRASE_ROUTE_PATHS,
+  ...SPACING_PUNCTUATION_ROUTE_PATHS,
+  "/i-love-you-in-morse-code",
+  "/cq-in-morse-code",
+  "/question-mark-in-morse-code",
+  "/at-sign-in-morse-code",
+]);
+
 function isDeferredLetterPath(pathname: string) {
   return (
     /^\/[a-z]-in-morse-code$/.test(pathname) &&
@@ -440,6 +451,17 @@ function collectBreadcrumbNameTrails(value: unknown): string[][] {
       : [];
 
   return [...trails, ...collectBreadcrumbNameTrails(record["@graph"])];
+}
+
+function expectFaqSchemaPolicy(types: string[], routePath: string) {
+  if (GENERATED_LEAF_SCHEMA_SUPPRESSED_PATHS.has(routePath)) {
+    expect(types, `${routePath} omits generated leaf FAQPage schema`).not.toContain(
+      "FAQPage",
+    );
+    return;
+  }
+
+  expect(types, `${routePath} has FAQPage`).toContain("FAQPage");
 }
 
 test.describe("route smoke and console stability", () => {
@@ -690,7 +712,7 @@ test.describe("first-batch SEO metadata and schema", () => {
       const parsedJsonLd = jsonLdTexts.map((text) => JSON.parse(text));
       const types = parsedJsonLd.flatMap(collectJsonLdTypes);
       expect(types, `${route.path} has BreadcrumbList`).toContain("BreadcrumbList");
-      expect(types, `${route.path} has FAQPage`).toContain("FAQPage");
+      expectFaqSchemaPolicy(types, route.path);
       expect(types, `${route.path} has page schema`).toContain(route.schemaType);
 
       const faqQuestions = await page.locator("details summary").allTextContents();
@@ -775,7 +797,7 @@ test.describe("letter SEO metadata and schema", () => {
       const types = parsedJsonLd.flatMap(collectJsonLdTypes);
       expect(types, `${route.path} has BreadcrumbList`).toContain("BreadcrumbList");
       expect(types, `${route.path} has WebPage`).toContain("WebPage");
-      expect(types, `${route.path} has FAQPage`).toContain("FAQPage");
+      expectFaqSchemaPolicy(types, route.path);
 
       const faqQuestions = await page.locator("details summary").allTextContents();
       const faqSchemaQuestions = parsedJsonLd
@@ -929,7 +951,7 @@ test.describe("number SEO metadata and schema", () => {
       const types = parsedJsonLd.flatMap(collectJsonLdTypes);
       expect(types, `${route.path} has BreadcrumbList`).toContain("BreadcrumbList");
       expect(types, `${route.path} has WebPage`).toContain("WebPage");
-      expect(types, `${route.path} has FAQPage`).toContain("FAQPage");
+      expectFaqSchemaPolicy(types, route.path);
 
       const faqQuestions = await page.locator("details summary").allTextContents();
       const faqSchemaQuestions = parsedJsonLd
@@ -1067,7 +1089,7 @@ test.describe("phrase SEO metadata and schema", () => {
       const types = parsedJsonLd.flatMap(collectJsonLdTypes);
       expect(types, `${route.path} has BreadcrumbList`).toContain("BreadcrumbList");
       expect(types, `${route.path} has WebPage`).toContain("WebPage");
-      expect(types, `${route.path} has FAQPage`).toContain("FAQPage");
+      expectFaqSchemaPolicy(types, route.path);
 
       const faqQuestions = await page.locator("details summary").allTextContents();
       const faqSchemaQuestions = parsedJsonLd
@@ -1203,7 +1225,7 @@ test.describe("spacing and punctuation SEO metadata and schema", () => {
       const types = parsedJsonLd.flatMap(collectJsonLdTypes);
       expect(types, `${route.path} has BreadcrumbList`).toContain("BreadcrumbList");
       expect(types, `${route.path} has WebPage`).toContain("WebPage");
-      expect(types, `${route.path} has FAQPage`).toContain("FAQPage");
+      expectFaqSchemaPolicy(types, route.path);
 
       const faqQuestions = await page.locator("details summary").allTextContents();
       const faqSchemaQuestions = parsedJsonLd
@@ -1369,7 +1391,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
       const types = parsedJsonLd.flatMap(collectJsonLdTypes);
       expect(types, `${route.path} has BreadcrumbList`).toContain("BreadcrumbList");
       expect(types, `${route.path} has page schema`).toContain(route.schemaType);
-      expect(types, `${route.path} has FAQPage`).toContain("FAQPage");
+      expectFaqSchemaPolicy(types, route.path);
     });
   }
 

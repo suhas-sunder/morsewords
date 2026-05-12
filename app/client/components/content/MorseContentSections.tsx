@@ -57,6 +57,12 @@ type JsonLdInput = {
 
 const phrasePaths = new Set(Object.values(PHRASE_PAGES).map((item) => item.path));
 const symbolPaths = new Set(Object.values(SYMBOL_PAGES).map((item) => item.path));
+const generatedLeafFaqSchemaSuppressedPaths = new Set([
+  ...LETTER_ITEMS.map((item) => item.path),
+  ...NUMBER_ITEMS.map((item) => item.path),
+  ...Object.values(PHRASE_PAGES).map((item) => item.path),
+  ...Object.values(SYMBOL_PAGES).map((item) => item.path),
+]);
 const spacingGuidePaths = new Set([
   "/copy-and-paste-morse-code",
   "/how-to-separate-words-in-morse-code",
@@ -136,6 +142,10 @@ export function buildFaqJsonLd(items: ContentFaqItem[]) {
   };
 }
 
+export function shouldEmitFaqJsonLd(path: string) {
+  return !generatedLeafFaqSchemaSuppressedPaths.has(path);
+}
+
 export function buildPageJsonLd({
   siteUrl,
   canonicalUrl,
@@ -159,7 +169,7 @@ export function buildPageJsonLdSet(input: JsonLdInput) {
     buildPageJsonLd(input),
   ];
 
-  if (input.faqItems?.length) {
+  if (input.faqItems?.length && shouldEmitFaqJsonLd(input.path)) {
     jsonLd.push(buildFaqJsonLd(input.faqItems));
   }
 
