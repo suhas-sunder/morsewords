@@ -36,6 +36,12 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
 - The visible breadcrumb UI pass now centralizes simple breadcrumb link,
   separator, current-page, and spacing variants in `BreadcrumbTrail` while
   preserving the route-owned BreadcrumbList JSON-LD policy.
+- The utility/legal wrapper pass now routes the repeated privacy, terms, and
+  cookies policy shell/header/content-panel surfaces through
+  `UtilityPageShell`, `UtilityPageHeader`, and `UtilityContentPanel`. The
+  remaining privacy and terms top breadcrumbs also use `BreadcrumbTrail` via a
+  legal-header variant that preserves the existing Misc parent crumb and `>`
+  separator treatment.
 - Current styling still depends heavily on Tailwind color classes, style
   objects, route-local button classes, and global CSS overrides.
 
@@ -101,16 +107,21 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
 ### Contact and Trust Pages
 
 - `/contact`, `/about`, `/sources`, privacy, terms, cookies, and socials pages
-  use a mix of `PageHero`, `SectionCard`, `SimpleGrid`, manual breadcrumbs,
-  and static surfaces.
+  use a mix of `PageHero`, `SectionCard`, `SimpleGrid`,
+  utility-policy primitives, shared breadcrumbs, and route-specific static
+  surfaces.
 - They should use the same tokenized link, card, FAQ, and breadcrumb surfaces
   as the rest of the site before final dark QA.
 
 ### Sitemap and Static Utility Pages
 
 - `/sitemap` uses route-local section lists and link cards.
-- Legal and misc pages use route-local structures and manual breadcrumb blocks.
-- These should not be handled with one-off dark styles.
+- Privacy, terms, and cookies policy documents now share their wrapper
+  primitives. `/misc`, `/misc/socials`, and `/sitemap` remain route-local
+  because their support-hub, external-link, and directory semantics differ
+  from policy documents.
+- These remaining route-local utility surfaces should be tokenized explicitly,
+  not handled with one-off dark styles.
 
 ## B. Shared UI Surfaces
 
@@ -151,8 +162,8 @@ These surfaces need planned light and dark theme coverage.
   the home and default variants, including non-home shadow suppression, open
   states, answer surfaces, arrow indicators, and JSON-LD parity.
 - Breadcrumbs: `BreadcrumbTrail`, its standalone/page-bottom/content-footer
-  spacing variants, remaining noindex legal breadcrumb navs, spacing below
-  related tools, text colors, separators, focus rings, and link hover states.
+  spacing variants, legal-header variant, spacing below related tools, text
+  colors, separators, focus rings, and link hover states.
 - Tables and grids: `ReferenceTable`, alphabet chart, phrase lookup table,
   sitemap groups, dictionary tables, and route-local lookup grids.
 - Code and Morse output blocks: `StaticCodeBlock`, `mw-static-code`,
@@ -240,9 +251,9 @@ These surfaces need planned light and dark theme coverage.
 - `NavBar` still owns route-local navigation surfaces. `RelatedTools` and
   `FaqSectionGeneric` now have shared boundaries, but their class maps still
   need tokenization before dark mode.
-- `BreadcrumbTrail` now owns simple visible breadcrumb variants. Remaining
-  local breadcrumb markup is limited to noindex legal utility pages with a
-  parent Misc crumb and should be audited before token rollout.
+- `BreadcrumbTrail` now owns simple visible breadcrumb variants and the
+  noindex privacy/terms legal-header breadcrumb. Cookies and socials keep their
+  existing shared bottom breadcrumb text and route-owned JSON-LD semantics.
 
 ### Duplicated Button, Card, and Panel Styles
 
@@ -371,7 +382,11 @@ Additional tokens may be useful after consolidation:
   complete. Keep hero wrappers, trainer workspace headers, and behavior-heavy
   practice or typing controls in later focused batches.
 - Keep the shared `BreadcrumbTrail` spacing variants stable until token work;
-  do not reintroduce route-local Home/current breadcrumb markup.
+  do not reintroduce route-local Home/current or legal-header breadcrumb markup.
+- Treat the utility/legal wrapper audit as closed for tokenization: privacy,
+  terms, and cookies policy documents are consolidated, while `/misc/socials`
+  and `/sitemap` remain intentionally route-local because they are not policy
+  document layouts.
 - Keep home and `/audio` visually unchanged.
 - Verify route groups with screenshots before and after each extraction.
 

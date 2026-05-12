@@ -430,22 +430,22 @@ export default function HtmlSitemap() {
                 </p>
               </div>
               <div className="px-5 py-5 sm:px-6">
-              <div className="grid gap-3">
-                {group.links.map((link) => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className="mw-button-outline mw-light-interactive-link group block cursor-pointer rounded-xl bg-white px-4 py-3 text-slate-900 no-underline hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none"
-                  >
-                    <span className="block font-extrabold text-sky-950 group-hover:text-current">
-                      {link.label}
-                    </span>
-                    <span className="mt-1 block text-sm leading-relaxed text-slate-600 group-hover:text-current">
-                      {link.description}
-                    </span>
-                  </Link>
-                ))}
-              </div>
+                <div className="grid gap-3">
+                  {group.links.map((link, index) => (
+                    <Link
+                      key={`${link.to}-${link.label}-${index}`}
+                      to={link.to}
+                      className="mw-button-outline mw-light-interactive-link group block cursor-pointer rounded-xl bg-white px-4 py-3 text-slate-900 no-underline hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none"
+                    >
+                      <span className="block font-extrabold text-sky-950 group-hover:text-current">
+                        {link.label}
+                      </span>
+                      <span className="mt-1 block text-sm leading-relaxed text-slate-600 group-hover:text-current">
+                        {link.description}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </section>
           ))}

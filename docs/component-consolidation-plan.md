@@ -78,6 +78,14 @@ broad component refactor.
   breadcrumbs. Simple manual Home/current breadcrumb blocks were migrated to
   that shared surface while BreadcrumbList JSON-LD generation was left
   unchanged.
+- Completed the utility/legal wrapper audit and safe consolidation pass.
+  `BreadcrumbTrail` now has a legal-header variant for the top privacy and
+  terms breadcrumbs with the existing Home > Misc > current text and
+  destinations preserved. The repeated privacy, terms, and cookies policy
+  shell/header/content-panel wrappers now route through
+  `UtilityPageShell`, `UtilityPageHeader`, and `UtilityContentPanel` without
+  changing policy copy, noindex metadata, canonical metadata, route status, or
+  JSON-LD behavior.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -226,9 +234,19 @@ broad component refactor.
 - `SectionCard` handles split and stacked content sections.
 - `ReferenceSupportSections` composes repeated guide sections.
 - `/morse-code-words` defines `CardSection`.
-- Misc/legal/static routes use manual section wrappers.
-- Consolidation target: keep `SectionCard` as the base, then migrate local
-  wrappers to shared variants without changing spacing.
+- The privacy, terms, and cookies policy document shell/header/content panel
+  wrappers now use utility-specific shared primitives.
+- `/misc` remains on `PageHero`, `SectionCard`, and `SimpleGrid` because it is
+  a noindex support hub rather than a legal document.
+- `/sitemap` remains a route-local noindex link directory because its grouped
+  list semantics and dense link-card grid differ from policy pages.
+- `/misc/socials` remains local because its external-card grid, max width, and
+  shadowed outbound link cards are intentionally different from legal/static
+  document panels. Those hard-coded surfaces should be handled by the later
+  token pass, not by a forced legal-page wrapper.
+- Consolidation target: keep `SectionCard` as the base for content pages, keep
+  utility policy documents on the utility primitives, and migrate any remaining
+  exact static wrappers only with route screenshots.
 
 ## Duplicated FAQ, Breadcrumb, and Toolkit Usage
 
@@ -250,8 +268,13 @@ broad component refactor.
   `/about`, `/dictionary`, `/how-to-use`, `/misc`, `/practice`, `/typing`,
   `/morse-code-sentence-practice`, and `/morse-code-sound-generator` now use
   `BreadcrumbTrail` with the existing spacing preserved.
-- Noindex legal utility pages keep their local top breadcrumbs for now because
-  they include a Misc parent crumb and a different separator/font treatment.
+- The noindex privacy and terms pages now use `BreadcrumbTrail` for their
+  top legal breadcrumbs via the legal-header variant. The Misc parent crumb,
+  `>` separator treatment, muted current label, and link destinations remain
+  visually aligned with the former local markup.
+- Cookies and socials already used the shared bottom breadcrumb surface and
+  were not changed to a new parent hierarchy because that would alter visible
+  breadcrumb text and JSON-LD semantics.
 - BreadcrumbList JSON-LD remains route-owned and was not rewritten in this
   visual-only pass.
 
@@ -352,16 +375,18 @@ broad component refactor.
 
 ### 6. FAQ, Breadcrumb, and Toolkit
 
-- Manual Home/current breadcrumbs are migrated to `BreadcrumbTrail`; remaining
-  legal utility breadcrumbs need a dedicated utility-route pass if they should
-  adopt the shared surface.
+- Manual Home/current breadcrumbs are migrated to `BreadcrumbTrail`; the
+  privacy and terms legal utility breadcrumbs now use the same shared component
+  through its legal-header variant.
 - Keep the unified toolkit renderer stable while later passes audit compact
   path selection.
 - Preserve bottom breadcrumb placement and related-tools spacing.
 
 ### 7. Token Introduction
 
-- Introduce light-mode tokens only after the shared surfaces above are stable.
+- Introduce light-mode tokens after the shared surfaces above are stable. The
+  remaining intentionally local utility/static surfaces are documented and are
+  not visual-surface consolidation blockers.
 - Replace hard-coded colors in shared components first, then route-local
   leftovers.
 

@@ -15,7 +15,9 @@ changes, or tool behavior changes are implemented here.
   wrappers and moved `RelatedTools` to a shared home/full renderer. The
   visible breadcrumb UI pass then routed simple Home/current breadcrumb blocks
   through `BreadcrumbTrail` spacing variants without touching BreadcrumbList
-  JSON-LD.
+  JSON-LD. The utility/legal wrapper pass then added the
+  `BreadcrumbTrail` legal-header variant and utility policy primitives for the
+  repeated privacy, terms, and cookies policy shell/header/content panels.
 - Existing shared hero assets found:
   - `app/client/components/shared/heroStyles.ts`
   - `app/client/components/shared/ToolWorkspace.tsx`
@@ -87,7 +89,7 @@ changes, or tool behavior changes are implemented here.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | FAQ section heading | `app/client/components/shared/FaqSectionGeneric.tsx` | Home and many non-home pages | FAQ heading and accordion wrapper | H2 centered | Centered line-plus-label with two side lines | Variant-specific margins and FAQ styling | Home variant is approved | Shared internal header, list, and item wrappers now preserve the variants | Completed in dedicated FAQ pass | Medium |
 | Related tools headings | `app/client/components/navigation/RelatedTools.tsx` | Global related tools area | Toolkit and navigation headings | H2 `text-3xl sm:text-4xl` | Shared `SectionEyebrow` | Home and full toolkit variants differ | Home toolkit is source | Shared renderer now preserves compact/full class hooks | Completed in dedicated toolkit pass | High |
-| Breadcrumb headings and utility pages | `app/client/components/shared/BreadcrumbTrail.tsx`, misc legal routes | Sitemap, legal, static utility pages | Static utility page headings and visible breadcrumb UI | Mixed H1/H2, some use `PageHero`, some manual | Mixed manual eyebrows | `BreadcrumbTrail` owns simple bottom/content breadcrumb spacing; legal noindex routes keep local top breadcrumbs | Often not homepage-like | Simple Home/current breadcrumb wrappers are consolidated; legal utility breadcrumbs remain local | Utility-route pass only if needed | Low to medium |
+| Breadcrumb headings and utility pages | `app/client/components/shared/BreadcrumbTrail.tsx`, `app/client/components/shared/UtilityPageLayout.tsx`, misc legal routes | Sitemap, legal, static utility pages | Static utility page headings and visible breadcrumb UI | Mixed H1/H2, some use `PageHero`, some utility-specific | Mixed shared and manual eyebrows | `BreadcrumbTrail` owns simple bottom/content breadcrumb spacing and the noindex legal-header variant; policy documents share utility wrapper primitives | Often not homepage-like | Simple Home/current and privacy/terms legal breadcrumb wrappers are consolidated; sitemap and socials remain intentionally local | Utility-route pass completed for safe policy wrappers | Low to medium |
 
 ## 2. Homepage Source-of-Truth Notes
 
@@ -119,8 +121,9 @@ changes, or tool behavior changes are implemented here.
 - The H1 source is `HERO_TITLE_CLASS`.
 - Pages using `ToolHero`, `PageHero`, or direct hero constants generally keep
   the same H1 scale.
-- Some legal/static utility pages still use older manual H1 classes and should
-  be audited separately.
+- Some social/sitemap static utility areas still use older manual H1 or H2
+  classes and should be tokenized deliberately because their route semantics
+  differ from legal document pages.
 
 ### Intro Text Sizing
 
@@ -263,15 +266,15 @@ because H2 spacing and max-width differ by section type.
 
 ### Static Utility Heading Drift
 
-- Legal, socials, sitemap, and some static utility pages use older manual H1
-  or H2 structures.
-- Simple visible breadcrumb wrappers are now centralized in `BreadcrumbTrail`.
-  The remaining local breadcrumb blocks are the noindex privacy and terms
-  pages, which use a Misc parent crumb and `>` separators near the top of the
-  legal document header.
-- These pages are lower priority than the main tool, reference, guide, and leaf
-  surfaces, but they should be included before token rollout so dark mode does
-  not require page-local patches.
+- Privacy, terms, and cookies policy pages now use utility-specific shared
+  shell/header/content-panel primitives. Privacy and terms also use the
+  `BreadcrumbTrail` legal-header variant for the existing Misc parent crumb and
+  `>` separators near the top of the legal document header.
+- `/misc` remains a support hub using `PageHero`, `SectionCard`, and
+  `SimpleGrid`; `/sitemap` remains a noindex grouped link directory; and
+  `/misc/socials` remains an external-link grid with its own card semantics.
+- The remaining route-local utility surfaces are documented token-pass targets,
+  not unresolved visual-surface consolidation blockers.
 
 ## 4. Consolidation Recommendations
 
@@ -286,7 +289,7 @@ because H2 spacing and max-width differ by section type.
 | Toolkit heading consolidation | A, completed in dedicated toolkit pass | `RelatedTools` keeps home/full hover and badge classes in a variant map | Completed in `RelatedTools.tsx` | Home and non-home toolkit screenshots, hover/focus check |
 | Visible breadcrumb UI consolidation | A, completed for simple Home/current breadcrumbs | `BreadcrumbTrail` now owns the active visible breadcrumb link, separator, current-page, and spacing variants while JSON-LD stays route-owned | Completed in `BreadcrumbTrail.tsx` and simple manual breadcrumb routes | Home plus required breadcrumb route screenshots, structured-data tests, link hygiene |
 | Practice/typing hero consolidation | D, leave unique for now | The pages are behavior-heavy and current instruction excludes practice/typing controls | Practice, typing, sentence-practice components | Separate stateful-page pass after control consolidation |
-| Static utility/legal heading cleanup | E, needs more investigation | Some pages are older and may intentionally differ from the core product surfaces | misc/legal, sitemap, socials | Static route screenshot audit |
+| Static utility/legal heading cleanup | A for policy wrappers; C/D for sitemap and socials | Privacy, terms, and cookies shared exact wrapper patterns; sitemap and socials intentionally differ by route semantics | Completed in `UtilityPageLayout.tsx`, privacy, terms, cookies, and `BreadcrumbTrail.tsx`; sitemap/socials remain local | Static route screenshot audit, noindex checks, no JSON-LD behavior changes |
 
 ## 5. Completed Batch and Next Target
 
@@ -431,5 +434,8 @@ Optional comparison routes:
 `SectionEyebrow` is now the shared primitive for the selected low-risk
 left-aligned support-section labels, including the `ToolHowItWorks` route
 family and the `RelatedTools` toolkit label. FAQ and toolkit surfaces have been
-consolidated in their own focused pass. Remaining eyebrow duplication is
-intentional until each broader surface has its own screenshot-backed pass.
+consolidated in their own focused pass. Utility/legal policy wrappers are also
+closed for tokenization: privacy, terms, and cookies use shared utility
+primitives, while sitemap and socials remain local for documented route
+semantics. Remaining eyebrow duplication is intentional until each broader
+surface has its own screenshot-backed pass.

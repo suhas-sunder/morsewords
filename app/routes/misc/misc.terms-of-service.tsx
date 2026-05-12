@@ -1,11 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Link } from "react-router";
 import {
-  HERO_EYEBROW_LINE_CLASS,
-  HERO_EYEBROW_ROW_CLASS,
-  HERO_EYEBROW_TEXT_CLASS,
-  HERO_TITLE_CLASS,
-} from "~/client/components/shared/heroStyles";
+  UtilityContentPanel,
+  UtilityPageHeader,
+  UtilityPageShell,
+} from "~/client/components/shared/UtilityPageLayout";
 import { canonicalUrl, SITE_URL } from "~/client/seo";
 import type { Route } from "./+types/misc.terms-of-service";
 
@@ -44,39 +42,19 @@ export const meta: Route.MetaFunction = () => {
 
 export default function TermsOfService() {
   return (
-    <div className="mw-non-home-page mx-auto flex w-full max-w-[1120px] flex-col gap-8 px-4 pb-10 pt-2 text-slate-800 sm:px-6 sm:pb-12 sm:pt-4 lg:px-8">
-      <header className="flex w-full flex-col gap-5 px-1 py-3 sm:px-2">
-        <nav aria-label="Breadcrumb" className="mb-12 text-sm font-semibold text-slate-600">
-          <ol className="flex flex-wrap items-center gap-2">
-            <li>
-              <Link to="/" className="hover:underline">
-                Home
-              </Link>
-            </li>
-            <li className="opacity-70">&gt;</li>
-            <li>
-              <Link to="/misc" className="hover:underline">
-                Misc
-              </Link>
-            </li>
-            <li className="opacity-70">&gt;</li>
-            <li aria-current="page" className="opacity-90">
-              Terms of Service
-            </li>
-          </ol>
-        </nav>
-
-        <div className={HERO_EYEBROW_ROW_CLASS}>
-          <span className={HERO_EYEBROW_LINE_CLASS} />
-          <span className={HERO_EYEBROW_TEXT_CLASS}>MorseWords terms</span>
-        </div>
-        <h1 className={HERO_TITLE_CLASS}>
-          Terms of Service
-        </h1>
-        <h3 className="text-lg font-bold text-slate-700">
-          Last updated January 10, 2026
-        </h3>
-
+    <UtilityPageShell>
+      <UtilityPageHeader
+        breadcrumb={{
+          current: "Terms of Service",
+          parent: { href: "/misc", label: "Misc" },
+        }}
+        className="flex w-full flex-col gap-5 px-1 py-3 sm:px-2"
+        eyebrow="MorseWords terms"
+        title="Terms of Service"
+        updated="Last updated January 10, 2026"
+        updatedAs="h3"
+        updatedClassName="text-lg font-bold text-slate-700"
+      >
         <h2>AGREEMENT TO OUR LEGAL TERMS</h2>
 
         <p className="flex flex-col gap-4 py-2">
@@ -125,9 +103,9 @@ export default function TermsOfService() {
           majority in your jurisdiction, you may use the Services only with the
           involvement and consent of a parent or legal guardian.
         </p>
-      </header>
+      </UtilityPageHeader>
 
-      <main className="flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed sm:p-8">
+      <UtilityContentPanel>
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">1. OUR SERVICES</h2>
           <p>
@@ -1215,7 +1193,7 @@ export default function TermsOfService() {
           <p>Canada</p>
           <p>admin@morsewords.com</p>
         </section>
-      </main>
-    </div>
+      </UtilityContentPanel>
+    </UtilityPageShell>
   );
 }

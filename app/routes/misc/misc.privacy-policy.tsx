@@ -2,11 +2,10 @@
 
 import { Link } from "react-router";
 import {
-  HERO_EYEBROW_LINE_CLASS,
-  HERO_EYEBROW_ROW_CLASS,
-  HERO_EYEBROW_TEXT_CLASS,
-  HERO_TITLE_CLASS,
-} from "~/client/components/shared/heroStyles";
+  UtilityContentPanel,
+  UtilityPageHeader,
+  UtilityPageShell,
+} from "~/client/components/shared/UtilityPageLayout";
 import { canonicalUrl, SITE_URL } from "~/client/seo";
 import type { Route } from "./+types/misc.privacy-policy";
 export const meta: Route.MetaFunction = () => {
@@ -44,39 +43,17 @@ export const meta: Route.MetaFunction = () => {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="mw-non-home-page mx-auto flex w-full max-w-[1120px] flex-col gap-8 px-4 pb-10 pt-2 text-slate-800 sm:px-6 sm:pb-12 sm:pt-4 lg:px-8">
-      <header className="w-full px-1 py-3 sm:px-2">
-        <nav aria-label="Breadcrumb" className="mb-12 text-sm font-semibold text-slate-600">
-          <ol className="flex flex-wrap items-center gap-2">
-            <li>
-              <Link to="/" className="hover:underline">
-                Home
-              </Link>
-            </li>
-            <li className="opacity-70">&gt;</li>
-            <li>
-              <Link to="/misc" className="hover:underline">
-                Misc
-              </Link>
-            </li>
-            <li className="opacity-70">&gt;</li>
-            <li aria-current="page" className="opacity-90">
-              Privacy Policy
-            </li>
-          </ol>
-        </nav>
-
-        <div className={`${HERO_EYEBROW_ROW_CLASS} mt-6`}>
-          <span className={HERO_EYEBROW_LINE_CLASS} />
-          <span className={HERO_EYEBROW_TEXT_CLASS}>MorseWords privacy</span>
-        </div>
-        <h1 className={HERO_TITLE_CLASS}>
-          Privacy Policy
-        </h1>
-        <h2 className="mt-3 text-lg font-bold text-slate-700">
-          Last updated January 10, 2026
-        </h2>
-
+    <UtilityPageShell>
+      <UtilityPageHeader
+        breadcrumb={{
+          current: "Privacy Policy",
+          parent: { href: "/misc", label: "Misc" },
+        }}
+        eyebrow="MorseWords privacy"
+        eyebrowClassName="mt-6"
+        title="Privacy Policy"
+        updated="Last updated January 10, 2026"
+      >
         <div className="flex flex-col gap-4 py-2">
           <span>
             This privacy notice for MorseWords (https://www.morsewords.com)
@@ -112,9 +89,9 @@ export default function PrivacyPolicy() {
           </span>
           <span>Contact: admin@morsewords.com (Toronto, Ontario, Canada).</span>
         </p>
-      </header>
+      </UtilityPageHeader>
 
-      <main className="mw-policy-content flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed sm:p-8">
+      <UtilityContentPanel className="mw-policy-content">
         <section className="flex flex-col gap-4">
           <h2 className="flex py-2 text-2xl">SUMMARY OF KEY POINTS</h2>
           <p>
@@ -670,7 +647,7 @@ export default function PrivacyPolicy() {
           <p>Toronto, Ontario</p>
           <p>Canada</p>
         </section>
-      </main>
-    </div>
+      </UtilityContentPanel>
+    </UtilityPageShell>
   );
 }
