@@ -64,15 +64,9 @@ export default function MorseAudioTranslator({
   const player = useMorseAudio();
   const queryPrefillApplied = React.useRef(false);
 
-  const [sourceMode, setSourceMode] = React.useState<SourceMode>(
-    () => (readStr("mw_audio_source", "text") as SourceMode) || "text",
-  );
-  const [text, setText] = React.useState(() =>
-    readStr("mw_audio_text", "sos help"),
-  );
-  const [morse, setMorse] = React.useState(() =>
-    readStr("mw_audio_morse", "... --- ..."),
-  );
+  const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
+  const [text, setText] = React.useState("sos help");
+  const [morse, setMorse] = React.useState("... --- ...");
   const computedMorse = React.useMemo(() => textToMorse(text), [text]);
 
   const activeCode = React.useMemo(() => {
@@ -81,56 +75,47 @@ export default function MorseAudioTranslator({
 
   const [copied, setCopied] = React.useState<null | "morse">(null);
 
-  const [charWpm, setCharWpm] = React.useState<number>(() =>
-    readNum("mw_audio_wpm", 18),
-  );
-  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(() =>
-    readNum("mw_audio_fwpm", 12),
-  );
-  const [toneHz, setToneHz] = React.useState<number>(() =>
-    readNum("mw_audio_hz", 650),
-  );
-  const [volume, setVolume] = React.useState<number>(() =>
-    readNum("mw_audio_vol", 0.75),
-  );
-  const [preset, setPreset] = React.useState<SoundPreset>(
-    () => (readStr("mw_audio_preset", "cw_radio") as SoundPreset) || "cw_radio",
-  );
+  const [charWpm, setCharWpm] = React.useState<number>(18);
+  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(12);
+  const [toneHz, setToneHz] = React.useState<number>(650);
+  const [volume, setVolume] = React.useState<number>(0.75);
+  const [preset, setPreset] = React.useState<SoundPreset>("cw_radio");
 
-  const [attackMs, setAttackMs] = React.useState<number>(() =>
-    readNum("mw_audio_attack", 8),
-  );
-  const [releaseMs, setReleaseMs] = React.useState<number>(() =>
-    readNum("mw_audio_release", 12),
-  );
-  const [repeat, setRepeat] = React.useState<boolean>(() =>
-    readBool("mw_audio_repeat", false),
-  );
-  const [soundOn, setSoundOn] = React.useState<boolean>(() =>
-    readBool("mw_audio_sound", true),
-  );
-  const [flash, setFlash] = React.useState<boolean>(() =>
-    readBool("mw_audio_flash", false),
-  );
-  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(() =>
-    readBool("mw_audio_adv_open", true),
-  );
-  const [exportOpen, setExportOpen] = React.useState<boolean>(() =>
-    readBool("mw_audio_export_open", true),
-  );
-  const [fileName, setFileName] = React.useState(() =>
-    readStr("mw_audio_filename", "morse-audio"),
-  );
-  const [sampleRate, setSampleRate] = React.useState<22050 | 44100 | 48000>(
-    () => validateSampleRate(readNum("mw_audio_sr", 44100)),
-  );
-  const [tailMs, setTailMs] = React.useState<number>(() =>
-    readNum("mw_audio_tail", 120),
-  );
+  const [attackMs, setAttackMs] = React.useState<number>(8);
+  const [releaseMs, setReleaseMs] = React.useState<number>(12);
+  const [repeat, setRepeat] = React.useState<boolean>(false);
+  const [soundOn, setSoundOn] = React.useState<boolean>(true);
+  const [flash, setFlash] = React.useState<boolean>(false);
+  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(true);
+  const [exportOpen, setExportOpen] = React.useState<boolean>(true);
+  const [fileName, setFileName] = React.useState("morse-audio");
+  const [sampleRate, setSampleRate] =
+    React.useState<22050 | 44100 | 48000>(44100);
+  const [tailMs, setTailMs] = React.useState<number>(120);
 
   const [hydrated, setHydrated] = React.useState(false);
 
   React.useEffect(() => {
+    setSourceMode((readStr("mw_audio_source", "text") as SourceMode) || "text");
+    setText(readStr("mw_audio_text", "sos help"));
+    setMorse(readStr("mw_audio_morse", "... --- ..."));
+    setCharWpm(readNum("mw_audio_wpm", 18));
+    setFarnsworthWpm(readNum("mw_audio_fwpm", 12));
+    setToneHz(readNum("mw_audio_hz", 650));
+    setVolume(readNum("mw_audio_vol", 0.75));
+    setPreset(
+      (readStr("mw_audio_preset", "cw_radio") as SoundPreset) || "cw_radio",
+    );
+    setAttackMs(readNum("mw_audio_attack", 8));
+    setReleaseMs(readNum("mw_audio_release", 12));
+    setRepeat(readBool("mw_audio_repeat", false));
+    setSoundOn(readBool("mw_audio_sound", true));
+    setFlash(readBool("mw_audio_flash", false));
+    setAdvancedOpen(readBool("mw_audio_adv_open", true));
+    setExportOpen(readBool("mw_audio_export_open", true));
+    setFileName(readStr("mw_audio_filename", "morse-audio"));
+    setSampleRate(validateSampleRate(readNum("mw_audio_sr", 44100)));
+    setTailMs(readNum("mw_audio_tail", 120));
     setHydrated(true);
   }, []);
 
@@ -964,15 +949,13 @@ function LabeledAudioInput({
 }
 
 function readNum(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  const raw = window.localStorage.getItem(key);
+  const raw = readStorageValue(key);
   const n = raw ? Number(raw) : NaN;
   return Number.isFinite(n) ? n : fallback;
 }
 
 function readBool(key: string, fallback: boolean) {
-  if (typeof window === "undefined") return fallback;
-  const raw = window.localStorage.getItem(key);
+  const raw = readStorageValue(key);
   if (raw === null) return fallback;
   if (raw === "1") return true;
   if (raw === "0") return false;
@@ -982,8 +965,16 @@ function readBool(key: string, fallback: boolean) {
 }
 
 function readStr(key: string, fallback: string) {
-  if (typeof window === "undefined") return fallback;
-  return window.localStorage.getItem(key) ?? fallback;
+  return readStorageValue(key) ?? fallback;
+}
+
+function readStorageValue(key: string) {
+  if (typeof window === "undefined") return null;
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
 }
 
 function writeNum(key: string, value: number) {

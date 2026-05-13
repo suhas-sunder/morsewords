@@ -150,6 +150,88 @@ Representative screenshots reviewed during this pass included the home page,
 audio page, alphabet page, printable chart, privacy policy, and mobile home.
 No dark-mode-specific route blockers remain before shipping this pass.
 
+## Post-Dark-Mode QA Pass
+
+Post-dark-mode QA was completed after commit `3be77d2` with production
+screenshots under `output/post-dark-mode-qa` for light and dark themes on
+desktop and mobile.
+
+Routes visually checked in that matrix:
+
+- `/`
+- `/audio`
+- `/morse-code-encoder`
+- `/morse-code-decoder`
+- `/morse-code-sound-generator`
+- `/name-to-morse-code`
+- `/morse-code-alphabet`
+- `/morse-code-numbers`
+- `/morse-code-words`
+- `/morse-code-punctuation`
+- `/morse-code-word-separator`
+- `/how-to-read-morse-code`
+- `/how-to-write-in-morse-code`
+- `/copy-and-paste-morse-code`
+- `/how-to-separate-words-in-morse-code`
+- `/a-in-morse-code`
+- `/z-in-morse-code`
+- `/0-in-morse-code`
+- `/9-in-morse-code`
+- `/hello-in-morse-code`
+- `/hello-world-in-morse-code`
+- `/space-in-morse-code`
+- `/slash-in-morse-code`
+- `/colon-in-morse-code`
+- `/underscore-in-morse-code`
+- `/practice`
+- `/typing`
+- `/morse-code-word-trainer`
+- `/morse-code-audio-practice`
+- `/morse-code-audio-quiz`
+- `/morse-code-visual-practice`
+- `/morse-code-visual-quiz`
+- `/morse-code-printable-chart`
+- `/contact`
+- `/about`
+- `/how-to-use`
+- `/dictionary`
+- `/misc`
+- `/misc/privacy-policy`
+- `/sitemap`
+
+Issues found and fixed:
+
+- Storage-heavy translator routes no longer crash when `localStorage` is
+  unavailable. The main translator, `/audio`, and sound-generator storage
+  readers now catch storage access errors and fall back to deterministic
+  defaults.
+- Stored translator, audio, and sound-generator settings no longer create
+  React hydration mismatches. Those routes now render deterministic first
+  client output and restore saved tool settings after hydration.
+- The theme-mode QA test now covers unavailable storage across storage-heavy
+  routes and stored-setting hydration for `/`, `/audio`, and
+  `/morse-code-sound-generator`.
+
+Intentional exceptions confirmed:
+
+- Generated printable/export output remains light where that preserves export
+  correctness.
+- Strobe flash surfaces remain white by design.
+- Route-local behavior-heavy controls remain local. Their visible page
+  surfaces are still covered through the shared token layer or central
+  dark-mode fallback selectors.
+
+Accessibility notes:
+
+- Focused axe smoke passed in light and dark mode with the repository's
+  current accessibility rule set.
+- A separate representative color-contrast scan found no serious dark-mode
+  contrast violations. Existing light-mode contrast reports remain part of the
+  approved light-mode baseline and were not changed in this dark-mode QA fix
+  pass.
+
+No unresolved dark-mode blocker remains from this QA pass.
+
 ## A. Page Groups
 
 ### Homepage and Tool Hub
@@ -522,4 +604,7 @@ when the root element has `data-theme="dark"`.
   screenshot matrix.
 - Completed through focused theme-toggle, route-smoke, accessibility,
   structured-data, query-prefill, and interaction validation.
+- Completed post-dark-mode QA found and fixed two storage robustness issues:
+  unavailable `localStorage` on storage-heavy routes and stored-setting
+  hydration mismatch on the translator, audio, and sound-generator surfaces.
 - Full e2e remains an attempted validation gate for each shipping pass.

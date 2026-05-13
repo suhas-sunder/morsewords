@@ -93,15 +93,9 @@ export default function MorseAudioTranslator({
   const sampleRateId = `${safePrefix}_sample_rate`;
   const isSoundPage = pageIntent === "sound";
 
-  const [sourceMode, setSourceMode] = React.useState<SourceMode>(
-    () => (readStr(storageKey("source"), "text") as SourceMode) || "text",
-  );
-  const [text, setText] = React.useState(() =>
-    readStr(storageKey("text"), defaultText),
-  );
-  const [morse, setMorse] = React.useState(() =>
-    readStr(storageKey("morse"), defaultMorse),
-  );
+  const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
+  const [text, setText] = React.useState(defaultText);
+  const [morse, setMorse] = React.useState(defaultMorse);
   const computedMorse = React.useMemo(() => textToMorse(text), [text]);
 
   const activeCode = React.useMemo(
@@ -110,60 +104,50 @@ export default function MorseAudioTranslator({
   );
 
   const [copied, setCopied] = React.useState<null | "morse">(null);
-  const [charWpm, setCharWpm] = React.useState<number>(() =>
-    readNum(storageKey("wpm"), 18),
-  );
-  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(() =>
-    readNum(storageKey("fwpm"), 12),
-  );
-  const [toneHz, setToneHz] = React.useState<number>(() =>
-    readNum(storageKey("hz"), 650),
-  );
-  const [volume, setVolume] = React.useState<number>(() =>
-    readNum(storageKey("vol"), 0.75),
-  );
-  const [preset, setPreset] = React.useState<SoundPreset>(
-    () => (readStr(storageKey("preset"), "cw_radio") as SoundPreset) || "cw_radio",
-  );
-  const [attackMs, setAttackMs] = React.useState<number>(() =>
-    readNum(storageKey("attack"), 8),
-  );
-  const [releaseMs, setReleaseMs] = React.useState<number>(() =>
-    readNum(storageKey("release"), 12),
-  );
-  const [repeat, setRepeat] = React.useState<boolean>(() =>
-    readBool(storageKey("repeat"), false),
-  );
-  const [soundOn, setSoundOn] = React.useState<boolean>(() =>
-    readBool(storageKey("sound"), true),
-  );
-  const [flash, setFlash] = React.useState<boolean>(() =>
-    readBool(storageKey("flash"), false),
-  );
-  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(() =>
-    readBool(storageKey("adv_open"), true),
-  );
-  const [exportOpen, setExportOpen] = React.useState<boolean>(() =>
-    readBool(storageKey("export_open"), true),
-  );
-  const [fileName, setFileName] = React.useState(() =>
-    readStr(storageKey("filename"), defaultFileName),
-  );
-  const [sampleRate, setSampleRate] = React.useState<22050 | 44100 | 48000>(() =>
-    validateSampleRate(readNum(storageKey("sr"), 44100)),
-  );
-  const [tailMs, setTailMs] = React.useState<number>(() =>
-    readNum(storageKey("tail"), 120),
-  );
-  const [mp3Kbps, setMp3Kbps] = React.useState<number>(() =>
-    readNum(storageKey("mp3_kbps"), 128),
-  );
+  const [charWpm, setCharWpm] = React.useState<number>(18);
+  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(12);
+  const [toneHz, setToneHz] = React.useState<number>(650);
+  const [volume, setVolume] = React.useState<number>(0.75);
+  const [preset, setPreset] = React.useState<SoundPreset>("cw_radio");
+  const [attackMs, setAttackMs] = React.useState<number>(8);
+  const [releaseMs, setReleaseMs] = React.useState<number>(12);
+  const [repeat, setRepeat] = React.useState<boolean>(false);
+  const [soundOn, setSoundOn] = React.useState<boolean>(true);
+  const [flash, setFlash] = React.useState<boolean>(false);
+  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(true);
+  const [exportOpen, setExportOpen] = React.useState<boolean>(true);
+  const [fileName, setFileName] = React.useState(defaultFileName);
+  const [sampleRate, setSampleRate] =
+    React.useState<22050 | 44100 | 48000>(44100);
+  const [tailMs, setTailMs] = React.useState<number>(120);
+  const [mp3Kbps, setMp3Kbps] = React.useState<number>(128);
   const [exportStatus, setExportStatus] = React.useState<null | { kind: "ok" | "error" | "working"; message: string }>(null);
   const [hydrated, setHydrated] = React.useState(false);
 
   React.useEffect(() => {
+    setSourceMode((readStr(storageKey("source"), "text") as SourceMode) || "text");
+    setText(readStr(storageKey("text"), defaultText));
+    setMorse(readStr(storageKey("morse"), defaultMorse));
+    setCharWpm(readNum(storageKey("wpm"), 18));
+    setFarnsworthWpm(readNum(storageKey("fwpm"), 12));
+    setToneHz(readNum(storageKey("hz"), 650));
+    setVolume(readNum(storageKey("vol"), 0.75));
+    setPreset(
+      (readStr(storageKey("preset"), "cw_radio") as SoundPreset) || "cw_radio",
+    );
+    setAttackMs(readNum(storageKey("attack"), 8));
+    setReleaseMs(readNum(storageKey("release"), 12));
+    setRepeat(readBool(storageKey("repeat"), false));
+    setSoundOn(readBool(storageKey("sound"), true));
+    setFlash(readBool(storageKey("flash"), false));
+    setAdvancedOpen(readBool(storageKey("adv_open"), true));
+    setExportOpen(readBool(storageKey("export_open"), true));
+    setFileName(readStr(storageKey("filename"), defaultFileName));
+    setSampleRate(validateSampleRate(readNum(storageKey("sr"), 44100)));
+    setTailMs(readNum(storageKey("tail"), 120));
+    setMp3Kbps(readNum(storageKey("mp3_kbps"), 128));
     setHydrated(true);
-  }, []);
+  }, [defaultFileName, defaultMorse, defaultText, storageKey]);
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -664,15 +648,13 @@ function SliderRow({ label, value, min, max, step, unit, onChange, help, disable
 }
 
 function readNum(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  const raw = window.localStorage.getItem(key);
+  const raw = readStorageValue(key);
   const n = raw ? Number(raw) : NaN;
   return Number.isFinite(n) ? n : fallback;
 }
 
 function readBool(key: string, fallback: boolean) {
-  if (typeof window === "undefined") return fallback;
-  const raw = window.localStorage.getItem(key);
+  const raw = readStorageValue(key);
   if (raw === null) return fallback;
   if (raw === "1" || raw === "true") return true;
   if (raw === "0" || raw === "false") return false;
@@ -680,8 +662,16 @@ function readBool(key: string, fallback: boolean) {
 }
 
 function readStr(key: string, fallback: string) {
-  if (typeof window === "undefined") return fallback;
-  return window.localStorage.getItem(key) ?? fallback;
+  return readStorageValue(key) ?? fallback;
+}
+
+function readStorageValue(key: string) {
+  if (typeof window === "undefined") return null;
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
 }
 
 function writeNum(key: string, value: number) {

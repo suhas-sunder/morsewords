@@ -141,14 +141,50 @@ test.describe("semantic light design tokens", () => {
   test("root exposes the full light token map", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
-    const tokens = await page.evaluate((names) => {
+    const tokens = await page.evaluate(({ names, expected }) => {
       const styles = getComputedStyle(document.documentElement);
-      return Object.fromEntries(
-        names.map((name) => [name, styles.getPropertyValue(name).trim()]),
-      );
-    }, Object.keys(EXPECTED_LIGHT_TOKENS));
+      const probe = document.createElement("span");
+      document.body.append(probe);
 
-    expect(tokens).toEqual(EXPECTED_LIGHT_TOKENS);
+      const normalize = (value: string) => {
+        const trimmed = value.trim();
+        const lower = trimmed.toLowerCase();
+        if (lower === "none") return "none";
+
+        if (trimmed.includes("px") && /(?:#|rgba?\()/.test(trimmed)) {
+          probe.style.boxShadow = "";
+          probe.style.boxShadow = trimmed;
+          if (probe.style.boxShadow) return probe.style.boxShadow;
+        }
+
+        if (/^(?:#|rgba?\(|transparent$)/i.test(trimmed)) {
+          probe.style.color = "";
+          probe.style.color = trimmed;
+          if (probe.style.color) return probe.style.color;
+        }
+
+        return trimmed.replace(/\s+/g, " ");
+      };
+
+      const actualTokens = Object.fromEntries(
+        names.map((name) => [
+          name,
+          normalize(styles.getPropertyValue(name).trim()),
+        ]),
+      );
+      const expectedTokens = Object.fromEntries(
+        names.map((name) => [name, normalize(expected[name])]),
+      );
+
+      probe.remove();
+
+      return { actualTokens, expectedTokens };
+    }, {
+      expected: EXPECTED_LIGHT_TOKENS,
+      names: Object.keys(EXPECTED_LIGHT_TOKENS),
+    });
+
+    expect(tokens.actualTokens).toEqual(tokens.expectedTokens);
   });
 
   test("source-of-truth shared surfaces keep current light colors", async ({

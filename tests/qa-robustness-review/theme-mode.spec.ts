@@ -19,6 +19,41 @@ const REPRESENTATIVE_THEME_ROUTES = [
   "/misc/privacy-policy",
   "/sitemap",
 ] as const;
+const STORAGE_FALLBACK_ROUTES = [
+  "/",
+  "/audio",
+  "/morse-code-sound-generator",
+  "/practice",
+  "/typing",
+  "/morse-code-word-trainer",
+  "/morse-code-printable-chart",
+] as const;
+const STORED_SETTING_HYDRATION_ROUTES = [
+  {
+    route: "/",
+    values: {
+      mw_adv_open: "1",
+      mw_preset: "tone",
+      mw_char_wpm: "24",
+    },
+  },
+  {
+    route: "/audio",
+    values: {
+      mw_audio_source: "morse",
+      mw_audio_adv_open: "0",
+      mw_audio_wpm: "24",
+    },
+  },
+  {
+    route: "/morse-code-sound-generator",
+    values: {
+      mw_sound_source: "morse",
+      mw_sound_adv_open: "0",
+      mw_sound_wpm: "24",
+    },
+  },
+] as const;
 
 async function openMobileNavIfNeeded(page: Page) {
   const openNav = page.getByRole("button", { name: "Open navigation" });
@@ -39,6 +74,15 @@ async function getVisibleThemeToggle(page: Page, label: string) {
   toggle = page.getByRole("button", { name: label });
   await expect(toggle).toBeVisible();
   return toggle;
+}
+
+function isExpectedTestHarnessConsoleError(text: string) {
+  return (
+    text.includes("ERR_BLOCKED_BY_CLIENT") ||
+    text.includes("WebSocket connection") ||
+    text.includes("[vite] failed to connect to websocket") ||
+    text.includes("Failed to fetch manifest patches TypeError: Failed to fetch")
+  );
 }
 
 async function expectRootTheme(page: Page, expected: "light" | "dark") {
@@ -96,8 +140,17 @@ test.describe("navbar theme mode", () => {
       .toBe(null);
   });
 
-  test("does not crash when localStorage is unavailable", async ({ page }) => {
+  test("storage-heavy routes do not crash when localStorage is unavailable", async ({
+    page,
+  }) => {
     const pageErrors: string[] = [];
+    const consoleErrors: string[] = [];
+    page.on("console", (message) => {
+      if (message.type() === "error") {
+        if (isExpectedTestHarnessConsoleError(message.text())) return;
+        consoleErrors.push(message.text());
+      }
+    });
     page.on("pageerror", (error) => {
       if (error.message !== "WebSocket closed without opened.") {
         pageErrors.push(error.message);
@@ -112,12 +165,60 @@ test.describe("navbar theme mode", () => {
       });
     });
 
-    await page.goto("/", { waitUntil: "domcontentloaded" });
-    await waitForHydration(page);
+    for (const route of STORAGE_FALLBACK_ROUTES) {
+      pageErrors.length = 0;
+      consoleErrors.length = 0;
 
-    await expectRootTheme(page, "light");
-    await expect(await getVisibleThemeToggle(page, "Switch to dark mode")).toBeVisible();
-    expect(pageErrors).toEqual([]);
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      await waitForHydration(page);
+
+      await expectRootTheme(page, "light");
+      await expect(page.locator("h1"), route).toHaveCount(1);
+      await expect(
+        await getVisibleThemeToggle(page, "Switch to dark mode"),
+        route,
+      ).toBeVisible();
+      expect(pageErrors, route).toEqual([]);
+      expect(consoleErrors, route).toEqual([]);
+    }
+  });
+
+  test("stored tool settings do not create hydration errors", async ({
+    page,
+  }) => {
+    const pageErrors: string[] = [];
+    const consoleErrors: string[] = [];
+    page.on("console", (message) => {
+      if (message.type() === "error") {
+        if (isExpectedTestHarnessConsoleError(message.text())) return;
+        consoleErrors.push(message.text());
+      }
+    });
+    page.on("pageerror", (error) => {
+      if (error.message !== "WebSocket closed without opened.") {
+        pageErrors.push(error.message);
+      }
+    });
+
+    for (const item of STORED_SETTING_HYDRATION_ROUTES) {
+      pageErrors.length = 0;
+      consoleErrors.length = 0;
+
+      await page.goto("/", { waitUntil: "domcontentloaded" });
+      await page.evaluate((values) => {
+        window.localStorage.clear();
+        Object.entries(values).forEach(([key, value]) => {
+          window.localStorage.setItem(key, value);
+        });
+      }, item.values);
+      await page.goto(item.route, { waitUntil: "domcontentloaded" });
+      await waitForHydration(page);
+
+      await expectRootTheme(page, "light");
+      await expect(page.locator("h1"), item.route).toHaveCount(1);
+      expect(pageErrors, item.route).toEqual([]);
+      expect(consoleErrors, item.route).toEqual([]);
+    }
   });
 
   test("mobile navigation exposes the same theme toggle", async ({ page }) => {

@@ -107,6 +107,19 @@ broad component refactor.
   route-local visual cleanup in this pass was tokenizing printable-chart page
   controls and content-card colors while leaving generated printable/export
   output colors unchanged.
+- Completed the post-dark-mode QA and fix pass. The production screenshot
+  matrix in `output/post-dark-mode-qa` covered the required route set in light
+  and dark themes on desktop and mobile, with no dark-mode visual blockers
+  found after fixes.
+- The post-dark-mode fixes stayed inside existing shared or route-owned tool
+  components and tests. The main translator, audio translator, and sound
+  generator now guard storage reads and restore saved settings only after
+  hydration, preventing crashes when `localStorage` is unavailable and avoiding
+  stored-setting hydration mismatches.
+- The QA pass preserved route content, route structure, SEO metadata, sitemap
+  behavior, JSON-LD behavior, generated printable/export output, and
+  practice/typing/quiz state logic. No new visual system, theme system, route,
+  or dependency was introduced.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using

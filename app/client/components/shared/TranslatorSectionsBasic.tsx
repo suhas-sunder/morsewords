@@ -94,35 +94,31 @@ export default function TranslatorSectionsBasic({
 
   const [isHydrated, setIsHydrated] = useState(false);
 
-  const [toneHz, setToneHz] = useState<number>(() => readNum("mw_hz", 600));
-  const [volume, setVolume] = useState<number>(() => readNum("mw_vol", 0.75));
-  const [soundOn, setSoundOn] = useState<boolean>(() =>
-    readBool("mw_sound", true),
-  );
-  const [repeat, setRepeat] = useState<boolean>(() =>
-    readBool("mw_repeat", false),
-  );
-  const [flash, setFlash] = useState<boolean>(() =>
-    readBool("mw_flash", false),
-  );
+  const [toneHz, setToneHz] = useState<number>(600);
+  const [volume, setVolume] = useState<number>(0.75);
+  const [soundOn, setSoundOn] = useState<boolean>(true);
+  const [repeat, setRepeat] = useState<boolean>(false);
+  const [flash, setFlash] = useState<boolean>(false);
 
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  const [preset, setPreset] = useState<SoundPreset>(
-    () => (readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio",
-  );
-  const [charWpm, setCharWpm] = useState<number>(() => {
-    const legacyWpm = readNum("mw_wpm", 20);
-    return readNum("mw_char_wpm", legacyWpm);
-  });
-  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(() =>
-    readNum("mw_fwpm", 20),
-  );
-  const [advancedOpen, setAdvancedOpen] = useState<boolean>(() =>
-    readBool("mw_adv_open", false),
-  );
+  const [preset, setPreset] = useState<SoundPreset>("cw_radio");
+  const [charWpm, setCharWpm] = useState<number>(20);
+  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(20);
+  const [advancedOpen, setAdvancedOpen] = useState<boolean>(false);
 
   useEffect(() => {
+    setToneHz(readNum("mw_hz", 600));
+    setVolume(readNum("mw_vol", 0.75));
+    setSoundOn(readBool("mw_sound", true));
+    setRepeat(readBool("mw_repeat", false));
+    setFlash(readBool("mw_flash", false));
+    setPreset((readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio");
+
+    const legacyWpm = readNum("mw_wpm", 20);
+    setCharWpm(readNum("mw_char_wpm", legacyWpm));
+    setFarnsworthWpm(readNum("mw_fwpm", 20));
+    setAdvancedOpen(readBool("mw_adv_open", false));
     setIsHydrated(true);
   }, []);
 
@@ -1008,15 +1004,13 @@ function clampNum(n: number, min: number, max: number) {
 }
 
 function readNum(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  const raw = window.localStorage.getItem(key);
+  const raw = readStorageValue(key);
   const n = raw ? Number(raw) : NaN;
   return Number.isFinite(n) ? n : fallback;
 }
 
 function readBool(key: string, fallback: boolean) {
-  if (typeof window === "undefined") return fallback;
-  const raw = window.localStorage.getItem(key);
+  const raw = readStorageValue(key);
   if (raw === null) return fallback;
   if (raw === "1") return true;
   if (raw === "0") return false;
@@ -1026,8 +1020,16 @@ function readBool(key: string, fallback: boolean) {
 }
 
 function readStr(key: string, fallback: string) {
-  if (typeof window === "undefined") return fallback;
-  return window.localStorage.getItem(key) ?? fallback;
+  return readStorageValue(key) ?? fallback;
+}
+
+function readStorageValue(key: string) {
+  if (typeof window === "undefined") return null;
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
 }
 
 function writeNum(key: string, value: number) {
