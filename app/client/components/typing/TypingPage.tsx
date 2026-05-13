@@ -1051,6 +1051,7 @@ export default function TypingPage({ jsonLd }: Props) {
           links: [
             { href: "/morse-code-word-trainer", label: "Word trainer", primary: true },
             { href: "/practice", label: "General practice" },
+            { href: "/morse-code-test", label: "Choose a test" },
             { href: "/learn-morse-code", label: "Learning path" },
             { href: "/morse-code-practice-plan", label: "Practice plan" },
           ],

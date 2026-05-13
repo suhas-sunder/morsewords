@@ -77,6 +77,7 @@ export default [
   route("morse-code-q-codes", "routes/morse-code-q-codes.tsx"),
   route("morse-code-punctuation", "routes/morse-code-punctuation.tsx"),
   route("morse-code-practice-plan", "routes/morse-code-practice-plan.tsx"),
+  route("morse-code-test", "routes/morse-code-test.tsx"),
   route(
     "international-morse-code-reference",
     "routes/international-morse-code-reference.tsx",
@@ -155,6 +156,13 @@ export default [
   route("international-morse-code-chart", "routes/international-morse-code-chart.tsx"),
   route("morse-code-chart-a-z-0-9", "routes/morse-code-chart-a-z-0-9.tsx"),
   route("morse-code-alphabet-chart", "routes/morse-code-alphabet-chart.tsx"),
+  route("morse-code-practice-test", "routes/morse-code-practice-test.tsx"),
+  route("morse-code-listening-test", "routes/morse-code-listening-test.tsx"),
+  route("morse-code-typing-test", "routes/morse-code-typing-test.tsx"),
+  route("morse-code-speed-test", "routes/morse-code-speed-test.tsx"),
+  route("morse-type-test", "routes/morse-type-test.tsx"),
+  route("morse-code-tests", "routes/morse-code-tests.tsx"),
+  route("morse-code-test-online", "routes/morse-code-test-online.tsx"),
 
   // Misc / legal
   route("misc", "routes/misc/misc.tsx", [

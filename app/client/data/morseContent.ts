@@ -5482,7 +5482,7 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
       },
       {
         title: "Breaking query strings",
-        text: "An unescaped & can split URL query parameters. Use the generated tool links for the literal symbol.",
+        text: "An unescaped & can split URL query parameters. Use the tool links for the literal symbol.",
       },
       {
         title: "Lost separators",

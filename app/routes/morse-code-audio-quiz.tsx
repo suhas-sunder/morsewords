@@ -842,6 +842,7 @@ export default function MorseCodeAudioQuiz() {
             links: [
               { href: "/morse-code-audio-practice", label: "Audio practice", primary: true },
               { href: "/morse-code-word-trainer", label: "Word trainer" },
+              { href: "/morse-code-test", label: "Choose a test" },
               { href: "/morse-code-practice-plan", label: "Practice plan" },
               { href: "/learn-morse-code", label: "Learning path" },
             ],
@@ -860,6 +861,7 @@ export default function MorseCodeAudioQuiz() {
                 label: "Audio practice",
                 primary: true,
               },
+              { href: "/morse-code-test", label: "Test hub" },
               { href: "/morse-code-sentence-practice", label: "Sentence practice" },
               { href: "/morse-code-practice-plan", label: "Practice plan" },
             ]}

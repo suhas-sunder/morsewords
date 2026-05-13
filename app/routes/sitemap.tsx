@@ -121,6 +121,12 @@ const GROUPS: SitemapGroup[] = [
           "Use a 2-week or 6-week routine across MorseWords tools.",
       },
       {
+        label: "Morse Code Test",
+        to: "/morse-code-test",
+        description:
+          "Choose the right listening, typing, visual, practice, word trainer, or practice-plan assessment.",
+      },
+      {
         label: "Practice",
         to: "/practice",
         description: "Train text-to-Morse and Morse-to-text recognition.",

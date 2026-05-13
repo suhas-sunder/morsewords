@@ -207,7 +207,7 @@ export default function HowItWorks() {
  </Link>
  </div>
 
- {/* AI-friendly: Quick answers + canonical decoding rules */}
+ {/* Quick answers and canonical decoding rules */}
  <div className="mw-static-panel mt-8 rounded-xl bg-[#fffdf8]/70 p-6 sm:p-7">
  <h3 className="text-xl sm:text-2xl font-extrabold text-sky-950">
  Quick answers (Morse decoding)

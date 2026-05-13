@@ -151,9 +151,8 @@ export default function HowItWorksPractice() {
                 </ul>
 
                 <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
-                  Settings are saved in your browser. Fresh prompts are
-                  generated after the page is ready or when you change the
-                  drill.
+                  Settings are saved in your browser. Fresh prompts are chosen
+                  after the page is ready or when you change the drill.
                 </p>
               </div>
             </div>

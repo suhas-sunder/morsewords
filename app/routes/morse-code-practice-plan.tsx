@@ -93,6 +93,11 @@ const toolMap = [
  text:"Use when you want scored listening tests and shareable results.",
  },
  {
+ href:"/morse-code-test",
+ title:"Test hub",
+ text:"Use when you need to choose between listening, typing, visual, practice, word, and plan-based assessments.",
+ },
+ {
  href:"/morse-code-visual-quiz",
  title:"Visual quiz",
  text:"Use when you want scored flash-signal tests and shareable results.",
@@ -395,6 +400,7 @@ export default function MorseCodePracticePlan() {
  description:"Start with a short recall drill, then add typing or audio once the day\'s target is clear.",
  links:[
  { href:"/practice", label:"Start quick practice", primary:true },
+ { href:"/morse-code-test", label:"Choose a test" },
  { href:"/morse-code-word-trainer", label:"Train words" },
  { href:"/morse-code-audio-practice", label:"Practice audio" },
  { href:"/morse-code-visual-practice", label:"Practice visual" },

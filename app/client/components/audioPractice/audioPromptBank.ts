@@ -50,7 +50,6 @@ const NUMBERS = "0123456789".split("").map<AudioPrompt>((text) => ({
 }));
 
 const BEGINNER_GROUPS = [
-  "AI",
   "AM",
   "AN",
   "AS",
@@ -67,6 +66,7 @@ const BEGINNER_GROUPS = [
   "ME",
   "MY",
   "NO",
+  "OF",
   "ON",
   "OR",
   "SO",

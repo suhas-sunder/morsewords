@@ -253,6 +253,13 @@ const FINAL_ROUTE_EXPECTATIONS = [
     title: "Contact MorseWords | Feedback, Corrections, and Questions",
     schemaType: "ContactPage",
   },
+  {
+    path: "/morse-code-test",
+    h1: "Morse Code Test",
+    title:
+      "Morse Code Test | Listening, Typing, Visual, and Speed Practice | MorseWords",
+    schemaType: "CollectionPage",
+  },
 ] as const;
 
 const FINAL_ROUTE_PATHS = FINAL_ROUTE_EXPECTATIONS.map((route) => route.path);
@@ -285,6 +292,10 @@ const BREADCRUMB_SCHEMA_EXPECTATIONS = [
   {
     path: "/contact",
     names: ["Home", "Contact MorseWords"],
+  },
+  {
+    path: "/morse-code-test",
+    names: ["Home", "Morse Code Test"],
   },
 ] as const;
 
@@ -405,6 +416,13 @@ const REDIRECT_ROUTE_EXPECTATIONS = [
   { from: "/international-morse-code-chart", to: "/morse-code-chart" },
   { from: "/morse-code-chart-a-z-0-9", to: "/morse-code-chart" },
   { from: "/morse-code-alphabet-chart", to: "/morse-code-chart" },
+  { from: "/morse-code-practice-test", to: "/morse-code-test" },
+  { from: "/morse-code-listening-test", to: "/morse-code-test" },
+  { from: "/morse-code-typing-test", to: "/morse-code-test" },
+  { from: "/morse-code-speed-test", to: "/morse-code-test" },
+  { from: "/morse-type-test", to: "/morse-code-test" },
+  { from: "/morse-code-tests", to: "/morse-code-test" },
+  { from: "/morse-code-test-online", to: "/morse-code-test" },
 ] as const;
 
 const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
@@ -1426,7 +1444,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
     const xmlUrls = [...xml.matchAll(/<loc>[^<]+<\/loc>/g)];
-    expect(xmlUrls).toHaveLength(110);
+    expect(xmlUrls).toHaveLength(111);
 
     for (const route of FINAL_ROUTE_EXPECTATIONS) {
       expect(xml).toContain(`https://morsewords.com${route.path}`);

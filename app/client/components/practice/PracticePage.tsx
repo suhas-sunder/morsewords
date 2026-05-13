@@ -3,6 +3,10 @@ import * as React from "react";
 import ToggleChip from "~/client/components/shared/ToggleChip";
 import { ActionButton } from "~/client/components/shared/ActionControls";
 import {
+  ActionLinks,
+  SectionCard,
+} from "~/client/components/shared/MorseLearningLayout";
+import {
   ToolButton,
   ToolPanel,
   toolControlButtonClass,
@@ -622,6 +626,19 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
       </section>
 
       <HowItWorksPractice />
+      <SectionCard
+        eyebrow="Assessment"
+        title="Ready to test a specific Morse skill?"
+        description="Use the test hub when general practice shows a pattern and you need to choose listening, typing, visual, word, or plan-based assessment."
+      >
+        <ActionLinks
+          links={[
+            { href: "/morse-code-test", label: "Choose a Morse code test", primary: true },
+            { href: "/morse-code-audio-quiz", label: "Audio quiz" },
+            { href: "/typing", label: "Typing practice" },
+          ]}
+        />
+      </SectionCard>
       <PracticeFaq />
       <JsonLdScript jsonLd={jsonLd} />
     </div>

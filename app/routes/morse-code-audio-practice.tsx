@@ -760,6 +760,7 @@ export default function MorseCodeAudioPractice() {
               "After a practice session, choose a scored quiz, a timing guide, or a word-level review based on what caused the misses.",
             links: [
               { href: "/morse-code-audio-quiz", label: "Audio quiz", primary: true },
+              { href: "/morse-code-test", label: "Choose a test" },
               { href: "/morse-code-timing", label: "Timing guide" },
               { href: "/farnsworth-timing", label: "Farnsworth timing" },
               { href: "/morse-code-word-trainer", label: "Word trainer" },
@@ -775,6 +776,7 @@ export default function MorseCodeAudioPractice() {
           <ActionLinks
             links={[
               { href: "/morse-code-audio-quiz", label: "Audio quiz", primary: true },
+              { href: "/morse-code-test", label: "Test hub" },
               { href: "/morse-code-word-trainer", label: "Word trainer" },
               { href: "/morse-code-sentence-practice", label: "Sentence practice" },
               { href: "/morse-code-practice-plan", label: "Practice plan" },

@@ -185,7 +185,7 @@ export default function SourcesPage() {
 
         <SectionCard
           eyebrow="How to read"
-          title="Reference-backed content vs generated tool output"
+          title="Reference-backed content vs tool output"
           description="MorseWords combines fixed reference pages with live tools. Those two types of content are related, but they do different jobs."
         >
           <SimpleGrid
@@ -197,7 +197,7 @@ export default function SourcesPage() {
               },
               {
                 title: "Tools apply those patterns",
-                text: "Translators, audio tools, printable charts, and practice pages apply supported patterns to user-entered text or generated prompts.",
+                text: "Translators, audio tools, printable charts, and practice pages apply supported patterns to user-entered text or practice prompts.",
                 href: "/",
               },
               {
