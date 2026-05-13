@@ -2998,6 +2998,7 @@ export default function MorseCodePrintableChart() {
           <ActionLinks
             links={[
               { href: "#builder", label: "Build printable", primary: true },
+              { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/morse-code-word-search-builder", label: "Word search" },
               { href: "/morse-code-alphabet", label: "Alphabet chart" },
               { href: "/practice", label: "Practice drills" },
@@ -3633,6 +3634,12 @@ export default function MorseCodePrintableChart() {
                 text: "Use this page for static reference sheets, worksheets, answer keys, and printable study packets.",
                 href: "/morse-code-printable-chart",
                 badge: "Handout",
+              },
+              {
+                title: "Complete chart",
+                text: "Use the on-screen chart when you need quick lookup, copy actions, audio checks, and links to detailed reference pages.",
+                href: "/morse-code-chart",
+                badge: "Lookup",
               },
               {
                 title: "Word search builder",

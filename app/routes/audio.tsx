@@ -130,6 +130,7 @@ export default function AudioRoute() {
           <ActionLinks
             links={[
               { href: "/name-to-morse-code", label: "Name to Morse", primary: true },
+              { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/morse-code-audio-decoder", label: "Decode audio file" },
               { href: "/audio?text=I%20LOVE%20YOU", label: "I love you" },
               { href: "/audio?text=CQ", label: "CQ" },

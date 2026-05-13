@@ -214,8 +214,12 @@ export function StaticCodeBlock({
 }
 
 export function ActionLinks({
+  className = "",
+  layout = "wrap",
   links,
 }: {
+  className?: string;
+  layout?: "grid" | "wrap";
   links: Array<{
     href: string;
     icon?: React.ReactNode;
@@ -223,12 +227,17 @@ export function ActionLinks({
     primary?: boolean;
   }>;
 }) {
+  const baseClassName =
+    layout === "grid" ? "grid gap-2" : "flex flex-wrap gap-1.5 sm:gap-2";
+
   return (
-    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+    <div className={[baseClassName, className].filter(Boolean).join(" ")}>
       {links.map((link) => (
         <ActionLinkButton
           key={link.href + link.label}
           href={link.href}
+          className={layout === "grid" ? "min-w-0 text-center" : undefined}
+          full={layout === "grid"}
           tone={link.primary ? "dark" : "light"}
           size="md"
           leadingIcon={link.icon}

@@ -213,6 +213,12 @@ const GROUPS: SitemapGroup[] = [
     description: "Look up alphabets, words, symbols, and spacing rules.",
     links: [
       {
+        label: "Morse Code Chart",
+        to: "/morse-code-chart",
+        description:
+          "Use one complete chart for A-Z letters, 0-9 numbers, supported punctuation, spacing notes, audio checks, and printable chart next steps.",
+      },
+      {
         label: "Morse Code Alphabet",
         to: "/morse-code-alphabet",
         description: "Browse A-Z letter patterns for Morse alphabet learning.",

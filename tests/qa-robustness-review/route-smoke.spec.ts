@@ -294,6 +294,7 @@ const FIRST_BATCH_LINK_CHECK_ROUTES = [
   "/morse-code-audio-decoder",
   "/morse-code-encoder",
   "/morse-code-decoder",
+  "/morse-code-chart",
   "/morse-code-alphabet",
   "/morse-code-punctuation",
   "/morse-code-word-separator",
@@ -401,6 +402,9 @@ const REDIRECT_ROUTE_EXPECTATIONS = [
   { from: "/real-time-morse-code-decoder", to: "/morse-code-audio-decoder" },
   { from: "/mp3-morse-code-decoder", to: "/morse-code-audio-decoder" },
   { from: "/wav-morse-code-decoder", to: "/morse-code-audio-decoder" },
+  { from: "/international-morse-code-chart", to: "/morse-code-chart" },
+  { from: "/morse-code-chart-a-z-0-9", to: "/morse-code-chart" },
+  { from: "/morse-code-alphabet-chart", to: "/morse-code-chart" },
 ] as const;
 
 const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
@@ -1422,7 +1426,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
     const xmlUrls = [...xml.matchAll(/<loc>[^<]+<\/loc>/g)];
-    expect(xmlUrls).toHaveLength(109);
+    expect(xmlUrls).toHaveLength(110);
 
     for (const route of FINAL_ROUTE_EXPECTATIONS) {
       expect(xml).toContain(`https://morsewords.com${route.path}`);

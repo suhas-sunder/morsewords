@@ -10,6 +10,7 @@ const REPRESENTATIVE_THEME_ROUTES = [
   "/morse-code-decoder",
   "/morse-code-sound-generator",
   "/name-to-morse-code",
+  "/morse-code-chart",
   "/morse-code-alphabet",
   "/how-to-read-morse-code",
   "/a-in-morse-code",

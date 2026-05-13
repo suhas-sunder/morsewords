@@ -251,6 +251,12 @@ export default function MorseCodeEncoder() {
                 badge: "Text to Morse",
               },
               {
+                title: "Complete chart",
+                text: "Use the Morse code chart when you want to verify one supported character before encoding a full message.",
+                href: "/morse-code-chart",
+                badge: "Chart",
+              },
+              {
                 title: "Decoder",
                 text: "Use the decoder when you already have Morse and want readable text.",
                 href: "/morse-code-decoder",
@@ -270,6 +276,7 @@ export default function MorseCodeEncoder() {
               "Once the text is encoded, hear the rhythm or practice the words so the output becomes recognizable, not just copyable.",
             links: [
               { href: "/", label: "Open the main translator", primary: true },
+              { href: "/morse-code-chart", label: "Open the complete chart" },
               { href: "/name-to-morse-code", label: "Convert a name" },
               { href: "/how-to-write-in-morse-code", label: "Writing guide" },
               { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },

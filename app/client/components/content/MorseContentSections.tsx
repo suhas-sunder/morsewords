@@ -951,6 +951,7 @@ export function MorseNumbersPage({
           <ActionLinks
             links={[
               { href: "#number-chart", label: "0-9 chart", primary: true },
+              { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/morse-code-alphabet", label: "Alphabet" },
               { href: "/audio", label: "Hear numbers" },
               { href: "/practice", label: "Practice" },
@@ -1073,6 +1074,7 @@ export function MorseNumbersPage({
           <ActionLinks
             links={[
               { href: "/morse-code-alphabet", label: "Alphabet", primary: true },
+              { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/dictionary", label: "Dictionary" },
               { href: "/audio", label: "Audio" },
               { href: "/practice", label: "Practice" },

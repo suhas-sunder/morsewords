@@ -236,6 +236,7 @@ export default function MorseCodeAlphabetRoute() {
         <ActionLinks
           links={[
             { href: "#letters", label: "Letters A-Z", primary: true },
+            { href: "/morse-code-chart", label: "Complete chart" },
             { href: "/morse-code-numbers", label: "Numbers 0-9" },
             { href: "/dictionary", label: "Dictionary" },
             { href: "/international-morse-code-reference", label: "Full reference" },
@@ -406,6 +407,12 @@ export default function MorseCodeAlphabetRoute() {
                   text: "Use the dictionary for quick lookup across letters, numbers, punctuation, prosigns, Q-codes, and phrases.",
                   href: "/dictionary",
                   badge: "Lookup",
+                },
+                {
+                  title: "Complete chart",
+                  text: "Use the complete Morse code chart when you need A-Z, 0-9, supported punctuation, spacing notes, and quick audio checks in one place.",
+                  href: "/morse-code-chart",
+                  badge: "Chart",
                 },
                 {
                   title: "International reference",

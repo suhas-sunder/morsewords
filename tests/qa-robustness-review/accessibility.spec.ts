@@ -8,6 +8,7 @@ const ACCESSIBILITY_ROUTES = [
   "/morse-code-audio-decoder",
   "/practice",
   "/typing",
+  "/morse-code-chart",
   "/morse-code-printable-chart",
   "/morse-code-word-search-builder",
   "/morse-code-word-trainer",

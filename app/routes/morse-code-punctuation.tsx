@@ -109,6 +109,7 @@ export default function MorseCodePunctuation() {
           <ActionLinks
             links={[
               { href: "/morse-code-encoder", label: "Encode text", primary: true },
+              { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/question-mark-in-morse-code", label: "Question mark" },
               { href: "/at-sign-in-morse-code", label: "At sign" },
               { href: "/morse-code-decoder", label: "Decode Morse" },
@@ -334,6 +335,12 @@ export default function MorseCodePunctuation() {
                 text: "Use punctuation when you want to translate normal written symbols in a message.",
                 href: "/morse-code-punctuation",
                 badge: "Symbols",
+              },
+              {
+                title: "Complete chart",
+                text: "Use the complete chart when you want letters, numbers, supported punctuation, spacing notes, and audio checks together.",
+                href: "/morse-code-chart",
+                badge: "Chart",
               },
               {
                 title: "Prosigns",

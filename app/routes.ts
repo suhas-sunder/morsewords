@@ -21,6 +21,7 @@ export default [
   ),
   route("morse-code-word-separator", "routes/morse-code-word-separator.tsx"),
   route("morse-code-words", "routes/morse-code-words.tsx"),
+  route("morse-code-chart", "routes/morse-code-chart.tsx"),
   route("morse-code-alphabet", "routes/morse-code-alphabet.tsx"),
   route("morse-code-letters", "routes/morse-code-letters.tsx"),
   route("a-in-morse-code", "routes/a-in-morse-code.tsx"),
@@ -151,6 +152,9 @@ export default [
   route("real-time-morse-code-decoder", "routes/real-time-morse-code-decoder.tsx"),
   route("mp3-morse-code-decoder", "routes/mp3-morse-code-decoder.tsx"),
   route("wav-morse-code-decoder", "routes/wav-morse-code-decoder.tsx"),
+  route("international-morse-code-chart", "routes/international-morse-code-chart.tsx"),
+  route("morse-code-chart-a-z-0-9", "routes/morse-code-chart-a-z-0-9.tsx"),
+  route("morse-code-alphabet-chart", "routes/morse-code-alphabet-chart.tsx"),
 
   // Misc / legal
   route("misc", "routes/misc/misc.tsx", [
