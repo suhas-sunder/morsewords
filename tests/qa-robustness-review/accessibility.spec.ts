@@ -13,28 +13,48 @@ const ACCESSIBILITY_ROUTES = [
   "/morse-code-audio-quiz",
   "/morse-code-visual-quiz",
 ];
+const ACCESSIBILITY_THEMES = ["light", "dark"] as const;
+const THEME_STORAGE_KEY = "morsewords-theme";
 
 test.describe("axe accessibility scans", () => {
-  for (const route of ACCESSIBILITY_ROUTES) {
-    test(`${route} has no critical/serious axe violations`, async ({ page }, testInfo) => {
-      await blockExternalNetwork(page);
-      await page.goto(route);
-      await page.waitForLoadState("networkidle");
+  for (const theme of ACCESSIBILITY_THEMES) {
+    for (const route of ACCESSIBILITY_ROUTES) {
+      test(`${route} has no critical/serious axe violations in ${theme} mode`, async ({
+        page,
+      }, testInfo) => {
+        await blockExternalNetwork(page);
+        if (theme === "dark") {
+          await page.addInitScript((key) => {
+            try {
+              window.localStorage.setItem(key, "dark");
+              if (document.documentElement) {
+                document.documentElement.dataset.theme = "dark";
+              }
+            } catch (error) {
+              if (document.documentElement) {
+                document.documentElement.dataset.theme = "light";
+              }
+            }
+          }, THEME_STORAGE_KEY);
+        }
+        await page.goto(route);
+        await page.waitForLoadState("networkidle");
 
-      const results = await new AxeBuilder({ page })
-        .disableRules(["color-contrast"])
-        .analyze();
-      const serious = results.violations.filter((violation) =>
-        ["critical", "serious"].includes(violation.impact ?? ""),
-      );
+        const results = await new AxeBuilder({ page })
+          .disableRules(["color-contrast"])
+          .analyze();
+        const serious = results.violations.filter((violation) =>
+          ["critical", "serious"].includes(violation.impact ?? ""),
+        );
 
-      await writeArtifact(
-        testInfo,
-        `axe-${route === "/" ? "home" : route.slice(1).replaceAll("/", "-")}.json`,
-        results,
-      );
+        await writeArtifact(
+          testInfo,
+          `axe-${theme}-${route === "/" ? "home" : route.slice(1).replaceAll("/", "-")}.json`,
+          results,
+        );
 
-      expect(serious).toEqual([]);
-    });
+        expect(serious).toEqual([]);
+      });
+    }
   }
 });

@@ -2880,8 +2880,8 @@ export default function MorseCodePrintableChart() {
           max-width: 100%;
           min-width: 0;
           border-radius: 0.9rem;
-          background: #fffdf8;
-          color: #0f172a;
+          background: var(--mw-surface);
+          color: var(--mw-input-text);
           font-weight: 700;
           transition:
             background-color 160ms ease;
@@ -2913,7 +2913,7 @@ export default function MorseCodePrintableChart() {
         .input-control:hover,
         .textarea-control:hover,
         .select-control:hover {
-          background: #f7f4ee;
+          background: var(--mw-input-hover-bg);
         }
 
         .input-control:focus,
@@ -2928,20 +2928,26 @@ export default function MorseCodePrintableChart() {
           min-width: 0;
           cursor: pointer;
           border-radius: 1rem;
-          background: #fffdf8;
+          background: var(--mw-surface);
           padding: 0.85rem;
-          color: #0f172a;
+          color: var(--mw-input-text);
           font-weight: 800;
         }
 
         .file-control:hover {
-          background: #f7f4ee;
+          background: var(--mw-input-hover-bg);
+        }
+
+        .input-control::placeholder,
+        .textarea-control::placeholder {
+          color: var(--mw-input-placeholder);
+          opacity: 1;
         }
 
         .content-card {
           min-width: 0;
           border-radius: 1.25rem;
-          background: #f7f4ee;
+          background: var(--mw-static-quiet-bg);
           padding: 1rem;
         }
 
@@ -2951,14 +2957,14 @@ export default function MorseCodePrintableChart() {
 
         .content-card-title {
           margin: 0;
-          color: #075985;
+          color: var(--mw-eyebrow-line);
           font-size: 1rem;
           font-weight: 900;
         }
 
         .content-card-copy {
           margin-top: 0.35rem;
-          color: #475569;
+          color: var(--mw-text-soft);
           font-size: 0.875rem;
           line-height: 1.5;
           overflow-wrap: anywhere;

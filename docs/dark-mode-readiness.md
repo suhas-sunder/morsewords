@@ -1,17 +1,28 @@
 # MorseWords Dark Mode Readiness
 
-This document maps the current light-mode UI surfaces that need consolidation
-before dark mode is implemented. It is a planning artifact only. This pass does
-not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
+This document records the shared-surface consolidation, light-tokenization, and
+dark-mode implementation status for MorseWords. Dark mode is now implemented
+through the shared semantic token layer, while light mode remains the default
+for first-time visitors.
 
 ## Current Scope
 
-- Light mode remains the only implemented theme.
+- Light mode remains the default implemented theme.
+- Dark mode is opt-in through the navbar theme toggle.
+- Theme preference persists in `localStorage` under `morsewords-theme`.
+- The root theme mechanism is `document.documentElement.dataset.theme`, with
+  `data-theme="light"` for light mode and `data-theme="dark"` for dark mode.
+- `app/root.tsx` applies an early inline script in the document head so a
+  saved dark preference is applied before hydration where possible. The script
+  catches storage errors and falls back to light mode.
+- The theme toggle lives in
+  `app/client/components/navigation/ThemeToggle.tsx` and uses `MoonIcon` for
+  switching to dark mode plus `ThemeSunIcon` for switching back to light mode.
 - The approved homepage remains the visual source of truth.
 - `/audio` remains the closest approved tool-page reference.
 - The shared icon library is `app/client/assets/svg/Icons.tsx`.
 - The decorative Morse side accents are shared through
-  `MorseAmbientBackground` and rendered by `PageBackdrop`; future theme work
+  `MorseAmbientBackground` and rendered by `PageBackdrop`; ongoing theme work
   should treat that as one shared decorative surface, not a route-local patch.
 - Hero, page-heading, section-heading, and eyebrow surfaces are mapped in
   `docs/hero-heading-surface-map.md`. Future theme work should use that map
@@ -48,11 +59,96 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
   breadcrumb, nav, footer, and form rules.
 - Shared components now layer semantic `mw-*` classes or `var(--mw-*)` values
   over the existing Tailwind classes so current light-mode output stays visually
-  aligned while the next pass can swap token values centrally.
-- Some route-local interactive tools still contain hard-coded Tailwind color
-  classes. Those were intentionally left in place when they are behavior-heavy,
-  generated-output-specific, or isolated route art rather than shared visual
-  primitives.
+  aligned while dark mode swaps token values centrally.
+- The dark-mode pass filled `:root[data-theme="dark"]` values for the central
+  `--mw-*` semantic tokens and added a small token-backed fallback layer for
+  recurring route-local Tailwind color surfaces that were not safe to refactor
+  into shared components.
+- Route-local interactive tools still contain some hard-coded Tailwind color
+  classes. Those remain local when they are behavior-heavy,
+  generated-output-specific, or isolated route art. Their visible page surfaces
+  are covered by shared tokens or dark-mode fallback selectors where needed.
+
+## Implemented Dark Mode Pass
+
+### Theme Wiring
+
+- Storage key: `morsewords-theme`.
+- Allowed stored values: `light` and `dark`.
+- Default behavior: no stored value renders light mode.
+- Root attribute: `data-theme="light"` or `data-theme="dark"` on the document
+  element.
+- Early application: `app/root.tsx` reads the stored value in a guarded inline
+  script before React hydration and applies `data-theme="dark"` only when the
+  stored value is exactly `dark`.
+- Runtime utility files:
+  `app/client/theme/themeStorage.ts` and
+  `app/client/theme/useThemeMode.ts`.
+- Toggle component:
+  `app/client/components/navigation/ThemeToggle.tsx`.
+- Toggle placement: desktop navbar action row and mobile navigation overlay.
+- Icons used: `MoonIcon` and `ThemeSunIcon` from
+  `app/client/assets/svg/Icons.tsx`.
+
+### Dark Token Coverage
+
+Dark values now exist in `app/app.css` for the core token groups:
+
+- Page backgrounds, soft bands, static surfaces, cards, panels, borders,
+  dividers, shadows, overlays, and ambient Morse accents.
+- Heading, body, muted, faint, inverse, eyebrow, link, nav, footer, and
+  output-panel text roles.
+- Primary, secondary, outline, dark-panel, disabled, hover, and home-soft
+  button roles.
+- Input, textarea, select, placeholder, hover, focus, output, code, success,
+  warning, error, and focus-ring roles.
+- Navbar, More dropdown, mobile nav, footer, social links, FAQ items,
+  breadcrumbs, utility/legal panels, toolkit cards, static primitives, tool
+  panels, output panels, range controls, and support bands.
+
+### Route-Local Surfaces Left Local
+
+- Printable/export CSS in `morse-code-printable-chart.tsx` stays light because
+  it defines generated printable/PDF/image output, not the page theme surface.
+- Generated SVG and image output colors remain unchanged because changing them
+  would alter tool output behavior.
+- Strobe flash overlays remain a white flash by design. They now carry
+  `mw-strobe-flash` so the dark-mode surface fallback does not theme the flash
+  itself.
+- Practice, typing, quiz, trainer, word-search, audio, and visual-practice
+  state logic remains local. The visible shared surfaces around those controls
+  are token-covered, while behavior-specific button state refactors remain out
+  of scope for this dark-mode pass.
+
+### Visual QA Coverage
+
+Screenshots were generated under `output/dark-mode-qa` for light and dark
+themes, desktop and mobile, for these routes:
+
+- `/`
+- `/audio`
+- `/name-to-morse-code`
+- `/morse-code-alphabet`
+- `/morse-code-numbers`
+- `/morse-code-words`
+- `/morse-code-punctuation`
+- `/morse-code-word-separator`
+- `/how-to-read-morse-code`
+- `/how-to-separate-words-in-morse-code`
+- `/a-in-morse-code`
+- `/0-in-morse-code`
+- `/hello-in-morse-code`
+- `/space-in-morse-code`
+- `/colon-in-morse-code`
+- `/practice`
+- `/typing`
+- `/morse-code-printable-chart`
+- `/contact`
+- `/misc/privacy-policy`
+
+Representative screenshots reviewed during this pass included the home page,
+audio page, alphabet page, printable chart, privacy policy, and mobile home.
+No dark-mode-specific route blockers remain before shipping this pass.
 
 ## A. Page Groups
 
@@ -242,7 +338,7 @@ These surfaces need planned light and dark theme coverage.
   and breadcrumb text now use semantic classes or CSS variables.
 - Dark panels still use their current light-mode dark-surface text roles. They
   are separate tokens because output panels need to remain high contrast in
-  both light and future dark themes.
+  both light and dark themes.
 
 ### Page-Specific Classes That Remain
 
@@ -291,11 +387,11 @@ These surfaces need planned light and dark theme coverage.
 - Hero constants in `heroStyles.ts` are the right source for future shared
   hero variants.
 
-## D. Implemented Light Token Map
+## D. Implemented Token Map
 
-The light-mode token layer is implemented in `app/app.css`. Dark values are not
-implemented yet. The next pass should add dark token values and theme wiring
-without re-tokenizing each route.
+The light-mode and dark-mode token layers are implemented in `app/app.css`.
+Light values remain the approved visual baseline. Dark values are applied only
+when the root element has `data-theme="dark"`.
 
 | Token | Current light value | Intended surface | Main consumers |
 | --- | --- | --- | --- |
@@ -354,7 +450,7 @@ without re-tokenizing each route.
 - Icons now inherit `currentColor`, which is correct for theming.
 - Low-contrast risk remains where a parent button uses muted text colors in
   disabled or inactive states.
-- Future theme toggle icons should use `MoonIcon` and `ThemeSunIcon` from the
+- The implemented theme toggle uses `MoonIcon` and `ThemeSunIcon` from the
   shared library, not inline SVG.
 
 ### Inputs, Textareas, and Output Blocks
@@ -404,25 +500,26 @@ without re-tokenizing each route.
 
 ### Phase 3: Introduce Light-Mode CSS Tokens Without Changing Appearance
 
-- Completed. Semantic CSS variables now exist for light mode only.
+- Completed. Semantic CSS variables now exist for light mode.
 - Completed. Major shared surfaces now consume token-backed classes or CSS
   variables.
 - Completed. Route-local hard-coded colors are documented where consolidation
   remains intentionally deferred.
-- No dark selector, theme toggle, localStorage persistence, `dark` classes, or
-  dark-mode behavior was added.
+- Completed without changing light-mode route behavior.
 
 ### Phase 4: Implement Dark Tokens and Navbar Toggle
 
-- Add dark token values after Phase 3 proves light-mode parity.
-- Add a navbar theme toggle using `MoonIcon` and `ThemeSunIcon`.
-- Persist the chosen theme locally.
-- Keep light mode as the default.
+- Completed. `:root[data-theme="dark"]` defines dark token values for the
+  shared semantic token set.
+- Completed. The navbar theme toggle uses `MoonIcon` and `ThemeSunIcon`.
+- Completed. The chosen theme persists in `localStorage` under
+  `morsewords-theme`.
+- Completed. Light mode remains the default.
 
 ### Phase 5: Visual QA and Route-Group Regression Testing
 
-- QA desktop and mobile screenshots for each route group.
-- Exercise keyboard focus, copy/download, audio toggles, disabled states,
-  dropdowns, FAQ open states, forms, and strobe warning placement.
-- Run typecheck, build, route smoke, accessibility smoke, and focused e2e
-  before shipping.
+- Completed for this dark-mode pass across the required desktop and mobile
+  screenshot matrix.
+- Completed through focused theme-toggle, route-smoke, accessibility,
+  structured-data, query-prefill, and interaction validation.
+- Full e2e remains an attempted validation gate for each shipping pass.

@@ -353,7 +353,7 @@ export default function MorseAudioTranslator({
 
   return (
     <div style={styles.page}>
-      {flash && <div id="mw_flash_overlay" className="fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75" />}
+      {flash && <div id="mw_flash_overlay" className="mw-strobe-flash fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75" />}
 
       <section className="mw-tool-section mt-0">
             <div>

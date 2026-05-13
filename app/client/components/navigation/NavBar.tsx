@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useLocation } from "react-router";
 
 import logoUrl from "~/client/assets/images/logo.png";
+import ThemeToggle from "./ThemeToggle";
 
 type NavItem = {
   label: string;
@@ -575,6 +576,8 @@ export default function NavBar(props: { pathname?: string }) {
                 )
               ) : null}
             </div>
+
+            <ThemeToggle />
           </nav>
 
           <button
@@ -619,15 +622,18 @@ export default function NavBar(props: { pathname?: string }) {
                   </div>
                 </a>
 
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="mw-nav-link inline-flex h-12 w-12 cursor-pointer items-center justify-center text-white transition hover:text-sky-200"
-                  aria-label="Close navigation"
-                  aria-controls="mobile-nav"
-                >
-                  <BurgerIcon open={true} />
-                </button>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle className="h-12 w-12" />
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className="mw-nav-link inline-flex h-12 w-12 cursor-pointer items-center justify-center text-white transition hover:text-sky-200"
+                    aria-label="Close navigation"
+                    aria-controls="mobile-nav"
+                  >
+                    <BurgerIcon open={true} />
+                  </button>
+                </div>
               </div>
 
               <nav

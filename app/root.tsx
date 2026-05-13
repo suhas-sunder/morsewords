@@ -51,12 +51,24 @@ export async function loader({ request }: Route.LoaderArgs) {
 
 export const links: Route.LinksFunction = () => [];
 
+const THEME_INIT_SCRIPT = `
+(function () {
+  try {
+    var theme = window.localStorage.getItem("morsewords-theme");
+    document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+  } catch (error) {
+    document.documentElement.dataset.theme = "light";
+  }
+})();
+`;
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <Meta />
         <Links />
       </head>

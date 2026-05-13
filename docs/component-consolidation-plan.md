@@ -97,6 +97,16 @@ broad component refactor.
   behavior-heavy practice, typing, quiz, trainer, audio/export, printable
   chart, word-search, generated image/SVG output, and strobe flash-overlay
   surfaces where a broad refactor would risk behavior or output changes.
+- Completed the dark-mode implementation pass through the shared token system.
+  `app/app.css` now defines `:root[data-theme="dark"]` token values and a
+  narrow token-backed fallback layer for recurring route-local Tailwind color
+  surfaces. `app/root.tsx` applies the saved root theme early, the navbar uses
+  `ThemeToggle`, and the theme preference persists under `morsewords-theme`.
+- Dark-mode implementation preserved route content, route structure, SEO
+  metadata, sitemap behavior, JSON-LD behavior, and tool state logic. The only
+  route-local visual cleanup in this pass was tokenizing printable-chart page
+  controls and content-card colors while leaving generated printable/export
+  output colors unchanged.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -329,7 +339,7 @@ broad component refactor.
 ## Components That Should Remain Unique For Now
 
 - `NavBar`: contains routing, More dropdown search, mobile overlay, scroll
-  locking, active-state logic, and future theme-toggle placement.
+  locking, active-state logic, and the shared `ThemeToggle` placement.
 - `PageBackdrop`: owns the shared root backdrop and should not be merged into
   page sections or replaced with route-local decorative markup.
 - `TranslatorSectionsBasic`: central translator logic is mature but dense.
@@ -408,12 +418,14 @@ broad component refactor.
 ### 7. Token Introduction
 
 - Completed. Light-mode semantic tokens exist in `app/app.css`, and the major
-  shared surfaces use them without adding dark-mode behavior.
+  shared surfaces use them without changing light-mode visuals.
+- Completed. Dark-mode token values now exist under `:root[data-theme="dark"]`.
+- Completed. The navbar theme toggle persists `light` or `dark` in
+  `localStorage` with the key `morsewords-theme`.
 - Remaining hard-coded colors are intentionally route-local, generated-output
-  specific, or behavior-heavy. They are not blockers for the dark-token pass
-  because the central shared surfaces now have stable semantic roles.
-- Next step: add actual dark token values and navbar theme wiring in a
-  separate pass, with screenshots for the same representative route set.
+  specific, or behavior-heavy. They are not dark-mode blockers because visible
+  page surfaces are either token-backed or covered by the central dark fallback
+  selectors.
 
 ## Regression Risks
 
@@ -425,8 +437,8 @@ broad component refactor.
   matching existing routes.
 - Strobe warning placement drift when flash controls are refactored.
 - Focus-visible changes from moving classes into shared components.
-- Broken More dropdown or mobile nav if navbar is changed while preparing the
-  future theme toggle.
+- Broken More dropdown, mobile nav, or theme toggle behavior if navbar changes
+  are not checked together.
 - Breadcrumb spacing changes above the footer or related tools.
 - Dark output panels losing contrast if treated as ordinary cards.
 
@@ -464,8 +476,8 @@ broad component refactor.
 
 ### Navbar and Theme Toggle Phase
 
-- Do not start this until dark tokens exist.
-- Screenshot desktop navbar, More dropdown, mobile nav, active route, and
-  future theme toggle states.
-- Verify keyboard focus, Escape close, outside click close, scroll close, and
-  mobile scroll locking.
+- Completed. Dark tokens exist and the navbar theme toggle is implemented.
+- Screenshot desktop navbar, mobile nav access, active route, and toggle states
+  in the required light and dark screenshot matrix.
+- Verify keyboard focus, Escape close, outside click close, scroll close,
+  mobile scroll locking, and persisted theme behavior during future nav changes.

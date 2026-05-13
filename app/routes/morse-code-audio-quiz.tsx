@@ -323,7 +323,7 @@ export default function MorseCodeAudioQuiz() {
       {flash ? (
         <div
           id="mw_audio_quiz_flash"
-          className="pointer-events-none fixed inset-0 z-50 bg-white opacity-0 transition-opacity duration-75"
+          className="mw-strobe-flash pointer-events-none fixed inset-0 z-50 bg-white opacity-0 transition-opacity duration-75"
         />
       ) : null}
 

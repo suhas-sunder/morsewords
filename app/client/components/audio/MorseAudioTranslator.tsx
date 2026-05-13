@@ -379,7 +379,7 @@ export default function MorseAudioTranslator({
       {renderedFlash && (
         <div
           id="mw_flash_overlay"
-          className="fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75"
+          className="mw-strobe-flash fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75"
         />
       )}
 
