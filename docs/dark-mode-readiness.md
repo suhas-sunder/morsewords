@@ -232,6 +232,42 @@ Accessibility notes:
 
 No unresolved dark-mode blocker remains from this QA pass.
 
+## Dark Surface Outline and Shadow Polish
+
+Dark surface polish was completed after the post-dark-mode QA pass to address
+persistent outline-like boxes on shared panels, example blocks, inputs, output
+panels, reference chips, and repeated static surfaces.
+
+The fix stayed in the existing token layer:
+
+- Dark structural border tokens are now transparent by default:
+  `--mw-border`, `--mw-panel-border`, `--mw-input-border`,
+  `--mw-button-outline-border`, `--mw-neutral-border`, and
+  `--mw-surface-border`.
+- `--mw-border-strong` and `--mw-divider` remain available as very subtle
+  dark-mode separators for surfaces that need functional grouping.
+- `--mw-shadow-panel` and `--mw-shadow-card` are `none` in dark mode so
+  panels and static cards do not gain shadows they did not have in light mode.
+- `--mw-shadow-soft` keeps existing button depth only, using a short, sharp
+  navy/black shadow with no glow layer and no zero-offset spread.
+- Focus-visible treatment remains separate from decorative borders. The
+  `--mw-focus-ring`, `--mw-focus-ring-muted`, and `--mw-range-focus-ring`
+  tokens still provide visible keyboard focus and range-control focus states.
+
+Intentionally retained boundaries:
+
+- Strobe flash surfaces stay white by design.
+- Generated printable/export output may stay light to preserve export
+  correctness.
+- Functional focus indicators remain visible even though persistent decorative
+  outlines were removed.
+
+Visual QA screenshots for this polish pass were generated under
+`output/dark-surface-polish-qa/screenshots` for the required route set in light
+and dark themes on desktop and mobile. The focused theme-mode regression now
+asserts that dark panel/card tokens do not create persistent outline shadows
+and that dark button shadows do not use zero-offset glow or spread layers.
+
 ## A. Page Groups
 
 ### Homepage and Tool Hub

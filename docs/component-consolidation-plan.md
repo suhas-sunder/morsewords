@@ -120,6 +120,13 @@ broad component refactor.
   behavior, JSON-LD behavior, generated printable/export output, and
   practice/typing/quiz state logic. No new visual system, theme system, route,
   or dependency was introduced.
+- Completed the dark surface outline and shadow polish pass through existing
+  semantic tokens. Dark-mode structural border tokens are transparent by
+  default, panel/card shadow tokens remain `none`, and existing button shadows
+  use a short, sharp navy/black shadow with no glow layer. Focus-visible
+  indicators remain token-backed and visible. Screenshots were generated under
+  `output/dark-surface-polish-qa/screenshots` for the required desktop and
+  mobile light/dark route matrix.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -435,6 +442,9 @@ broad component refactor.
 - Completed. Dark-mode token values now exist under `:root[data-theme="dark"]`.
 - Completed. The navbar theme toggle persists `light` or `dark` in
   `localStorage` with the key `morsewords-theme`.
+- Completed. The dark surface polish pass keeps shared panels/cards free of
+  persistent outline shadows and keeps button depth sharp rather than glowy,
+  without changing light-mode token values.
 - Remaining hard-coded colors are intentionally route-local, generated-output
   specific, or behavior-heavy. They are not dark-mode blockers because visible
   page surfaces are either token-backed or covered by the central dark fallback

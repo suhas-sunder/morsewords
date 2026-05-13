@@ -258,6 +258,57 @@ test.describe("navbar theme mode", () => {
     expect(after).toEqual(before);
   });
 
+  test("dark surface shadows do not create persistent outline boxes", async ({ page }) => {
+    await page.addInitScript((key) => {
+      try {
+        window.localStorage.setItem(key, "dark");
+        if (document.documentElement) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      } catch (error) {
+        if (document.documentElement) {
+          document.documentElement.dataset.theme = "light";
+        }
+      }
+    }, THEME_STORAGE_KEY);
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForHydration(page);
+    await expectRootTheme(page, "dark");
+
+    const shadowAudit = await page.evaluate(() => {
+      const root = getComputedStyle(document.documentElement);
+      const boxShadowFor = (selector: string) => {
+        const element = document.querySelector(selector);
+        return element ? getComputedStyle(element).boxShadow : "";
+      };
+
+      return {
+        cardToken: root.getPropertyValue("--mw-shadow-card").trim(),
+        panelToken: root.getPropertyValue("--mw-shadow-panel").trim(),
+        softToken: root.getPropertyValue("--mw-shadow-soft").trim(),
+        inputPanelShadow: boxShadowFor(".mw-input-panel"),
+        outputPanelShadow: boxShadowFor(".mw-panel-dark"),
+        staticTileShadow: boxShadowFor(".mw-static-tile"),
+        buttonShadow:
+          Array.from(document.querySelectorAll(".mw-page-content button"))
+            .map((element) => getComputedStyle(element).boxShadow)
+            .find((shadow) => shadow !== "none") ?? "none",
+      };
+    });
+
+    expect(shadowAudit.cardToken).toBe("none");
+    expect(shadowAudit.panelToken).toBe("none");
+    expect(shadowAudit.softToken).not.toContain("0 0 0 1px");
+    expect(shadowAudit.softToken).not.toContain("0 0");
+    expect(shadowAudit.inputPanelShadow).toBe("none");
+    expect(shadowAudit.outputPanelShadow).toBe("none");
+    expect(shadowAudit.staticTileShadow).toBe("none");
+    expect(shadowAudit.buttonShadow).not.toBe("none");
+    expect(shadowAudit.buttonShadow).not.toContain("0px 0px 0px 1px");
+    expect(shadowAudit.buttonShadow).not.toContain("0px 0px");
+  });
+
   test("representative routes render in persisted dark mode", async ({ page }) => {
     test.setTimeout(90_000);
     await page.addInitScript((key) => {
