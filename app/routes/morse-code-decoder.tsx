@@ -245,6 +245,12 @@ export default function MorseCodeDecoder() {
                 badge: "Morse to text",
               },
               {
+                title: "Audio decoder",
+                text: "Use the audio decoder when your input is a clean recording of Morse beeps rather than typed dots and dashes.",
+                href: "/morse-code-audio-decoder",
+                badge: "Audio file",
+              },
+              {
                 title: "Encoder",
                 text: "Use the encoder when you are starting with normal text.",
                 href: "/morse-code-encoder",
@@ -267,6 +273,7 @@ export default function MorseCodeDecoder() {
               { href: "/morse-code-without-spaces", label: "Unspaced Morse" },
               { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
               { href: "/morse-code-word-separator", label: "Clean up spacing" },
+              { href: "/morse-code-audio-decoder", label: "Decode audio file" },
               { href: "/typing", label: "Practice typed recall" },
               { href: "/morse-code-encoder", label: "Encode a reply" },
             ],

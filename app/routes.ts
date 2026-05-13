@@ -6,6 +6,7 @@ export default [
 
   // MVP feature routes
   route("audio", "routes/audio.tsx"),
+  route("morse-code-audio-decoder", "routes/morse-code-audio-decoder.tsx"),
   route("practice", "routes/practice.tsx"),
   route("typing", "routes/typing.tsx"),
   route("how-to-use", "routes/how-to-use.tsx"),
@@ -142,6 +143,14 @@ export default [
   route("morse-code-audio-generator", "routes/morse-code-audio-generator.tsx"),
   route("text-to-morse-code", "routes/text-to-morse-code.tsx"),
   route("morse-to-text", "routes/morse-to-text.tsx"),
+  route("audio-to-morse-code", "routes/audio-to-morse-code.tsx"),
+  route("morse-code-audio-to-text", "routes/morse-code-audio-to-text.tsx"),
+  route("morse-code-sound-to-text", "routes/morse-code-sound-to-text.tsx"),
+  route("morse-code-from-audio", "routes/morse-code-from-audio.tsx"),
+  route("translate-morse-code-audio", "routes/translate-morse-code-audio.tsx"),
+  route("real-time-morse-code-decoder", "routes/real-time-morse-code-decoder.tsx"),
+  route("mp3-morse-code-decoder", "routes/mp3-morse-code-decoder.tsx"),
+  route("wav-morse-code-decoder", "routes/wav-morse-code-decoder.tsx"),
 
   // Misc / legal
   route("misc", "routes/misc/misc.tsx", [

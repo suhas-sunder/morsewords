@@ -5,6 +5,7 @@ const THEME_STORAGE_KEY = "morsewords-theme";
 const REPRESENTATIVE_THEME_ROUTES = [
   "/",
   "/audio",
+  "/morse-code-audio-decoder",
   "/morse-code-encoder",
   "/morse-code-decoder",
   "/morse-code-sound-generator",

@@ -63,6 +63,12 @@ const GROUPS: SitemapGroup[] = [
           "Generate Morse code audio from text or Morse input for practice and downloads.",
       },
       {
+        label: "Morse Code Audio Decoder",
+        to: "/morse-code-audio-decoder",
+        description:
+          "Upload clean Morse audio and decode it into raw dots and dashes plus readable text.",
+      },
+      {
         label: "Name to Morse Code",
         to: "/name-to-morse-code",
         description:

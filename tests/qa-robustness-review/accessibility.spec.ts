@@ -5,6 +5,7 @@ import { blockExternalNetwork, writeArtifact } from "./helpers";
 const ACCESSIBILITY_ROUTES = [
   "/",
   "/audio",
+  "/morse-code-audio-decoder",
   "/practice",
   "/typing",
   "/morse-code-printable-chart",

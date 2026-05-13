@@ -291,6 +291,7 @@ const BREADCRUMB_SCHEMA_EXPECTATIONS = [
 const FIRST_BATCH_LINK_CHECK_ROUTES = [
   "/",
   "/audio",
+  "/morse-code-audio-decoder",
   "/morse-code-encoder",
   "/morse-code-decoder",
   "/morse-code-alphabet",
@@ -392,6 +393,14 @@ const REDIRECT_ROUTE_EXPECTATIONS = [
   { from: "/morse-code-translator", to: "/" },
   { from: "/morse-code-audio-generator", to: "/audio" },
   { from: "/morse-code-vidual-quiz", to: "/morse-code-visual-quiz" },
+  { from: "/audio-to-morse-code", to: "/morse-code-audio-decoder" },
+  { from: "/morse-code-audio-to-text", to: "/morse-code-audio-decoder" },
+  { from: "/morse-code-sound-to-text", to: "/morse-code-audio-decoder" },
+  { from: "/morse-code-from-audio", to: "/morse-code-audio-decoder" },
+  { from: "/translate-morse-code-audio", to: "/morse-code-audio-decoder" },
+  { from: "/real-time-morse-code-decoder", to: "/morse-code-audio-decoder" },
+  { from: "/mp3-morse-code-decoder", to: "/morse-code-audio-decoder" },
+  { from: "/wav-morse-code-decoder", to: "/morse-code-audio-decoder" },
 ] as const;
 
 const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
@@ -1413,7 +1422,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
     const xmlUrls = [...xml.matchAll(/<loc>[^<]+<\/loc>/g)];
-    expect(xmlUrls).toHaveLength(108);
+    expect(xmlUrls).toHaveLength(109);
 
     for (const route of FINAL_ROUTE_EXPECTATIONS) {
       expect(xml).toContain(`https://morsewords.com${route.path}`);
