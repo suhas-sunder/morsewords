@@ -386,17 +386,17 @@ const TOOLKIT_CONFIG: Record<ToolkitVariant, ToolkitConfig> = {
       "Start with the core translator, then move into practice, audio, worksheets, and reference pages as needed.",
     classNames: {
       primaryCard:
-        "mw-button-outline mw-toolkit-card mw-toolkit-card-light group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+        "mw-button-outline mw-toolkit-card mw-toolkit-card-light mw-surface-card group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
       primaryBadge:
-        "mw-toolkit-badge shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500",
+        "mw-toolkit-badge mw-muted-label shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500",
       quickLink:
-        "mw-button-outline mw-toolkit-card mw-toolkit-card-dark group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 hover:bg-slate-800 hover:text-white focus:outline-none",
+        "mw-button-outline mw-toolkit-card mw-toolkit-card-dark mw-panel-dark group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 hover:bg-slate-800 hover:text-white focus:outline-none",
       summary:
-        "mw-button-outline mw-toolkit-summary flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+        "mw-button-outline mw-toolkit-summary mw-button-secondary-dark-hover flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
       subcard:
-        "mw-button-outline mw-toolkit-subcard block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+        "mw-button-outline mw-toolkit-subcard mw-surface-card block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
       subcardBadge:
-        "shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500",
+        "mw-muted-label shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500",
     },
   },
   full: {
@@ -404,17 +404,17 @@ const TOOLKIT_CONFIG: Record<ToolkitVariant, ToolkitConfig> = {
       "Jump between the translator, encoder, decoder, practice pages, printable charts, audio tools, and Morse code reference guides.",
     classNames: {
       primaryCard:
-        "mw-button-outline mw-related-tool-link group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+        "mw-button-outline mw-related-tool-link mw-surface-card group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
       primaryBadge:
-        "mw-related-badge shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500",
+        "mw-related-badge mw-muted-label shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500",
       quickLink:
-        "mw-button-outline mw-related-quick-link group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 hover:bg-slate-800 hover:text-white focus:outline-none",
+        "mw-button-outline mw-related-quick-link mw-panel-dark group relative flex h-full min-h-[92px] cursor-pointer items-end rounded-xl bg-slate-950 px-4 pb-4 pt-8 text-sky-100 hover:bg-slate-800 hover:text-white focus:outline-none",
       summary:
-        "mw-button-outline mw-related-summary flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+        "mw-button-outline mw-related-summary mw-button-secondary flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-[#fffdf8] px-4 py-3 font-extrabold text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
       subcard:
-        "mw-button-outline mw-related-tool-link block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+        "mw-button-outline mw-related-tool-link mw-surface-card block cursor-pointer rounded-lg bg-[#fffdf8]/86 px-3 py-3 text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
       subcardBadge:
-        "mw-related-badge shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500",
+        "mw-related-badge mw-muted-label shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-slate-500",
     },
   },
 };
@@ -440,11 +440,11 @@ function ToolkitNavigation({ variant }: { variant: ToolkitVariant }) {
         <div className="max-w-[42rem]">
           <SectionEyebrow>Morse code navigation</SectionEyebrow>
 
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+          <h2 className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
             Explore the Morse code toolkit
           </h2>
 
-          <p className="mt-4 max-w-[38rem] text-base leading-relaxed text-slate-700 sm:text-lg">
+          <p className="mw-text-muted mt-4 max-w-[38rem] text-base leading-relaxed text-slate-700 sm:text-lg">
             {description}
           </p>
         </div>
@@ -475,13 +475,13 @@ function ToolkitGroupColumn({
 }) {
   return (
     <section>
-      <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+      <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
         {group.eyebrow}
       </p>
-      <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-sky-950">
+      <h3 className="mw-heading mt-2 text-2xl font-extrabold tracking-tight text-sky-950">
         {group.title}
       </h3>
-      <p className="mt-3 max-w-[22rem] text-base leading-relaxed text-slate-600">
+      <p className="mw-text-soft mt-3 max-w-[22rem] text-base leading-relaxed text-slate-600">
         {group.description}
       </p>
 
@@ -493,10 +493,10 @@ function ToolkitGroupColumn({
             className={classNames.primaryCard}
           >
             <span>
-              <span className="block text-base font-extrabold leading-snug text-sky-950">
+              <span className="mw-heading block text-base font-extrabold leading-snug text-sky-950">
                 {item.title}
               </span>
-              <span className="mt-1 block text-sm leading-relaxed text-slate-700">
+              <span className="mw-text-muted mt-1 block text-sm leading-relaxed text-slate-700">
                 {item.description}
               </span>
             </span>
@@ -515,7 +515,7 @@ function ToolkitQuickAccess({
 }) {
   return (
     <aside className="mt-8">
-      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
+      <p className="mw-eyebrow-text font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
         Quick access
       </p>
 
@@ -544,13 +544,13 @@ function ToolkitDetails({ classNames }: { classNames: ToolkitClassNames }) {
     <details className="mt-8">
       <summary className={classNames.summary}>
         <span>View the full MorseWords toolkit</span>
-        <span className="font-mono text-sm text-sky-700">+</span>
+        <span className="mw-link font-mono text-sm text-sky-700">+</span>
       </summary>
 
       <div className="grid gap-7 py-5 lg:grid-cols-2">
         {ROUTE_GROUPS.map((group) => (
           <section key={group.title}>
-            <h4 className="text-lg font-extrabold text-sky-950">
+            <h4 className="mw-heading text-lg font-extrabold text-sky-950">
               {group.title}
             </h4>
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
@@ -566,7 +566,7 @@ function ToolkitDetails({ classNames }: { classNames: ToolkitClassNames }) {
                     </span>
                     <span className={classNames.subcardBadge}>{item.badge}</span>
                   </span>
-                  <span className="mt-1 block text-xs leading-relaxed text-slate-600">
+                  <span className="mw-text-soft mt-1 block text-xs leading-relaxed text-slate-600">
                     {item.description}
                   </span>
                 </a>

@@ -38,27 +38,27 @@ const supportedPunctuation = [
 export default function HowItWorks() {
   return (
     <section
-      className="bg-[#fffaf2]/35 px-4 pb-8 pt-9 sm:px-6 sm:pb-10 sm:pt-12 lg:px-8"
+      className="mw-bg-page-soft bg-[#fffaf2]/35 px-4 pb-8 pt-9 sm:px-6 sm:pb-10 sm:pt-12 lg:px-8"
       aria-labelledby="how-it-works-title"
     >
       <div className="mx-auto max-w-[1160px]">
         <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
           <div>
             <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-sky-800" />
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+              <span className="mw-eyebrow-line h-px w-8 bg-sky-800" />
+              <span className="mw-eyebrow-text font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
                 Translator spec
               </span>
             </div>
 
             <h2
               id="how-it-works-title"
-              className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
+              className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
             >
               How this Morse code translator works
             </h2>
 
-            <p className="mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className="mw-text-muted mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               MorseWords is a two-way{" "}
               <strong>Morse code translator and decoder</strong>. It converts
               plain text to <strong>International Morse</strong> and converts
@@ -67,14 +67,14 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <aside className="rounded-xl bg-slate-950 px-4 py-3 text-white">
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
+          <aside className="mw-panel-dark rounded-xl bg-slate-950 px-4 py-3 text-white">
+            <p className="mw-output-muted font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
               Reference signal
             </p>
-            <p className="mt-2 font-mono text-lg font-bold tracking-[0.18em] text-sky-100">
+            <p className="mw-output-text mt-2 font-mono text-lg font-bold tracking-[0.18em] text-sky-100">
               ... --- ...
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-slate-200">
+            <p className="mw-output-soft mt-2 text-sm leading-relaxed text-slate-200">
               Spacing is part of the message, not decoration.
             </p>
           </aside>
@@ -83,24 +83,24 @@ export default function HowItWorks() {
         <dl className="mt-9 grid gap-6 md:grid-cols-3">
           {summaryPoints.map((item) => (
             <div key={item.title}>
-              <dt className="text-base font-extrabold text-sky-950">
+              <dt className="mw-heading text-base font-extrabold text-sky-950">
                 {item.title}
               </dt>
-              <dd className="mt-2 max-w-[35ch] text-base leading-relaxed text-slate-700">
+              <dd className="mw-text-muted mt-2 max-w-[35ch] text-base leading-relaxed text-slate-700">
                 {item.body}
               </dd>
             </div>
           ))}
         </dl>
 
-        <div className="mt-10 space-y-10 text-slate-700">
+        <div className="mw-text-muted mt-10 space-y-10 text-slate-700">
           <section id="encode">
             <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
               <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                   Plain text input
                 </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
+                <h3 className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
                   Text to Morse
                 </h3>
               </header>
@@ -122,14 +122,14 @@ export default function HowItWorks() {
                 </ul>
 
                 <div className="mt-6">
-                  <p className="text-base font-extrabold text-sky-950">
+                  <p className="mw-heading text-base font-extrabold text-sky-950">
                     Example
                   </p>
-                  <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-slate-950 p-4 font-mono text-base leading-relaxed text-sky-50">
+                  <pre className="mw-panel-dark mw-output-bright mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-slate-950 p-4 font-mono text-base leading-relaxed text-sky-50">
                     {`HELLO WORLD
 ....   .   .-..   .-..   ---       .--   ---   .-.   .-..   -..`}
                   </pre>
-                  <p className="mt-3 max-w-[58ch] text-base leading-relaxed text-slate-600">
+                  <p className="mw-text-soft mt-3 max-w-[58ch] text-base leading-relaxed text-slate-600">
                     The spacing is part of the output. If you copy this Morse
                     elsewhere, keep the gaps.
                   </p>
@@ -141,16 +141,16 @@ export default function HowItWorks() {
           <section id="decode">
             <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
               <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                   Boundary based
                 </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
+                <h3 className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
                   Morse to Text
                 </h3>
               </header>
 
               <div className="max-w-none">
-                <p className="max-w-[58ch] text-base leading-relaxed sm:text-lg">
+                <p className="mw-text-muted max-w-[58ch] text-base leading-relaxed sm:text-lg">
                   Decoding is boundary-driven. The tool reads chunks of dots and
                   dashes, then uses separators to decide where each letter and
                   word ends.
@@ -172,17 +172,17 @@ export default function HowItWorks() {
                 </ul>
 
                 <div className="mt-6">
-                  <p className="text-base font-extrabold text-sky-950">
+                  <p className="mw-heading text-base font-extrabold text-sky-950">
                     Examples
                   </p>
-                  <pre className="mw-static-code mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#fffaf2] p-4 font-mono text-base leading-relaxed text-slate-900">
+                  <pre className="mw-static-code mw-code-surface mt-3 overflow-x-auto whitespace-pre-wrap rounded-xl bg-[#fffaf2] p-4 font-mono text-base leading-relaxed text-slate-900">
                     {`...   ---   ...
 SOS
 
 ... / --- / ...
 S O S`}
                   </pre>
-                  <p className="mt-3 max-w-[58ch] text-base leading-relaxed text-slate-600">
+                  <p className="mw-text-soft mt-3 max-w-[58ch] text-base leading-relaxed text-slate-600">
                     If everything runs together, add separators. The safest
                     format is 3 spaces between letters and 7 spaces between
                     words.
@@ -194,14 +194,14 @@ S O S`}
 
           <section
             id="formatting"
-            className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-white/45 py-8"
+            className="mw-support-band relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-white/45 py-8"
           >
             <div className="mx-auto grid max-w-[1160px] gap-8 px-4 sm:px-6 lg:grid-cols-[235px_minmax(0,1fr)] lg:gap-12 lg:px-8">
               <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                   Input rules
                 </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
+                <h3 className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
                   Formatting guide
                 </h3>
               </header>
@@ -209,7 +209,7 @@ S O S`}
               <div className="max-w-none">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
-                    <p className="text-base font-extrabold text-sky-950">
+                    <p className="mw-heading text-base font-extrabold text-sky-950">
                       For best decoding
                     </p>
                     <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed">
@@ -221,7 +221,7 @@ S O S`}
                   </div>
 
                   <div>
-                    <p className="text-base font-extrabold text-sky-950">
+                    <p className="mw-heading text-base font-extrabold text-sky-950">
                       Common paste problems
                     </p>
                     <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed">
@@ -233,7 +233,7 @@ S O S`}
                   </div>
                 </div>
 
-                <p className="mt-6 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
+                <p className="mw-text-soft mt-6 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
                   If you need to preserve exact spacing inside a single word,
                   this tool favors predictable normalization and consistent
                   separators instead.
@@ -245,24 +245,24 @@ S O S`}
           <section id="supported">
             <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
               <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                   Character map
                 </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
+                <h3 className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
                   Supported characters
                 </h3>
               </header>
 
               <div className="max-w-none">
                 <div>
-                  <p className="max-w-[58ch] text-base leading-relaxed sm:text-lg">
+                  <p className="mw-text-muted max-w-[58ch] text-base leading-relaxed sm:text-lg">
                     This translator supports A-Z, 0-9, and a core set of common
                     punctuation. It intentionally does not guess at extended
                     alphabets or locale-specific variants.
                   </p>
 
                   <div className="mt-5">
-                    <p className="text-base font-extrabold text-sky-950">
+                    <p className="mw-heading text-base font-extrabold text-sky-950">
                       Supported punctuation
                     </p>
 
@@ -274,7 +274,7 @@ S O S`}
                         <span
                           key={symbol}
                           title={label}
-                          className="mw-static-tile inline-flex min-h-9 min-w-9 items-center justify-center rounded-md bg-[#fffaf2] px-2.5 py-1.5 font-mono text-sm font-bold text-slate-900"
+                          className="mw-static-tile mw-input-text inline-flex min-h-9 min-w-9 items-center justify-center rounded-md bg-[#fffaf2] px-2.5 py-1.5 font-mono text-sm font-bold text-slate-900"
                         >
                           {symbol}
                         </span>
@@ -290,10 +290,10 @@ S O S`}
           <section id="troubleshooting">
             <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
               <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                   Fix mistakes
                 </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
+                <h3 className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
                   Troubleshooting
                 </h3>
               </header>
@@ -326,16 +326,16 @@ S O S`}
           <section id="learning-flow">
             <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
               <header>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                   Learning flow
                 </p>
-                <h3 className="mt-2 text-2xl font-extrabold text-sky-950">
+                <h3 className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
                   After translation, hear and practice it
                 </h3>
               </header>
 
               <div className="max-w-none">
-                <p className="max-w-[58ch] text-base leading-relaxed sm:text-lg">
+                <p className="mw-text-muted max-w-[58ch] text-base leading-relaxed sm:text-lg">
                   A translation is useful immediately, but it becomes easier to
                   remember when you turn the pattern into sound and repeat it in
                   a short focused session.
@@ -364,35 +364,35 @@ S O S`}
                       key={item.title}
                       className="mw-static-tile rounded-xl bg-[#fffaf2] p-5"
                     >
-                      <h4 className="text-base font-extrabold text-sky-950">
+                      <h4 className="mw-heading text-base font-extrabold text-sky-950">
                         {item.title}
                       </h4>
-                      <p className="mt-2 text-base leading-relaxed text-slate-700">
+                      <p className="mw-text-muted mt-2 text-base leading-relaxed text-slate-700">
                         {item.body}
                       </p>
                     </article>
                   ))}
                 </div>
 
-                <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
+                <p className="mw-text-soft mt-5 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
                   For the next step, open{" "}
                   <Link
                     to="/audio"
-                    className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                    className="mw-link font-semibold text-sky-900 underline-offset-4 hover:underline"
                   >
                     Morse code audio
                   </Link>
                   , try a{" "}
                   <Link
                     to="/practice"
-                    className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                    className="mw-link font-semibold text-sky-900 underline-offset-4 hover:underline"
                   >
                     short practice drill
                   </Link>
                   , or use the{" "}
                   <Link
                     to="/morse-code-word-trainer"
-                    className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                    className="mw-link font-semibold text-sky-900 underline-offset-4 hover:underline"
                   >
                     word trainer
                   </Link>{" "}
@@ -403,14 +403,14 @@ S O S`}
           </section>
         </div>
 
-        <div className="relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-white/45 py-8">
+        <div className="mw-support-band relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 bg-white/45 py-8">
           <div className="mx-auto grid max-w-[1160px] gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-16 lg:px-8">
           <section>
-            <h3 className="text-2xl font-extrabold text-sky-950">
+            <h3 className="mw-heading text-2xl font-extrabold text-sky-950">
               Quick answers
             </h3>
 
-            <ul className="mt-4 max-w-none list-disc space-y-2 pl-6 text-base leading-relaxed text-slate-700 sm:text-lg">
+            <ul className="mw-text-muted mt-4 max-w-none list-disc space-y-2 pl-6 text-base leading-relaxed text-slate-700 sm:text-lg">
               <li>
                 <strong>What this tool does:</strong> Converts plain text to
                 International Morse code and decodes Morse back to readable
@@ -432,7 +432,7 @@ S O S`}
           </section>
 
           <section>
-            <h3 className="text-2xl font-extrabold text-sky-950">
+            <h3 className="mw-heading text-2xl font-extrabold text-sky-950">
               Morse formatting rules
             </h3>
 
@@ -440,15 +440,15 @@ S O S`}
               <table className="w-full text-base sm:text-lg">
                 <thead>
                   <tr>
-                    <th className="py-2 pr-4 text-left font-extrabold text-sky-950">
+                    <th className="mw-heading py-2 pr-4 text-left font-extrabold text-sky-950">
                       Rule
                     </th>
-                    <th className="py-2 text-left font-extrabold text-sky-950">
+                    <th className="mw-heading py-2 text-left font-extrabold text-sky-950">
                       Behavior
                     </th>
                   </tr>
                 </thead>
-                <tbody className="text-slate-700">
+                <tbody className="mw-text-muted text-slate-700">
                   <tr>
                     <td className="py-2 pr-4">Letter separator encode</td>
                     <td className="py-2">3 spaces</td>

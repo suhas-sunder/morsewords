@@ -124,11 +124,11 @@ function SocialLinks() {
 
  return (
  <section className="w-full bg-transparent px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-12">
- <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl bg-white">
+ <div className="mw-surface-elevated mx-auto max-w-6xl overflow-hidden rounded-2xl bg-white">
  <div className="px-5 py-6 sm:px-8">
  <div className="flex items-center gap-3">
- <span className="h-px w-8 bg-sky-800"/>
- <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
+ <span className="mw-eyebrow-line h-px w-8 bg-sky-800"/>
+ <span className="mw-eyebrow-text font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-sky-900">
  MorseWords social links
  </span>
  </div>
@@ -139,10 +139,10 @@ function SocialLinks() {
  {linksData.map((link) => (
  <li key={link.id}>
  <a
- className="group flex h-full cursor-pointer items-center gap-4 rounded-xl bg-white p-4 text-slate-900 transition hover:bg-slate-50" href={link.url}
+ className="mw-social-card group flex h-full cursor-pointer items-center gap-4 rounded-xl bg-white p-4 text-slate-900 transition hover:bg-slate-50" href={link.url}
  target="_blank" rel="noopener noreferrer nofollow" aria-label={`Open MorseWords on ${link.name}`}
  >
- <picture className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-50 transition group-hover:bg-white">
+ <picture className="mw-social-icon-surface flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-50 transition group-hover:bg-white">
  <source srcSet={link.webpImg} type="image/webp"/>
  <source srcSet={link.pngImg} type="image/png"/>
  <img
@@ -151,16 +151,16 @@ function SocialLinks() {
  </picture>
 
  <span className="min-w-0">
- <span className="block text-base font-extrabold leading-tight text-sky-950">
+ <span className="mw-heading block text-base font-extrabold leading-tight text-sky-950">
  {link.name}
  </span>
- <span className="mt-1 block font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+ <span className="mw-muted-label mt-1 block font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
  {link.label}
  </span>
  </span>
 
  <span
- className="ml-auto text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-sky-800" aria-hidden="true">
+ className="mw-text-faint ml-auto text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-sky-800" aria-hidden="true">
  →
  </span>
  </a>

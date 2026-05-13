@@ -49,24 +49,24 @@ interface Props {
 
 const STROBE_WARNING_ID = "translator-strobe-warning";
 const HOME_SOFT_CONTROL =
-  "bg-white/85 text-slate-800 hover:bg-slate-900 hover:text-sky-100";
+  "mw-button-home-soft bg-white/85 text-slate-800 hover:bg-slate-900 hover:text-sky-100";
 const HOME_SOFT_CONTROL_DARK =
-  "bg-white/88 text-slate-900 hover:bg-slate-900 hover:text-sky-100";
+  "mw-button-home-soft-strong bg-white/88 text-slate-900 hover:bg-slate-900 hover:text-sky-100";
 const HOME_DISABLED_CONTROL =
-  "cursor-not-allowed bg-white/55 text-slate-400";
+  "mw-button-disabled-light cursor-not-allowed bg-white/55 text-slate-400";
 const SOFT_CONTROL = HOME_SOFT_CONTROL;
 const SOFT_CONTROL_DARK = HOME_SOFT_CONTROL_DARK;
 const DISABLED_CONTROL = HOME_DISABLED_CONTROL;
 const ACTIVE_CONTROL =
-  "bg-slate-950 text-sky-100";
+  "mw-button-primary bg-slate-950 text-sky-100";
 const SOFT_PANEL =
-  "overflow-hidden rounded-xl bg-white/88";
+  "mw-input-panel overflow-hidden rounded-xl bg-white/88";
 const DARK_PANEL =
-  "overflow-hidden rounded-xl bg-slate-950";
+  "mw-panel-dark overflow-hidden rounded-xl bg-slate-950";
 const DARK_PANEL_BUTTON =
-  "bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white";
+  "mw-button-dark-panel bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white";
 const DARK_PANEL_DISABLED =
-  "cursor-not-allowed bg-slate-800/60 text-slate-500";
+  "mw-button-dark-panel-disabled cursor-not-allowed bg-slate-800/60 text-slate-500";
 
 export default function TranslatorSectionsBasic({
   plainA,
@@ -378,7 +378,7 @@ export default function TranslatorSectionsBasic({
 
   const isHome = variant === "home";
   const focusOutline =
-    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+    "mw-focus-ring focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
   const inputFocusClass = quietInputFocus
     ? "focus:outline-none focus:ring-0 focus-visible:outline-none"
     : focusOutline;
@@ -388,7 +388,7 @@ export default function TranslatorSectionsBasic({
       {flashOn && (
         <div
           className="pointer-events-none fixed inset-0 z-[999]"
-          style={{ background: "rgba(255,255,255,0.65)" }}
+          style={{ background: "var(--mw-translator-shell-bg)" }}
         />
       )}
 
@@ -407,8 +407,8 @@ export default function TranslatorSectionsBasic({
           }
         >
           <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-sky-800" />
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
+            <span className="mw-eyebrow-line h-px w-8 bg-sky-800" />
+            <span className="mw-eyebrow-text font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
               Live translator
             </span>
           </div>
@@ -416,15 +416,15 @@ export default function TranslatorSectionsBasic({
           <h1
             className={
               isHome
-                ? "mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl"
-                : "mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl"
+                ? "mw-heading mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl"
+                : "mw-heading mt-3 text-4xl font-black leading-tight tracking-tight text-sky-950 sm:text-5xl lg:text-6xl"
             }
           >
             {title}
           </h1>
 
           {subtitle ?? (
-            <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p className="mw-text-muted mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Encode text into Morse, decode Morse back to text, and play the signal with timing controls.
             </p>
           )}
@@ -524,19 +524,19 @@ export default function TranslatorSectionsBasic({
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <label
                     htmlFor={liveInputId}
-                    className="text-sm font-extrabold text-sky-950"
+                    className="mw-heading text-sm font-extrabold text-sky-950"
                   >
                     {inputLabel}
                   </label>
 
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                  <span className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Source
                   </span>
                 </div>
 
                 <textarea
                   id={liveInputId}
-                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
+                  className="mw-input-text mw-input-placeholder min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
                   value={inputValue}
                   onChange={(e) =>
                     direction === "encode"
@@ -556,13 +556,13 @@ export default function TranslatorSectionsBasic({
                 />
 
                 <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
-                  <p className="text-sm leading-relaxed text-slate-600">
+                  <p className="mw-text-soft text-sm leading-relaxed text-slate-600">
                     3 spaces = letters · 7 = words · / = word break
                   </p>
 
                   {direction === "encode" &&
                     Object.keys(unsupportedPlain).length > 0 && (
-                      <p className="text-xs font-medium text-amber-700">
+                      <p className="mw-warning-text text-xs font-medium text-amber-700">
                         Unsupported:{" "}
                         {Object.entries(unsupportedPlain)
                           .map(([ch, n]) => `${ch}×${n}`)
@@ -572,7 +572,7 @@ export default function TranslatorSectionsBasic({
                     )}
 
                   {direction === "decode" && morseInputIssues.length > 0 && (
-                    <p className="text-xs font-medium text-amber-700">
+                    <p className="mw-warning-text text-xs font-medium text-amber-700">
                       {morseInputIssues.join(" ")}
                     </p>
                   )}
@@ -583,19 +583,19 @@ export default function TranslatorSectionsBasic({
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <label
                     htmlFor="mw_output"
-                    className="text-sm font-extrabold text-slate-200"
+                    className="mw-output-soft text-sm font-extrabold text-slate-200"
                   >
                     {outputLabel}
                   </label>
 
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
+                  <span className="mw-output-muted font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
                     Result
                   </span>
                 </div>
 
                 <textarea
                   id="mw_output"
-                  className="min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 focus-visible:outline-none"
+                  className="mw-output-text mw-input-placeholder min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 focus-visible:outline-none"
                   value={outputValue}
                   readOnly
                   placeholder={
@@ -677,7 +677,7 @@ export default function TranslatorSectionsBasic({
                         ? HOME_DISABLED_CONTROL
                         : DISABLED_CONTROL
                     : canPlay && player.isSupported
-                      ? `${ACTIVE_CONTROL} hover:bg-slate-900 hover:text-white`
+                      ? `${ACTIVE_CONTROL} mw-button-primary-global-hover hover:bg-slate-900 hover:text-white`
                       : isHome
                         ? HOME_DISABLED_CONTROL
                         : DISABLED_CONTROL
@@ -754,7 +754,7 @@ export default function TranslatorSectionsBasic({
             >
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <h3 className="text-base font-extrabold text-sky-950">
+                  <h3 className="mw-heading text-base font-extrabold text-sky-950">
                     Playback Settings
                   </h3>
 
@@ -852,7 +852,7 @@ export default function TranslatorSectionsBasic({
                   <div className="grid gap-4 pt-4">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                       <div>
-                        <label className="text-sm font-semibold text-slate-700">
+                        <label className="mw-text-muted text-sm font-semibold text-slate-700">
                           Sound type
                         </label>
 
@@ -864,7 +864,7 @@ export default function TranslatorSectionsBasic({
                           disabled={!soundOn}
                           className={`mt-1 w-full rounded-xl p-2 transition hover:text-sky-950 ${inputFocusClass} ${
                             soundOn
-                              ? "cursor-pointer bg-white/85 hover:bg-slate-900 hover:text-sky-100"
+                              ? "mw-button-home-soft cursor-pointer bg-white/85 hover:bg-slate-900 hover:text-sky-100"
                               : "cursor-not-allowed opacity-60"
                           }`}
                         >
@@ -890,7 +890,7 @@ export default function TranslatorSectionsBasic({
                       />
                     </div>
 
-                    <p className="text-xs leading-relaxed text-slate-600">
+                    <p className="mw-text-soft text-xs leading-relaxed text-slate-600">
                       Tip: set a higher <strong>Character speed</strong> and a
                       lower <strong>Farnsworth</strong> to keep dits and dahs
                       crisp while adding extra spacing between characters and
@@ -926,11 +926,11 @@ function TogglePill({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={`flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
+      className={`mw-focus-ring flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
         isHome ? "" : "min-h-10 sm:min-h-0"
       } ${
         checked
-          ? `${ACTIVE_CONTROL} hover:bg-slate-900 hover:text-white`
+          ? `${ACTIVE_CONTROL} mw-button-primary-global-hover hover:bg-slate-900 hover:text-white`
           : isHome
             ? HOME_SOFT_CONTROL
             : SOFT_CONTROL
@@ -970,20 +970,20 @@ function SliderRow({
   const id = React.useId();
   const inputFocusClass = quietInputFocus
     ? "focus:outline-none focus:ring-0 focus-visible:outline-none"
-    : "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+    : "mw-focus-ring focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
 
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-semibold text-slate-700">
+        <label htmlFor={id} className="mw-text-muted text-sm font-semibold text-slate-700">
           {label}
         </label>
-        <span className="text-sm text-slate-600">
+        <span className="mw-text-soft text-sm text-slate-600">
           {value} {unit}
         </span>
       </div>
 
-      {help && <p className="mt-0.5 text-xs text-slate-500">{help}</p>}
+      {help && <p className="mw-text-faint mt-0.5 text-xs text-slate-500">{help}</p>}
 
       <input
         id={id}
@@ -994,7 +994,7 @@ function SliderRow({
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         disabled={disabled}
-        style={{ accentColor: "#38bdf8" }}
+        style={{ accentColor: "var(--mw-accent)" }}
         className={`mt-2 w-full rounded-full ${inputFocusClass} ${
           disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
         }`}

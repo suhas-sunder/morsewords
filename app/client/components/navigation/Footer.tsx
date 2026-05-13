@@ -20,12 +20,12 @@ export default function Footer() {
   return (
     <div>
       <SocialLinks />
-      <footer className="w-full bg-neutral-900 text-sm text-gray-300">
+      <footer className="mw-footer-shell w-full bg-neutral-900 text-sm text-gray-300">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="mb-7 flex flex-col items-center gap-5 md:flex-row md:items-center md:justify-between">
             <Link
               to="/"
-              className="flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
+              className="mw-footer-brand flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
               aria-label="MorseWords home"
             >
               <img
@@ -38,7 +38,7 @@ export default function Footer() {
                 <span className="block text-base font-extrabold">
                   MorseWords
                 </span>
-                <span className="block text-xs text-sky-200">
+                <span className="mw-nav-muted block text-xs text-sky-200">
                   Translate, listen, practice
                 </span>
               </span>
@@ -52,7 +52,7 @@ export default function Footer() {
                 <Link
                   key={item.to}
                   to={item.to}
-                  className="cursor-pointer transition hover:text-sky-200"
+                  className="mw-footer-link cursor-pointer transition hover:text-sky-200"
                 >
                   {item.label}
                 </Link>
@@ -61,19 +61,19 @@ export default function Footer() {
           </div>
 
           <div className="text-center leading-relaxed">
-            <div className="mb-1 text-gray-400">
+            <div className="mw-footer-muted mb-1 text-gray-400">
               &copy; 2025-{year}{" "}
-              <span className="font-semibold text-white">MorseWords</span>
+              <span className="mw-footer-brand font-semibold text-white">MorseWords</span>
               <span className=""> ~</span>
               <span className=""> By Suhas Sunder</span>
             </div>
 
-            <div className="text-sky-200">
+            <div className="mw-nav-muted text-sky-200">
               Fast, practical tools for translating, listening to, and
               practicing Morse code.
             </div>
 
-            <div className="mt-2 text-xs text-gray-500">
+            <div className="mw-footer-faint mt-2 text-xs text-gray-500">
               -- .- -.. . / .-- .. - .... / 💖
             </div>
           </div>

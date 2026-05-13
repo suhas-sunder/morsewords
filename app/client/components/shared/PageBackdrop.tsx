@@ -1,7 +1,7 @@
 import MorseAmbientBackground from "~/client/components/shared/MorseAmbientBackground";
 
 export const paperBackground = {
-  backgroundColor: "#f5f2eb",
+  backgroundColor: "var(--mw-page-bg)",
 };
 
 export default function PageBackdrop() {

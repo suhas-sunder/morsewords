@@ -14,17 +14,17 @@ export default function StrobeWarning({
     <div
       id={id}
       className={
-        "flex gap-3 rounded-xl bg-[#fffdf8] p-3 text-sm leading-relaxed text-slate-700 " +
+        "mw-surface mw-text-muted flex gap-3 rounded-xl bg-[#fffdf8] p-3 text-sm leading-relaxed text-slate-700 " +
         className
       }
     >
       <WarningIcon
         size={18}
         title="Strobe warning"
-        className="mt-0.5 shrink-0 text-sky-900"
+        className="mw-link mt-0.5 shrink-0 text-sky-900"
       />
       <p>
-        <strong className="text-sky-950">Strobe warning:</strong>{" "}
+        <strong className="mw-heading text-sky-950">Strobe warning:</strong>{" "}
         {STROBE_WARNING_TEXT}
       </p>
     </div>

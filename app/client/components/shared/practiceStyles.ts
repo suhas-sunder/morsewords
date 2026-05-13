@@ -3,7 +3,7 @@ import * as React from "react";
 const styles: Record<string, React.CSSProperties> = {
   page: {
     background: "transparent",
-    color: "#111317",
+    color: "var(--mw-text)",
     fontFamily:
       'var(--font-body, "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif)',
     margin: 0,
@@ -24,19 +24,19 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: "clamp(2.25rem, 2.2vw + 1rem, 4rem)",
     lineHeight: 1.08,
     margin: 0,
-    color: "#08324f",
+    color: "var(--mw-heading-object)",
     fontWeight: 900,
   },
   lead: {
     marginTop: 12,
-    color: "#334155",
+    color: "var(--mw-text-muted)",
     fontSize: "1.08rem",
     lineHeight: 1.7,
     maxWidth: 760,
   },
 
   card: {
-    background: "#fffdf8",
+    background: "var(--mw-surface)",
     border: 0,
     borderRadius: 16,
   },
@@ -51,20 +51,20 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "start",
   },
 
-  label: { fontSize: ".9rem", color: "#5a616c" },
+  label: { fontSize: ".9rem", color: "var(--mw-text-faint)" },
 
   promptBox: {
     border: 0,
     borderRadius: 14,
     padding: 16,
-    background: "#fffdf8",
+    background: "var(--mw-surface)",
   },
   promptKind: {
     display: "inline-flex",
     alignItems: "center",
     gap: 8,
     fontSize: ".85rem",
-    color: "#5a616c",
+    color: "var(--mw-text-faint)",
     marginBottom: 10,
   },
   promptMain: {
@@ -75,7 +75,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   promptHint: {
     marginTop: 12,
-    color: "#5a616c",
+    color: "var(--mw-text-faint)",
     fontSize: ".92rem",
   },
 
@@ -85,8 +85,8 @@ const styles: Record<string, React.CSSProperties> = {
     padding: 10,
     border: 0,
     borderRadius: 10,
-    background: "#fffdf8",
-    color: "#111317",
+    background: "var(--mw-surface)",
+    color: "var(--mw-text)",
     font: "650 1.05rem/1.1 var(--font-mono)",
     outline: "none",
     boxShadow: "none",
@@ -107,7 +107,7 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
   },
 
-  note: { color: "#5a616c", fontSize: ".9rem" },
+  note: { color: "var(--mw-text-faint)", fontSize: ".9rem" },
 
   status: {
     display: "flex",
@@ -125,14 +125,14 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: ".9rem",
     fontWeight: 800,
     border: 0,
-    background: "#fffdf8",
+    background: "var(--mw-surface)",
   },
-  badgeGood: { borderColor: "#bae6fd", background: "#f0f9ff", color: "#082f49" },
-  badgeBad: { borderColor: "#e2e8f0", background: "#fffdf8", color: "#334155" },
-  badgeNeutral: { borderColor: "#e6e8ef", background: "#fff", color: "#111317" },
+  badgeGood: { borderColor: "var(--mw-info-border)", background: "var(--mw-info-bg)", color: "var(--mw-link-hover)" },
+  badgeBad: { borderColor: "var(--mw-neutral-border)", background: "var(--mw-surface)", color: "var(--mw-text-muted)" },
+  badgeNeutral: { borderColor: "var(--mw-surface-border)", background: "var(--mw-surface-elevated)", color: "var(--mw-text)" },
 
   footer: {
-    color: "#5a616c",
+    color: "var(--mw-text-faint)",
     fontSize: ".9rem",
     textAlign: "center",
     padding: "28px 0",

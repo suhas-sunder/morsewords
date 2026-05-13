@@ -221,7 +221,7 @@ export function MorseGuidePage({
               morse: example.morse,
               children: (
                 <p>
-                  <span className="font-semibold text-sky-950">
+                  <span className="mw-heading font-semibold text-sky-950">
                     {example.text}
                   </span>
                   {": "}
@@ -278,7 +278,7 @@ function BreakdownGrid({ content }: { content: MorseLeafContent }) {
     <div className="grid gap-7 lg:grid-cols-2">
       {content.kind === "phrase" ? (
         <div>
-          <h3 className="text-lg font-extrabold text-sky-950">
+          <h3 className="mw-heading text-lg font-extrabold text-sky-950">
             Word-level breakdown
           </h3>
           <div className="mt-3 grid gap-0">
@@ -287,11 +287,11 @@ function BreakdownGrid({ content }: { content: MorseLeafContent }) {
                 key={item.label}
                 className="py-3"
               >
-                <p className="font-bold text-sky-950">{item.label}</p>
-                <p className="mt-2 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
+                <p className="mw-heading font-bold text-sky-950">{item.label}</p>
+                <p className="mw-input-text mt-2 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
                   {item.morse}
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                <p className="mw-text-muted mt-2 text-sm leading-relaxed text-slate-700">
                   {item.note}
                 </p>
               </div>
@@ -301,7 +301,7 @@ function BreakdownGrid({ content }: { content: MorseLeafContent }) {
       ) : null}
 
       <div>
-        <h3 className="text-lg font-extrabold text-sky-950">
+        <h3 className="mw-heading text-lg font-extrabold text-sky-950">
           Character-level breakdown
         </h3>
         <div className="mt-3 grid gap-0">
@@ -311,12 +311,12 @@ function BreakdownGrid({ content }: { content: MorseLeafContent }) {
               className="py-3"
             >
               <div className="flex items-start justify-between gap-3">
-                <p className="font-bold text-sky-950">{item.label}</p>
-                <p className="break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
+                <p className="mw-heading font-bold text-sky-950">{item.label}</p>
+                <p className="mw-input-text break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
                   {item.morse}
                 </p>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+              <p className="mw-text-muted mt-2 text-sm leading-relaxed text-slate-700">
                 {item.note}
               </p>
             </div>
@@ -396,16 +396,16 @@ export function MorseLeafPage({
                 as="article"
                 key={example.title}
               >
-                <h3 className="text-lg font-extrabold text-sky-950">
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
                   {example.title}
                 </h3>
-                <p className="mt-2 font-mono text-sm font-bold uppercase tracking-[0.12em] text-slate-500">
+                <p className="mw-muted-label mt-2 font-mono text-sm font-bold uppercase tracking-[0.12em] text-slate-500">
                   {example.text}
                 </p>
-                <p className="mt-3 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
+                <p className="mw-input-text mt-3 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
                   {example.morse}
                 </p>
-                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                   {example.note}
                 </p>
               </StaticPanel>
@@ -501,26 +501,26 @@ export function MorseLetterPage({
           <div className="grid gap-7">
             <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-3">
               <div>
-                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                <dt className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                   Character
                 </dt>
-                <dd className="mt-2 text-4xl font-black text-sky-950">
+                <dd className="mw-heading mt-2 text-4xl font-black text-sky-950">
                   {content.letter}
                 </dd>
               </div>
               <div>
-                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                <dt className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                   Dot dash pattern
                 </dt>
-                <dd className="mt-2 break-words font-mono text-3xl font-bold tracking-[0.14em] text-slate-950">
+                <dd className="mw-input-text mt-2 break-words font-mono text-3xl font-bold tracking-[0.14em] text-slate-950">
                   {content.morseValue}
                 </dd>
               </div>
               <div>
-                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                <dt className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                   Spoken rhythm
                 </dt>
-                <dd className="mt-2 text-2xl font-extrabold text-sky-950">
+                <dd className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
                   {content.spokenRhythm}
                 </dd>
               </div>
@@ -528,7 +528,7 @@ export function MorseLetterPage({
 
             <div className="grid gap-7 lg:grid-cols-2">
               <div>
-                <h3 className="text-lg font-extrabold text-sky-950">
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
                   How it sounds
                 </h3>
                 <div className="mt-3">
@@ -539,7 +539,7 @@ export function MorseLetterPage({
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-extrabold text-sky-950">
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
                   How to type it
                 </h3>
                 <div className="mt-3">
@@ -576,13 +576,13 @@ export function MorseLetterPage({
                 key={example.title}
                 className="py-1"
               >
-                <h3 className="text-lg font-extrabold text-sky-950">
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
                   {example.title}
                 </h3>
-                <p className="mt-2 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
+                <p className="mw-input-text mt-2 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
                   {example.morse}
                 </p>
-                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                   {example.note}
                 </p>
               </article>
@@ -599,10 +599,10 @@ export function MorseLetterPage({
           <div className="grid gap-x-8 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] lg:items-start">
             {[content.listeningDrill, content.typingDrill].map((drill) => (
               <div key={drill.title} className="py-1">
-                <h3 className="text-lg font-extrabold leading-snug text-sky-950">
+                <h3 className="mw-heading text-lg font-extrabold leading-snug text-sky-950">
                   {drill.title}
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                   {drill.text}
                 </p>
               </div>
@@ -714,26 +714,26 @@ export function MorseNumberPage({
           <div className="grid gap-7">
             <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-3">
               <div>
-                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                <dt className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                   Digit
                 </dt>
-                <dd className="mt-2 text-4xl font-black text-sky-950">
+                <dd className="mw-heading mt-2 text-4xl font-black text-sky-950">
                   {content.digit}
                 </dd>
               </div>
               <div>
-                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                <dt className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                   Dot dash pattern
                 </dt>
-                <dd className="mt-2 break-words font-mono text-3xl font-bold tracking-[0.14em] text-slate-950">
+                <dd className="mw-input-text mt-2 break-words font-mono text-3xl font-bold tracking-[0.14em] text-slate-950">
                   {content.morseValue}
                 </dd>
               </div>
               <div>
-                <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                <dt className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
                   Spoken rhythm
                 </dt>
-                <dd className="mt-2 text-2xl font-extrabold text-sky-950">
+                <dd className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
                   {content.spokenRhythm}
                 </dd>
               </div>
@@ -741,7 +741,7 @@ export function MorseNumberPage({
 
             <div className="grid gap-7 lg:grid-cols-2">
               <div>
-                <h3 className="text-lg font-extrabold text-sky-950">
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
                   How it sounds
                 </h3>
                 <div className="mt-3">
@@ -752,7 +752,7 @@ export function MorseNumberPage({
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-extrabold text-sky-950">
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
                   How to type it
                 </h3>
                 <div className="mt-3">
@@ -786,13 +786,13 @@ export function MorseNumberPage({
           <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:grid-cols-4">
             {content.exampleUses.map((example) => (
               <article key={example.title} className="py-1">
-                <h3 className="text-lg font-extrabold text-sky-950">
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
                   {example.title}
                 </h3>
-                <p className="mt-2 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
+                <p className="mw-input-text mt-2 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
                   {example.morse}
                 </p>
-                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                   {example.note}
                 </p>
               </article>
@@ -809,10 +809,10 @@ export function MorseNumberPage({
           <div className="grid gap-x-8 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] lg:items-start">
             {[content.listeningDrill, content.typingDrill].map((drill) => (
               <div key={drill.title} className="py-1">
-                <h3 className="text-lg font-extrabold leading-snug text-sky-950">
+                <h3 className="mw-heading text-lg font-extrabold leading-snug text-sky-950">
                   {drill.title}
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-slate-700">
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                   {drill.text}
                 </p>
               </div>
@@ -871,10 +871,10 @@ function NumberCard({ item }: { item: (typeof NUMBER_ITEMS)[number] }) {
     <StaticPanel as="article">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+          <p className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
             Digit
           </p>
-          <h3 className="mt-1 text-3xl font-black text-sky-950">
+          <h3 className="mw-heading mt-1 text-3xl font-black text-sky-950">
             {item.label}
           </h3>
         </div>
@@ -887,10 +887,10 @@ function NumberCard({ item }: { item: (typeof NUMBER_ITEMS)[number] }) {
         </ActionButton>
       </div>
 
-      <p className="mt-4 break-words font-mono text-lg font-bold tracking-[0.14em] text-slate-950">
+      <p className="mw-input-text mt-4 break-words font-mono text-lg font-bold tracking-[0.14em] text-slate-950">
         {item.morseValue}
       </p>
-      <p className="mt-3 text-base leading-relaxed text-slate-700">
+      <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
         {item.patternExplanation}
       </p>
 
@@ -960,11 +960,11 @@ export function MorseNumbersPage({
 
         <section className="mt-6">
           <ToolOutputPanel label="Direct answer" badge="0-9" className="h-fit">
-            <div className="grid gap-4 px-4 pb-4 text-slate-200 lg:grid-cols-[minmax(0,0.72fr)_minmax(220px,0.28fr)]">
+            <div className="mw-output-soft grid gap-4 px-4 pb-4 text-slate-200 lg:grid-cols-[minmax(0,0.72fr)_minmax(220px,0.28fr)]">
               <p className="max-w-[68ch] text-base leading-relaxed">
                 The Morse number chart is {chartSummary}.
               </p>
-              <p className="max-w-[34ch] text-base leading-relaxed text-sky-100">
+              <p className="mw-output-text max-w-[34ch] text-base leading-relaxed text-sky-100">
                 Learn them as one five-mark system instead of ten unrelated
                 patterns.
               </p>
@@ -1047,16 +1047,16 @@ export function MorseNumbersPage({
                   as="article"
                   key={example.title}
                 >
-                  <h3 className="text-lg font-extrabold text-sky-950">
+                  <h3 className="mw-heading text-lg font-extrabold text-sky-950">
                     {example.title}
                   </h3>
-                  <p className="mt-2 font-mono text-sm font-bold uppercase tracking-[0.12em] text-slate-500">
+                  <p className="mw-muted-label mt-2 font-mono text-sm font-bold uppercase tracking-[0.12em] text-slate-500">
                     {example.text}
                   </p>
-                  <p className="mt-3 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
+                  <p className="mw-input-text mt-3 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
                     {example.morse}
                   </p>
-                  <p className="mt-3 text-base leading-relaxed text-slate-700">
+                  <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                     {example.note}
                   </p>
                 </StaticPanel>

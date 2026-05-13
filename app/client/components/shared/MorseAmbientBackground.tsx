@@ -42,9 +42,9 @@ const sideRailStyle = {
 };
 
 const morseRowClassName =
-  "font-mono text-[13px] font-extrabold uppercase tracking-[0.2em] text-sky-950/34";
+  "mw-ambient-accent font-mono text-[13px] font-extrabold uppercase tracking-[0.2em] text-sky-950/34";
 const morseLabelClassName =
-  "mb-2 text-[9px] tracking-[0.26em] text-sky-950/40";
+  "mw-ambient-accent-strong mb-2 text-[9px] tracking-[0.26em] text-sky-950/40";
 
 export default function MorseAmbientBackground() {
   return (

@@ -86,13 +86,13 @@ export default function ReferenceSupportSections({
               as="article"
               key={example.title}
             >
-              <h3 className="text-lg font-extrabold leading-snug text-sky-950">
+              <h3 className="mw-heading text-lg font-extrabold leading-snug text-sky-950">
                 {example.title}
               </h3>
-              <p className="mt-3 whitespace-pre-wrap font-mono text-base font-bold tracking-[0.14em] text-slate-950">
+              <p className="mw-input-text mt-3 whitespace-pre-wrap font-mono text-base font-bold tracking-[0.14em] text-slate-950">
                 {example.morse}
               </p>
-              <div className="mt-3 text-base leading-relaxed text-slate-700">
+              <div className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                 {example.children}
               </div>
             </StaticPanel>
@@ -112,10 +112,10 @@ export default function ReferenceSupportSections({
               as="article"
               key={mistake.title}
             >
-              <h3 className="text-lg font-extrabold leading-snug text-sky-950">
+              <h3 className="mw-heading text-lg font-extrabold leading-snug text-sky-950">
                 {mistake.title}
               </h3>
-              <div className="mt-3 text-base leading-relaxed text-slate-700">
+              <div className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                 {mistake.children}
               </div>
             </StaticPanel>

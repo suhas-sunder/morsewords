@@ -85,11 +85,11 @@ export function SectionCard({
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.72fr)_minmax(260px,0.28fr)] lg:items-end">
           <div className="min-w-0">
             <Eyebrow>{eyebrow}</Eyebrow>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+            <h2 className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
               {title}
             </h2>
             {description ? (
-              <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              <p className="mw-text-muted mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
                 {description}
               </p>
             ) : null}
@@ -106,11 +106,11 @@ export function SectionCard({
       <div className="grid gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-8">
         <div className="min-w-0">
           <Eyebrow>{eyebrow}</Eyebrow>
-          <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-sky-950 sm:text-3xl">
+          <h2 className="mw-heading mt-3 text-2xl font-extrabold tracking-tight text-sky-950 sm:text-3xl">
             {title}
           </h2>
           {description ? (
-            <p className="mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
+            <p className="mw-text-muted mt-3 max-w-[34ch] text-base leading-relaxed text-slate-700">
               {description}
             </p>
           ) : null}
@@ -134,16 +134,16 @@ export function DarkNote({
   children: React.ReactNode;
 }) {
   return (
-    <aside className="rounded-xl bg-slate-950 p-4 text-slate-200">
-      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
+    <aside className="mw-panel-dark rounded-xl bg-slate-950 p-4 text-slate-200">
+      <p className="mw-output-muted font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
         {label}
       </p>
       {value ? (
-        <p className="mt-2 font-mono text-lg font-bold tracking-[0.18em] text-sky-100">
+        <p className="mw-output-text mt-2 font-mono text-lg font-bold tracking-[0.18em] text-sky-100">
           {value}
         </p>
       ) : null}
-      <div className="mt-2 text-sm leading-relaxed text-slate-200">{children}</div>
+      <div className="mw-output-soft mt-2 text-sm leading-relaxed text-slate-200">{children}</div>
     </aside>
   );
 }
@@ -189,7 +189,7 @@ export function StaticTile(props: StaticSurfaceProps) {
 export function StaticSectionPanel(props: StaticSurfaceProps) {
   return createStaticSurface({
     ...props,
-    baseClassName: "rounded-xl bg-[#fffdf8] p-6 sm:p-7",
+    baseClassName: "mw-surface rounded-xl bg-[#fffdf8] p-6 sm:p-7",
   });
 }
 
@@ -202,7 +202,7 @@ export function StaticCodeBlock({
     <pre
       {...props}
       className={[
-        "mw-static-code whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 font-mono overflow-x-auto",
+        "mw-static-code mw-code-surface whitespace-pre-wrap rounded-xl bg-[#f7f4ee] p-4 font-mono overflow-x-auto",
         className,
       ]
         .filter(Boolean)
@@ -255,13 +255,13 @@ export function SimpleGrid({
         const body = (
           <>
             <div className="flex items-start justify-between gap-4">
-              <h3 className="text-lg font-extrabold leading-snug text-sky-950">
+              <h3 className="mw-heading text-lg font-extrabold leading-snug text-sky-950">
                 {item.title}
               </h3>
               {item.badge ? (
                 <span
                   className={
-                    "shrink-0 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500" +
+                    "mw-muted-label shrink-0 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500" +
                     (item.href ? " mw-related-badge" : " mw-static-tile")
                   }
                 >
@@ -269,7 +269,7 @@ export function SimpleGrid({
                 </span>
               ) : null}
             </div>
-            <p className="mt-3 text-base leading-relaxed text-slate-700">
+            <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
               {item.text}
             </p>
           </>
@@ -281,10 +281,10 @@ export function SimpleGrid({
               <a
                 key={item.title}
                 href={item.href}
-                className="mw-button-outline mw-related-tool-link group block min-h-[128px] cursor-pointer rounded-xl bg-[#fffdf8] p-4 no-underline hover:bg-[#fffaf2] hover:text-sky-950 sm:p-5"
+                className="mw-button-outline mw-related-tool-link mw-surface group block min-h-[128px] cursor-pointer rounded-xl bg-[#fffdf8] p-4 no-underline hover:bg-[#fffaf2] hover:text-sky-950 sm:p-5"
               >
                 {body}
-                <span className="mt-4 inline-block text-sm font-semibold text-sky-900">
+                <span className="mw-link mt-4 inline-block text-sm font-semibold text-sky-900">
                   Open page{" "}
                   <span aria-hidden="true" className="inline-block">
                     -&gt;
@@ -298,16 +298,16 @@ export function SimpleGrid({
             <div key={item.title} className="py-1">
               <a
                 href={item.href}
-                className="inline-flex cursor-pointer text-lg font-extrabold leading-snug text-sky-950 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                className="mw-focus-ring mw-heading inline-flex cursor-pointer text-lg font-extrabold leading-snug text-sky-950 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
               >
                 {item.title}
               </a>
               {item.badge ? (
-                <span className="ml-3 inline-flex align-middle font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
+                <span className="mw-muted-label ml-3 inline-flex align-middle font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
                   {item.badge}
                 </span>
               ) : null}
-              <p className="mt-3 text-base leading-relaxed text-slate-700">
+              <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                 {item.text}
               </p>
             </div>
@@ -340,8 +340,8 @@ export function ReferenceTable({
   onPlay?: (morse: string) => void;
 }) {
   return (
-    <div className="mw-static-panel overflow-hidden rounded-xl bg-[#fffdf8]">
-      <div className="mw-static-surface-soft grid grid-cols-[1fr_1fr] bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
+    <div className="mw-static-panel mw-reference-table overflow-hidden rounded-xl bg-[#fffdf8]">
+      <div className="mw-static-surface-soft mw-muted-label grid grid-cols-[1fr_1fr] bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
         <span>Name</span>
         <span>Morse</span>
         <span className="hidden sm:block">Use</span>
@@ -350,24 +350,24 @@ export function ReferenceTable({
       {items.map((item) => (
         <div
           key={item.label}
-          className="grid gap-3 px-4 py-4 even:bg-[#fffaf2] sm:grid-cols-[180px_1fr_2fr_120px] sm:items-center"
+          className="mw-reference-row grid gap-3 px-4 py-4 even:bg-[#fffaf2] sm:grid-cols-[180px_1fr_2fr_120px] sm:items-center"
         >
           <div>
-            <p className="font-bold text-sky-950">{item.label}</p>
+            <p className="mw-heading font-bold text-sky-950">{item.label}</p>
             {item.example ? (
-              <p className="mt-1 font-mono text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
+              <p className="mw-muted-label mt-1 font-mono text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
                 {item.example}
               </p>
             ) : null}
           </div>
-          <p className="font-mono text-base font-bold tracking-[0.16em] text-slate-950">
+          <p className="mw-input-text font-mono text-base font-bold tracking-[0.16em] text-slate-950">
             {item.morse}
           </p>
-          <p className="text-sm leading-relaxed text-slate-700">{item.description}</p>
+          <p className="mw-text-muted text-sm leading-relaxed text-slate-700">{item.description}</p>
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
-            className="mw-light-interactive-link inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            className="mw-button-secondary mw-light-interactive-link inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             disabled={!onPlay}
           >
             <PlayIcon size={16} title="Play" />

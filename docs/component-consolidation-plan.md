@@ -86,6 +86,17 @@ broad component refactor.
   `UtilityPageShell`, `UtilityPageHeader`, and `UtilityContentPanel` without
   changing policy copy, noindex metadata, canonical metadata, route status, or
   JSON-LD behavior.
+- Completed the full light-mode semantic tokenization pass. `app/app.css` now
+  defines the central `--mw-*` light token map and shared token-backed utility
+  classes. Major shared surfaces now consume those tokens, including page
+  background, ambient accents, nav, footer, social links, hero typography,
+  breadcrumbs, FAQ, toolkit, utility/legal wrappers, static primitives,
+  content panels, tool panels, action buttons, forms, dark output panels,
+  strobe warning, phrase lookup table, and global focus/shadow rules.
+- Light tokenization intentionally preserved route-local hard-coded colors for
+  behavior-heavy practice, typing, quiz, trainer, audio/export, printable
+  chart, word-search, generated image/SVG output, and strobe flash-overlay
+  surfaces where a broad refactor would risk behavior or output changes.
 - Left `/practice` Check, Next/Finish, Skip, mode/pool chips, and share controls
   out of that batch: Check, Next/Finish, and Skip are scoring/session
   transitions; mode and pool chips reset prompt state; share was already using
@@ -162,6 +173,10 @@ broad component refactor.
 - `ToolButton` wraps that primitive for actual buttons.
 - `ActionLinks` turns links into button-like controls but has no icon slot or
   centralized action semantics.
+- `toolControlButtonClass`, `ToolButton`, `ActionButton`,
+  `ActionLinkButton`, and dark-panel action controls now use semantic
+  light-mode token classes for their shared background, text, hover, disabled,
+  shadow, and focus roles.
 
 ### Route-Local Buttons
 
@@ -188,6 +203,7 @@ broad component refactor.
 
 - `mw-static-surface`, `mw-static-surface-soft`, `mw-static-panel`,
   `mw-static-tile`, and `mw-static-code` exist in `app/app.css`.
+- These static surface classes now read from semantic light-mode tokens.
 - Many routes still add direct `bg-[#fffdf8]`, `bg-[#fffaf2]`, `bg-white`, and
   `rounded-xl` combinations.
 - First shared wrappers now exist in `MorseLearningLayout`:
@@ -207,6 +223,9 @@ broad component refactor.
 
 - `ToolPanel`, `ToolOutputPanel`, and `ToolTextarea` cover the main tool
   surface.
+- These shared tool primitives now use semantic light tokens for input
+  backgrounds, dark output backgrounds, labels, badges, placeholders, output
+  text, and focus rings.
 - `MorseAudioTranslator` and `TranslatorSectionsBasic` duplicate parts of
   those styles locally.
 - `WordSeparatorTool` uses shared tool panels and is a good model.
@@ -214,6 +233,10 @@ broad component refactor.
 ### Reference Cards and Tables
 
 - `ReferenceTable` exists in `MorseLearningLayout`.
+- `ReferenceTable`, `StaticPanel`, `StaticTile`, `StaticSectionPanel`,
+  `StaticCodeBlock`, `MorsePhraseLookupTable`, `ReferenceSupportSections`,
+  and generated `MorseContentSections` surfaces now have token-backed shared
+  colors where they are non-interactive static surfaces.
 - `/morse-code-alphabet` has its own alphabet card and chart section.
 - `MorsePhraseLookupTable` is a separate reference surface.
 - `SimpleGrid` handles linked and non-linked support tiles.
@@ -384,11 +407,13 @@ broad component refactor.
 
 ### 7. Token Introduction
 
-- Introduce light-mode tokens after the shared surfaces above are stable. The
-  remaining intentionally local utility/static surfaces are documented and are
-  not visual-surface consolidation blockers.
-- Replace hard-coded colors in shared components first, then route-local
-  leftovers.
+- Completed. Light-mode semantic tokens exist in `app/app.css`, and the major
+  shared surfaces use them without adding dark-mode behavior.
+- Remaining hard-coded colors are intentionally route-local, generated-output
+  specific, or behavior-heavy. They are not blockers for the dark-token pass
+  because the central shared surfaces now have stable semantic roles.
+- Next step: add actual dark token values and navbar theme wiring in a
+  separate pass, with screenshots for the same representative route set.
 
 ## Regression Risks
 

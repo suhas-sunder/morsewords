@@ -213,7 +213,7 @@ export default function WordSeparatorTool() {
                 className="text-sm sm:text-base"
                 spellCheck={false}
               />
-              <p className="px-4 pb-4 text-xs text-slate-600">
+              <p className="mw-text-soft px-4 pb-4 text-xs text-slate-600">
                 Kept characters: dots, dashes, spaces, slashes, pipes, and new
                 lines.
               </p>
@@ -227,7 +227,7 @@ export default function WordSeparatorTool() {
                 className="font-sans text-sm sm:text-base"
                 spellCheck={false}
               />
-              <p className="px-4 pb-4 text-xs text-slate-600">
+              <p className="mw-text-soft px-4 pb-4 text-xs text-slate-600">
                 Encodes each word independently so the chosen word separator is
                 always respected.
               </p>
@@ -257,12 +257,12 @@ export default function WordSeparatorTool() {
             </>
           }
         >
-          <pre className="min-h-[10rem] w-full whitespace-pre-wrap bg-transparent p-4 font-mono text-sm text-sky-100 sm:text-base">
+          <pre className="mw-output-text min-h-[10rem] w-full whitespace-pre-wrap bg-transparent p-4 font-mono text-sm text-sky-100 sm:text-base">
             {out || "-"}
           </pre>
 
-          <div className="mx-4 mb-4 rounded-xl bg-slate-800/70 p-3 text-sm text-slate-200">
-            <strong className="text-sky-100">Note:</strong>{" "}
+          <div className="mw-panel-dark-subtle mw-output-soft mx-4 mb-4 rounded-xl bg-slate-800/70 p-3 text-sm text-slate-200">
+            <strong className="mw-output-text text-sky-100">Note:</strong>{" "}
             {mode === "normalizeMorse" ? (
               <>
                 This page only rewrites separators and spacing. If your letter
@@ -296,10 +296,10 @@ export default function WordSeparatorTool() {
         ].map(([title, body]) => (
           <div
             key={title}
-            className="rounded-xl bg-[#fffdf8]/85 p-4"
+            className="mw-surface-card-soft rounded-xl bg-[#fffdf8]/85 p-4"
           >
-            <p className="font-extrabold text-sky-950">{title}</p>
-            <p className="mt-2 text-sm leading-relaxed text-slate-700">
+            <p className="mw-heading font-extrabold text-sky-950">{title}</p>
+            <p className="mw-text-muted mt-2 text-sm leading-relaxed text-slate-700">
               {body}
             </p>
           </div>

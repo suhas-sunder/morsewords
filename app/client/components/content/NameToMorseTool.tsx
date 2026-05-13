@@ -47,7 +47,7 @@ export default function NameToMorseTool() {
         label={<label htmlFor="mw_name_input">Name</label>}
         badge="Input"
         footer={
-          <p className="text-sm leading-relaxed text-slate-600">
+          <p className="mw-text-soft text-sm leading-relaxed text-slate-600">
             Morse converts spelling, not meaning. Spaces, hyphens, and
             apostrophes are handled when they are in the supported Morse map.
           </p>
@@ -58,7 +58,7 @@ export default function NameToMorseTool() {
             id="mw_name_input"
             value={name}
             onChange={(event) => setName(event.target.value)}
-            className="min-h-12 w-full rounded-xl bg-transparent px-0 font-mono text-lg font-bold text-slate-950 outline-none placeholder:text-slate-400 focus-visible:outline-none"
+            className="mw-input-text mw-input-placeholder min-h-12 w-full rounded-xl bg-transparent px-0 font-mono text-lg font-bold text-slate-950 outline-none placeholder:text-slate-400 focus-visible:outline-none"
             placeholder="Example: Avery"
             autoCapitalize="words"
             autoCorrect="off"
@@ -66,7 +66,7 @@ export default function NameToMorseTool() {
           />
 
           {unsupportedEntries.length > 0 ? (
-            <p className="mt-3 text-sm font-semibold text-slate-600">
+            <p className="mw-text-soft mt-3 text-sm font-semibold text-slate-600">
               Unsupported characters ignored:{" "}
               {unsupportedEntries
                 .map(([character, count]) => `${character} x ${count}`)
@@ -117,19 +117,19 @@ export default function NameToMorseTool() {
       >
         <div className="space-y-5 px-4 pb-4">
           <div>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
+            <p className="mw-output-muted font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
               Normalized name
             </p>
-            <p className="mt-2 min-h-8 break-words font-mono text-lg font-bold tracking-[0.08em] text-sky-100">
+            <p className="mw-output-text mt-2 min-h-8 break-words font-mono text-lg font-bold tracking-[0.08em] text-sky-100">
               {normalizedName || "Enter a name"}
             </p>
           </div>
 
           <div>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
+            <p className="mw-output-muted font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
               Morse output
             </p>
-            <p className="mt-2 min-h-8 break-words font-mono text-lg font-bold tracking-[0.12em] text-sky-100">
+            <p className="mw-output-text mt-2 min-h-8 break-words font-mono text-lg font-bold tracking-[0.12em] text-sky-100">
               {morse || "..."}
             </p>
           </div>

@@ -9,7 +9,7 @@ import {
 } from "./heroStyles";
 
 const utilityPageShellClassName =
-  "mw-non-home-page mx-auto flex w-full max-w-[1120px] flex-col gap-8 px-4 pb-10 pt-2 text-slate-800 sm:px-6 sm:pb-12 sm:pt-4 lg:px-8";
+  "mw-non-home-page mw-text-muted mx-auto flex w-full max-w-[1120px] flex-col gap-8 px-4 pb-10 pt-2 text-slate-800 sm:px-6 sm:pb-12 sm:pt-4 lg:px-8";
 
 const utilityContentPanelClassName =
   "flex max-w-5xl flex-col gap-8 rounded-2xl bg-[#fffdf8]/75 p-5 leading-relaxed sm:p-8";
@@ -49,7 +49,7 @@ export function UtilityPageHeader({
   breadcrumb,
   className = "w-full px-1 py-3 sm:px-2",
   eyebrowClassName,
-  updatedClassName = "mt-3 text-lg font-bold text-slate-700",
+  updatedClassName = "mw-text-muted mt-3 text-lg font-bold text-slate-700",
 }: {
   eyebrow: string;
   title: string;
@@ -96,7 +96,13 @@ export function UtilityContentPanel({
   className?: string;
 }) {
   return (
-    <main className={joinClassNames(utilityContentPanelClassName, className)}>
+    <main
+      className={joinClassNames(
+        "mw-utility-panel",
+        utilityContentPanelClassName,
+        className,
+      )}
+    >
       {children}
     </main>
   );

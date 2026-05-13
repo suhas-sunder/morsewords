@@ -15,19 +15,19 @@ type BreadcrumbTrailProps = {
 
 const placementClassNames = {
   standalone:
-    "mx-auto mt-10 w-full max-w-[1120px] px-4 pb-12 pt-2 text-sm text-slate-600 sm:mt-12 sm:px-6 sm:pb-14 lg:px-8",
+    "mw-text-soft mx-auto mt-10 w-full max-w-[1120px] px-4 pb-12 pt-2 text-sm text-slate-600 sm:mt-12 sm:px-6 sm:pb-14 lg:px-8",
   pageBottom:
-    "mx-auto w-full max-w-[1120px] px-4 pb-12 text-sm text-slate-600 sm:px-6 lg:px-8",
-  contentFooter: "mb-12 mt-10 text-sm text-slate-600",
-  contentFooterTight: "mb-12 text-sm text-slate-600",
-  legalHeader: "mb-12 text-sm font-semibold text-slate-600",
+    "mw-text-soft mx-auto w-full max-w-[1120px] px-4 pb-12 text-sm text-slate-600 sm:px-6 lg:px-8",
+  contentFooter: "mw-text-soft mb-12 mt-10 text-sm text-slate-600",
+  contentFooterTight: "mw-text-soft mb-12 text-sm text-slate-600",
+  legalHeader: "mw-text-soft mb-12 text-sm font-semibold text-slate-600",
 } as const;
 
 const breadcrumbLinkClassName =
-  "cursor-pointer underline hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500";
+  "mw-focus-ring mw-link cursor-pointer underline hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500";
 
 const legalBreadcrumbLinkClassName =
-  "cursor-pointer hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500";
+  "mw-focus-ring mw-link cursor-pointer hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500";
 
 function BreadcrumbSeparator({ variant }: { variant: "default" | "legal" }) {
   if (variant === "legal") {
@@ -50,7 +50,7 @@ export default function BreadcrumbTrail({
   const linkClassName =
     variant === "legal" ? legalBreadcrumbLinkClassName : breadcrumbLinkClassName;
   const currentClassName =
-    variant === "legal" ? "opacity-90" : "font-semibold text-sky-950";
+    variant === "legal" ? "opacity-90" : "mw-heading font-semibold text-sky-950";
 
   return (
     <nav

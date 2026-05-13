@@ -21,7 +21,7 @@ export const TOOL_SPACING_HELPER =
   "3 spaces = letters · 7 = words · / = word break";
 
 const focusClass =
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+  "mw-focus-ring focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
 
 export function toolControlButtonClass({
   active = false,
@@ -51,16 +51,16 @@ export function toolControlButtonClass({
         ? "rounded-xl"
         : "rounded-lg";
   const enabledClass = active
-    ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+    ? "mw-button-primary"
     : tone === "dark"
-      ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
+      ? "mw-button-primary"
       : tone === "darkPanel"
-        ? "bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white"
-        : "bg-[#fffdf8] text-slate-900 hover:bg-[#fffaf2] hover:text-sky-950";
+        ? "mw-button-dark-panel"
+        : "mw-button-secondary";
   const disabledClass =
     tone === "darkPanel"
-      ? "cursor-not-allowed bg-slate-800/60 text-slate-500"
-      : "cursor-not-allowed bg-white/55 text-slate-400";
+      ? "mw-button-dark-panel-disabled cursor-not-allowed"
+      : "mw-button-disabled-light cursor-not-allowed";
 
   return [
     "mw-button-outline inline-flex cursor-pointer items-center justify-center gap-2 font-semibold transition-[background-color,border-color,color] duration-100 ease-out",
@@ -182,14 +182,14 @@ export function ToolPanel({
 }) {
   return (
     <div
-      className={["overflow-hidden rounded-xl bg-white/88", className]
+      className={["mw-input-panel overflow-hidden rounded-xl bg-white/88", className]
         .filter(Boolean)
         .join(" ")}
     >
       <div className="flex items-center justify-between gap-3 px-4 py-3">
-        <div className="text-sm font-extrabold text-sky-950">{label}</div>
+        <div className="mw-heading text-sm font-extrabold text-sky-950">{label}</div>
         {badge ? (
-          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
+          <span className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
             {badge}
           </span>
         ) : null}
@@ -212,7 +212,7 @@ export function ToolTextarea({
     <textarea
       {...props}
       className={[
-        "min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none",
+        "mw-input-text mw-input-placeholder min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none",
         className,
       ]
         .filter(Boolean)
@@ -236,13 +236,13 @@ export function ToolOutputPanel({
 }) {
   return (
     <div
-      className={["overflow-hidden rounded-xl bg-slate-950", className]
+      className={["mw-panel-dark overflow-hidden rounded-xl bg-slate-950", className]
         .filter(Boolean)
         .join(" ")}
     >
       <div className="flex items-center justify-between gap-3 px-4 py-3">
-        <h2 className="text-sm font-extrabold text-slate-200">{label}</h2>
-        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
+        <h2 className="mw-output-soft text-sm font-extrabold text-slate-200">{label}</h2>
+        <span className="mw-output-muted font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
           {badge}
         </span>
       </div>

@@ -233,7 +233,7 @@ const MOBILE_GROUPS: NavGroup[] = [
 const MORE_ITEMS = MORE_GROUPS.flatMap((group) => group.items);
 
 const desktopNavLinkClass =
-  "-mx-2 -my-2 inline-flex cursor-pointer items-center px-2 py-2 text-sm font-semibold transition";
+  "mw-nav-link -mx-2 -my-2 inline-flex cursor-pointer items-center px-2 py-2 text-sm font-semibold transition";
 
 function normalizePathname(raw: string) {
   const base = raw.split("#")[0]?.split("?")[0] ?? "/";
@@ -257,19 +257,19 @@ function BurgerIcon(props: { open: boolean }) {
     <span className="relative inline-flex h-6 w-7 items-center justify-center">
       <span
         className={
-          "absolute block h-0.5 w-7 bg-white transition-transform duration-200 " +
+          "mw-nav-burger-line absolute block h-0.5 w-7 bg-white transition-transform duration-200 " +
           (open ? "translate-y-0 rotate-45" : "-translate-y-1.5 rotate-0")
         }
       />
       <span
         className={
-          "absolute block h-0.5 w-7 bg-white transition-opacity duration-200 " +
+          "mw-nav-burger-line absolute block h-0.5 w-7 bg-white transition-opacity duration-200 " +
           (open ? "opacity-0" : "opacity-100")
         }
       />
       <span
         className={
-          "absolute block h-0.5 w-7 bg-white transition-transform duration-200 " +
+          "mw-nav-burger-line absolute block h-0.5 w-7 bg-white transition-transform duration-200 " +
           (open ? "translate-y-0 -rotate-45" : "translate-y-1.5 rotate-0")
         }
       />
@@ -417,12 +417,12 @@ export default function NavBar(props: { pathname?: string }) {
   }
 
   return (
-    <header className="relative z-50 bg-neutral-900 backdrop-blur">
+    <header className="mw-nav-shell relative z-50 bg-neutral-900 backdrop-blur">
       <div className="mx-auto max-w-[1680px] px-4 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between py-3">
           <a
             href="/"
-            className="flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
+            className="mw-nav-link flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
           >
             <img
               src={logoUrl}
@@ -433,7 +433,7 @@ export default function NavBar(props: { pathname?: string }) {
 
             <div className="leading-tight">
               <div className="text-lg font-extrabold">MorseWords</div>
-              <div className="text-sm text-sky-200 sm:text-xs">
+              <div className="mw-nav-muted text-sm text-sky-200 sm:text-xs">
                 Translate, listen, and practice Morse code
               </div>
             </div>
@@ -458,7 +458,7 @@ export default function NavBar(props: { pathname?: string }) {
                   className={
                     desktopNavLinkClass +
                     " " +
-                    (active ? "text-sky-200" : "text-white hover:text-sky-200")
+                    (active ? "mw-nav-active text-sky-200" : "text-white hover:text-sky-200")
                   }
                   aria-current={active ? "page" : undefined}
                 >
@@ -475,7 +475,7 @@ export default function NavBar(props: { pathname?: string }) {
                   desktopNavLinkClass +
                   " " +
                   (moreActive || moreOpen
-                    ? "text-sky-200"
+                    ? "mw-nav-active text-sky-200"
                     : "text-white hover:text-sky-200")
                 }
                 aria-haspopup="dialog"
@@ -491,7 +491,7 @@ export default function NavBar(props: { pathname?: string }) {
                   ref={moreDialogRef}
                   role="dialog"
                   aria-label="More MorseWords tools"
-                  className="fixed left-1/2 top-16 z-[9999] w-[min(96vw,1680px)] -translate-x-1/2 overflow-hidden rounded-2xl bg-neutral-900 text-sky-100"
+                  className="mw-nav-panel fixed left-1/2 top-16 z-[9999] w-[min(96vw,1680px)] -translate-x-1/2 overflow-hidden rounded-2xl bg-neutral-900 text-sky-100"
                 >
                   <div className="px-5 py-5">
                     <label className="block w-full">
@@ -502,7 +502,7 @@ export default function NavBar(props: { pathname?: string }) {
                         onChange={(event) => setMoreQuery(event.target.value)}
                         type="search"
                         placeholder="Search tools..."
-                        className="min-h-10 w-full rounded-xl bg-neutral-800 px-3 py-2 text-sm font-semibold text-sky-100 outline-none placeholder:text-sky-100/55 focus:bg-neutral-800"
+                        className="mw-nav-input min-h-10 w-full rounded-xl bg-neutral-800 px-3 py-2 text-sm font-semibold text-sky-100 outline-none placeholder:text-sky-100/55 focus:bg-neutral-800"
                       />
                     </label>
                   </div>
@@ -512,7 +512,7 @@ export default function NavBar(props: { pathname?: string }) {
                       <div className="grid gap-x-8 gap-y-6 lg:grid-cols-3 xl:grid-cols-5">
                         {filteredMoreGroups.map((group) => (
                           <section key={group.title}>
-                            <h2 className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-sky-200/70">
+                            <h2 className="mw-nav-muted font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-sky-200/70">
                               {group.title}
                             </h2>
                             <div className="mt-2 grid gap-1.5">
@@ -526,8 +526,8 @@ export default function NavBar(props: { pathname?: string }) {
                                     className={
                                       "group block cursor-pointer rounded-xl px-3 py-2.5 text-sm font-semibold transition " +
                                       (active
-                                        ? "bg-sky-100 text-slate-950"
-                                        : "text-sky-100 hover:bg-neutral-800 hover:text-white")
+                                        ? "mw-nav-item-active bg-sky-100 text-slate-950"
+                                        : "mw-nav-item text-sky-100 hover:bg-neutral-800 hover:text-white")
                                     }
                                     aria-current={active ? "page" : undefined}
                                     onClick={() => setMoreOpen(false)}
@@ -538,8 +538,8 @@ export default function NavBar(props: { pathname?: string }) {
                                         aria-hidden="true"
                                         className={
                                           active
-                                            ? "text-slate-700"
-                                            : "text-sky-200 opacity-0 group-hover:opacity-100"
+                                            ? "mw-nav-item-arrow text-slate-700"
+                                            : "mw-nav-item-arrow text-sky-200 opacity-0 group-hover:opacity-100"
                                         }
                                       >
                                         -&gt;
@@ -550,8 +550,8 @@ export default function NavBar(props: { pathname?: string }) {
                                         className={
                                           "mt-1 block max-w-[34ch] text-xs leading-snug " +
                                           (active
-                                            ? "text-slate-700"
-                                            : "text-sky-100/65")
+                                            ? "mw-nav-item-description text-slate-700"
+                                            : "mw-nav-item-description text-sky-100/65")
                                         }
                                       >
                                         {item.description}
@@ -565,7 +565,7 @@ export default function NavBar(props: { pathname?: string }) {
                         ))}
                       </div>
                     ) : (
-                      <p className="py-6 text-sm font-semibold text-sky-100/70">
+                      <p className="mw-nav-item-description py-6 text-sm font-semibold text-sky-100/70">
                         No tools match that search.
                       </p>
                     )}
@@ -580,7 +580,7 @@ export default function NavBar(props: { pathname?: string }) {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex cursor-pointer items-center justify-center px-3 py-2 text-sm font-semibold text-white transition hover:text-sky-200 lg:hidden"
+            className="mw-nav-link inline-flex cursor-pointer items-center justify-center px-3 py-2 text-sm font-semibold text-white transition hover:text-sky-200 lg:hidden"
             aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -595,14 +595,14 @@ export default function NavBar(props: { pathname?: string }) {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            className="fixed inset-0 z-[9999] bg-neutral-900 text-sky-100 lg:hidden"
+            className="mw-nav-panel fixed inset-0 z-[9999] bg-neutral-900 text-sky-100 lg:hidden"
           >
             <div className="flex h-full min-h-0 flex-col">
               <div className="flex items-center justify-between px-4 py-3">
                 <a
                   href="/"
                   onClick={() => setOpen(false)}
-                  className="flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
+                  className="mw-nav-link flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
                 >
                   <img
                     src={logoUrl}
@@ -613,7 +613,7 @@ export default function NavBar(props: { pathname?: string }) {
 
                   <div className="leading-tight">
                     <div className="text-xl font-extrabold">MorseWords</div>
-                    <div className="text-sm text-sky-200">
+                    <div className="mw-nav-muted text-sm text-sky-200">
                       Translate, listen, and practice Morse code
                     </div>
                   </div>
@@ -622,7 +622,7 @@ export default function NavBar(props: { pathname?: string }) {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="inline-flex h-12 w-12 cursor-pointer items-center justify-center text-white transition hover:text-sky-200"
+                  className="mw-nav-link inline-flex h-12 w-12 cursor-pointer items-center justify-center text-white transition hover:text-sky-200"
                   aria-label="Close navigation"
                   aria-controls="mobile-nav"
                 >
@@ -642,14 +642,14 @@ export default function NavBar(props: { pathname?: string }) {
                   onChange={(event) => setMobileQuery(event.target.value)}
                   type="search"
                   placeholder="Search tools..."
-                  className="min-h-12 w-full rounded-xl bg-neutral-800 px-4 py-3 text-base font-semibold text-sky-100 outline-none placeholder:text-sky-100/55 focus:bg-neutral-800"
+                  className="mw-nav-input min-h-12 w-full rounded-xl bg-neutral-800 px-4 py-3 text-base font-semibold text-sky-100 outline-none placeholder:text-sky-100/55 focus:bg-neutral-800"
                 />
               </label>
 
               {filteredMobileGroups.length > 0 ? (
                 filteredMobileGroups.map((group) => (
                 <div key={group.title} className="mt-7">
-                  <div className="px-4 pb-2 font-mono text-xs font-bold uppercase tracking-[0.16em] text-sky-100/50">
+                  <div className="mw-nav-item-description px-4 pb-2 font-mono text-xs font-bold uppercase tracking-[0.16em] text-sky-100/50">
                     {group.title}
                   </div>
                   <div className="grid gap-2">
@@ -663,8 +663,8 @@ export default function NavBar(props: { pathname?: string }) {
                           className={
                             "flex min-h-12 w-full cursor-pointer items-center rounded-xl px-4 text-base font-extrabold leading-snug transition " +
                             (active
-                              ? "bg-neutral-800 text-sky-200"
-                              : "text-white hover:bg-neutral-800 hover:text-sky-100")
+                              ? "mw-nav-mobile-active bg-neutral-800 text-sky-200"
+                              : "mw-nav-mobile-item text-white hover:bg-neutral-800 hover:text-sky-100")
                           }
                           aria-current={active ? "page" : undefined}
                         >
@@ -676,7 +676,7 @@ export default function NavBar(props: { pathname?: string }) {
                 </div>
                 ))
               ) : (
-                <p className="px-3 py-6 text-sm font-semibold text-sky-100/70">
+                <p className="mw-nav-item-description px-3 py-6 text-sm font-semibold text-sky-100/70">
                   No tools match that search.
                 </p>
               )}

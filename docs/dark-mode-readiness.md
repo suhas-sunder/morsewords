@@ -42,8 +42,17 @@ not add a theme toggle, dark tokens, route-level dark styles, or dark-mode CSS.
   remaining privacy and terms top breadcrumbs also use `BreadcrumbTrail` via a
   legal-header variant that preserves the existing Misc parent crumb and `>`
   separator treatment.
-- Current styling still depends heavily on Tailwind color classes, style
-  objects, route-local button classes, and global CSS overrides.
+- The light-mode tokenization pass is complete for the major shared surfaces.
+  `app/app.css` now owns the semantic `--mw-*` light tokens, shared utility
+  classes, and token-backed global focus, shadow, static-surface, FAQ, toolkit,
+  breadcrumb, nav, footer, and form rules.
+- Shared components now layer semantic `mw-*` classes or `var(--mw-*)` values
+  over the existing Tailwind classes so current light-mode output stays visually
+  aligned while the next pass can swap token values centrally.
+- Some route-local interactive tools still contain hard-coded Tailwind color
+  classes. Those were intentionally left in place when they are behavior-heavy,
+  generated-output-specific, or isolated route art rather than shared visual
+  primitives.
 
 ## A. Page Groups
 
@@ -179,93 +188,98 @@ These surfaces need planned light and dark theme coverage.
 - Tooltips, popovers, and dropdowns: More dropdown, mobile nav, details/summary
   sections, and any future theme menu.
 
-## C. Current Light-Mode Style Dependencies
+## C. Current Light-Mode Token State
 
-### Hard-Coded Colors
+### Tokenized Shared Colors
 
-- `app/app.css` defines `body` background and the static surface classes with
-  fixed cream values.
-- `PageBackdrop.tsx` exports `paperBackground` as `#f5f2eb`.
-- `MorseAmbientBackground.tsx` uses the homepage-approved hard-coded pale
-  sky/navy opacity classes for decorative side accents. These must become
-  shared decorative-accent roles during token work rather than route-local
-  overrides.
-- Shared components use direct classes such as `bg-[#fffdf8]`,
-  `bg-[#fffaf2]`, `bg-slate-950`, `text-sky-950`, `text-slate-700`,
-  `text-sky-100`, and `bg-neutral-900`.
-- Style objects in `pageStyles.ts`, `audioStyles.ts`, and `practiceStyles.ts`
-  need a separate pass because inline values cannot switch themes cleanly.
+- `app/app.css` defines the semantic light-mode token set in `:root`.
+- `body`, `PageBackdrop.paperBackground`, shared static surface classes, global
+  focus rules, button shadows, range accent color, and FAQ/toolkit hover rules
+  now read from `--mw-*` tokens.
+- `MorseAmbientBackground` now uses shared ambient-accent token classes instead
+  of hard-coded pale sky/navy opacity classes.
+- Shared style objects in `pageStyles.ts`, `audioStyles.ts`, and
+  `practiceStyles.ts` now reference CSS variables for their light values.
+- Shared component classes still keep their existing Tailwind color utilities
+  beside semantic classes for reviewability and fallback, but the semantic
+  classes own the final computed color via the central CSS token layer.
 
-### Hard-Coded Shadows
+### Tokenized Shadows
 
-- `app/app.css` owns `--mw-button-shadow` and
-  `--mw-button-shadow-disabled`.
-- Cards and panels mostly avoid custom shadows, but buttons and summaries use
-  global shadow rules. Dark mode will need a different shadow strategy because
-  light-mode shadows may become invisible or muddy.
+- `app/app.css` now maps `--mw-button-shadow` and
+  `--mw-button-shadow-disabled` through `--mw-shadow-soft` and
+  `--mw-shadow-soft-disabled`.
+- Cards and panels still mostly avoid custom shadows, preserving the current
+  light-mode design. Dark mode can adjust shadow tokens centrally if needed.
 
-### Hard-Coded Borders
+### Tokenized Borders
 
 - Global CSS suppresses many border utilities under `.mw-page-content`.
-- This means a future dark mode cannot depend on scattered border utilities
-  until the border strategy is intentionally rebuilt.
+- Border, divider, panel-border, and outline roles now exist as semantic tokens,
+  with light mode intentionally keeping most structural borders transparent.
 - Existing focus styles use outline colors rather than borders and should stay
   separate from structural borders.
 
-### Hard-Coded Backgrounds
+### Tokenized Backgrounds
 
 - Warm surfaces are fixed through `.mw-static-surface`,
   `.mw-static-surface-soft`, `.mw-static-panel`, `.mw-static-tile`, and
-  `.mw-static-code`.
+  `.mw-static-code`; those classes now read from semantic tokens.
 - Exact-match non-interactive static wrappers now have shared component
   boundaries through `StaticPanel`, `StaticTile`, `StaticSectionPanel`, and
-  `StaticCodeBlock`, but those primitives still intentionally use light-mode
-  hard-coded classes until the token phase.
-- Dark output panels are fixed with `bg-slate-950`.
-- Navbar and footer are fixed with `bg-neutral-900`.
-- Route-local cards often use direct `bg-[#fffdf8]` or `bg-white` classes.
+  `StaticCodeBlock`, and those primitives are token-backed.
+- Dark output panels, navbar, footer, social cards, utility policy panels,
+  support bands, translator shell surfaces, and shared card opacities now have
+  semantic light tokens.
+- Route-local cards still sometimes use direct `bg-[#fffdf8]`, `bg-[#fffaf2]`,
+  `bg-white`, or slate classes. These are intentionally deferred when they are
+  page-specific or behavior-heavy rather than shared surfaces.
 
-### Text Colors That Need Dark Treatment
+### Tokenized Text Colors
 
-- `text-slate-950`, `text-slate-900`, `text-slate-700`,
-  `text-slate-600`, `text-slate-500`, `text-sky-950`, and `text-sky-900`
-  will fail on dark surfaces unless they are tokenized.
-- Dark panels already use `text-slate-200`, `text-slate-300`, and
-  `text-sky-100`; these may need separate dark-theme roles because they are
-  already dark-surface values in light mode.
+- Shared headings, body copy, muted text, faint labels, content links,
+  dark-panel text, output text, code text, nav text, footer text, social text,
+  and breadcrumb text now use semantic classes or CSS variables.
+- Dark panels still use their current light-mode dark-surface text roles. They
+  are separate tokens because output panels need to remain high contrast in
+  both light and future dark themes.
 
-### Page-Specific Classes Instead of Shared Classes
+### Page-Specific Classes That Remain
 
 - `TranslatorSectionsBasic` has many local constants that duplicate
-  `ToolWorkspace` behavior.
+  `ToolWorkspace` behavior, but its central visual constants now use semantic
+  light tokens.
 - Hero and heading duplication is mapped in
   `docs/hero-heading-surface-map.md`; repeated line-plus-label eyebrow markup
   is being consolidated before heading colors are tokenized. The first
   `SectionEyebrow` batches cover low-risk support sections, `ToolHowItWorks`
   consumers, and `/practice` plus `/typing` static support labels.
-- `MorseAudioTranslator` has route-local button constants and local labeled
-  input/select helpers.
-- `/morse-code-alphabet` has route-local copy buttons, sections, and cards.
-- `/morse-code-words` has a local `CardSection` wrapper and a route-local link
-  class.
-- `NavBar` still owns route-local navigation surfaces. `RelatedTools` and
-  `FaqSectionGeneric` now have shared boundaries, but their class maps still
-  need tokenization before dark mode.
+- `MorseAudioTranslator` and the sound-generator tool still have route-local
+  button constants, labeled input/select helpers, and export controls. They
+  remain intentionally local because they are behavior-heavy audio/export
+  surfaces and should be refactored only with interaction coverage.
+- `/morse-code-alphabet`, printable chart, practice, typing, quiz, trainer,
+  audio-practice, and word-search builder still include route-local color
+  classes in behavior-heavy controls or dense reference/output areas.
+- `NavBar`, `RelatedTools`, `FaqSectionGeneric`, and `BreadcrumbTrail` now have
+  token-backed shared class maps and global hover/focus rules.
 - `BreadcrumbTrail` now owns simple visible breadcrumb variants and the
   noindex privacy/terms legal-header breadcrumb. Cookies and socials keep their
   existing shared bottom breadcrumb text and route-owned JSON-LD semantics.
 
-### Duplicated Button, Card, and Panel Styles
+### Remaining One-Off Hard-Coded Colors
 
-- Shared `toolControlButtonClass` is the best current button primitive, but
-  many routes still build button class strings manually.
-- `ActionLinks` creates button-like links but has no icon slot or variant map.
-- `ToolPanel`, `ToolOutputPanel`, `SectionCard`, `SimpleGrid`,
-  `ReferenceSupportSections`, and route-local sections overlap in purpose.
-- Static panels now use shared primitives for the first exact-match batch, and
-  FAQ/toolkit wrappers have shared component boundaries. Rounded-2xl panels,
-  opacity-specific cards, smaller inline code tiles, printable chart panels,
-  and behavior-heavy practice/typing/quiz panels remain local by design.
+- Generated SVG card colors inside `TranslatorSectionsBasic` are intentionally
+  still hard-coded because they define exported image output, not the page UI.
+  Changing them would alter tool output behavior.
+- Flash overlays remain `bg-white` in audio tools because the strobe behavior
+  is an intentional light flash, not a theme surface.
+- Some success and error statuses still use route-local utility classes such as
+  copied feedback on dark panels. These should become state tokens in the dark
+  pass only where screenshots confirm the current contrast is preserved.
+- Practice, typing, quiz, audio, printable chart, and word-search route-local
+  controls still contain direct Tailwind colors where behavior and state
+  handling are tightly coupled.
 
 ### Homepage-Only Components That Should Become Shared Later
 
@@ -277,43 +291,41 @@ These surfaces need planned light and dark theme coverage.
 - Hero constants in `heroStyles.ts` are the right source for future shared
   hero variants.
 
-## D. Proposed Token Map
+## D. Implemented Light Token Map
 
-Do not implement these yet. Phase 3 should introduce light-mode tokens first
-and prove that the rendered site is visually unchanged.
+The light-mode token layer is implemented in `app/app.css`. Dark values are not
+implemented yet. The next pass should add dark token values and theme wiring
+without re-tokenizing each route.
 
-| Token | Light role | Dark-mode role to define later |
-| --- | --- | --- |
-| `--mw-page-bg` | Current `#f5f2eb` page background | App background |
-| `--mw-surface` | Main `#fffdf8` surfaces | Primary raised surface |
-| `--mw-surface-muted` | Current `#fffaf2` and soft cream surfaces | Muted surface |
-| `--mw-panel-dark` | Current `bg-slate-950` output panel | High-contrast answer panel |
-| `--mw-border` | Currently mostly transparent | Subtle structural border |
-| `--mw-border-strong` | Rare stronger dividers | Strong divider and outline |
-| `--mw-text` | Current `#111317` and slate text | Primary readable text |
-| `--mw-text-muted` | Slate 500 to 700 support text | Secondary text |
-| `--mw-link` | Current sky/navy link color | Default content link |
-| `--mw-link-hover` | Current hover sky/navy behavior | Hover and active link |
-| `--mw-button-primary-bg` | `bg-slate-950` primary buttons | Primary button background |
-| `--mw-button-primary-text` | `text-sky-100` or white | Primary button text |
-| `--mw-button-secondary-bg` | `#fffdf8` and `#fffaf2` buttons | Secondary button background |
-| `--mw-button-secondary-text` | Slate/navy secondary text | Secondary button text |
-| `--mw-focus-ring` | Sky focus outline | Focus outline for both themes |
-| `--mw-shadow-soft` | Button shadow and light depth | Dark-safe soft shadow |
-| `--mw-shadow-panel` | Future panel depth if needed | Dark-safe panel depth |
-
-Additional tokens may be useful after consolidation:
-
-- `--mw-output-text`
-- `--mw-output-muted`
-- `--mw-code-bg`
-- `--mw-code-text`
-- `--mw-danger-text`
-- `--mw-success-text`
-- `--mw-warning-text`
-- `--mw-nav-bg`
-- `--mw-nav-text`
-- `--mw-nav-muted`
+| Token | Current light value | Intended surface | Main consumers |
+| --- | --- | --- | --- |
+| `--mw-page-bg` | `#f5f2eb` | Page background | `body`, `PageBackdrop`, style objects |
+| `--mw-page-bg-soft` | `rgba(255, 250, 242, 0.35)` | Soft full-width bands | home support sections |
+| `--mw-surface` | `#fffdf8` | Primary warm surface | buttons, strobe warning, static rows |
+| `--mw-surface-muted` | `#fffaf2` | Muted warm surface | secondary buttons, table rows |
+| `--mw-surface-card` | `rgba(255, 253, 248, 0.86)` | Toolkit and card surfaces | `RelatedTools`, shared cards |
+| `--mw-static-surface-bg` | `rgba(247, 244, 238, 0.72)` | Static content surface | `.mw-static-surface`, phrase table header |
+| `--mw-static-panel-bg` | `rgba(247, 244, 238, 0.58)` | Static panels | `StaticPanel`, `StaticSectionPanel` |
+| `--mw-heading` | `#082f49` | Main heading text | hero constants, sections, FAQ, toolkit |
+| `--mw-text-muted` | `#334155` | Body/support text | shared content sections, cards, breadcrumbs |
+| `--mw-text-soft` | `#475569` | Softer helper text | form helpers, utility copy |
+| `--mw-text-faint` | `#64748b` | Small metadata labels | badges, eyebrows, footer faint text |
+| `--mw-link` | `#0c4a6e` | Content links | breadcrumbs, legal links, support links |
+| `--mw-panel-dark` | `#020617` | Dark output panels | `ToolOutputPanel`, dark notes, quick links |
+| `--mw-output-text` | `#e0f2fe` | Text on dark panels | output blocks, dark-panel labels |
+| `--mw-output-soft` | `#e2e8f0` | Secondary dark-panel text | output panel helper copy |
+| `--mw-code-bg` | `#f2eee6` | Static code and tiles | `StaticCodeBlock`, `.mw-static-code` |
+| `--mw-button-primary-bg` | `#020617` | Primary controls | `toolControlButtonClass`, action controls |
+| `--mw-button-secondary-bg` | `#fffdf8` | Secondary controls | shared buttons, FAQ summaries |
+| `--mw-button-dark-panel-bg` | `rgba(51, 65, 85, 0.95)` | Output-panel buttons | copy/clear/export controls |
+| `--mw-button-disabled-bg` | `rgba(255, 255, 255, 0.55)` | Disabled light controls | `toolControlButtonClass` |
+| `--mw-input-bg` | `rgba(255, 255, 255, 0.88)` | Tool input panels | `ToolPanel`, translator panels |
+| `--mw-output-bg` | `#020617` | Tool output panels | `ToolOutputPanel`, translator output |
+| `--mw-focus-ring` | `#38bdf8` | Focus ring | global focus, range controls |
+| `--mw-shadow-soft` | Existing button shadow | Button depth | `.mw-page-content` button shadow |
+| `--mw-nav-bg` | `#171717` | Navbar | `NavBar` desktop and mobile |
+| `--mw-footer-bg` | `#171717` | Footer | `Footer` |
+| `--mw-ambient-accent` | `rgba(8, 47, 73, 0.34)` | Decorative Morse accents | `MorseAmbientBackground` |
 
 ## E. Risk Areas
 
@@ -392,10 +404,13 @@ Additional tokens may be useful after consolidation:
 
 ### Phase 3: Introduce Light-Mode CSS Tokens Without Changing Appearance
 
-- Add semantic CSS variables for light mode only.
-- Replace hard-coded colors in shared surfaces first.
-- Keep route-local hard-coded colors only where consolidation is intentionally
-  deferred and documented.
+- Completed. Semantic CSS variables now exist for light mode only.
+- Completed. Major shared surfaces now consume token-backed classes or CSS
+  variables.
+- Completed. Route-local hard-coded colors are documented where consolidation
+  remains intentionally deferred.
+- No dark selector, theme toggle, localStorage persistence, `dark` classes, or
+  dark-mode behavior was added.
 
 ### Phase 4: Implement Dark Tokens and Navbar Toggle
 

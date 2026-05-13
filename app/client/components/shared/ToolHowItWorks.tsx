@@ -45,23 +45,23 @@ export default function ToolHowItWorks({
  <div>
  <SectionEyebrow>{eyebrow}</SectionEyebrow>
 
- <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
+ <h2 className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
  {title}
  </h2>
 
- <p className="mt-4 max-w-[78ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+ <p className="mw-text-muted mt-4 max-w-[78ch] text-base leading-relaxed text-slate-700 sm:text-lg">
  {description}
  </p>
  </div>
 
- <div className="rounded-xl bg-slate-950 px-4 py-4 text-white">
- <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
+ <div className="mw-panel-dark rounded-xl bg-slate-950 px-4 py-4 text-white">
+ <p className="mw-output-muted font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
  {referenceLabel}
  </p>
- <p className="mt-2 font-mono text-lg font-bold tracking-[0.18em] text-sky-100">
+ <p className="mw-output-text mt-2 font-mono text-lg font-bold tracking-[0.18em] text-sky-100">
  {referenceValue}
  </p>
- <p className="mt-2 text-sm leading-relaxed text-slate-200">
+ <p className="mw-output-soft mt-2 text-sm leading-relaxed text-slate-200">
  {referenceText}
  </p>
  </div>
@@ -72,7 +72,7 @@ export default function ToolHowItWorks({
  <a
  key={chip.href + chip.label}
  href={chip.href}
-            className="mw-button-outline mw-light-interactive-link inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none">
+            className="mw-button-outline mw-button-secondary mw-light-interactive-link inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-[#fffdf8] px-4 py-2 text-center text-sm font-bold leading-none text-sky-950 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none">
  {chip.label}
  </a>
  ))}
@@ -81,17 +81,17 @@ export default function ToolHowItWorks({
  <dl className="mt-7 grid gap-4 md:grid-cols-3">
  {summary.map((item) => (
  <div key={item.title} className="mw-static-panel rounded-xl bg-[#fffdf8]/75 p-4">
- <dt className="text-base font-extrabold text-sky-950">
+ <dt className="mw-heading text-base font-extrabold text-sky-950">
  {item.title}
  </dt>
- <dd className="mt-2 text-base leading-relaxed text-slate-700">
+ <dd className="mw-text-muted mt-2 text-base leading-relaxed text-slate-700">
  {item.text}
  </dd>
  </div>
  ))}
  </dl>
 
- <div className="mt-8 text-slate-700">
+ <div className="mw-text-muted mt-8 text-slate-700">
  {details.map((detail, index) => (
  <section
  id={chips[index]?.href.replace("#","")}
@@ -99,10 +99,10 @@ export default function ToolHowItWorks({
  className="py-7 first:pt-0 last:pb-0">
  <div className="grid gap-4 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
  <header>
- <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+ <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
  {detail.kicker}
  </p>
- <h3 className="mt-2 text-2xl font-extrabold leading-tight text-sky-950">
+ <h3 className="mw-heading mt-2 text-2xl font-extrabold leading-tight text-sky-950">
  {detail.title}
  </h3>
  </header>
