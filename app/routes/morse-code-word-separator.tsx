@@ -264,6 +264,7 @@ export default function MorseCodeWordSeparator() {
               "Once the Morse is separated cleanly, decode it, compare symbols, or learn the timing rules behind the gaps.",
             links: [
               { href: "/morse-code-decoder", label: "Decode cleaned Morse", primary: true },
+              { href: "/morse-code-reader", label: "Read cleaned Morse" },
               { href: "/how-to-separate-words-in-morse-code", label: "Separate words guide" },
               { href: "/space-in-morse-code", label: "Space guide" },
               { href: "/slash-in-morse-code", label: "Slash guide" },

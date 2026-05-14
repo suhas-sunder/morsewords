@@ -48,6 +48,13 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Reference",
       },
       {
+        title: "Morse Code Reader",
+        description:
+          "Paste typed Morse and read the decoded text with simple spacing help.",
+        href: "/morse-code-reader",
+        badge: "Read",
+      },
+      {
         title: "Name to Morse Code",
         description: "Convert names, copy the Morse, and hear the result.",
         href: "/name-to-morse-code",

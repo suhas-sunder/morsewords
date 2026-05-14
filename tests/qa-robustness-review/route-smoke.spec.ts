@@ -260,6 +260,12 @@ const FINAL_ROUTE_EXPECTATIONS = [
       "Morse Code Test | Listening, Typing, Visual, and Speed Practice | MorseWords",
     schemaType: "CollectionPage",
   },
+  {
+    path: "/morse-code-reader",
+    h1: "Morse Code Reader",
+    title: "Morse Code Reader | Paste Morse and Read Text | MorseWords",
+    schemaType: "WebApplication",
+  },
 ] as const;
 
 const FINAL_ROUTE_PATHS = FINAL_ROUTE_EXPECTATIONS.map((route) => route.path);
@@ -296,6 +302,10 @@ const BREADCRUMB_SCHEMA_EXPECTATIONS = [
   {
     path: "/morse-code-test",
     names: ["Home", "Morse Code Test"],
+  },
+  {
+    path: "/morse-code-reader",
+    names: ["Home", "Morse Code Reader"],
   },
 ] as const;
 
@@ -423,10 +433,14 @@ const REDIRECT_ROUTE_EXPECTATIONS = [
   { from: "/morse-type-test", to: "/morse-code-test" },
   { from: "/morse-code-tests", to: "/morse-code-test" },
   { from: "/morse-code-test-online", to: "/morse-code-test" },
+  { from: "/morse-reader", to: "/morse-code-reader" },
+  { from: "/read-morse-code", to: "/morse-code-reader" },
 ] as const;
 
 const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   ...REDIRECT_ROUTE_EXPECTATIONS.map((route) => route.from),
+  "/morse-to-english",
+  "/morse-code-to-english",
   "/morse-code-wav-generator",
   "/morse-code-mp3-generator",
 ] as const;
@@ -1444,7 +1458,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
     const xmlUrls = [...xml.matchAll(/<loc>[^<]+<\/loc>/g)];
-    expect(xmlUrls).toHaveLength(111);
+    expect(xmlUrls).toHaveLength(112);
 
     for (const route of FINAL_ROUTE_EXPECTATIONS) {
       expect(xml).toContain(`https://morsewords.com${route.path}`);

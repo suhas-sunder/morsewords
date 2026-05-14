@@ -245,6 +245,12 @@ export default function MorseCodeDecoder() {
                 badge: "Morse to text",
               },
               {
+                title: "Reader",
+                text: "Use the reader when you want a simpler paste-and-read flow for typed Morse.",
+                href: "/morse-code-reader",
+                badge: "Beginner",
+              },
+              {
                 title: "Audio decoder",
                 text: "Use the audio decoder when your input is a clean recording of Morse beeps rather than typed dots and dashes.",
                 href: "/morse-code-audio-decoder",
@@ -270,6 +276,7 @@ export default function MorseCodeDecoder() {
               "After you have readable text, fix any spacing problems, then use the message for a short recall or typing session.",
             links: [
               { href: "/", label: "Open the main translator", primary: true },
+              { href: "/morse-code-reader", label: "Simple reader" },
               { href: "/morse-code-without-spaces", label: "Unspaced Morse" },
               { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
               { href: "/morse-code-word-separator", label: "Clean up spacing" },

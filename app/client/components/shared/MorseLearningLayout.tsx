@@ -294,7 +294,7 @@ export function SimpleGrid({
               >
                 {body}
                 <span className="mw-link mt-4 inline-block text-sm font-semibold text-sky-900">
-                  Open page{" "}
+                  Open {item.title}{" "}
                   <span aria-hidden="true" className="inline-block">
                     -&gt;
                   </span>
@@ -305,17 +305,24 @@ export function SimpleGrid({
 
           return (
             <div key={item.title} className="py-1">
-              <a
-                href={item.href}
-                className="mw-focus-ring mw-heading inline-flex cursor-pointer text-lg font-extrabold leading-snug text-sky-950 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-              >
-                {item.title}
-              </a>
-              {item.badge ? (
-                <span className="mw-muted-label ml-3 inline-flex align-middle font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
-                  {item.badge}
-                </span>
-              ) : null}
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h3 className="mw-heading text-lg font-extrabold leading-snug">
+                  <a
+                    href={item.href}
+                    className="mw-link inline-flex cursor-pointer items-center gap-1.5 text-sky-900 underline decoration-sky-900/40 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  >
+                    {item.title}
+                    <span aria-hidden="true" className="font-mono text-sm">
+                      -&gt;
+                    </span>
+                  </a>
+                </h3>
+                {item.badge ? (
+                  <span className="mw-muted-label inline-flex align-middle font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
+                    {item.badge}
+                  </span>
+                ) : null}
+              </div>
               <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
                 {item.text}
               </p>

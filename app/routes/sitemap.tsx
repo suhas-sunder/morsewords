@@ -91,6 +91,12 @@ const GROUPS: SitemapGroup[] = [
         description: "Convert Morse code back into readable text.",
       },
       {
+        label: "Morse Code Reader",
+        to: "/morse-code-reader",
+        description:
+          "Paste typed dots, dashes, spaces, and slashes to read the decoded text.",
+      },
+      {
         label: "International Morse Code Translator",
         to: "/morse-code-international-translator",
         description:

@@ -4129,6 +4129,12 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
         badge: "Copy",
       },
       {
+        title: "Reader check",
+        text: "Paste separated Morse into the reader when you want a quick plain-text result.",
+        href: "/morse-code-reader",
+        badge: "Read",
+      },
+      {
         title: "Step-by-step separation",
         text: "Use the word separation guide when you need to write, copy, and decode multi-word Morse from scratch.",
         href: "/how-to-separate-words-in-morse-code",
@@ -4176,6 +4182,7 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
       { href: "/how-to-separate-words-in-morse-code", label: "Separate words" },
       { href: "/slash-in-morse-code", label: "Slash separator" },
       { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-reader", label: "Morse reader" },
       { href: "/morse-code-without-spaces", label: "Unspaced Morse" },
       { href: "/morse-code-decoder", label: "Decoder" },
     ],
@@ -4238,6 +4245,12 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
         badge: "Decode",
       },
       {
+        title: "Before reading",
+        text: "Use the reader for a quick text result after slash-separated Morse is preserved.",
+        href: "/morse-code-reader",
+        badge: "Read",
+      },
+      {
         title: "Step-by-step word gaps",
         text: "Use the word separation guide when you need examples for slash-separated and timing-style word gaps.",
         href: "/how-to-separate-words-in-morse-code",
@@ -4283,6 +4296,7 @@ export const SYMBOL_PAGES: Record<string, MorseLeafContent> = {
       { href: "/how-to-separate-words-in-morse-code", label: "Separate words" },
       { href: "/space-in-morse-code", label: "Space guide" },
       { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+      { href: "/morse-code-reader", label: "Morse reader" },
       { href: "/morse-code-decoder", label: "Decoder" },
       { href: "/morse-code-punctuation", label: "Punctuation chart" },
     ],
@@ -5707,6 +5721,12 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
         badge: "Letters",
       },
       {
+        title: "Morse reader",
+        text: "Paste a short dot-dash message when you want to read typed Morse immediately.",
+        href: "/morse-code-reader",
+        badge: "Reader",
+      },
+      {
         title: "Audio tool",
         text: "Hear the same examples as rhythm instead of only dots and dashes.",
         href: "/audio",
@@ -5724,6 +5744,7 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       "Move into sound and recall before adding speed.",
     relatedLinks: [
       { href: "/learn-morse-code", label: "Learning path", primary: true },
+      { href: "/morse-code-reader", label: "Read pasted Morse" },
       { href: "/morse-code-alphabet", label: "Alphabet chart" },
       { href: "/morse-code-timing", label: "Timing guide" },
       { href: "/audio", label: "Audio tool" },
@@ -6086,6 +6107,12 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
         badge: "Decode",
       },
       {
+        title: "Reader",
+        text: "Paste typed Morse and read the result in a simpler beginner-facing tool.",
+        href: "/morse-code-reader",
+        badge: "Read",
+      },
+      {
         title: "Encoder",
         text: "Create clean Morse from normal text before copying it.",
         href: "/morse-code-encoder",
@@ -6106,6 +6133,7 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       { href: "/how-to-separate-words-in-morse-code", label: "Separate words" },
       { href: "/space-in-morse-code", label: "Space guide" },
       { href: "/slash-in-morse-code", label: "Slash guide" },
+      { href: "/morse-code-reader", label: "Read pasted Morse" },
       { href: "/morse-code-decoder", label: "Decode pasted Morse" },
       { href: "/morse-code-encoder", label: "Encode clean Morse" },
       { href: "/period-in-morse-code", label: "Period" },
@@ -6204,6 +6232,12 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
         badge: "Decode",
       },
       {
+        title: "Reader",
+        text: "Use a simple paste-and-read tool after you restore visible letter gaps.",
+        href: "/morse-code-reader",
+        badge: "Read",
+      },
+      {
         title: "Word separator",
         text: "Normalize visible word breaks before decoding.",
         href: "/morse-code-word-separator",
@@ -6245,6 +6279,7 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       "Add likely separators, then check the result in the decoder.",
     relatedLinks: [
       { href: "/morse-code-decoder", label: "Decode separated Morse", primary: true },
+      { href: "/morse-code-reader", label: "Read separated Morse" },
       { href: "/how-to-separate-words-in-morse-code", label: "Separate words" },
       { href: "/morse-code-word-separator", label: "Spacing guide" },
       { href: "/space-in-morse-code", label: "Space guide" },

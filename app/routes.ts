@@ -15,6 +15,7 @@ export default [
   route("name-to-morse-code", "routes/name-to-morse-code.tsx"),
   route("morse-code-encoder", "routes/morse-code-encoder.tsx"),
   route("morse-code-decoder", "routes/morse-code-decoder.tsx"),
+  route("morse-code-reader", "routes/morse-code-reader.tsx"),
   route(
     "the-quick-brown-fox-morse-code",
     "routes/the-quick-brown-fox-morse-code.tsx",
@@ -163,6 +164,8 @@ export default [
   route("morse-type-test", "routes/morse-type-test.tsx"),
   route("morse-code-tests", "routes/morse-code-tests.tsx"),
   route("morse-code-test-online", "routes/morse-code-test-online.tsx"),
+  route("morse-reader", "routes/morse-reader.tsx"),
+  route("read-morse-code", "routes/read-morse-code.tsx"),
 
   // Misc / legal
   route("misc", "routes/misc/misc.tsx", [

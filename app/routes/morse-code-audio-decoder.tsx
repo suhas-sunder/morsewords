@@ -212,6 +212,7 @@ export default function MorseCodeAudioDecoderRoute() {
           <ActionLinks
             links={[
               { href: "/audio", label: "Generate Morse audio", primary: true },
+              { href: "/morse-code-reader", label: "Read pasted Morse" },
               { href: "/morse-code-decoder", label: "Morse code decoder" },
               { href: "/morse-code-encoder", label: "Morse code encoder" },
               { href: "/morse-code-word-separator", label: "Word separator" },
