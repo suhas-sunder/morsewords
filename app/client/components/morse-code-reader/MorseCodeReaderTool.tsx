@@ -110,7 +110,7 @@ export default function MorseCodeReaderTool() {
               spellCheck={false}
               autoComplete="off"
               placeholder="Example: ... --- ..."
-              className="min-h-[10rem]"
+              className="min-h-[14rem] md:min-h-[20rem] lg:min-h-[22rem]"
             />
           </ToolPanel>
 

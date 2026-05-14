@@ -24,10 +24,10 @@ export function meta({}: Route.MetaArgs) {
   return seoMeta({
     title: "Morse Code Decoder | Convert Dots and Dashes to Text | MorseWords",
     description:
-      "Paste Morse code dots and dashes into the decoder to convert them into readable text, troubleshoot spacing, and identify unknown sequences.",
+      "Paste Morse code dots and dashes into the decoder for Morse to English/text conversion, spacing troubleshooting, and unknown sequence checks.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code decoder, morse to text, morse code to text, decode morse code, convert dots and dashes to text",
+      "morse code decoder, morse to text, morse to english, morse code to text, decode morse code, convert dots and dashes to text",
   });
 }
 
@@ -106,7 +106,8 @@ export default function MorseCodeDecoder() {
             <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Paste Morse code dots and dashes, then convert them into readable
               text. Use this page when you already have Morse and need to
-              interpret the message, check spacing, or spot unknown sequences.
+              interpret the message, check spacing, or run a more technical
+              Morse to English/text check.
             </p>
           }
           plainA={plainA}

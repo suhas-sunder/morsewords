@@ -66,6 +66,8 @@ export const APP_ROUTES = [
   "/morse-code-test-online",
   "/morse-reader",
   "/read-morse-code",
+  "/morse-to-english",
+  "/morse-code-to-english",
   "/name-to-morse-code",
   "/morse-code-numbers",
   "/how-to-read-morse-code",

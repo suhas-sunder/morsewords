@@ -166,6 +166,8 @@ export default [
   route("morse-code-test-online", "routes/morse-code-test-online.tsx"),
   route("morse-reader", "routes/morse-reader.tsx"),
   route("read-morse-code", "routes/read-morse-code.tsx"),
+  route("morse-to-english", "routes/morse-to-english.tsx"),
+  route("morse-code-to-english", "routes/morse-code-to-english.tsx"),
 
   // Misc / legal
   route("misc", "routes/misc/misc.tsx", [

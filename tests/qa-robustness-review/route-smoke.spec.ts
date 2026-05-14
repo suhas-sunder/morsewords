@@ -435,12 +435,12 @@ const REDIRECT_ROUTE_EXPECTATIONS = [
   { from: "/morse-code-test-online", to: "/morse-code-test" },
   { from: "/morse-reader", to: "/morse-code-reader" },
   { from: "/read-morse-code", to: "/morse-code-reader" },
+  { from: "/morse-to-english", to: "/morse-code-reader" },
+  { from: "/morse-code-to-english", to: "/morse-code-reader" },
 ] as const;
 
 const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   ...REDIRECT_ROUTE_EXPECTATIONS.map((route) => route.from),
-  "/morse-to-english",
-  "/morse-code-to-english",
   "/morse-code-wav-generator",
   "/morse-code-mp3-generator",
 ] as const;

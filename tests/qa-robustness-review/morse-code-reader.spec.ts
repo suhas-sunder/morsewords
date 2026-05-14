@@ -10,7 +10,12 @@ const CANONICAL_PATH = "/morse-code-reader";
 const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 const THEME_STORAGE_KEY = "morsewords-theme";
 
-const READER_ALIASES = ["/morse-reader", "/read-morse-code"] as const;
+const READER_ALIASES = [
+  "/morse-reader",
+  "/read-morse-code",
+  "/morse-to-english",
+  "/morse-code-to-english",
+] as const;
 
 const REQUIRED_LINKS = [
   "/morse-code-decoder",
@@ -39,8 +44,6 @@ const CONTEXTUAL_SOURCE_ROUTES = [
 
 const FORBIDDEN_LINKS = [
   ...READER_ALIASES,
-  "/morse-to-english",
-  "/morse-code-to-english",
   "/morse-code-mp3-generator",
 ] as const;
 
@@ -120,7 +123,15 @@ test.describe("Morse code reader", () => {
     expect(description).toContain("spacing help");
     expect(description).toContain("audio tools");
 
-    await expect(page.getByLabel("Morse code input")).toBeVisible();
+    const readerInput = page.getByLabel("Morse code input");
+    await expect(readerInput).toBeVisible();
+    const readerInputHeight = await readerInput.evaluate(
+      (element) => element.getBoundingClientRect().height,
+    );
+    const viewportWidth = page.viewportSize()?.width ?? 0;
+    expect(readerInputHeight).toBeGreaterThanOrEqual(
+      viewportWidth >= 768 ? 320 : 220,
+    );
     await expect(page.getByLabel("Decoded text output")).toBeVisible();
     await expect(page.getByLabel("Normalized Morse output")).toBeVisible();
     await expect(page.getByRole("button", { name: "Copy decoded text" })).toBeVisible();

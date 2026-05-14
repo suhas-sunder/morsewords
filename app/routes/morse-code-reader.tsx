@@ -165,6 +165,10 @@ const mistakeItems = [
 
 const faqItems = [
   {
+    q: "Can I use this as a Morse to English reader?",
+    a: "Yes. Paste Morse with spaces between letters or / between words, and the reader will show readable English/text where the Morse groups are supported.",
+  },
+  {
     q: "What does a Morse code reader do?",
     a: "A Morse code reader lets you paste typed dots, dashes, spaces, and slash-separated words, then shows the decoded text.",
   },
@@ -198,10 +202,10 @@ export function meta({}: Route.MetaArgs) {
   return seoMeta({
     title: "Morse Code Reader | Paste Morse and Read Text | MorseWords",
     description:
-      "Start by pasting Morse code dots and dashes, read decoded text, try examples, get spacing help, and open decoder or audio tools when needed.",
+      "Use this Morse to English/text reader by pasting Morse code dots and dashes, then read decoded text, try examples, get spacing help, and open decoder or audio tools.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code reader, morse reader, read morse code, paste morse code, morse code to text reader",
+      "morse code reader, morse reader, read morse code, paste morse code, morse to english, morse code to text reader",
   });
 }
 
@@ -249,7 +253,7 @@ export default function MorseCodeReaderRoute() {
         <PageHero
           eyebrow="Paste and read"
           title="Morse Code Reader"
-          description="Paste typed Morse and read the text result."
+          description="Paste typed Morse and read the English/text result."
         />
 
         <div id="reader">

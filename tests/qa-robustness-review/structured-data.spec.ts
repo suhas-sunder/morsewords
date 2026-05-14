@@ -32,6 +32,8 @@ const REDIRECT_ROUTES = [
   { from: "/morse-code-test-online", to: "/morse-code-test" },
   { from: "/morse-reader", to: "/morse-code-reader" },
   { from: "/read-morse-code", to: "/morse-code-reader" },
+  { from: "/morse-to-english", to: "/morse-code-reader" },
+  { from: "/morse-code-to-english", to: "/morse-code-reader" },
 ] as const;
 
 const REDIRECT_PATHS = REDIRECT_ROUTES.map((route) => route.from);
