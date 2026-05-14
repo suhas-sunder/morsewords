@@ -727,7 +727,7 @@ export default function MorseCodeAudioQuiz() {
               text: "Beginner focuses on letters, numbers, and tiny groups. Easy adds short words and common signals. Medium adds longer words and sentences. Hard adds Q-codes and tougher copy.",
             },
             {
-              kicker: "Result model",
+              kicker: "Result summary",
               title: "Scoring",
               text: "A checked answer counts as an attempt. Correct answers raise your score and streak. Skipped prompts move the quiz forward without adding a correct answer.",
             },

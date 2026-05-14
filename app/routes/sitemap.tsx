@@ -319,23 +319,11 @@ const GROUPS: SitemapGroup[] = [
         description:
           "Play, copy, and learn the SOS Morse code distress signal.",
       },
-      {
-        label: "I Love You in Morse Code",
-        to: "/i-love-you-in-morse-code",
-        description:
-          "Copy and hear I LOVE YOU in Morse with spacing notes for gifts.",
-      },
-      {
-        label: "CQ in Morse Code",
-        to: "/cq-in-morse-code",
-        description:
-          "Learn CQ in Morse code with radio context and examples.",
-      },
     ],
   },
   {
     title: "Site information",
-    description: "About MorseWords and site policies.",
+    description: "About MorseWords, contact details, and source notes.",
     links: [
       {
         label: "About",
@@ -353,26 +341,6 @@ const GROUPS: SitemapGroup[] = [
         to: "/sources",
         description:
           "See the standards and references used for MorseWords timing and reference pages.",
-      },
-      {
-        label: "Socials",
-        to: "/misc/socials",
-        description: "Find MorseWords social links.",
-      },
-      {
-        label: "Privacy Policy",
-        to: "/misc/privacy-policy",
-        description: "Read how privacy is handled on MorseWords.",
-      },
-      {
-        label: "Terms of Service",
-        to: "/misc/terms-of-service",
-        description: "Review site terms and conditions.",
-      },
-      {
-        label: "Cookie Policy",
-        to: "/misc/cookies-policy",
-        description: "Review cookie usage details.",
       },
     ],
   },

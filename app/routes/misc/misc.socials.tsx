@@ -9,9 +9,9 @@ import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 export const meta: Route.MetaFunction = () => {
   const canonical = canonicalUrl("/misc/socials");
 
-  const title = "MorseWords Social Links | Official Profiles and Updates";
+  const title = "MorseWords Links | Related Utility Sites";
   const description =
-    "Find official MorseWords profiles, community links, project updates, and related places to follow the Morse toolkit.";
+    "Find MorseWords-related support links and related utility projects from the site maintainer.";
 
   const ogImage = `${SITE_URL}/og/morsewords-links.jpg`;
 
@@ -113,15 +113,15 @@ export default function Socials() {
         </h1>
         <p className="mt-3 max-w-none text-base leading-relaxed text-slate-700 sm:text-lg">
           Fast, modern, practical tools for translating, listening to, and
-          practicing Morse code. This page links to my other utility sites and
-          related projects.
+          practicing Morse code. This page links to related utility sites and
+          projects from the same maintainer.
         </p>
       </header>
 
       <main className="flex flex-col gap-12">
         <section className="mw-static-panel rounded-2xl bg-[#fffdf8]/75 p-5 sm:p-8">
           <h2 className="mb-6 text-2xl font-extrabold text-sky-950">
-            My Utility Sites
+            Related Utility Sites
           </h2>
 
           <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

@@ -558,7 +558,7 @@ export default function PrivacyPolicy() {
             beacons and pixels) to access or store information. Specific
             information about how we use such technologies and how you can
             refuse certain cookies is set out in our Cookie Notice:
-            https://www.morsewords.com/cookiecollection.
+            https://www.morsewords.com/misc/cookies-policy.
           </p>
           <p>
             You can control cookies through your browser settings. If you choose

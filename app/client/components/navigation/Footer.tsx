@@ -74,7 +74,7 @@ export default function Footer() {
             </div>
 
             <div className="mw-footer-faint mt-2 text-xs text-gray-500">
-              -- .- -.. . / .-- .. - .... / 💖
+              -- .- -.. . / .-- .. - .... / .-.. --- ...- .
             </div>
           </div>
         </div>

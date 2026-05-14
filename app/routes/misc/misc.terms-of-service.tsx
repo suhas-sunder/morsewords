@@ -362,7 +362,7 @@ export default function TermsOfService() {
           <p>
             Using profanity in the username, in any way, shape, or form, is not
             allowed. Doing so may result in the username being changed by the
-            MorseWords admin or, in extreme cases, may lead to account
+            MorseWords team or, in extreme cases, may lead to account
             suspension or termination. If you notice any users abusing this
             policy please contact us at admin@morsewords.com and we will address
             the issue as soon as possible.
@@ -917,7 +917,7 @@ export default function TermsOfService() {
           <p>
             If we terminate or suspend your account for any reason, you are
             prohibited from registering and creating a new account under your
-            name, a fake or borrowed name, or the name of any third party, even
+            name, a false or borrowed name, or the name of any third party, even
             if you may be acting on behalf of the third party. In addition to
             terminating or suspending your account, we reserve the right to take
             appropriate legal action, including without limitation pursuing

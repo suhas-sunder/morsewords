@@ -497,7 +497,7 @@ export default function MorseCodeVisualQuiz() {
               text: "Each question chooses a short MorseWords practice prompt and flashes it as a light signal. Replay the prompt when needed, then type the copied word.",
             },
             {
-              kicker: "Result model",
+              kicker: "Result summary",
               title: "Scoring",
               text: "Every answer check counts as an attempt. Correct answers increase your score and streak; misses reset the current streak but keep the question active.",
             },
