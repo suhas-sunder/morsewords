@@ -21,6 +21,15 @@ for first-time visitors.
 - The approved homepage remains the visual source of truth.
 - `/audio` remains the closest approved tool-page reference.
 - The shared icon library is `app/client/assets/svg/Icons.tsx`.
+- The provided icon pack has now been converted into shared `currentColor`
+  React icons in that library. This pass parsed 57 source SVGs, added 55 new
+  unique SVG components, reused the existing exact `SmartSettingsIcon`, and
+  kept the save/edit-shaped source deduplicated through the existing `SaveIcon`
+  plus `SaveEditIcon` alias.
+- Current visible icon additions are restrained to existing action surfaces:
+  audio decode, open-in-decoder/code actions, practice-plan test actions,
+  typing-flow speed action, and the chart word-spacing action. Other new icons
+  remain intentionally unused until a specific UI context needs them.
 - The decorative Morse side accents are shared through
   `MorseAmbientBackground` and rendered by `PageBackdrop`; ongoing theme work
   should treat that as one shared decorative surface, not a route-local patch.
@@ -589,8 +598,10 @@ when the root element has `data-theme="dark"`.
 
 ### Phase 1: Icon System and Audit
 
-- Add all provided icons to the shared React icon module.
-- Use icons only in existing actions where they improve clarity.
+- Completed. The provided icons were added to the shared React icon module
+  with duplicate sources deduplicated instead of creating parallel exports.
+- Completed. Icons were used only in existing actions where they improve
+  clarity.
 - Document dark-mode and consolidation risks.
 - Do not add theme state, theme toggle, or dark tokens.
 

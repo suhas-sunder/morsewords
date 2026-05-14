@@ -343,13 +343,43 @@ broad component refactor.
 ## Duplicated Icon Usage After This Pass
 
 - Shared icon source: `app/client/assets/svg/Icons.tsx`.
-- New icons added in this pass:
+- Completed the provided SVG icon-pack expansion for this pass. Parsed 57
+  source SVGs, added 55 new unique SVG components, and added `SaveEditIcon` as
+  a semantic alias of the existing save/edit-shaped `SaveIcon`.
+- Deduplicated 2 provided sources: `SmartSettingsIcon` was already present as
+  an exact shared export, and the provided save/edit source was near-duplicate
+  with the existing `SaveIcon` export.
+- New icon exports from the pack include `BrushIcon`, `CakeIcon`,
+  `CalendarIcon`, `CelebrationIcon`, `RadioTowerIcon`, `ChatMessageIcon`,
+  `ChecklistIcon`, `CodeIcon`, `CodeOffIcon`, `LaptopIcon`, `DoneAllIcon`,
+  `BrushSparkIcon`, `CoffeeMakerIcon`, `FlagIcon`, `TrophyIcon`,
+  `MusicNoteIcon`, `MusicOffIcon`, `SwapArrowsIcon`, `MoreVerticalIcon`,
+  `MoreHorizontalIcon`, `WarningBadgeIcon`, `RewindIcon`,
+  `FavoriteOutlineIcon`, `FavoriteIcon`, `FeedbackIcon`, `QuoteBlockIcon`,
+  `RadiateIcon`, `StarOutlineIcon`, `SignalAlertIcon`, `PercentIcon`,
+  `BroadcastIcon`, `SyncCheckIcon`, `LibraryMusicIcon`, `RadioIcon`,
+  `SailingIcon`, `ReceiptLongIcon`, `ReceiptIcon`, `ReportIcon`,
+  `ReportOffIcon`, `RestaurantBellIcon`, `SaveFileIcon`, `SpeedGaugeIcon`,
+  `RulerIcon`, `StarCircleIcon`, `MagicSparkIcon`, `ThumbUpIcon`,
+  `TouchClickIcon`, `TrafficLightIcon`, `VerifiedBadgeIcon`,
+  `CubeFocusIcon`, `HeartHandIcon`, `KeyIcon`, `KeyOffIcon`, `ClockIcon`,
+  and `OpenInNewIcon`.
+- Icons used in this pass were intentionally sparse: `RadioTowerIcon` on the
+  audio decoder decode action, `CodeIcon` on decoder/chart code actions,
+  `ChecklistIcon` on practice-plan test actions, `SpeedGaugeIcon` on the
+  speed-oriented typing-flow action, and `RulerIcon` on the chart spacing
+  action.
+- Intentionally unused icons remain available for future specific contexts:
+  celebration, calendar, feedback, quote, favorite, report, receipt, traffic,
+  key, clock, open-in-new, and similar icons were not applied because the
+  current UI did not need them without creating clutter.
+- Previous icon pass additions now preserved in the shared library:
   `SparklesIcon`, `SmartSettingsIcon`, `SignalPathIcon`, `SunIcon`,
   `TrashIcon`, `UploadIcon`, `EqualizerIcon`, `DownloadIcon`,
   `CheckCircleIcon`, `TuneIcon`, `VolumeIcon`, `VolumeOffIcon`,
   `HeadphonesIcon`, `MoonIcon`, and `ThemeSunIcon`.
-- Existing `DownloadIcon`, `CheckCircleIcon`, and `TuneIcon` were updated in
-  place to avoid duplicate semantic exports.
+- That previous pass updated existing `DownloadIcon`, `CheckCircleIcon`, and
+  `TuneIcon` in place to avoid duplicate semantic exports.
 - Current icon use is still split across shared components and route-local
   tools. That is acceptable for now because every visible SVG import comes from
   the shared library.

@@ -1,8 +1,9 @@
 import * as React from "react";
 
 import {
+  CodeIcon,
   DownloadIcon,
-  SignalPathIcon,
+  RadioTowerIcon,
   TrashIcon,
   TuneIcon,
   UploadIcon,
@@ -282,7 +283,7 @@ export default function MorseAudioDecoderTool() {
                   onClick={processFile}
                   disabled={phase === "processing"}
                   tone="dark"
-                  leadingIcon={<SignalPathIcon size={16} title={undefined} aria-hidden="true" />}
+                  leadingIcon={<RadioTowerIcon size={16} title={undefined} aria-hidden="true" />}
                 >
                   {phase === "processing" ? "Decoding..." : "Decode audio"}
                 </ActionButton>
@@ -353,6 +354,7 @@ export default function MorseAudioDecoderTool() {
                 href={decoderHref}
                 disabled={!hasRawMorse}
                 tone="darkPanel"
+                leadingIcon={<CodeIcon size={16} title={undefined} aria-hidden="true" />}
               >
                 Open in Morse decoder
               </ActionLinkButton>

@@ -1,10 +1,12 @@
 import * as React from "react";
 
 import {
+  CodeIcon,
   HeadphonesIcon,
   ListIcon,
   PlayIcon,
   PrintIcon,
+  RulerIcon,
 } from "~/client/assets/svg/Icons";
 import {
   ActionButton,
@@ -340,7 +342,12 @@ function TimingReference() {
       <div className="mt-5">
         <ActionLinks
           links={[
-            { href: "/morse-code-word-separator", label: "Word separator", primary: true },
+            {
+              href: "/morse-code-word-separator",
+              label: "Word separator",
+              primary: true,
+              icon: <RulerIcon size={16} title={undefined} aria-hidden="true" />,
+            },
             { href: "/space-in-morse-code", label: "Space guide" },
             { href: "/slash-in-morse-code", label: "Slash guide" },
             {
@@ -474,6 +481,7 @@ export default function MorseCodeChartRoute() {
                 href: "/",
                 label: "Open translator",
                 primary: true,
+                icon: <CodeIcon size={16} title={undefined} aria-hidden="true" />,
               },
               {
                 href: "/audio",

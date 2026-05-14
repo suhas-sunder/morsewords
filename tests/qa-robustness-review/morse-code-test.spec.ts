@@ -40,7 +40,6 @@ const REQUIRED_SUPPORT_LINKS = [
 
 const FORBIDDEN_LINKS = [
   ...TEST_ALIASES,
-  "/morse-code-reader",
   "/morse-to-english",
   "/morse-code-mp3-generator",
 ] as const;

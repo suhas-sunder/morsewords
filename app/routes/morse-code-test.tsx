@@ -2,11 +2,12 @@ import type { Route } from "./+types/morse-code-test";
 
 import {
   CheckCircleIcon,
+  ChecklistIcon,
   HeadphonesIcon,
   KeyboardIcon,
   LightBulbIcon,
   ListIcon,
-  PlayIcon,
+  SpeedGaugeIcon,
   SoundIcon,
 } from "~/client/assets/svg/Icons";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -86,7 +87,7 @@ const testChooserItems = [
     title: "Practice plan",
     href: "/morse-code-practice-plan",
     badge: "Next step",
-    icon: <PlayIcon size={20} title="Practice plan" />,
+    icon: <ChecklistIcon size={20} title="Practice plan" />,
     text:
       "Helps you decide what to work on next after a test, including short routines for listening, typing, and review.",
     bestFor: "Best when you need a routine.",
@@ -404,7 +405,7 @@ export default function MorseCodeTestRoute() {
               {
                 href: "/morse-code-practice-plan",
                 label: "Build a practice plan",
-                icon: <ListIcon size={18} title={undefined} aria-hidden="true" />,
+                icon: <ChecklistIcon size={18} title={undefined} aria-hidden="true" />,
               },
             ]}
           />
@@ -579,7 +580,12 @@ export default function MorseCodeTestRoute() {
                 className="mt-4"
                 layout="grid"
                 links={[
-                  { href: "/typing", label: "Typing flow", primary: true },
+                  {
+                    href: "/typing",
+                    label: "Typing flow",
+                    primary: true,
+                    icon: <SpeedGaugeIcon size={18} title={undefined} aria-hidden="true" />,
+                  },
                   { href: "/morse-code-audio-practice", label: "Audio timing" },
                   { href: "/audio", label: "Audio generator" },
                   { href: "/morse-code-word-separator", label: "Spacing guide" },
