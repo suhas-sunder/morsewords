@@ -359,7 +359,14 @@ export default function NavBar(props: { pathname?: string }) {
       if (e.key === "Escape") setMoreOpen(false);
     }
 
-    function onPageScroll() {
+    function onPageScroll(e: Event) {
+      const target = e.target;
+      const dialog = moreDialogRef.current;
+
+      if (target instanceof Node && dialog?.contains(target)) {
+        return;
+      }
+
       setMoreOpen(false);
     }
 
@@ -508,7 +515,7 @@ export default function NavBar(props: { pathname?: string }) {
                     </label>
                   </div>
 
-                  <div className="max-h-[70vh] overflow-y-auto px-5 pb-5 pt-2">
+                  <div className="mw-nav-menu-scroll max-h-[70vh] overflow-y-auto px-5 pb-5 pt-2">
                     {filteredMoreGroups.length > 0 ? (
                       <div className="grid gap-x-8 gap-y-6 lg:grid-cols-3 xl:grid-cols-5">
                         {filteredMoreGroups.map((group) => (

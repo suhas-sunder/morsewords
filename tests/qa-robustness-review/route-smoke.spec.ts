@@ -1,4 +1,5 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 import {
   APP_ROUTES,
   blockExternalNetwork,
@@ -1633,6 +1634,58 @@ test.describe("first-batch link hygiene", () => {
 });
 
 test.describe("canonical navigation surfaces", () => {
+  async function openDesktopMoreMenu(page: Page) {
+    await page.setViewportSize({ width: 1440, height: 600 });
+    await blockExternalNetwork(page);
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+
+    await page.getByRole("button", { name: /^More$/ }).click();
+    const dialog = page.getByRole("dialog", {
+      name: "More MorseWords tools",
+    });
+    await expect(dialog).toBeVisible();
+    return dialog;
+  }
+
+  function srgbToLinear(value: number) {
+    const channel = value / 255;
+    return channel <= 0.03928
+      ? channel / 12.92
+      : Math.pow((channel + 0.055) / 1.055, 2.4);
+  }
+
+  function contrastRatio(
+    foreground: [number, number, number],
+    background: [number, number, number],
+  ) {
+    const [fr, fg, fb] = foreground.map(srgbToLinear);
+    const [br, bg, bb] = background.map(srgbToLinear);
+    const foregroundLuminance = 0.2126 * fr + 0.7152 * fg + 0.0722 * fb;
+    const backgroundLuminance = 0.2126 * br + 0.7152 * bg + 0.0722 * bb;
+    const lighter = Math.max(foregroundLuminance, backgroundLuminance);
+    const darker = Math.min(foregroundLuminance, backgroundLuminance);
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  function parseComputedColor(color: string): [number, number, number] {
+    const rgbMatch = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+    if (rgbMatch) {
+      return [Number(rgbMatch[1]), Number(rgbMatch[2]), Number(rgbMatch[3])];
+    }
+
+    const srgbMatch = color.match(/color\(srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)/);
+    if (srgbMatch) {
+      return [
+        Math.round(Number(srgbMatch[1]) * 255),
+        Math.round(Number(srgbMatch[2]) * 255),
+        Math.round(Number(srgbMatch[3]) * 255),
+      ];
+    }
+
+    throw new Error(`Unsupported color format: ${color}`);
+  }
+
   test("more menu links canonical tools and excludes redirect-only aliases", async ({
     page,
   }) => {
@@ -1673,5 +1726,102 @@ test.describe("canonical navigation surfaces", () => {
       ),
     );
     expect(redirectLinks).toEqual([]);
+  });
+
+  test("more menu remains open for internal scrolling and closes on page scroll", async ({
+    page,
+  }) => {
+    const dialog = await openDesktopMoreMenu(page);
+
+    const scrolledInsideMenu = await dialog.evaluate((dialogElement) => {
+      const scrollBox = Array.from(dialogElement.querySelectorAll("div")).find(
+        (element) => element.scrollHeight > element.clientHeight + 4,
+      );
+      if (!scrollBox) return false;
+
+      scrollBox.scrollTop = 80;
+      scrollBox.dispatchEvent(new Event("scroll", { bubbles: true }));
+      return scrollBox.scrollTop > 0;
+    });
+
+    expect(scrolledInsideMenu).toBe(true);
+    await expect(dialog).toBeVisible();
+
+    await page.mouse.move(12, 580);
+    await page.mouse.wheel(0, 420);
+    await expect(dialog).toBeHidden();
+  });
+
+  test("more menu closes on Escape and keeps dark hover text readable", async ({
+    page,
+  }) => {
+    await page.addInitScript(() => {
+      try {
+        window.localStorage.setItem("morsewords-theme", "dark");
+        document.documentElement.dataset.theme = "dark";
+      } catch {
+        document.documentElement.dataset.theme = "light";
+      }
+    });
+
+    const dialog = await openDesktopMoreMenu(page);
+    const firstItem = dialog.locator("a[href]").first();
+    await firstItem.hover();
+
+    const colors = await firstItem.evaluate((element) => {
+      const label = element.querySelector("span span") ?? element;
+      const description = element.querySelector(".mw-nav-item-description");
+      return {
+        title: getComputedStyle(label).color,
+        description: description ? getComputedStyle(description).color : "",
+        background: getComputedStyle(element).backgroundColor,
+      };
+    });
+
+    expect(
+      contrastRatio(
+        parseComputedColor(colors.title),
+        parseComputedColor(colors.background),
+      ),
+      `title ${colors.title} on ${colors.background}`,
+    ).toBeGreaterThanOrEqual(4.5);
+
+    expect(
+      contrastRatio(
+        parseComputedColor(colors.description),
+        parseComputedColor(colors.background),
+      ),
+      `description ${colors.description} on ${colors.background}`,
+    ).toBeGreaterThanOrEqual(3);
+
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
+    await expect(page.getByRole("button", { name: /^More$/ })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+  });
+
+  test("more menu open state has no serious accessibility violations", async ({
+    page,
+  }) => {
+    const dialog = await openDesktopMoreMenu(page);
+
+    await expect(page.getByRole("button", { name: /^More$/ })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    await expect(dialog.locator("a[href]").first()).toBeVisible();
+
+    const axeResults = await new AxeBuilder({ page })
+      .include('[role="dialog"][aria-label="More MorseWords tools"]')
+      .disableRules(["color-contrast"])
+      .analyze();
+
+    expect(
+      axeResults.violations.filter((violation) =>
+        ["critical", "serious"].includes(violation.impact ?? ""),
+      ),
+    ).toEqual([]);
   });
 });

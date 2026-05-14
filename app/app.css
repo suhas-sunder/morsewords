@@ -526,9 +526,19 @@ input[type="range"]:focus-visible {
   color: var(--mw-nav-panel-text) !important;
 }
 
-.mw-nav-item:hover {
+.mw-nav-item:hover,
+.mw-nav-item:focus-visible {
   background: var(--mw-nav-bg-muted) !important;
-  color: var(--mw-text-inverse) !important;
+  color: var(--mw-nav-panel-text) !important;
+}
+
+.mw-nav-item:hover .mw-nav-item-description,
+.mw-nav-item:focus-visible .mw-nav-item-description {
+  color: color-mix(in srgb, var(--mw-nav-panel-text) 78%, transparent) !important;
+}
+
+.mw-nav-menu-scroll {
+  overscroll-behavior: contain;
 }
 
 .mw-nav-mobile-item {
