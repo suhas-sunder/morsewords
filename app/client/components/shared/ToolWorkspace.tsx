@@ -27,6 +27,7 @@ export function toolControlButtonClass({
   active = false,
   tone = "light",
   disabled = false,
+  hover = "soft",
   size = "md",
   full = false,
   rounded = "lg",
@@ -34,6 +35,7 @@ export function toolControlButtonClass({
   active?: boolean;
   tone?: "light" | "dark" | "darkPanel";
   disabled?: boolean;
+  hover?: "soft" | "dark";
   size?: "sm" | "md" | "lg";
   full?: boolean;
   rounded?: "lg" | "xl" | "full";
@@ -64,7 +66,11 @@ export function toolControlButtonClass({
 
   return [
     "mw-button-outline inline-flex cursor-pointer items-center justify-center gap-2 font-semibold transition-[background-color,border-color,color] duration-100 ease-out",
-    !active && tone === "light" && !disabled ? "mw-light-interactive-link" : "",
+    !active && tone === "light" && !disabled
+      ? hover === "dark"
+        ? "mw-button-secondary-dark-hover"
+        : "mw-light-interactive-link"
+      : "",
     focusClass,
     sizeClass,
     roundedClass,
@@ -99,6 +105,7 @@ export function ToolHero({
 export function ToolButton({
   active = false,
   tone = "light",
+  hover = "soft",
   className = "",
   children,
   disabled,
@@ -107,6 +114,7 @@ export function ToolButton({
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
   active?: boolean;
   tone?: "light" | "dark" | "darkPanel";
+  hover?: "soft" | "dark";
 }) {
   return (
     <button
@@ -114,7 +122,7 @@ export function ToolButton({
       type={type}
       disabled={disabled}
       className={[
-        toolControlButtonClass({ active, tone, disabled }),
+        toolControlButtonClass({ active, tone, disabled, hover }),
         className,
       ]
         .filter(Boolean)
@@ -129,7 +137,10 @@ export function ToolModeButton({
   active,
   children,
   ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & { active: boolean }) {
+}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  active: boolean;
+  hover?: "soft" | "dark";
+}) {
   return (
     <ToolButton
       {...props}
@@ -143,9 +154,11 @@ export function ToolModeButton({
 
 export function ToolSampleButtons({
   examples = HOME_TOOL_EXAMPLES,
+  hover = "soft",
   onPick,
 }: {
   examples?: string[];
+  hover?: "soft" | "dark";
   onPick: (example: string) => void;
 }) {
   return (
@@ -158,6 +171,7 @@ export function ToolSampleButtons({
           className={`${toolControlButtonClass({
             size: "sm",
             rounded: "full",
+            hover,
           })}`}
         >
           Try &ldquo;{example}&rdquo;

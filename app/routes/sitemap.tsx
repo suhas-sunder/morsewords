@@ -81,6 +81,12 @@ const GROUPS: SitemapGroup[] = [
           "Create Morse code beeps, tune the tone, and export MP3 or WAV audio.",
       },
       {
+        label: "Morse Code MP3 Generator",
+        to: "/morse-code-mp3-generator",
+        description:
+          "Type text or Morse, preview the tone, and download a browser-generated MP3 file.",
+      },
+      {
         label: "Morse Code Encoder",
         to: "/morse-code-encoder",
         description: "Turn English text into Morse code dots and dashes.",

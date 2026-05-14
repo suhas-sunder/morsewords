@@ -34,6 +34,14 @@ const REDIRECT_ROUTES = [
   { from: "/read-morse-code", to: "/morse-code-reader" },
   { from: "/morse-to-english", to: "/morse-code-reader" },
   { from: "/morse-code-to-english", to: "/morse-code-reader" },
+  { from: "/text-to-morse-code-mp3", to: "/morse-code-mp3-generator" },
+  { from: "/morse-to-mp3", to: "/morse-code-mp3-generator" },
+  { from: "/morse-code-to-mp3", to: "/morse-code-mp3-generator" },
+  { from: "/text-to-morse-mp3", to: "/morse-code-mp3-generator" },
+  {
+    from: "/morse-code-translator-audio-mp3",
+    to: "/morse-code-mp3-generator",
+  },
 ] as const;
 
 const REDIRECT_PATHS = REDIRECT_ROUTES.map((route) => route.from);
@@ -43,6 +51,7 @@ const REPRESENTATIVE_ROUTES = [
   "/morse-code-audio-decoder",
   "/morse-code-test",
   "/morse-code-reader",
+  "/morse-code-mp3-generator",
   "/morse-code-chart",
   "/morse-code-alphabet",
   "/a-in-morse-code",

@@ -266,6 +266,12 @@ const FINAL_ROUTE_EXPECTATIONS = [
     title: "Morse Code Reader | Paste Morse and Read Text | MorseWords",
     schemaType: "WebApplication",
   },
+  {
+    path: "/morse-code-mp3-generator",
+    h1: "Morse Code MP3 Generator",
+    title: "Morse Code MP3 Generator | Download Morse Audio | MorseWords",
+    schemaType: "WebApplication",
+  },
 ] as const;
 
 const FINAL_ROUTE_PATHS = FINAL_ROUTE_EXPECTATIONS.map((route) => route.path);
@@ -306,6 +312,10 @@ const BREADCRUMB_SCHEMA_EXPECTATIONS = [
   {
     path: "/morse-code-reader",
     names: ["Home", "Morse Code Reader"],
+  },
+  {
+    path: "/morse-code-mp3-generator",
+    names: ["Home", "Morse Code MP3 Generator"],
   },
 ] as const;
 
@@ -437,12 +447,19 @@ const REDIRECT_ROUTE_EXPECTATIONS = [
   { from: "/read-morse-code", to: "/morse-code-reader" },
   { from: "/morse-to-english", to: "/morse-code-reader" },
   { from: "/morse-code-to-english", to: "/morse-code-reader" },
+  { from: "/text-to-morse-code-mp3", to: "/morse-code-mp3-generator" },
+  { from: "/morse-to-mp3", to: "/morse-code-mp3-generator" },
+  { from: "/morse-code-to-mp3", to: "/morse-code-mp3-generator" },
+  { from: "/text-to-morse-mp3", to: "/morse-code-mp3-generator" },
+  {
+    from: "/morse-code-translator-audio-mp3",
+    to: "/morse-code-mp3-generator",
+  },
 ] as const;
 
 const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   ...REDIRECT_ROUTE_EXPECTATIONS.map((route) => route.from),
   "/morse-code-wav-generator",
-  "/morse-code-mp3-generator",
 ] as const;
 
 const GENERATED_LEAF_SCHEMA_SUPPRESSED_PATHS = new Set<string>([
@@ -1458,7 +1475,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
     const xmlUrls = [...xml.matchAll(/<loc>[^<]+<\/loc>/g)];
-    expect(xmlUrls).toHaveLength(112);
+    expect(xmlUrls).toHaveLength(113);
 
     for (const route of FINAL_ROUTE_EXPECTATIONS) {
       expect(xml).toContain(`https://morsewords.com${route.path}`);

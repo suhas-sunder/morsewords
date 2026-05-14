@@ -1,0 +1,967 @@
+import * as React from "react";
+
+import { audioBufferToMp3Blob } from "~/client/components/audio/mp3Export";
+import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
+import {
+  getUnsupportedTextCharacters,
+  normalizeMorseForDecoding,
+  textToMorse,
+} from "~/client/components/shared/morseUtils";
+import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import useMorseAudio, {
+  type SoundPreset,
+} from "~/client/components/shared/useMorseAudio";
+import {
+  ToolButton,
+  ToolModeButton,
+  ToolOutputPanel,
+  ToolPanel,
+  ToolSampleButtons,
+  ToolTextarea,
+} from "~/client/components/shared/ToolWorkspace";
+import {
+  CheckCircleIcon,
+  CopyIcon,
+  DownloadIcon,
+  EqualizerIcon,
+  LightBulbIcon,
+  LoopIcon,
+  PauseIcon,
+  PlayIcon,
+  StopIcon,
+  TrashIcon,
+  VolumeIcon,
+  VolumeOffIcon,
+} from "~/client/assets/svg/Icons";
+
+type SourceMode = "text" | "morse";
+
+const EXAMPLES = ["SOS", "HELLO WORLD", "HELP ME", "I LOVE YOU", "TEST"];
+const DEFAULT_TEXT = "sos help";
+const DEFAULT_MORSE = "... --- ...";
+const STROBE_WARNING_ID = "mp3-generator-strobe-warning";
+
+export default function MorseMp3GeneratorTool() {
+  const player = useMorseAudio();
+  const sourceInputId = React.useId();
+  const fileNameId = React.useId();
+  const mp3KbpsId = React.useId();
+  const sampleRateId = React.useId();
+  const soundTypeId = React.useId();
+
+  const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
+  const [text, setText] = React.useState(DEFAULT_TEXT);
+  const [morse, setMorse] = React.useState(DEFAULT_MORSE);
+  const [charWpm, setCharWpm] = React.useState(18);
+  const [farnsworthWpm, setFarnsworthWpm] = React.useState(12);
+  const [toneHz, setToneHz] = React.useState(650);
+  const [volume, setVolume] = React.useState(0.75);
+  const [preset, setPreset] = React.useState<SoundPreset>("cw_radio");
+  const [attackMs, setAttackMs] = React.useState(8);
+  const [releaseMs, setReleaseMs] = React.useState(12);
+  const [repeat, setRepeat] = React.useState(false);
+  const [soundOn, setSoundOn] = React.useState(true);
+  const [flash, setFlash] = React.useState(false);
+  const [advancedOpen, setAdvancedOpen] = React.useState(true);
+  const [fileName, setFileName] = React.useState("morse-code");
+  const [sampleRate, setSampleRate] = React.useState<22050 | 44100 | 48000>(
+    44100,
+  );
+  const [tailMs, setTailMs] = React.useState(120);
+  const [mp3Kbps, setMp3Kbps] = React.useState(128);
+  const [copied, setCopied] = React.useState(false);
+  const [hydrated, setHydrated] = React.useState(false);
+  const [downloadStatus, setDownloadStatus] = React.useState<null | {
+    kind: "ok" | "error" | "working";
+    message: string;
+  }>(null);
+
+  React.useEffect(() => {
+    const storedSource = readStr("mw_audio_source", "text");
+    setSourceMode(storedSource === "morse" ? "morse" : "text");
+    setText(readStr("mw_audio_text", DEFAULT_TEXT));
+    setMorse(readStr("mw_audio_morse", DEFAULT_MORSE));
+    setCharWpm(readNum("mw_audio_wpm", 18));
+    setFarnsworthWpm(readNum("mw_audio_fwpm", 12));
+    setToneHz(readNum("mw_audio_hz", 650));
+    setVolume(readNum("mw_audio_vol", 0.75));
+    setPreset(
+      validatePreset(readStr("mw_audio_preset", "cw_radio")) ?? "cw_radio",
+    );
+    setAttackMs(readNum("mw_audio_attack", 8));
+    setReleaseMs(readNum("mw_audio_release", 12));
+    setRepeat(readBool("mw_audio_repeat", false));
+    setSoundOn(readBool("mw_audio_sound", true));
+    setFlash(readBool("mw_audio_flash", false));
+    setAdvancedOpen(readBool("mw_audio_adv_open", true));
+    setFileName(readStr("mw_mp3_filename", "morse-code"));
+    setSampleRate(validateSampleRate(readNum("mw_audio_sr", 44100)));
+    setTailMs(readNum("mw_audio_tail", 120));
+    setMp3Kbps(validateKbps(readNum("mw_mp3_kbps", 128)));
+    setHydrated(true);
+  }, []);
+
+  const computedMorse = React.useMemo(() => textToMorse(text), [text]);
+  const activeCode = sourceMode === "text" ? computedMorse : morse;
+  const canRender = activeCode.trim().length > 0;
+  const renderedSoundOn = hydrated ? soundOn : true;
+  const renderedRepeat = hydrated ? repeat : false;
+  const renderedFlash = hydrated ? flash : false;
+
+  React.useEffect(() => {
+    if (!hydrated) return;
+
+    writeStr("mw_audio_source", sourceMode);
+    writeStr("mw_audio_text", text);
+    writeStr("mw_audio_morse", morse);
+    writeNum("mw_audio_wpm", charWpm);
+    writeNum("mw_audio_fwpm", farnsworthWpm);
+    writeNum("mw_audio_hz", toneHz);
+    writeNum("mw_audio_vol", volume);
+    writeStr("mw_audio_preset", preset);
+    writeNum("mw_audio_attack", attackMs);
+    writeNum("mw_audio_release", releaseMs);
+    writeBool("mw_audio_repeat", repeat);
+    writeBool("mw_audio_sound", soundOn);
+    writeBool("mw_audio_flash", flash);
+    writeBool("mw_audio_adv_open", advancedOpen);
+    writeNum("mw_audio_sr", sampleRate);
+    writeNum("mw_audio_tail", tailMs);
+    writeStr("mw_mp3_filename", fileName);
+    writeNum("mw_mp3_kbps", mp3Kbps);
+  }, [
+    hydrated,
+    sourceMode,
+    text,
+    morse,
+    charWpm,
+    farnsworthWpm,
+    toneHz,
+    volume,
+    preset,
+    attackMs,
+    releaseMs,
+    repeat,
+    soundOn,
+    flash,
+    advancedOpen,
+    sampleRate,
+    tailMs,
+    fileName,
+    mp3Kbps,
+  ]);
+
+  const unsupportedPlain = React.useMemo(
+    () => getUnsupportedTextCharacters(text),
+    [text],
+  );
+
+  const morseIssues = React.useMemo(() => {
+    if (sourceMode !== "morse" || !morse.trim()) return [];
+    return normalizeMorseForDecoding(morse).invalidChars;
+  }, [sourceMode, morse]);
+
+  const durationMs = React.useMemo(() => {
+    if (!canRender) return 0;
+    return player.estimateDurationMs({
+      code: activeCode,
+      wpm: clampNum(charWpm, 5, 60),
+      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+    });
+  }, [activeCode, canRender, charWpm, farnsworthWpm, player]);
+
+  const previewAudioOptions = React.useMemo(
+    () => ({
+      code: activeCode,
+      wpm: clampNum(charWpm, 5, 60),
+      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      hz: clampNum(toneHz, 200, 1600),
+      volume: clampNum(volume, 0, 1),
+      soundEnabled: soundOn,
+      preset,
+      repeat,
+      flash,
+      attackMs: clampNum(attackMs, 0, 200),
+      releaseMs: clampNum(releaseMs, 0, 400),
+    }),
+    [
+      activeCode,
+      charWpm,
+      farnsworthWpm,
+      toneHz,
+      volume,
+      soundOn,
+      preset,
+      repeat,
+      flash,
+      attackMs,
+      releaseMs,
+    ],
+  );
+
+  const exportAudioOptions = React.useMemo(
+    () => ({
+      ...previewAudioOptions,
+      soundEnabled: true,
+      repeat: false,
+      flash: false,
+      sampleRate,
+      tailMs: clampNum(tailMs, 0, 400),
+    }),
+    [previewAudioOptions, sampleRate, tailMs],
+  );
+
+  React.useEffect(() => {
+    if (!hydrated) return;
+    const livePlayer = player as typeof player & {
+      setLiveOptions?: (options: Partial<typeof previewAudioOptions>) => void;
+    };
+    livePlayer.setLiveOptions?.(previewAudioOptions);
+  }, [hydrated, player, previewAudioOptions]);
+
+  const handlePickExample = (exampleText: string) => {
+    if (sourceMode === "text") {
+      setText(exampleText);
+    } else {
+      setMorse(textToMorse(exampleText));
+    }
+    setDownloadStatus(null);
+  };
+
+  const handleClear = () => {
+    if (sourceMode === "text") {
+      setText("");
+    } else {
+      setMorse("");
+    }
+    setCopied(false);
+    setDownloadStatus(null);
+    player.stop();
+  };
+
+  const handleCopyMorse = async () => {
+    const value = activeCode.trim();
+    if (!value) return;
+    const didCopy = await copyTextToClipboard(value);
+    if (!didCopy) return;
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1100);
+  };
+
+  const handlePlay = async () => {
+    if (!canRender) return;
+    await player.play(previewAudioOptions);
+  };
+
+  const renderAudioBuffer = () => player.renderAudioBuffer(exportAudioOptions);
+
+  const handleDownloadMp3 = async () => {
+    if (!canRender || !renderedSoundOn) return;
+    setDownloadStatus({ kind: "working", message: "Preparing MP3 file..." });
+    try {
+      const buffer = await renderAudioBuffer();
+      const blob = await audioBufferToMp3Blob(buffer, mp3Kbps);
+      downloadBlob(blob, `${sanitizeFileBase(fileName || "morse-code")}.mp3`);
+      setDownloadStatus({ kind: "ok", message: "MP3 download started." });
+    } catch {
+      setDownloadStatus({
+        kind: "error",
+        message:
+          "MP3 export could not start in this browser. Try a shorter message or download WAV instead.",
+      });
+    }
+  };
+
+  const handleDownloadWav = async () => {
+    if (!canRender || !renderedSoundOn) return;
+    setDownloadStatus({ kind: "working", message: "Preparing WAV file..." });
+    try {
+      const blob = await player.renderWav(exportAudioOptions);
+      downloadBlob(blob, `${sanitizeFileBase(fileName || "morse-code")}.wav`);
+      setDownloadStatus({ kind: "ok", message: "WAV download started." });
+    } catch {
+      setDownloadStatus({
+        kind: "error",
+        message: "WAV export failed. Try a shorter message or lower sample rate.",
+      });
+    }
+  };
+
+  const setFeedback = React.useCallback(
+    (key: "sound" | "repeat" | "flash", nextValue: boolean) => {
+      if (key === "sound") setSoundOn(nextValue);
+      if (key === "repeat") setRepeat(nextValue);
+      if (key === "flash") setFlash(nextValue);
+    },
+    [],
+  );
+
+  return (
+    <section
+      className="mw-tool-section mt-0"
+      aria-labelledby="mp3-tool-title"
+      data-mw-mp3-tool-ready={hydrated ? "true" : "false"}
+    >
+      <h2 id="mp3-tool-title" className="sr-only">
+        Generate Morse audio as an MP3 file
+      </h2>
+
+      <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+          <div className="inline-flex w-full gap-2 rounded-lg sm:w-auto">
+            <ToolModeButton
+              active={sourceMode === "text"}
+              onClick={() => setSourceMode("text")}
+              hover="dark"
+              className="w-1/2 rounded-md px-3 py-2 sm:w-auto"
+            >
+              Text input
+            </ToolModeButton>
+            <ToolModeButton
+              active={sourceMode === "morse"}
+              onClick={() => setSourceMode("morse")}
+              hover="dark"
+              className="w-1/2 rounded-md px-3 py-2 sm:w-auto"
+            >
+              Morse input
+            </ToolModeButton>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <ToolSampleButtons
+              examples={EXAMPLES}
+              hover="dark"
+              onPick={handlePickExample}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-2">
+        <ToolPanel
+          label={sourceMode === "text" ? "Input (Text)" : "Input (Morse)"}
+          badge="Source"
+          footer={
+            <div className="flex flex-wrap items-center gap-2 text-sm leading-relaxed text-slate-600">
+              <span>Spaces separate letters. Use / between words.</span>
+              <span aria-hidden="true">Est. time: {formatMs(durationMs)}</span>
+            </div>
+          }
+        >
+          {sourceMode === "text" ? (
+            <>
+              <ToolTextarea
+                id={sourceInputId}
+                aria-label="Message to turn into MP3 audio"
+                value={text}
+                onChange={(event) => {
+                  setText(event.target.value);
+                  setDownloadStatus(null);
+                }}
+                placeholder="Type a message, for example HELLO WORLD"
+                autoCapitalize="characters"
+                autoCorrect="off"
+                spellCheck={false}
+              />
+              {Object.keys(unsupportedPlain).length > 0 ? (
+                <p className="px-4 pb-3 text-sm font-semibold text-slate-600">
+                  Unsupported characters are ignored:{" "}
+                  {Object.entries(unsupportedPlain)
+                    .map(([character, count]) => `${character} x ${count}`)
+                    .join(", ")}
+                </p>
+              ) : null}
+            </>
+          ) : (
+            <>
+              <ToolTextarea
+                id={sourceInputId}
+                aria-label="Morse code to turn into MP3 audio"
+                value={morse}
+                onChange={(event) => {
+                  setMorse(event.target.value);
+                  setDownloadStatus(null);
+                }}
+                placeholder="Paste Morse, for example ... --- ..."
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+              />
+              {morseIssues.length > 0 ? (
+                <p className="px-4 pb-3 text-sm font-semibold text-slate-600">
+                  Invalid Morse input characters: {morseIssues.join(" ")}
+                </p>
+              ) : null}
+            </>
+          )}
+        </ToolPanel>
+
+        <ToolOutputPanel
+          label="Output (Morse)"
+          badge="Result"
+          footer={
+            <div className="flex flex-wrap gap-2">
+              <ToolButton
+                type="button"
+                tone="darkPanel"
+                onClick={handleClear}
+                className="rounded-lg"
+              >
+                <TrashIcon size={18} title={undefined} aria-hidden="true" />
+                Clear
+              </ToolButton>
+              <ToolButton
+                type="button"
+                tone="darkPanel"
+                onClick={handleCopyMorse}
+                disabled={!canRender}
+                className="rounded-lg"
+              >
+                {copied ? (
+                  <CheckCircleIcon size={18} title={undefined} aria-hidden="true" />
+                ) : (
+                  <CopyIcon size={18} title={undefined} aria-hidden="true" />
+                )}
+                {copied ? "Copied" : "Copy Morse"}
+              </ToolButton>
+              <ToolButton
+                type="button"
+                tone="darkPanel"
+                onClick={handleDownloadWav}
+                disabled={!canRender || !renderedSoundOn}
+                className="rounded-lg"
+              >
+                <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                Download WAV
+              </ToolButton>
+            </div>
+          }
+        >
+          <textarea
+            aria-label="Generated Morse output"
+            readOnly
+            value={activeCode.trim()}
+            placeholder="Generated Morse appears here."
+            className="mw-output-text mw-input-placeholder min-h-[10rem] max-h-[18rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sm leading-relaxed tracking-[0.14em] text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 focus-visible:outline-none sm:text-base"
+          />
+        </ToolOutputPanel>
+      </div>
+
+      <div className="mt-4 grid gap-2 sm:grid-cols-3">
+        <ToolButton
+          type="button"
+          tone={player.state === "playing" ? "light" : "dark"}
+          active={player.state !== "playing" && canRender && player.isSupported}
+          onClick={() => {
+            if (player.state === "idle") {
+              handlePlay();
+            } else if (player.state === "playing") {
+              player.pause();
+            } else {
+              player.resume();
+            }
+          }}
+          disabled={
+            player.state === "playing"
+              ? !player.isSupported
+              : !canRender || !player.isSupported
+          }
+          className="rounded-xl"
+        >
+          {player.state === "playing" ? (
+            <PauseIcon size={20} title="Pause audio" />
+          ) : (
+            <PlayIcon size={20} title="Play audio" />
+          )}
+          {player.state === "playing"
+            ? "Pause"
+            : player.state === "paused"
+              ? "Resume audio"
+              : "Play audio"}
+        </ToolButton>
+        <ToolButton
+          type="button"
+          tone="light"
+          onClick={player.stop}
+          disabled={!player.isSupported || player.state === "idle"}
+          hover="dark"
+          className="rounded-xl"
+        >
+          <StopIcon size={20} title="Stop audio" />
+          Stop
+        </ToolButton>
+        <ToolButton
+          type="button"
+          tone="light"
+          onClick={handleDownloadMp3}
+          disabled={!canRender || !renderedSoundOn}
+          hover="dark"
+          className="rounded-xl"
+        >
+          <DownloadIcon size={20} title={undefined} aria-hidden="true" />
+          Download MP3
+        </ToolButton>
+      </div>
+
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="mw-heading text-base font-extrabold text-sky-950">
+          Audio controls
+        </h2>
+
+        <div className="flex flex-wrap gap-2 sm:justify-end">
+          <TogglePill
+            label="Sound"
+            checked={renderedSoundOn}
+            onChange={(value) => setFeedback("sound", value)}
+            icon={
+              renderedSoundOn ? (
+                <VolumeIcon size={16} title={undefined} aria-hidden="true" />
+              ) : (
+                <VolumeOffIcon size={16} title={undefined} aria-hidden="true" />
+              )
+            }
+          />
+          <TogglePill
+            label="Repeat"
+            checked={renderedRepeat}
+            onChange={(value) => setFeedback("repeat", value)}
+            icon={<LoopIcon size={16} title={undefined} aria-hidden="true" />}
+          />
+          <TogglePill
+            label="Flash Light"
+            checked={renderedFlash}
+            onChange={(value) => setFeedback("flash", value)}
+            icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />}
+            describedBy={renderedFlash ? STROBE_WARNING_ID : undefined}
+          />
+        </div>
+      </div>
+
+      <div className="mt-4 grid gap-x-8 gap-y-5 md:grid-cols-2 lg:grid-cols-4">
+        <SliderRow
+          label="Character speed"
+          value={charWpm}
+          min={5}
+          max={60}
+          step={1}
+          unit="WPM"
+          onChange={setCharWpm}
+        />
+        <SliderRow
+          label="Farnsworth spacing"
+          value={farnsworthWpm}
+          min={5}
+          max={60}
+          step={1}
+          unit="WPM"
+          onChange={setFarnsworthWpm}
+        />
+        <SliderRow
+          label="Pitch"
+          value={toneHz}
+          min={200}
+          max={1600}
+          step={10}
+          unit="Hz"
+          onChange={setToneHz}
+          disabled={!renderedSoundOn || preset === "sounder"}
+        />
+        <SliderRow
+          label="Volume"
+          value={Math.round(volume * 100)}
+          min={0}
+          max={100}
+          step={1}
+          unit="%"
+          onChange={(nextValue) => setVolume(nextValue / 100)}
+          disabled={!renderedSoundOn}
+          icon={<VolumeIcon size={16} title={undefined} aria-hidden="true" />}
+        />
+      </div>
+
+      {advancedOpen ? (
+        <div className="mt-4 pt-4">
+          <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <LabeledSelect
+              id={soundTypeId}
+              label="Sound type"
+              value={preset}
+              onChange={(event) =>
+                setPreset(validatePreset(event.target.value) ?? "cw_radio")
+              }
+              disabled={!renderedSoundOn}
+            >
+              <option value="cw_radio">CW radio tone</option>
+              <option value="sine">Sine</option>
+              <option value="square">Square</option>
+              <option value="triangle">Triangle</option>
+              <option value="sawtooth">Sawtooth</option>
+              <option value="sounder">Telegraph sounder</option>
+            </LabeledSelect>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <SliderRow
+                label="Attack"
+                value={attackMs}
+                min={0}
+                max={40}
+                step={1}
+                unit="ms"
+                onChange={setAttackMs}
+                disabled={!renderedSoundOn || preset === "sounder"}
+                help="Softens clicks at the start."
+              />
+              <SliderRow
+                label="Release"
+                value={releaseMs}
+                min={0}
+                max={80}
+                step={1}
+                unit="ms"
+                onChange={setReleaseMs}
+                disabled={!renderedSoundOn || preset === "sounder"}
+                help="Softens clicks at the end."
+              />
+            </div>
+          </div>
+
+          {renderedFlash ? (
+            <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
+          ) : null}
+        </div>
+      ) : null}
+
+      <div className="mt-4">
+        <ToolButton
+          type="button"
+          tone="light"
+          hover="dark"
+          onClick={() => setAdvancedOpen((value) => !value)}
+          className="w-full rounded-lg"
+          aria-expanded={advancedOpen}
+        >
+          <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
+          {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
+        </ToolButton>
+      </div>
+
+      <div className="mt-7">
+        <h2 className="mw-heading text-base font-extrabold text-sky-950">
+          Export settings
+        </h2>
+      </div>
+
+      <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_150px_150px_220px] lg:items-end">
+        <LabeledInput
+          id={fileNameId}
+          label="File name"
+          value={fileName}
+          onChange={(event) => setFileName(event.target.value)}
+          placeholder="morse-code"
+        />
+        <LabeledSelect
+          id={mp3KbpsId}
+          label="MP3 kbps"
+          value={String(mp3Kbps)}
+          onChange={(event) => setMp3Kbps(validateKbps(Number(event.target.value)))}
+        >
+          <option value={96}>96</option>
+          <option value={128}>128</option>
+          <option value={192}>192</option>
+          <option value={256}>256</option>
+        </LabeledSelect>
+        <LabeledSelect
+          id={sampleRateId}
+          label="Sample rate"
+          value={String(sampleRate)}
+          onChange={(event) =>
+            setSampleRate(validateSampleRate(Number(event.target.value)))
+          }
+        >
+          <option value={22050}>22050</option>
+          <option value={44100}>44100</option>
+          <option value={48000}>48000</option>
+        </LabeledSelect>
+        <SliderRow
+          label="Tail padding"
+          value={tailMs}
+          min={0}
+          max={400}
+          step={10}
+          unit="ms"
+          onChange={setTailMs}
+          disabled={!renderedSoundOn}
+          help="Extra silence to avoid clipped tails."
+        />
+      </div>
+
+      <div className="mt-4">
+        {downloadStatus ? (
+          <p
+            className="text-sm font-semibold text-slate-700"
+            aria-live="polite"
+          >
+            {downloadStatus.message}
+          </p>
+        ) : (
+          <p className="text-sm leading-relaxed text-slate-600">
+            MP3 encoding starts when you click download. Preview, WAV, and MP3
+            use the same speed, spacing, tone, volume, sound type, and envelope
+            settings.
+          </p>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function TogglePill({
+  checked,
+  describedBy,
+  icon,
+  label,
+  onChange,
+}: {
+  checked: boolean;
+  describedBy?: string;
+  icon?: React.ReactNode;
+  label: string;
+  onChange: (value: boolean) => void;
+}) {
+  return (
+    <ToolButton
+      type="button"
+      active={checked}
+      tone="light"
+      hover="dark"
+      onClick={() => onChange(!checked)}
+      className="min-h-10 rounded-full px-3 py-1.5 text-sm"
+      aria-pressed={checked}
+      aria-describedby={describedBy}
+    >
+      {icon}
+      {label}
+    </ToolButton>
+  );
+}
+
+function SliderRow({
+  disabled,
+  help,
+  icon,
+  label,
+  max,
+  min,
+  onChange,
+  step,
+  unit,
+  value,
+}: {
+  disabled?: boolean;
+  help?: string;
+  icon?: React.ReactNode;
+  label: string;
+  max: number;
+  min: number;
+  onChange: (value: number) => void;
+  step: number;
+  unit: string;
+  value: number;
+}) {
+  const id = React.useId();
+
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-3">
+        <label
+          htmlFor={id}
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700"
+        >
+          {icon}
+          {label}
+        </label>
+        <span className="text-sm text-slate-600">
+          {value} {unit}
+        </span>
+      </div>
+      {help ? <p className="mt-0.5 text-xs text-slate-500">{help}</p> : null}
+      <input
+        id={id}
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(event) => onChange(Number(event.target.value))}
+        disabled={disabled}
+        style={{ accentColor: "#38bdf8" }}
+        className={`mt-2 w-full rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none ${
+          disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+        }`}
+      />
+    </div>
+  );
+}
+
+function LabeledInput({
+  id,
+  label,
+  onChange,
+  placeholder,
+  value,
+}: {
+  id: string;
+  label: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
+  value: string;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="text-sm font-semibold text-slate-700">
+        {label}
+      </label>
+      <input
+        id={id}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 focus:outline-none focus:ring-0 focus-visible:outline-none"
+      />
+    </div>
+  );
+}
+
+function LabeledSelect({
+  children,
+  disabled,
+  id,
+  label,
+  onChange,
+  value,
+}: {
+  children: React.ReactNode;
+  disabled?: boolean;
+  id: string;
+  label: string;
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  value: string;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="text-sm font-semibold text-slate-700">
+        {label}
+      </label>
+      <select
+        id={id}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        className={`mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none ${
+          disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+        }`}
+      >
+        {children}
+      </select>
+    </div>
+  );
+}
+
+function formatMs(ms: number) {
+  if (!ms || ms <= 0) return "0s";
+  const seconds = Math.round(ms / 1000);
+  if (seconds < 60) return `${seconds}s`;
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}m ${remainingSeconds}s`;
+}
+
+function sanitizeFileBase(name: string) {
+  return (
+    name
+      .trim()
+      .replace(/[\\/:*?"<>|]+/g, "-")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 80) || "morse-code"
+  );
+}
+
+function downloadBlob(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+function validateSampleRate(value: number): 22050 | 44100 | 48000 {
+  if (value === 22050 || value === 44100 || value === 48000) {
+    return value;
+  }
+  return 44100;
+}
+
+function validateKbps(value: number) {
+  if (value === 96 || value === 128 || value === 192 || value === 256) {
+    return value;
+  }
+  return 128;
+}
+
+function validatePreset(value: string): SoundPreset | null {
+  if (
+    value === "cw_radio" ||
+    value === "sine" ||
+    value === "square" ||
+    value === "triangle" ||
+    value === "sawtooth" ||
+    value === "sounder"
+  ) {
+    return value;
+  }
+  return null;
+}
+
+function clampNum(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function readNum(key: string, fallback: number) {
+  if (typeof window === "undefined") return fallback;
+  const raw = window.localStorage.getItem(key);
+  const next = raw ? Number(raw) : Number.NaN;
+  return Number.isFinite(next) ? next : fallback;
+}
+
+function readStr(key: string, fallback: string) {
+  if (typeof window === "undefined") return fallback;
+  return window.localStorage.getItem(key) || fallback;
+}
+
+function readBool(key: string, fallback: boolean) {
+  if (typeof window === "undefined") return fallback;
+  const raw = window.localStorage.getItem(key);
+  if (raw === "true") return true;
+  if (raw === "false") return false;
+  return fallback;
+}
+
+function writeNum(key: string, value: number) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(key, String(value));
+}
+
+function writeStr(key: string, value: string) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(key, value);
+}
+
+function writeBool(key: string, value: boolean) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(key, String(value));
+}

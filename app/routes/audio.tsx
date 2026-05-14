@@ -103,7 +103,7 @@ export default function AudioRoute() {
     },
     {
       q: "Why does the exported WAV sound larger than an MP3?",
-      a: "WAV is uncompressed, which keeps symbol timing and short dits clean for editing. If you need a smaller shareable file, use the sound generator page, which includes MP3 export.",
+      a: "WAV is uncompressed, which keeps symbol timing and short dits clean for editing. If you need a smaller shareable file, use the Morse code MP3 generator.",
     },
     {
       q: "Does this upload my message or audio anywhere?",
@@ -130,6 +130,7 @@ export default function AudioRoute() {
           <ActionLinks
             links={[
               { href: "/name-to-morse-code", label: "Name to Morse", primary: true },
+              { href: "/morse-code-mp3-generator", label: "Download MP3" },
               { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/morse-code-audio-decoder", label: "Decode audio file" },
               { href: "/audio?text=I%20LOVE%20YOU", label: "I love you" },

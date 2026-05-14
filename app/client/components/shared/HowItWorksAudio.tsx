@@ -226,20 +226,19 @@ export default function HowItWorksAudio() {
                 Compare
               </span>
               <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
-                Audio generator vs sound generator
+                Audio generator vs MP3 generator
               </h3>
             </div>
             <p className="max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Use this page when you want to hear or save a full Morse message
               as WAV audio. Use the{" "}
               <a
-                href="/morse-code-sound-generator"
+                href="/morse-code-mp3-generator"
                 className="font-semibold text-sky-900 underline-offset-4 hover:underline"
               >
-                Morse code sound generator
+                Morse code MP3 generator
               </a>{" "}
-              when you mainly want to shape the beep, waveform, tone, or
-              MP3/WAV practice signal.
+              when you need a smaller downloadable MP3 file for sharing.
             </p>
           </section>
 

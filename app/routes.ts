@@ -93,6 +93,10 @@ export default [
   route("morse-code-visual-quiz", "routes/morse-code-visual-quiz.tsx"),
   route("morse-code-vidual-quiz", "routes/morse-code-vidual-quiz.tsx"),
   route("morse-code-sound-generator", "routes/morse-code-sound-generator.tsx"),
+  route(
+    "morse-code-mp3-generator",
+    "routes/morse-code-mp3-generator.tsx",
+  ),
   route("how-to-read-morse-code", "routes/how-to-read-morse-code.tsx"),
   route("how-to-write-in-morse-code", "routes/how-to-write-in-morse-code.tsx"),
   route("how-to-type-in-morse-code", "routes/how-to-type-in-morse-code.tsx"),
@@ -168,6 +172,14 @@ export default [
   route("read-morse-code", "routes/read-morse-code.tsx"),
   route("morse-to-english", "routes/morse-to-english.tsx"),
   route("morse-code-to-english", "routes/morse-code-to-english.tsx"),
+  route("text-to-morse-code-mp3", "routes/text-to-morse-code-mp3.tsx"),
+  route("morse-to-mp3", "routes/morse-to-mp3.tsx"),
+  route("morse-code-to-mp3", "routes/morse-code-to-mp3.tsx"),
+  route("text-to-morse-mp3", "routes/text-to-morse-mp3.tsx"),
+  route(
+    "morse-code-translator-audio-mp3",
+    "routes/morse-code-translator-audio-mp3.tsx",
+  ),
 
   // Misc / legal
   route("misc", "routes/misc/misc.tsx", [

@@ -271,28 +271,25 @@ export default function useMorseAudio() {
     osc.connect(env).connect(master);
 
     const now = ctx.currentTime;
-    const attackS = clamp(params.attackMs, 0, 200) / 1000;
-    const releaseS = clamp(params.releaseMs, 0, 400) / 1000;
+    const durationS = Math.max(0.001, params.ms / 1000);
+    const attackS = Math.min(clamp(params.attackMs, 0, 200) / 1000, durationS / 2);
+    const releaseS = Math.min(
+      clamp(params.releaseMs, 0, 400) / 1000,
+      durationS / 2,
+    );
+    const attackEnd = now + Math.max(0.001, attackS);
+    const releaseStart = now + Math.max(0.001, durationS - Math.max(0.001, releaseS));
 
     env.gain.cancelScheduledValues(now);
     env.gain.setValueAtTime(0, now);
-    env.gain.linearRampToValueAtTime(1, now + Math.max(0.001, attackS));
+    env.gain.linearRampToValueAtTime(1, attackEnd);
+    env.gain.setValueAtTime(1, Math.max(attackEnd, releaseStart));
+    env.gain.linearRampToValueAtTime(0, now + durationS);
 
     osc.start();
+    osc.stop(now + durationS);
 
     await sleep(params.ms);
-
-    const t2 = ctx.currentTime;
-    env.gain.cancelScheduledValues(t2);
-    env.gain.setValueAtTime(env.gain.value, t2);
-    env.gain.linearRampToValueAtTime(0, t2 + Math.max(0.001, releaseS));
-
-    await sleep(Math.max(0, params.releaseMs) + 10);
-    try {
-      osc.stop();
-    } catch {
-      // ignore
-    }
   }
 
   async function playSounder(ms: number, audible: boolean) {
@@ -593,17 +590,22 @@ export default function useMorseAudio() {
       osc.frequency.value = clamp(safe.hz, 200, 1600);
 
       const env = offline.createGain();
-      const attackS =
-        clamp(safe.attackMs ?? defaultAttackMs(safePreset), 0, 200) / 1000;
-      const releaseS =
-        clamp(safe.releaseMs ?? defaultReleaseMs(safePreset), 0, 400) / 1000;
+      const attackS = Math.min(
+        clamp(safe.attackMs ?? defaultAttackMs(safePreset), 0, 200) / 1000,
+        durS / 2,
+      );
+      const releaseS = Math.min(
+        clamp(safe.releaseMs ?? defaultReleaseMs(safePreset), 0, 400) / 1000,
+        durS / 2,
+      );
+      const attackEnd = t + Math.max(0.001, attackS);
+      const releaseStart =
+        t + Math.max(0.001, durS - Math.max(0.001, releaseS));
 
       env.gain.setValueAtTime(0, t);
-      env.gain.linearRampToValueAtTime(1, t + Math.max(0.001, attackS));
-      env.gain.linearRampToValueAtTime(
-        0,
-        t + Math.max(0.002, durS - Math.max(0.001, releaseS)),
-      );
+      env.gain.linearRampToValueAtTime(1, attackEnd);
+      env.gain.setValueAtTime(1, Math.max(attackEnd, releaseStart));
+      env.gain.linearRampToValueAtTime(0, t + durS);
 
       osc.connect(env).connect(master);
       osc.start(t);

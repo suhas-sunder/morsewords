@@ -281,6 +281,10 @@ export default function MorseCodeEncoder() {
               { href: "/how-to-write-in-morse-code", label: "Writing guide" },
               { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
               { href: "/audio", label: "Play the message as audio" },
+              {
+                href: "/morse-code-mp3-generator",
+                label: "Download Morse audio as MP3",
+              },
               { href: "/morse-code-word-trainer", label: "Practice encoded words" },
               { href: "/morse-code-word-separator", label: "Change word separators" },
             ],
