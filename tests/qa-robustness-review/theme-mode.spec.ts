@@ -138,6 +138,15 @@ async function renderedColors(locator: Locator) {
   });
 }
 
+function themeCookieValueScript(key: string) {
+  const prefix = `${key}=`;
+  return document.cookie
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(prefix))
+    ?.slice(prefix.length) ?? null;
+}
+
 async function expectRootTheme(page: Page, expected: "light" | "dark") {
   await expect
     .poll(() =>
@@ -168,6 +177,9 @@ test.describe("navbar theme mode", () => {
     await expect
       .poll(() => page.evaluate((key) => localStorage.getItem(key), THEME_STORAGE_KEY))
       .toBe("dark");
+    await expect
+      .poll(() => page.evaluate(themeCookieValueScript, THEME_STORAGE_KEY))
+      .toBe("dark");
 
     await page.reload({ waitUntil: "domcontentloaded" });
     await waitForHydration(page);
@@ -180,6 +192,9 @@ test.describe("navbar theme mode", () => {
     await expect
       .poll(() => page.evaluate((key) => localStorage.getItem(key), THEME_STORAGE_KEY))
       .toBe("light");
+    await expect
+      .poll(() => page.evaluate(themeCookieValueScript, THEME_STORAGE_KEY))
+      .toBe("light");
   });
 
   test("keeps light as the default when storage is empty", async ({ page }) => {
@@ -191,6 +206,40 @@ test.describe("navbar theme mode", () => {
     await expect
       .poll(() => page.evaluate((key) => localStorage.getItem(key), THEME_STORAGE_KEY))
       .toBe(null);
+  });
+
+  test("dark theme cookie is rendered on the server before hydration", async ({
+    page,
+  }) => {
+    for (const route of ["/morse-code-printable-chart", "/typing"]) {
+      const response = await page.request.get(route, {
+        headers: { Cookie: `${THEME_STORAGE_KEY}=dark` },
+      });
+      expect(response.ok(), route).toBe(true);
+      const html = await response.text();
+
+      expect(html, `${route} server html`).toContain(
+        '<html lang="en" data-theme="dark"',
+      );
+    }
+  });
+
+  test("legacy localStorage dark preference is mirrored into the theme cookie", async ({
+    page,
+  }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.evaluate((key) => {
+      window.localStorage.setItem(key, "dark");
+      document.cookie = `${key}=; Max-Age=0; Path=/; SameSite=Lax`;
+    }, THEME_STORAGE_KEY);
+
+    await page.goto("/typing", { waitUntil: "domcontentloaded" });
+    await waitForHydration(page);
+
+    await expectRootTheme(page, "dark");
+    await expect
+      .poll(() => page.evaluate(themeCookieValueScript, THEME_STORAGE_KEY))
+      .toBe("dark");
   });
 
   test("storage-heavy routes do not crash when localStorage is unavailable", async ({

@@ -1,12 +1,17 @@
 import { MoonIcon, ThemeSunIcon } from "~/client/assets/svg/Icons";
 import { useThemeMode } from "~/client/theme/useThemeMode";
+import type { ThemeMode } from "~/client/theme/themeStorage";
 
 type ThemeToggleProps = {
   className?: string;
+  initialTheme?: ThemeMode;
 };
 
-export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
-  const { isDark, toggleTheme } = useThemeMode();
+export default function ThemeToggle({
+  className = "",
+  initialTheme = "light",
+}: ThemeToggleProps) {
+  const { isDark, toggleTheme } = useThemeMode(initialTheme);
   const label = isDark ? "Switch to light mode" : "Switch to dark mode";
   const Icon = isDark ? ThemeSunIcon : MoonIcon;
 

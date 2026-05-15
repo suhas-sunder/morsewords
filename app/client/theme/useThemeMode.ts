@@ -8,8 +8,8 @@ import {
   type ThemeMode,
 } from "./themeStorage";
 
-export function useThemeMode() {
-  const [theme, setTheme] = React.useState<ThemeMode>("light");
+export function useThemeMode(initialTheme: ThemeMode = "light") {
+  const [theme, setTheme] = React.useState<ThemeMode>(initialTheme);
 
   React.useEffect(() => {
     const initialTheme = readStoredThemeMode() ?? getAppliedThemeMode();

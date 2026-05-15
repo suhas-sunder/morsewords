@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteLoaderData,
   redirect, // ⟵ add this
 } from "react-router";
 
@@ -26,6 +27,12 @@ import RelatedTools from "./client/components/navigation/RelatedTools";
 import PageBackdrop, {
   paperBackground,
 } from "./client/components/shared/PageBackdrop";
+import {
+  THEME_COOKIE_MAX_AGE,
+  THEME_STORAGE_KEY,
+  isThemeMode,
+  type ThemeMode,
+} from "./client/theme/themeStorage";
 
 /* ---------- Trailing slash helpers (one place, app-level) ---------- */
 function needsStrip(pathname: string) {
@@ -39,38 +46,98 @@ function strip(pathname: string) {
   return pathname.replace(/\/+$/, "") || "/";
 }
 
+function readThemeCookie(cookieHeader: string | null): ThemeMode {
+  if (!cookieHeader) return "light";
+
+  const prefix = `${THEME_STORAGE_KEY}=`;
+  const item = cookieHeader
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(prefix));
+  if (!item) return "light";
+
+  try {
+    const value = decodeURIComponent(item.slice(prefix.length));
+    return isThemeMode(value) ? value : "light";
+  } catch {
+    return "light";
+  }
+}
+
 /* ---------- Loader does the canonical 301 ---------- */
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
+  const theme = readThemeCookie(request.headers.get("Cookie"));
   if (needsStrip(url.pathname)) {
     url.pathname = strip(url.pathname);
     return redirect(url.pathname + url.search, { status: 301 });
   }
-  return null;
+  return { theme };
 }
 
 export const links: Route.LinksFunction = () => [];
 
 const THEME_INIT_SCRIPT = `
 (function () {
+  var themeKey = ${JSON.stringify(THEME_STORAGE_KEY)};
+  var cookieMaxAge = ${THEME_COOKIE_MAX_AGE};
+  function isThemeMode(value) {
+    return value === "dark" || value === "light";
+  }
+  function readCookie(name) {
+    var prefix = name + "=";
+    var parts = document.cookie ? document.cookie.split(";") : [];
+    for (var index = 0; index < parts.length; index += 1) {
+      var part = parts[index].trim();
+      if (part.indexOf(prefix) === 0) {
+        return decodeURIComponent(part.slice(prefix.length));
+      }
+    }
+    return null;
+  }
+  function writeThemeCookie(theme) {
+    try {
+      document.cookie = themeKey + "=" + encodeURIComponent(theme) + "; Max-Age=" + cookieMaxAge + "; Path=/; SameSite=Lax";
+    } catch (error) {}
+  }
+
+  var theme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  var storedTheme = null;
   try {
-    var theme = window.localStorage.getItem("morsewords-theme");
-    document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+    storedTheme = window.localStorage.getItem(themeKey);
+  } catch (error) {}
+
+  var cookieTheme = readCookie(themeKey);
+  if (isThemeMode(storedTheme)) {
+    theme = storedTheme;
+  } else if (isThemeMode(cookieTheme)) {
+    theme = cookieTheme;
+  }
+  document.documentElement.dataset.theme = theme;
+  writeThemeCookie(theme);
+
+  try {
     var showAmbientMorse = window.localStorage.getItem("morsewords-show-ambient-morse");
     document.documentElement.dataset.ambientMorse = showAmbientMorse === "0" || showAmbientMorse === "false" ? "hidden" : "visible";
+  } catch (error) {
+    document.documentElement.dataset.ambientMorse = "visible";
+  }
+
+  try {
     var disableFlashEffects = window.localStorage.getItem("morsewords-disable-flash-effects");
     document.documentElement.dataset.flashEffects = disableFlashEffects === "1" || disableFlashEffects === "true" ? "disabled" : "enabled";
   } catch (error) {
-    document.documentElement.dataset.theme = "light";
-    document.documentElement.dataset.ambientMorse = "visible";
     document.documentElement.dataset.flashEffects = "enabled";
   }
 })();
 `;
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const rootData = useRouteLoaderData<typeof loader>("root");
+  const initialTheme = rootData?.theme === "dark" ? "dark" : "light";
+
   return (
-    <html lang="en" data-theme="light" suppressHydrationWarning>
+    <html lang="en" data-theme={initialTheme} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -80,7 +147,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <PHogProvider>
-          <NavBar />
+          <NavBar initialTheme={initialTheme} />
           <div
             className="relative min-h-screen overflow-hidden"
             style={paperBackground}
