@@ -61,7 +61,7 @@ export default function DisplaySettingsToggle({
         aria-haspopup="dialog"
         aria-expanded={open}
       >
-        <SmartSettingsIcon size={18} title={undefined} aria-hidden={true} />
+        <SmartSettingsIcon size={24} title={undefined} aria-hidden={true} />
       </button>
 
       {open ? (

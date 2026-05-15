@@ -431,7 +431,7 @@ export default function NavBar(props: { pathname?: string }) {
         <div className="flex items-center justify-between gap-3 py-3">
           <a
             href="/"
-            className="mw-nav-link flex min-w-0 cursor-pointer items-center gap-3 text-white transition hover:text-sky-200 min-[1400px]:shrink-0"
+            className="mw-nav-link flex min-w-0 cursor-pointer items-center gap-3 text-white transition hover:text-sky-200 2xl:shrink-0"
           >
             <img
               src={logoUrl}
@@ -448,7 +448,7 @@ export default function NavBar(props: { pathname?: string }) {
             </div>
           </a>
 
-          <nav className="hidden items-center gap-4 min-[1400px]:flex min-[1536px]:gap-6">
+          <nav className="hidden items-center gap-3 min-[1180px]:flex 2xl:gap-5">
             <a
               href="#morse-code-navigation"
               onClick={handleAllToolsClick}
@@ -592,7 +592,7 @@ export default function NavBar(props: { pathname?: string }) {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="mw-nav-link inline-flex shrink-0 cursor-pointer items-center justify-center px-3 py-2 text-sm font-semibold text-white transition hover:text-sky-200 min-[1400px]:hidden"
+            className="mw-nav-link inline-flex shrink-0 cursor-pointer items-center justify-center px-3 py-2 text-sm font-semibold text-white transition hover:text-sky-200 min-[1180px]:hidden"
             aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -607,7 +607,7 @@ export default function NavBar(props: { pathname?: string }) {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            className="mw-nav-panel fixed inset-0 z-[9999] bg-neutral-900 text-sky-100 min-[1400px]:hidden"
+            className="mw-nav-panel fixed inset-0 z-[9999] bg-neutral-900 text-sky-100 min-[1180px]:hidden"
           >
             <div className="flex h-full min-h-0 flex-col">
               <div className="flex items-center justify-between px-4 py-3">
