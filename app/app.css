@@ -1165,6 +1165,16 @@ main *::after {
   color: var(--mw-output-text) !important;
 }
 
+:root[data-theme="dark"] .mw-page-content
+  :where(button, [role="button"], summary, a.mw-button-outline):hover
+  :where(*) {
+  color: currentColor !important;
+}
+
+:root[data-theme="dark"] .mw-page-content .mw-sos-mark {
+  background-color: var(--mw-accent) !important;
+}
+
 :root[data-theme="dark"] .mw-page-content :where(input, textarea, select) {
   color: var(--mw-input-text) !important;
 }
@@ -1177,6 +1187,32 @@ main *::after {
 :root[data-theme="dark"] .mw-page-content :where(.mw-button-outline, summary) {
   background-color: var(--mw-button-secondary-bg) !important;
   color: var(--mw-button-secondary-text) !important;
+}
+
+:root[data-theme="dark"] .mw-page-content
+  :where(
+    button[class*="bg-[#fffdf8]"],
+    button[class*="bg-[#fffaf2]"],
+    button[class*="bg-white/"],
+    button.bg-white,
+    button.bg-sky-50
+  ):not(:disabled):not([aria-disabled="true"]):not(
+    [aria-pressed="true"]
+  ):hover {
+  background-color: var(--mw-button-secondary-hover) !important;
+  color: var(--mw-button-secondary-text) !important;
+}
+
+:root[data-theme="dark"] .mw-page-content
+  :where(
+    button[class*="bg-[#fffdf8]"],
+    button[class*="bg-[#fffaf2]"],
+    button[class*="bg-white/"],
+    button.bg-white,
+    button.bg-sky-50
+  ):hover
+  :where(*) {
+  color: currentColor !important;
 }
 
 :root[data-theme="dark"] .mw-page-content :where(.mw-strobe-flash) {

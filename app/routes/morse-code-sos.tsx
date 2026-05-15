@@ -114,8 +114,8 @@ function SosReferenceCard() {
                   key={`${mark}-${markIndex}`}
                   className={
                     mark === "dot"
-                      ? "h-5 w-5 rounded bg-slate-950"
-                      : "h-5 w-14 rounded bg-slate-950"
+                      ? "mw-sos-mark h-5 w-5 rounded bg-slate-950"
+                      : "mw-sos-mark h-5 w-14 rounded bg-slate-950"
                   }
                 />
               ))}
