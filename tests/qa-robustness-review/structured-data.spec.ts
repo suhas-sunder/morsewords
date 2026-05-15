@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import { blockExternalNetwork } from "./helpers";
 
 type JsonLdRecord = Record<string, unknown>;
@@ -107,17 +107,45 @@ function flattenJsonLd(value: unknown): JsonLdRecord[] {
   if (!value || typeof value !== "object") return [];
 
   const record = value as JsonLdRecord;
-  return [record, ...flattenJsonLd(record["@graph"])];
+  return [
+    record,
+    ...flattenJsonLd(record["@graph"]),
+    ...flattenJsonLd(record.mainEntity),
+    ...flattenJsonLd(record.itemListElement),
+    ...flattenJsonLd(record.breadcrumb),
+  ];
 }
 
-function schemaType(record: JsonLdRecord) {
-  return typeof record["@type"] === "string" ? record["@type"] : "";
+function schemaTypes(record: JsonLdRecord) {
+  const type = record["@type"];
+  if (Array.isArray(type)) {
+    return type.filter((item): item is string => typeof item === "string");
+  }
+
+  return typeof type === "string" ? [type] : [];
+}
+
+function hasSchemaType(record: JsonLdRecord, type: string) {
+  return schemaTypes(record).includes(type);
 }
 
 function itemName(value: unknown) {
   if (!value || typeof value !== "object") return "";
   const record = value as JsonLdRecord;
   return typeof record.name === "string" ? record.name : "";
+}
+
+async function visibleFaqQuestions(page: Page) {
+  return page.locator("section").evaluateAll((sections) =>
+    sections.flatMap((section) => {
+      const eyebrow = section.querySelector(".mw-eyebrow-text");
+      if (eyebrow?.textContent?.trim() !== "FAQ") return [];
+
+      return [...section.querySelectorAll("details summary")]
+        .map((summary) => summary.textContent?.trim() ?? "")
+        .filter(Boolean);
+    }),
+  );
 }
 
 function assertSchemaDoesNotReferenceRedirects(records: JsonLdRecord[], routePath: string) {
@@ -226,10 +254,15 @@ test.describe("structured data output", () => {
 
       const parsedJsonLd = parseJsonLdFromHtml(await response.text(), routePath);
       const records = parsedJsonLd.flatMap(flattenJsonLd);
-      const types = records.map(schemaType);
-      const breadcrumbs = records.filter((record) => schemaType(record) === "BreadcrumbList");
-      const faqPages = records.filter((record) => schemaType(record) === "FAQPage");
+      const types = records.flatMap(schemaTypes);
+      const breadcrumbs = records.filter((record) =>
+        hasSchemaType(record, "BreadcrumbList"),
+      );
+      const faqPages = records.filter((record) => hasSchemaType(record, "FAQPage"));
 
+      expect(breadcrumbs.length, `${routePath} should render one BreadcrumbList`).toBe(
+        1,
+      );
       expect(
         faqPages.length,
         `${routePath} should not render duplicate FAQPage schema`,
@@ -265,8 +298,9 @@ test.describe("structured data output", () => {
           scripts.map((script) => JSON.parse(script.textContent ?? "null")),
         );
       const records = parsedJsonLd.flatMap(flattenJsonLd);
-      const types = records.map(schemaType);
-      const faqPages = records.filter((record) => schemaType(record) === "FAQPage");
+      const types = records.flatMap(schemaTypes);
+      const faqPages = records.filter((record) => hasSchemaType(record, "FAQPage"));
+      const visibleQuestions = await visibleFaqQuestions(page);
 
       expect(
         faqPages.length,
@@ -281,8 +315,11 @@ test.describe("structured data output", () => {
         continue;
       }
 
+      if (visibleQuestions.length > 0) {
+        expect(faqPages.length, `${routePath} visible FAQ has FAQPage schema`).toBe(1);
+      }
+
       for (const faqPage of faqPages) {
-        const visibleQuestions = await page.locator("details summary").allTextContents();
         const questions = (faqPage.mainEntity as JsonLdRecord[]).map((entry) =>
           itemName(entry),
         );
