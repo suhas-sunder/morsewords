@@ -9,3 +9,4 @@
 # Local audit and screenshot artifacts
 /output/
 /tmp/
+/test-artifacts/

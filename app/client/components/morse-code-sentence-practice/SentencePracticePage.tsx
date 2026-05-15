@@ -232,7 +232,7 @@ function makeInitialPrompt(mode: DrillMode, pool: SentenceDrill[]): Prompt {
  kind,
  plain: drill.text,
  morse: textToMorse(drill.text),
-      label: `${difficultyLabels[drill.difficulty]} sentence Â· ${wordCount(drill.text)} words Â· ${drill.focus}`,
+      label: `${difficultyLabels[drill.difficulty]} sentence - ${wordCount(drill.text)} words - ${drill.focus}`,
  };
 }
 
