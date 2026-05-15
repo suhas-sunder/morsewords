@@ -182,6 +182,7 @@ export default function MorseCodeAlphabetRoute() {
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": CANONICAL_URL + "#breadcrumb",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
       {

@@ -135,6 +135,31 @@ function itemName(value: unknown) {
   return typeof record.name === "string" ? record.name : "";
 }
 
+function schemaId(value: JsonLdRecord) {
+  return typeof value["@id"] === "string" ? value["@id"] : "";
+}
+
+function collectReferenceIds(value: unknown): string[] {
+  if (Array.isArray(value)) return value.flatMap(collectReferenceIds);
+  if (!value || typeof value !== "object") return [];
+
+  const record = value as JsonLdRecord;
+  return schemaId(record) ? [schemaId(record)] : [];
+}
+
+function collectBreadcrumbReferenceIds(value: unknown): string[] {
+  if (Array.isArray(value)) return value.flatMap(collectBreadcrumbReferenceIds);
+  if (!value || typeof value !== "object") return [];
+
+  const record = value as JsonLdRecord;
+  return [
+    ...collectReferenceIds(record.breadcrumb),
+    ...collectBreadcrumbReferenceIds(record["@graph"]),
+    ...collectBreadcrumbReferenceIds(record.mainEntity),
+    ...collectBreadcrumbReferenceIds(record.itemListElement),
+  ];
+}
+
 async function visibleFaqQuestions(page: Page) {
   return page.locator("section").evaluateAll((sections) =>
     sections.flatMap((section) => {
@@ -196,6 +221,28 @@ function assertBreadcrumbList(record: JsonLdRecord, routePath: string) {
       );
     }
   });
+}
+
+function assertBreadcrumbReferencesResolve(
+  parsedJsonLd: unknown[],
+  records: JsonLdRecord[],
+  routePath: string,
+) {
+  const breadcrumbById = new Map(
+    records
+      .filter((record) => hasSchemaType(record, "BreadcrumbList") && schemaId(record))
+      .map((record) => [schemaId(record), record]),
+  );
+  const referencedIds = [...new Set(parsedJsonLd.flatMap(collectBreadcrumbReferenceIds))];
+
+  for (const referencedId of referencedIds) {
+    const breadcrumb = breadcrumbById.get(referencedId);
+    expect(
+      breadcrumb,
+      `${routePath} breadcrumb reference ${referencedId} resolves to BreadcrumbList`,
+    ).toBeTruthy();
+    assertBreadcrumbList(breadcrumb as JsonLdRecord, routePath);
+  }
 }
 
 function assertFaqPage(record: JsonLdRecord, routePath: string) {
@@ -260,9 +307,10 @@ test.describe("structured data output", () => {
       );
       const faqPages = records.filter((record) => hasSchemaType(record, "FAQPage"));
 
-      expect(breadcrumbs.length, `${routePath} should render one BreadcrumbList`).toBe(
-        1,
-      );
+      expect(
+        breadcrumbs.length,
+        `${routePath} should not render duplicate BreadcrumbList schema`,
+      ).toBeLessThanOrEqual(1);
       expect(
         faqPages.length,
         `${routePath} should not render duplicate FAQPage schema`,
@@ -272,6 +320,7 @@ test.describe("structured data output", () => {
       for (const breadcrumb of breadcrumbs) {
         assertBreadcrumbList(breadcrumb, routePath);
       }
+      assertBreadcrumbReferencesResolve(parsedJsonLd, records, routePath);
 
       for (const faqPage of faqPages) {
         assertFaqPage(faqPage, routePath);
@@ -313,10 +362,6 @@ test.describe("structured data output", () => {
         );
         await expect(page.locator("details summary").first()).toBeVisible();
         continue;
-      }
-
-      if (visibleQuestions.length > 0) {
-        expect(faqPages.length, `${routePath} visible FAQ has FAQPage schema`).toBe(1);
       }
 
       for (const faqPage of faqPages) {

@@ -92,23 +92,6 @@ export default function Home() {
       a: "Unknown Morse sequences are shown as “?” in the decoded output so mistakes don’t disappear silently.",
     },
   ];
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: baseUrl + "/" },
-    ],
-  };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
-
   return (
     <div className="mw-home-page" style={styles.page}>
       <style dangerouslySetInnerHTML={{ __html: homeRelatedToolsStyles }} />
@@ -142,7 +125,7 @@ export default function Home() {
         />
       </div>
 
-      <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
+      <JsonLdScript jsonLd={jsonLd} />
     </div>
   );
 }
