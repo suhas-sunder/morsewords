@@ -1,4 +1,4 @@
-export const SITE_URL = "https://morsewords.com";
+export const SITE_URL = "https://www.morsewords.com";
 
 type SeoMetaInput = {
   title: string;

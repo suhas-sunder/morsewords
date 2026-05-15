@@ -5,7 +5,7 @@ import { blockExternalNetwork, collectConsoleErrors } from "./helpers";
 
 type JsonLdRecord = Record<string, unknown>;
 
-const SITE_URL = "https://morsewords.com";
+const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/morse-code-reader";
 const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 const THEME_STORAGE_KEY = "morsewords-theme";

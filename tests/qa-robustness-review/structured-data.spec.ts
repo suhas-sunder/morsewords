@@ -3,7 +3,8 @@ import { blockExternalNetwork } from "./helpers";
 
 type JsonLdRecord = Record<string, unknown>;
 
-const SITE_URL = "https://morsewords.com";
+const SITE_URL = "https://www.morsewords.com";
+const NON_WWW_SITE_URL = "https://morsewords.com";
 
 const REDIRECT_ROUTES = [
   { from: "/morse-code-letters", to: "/morse-code-alphabet" },
@@ -176,6 +177,11 @@ async function visibleFaqQuestions(page: Page) {
 function assertSchemaDoesNotReferenceRedirects(records: JsonLdRecord[], routePath: string) {
   const schemaText = JSON.stringify(records);
 
+  expect(
+    schemaText,
+    `${routePath} schema avoids non-www canonical host`,
+  ).not.toContain(NON_WWW_SITE_URL);
+
   for (const aliasPath of REDIRECT_PATHS) {
     expect(
       schemaText,
@@ -283,11 +289,22 @@ test.describe("structured data output", () => {
     const sitemapResponse = await request.get("/sitemap.xml");
     expect(sitemapResponse.ok()).toBe(true);
     const sitemapXml = await sitemapResponse.text();
-    const sitemapPaths = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
-      .map((match) => new URL(match[1]).pathname)
+    const sitemapLocs = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+      (match) => match[1],
+    );
+    const sitemapPaths = sitemapLocs
+      .map((loc) => new URL(loc).pathname)
       .filter((pathname) => pathname !== "/sitemap.xml");
 
     expect(sitemapPaths.length, "sitemap URL count").toBeGreaterThan(0);
+    expect(sitemapXml, "XML sitemap avoids non-www canonical host").not.toContain(
+      NON_WWW_SITE_URL,
+    );
+    for (const loc of sitemapLocs) {
+      expect(loc, `XML sitemap loc uses canonical host: ${loc}`).toMatch(
+        new RegExp(`^${SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/`),
+      );
+    }
 
     for (const aliasPath of REDIRECT_PATHS) {
       expect(sitemapXml, `sitemap excludes redirect alias ${aliasPath}`).not.toContain(

@@ -7,7 +7,7 @@ import {
 } from "../../app/client/components/morse-code-audio-decoder/audioDecodeUtils";
 import { blockExternalNetwork } from "./helpers";
 
-const SITE_URL = "https://morsewords.com";
+const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/morse-code-audio-decoder";
 const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 const AUDIO_DECODER_ALIASES = [

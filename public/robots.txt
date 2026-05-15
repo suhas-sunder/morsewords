@@ -2,7 +2,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://morsewords.com/sitemap.xml
+Sitemap: https://www.morsewords.com/sitemap.xml
 
 # --- disallowed paths (typical CMS / system dirs) ---
 Disallow: /wp-admin/

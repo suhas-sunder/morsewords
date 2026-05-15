@@ -9,7 +9,7 @@ import {
 } from "../../app/client/data/morseContent";
 import { blockExternalNetwork, collectConsoleErrors } from "./helpers";
 
-const SITE_URL = "https://morsewords.com";
+const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/morse-code-chart";
 const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 const CHART_ALIASES = [

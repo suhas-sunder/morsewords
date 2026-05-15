@@ -4,7 +4,7 @@ import { expect, test } from "@playwright/test";
 import { blockExternalNetwork, collectConsoleErrors } from "./helpers";
 
 const CANONICAL_PATH = "/morse-code-mp3-generator";
-const CANONICAL_URL = `https://morsewords.com${CANONICAL_PATH}`;
+const CANONICAL_URL = `https://www.morsewords.com${CANONICAL_PATH}`;
 const THEME_STORAGE_KEY = "morsewords-theme";
 
 const MP3_ALIASES = [
@@ -190,7 +190,7 @@ test.describe("Morse code MP3 generator", () => {
     const xml = await xmlResponse.text();
     expect(xml).toContain(CANONICAL_URL);
     for (const alias of MP3_ALIASES) {
-      expect(xml).not.toContain(`https://morsewords.com${alias}`);
+      expect(xml).not.toContain(`https://www.morsewords.com${alias}`);
     }
 
     for (const alias of MP3_ALIASES) {

@@ -19,6 +19,9 @@ const SUPPORT_ROUTES_EXCLUDED_FROM_APP_SITEMAP = [
   "/misc/socials",
 ] as const;
 
+const SITE_URL = "https://www.morsewords.com";
+const NON_WWW_SITE_URL = "https://morsewords.com";
+
 const CHANGED_VISIBLE_ROUTES = [
   "/",
   "/sitemap",
@@ -58,7 +61,7 @@ function titleText(html: string) {
 }
 
 function xmlSitemapPaths(xml: string) {
-  return [...xml.matchAll(/<loc>https:\/\/morsewords\.com([^<]*)<\/loc>/g)].map(
+  return [...xml.matchAll(/<loc>https:\/\/www\.morsewords\.com([^<]*)<\/loc>/g)].map(
     (match) => match[1],
   );
 }
@@ -81,7 +84,7 @@ test.describe("final SEO support and content quality", () => {
         `${route} robots meta`,
       ).toBe("noindex,follow");
       expect(xml, `${route} absent from XML sitemap`).not.toContain(
-        `https://morsewords.com${route}`,
+        `${SITE_URL}${route}`,
       );
     }
   });
@@ -94,7 +97,11 @@ test.describe("final SEO support and content quality", () => {
 
     const xmlResponse = await request.get("/sitemap.xml");
     expect(xmlResponse.ok()).toBe(true);
-    const xmlPaths = xmlSitemapPaths(await xmlResponse.text()).sort();
+    const xml = await xmlResponse.text();
+    expect(xml, "XML sitemap avoids non-www canonical host").not.toContain(
+      NON_WWW_SITE_URL,
+    );
+    const xmlPaths = xmlSitemapPaths(xml).sort();
 
     await page.goto("/sitemap", { waitUntil: "domcontentloaded" });
     const htmlPaths = (
@@ -115,7 +122,11 @@ test.describe("final SEO support and content quality", () => {
 
     const xmlResponse = await request.get("/sitemap.xml");
     expect(xmlResponse.ok()).toBe(true);
-    const paths = xmlSitemapPaths(await xmlResponse.text());
+    const xml = await xmlResponse.text();
+    expect(xml, "XML sitemap avoids non-www canonical host").not.toContain(
+      NON_WWW_SITE_URL,
+    );
+    const paths = xmlSitemapPaths(xml);
 
     const titles = new Map<string, string[]>();
     const descriptions = new Map<string, string[]>();
@@ -124,7 +135,7 @@ test.describe("final SEO support and content quality", () => {
       const response = await request.get(route);
       expect(response.ok(), `${route} response`).toBe(true);
       const html = await response.text();
-      const canonical = `https://morsewords.com${route}`;
+      const canonical = `${SITE_URL}${route}`;
       const robots = metaContent(html, "robots").toLowerCase();
       const title = titleText(html);
       const description = metaContent(html, "description");

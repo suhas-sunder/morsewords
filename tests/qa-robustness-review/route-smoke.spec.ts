@@ -748,7 +748,7 @@ test.describe("first-batch SEO metadata and schema", () => {
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator("h1")).toHaveText(route.h1);
 
-      const canonical = `https://morsewords.com${route.path}`;
+      const canonical = `https://www.morsewords.com${route.path}`;
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         "href",
         canonical,
@@ -811,7 +811,7 @@ test.describe("first-batch SEO metadata and schema", () => {
     const xml = await xmlResponse.text();
 
     for (const route of FIRST_BATCH_ROUTE_EXPECTATIONS) {
-      expect(xml).toContain(`https://morsewords.com${route.path}`);
+      expect(xml).toContain(`https://www.morsewords.com${route.path}`);
     }
   });
 });
@@ -831,7 +831,7 @@ test.describe("letter SEO metadata and schema", () => {
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator("h1")).toHaveText(route.h1);
 
-      const canonical = `https://morsewords.com${route.path}`;
+      const canonical = `https://www.morsewords.com${route.path}`;
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         "href",
         canonical,
@@ -937,7 +937,7 @@ test.describe("letter SEO metadata and schema", () => {
     const xml = await xmlResponse.text();
 
     for (const route of LETTER_ROUTE_EXPECTATIONS) {
-      expect(xml).toContain(`https://morsewords.com${route.path}`);
+      expect(xml).toContain(`https://www.morsewords.com${route.path}`);
     }
   });
 
@@ -985,7 +985,7 @@ test.describe("number SEO metadata and schema", () => {
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator("h1")).toHaveText(route.h1);
 
-      const canonical = `https://morsewords.com${route.path}`;
+      const canonical = `https://www.morsewords.com${route.path}`;
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         "href",
         canonical,
@@ -1085,7 +1085,7 @@ test.describe("number SEO metadata and schema", () => {
     const xml = await xmlResponse.text();
 
     for (const route of NUMBER_ROUTE_EXPECTATIONS) {
-      expect(xml).toContain(`https://morsewords.com${route.path}`);
+      expect(xml).toContain(`https://www.morsewords.com${route.path}`);
     }
   });
 
@@ -1125,7 +1125,7 @@ test.describe("phrase SEO metadata and schema", () => {
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator("h1")).toHaveText(route.h1);
 
-      const canonical = `https://morsewords.com${route.path}`;
+      const canonical = `https://www.morsewords.com${route.path}`;
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         "href",
         canonical,
@@ -1223,7 +1223,7 @@ test.describe("phrase SEO metadata and schema", () => {
     const xml = await xmlResponse.text();
 
     for (const route of PHRASE_ROUTE_EXPECTATIONS) {
-      expect(xml).toContain(`https://morsewords.com${route.path}`);
+      expect(xml).toContain(`https://www.morsewords.com${route.path}`);
     }
   });
 
@@ -1261,7 +1261,7 @@ test.describe("spacing and punctuation SEO metadata and schema", () => {
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator("h1")).toHaveText(route.h1);
 
-      const canonical = `https://morsewords.com${route.path}`;
+      const canonical = `https://www.morsewords.com${route.path}`;
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         "href",
         canonical,
@@ -1363,7 +1363,7 @@ test.describe("spacing and punctuation SEO metadata and schema", () => {
     const xml = await xmlResponse.text();
 
     for (const route of SPACING_PUNCTUATION_ROUTE_EXPECTATIONS) {
-      expect(xml).toContain(`https://morsewords.com${route.path}`);
+      expect(xml).toContain(`https://www.morsewords.com${route.path}`);
     }
   });
 
@@ -1427,7 +1427,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator("h1")).toHaveText(route.h1);
 
-      const canonical = `https://morsewords.com${route.path}`;
+      const canonical = `https://www.morsewords.com${route.path}`;
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         "href",
         canonical,
@@ -1479,10 +1479,10 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     expect(xmlUrls).toHaveLength(113);
 
     for (const route of FINAL_ROUTE_EXPECTATIONS) {
-      expect(xml).toContain(`https://morsewords.com${route.path}`);
+      expect(xml).toContain(`https://www.morsewords.com${route.path}`);
     }
     for (const route of REDIRECT_ROUTE_EXPECTATIONS) {
-      expect(xml).not.toContain(`https://morsewords.com${route.from}`);
+      expect(xml).not.toContain(`https://www.morsewords.com${route.from}`);
     }
   });
 
