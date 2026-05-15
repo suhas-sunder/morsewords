@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { TuneIcon } from "~/client/assets/svg/Icons";
+import { SmartSettingsIcon } from "~/client/assets/svg/Icons";
 import { useDisplaySettings } from "~/client/settings/displaySettings";
 
 type DisplaySettingsToggleProps = {
@@ -61,7 +61,7 @@ export default function DisplaySettingsToggle({
         aria-haspopup="dialog"
         aria-expanded={open}
       >
-        <TuneIcon size={18} title={undefined} aria-hidden={true} />
+        <SmartSettingsIcon size={18} title={undefined} aria-hidden={true} />
       </button>
 
       {open ? (

@@ -235,7 +235,7 @@ const MOBILE_GROUPS: NavGroup[] = [
 const MORE_ITEMS = MORE_GROUPS.flatMap((group) => group.items);
 
 const desktopNavLinkClass =
-  "mw-nav-link -mx-2 -my-2 inline-flex cursor-pointer items-center px-2 py-2 text-sm font-semibold transition";
+  "mw-nav-link -mx-2 -my-2 inline-flex cursor-pointer items-center whitespace-nowrap px-2 py-2 text-sm font-semibold transition";
 
 function normalizePathname(raw: string) {
   const base = raw.split("#")[0]?.split("?")[0] ?? "/";
@@ -428,27 +428,27 @@ export default function NavBar(props: { pathname?: string }) {
   return (
     <header className="mw-nav-shell relative z-50 bg-neutral-900 backdrop-blur">
       <div className="mx-auto max-w-[1680px] px-4 sm:px-6 lg:px-10">
-        <div className="flex items-center justify-between py-3">
+        <div className="flex items-center justify-between gap-3 py-3">
           <a
             href="/"
-            className="mw-nav-link flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
+            className="mw-nav-link flex min-w-0 cursor-pointer items-center gap-3 text-white transition hover:text-sky-200 min-[1400px]:shrink-0"
           >
             <img
               src={logoUrl}
               alt="MorseWords"
-              className="h-10 w-10 rounded-sm"
+              className="h-10 w-10 shrink-0 rounded-sm"
               loading="eager"
             />
 
-            <div className="leading-tight">
-              <div className="text-lg font-extrabold">MorseWords</div>
-              <div className="mw-nav-muted text-sm text-sky-200 sm:text-xs">
+            <div className="min-w-0 leading-tight">
+              <div className="truncate text-lg font-extrabold">MorseWords</div>
+              <div className="mw-nav-muted truncate text-sm text-sky-200 sm:text-xs">
                 Translate, listen, and practice Morse code
               </div>
             </div>
           </a>
 
-          <nav className="hidden items-center gap-5 lg:flex lg:gap-6">
+          <nav className="hidden items-center gap-4 min-[1400px]:flex min-[1536px]:gap-6">
             <a
               href="#morse-code-navigation"
               onClick={handleAllToolsClick}
@@ -592,7 +592,7 @@ export default function NavBar(props: { pathname?: string }) {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="mw-nav-link inline-flex cursor-pointer items-center justify-center px-3 py-2 text-sm font-semibold text-white transition hover:text-sky-200 lg:hidden"
+            className="mw-nav-link inline-flex shrink-0 cursor-pointer items-center justify-center px-3 py-2 text-sm font-semibold text-white transition hover:text-sky-200 min-[1400px]:hidden"
             aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -607,7 +607,7 @@ export default function NavBar(props: { pathname?: string }) {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            className="mw-nav-panel fixed inset-0 z-[9999] bg-neutral-900 text-sky-100 lg:hidden"
+            className="mw-nav-panel fixed inset-0 z-[9999] bg-neutral-900 text-sky-100 min-[1400px]:hidden"
           >
             <div className="flex h-full min-h-0 flex-col">
               <div className="flex items-center justify-between px-4 py-3">
