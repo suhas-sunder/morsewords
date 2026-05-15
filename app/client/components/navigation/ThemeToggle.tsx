@@ -13,7 +13,7 @@ export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
   return (
     <button
       type="button"
-      className={`mw-theme-toggle inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full ${className}`}
+      className={`mw-theme-toggle mw-nav-icon-button inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full ${className}`}
       onClick={toggleTheme}
       aria-label={label}
       aria-pressed={isDark}

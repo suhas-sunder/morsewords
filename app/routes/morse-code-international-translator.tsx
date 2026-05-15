@@ -6,7 +6,7 @@ import {
 } from "~/client/components/shared/ActionControls";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { transliterateForInternationalMorse } from "~/client/components/shared/internationalMorse";
-import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
+import { textToMorse } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -49,12 +49,12 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "International Morse Code Translator | English & World Words",
+    title: "International Text to Morse Code Converter | MorseWords",
     description:
-      "Translate English and international words into Morse code with readable transliteration examples for Spanish, French, German, Hindi, Japanese, Korean, Russian, and more.",
+      "Convert English, accented Latin text, and common non-Latin words into International Morse code with readable transliteration before encoding.",
     path: CANONICAL_PATH,
     keywords:
-      "international morse code translator, morse code translator languages, english to morse code, spanish morse code, japanese morse code, hindi morse code",
+      "international text to morse code, morse code translator languages, english to morse code, spanish morse code, japanese morse code, hindi morse code",
   });
 }
 
@@ -122,13 +122,12 @@ export default function InternationalTranslator() {
     [transliterated],
   );
 
-  const [morseB, setMorseB] = React.useState("-- .- . ... - .-. ---");
-  const textB = React.useMemo(() => morseToText(morseB), [morseB]);
+  const [morseB, setMorseB] = React.useState("");
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "International Morse Code Translator",
+    name: "International Text to Morse Code Converter",
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
     url: CANONICAL_URL,
@@ -145,7 +144,7 @@ export default function InternationalTranslator() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "International Morse Code Translator",
+        name: "International Text to Morse Code Converter",
         item: CANONICAL_URL,
       },
     ],
@@ -155,11 +154,12 @@ export default function InternationalTranslator() {
     <div className="mw-non-home-page" style={styles.page}>
       <main style={styles.wrap}>
         <TranslatorSectionsBasic
-          title="International Morse Code Translator"
+          title="International Text to Morse Code Converter"
           subtitle={
             <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Convert English and world-language words into Morse using
-              readable transliteration before encoding.
+              readable transliteration before encoding. This page does not
+              reconstruct the original accents or script from Morse.
             </p>
           }
           examples={EXAMPLES.slice(0, 5).map((item) => item.word)}
@@ -167,10 +167,11 @@ export default function InternationalTranslator() {
           setPlainA={setPlainA}
           morseA={morseA}
           morseB={morseB}
-          textB={textB}
+          textB=""
           setMorseB={setMorseB}
           plainValidationValue={transliterated}
           quietInputFocus
+          allowDecode={false}
         />
 
         <section className="mw-static-surface-soft relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8">
@@ -182,7 +183,7 @@ export default function InternationalTranslator() {
               </span>
             </div>
             <h2 className="mt-3 max-w-4xl text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl">
-              Translate English and International Words into Morse Code
+              Convert International Text into Morse Code
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg">
               Type English, accented Latin words, or common non-Latin scripts.
@@ -221,16 +222,18 @@ export default function InternationalTranslator() {
             <p className="mt-2 leading-relaxed">
               International Morse code encodes letters and symbols, not meaning.
               For non-Latin scripts, this page uses practical transliteration
-              before conversion. International translations and transliterations
-              may not be perfect, especially for names, regional pronunciation,
-              or languages with more than one romanization standard.
+              before conversion. This page does not reconstruct the original
+              accents or script from Morse. International translations and
+              transliterations may not be perfect, especially for names,
+              regional pronunciation, or languages with more than one
+              romanization standard.
             </p>
           </div>
         </section>
 
         <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd]} />
       </main>
-      <BreadcrumbTrail current="International Morse Code Translator" />
+      <BreadcrumbTrail current="International Text to Morse Code Converter" />
     </div>
   );
 }

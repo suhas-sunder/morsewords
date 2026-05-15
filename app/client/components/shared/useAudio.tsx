@@ -1,4 +1,5 @@
 import * as React from "react";
+import { areFlashEffectsDisabled } from "~/client/settings/displaySettings";
 
 export type SoundPreset =
   | "cw_radio"
@@ -115,6 +116,7 @@ export default function useAudio() {
   }
 
   function triggerFlash(ms: number) {
+    if (areFlashEffectsDisabled()) return;
     window.dispatchEvent(new CustomEvent("morsewords:flash", { detail: { ms } }));
   }
 
@@ -126,7 +128,7 @@ export default function useAudio() {
       hz: clamp(opts.hz, 200, 1200),
       volume: clamp(opts.volume, 0, 1),
       repeat: !!opts.repeat,
-      flash: !!opts.flash,
+      flash: !!opts.flash && !areFlashEffectsDisabled(),
       // vibrate is intentionally ignored
       vibrate: false,
       soundEnabled: opts.soundEnabled !== false,

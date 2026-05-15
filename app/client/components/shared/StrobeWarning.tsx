@@ -30,3 +30,24 @@ export default function StrobeWarning({
     </div>
   );
 }
+
+export function FlashEffectsDisabledNotice({
+  className = "",
+  id,
+}: {
+  className?: string;
+  id?: string;
+}) {
+  return (
+    <p
+      id={id}
+      className={
+        "mw-text-soft text-sm font-semibold leading-relaxed text-slate-600 " +
+        className
+      }
+    >
+      Flashing effects are disabled in display settings. Audio playback still
+      works.
+    </p>
+  );
+}

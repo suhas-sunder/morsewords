@@ -7,7 +7,10 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
-import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import StrobeWarning, {
+  FlashEffectsDisabledNotice,
+} from "~/client/components/shared/StrobeWarning";
+import { useDisplaySettings } from "~/client/settings/displaySettings";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
@@ -40,9 +43,11 @@ const EXAMPLES = ["SOS", "HELLO WORLD", "HELP ME", "I LOVE YOU", "TEST"];
 const DEFAULT_TEXT = "sos help";
 const DEFAULT_MORSE = "... --- ...";
 const STROBE_WARNING_ID = "mp3-generator-strobe-warning";
+const FLASH_DISABLED_NOTICE_ID = "mp3-generator-flash-disabled";
 
 export default function MorseMp3GeneratorTool() {
   const player = useMorseAudio();
+  const { disableFlashEffects } = useDisplaySettings();
   const sourceInputId = React.useId();
   const fileNameId = React.useId();
   const mp3KbpsId = React.useId();
@@ -104,9 +109,10 @@ export default function MorseMp3GeneratorTool() {
   const computedMorse = React.useMemo(() => textToMorse(text), [text]);
   const activeCode = sourceMode === "text" ? computedMorse : morse;
   const canRender = activeCode.trim().length > 0;
+  const effectiveFlash = !disableFlashEffects && flash;
   const renderedSoundOn = hydrated ? soundOn : true;
   const renderedRepeat = hydrated ? repeat : false;
-  const renderedFlash = hydrated ? flash : false;
+  const renderedFlash = hydrated ? effectiveFlash : false;
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -180,7 +186,7 @@ export default function MorseMp3GeneratorTool() {
       soundEnabled: soundOn,
       preset,
       repeat,
-      flash,
+      flash: effectiveFlash,
       attackMs: clampNum(attackMs, 0, 200),
       releaseMs: clampNum(releaseMs, 0, 400),
     }),
@@ -193,7 +199,7 @@ export default function MorseMp3GeneratorTool() {
       soundOn,
       preset,
       repeat,
-      flash,
+      effectiveFlash,
       attackMs,
       releaseMs,
     ],
@@ -218,6 +224,15 @@ export default function MorseMp3GeneratorTool() {
     };
     livePlayer.setLiveOptions?.(previewAudioOptions);
   }, [hydrated, player, previewAudioOptions]);
+
+  React.useEffect(() => {
+    if (!disableFlashEffects) return;
+    setFlash(false);
+    const livePlayer = player as typeof player & {
+      setLiveOptions?: (options: Partial<typeof previewAudioOptions>) => void;
+    };
+    livePlayer.setLiveOptions?.({ flash: false });
+  }, [disableFlashEffects, player, previewAudioOptions]);
 
   const handlePickExample = (exampleText: string) => {
     if (sourceMode === "text") {
@@ -289,11 +304,12 @@ export default function MorseMp3GeneratorTool() {
 
   const setFeedback = React.useCallback(
     (key: "sound" | "repeat" | "flash", nextValue: boolean) => {
+      if (key === "flash" && disableFlashEffects) return;
       if (key === "sound") setSoundOn(nextValue);
       if (key === "repeat") setRepeat(nextValue);
-      if (key === "flash") setFlash(nextValue);
+      if (key === "flash") setFlash(nextValue && !disableFlashEffects);
     },
-    [],
+    [disableFlashEffects],
   );
 
   return (
@@ -532,7 +548,14 @@ export default function MorseMp3GeneratorTool() {
             checked={renderedFlash}
             onChange={(value) => setFeedback("flash", value)}
             icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />}
-            describedBy={renderedFlash ? STROBE_WARNING_ID : undefined}
+            describedBy={
+              disableFlashEffects
+                ? FLASH_DISABLED_NOTICE_ID
+                : renderedFlash
+                  ? STROBE_WARNING_ID
+                  : undefined
+            }
+            disabled={disableFlashEffects}
           />
         </div>
       </div>
@@ -578,6 +601,15 @@ export default function MorseMp3GeneratorTool() {
           icon={<VolumeIcon size={16} title={undefined} aria-hidden="true" />}
         />
       </div>
+
+      {disableFlashEffects ? (
+        <FlashEffectsDisabledNotice
+          id={FLASH_DISABLED_NOTICE_ID}
+          className="mt-3"
+        />
+      ) : renderedFlash ? (
+        <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
+      ) : null}
 
       {advancedOpen ? (
         <div className="mt-4 pt-4">
@@ -625,9 +657,6 @@ export default function MorseMp3GeneratorTool() {
             </div>
           </div>
 
-          {renderedFlash ? (
-            <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
-          ) : null}
         </div>
       ) : null}
 
@@ -721,9 +750,11 @@ function TogglePill({
   icon,
   label,
   onChange,
+  disabled = false,
 }: {
   checked: boolean;
   describedBy?: string;
+  disabled?: boolean;
   icon?: React.ReactNode;
   label: string;
   onChange: (value: boolean) => void;
@@ -734,7 +765,10 @@ function TogglePill({
       active={checked}
       tone="light"
       hover="dark"
-      onClick={() => onChange(!checked)}
+      disabled={disabled}
+      onClick={() => {
+        if (!disabled) onChange(!checked);
+      }}
       className="min-h-10 rounded-full px-3 py-1.5 text-sm"
       aria-pressed={checked}
       aria-describedby={describedBy}

@@ -12,9 +12,12 @@ import {
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
-import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import StrobeWarning, {
+  FlashEffectsDisabledNotice,
+} from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
+import { useDisplaySettings } from "~/client/settings/displaySettings";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
@@ -28,6 +31,7 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = "/morse-code-visual-quiz";
 const STROBE_WARNING_ID = "visual-quiz-strobe-warning";
+const FLASH_DISABLED_NOTICE_ID = "visual-quiz-flash-disabled";
 const PROMPTS = [
   "sos",
   "cq",
@@ -94,21 +98,27 @@ function useFlash(pattern: string, wpm: number, farnsworthWpm: number) {
     };
   }, []);
 
-  function play() {
+  const stop = React.useCallback(() => {
     timers.current.forEach((timer) => window.clearTimeout(timer));
     timers.current = [];
+    setActive(false);
+  }, []);
+
+  const play = React.useCallback(() => {
+    stop();
     let cursor = 0;
     for (const event of morseVisualEvents(pattern, wpm, farnsworthWpm)) {
       timers.current.push(window.setTimeout(() => setActive(event.on), cursor));
       cursor += event.ms;
     }
     timers.current.push(window.setTimeout(() => setActive(false), cursor + 80));
-  }
+  }, [farnsworthWpm, pattern, stop, wpm]);
 
-  return { active, play };
+  return { active, play, stop };
 }
 
 export default function MorseCodeVisualQuiz() {
+  const { disableFlashEffects } = useDisplaySettings();
   const [index, setIndex] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
   const [checked, setChecked] = React.useState(false);
@@ -127,7 +137,7 @@ export default function MorseCodeVisualQuiz() {
 
   const prompt = PROMPTS[index % PROMPTS.length];
   const morse = textToMorse(prompt);
-  const { active, play } = useFlash(morse, wpm, farnsworthWpm);
+  const { active, play, stop } = useFlash(morse, wpm, farnsworthWpm);
   const isCorrect = answer.trim().toLowerCase() === prompt;
   const gameOver = completed >= TOTAL_QUESTIONS;
   const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
@@ -142,6 +152,12 @@ export default function MorseCodeVisualQuiz() {
       // ignore
     }
   }, [bestStreak]);
+
+  React.useEffect(() => {
+    if (!disableFlashEffects) return;
+    stop();
+    setHasFlashed(false);
+  }, [disableFlashEffects, stop]);
 
   function checkAnswer() {
     if (gameOver || solved) return;
@@ -187,6 +203,7 @@ export default function MorseCodeVisualQuiz() {
   }
 
   function flashPrompt() {
+    if (disableFlashEffects) return;
     setHasFlashed(true);
     play();
   }
@@ -343,7 +360,12 @@ export default function MorseCodeVisualQuiz() {
           ) : (
             <div className="grid gap-6 py-6 lg:grid-cols-[320px_minmax(0,1fr)]">
                 <div className="mw-static-panel flex flex-col items-center rounded-xl bg-[#fffdf8]/85 p-6">
-                {hasFlashed ? (
+                {disableFlashEffects ? (
+                  <FlashEffectsDisabledNotice
+                    id={FLASH_DISABLED_NOTICE_ID}
+                    className="mb-5 w-full"
+                  />
+                ) : hasFlashed ? (
                   <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
                 ) : null}
                 <div
@@ -357,11 +379,19 @@ export default function MorseCodeVisualQuiz() {
                 <button
                   type="button"
                   onClick={flashPrompt}
-                  aria-describedby={hasFlashed ? STROBE_WARNING_ID : undefined}
+                  disabled={disableFlashEffects}
+                  aria-describedby={
+                    disableFlashEffects
+                      ? FLASH_DISABLED_NOTICE_ID
+                      : hasFlashed
+                        ? STROBE_WARNING_ID
+                        : undefined
+                  }
                     className={`${toolControlButtonClass({
                       tone: "dark",
                       size: "lg",
                       full: true,
+                      disabled: disableFlashEffects,
                     })} mt-5`}
                 >
                   <LightBulbIcon size={20} title="Flash prompt" />

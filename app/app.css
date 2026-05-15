@@ -577,20 +577,50 @@ input[type="range"]:focus-visible {
   background: var(--mw-nav-text) !important;
 }
 
-.mw-theme-toggle {
+.mw-theme-toggle,
+.mw-nav-icon-button {
   background: color-mix(in srgb, var(--mw-nav-bg-muted) 58%, transparent) !important;
   color: var(--mw-nav-text) !important;
   transition: none !important;
 }
 
-.mw-theme-toggle:hover {
+.mw-theme-toggle:hover,
+.mw-nav-icon-button:hover {
   background: var(--mw-nav-bg-muted) !important;
   color: var(--mw-nav-muted) !important;
 }
 
-.mw-theme-toggle:focus-visible {
+.mw-theme-toggle:focus-visible,
+.mw-nav-icon-button:focus-visible,
+.mw-display-settings-switch:focus-visible {
   outline: 2px solid var(--mw-focus-ring) !important;
   outline-offset: 2px;
+}
+
+.mw-display-settings-panel {
+  background: var(--mw-nav-bg) !important;
+  color: var(--mw-nav-panel-text) !important;
+}
+
+.mw-display-settings-switch {
+  background: color-mix(in srgb, var(--mw-nav-bg-muted) 48%, transparent) !important;
+  color: var(--mw-nav-panel-text) !important;
+}
+
+.mw-display-settings-switch:hover {
+  background: var(--mw-nav-bg-muted) !important;
+}
+
+.mw-display-settings-track {
+  background: color-mix(in srgb, var(--mw-nav-panel-text) 28%, transparent) !important;
+}
+
+.mw-display-settings-switch[aria-checked="true"] .mw-display-settings-track {
+  background: var(--mw-nav-muted) !important;
+}
+
+.mw-display-settings-thumb {
+  background: var(--mw-nav-bg) !important;
 }
 
 .mw-footer-shell {
@@ -638,6 +668,10 @@ input[type="range"]:focus-visible {
 
 .mw-ambient-accent-strong {
   color: var(--mw-ambient-accent-strong) !important;
+}
+
+:root[data-ambient-morse="hidden"] .mw-ambient-morse {
+  display: none !important;
 }
 
 .mw-tool-section,

@@ -50,7 +50,7 @@ export default function MorseAmbientBackground() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden min-[1360px]:block"
+      className="mw-ambient-morse pointer-events-none absolute inset-0 z-0 hidden overflow-hidden min-[1360px]:block"
     >
       <div
         className="absolute inset-y-0 left-0 overflow-hidden"

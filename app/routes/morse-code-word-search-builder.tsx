@@ -680,7 +680,10 @@ function printHtml(html: string) {
  iframeDocument.write(html);
  iframeDocument.close();
 
+ let didPrint = false;
  const printFrame = () => {
+ if (didPrint) return;
+ didPrint = true;
  iframe.contentWindow?.focus();
  iframe.contentWindow?.print();
  window.setTimeout(() => iframe.remove(), 1000);

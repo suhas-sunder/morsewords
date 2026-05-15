@@ -4,7 +4,10 @@ import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
-import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import StrobeWarning, {
+  FlashEffectsDisabledNotice,
+} from "~/client/components/shared/StrobeWarning";
+import { useDisplaySettings } from "~/client/settings/displaySettings";
 import {
   HOME_TOOL_EXAMPLES,
   TOOL_SPACING_HELPER,
@@ -43,6 +46,7 @@ import {
 
 type SourceMode = "text" | "morse";
 const STROBE_WARNING_ID = "audio-translator-strobe-warning";
+const FLASH_DISABLED_NOTICE_ID = "audio-translator-flash-disabled";
 const AUDIO_TOOL_EXAMPLES = HOME_TOOL_EXAMPLES.filter(
   (example) => example !== "I love Morse code",
 );
@@ -62,6 +66,7 @@ export default function MorseAudioTranslator({
   enableQueryPrefill?: boolean;
 }) {
   const player = useMorseAudio();
+  const { disableFlashEffects } = useDisplaySettings();
   const queryPrefillApplied = React.useRef(false);
 
   const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
@@ -94,6 +99,7 @@ export default function MorseAudioTranslator({
   const [tailMs, setTailMs] = React.useState<number>(120);
 
   const [hydrated, setHydrated] = React.useState(false);
+  const effectiveFlash = !disableFlashEffects && flash;
 
   React.useEffect(() => {
     setSourceMode((readStr("mw_audio_source", "text") as SourceMode) || "text");
@@ -153,7 +159,7 @@ export default function MorseAudioTranslator({
       soundEnabled: soundOn,
       preset,
       repeat,
-      flash,
+      flash: effectiveFlash,
       attackMs,
       releaseMs,
     });
@@ -167,10 +173,17 @@ export default function MorseAudioTranslator({
     soundOn,
     preset,
     repeat,
-    flash,
+    effectiveFlash,
     attackMs,
     releaseMs,
   ]);
+
+  React.useEffect(() => {
+    if (!disableFlashEffects) return;
+    setFlash(false);
+    const anyPlayer: any = player as any;
+    anyPlayer.setLiveOptions?.({ flash: false });
+  }, [disableFlashEffects, player]);
 
   // Persist settings as they change
   React.useEffect(() => {
@@ -221,7 +234,7 @@ export default function MorseAudioTranslator({
 
   // Flash overlay (listens to morsewords:flash)
   React.useEffect(() => {
-    if (!flash) return;
+    if (!effectiveFlash) return;
 
     const handler = (ev: Event) => {
       const detail = (ev as CustomEvent).detail as { ms?: number } | undefined;
@@ -242,7 +255,7 @@ export default function MorseAudioTranslator({
 
     window.addEventListener("morsewords:flash", handler as any);
     return () => window.removeEventListener("morsewords:flash", handler as any);
-  }, [flash]);
+  }, [effectiveFlash]);
 
   const canPlay = !!activeCode.trim();
   const durationMs = React.useMemo(() => {
@@ -256,7 +269,7 @@ export default function MorseAudioTranslator({
 
   const renderedSoundOn = hydrated ? soundOn : true;
   const renderedRepeat = hydrated ? repeat : false;
-  const renderedFlash = hydrated ? flash : false;
+  const renderedFlash = hydrated ? effectiveFlash : false;
 
   const unsupportedPlain = React.useMemo(
     () => getUnsupportedTextCharacters(text),
@@ -279,20 +292,25 @@ export default function MorseAudioTranslator({
 
   const setFeedback = React.useCallback(
     (key: "sound" | "repeat" | "flash", next: boolean) => {
-      const current = { sound: soundOn, repeat, flash };
-      const updated = { ...current, [key]: next };
+      if (key === "flash" && disableFlashEffects) return;
+
+      const current = { sound: soundOn, repeat, flash: effectiveFlash };
+      const updated = { ...current, [key]: key === "flash" ? next && !disableFlashEffects : next };
 
       if (key === "sound") setSoundOn(next);
       if (key === "repeat") setRepeat(next);
-      if (key === "flash") setFlash(next);
+      if (key === "flash") setFlash(next && !disableFlashEffects);
 
       // If sound is turned off while playing, mute instantly via live options
       const anyPlayer: any = player as any;
       if (anyPlayer.setLiveOptions) {
-        anyPlayer.setLiveOptions({ soundEnabled: updated.sound });
+        anyPlayer.setLiveOptions({
+          soundEnabled: updated.sound,
+          flash: updated.flash,
+        });
       }
     },
-    [soundOn, repeat, flash, player],
+    [soundOn, repeat, effectiveFlash, disableFlashEffects, player],
   );
 
   const handleCopyMorse = async () => {
@@ -322,7 +340,7 @@ export default function MorseAudioTranslator({
       soundEnabled: soundOn,
       preset,
       repeat,
-      flash,
+      flash: effectiveFlash,
       attackMs,
       releaseMs,
     });
@@ -619,7 +637,14 @@ export default function MorseAudioTranslator({
                     checked={renderedFlash}
                     onChange={(v) => setFeedback("flash", v)}
                     icon={<LightBulbIcon size={16} title="Flash" />}
-                    describedBy={renderedFlash ? STROBE_WARNING_ID : undefined}
+                    describedBy={
+                      disableFlashEffects
+                        ? FLASH_DISABLED_NOTICE_ID
+                        : renderedFlash
+                          ? STROBE_WARNING_ID
+                          : undefined
+                    }
+                    disabled={disableFlashEffects}
                   />
                 </div>
               </div>
@@ -665,6 +690,15 @@ export default function MorseAudioTranslator({
                 />
               </div>
 
+              {disableFlashEffects ? (
+                <FlashEffectsDisabledNotice
+                  id={FLASH_DISABLED_NOTICE_ID}
+                  className="mt-3"
+                />
+              ) : renderedFlash ? (
+                <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
+              ) : null}
+
               {advancedOpen && (
                 <div className="mt-4 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -707,9 +741,6 @@ export default function MorseAudioTranslator({
                     </div>
                   </div>
 
-                  {renderedFlash ? (
-                    <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
-                  ) : null}
                 </div>
               )}
 
@@ -807,19 +838,26 @@ function TogglePill({
   onChange,
   icon,
   describedBy,
+  disabled = false,
 }: {
   label: string;
   checked: boolean;
   onChange: (v: boolean) => void;
   icon?: React.ReactNode;
   describedBy?: string;
+  disabled?: boolean;
 }) {
   return (
     <button
       type="button"
-      onClick={() => onChange(!checked)}
-      className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold cursor-pointer active:scale-95 transition focus:outline-none ${
-        checked
+      onClick={() => {
+        if (!disabled) onChange(!checked);
+      }}
+      disabled={disabled}
+      className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold ${disabled ? "cursor-not-allowed bg-[#fffaf2] text-slate-400" : "cursor-pointer"} active:scale-95 transition focus:outline-none ${
+        disabled
+          ? ""
+          : checked
           ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
           : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
       }`}

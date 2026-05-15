@@ -7,7 +7,10 @@ import {
 } from "~/client/components/shared/morseUtils";
 import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
 import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
-import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import StrobeWarning, {
+  FlashEffectsDisabledNotice,
+} from "~/client/components/shared/StrobeWarning";
+import { useDisplaySettings } from "~/client/settings/displaySettings";
 import {
   ActionButton,
   ActionRow,
@@ -45,9 +48,11 @@ interface Props {
   quietInputFocus?: boolean;
   enableQueryPrefill?: boolean;
   preferredDirection?: "encode" | "decode";
+  allowDecode?: boolean;
 }
 
 const STROBE_WARNING_ID = "translator-strobe-warning";
+const FLASH_DISABLED_NOTICE_ID = "translator-flash-disabled";
 const HOME_SOFT_CONTROL =
   "mw-button-home-soft bg-white/85 text-slate-800 hover:bg-slate-900 hover:text-sky-100";
 const HOME_SOFT_CONTROL_DARK =
@@ -83,14 +88,16 @@ export default function TranslatorSectionsBasic({
   quietInputFocus = false,
   enableQueryPrefill = false,
   preferredDirection = "encode",
+  allowDecode = true,
 }: Props) {
   const [copied, setCopied] = useState<string | null>(null);
   const [direction, setDirection] = useState<"encode" | "decode">(
-    preferredDirection,
+    preferredDirection === "decode" && !allowDecode ? "encode" : preferredDirection,
   );
   const queryPrefillApplied = React.useRef(false);
 
   const player = useAudio();
+  const { disableFlashEffects } = useDisplaySettings();
 
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -137,10 +144,11 @@ export default function TranslatorSectionsBasic({
     }
 
     if (morseParam) {
+      if (!allowDecode) return;
       setDirection("decode");
       setMorseB(morseParam);
     }
-  }, [enableQueryPrefill, setMorseB, setPlainA]);
+  }, [allowDecode, enableQueryPrefill, setMorseB, setPlainA]);
 
   useEffect(() => {
     if (!isHydrated) return;
@@ -186,10 +194,18 @@ export default function TranslatorSectionsBasic({
   }, []);
 
   const [flashOn, setFlashOn] = useState(false);
+  const effectiveFlash = !disableFlashEffects && flash;
+
+  useEffect(() => {
+    if (!disableFlashEffects) return;
+    setFlash(false);
+    setFlashOn(false);
+    (player as any)?.setLiveOptions?.({ flash: false });
+  }, [disableFlashEffects, player]);
 
   useEffect(() => {
     const handler = (e: Event) => {
-      if (!flash) return;
+      if (!effectiveFlash) return;
       const ms = (e as CustomEvent).detail?.ms ?? 80;
       setFlashOn(true);
       window.setTimeout(() => setFlashOn(false), Math.max(30, ms));
@@ -197,7 +213,7 @@ export default function TranslatorSectionsBasic({
 
     window.addEventListener("morsewords:flash", handler as any);
     return () => window.removeEventListener("morsewords:flash", handler as any);
-  }, [flash]);
+  }, [effectiveFlash]);
 
   const liveInputId = direction === "encode" ? "plainA" : "morseB";
   const inputLabel = direction === "encode" ? "Input (Text)" : "Input (Morse)";
@@ -270,7 +286,7 @@ export default function TranslatorSectionsBasic({
       soundEnabled: soundOn,
       preset,
       repeat,
-      flash,
+      flash: effectiveFlash,
     });
   };
 
@@ -284,7 +300,7 @@ export default function TranslatorSectionsBasic({
       soundEnabled: soundOn,
       preset,
       repeat,
-      flash,
+      flash: effectiveFlash,
       vibrate: false,
     });
   }, [
@@ -296,7 +312,7 @@ export default function TranslatorSectionsBasic({
     soundOn,
     preset,
     repeat,
-    flash,
+    effectiveFlash,
     player,
   ]);
 
@@ -446,7 +462,7 @@ export default function TranslatorSectionsBasic({
                   <button
                     type="button"
                     onClick={() => setDirection("encode")}
-                    className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition active:scale-95 sm:w-auto ${focusOutline} ${
+                    className={`${allowDecode ? "w-1/2" : "w-full"} cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition active:scale-95 sm:w-auto ${focusOutline} ${
                       direction === "encode"
                         ? ACTIVE_CONTROL
                         : isHome
@@ -460,7 +476,11 @@ export default function TranslatorSectionsBasic({
 
                   <button
                     type="button"
-                    onClick={() => setDirection("decode")}
+                    onClick={() => {
+                      if (allowDecode) setDirection("decode");
+                    }}
+                    hidden={!allowDecode}
+                    disabled={!allowDecode}
                     className={`w-1/2 cursor-pointer rounded-md px-3 py-2 text-sm font-semibold transition active:scale-95 sm:w-auto ${focusOutline} ${
                       direction === "decode"
                         ? ACTIVE_CONTROL
@@ -779,10 +799,17 @@ export default function TranslatorSectionsBasic({
 
                     <TogglePill
                       label="Flash Light"
-                      checked={flash}
+                      checked={effectiveFlash}
                       onChange={setFlash}
                       icon={<LightBulbIcon size={16} title="Light" />}
-                      describedBy={flash ? STROBE_WARNING_ID : undefined}
+                      describedBy={
+                        disableFlashEffects
+                          ? FLASH_DISABLED_NOTICE_ID
+                          : effectiveFlash
+                            ? STROBE_WARNING_ID
+                            : undefined
+                      }
+                      disabled={disableFlashEffects}
                       isHome={isHome}
                     />
                   </div>
@@ -823,7 +850,11 @@ export default function TranslatorSectionsBasic({
                   />
                 </div>
 
-                {flash ? <StrobeWarning id={STROBE_WARNING_ID} /> : null}
+                {disableFlashEffects ? (
+                  <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} />
+                ) : effectiveFlash ? (
+                  <StrobeWarning id={STROBE_WARNING_ID} />
+                ) : null}
 
                 <button
                   type="button"
@@ -909,6 +940,7 @@ function TogglePill({
   onChange,
   icon,
   describedBy,
+  disabled = false,
   isHome = false,
 }: {
   label: string;
@@ -916,16 +948,22 @@ function TogglePill({
   onChange: (v: boolean) => void;
   icon?: React.ReactNode;
   describedBy?: string;
+  disabled?: boolean;
   isHome?: boolean;
 }) {
   return (
     <button
       type="button"
-      onClick={() => onChange(!checked)}
-      className={`mw-focus-ring flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
+      onClick={() => {
+        if (!disabled) onChange(!checked);
+      }}
+      disabled={disabled}
+      className={`mw-focus-ring flex ${disabled ? "cursor-not-allowed" : "cursor-pointer"} items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
         isHome ? "" : "min-h-10 sm:min-h-0"
       } ${
-        checked
+        disabled
+          ? DISABLED_CONTROL
+          : checked
           ? `${ACTIVE_CONTROL} mw-button-primary-global-hover hover:bg-slate-900 hover:text-white`
           : isHome
             ? HOME_SOFT_CONTROL

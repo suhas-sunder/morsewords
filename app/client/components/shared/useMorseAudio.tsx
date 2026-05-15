@@ -1,4 +1,5 @@
 import * as React from "react";
+import { areFlashEffectsDisabled } from "~/client/settings/displaySettings";
 
 export type SoundPreset =
   | "cw_radio"
@@ -188,7 +189,7 @@ export default function useMorseAudio() {
       hz: clamp(opts.hz, 200, 1600),
       volume: clamp(opts.volume, 0, 1),
       repeat: !!opts.repeat,
-      flash: !!opts.flash,
+      flash: !!opts.flash && !areFlashEffectsDisabled(),
       vibrate: false,
       soundEnabled: opts.soundEnabled !== false,
       attackMs: clamp(opts.attackMs ?? defaultAttackMs(safePreset), 0, 200),
@@ -207,6 +208,7 @@ export default function useMorseAudio() {
   }
 
   function triggerFlash(ms: number) {
+    if (areFlashEffectsDisabled()) return;
     window.dispatchEvent(
       new CustomEvent("morsewords:flash", { detail: { ms } }),
     );

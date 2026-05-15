@@ -4,7 +4,10 @@ import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
-import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import StrobeWarning, {
+  FlashEffectsDisabledNotice,
+} from "~/client/components/shared/StrobeWarning";
+import { useDisplaySettings } from "~/client/settings/displaySettings";
 import {
   HOME_TOOL_EXAMPLES,
   TOOL_SPACING_HELPER,
@@ -38,6 +41,7 @@ import {
 type SourceMode = "text" | "morse";
 type PageIntent = "audio" | "sound";
 const STROBE_WARNING_ID = "sound-generator-strobe-warning";
+const FLASH_DISABLED_NOTICE_ID = "sound-generator-flash-disabled";
 
 type MorseAudioTranslatorProps = {
   heading?: string;
@@ -82,6 +86,7 @@ export default function MorseAudioTranslator({
   introEyebrow = "Audio tool",
 }: MorseAudioTranslatorProps = {}) {
   const player = useMorseAudio();
+  const { disableFlashEffects } = useDisplaySettings();
   const storageKey = React.useCallback(
     (suffix: string) => `${storagePrefix}_${suffix}`,
     [storagePrefix],
@@ -123,6 +128,7 @@ export default function MorseAudioTranslator({
   const [mp3Kbps, setMp3Kbps] = React.useState<number>(128);
   const [exportStatus, setExportStatus] = React.useState<null | { kind: "ok" | "error" | "working"; message: string }>(null);
   const [hydrated, setHydrated] = React.useState(false);
+  const effectiveFlash = !disableFlashEffects && flash;
 
   React.useEffect(() => {
     setSourceMode((readStr(storageKey("source"), "text") as SourceMode) || "text");
@@ -160,11 +166,18 @@ export default function MorseAudioTranslator({
       soundEnabled: soundOn,
       preset,
       repeat,
-      flash,
+      flash: effectiveFlash,
       attackMs,
       releaseMs,
     });
-  }, [hydrated, player, charWpm, farnsworthWpm, toneHz, volume, soundOn, preset, repeat, flash, attackMs, releaseMs]);
+  }, [hydrated, player, charWpm, farnsworthWpm, toneHz, volume, soundOn, preset, repeat, effectiveFlash, attackMs, releaseMs]);
+
+  React.useEffect(() => {
+    if (!disableFlashEffects) return;
+    setFlash(false);
+    const anyPlayer: any = player as any;
+    anyPlayer.setLiveOptions?.({ flash: false });
+  }, [disableFlashEffects, player]);
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -190,7 +203,7 @@ export default function MorseAudioTranslator({
   }, [hydrated, sourceMode, text, morse, charWpm, farnsworthWpm, toneHz, volume, preset, attackMs, releaseMs, repeat, soundOn, flash, advancedOpen, exportOpen, fileName, sampleRate, tailMs, mp3Kbps, storageKey]);
 
   React.useEffect(() => {
-    if (!flash) return;
+    if (!effectiveFlash) return;
     const handler = (ev: Event) => {
       const detail = (ev as CustomEvent).detail as { ms?: number } | undefined;
       const ms = detail?.ms ?? 0;
@@ -206,7 +219,7 @@ export default function MorseAudioTranslator({
     };
     window.addEventListener("morsewords:flash", handler as any);
     return () => window.removeEventListener("morsewords:flash", handler as any);
-  }, [flash]);
+  }, [effectiveFlash]);
 
   const canPlay = !!activeCode.trim();
   const durationMs = React.useMemo(() => {
@@ -258,7 +271,7 @@ export default function MorseAudioTranslator({
       soundEnabled: soundOn,
       preset,
       repeat,
-      flash,
+      flash: effectiveFlash,
       attackMs,
       releaseMs,
     });
@@ -317,15 +330,16 @@ export default function MorseAudioTranslator({
 
   const updateFeedbackToggle = React.useCallback(
     (key: "sound" | "repeat" | "flash", next: boolean) => {
-      const current = { sound: soundOn, repeat, flash };
-      const updated = { ...current, [key]: next };
+      if (key === "flash" && disableFlashEffects) return;
+      const current = { sound: soundOn, repeat, flash: effectiveFlash };
+      const updated = { ...current, [key]: key === "flash" ? next && !disableFlashEffects : next };
       if (key === "sound") setSoundOn(next);
       if (key === "repeat") setRepeat(next);
-      if (key === "flash") setFlash(next);
+      if (key === "flash") setFlash(next && !disableFlashEffects);
       const anyPlayer: any = player as any;
-      anyPlayer.setLiveOptions?.({ soundEnabled: updated.sound });
+      anyPlayer.setLiveOptions?.({ soundEnabled: updated.sound, flash: updated.flash });
     },
-    [soundOn, repeat, flash, player],
+    [soundOn, repeat, effectiveFlash, disableFlashEffects, player],
   );
 
   const heroStats = [
@@ -337,7 +351,7 @@ export default function MorseAudioTranslator({
 
   return (
     <div style={styles.page}>
-      {flash && <div id="mw_flash_overlay" className="mw-strobe-flash fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75" />}
+      {effectiveFlash && <div id="mw_flash_overlay" className="mw-strobe-flash fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75" />}
 
       <section className="mw-tool-section mt-0">
             <div>
@@ -507,15 +521,15 @@ export default function MorseAudioTranslator({
                   <div className="mt-4 flex flex-wrap gap-2">
                     <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} />
                     <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} />
-                    <TogglePill label="Flash" checked={flash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={flash ? STROBE_WARNING_ID : undefined} />
+                    <TogglePill label="Flash" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : effectiveFlash ? STROBE_WARNING_ID : undefined} disabled={disableFlashEffects} />
                   </div>
 
-                  {flash ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}
+                  {disableFlashEffects ? <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-3" /> : effectiveFlash ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}
                 </div>
               ) : null}
 
               <div className="mt-4">
-                  <button onClick={() => setAdvancedOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95">
+                  <button type="button" onClick={() => setAdvancedOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95">
                   {advancedOpen ? "Hide advanced" : "Show advanced"}
                 </button>
               </div>
@@ -578,7 +592,7 @@ export default function MorseAudioTranslator({
               ) : null}
 
               <div className="mt-4">
-                  <button onClick={() => setExportOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95">
+                  <button type="button" onClick={() => setExportOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95">
                   {exportOpen ? "Hide export" : "Show export"}
                 </button>
               </div>
@@ -623,9 +637,9 @@ function ExportButton({ label, onClick, disabled }: { label: string; onClick: ()
   );
 }
 
-function TogglePill({ label, checked, onChange, icon, describedBy }: { label: string; checked: boolean; onChange: (v: boolean) => void; icon?: React.ReactNode; describedBy?: string }) {
+function TogglePill({ label, checked, onChange, icon, describedBy, disabled = false }: { label: string; checked: boolean; onChange: (v: boolean) => void; icon?: React.ReactNode; describedBy?: string; disabled?: boolean }) {
   return (
-    <button type="button" onClick={() => onChange(!checked)} className={`flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition focus:outline-none active:scale-95 ${checked ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`} aria-pressed={checked} aria-describedby={describedBy}>
+    <button type="button" onClick={() => { if (!disabled) onChange(!checked); }} disabled={disabled} className={`flex ${disabled ? "cursor-not-allowed bg-[#fffaf2] text-slate-400" : "cursor-pointer"} items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition focus:outline-none active:scale-95 ${disabled ? "" : checked ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`} aria-pressed={checked} aria-describedby={describedBy}>
       {icon}
       <span>{label}</span>
     </button>

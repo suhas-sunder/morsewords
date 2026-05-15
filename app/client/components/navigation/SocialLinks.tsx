@@ -1,3 +1,4 @@
+import type * as React from "react";
 import insta_png from "../../assets/images/instagram_icon.png";
 import insta_webp from "../../assets/images/instagram_icon.webp";
 import twitter_png from "../../assets/images/twitter_icon.png";
@@ -20,14 +21,17 @@ import dev_png from "../../assets/images/dev_icon.png";
 import dev_webp from "../../assets/images/dev_icon.webp";
 import github_png from "../../assets/images/github_icon.png";
 import github_webp from "../../assets/images/github_icon.webp";
+import { PortfolioIcon } from "../../assets/svg/Icons";
 
 type SocialLink = {
  id: number;
  name: string;
  label: string;
  url: string;
- pngImg: string;
- webpImg: string;
+ pngImg?: string;
+ webpImg?: string;
+ Icon?: React.ElementType<{ size?: number | string; title?: string }>;
+ ariaLabel?: string;
 };
 
 function SocialLinks() {
@@ -59,10 +63,11 @@ function SocialLinks() {
  {
  id: 4,
  name:"LinkedIn",
- label:"Company page",
- url:"https://www.linkedin.com/company/104154929/",
+ label:"Profile",
+ url:"https://www.linkedin.com/in/s-sunder/",
  pngImg: linkedin_png,
  webpImg: linkedin_webp,
+ ariaLabel: "Open Suhas Sunder on LinkedIn",
  },
  {
  id: 5,
@@ -120,6 +125,14 @@ function SocialLinks() {
  pngImg: insta_png,
  webpImg: insta_webp,
  },
+ {
+ id: 12,
+ name:"Suhas Sunder",
+ label:"Developer portfolio",
+ url:"https://www.suhassunder.com",
+ Icon: PortfolioIcon,
+ ariaLabel: "Open Suhas Sunder developer portfolio",
+ },
  ];
 
  return (
@@ -140,15 +153,9 @@ function SocialLinks() {
  <li key={link.id}>
  <a
  className="mw-social-card group flex h-full cursor-pointer items-center gap-4 rounded-xl bg-white p-4 text-slate-900 transition hover:bg-slate-50" href={link.url}
- target="_blank" rel="noopener noreferrer nofollow" aria-label={`Open MorseWords on ${link.name}`}
+ target="_blank" rel="noopener noreferrer nofollow" aria-label={link.ariaLabel ?? `Open MorseWords on ${link.name}`}
  >
- <picture className="mw-social-icon-surface flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-50 transition group-hover:bg-white">
- <source srcSet={link.webpImg} type="image/webp"/>
- <source srcSet={link.pngImg} type="image/png"/>
- <img
- src={link.pngImg}
- alt="" className="block h-7 w-7 transition group-hover:scale-105" width="28" height="28" loading="lazy" decoding="async"/>
- </picture>
+ <SocialIcon link={link} />
 
  <span className="min-w-0">
  <span className="mw-heading block text-base font-extrabold leading-tight text-sky-950">
@@ -170,6 +177,31 @@ function SocialLinks() {
  </div>
  </div>
  </section>
+ );
+}
+
+function SocialIcon({ link }: { link: SocialLink }) {
+ if (link.Icon) {
+ const Icon = link.Icon;
+ return (
+ <span className="mw-social-icon-surface flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-50 transition group-hover:bg-white">
+ <Icon size={30} title={undefined} />
+ </span>
+ );
+ }
+
+ const pngImg = link.pngImg;
+ const webpImg = link.webpImg;
+ if (!pngImg || !webpImg) return null;
+
+ return (
+ <picture className="mw-social-icon-surface flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-50 transition group-hover:bg-white">
+ <source srcSet={webpImg} type="image/webp"/>
+ <source srcSet={pngImg} type="image/png"/>
+ <img
+ src={pngImg}
+ alt="" className="block h-7 w-7 transition group-hover:scale-105" width="28" height="28" loading="lazy" decoding="async"/>
+ </picture>
  );
 }
 

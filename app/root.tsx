@@ -56,8 +56,14 @@ const THEME_INIT_SCRIPT = `
   try {
     var theme = window.localStorage.getItem("morsewords-theme");
     document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+    var showAmbientMorse = window.localStorage.getItem("morsewords-show-ambient-morse");
+    document.documentElement.dataset.ambientMorse = showAmbientMorse === "0" || showAmbientMorse === "false" ? "hidden" : "visible";
+    var disableFlashEffects = window.localStorage.getItem("morsewords-disable-flash-effects");
+    document.documentElement.dataset.flashEffects = disableFlashEffects === "1" || disableFlashEffects === "true" ? "disabled" : "enabled";
   } catch (error) {
     document.documentElement.dataset.theme = "light";
+    document.documentElement.dataset.ambientMorse = "visible";
+    document.documentElement.dataset.flashEffects = "enabled";
   }
 })();
 `;

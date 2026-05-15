@@ -126,6 +126,16 @@ export default function Socials() {
 
           <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <ExternalCard
+              to="https://www.suhassunder.com"
+              title="Suhas Sunder"
+              subtitle="Developer portfolio for the MorseWords maintainer."
+            />
+            <ExternalCard
+              to="https://www.linkedin.com/in/s-sunder/"
+              title="LinkedIn"
+              subtitle="Maintainer profile and professional updates."
+            />
+            <ExternalCard
               to="https://www.financequizzes.com"
               title="FinanceQuizzes.com"
               subtitle="Short, focused finance quizzes designed to test real-world money concepts quickly."

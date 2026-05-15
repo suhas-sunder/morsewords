@@ -17,7 +17,7 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 const CANONICAL_PATH = "/about";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 const CREATOR_URL = "https://www.suhassunder.com";
-const CREATOR_LINKEDIN = "https://www.linkedin.com/in/s-sunder";
+const CREATOR_LINKEDIN = "https://www.linkedin.com/in/s-sunder/";
 
 const aboutFaqItems: FaqItem[] = [
   {

@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useLocation } from "react-router";
 
 import logoUrl from "~/client/assets/images/logo.png";
+import DisplaySettingsToggle from "./DisplaySettingsToggle";
 import ThemeToggle from "./ThemeToggle";
 
 type NavItem = {
@@ -192,7 +193,7 @@ const MORE_GROUPS: NavGroup[] = [
       {
         label: "International translator",
         href: "/morse-code-international-translator",
-        description: "Translate with International Morse context.",
+        description: "Convert international text to Morse with transliteration.",
       },
       {
         label: "Word search builder",
@@ -584,6 +585,7 @@ export default function NavBar(props: { pathname?: string }) {
               ) : null}
             </div>
 
+            <DisplaySettingsToggle onOpen={() => setMoreOpen(false)} />
             <ThemeToggle />
           </nav>
 
@@ -621,7 +623,7 @@ export default function NavBar(props: { pathname?: string }) {
                     loading="eager"
                   />
 
-                  <div className="leading-tight">
+                  <div className="hidden leading-tight">
                     <div className="text-xl font-extrabold">MorseWords</div>
                     <div className="mw-nav-muted text-sm text-sky-200">
                       Translate, listen, and practice Morse code
@@ -630,6 +632,10 @@ export default function NavBar(props: { pathname?: string }) {
                 </a>
 
                 <div className="flex items-center gap-2">
+                  <DisplaySettingsToggle
+                    className="h-12 w-12"
+                    onOpen={() => setMoreOpen(false)}
+                  />
                   <ThemeToggle className="h-12 w-12" />
                   <button
                     type="button"

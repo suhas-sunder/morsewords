@@ -928,6 +928,35 @@ export const KeyboardIcon = React.memo(function KeyboardIcon(
   );
 });
 
+export const PortfolioIcon = React.memo(function PortfolioIcon(
+  props: SvgIconProps,
+) {
+  return (
+    <SvgIconBase title="Developer portfolio" {...props} fill="none">
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="5"
+        fill="var(--mw-nav-bg)"
+      />
+      <text
+        x="12"
+        y="12.5"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontFamily="Space Grotesk, system-ui, sans-serif"
+        fontSize="12"
+        fontWeight="800"
+        fill="var(--mw-accent)"
+      >
+        S
+      </text>
+    </SvgIconBase>
+  );
+});
+
 /** Optional convenience map */
 export const Icons = {
   BrushIcon,
@@ -1023,4 +1052,5 @@ export const Icons = {
   ThemeSunIcon,
   SchoolIcon,
   KeyboardIcon,
+  PortfolioIcon,
 } as const;

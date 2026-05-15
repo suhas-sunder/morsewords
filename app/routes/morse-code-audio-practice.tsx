@@ -10,9 +10,12 @@ import {
   PageHero,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
-import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import StrobeWarning, {
+  FlashEffectsDisabledNotice,
+} from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
+import { useDisplaySettings } from "~/client/settings/displaySettings";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
@@ -43,6 +46,7 @@ import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
 const CANONICAL_PATH = "/morse-code-audio-practice";
 const STROBE_WARNING_ID = "audio-practice-strobe-warning";
+const FLASH_DISABLED_NOTICE_ID = "audio-practice-flash-disabled";
 const DIFFICULTY_STORAGE_KEY = "mw_audio_practice_difficulty";
 const BEST_STREAK_STORAGE_KEY = "mw_audio_practice_best_streak";
 const DEFAULT_AUDIO_DIFFICULTY: AudioDifficulty = "easy";
@@ -87,6 +91,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioPractice() {
   const player = useMorseAudio();
+  const { disableFlashEffects } = useDisplaySettings();
   const didSyncInitialDifficulty = React.useRef(false);
   const [hydrated, setHydrated] = React.useState(false);
   const [difficulty, setDifficulty] =
@@ -117,6 +122,7 @@ export default function MorseCodeAudioPractice() {
   const [soundOn, setSoundOn] = React.useState(true);
   const [flash, setFlash] = React.useState(false);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
+  const effectiveFlash = !disableFlashEffects && flash;
 
   const morse = React.useMemo(() => textToMorse(prompt.text), [prompt.text]);
   const normalizedAnswer = normalizeAudioAnswer(answer);
@@ -182,7 +188,7 @@ export default function MorseCodeAudioPractice() {
       soundEnabled: soundOn,
       preset,
       repeat,
-      flash,
+      flash: effectiveFlash,
       attackMs,
       releaseMs,
     });
@@ -196,13 +202,22 @@ export default function MorseCodeAudioPractice() {
     soundOn,
     preset,
     repeat,
-    flash,
+    effectiveFlash,
     attackMs,
     releaseMs,
   ]);
 
   React.useEffect(() => {
-    if (!flash) return;
+    if (!disableFlashEffects) return;
+    setFlash(false);
+    const anyPlayer = player as typeof player & {
+      setLiveOptions?: (options: unknown) => void;
+    };
+    anyPlayer.setLiveOptions?.({ flash: false });
+  }, [disableFlashEffects, player]);
+
+  React.useEffect(() => {
+    if (!effectiveFlash) return;
     const handler = (ev: Event) => {
       const detail = (ev as CustomEvent).detail as { ms?: number } | undefined;
       const ms = detail?.ms ?? 0;
@@ -218,7 +233,7 @@ export default function MorseCodeAudioPractice() {
     window.addEventListener("morsewords:flash", handler as EventListener);
     return () =>
       window.removeEventListener("morsewords:flash", handler as EventListener);
-  }, [flash]);
+  }, [effectiveFlash]);
 
   async function playPrompt() {
     await player.play({
@@ -230,7 +245,7 @@ export default function MorseCodeAudioPractice() {
       soundEnabled: soundOn,
       preset,
       repeat,
-      flash,
+      flash: effectiveFlash,
       attackMs,
       releaseMs,
     });
@@ -320,7 +335,7 @@ export default function MorseCodeAudioPractice() {
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
-      {flash ? (
+      {effectiveFlash ? (
         <div
           id="mw_audio_practice_flash"
           className="mw-strobe-flash pointer-events-none fixed inset-0 z-50 bg-white opacity-0 transition-opacity duration-75"
@@ -591,14 +606,28 @@ export default function MorseCodeAudioPractice() {
                     />
                     <TogglePill
                       label="Flash"
-                      checked={flash}
+                      checked={effectiveFlash}
                       onChange={setFlash}
                       icon={<LightBulbIcon size={16} title="Flash" />}
-                      describedBy={flash ? STROBE_WARNING_ID : undefined}
+                      describedBy={
+                        disableFlashEffects
+                          ? FLASH_DISABLED_NOTICE_ID
+                          : effectiveFlash
+                            ? STROBE_WARNING_ID
+                            : undefined
+                      }
+                      disabled={disableFlashEffects}
                     />
                   </div>
                 </div>
-                {flash ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" /> : null}
+                {disableFlashEffects ? (
+                  <FlashEffectsDisabledNotice
+                    id={FLASH_DISABLED_NOTICE_ID}
+                    className="mt-4"
+                  />
+                ) : effectiveFlash ? (
+                  <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
+                ) : null}
               </div>
             ) : null}
 
@@ -799,20 +828,26 @@ function TogglePill({
   onChange,
   icon,
   describedBy,
+  disabled = false,
 }: {
   label: string;
   checked: boolean;
   onChange: (value: boolean) => void;
   icon?: React.ReactNode;
   describedBy?: string;
+  disabled?: boolean;
 }) {
   return (
     <button
       type="button"
-      onClick={() => onChange(!checked)}
+      onClick={() => {
+        if (!disabled) onChange(!checked);
+      }}
+      disabled={disabled}
       className={
         toolControlButtonClass({
           active: checked,
+          disabled,
           size: "sm",
           rounded: "full",
         })
