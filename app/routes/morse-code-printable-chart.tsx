@@ -15,6 +15,11 @@ import {
   PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
 import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
+import {
+  parseStoredJson,
+  safeReadStorage,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -33,6 +38,11 @@ type WorksheetLevel = "beginner" | "standard" | "challenge";
 type ExportFormat = "png" | "jpg" | "jpeg" | "webp";
 type DownloadFormat = "pdf" | ExportFormat;
 type PresetName = "beginner" | "classroom" | "challenge";
+const PRESET_NAMES: readonly PresetName[] = [
+  "beginner",
+  "classroom",
+  "challenge",
+] as const;
 
 type PrintableSettings = {
   printMode: PrintMode;
@@ -375,13 +385,46 @@ function mergeSettings(value: unknown): PrintableSettings {
 }
 
 function readInitialPrintableSettings(): PrintableSettings {
-  if (typeof window === "undefined") return DEFAULT_SETTINGS;
-  try {
-    const stored = window.localStorage.getItem(SETTINGS_STORAGE_KEY);
-    return stored ? mergeSettings(JSON.parse(stored)) : DEFAULT_SETTINGS;
-  } catch {
-    return DEFAULT_SETTINGS;
+  return mergeSettings(
+    parseStoredJson(safeReadStorage(SETTINGS_STORAGE_KEY), DEFAULT_SETTINGS),
+  );
+}
+
+function readStoredPresetMap(): StoredPresetMap {
+  const stored = parseStoredJson<Record<string, unknown>>(
+    safeReadStorage(PRESETS_STORAGE_KEY),
+    {},
+    isStringRecord,
+  );
+  const presets: StoredPresetMap = {};
+
+  for (const presetName of PRESET_NAMES) {
+    if (stored[presetName]) {
+      presets[presetName] = mergeSettings(stored[presetName]);
+    }
   }
+
+  return presets;
+}
+
+function writeJsonStorage(key: string, value: unknown) {
+  try {
+    safeWriteStorage(key, JSON.stringify(value));
+  } catch {
+    // Storage persistence is optional.
+  }
+}
+
+function writePrintableSettings(settings: PrintableSettings) {
+  writeJsonStorage(SETTINGS_STORAGE_KEY, settings);
+}
+
+function writePresetMap(presets: StoredPresetMap) {
+  writeJsonStorage(PRESETS_STORAGE_KEY, presets);
+}
+
+function isStringRecord(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === "object" && !Array.isArray(value);
 }
 
 function chunkRows<T>(rows: T[], columns: number) {
@@ -2528,12 +2571,7 @@ export default function MorseCodePrintableChart() {
 
   React.useEffect(() => {
     if (!hasLoadedStorage) return;
-
-    try {
-      window.localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
-    } catch {
-      // localStorage can fail in private mode or if storage quota is full.
-    }
+    writePrintableSettings(settings);
   }, [settings, hasLoadedStorage]);
 
   React.useEffect(() => {
@@ -2594,16 +2632,11 @@ export default function MorseCodePrintableChart() {
         }),
       };
 
-      const stored = window.localStorage.getItem(PRESETS_STORAGE_KEY);
-      const existing = stored ? (JSON.parse(stored) as StoredPresetMap) : {};
-
-      window.localStorage.setItem(
-        PRESETS_STORAGE_KEY,
-        JSON.stringify({
-          ...defaultPresets,
-          ...existing,
-        }),
-      );
+      const existing = readStoredPresetMap();
+      writePresetMap({
+        ...defaultPresets,
+        ...existing,
+      });
     } catch {
       // Presets remain available from constants if storage fails.
     }
@@ -2677,20 +2710,10 @@ export default function MorseCodePrintableChart() {
     presetName: PresetName,
     nextSettings: PrintableSettings,
   ) => {
-    try {
-      const stored = window.localStorage.getItem(PRESETS_STORAGE_KEY);
-      const existing = stored ? (JSON.parse(stored) as StoredPresetMap) : {};
-
-      window.localStorage.setItem(
-        PRESETS_STORAGE_KEY,
-        JSON.stringify({
-          ...existing,
-          [presetName]: nextSettings,
-        }),
-      );
-    } catch {
-      // Ignore storage failure.
-    }
+    writePresetMap({
+      ...readStoredPresetMap(),
+      [presetName]: nextSettings,
+    });
   };
 
   const applyPreset = (
@@ -2699,13 +2722,8 @@ export default function MorseCodePrintableChart() {
   ) => {
     let nextSettings = fallbackSettings;
 
-    try {
-      const stored = window.localStorage.getItem(PRESETS_STORAGE_KEY);
-      const existing = stored ? (JSON.parse(stored) as StoredPresetMap) : {};
-      nextSettings = mergeSettings(existing[presetName] || fallbackSettings);
-    } catch {
-      nextSettings = fallbackSettings;
-    }
+    const existing = readStoredPresetMap();
+    nextSettings = mergeSettings(existing[presetName] || fallbackSettings);
 
     setSettings(nextSettings);
     savePresetSnapshot(presetName, nextSettings);
@@ -2782,15 +2800,7 @@ export default function MorseCodePrintableChart() {
 
   const resetSettings = () => {
     setSettings(DEFAULT_SETTINGS);
-
-    try {
-      window.localStorage.setItem(
-        SETTINGS_STORAGE_KEY,
-        JSON.stringify(DEFAULT_SETTINGS),
-      );
-    } catch {
-      // Ignore storage failure.
-    }
+    writePrintableSettings(DEFAULT_SETTINGS);
   };
 
   const handleLogoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {

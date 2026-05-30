@@ -1,4 +1,8 @@
 import * as React from "react";
+import {
+  readStoredBoolean,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 
 export const SHOW_AMBIENT_MORSE_STORAGE_KEY =
   "morsewords-show-ambient-morse";
@@ -17,27 +21,8 @@ const DEFAULT_DISPLAY_SETTINGS: DisplaySettings = {
   disableFlashEffects: false,
 };
 
-function readStoredBoolean(key: string, fallback: boolean) {
-  if (typeof window === "undefined") return fallback;
-
-  try {
-    const value = window.localStorage.getItem(key);
-    if (value === "1" || value === "true") return true;
-    if (value === "0" || value === "false") return false;
-    return fallback;
-  } catch {
-    return fallback;
-  }
-}
-
 function writeStoredBoolean(key: string, value: boolean) {
-  if (typeof window === "undefined") return;
-
-  try {
-    window.localStorage.setItem(key, value ? "1" : "0");
-  } catch {
-    // Display settings are optional. The root dataset still updates.
-  }
+  safeWriteStorage(key, value ? "1" : "0");
 }
 
 export function readDisplaySettings(): DisplaySettings {

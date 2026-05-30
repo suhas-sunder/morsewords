@@ -27,6 +27,11 @@ import {
  normalizeTextForEncoding,
  textToMorse,
 } from "~/client/components/shared/practiceMorseUtils";
+import {
+ readStoredEnum,
+ readStoredNumber,
+ safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import SentencePracticeFaq from "~/client/components/morse-code-sentence-practice/SentencePracticeFaq";
 import {
  commonPracticeSets,
@@ -48,6 +53,24 @@ const LS_BEST_STREAK ="mw_sentence_practice_best_streak";
 const DEFAULT_MODE: DrillMode ="morse_to_text";
 const DEFAULT_DIFFICULTY: Difficulty |"all" ="all";
 const DEFAULT_SET_FILTER: SetFilter ="all";
+const DRILL_MODES: readonly DrillMode[] = [
+ "text_to_morse",
+ "morse_to_text",
+ "mixed",
+] as const;
+const DIFFICULTY_FILTERS: readonly (Difficulty |"all")[] = [
+ "easy",
+ "medium",
+ "hard",
+ "all",
+] as const;
+const SET_FILTERS: readonly SetFilter[] = [
+ "all",
+ "beginner",
+ "radio",
+ "reports",
+ "spacing",
+] as const;
 
 const difficultyOrder: Difficulty[] = ["easy","medium","hard"];
 
@@ -66,54 +89,29 @@ const setMembership: Record<Exclude<SetFilter,"all">, string[]> = {
  spacing: commonPracticeSets[3]?.items ?? [],
 };
 
-function readStr(key: string, fallback: string) {
- if (typeof window ==="undefined") return fallback;
- try {
- return window.localStorage.getItem(key) || fallback;
- } catch {
- return fallback;
- }
-}
-
 function writeStr(key: string, value: string) {
- if (typeof window ==="undefined") return;
- try {
- window.localStorage.setItem(key, value);
- } catch {
- // ignore storage failures
- }
+ safeWriteStorage(key, value);
 }
 
 function readInt(key: string, fallback: number) {
- const parsed = parseInt(readStr(key, String(fallback)), 10);
- return Number.isFinite(parsed) ? parsed : fallback;
+ return readStoredNumber(key, {
+ fallback,
+ min: 0,
+ max: 9999,
+ integer: true,
+ });
 }
 
 function readStoredMode(): DrillMode {
- const savedMode = readStr(LS_MODE,"morse_to_text");
- return savedMode ==="text_to_morse"||
- savedMode ==="morse_to_text"||
- savedMode ==="mixed"? savedMode
- :"morse_to_text";
+ return readStoredEnum(LS_MODE, DRILL_MODES, DEFAULT_MODE);
 }
 
 function readStoredDifficulty(): Difficulty |"all" {
- const savedDifficulty = readStr(LS_DIFFICULTY,"all");
- return savedDifficulty ==="easy"||
- savedDifficulty ==="medium"||
- savedDifficulty ==="hard"||
- savedDifficulty ==="all"? savedDifficulty
- :"all";
+ return readStoredEnum(LS_DIFFICULTY, DIFFICULTY_FILTERS, DEFAULT_DIFFICULTY);
 }
 
 function readStoredSetFilter(): SetFilter {
- const savedSet = readStr(LS_SET,"all");
- return savedSet ==="all"||
- savedSet ==="beginner"||
- savedSet ==="radio"||
- savedSet ==="reports"||
- savedSet ==="spacing"? savedSet
- :"all";
+ return readStoredEnum(LS_SET, SET_FILTERS, DEFAULT_SET_FILTER);
 }
 
 function pickKind(mode: DrillMode): PromptKind {

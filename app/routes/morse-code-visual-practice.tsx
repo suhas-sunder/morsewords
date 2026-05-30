@@ -21,6 +21,11 @@ import {
   useFlashSafety,
 } from "~/client/components/shared/useFlashSafety";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
+import {
+  VISUAL_SPEED_RANGE,
+  clampFarnsworthWpm,
+} from "~/client/components/shared/morseSettings";
+import { clampNumber } from "~/client/components/shared/settingsStorage";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import {
@@ -111,6 +116,21 @@ export default function MorseCodeVisualPractice() {
   const [hasFlashed, setHasFlashed] = React.useState(false);
   const morse = React.useMemo(() => textToMorse(message), [message]);
   const { active, play, stop } = useVisualPlayback(morse, wpm, farnsworthWpm);
+
+  const handleWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, VISUAL_SPEED_RANGE.min, VISUAL_SPEED_RANGE.max),
+    );
+    setWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next, 5));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, wpm, 5));
+    },
+    [wpm],
+  );
 
   React.useEffect(() => {
     if (flashAllowed) return;
@@ -240,16 +260,16 @@ export default function MorseCodeVisualPractice() {
                   max={30}
                   step={1}
                   unit="WPM"
-                  onChange={setWpm}
+                  onChange={handleWpmChange}
                 />
                 <SliderRow
                   label="Farnsworth spacing"
                   value={farnsworthWpm}
                   min={5}
-                  max={30}
+                  max={Math.max(5, wpm)}
                   step={1}
                   unit="WPM"
-                  onChange={setFarnsworthWpm}
+                  onChange={handleFarnsworthWpmChange}
                   help="Slows spacing only."
                 />
               </div>

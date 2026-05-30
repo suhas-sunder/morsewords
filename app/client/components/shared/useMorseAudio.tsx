@@ -5,6 +5,10 @@ import {
   getMorseEventDurationMs,
   type MorseTimingEvent,
 } from "~/client/components/shared/morseTiming";
+import {
+  clampFarnsworthWpm,
+  sanitizeAudioGeneratorPreset,
+} from "~/client/components/shared/morseSettings";
 import { isFlashAllowedNow } from "~/client/components/shared/useFlashSafety";
 
 export type SoundPreset =
@@ -166,15 +170,17 @@ export default function useMorseAudio() {
   }
 
   function sanitizeOpts(opts: PlayOptions): PlayOptions {
-    const safePreset: SoundPreset = (opts.preset ?? "cw_radio") as SoundPreset;
+    const safePreset: SoundPreset = sanitizeAudioGeneratorPreset(opts.preset);
+    const safeWpm = clamp(opts.wpm, 5, 60);
 
     return {
       ...opts,
       preset: safePreset,
-      wpm: clamp(opts.wpm, 5, 60),
-      farnsworthWpm: opts.farnsworthWpm
-        ? clamp(opts.farnsworthWpm, 5, 60)
-        : undefined,
+      wpm: safeWpm,
+      farnsworthWpm:
+        opts.farnsworthWpm === undefined
+          ? undefined
+          : clampFarnsworthWpm(opts.farnsworthWpm, safeWpm),
       hz: clamp(opts.hz, 200, 1600),
       volume: clamp(opts.volume, 0, 1),
       repeat: !!opts.repeat,

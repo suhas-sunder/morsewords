@@ -22,7 +22,6 @@ import {
   audioDifficultyOptions,
   buildPromptDeck,
   getAudioPrompts,
-  isAudioDifficulty,
   normalizeAudioAnswer,
   promptTypeLabel,
   type AudioDifficulty,
@@ -32,6 +31,17 @@ import styles from "~/client/components/shared/pageStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
+import {
+  TOOL_SPEED_RANGE,
+  clampFarnsworthWpm,
+  sanitizeAudioGeneratorPreset,
+} from "~/client/components/shared/morseSettings";
+import {
+  clampNumber,
+  readStoredEnum,
+  readStoredNumber,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import {
   CheckCircleIcon,
   LightBulbIcon,
@@ -52,6 +62,12 @@ const BEST_STREAK_STORAGE_KEY = "mw_audio_quiz_best_streak";
 const TOTAL_QUESTIONS = 10;
 const DEFAULT_AUDIO_DIFFICULTY: AudioDifficulty = "easy";
 const INITIAL_AUDIO_QUIZ_SEED = 12053;
+const AUDIO_DIFFICULTIES: readonly AudioDifficulty[] = [
+  "beginner",
+  "easy",
+  "medium",
+  "hard",
+] as const;
 
 type FeedbackState = "idle" | "correct" | "missed";
 
@@ -145,6 +161,21 @@ export default function MorseCodeAudioQuiz() {
     farnsworthWpm,
   });
 
+  const handleCharWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
+    );
+    setCharWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, charWpm));
+    },
+    [charWpm],
+  );
+
   React.useEffect(() => {
     setDifficulty(readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"));
     setBestStreak(readStoredInt(BEST_STREAK_STORAGE_KEY, 0));
@@ -154,20 +185,12 @@ export default function MorseCodeAudioQuiz() {
 
   React.useEffect(() => {
     if (!hydrated) return;
-    try {
-      window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
-    } catch {
-      // local-only preference; ignore storage failures
-    }
+    safeWriteStorage(DIFFICULTY_STORAGE_KEY, difficulty);
   }, [difficulty, hydrated]);
 
   React.useEffect(() => {
     if (!hydrated) return;
-    try {
-      window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
-    } catch {
-      // ignore
-    }
+    safeWriteStorage(BEST_STREAK_STORAGE_KEY, String(bestStreak));
   }, [bestStreak, hydrated]);
 
   React.useEffect(() => {
@@ -573,16 +596,16 @@ export default function MorseCodeAudioQuiz() {
                 max={40}
                 step={1}
                 unit="WPM"
-                onChange={setCharWpm}
+                onChange={handleCharWpmChange}
               />
               <SliderRow
                 label="Farnsworth spacing"
                 value={farnsworthWpm}
                 min={5}
-                max={40}
+                max={Math.max(5, charWpm)}
                 step={1}
                 unit="WPM"
-                onChange={setFarnsworthWpm}
+                onChange={handleFarnsworthWpmChange}
                 help="Slows spacing only."
               />
               <SliderRow
@@ -636,7 +659,9 @@ export default function MorseCodeAudioQuiz() {
                     </span>
                     <select
                       value={preset}
-                      onChange={(event) => setPreset(event.target.value as SoundPreset)}
+                      onChange={(event) =>
+                        setPreset(sanitizeAudioGeneratorPreset(event.target.value))
+                      }
                 className="mt-2 min-h-11 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none"
                     >
                       <option value="cw_radio">CW (Radio)</option>
@@ -1049,24 +1074,16 @@ function SliderRow({
 }
 
 function readStoredDifficulty(key: string, fallback: AudioDifficulty): AudioDifficulty {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const stored = window.localStorage.getItem(key);
-    return isAudioDifficulty(stored) ? stored : fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredEnum(key, AUDIO_DIFFICULTIES, fallback);
 }
 
 function readStoredInt(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const raw = window.localStorage.getItem(key);
-    const parsed = raw ? Number(raw) : fallback;
-    return Number.isFinite(parsed) ? parsed : fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredNumber(key, {
+    fallback,
+    min: 0,
+    max: 9999,
+    integer: true,
+  });
 }
 
 function difficultyLabel(difficulty: AudioDifficulty) {

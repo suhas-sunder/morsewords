@@ -27,6 +27,30 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
+import {
+  AUDIO_ATTACK_RANGE,
+  AUDIO_GENERATOR_PRESETS,
+  AUDIO_PITCH_RANGE,
+  AUDIO_RELEASE_RANGE,
+  AUDIO_SAMPLE_RATES,
+  AUDIO_SPEED_RANGE,
+  AUDIO_TAIL_RANGE,
+  MP3_BITRATES,
+  VOLUME_RANGE,
+  clampFarnsworthWpm,
+  sanitizeAudioGeneratorPreset,
+  sanitizeAudioSampleRate,
+  sanitizeMp3Bitrate,
+} from "~/client/components/shared/morseSettings";
+import {
+  clampNumber,
+  readStoredBoolean,
+  readStoredEnum,
+  readStoredNumber,
+  readStoredNumberEnum,
+  readStoredString,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 
 import {
   CopyIcon,
@@ -41,6 +65,7 @@ import {
 
 type SourceMode = "text" | "morse";
 type PageIntent = "audio" | "sound";
+const SOURCE_MODES = ["text", "morse"] as const;
 const STROBE_WARNING_ID = "sound-generator-strobe-warning";
 const FLASH_DISABLED_NOTICE_ID = "sound-generator-flash-disabled";
 
@@ -133,27 +158,82 @@ export default function MorseAudioTranslator({
   const effectiveFlash = flashAllowed && flash;
 
   React.useEffect(() => {
-    setSourceMode((readStr(storageKey("source"), "text") as SourceMode) || "text");
-    setText(readStr(storageKey("text"), defaultText));
-    setMorse(readStr(storageKey("morse"), defaultMorse));
-    setCharWpm(readNum(storageKey("wpm"), 18));
-    setFarnsworthWpm(readNum(storageKey("fwpm"), 12));
-    setToneHz(readNum(storageKey("hz"), 650));
-    setVolume(readNum(storageKey("vol"), 0.75));
-    setPreset(
-      (readStr(storageKey("preset"), "cw_radio") as SoundPreset) || "cw_radio",
+    setSourceMode(readStoredEnum(storageKey("source"), SOURCE_MODES, "text"));
+    setText(readStoredString(storageKey("text"), defaultText, { maxLength: 25000 }));
+    setMorse(
+      readStoredString(storageKey("morse"), defaultMorse, { maxLength: 25000 }),
     );
-    setAttackMs(readNum(storageKey("attack"), 8));
-    setReleaseMs(readNum(storageKey("release"), 12));
-    setRepeat(readBool(storageKey("repeat"), false));
-    setSoundOn(readBool(storageKey("sound"), true));
-    setFlash(readBool(storageKey("flash"), false));
-    setAdvancedOpen(readBool(storageKey("adv_open"), true));
-    setExportOpen(readBool(storageKey("export_open"), true));
-    setFileName(readStr(storageKey("filename"), defaultFileName));
-    setSampleRate(validateSampleRate(readNum(storageKey("sr"), 44100)));
-    setTailMs(readNum(storageKey("tail"), 120));
-    setMp3Kbps(readNum(storageKey("mp3_kbps"), 128));
+    const storedCharWpm = readStoredNumber(storageKey("wpm"), {
+      fallback: 18,
+      min: AUDIO_SPEED_RANGE.min,
+      max: AUDIO_SPEED_RANGE.max,
+      integer: true,
+    });
+    setCharWpm(storedCharWpm);
+    setFarnsworthWpm(
+      readStoredNumber(storageKey("fwpm"), {
+        fallback: 12,
+        min: AUDIO_SPEED_RANGE.min,
+        max: storedCharWpm,
+        integer: true,
+      }),
+    );
+    setToneHz(
+      readStoredNumber(storageKey("hz"), {
+        fallback: 650,
+        min: AUDIO_PITCH_RANGE.min,
+        max: AUDIO_PITCH_RANGE.max,
+        integer: true,
+      }),
+    );
+    setVolume(
+      readStoredNumber(storageKey("vol"), {
+        fallback: 0.75,
+        min: VOLUME_RANGE.min,
+        max: VOLUME_RANGE.max,
+      }),
+    );
+    setPreset(
+      readStoredEnum(storageKey("preset"), AUDIO_GENERATOR_PRESETS, "cw_radio"),
+    );
+    setAttackMs(
+      readStoredNumber(storageKey("attack"), {
+        fallback: 8,
+        min: AUDIO_ATTACK_RANGE.min,
+        max: AUDIO_ATTACK_RANGE.max,
+        integer: true,
+      }),
+    );
+    setReleaseMs(
+      readStoredNumber(storageKey("release"), {
+        fallback: 12,
+        min: AUDIO_RELEASE_RANGE.min,
+        max: AUDIO_RELEASE_RANGE.max,
+        integer: true,
+      }),
+    );
+    setRepeat(readStoredBoolean(storageKey("repeat"), false));
+    setSoundOn(readStoredBoolean(storageKey("sound"), true));
+    setFlash(readStoredBoolean(storageKey("flash"), false));
+    setAdvancedOpen(readStoredBoolean(storageKey("adv_open"), true));
+    setExportOpen(readStoredBoolean(storageKey("export_open"), true));
+    setFileName(
+      readStoredString(storageKey("filename"), defaultFileName, {
+        maxLength: 120,
+      }),
+    );
+    setSampleRate(readStoredNumberEnum(storageKey("sr"), AUDIO_SAMPLE_RATES, 44100));
+    setTailMs(
+      readStoredNumber(storageKey("tail"), {
+        fallback: 120,
+        min: AUDIO_TAIL_RANGE.min,
+        max: AUDIO_TAIL_RANGE.max,
+        integer: true,
+      }),
+    );
+    setMp3Kbps(
+      readStoredNumberEnum(storageKey("mp3_kbps"), MP3_BITRATES, 128),
+    );
     setHydrated(true);
   }, [defaultFileName, defaultMorse, defaultText, storageKey]);
 
@@ -213,6 +293,21 @@ export default function MorseAudioTranslator({
       farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
     });
   }, [player, activeCode, canPlay, charWpm, farnsworthWpm]);
+
+  const handleCharWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+    );
+    setCharWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, charWpm));
+    },
+    [charWpm],
+  );
 
   const unsupportedPlain = React.useMemo(() => getUnsupportedTextCharacters(text), [text]);
   const morseIssues = React.useMemo(() => {
@@ -473,8 +568,8 @@ export default function MorseAudioTranslator({
               </div>
 
               <div className="mt-4 grid sm:grid-cols-2 gap-4">
-                <SliderRow label="Character speed" value={charWpm} min={5} max={60} step={1} unit="WPM" onChange={setCharWpm} />
-                <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={60} step={1} unit="WPM" onChange={setFarnsworthWpm} help="Slower spacing, same character speed" />
+                <SliderRow label="Character speed" value={charWpm} min={5} max={60} step={1} unit="WPM" onChange={handleCharWpmChange} />
+                <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={Math.max(5, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed" />
                 <SliderRow label="Pitch" value={toneHz} min={200} max={1600} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} />
                 <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(v) => setVolume(v / 100)} disabled={!soundOn} />
               </div>
@@ -484,7 +579,7 @@ export default function MorseAudioTranslator({
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor={tonePresetId} className="text-sm font-semibold text-slate-700">Tone preset</label>
-                      <select id={tonePresetId} value={preset} onChange={(e) => setPreset(e.target.value as SoundPreset)} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
+                      <select id={tonePresetId} value={preset} onChange={(e) => setPreset(sanitizeAudioGeneratorPreset(e.target.value))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
                         <option value="cw_radio">CW radio tone</option>
                         <option value="sine">Sine tone</option>
                         <option value="square">Square beep</option>
@@ -528,7 +623,7 @@ export default function MorseAudioTranslator({
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label htmlFor={sampleRateId} className="text-sm font-semibold text-slate-700">Sample rate</label>
-                        <select id={sampleRateId} value={sampleRate} onChange={(e) => setSampleRate(validateSampleRate(Number(e.target.value)))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
+                        <select id={sampleRateId} value={sampleRate} onChange={(e) => setSampleRate(sanitizeAudioSampleRate(Number(e.target.value)))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
                           <option value={22050}>22050</option>
                           <option value={44100}>44100</option>
                           <option value={48000}>48000</option>
@@ -547,7 +642,7 @@ export default function MorseAudioTranslator({
                         </div>
                         <div className="flex items-center gap-2">
                           <label className="text-sm font-semibold text-slate-700" htmlFor={`${safePrefix}_mp3_kbps`}>MP3 kbps</label>
-                          <select id={`${safePrefix}_mp3_kbps`} value={mp3Kbps} onChange={(e) => setMp3Kbps(Number(e.target.value))} className="cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
+                          <select id={`${safePrefix}_mp3_kbps`} value={mp3Kbps} onChange={(e) => setMp3Kbps(sanitizeMp3Bitrate(Number(e.target.value)))} className="cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
                             <option value={96}>96</option>
                             <option value={128}>128</option>
                             <option value={192}>192</option>
@@ -643,46 +738,16 @@ function SliderRow({ label, value, min, max, step, unit, onChange, help, disable
   );
 }
 
-function readNum(key: string, fallback: number) {
-  const raw = readStorageValue(key);
-  const n = raw ? Number(raw) : NaN;
-  return Number.isFinite(n) ? n : fallback;
-}
-
-function readBool(key: string, fallback: boolean) {
-  const raw = readStorageValue(key);
-  if (raw === null) return fallback;
-  if (raw === "1" || raw === "true") return true;
-  if (raw === "0" || raw === "false") return false;
-  return fallback;
-}
-
-function readStr(key: string, fallback: string) {
-  return readStorageValue(key) ?? fallback;
-}
-
-function readStorageValue(key: string) {
-  if (typeof window === "undefined") return null;
-  try {
-    return window.localStorage.getItem(key);
-  } catch {
-    return null;
-  }
-}
-
 function writeNum(key: string, value: number) {
-  if (typeof window === "undefined") return;
-  try { window.localStorage.setItem(key, String(value)); } catch { /* ignore */ }
+  safeWriteStorage(key, String(value));
 }
 
 function writeBool(key: string, value: boolean) {
-  if (typeof window === "undefined") return;
-  try { window.localStorage.setItem(key, value ? "1" : "0"); } catch { /* ignore */ }
+  safeWriteStorage(key, value ? "1" : "0");
 }
 
 function writeStr(key: string, value: string) {
-  if (typeof window === "undefined") return;
-  try { window.localStorage.setItem(key, value); } catch { /* ignore */ }
+  safeWriteStorage(key, value);
 }
 
 function clampNum(n: number, min: number, max: number) {
@@ -711,11 +776,6 @@ function downloadBlob(blob: Blob, filename: string) {
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 2000);
-}
-
-function validateSampleRate(value: number): 22050 | 44100 | 48000 {
-  if (value === 22050 || value === 44100 || value === 48000) return value;
-  return 44100;
 }
 
 function presetLabel(preset: SoundPreset) {

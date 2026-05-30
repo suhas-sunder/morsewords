@@ -4,6 +4,10 @@ import {
   getMorseEventDurationMs,
   type MorseTimingEvent,
 } from "~/client/components/shared/morseTiming";
+import {
+  clampFarnsworthWpm,
+  sanitizeTranslatorAudioPreset,
+} from "~/client/components/shared/morseSettings";
 import { isFlashAllowedNow } from "~/client/components/shared/useFlashSafety";
 
 export type SoundPreset =
@@ -111,10 +115,15 @@ export default function useAudio() {
   }
 
   function sanitize(opts: PlayOptions): PlayOptions {
+    const safeWpm = clamp(opts.wpm, 5, 60);
     return {
       ...opts,
-      wpm: clamp(opts.wpm, 5, 60),
-      farnsworthWpm: opts.farnsworthWpm ? clamp(opts.farnsworthWpm, 5, 60) : undefined,
+      preset: sanitizeTranslatorAudioPreset(opts.preset),
+      wpm: safeWpm,
+      farnsworthWpm:
+        opts.farnsworthWpm === undefined
+          ? undefined
+          : clampFarnsworthWpm(opts.farnsworthWpm, safeWpm),
       hz: clamp(opts.hz, 200, 1200),
       volume: clamp(opts.volume, 0, 1),
       repeat: !!opts.repeat,

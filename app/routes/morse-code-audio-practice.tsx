@@ -20,6 +20,17 @@ import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
+import {
+  TOOL_SPEED_RANGE,
+  clampFarnsworthWpm,
+  sanitizeAudioGeneratorPreset,
+} from "~/client/components/shared/morseSettings";
+import {
+  clampNumber,
+  readStoredEnum,
+  readStoredNumber,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import {
@@ -35,7 +46,6 @@ import {
 import {
   audioDifficultyOptions,
   getAudioPrompts,
-  isAudioDifficulty,
   normalizeAudioAnswer,
   pickPrompt,
   promptTypeLabel,
@@ -51,6 +61,12 @@ const FLASH_DISABLED_NOTICE_ID = "audio-practice-flash-disabled";
 const DIFFICULTY_STORAGE_KEY = "mw_audio_practice_difficulty";
 const BEST_STREAK_STORAGE_KEY = "mw_audio_practice_best_streak";
 const DEFAULT_AUDIO_DIFFICULTY: AudioDifficulty = "easy";
+const AUDIO_DIFFICULTIES: readonly AudioDifficulty[] = [
+  "beginner",
+  "easy",
+  "medium",
+  "hard",
+] as const;
 
 const faqItems = [
   {
@@ -136,6 +152,21 @@ export default function MorseCodeAudioPractice() {
     farnsworthWpm,
   });
 
+  const handleCharWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
+    );
+    setCharWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, charWpm));
+    },
+    [charWpm],
+  );
+
   React.useEffect(() => {
     const storedDifficulty = readStoredDifficulty(
       DIFFICULTY_STORAGE_KEY,
@@ -149,20 +180,12 @@ export default function MorseCodeAudioPractice() {
 
   React.useEffect(() => {
     if (!hydrated) return;
-    try {
-      window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
-    } catch {
-      // local-only preference; ignore storage failures
-    }
+    safeWriteStorage(DIFFICULTY_STORAGE_KEY, difficulty);
   }, [difficulty, hydrated]);
 
   React.useEffect(() => {
     if (!hydrated) return;
-    try {
-      window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
-    } catch {
-      // ignore
-    }
+    safeWriteStorage(BEST_STREAK_STORAGE_KEY, String(bestStreak));
   }, [bestStreak, hydrated]);
 
   React.useEffect(() => {
@@ -538,8 +561,8 @@ export default function MorseCodeAudioPractice() {
               </span>
             </div>
             <div className="mt-4 grid gap-5 md:grid-cols-3">
-              <SliderRow label="Character speed" value={charWpm} min={5} max={40} step={1} unit="WPM" onChange={setCharWpm} />
-              <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={40} step={1} unit="WPM" onChange={setFarnsworthWpm} help="Slower spacing, same character speed." />
+              <SliderRow label="Character speed" value={charWpm} min={5} max={40} step={1} unit="WPM" onChange={handleCharWpmChange} />
+              <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={Math.max(5, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed." />
               <SliderRow label="Pitch" value={toneHz} min={300} max={1000} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} />
               <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(value) => setVolume(value / 100)} disabled={!soundOn} />
               <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || preset === "sounder"} />
@@ -555,7 +578,9 @@ export default function MorseCodeAudioPractice() {
                     </span>
                     <select
                       value={preset}
-                      onChange={(event) => setPreset(event.target.value as SoundPreset)}
+                      onChange={(event) =>
+                        setPreset(sanitizeAudioGeneratorPreset(event.target.value))
+                      }
                       className="mt-2 min-h-11 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none"
                     >
                       <option value="cw_radio">CW (Radio)</option>
@@ -896,24 +921,16 @@ function SliderRow({
 }
 
 function readStoredDifficulty(key: string, fallback: AudioDifficulty): AudioDifficulty {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const stored = window.localStorage.getItem(key);
-    return isAudioDifficulty(stored) ? stored : fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredEnum(key, AUDIO_DIFFICULTIES, fallback);
 }
 
 function readStoredInt(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const raw = window.localStorage.getItem(key);
-    const parsed = raw ? Number(raw) : fallback;
-    return Number.isFinite(parsed) ? parsed : fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredNumber(key, {
+    fallback,
+    min: 0,
+    max: 9999,
+    integer: true,
+  });
 }
 
 function formatMs(ms: number) {

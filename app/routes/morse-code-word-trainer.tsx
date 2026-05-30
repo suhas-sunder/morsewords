@@ -32,7 +32,17 @@ import {
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import { textToMorse } from "~/client/components/shared/morseUtils";
+import {
+ WORD_TRAINER_SPEED_RANGE,
+ clampFarnsworthWpm,
+} from "~/client/components/shared/morseSettings";
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
+import {
+ clampNumber,
+ readStoredNumber,
+ readStoredString,
+ safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import styles from "~/client/components/shared/pageStyles";
 import { WORD_LISTS } from "~/client/data/morseLearning";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -160,24 +170,13 @@ function normalizeMorseAnswer(value: string) {
  .trim();
 }
 
-function readStoredString(key: string, fallback: string) {
- if (typeof window ==="undefined") return fallback;
- try {
- return window.localStorage.getItem(key) || fallback;
- } catch {
- return fallback;
- }
-}
-
 function readStoredInt(key: string, fallback: number) {
- if (typeof window ==="undefined") return fallback;
- try {
- const raw = window.localStorage.getItem(key);
- const parsed = raw ? Number(raw) : fallback;
- return Number.isFinite(parsed) ? parsed : fallback;
- } catch {
- return fallback;
- }
+ return readStoredNumber(key, {
+ fallback,
+ min: 0,
+ max: 9999,
+ integer: true,
+ });
 }
 
 function listLabel(name: WordListName) {
@@ -196,7 +195,9 @@ function getBuiltInWords(name: Exclude<WordListName,"custom">) {
 export default function MorseCodeWordTrainer() {
  const [listName, setListName] = React.useState<WordListName>("beginner");
  const [customWords, setCustomWords] = React.useState(() =>
- readStoredString(CUSTOM_WORDS_STORAGE_KEY, "signal\nteacher\npractice\ncopy"),
+ readStoredString(CUSTOM_WORDS_STORAGE_KEY, "signal\nteacher\npractice\ncopy", {
+ maxLength: 4000,
+ }),
  );
  const [mode, setMode] = React.useState<TrainerMode>("morse_to_text");
  const [deckSource, setDeckSource] = React.useState<DeckSource>("list");
@@ -253,20 +254,27 @@ export default function MorseCodeWordTrainer() {
  ? Math.round((progressValue / deck.length) * 100)
  : 0;
 
+ const handleWpmChange = React.useCallback((value: number) => {
+ const next = Math.round(
+ clampNumber(value, WORD_TRAINER_SPEED_RANGE.min, WORD_TRAINER_SPEED_RANGE.max),
+ );
+ setWpm(next);
+ setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+ }, []);
+
+ const handleFarnsworthWpmChange = React.useCallback(
+ (value: number) => {
+ setFarnsworthWpm(clampFarnsworthWpm(value, wpm));
+ },
+ [wpm],
+ );
+
  React.useEffect(() => {
- try {
- window.localStorage.setItem(CUSTOM_WORDS_STORAGE_KEY, customWords);
- } catch {
- // Ignore storage failures.
- }
+ safeWriteStorage(CUSTOM_WORDS_STORAGE_KEY, customWords);
  }, [customWords]);
 
  React.useEffect(() => {
- try {
- window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
- } catch {
- // Ignore storage failures.
- }
+ safeWriteStorage(BEST_STREAK_STORAGE_KEY, String(bestStreak));
  }, [bestStreak]);
 
  React.useEffect(() => {
@@ -749,14 +757,14 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  min={5}
  max={35}
  step={1}
- unit="WPM" onChange={setWpm}
+ unit="WPM" onChange={handleWpmChange}
  />
  <SliderRow
  label="Farnsworth spacing" value={farnsworthWpm}
  min={5}
- max={35}
+ max={Math.max(5, wpm)}
  step={1}
- unit="WPM" onChange={setFarnsworthWpm}
+ unit="WPM" onChange={handleFarnsworthWpmChange}
  help="Slows spacing only."/>
  </div>
  </div>

@@ -31,6 +31,11 @@ import HowItWorksPractice from "~/client/components/practice/HowItWorksPractice"
 import PracticeFaq from "~/client/components/practice/PracticeFaq";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ShareResultsButton from "~/client/components/practice/ShareResultsButton";
+import {
+  readStoredEnum,
+  readStoredNumber,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 
 import {
   checkAnswer,
@@ -44,6 +49,19 @@ const lsBestStreakKey = (pool: string) => `mw_practice_best_streak_${pool}`;
 
 const TOTAL_QUESTIONS = 10;
 const DEFAULT_POOL: Pool = "all";
+const POOLS: readonly Pool[] = [
+  "all",
+  "letters",
+  "numbers",
+  "signals",
+  "words",
+  "sentences",
+] as const;
+const DRILL_MODES: readonly DrillMode[] = [
+  "text_to_morse",
+  "morse_to_text",
+  "mixed",
+] as const;
 
 const defaultModeForPool = (pool: Pool): DrillMode => {
   // Words are primarily an encoding drill; default to Text → Morse.
@@ -52,48 +70,24 @@ const defaultModeForPool = (pool: Pool): DrillMode => {
 const DEFAULT_MODE: DrillMode = defaultModeForPool(DEFAULT_POOL);
 
 function readStoredPool(): Pool {
-  const poolRaw = readStr(LS_POOL, "all");
-  return poolRaw === "all" ||
-    poolRaw === "letters" ||
-    poolRaw === "numbers" ||
-    poolRaw === "signals" ||
-    poolRaw === "words" ||
-    poolRaw === "sentences"
-    ? (poolRaw as Pool)
-    : "all";
+  return readStoredEnum(LS_POOL, POOLS, DEFAULT_POOL);
 }
 
 function readStoredMode(pool: Pool): DrillMode {
-  const modeRaw = readStr(lsModeKey(pool), defaultModeForPool(pool));
-  return modeRaw === "text_to_morse" ||
-    modeRaw === "morse_to_text" ||
-    modeRaw === "mixed"
-    ? (modeRaw as DrillMode)
-    : defaultModeForPool(pool);
-}
-
-function readStr(key: string, fallback: string) {
-  if (typeof window === "undefined") return fallback;
-  try {
-    return window.localStorage.getItem(key) || fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredEnum(lsModeKey(pool), DRILL_MODES, defaultModeForPool(pool));
 }
 
 function writeStr(key: string, val: string) {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.setItem(key, val);
-  } catch {
-    // ignore
-  }
+  safeWriteStorage(key, val);
 }
 
 function readInt(key: string, fallback: number) {
-  const v = readStr(key, String(fallback));
-  const n = parseInt(v, 10);
-  return Number.isFinite(n) ? n : fallback;
+  return readStoredNumber(key, {
+    fallback,
+    min: 0,
+    max: 9999,
+    integer: true,
+  });
 }
 
 function writeInt(key: string, val: number) {
@@ -159,11 +153,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: any }) {
   React.useEffect(() => {
     if (!hydrated) return;
     // When pool changes, load pool-specific settings instead of inheriting from other drills.
-    const v = readStr(lsModeKey(pool), defaultModeForPool(pool));
-    const nextMode: DrillMode =
-      v === "text_to_morse" || v === "morse_to_text" || v === "mixed"
-        ? (v as DrillMode)
-        : defaultModeForPool(pool);
+    const nextMode = readStoredMode(pool);
     setMode((m) => (m === nextMode ? m : nextMode));
 
     const bs = readInt(lsBestStreakKey(pool), 0);

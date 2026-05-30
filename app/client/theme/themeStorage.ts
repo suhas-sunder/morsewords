@@ -1,3 +1,8 @@
+import {
+  safeReadStorage,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
+
 export const THEME_STORAGE_KEY = "morsewords-theme";
 export const THEME_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
@@ -8,14 +13,8 @@ export function isThemeMode(value: unknown): value is ThemeMode {
 }
 
 export function readStoredThemeMode(): ThemeMode | null {
-  if (typeof window === "undefined") return null;
-
-  try {
-    const value = window.localStorage.getItem(THEME_STORAGE_KEY);
-    if (isThemeMode(value)) return value;
-  } catch {
-    // Fall back to the cookie below.
-  }
+  const value = safeReadStorage(THEME_STORAGE_KEY);
+  if (isThemeMode(value)) return value;
 
   return readCookieThemeMode();
 }
@@ -31,14 +30,7 @@ export function setRootThemeMode(mode: ThemeMode) {
 }
 
 export function writeStoredThemeMode(mode: ThemeMode) {
-  if (typeof window === "undefined") return;
-
-  try {
-    window.localStorage.setItem(THEME_STORAGE_KEY, mode);
-  } catch {
-    // Theme persistence is optional. The root attribute still updates.
-  }
-
+  safeWriteStorage(THEME_STORAGE_KEY, mode);
   writeCookieThemeMode(mode);
 }
 

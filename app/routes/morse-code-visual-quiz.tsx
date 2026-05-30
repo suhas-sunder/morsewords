@@ -24,6 +24,15 @@ import {
 } from "~/client/components/shared/useFlashSafety";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
+import {
+  VISUAL_SPEED_RANGE,
+  clampFarnsworthWpm,
+} from "~/client/components/shared/morseSettings";
+import {
+  clampNumber,
+  readStoredNumber,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import styles from "~/client/components/shared/pageStyles";
 import {
   CheckCircleIcon,
@@ -146,15 +155,23 @@ export default function MorseCodeVisualQuiz() {
   const gameOver = completed >= TOTAL_QUESTIONS;
   const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
 
+  const handleWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, VISUAL_SPEED_RANGE.min, VISUAL_SPEED_RANGE.max),
+    );
+    setWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next, 5));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, wpm, 5));
+    },
+    [wpm],
+  );
+
   React.useEffect(() => {
-    try {
-      window.localStorage.setItem(
-        "mw_visual_quiz_best_streak",
-        String(bestStreak),
-      );
-    } catch {
-      // ignore
-    }
+    safeWriteStorage("mw_visual_quiz_best_streak", String(bestStreak));
   }, [bestStreak]);
 
   React.useEffect(() => {
@@ -429,16 +446,16 @@ export default function MorseCodeVisualQuiz() {
                     max={30}
                     step={1}
                     unit="WPM"
-                    onChange={setWpm}
+                    onChange={handleWpmChange}
                   />
                   <SliderRow
                     label="Farnsworth spacing"
                     value={farnsworthWpm}
                     min={5}
-                    max={30}
+                    max={Math.max(5, wpm)}
                     step={1}
                     unit="WPM"
-                    onChange={setFarnsworthWpm}
+                    onChange={handleFarnsworthWpmChange}
                     help="Slows spacing only."
                   />
                 </div>
@@ -676,14 +693,12 @@ export default function MorseCodeVisualQuiz() {
 }
 
 function readStoredInt(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const raw = window.localStorage.getItem(key);
-    const parsed = raw ? Number(raw) : fallback;
-    return Number.isFinite(parsed) ? parsed : fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredNumber(key, {
+    fallback,
+    min: 0,
+    max: 9999,
+    integer: true,
+  });
 }
 
 function SliderRow({
