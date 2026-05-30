@@ -1,7 +1,7 @@
 import * as React from "react";
 import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import styles from "~/client/components/shared/pageStyles";
-import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
 import { PHRASE_ROWS, type PhraseRow } from "./dictionaryData";
 
 type CharCategory = "All" | "Letters" | "Numbers" | "Punctuation";

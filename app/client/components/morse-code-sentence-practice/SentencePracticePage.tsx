@@ -24,9 +24,12 @@ import type {
 } from "~/client/components/practice/PromptCard";
 import { checkAnswer } from "~/client/components/practice/practiceEngine";
 import {
+ countTextWords,
+ normalizeMorseForDecoding,
  normalizeTextForEncoding,
+ splitMorseWords,
  textToMorse,
-} from "~/client/components/shared/practiceMorseUtils";
+} from "~/client/components/shared/morseUtils";
 import {
  readStoredEnum,
  readStoredNumber,
@@ -121,47 +124,26 @@ function pickKind(mode: DrillMode): PromptKind {
 }
 
 function wordCount(text: string) {
- return text.trim().split(/\s+/).filter(Boolean).length;
+ return countTextWords(text);
 }
 
 function morseWithWordSlashes(text: string) {
- return textToMorse(text).replace(/ {7}/g,"/").replace(/ {3}/g,"");
+ return splitMorseWords(textToMorse(text))
+ .map((word) => word.join(""))
+ .join("/");
 }
 
 function canonicalizeSentenceMorse(input: string) {
- const raw = (input ??"")
-    .replace(/[•·∙]/g,".")
-    .replace(/[–—−]/g,"-")
- .replace(/\t/g,"")
  // Treat pasted line breaks as spacing, not automatic word breaks.
  // Long revealed answers can wrap when copied, and those inserted/newline
  // breaks should not make an otherwise correct Morse sentence fail.
- .replace(/\r\n|\r|\n/g,"");
-
- const invalid = new Set<string>();
- let cleaned ="";
-
- for (const ch of raw) {
- if (ch ==="."|| ch ==="-"|| ch ==="/"|| /\s/.test(ch)) {
- cleaned += ch;
- continue;
- }
- invalid.add(ch);
- }
-
- cleaned = cleaned.trim();
- if (!cleaned) return { value:"", invalidChars: [...invalid] };
-
- const hasExplicitWordBreaks = /\/|\s{7,}/.test(cleaned);
- const wordChunks = hasExplicitWordBreaks
- ? cleaned.split(/(?:\/|\s{7,})+/)
- : [cleaned];
-
- const words = wordChunks
- .map((word) => word.trim().split(/\s+/).filter(Boolean).join(""))
+ const wrappedInput = (input ??"").replace(/\r\n|\r|\n/g," ");
+ const { invalidChars } = normalizeMorseForDecoding(wrappedInput);
+ const words = splitMorseWords(wrappedInput)
+ .map((word) => word.join(""))
  .filter(Boolean);
 
- return { value: words.join("/"), invalidChars: [...invalid] };
+ return { value: words.join("/"), invalidChars };
 }
 
 function checkSentenceMorseAnswer(prompt: Prompt, answer: string) {
@@ -185,9 +167,7 @@ function checkSentenceMorseAnswer(prompt: Prompt, answer: string) {
 }
 
 function countMorseSentenceWords(input: string) {
- const normalized = canonicalizeSentenceMorse(input).value;
- if (!normalized) return 0;
- return normalized.split("/").filter(Boolean).length;
+ return splitMorseWords((input ??"").replace(/\r\n|\r|\n/g," ")).length;
 }
 
 function difficultyClass(difficulty: Difficulty) {

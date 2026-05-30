@@ -24,7 +24,7 @@ import {
   StaticPanel,
   WAVE_PAGE_MAIN_CLASS,
 } from "~/client/components/shared/MorseLearningLayout";
-import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import { encodeToolQueryValue } from "~/client/components/shared/queryPrefill";
 import styles from "~/client/components/shared/pageStyles";

@@ -31,7 +31,11 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { textToMorse } from "~/client/components/shared/morseUtils";
+import {
+ normalizeMorseForDecode,
+ normalizeTextForEncoding,
+ textToMorse,
+} from "~/client/components/shared/morseUtils";
 import {
  WORD_TRAINER_SPEED_RANGE,
  clampFarnsworthWpm,
@@ -158,16 +162,11 @@ function parseTrainerWords(input: string): ParsedTrainerWords {
 }
 
 function normalizeTextAnswer(value: string) {
- return value.trim().replace(/\s+/g,"").toUpperCase();
+ return normalizeTextForEncoding(value).replace(/\s+/g,"");
 }
 
 function normalizeMorseAnswer(value: string) {
- return value
- .replace(/[\u00b7\u2022]/g,".")
- .replace(/[\u2013\u2014\u2212]/g,"-")
- .replace(/\s*\/\s*/g,"/")
- .replace(/\s+/g,"")
- .trim();
+ return normalizeMorseForDecode(value).replace(/\s+/g,"");
 }
 
 function readStoredInt(key: string, fallback: number) {

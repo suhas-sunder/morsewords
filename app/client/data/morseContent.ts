@@ -1,6 +1,7 @@
-import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
 import {
   normalizeTextForEncoding,
+  splitMorseWords,
+  TEXT_TO_MORSE,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
 
@@ -151,13 +152,9 @@ export function morseForText(value: string) {
 }
 
 function rhythmFor(morse: string) {
-  return morse
-    .trim()
-    .split(/\s{7,}/)
+  return splitMorseWords(morse)
     .map((word) =>
       word
-        .split(/\s{3,}/)
-        .filter(Boolean)
         .map((pattern) =>
           pattern
             .split("")

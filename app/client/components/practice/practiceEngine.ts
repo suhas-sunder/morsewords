@@ -1,4 +1,14 @@
-import { morseToText, normalizeMorseForDecoding, normalizeTextForEncoding, textToMorse } from "~/client/components/shared/practiceMorseUtils";
+import {
+  countTextWords,
+  formatMorseWords,
+  MORSE_LETTER_GAP,
+  MORSE_WORD_GAP,
+  morseToText,
+  normalizeMorseForDecoding,
+  normalizeTextForEncoding,
+  splitMorseWords,
+  textToMorse,
+} from "~/client/components/shared/morseUtils";
 import { LETTERS, NUMBERS, SIGNALS, WORDS, SENTENCES } from "./practiceBank";
 import type { DrillMode, Pool } from "~/client/components/practice/PracticeControls";
 import type { Prompt, PromptKind } from "~/client/components/practice/PromptCard";
@@ -68,7 +78,7 @@ function firstPlain(pool: Pool): string {
 }
 
 function labelFor(pool: Pool, plain: string): string {
-  const wordCount = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
+  const wordCount = countTextWords;
 
   if (pool === "all") {
     if (LETTERS.includes(plain)) return "Single letter";
@@ -145,33 +155,8 @@ function looksLikeMorse(s: string): boolean {
 }
 
 export function canonicalizeMorse(input: string): string {
-  const { normalized } = normalizeMorseForDecoding(input);
-  if (!normalized) return "";
-
-  // Convert to a deterministic spacing style:
-  // - 1..6 spaces -> 3 (letter gap)
-  // - 7+ spaces -> 7 (word gap)
-  let out = "";
-  let run = 0;
-
-  const flushSpaces = () => {
-    if (run <= 0) return;
-    out += run >= 7 ? "       " : "   ";
-    run = 0;
-  };
-
-  for (const ch of normalized) {
-    if (ch === "." || ch === "-") {
-      flushSpaces();
-      out += ch;
-      continue;
-    }
-    if (ch === " ") {
-      run += 1;
-    }
-  }
-
-  flushSpaces();
-
-  return out.trim();
+  return formatMorseWords(splitMorseWords(input), {
+    letterSeparator: MORSE_LETTER_GAP,
+    wordSeparator: MORSE_WORD_GAP,
+  });
 }

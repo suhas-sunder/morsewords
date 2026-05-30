@@ -1,3 +1,8 @@
+import {
+  normalizeMorseForDecode,
+  splitMorseWords,
+} from "./morseUtils";
+
 export type MorseTimingEvent =
   | {
       type: "mark";
@@ -18,8 +23,6 @@ type MorseTimingOptions = {
   charWpm: number;
   farnsworthWpm?: number;
 };
-
-const WORD_GAP = "       ";
 
 export function clampMorseWpm(value: number, min = 1, max = 80): number {
   const safeMin = Number.isFinite(min) ? min : 1;
@@ -48,41 +51,7 @@ export function farnsworthGapScale(
 }
 
 export function normalizePlayableMorse(code: string): string {
-  const raw = (code ?? "")
-    .replace(/\u00c2\u00b7|\u00e2\u20ac\u00a2/g, ".")
-    .replace(/[\u00b7\u2022\u2219\u22c5]/g, ".")
-    .replace(/\u00e2\u20ac\u201c|\u00e2\u20ac\u201d|\u00e2\u02c6\u2019/g, "-")
-    .replace(/[\u2013\u2014\u2212]/g, "-")
-    .replace(/\r\n|\r/g, "\n");
-
-  let normalized = "";
-  let pendingSpaces = 0;
-
-  const flushPendingSpaces = () => {
-    if (pendingSpaces <= 0) return;
-    if (normalized) normalized += pendingSpaces >= 7 ? WORD_GAP : " ";
-    pendingSpaces = 0;
-  };
-
-  for (const ch of raw) {
-    if (ch === "." || ch === "-") {
-      flushPendingSpaces();
-      normalized += ch;
-      continue;
-    }
-
-    if (ch === "/" || ch === "\n") {
-      if (normalized) pendingSpaces = Math.max(pendingSpaces, 7);
-      continue;
-    }
-
-    if (/\s/.test(ch)) {
-      if (normalized) pendingSpaces += 1;
-      continue;
-    }
-  }
-
-  return normalized.trim();
+  return normalizeMorseForDecode(code);
 }
 
 export function buildMorseEvents(
@@ -176,11 +145,5 @@ export function estimateMorseDurationMs(
 }
 
 function parsePlayableMorse(code: string): string[][] {
-  const normalized = normalizePlayableMorse(code);
-  if (!normalized) return [];
-
-  return normalized
-    .split(WORD_GAP)
-    .map((word) => word.split(/\s+/).filter(Boolean))
-    .filter((word) => word.length > 0);
+  return splitMorseWords(code);
 }

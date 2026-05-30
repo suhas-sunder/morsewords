@@ -1,5 +1,9 @@
 import * as React from "react";
-import { textToMorse } from "~/client/components/shared/morseUtils";
+import {
+  countTextWords,
+  splitMorseWords,
+  textToMorse,
+} from "~/client/components/shared/morseUtils";
 import {
   HERO_EYEBROW_LINE_CLASS,
   HERO_EYEBROW_ROW_CLASS,
@@ -23,31 +27,6 @@ import {
 type OutputSep = "standard" | "slash" | "pipe" | "newline";
 type Mode = "normalizeMorse" | "englishToMorse";
 
-function onlyMorseChars(input: string) {
-  return input.replace(/[^\n.\-\/|\s]/g, "");
-}
-
-function splitWordsFromMorse(raw: string): string[] {
-  const s = raw
-    .replace(/\r/g, "")
-    .replace(/\n+/g, " WORD_BREAK ")
-    .replace(/\s*\/\s*/g, " WORD_BREAK ")
-    .replace(/\s*\|\s*/g, " WORD_BREAK ")
-    .replace(/\s{7,}/g, " WORD_BREAK ");
-  return s
-    .split("WORD_BREAK")
-    .map((w) => w.trim())
-    .filter(Boolean);
-}
-
-function splitLettersFromMorse(word: string): string[] {
-  const normalized = word.trim().replace(/\s{2,}/g, " ");
-  return normalized
-    .split(" ")
-    .map((x) => x.trim())
-    .filter(Boolean);
-}
-
 function formatMorse(words: string[][], sep: OutputSep): string {
   if (sep === "standard") {
     return words.map((letters) => letters.join(" ")).join("       ");
@@ -61,12 +40,6 @@ function formatMorse(words: string[][], sep: OutputSep): string {
   return words.map((letters) => letters.join(" ")).join("\n");
 }
 
-function countEnglishWords(input: string) {
-  const trimmed = input.trim();
-  if (!trimmed) return 0;
-  return trimmed.split(/\s+/).filter(Boolean).length;
-}
-
 export default function WordSeparatorTool() {
   const [mode, setMode] = React.useState<Mode>("normalizeMorse");
   const [sep, setSep] = React.useState<OutputSep>("standard");
@@ -78,15 +51,10 @@ export default function WordSeparatorTool() {
   );
   const [copied, setCopied] = React.useState(false);
 
-  const cleanedMorse = React.useMemo(
-    () => onlyMorseChars(morseInput),
+  const morseWords = React.useMemo(
+    () => splitMorseWords(morseInput),
     [morseInput],
   );
-
-  const morseWords = React.useMemo(() => {
-    const ws = splitWordsFromMorse(cleanedMorse);
-    return ws.map((w) => splitLettersFromMorse(w));
-  }, [cleanedMorse]);
 
   const morseOut = React.useMemo(
     () => formatMorse(morseWords, sep),
@@ -94,23 +62,16 @@ export default function WordSeparatorTool() {
   );
 
   const englishOut = React.useMemo(() => {
-    const words = englishInput.trim().split(/\s+/).filter(Boolean);
-    if (!words.length) return "";
-
     const effectiveSep: Exclude<OutputSep, "newline"> =
       sep === "newline" ? "standard" : sep;
-    const encodedWords = words.map((w) => textToMorse(w).trim());
-
-    if (effectiveSep === "standard") return encodedWords.join("       ");
-    if (effectiveSep === "pipe") return encodedWords.join(" | ");
-    return encodedWords.join(" / ");
+    return formatMorse(splitMorseWords(textToMorse(englishInput)), effectiveSep);
   }, [englishInput, sep]);
 
   const out = mode === "normalizeMorse" ? morseOut : englishOut;
   const wordCount =
     mode === "normalizeMorse"
       ? morseWords.length
-      : countEnglishWords(englishInput);
+      : countTextWords(englishInput);
   const letterCount =
     mode === "normalizeMorse"
       ? morseWords.reduce((acc, w) => acc + w.length, 0)

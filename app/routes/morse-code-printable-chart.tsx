@@ -14,7 +14,7 @@ import {
   DarkNote,
   PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
-import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
 import {
   parseStoredJson,
   safeReadStorage,

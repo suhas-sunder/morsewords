@@ -1,4 +1,7 @@
-import { morseToText } from "~/client/components/shared/practiceMorseUtils";
+import {
+  morseToText,
+  normalizeMorseForDecode,
+} from "~/client/components/shared/morseUtils";
 
 export type DecodeResult = {
   decoded: string;
@@ -10,12 +13,7 @@ export type DecodeResult = {
 };
 
 function normalizeRaw(raw: string): string {
-  return (raw ?? "")
-    .replace(/[·•]/g, ".")
-    .replace(/[—–−]/g, "-")
-    .replace(/[^.\- /\n\t]/g, "") // keep only dot, dash, space, slash, and whitespace
-    .replace(/\t/g, " ")
-    .replace(/\n/g, " ");
+  return normalizeMorseForDecode(raw, { trim: false });
 }
 
 /**
@@ -33,7 +31,6 @@ export function decodeTypingRaw(raw: string): DecodeResult {
   let spaceRun = 0;
 
   let lettersDecoded = 0;
-  let wordsDecoded = 0;
   let invalidSymbols = 0;
 
   const commitLetter = () => {
@@ -48,8 +45,6 @@ export function decodeTypingRaw(raw: string): DecodeResult {
   const commitWord = () => {
     commitLetter();
     if (!decoded.endsWith(" ") && decoded.length > 0) decoded += " ";
-    // Avoid counting leading empty words
-    if (decoded.trim().length > 0) wordsDecoded += 1;
   };
 
   for (let i = 0; i < normalizedRaw.length; i++) {
@@ -65,29 +60,23 @@ export function decodeTypingRaw(raw: string): DecodeResult {
       continue;
     }
 
-    if (ch === "/") {
-      spaceRun = 0;
-      commitWord();
-      continue;
-    }
-
     if (ch === " ") {
       spaceRun += 1;
-      continue;
     }
   }
 
-  // Finalize pending boundary (but keep currentSymbol for the live buffer)
+  // Finalize pending boundary (but keep currentSymbol for the live buffer).
   if (spaceRun >= 3) {
-    // If the user ends with a big gap, treat it like a word boundary.
     commitWord();
   } else if (spaceRun > 0) {
-    // If the user ends with a small gap, commit the letter.
     commitLetter();
   }
 
+  const decodedText = decoded.replace(/\s+/g, " ").trimEnd();
+  const wordsDecoded = decodedText.trim().split(/\s+/).filter(Boolean).length;
+
   return {
-    decoded: decoded.replace(/\s+/g, " ").trimEnd(),
+    decoded: decodedText,
     currentSymbol,
     normalizedRaw,
     lettersDecoded,
