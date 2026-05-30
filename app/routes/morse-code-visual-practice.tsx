@@ -15,7 +15,11 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import {
+  isFlashAllowedNow,
+  useFlashSafety,
+} from "~/client/components/shared/useFlashSafety";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
@@ -99,7 +103,7 @@ function useVisualPlayback(pattern: string, wpm: number, farnsworthWpm: number) 
 }
 
 export default function MorseCodeVisualPractice() {
-  const { disableFlashEffects } = useDisplaySettings();
+  const { disableFlashEffects, flashAllowed } = useFlashSafety();
   const [message, setMessage] = React.useState("sos");
   const [wpm, setWpm] = React.useState(14);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
@@ -109,13 +113,13 @@ export default function MorseCodeVisualPractice() {
   const { active, play, stop } = useVisualPlayback(morse, wpm, farnsworthWpm);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     stop();
     setHasFlashed(false);
-  }, [disableFlashEffects, stop]);
+  }, [flashAllowed, stop]);
 
   function flashMessage() {
-    if (disableFlashEffects) return;
+    if (!flashAllowed || !isFlashAllowedNow()) return;
     setHasFlashed(true);
     play();
   }
@@ -187,18 +191,16 @@ export default function MorseCodeVisualPractice() {
               ) : hasFlashed ? (
                 <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
               ) : null}
-              <div
-                role="img"
-                className={
-                  "h-44 w-44 rounded-full transition-all duration-75 " +
-                  (active ? "bg-sky-200" : "bg-[#fffaf2]")
-                }
-                aria-label={active ? "Morse light on" : "Morse light off"}
+              <FlashLamp
+                active={active && flashAllowed}
+                disabled={!flashAllowed}
+                label="Morse visual practice flash lamp"
+                size="lg"
               />
               <button
                 type="button"
                 onClick={flashMessage}
-                disabled={disableFlashEffects}
+                disabled={!flashAllowed}
                 aria-describedby={
                   disableFlashEffects
                     ? FLASH_DISABLED_NOTICE_ID
@@ -210,7 +212,7 @@ export default function MorseCodeVisualPractice() {
                   tone: "dark",
                   size: "lg",
                   full: true,
-                  disabled: disableFlashEffects,
+                  disabled: !flashAllowed,
                 })} mt-6`}
               >
                 <LightBulbIcon size={20} title="Flash message" />

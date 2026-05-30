@@ -121,9 +121,8 @@ Dark values now exist in `app/app.css` for the core token groups:
   it defines generated printable/PDF/image output, not the page theme surface.
 - Generated SVG and image output colors remain unchanged because changing them
   would alter tool output behavior.
-- Strobe flash overlays remain a white flash by design. They now carry
-  `mw-strobe-flash` so the dark-mode surface fallback does not theme the flash
-  itself.
+- Visual flash behavior uses the shared `FlashLamp` component instead of
+  route-local full-screen strobe overlays.
 - Practice, typing, quiz, trainer, word-search, audio, and visual-practice
   state logic remains local. The visible shared surfaces around those controls
   are token-covered, while behavior-specific button state refactors remain out

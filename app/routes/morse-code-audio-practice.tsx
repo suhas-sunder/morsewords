@@ -15,7 +15,8 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
@@ -91,7 +92,6 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioPractice() {
   const player = useMorseAudio();
-  const { disableFlashEffects } = useDisplaySettings();
   const didSyncInitialDifficulty = React.useRef(false);
   const [hydrated, setHydrated] = React.useState(false);
   const [difficulty, setDifficulty] =
@@ -122,7 +122,9 @@ export default function MorseCodeAudioPractice() {
   const [soundOn, setSoundOn] = React.useState(true);
   const [flash, setFlash] = React.useState(false);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
-  const effectiveFlash = !disableFlashEffects && flash;
+  const flashLamp = useFlashLampState(flash);
+  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const effectiveFlash = flashAllowed && flash;
 
   const morse = React.useMemo(() => textToMorse(prompt.text), [prompt.text]);
   const normalizedAnswer = normalizeAudioAnswer(answer);
@@ -208,32 +210,13 @@ export default function MorseCodeAudioPractice() {
   ]);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     setFlash(false);
     const anyPlayer = player as typeof player & {
       setLiveOptions?: (options: unknown) => void;
     };
     anyPlayer.setLiveOptions?.({ flash: false });
-  }, [disableFlashEffects, player]);
-
-  React.useEffect(() => {
-    if (!effectiveFlash) return;
-    const handler = (ev: Event) => {
-      const detail = (ev as CustomEvent).detail as { ms?: number } | undefined;
-      const ms = detail?.ms ?? 0;
-      const el = document.getElementById("mw_audio_practice_flash");
-      if (!el || !ms) return;
-      el.classList.remove("opacity-0");
-      el.classList.add("opacity-100");
-      window.setTimeout(() => {
-        el.classList.remove("opacity-100");
-        el.classList.add("opacity-0");
-      }, ms);
-    };
-    window.addEventListener("morsewords:flash", handler as EventListener);
-    return () =>
-      window.removeEventListener("morsewords:flash", handler as EventListener);
-  }, [effectiveFlash]);
+  }, [flashAllowed, player]);
 
   async function playPrompt() {
     await player.play({
@@ -335,13 +318,6 @@ export default function MorseCodeAudioPractice() {
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
-      {effectiveFlash ? (
-        <div
-          id="mw_audio_practice_flash"
-          className="mw-strobe-flash pointer-events-none fixed inset-0 z-50 bg-white opacity-0 transition-opacity duration-75"
-        />
-      ) : null}
-
       <main style={styles.wrap}>
         <PageHero
           eyebrow="Audio practice"
@@ -607,17 +583,25 @@ export default function MorseCodeAudioPractice() {
                     <TogglePill
                       label="Flash"
                       checked={effectiveFlash}
-                      onChange={setFlash}
+                      onChange={(value) => setFlash(value && flashAllowed)}
                       icon={<LightBulbIcon size={16} title="Flash" />}
                       describedBy={
                         disableFlashEffects
                           ? FLASH_DISABLED_NOTICE_ID
                           : effectiveFlash
                             ? STROBE_WARNING_ID
-                            : undefined
+                          : undefined
                       }
-                      disabled={disableFlashEffects}
+                      disabled={!flashAllowed}
                     />
+                    {flash ? (
+                      <FlashLamp
+                        active={flashLamp.active}
+                        disabled={!effectiveFlash}
+                        label="Morse audio practice flash lamp"
+                        size="sm"
+                      />
+                    ) : null}
                   </div>
                 </div>
                 {disableFlashEffects ? (

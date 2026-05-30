@@ -7,10 +7,11 @@ import {
 } from "~/client/components/shared/morseUtils";
 import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
 import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
 } from "~/client/components/shared/StrobeWarning";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
 import {
   ActionButton,
   ActionRow,
@@ -97,7 +98,6 @@ export default function TranslatorSectionsBasic({
   const queryPrefillApplied = React.useRef(false);
 
   const player = useAudio();
-  const { disableFlashEffects } = useDisplaySettings();
 
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -193,27 +193,15 @@ export default function TranslatorSectionsBasic({
     }
   }, []);
 
-  const [flashOn, setFlashOn] = useState(false);
-  const effectiveFlash = !disableFlashEffects && flash;
+  const flashLamp = useFlashLampState(flash);
+  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const effectiveFlash = flashAllowed && flash;
 
   useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     setFlash(false);
-    setFlashOn(false);
     (player as any)?.setLiveOptions?.({ flash: false });
-  }, [disableFlashEffects, player]);
-
-  useEffect(() => {
-    const handler = (e: Event) => {
-      if (!effectiveFlash) return;
-      const ms = (e as CustomEvent).detail?.ms ?? 80;
-      setFlashOn(true);
-      window.setTimeout(() => setFlashOn(false), Math.max(30, ms));
-    };
-
-    window.addEventListener("morsewords:flash", handler as any);
-    return () => window.removeEventListener("morsewords:flash", handler as any);
-  }, [effectiveFlash]);
+  }, [flashAllowed, player]);
 
   const liveInputId = direction === "encode" ? "plainA" : "morseB";
   const inputLabel = direction === "encode" ? "Input (Text)" : "Input (Morse)";
@@ -397,13 +385,6 @@ export default function TranslatorSectionsBasic({
 
   return (
     <div className={isHome ? "mb-0" : "mb-8"}>
-      {flashOn && (
-        <div
-          className="pointer-events-none fixed inset-0 z-[999]"
-          style={{ background: "var(--mw-translator-shell-bg)" }}
-        />
-      )}
-
       <section
           className={
             isHome
@@ -800,7 +781,7 @@ export default function TranslatorSectionsBasic({
                     <TogglePill
                       label="Flash Light"
                       checked={effectiveFlash}
-                      onChange={setFlash}
+                      onChange={(value) => setFlash(value && flashAllowed)}
                       icon={<LightBulbIcon size={16} title="Light" />}
                       describedBy={
                         disableFlashEffects
@@ -809,9 +790,17 @@ export default function TranslatorSectionsBasic({
                             ? STROBE_WARNING_ID
                             : undefined
                       }
-                      disabled={disableFlashEffects}
+                      disabled={!flashAllowed}
                       isHome={isHome}
                     />
+                    {flash ? (
+                      <FlashLamp
+                        active={flashLamp.active}
+                        disabled={!effectiveFlash}
+                        label="Morse translator flash lamp"
+                        size="sm"
+                      />
+                    ) : null}
                   </div>
                 </div>
 

@@ -4,10 +4,11 @@ import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
 } from "~/client/components/shared/StrobeWarning";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
 import {
   HOME_TOOL_EXAMPLES,
   TOOL_SPACING_HELPER,
@@ -86,7 +87,6 @@ export default function MorseAudioTranslator({
   introEyebrow = "Audio tool",
 }: MorseAudioTranslatorProps = {}) {
   const player = useMorseAudio();
-  const { disableFlashEffects } = useDisplaySettings();
   const storageKey = React.useCallback(
     (suffix: string) => `${storagePrefix}_${suffix}`,
     [storagePrefix],
@@ -128,7 +128,9 @@ export default function MorseAudioTranslator({
   const [mp3Kbps, setMp3Kbps] = React.useState<number>(128);
   const [exportStatus, setExportStatus] = React.useState<null | { kind: "ok" | "error" | "working"; message: string }>(null);
   const [hydrated, setHydrated] = React.useState(false);
-  const effectiveFlash = !disableFlashEffects && flash;
+  const flashLamp = useFlashLampState(hydrated && flash);
+  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const effectiveFlash = flashAllowed && flash;
 
   React.useEffect(() => {
     setSourceMode((readStr(storageKey("source"), "text") as SourceMode) || "text");
@@ -173,11 +175,11 @@ export default function MorseAudioTranslator({
   }, [hydrated, player, charWpm, farnsworthWpm, toneHz, volume, soundOn, preset, repeat, effectiveFlash, attackMs, releaseMs]);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     setFlash(false);
     const anyPlayer: any = player as any;
     anyPlayer.setLiveOptions?.({ flash: false });
-  }, [disableFlashEffects, player]);
+  }, [flashAllowed, player]);
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -201,25 +203,6 @@ export default function MorseAudioTranslator({
     writeNum(storageKey("tail"), tailMs);
     writeNum(storageKey("mp3_kbps"), mp3Kbps);
   }, [hydrated, sourceMode, text, morse, charWpm, farnsworthWpm, toneHz, volume, preset, attackMs, releaseMs, repeat, soundOn, flash, advancedOpen, exportOpen, fileName, sampleRate, tailMs, mp3Kbps, storageKey]);
-
-  React.useEffect(() => {
-    if (!effectiveFlash) return;
-    const handler = (ev: Event) => {
-      const detail = (ev as CustomEvent).detail as { ms?: number } | undefined;
-      const ms = detail?.ms ?? 0;
-      if (!ms) return;
-      const el = document.getElementById("mw_flash_overlay");
-      if (!el) return;
-      el.classList.remove("opacity-0");
-      el.classList.add("opacity-100");
-      window.setTimeout(() => {
-        el.classList.remove("opacity-100");
-        el.classList.add("opacity-0");
-      }, ms);
-    };
-    window.addEventListener("morsewords:flash", handler as any);
-    return () => window.removeEventListener("morsewords:flash", handler as any);
-  }, [effectiveFlash]);
 
   const canPlay = !!activeCode.trim();
   const durationMs = React.useMemo(() => {
@@ -330,16 +313,16 @@ export default function MorseAudioTranslator({
 
   const updateFeedbackToggle = React.useCallback(
     (key: "sound" | "repeat" | "flash", next: boolean) => {
-      if (key === "flash" && disableFlashEffects) return;
+      if (key === "flash" && !flashAllowed) return;
       const current = { sound: soundOn, repeat, flash: effectiveFlash };
-      const updated = { ...current, [key]: key === "flash" ? next && !disableFlashEffects : next };
+      const updated = { ...current, [key]: key === "flash" ? next && flashAllowed : next };
       if (key === "sound") setSoundOn(next);
       if (key === "repeat") setRepeat(next);
-      if (key === "flash") setFlash(next && !disableFlashEffects);
+      if (key === "flash") setFlash(next && flashAllowed);
       const anyPlayer: any = player as any;
       anyPlayer.setLiveOptions?.({ soundEnabled: updated.sound, flash: updated.flash });
     },
-    [soundOn, repeat, effectiveFlash, disableFlashEffects, player],
+    [soundOn, repeat, effectiveFlash, flashAllowed, player],
   );
 
   const heroStats = [
@@ -351,8 +334,6 @@ export default function MorseAudioTranslator({
 
   return (
     <div style={styles.page}>
-      {effectiveFlash && <div id="mw_flash_overlay" className="mw-strobe-flash fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75" />}
-
       <section className="mw-tool-section mt-0">
             <div>
               <ToolHero eyebrow={introEyebrow} title={heading} lead={lead} />
@@ -521,7 +502,8 @@ export default function MorseAudioTranslator({
                   <div className="mt-4 flex flex-wrap gap-2">
                     <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} />
                     <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} />
-                    <TogglePill label="Flash" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : effectiveFlash ? STROBE_WARNING_ID : undefined} disabled={disableFlashEffects} />
+                    <TogglePill label="Flash" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : effectiveFlash ? STROBE_WARNING_ID : undefined} disabled={!flashAllowed} />
+                    {hydrated && flash ? <FlashLamp active={flashLamp.active} disabled={!effectiveFlash} label="Morse audio flash lamp" size="sm" /> : null}
                   </div>
 
                   {disableFlashEffects ? <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-3" /> : effectiveFlash ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}

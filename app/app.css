@@ -1215,10 +1215,6 @@ main *::after {
   color: currentColor !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where(.mw-strobe-flash) {
-  background-color: #ffffff !important;
-}
-
 @media (min-width: 640px) {
   .mw-how-section > .flex.flex-col:first-child {
     margin: 0 0 1.75rem;

@@ -17,7 +17,11 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import {
+  isFlashAllowedNow,
+  useFlashSafety,
+} from "~/client/components/shared/useFlashSafety";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
 import styles from "~/client/components/shared/pageStyles";
@@ -118,7 +122,7 @@ function useFlash(pattern: string, wpm: number, farnsworthWpm: number) {
 }
 
 export default function MorseCodeVisualQuiz() {
-  const { disableFlashEffects } = useDisplaySettings();
+  const { disableFlashEffects, flashAllowed } = useFlashSafety();
   const [index, setIndex] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
   const [checked, setChecked] = React.useState(false);
@@ -154,10 +158,10 @@ export default function MorseCodeVisualQuiz() {
   }, [bestStreak]);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     stop();
     setHasFlashed(false);
-  }, [disableFlashEffects, stop]);
+  }, [flashAllowed, stop]);
 
   function checkAnswer() {
     if (gameOver || solved) return;
@@ -203,7 +207,7 @@ export default function MorseCodeVisualQuiz() {
   }
 
   function flashPrompt() {
-    if (disableFlashEffects) return;
+    if (!flashAllowed || !isFlashAllowedNow()) return;
     setHasFlashed(true);
     play();
   }
@@ -368,18 +372,16 @@ export default function MorseCodeVisualQuiz() {
                 ) : hasFlashed ? (
                   <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
                 ) : null}
-                <div
-                  role="img"
-                  className={
-                      "h-40 w-40 rounded-full transition-all duration-75 " +
-                      (active ? "bg-sky-200" : "bg-[#fffaf2]")
-                  }
-                  aria-label={active ? "Morse light on" : "Morse light off"}
+                <FlashLamp
+                  active={active && flashAllowed}
+                  disabled={!flashAllowed}
+                  label="Morse visual quiz flash lamp"
+                  size="lg"
                 />
                 <button
                   type="button"
                   onClick={flashPrompt}
-                  disabled={disableFlashEffects}
+                  disabled={!flashAllowed}
                   aria-describedby={
                     disableFlashEffects
                       ? FLASH_DISABLED_NOTICE_ID
@@ -391,7 +393,7 @@ export default function MorseCodeVisualQuiz() {
                       tone: "dark",
                       size: "lg",
                       full: true,
-                      disabled: disableFlashEffects,
+                      disabled: !flashAllowed,
                     })} mt-5`}
                 >
                   <LightBulbIcon size={20} title="Flash prompt" />

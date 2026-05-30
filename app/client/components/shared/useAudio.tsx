@@ -4,7 +4,7 @@ import {
   getMorseEventDurationMs,
   type MorseTimingEvent,
 } from "~/client/components/shared/morseTiming";
-import { areFlashEffectsDisabled } from "~/client/settings/displaySettings";
+import { isFlashAllowedNow } from "~/client/components/shared/useFlashSafety";
 
 export type SoundPreset =
   | "cw_radio"
@@ -106,7 +106,7 @@ export default function useAudio() {
   }
 
   function triggerFlash(ms: number) {
-    if (areFlashEffectsDisabled()) return;
+    if (!isFlashAllowedNow()) return;
     window.dispatchEvent(new CustomEvent("morsewords:flash", { detail: { ms } }));
   }
 
@@ -118,7 +118,7 @@ export default function useAudio() {
       hz: clamp(opts.hz, 200, 1200),
       volume: clamp(opts.volume, 0, 1),
       repeat: !!opts.repeat,
-      flash: !!opts.flash && !areFlashEffectsDisabled(),
+      flash: !!opts.flash && isFlashAllowedNow(),
       // vibrate is intentionally ignored
       vibrate: false,
       soundEnabled: opts.soundEnabled !== false,

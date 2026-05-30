@@ -10,7 +10,8 @@ import {
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
 } from "~/client/components/shared/StrobeWarning";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
@@ -47,7 +48,6 @@ const FLASH_DISABLED_NOTICE_ID = "mp3-generator-flash-disabled";
 
 export default function MorseMp3GeneratorTool() {
   const player = useMorseAudio();
-  const { disableFlashEffects } = useDisplaySettings();
   const sourceInputId = React.useId();
   const fileNameId = React.useId();
   const mp3KbpsId = React.useId();
@@ -109,7 +109,9 @@ export default function MorseMp3GeneratorTool() {
   const computedMorse = React.useMemo(() => textToMorse(text), [text]);
   const activeCode = sourceMode === "text" ? computedMorse : morse;
   const canRender = activeCode.trim().length > 0;
-  const effectiveFlash = !disableFlashEffects && flash;
+  const flashLamp = useFlashLampState(hydrated && flash);
+  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const effectiveFlash = flashAllowed && flash;
   const renderedSoundOn = hydrated ? soundOn : true;
   const renderedRepeat = hydrated ? repeat : false;
   const renderedFlash = hydrated ? effectiveFlash : false;
@@ -226,13 +228,13 @@ export default function MorseMp3GeneratorTool() {
   }, [hydrated, player, previewAudioOptions]);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     setFlash(false);
     const livePlayer = player as typeof player & {
       setLiveOptions?: (options: Partial<typeof previewAudioOptions>) => void;
     };
     livePlayer.setLiveOptions?.({ flash: false });
-  }, [disableFlashEffects, player, previewAudioOptions]);
+  }, [flashAllowed, player, previewAudioOptions]);
 
   const handlePickExample = (exampleText: string) => {
     if (sourceMode === "text") {
@@ -304,12 +306,12 @@ export default function MorseMp3GeneratorTool() {
 
   const setFeedback = React.useCallback(
     (key: "sound" | "repeat" | "flash", nextValue: boolean) => {
-      if (key === "flash" && disableFlashEffects) return;
+      if (key === "flash" && !flashAllowed) return;
       if (key === "sound") setSoundOn(nextValue);
       if (key === "repeat") setRepeat(nextValue);
-      if (key === "flash") setFlash(nextValue && !disableFlashEffects);
+      if (key === "flash") setFlash(nextValue && flashAllowed);
     },
-    [disableFlashEffects],
+    [flashAllowed],
   );
 
   return (
@@ -555,8 +557,16 @@ export default function MorseMp3GeneratorTool() {
                   ? STROBE_WARNING_ID
                   : undefined
             }
-            disabled={disableFlashEffects}
+            disabled={!flashAllowed}
           />
+          {hydrated && flash ? (
+            <FlashLamp
+              active={flashLamp.active}
+              disabled={!renderedFlash}
+              label="Morse MP3 preview flash lamp"
+              size="sm"
+            />
+          ) : null}
         </div>
       </div>
 
