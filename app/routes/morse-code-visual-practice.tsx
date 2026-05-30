@@ -116,6 +116,11 @@ export default function MorseCodeVisualPractice() {
   const [hasFlashed, setHasFlashed] = React.useState(false);
   const morse = React.useMemo(() => textToMorse(message), [message]);
   const { active, play, stop } = useVisualPlayback(morse, wpm, farnsworthWpm);
+  const stopPlaybackRef = React.useRef(stop);
+
+  React.useEffect(() => {
+    stopPlaybackRef.current = stop;
+  }, [stop]);
 
   const handleWpmChange = React.useCallback((value: number) => {
     const next = Math.round(
@@ -138,8 +143,13 @@ export default function MorseCodeVisualPractice() {
     setHasFlashed(false);
   }, [flashAllowed, stop]);
 
+  React.useEffect(() => {
+    stopPlaybackRef.current();
+    setHasFlashed(false);
+  }, [message, wpm, farnsworthWpm]);
+
   function flashMessage() {
-    if (!flashAllowed || !isFlashAllowedNow()) return;
+    if (!morse || !flashAllowed || !isFlashAllowedNow()) return;
     setHasFlashed(true);
     play();
   }

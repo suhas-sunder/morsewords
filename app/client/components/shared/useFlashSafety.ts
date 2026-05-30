@@ -17,9 +17,8 @@ export type FlashSafetyState = {
 
 export function isFlashAllowedFromSafetyState({
   disableFlashEffects,
-  reducedMotion,
 }: Pick<FlashSafetyState, "disableFlashEffects" | "reducedMotion">) {
-  return !disableFlashEffects && !reducedMotion;
+  return !disableFlashEffects;
 }
 
 export function prefersReducedMotionNow() {
@@ -28,10 +27,7 @@ export function prefersReducedMotionNow() {
 }
 
 export function isFlashAllowedNow() {
-  return (
-    !areFlashEffectsDisabled() &&
-    !prefersReducedMotionNow()
-  );
+  return !areFlashEffectsDisabled();
 }
 
 export function useFlashSafety(): FlashSafetyState {

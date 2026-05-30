@@ -7,7 +7,7 @@ function flashToggle(page: Page) {
 }
 
 test.describe("flash safety helpers", () => {
-  test("allow flash by default and block it for global disable or reduced motion", () => {
+  test("allow user-triggered flash by default and block it only for the explicit site setting", () => {
     expect(
       isFlashAllowedFromSafetyState({
         disableFlashEffects: false,
@@ -25,7 +25,7 @@ test.describe("flash safety helpers", () => {
         disableFlashEffects: false,
         reducedMotion: true,
       }),
-    ).toBe(false);
+    ).toBe(true);
   });
 });
 
@@ -66,7 +66,7 @@ test.describe("shared FlashLamp", () => {
 
     await page.evaluate(() => {
       window.dispatchEvent(
-        new CustomEvent("morsewords:flash", { detail: { ms: 120 } }),
+        new CustomEvent("morsewords:flash", { detail: { ms: 350 } }),
       );
     });
 
@@ -74,19 +74,23 @@ test.describe("shared FlashLamp", () => {
     await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
   });
 
-  test("prefers-reduced-motion disables flash activation", async ({ page }) => {
+  test("prefers-reduced-motion does not permanently disable user-triggered flash", async ({
+    page,
+  }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.addInitScript(() => window.localStorage.clear());
     await page.goto("/audio");
 
-    await expect(flashToggle(page)).toBeDisabled();
+    await flashToggle(page).click();
+    await expect(flashToggle(page)).toBeEnabled();
 
     await page.evaluate(() => {
       window.dispatchEvent(
-        new CustomEvent("morsewords:flash", { detail: { ms: 120 } }),
+        new CustomEvent("morsewords:flash", { detail: { ms: 350 } }),
       );
     });
 
+    await expect(page.locator('[data-mw-flash-lamp][data-active="true"]')).toHaveCount(1);
     await expect(page.locator('[data-mw-flash-lamp][data-active="true"]')).toHaveCount(0);
   });
 

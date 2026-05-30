@@ -111,7 +111,10 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioQuiz() {
   const player = useMorseAudio();
+  const playerRef = React.useRef(player);
   const didResetInitialDifficulty = React.useRef(false);
+  const answeredQuestionRef = React.useRef(false);
+  const advancingQuestionRef = React.useRef(false);
   const [hydrated, setHydrated] = React.useState(false);
   const [difficulty, setDifficulty] =
     React.useState<AudioDifficulty>(DEFAULT_AUDIO_DIFFICULTY);
@@ -177,10 +180,18 @@ export default function MorseCodeAudioQuiz() {
   );
 
   React.useEffect(() => {
+    playerRef.current = player;
+  }, [player]);
+
+  React.useEffect(() => {
     setDifficulty(readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"));
     setBestStreak(readStoredInt(BEST_STREAK_STORAGE_KEY, 0));
     setDeckSeed(Date.now());
     setHydrated(true);
+  }, []);
+
+  React.useEffect(() => {
+    return () => playerRef.current.stop();
   }, []);
 
   React.useEffect(() => {
@@ -202,6 +213,12 @@ export default function MorseCodeAudioQuiz() {
     resetQuiz({ preserveDifficulty: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [difficulty, hydrated]);
+
+  React.useEffect(() => {
+    if (feedback !== "idle") return;
+    answeredQuestionRef.current = false;
+    advancingQuestionRef.current = false;
+  }, [feedback, index]);
 
   React.useEffect(() => {
     const anyPlayer = player as typeof player & {
@@ -262,7 +279,15 @@ export default function MorseCodeAudioQuiz() {
   }
 
   function checkAnswer() {
-    if (gameOver || feedback !== "idle" || !normalizedAnswer) return;
+    if (
+      gameOver ||
+      feedback !== "idle" ||
+      !normalizedAnswer ||
+      answeredQuestionRef.current
+    ) {
+      return;
+    }
+    answeredQuestionRef.current = true;
     if (runStartedAt === null) setRunStartedAt(Date.now());
     setAttempts((value) => value + 1);
     if (isCorrect) {
@@ -280,6 +305,8 @@ export default function MorseCodeAudioQuiz() {
   }
 
   function nextQuestion() {
+    if (gameOver || advancingQuestionRef.current) return;
+    advancingQuestionRef.current = true;
     player.stop();
     if (feedback === "idle") {
       setSkipped((value) => value + 1);
@@ -293,6 +320,8 @@ export default function MorseCodeAudioQuiz() {
   }
 
   function resetQuiz(_: { preserveDifficulty?: boolean } = {}) {
+    answeredQuestionRef.current = false;
+    advancingQuestionRef.current = false;
     player.stop();
     setDeckSeed(Date.now());
     setIndex(0);

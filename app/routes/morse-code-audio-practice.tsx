@@ -108,6 +108,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioPractice() {
   const player = useMorseAudio();
+  const playerRef = React.useRef(player);
   const didSyncInitialDifficulty = React.useRef(false);
   const [hydrated, setHydrated] = React.useState(false);
   const [difficulty, setDifficulty] =
@@ -166,6 +167,14 @@ export default function MorseCodeAudioPractice() {
     },
     [charWpm],
   );
+
+  React.useEffect(() => {
+    playerRef.current = player;
+  }, [player]);
+
+  React.useEffect(() => {
+    return () => playerRef.current.stop();
+  }, []);
 
   React.useEffect(() => {
     const storedDifficulty = readStoredDifficulty(
@@ -258,7 +267,7 @@ export default function MorseCodeAudioPractice() {
   }
 
   function checkAnswer() {
-    if (!normalizedAnswer || feedback === "correct" || feedback === "revealed") {
+    if (!normalizedAnswer || feedback !== "idle") {
       return;
     }
     setAttempts((value) => value + 1);
@@ -499,9 +508,9 @@ export default function MorseCodeAudioPractice() {
             <button
               type="button"
               onClick={checkAnswer}
-              disabled={!normalizedAnswer || feedback === "correct" || feedback === "revealed"}
+              disabled={!normalizedAnswer || feedback !== "idle"}
               className={toolControlButtonClass({
-                disabled: !normalizedAnswer || feedback === "correct" || feedback === "revealed",
+                disabled: !normalizedAnswer || feedback !== "idle",
                 size: "lg",
                 rounded: "xl",
               })}

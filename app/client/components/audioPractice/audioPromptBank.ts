@@ -1,4 +1,9 @@
 import { sentenceDrills } from "~/client/components/morse-code-sentence-practice/SentencePracticeData";
+import {
+  buildPromptDeck as buildSessionPromptDeck,
+  createSeededRandom as createSessionSeededRandom,
+  normalizePlainAnswer,
+} from "~/client/components/shared/practiceSessionUtils";
 
 export type AudioDifficulty = "beginner" | "easy" | "medium" | "hard";
 
@@ -205,11 +210,7 @@ export function getAudioPrompts(difficulty: AudioDifficulty) {
 }
 
 export function normalizeAudioAnswer(value: string) {
-  return value
-    .toUpperCase()
-    .replace(/[^A-Z0-9]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  return normalizePlainAnswer(value);
 }
 
 export function promptTypeLabel(type: AudioPromptType) {
@@ -229,26 +230,14 @@ export function pickPrompt(pool: AudioPrompt[], previousText?: string) {
 }
 
 export function createSeededRandom(seed: number) {
-  let value = seed % 2147483647;
-  if (value <= 0) value += 2147483646;
-  return () => {
-    value = (value * 16807) % 2147483647;
-    return (value - 1) / 2147483646;
-  };
+  return createSessionSeededRandom(seed);
 }
 
 export function buildPromptDeck(pool: AudioPrompt[], count: number, seed: number) {
-  const rng = createSeededRandom(seed);
-  const shuffled = [...pool];
-  for (let i = shuffled.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(rng() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  const deck: AudioPrompt[] = [];
-  for (let i = 0; i < count; i += 1) {
-    deck.push(shuffled[i % shuffled.length] ?? audioPromptBank[0]);
-  }
-  return deck;
+  return buildSessionPromptDeck(pool, count, seed, {
+    fallback: audioPromptBank,
+    getKey: (prompt) => prompt.text,
+  });
 }
 
 function dedupePrompts(prompts: AudioPrompt[]) {

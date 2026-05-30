@@ -33,6 +33,11 @@ import {
   readStoredNumber,
   safeWriteStorage,
 } from "~/client/components/shared/settingsStorage";
+import {
+  buildPromptDeck,
+  comparePlainAnswers,
+  normalizePlainAnswer,
+} from "~/client/components/shared/practiceSessionUtils";
 import styles from "~/client/components/shared/pageStyles";
 import {
   CheckCircleIcon,
@@ -45,7 +50,8 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 const CANONICAL_PATH = "/morse-code-visual-quiz";
 const STROBE_WARNING_ID = "visual-quiz-strobe-warning";
 const FLASH_DISABLED_NOTICE_ID = "visual-quiz-flash-disabled";
-const PROMPTS = [
+const INITIAL_VISUAL_QUIZ_SEED = 73051;
+export const VISUAL_QUIZ_PROMPTS = [
   "sos",
   "cq",
   "test",
@@ -58,6 +64,7 @@ const PROMPTS = [
   "morse",
 ];
 const TOTAL_QUESTIONS = 10;
+const VISUAL_QUIZ_FALLBACK_PROMPTS = ["sos"] as const;
 
 const faqItems = [
   {
@@ -130,8 +137,20 @@ function useFlash(pattern: string, wpm: number, farnsworthWpm: number) {
   return { active, play, stop };
 }
 
+export function buildVisualQuizPromptDeck(seed: number) {
+  return buildPromptDeck(VISUAL_QUIZ_PROMPTS, TOTAL_QUESTIONS, seed, {
+    fallback: VISUAL_QUIZ_FALLBACK_PROMPTS,
+  });
+}
+
+function createVisualQuizSeed() {
+  return Date.now() + Math.floor(Math.random() * 1_000_000);
+}
+
 export default function MorseCodeVisualQuiz() {
   const { disableFlashEffects, flashAllowed } = useFlashSafety();
+  const didHydratePromptOrder = React.useRef(false);
+  const [roundSeed, setRoundSeed] = React.useState(INITIAL_VISUAL_QUIZ_SEED);
   const [index, setIndex] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
   const [checked, setChecked] = React.useState(false);
@@ -148,27 +167,44 @@ export default function MorseCodeVisualQuiz() {
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
   const [hasFlashed, setHasFlashed] = React.useState(false);
 
-  const prompt = PROMPTS[index % PROMPTS.length];
+  const promptDeck = React.useMemo(
+    () => buildVisualQuizPromptDeck(roundSeed),
+    [roundSeed],
+  );
+  const prompt =
+    promptDeck[Math.min(index, Math.max(0, promptDeck.length - 1))] ??
+    VISUAL_QUIZ_FALLBACK_PROMPTS[0];
   const morse = textToMorse(prompt);
   const { active, play, stop } = useFlash(morse, wpm, farnsworthWpm);
-  const isCorrect = answer.trim().toLowerCase() === prompt;
+  const normalizedAnswer = normalizePlainAnswer(answer);
+  const isCorrect = comparePlainAnswers(answer, prompt);
   const gameOver = completed >= TOTAL_QUESTIONS;
   const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
 
   const handleWpmChange = React.useCallback((value: number) => {
+    stop();
+    setHasFlashed(false);
     const next = Math.round(
       clampNumber(value, VISUAL_SPEED_RANGE.min, VISUAL_SPEED_RANGE.max),
     );
     setWpm(next);
     setFarnsworthWpm((current) => clampFarnsworthWpm(current, next, 5));
-  }, []);
+  }, [stop]);
 
   const handleFarnsworthWpmChange = React.useCallback(
     (value: number) => {
+      stop();
+      setHasFlashed(false);
       setFarnsworthWpm(clampFarnsworthWpm(value, wpm, 5));
     },
-    [wpm],
+    [stop, wpm],
   );
+
+  React.useEffect(() => {
+    if (didHydratePromptOrder.current) return;
+    didHydratePromptOrder.current = true;
+    setRoundSeed(createVisualQuizSeed());
+  }, []);
 
   React.useEffect(() => {
     safeWriteStorage("mw_visual_quiz_best_streak", String(bestStreak));
@@ -181,7 +217,7 @@ export default function MorseCodeVisualQuiz() {
   }, [flashAllowed, stop]);
 
   function checkAnswer() {
-    if (gameOver || solved) return;
+    if (gameOver || solved || !normalizedAnswer) return;
     if (runStartedAt === null) setRunStartedAt(Date.now());
     setAttempts((value) => value + 1);
     setChecked(true);
@@ -199,18 +235,22 @@ export default function MorseCodeVisualQuiz() {
   }
 
   function nextPrompt() {
+    stop();
     if (!solved) setStreak(0);
     const nextCompleted = completed + 1;
     setCompleted(nextCompleted);
     setAnswer("");
     setChecked(false);
     setSolved(false);
+    setHasFlashed(false);
     if (nextCompleted < TOTAL_QUESTIONS) {
-      setIndex((value) => (value + 1) % PROMPTS.length);
+      setIndex((value) => Math.min(value + 1, TOTAL_QUESTIONS - 1));
     }
   }
 
   function resetQuiz() {
+    stop();
+    setRoundSeed(createVisualQuizSeed());
     setIndex(0);
     setAnswer("");
     setChecked(false);
@@ -224,7 +264,7 @@ export default function MorseCodeVisualQuiz() {
   }
 
   function flashPrompt() {
-    if (!flashAllowed || !isFlashAllowedNow()) return;
+    if (!morse || !flashAllowed || !isFlashAllowedNow()) return;
     setHasFlashed(true);
     play();
   }
@@ -431,7 +471,7 @@ export default function MorseCodeVisualQuiz() {
                     onKeyDown={(event) => {
                       if (event.key === "Enter") {
                         if (solved) nextPrompt();
-                        else if (answer.trim()) checkAnswer();
+                        else if (normalizedAnswer) checkAnswer();
                       }
                     }}
  className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg transition focus:outline-none focus:ring-0 focus-visible:outline-none"
@@ -465,9 +505,9 @@ export default function MorseCodeVisualQuiz() {
                       <button
                         type="button"
                         onClick={checkAnswer}
-                        disabled={!answer.trim()}
+                        disabled={!normalizedAnswer}
                         className={toolControlButtonClass({
-                          disabled: !answer.trim(),
+                          disabled: !normalizedAnswer,
                         })}
                       >
                         <CheckCircleIcon size={18} title="Check answer" />

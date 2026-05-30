@@ -133,9 +133,36 @@ export default function useMorseAudio() {
   });
 
   const liveOptsRef = React.useRef<PlayOptions | null>(null);
+  const mountedRef = React.useRef(false);
 
   const [state, setState] = React.useState<MorsePlayerState>("idle");
   const [isSupported, setIsSupported] = React.useState(false);
+
+  function setPlayerState(nextState: MorsePlayerState) {
+    if (mountedRef.current) setState(nextState);
+  }
+
+  React.useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      stopRef.current = true;
+      pausedRef.current = false;
+      repeatRef.current = false;
+      playingRef.current = false;
+
+      const ctx = ctxRef.current;
+      const master = masterGainRef.current;
+      if (ctx && master) {
+        try {
+          master.gain.cancelScheduledValues(ctx.currentTime);
+          master.gain.setValueAtTime(0, ctx.currentTime);
+        } catch {
+          // ignore teardown races
+        }
+      }
+    };
+  }, []);
 
   React.useEffect(() => {
     const supported =
@@ -390,7 +417,7 @@ export default function useMorseAudio() {
     repeatRef.current = !!safeOpts.repeat;
     posRef.current = { eventIndex: 0 };
 
-    setState("playing");
+    setPlayerState("playing");
 
     applyMasterFromLive(safeOpts);
 
@@ -405,13 +432,13 @@ export default function useMorseAudio() {
     pausedRef.current = false;
     stopRef.current = false;
     repeatRef.current = false;
-    setState("idle");
+    setPlayerState("idle");
   }
 
   function pause() {
     if (!playingRef.current) return;
     pausedRef.current = true;
-    setState("paused");
+    setPlayerState("paused");
   }
 
   function resume() {
@@ -421,14 +448,14 @@ export default function useMorseAudio() {
     const live = liveOptsRef.current;
     if (live) applyMasterFromLive(live);
 
-    setState("playing");
+    setPlayerState("playing");
   }
 
   function stop() {
     stopRef.current = true;
     pausedRef.current = false;
     repeatRef.current = false;
-    setState("idle");
+    setPlayerState("idle");
   }
 
   function setLiveOptions(partial: Partial<PlayOptions>) {

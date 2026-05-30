@@ -33,9 +33,12 @@ import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import {
  normalizeMorseForDecode,
- normalizeTextForEncoding,
  textToMorse,
 } from "~/client/components/shared/morseUtils";
+import {
+ normalizePlainAnswer,
+ shufflePrompts,
+} from "~/client/components/shared/practiceSessionUtils";
 import {
  WORD_TRAINER_SPEED_RANGE,
  clampFarnsworthWpm,
@@ -102,33 +105,12 @@ export function meta({}: Route.MetaArgs) {
  });
 }
 
-function createSeededRandom(seed: number) {
- let state = seed >>> 0;
- return () => {
- state += 0x6d2b79f5;
- let t = state;
- t = Math.imul(t ^ (t >>> 15), t | 1);
- t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
- return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
- };
-}
-
 function shuffleWords(words: string[], seed: number) {
- const rng = createSeededRandom(seed);
- const copy = [...words];
- for (let index = copy.length - 1; index > 0; index -= 1) {
- const swapIndex = Math.floor(rng() * (index + 1));
- [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
- }
- return copy;
+ return shufflePrompts(words, seed);
 }
 
 function normalizeTrainerWord(raw: string) {
- return raw
- .normalize("NFKC")
- .toUpperCase()
- .replace(/[^A-Z0-9]/g,"")
- .trim();
+ return normalizePlainAnswer(raw).replace(/\s+/g,"");
 }
 
 function parseTrainerWords(input: string): ParsedTrainerWords {
@@ -162,7 +144,7 @@ function parseTrainerWords(input: string): ParsedTrainerWords {
 }
 
 function normalizeTextAnswer(value: string) {
- return normalizeTextForEncoding(value).replace(/\s+/g,"");
+ return normalizePlainAnswer(value).replace(/\s+/g,"");
 }
 
 function normalizeMorseAnswer(value: string) {
@@ -192,6 +174,7 @@ function getBuiltInWords(name: Exclude<WordListName,"custom">) {
 }
 
 export default function MorseCodeWordTrainer() {
+ const answeredPromptRef = React.useRef(false);
  const [listName, setListName] = React.useState<WordListName>("beginner");
  const [customWords, setCustomWords] = React.useState(() =>
  readStoredString(CUSTOM_WORDS_STORAGE_KEY, "signal\nteacher\npractice\ncopy", {
@@ -286,6 +269,7 @@ export default function MorseCodeWordTrainer() {
  }, [deckSource, weakWords.length]);
 
  function resetPromptOnly() {
+ answeredPromptRef.current = false;
  setAnswer("");
  setFeedback("idle");
  setShowAnswer(false);
@@ -355,7 +339,8 @@ export default function MorseCodeWordTrainer() {
  }
 
  function checkAnswer() {
- if (!activeWord || feedback ==="correct") return;
+ if (!activeWord || feedback !=="idle" || !normalizedAnswer || answeredPromptRef.current) return;
+ answeredPromptRef.current = true;
  if (runStartedAt === null) setRunStartedAt(Date.now());
 
  setAttempts((value) => value + 1);
@@ -378,6 +363,7 @@ export default function MorseCodeWordTrainer() {
  }
 
  function tryAgain() {
+ answeredPromptRef.current = false;
  setAnswer("");
  setFeedback("idle");
  setShowAnswer(false);
@@ -634,7 +620,10 @@ className="mt-2 min-h-36 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-sm tr
  value={answer}
  onChange={(event) => {
  setAnswer(event.target.value);
- if (feedback ==="incorrect") setFeedback("idle");
+ if (feedback ==="incorrect") {
+ answeredPromptRef.current = false;
+ setFeedback("idle");
+ }
  }}
  onKeyDown={(event) => {
  if (event.key ==="Enter") {
@@ -657,7 +646,7 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  ) : (
  <ToolButton
  onClick={checkAnswer}
- disabled={!activeWord || !answer.trim()}
+ disabled={!activeWord || feedback !=="idle" || !normalizedAnswer}
  >
  <CheckCircleIcon size={18} title="Check answer"/>
  Check answer

@@ -391,6 +391,11 @@ Approved button treatment is centralized by `app/app.css` and
 - Do not break keyboard interactions.
 - Do not remove functional labels required for accessibility.
 - Flash/light controls must keep the strobe warning behavior.
+- Do not disable, remove, rename, or materially change existing controls or
+  old user flows while making new changes unless that behavior change is
+  explicit in the task. If a control must be guarded for safety or invalid
+  input, preserve the prior enabled/disabled contract everywhere else and
+  verify the old flow alongside the new flow.
 - Strobe warning label should be exactly `Strobe warning`.
 - Strobe warning copy should be calm and explicit:
   `Strobe warning: flashing light may be uncomfortable or unsafe for people
