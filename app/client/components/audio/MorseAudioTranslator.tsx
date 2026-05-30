@@ -28,6 +28,7 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
+import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   AUDIO_ATTACK_RANGE,
   AUDIO_GENERATOR_PRESETS,
@@ -228,6 +229,7 @@ export default function MorseAudioTranslator({
     if (!anyPlayer.setLiveOptions) return;
 
     anyPlayer.setLiveOptions({
+      code: activeCode,
       wpm: clampNum(charWpm, 5, 60),
       farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
       hz: toneHz,
@@ -242,6 +244,7 @@ export default function MorseAudioTranslator({
   }, [
     hydrated,
     player,
+    activeCode,
     charWpm,
     farnsworthWpm,
     toneHz,
@@ -308,7 +311,10 @@ export default function MorseAudioTranslator({
     tailMs,
   ]);
 
-  const canPlay = !!activeCode.trim();
+  const canPlay = React.useMemo(
+    () => hasPlayableMorse(activeCode),
+    [activeCode],
+  );
   const durationMs = React.useMemo(() => {
     if (!canPlay) return 0;
     return player.estimateDurationMs({
@@ -415,6 +421,7 @@ export default function MorseAudioTranslator({
   const handleExportWav = async () => {
     if (!canPlay) return;
     if (!soundOn) return;
+    player.stop();
 
     const safeBase = sanitizeFileBase(fileName || "morse-audio");
     try {

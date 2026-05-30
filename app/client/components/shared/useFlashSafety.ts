@@ -8,6 +8,8 @@ import {
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const MIN_FLASH_MS = 30;
 const MAX_FLASH_MS = 1200;
+const FLASH_EVENT = "morsewords:flash";
+const FLASH_CLEAR_EVENT = "morsewords:flash-clear";
 
 export type FlashSafetyState = {
   flashAllowed: boolean;
@@ -28,6 +30,11 @@ export function prefersReducedMotionNow() {
 
 export function isFlashAllowedNow() {
   return !areFlashEffectsDisabled();
+}
+
+export function dispatchFlashClear() {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new CustomEvent(FLASH_CLEAR_EVENT));
 }
 
 export function useFlashSafety(): FlashSafetyState {
@@ -78,10 +85,14 @@ export function useFlashLampState(enabled: boolean) {
       return;
     }
 
+    const clearHandler = () => {
+      clearTimer();
+      setActive(false);
+    };
+
     const handler = (event: Event) => {
       if (!isFlashAllowedNow()) {
-        clearTimer();
-        setActive(false);
+        clearHandler();
         return;
       }
 
@@ -98,9 +109,11 @@ export function useFlashLampState(enabled: boolean) {
       }, ms);
     };
 
-    window.addEventListener("morsewords:flash", handler as EventListener);
+    window.addEventListener(FLASH_EVENT, handler as EventListener);
+    window.addEventListener(FLASH_CLEAR_EVENT, clearHandler);
     return () => {
-      window.removeEventListener("morsewords:flash", handler as EventListener);
+      window.removeEventListener(FLASH_EVENT, handler as EventListener);
+      window.removeEventListener(FLASH_CLEAR_EVENT, clearHandler);
       clearTimer();
     };
   }, [enabled, safety.flashAllowed]);

@@ -8,8 +8,12 @@ import {
 import {
   clampFarnsworthWpm,
   sanitizeAudioGeneratorPreset,
+  sanitizeAudioSampleRate,
 } from "~/client/components/shared/morseSettings";
-import { isFlashAllowedNow } from "~/client/components/shared/useFlashSafety";
+import {
+  dispatchFlashClear,
+  isFlashAllowedNow,
+} from "~/client/components/shared/useFlashSafety";
 
 export type SoundPreset =
   | "cw_radio"
@@ -134,6 +138,8 @@ export default function useMorseAudio() {
 
   const liveOptsRef = React.useRef<PlayOptions | null>(null);
   const mountedRef = React.useRef(false);
+  const sessionRef = React.useRef(0);
+  const activeNodesRef = React.useRef<Set<AudioScheduledSourceNode>>(new Set());
 
   const [state, setState] = React.useState<MorsePlayerState>("idle");
   const [isSupported, setIsSupported] = React.useState(false);
@@ -142,25 +148,73 @@ export default function useMorseAudio() {
     if (mountedRef.current) setState(nextState);
   }
 
+  function isActiveSession(sessionId: number) {
+    return (
+      mountedRef.current &&
+      sessionRef.current === sessionId &&
+      !stopRef.current
+    );
+  }
+
+  function trackNode<T extends AudioScheduledSourceNode>(node: T): T {
+    activeNodesRef.current.add(node);
+    const cleanup = () => activeNodesRef.current.delete(node);
+    node.addEventListener?.("ended", cleanup, { once: true });
+    const previousOnEnded = node.onended;
+    node.onended = (event) => {
+      cleanup();
+      previousOnEnded?.call(node, event);
+    };
+    return node;
+  }
+
+  function silenceActiveNodes() {
+    const ctx = ctxRef.current;
+    const master = masterGainRef.current;
+    if (ctx && master) {
+      try {
+        master.gain.cancelScheduledValues(ctx.currentTime);
+        master.gain.setValueAtTime(0, ctx.currentTime);
+      } catch {
+        // ignore stop races
+      }
+    }
+
+    for (const node of activeNodesRef.current) {
+      try {
+        node.stop(0);
+      } catch {
+        // already stopped
+      }
+    }
+    activeNodesRef.current.clear();
+    dispatchFlashClear();
+  }
+
+  function cancelCurrentPlayback() {
+    sessionRef.current += 1;
+    stopRef.current = true;
+    pausedRef.current = false;
+    repeatRef.current = false;
+    playingRef.current = false;
+    silenceActiveNodes();
+  }
+
   React.useEffect(() => {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
-      stopRef.current = true;
-      pausedRef.current = false;
-      repeatRef.current = false;
-      playingRef.current = false;
+      cancelCurrentPlayback();
 
       const ctx = ctxRef.current;
-      const master = masterGainRef.current;
-      if (ctx && master) {
-        try {
-          master.gain.cancelScheduledValues(ctx.currentTime);
-          master.gain.setValueAtTime(0, ctx.currentTime);
-        } catch {
+      if (ctx) {
+        const closePromise = ctx.close?.();
+        closePromise?.catch(() => {
           // ignore teardown races
-        }
+        });
       }
+      ctxRef.current = null;
+      masterGainRef.current = null;
     };
   }, []);
 
@@ -223,8 +277,8 @@ export default function useMorseAudio() {
     return sanitizeOpts(liveOptsRef.current ?? fallback);
   }
 
-  async function waitWhilePaused() {
-    while (pausedRef.current && !stopRef.current) {
+  async function waitWhilePaused(sessionId: number) {
+    while (pausedRef.current && isActiveSession(sessionId)) {
       await sleep(40);
     }
   }
@@ -265,6 +319,7 @@ export default function useMorseAudio() {
   }
 
   async function playTone(params: {
+    sessionId: number;
     ms: number;
     hz: number;
     preset: SoundPreset;
@@ -272,8 +327,9 @@ export default function useMorseAudio() {
     releaseMs: number;
     audible: boolean;
   }) {
+    if (!isActiveSession(params.sessionId)) return;
     const ctx = await ensureRunning();
-    if (!ctx) return;
+    if (!ctx || !isActiveSession(params.sessionId)) return;
 
     const master = masterGainRef.current;
     if (!master) return;
@@ -285,6 +341,7 @@ export default function useMorseAudio() {
     }
 
     const osc = ctx.createOscillator();
+    trackNode(osc);
     osc.type = presetToOscType(params.preset);
     osc.frequency.value = params.hz;
 
@@ -310,15 +367,25 @@ export default function useMorseAudio() {
     env.gain.setValueAtTime(1, Math.max(attackEnd, releaseStart));
     env.gain.linearRampToValueAtTime(0, now + durationS);
 
+    if (!isActiveSession(params.sessionId)) {
+      try {
+        osc.stop(0);
+      } catch {
+        // already stopped
+      }
+      return;
+    }
+
     osc.start();
     osc.stop(now + durationS);
 
     await sleep(params.ms);
   }
 
-  async function playSounder(ms: number, audible: boolean) {
+  async function playSounder(sessionId: number, ms: number, audible: boolean) {
+    if (!isActiveSession(sessionId)) return;
     const ctx = await ensureRunning();
-    if (!ctx) return;
+    if (!ctx || !isActiveSession(sessionId)) return;
 
     const master = masterGainRef.current;
     if (!master) return;
@@ -338,7 +405,7 @@ export default function useMorseAudio() {
       data[i] = (Math.random() * 2 - 1) * env;
     }
 
-    const src = ctx.createBufferSource();
+    const src = trackNode(ctx.createBufferSource());
     src.buffer = buffer;
 
     const biquad = ctx.createBiquadFilter();
@@ -350,6 +417,14 @@ export default function useMorseAudio() {
     localGain.gain.value = 1;
 
     src.connect(biquad).connect(localGain).connect(master);
+    if (!isActiveSession(sessionId)) {
+      try {
+        src.stop(0);
+      } catch {
+        // already stopped
+      }
+      return;
+    }
     src.start();
     await sleep(ms);
     try {
@@ -359,15 +434,16 @@ export default function useMorseAudio() {
     }
   }
 
-  async function runOnce(baseOpts: PlayOptions) {
+  async function runOnce(sessionId: number, baseOpts: PlayOptions) {
     const events = buildMorseEvents(baseOpts.code, {
       charWpm: baseOpts.wpm,
       farnsworthWpm: baseOpts.farnsworthWpm,
     });
 
     for (let i = posRef.current.eventIndex; i < events.length; i++) {
-      if (stopRef.current) break;
-      await waitWhilePaused();
+      if (!isActiveSession(sessionId)) break;
+      await waitWhilePaused(sessionId);
+      if (!isActiveSession(sessionId)) break;
 
       const event = events[i];
       posRef.current.eventIndex = i;
@@ -375,6 +451,7 @@ export default function useMorseAudio() {
       if (event.type === "gap") {
         const live = getLiveOpts(baseOpts);
         await sleep(playbackEventMs(event, live));
+        if (!isActiveSession(sessionId)) break;
         posRef.current.eventIndex = i + 1;
         continue;
       }
@@ -383,14 +460,15 @@ export default function useMorseAudio() {
       applyMasterFromLive(live);
 
       const dur = playbackEventMs(event, live);
-      if (live.flash) triggerFlash(dur);
+      if (live.flash && isActiveSession(sessionId)) triggerFlash(dur);
 
       const audible = hasAudibleOutput(live);
 
       if (live.preset === "sounder") {
-        await playSounder(dur, audible);
+        await playSounder(sessionId, dur, audible);
       } else {
         await playTone({
+          sessionId,
           ms: dur,
           hz: live.hz,
           preset: live.preset ?? "cw_radio",
@@ -402,11 +480,14 @@ export default function useMorseAudio() {
         });
       }
 
+      if (!isActiveSession(sessionId)) break;
       posRef.current.eventIndex = i + 1;
     }
   }
 
   async function play(opts: PlayOptions) {
+    cancelCurrentPlayback();
+    const sessionId = sessionRef.current;
     const safeOpts = sanitizeOpts(opts);
 
     liveOptsRef.current = safeOpts;
@@ -422,11 +503,13 @@ export default function useMorseAudio() {
     applyMasterFromLive(safeOpts);
 
     do {
-      await runOnce(safeOpts);
-      if (stopRef.current) break;
+      await runOnce(sessionId, safeOpts);
+      if (!isActiveSession(sessionId)) break;
       posRef.current = { eventIndex: 0 };
       if (repeatRef.current) await sleep(160);
-    } while (repeatRef.current);
+    } while (repeatRef.current && isActiveSession(sessionId));
+
+    if (sessionRef.current !== sessionId) return;
 
     playingRef.current = false;
     pausedRef.current = false;
@@ -452,15 +535,22 @@ export default function useMorseAudio() {
   }
 
   function stop() {
-    stopRef.current = true;
-    pausedRef.current = false;
-    repeatRef.current = false;
+    cancelCurrentPlayback();
     setPlayerState("idle");
   }
 
   function setLiveOptions(partial: Partial<PlayOptions>) {
     if (!liveOptsRef.current) return;
+    const previousCode = liveOptsRef.current.code;
     liveOptsRef.current = { ...liveOptsRef.current, ...partial };
+    if (
+      playingRef.current &&
+      partial.code !== undefined &&
+      partial.code !== previousCode
+    ) {
+      stop();
+      return;
+    }
     if (playingRef.current) applyMasterFromLive(liveOptsRef.current);
   }
 
@@ -476,22 +566,23 @@ export default function useMorseAudio() {
   }
 
   async function renderAudioBuffer(opts: RenderAudioOptions): Promise<AudioBuffer> {
-    const safePreset: SoundPreset = (opts.preset ?? "cw_radio") as SoundPreset;
+    const safePreset: SoundPreset = sanitizeAudioGeneratorPreset(opts.preset);
+    const safeWpm = clamp(opts.wpm, 5, 60);
 
     const safe: RenderAudioOptions = {
       ...opts,
       preset: safePreset,
-      wpm: clamp(opts.wpm, 5, 60),
+      wpm: safeWpm,
       farnsworthWpm: opts.farnsworthWpm
-        ? clamp(opts.farnsworthWpm, 5, 60)
+        ? clampFarnsworthWpm(opts.farnsworthWpm, safeWpm)
         : undefined,
       hz: clamp(opts.hz, 200, 1600),
       volume: clamp(opts.volume, 0, 1),
       soundEnabled: opts.soundEnabled !== false,
       attackMs: clamp(opts.attackMs ?? defaultAttackMs(safePreset), 0, 200),
       releaseMs: clamp(opts.releaseMs ?? defaultReleaseMs(safePreset), 0, 400),
-      sampleRate: opts.sampleRate ?? 44100,
-      tailMs: opts.tailMs ?? 120,
+      sampleRate: sanitizeAudioSampleRate(opts.sampleRate),
+      tailMs: clamp(opts.tailMs ?? 120, 0, 400),
     };
 
     const events = buildMorseEvents(safe.code, {

@@ -3,10 +3,12 @@ import { expect, test } from "@playwright/test";
 import {
   AUDIO_GENERATOR_PRESETS,
   MP3_BITRATES,
+  TRANSLATOR_AUDIO_PRESETS,
   clampFarnsworthWpm,
   sanitizeAudioGeneratorPreset,
   sanitizeAudioSampleRate,
   sanitizeMp3Bitrate,
+  sanitizeTranslatorAudioPreset,
 } from "../../app/client/components/shared/morseSettings";
 import {
   clampNumber,
@@ -162,11 +164,24 @@ test.describe("settingsStorage helpers", () => {
   test("keeps Morse setting sanitizers inside supported ranges", () => {
     expect(clampNumber("3", 5, 40)).toBe(5);
     expect(clampFarnsworthWpm(35, 18)).toBe(18);
-    expect(sanitizeAudioGeneratorPreset("sounder")).toBe("sounder");
+    for (const preset of AUDIO_GENERATOR_PRESETS) {
+      expect(sanitizeAudioGeneratorPreset(preset)).toBe(preset);
+    }
+    for (const preset of TRANSLATOR_AUDIO_PRESETS) {
+      expect(sanitizeTranslatorAudioPreset(preset)).toBe(preset);
+    }
     expect(sanitizeAudioGeneratorPreset("old_square")).toBe("cw_radio");
+    expect(sanitizeTranslatorAudioPreset("sounder")).toBe("cw_radio");
     expect(sanitizeAudioSampleRate(96000)).toBe(44100);
     expect(sanitizeMp3Bitrate(320)).toBe(128);
-    expect(AUDIO_GENERATOR_PRESETS).toContain("cw_radio");
+    expect(AUDIO_GENERATOR_PRESETS).toEqual([
+      "cw_radio",
+      "sine",
+      "square",
+      "triangle",
+      "sawtooth",
+      "sounder",
+    ]);
     expect(MP3_BITRATES).toEqual([96, 128, 192, 256]);
   });
 });

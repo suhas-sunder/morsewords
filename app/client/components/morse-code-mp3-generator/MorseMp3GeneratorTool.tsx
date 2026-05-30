@@ -7,6 +7,7 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
+import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   AUDIO_ATTACK_RANGE,
   AUDIO_GENERATOR_PRESETS,
@@ -183,7 +184,11 @@ export default function MorseMp3GeneratorTool() {
 
   const computedMorse = React.useMemo(() => textToMorse(text), [text]);
   const activeCode = sourceMode === "text" ? computedMorse : morse;
-  const canRender = activeCode.trim().length > 0;
+  const hasSourceCode = activeCode.trim().length > 0;
+  const canRender = React.useMemo(
+    () => hasPlayableMorse(activeCode),
+    [activeCode],
+  );
   const flashLamp = useFlashLampState(hydrated && flash);
   const { disableFlashEffects, flashAllowed } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
@@ -326,6 +331,22 @@ export default function MorseMp3GeneratorTool() {
     livePlayer.setLiveOptions?.({ flash: false });
   }, [flashAllowed, player, previewAudioOptions]);
 
+  React.useEffect(() => {
+    setDownloadStatus(null);
+  }, [
+    activeCode,
+    charWpm,
+    farnsworthWpm,
+    toneHz,
+    volume,
+    preset,
+    attackMs,
+    releaseMs,
+    sampleRate,
+    tailMs,
+    mp3Kbps,
+  ]);
+
   const handlePickExample = (exampleText: string) => {
     if (sourceMode === "text") {
       setText(exampleText);
@@ -363,7 +384,15 @@ export default function MorseMp3GeneratorTool() {
   const renderAudioBuffer = () => player.renderAudioBuffer(exportAudioOptions);
 
   const handleDownloadMp3 = async () => {
-    if (!canRender || !renderedSoundOn) return;
+    if (!hasSourceCode || !renderedSoundOn) return;
+    if (!canRender) {
+      setDownloadStatus({
+        kind: "error",
+        message: "Enter text or valid dots and dashes before exporting audio.",
+      });
+      return;
+    }
+    player.stop();
     setDownloadStatus({ kind: "working", message: "Preparing MP3 file..." });
     try {
       const buffer = await renderAudioBuffer();
@@ -380,7 +409,15 @@ export default function MorseMp3GeneratorTool() {
   };
 
   const handleDownloadWav = async () => {
-    if (!canRender || !renderedSoundOn) return;
+    if (!hasSourceCode || !renderedSoundOn) return;
+    if (!canRender) {
+      setDownloadStatus({
+        kind: "error",
+        message: "Enter text or valid dots and dashes before exporting audio.",
+      });
+      return;
+    }
+    player.stop();
     setDownloadStatus({ kind: "working", message: "Preparing WAV file..." });
     try {
       const blob = await player.renderWav(exportAudioOptions);
@@ -536,7 +573,7 @@ export default function MorseMp3GeneratorTool() {
                 type="button"
                 tone="darkPanel"
                 onClick={handleDownloadWav}
-                disabled={!canRender || !renderedSoundOn}
+                disabled={!hasSourceCode || !renderedSoundOn}
                 className="rounded-lg"
               >
                 <DownloadIcon size={18} title={undefined} aria-hidden="true" />
@@ -602,7 +639,7 @@ export default function MorseMp3GeneratorTool() {
           type="button"
           tone="light"
           onClick={handleDownloadMp3}
-          disabled={!canRender || !renderedSoundOn}
+          disabled={!hasSourceCode || !renderedSoundOn}
           hover="dark"
           className="rounded-xl"
         >

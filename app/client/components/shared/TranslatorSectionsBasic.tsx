@@ -13,6 +13,7 @@ import {
   VOLUME_RANGE,
   clampFarnsworthWpm,
 } from "~/client/components/shared/morseSettings";
+import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   clampNumber,
   readStoredBoolean,
@@ -319,7 +320,10 @@ export default function TranslatorSectionsBasic({
     set: () => applyExampleText(text),
   }));
 
-  const canPlay = !!activeMorseForPlayback.trim();
+  const canPlay = useMemo(
+    () => hasPlayableMorse(activeMorseForPlayback),
+    [activeMorseForPlayback],
+  );
 
   const handlePlay = async () => {
     if (!canPlay) return;
@@ -372,6 +376,7 @@ export default function TranslatorSectionsBasic({
 
   const handleSaveAudio = async () => {
     if (!canPlay || !soundOn) return;
+    player.stop();
 
     try {
       const blob = await player.renderWav({

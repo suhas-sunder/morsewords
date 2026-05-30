@@ -144,6 +144,12 @@ export function estimateMorseDurationMs(
   );
 }
 
+export function hasPlayableMorse(code: string): boolean {
+  return buildMorseEvents(code, { charWpm: 20 }).some(
+    (event) => event.type === "mark",
+  );
+}
+
 function parsePlayableMorse(code: string): string[][] {
   return splitMorseWords(code);
 }

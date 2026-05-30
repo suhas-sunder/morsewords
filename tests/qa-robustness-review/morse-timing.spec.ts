@@ -5,6 +5,7 @@ import {
   estimateMorseDurationMs,
   farnsworthGapScale,
   getDotMs,
+  hasPlayableMorse,
   normalizePlayableMorse,
 } from "../../app/client/components/shared/morseTiming";
 import {
@@ -110,6 +111,12 @@ test.describe("shared Morse timing", () => {
         "\u00c2\u00b7 \u00e2\u20ac\u00a2 / \u00e2\u20ac\u201c \u00e2\u20ac\u201d \u00e2\u02c6\u2019",
       ),
     ).toBe(". .       - - -");
+  });
+
+  test("detects whether pasted input contains playable Morse marks", () => {
+    expect(hasPlayableMorse("... --- ...")).toBe(true);
+    expect(hasPlayableMorse("   /   ")).toBe(false);
+    expect(hasPlayableMorse("not morse")).toBe(false);
   });
 
   test("visual helper exports keep the existing on/ms shape and shared timing", () => {

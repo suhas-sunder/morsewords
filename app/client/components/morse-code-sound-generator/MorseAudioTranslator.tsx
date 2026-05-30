@@ -27,6 +27,7 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
+import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   AUDIO_ATTACK_RANGE,
   AUDIO_GENERATOR_PRESETS,
@@ -241,6 +242,7 @@ export default function MorseAudioTranslator({
     if (!hydrated) return;
     const anyPlayer: any = player as any;
     anyPlayer.setLiveOptions?.({
+      code: activeCode,
       wpm: clampNum(charWpm, 5, 60),
       farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
       hz: toneHz,
@@ -252,7 +254,7 @@ export default function MorseAudioTranslator({
       attackMs,
       releaseMs,
     });
-  }, [hydrated, player, charWpm, farnsworthWpm, toneHz, volume, soundOn, preset, repeat, effectiveFlash, attackMs, releaseMs]);
+  }, [hydrated, player, activeCode, charWpm, farnsworthWpm, toneHz, volume, soundOn, preset, repeat, effectiveFlash, attackMs, releaseMs]);
 
   React.useEffect(() => {
     if (flashAllowed) return;
@@ -284,7 +286,11 @@ export default function MorseAudioTranslator({
     writeNum(storageKey("mp3_kbps"), mp3Kbps);
   }, [hydrated, sourceMode, text, morse, charWpm, farnsworthWpm, toneHz, volume, preset, attackMs, releaseMs, repeat, soundOn, flash, advancedOpen, exportOpen, fileName, sampleRate, tailMs, mp3Kbps, storageKey]);
 
-  const canPlay = !!activeCode.trim();
+  const canPlay = React.useMemo(
+    () => hasPlayableMorse(activeCode),
+    [activeCode],
+  );
+  const canAttemptExport = !!activeCode.trim() && soundOn;
   const durationMs = React.useMemo(() => {
     if (!canPlay) return 0;
     return player.estimateDurationMs({
@@ -293,6 +299,22 @@ export default function MorseAudioTranslator({
       farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
     });
   }, [player, activeCode, canPlay, charWpm, farnsworthWpm]);
+
+  React.useEffect(() => {
+    setExportStatus(null);
+  }, [
+    activeCode,
+    charWpm,
+    farnsworthWpm,
+    toneHz,
+    volume,
+    preset,
+    attackMs,
+    releaseMs,
+    sampleRate,
+    tailMs,
+    mp3Kbps,
+  ]);
 
   const handleCharWpmChange = React.useCallback((value: number) => {
     const next = Math.round(
@@ -356,7 +378,15 @@ export default function MorseAudioTranslator({
   };
 
   const handleExport = async (format: ExportFormat) => {
-    if (!canPlay || !soundOn) return;
+    if (!activeCode.trim() || !soundOn) return;
+    if (!canPlay) {
+      setExportStatus({
+        kind: "error",
+        message: "Enter text or valid dots and dashes before exporting audio.",
+      });
+      return;
+    }
+    player.stop();
     const safeBase = sanitizeFileBase(fileName || defaultFileName || "morse-audio");
     setExportStatus({ kind: "working", message: `Preparing ${formatLabels[format]} file...` });
     try {
@@ -551,7 +581,7 @@ export default function MorseAudioTranslator({
 
                 <ToolButton
                   onClick={() => handleExport(exportFormats.includes("mp3") ? "mp3" : "wav")}
-                  disabled={!canPlay || !soundOn}
+                  disabled={!canAttemptExport}
                   tone="light"
                   className="flex items-center justify-center gap-2 rounded-xl py-2.5"
                 >
@@ -656,8 +686,8 @@ export default function MorseAudioTranslator({
                   
 
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {exportFormats.includes("wav") ? <ExportButton label="Download WAV" onClick={() => handleExport("wav")} disabled={!canPlay || !soundOn} /> : null}
-                    {exportFormats.includes("mp3") ? <ExportButton label="Download MP3" onClick={() => handleExport("mp3")} disabled={!canPlay || !soundOn} /> : null}
+                    {exportFormats.includes("wav") ? <ExportButton label="Download WAV" onClick={() => handleExport("wav")} disabled={!canAttemptExport} /> : null}
+                    {exportFormats.includes("mp3") ? <ExportButton label="Download MP3" onClick={() => handleExport("mp3")} disabled={!canAttemptExport} /> : null}
                   </div>
 
                   {exportStatus ? (
