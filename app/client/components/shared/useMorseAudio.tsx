@@ -1,4 +1,10 @@
 import * as React from "react";
+import {
+  buildMorseEvents,
+  estimateMorseDurationMs,
+  getMorseEventDurationMs,
+  type MorseTimingEvent,
+} from "~/client/components/shared/morseTiming";
 import { areFlashEffectsDisabled } from "~/client/settings/displaySettings";
 
 export type SoundPreset =
@@ -59,37 +65,14 @@ export type RenderAudioOptions = Omit<
 export type RenderWavOptions = RenderAudioOptions;
 
 type InternalPosition = {
-  tokenIndex: number;
-  symbolIndex: number;
+  eventIndex: number;
 };
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
-function ditMs(wpm: number) {
-  // Standard: dit length in ms is 1200 / WPM (PARIS standard word)
-  return 1200 / clamp(wpm, 1, 80);
-}
-
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
-function farnsworthMultiplier(charWpm: number, fwpm?: number) {
-  if (!fwpm) return 1;
-  const c = clamp(charWpm, 1, 80);
-  const f = clamp(fwpm, 1, 80);
-  return f < c ? c / f : 1;
-}
-
-function normalizeMorseInput(code: string) {
-  return (code || "")
-    .replace(/[·•]/g, ".")
-    .replace(/[–—−]/g, "-")
-    .replace(/\s*\/\s*/g, "       ") // treat slash as word gap
-    .replace(/\t/g, " ")
-    .replace(/\r\n|\r/g, "\n")
-    .trim();
-}
 
 function presetToOscType(preset: SoundPreset): OscillatorType {
   if (preset === "square") return "square";
@@ -115,6 +98,13 @@ function hasAudibleOutput(opts: PlayOptions) {
   return opts.soundEnabled !== false && clamp(opts.volume, 0, 1) > 0.000001;
 }
 
+function playbackEventMs(event: MorseTimingEvent, opts: PlayOptions) {
+  return getMorseEventDurationMs(event, {
+    charWpm: opts.wpm,
+    farnsworthWpm: opts.farnsworthWpm,
+  });
+}
+
 /**
  * Morse audio engine focused on playback quality and export.
  * - Real-time playback uses AudioContext and a click-safe envelope.
@@ -135,8 +125,7 @@ export default function useMorseAudio() {
   const repeatRef = React.useRef(false);
 
   const posRef = React.useRef<InternalPosition>({
-    tokenIndex: 0,
-    symbolIndex: 0,
+    eventIndex: 0,
   });
 
   const liveOptsRef = React.useRef<PlayOptions | null>(null);
@@ -338,76 +327,49 @@ export default function useMorseAudio() {
   }
 
   async function runOnce(baseOpts: PlayOptions) {
-    const code = normalizeMorseInput(baseOpts.code);
-    const parts = code.split(/(\s+)/);
+    const events = buildMorseEvents(baseOpts.code, {
+      charWpm: baseOpts.wpm,
+      farnsworthWpm: baseOpts.farnsworthWpm,
+    });
 
-    for (let i = posRef.current.tokenIndex; i < parts.length; i++) {
+    for (let i = posRef.current.eventIndex; i < events.length; i++) {
       if (stopRef.current) break;
       await waitWhilePaused();
 
-      const opts = getLiveOpts(baseOpts);
+      const event = events[i];
+      posRef.current.eventIndex = i;
 
-      const unit = ditMs(opts.wpm);
-      const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
-      const letterGapUnits = Math.round(3 * mult);
-      const wordGapUnits = Math.round(7 * mult);
-
-      const preset = opts.preset ?? "cw_radio";
-      const attackMs = opts.attackMs ?? defaultAttackMs(preset);
-      const releaseMs = opts.releaseMs ?? defaultReleaseMs(preset);
-
-      const token = parts[i];
-      posRef.current.tokenIndex = i;
-
-      if (!token) continue;
-
-      if (/^\s+$/.test(token)) {
-        const spaces = token.length;
-        const units =
-          spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
-        posRef.current.symbolIndex = 0;
-        await sleep(units * unit);
+      if (event.type === "gap") {
+        const live = getLiveOpts(baseOpts);
+        await sleep(playbackEventMs(event, live));
+        posRef.current.eventIndex = i + 1;
         continue;
       }
 
-      for (let s = posRef.current.symbolIndex; s < token.length; s++) {
-        if (stopRef.current) break;
-        await waitWhilePaused();
+      const live = getLiveOpts(baseOpts);
+      applyMasterFromLive(live);
 
-        const live = getLiveOpts(baseOpts);
-        applyMasterFromLive(live);
+      const dur = playbackEventMs(event, live);
+      if (live.flash) triggerFlash(dur);
 
-        const liveUnit = ditMs(live.wpm);
+      const audible = hasAudibleOutput(live);
 
-        posRef.current.symbolIndex = s;
-
-        const ch = token[s];
-        if (ch !== "." && ch !== "-") continue;
-
-        const dur = ch === "." ? liveUnit : 3 * liveUnit;
-        if (live.flash) triggerFlash(dur);
-
-        const audible = hasAudibleOutput(live);
-
-        if (live.preset === "sounder") {
-          await playSounder(dur, audible);
-        } else {
-          await playTone({
-            ms: dur,
-            hz: live.hz,
-            preset: live.preset ?? "cw_radio",
-            attackMs:
-              live.attackMs ?? defaultAttackMs(live.preset ?? "cw_radio"),
-            releaseMs:
-              live.releaseMs ?? defaultReleaseMs(live.preset ?? "cw_radio"),
-            audible,
-          });
-        }
-
-        if (s < token.length - 1) await sleep(liveUnit);
+      if (live.preset === "sounder") {
+        await playSounder(dur, audible);
+      } else {
+        await playTone({
+          ms: dur,
+          hz: live.hz,
+          preset: live.preset ?? "cw_radio",
+          attackMs:
+            live.attackMs ?? defaultAttackMs(live.preset ?? "cw_radio"),
+          releaseMs:
+            live.releaseMs ?? defaultReleaseMs(live.preset ?? "cw_radio"),
+          audible,
+        });
       }
 
-      posRef.current.symbolIndex = 0;
+      posRef.current.eventIndex = i + 1;
     }
   }
 
@@ -420,7 +382,7 @@ export default function useMorseAudio() {
     pausedRef.current = false;
     playingRef.current = true;
     repeatRef.current = !!safeOpts.repeat;
-    posRef.current = { tokenIndex: 0, symbolIndex: 0 };
+    posRef.current = { eventIndex: 0 };
 
     setState("playing");
 
@@ -429,7 +391,7 @@ export default function useMorseAudio() {
     do {
       await runOnce(safeOpts);
       if (stopRef.current) break;
-      posRef.current = { tokenIndex: 0, symbolIndex: 0 };
+      posRef.current = { eventIndex: 0 };
       if (repeatRef.current) await sleep(160);
     } while (repeatRef.current);
 
@@ -474,32 +436,10 @@ export default function useMorseAudio() {
     wpm: number;
     farnsworthWpm?: number;
   }) {
-    const code = normalizeMorseInput(opts.code);
-    const unit = ditMs(opts.wpm);
-    const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
-    const letterGapUnits = Math.round(3 * mult);
-    const wordGapUnits = Math.round(7 * mult);
-
-    const parts = code.split(/(\s+)/);
-    let totalMs = 0;
-
-    for (const token of parts) {
-      if (!token) continue;
-      if (/^\s+$/.test(token)) {
-        const spaces = token.length;
-        const units =
-          spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
-        totalMs += units * unit;
-        continue;
-      }
-      for (let i = 0; i < token.length; i++) {
-        const ch = token[i];
-        if (ch !== "." && ch !== "-") continue;
-        totalMs += ch === "." ? unit : 3 * unit;
-        if (i < token.length - 1) totalMs += unit;
-      }
-    }
-    return totalMs;
+    return estimateMorseDurationMs(opts.code, {
+      charWpm: opts.wpm,
+      farnsworthWpm: opts.farnsworthWpm,
+    });
   }
 
   async function renderAudioBuffer(opts: RenderAudioOptions): Promise<AudioBuffer> {
@@ -521,31 +461,13 @@ export default function useMorseAudio() {
       tailMs: opts.tailMs ?? 120,
     };
 
-    const code = normalizeMorseInput(safe.code);
-    const unit = ditMs(safe.wpm);
-    const mult = farnsworthMultiplier(safe.wpm, safe.farnsworthWpm);
-    const letterGapUnits = Math.round(3 * mult);
-    const wordGapUnits = Math.round(7 * mult);
-
-    const parts = code.split(/(\s+)/);
-    let totalMs = 0;
-    for (const token of parts) {
-      if (!token) continue;
-      if (/^\s+$/.test(token)) {
-        const spaces = token.length;
-        const units =
-          spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
-        totalMs += units * unit;
-        continue;
-      }
-      for (let i = 0; i < token.length; i++) {
-        const ch = token[i];
-        if (ch !== "." && ch !== "-") continue;
-        totalMs += ch === "." ? unit : 3 * unit;
-        if (i < token.length - 1) totalMs += unit;
-      }
-    }
-    totalMs += clamp(safe.tailMs ?? 120, 0, 2000);
+    const events = buildMorseEvents(safe.code, {
+      charWpm: safe.wpm,
+      farnsworthWpm: safe.farnsworthWpm,
+    });
+    const totalMs =
+      events.reduce((total, event) => total + event.ms, 0) +
+      clamp(safe.tailMs ?? 120, 0, 2000);
 
     const sr = safe.sampleRate ?? 44100;
     const length = Math.ceil((totalMs / 1000) * sr);
@@ -560,8 +482,6 @@ export default function useMorseAudio() {
     master.connect(offline.destination);
 
     let t = 0;
-    const unitS = unit / 1000;
-
     function addTone(durS: number) {
       if (effective <= 0.000001) return;
 
@@ -614,23 +534,12 @@ export default function useMorseAudio() {
       osc.stop(t + durS);
     }
 
-    for (const token of parts) {
-      if (!token) continue;
-      if (/^\s+$/.test(token)) {
-        const spaces = token.length;
-        const units =
-          spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
-        t += units * unitS;
-        continue;
-      }
-      for (let i = 0; i < token.length; i++) {
-        const ch = token[i];
-        if (ch !== "." && ch !== "-") continue;
-        const durS = ch === "." ? unitS : 3 * unitS;
+    for (const event of events) {
+      const durS = event.ms / 1000;
+      if (event.type === "mark") {
         addTone(durS);
-        t += durS;
-        if (i < token.length - 1) t += unitS;
       }
+      t += durS;
     }
 
     return offline.startRendering();

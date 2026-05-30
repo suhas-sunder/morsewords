@@ -1,4 +1,9 @@
 import * as React from "react";
+import {
+  buildMorseEvents,
+  getMorseEventDurationMs,
+  type MorseTimingEvent,
+} from "~/client/components/shared/morseTiming";
 import { areFlashEffectsDisabled } from "~/client/settings/displaySettings";
 
 export type SoundPreset =
@@ -38,35 +43,20 @@ export type PlayOptions = {
 };
 
 type InternalPosition = {
-  tokenIndex: number;
-  symbolIndex: number;
+  eventIndex: number;
 };
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
-function ditMs(wpm: number) {
-  return 1200 / clamp(wpm, 1, 80);
-}
-
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-function farnsworthMultiplier(charWpm: number, fwpm?: number) {
-  if (!fwpm) return 1;
-  const c = clamp(charWpm, 1, 80);
-  const f = clamp(fwpm, 1, 80);
-  return f < c ? c / f : 1;
-}
-
-function normalizeMorseInput(code: string) {
-  return (code || "")
-    .replace(/[·•]/g, ".")
-    .replace(/[–—−]/g, "-")
-    .replace(/\s*\/\s*/g, "       ") // treat slash as word gap
-    .replace(/\t/g, " ")
-    .replace(/\r\n|\r/g, "\n")
-    .trim();
+function playbackEventMs(event: MorseTimingEvent, opts: PlayOptions) {
+  return getMorseEventDurationMs(event, {
+    charWpm: opts.wpm,
+    farnsworthWpm: opts.farnsworthWpm,
+  });
 }
 
 /**
@@ -89,7 +79,7 @@ export default function useAudio() {
   const playingRef = React.useRef(false);
   const repeatRef = React.useRef(false);
 
-  const posRef = React.useRef<InternalPosition>({ tokenIndex: 0, symbolIndex: 0 });
+  const posRef = React.useRef<InternalPosition>({ eventIndex: 0 });
   const lastCodeRef = React.useRef<string>("");
   const liveOptsRef = React.useRef<PlayOptions | null>(null);
 
@@ -254,62 +244,39 @@ export default function useAudio() {
   }
 
   async function runOnce(baseOpts: PlayOptions) {
-    const code = normalizeMorseInput(baseOpts.code);
-    const parts = code.split(/(\s+)/);
+    const events = buildMorseEvents(baseOpts.code, {
+      charWpm: baseOpts.wpm,
+      farnsworthWpm: baseOpts.farnsworthWpm,
+    });
 
-    for (let i = posRef.current.tokenIndex; i < parts.length; i++) {
+    for (let i = posRef.current.eventIndex; i < events.length; i++) {
       if (stopRef.current) break;
       await waitWhilePaused();
 
-      const token = parts[i];
-      posRef.current.tokenIndex = i;
-      if (!token) continue;
+      const event = events[i];
+      posRef.current.eventIndex = i;
 
-      // Always read live opts before timing decisions.
-      const opts = getLive(baseOpts);
-      const unit = ditMs(opts.wpm);
-      const mult = farnsworthMultiplier(opts.wpm, opts.farnsworthWpm);
-      const letterGapUnits = Math.round(3 * mult);
-      const wordGapUnits = Math.round(7 * mult);
-
-      const preset = opts.preset ?? "cw_radio";
-      const oscType: OscillatorType = preset === "bright_square" ? "square" : "sine";
-
-      if (/^\s+$/.test(token)) {
-        const spaces = token.length;
-        const units = spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
-        posRef.current.symbolIndex = 0;
-        await sleep(units * unit);
+      if (event.type === "gap") {
+        const live = getLive(baseOpts);
+        await sleep(playbackEventMs(event, live));
+        posRef.current.eventIndex = i + 1;
         continue;
       }
 
-      for (let s = posRef.current.symbolIndex; s < token.length; s++) {
-        if (stopRef.current) break;
-        await waitWhilePaused();
-        posRef.current.symbolIndex = s;
+      // Pull latest settings each symbol.
+      const live = getLive(baseOpts);
+      applyMasterFromOpts(live);
 
-        // Pull latest settings each symbol.
-        const live = getLive(baseOpts);
-        applyMasterFromOpts(live);
+      const livePreset = live.preset ?? "cw_radio";
+      const liveOscType: OscillatorType =
+        livePreset === "bright_square" ? "square" : "sine";
+      const dur = playbackEventMs(event, live);
+      if (live.flash) triggerFlash(dur);
 
-        const liveUnit = ditMs(live.wpm);
-        const livePreset = live.preset ?? "cw_radio";
-        const liveOscType: OscillatorType =
-          livePreset === "bright_square" ? "square" : "sine";
+      if (livePreset === "telegraph_sounder") await playSounder(dur);
+      else await playTone(dur, live.hz, liveOscType);
 
-        const ch = token[s];
-        if (ch !== "." && ch !== "-") continue;
-
-        const dur = ch === "." ? liveUnit : 3 * liveUnit;
-        if (live.flash) triggerFlash(dur);
-
-        if (livePreset === "telegraph_sounder") await playSounder(dur);
-        else await playTone(dur, live.hz, liveOscType);
-
-        if (s < token.length - 1) await sleep(liveUnit);
-      }
-
-      posRef.current.symbolIndex = 0;
+      posRef.current.eventIndex = i + 1;
     }
   }
 
@@ -323,7 +290,7 @@ export default function useAudio() {
     pausedRef.current = false;
     playingRef.current = true;
     repeatRef.current = !!safe.repeat;
-    posRef.current = { tokenIndex: 0, symbolIndex: 0 };
+    posRef.current = { eventIndex: 0 };
 
     setState("playing");
     applyMasterFromOpts(safe);
@@ -331,7 +298,7 @@ export default function useAudio() {
     do {
       await runOnce(safe);
       if (stopRef.current) break;
-      posRef.current = { tokenIndex: 0, symbolIndex: 0 };
+      posRef.current = { eventIndex: 0 };
       if (repeatRef.current) await sleep(160);
     } while (repeatRef.current);
 
@@ -376,29 +343,11 @@ export default function useAudio() {
   /** Render a WAV file for sharing/downloading without realtime playback jitter. */
   async function renderWav(opts: PlayOptions): Promise<Blob> {
     const safe = sanitize(opts);
-    const code = normalizeMorseInput(safe.code);
-    const unit = ditMs(safe.wpm);
-    const mult = farnsworthMultiplier(safe.wpm, safe.farnsworthWpm);
-    const letterGapUnits = Math.round(3 * mult);
-    const wordGapUnits = Math.round(7 * mult);
-
-    const parts = code.split(/(\s+)/);
-    let totalMs = 0;
-    for (const token of parts) {
-      if (!token) continue;
-      if (/^\s+$/.test(token)) {
-        const spaces = token.length;
-        const units = spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
-        totalMs += units * unit;
-        continue;
-      }
-      for (let i = 0; i < token.length; i++) {
-        const ch = token[i];
-        if (ch !== "." && ch !== "-") continue;
-        totalMs += ch === "." ? unit : 3 * unit;
-        if (i < token.length - 1) totalMs += unit;
-      }
-    }
+    const events = buildMorseEvents(safe.code, {
+      charWpm: safe.wpm,
+      farnsworthWpm: safe.farnsworthWpm,
+    });
+    const totalMs = events.reduce((total, event) => total + event.ms, 0);
 
     const sr = 44100;
     const length = Math.ceil((totalMs / 1000) * sr);
@@ -413,7 +362,6 @@ export default function useAudio() {
     const oscType: OscillatorType = preset === "bright_square" ? "square" : "sine";
 
     let t = 0;
-    const unitS = unit / 1000;
 
     function addTone(durS: number) {
       if (effective <= 0.000001) return;
@@ -452,22 +400,12 @@ export default function useAudio() {
       osc.stop(t + durS);
     }
 
-    for (const token of parts) {
-      if (!token) continue;
-      if (/^\s+$/.test(token)) {
-        const spaces = token.length;
-        const units = spaces >= 7 ? wordGapUnits : spaces >= 3 ? letterGapUnits : 1;
-        t += units * unitS;
-        continue;
-      }
-      for (let i = 0; i < token.length; i++) {
-        const ch = token[i];
-        if (ch !== "." && ch !== "-") continue;
-        const durS = ch === "." ? unitS : 3 * unitS;
+    for (const event of events) {
+      const durS = event.ms / 1000;
+      if (event.type === "mark") {
         addTone(durS);
-        t += durS;
-        if (i < token.length - 1) t += unitS;
       }
+      t += durS;
     }
 
     const rendered = await offline.startRendering();
