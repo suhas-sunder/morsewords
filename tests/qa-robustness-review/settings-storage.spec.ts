@@ -225,6 +225,7 @@ const CORRUPTED_STORAGE_ROUTES = [
   "/morse-code-visual-quiz",
   "/morse-code-word-trainer",
   "/morse-code-printable-chart",
+  "/morse-code-word-search-builder",
 ] as const;
 
 test.describe("corrupted persisted settings smoke", () => {

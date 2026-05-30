@@ -29,7 +29,11 @@ import {
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { textToMorse } from "~/client/components/shared/morseUtils";
+import {
+ normalizeTextForEncoding,
+ textToMorse,
+} from "~/client/components/shared/morseUtils";
+import { clampNumber } from "~/client/components/shared/settingsStorage";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
@@ -42,11 +46,16 @@ const MAX_TITLE_LENGTH = 80;
 const MAX_INSTRUCTIONS_LENGTH = 220;
 const MAX_BRAND_NAME_LENGTH = 42;
 const MAX_WORD_SEARCH_INPUT_LENGTH = 700;
+const MIN_GRID_SIZE = 10;
+const MAX_GRID_SIZE = 20;
 const LETTERS ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 type Difficulty ="easy"|"standard"|"challenge";
 type PrintMode ="student"|"answerKey";
 type PrintSelection = PrintMode |"both";
+
+const DIFFICULTIES: readonly Difficulty[] = ["easy","standard","challenge"] as const;
+const PRINT_SELECTIONS: readonly PrintSelection[] = ["student","answerKey","both"] as const;
 
 type Direction = {
  key: string;
@@ -142,8 +151,28 @@ export function meta({}: Route.MetaArgs) {
  });
 }
 
+function isAtoZLetter(character: string) {
+ return character >= "A" && character <= "Z";
+}
+
+function sanitizeGridSize(value: number) {
+ return Math.round(clampNumber(value, MIN_GRID_SIZE, MAX_GRID_SIZE));
+}
+
+function sanitizeDifficulty(value: unknown): Difficulty {
+ return DIFFICULTIES.includes(value as Difficulty)
+ ? (value as Difficulty)
+ :"standard";
+}
+
+function sanitizePrintSelection(value: unknown): PrintSelection {
+ return PRINT_SELECTIONS.includes(value as PrintSelection)
+ ? (value as PrintSelection)
+ :"student";
+}
+
 export function normalizeWordSearchWord(raw: string) {
- return raw.toUpperCase().replace(/[^A-Z]/g,"");
+ return [...normalizeTextForEncoding(raw)].filter(isAtoZLetter).join("");
 }
 
 export function parseWordSearchInput(input: string): ParsedWordSearchInput {
@@ -159,13 +188,14 @@ export function parseWordSearchInput(input: string): ParsedWordSearchInput {
  let overflowCount = 0;
 
  for (const raw of parts) {
+ const normalizedText = normalizeTextForEncoding(raw);
  const normalized = normalizeWordSearchWord(raw);
- if (normalized !== raw.toUpperCase()) cleanedEntries += 1;
+ if (normalized !== normalizedText.replace(/\s+/g,"")) cleanedEntries += 1;
 
  if (!normalized) {
  skippedEntries.push({
  raw,
- reason:"No A-Z letters were found.",
+ reason:"Only A-Z letters can be hidden in the grid.",
  });
  continue;
  }
@@ -310,7 +340,8 @@ export function buildWordSearchPuzzle(options: {
  allowBackwards: boolean;
  seed: number;
 }): PuzzleResult {
- const { size, seed } = options;
+ const size = sanitizeGridSize(options.size);
+ const seed = Number.isFinite(options.seed) ? options.seed : DEFAULT_WORD_SEARCH_SEED;
  const rng = createSeededRandom(seed);
  const grid: Array<Array<string | null>> = Array.from({ length: size }, () =>
  Array.from({ length: size }, () => null),
@@ -318,9 +349,15 @@ export function buildWordSearchPuzzle(options: {
  const notices: string[] = [];
  const skippedWords: PuzzleResult["skippedWords"] = [];
  const placements: Placement[] = [];
- const directions = getAllowedDirections(options);
+ const directions = getAllowedDirections({
+ difficulty: sanitizeDifficulty(options.difficulty),
+ allowBackwards: options.allowBackwards,
+ });
+ const normalizedWords = Array.from(
+ new Set(options.words.map(normalizeWordSearchWord).filter((word) => word.length >= 2)),
+ ).slice(0, MAX_WORDS);
 
- if (!options.words.length) {
+ if (!normalizedWords.length) {
  notices.push("Add at least one valid A-Z word to generate a puzzle.");
  return {
  grid: fillEmptyCells(grid, rng),
@@ -330,7 +367,7 @@ export function buildWordSearchPuzzle(options: {
  };
  }
 
- const sortedWords = [...options.words].sort((a, b) => b.length - a.length);
+ const sortedWords = [...normalizedWords].sort((a, b) => b.length - a.length);
 
  for (const word of sortedWords) {
  if (word.length > size) {
@@ -342,11 +379,15 @@ export function buildWordSearchPuzzle(options: {
  }
 
  let placed = false;
- const attemptCount = Math.max(size * size * directions.length * 8, 240);
- for (let attempt = 0; attempt < attemptCount && !placed; attempt += 1) {
- const direction = shuffleWithRng(directions, rng)[0];
- const row = Math.floor(rng() * size);
- const col = Math.floor(rng() * size);
+ const candidates = shuffleWithRng(
+ directions.flatMap((direction) =>
+ Array.from({ length: size }, (_, row) =>
+ Array.from({ length: size }, (_value, col) => ({ row, col, direction })),
+ ).flat(),
+ ),
+ rng,
+ );
+ for (const { row, col, direction } of candidates) {
 
  if (!canPlaceWord(grid, word, row, col, direction)) continue;
 
@@ -360,6 +401,7 @@ export function buildWordSearchPuzzle(options: {
  cells,
  });
  placed = true;
+ break;
  }
 
  if (!placed) {
@@ -507,7 +549,7 @@ function buildWordSearchPageHtml({
  `;
 }
 
-function buildWordSearchPrintHtml({
+export function buildWordSearchPrintHtml({
  puzzle,
  settings,
  mode,
@@ -528,7 +570,7 @@ function buildWordSearchPrintHtml({
  <title>${escapeHtml(settings.title)} - ${titleSuffix}</title>
  <style>
  @page { size: letter; margin: 0.32in; }
- * { box-sizing: -box; }
+ * { box-sizing: border-box; }
  body {
  margin: 0;
  color: #111317;
@@ -562,8 +604,8 @@ function buildWordSearchPrintHtml({
  .brand-panel img {
  width: 0.72in;
  height: 0.72in;
- : 1px solid #cbd5e1;
- -radius: 7px;
+ border: 1px solid #cbd5e1;
+ border-radius: 7px;
  padding: 3px;
  background: #ffffff;
  }
@@ -586,10 +628,11 @@ function buildWordSearchPrintHtml({
  }
  .clues {
  margin-top: 12px;
- : 1px solid #cbd5e1;
- -radius: 9px;
+ border: 1px solid #cbd5e1;
+ border-radius: 9px;
  padding: 10px;
  break-inside: avoid;
+ page-break-inside: avoid;
  }
  .clue-list {
  columns: 2;
@@ -611,14 +654,17 @@ function buildWordSearchPrintHtml({
  margin: 12px auto 0;
  width: min(100%, 6.45in);
  break-inside: avoid;
+ page-break-inside: avoid;
  }
  .word-grid span {
  aspect-ratio: 1;
  display: flex;
  align-items: center;
  justify-content: center;
- : 1px solid #94a3b8;
- -radius: 3px;
+ min-width: 0;
+ min-height: 0;
+ border: 1px solid #94a3b8;
+ border-radius: 3px;
  font-family:"Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
  font-weight: 800;
  font-size: clamp(7px, calc(14px - var(--grid-size) * 0.18px), 12px);
@@ -627,14 +673,15 @@ function buildWordSearchPrintHtml({
  }
  .word-grid .answer-cell {
  background: #dbeafe;
- : 2px solid #075985;
+ border: 2px solid #075985;
  color: #082f49;
  }
  .answer-key {
  margin-top: 12px;
- -top: 1px solid #cbd5e1;
+ border-top: 1px solid #cbd5e1;
  padding-top: 10px;
  break-inside: avoid;
+ page-break-inside: avoid;
  }
  .answer-list {
  display: grid;
@@ -684,8 +731,13 @@ function printHtml(html: string) {
  const printFrame = () => {
  if (didPrint) return;
  didPrint = true;
+ try {
  iframe.contentWindow?.focus();
  iframe.contentWindow?.print();
+ } catch {
+ iframe.remove();
+ return;
+ }
  window.setTimeout(() => iframe.remove(), 1000);
  };
 
@@ -886,6 +938,7 @@ export default function MorseCodeWordSearchBuilder() {
  message: string;
  } | null>(null);
  const [isSharing, setIsSharing] = React.useState(false);
+ const mountedRef = React.useRef(false);
 
  const parsed = React.useMemo(() => parseWordSearchInput(input), [input]);
  const settings = React.useMemo<WordSearchSettings>(
@@ -934,6 +987,7 @@ export default function MorseCodeWordSearchBuilder() {
  );
 
  React.useEffect(() => {
+ mountedRef.current = true;
  let isMounted = true;
  makeQrCodeDataUrl()
  .then((dataUrl) => {
@@ -944,6 +998,7 @@ export default function MorseCodeWordSearchBuilder() {
  });
  return () => {
  isMounted = false;
+ mountedRef.current = false;
  };
  }, []);
 
@@ -954,13 +1009,13 @@ export default function MorseCodeWordSearchBuilder() {
  }
 
  function updateSize(next: number) {
- setSize(next);
+ setSize(sanitizeGridSize(next));
  setShowAnswerKey(false);
  setStatus(null);
  }
 
- function updateDifficulty(next: Difficulty) {
- setDifficulty(next);
+ function updateDifficulty(next: unknown) {
+ setDifficulty(sanitizeDifficulty(next));
  setShowAnswerKey(false);
  setStatus(null);
  }
@@ -972,6 +1027,14 @@ export default function MorseCodeWordSearchBuilder() {
  }
 
  function generateNewPuzzle() {
+ if (!parsed.words.length) {
+ setShowAnswerKey(false);
+ setStatus({
+ kind:"error",
+ message:"Add at least one valid A-Z word to generate a puzzle.",
+ });
+ return;
+ }
  setPuzzleSeed((currentSeed) => currentSeed + 1);
  setShowAnswerKey(false);
  setStatus({
@@ -1057,6 +1120,7 @@ export default function MorseCodeWordSearchBuilder() {
  url: CANONICAL,
  files: [file],
  });
+ if (!mountedRef.current) return;
  setStatus({ kind:"ok", message:"Share sheet opened with a puzzle preview image."});
  } else if (navigator.share) {
  await navigator.share({
@@ -1064,10 +1128,12 @@ export default function MorseCodeWordSearchBuilder() {
  text: shareText,
  url: CANONICAL,
  });
+ if (!mountedRef.current) return;
  setStatus({ kind:"ok", message:"Share sheet opened."});
  } else {
  downloadBlob(blob, filename);
  await copyTextToClipboard(CANONICAL);
+ if (!mountedRef.current) return;
  setStatus({
  kind:"ok",
  message:"Share image downloaded and the page link was copied.",
@@ -1076,14 +1142,14 @@ export default function MorseCodeWordSearchBuilder() {
  } catch (error) {
  const wasCancelled =
  error instanceof DOMException && error.name ==="AbortError";
- if (!wasCancelled) {
+ if (!wasCancelled && mountedRef.current) {
  setStatus({
  kind:"error",
  message:"The share image could not be generated in this browser. Try printing the puzzle or copying the page link.",
  });
  }
  } finally {
- setIsSharing(false);
+ if (mountedRef.current) setIsSharing(false);
  }
  }
 
@@ -1330,7 +1396,7 @@ export default function MorseCodeWordSearchBuilder() {
  ].map(([value, label]) => (
  <button
  key={value}
- type="button" onClick={() => setPrintSelection(value as PrintSelection)}
+ type="button" onClick={() => setPrintSelection(sanitizePrintSelection(value))}
  className={[
  toolControlButtonClass({
  active: printSelection === value,
