@@ -354,6 +354,9 @@ Approved button treatment is centralized by `app/app.css` and
 ## 11. Shared component rules
 
 - Inspect all consumers before changing a shared component.
+- New changes must not break existing behavior, routes, controls, storage keys,
+  or page contracts unless the user explicitly asks for the breaking change and
+  the impact is documented.
 - Prefer variants when home must remain protected.
 - If changing shared components for one page, verify all affected pages.
 - Avoid route-local duplication when a shared component exists.

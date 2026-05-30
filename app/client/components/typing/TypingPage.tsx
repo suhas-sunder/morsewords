@@ -59,7 +59,7 @@ function writeNum(key: string, val: number) {
 }
 
 type Props = {
-  jsonLd: any[];
+  jsonLd: unknown[];
 };
 
 export default function TypingPage({ jsonLd }: Props) {

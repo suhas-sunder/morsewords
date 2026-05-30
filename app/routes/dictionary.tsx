@@ -12,6 +12,8 @@ import {
  PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
+import { PHRASE_ROWS } from "~/client/components/dictionary/dictionaryData";
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH ="/dictionary";
@@ -36,6 +38,76 @@ type Entry = {
  meaning: string;
  category: string;
 };
+
+type DictionarySection = {
+ id: string;
+ title: string;
+ items: Entry[];
+};
+
+const CHARACTER_MEANINGS: Record<string, string> = {
+ ".": "Period",
+ ",": "Comma",
+ "?": "Question mark",
+ "'": "Apostrophe",
+ "!": "Exclamation",
+ "/": "Slash",
+ "(": "Open parenthesis",
+ ")": "Close parenthesis",
+ "&": "Ampersand",
+ ":": "Colon",
+ ";": "Semicolon",
+ "=": "Equals",
+ "+": "Plus",
+ "-": "Hyphen",
+ "_": "Underscore",
+ '"': "Quotation mark",
+ "@": "At sign",
+};
+
+const CHARACTER_ORDER = [
+ ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
+ ..."0123456789".split(""),
+ ...Object.keys(TEXT_TO_MORSE).filter(
+ (label) => !/^[A-Z0-9]$/.test(label),
+ ),
+];
+
+function characterMeaning(label: string) {
+ if (/^[A-Z]$/.test(label)) return `Letter ${label}`;
+ if (/^[0-9]$/.test(label)) return `Number ${label}`;
+ return CHARACTER_MEANINGS[label] ?? "Supported symbol";
+}
+
+const characterEntries: Entry[] = CHARACTER_ORDER.map((label) => ({
+ label,
+ morse: TEXT_TO_MORSE[label] ?? "",
+ meaning: characterMeaning(label),
+ category:"Characters",
+})).filter((entry) => entry.morse);
+
+const phraseEntries: Entry[] = PHRASE_ROWS.map((item) => ({
+ label: item.phrase,
+ morse: item.morse,
+ meaning: item.meaning,
+ category: item.category,
+}));
+
+function entriesForCategory(category: string) {
+ return phraseEntries.filter((entry) => entry.category === category);
+}
+
+const dictionarySections: DictionarySection[] = [
+ { id:"characters", title:"Characters", items: characterEntries },
+ { id:"prosigns", title:"Prosigns", items: entriesForCategory("Prosigns") },
+ { id:"qcodes", title:"Q-codes", items: entriesForCategory("Q-codes") },
+ {
+ id:"abbreviations",
+ title:"Abbreviations",
+ items: entriesForCategory("Abbreviations"),
+ },
+ { id:"phrases", title:"Phrases", items: entriesForCategory("Phrases") },
+];
 
 function normalize(s: string) {
  return s.trim().toLowerCase();
@@ -232,408 +304,7 @@ export default function DictionaryRoute() {
  };
  const jsonLd = [breadcrumbJsonLd, pageJsonLd, faqJsonLd];
 
- const characterEntries: Entry[] = [
- // Letters
- { label:"A", morse:".-", meaning:"Letter A", category:"Characters"},
- { label:"B", morse:"-...", meaning:"Letter B", category:"Characters"},
- { label:"C", morse:"-.-.", meaning:"Letter C", category:"Characters"},
- { label:"D", morse:"-..", meaning:"Letter D", category:"Characters"},
- { label:"E", morse:".", meaning:"Letter E", category:"Characters"},
- { label:"F", morse:"..-.", meaning:"Letter F", category:"Characters"},
- { label:"G", morse:"--.", meaning:"Letter G", category:"Characters"},
- { label:"H", morse:"....", meaning:"Letter H", category:"Characters"},
- { label:"I", morse:"..", meaning:"Letter I", category:"Characters"},
- { label:"J", morse:".---", meaning:"Letter J", category:"Characters"},
- { label:"K", morse:"-.-", meaning:"Letter K", category:"Characters"},
- { label:"L", morse:".-..", meaning:"Letter L", category:"Characters"},
- { label:"M", morse:"--", meaning:"Letter M", category:"Characters"},
- { label:"N", morse:"-.", meaning:"Letter N", category:"Characters"},
- { label:"O", morse:"---", meaning:"Letter O", category:"Characters"},
- { label:"P", morse:".--.", meaning:"Letter P", category:"Characters"},
- { label:"Q", morse:"--.-", meaning:"Letter Q", category:"Characters"},
- { label:"R", morse:".-.", meaning:"Letter R", category:"Characters"},
- { label:"S", morse:"...", meaning:"Letter S", category:"Characters"},
- { label:"T", morse:"-", meaning:"Letter T", category:"Characters"},
- { label:"U", morse:"..-", meaning:"Letter U", category:"Characters"},
- { label:"V", morse:"...-", meaning:"Letter V", category:"Characters"},
- { label:"W", morse:".--", meaning:"Letter W", category:"Characters"},
- { label:"X", morse:"-..-", meaning:"Letter X", category:"Characters"},
- { label:"Y", morse:"-.--", meaning:"Letter Y", category:"Characters"},
- { label:"Z", morse:"--..", meaning:"Letter Z", category:"Characters"},
-
- // Numbers
- { label:"1", morse:".----", meaning:"Number 1", category:"Characters"},
- { label:"2", morse:"..---", meaning:"Number 2", category:"Characters"},
- { label:"3", morse:"...--", meaning:"Number 3", category:"Characters"},
- { label:"4", morse:"....-", meaning:"Number 4", category:"Characters"},
- { label:"5", morse:".....", meaning:"Number 5", category:"Characters"},
- { label:"6", morse:"-....", meaning:"Number 6", category:"Characters"},
- { label:"7", morse:"--...", meaning:"Number 7", category:"Characters"},
- { label:"8", morse:"---..", meaning:"Number 8", category:"Characters"},
- { label:"9", morse:"----.", meaning:"Number 9", category:"Characters"},
- { label:"0", morse:"-----", meaning:"Number 0", category:"Characters"},
-
- // Punctuation
- { label:".", morse:".-.-.-", meaning:"Period", category:"Characters"},
- { label:",", morse:"--..--", meaning:"Comma", category:"Characters"},
- {
- label:"?",
- morse:"..--..",
- meaning:"Question mark",
- category:"Characters",
- },
- {
- label:"'",
- morse:".----.",
- meaning:"Apostrophe",
- category:"Characters",
- },
- {
- label:"!",
- morse:"-.-.--",
- meaning:"Exclamation",
- category:"Characters",
- },
- { label:"/", morse:"-..-.", meaning:"Slash", category:"Characters"},
- {
- label:"(",
- morse:"-.--.",
- meaning:"Open parenthesis",
- category:"Characters",
- },
- {
- label:")",
- morse:"-.--.-",
- meaning:"Close parenthesis",
- category:"Characters",
- },
- {
- label:"&",
- morse:".-...",
- meaning:"Ampersand",
- category:"Characters",
- },
- { label:":", morse:"---...", meaning:"Colon", category:"Characters"},
- {
- label:";",
- morse:"-.-.-.",
- meaning:"Semicolon",
- category:"Characters",
- },
- { label:"=", morse:"-...-", meaning:"Equals", category:"Characters"},
- { label:"+", morse:".-.-.", meaning:"Plus", category:"Characters"},
- { label:"-", morse:"-....-", meaning:"Hyphen", category:"Characters"},
- {
- label:"_",
- morse:"..--.-",
- meaning:"Underscore",
- category:"Characters",
- },
- {
- label: '"',
- morse:".-..-.",
- meaning:"Quotation mark",
- category:"Characters",
- },
- { label:"@", morse:".--.-.", meaning:"At sign", category:"Characters"},
- ];
-
- const prosigns: Entry[] = [
- {
- label:"AR",
- morse:".-.-.",
- meaning:"End of message",
- category:"Prosigns",
- },
- {
- label:"AS",
- morse:".-...",
- meaning:"Wait / standby",
- category:"Prosigns",
- },
- {
- label:"BT",
- morse:"-...-",
- meaning:"Pause / new section",
- category:"Prosigns",
- },
- {
- label:"CL",
- morse:"-.-..-..",
- meaning:"Closing station",
- category:"Prosigns",
- },
- {
- label:"KN",
- morse:"-.-.-.",
- meaning:"Invite specific station",
- category:"Prosigns",
- },
- {
- label:"SK",
- morse:"...-.-",
- meaning:"End of contact",
- category:"Prosigns",
- },
- ];
-
- const qcodes: Entry[] = [
- {
- label:"QRL",
- morse:"--.- .-. .-..",
- meaning:"Is the frequency busy?",
- category:"Q-codes",
- },
- {
- label:"QRZ",
- morse:"--.- .-. --..",
- meaning:"Who is calling me?",
- category:"Q-codes",
- },
- {
- label:"QRS",
- morse:"--.- .-. ...",
- meaning:"Send more slowly",
- category:"Q-codes",
- },
- {
- label:"QRQ",
- morse:"--.- .-. --.-",
- meaning:"Send faster",
- category:"Q-codes",
- },
- {
- label:"QTH",
- morse:"--.- - ....",
- meaning:"My location is…",
- category:"Q-codes",
- },
- {
- label:"QSL",
- morse:"--.- ... .-..",
- meaning:"Acknowledgment / received",
- category:"Q-codes",
- },
- {
- label:"QSY",
- morse:"--.- ... -.--",
- meaning:"Change frequency",
- category:"Q-codes",
- },
- {
- label:"QRM",
- morse:"--.- .-. --",
- meaning:"Man-made interference",
- category:"Q-codes",
- },
- {
- label:"QRN",
- morse:"--.- .-. -.",
- meaning:"Natural interference / static",
- category:"Q-codes",
- },
- {
- label:"QRP",
- morse:"--.- .-. .--.",
- meaning:"Reduce power",
- category:"Q-codes",
- },
- ];
-
- const abbreviations: Entry[] = [
- {
- label:"73",
- morse:"--... ...--",
- meaning:"Best regards",
- category:"Abbreviations",
- },
- {
- label:"88",
- morse:"---.. ---..",
- meaning:"Love and kisses",
- category:"Abbreviations",
- },
- {
- label:"OM",
- morse:"--- --",
- meaning:"Friendly term for operator",
- category:"Abbreviations",
- },
- {
- label:"YL",
- morse:"-.-- .-..",
- meaning:"Female operator",
- category:"Abbreviations",
- },
- {
- label:"FB",
- morse:"..-. -...",
- meaning:"Fine business (good)",
- category:"Abbreviations",
- },
- {
- label:"HR",
- morse:".... .-.",
- meaning:"Here",
- category:"Abbreviations",
- },
- {
- label:"TNX",
- morse:"- .... -..-",
- meaning:"Thanks",
- category:"Abbreviations",
- },
- {
- label:"CUL",
- morse:"-.-. ..- .-..",
- meaning:"See you later",
- category:"Abbreviations",
- },
- {
- label:"GL",
- morse:"--. .-..",
- meaning:"Good luck",
- category:"Abbreviations",
- },
- {
- label:"GA",
- morse:"--. .-",
- meaning:"Good afternoon",
- category:"Abbreviations",
- },
- {
- label:"GE",
- morse:"--. .",
- meaning:"Good evening",
- category:"Abbreviations",
- },
- {
- label:"GM",
- morse:"--. --",
- meaning:"Good morning",
- category:"Abbreviations",
- },
- ];
-
- const phrases: Entry[] = [
- {
- label:"HELLO",
- morse:".... . .-.. .-.. ---",
- meaning:"Friendly greeting",
- category:"Phrases",
- },
- {
- label:"GOOD MORNING",
- morse:"--. --- --- -.. -- --- .-. -. .. -. --.",
- meaning:"Polite day greeting",
- category:"Phrases",
- },
- {
- label:"THANK YOU",
- morse:"- .... .- -. -.- -.-- --- ..-",
- meaning:"Gratitude",
- category:"Phrases",
- },
- {
- label:"YES",
- morse:"-.-- . ...",
- meaning:"Affirmative",
- category:"Phrases",
- },
- { label:"NO", morse:"-. ---", meaning:"Negative", category:"Phrases"},
- {
- label:"PLEASE",
- morse:".--. .-.. . .- ... .",
- meaning:"Polite request",
- category:"Phrases",
- },
- {
- label:"LOVE",
- morse:".-.. --- ...- .",
- meaning:"Affection",
- category:"Phrases",
- },
- {
- label:"FRIEND",
- morse:"..-. .-. .. . -. -..",
- meaning:"Companionship",
- category:"Phrases",
- },
- {
- label:"GOODBYE",
- morse:"--. --- --- -.. -... -.-- .",
- meaning:"Sign-off",
- category:"Phrases",
- },
- {
- label:"SOS",
- morse:"... --- ...",
- meaning:"Universal distress",
- category:"Phrases",
- },
- {
- label:"MAYDAY",
- morse:"-- .- -.-- -.. .- -.--",
- meaning:"Distress call",
- category:"Phrases",
- },
- {
- label:"HELP",
- morse:".... . .-.. .--.",
- meaning:"Request assistance",
- category:"Phrases",
- },
- {
- label:"NEED ASSISTANCE",
- morse:"-. . . -.. .- ... ... .. ... - .- -. -.-. .",
- meaning:"Emergency request",
- category:"Phrases",
- },
- {
- label:"STOP",
- morse:"... - --- .--.",
- meaning:"End / stop",
- category:"Phrases",
- },
- {
- label:"THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
- morse:"- .... . --.- ..- .. -.-. -.- -... .-. --- .-- -. ..-. --- -..- .--- ..- -- .--. ... --- ...- . .-. - .... . .-.. .- --.. -.-- -.. --- --.",
- meaning:"Pangram",
- category:"Phrases",
- },
- {
- label:"PACK MY BOX WITH FIVE DOZEN LIQUOR JUGS",
- morse:".--. .- -.-. -.- -- -.-- -... --- -..- .-- .. - .... ..-. .. ...- . -.. --- --.. . -. .-.. .. --.- ..- --- .-. .--- ..- --. ...",
- meaning:"Pangram",
- category:"Phrases",
- },
- {
- label:"MORSE CODE IS FUN",
- morse:"-- --- .-. ... . -.-. --- -.. . .. ... ..-. ..- -.",
- meaning:"Practice phrase",
- category:"Phrases",
- },
- {
- label:"KEEP PRACTICING",
- morse:"-.- . . .--. .--. .-. .- -.-. - .. -.-. .. -. --.",
- meaning:"Encouragement",
- category:"Phrases",
- },
- {
- label:"LISTEN LEARN REPEAT",
- morse:".-.. .. ... - . -. .-.. . .- .-. -. .-. . .--. . .- -",
- meaning:"Training advice",
- category:"Phrases",
- },
- ];
-
- const sections = [
- { id:"characters", title:"Characters", items: characterEntries },
- { id:"prosigns", title:"Prosigns", items: prosigns },
- { id:"qcodes", title:"Q-codes", items: qcodes },
- { id:"abbreviations", title:"Abbreviations", items: abbreviations },
- { id:"phrases", title:"Phrases", items: phrases },
- ] as const;
+ const sections = dictionarySections;
 
  const [query, setQuery] = React.useState("");
  const q = normalize(query);
@@ -668,10 +339,14 @@ export default function DictionaryRoute() {
  </PageHero>
 
  <div className="mw-static-panel mb-4 mt-3 rounded-xl bg-[#fffdf8]/80 p-4">
- <label className="mb-2 block text-sm font-extrabold text-sky-950">
+ <label
+ htmlFor="dictionary-filter"
+ className="mb-2 block text-sm font-extrabold text-sky-950"
+ >
  Filter dictionary
  </label>
  <input
+ id="dictionary-filter"
  value={query}
  onChange={(e) => setQuery(e.target.value)}
  placeholder="Type to filter by label, Morse, or meaning…" className="w-full rounded-xl bg-[#fffdf8] px-4 py-3 text-slate-950 transition focus:outline-none focus:ring-0 focus-visible:outline-none"/>

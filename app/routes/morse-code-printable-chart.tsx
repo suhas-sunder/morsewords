@@ -14,7 +14,12 @@ import {
   DarkNote,
   PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
-import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
+import {
+  formatMorseWords,
+  splitMorseWords,
+  TEXT_TO_MORSE,
+  textToMorse,
+} from "~/client/components/shared/morseUtils";
 import {
   parseStoredJson,
   safeReadStorage,
@@ -150,29 +155,13 @@ const PUNCTUATION_NAMES: Record<string, string> = {
   _: "Underscore",
 };
 
-const PUNCTUATION_ORDER = [
-  ".",
-  ",",
-  "?",
-  "/",
-  "'",
-  "!",
-  "-",
-  "@",
-  ":",
-  ";",
-  "=",
-  "+",
-  '"',
-  "(",
-  ")",
-  "&",
-  "_",
-];
+const PUNCTUATION_ORDER = Object.keys(TEXT_TO_MORSE).filter(
+  (character) => !/^[A-Z0-9]$/.test(character),
+);
 
 const PUNCTUATION: CharacterRow[] = PUNCTUATION_ORDER.map((character) => ({
   character,
-  name: PUNCTUATION_NAMES[character],
+  name: PUNCTUATION_NAMES[character] ?? "Symbol",
   morse: TEXT_TO_MORSE[character] ?? "",
 }));
 
@@ -275,14 +264,10 @@ function cleanMorseInput(value: string) {
 }
 
 function encodeToMorse(value: string) {
-  return cleanMorseInput(value)
-    .split("")
-    .map((character) => {
-      if (character === " ") return "/";
-      return TEXT_TO_MORSE[character] ?? "";
-    })
-    .filter(Boolean)
-    .join(" ");
+  return formatMorseWords(splitMorseWords(textToMorse(cleanMorseInput(value))), {
+    letterSeparator: " ",
+    wordSeparator: " / ",
+  });
 }
 
 function clampLineCount(value: number, min = 1, max = 12) {

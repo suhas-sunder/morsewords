@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   countTextWords,
+  formatMorseWords,
   splitMorseWords,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
@@ -28,16 +29,17 @@ type OutputSep = "standard" | "slash" | "pipe" | "newline";
 type Mode = "normalizeMorse" | "englishToMorse";
 
 function formatMorse(words: string[][], sep: OutputSep): string {
-  if (sep === "standard") {
-    return words.map((letters) => letters.join(" ")).join("       ");
-  }
-  if (sep === "slash") {
-    return words.map((letters) => letters.join(" ")).join(" / ");
-  }
-  if (sep === "pipe") {
-    return words.map((letters) => letters.join(" ")).join(" | ");
-  }
-  return words.map((letters) => letters.join(" ")).join("\n");
+  const wordSeparatorByMode: Record<OutputSep, string> = {
+    standard: "       ",
+    slash: " / ",
+    pipe: " | ",
+    newline: "\n",
+  };
+
+  return formatMorseWords(words, {
+    letterSeparator: " ",
+    wordSeparator: wordSeparatorByMode[sep],
+  });
 }
 
 export default function WordSeparatorTool() {
@@ -68,6 +70,11 @@ export default function WordSeparatorTool() {
   }, [englishInput, sep]);
 
   const out = mode === "normalizeMorse" ? morseOut : englishOut;
+
+  React.useEffect(() => {
+    setCopied(false);
+  }, [out]);
+
   const wordCount =
     mode === "normalizeMorse"
       ? morseWords.length
@@ -208,6 +215,7 @@ export default function WordSeparatorTool() {
                 onCopiedChange={setCopied}
                 tone="darkPanel"
                 size="sm"
+                disabled={!out}
                 className="active:scale-95"
               />
               {copied && (
