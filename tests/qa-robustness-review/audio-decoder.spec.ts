@@ -1,9 +1,13 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 import {
   analyzeSamplesToMorse,
+  AUDIO_DECODER_LIMITS,
   classifySilenceGap,
   classifyToneDuration,
+  mixAudioBufferToMono,
+  validateAudioDecoderFile,
+  validateDecodedAudioBuffer,
 } from "../../app/client/components/morse-code-audio-decoder/audioDecodeUtils";
 import { blockExternalNetwork } from "./helpers";
 
@@ -107,6 +111,36 @@ function syntheticTimedMorseSamples({
   return Float32Array.from(samples);
 }
 
+function fakeAudioBuffer(channels: Float32Array[], sampleRate = 8_000) {
+  const length = channels[0]?.length ?? 0;
+
+  return {
+    duration: sampleRate > 0 ? length / sampleRate : 0,
+    getChannelData: (index: number) => channels[index] ?? new Float32Array(length),
+    length,
+    numberOfChannels: channels.length,
+    sampleRate,
+  } as AudioBuffer;
+}
+
+function addDeterministicNoise(samples: Float32Array, amplitude = 0.045) {
+  let seed = 2_026_053;
+
+  return Float32Array.from(samples, (sample) => {
+    seed = (seed * 1_664_525 + 1_013_904_223) >>> 0;
+    const noise = (seed / 0xffffffff) * 2 - 1;
+    return Math.max(-1, Math.min(1, sample + noise * amplitude));
+  });
+}
+
+function tinyClickSamples(sampleRate = 8_000) {
+  const samples = new Float32Array(sampleRate);
+  for (let index = 0; index < samples.length; index += 400) {
+    samples[index] = 1;
+  }
+  return samples;
+}
+
 function wavFromSamples(samples: Float32Array, sampleRate = 8_000) {
   const bytesPerSample = 2;
   const blockAlign = bytesPerSample;
@@ -140,7 +174,90 @@ async function openAudioDecoder(page: Page) {
   await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => undefined);
 }
 
+async function installDelayedAudioContextStub(page: Page) {
+  await page.addInitScript(() => {
+    const makeMorseSamples = (morse: string, sampleRate = 8_000) => {
+      const samples: number[] = [];
+      const pushTone = (units: number) => {
+        const frameCount = Math.round((70 * units * sampleRate) / 1_000);
+        for (let i = 0; i < frameCount; i += 1) {
+          samples.push(Math.sin((2 * Math.PI * 600 * i) / sampleRate) * 0.75);
+        }
+      };
+      const pushSilence = (units: number) => {
+        const frameCount = Math.round((70 * units * sampleRate) / 1_000);
+        for (let i = 0; i < frameCount; i += 1) samples.push(0);
+      };
+
+      morse
+        .trim()
+        .split(/\s+/)
+        .forEach((letter, letterIndex, letters) => {
+          [...letter].forEach((symbol, symbolIndex) => {
+            pushTone(symbol === "-" ? 3 : 1);
+            if (symbolIndex < letter.length - 1) pushSilence(1);
+          });
+          if (letterIndex < letters.length - 1) pushSilence(3);
+        });
+
+      return Float32Array.from(samples);
+    };
+
+    let decodeCall = 0;
+    class FakeAudioContext {
+      decodeAudioData(
+        _arrayBuffer: ArrayBuffer,
+        successCallback?: (audioBuffer: AudioBuffer) => void,
+      ) {
+        decodeCall += 1;
+        const samples = makeMorseSamples(decodeCall === 1 ? "--- .-.. -.." : "-. . .--");
+        const buffer = {
+          duration: samples.length / 8_000,
+          getChannelData: () => samples,
+          length: samples.length,
+          numberOfChannels: 1,
+          sampleRate: 8_000,
+        } as AudioBuffer;
+        const delayMs = decodeCall === 1 ? 250 : 10;
+
+        return new Promise<AudioBuffer>((resolve) => {
+          window.setTimeout(() => {
+            successCallback?.(buffer);
+            resolve(buffer);
+          }, delayMs);
+        });
+      }
+
+      close() {
+        return Promise.resolve();
+      }
+    }
+
+    const audioWindow = window as Window &
+      typeof globalThis & { webkitAudioContext?: typeof AudioContext };
+    audioWindow.AudioContext = FakeAudioContext as unknown as typeof AudioContext;
+    audioWindow.webkitAudioContext = FakeAudioContext as unknown as typeof AudioContext;
+  });
+}
+
 test.describe("audio decoder utilities", () => {
+  test("mixes one-channel audio without changing samples", () => {
+    const channel = Float32Array.from([0, 0.5, -0.25, 1]);
+
+    expect(Array.from(mixAudioBufferToMono(fakeAudioBuffer([channel])))).toEqual([
+      0, 0.5, -0.25, 1,
+    ]);
+  });
+
+  test("mixes two-channel audio into a safe mono average", () => {
+    const left = Float32Array.from([1, 0.5, -0.5, -1]);
+    const right = Float32Array.from([-1, 0.5, 0.5, 1]);
+
+    expect(Array.from(mixAudioBufferToMono(fakeAudioBuffer([left, right])))).toEqual([
+      0, 0.5, 0, 0,
+    ]);
+  });
+
   test("decodes clean synthetic Morse audio into raw Morse and readable text", () => {
     const samples = syntheticMorseSamples({
       morse: "... --- ... / .... . .-.. .--.",
@@ -153,6 +270,18 @@ test.describe("audio decoder utilities", () => {
     expect(result.decodedText).toBe("SOS HELP");
     expect(result.timing.toneCount).toBeGreaterThan(10);
     expect(result.confidence).toBeGreaterThan(0.7);
+  });
+
+  test("decodes a noisy but reasonable SOS sample", () => {
+    const samples = addDeterministicNoise(
+      syntheticMorseSamples({ morse: "... --- ..." }),
+    );
+
+    const result = analyzeSamplesToMorse(samples, 8_000);
+
+    expect(result.rawMorse).toBe("... --- ...");
+    expect(result.decodedText).toBe("SOS");
+    expect(result.status === "success" || result.status === "low-confidence").toBe(true);
   });
 
   test("classifies tone and silence durations against an estimated timing unit", () => {
@@ -202,7 +331,69 @@ test.describe("audio decoder utilities", () => {
     expect(result.status).toBe("no-tones");
     expect(result.rawMorse).toBe("");
     expect(result.decodedText).toBe("");
-    expect(result.messages.join(" ")).toContain("No Morse-like tones detected");
+    expect(result.messages.join(" ")).toContain("No clear tone");
+  });
+
+  test("reports very short audio before analysis", () => {
+    const result = analyzeSamplesToMorse(new Float32Array(800), 8_000);
+
+    expect(result.status).toBe("too-short");
+    expect(result.rawMorse).toBe("");
+    expect(result.messages.join(" ")).toContain("too short");
+  });
+
+  test("ignores repeated tiny clicks instead of reading them as Morse", () => {
+    const result = analyzeSamplesToMorse(tinyClickSamples(), 8_000);
+
+    expect(result.status).toBe("no-tones");
+    expect(result.rawMorse).toBe("");
+    expect(result.decodedText).toBe("");
+    expect(result.messages.join(" ")).toContain("filtering clicks and noise");
+  });
+
+  test("reports unknown Morse groups through the shared decoder utilities", () => {
+    const result = analyzeSamplesToMorse(
+      syntheticMorseSamples({ morse: "........" }),
+      8_000,
+    );
+
+    expect(result.status).toBe("low-confidence");
+    expect(result.rawMorse).toBe("........");
+    expect(result.decodedText).toBe("?");
+    expect(result.messages.join(" ")).toContain("1 Morse group could not be decoded");
+  });
+
+  test("validates upload size and decoded duration limits", () => {
+    expect(
+      validateAudioDecoderFile({
+        name: "too-big.wav",
+        size: AUDIO_DECODER_LIMITS.maxUploadBytes + 1,
+        type: "audio/wav",
+      }),
+    ).toMatchObject({ ok: false, status: "too-large" });
+    expect(
+      validateAudioDecoderFile({
+        name: "notes.txt",
+        size: 12,
+        type: "text/plain",
+      }),
+    ).toMatchObject({ ok: false, status: "unsupported-file" });
+    expect(
+      validateDecodedAudioBuffer({
+        duration: AUDIO_DECODER_LIMITS.maxDecodedDurationSeconds + 0.1,
+        length: 8_000,
+        numberOfChannels: 1,
+        sampleRate: 8_000,
+      }),
+    ).toMatchObject({ ok: false, status: "too-long" });
+    expect(
+      validateDecodedAudioBuffer({
+        duration: AUDIO_DECODER_LIMITS.minUsefulDurationSeconds - 0.01,
+        length: 1_900,
+        numberOfChannels: 1,
+        sampleRate: 8_000,
+      }),
+    ).toMatchObject({ ok: false, status: "too-short" });
   });
 });
 
@@ -260,7 +451,34 @@ test.describe("Morse code audio decoder route", () => {
     });
     await page.getByRole("button", { name: "Decode audio" }).click();
     await expect(page.getByRole("alert")).toHaveText(
-      "The selected file could not be decoded by this browser.",
+      "Choose a browser-supported audio file. WAV is safest; compressed formats depend on your browser.",
+    );
+  });
+
+  test("rejects oversized and too-long files with safe messages", async ({ page }) => {
+    await openAudioDecoder(page);
+
+    await page.getByLabel("Choose Morse audio file").setInputFiles({
+      name: "too-large.wav",
+      mimeType: "audio/wav",
+      buffer: Buffer.alloc(AUDIO_DECODER_LIMITS.maxUploadBytes + 1),
+    });
+    await expect(page.getByRole("alert")).toHaveText(
+      "This file is too large to decode safely. Choose an audio file under 25 MB.",
+    );
+
+    const tooLongSamples = new Float32Array(
+      (AUDIO_DECODER_LIMITS.maxDecodedDurationSeconds + 1) * 8_000,
+    );
+    await page.getByLabel("Choose Morse audio file").setInputFiles({
+      name: "too-long.wav",
+      mimeType: "audio/wav",
+      buffer: wavFromSamples(tooLongSamples),
+    });
+    await page.getByRole("button", { name: "Decode audio" }).click();
+    await expect(page.getByRole("alert")).toHaveText(
+      "This audio is too long to decode safely. Keep files under 180 seconds.",
+      { timeout: 20_000 },
     );
   });
 
@@ -285,6 +503,58 @@ test.describe("Morse code audio decoder route", () => {
       "href",
       "/morse-code-decoder?morse=...%20---%20...%20%2F%20....%20.%20.-..%20.--.",
     );
+  });
+
+  test("selecting a second file resets stale errors before decoding", async ({ page }) => {
+    await openAudioDecoder(page);
+
+    await page.getByLabel("Choose Morse audio file").setInputFiles({
+      name: "not-audio.txt",
+      mimeType: "text/plain",
+      buffer: Buffer.from("this is not audio"),
+    });
+    await expect(page.getByRole("alert")).toHaveText(
+      "Choose a browser-supported audio file. WAV is safest; compressed formats depend on your browser.",
+    );
+
+    await page.getByLabel("Choose Morse audio file").setInputFiles({
+      name: "sos.wav",
+      mimeType: "audio/wav",
+      buffer: wavFromSamples(syntheticMorseSamples({ morse: "... --- ..." })),
+    });
+    await expect(page.getByRole("alert")).toHaveCount(0);
+    await expect(page.getByLabel("Decoded text output")).toHaveText(
+      "Decoded text will appear here.",
+    );
+
+    await page.getByRole("button", { name: "Decode audio" }).click();
+    await expect(page.getByLabel("Decoded text output")).toHaveText("SOS");
+  });
+
+  test("ignores stale decode results when a newer upload is selected", async ({ page }) => {
+    await installDelayedAudioContextStub(page);
+    await openAudioDecoder(page);
+
+    const decodeButton = page.getByRole("button", { name: "Decode audio" });
+
+    await page.getByLabel("Choose Morse audio file").setInputFiles({
+      name: "old.wav",
+      mimeType: "audio/wav",
+      buffer: Buffer.from("old"),
+    });
+    await decodeButton.click();
+
+    await page.getByLabel("Choose Morse audio file").setInputFiles({
+      name: "new.wav",
+      mimeType: "audio/wav",
+      buffer: Buffer.from("new"),
+    });
+    await expect(decodeButton).toBeEnabled();
+    await decodeButton.click();
+
+    await expect(page.getByLabel("Decoded text output")).toHaveText("NEW");
+    await page.waitForTimeout(350);
+    await expect(page.getByLabel("Decoded text output")).toHaveText("NEW");
   });
 
   test("renders cleanly in persisted dark mode", async ({ page }) => {

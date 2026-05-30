@@ -4,7 +4,12 @@ export type AudioDecodeStatus =
   | "success"
   | "low-confidence"
   | "no-tones"
-  | "empty-audio";
+  | "empty-audio"
+  | "too-short"
+  | "too-long"
+  | "too-large"
+  | "unsupported-file"
+  | "analysis-too-large";
 
 export type GapClassification = "symbol" | "letter" | "word";
 export type GapMode = "auto" | "standard" | "farnsworth";
@@ -41,6 +46,16 @@ export type AudioDecodeResult = {
   timing: AudioTimingSummary;
 };
 
+export type AudioDecoderValidationResult =
+  | {
+      ok: true;
+    }
+  | {
+      message: string;
+      ok: false;
+      status: AudioDecodeStatus;
+    };
+
 type SegmentKind = "tone" | "silence";
 
 type Segment = {
@@ -60,6 +75,15 @@ const DEFAULT_OPTIONS: Required<AudioDecoderOptions> = {
   windowMs: 8,
   wordGapScale: 1,
 };
+
+export const AUDIO_DECODER_LIMITS = {
+  maxUploadBytes: 25 * 1024 * 1024,
+  maxDecodedDurationSeconds: 180,
+  minUsefulDurationSeconds: 0.25,
+  maxAnalysisFrames: 60_000,
+} as const;
+
+const AUDIO_FILE_EXTENSION_RE = /\.(aac|aif|aiff|flac|m4a|mp3|oga|ogg|opus|wav|webm)$/i;
 
 const SMART_SPACING_WORDS = new Set([
   "A",
@@ -129,6 +153,98 @@ type GapTimingModel = {
   wordThresholdMs: number;
 };
 
+export function createAudioDecodeResult(
+  status: AudioDecodeStatus,
+  messages: string[],
+  timing: Partial<AudioTimingSummary> = {},
+): AudioDecodeResult {
+  return {
+    confidence: 0,
+    decodedText: "",
+    messages,
+    rawMorse: "",
+    status,
+    timing: {
+      ...createEmptyTiming(timing.durationSeconds ?? 0),
+      ...timing,
+    },
+  };
+}
+
+export function validateAudioDecoderFile(file: {
+  name?: string;
+  size: number;
+  type?: string;
+}): AudioDecoderValidationResult {
+  if (file.size > AUDIO_DECODER_LIMITS.maxUploadBytes) {
+    return {
+      ok: false,
+      status: "too-large",
+      message: `This file is too large to decode safely. Choose an audio file under ${formatBytes(AUDIO_DECODER_LIMITS.maxUploadBytes)}.`,
+    };
+  }
+
+  const type = file.type?.trim().toLowerCase() ?? "";
+  const name = file.name ?? "";
+  const looksLikeAudio =
+    type.startsWith("audio/") ||
+    AUDIO_FILE_EXTENSION_RE.test(name) ||
+    type === "application/octet-stream";
+
+  if (!looksLikeAudio) {
+    return {
+      ok: false,
+      status: "unsupported-file",
+      message:
+        "Choose a browser-supported audio file. WAV is safest; compressed formats depend on your browser.",
+    };
+  }
+
+  return { ok: true };
+}
+
+export function validateDecodedAudioBuffer(audioBuffer: {
+  duration?: number;
+  length: number;
+  numberOfChannels: number;
+  sampleRate: number;
+}): AudioDecoderValidationResult {
+  const durationSeconds = getAudioBufferDurationSeconds(audioBuffer);
+
+  if (
+    audioBuffer.length <= 0 ||
+    audioBuffer.numberOfChannels <= 0 ||
+    audioBuffer.sampleRate <= 0 ||
+    !Number.isFinite(durationSeconds)
+  ) {
+    return {
+      ok: false,
+      status: "empty-audio",
+      message: "The decoded file did not contain usable audio samples.",
+    };
+  }
+  const safeDurationSeconds = durationSeconds;
+
+  if (safeDurationSeconds > AUDIO_DECODER_LIMITS.maxDecodedDurationSeconds) {
+    return {
+      ok: false,
+      status: "too-long",
+      message: `This audio is too long to decode safely. Keep files under ${AUDIO_DECODER_LIMITS.maxDecodedDurationSeconds} seconds.`,
+    };
+  }
+
+  if (safeDurationSeconds < AUDIO_DECODER_LIMITS.minUsefulDurationSeconds) {
+    return {
+      ok: false,
+      status: "too-short",
+      message:
+        "This audio is too short to decode reliably. Use at least a quarter second of clear Morse tone.",
+    };
+  }
+
+  return { ok: true };
+}
+
 export function mixAudioBufferToMono(audioBuffer: AudioBuffer) {
   const { length, numberOfChannels } = audioBuffer;
   const mono = new Float32Array(length);
@@ -175,39 +291,77 @@ export function analyzeSamplesToMorse(
   sampleRate: number,
   options: AudioDecoderOptions = {},
 ): AudioDecodeResult {
-  const resolved = { ...DEFAULT_OPTIONS, ...options };
+  const resolved = sanitizeAudioDecoderOptions({ ...DEFAULT_OPTIONS, ...options });
   const durationSeconds =
     sampleRate > 0 && samples.length > 0 ? samples.length / sampleRate : 0;
   const emptyTiming = createEmptyTiming(durationSeconds);
 
   if (!samples.length || sampleRate <= 0) {
-    return {
-      confidence: 0,
-      decodedText: "",
-      messages: ["No audio samples were available to analyze."],
-      rawMorse: "",
-      status: "empty-audio",
-      timing: emptyTiming,
-    };
+    return createAudioDecodeResult("empty-audio", [
+      "No audio samples were available to analyze.",
+    ]);
   }
 
-  const envelope = buildEnvelope(samples, sampleRate, resolved.windowMs);
-  const peakLevel = Math.max(...envelope, 0);
+  if (durationSeconds < AUDIO_DECODER_LIMITS.minUsefulDurationSeconds) {
+    return createAudioDecodeResult(
+      "too-short",
+      [
+        "This audio is too short to decode reliably. Use at least a quarter second of clear Morse tone.",
+      ],
+      { durationSeconds },
+    );
+  }
+
+  if (durationSeconds > AUDIO_DECODER_LIMITS.maxDecodedDurationSeconds) {
+    return createAudioDecodeResult(
+      "too-long",
+      [
+        `This audio is too long to decode safely. Keep files under ${AUDIO_DECODER_LIMITS.maxDecodedDurationSeconds} seconds.`,
+      ],
+      { durationSeconds },
+    );
+  }
+
+  const estimatedFrameCount = Math.ceil(
+    (durationSeconds * 1000) / Math.max(1, resolved.windowMs),
+  );
+  if (estimatedFrameCount > AUDIO_DECODER_LIMITS.maxAnalysisFrames) {
+    return createAudioDecodeResult(
+      "analysis-too-large",
+      [
+        "This audio would create too many analysis frames. Use a shorter file or a wider analysis window.",
+      ],
+      { durationSeconds },
+    );
+  }
+
+  const sampleStats = calculateSampleStats(samples);
+  const envelope = smoothEnvelope(
+    buildEnvelope(samples, sampleRate, resolved.windowMs, sampleStats.mean),
+  );
+  const peakLevel = maxValue(envelope);
   const noiseFloor = percentile(envelope, 0.2);
+  const signalSeparation =
+    peakLevel > 0 ? (peakLevel - noiseFloor) / peakLevel : 0;
 
   if (peakLevel < 0.0005) {
-    return {
-      confidence: 0,
-      decodedText: "",
-      messages: ["No Morse-like tones detected. Try a cleaner recording or a lower threshold."],
-      rawMorse: "",
-      status: "no-tones",
-      timing: { ...emptyTiming, noiseFloor, peakLevel },
-    };
+    return createAudioDecodeResult(
+      "no-tones",
+      [
+        "No clear tone was detected. Try a louder, cleaner single-tone recording.",
+      ],
+      { ...emptyTiming, noiseFloor, peakLevel },
+    );
   }
 
   const threshold = chooseThreshold(peakLevel, noiseFloor, resolved.sensitivity);
-  const rawSegments = buildSegments(envelope, threshold, resolved.windowMs);
+  const offThreshold = chooseOffThreshold(threshold, noiseFloor);
+  const rawSegments = buildSegments(
+    envelope,
+    threshold,
+    offThreshold,
+    resolved.windowMs,
+  );
   const segments = cleanSegments(
     rawSegments,
     resolved.minToneMs,
@@ -218,23 +372,20 @@ export function analyzeSamplesToMorse(
   const gapCount = contentSegments.filter((segment) => segment.kind === "silence").length;
 
   if (toneCount === 0) {
-    return {
-      confidence: 0,
-      decodedText: "",
-      messages: ["No Morse-like tones detected. Try a cleaner recording or a lower threshold."],
-      rawMorse: "",
-      status: "no-tones",
-      timing: {
+    return createAudioDecodeResult(
+      "no-tones",
+      [
+        "No clear Morse-like tones remained after filtering clicks and noise.",
+      ],
+      {
         durationSeconds,
-        estimatedUnitMs: 0,
-        estimatedWpm: 0,
         gapCount,
         noiseFloor,
         peakLevel,
         threshold,
         toneCount,
       },
-    };
+    );
   }
 
   const estimatedUnitMs =
@@ -252,7 +403,14 @@ export function analyzeSamplesToMorse(
     estimatedUnitMs,
     gapTimingModel,
   );
-  const exactDecodedText = morseToText(rawMorse);
+  const exactDecodeResult = morseToText(rawMorse, {
+    mode: "loose",
+    returnResult: true,
+  });
+  const unknownTokenCount = exactDecodeResult.issues.filter(
+    (issue) => issue.type === "unknown-morse-token",
+  ).length;
+  const exactDecodedText = exactDecodeResult.value;
   const decodedText =
     resolved.textSpacing === "exact"
       ? exactDecodedText
@@ -264,13 +422,21 @@ export function analyzeSamplesToMorse(
     peakLevel,
     noiseFloor,
   );
-  const status: AudioDecodeStatus = confidence < 0.58 ? "low-confidence" : "success";
-  const messages =
+  const warnings = buildQualityWarnings({
+    confidence,
+    peakLevel,
+    signalSeparation,
+    toneCount,
+    unknownTokenCount,
+  });
+  const status: AudioDecodeStatus =
+    confidence < 0.58 || unknownTokenCount > 0 ? "low-confidence" : "success";
+  const messages = [
     status === "success"
-      ? ["Decoded successfully."]
-      : [
-          "Decoded with low confidence. The recording may be noisy, clipped, or inconsistently spaced.",
-        ];
+      ? "Decoded successfully."
+      : "Decoded with low confidence. Check the raw Morse against the audio.",
+    ...warnings,
+  ];
 
   return {
     confidence,
@@ -291,7 +457,12 @@ export function analyzeSamplesToMorse(
   };
 }
 
-function buildEnvelope(samples: Float32Array, sampleRate: number, windowMs: number) {
+function buildEnvelope(
+  samples: Float32Array,
+  sampleRate: number,
+  windowMs: number,
+  dcOffset: number,
+) {
   const windowSize = Math.max(1, Math.round((sampleRate * windowMs) / 1000));
   const envelope: number[] = [];
 
@@ -299,7 +470,7 @@ function buildEnvelope(samples: Float32Array, sampleRate: number, windowMs: numb
     const end = Math.min(samples.length, start + windowSize);
     let sumSquares = 0;
     for (let index = start; index < end; index += 1) {
-      const sample = samples[index] ?? 0;
+      const sample = clamp((samples[index] ?? 0) - dcOffset, -1, 1);
       sumSquares += sample * sample;
     }
     envelope.push(Math.sqrt(sumSquares / Math.max(1, end - start)));
@@ -308,20 +479,47 @@ function buildEnvelope(samples: Float32Array, sampleRate: number, windowMs: numb
   return envelope;
 }
 
+function smoothEnvelope(envelope: number[]) {
+  if (envelope.length < 3) return envelope;
+
+  return envelope.map((value, index) => {
+    const previous = envelope[index - 1] ?? value;
+    const next = envelope[index + 1] ?? value;
+    return previous * 0.1 + value * 0.8 + next * 0.1;
+  });
+}
+
 function chooseThreshold(peakLevel: number, noiseFloor: number, sensitivity: number) {
   const thresholdRatio = 0.38 - clamp(sensitivity, 0, 1) * 0.26;
   return noiseFloor + (peakLevel - noiseFloor) * clamp(thresholdRatio, 0.08, 0.34);
 }
 
-function buildSegments(envelope: number[], threshold: number, windowMs: number) {
+function chooseOffThreshold(onThreshold: number, noiseFloor: number) {
+  return noiseFloor + (onThreshold - noiseFloor) * 0.58;
+}
+
+function buildSegments(
+  envelope: number[],
+  onThreshold: number,
+  offThreshold: number,
+  windowMs: number,
+) {
   if (!envelope.length) return [];
 
   const segments: Segment[] = [];
-  let currentKind: SegmentKind = envelope[0] >= threshold ? "tone" : "silence";
+  let currentKind: SegmentKind = envelope[0] >= onThreshold ? "tone" : "silence";
   let startIndex = 0;
 
   for (let index = 1; index < envelope.length; index += 1) {
-    const nextKind: SegmentKind = envelope[index] >= threshold ? "tone" : "silence";
+    const value = envelope[index] ?? 0;
+    const nextKind: SegmentKind =
+      currentKind === "tone"
+        ? value >= offThreshold
+          ? "tone"
+          : "silence"
+        : value >= onThreshold
+          ? "tone"
+          : "silence";
     if (nextKind === currentKind) continue;
 
     segments.push(createSegment(currentKind, startIndex, index, windowMs));
@@ -566,6 +764,42 @@ function estimateConfidence(
   return clamp(1 - averageError * 0.85, 0, 1) * clamp(signalSeparation, 0.35, 1);
 }
 
+function buildQualityWarnings({
+  confidence,
+  peakLevel,
+  signalSeparation,
+  toneCount,
+  unknownTokenCount,
+}: {
+  confidence: number;
+  peakLevel: number;
+  signalSeparation: number;
+  toneCount: number;
+  unknownTokenCount: number;
+}) {
+  const warnings: string[] = [];
+
+  if (peakLevel < 0.01) {
+    warnings.push("The audio is very quiet, so the result may be unreliable.");
+  }
+  if (signalSeparation < 0.42) {
+    warnings.push("Background noise is close to the tone level.");
+  }
+  if (toneCount < 3) {
+    warnings.push("Very few tone regions were detected.");
+  }
+  if (confidence < 0.58) {
+    warnings.push("Timing was inconsistent across detected marks and gaps.");
+  }
+  if (unknownTokenCount > 0) {
+    warnings.push(
+      `${unknownTokenCount} Morse group${unknownTokenCount === 1 ? "" : "s"} could not be decoded.`,
+    );
+  }
+
+  return warnings;
+}
+
 function nearestExpectedDuration(durationMs: number, unitMs: number, units: number[]) {
   return units
     .map((unit) => unit * unitMs)
@@ -664,6 +898,47 @@ function createEmptyTiming(durationSeconds: number): AudioTimingSummary {
   };
 }
 
+function sanitizeAudioDecoderOptions(
+  options: Required<AudioDecoderOptions>,
+): Required<AudioDecoderOptions> {
+  return {
+    expectedWpm: clamp(options.expectedWpm, 0, 60),
+    gapMode: options.gapMode,
+    maxToneGapMs: clamp(options.maxToneGapMs, 0, 80),
+    minToneMs: clamp(options.minToneMs, 8, 120),
+    sensitivity: clamp(options.sensitivity, 0.2, 0.9),
+    textSpacing: options.textSpacing,
+    windowMs: clamp(options.windowMs, 4, 40),
+    wordGapScale: clamp(options.wordGapScale, 0.6, 1.6),
+  };
+}
+
+function calculateSampleStats(samples: Float32Array) {
+  let sum = 0;
+
+  for (const sample of samples) {
+    const safeSample = Number.isFinite(sample) ? sample : 0;
+    sum += safeSample;
+  }
+
+  return {
+    mean: sum / Math.max(1, samples.length),
+  };
+}
+
+function getAudioBufferDurationSeconds(audioBuffer: {
+  duration?: number;
+  length: number;
+  sampleRate: number;
+}) {
+  const duration = audioBuffer.duration;
+  if (typeof duration === "number" && Number.isFinite(duration) && duration > 0) {
+    return duration;
+  }
+
+  return audioBuffer.sampleRate > 0 ? audioBuffer.length / audioBuffer.sampleRate : 0;
+}
+
 function clusterDurationsByLog(values: number[], clusterCount: number) {
   const positiveValues = values.filter((value) => value > 0).sort((a, b) => a - b);
   if (!positiveValues.length || clusterCount <= 0) return [];
@@ -701,6 +976,16 @@ function percentile(values: number[], percentileValue: number) {
     Math.max(0, Math.floor(sorted.length * percentileValue)),
   );
   return sorted[index] ?? 0;
+}
+
+function maxValue(values: number[]) {
+  let max = 0;
+  for (const value of values) max = Math.max(max, value);
+  return max;
+}
+
+function formatBytes(bytes: number) {
+  return `${Math.round(bytes / (1024 * 1024))} MB`;
 }
 
 function clamp(value: number, min: number, max: number) {
