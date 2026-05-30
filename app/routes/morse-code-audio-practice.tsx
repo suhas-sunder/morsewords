@@ -15,6 +15,8 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import TogglePill from "~/client/components/shared/ui/TogglePill";
 import FlashLamp from "~/client/components/shared/FlashLamp";
 import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import useMorseAudio, {
@@ -570,12 +572,12 @@ export default function MorseCodeAudioPractice() {
               </span>
             </div>
             <div className="mt-4 grid gap-5 md:grid-cols-3">
-              <SliderRow label="Character speed" value={charWpm} min={5} max={40} step={1} unit="WPM" onChange={handleCharWpmChange} />
-              <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={Math.max(5, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed." />
-              <SliderRow label="Pitch" value={toneHz} min={300} max={1000} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} />
-              <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(value) => setVolume(value / 100)} disabled={!soundOn} />
-              <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || preset === "sounder"} />
-              <SliderRow label="Release" value={releaseMs} min={0} max={80} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || preset === "sounder"} />
+              <SliderRow label="Character speed" value={charWpm} min={5} max={40} step={1} unit="WPM" onChange={handleCharWpmChange} labelTone="sky" />
+              <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={Math.max(5, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed." labelTone="sky" />
+              <SliderRow label="Pitch" value={toneHz} min={300} max={1000} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} labelTone="sky" />
+              <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(value) => setVolume(value / 100)} disabled={!soundOn} labelTone="sky" />
+              <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || preset === "sounder"} labelTone="sky" />
+              <SliderRow label="Release" value={releaseMs} min={0} max={80} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || preset === "sounder"} labelTone="sky" />
             </div>
 
             {advancedOpen ? (
@@ -607,12 +609,14 @@ export default function MorseCodeAudioPractice() {
                       checked={soundOn}
                       onChange={setSoundOn}
                       icon={<SoundIcon size={16} title="Sound" />}
+                      hover="soft"
                     />
                     <TogglePill
                       label="Repeat"
                       checked={repeat}
                       onChange={setRepeat}
                       icon={<LoopIcon size={16} title="Repeat" />}
+                      hover="soft"
                     />
                     <TogglePill
                       label="Flash"
@@ -627,6 +631,7 @@ export default function MorseCodeAudioPractice() {
                           : undefined
                       }
                       disabled={!flashAllowed}
+                      hover="soft"
                     />
                     {flash ? (
                       <FlashLamp
@@ -836,95 +841,6 @@ export default function MorseCodeAudioPractice() {
         <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
       <BreadcrumbTrail current="Morse Code Audio Practice" />
-    </div>
-  );
-}
-
-function TogglePill({
-  label,
-  checked,
-  onChange,
-  icon,
-  describedBy,
-  disabled = false,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (value: boolean) => void;
-  icon?: React.ReactNode;
-  describedBy?: string;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        if (!disabled) onChange(!checked);
-      }}
-      disabled={disabled}
-      className={
-        toolControlButtonClass({
-          active: checked,
-          disabled,
-          size: "sm",
-          rounded: "full",
-        })
-      }
-      aria-pressed={checked}
-      aria-describedby={describedBy}
-    >
-      {icon}
-      {label}
-    </button>
-  );
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-  disabled,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (value: number) => void;
-  help?: string;
-  disabled?: boolean;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        disabled={disabled}
-        style={{ accentColor: "#38bdf8" }}
- className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60"
-      />
     </div>
   );
 }

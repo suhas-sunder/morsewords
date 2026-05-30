@@ -18,6 +18,8 @@ import {
   ToolPanel,
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import TogglePill from "~/client/components/shared/ui/TogglePill";
 import {
   ActionButton,
   ActionRow,
@@ -906,96 +908,6 @@ export default function MorseAudioTranslator({
 
             </div>
       </section>
-    </div>
-  );
-}
-
-function TogglePill({
-  label,
-  checked,
-  onChange,
-  icon,
-  describedBy,
-  disabled = false,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (v: boolean) => void;
-  icon?: React.ReactNode;
-  describedBy?: string;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        if (!disabled) onChange(!checked);
-      }}
-      disabled={disabled}
-      className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold ${disabled ? "cursor-not-allowed bg-[#fffaf2] text-slate-400" : "cursor-pointer"} active:scale-95 transition focus:outline-none ${
-        disabled
-          ? ""
-          : checked
-          ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-          : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-      }`}
-      aria-pressed={checked}
-      aria-describedby={describedBy}
-    >
-      {icon}
-      <span>{label}</span>
-    </button>
-  );
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-  disabled,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (v: number) => void;
-  help?: string;
-  disabled?: boolean;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between">
-        <label htmlFor={id} className="text-sm font-semibold text-slate-700">
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help && <p className="mt-0.5 text-xs text-slate-500">{help}</p>}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        disabled={disabled}
-        style={{ accentColor: "#38bdf8" }}
-        className={`w-full mt-2 ${
-          disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
-        } focus:outline-none focus:ring-0 focus-visible:outline-none rounded-full`}
-      />
     </div>
   );
 }

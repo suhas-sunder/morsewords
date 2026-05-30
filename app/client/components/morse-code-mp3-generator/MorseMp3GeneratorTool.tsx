@@ -48,6 +48,9 @@ import {
   ToolSampleButtons,
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import StatusMessage from "~/client/components/shared/ui/StatusMessage";
+import TogglePill from "~/client/components/shared/ui/TogglePill";
 import {
   CheckCircleIcon,
   CopyIcon,
@@ -865,114 +868,21 @@ export default function MorseMp3GeneratorTool() {
 
       <div className="mt-4">
         {downloadStatus ? (
-          <p
-            className="text-sm font-semibold text-slate-700"
-            aria-live="polite"
+          <StatusMessage
+            kind={downloadStatus.kind === "ok" ? "success" : downloadStatus.kind}
+            live
           >
             {downloadStatus.message}
-          </p>
+          </StatusMessage>
         ) : (
-          <p className="text-sm leading-relaxed text-slate-600">
+          <StatusMessage>
             MP3 encoding starts when you click download. Preview, WAV, and MP3
             use the same speed, spacing, tone, volume, sound type, and envelope
             settings.
-          </p>
+          </StatusMessage>
         )}
       </div>
     </section>
-  );
-}
-
-function TogglePill({
-  checked,
-  describedBy,
-  icon,
-  label,
-  onChange,
-  disabled = false,
-}: {
-  checked: boolean;
-  describedBy?: string;
-  disabled?: boolean;
-  icon?: React.ReactNode;
-  label: string;
-  onChange: (value: boolean) => void;
-}) {
-  return (
-    <ToolButton
-      type="button"
-      active={checked}
-      tone="light"
-      hover="dark"
-      disabled={disabled}
-      onClick={() => {
-        if (!disabled) onChange(!checked);
-      }}
-      className="min-h-10 rounded-full px-3 py-1.5 text-sm"
-      aria-pressed={checked}
-      aria-describedby={describedBy}
-    >
-      {icon}
-      {label}
-    </ToolButton>
-  );
-}
-
-function SliderRow({
-  disabled,
-  help,
-  icon,
-  label,
-  max,
-  min,
-  onChange,
-  step,
-  unit,
-  value,
-}: {
-  disabled?: boolean;
-  help?: string;
-  icon?: React.ReactNode;
-  label: string;
-  max: number;
-  min: number;
-  onChange: (value: number) => void;
-  step: number;
-  unit: string;
-  value: number;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label
-          htmlFor={id}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700"
-        >
-          {icon}
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help ? <p className="mt-0.5 text-xs text-slate-500">{help}</p> : null}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        disabled={disabled}
-        style={{ accentColor: "#38bdf8" }}
-        className={`mt-2 w-full rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none ${
-          disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
-        }`}
-      />
-    </div>
   );
 }
 

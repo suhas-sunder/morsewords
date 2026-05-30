@@ -17,6 +17,7 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
 import FlashLamp from "~/client/components/shared/FlashLamp";
 import {
   isFlashAllowedNow,
@@ -142,7 +143,6 @@ export function buildVisualQuizPromptDeck(seed: number) {
     fallback: VISUAL_QUIZ_FALLBACK_PROMPTS,
   });
 }
-
 function createVisualQuizSeed() {
   return Date.now() + Math.floor(Math.random() * 1_000_000);
 }
@@ -481,6 +481,7 @@ export default function MorseCodeVisualQuiz() {
                 <div className="mt-5 grid gap-5">
                   <SliderRow
                     label="Character speed"
+                    labelTone="sky"
                     value={wpm}
                     min={6}
                     max={30}
@@ -490,6 +491,7 @@ export default function MorseCodeVisualQuiz() {
                   />
                   <SliderRow
                     label="Farnsworth spacing"
+                    labelTone="sky"
                     value={farnsworthWpm}
                     min={5}
                     max={Math.max(5, wpm)}
@@ -739,51 +741,4 @@ function readStoredInt(key: string, fallback: number) {
     max: 9999,
     integer: true,
   });
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (value: number) => void;
-  help?: string;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        style={{ accentColor: "#38bdf8" }}
- className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none"
-      />
-    </div>
-  );
 }

@@ -22,6 +22,9 @@ import {
 } from "~/client/components/shared/ToolWorkspace";
 import { audioBufferToMp3Blob, type ExportFormat } from "~/client/components/morse-code-sound-generator/audioExport";
 import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import StatusMessage from "~/client/components/shared/ui/StatusMessage";
+import TogglePill from "~/client/components/shared/ui/TogglePill";
 import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
@@ -625,9 +628,9 @@ export default function MorseAudioTranslator({
                   </div>
 
                   <div className="mt-4 flex flex-wrap gap-2">
-                    <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} />
-                    <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} />
-                    <TogglePill label="Flash" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : effectiveFlash ? STROBE_WARNING_ID : undefined} disabled={!flashAllowed} />
+                    <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} rounded="lg" />
+                    <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} rounded="lg" />
+                    <TogglePill label="Flash" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : effectiveFlash ? STROBE_WARNING_ID : undefined} disabled={!flashAllowed} rounded="lg" />
                     {hydrated && flash ? <FlashLamp active={flashLamp.active} disabled={!effectiveFlash} label="Morse audio flash lamp" size="sm" /> : null}
                   </div>
 
@@ -691,9 +694,13 @@ export default function MorseAudioTranslator({
                   </div>
 
                   {exportStatus ? (
-                    <p className={`mt-3 text-sm font-semibold ${exportStatus.kind === "error" ? "text-slate-700" : "text-sky-900"}`}>
+                    <StatusMessage
+                      className="mt-3"
+                      kind={exportStatus.kind === "ok" ? "success" : exportStatus.kind}
+                      live
+                    >
                       {exportStatus.message}
-                    </p>
+                    </StatusMessage>
                   ) : null}
                 </div>
               ) : null}
@@ -741,30 +748,6 @@ function ExportButton({ label, onClick, disabled }: { label: string; onClick: ()
       <SaveIcon size={18} title={label} />
       <span>{label}</span>
     </button>
-  );
-}
-
-function TogglePill({ label, checked, onChange, icon, describedBy, disabled = false }: { label: string; checked: boolean; onChange: (v: boolean) => void; icon?: React.ReactNode; describedBy?: string; disabled?: boolean }) {
-  return (
-    <button type="button" onClick={() => { if (!disabled) onChange(!checked); }} disabled={disabled} className={`flex ${disabled ? "cursor-not-allowed bg-[#fffaf2] text-slate-400" : "cursor-pointer"} items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition focus:outline-none active:scale-95 ${disabled ? "" : checked ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white" : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"}`} aria-pressed={checked} aria-describedby={describedBy}>
-      {icon}
-      <span>{label}</span>
-    </button>
-  );
-}
-
-function SliderRow({ label, value, min, max, step, unit, onChange, help, disabled }: { label: string; value: number; min: number; max: number; step: number; unit: string; onChange: (v: number) => void; help?: string; disabled?: boolean }) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between">
-        <label htmlFor={id} className="text-sm font-semibold text-slate-700">{label}</label>
-        <span className="text-sm text-slate-600">{value} {unit}</span>
-      </div>
-      {help ? <p className="mt-0.5 text-xs text-slate-500">{help}</p> : null}
-<input id={id} type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} disabled={disabled} style={{ accentColor: "#38bdf8" }} className={`w-full mt-2 ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"} focus:outline-none focus:ring-0 focus-visible:outline-none rounded-full`} />
-    </div>
   );
 }
 

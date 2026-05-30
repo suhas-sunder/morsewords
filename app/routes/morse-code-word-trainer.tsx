@@ -31,6 +31,7 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
 import {
  normalizeMorseForDecode,
  textToMorse,
@@ -742,6 +743,7 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  <div className="mt-4 grid gap-5">
  <SliderRow
  label="Character speed" value={wpm}
+ labelTone="sky"
  min={5}
  max={35}
  step={1}
@@ -749,6 +751,7 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  />
  <SliderRow
  label="Farnsworth spacing" value={farnsworthWpm}
+ labelTone="sky"
  min={5}
  max={Math.max(5, wpm)}
  step={1}
@@ -1039,7 +1042,6 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  </div>
  );
 }
-
 function NoticeList({
  parsed,
  listName,
@@ -1217,50 +1219,5 @@ function MiniLink({
  })} whitespace-nowrap text-center leading-none`}>
  {children}
  </a>
- );
-}
-
-function SliderRow({
- label,
- value,
- min,
- max,
- step,
- unit,
- onChange,
- help,
-}: {
- label: string;
- value: number;
- min: number;
- max: number;
- step: number;
- unit: string;
- onChange: (value: number) => void;
- help?: string;
-}) {
- const id = React.useId();
-
- return (
- <div>
- <div className="flex items-baseline justify-between gap-3">
- <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
- {label}
- </label>
- <span className="text-sm text-slate-600">
- {value} {unit}
- </span>
- </div>
- {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
- <input
- id={id}
- type="range" min={min}
- max={max}
- step={step}
- value={value}
- onChange={(event) => onChange(Number(event.target.value))}
- style={{ accentColor:"#38bdf8"}}
-className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none"/>
- </div>
  );
 }

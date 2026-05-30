@@ -16,6 +16,8 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import TogglePill from "~/client/components/shared/ui/TogglePill";
 import FlashLamp from "~/client/components/shared/FlashLamp";
 import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import {
@@ -620,6 +622,7 @@ export default function MorseCodeAudioQuiz() {
             <div className="mt-4 grid gap-5 md:grid-cols-3">
               <SliderRow
                 label="Character speed"
+                labelTone="sky"
                 value={charWpm}
                 min={5}
                 max={40}
@@ -629,6 +632,7 @@ export default function MorseCodeAudioQuiz() {
               />
               <SliderRow
                 label="Farnsworth spacing"
+                labelTone="sky"
                 value={farnsworthWpm}
                 min={5}
                 max={Math.max(5, charWpm)}
@@ -639,6 +643,7 @@ export default function MorseCodeAudioQuiz() {
               />
               <SliderRow
                 label="Pitch"
+                labelTone="sky"
                 value={toneHz}
                 min={300}
                 max={1000}
@@ -649,6 +654,7 @@ export default function MorseCodeAudioQuiz() {
               />
               <SliderRow
                 label="Volume"
+                labelTone="sky"
                 value={Math.round(volume * 100)}
                 min={0}
                 max={100}
@@ -659,6 +665,7 @@ export default function MorseCodeAudioQuiz() {
               />
               <SliderRow
                 label="Attack"
+                labelTone="sky"
                 value={attackMs}
                 min={0}
                 max={40}
@@ -669,6 +676,7 @@ export default function MorseCodeAudioQuiz() {
               />
               <SliderRow
                 label="Release"
+                labelTone="sky"
                 value={releaseMs}
                 min={0}
                 max={80}
@@ -708,12 +716,14 @@ export default function MorseCodeAudioQuiz() {
                       checked={soundOn}
                       onChange={setSoundOn}
                       icon={<SoundIcon size={16} title="Sound" />}
+                      hover="soft"
                     />
                     <TogglePill
                       label="Repeat"
                       checked={repeat}
                       onChange={setRepeat}
                       icon={<LoopIcon size={16} title="Repeat" />}
+                      hover="soft"
                     />
                     <TogglePill
                       label="Flash"
@@ -728,6 +738,7 @@ export default function MorseCodeAudioQuiz() {
                           : undefined
                       }
                       disabled={!flashAllowed}
+                      hover="soft"
                     />
                     {flash ? (
                       <FlashLamp
@@ -1011,93 +1022,6 @@ function QuizComplete({
           runStartedAt={runStartedAt}
         />
       </div>
-    </div>
-  );
-}
-
-function TogglePill({
-  label,
-  checked,
-  onChange,
-  icon,
-  describedBy,
-  disabled = false,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (value: boolean) => void;
-  icon?: React.ReactNode;
-  describedBy?: string;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        if (!disabled) onChange(!checked);
-      }}
-      disabled={disabled}
-      className={toolControlButtonClass({
-        active: checked,
-        disabled,
-        size: "sm",
-        rounded: "full",
-      })}
-      aria-pressed={checked}
-      aria-describedby={describedBy}
-    >
-      {icon}
-      {label}
-    </button>
-  );
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-  disabled,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (value: number) => void;
-  help?: string;
-  disabled?: boolean;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        disabled={disabled}
-        style={{ accentColor: "#38bdf8" }}
- className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60"
-      />
     </div>
   );
 }
