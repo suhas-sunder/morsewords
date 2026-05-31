@@ -1,4 +1,6 @@
-export const SITE_URL = "https://www.morsewords.com";
+import { SITE_ORIGIN, absoluteUrl } from "~/client/data/routes";
+
+export const SITE_URL = SITE_ORIGIN;
 
 type SeoMetaInput = {
   title: string;
@@ -9,7 +11,7 @@ type SeoMetaInput = {
 };
 
 export function canonicalUrl(path: string) {
-  return `${SITE_URL}${path}`;
+  return absoluteUrl(path);
 }
 
 export function seoMeta({

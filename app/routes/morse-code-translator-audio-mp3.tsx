@@ -1,5 +1,8 @@
-import { redirect } from "react-router";
+import { ROUTES } from "~/client/data/routes";
+import { makeRedirectAliasLoader } from "./redirectAliases";
 
-export function loader() {
-  throw redirect("/morse-code-mp3-generator", { status: 301 });
+export const loader = makeRedirectAliasLoader(ROUTES.translatorAudioMp3Alias);
+
+export default function RedirectAliasRoute() {
+  return null;
 }

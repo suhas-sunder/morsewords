@@ -10,10 +10,11 @@ import {
   PHRASE_PAGES,
   SYMBOL_PAGES,
 } from "~/client/data/morseContent";
+import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
-const CANONICAL_PATH = "/sitemap";
+const CANONICAL_PATH = ROUTES.sitemap;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 const letterSitemapLinks = LETTER_ITEMS.map((item) => ({
@@ -53,64 +54,64 @@ const GROUPS: SitemapGroup[] = [
     links: [
       {
         label: "Morse Code Translator with Audio",
-        to: "/",
+        to: ROUTES.home,
         description: "Convert text to Morse, decode Morse to text, and play audio.",
       },
       {
         label: "Morse Code Audio Generator",
-        to: "/audio",
+        to: ROUTES.audio,
         description:
           "Generate Morse code audio from text or Morse input for practice and downloads.",
       },
       {
         label: "Morse Code Audio Decoder",
-        to: "/morse-code-audio-decoder",
+        to: ROUTES.audioDecoder,
         description:
           "Upload clean Morse audio and decode it into raw dots and dashes plus readable text.",
       },
       {
         label: "Name to Morse Code",
-        to: "/name-to-morse-code",
+        to: ROUTES.nameToMorse,
         description:
           "Convert names into Morse code, copy the output, and open it in audio tools.",
       },
       {
         label: "Morse Code Sound Generator",
-        to: "/morse-code-sound-generator",
+        to: ROUTES.soundGenerator,
         description:
           "Create Morse code beeps, tune the tone, and export MP3 or WAV audio.",
       },
       {
         label: "Morse Code MP3 Generator",
-        to: "/morse-code-mp3-generator",
+        to: ROUTES.mp3Generator,
         description:
           "Type text or Morse, preview the tone, and download a browser-generated MP3 file.",
       },
       {
         label: "Morse Code Encoder",
-        to: "/morse-code-encoder",
+        to: ROUTES.encoder,
         description: "Turn English text into Morse code dots and dashes.",
       },
       {
         label: "Morse Code Decoder",
-        to: "/morse-code-decoder",
+        to: ROUTES.decoder,
         description: "Convert Morse code back into readable text.",
       },
       {
         label: "Morse Code Reader",
-        to: "/morse-code-reader",
+        to: ROUTES.reader,
         description:
           "Paste typed dots, dashes, spaces, and slashes to read the decoded text.",
       },
       {
         label: "International Morse Code Translator",
-        to: "/morse-code-international-translator",
+        to: ROUTES.internationalTranslator,
         description:
           "Translate English and international words into Morse code with transliteration.",
       },
       {
         label: "International Morse Code Reference",
-        to: "/international-morse-code-reference",
+        to: ROUTES.internationalReference,
         description:
           "Browse letters, digits, punctuation, prosigns, Q-codes, and standards notes.",
       },
@@ -122,105 +123,105 @@ const GROUPS: SitemapGroup[] = [
     links: [
       {
         label: "Learn Morse Code",
-        to: "/learn-morse-code",
+        to: ROUTES.learn,
         description:
           "Follow a practical path through alphabet, practice, audio, words, sentences, and worksheets.",
       },
       {
         label: "Morse Code Practice Plan",
-        to: "/morse-code-practice-plan",
+        to: ROUTES.practicePlan,
         description:
           "Use a 2-week or 6-week routine across MorseWords tools.",
       },
       {
         label: "Morse Code Test",
-        to: "/morse-code-test",
+        to: ROUTES.test,
         description:
           "Choose the right listening, typing, visual, practice, word trainer, or practice-plan assessment.",
       },
       {
         label: "Practice",
-        to: "/practice",
+        to: ROUTES.practice,
         description: "Train text-to-Morse and Morse-to-text recognition.",
       },
       {
         label: "Typing",
-        to: "/typing",
+        to: ROUTES.typing,
         description: "Practice typing answers from Morse prompts.",
       },
       {
         label: "Morse Code Sentence Practice",
-        to: "/morse-code-sentence-practice",
+        to: ROUTES.sentencePractice,
         description: "Decode and practice complete Morse code sentences.",
       },
       {
         label: "Morse Code Word Trainer",
-        to: "/morse-code-word-trainer",
+        to: ROUTES.wordTrainer,
         description:
           "Practice built-in or custom word lists with audio and weak-word review.",
       },
       {
         label: "Morse Code Audio Practice",
-        to: "/morse-code-audio-practice",
+        to: ROUTES.audioPractice,
         description:
           "Practice copying Morse by ear with focused audio prompts.",
       },
       {
         label: "Morse Code Visual Practice",
-        to: "/morse-code-visual-practice",
+        to: ROUTES.visualPractice,
         description:
           "Practice reading Morse from a flashing light signal.",
       },
       {
         label: "Morse Code Audio Quiz",
-        to: "/morse-code-audio-quiz",
+        to: ROUTES.audioQuiz,
         description:
           "Test Morse listening recall with a 10-question scored audio quiz.",
       },
       {
         label: "Morse Code Visual Quiz",
-        to: "/morse-code-visual-quiz",
+        to: ROUTES.visualQuiz,
         description:
           "Test visual Morse recall with a 10-question scored flashing-light quiz.",
       },
       {
         label: "How to Use MorseWords",
-        to: "/how-to-use",
+        to: ROUTES.howToUse,
         description: "Learn the site workflow and common Morse conventions.",
       },
       {
         label: "How to Read Morse Code",
-        to: "/how-to-read-morse-code",
+        to: ROUTES.howToRead,
         description:
           "Learn rhythm, letter boundaries, word boundaries, and worked examples.",
       },
       {
         label: "How to Write in Morse Code",
-        to: "/how-to-write-in-morse-code",
+        to: ROUTES.howToWrite,
         description:
           "Write letters, words, punctuation, and spaces in readable Morse.",
       },
       {
         label: "How to Type in Morse Code",
-        to: "/how-to-type-in-morse-code",
+        to: ROUTES.howToType,
         description:
           "Use keyboard-safe dots, dashes, spaces, and slashes for typed Morse.",
       },
       {
         label: "How to Separate Words in Morse Code",
-        to: "/how-to-separate-words-in-morse-code",
+        to: ROUTES.separateWords,
         description:
           "Learn letter gaps, word gaps, slash separators, timing gaps, and decoder-safe spacing.",
       },
       {
         label: "Printable Morse Code Worksheets",
-        to: "/morse-code-printable-chart",
+        to: ROUTES.printableChart,
         description:
           "Print or download learner, teacher, and classroom Morse code templates.",
       },
       {
         label: "Morse Code Word Search Builder",
-        to: "/morse-code-word-search-builder",
+        to: ROUTES.wordSearchBuilder,
         description:
           "Build printable Morse vocabulary word searches from custom lists.",
       },
@@ -232,90 +233,90 @@ const GROUPS: SitemapGroup[] = [
     links: [
       {
         label: "Morse Code Chart",
-        to: "/morse-code-chart",
+        to: ROUTES.chart,
         description:
           "Use one complete chart for A-Z letters, 0-9 numbers, supported punctuation, spacing notes, audio checks, and printable chart next steps.",
       },
       {
         label: "Morse Code Alphabet",
-        to: "/morse-code-alphabet",
+        to: ROUTES.alphabet,
         description: "Browse A-Z letter patterns for Morse alphabet learning.",
       },
       ...letterSitemapLinks,
       {
         label: "Morse Code Numbers",
-        to: "/morse-code-numbers",
+        to: ROUTES.numbers,
         description:
           "Review the 0-9 Morse number chart with pattern logic and examples.",
       },
       ...numberSitemapLinks,
       {
         label: "Dictionary",
-        to: "/dictionary",
+        to: ROUTES.dictionary,
         description: "Find Morse code terms, abbreviations, and references.",
       },
       {
         label: "Morse Code Words",
-        to: "/morse-code-words",
+        to: ROUTES.words,
         description: "Copy common words, phrases, prosigns, and Q-codes.",
       },
       ...phraseSitemapLinks,
       {
         label: "Morse Code Word Separator",
-        to: "/morse-code-word-separator",
+        to: ROUTES.wordSeparator,
         description: "Understand spaces, slashes, and word breaks in Morse.",
       },
       {
         label: "Copy and Paste Morse Code",
-        to: "/copy-and-paste-morse-code",
+        to: ROUTES.copyAndPaste,
         description:
           "Use safe dots, dashes, spaces, and slashes when copying Morse.",
       },
       {
         label: "Morse Code Without Spaces",
-        to: "/morse-code-without-spaces",
+        to: ROUTES.withoutSpaces,
         description:
           "Understand why unspaced Morse is ambiguous and how to add separators.",
       },
       {
         label: "Morse Code Timing",
-        to: "/morse-code-timing",
+        to: ROUTES.timing,
         description:
           "Understand dot, dash, character gap, word gap, WPM, and PARIS timing.",
       },
       {
         label: "Farnsworth Timing",
-        to: "/farnsworth-timing",
+        to: ROUTES.farnsworth,
         description:
           "Learn character speed, effective speed, and learner spacing.",
       },
       {
         label: "Morse Code Prosigns",
-        to: "/morse-code-prosigns",
+        to: ROUTES.prosigns,
         description:
           "Look up SOS, AR, SK, BT, and other procedural Morse signals.",
       },
       {
         label: "Morse Code Q-Codes",
-        to: "/morse-code-q-codes",
+        to: ROUTES.qCodes,
         description:
           "Browse common Q-codes with meanings, examples, and audio.",
       },
       {
         label: "Morse Code Punctuation",
-        to: "/morse-code-punctuation",
+        to: ROUTES.punctuation,
         description:
           "Find Morse punctuation for period, comma, question mark, slash, and symbols.",
       },
       ...symbolSitemapLinks,
       {
         label: "The Quick Brown Fox in Morse Code",
-        to: "/the-quick-brown-fox-morse-code",
+        to: ROUTES.quickBrownFox,
         description: "Use the classic pangram as a full-alphabet practice phrase.",
       },
       {
         label: "SOS in Morse Code",
-        to: "/morse-code-sos",
+        to: ROUTES.sos,
         description:
           "Play, copy, and learn the SOS Morse code distress signal.",
       },
@@ -327,18 +328,18 @@ const GROUPS: SitemapGroup[] = [
     links: [
       {
         label: "About",
-        to: "/about",
+        to: ROUTES.about,
         description: "Learn what MorseWords is built for.",
       },
       {
         label: "Contact",
-        to: "/contact",
+        to: ROUTES.contact,
         description:
           "Send MorseWords feedback, correction requests, bug reports, and classroom notes.",
       },
       {
         label: "Sources",
-        to: "/sources",
+        to: ROUTES.sources,
         description:
           "See the standards and references used for MorseWords timing and reference pages.",
       },
@@ -388,7 +389,12 @@ export default function HtmlSitemap() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: canonicalUrl(ROUTES.home),
+      },
       {
         "@type": "ListItem",
         position: 2,
