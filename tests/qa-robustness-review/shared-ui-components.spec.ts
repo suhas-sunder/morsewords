@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Locator } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -27,10 +27,34 @@ function readRepoFile(filePath: string) {
   return fs.readFileSync(path.join(ROOT, filePath), "utf8");
 }
 
+async function expectVisibleFocusOutline(locator: Locator) {
+  const outline = await locator.evaluate((element) => {
+    const style = window.getComputedStyle(element);
+    return {
+      style: style.outlineStyle,
+      width: style.outlineWidth,
+    };
+  });
+
+  expect(outline.style).not.toBe("none");
+  expect(outline.width).not.toBe("0px");
+}
+
 test("shared UI control primitives keep accessibility and disabled-state contracts", () => {
   for (const filePath of sharedComponentFiles) {
     expect(fs.existsSync(path.join(ROOT, filePath)), filePath).toBe(true);
   }
+
+  const appCss = readRepoFile("app/app.css");
+  expect(appCss).toContain(
+    ".mw-home-page\n  :where(input:not([type=\"range\"]), textarea, select):focus-visible",
+  );
+  expect(appCss).toContain(
+    ".mw-non-home-page :where(input, textarea, select):focus-visible",
+  );
+  expect(appCss).toContain(
+    ".mw-non-home-page\n  :where(input[type=\"range\"]):focus-visible",
+  );
 
   const togglePill = readRepoFile(
     "app/client/components/shared/ui/TogglePill.tsx",
@@ -120,4 +144,26 @@ test.describe("shared route controls", () => {
       await expect(spacing).toHaveAttribute("type", "range");
     });
   }
+
+  test("non-home route fields and range controls have visible keyboard focus", async ({
+    page,
+  }) => {
+    await page.goto("/morse-code-word-trainer", {
+      waitUntil: "domcontentloaded",
+    });
+    await page
+      .waitForLoadState("networkidle", { timeout: 15_000 })
+      .catch(() => {});
+
+    const answerField = page.getByLabel("Your answer").first();
+    await expect(answerField).toBeEnabled();
+    await answerField.focus();
+    await expect(answerField).toBeFocused();
+    await expectVisibleFocusOutline(answerField);
+
+    const speed = page.getByLabel("Character speed").first();
+    await speed.focus();
+    await expect(speed).toBeFocused();
+    await expectVisibleFocusOutline(speed);
+  });
 });

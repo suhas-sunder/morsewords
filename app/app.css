@@ -1079,7 +1079,9 @@ main *::after {
 }
 
 /* Home-page visual rule: input-like fields do not gain an extra focus outline/glow. */
-.mw-page-content :where(input, textarea, select):focus {
+.mw-page-content
+  .mw-home-page
+  :where(input:not([type="range"]), textarea, select):focus {
   outline: none !important;
   box-shadow: none !important;
   --tw-ring-color: transparent !important;
@@ -1087,7 +1089,9 @@ main *::after {
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
-.mw-page-content :where(input, textarea, select):focus-visible {
+.mw-page-content
+  .mw-home-page
+  :where(input:not([type="range"]), textarea, select):focus-visible {
   box-shadow: none !important;
   outline: none !important;
   --tw-ring-color: transparent !important;
@@ -1096,7 +1100,6 @@ main *::after {
 }
 
 .mw-page-content .mw-non-home-page :where(input, textarea, select):focus,
-.mw-page-content .mw-non-home-page :where(input, textarea, select):focus-visible,
 .mw-page-content .mw-non-home-page :where(input, textarea, select):focus-within {
   border-color: transparent !important;
   outline: 0 !important;
@@ -1104,6 +1107,23 @@ main *::after {
   --tw-ring-color: transparent !important;
   --tw-ring-offset-shadow: 0 0 #0000 !important;
   --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+.mw-page-content .mw-non-home-page :where(input, textarea, select):focus-visible {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: 2px solid var(--mw-focus-ring-muted) !important;
+  outline-offset: 2px;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+.mw-page-content
+  .mw-non-home-page
+  :where(input[type="range"]):focus-visible {
+  outline: 2px solid var(--mw-range-focus-ring) !important;
+  outline-offset: 3px;
 }
 
 .mw-how-section > .flex.flex-col:first-child {
