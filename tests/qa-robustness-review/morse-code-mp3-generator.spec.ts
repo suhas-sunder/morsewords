@@ -1,19 +1,17 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-import { blockExternalNetwork, collectConsoleErrors } from "./helpers";
+import {
+  blockExternalNetwork,
+  collectConsoleErrors,
+  isExpectedHarnessConsoleEntry,
+  MP3_ALIAS_PATHS,
+  waitForRouteReady,
+} from "./helpers";
 
 const CANONICAL_PATH = "/morse-code-mp3-generator";
 const CANONICAL_URL = `https://www.morsewords.com${CANONICAL_PATH}`;
 const THEME_STORAGE_KEY = "morsewords-theme";
-
-const MP3_ALIASES = [
-  "/text-to-morse-code-mp3",
-  "/morse-to-mp3",
-  "/morse-code-to-mp3",
-  "/text-to-morse-mp3",
-  "/morse-code-translator-audio-mp3",
-] as const;
 
 const REQUIRED_LINKS = [
   "/audio",
@@ -28,15 +26,7 @@ const REQUIRED_LINKS = [
 function filterHarnessConsoleNoise(
   entries: Array<{ type: string; text: string }>,
 ) {
-  return entries.filter(
-    (entry) =>
-      !entry.text.includes("[vite] failed to connect to websocket") &&
-      !entry.text.includes("WebSocket connection to") &&
-      !entry.text.includes("WebSocket closed without opened") &&
-      !entry.text.includes(
-        "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
-      ),
-  );
+  return entries.filter((entry) => !isExpectedHarnessConsoleEntry(entry.text));
 }
 
 test.describe("Morse code MP3 generator", () => {
@@ -47,7 +37,8 @@ test.describe("Morse code MP3 generator", () => {
   test("renders canonical metadata, useful tool controls, FAQ, and JSON-LD", async ({
     page,
   }) => {
-    await page.goto(CANONICAL_PATH, { waitUntil: "networkidle" });
+    await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
 
     await expect(page).toHaveTitle(
       "Morse Code MP3 Generator | Download Morse Audio | MorseWords",
@@ -127,7 +118,8 @@ test.describe("Morse code MP3 generator", () => {
       });
     });
 
-    await page.goto(CANONICAL_PATH, { waitUntil: "networkidle" });
+    await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
     expect(
       requestedUrls.filter((url) => /lame|mp3-encoder/i.test(url)),
       "MP3 encoder should not load during initial render",
@@ -181,7 +173,7 @@ test.describe("Morse code MP3 generator", () => {
     await page.goto("/sitemap", { waitUntil: "domcontentloaded" });
     await expect(page.locator(`a[href="${CANONICAL_PATH}"]`).first()).toBeVisible();
 
-    for (const alias of MP3_ALIASES) {
+    for (const alias of MP3_ALIAS_PATHS) {
       await expect(page.locator(`a[href="${alias}"]`)).toHaveCount(0);
     }
 
@@ -189,11 +181,11 @@ test.describe("Morse code MP3 generator", () => {
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
     expect(xml).toContain(CANONICAL_URL);
-    for (const alias of MP3_ALIASES) {
+    for (const alias of MP3_ALIAS_PATHS) {
       expect(xml).not.toContain(`https://www.morsewords.com${alias}`);
     }
 
-    for (const alias of MP3_ALIASES) {
+    for (const alias of MP3_ALIAS_PATHS) {
       const response = await request.get(alias, { maxRedirects: 0 });
       expect(response.status(), `${alias} status`).toBe(301);
       expect(response.headers().location, `${alias} location`).toBe(
@@ -205,7 +197,7 @@ test.describe("Morse code MP3 generator", () => {
     for (const href of REQUIRED_LINKS) {
       await expect(page.locator(`main a[href="${href}"]`).first()).toBeVisible();
     }
-    for (const alias of MP3_ALIASES) {
+    for (const alias of MP3_ALIAS_PATHS) {
       await expect(page.locator(`a[href="${alias}"]`)).toHaveCount(0);
     }
   });

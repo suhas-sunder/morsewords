@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const SHOW_AMBIENT_STORAGE_KEY = "morsewords-show-ambient-morse";
 const DISABLE_FLASH_STORAGE_KEY = "morsewords-disable-flash-effects";
@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 async function waitForHydration(page: Page) {
-  await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+  await waitForRouteReady(page);
 }
 
 async function openSettings(page: Page) {

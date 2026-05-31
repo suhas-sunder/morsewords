@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 test.describe("result review actions", () => {
   test("word trainer weak-word copy and clear controls preserve review behavior", async ({
@@ -9,7 +9,7 @@ test.describe("result review actions", () => {
     await page.goto("/morse-code-word-trainer", {
       waitUntil: "domcontentloaded",
     });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
     await page.context().grantPermissions(["clipboard-read", "clipboard-write"], {
       origin: new URL(page.url()).origin,
     });

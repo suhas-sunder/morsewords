@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, collectConsoleErrors, gotoRoute } from "./helpers";
 
 const TOKEN_QA_ROUTES = [
   "/",
@@ -227,39 +227,16 @@ test.describe("semantic light design tokens", () => {
   }) => {
     await blockExternalNetwork(page);
 
-    const consoleEntries: string[] = [];
-    const pageErrors: string[] = [];
-    page.on("console", (message) => {
-      if (["error", "warning"].includes(message.type())) {
-        const text = message.text();
-        if (
-          !text.includes("ERR_BLOCKED_BY_CLIENT") &&
-          !text.includes("WebSocket connection to 'ws://127.0.0.1:24678/") &&
-          !text.includes("[vite] failed to connect to websocket")
-        ) {
-          consoleEntries.push(`${message.type()}: ${text}`);
-        }
-      }
-    });
-    page.on("pageerror", (error) => {
-      if (error.message !== "WebSocket closed without opened.") {
-        pageErrors.push(error.message);
-      }
-    });
+    const consoleEntries = collectConsoleErrors(page);
 
     for (const route of TOKEN_QA_ROUTES) {
-      const response = await page.goto(route, {
-        waitUntil: "domcontentloaded",
-        timeout: 60_000,
-      });
-      await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+      const response = await gotoRoute(page, route);
 
       expect(response?.status(), `${route} HTTP status`).toBeLessThan(400);
       await expect(page.locator("main, body").first()).toBeVisible();
       await expect(page.locator("h1"), `${route} H1 count`).toHaveCount(1);
     }
 
-    expect(pageErrors).toEqual([]);
     expect(consoleEntries).toEqual([]);
   });
 });

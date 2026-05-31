@@ -5,7 +5,7 @@ import {
   buildWordSearchPuzzle,
   parseWordSearchInput,
 } from "../../app/routes/morse-code-word-search-builder";
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const PRINT_SETTINGS = {
   allowBackwards: false,
@@ -117,14 +117,23 @@ test.describe("word search builder route", () => {
     await page.goto("/morse-code-word-search-builder", {
       waitUntil: "domcontentloaded",
     });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     await expect(page.locator("h1")).toHaveText("Morse Code Word Search Builder");
-    await expect(page.getByRole("button", { name: "Print selected output" })).toBeEnabled();
+    const printButton = page.getByRole("button", { name: "Print selected output" });
+    await expect(printButton).toBeEnabled();
 
-    await page.getByLabel("Plain words").fill("");
-    await expect(page.getByRole("button", { name: "Print selected output" })).toBeDisabled();
-    await page.getByRole("button", { name: "Generate new puzzle" }).click();
+    const wordInput = page.getByLabel("Plain words");
+    await expect(async () => {
+      await wordInput.fill("");
+      await expect(printButton).toBeDisabled({ timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
+    await expect(async () => {
+      await page.getByRole("button", { name: "Generate new puzzle" }).click();
+      await expect(
+        page.getByText("Add at least one valid A-Z word to generate a puzzle.").first(),
+      ).toBeVisible({ timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
     await expect(
       page.getByText("Add at least one valid A-Z word to generate a puzzle.").first(),
     ).toBeVisible();
@@ -137,7 +146,7 @@ test.describe("word search builder route", () => {
     await page.goto("/morse-code-word-search-builder", {
       waitUntil: "domcontentloaded",
     });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     await page
       .getByLabel("Plain words")

@@ -1,51 +1,14 @@
 import { expect, test, type Page } from "@playwright/test";
 import { blockExternalNetwork } from "./helpers";
+import {
+  REDIRECT_PATHS,
+  REDIRECT_ROUTE_EXPECTATIONS,
+} from "./helpers/routes";
 
 type JsonLdRecord = Record<string, unknown>;
 
 const SITE_URL = "https://www.morsewords.com";
 const NON_WWW_SITE_URL = "https://morsewords.com";
-
-const REDIRECT_ROUTES = [
-  { from: "/morse-code-letters", to: "/morse-code-alphabet" },
-  { from: "/text-to-morse-code", to: "/morse-code-encoder" },
-  { from: "/morse-to-text", to: "/morse-code-decoder" },
-  { from: "/morse-code-translator", to: "/" },
-  { from: "/morse-code-audio-generator", to: "/audio" },
-  { from: "/morse-code-vidual-quiz", to: "/morse-code-visual-quiz" },
-  { from: "/audio-to-morse-code", to: "/morse-code-audio-decoder" },
-  { from: "/morse-code-audio-to-text", to: "/morse-code-audio-decoder" },
-  { from: "/morse-code-sound-to-text", to: "/morse-code-audio-decoder" },
-  { from: "/morse-code-from-audio", to: "/morse-code-audio-decoder" },
-  { from: "/translate-morse-code-audio", to: "/morse-code-audio-decoder" },
-  { from: "/real-time-morse-code-decoder", to: "/morse-code-audio-decoder" },
-  { from: "/mp3-morse-code-decoder", to: "/morse-code-audio-decoder" },
-  { from: "/wav-morse-code-decoder", to: "/morse-code-audio-decoder" },
-  { from: "/international-morse-code-chart", to: "/morse-code-chart" },
-  { from: "/morse-code-chart-a-z-0-9", to: "/morse-code-chart" },
-  { from: "/morse-code-alphabet-chart", to: "/morse-code-chart" },
-  { from: "/morse-code-practice-test", to: "/morse-code-test" },
-  { from: "/morse-code-listening-test", to: "/morse-code-test" },
-  { from: "/morse-code-typing-test", to: "/morse-code-test" },
-  { from: "/morse-code-speed-test", to: "/morse-code-test" },
-  { from: "/morse-type-test", to: "/morse-code-test" },
-  { from: "/morse-code-tests", to: "/morse-code-test" },
-  { from: "/morse-code-test-online", to: "/morse-code-test" },
-  { from: "/morse-reader", to: "/morse-code-reader" },
-  { from: "/read-morse-code", to: "/morse-code-reader" },
-  { from: "/morse-to-english", to: "/morse-code-reader" },
-  { from: "/morse-code-to-english", to: "/morse-code-reader" },
-  { from: "/text-to-morse-code-mp3", to: "/morse-code-mp3-generator" },
-  { from: "/morse-to-mp3", to: "/morse-code-mp3-generator" },
-  { from: "/morse-code-to-mp3", to: "/morse-code-mp3-generator" },
-  { from: "/text-to-morse-mp3", to: "/morse-code-mp3-generator" },
-  {
-    from: "/morse-code-translator-audio-mp3",
-    to: "/morse-code-mp3-generator",
-  },
-] as const;
-
-const REDIRECT_PATHS = REDIRECT_ROUTES.map((route) => route.from);
 
 const REPRESENTATIVE_ROUTES = [
   "/",
@@ -405,7 +368,7 @@ test.describe("structured data output", () => {
     expect(sitemapResponse.ok()).toBe(true);
     const sitemapXml = await sitemapResponse.text();
 
-    for (const route of REDIRECT_ROUTES) {
+    for (const route of REDIRECT_ROUTE_EXPECTATIONS) {
       const response = await request.get(route.from, { maxRedirects: 0 });
       expect(
         [301, 302, 307, 308],

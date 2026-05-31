@@ -9,22 +9,15 @@ import {
   validateAudioDecoderFile,
   validateDecodedAudioBuffer,
 } from "../../app/client/components/morse-code-audio-decoder/audioDecodeUtils";
-import { blockExternalNetwork } from "./helpers";
+import {
+  AUDIO_DECODER_ALIAS_PATHS,
+  blockExternalNetwork,
+  waitForRouteReady,
+} from "./helpers";
 
 const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/morse-code-audio-decoder";
 const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
-const AUDIO_DECODER_ALIASES = [
-  "/audio-to-morse-code",
-  "/morse-code-audio-to-text",
-  "/morse-code-sound-to-text",
-  "/morse-code-from-audio",
-  "/translate-morse-code-audio",
-  "/real-time-morse-code-decoder",
-  "/mp3-morse-code-decoder",
-  "/wav-morse-code-decoder",
-] as const;
-
 function syntheticMorseSamples({
   morse,
   sampleRate = 8_000,
@@ -171,11 +164,17 @@ function wavFromSamples(samples: Float32Array, sampleRate = 8_000) {
 async function openAudioDecoder(page: Page) {
   await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
   await expect(page.locator("h1")).toHaveText("Morse Code Audio Decoder");
-  await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => undefined);
+  await waitForRouteReady(page);
 }
 
 async function installDelayedAudioContextStub(page: Page) {
   await page.addInitScript(() => {
+    const decodeSettledState = { count: 0 };
+    Object.defineProperty(window, "__mwAudioDecodeSettled", {
+      value: decodeSettledState,
+      configurable: true,
+    });
+
     const makeMorseSamples = (morse: string, sampleRate = 8_000) => {
       const samples: number[] = [];
       const pushTone = (units: number) => {
@@ -223,6 +222,7 @@ async function installDelayedAudioContextStub(page: Page) {
         return new Promise<AudioBuffer>((resolve) => {
           window.setTimeout(() => {
             successCallback?.(buffer);
+            decodeSettledState.count += 1;
             resolve(buffer);
           }, delayMs);
         });
@@ -508,16 +508,20 @@ test.describe("Morse code audio decoder route", () => {
   test("selecting a second file resets stale errors before decoding", async ({ page }) => {
     await openAudioDecoder(page);
 
-    await page.getByLabel("Choose Morse audio file").setInputFiles({
-      name: "not-audio.txt",
-      mimeType: "text/plain",
-      buffer: Buffer.from("this is not audio"),
-    });
-    await expect(page.getByRole("alert")).toHaveText(
-      "Choose a browser-supported audio file. WAV is safest; compressed formats depend on your browser.",
-    );
+    const fileInput = page.getByLabel("Choose Morse audio file");
+    await expect(async () => {
+      await fileInput.setInputFiles({
+        name: "not-audio.txt",
+        mimeType: "text/plain",
+        buffer: Buffer.from("this is not audio"),
+      });
+      await expect(page.getByRole("alert")).toHaveText(
+        "Choose a browser-supported audio file. WAV is safest; compressed formats depend on your browser.",
+        { timeout: 1_000 },
+      );
+    }).toPass({ timeout: 15_000 });
 
-    await page.getByLabel("Choose Morse audio file").setInputFiles({
+    await fileInput.setInputFiles({
       name: "sos.wav",
       mimeType: "audio/wav",
       buffer: wavFromSamples(syntheticMorseSamples({ morse: "... --- ..." })),
@@ -549,11 +553,19 @@ test.describe("Morse code audio decoder route", () => {
       mimeType: "audio/wav",
       buffer: Buffer.from("new"),
     });
-    await expect(decodeButton).toBeEnabled();
-    await decodeButton.click();
-
-    await expect(page.getByLabel("Decoded text output")).toHaveText("NEW");
-    await page.waitForTimeout(350);
+    await expect(async () => {
+      await expect(decodeButton).toBeEnabled({ timeout: 1_000 });
+      await decodeButton.click();
+      await expect(page.getByLabel("Decoded text output")).toHaveText("NEW", {
+        timeout: 1_000,
+      });
+    }).toPass({ timeout: 15_000 });
+    await page.waitForFunction(
+      () =>
+        ((window as typeof window & {
+          __mwAudioDecodeSettled?: { count: number };
+        }).__mwAudioDecodeSettled?.count ?? 0) >= 2,
+    );
     await expect(page.getByLabel("Decoded text output")).toHaveText("NEW");
   });
 
@@ -578,7 +590,7 @@ test.describe("Morse code audio decoder route", () => {
     const sitemapXml = await sitemapResponse.text();
     expect(sitemapXml).toContain(CANONICAL_URL);
 
-    for (const alias of AUDIO_DECODER_ALIASES) {
+    for (const alias of AUDIO_DECODER_ALIAS_PATHS) {
       const response = await request.get(alias, { maxRedirects: 0 });
       expect(response.status(), `${alias} status`).toBe(301);
       expect(response.headers().location, `${alias} location`).toBe(CANONICAL_PATH);

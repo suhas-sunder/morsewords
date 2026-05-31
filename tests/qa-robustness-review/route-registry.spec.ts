@@ -11,7 +11,13 @@ import {
   getCanonicalRoutePath,
   routeSlug,
 } from "../../app/client/data/routes";
-import { blockExternalNetwork } from "./helpers";
+import {
+  APP_ROUTES,
+  CANONICAL_SMOKE_ROUTES,
+  ROUTE_SMOKE_GROUPS,
+  blockExternalNetwork,
+  waitForRouteReady,
+} from "./helpers";
 
 const ROOT = process.cwd();
 
@@ -79,6 +85,25 @@ test.describe("route registry source of truth", () => {
       expect(source, aliasPath).toContain("makeRedirectAliasLoader");
       expect(source, aliasPath).toContain("ROUTES.");
       expect(source, aliasPath).not.toMatch(/redirect\(\s*["']/);
+    }
+  });
+
+  test("test route smoke groups cover canonical and alias routes without duplicates", () => {
+    const groupedRoutes = Object.values(ROUTE_SMOKE_GROUPS).flat();
+
+    expect(new Set(groupedRoutes).size, "smoke route duplicates").toBe(
+      groupedRoutes.length,
+    );
+    expect(APP_ROUTES, "exported smoke route order").toEqual(groupedRoutes);
+
+    for (const routePath of CANONICAL_SMOKE_ROUTES) {
+      expect(APP_ROUTES, `${routePath} canonical smoke coverage`).toContain(
+        routePath,
+      );
+    }
+
+    for (const aliasPath of REDIRECT_ALIAS_PATHS) {
+      expect(APP_ROUTES, `${aliasPath} alias smoke coverage`).toContain(aliasPath);
     }
   });
 
@@ -155,7 +180,7 @@ test.describe("route registry source of truth", () => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await blockExternalNetwork(page);
     await page.goto(ROUTES.home, { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     const pageHrefPaths = await page.locator("a[href]").evaluateAll((anchors) =>
       anchors.map((anchor) =>

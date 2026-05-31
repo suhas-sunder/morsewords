@@ -7,16 +7,17 @@ import {
   NUMBER_ITEMS,
   SYMBOL_PAGES,
 } from "../../app/client/data/morseContent";
-import { blockExternalNetwork, collectConsoleErrors } from "./helpers";
+import {
+  blockExternalNetwork,
+  CHART_ALIAS_PATHS,
+  collectConsoleErrors,
+  isExpectedHarnessConsoleEntry,
+  waitForRouteReady,
+} from "./helpers";
 
 const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/morse-code-chart";
 const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
-const CHART_ALIASES = [
-  "/international-morse-code-chart",
-  "/morse-code-chart-a-z-0-9",
-  "/morse-code-alphabet-chart",
-] as const;
 const THEME_STORAGE_KEY = "morsewords-theme";
 
 const LETTERS = LETTER_ITEMS.filter((item) => item.isPublicLetter);
@@ -65,19 +66,10 @@ async function expectNoChartAliasLinks(page: Page, routePath: string) {
             return false;
           }
         }),
-    [...CHART_ALIASES],
+    [...CHART_ALIAS_PATHS],
   );
 
   expect(badLinks, `${routePath} should not link chart aliases`).toEqual([]);
-}
-
-function isExpectedHarnessConsoleEntry(text: string) {
-  return (
-    text.includes("ERR_BLOCKED_BY_CLIENT") ||
-    text.includes("WebSocket connection") ||
-    text.includes("[vite] failed to connect to websocket") ||
-    text.includes("WebSocket closed without opened.")
-  );
 }
 
 test.describe("Morse code chart route", () => {
@@ -231,7 +223,7 @@ test.describe("Morse code chart route", () => {
     const xml = await xmlResponse.text();
     expect(xml).toContain(CANONICAL_URL);
 
-    for (const alias of CHART_ALIASES) {
+    for (const alias of CHART_ALIAS_PATHS) {
       const response = await request.get(alias, { maxRedirects: 0 });
       expect(response.status(), `${alias} status`).toBe(301);
       expect(response.headers().location, `${alias} target`).toBe(CANONICAL_PATH);
@@ -243,7 +235,7 @@ test.describe("Morse code chart route", () => {
 
     await page.goto("/sitemap", { waitUntil: "domcontentloaded" });
     await expect(page.locator(`a[href="${CANONICAL_PATH}"]`).first()).toBeVisible();
-    for (const alias of CHART_ALIASES) {
+    for (const alias of CHART_ALIAS_PATHS) {
       await expect(page.locator(`a[href="${alias}"]`)).toHaveCount(0);
     }
 
@@ -294,7 +286,7 @@ test.describe("Morse code chart route", () => {
     }, THEME_STORAGE_KEY);
 
     await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     await expect
       .poll(() => page.evaluate(() => document.documentElement.dataset.theme))
@@ -319,7 +311,7 @@ test.describe("Morse code chart route", () => {
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.reload({ waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
     await expect(page.locator("h1")).toBeVisible();
     await expect(page.locator('[data-chart-section="numbers"] [data-chart-row]').first()).toBeVisible();
 

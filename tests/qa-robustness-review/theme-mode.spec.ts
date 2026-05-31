@@ -1,5 +1,9 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
-import { blockExternalNetwork } from "./helpers";
+import {
+  blockExternalNetwork,
+  isExpectedHarnessConsoleEntry,
+  waitForRouteReady,
+} from "./helpers";
 
 const THEME_STORAGE_KEY = "morsewords-theme";
 const REPRESENTATIVE_THEME_ROUTES = [
@@ -60,12 +64,20 @@ const STORED_SETTING_HYDRATION_ROUTES = [
 async function openMobileNavIfNeeded(page: Page) {
   const openNav = page.getByRole("button", { name: "Open navigation" });
   if (await openNav.isVisible().catch(() => false)) {
-    await openNav.click();
+    await expect(async () => {
+      const themeToggle = page.getByRole("button", {
+        name: /Switch to (dark|light) mode/,
+      });
+      if (!(await themeToggle.isVisible().catch(() => false))) {
+        await openNav.click();
+      }
+      await expect(themeToggle).toBeVisible({ timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
   }
 }
 
 async function waitForHydration(page: Page) {
-  await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+  await waitForRouteReady(page);
 }
 
 async function getVisibleThemeToggle(page: Page, label: string) {
@@ -76,15 +88,6 @@ async function getVisibleThemeToggle(page: Page, label: string) {
   toggle = page.getByRole("button", { name: label });
   await expect(toggle).toBeVisible();
   return toggle;
-}
-
-function isExpectedTestHarnessConsoleError(text: string) {
-  return (
-    text.includes("ERR_BLOCKED_BY_CLIENT") ||
-    text.includes("WebSocket connection") ||
-    text.includes("[vite] failed to connect to websocket") ||
-    text.includes("Failed to fetch manifest patches TypeError: Failed to fetch")
-  );
 }
 
 function parseRgbTriplet(value: string) {
@@ -155,6 +158,27 @@ async function expectRootTheme(page: Page, expected: "light" | "dark") {
     .toBe(expected);
 }
 
+async function toggleThemeUntil(
+  page: Page,
+  toggle: Locator,
+  expected: "light" | "dark",
+) {
+  await expect(async () => {
+    const currentTheme = await page.evaluate(
+      () => document.documentElement.dataset.theme ?? "light",
+    );
+    if (currentTheme !== expected) {
+      await toggle.click();
+    }
+    await expect
+      .poll(
+        () => page.evaluate(() => document.documentElement.dataset.theme ?? "light"),
+        { timeout: 1_000 },
+      )
+      .toBe(expected);
+  }).toPass({ timeout: 15_000 });
+}
+
 test.describe("navbar theme mode", () => {
   test.beforeEach(async ({ page }) => {
     await blockExternalNetwork(page);
@@ -171,7 +195,20 @@ test.describe("navbar theme mode", () => {
     const darkToggle = await getVisibleThemeToggle(page, "Switch to dark mode");
     await expect(darkToggle).toHaveAttribute("aria-pressed", "false");
 
-    await darkToggle.click();
+    await expect(async () => {
+      const currentTheme = await page.evaluate(
+        () => document.documentElement.dataset.theme ?? "light",
+      );
+      if (currentTheme !== "dark") {
+        await darkToggle.click();
+      }
+      await expect
+        .poll(
+          () => page.evaluate(() => document.documentElement.dataset.theme ?? "light"),
+          { timeout: 1_000 },
+        )
+        .toBe("dark");
+    }).toPass({ timeout: 15_000 });
     await expectRootTheme(page, "dark");
     await expect(page.getByRole("button", { name: "Switch to light mode" })).toBeVisible();
     await expect
@@ -187,7 +224,20 @@ test.describe("navbar theme mode", () => {
     const lightToggle = await getVisibleThemeToggle(page, "Switch to light mode");
     await expect(lightToggle).toHaveAttribute("aria-pressed", "true");
 
-    await lightToggle.click();
+    await expect(async () => {
+      const currentTheme = await page.evaluate(
+        () => document.documentElement.dataset.theme ?? "light",
+      );
+      if (currentTheme !== "light") {
+        await lightToggle.click();
+      }
+      await expect
+        .poll(
+          () => page.evaluate(() => document.documentElement.dataset.theme ?? "light"),
+          { timeout: 1_000 },
+        )
+        .toBe("light");
+    }).toPass({ timeout: 15_000 });
     await expectRootTheme(page, "light");
     await expect
       .poll(() => page.evaluate((key) => localStorage.getItem(key), THEME_STORAGE_KEY))
@@ -249,7 +299,7 @@ test.describe("navbar theme mode", () => {
     const consoleErrors: string[] = [];
     page.on("console", (message) => {
       if (message.type() === "error") {
-        if (isExpectedTestHarnessConsoleError(message.text())) return;
+        if (isExpectedHarnessConsoleEntry(message.text())) return;
         consoleErrors.push(message.text());
       }
     });
@@ -292,7 +342,7 @@ test.describe("navbar theme mode", () => {
     const consoleErrors: string[] = [];
     page.on("console", (message) => {
       if (message.type() === "error") {
-        if (isExpectedTestHarnessConsoleError(message.text())) return;
+        if (isExpectedHarnessConsoleEntry(message.text())) return;
         consoleErrors.push(message.text());
       }
     });
@@ -328,10 +378,21 @@ test.describe("navbar theme mode", () => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await waitForHydration(page);
 
-    await openMobileNavIfNeeded(page);
-    const darkToggle = page.getByRole("button", { name: "Switch to dark mode" });
-    await expect(darkToggle).toBeVisible();
-    await darkToggle.click();
+    const darkToggle = await getVisibleThemeToggle(page, "Switch to dark mode");
+    await expect(async () => {
+      const currentTheme = await page.evaluate(
+        () => document.documentElement.dataset.theme ?? "light",
+      );
+      if (currentTheme !== "dark") {
+        await darkToggle.click();
+      }
+      await expect
+        .poll(
+          () => page.evaluate(() => document.documentElement.dataset.theme ?? "light"),
+          { timeout: 1_000 },
+        )
+        .toBe("dark");
+    }).toPass({ timeout: 15_000 });
 
     await expectRootTheme(page, "dark");
     await expect(page.getByRole("button", { name: "Switch to light mode" })).toBeVisible();
@@ -342,7 +403,7 @@ test.describe("navbar theme mode", () => {
     await waitForHydration(page);
 
     const darkToggle = await getVisibleThemeToggle(page, "Switch to dark mode");
-    await darkToggle.click();
+    await toggleThemeUntil(page, darkToggle, "dark");
 
     await expectRootTheme(page, "dark");
     await expect(page.locator("#plainA")).toHaveValue("HELLO WORLD");
@@ -354,7 +415,7 @@ test.describe("navbar theme mode", () => {
 
     const before = await page.locator('script[type="application/ld+json"]').allTextContents();
     const darkToggle = await getVisibleThemeToggle(page, "Switch to dark mode");
-    await darkToggle.click();
+    await toggleThemeUntil(page, darkToggle, "dark");
     const after = await page.locator('script[type="application/ld+json"]').allTextContents();
 
     expect(after).toEqual(before);

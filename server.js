@@ -11,6 +11,7 @@ const BUILD_PATH = "./build/server/server.js";
 const DEVELOPMENT = process.env.NODE_ENV === "development";
 const DEFAULT_PORT = DEVELOPMENT ? "3001" : "3000";
 const PORT = Number.parseInt(process.env.PORT || DEFAULT_PORT);
+const DISABLE_DEV_HMR = process.env.MORSEWORDS_DISABLE_DEV_HMR === "1";
 
 const app = express();
 
@@ -96,7 +97,11 @@ if (DEVELOPMENT) {
   console.log("Starting development server");
   const viteDevServer = await import("vite").then((vite) =>
     vite.createServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: DISABLE_DEV_HMR ? false : undefined,
+        ws: DISABLE_DEV_HMR ? false : undefined,
+      },
     }),
   );
   app.use(viteDevServer.middlewares);

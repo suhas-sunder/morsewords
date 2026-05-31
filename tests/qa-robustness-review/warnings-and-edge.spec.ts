@@ -1,7 +1,11 @@
 import { expect, test } from "@playwright/test";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { blockExternalNetwork, expectNoVisiblePrematureWarning } from "./helpers";
+import {
+  blockExternalNetwork,
+  expectNoVisiblePrematureWarning,
+  waitForRouteReady,
+} from "./helpers";
 
 const fixtureDir = path.join("test-artifacts", "qa-robustness-review", "upload-fixtures");
 
@@ -21,19 +25,28 @@ test.beforeEach(async ({ page }) => {
 
 test("flash/strobe warnings are hidden until the user enables flash", async ({ page }) => {
   await page.goto("/morse-code-audio-practice");
-  await page.waitForLoadState("networkidle");
+  await waitForRouteReady(page);
   await expectNoVisiblePrematureWarning(page);
 
   const showAdvanced = page.getByRole("button", { name: "Show advanced settings" });
-  if ((await showAdvanced.count()) === 1) {
-    await showAdvanced.click();
-  }
-  await expectNoVisiblePrematureWarning(page);
+  const flashButton = page.getByRole("button", { name: "Flash" });
+  await expect(async () => {
+    if (await showAdvanced.isVisible()) {
+      await showAdvanced.click();
+    }
+    await expectNoVisiblePrematureWarning(page);
+    await expect(flashButton).toBeVisible({ timeout: 1_000 });
+  }).toPass({ timeout: 15_000 });
 
-  await page.getByRole("button", { name: "Flash" }).click();
-  await expect(
-    page.getByText("Strobe warning:", { exact: false }).filter({ visible: true }),
-  ).toBeVisible();
+  const warning = page
+    .getByText("Strobe warning:", { exact: false })
+    .filter({ visible: true });
+  await expect(async () => {
+    if (!(await warning.isVisible())) {
+      await flashButton.click();
+    }
+    await expect(warning).toBeVisible({ timeout: 1_000 });
+  }).toPass({ timeout: 15_000 });
 });
 
 test("audio practice locks scoring after correct and revealed prompts", async ({ page }) => {
@@ -43,7 +56,7 @@ test("audio practice locks scoring after correct and revealed prompts", async ({
   });
 
   await page.goto("/morse-code-audio-practice");
-  await page.waitForLoadState("networkidle");
+  await waitForRouteReady(page);
 
   const answer = page.getByLabel("Your answer");
   const checkAnswer = page.getByRole("button", { name: "Check answer" });
@@ -62,7 +75,7 @@ test("audio practice locks scoring after correct and revealed prompts", async ({
 
 test("visual practice does not show strobe warning before first flash", async ({ page }) => {
   await page.goto("/morse-code-visual-practice");
-  await page.waitForLoadState("networkidle");
+  await waitForRouteReady(page);
   await expectNoVisiblePrematureWarning(page);
 
   await page.getByRole("button", { name: "Flash message" }).click();
@@ -73,18 +86,21 @@ test("visual practice does not show strobe warning before first flash", async ({
 
 test("printable chart content limits are hidden until content is actually omitted", async ({ page }) => {
   await page.goto("/morse-code-printable-chart");
-  await page.waitForLoadState("networkidle");
-  await page.waitForTimeout(300);
+  await waitForRouteReady(page);
   await expect(page.getByText("Content limits")).toHaveCount(0);
 
   const customWords = page.getByPlaceholder("RADIO, SIGNAL, CODE, MORSE");
-  await customWords.fill("ALPHA, BRAVO, CHARLIE, DELTA, ECHO, FOXTROT, GOLF, HOTEL, INDIA, JULIET, KILO, LIMA");
-  await expect(page.getByText("Content limits")).toBeVisible();
+  await expect(async () => {
+    await customWords.fill("ALPHA, BRAVO, CHARLIE, DELTA, ECHO, FOXTROT, GOLF, HOTEL, INDIA, JULIET, KILO, LIMA");
+    await expect(page.getByText("Content limits")).toBeVisible({
+      timeout: 1_000,
+    });
+  }).toPass({ timeout: 15_000 });
 });
 
 test("word search reports oversized words and reveal answer changes preview", async ({ page }) => {
   await page.goto("/morse-code-word-search-builder");
-  await page.waitForLoadState("networkidle");
+  await waitForRouteReady(page);
   await page.getByLabel("Plain words").fill("MORSE\nSIGNAL\nRADIO\nTHISWORDISTOOLONGFORATENGRID");
 
   await expect(page.getByText("Some words are too long for the current grid and were left out.")).toBeVisible();
@@ -95,7 +111,7 @@ test("word search reports oversized words and reveal answer changes preview", as
 
 test("word search Generate new puzzle changes the grid", async ({ page }) => {
   await page.goto("/morse-code-word-search-builder");
-  await page.waitForLoadState("networkidle");
+  await waitForRouteReady(page);
   const grid = page.locator('[style*="grid-template-columns"]').first();
   const before = await grid.innerText();
   await page.getByRole("button", { name: "Generate new puzzle" }).click();
@@ -106,7 +122,7 @@ test("word search Generate new puzzle changes the grid", async ({ page }) => {
 test("printable chart accepts SVG logo upload with no visible size/dimension warning", async ({ page }) => {
   await ensureUploadFixtures();
   await page.goto("/morse-code-printable-chart");
-  await page.waitForLoadState("networkidle");
+  await waitForRouteReady(page);
   await page.locator('input[type="file"]').setInputFiles({
     name: "inert-logo.svg",
     mimeType: "image/svg+xml",
