@@ -1,5 +1,4 @@
 import * as React from "react";
-import QRCode from "qrcode";
 import type { Route } from "./+types/morse-code-word-search-builder";
 
 import {
@@ -53,6 +52,7 @@ const MAX_WORD_SEARCH_INPUT_LENGTH = 700;
 const MIN_GRID_SIZE = 10;
 const MAX_GRID_SIZE = 20;
 const LETTERS ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let qrCodeModulePromise: Promise<typeof import("qrcode")> | null = null;
 
 type Difficulty ="easy"|"standard"|"challenge";
 type PrintMode ="student"|"answerKey";
@@ -438,12 +438,21 @@ function escapeHtml(value: string) {
 }
 
 async function makeQrCodeDataUrl() {
+ const QRCode = await loadQrCodeModule();
  return QRCode.toDataURL(CANONICAL, {
  width: 180,
  margin: 1,
  errorCorrectionLevel:"M",
  color: { dark:"#075985", light:"#ffffff"},
  });
+}
+
+function loadQrCodeModule() {
+ if (!qrCodeModulePromise) {
+ qrCodeModulePromise = import("qrcode");
+ }
+
+ return qrCodeModulePromise;
 }
 
 function buildWordSearchGridHtml(puzzle: PuzzleResult, mode: PrintMode) {

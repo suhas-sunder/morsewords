@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { audioBufferToMp3Blob } from "~/client/components/audio/mp3Export";
 import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import {
   downloadBlobFile,
@@ -403,6 +402,9 @@ export default function MorseMp3GeneratorTool() {
     setDownloadStatus({ kind: "working", message: "Preparing MP3 file..." });
     try {
       const buffer = await renderAudioBuffer();
+      const { audioBufferToMp3Blob } = await import(
+        "~/client/components/audio/mp3Export"
+      );
       const blob = await audioBufferToMp3Blob(buffer, mp3Kbps);
       const download = downloadBlobFile({
         blob,
