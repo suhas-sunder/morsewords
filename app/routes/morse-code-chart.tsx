@@ -24,7 +24,7 @@ import {
   StaticPanel,
   WAVE_PAGE_MAIN_CLASS,
 } from "~/client/components/shared/MorseLearningLayout";
-import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import { encodeToolQueryValue } from "~/client/components/shared/queryPrefill";
 import styles from "~/client/components/shared/pageStyles";
@@ -59,25 +59,9 @@ const punctuationNames: Record<string, string> = {
   "_": "Underscore",
 };
 
-const punctuationOrder = [
-  ".",
-  ",",
-  "?",
-  "/",
-  "'",
-  "!",
-  "-",
-  "@",
-  ":",
-  ";",
-  "=",
-  "+",
-  '"',
-  "(",
-  ")",
-  "&",
-  "_",
-] as const;
+const punctuationOrder = Object.keys(TEXT_TO_MORSE).filter(
+  (character) => !/^[A-Z0-9]$/.test(character),
+);
 
 const punctuationNotes: Record<string, string> = {
   ".": "Sentence ending mark. Keep it separated from the previous letter group.",
@@ -141,7 +125,7 @@ const letterEntries: ChartEntry[] = LETTER_ITEMS.filter(
   detailHref: item.path,
   detailLabel: `Study ${item.letter}`,
   label: item.letter,
-  morse: item.morseValue,
+  morse: TEXT_TO_MORSE[item.letter] ?? item.morseValue,
   rowId: `letter-${item.letter}`,
   sublabel: `Letter ${item.letter}`,
 }));
@@ -152,7 +136,7 @@ const numberEntries: ChartEntry[] = NUMBER_ITEMS.map((item) => ({
   detailHref: item.path,
   detailLabel: `Study ${item.digit}`,
   label: item.digit,
-  morse: item.morseValue,
+  morse: TEXT_TO_MORSE[item.digit] ?? item.morseValue,
   rowId: `number-${item.digit}`,
   sublabel: `Number ${item.digit}`,
 }));

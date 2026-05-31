@@ -16,6 +16,20 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 const CANONICAL_PATH = "/audio";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
+type AudioFaqItem = {
+  q: string;
+  a: string;
+};
+
+type AudioFaqQuestionSchema = {
+  "@type": "Question";
+  name: string;
+  acceptedAnswer: {
+    "@type": "Answer";
+    text: string;
+  };
+};
+
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
 }
@@ -75,12 +89,12 @@ export default function AudioRoute() {
       {
         "@type": "FAQPage",
         "@id": `${CANONICAL_URL}#faq`,
-        mainEntity: [],
+        mainEntity: [] as AudioFaqQuestionSchema[],
       },
     ],
   };
 
-  const faqItems = [
+  const faqItems: AudioFaqItem[] = [
     {
       q: "Can I save the Morse audio from this page?",
       a: "Yes. This page exports a WAV file rendered in your browser, so the timing in the saved file matches the Morse pattern and settings you preview.",
@@ -111,7 +125,7 @@ export default function AudioRoute() {
     },
   ];
 
-  (jsonLd as any)["@graph"][2].mainEntity = faqItems.map((item: any) => ({
+  jsonLd["@graph"][2].mainEntity = faqItems.map((item) => ({
     "@type": "Question",
     name: item.q,
     acceptedAnswer: { "@type": "Answer", text: item.a },

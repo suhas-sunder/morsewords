@@ -24,9 +24,17 @@ import type {
 } from "~/client/components/practice/PromptCard";
 import { checkAnswer } from "~/client/components/practice/practiceEngine";
 import {
+ countTextWords,
+ normalizeMorseForDecoding,
  normalizeTextForEncoding,
+ splitMorseWords,
  textToMorse,
-} from "~/client/components/shared/practiceMorseUtils";
+} from "~/client/components/shared/morseUtils";
+import {
+ readStoredEnum,
+ readStoredNumber,
+ safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import SentencePracticeFaq from "~/client/components/morse-code-sentence-practice/SentencePracticeFaq";
 import {
  commonPracticeSets,
@@ -48,6 +56,24 @@ const LS_BEST_STREAK ="mw_sentence_practice_best_streak";
 const DEFAULT_MODE: DrillMode ="morse_to_text";
 const DEFAULT_DIFFICULTY: Difficulty |"all" ="all";
 const DEFAULT_SET_FILTER: SetFilter ="all";
+const DRILL_MODES: readonly DrillMode[] = [
+ "text_to_morse",
+ "morse_to_text",
+ "mixed",
+] as const;
+const DIFFICULTY_FILTERS: readonly (Difficulty |"all")[] = [
+ "easy",
+ "medium",
+ "hard",
+ "all",
+] as const;
+const SET_FILTERS: readonly SetFilter[] = [
+ "all",
+ "beginner",
+ "radio",
+ "reports",
+ "spacing",
+] as const;
 
 const difficultyOrder: Difficulty[] = ["easy","medium","hard"];
 
@@ -66,54 +92,29 @@ const setMembership: Record<Exclude<SetFilter,"all">, string[]> = {
  spacing: commonPracticeSets[3]?.items ?? [],
 };
 
-function readStr(key: string, fallback: string) {
- if (typeof window ==="undefined") return fallback;
- try {
- return window.localStorage.getItem(key) || fallback;
- } catch {
- return fallback;
- }
-}
-
 function writeStr(key: string, value: string) {
- if (typeof window ==="undefined") return;
- try {
- window.localStorage.setItem(key, value);
- } catch {
- // ignore storage failures
- }
+ safeWriteStorage(key, value);
 }
 
 function readInt(key: string, fallback: number) {
- const parsed = parseInt(readStr(key, String(fallback)), 10);
- return Number.isFinite(parsed) ? parsed : fallback;
+ return readStoredNumber(key, {
+ fallback,
+ min: 0,
+ max: 9999,
+ integer: true,
+ });
 }
 
 function readStoredMode(): DrillMode {
- const savedMode = readStr(LS_MODE,"morse_to_text");
- return savedMode ==="text_to_morse"||
- savedMode ==="morse_to_text"||
- savedMode ==="mixed"? savedMode
- :"morse_to_text";
+ return readStoredEnum(LS_MODE, DRILL_MODES, DEFAULT_MODE);
 }
 
 function readStoredDifficulty(): Difficulty |"all" {
- const savedDifficulty = readStr(LS_DIFFICULTY,"all");
- return savedDifficulty ==="easy"||
- savedDifficulty ==="medium"||
- savedDifficulty ==="hard"||
- savedDifficulty ==="all"? savedDifficulty
- :"all";
+ return readStoredEnum(LS_DIFFICULTY, DIFFICULTY_FILTERS, DEFAULT_DIFFICULTY);
 }
 
 function readStoredSetFilter(): SetFilter {
- const savedSet = readStr(LS_SET,"all");
- return savedSet ==="all"||
- savedSet ==="beginner"||
- savedSet ==="radio"||
- savedSet ==="reports"||
- savedSet ==="spacing"? savedSet
- :"all";
+ return readStoredEnum(LS_SET, SET_FILTERS, DEFAULT_SET_FILTER);
 }
 
 function pickKind(mode: DrillMode): PromptKind {
@@ -123,47 +124,26 @@ function pickKind(mode: DrillMode): PromptKind {
 }
 
 function wordCount(text: string) {
- return text.trim().split(/\s+/).filter(Boolean).length;
+ return countTextWords(text);
 }
 
 function morseWithWordSlashes(text: string) {
- return textToMorse(text).replace(/ {7}/g,"/").replace(/ {3}/g,"");
+ return splitMorseWords(textToMorse(text))
+ .map((word) => word.join(""))
+ .join("/");
 }
 
 function canonicalizeSentenceMorse(input: string) {
- const raw = (input ??"")
-    .replace(/[•·∙]/g,".")
-    .replace(/[–—−]/g,"-")
- .replace(/\t/g,"")
  // Treat pasted line breaks as spacing, not automatic word breaks.
  // Long revealed answers can wrap when copied, and those inserted/newline
  // breaks should not make an otherwise correct Morse sentence fail.
- .replace(/\r\n|\r|\n/g,"");
-
- const invalid = new Set<string>();
- let cleaned ="";
-
- for (const ch of raw) {
- if (ch ==="."|| ch ==="-"|| ch ==="/"|| /\s/.test(ch)) {
- cleaned += ch;
- continue;
- }
- invalid.add(ch);
- }
-
- cleaned = cleaned.trim();
- if (!cleaned) return { value:"", invalidChars: [...invalid] };
-
- const hasExplicitWordBreaks = /\/|\s{7,}/.test(cleaned);
- const wordChunks = hasExplicitWordBreaks
- ? cleaned.split(/(?:\/|\s{7,})+/)
- : [cleaned];
-
- const words = wordChunks
- .map((word) => word.trim().split(/\s+/).filter(Boolean).join(""))
+ const wrappedInput = (input ??"").replace(/\r\n|\r|\n/g," ");
+ const { invalidChars } = normalizeMorseForDecoding(wrappedInput);
+ const words = splitMorseWords(wrappedInput)
+ .map((word) => word.join(""))
  .filter(Boolean);
 
- return { value: words.join("/"), invalidChars: [...invalid] };
+ return { value: words.join("/"), invalidChars };
 }
 
 function checkSentenceMorseAnswer(prompt: Prompt, answer: string) {
@@ -187,9 +167,7 @@ function checkSentenceMorseAnswer(prompt: Prompt, answer: string) {
 }
 
 function countMorseSentenceWords(input: string) {
- const normalized = canonicalizeSentenceMorse(input).value;
- if (!normalized) return 0;
- return normalized.split("/").filter(Boolean).length;
+ return splitMorseWords((input ??"").replace(/\r\n|\r|\n/g," ")).length;
 }
 
 function difficultyClass(difficulty: Difficulty) {
@@ -311,7 +289,7 @@ function MorseLine({ text }: { text: string }) {
  );
 }
 
-export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
+export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  const initialPool = React.useMemo(
  () => buildPool(DEFAULT_DIFFICULTY, DEFAULT_SET_FILTER),
  [],

@@ -15,10 +15,24 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import TogglePill from "~/client/components/shared/ui/TogglePill";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
+import {
+  TOOL_SPEED_RANGE,
+  clampFarnsworthWpm,
+  sanitizeAudioGeneratorPreset,
+} from "~/client/components/shared/morseSettings";
+import {
+  clampNumber,
+  readStoredEnum,
+  readStoredNumber,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import {
@@ -34,7 +48,6 @@ import {
 import {
   audioDifficultyOptions,
   getAudioPrompts,
-  isAudioDifficulty,
   normalizeAudioAnswer,
   pickPrompt,
   promptTypeLabel,
@@ -50,6 +63,12 @@ const FLASH_DISABLED_NOTICE_ID = "audio-practice-flash-disabled";
 const DIFFICULTY_STORAGE_KEY = "mw_audio_practice_difficulty";
 const BEST_STREAK_STORAGE_KEY = "mw_audio_practice_best_streak";
 const DEFAULT_AUDIO_DIFFICULTY: AudioDifficulty = "easy";
+const AUDIO_DIFFICULTIES: readonly AudioDifficulty[] = [
+  "beginner",
+  "easy",
+  "medium",
+  "hard",
+] as const;
 
 const faqItems = [
   {
@@ -91,7 +110,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioPractice() {
   const player = useMorseAudio();
-  const { disableFlashEffects } = useDisplaySettings();
+  const playerRef = React.useRef(player);
   const didSyncInitialDifficulty = React.useRef(false);
   const [hydrated, setHydrated] = React.useState(false);
   const [difficulty, setDifficulty] =
@@ -122,7 +141,9 @@ export default function MorseCodeAudioPractice() {
   const [soundOn, setSoundOn] = React.useState(true);
   const [flash, setFlash] = React.useState(false);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
-  const effectiveFlash = !disableFlashEffects && flash;
+  const flashLamp = useFlashLampState(flash);
+  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const effectiveFlash = flashAllowed && flash;
 
   const morse = React.useMemo(() => textToMorse(prompt.text), [prompt.text]);
   const normalizedAnswer = normalizeAudioAnswer(answer);
@@ -133,6 +154,29 @@ export default function MorseCodeAudioPractice() {
     wpm: charWpm,
     farnsworthWpm,
   });
+
+  const handleCharWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
+    );
+    setCharWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, charWpm));
+    },
+    [charWpm],
+  );
+
+  React.useEffect(() => {
+    playerRef.current = player;
+  }, [player]);
+
+  React.useEffect(() => {
+    return () => playerRef.current.stop();
+  }, []);
 
   React.useEffect(() => {
     const storedDifficulty = readStoredDifficulty(
@@ -147,20 +191,12 @@ export default function MorseCodeAudioPractice() {
 
   React.useEffect(() => {
     if (!hydrated) return;
-    try {
-      window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
-    } catch {
-      // local-only preference; ignore storage failures
-    }
+    safeWriteStorage(DIFFICULTY_STORAGE_KEY, difficulty);
   }, [difficulty, hydrated]);
 
   React.useEffect(() => {
     if (!hydrated) return;
-    try {
-      window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
-    } catch {
-      // ignore
-    }
+    safeWriteStorage(BEST_STREAK_STORAGE_KEY, String(bestStreak));
   }, [bestStreak, hydrated]);
 
   React.useEffect(() => {
@@ -208,32 +244,13 @@ export default function MorseCodeAudioPractice() {
   ]);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     setFlash(false);
     const anyPlayer = player as typeof player & {
       setLiveOptions?: (options: unknown) => void;
     };
     anyPlayer.setLiveOptions?.({ flash: false });
-  }, [disableFlashEffects, player]);
-
-  React.useEffect(() => {
-    if (!effectiveFlash) return;
-    const handler = (ev: Event) => {
-      const detail = (ev as CustomEvent).detail as { ms?: number } | undefined;
-      const ms = detail?.ms ?? 0;
-      const el = document.getElementById("mw_audio_practice_flash");
-      if (!el || !ms) return;
-      el.classList.remove("opacity-0");
-      el.classList.add("opacity-100");
-      window.setTimeout(() => {
-        el.classList.remove("opacity-100");
-        el.classList.add("opacity-0");
-      }, ms);
-    };
-    window.addEventListener("morsewords:flash", handler as EventListener);
-    return () =>
-      window.removeEventListener("morsewords:flash", handler as EventListener);
-  }, [effectiveFlash]);
+  }, [flashAllowed, player]);
 
   async function playPrompt() {
     await player.play({
@@ -252,7 +269,7 @@ export default function MorseCodeAudioPractice() {
   }
 
   function checkAnswer() {
-    if (!normalizedAnswer || feedback === "correct" || feedback === "revealed") {
+    if (!normalizedAnswer || feedback !== "idle") {
       return;
     }
     setAttempts((value) => value + 1);
@@ -335,13 +352,6 @@ export default function MorseCodeAudioPractice() {
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
-      {effectiveFlash ? (
-        <div
-          id="mw_audio_practice_flash"
-          className="mw-strobe-flash pointer-events-none fixed inset-0 z-50 bg-white opacity-0 transition-opacity duration-75"
-        />
-      ) : null}
-
       <main style={styles.wrap}>
         <PageHero
           eyebrow="Audio practice"
@@ -500,9 +510,9 @@ export default function MorseCodeAudioPractice() {
             <button
               type="button"
               onClick={checkAnswer}
-              disabled={!normalizedAnswer || feedback === "correct" || feedback === "revealed"}
+              disabled={!normalizedAnswer || feedback !== "idle"}
               className={toolControlButtonClass({
-                disabled: !normalizedAnswer || feedback === "correct" || feedback === "revealed",
+                disabled: !normalizedAnswer || feedback !== "idle",
                 size: "lg",
                 rounded: "xl",
               })}
@@ -562,12 +572,12 @@ export default function MorseCodeAudioPractice() {
               </span>
             </div>
             <div className="mt-4 grid gap-5 md:grid-cols-3">
-              <SliderRow label="Character speed" value={charWpm} min={5} max={40} step={1} unit="WPM" onChange={setCharWpm} />
-              <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={40} step={1} unit="WPM" onChange={setFarnsworthWpm} help="Slower spacing, same character speed." />
-              <SliderRow label="Pitch" value={toneHz} min={300} max={1000} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} />
-              <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(value) => setVolume(value / 100)} disabled={!soundOn} />
-              <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || preset === "sounder"} />
-              <SliderRow label="Release" value={releaseMs} min={0} max={80} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || preset === "sounder"} />
+              <SliderRow label="Character speed" value={charWpm} min={5} max={40} step={1} unit="WPM" onChange={handleCharWpmChange} labelTone="sky" />
+              <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={Math.max(5, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed." labelTone="sky" />
+              <SliderRow label="Pitch" value={toneHz} min={300} max={1000} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} labelTone="sky" />
+              <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(value) => setVolume(value / 100)} disabled={!soundOn} labelTone="sky" />
+              <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || preset === "sounder"} labelTone="sky" />
+              <SliderRow label="Release" value={releaseMs} min={0} max={80} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || preset === "sounder"} labelTone="sky" />
             </div>
 
             {advancedOpen ? (
@@ -579,7 +589,9 @@ export default function MorseCodeAudioPractice() {
                     </span>
                     <select
                       value={preset}
-                      onChange={(event) => setPreset(event.target.value as SoundPreset)}
+                      onChange={(event) =>
+                        setPreset(sanitizeAudioGeneratorPreset(event.target.value))
+                      }
                       className="mt-2 min-h-11 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none"
                     >
                       <option value="cw_radio">CW (Radio)</option>
@@ -597,27 +609,38 @@ export default function MorseCodeAudioPractice() {
                       checked={soundOn}
                       onChange={setSoundOn}
                       icon={<SoundIcon size={16} title="Sound" />}
+                      hover="soft"
                     />
                     <TogglePill
                       label="Repeat"
                       checked={repeat}
                       onChange={setRepeat}
                       icon={<LoopIcon size={16} title="Repeat" />}
+                      hover="soft"
                     />
                     <TogglePill
                       label="Flash"
                       checked={effectiveFlash}
-                      onChange={setFlash}
+                      onChange={(value) => setFlash(value && flashAllowed)}
                       icon={<LightBulbIcon size={16} title="Flash" />}
                       describedBy={
                         disableFlashEffects
                           ? FLASH_DISABLED_NOTICE_ID
                           : effectiveFlash
                             ? STROBE_WARNING_ID
-                            : undefined
+                          : undefined
                       }
-                      disabled={disableFlashEffects}
+                      disabled={!flashAllowed}
+                      hover="soft"
                     />
+                    {flash ? (
+                      <FlashLamp
+                        active={flashLamp.active}
+                        disabled={!effectiveFlash}
+                        label="Morse audio practice flash lamp"
+                        size="sm"
+                      />
+                    ) : null}
                   </div>
                 </div>
                 {disableFlashEffects ? (
@@ -822,114 +845,17 @@ export default function MorseCodeAudioPractice() {
   );
 }
 
-function TogglePill({
-  label,
-  checked,
-  onChange,
-  icon,
-  describedBy,
-  disabled = false,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (value: boolean) => void;
-  icon?: React.ReactNode;
-  describedBy?: string;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        if (!disabled) onChange(!checked);
-      }}
-      disabled={disabled}
-      className={
-        toolControlButtonClass({
-          active: checked,
-          disabled,
-          size: "sm",
-          rounded: "full",
-        })
-      }
-      aria-pressed={checked}
-      aria-describedby={describedBy}
-    >
-      {icon}
-      {label}
-    </button>
-  );
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-  disabled,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (value: number) => void;
-  help?: string;
-  disabled?: boolean;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        disabled={disabled}
-        style={{ accentColor: "#38bdf8" }}
- className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60"
-      />
-    </div>
-  );
-}
-
 function readStoredDifficulty(key: string, fallback: AudioDifficulty): AudioDifficulty {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const stored = window.localStorage.getItem(key);
-    return isAudioDifficulty(stored) ? stored : fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredEnum(key, AUDIO_DIFFICULTIES, fallback);
 }
 
 function readStoredInt(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const raw = window.localStorage.getItem(key);
-    const parsed = raw ? Number(raw) : fallback;
-    return Number.isFinite(parsed) ? parsed : fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredNumber(key, {
+    fallback,
+    min: 0,
+    max: 9999,
+    integer: true,
+  });
 }
 
 function formatMs(ms: number) {

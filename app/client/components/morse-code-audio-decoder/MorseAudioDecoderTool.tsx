@@ -18,12 +18,17 @@ import {
   ToolOutputPanel,
   ToolPanel,
 } from "~/client/components/shared/ToolWorkspace";
+import { clampNumber } from "~/client/components/shared/settingsStorage";
 import {
   analyzeSamplesToMorse,
+  AUDIO_DECODER_LIMITS,
+  createAudioDecodeResult,
   mixAudioBufferToMono,
   type AudioDecodeResult,
   type GapMode,
   type TextSpacingMode,
+  validateAudioDecoderFile,
+  validateDecodedAudioBuffer,
 } from "./audioDecodeUtils";
 
 const HOME_SOFT_CONTROL =
@@ -66,6 +71,16 @@ export default function MorseAudioDecoderTool() {
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [isDragActive, setIsDragActive] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement | null>(null);
+  const decodeJobRef = React.useRef(0);
+  const mountedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      decodeJobRef.current += 1;
+    };
+  }, []);
 
   const hasDecodedText = result.decodedText.trim().length > 0;
   const hasRawMorse = result.rawMorse.trim().length > 0;
@@ -74,7 +89,20 @@ export default function MorseAudioDecoderTool() {
     : "#";
 
   const setNextFile = React.useCallback((file: File | null) => {
+    decodeJobRef.current += 1;
     setSelectedFile(file);
+
+    if (file) {
+      const validation = validateAudioDecoderFile(file);
+      if (!validation.ok) {
+        setPhase("error");
+        setResult(
+          createAudioDecodeResult(validation.status, [validation.message]),
+        );
+        return;
+      }
+    }
+
     setPhase(file ? "ready" : "idle");
     setResult(
       file
@@ -87,12 +115,29 @@ export default function MorseAudioDecoderTool() {
   }, []);
 
   const processFile = React.useCallback(async () => {
-    if (!selectedFile) {
+    const file = selectedFile;
+    const jobId = decodeJobRef.current + 1;
+    decodeJobRef.current = jobId;
+
+    const applyIfCurrent = (apply: () => void) => {
+      if (!mountedRef.current || decodeJobRef.current !== jobId) return false;
+      apply();
+      return true;
+    };
+
+    if (!file) {
       setPhase("error");
       setResult({
         ...EMPTY_RESULT,
         messages: ["Choose an audio file before decoding."],
       });
+      return;
+    }
+
+    const fileValidation = validateAudioDecoderFile(file);
+    if (!fileValidation.ok) {
+      setPhase("error");
+      setResult(createAudioDecodeResult(fileValidation.status, [fileValidation.message]));
       return;
     }
 
@@ -110,32 +155,57 @@ export default function MorseAudioDecoderTool() {
 
     let audioContext: AudioContext | null = null;
     try {
-      const arrayBuffer = await selectedFile.arrayBuffer();
+      const arrayBuffer = await file.arrayBuffer();
+      if (!mountedRef.current || decodeJobRef.current !== jobId) return;
+
       audioContext = new AudioContextCtor();
       const decodedBuffer = await decodeAudioData(audioContext, arrayBuffer);
+      if (!mountedRef.current || decodeJobRef.current !== jobId) return;
+
+      const bufferValidation = validateDecodedAudioBuffer(decodedBuffer);
+      if (!bufferValidation.ok) {
+        applyIfCurrent(() => {
+          setPhase("error");
+          setResult(
+            createAudioDecodeResult(bufferValidation.status, [bufferValidation.message], {
+              durationSeconds: decodedBuffer.duration,
+            }),
+          );
+        });
+        return;
+      }
+
       const monoSamples = mixAudioBufferToMono(decodedBuffer);
       const nextResult = analyzeSamplesToMorse(
         monoSamples,
         decodedBuffer.sampleRate,
         {
-          expectedWpm,
+          expectedWpm:
+            expectedWpm > 0
+              ? clampNumber(expectedWpm, 5, 60)
+              : 0,
           gapMode,
-          maxToneGapMs,
-          minToneMs: minimumToneMs,
-          sensitivity: sensitivity / 100,
+          maxToneGapMs: clampNumber(maxToneGapMs, 0, 80),
+          minToneMs: clampNumber(minimumToneMs, 8, 120),
+          sensitivity: clampNumber(sensitivity, 20, 90) / 100,
           textSpacing,
-          windowMs: analysisWindowMs,
-          wordGapScale: wordGapStrictness / 100,
+          windowMs: clampNumber(analysisWindowMs, 4, 40),
+          wordGapScale: clampNumber(wordGapStrictness, 60, 160) / 100,
         },
       );
 
-      setResult(nextResult);
-      setPhase(nextResult.status === "success" || nextResult.status === "low-confidence" ? "done" : "error");
+      applyIfCurrent(() => {
+        setResult(nextResult);
+        setPhase(nextResult.status === "success" || nextResult.status === "low-confidence" ? "done" : "error");
+      });
     } catch {
-      setPhase("error");
-      setResult({
-        ...EMPTY_RESULT,
-        messages: ["The selected file could not be decoded by this browser."],
+      applyIfCurrent(() => {
+        setPhase("error");
+        setResult(
+          createAudioDecodeResult("unsupported-file", [
+            "The selected file could not be decoded by this browser. WAV is the safest format to try next.",
+          ]),
+        );
       });
     } finally {
       await audioContext?.close().catch(() => {});
@@ -258,7 +328,9 @@ export default function MorseAudioDecoderTool() {
               >
                 Drag in a Morse audio file, or choose one from your device. WAV
                 is usually safest. MP3, M4A, AAC, or OGG may work when your
-                browser can decode them.
+                browser can decode them. Files over{" "}
+                {Math.round(AUDIO_DECODER_LIMITS.maxUploadBytes / (1024 * 1024))} MB
+                are rejected before decoding.
               </p>
               <ActionButton
                 onClick={(event) => {
@@ -569,7 +641,9 @@ function RangeControl({
         min={min}
         max={max}
         value={value}
-        onChange={(event) => onChange(Number(event.currentTarget.value))}
+        onChange={(event) =>
+          onChange(clampNumber(Number(event.currentTarget.value), min, max))
+        }
         className="mt-3 w-full cursor-pointer"
       />
     </label>

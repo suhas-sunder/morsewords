@@ -17,9 +17,28 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import {
+  isFlashAllowedNow,
+  useFlashSafety,
+} from "~/client/components/shared/useFlashSafety";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
+import {
+  VISUAL_SPEED_RANGE,
+  clampFarnsworthWpm,
+} from "~/client/components/shared/morseSettings";
+import {
+  clampNumber,
+  readStoredNumber,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
+import {
+  buildPromptDeck,
+  comparePlainAnswers,
+  normalizePlainAnswer,
+} from "~/client/components/shared/practiceSessionUtils";
 import styles from "~/client/components/shared/pageStyles";
 import {
   CheckCircleIcon,
@@ -32,7 +51,8 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 const CANONICAL_PATH = "/morse-code-visual-quiz";
 const STROBE_WARNING_ID = "visual-quiz-strobe-warning";
 const FLASH_DISABLED_NOTICE_ID = "visual-quiz-flash-disabled";
-const PROMPTS = [
+const INITIAL_VISUAL_QUIZ_SEED = 73051;
+export const VISUAL_QUIZ_PROMPTS = [
   "sos",
   "cq",
   "test",
@@ -45,6 +65,7 @@ const PROMPTS = [
   "morse",
 ];
 const TOTAL_QUESTIONS = 10;
+const VISUAL_QUIZ_FALLBACK_PROMPTS = ["sos"] as const;
 
 const faqItems = [
   {
@@ -117,8 +138,19 @@ function useFlash(pattern: string, wpm: number, farnsworthWpm: number) {
   return { active, play, stop };
 }
 
+export function buildVisualQuizPromptDeck(seed: number) {
+  return buildPromptDeck(VISUAL_QUIZ_PROMPTS, TOTAL_QUESTIONS, seed, {
+    fallback: VISUAL_QUIZ_FALLBACK_PROMPTS,
+  });
+}
+function createVisualQuizSeed() {
+  return Date.now() + Math.floor(Math.random() * 1_000_000);
+}
+
 export default function MorseCodeVisualQuiz() {
-  const { disableFlashEffects } = useDisplaySettings();
+  const { disableFlashEffects, flashAllowed } = useFlashSafety();
+  const didHydratePromptOrder = React.useRef(false);
+  const [roundSeed, setRoundSeed] = React.useState(INITIAL_VISUAL_QUIZ_SEED);
   const [index, setIndex] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
   const [checked, setChecked] = React.useState(false);
@@ -135,32 +167,57 @@ export default function MorseCodeVisualQuiz() {
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
   const [hasFlashed, setHasFlashed] = React.useState(false);
 
-  const prompt = PROMPTS[index % PROMPTS.length];
+  const promptDeck = React.useMemo(
+    () => buildVisualQuizPromptDeck(roundSeed),
+    [roundSeed],
+  );
+  const prompt =
+    promptDeck[Math.min(index, Math.max(0, promptDeck.length - 1))] ??
+    VISUAL_QUIZ_FALLBACK_PROMPTS[0];
   const morse = textToMorse(prompt);
   const { active, play, stop } = useFlash(morse, wpm, farnsworthWpm);
-  const isCorrect = answer.trim().toLowerCase() === prompt;
+  const normalizedAnswer = normalizePlainAnswer(answer);
+  const isCorrect = comparePlainAnswers(answer, prompt);
   const gameOver = completed >= TOTAL_QUESTIONS;
   const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
 
+  const handleWpmChange = React.useCallback((value: number) => {
+    stop();
+    setHasFlashed(false);
+    const next = Math.round(
+      clampNumber(value, VISUAL_SPEED_RANGE.min, VISUAL_SPEED_RANGE.max),
+    );
+    setWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next, 5));
+  }, [stop]);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      stop();
+      setHasFlashed(false);
+      setFarnsworthWpm(clampFarnsworthWpm(value, wpm, 5));
+    },
+    [stop, wpm],
+  );
+
   React.useEffect(() => {
-    try {
-      window.localStorage.setItem(
-        "mw_visual_quiz_best_streak",
-        String(bestStreak),
-      );
-    } catch {
-      // ignore
-    }
+    if (didHydratePromptOrder.current) return;
+    didHydratePromptOrder.current = true;
+    setRoundSeed(createVisualQuizSeed());
+  }, []);
+
+  React.useEffect(() => {
+    safeWriteStorage("mw_visual_quiz_best_streak", String(bestStreak));
   }, [bestStreak]);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     stop();
     setHasFlashed(false);
-  }, [disableFlashEffects, stop]);
+  }, [flashAllowed, stop]);
 
   function checkAnswer() {
-    if (gameOver || solved) return;
+    if (gameOver || solved || !normalizedAnswer) return;
     if (runStartedAt === null) setRunStartedAt(Date.now());
     setAttempts((value) => value + 1);
     setChecked(true);
@@ -178,18 +235,22 @@ export default function MorseCodeVisualQuiz() {
   }
 
   function nextPrompt() {
+    stop();
     if (!solved) setStreak(0);
     const nextCompleted = completed + 1;
     setCompleted(nextCompleted);
     setAnswer("");
     setChecked(false);
     setSolved(false);
+    setHasFlashed(false);
     if (nextCompleted < TOTAL_QUESTIONS) {
-      setIndex((value) => (value + 1) % PROMPTS.length);
+      setIndex((value) => Math.min(value + 1, TOTAL_QUESTIONS - 1));
     }
   }
 
   function resetQuiz() {
+    stop();
+    setRoundSeed(createVisualQuizSeed());
     setIndex(0);
     setAnswer("");
     setChecked(false);
@@ -203,7 +264,7 @@ export default function MorseCodeVisualQuiz() {
   }
 
   function flashPrompt() {
-    if (disableFlashEffects) return;
+    if (!morse || !flashAllowed || !isFlashAllowedNow()) return;
     setHasFlashed(true);
     play();
   }
@@ -368,18 +429,16 @@ export default function MorseCodeVisualQuiz() {
                 ) : hasFlashed ? (
                   <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
                 ) : null}
-                <div
-                  role="img"
-                  className={
-                      "h-40 w-40 rounded-full transition-all duration-75 " +
-                      (active ? "bg-sky-200" : "bg-[#fffaf2]")
-                  }
-                  aria-label={active ? "Morse light on" : "Morse light off"}
+                <FlashLamp
+                  active={active && flashAllowed}
+                  disabled={!flashAllowed}
+                  label="Morse visual quiz flash lamp"
+                  size="lg"
                 />
                 <button
                   type="button"
                   onClick={flashPrompt}
-                  disabled={disableFlashEffects}
+                  disabled={!flashAllowed}
                   aria-describedby={
                     disableFlashEffects
                       ? FLASH_DISABLED_NOTICE_ID
@@ -391,7 +450,7 @@ export default function MorseCodeVisualQuiz() {
                       tone: "dark",
                       size: "lg",
                       full: true,
-                      disabled: disableFlashEffects,
+                      disabled: !flashAllowed,
                     })} mt-5`}
                 >
                   <LightBulbIcon size={20} title="Flash prompt" />
@@ -412,7 +471,7 @@ export default function MorseCodeVisualQuiz() {
                     onKeyDown={(event) => {
                       if (event.key === "Enter") {
                         if (solved) nextPrompt();
-                        else if (answer.trim()) checkAnswer();
+                        else if (normalizedAnswer) checkAnswer();
                       }
                     }}
  className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg transition focus:outline-none focus:ring-0 focus-visible:outline-none"
@@ -422,21 +481,23 @@ export default function MorseCodeVisualQuiz() {
                 <div className="mt-5 grid gap-5">
                   <SliderRow
                     label="Character speed"
+                    labelTone="sky"
                     value={wpm}
                     min={6}
                     max={30}
                     step={1}
                     unit="WPM"
-                    onChange={setWpm}
+                    onChange={handleWpmChange}
                   />
                   <SliderRow
                     label="Farnsworth spacing"
+                    labelTone="sky"
                     value={farnsworthWpm}
                     min={5}
-                    max={30}
+                    max={Math.max(5, wpm)}
                     step={1}
                     unit="WPM"
-                    onChange={setFarnsworthWpm}
+                    onChange={handleFarnsworthWpmChange}
                     help="Slows spacing only."
                   />
                 </div>
@@ -446,9 +507,9 @@ export default function MorseCodeVisualQuiz() {
                       <button
                         type="button"
                         onClick={checkAnswer}
-                        disabled={!answer.trim()}
+                        disabled={!normalizedAnswer}
                         className={toolControlButtonClass({
-                          disabled: !answer.trim(),
+                          disabled: !normalizedAnswer,
                         })}
                       >
                         <CheckCircleIcon size={18} title="Check answer" />
@@ -674,59 +735,10 @@ export default function MorseCodeVisualQuiz() {
 }
 
 function readStoredInt(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const raw = window.localStorage.getItem(key);
-    const parsed = raw ? Number(raw) : fallback;
-    return Number.isFinite(parsed) ? parsed : fallback;
-  } catch {
-    return fallback;
-  }
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (value: number) => void;
-  help?: string;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        style={{ accentColor: "#38bdf8" }}
- className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none"
-      />
-    </div>
-  );
+  return readStoredNumber(key, {
+    fallback,
+    min: 0,
+    max: 9999,
+    integer: true,
+  });
 }

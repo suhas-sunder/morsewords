@@ -4,10 +4,11 @@ import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
 } from "~/client/components/shared/StrobeWarning";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
 import {
   HOME_TOOL_EXAMPLES,
   TOOL_SPACING_HELPER,
@@ -17,6 +18,8 @@ import {
   ToolPanel,
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import TogglePill from "~/client/components/shared/ui/TogglePill";
 import {
   ActionButton,
   ActionRow,
@@ -27,7 +30,30 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
+import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
+import {
+  AUDIO_ATTACK_RANGE,
+  AUDIO_GENERATOR_PRESETS,
+  AUDIO_PITCH_RANGE,
+  AUDIO_RELEASE_RANGE,
+  AUDIO_SAMPLE_RATES,
+  AUDIO_SPEED_RANGE,
+  AUDIO_TAIL_RANGE,
+  VOLUME_RANGE,
+  clampFarnsworthWpm,
+  sanitizeAudioGeneratorPreset,
+  sanitizeAudioSampleRate,
+} from "~/client/components/shared/morseSettings";
 import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
+import {
+  clampNumber,
+  readStoredBoolean,
+  readStoredEnum,
+  readStoredNumber,
+  readStoredNumberEnum,
+  readStoredString,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 
 import {
   CheckCircleIcon,
@@ -45,6 +71,7 @@ import {
 } from "~/client/assets/svg/Icons";
 
 type SourceMode = "text" | "morse";
+const SOURCE_MODES = ["text", "morse"] as const;
 const STROBE_WARNING_ID = "audio-translator-strobe-warning";
 const FLASH_DISABLED_NOTICE_ID = "audio-translator-flash-disabled";
 const AUDIO_TOOL_EXAMPLES = HOME_TOOL_EXAMPLES.filter(
@@ -66,7 +93,6 @@ export default function MorseAudioTranslator({
   enableQueryPrefill?: boolean;
 }) {
   const player = useMorseAudio();
-  const { disableFlashEffects } = useDisplaySettings();
   const queryPrefillApplied = React.useRef(false);
 
   const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
@@ -99,29 +125,82 @@ export default function MorseAudioTranslator({
   const [tailMs, setTailMs] = React.useState<number>(120);
 
   const [hydrated, setHydrated] = React.useState(false);
-  const effectiveFlash = !disableFlashEffects && flash;
+  const flashLamp = useFlashLampState(hydrated && flash);
+  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const effectiveFlash = flashAllowed && flash;
 
   React.useEffect(() => {
-    setSourceMode((readStr("mw_audio_source", "text") as SourceMode) || "text");
-    setText(readStr("mw_audio_text", "sos help"));
-    setMorse(readStr("mw_audio_morse", "... --- ..."));
-    setCharWpm(readNum("mw_audio_wpm", 18));
-    setFarnsworthWpm(readNum("mw_audio_fwpm", 12));
-    setToneHz(readNum("mw_audio_hz", 650));
-    setVolume(readNum("mw_audio_vol", 0.75));
-    setPreset(
-      (readStr("mw_audio_preset", "cw_radio") as SoundPreset) || "cw_radio",
+    setSourceMode(readStoredEnum("mw_audio_source", SOURCE_MODES, "text"));
+    setText(readStoredString("mw_audio_text", "sos help", { maxLength: 25000 }));
+    setMorse(
+      readStoredString("mw_audio_morse", "... --- ...", { maxLength: 25000 }),
     );
-    setAttackMs(readNum("mw_audio_attack", 8));
-    setReleaseMs(readNum("mw_audio_release", 12));
-    setRepeat(readBool("mw_audio_repeat", false));
-    setSoundOn(readBool("mw_audio_sound", true));
-    setFlash(readBool("mw_audio_flash", false));
-    setAdvancedOpen(readBool("mw_audio_adv_open", true));
-    setExportOpen(readBool("mw_audio_export_open", true));
-    setFileName(readStr("mw_audio_filename", "morse-audio"));
-    setSampleRate(validateSampleRate(readNum("mw_audio_sr", 44100)));
-    setTailMs(readNum("mw_audio_tail", 120));
+    const storedCharWpm = readStoredNumber("mw_audio_wpm", {
+      fallback: 18,
+      min: AUDIO_SPEED_RANGE.min,
+      max: AUDIO_SPEED_RANGE.max,
+      integer: true,
+    });
+    setCharWpm(storedCharWpm);
+    setFarnsworthWpm(
+      readStoredNumber("mw_audio_fwpm", {
+        fallback: 12,
+        min: AUDIO_SPEED_RANGE.min,
+        max: storedCharWpm,
+        integer: true,
+      }),
+    );
+    setToneHz(
+      readStoredNumber("mw_audio_hz", {
+        fallback: 650,
+        min: AUDIO_PITCH_RANGE.min,
+        max: AUDIO_PITCH_RANGE.max,
+        integer: true,
+      }),
+    );
+    setVolume(
+      readStoredNumber("mw_audio_vol", {
+        fallback: 0.75,
+        min: VOLUME_RANGE.min,
+        max: VOLUME_RANGE.max,
+      }),
+    );
+    setPreset(
+      readStoredEnum("mw_audio_preset", AUDIO_GENERATOR_PRESETS, "cw_radio"),
+    );
+    setAttackMs(
+      readStoredNumber("mw_audio_attack", {
+        fallback: 8,
+        min: AUDIO_ATTACK_RANGE.min,
+        max: AUDIO_ATTACK_RANGE.max,
+        integer: true,
+      }),
+    );
+    setReleaseMs(
+      readStoredNumber("mw_audio_release", {
+        fallback: 12,
+        min: AUDIO_RELEASE_RANGE.min,
+        max: AUDIO_RELEASE_RANGE.max,
+        integer: true,
+      }),
+    );
+    setRepeat(readStoredBoolean("mw_audio_repeat", false));
+    setSoundOn(readStoredBoolean("mw_audio_sound", true));
+    setFlash(readStoredBoolean("mw_audio_flash", false));
+    setAdvancedOpen(readStoredBoolean("mw_audio_adv_open", true));
+    setExportOpen(readStoredBoolean("mw_audio_export_open", true));
+    setFileName(
+      readStoredString("mw_audio_filename", "morse-audio", { maxLength: 120 }),
+    );
+    setSampleRate(readStoredNumberEnum("mw_audio_sr", AUDIO_SAMPLE_RATES, 44100));
+    setTailMs(
+      readStoredNumber("mw_audio_tail", {
+        fallback: 120,
+        min: AUDIO_TAIL_RANGE.min,
+        max: AUDIO_TAIL_RANGE.max,
+        integer: true,
+      }),
+    );
     setHydrated(true);
   }, []);
 
@@ -148,10 +227,9 @@ export default function MorseAudioTranslator({
   // Live update audio settings during playback/paused
   React.useEffect(() => {
     if (!hydrated) return;
-    const anyPlayer: any = player as any;
-    if (!anyPlayer.setLiveOptions) return;
 
-    anyPlayer.setLiveOptions({
+    player.setLiveOptions({
+      code: activeCode,
       wpm: clampNum(charWpm, 5, 60),
       farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
       hz: toneHz,
@@ -166,6 +244,7 @@ export default function MorseAudioTranslator({
   }, [
     hydrated,
     player,
+    activeCode,
     charWpm,
     farnsworthWpm,
     toneHz,
@@ -179,11 +258,10 @@ export default function MorseAudioTranslator({
   ]);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     setFlash(false);
-    const anyPlayer: any = player as any;
-    anyPlayer.setLiveOptions?.({ flash: false });
-  }, [disableFlashEffects, player]);
+    player.setLiveOptions({ flash: false });
+  }, [flashAllowed, player]);
 
   // Persist settings as they change
   React.useEffect(() => {
@@ -232,32 +310,10 @@ export default function MorseAudioTranslator({
     tailMs,
   ]);
 
-  // Flash overlay (listens to morsewords:flash)
-  React.useEffect(() => {
-    if (!effectiveFlash) return;
-
-    const handler = (ev: Event) => {
-      const detail = (ev as CustomEvent).detail as { ms?: number } | undefined;
-      const ms = detail?.ms ?? 0;
-      if (!ms) return;
-
-      const el = document.getElementById("mw_flash_overlay");
-      if (!el) return;
-
-      el.classList.remove("opacity-0");
-      el.classList.add("opacity-100");
-
-      window.setTimeout(() => {
-        el.classList.remove("opacity-100");
-        el.classList.add("opacity-0");
-      }, ms);
-    };
-
-    window.addEventListener("morsewords:flash", handler as any);
-    return () => window.removeEventListener("morsewords:flash", handler as any);
-  }, [effectiveFlash]);
-
-  const canPlay = !!activeCode.trim();
+  const canPlay = React.useMemo(
+    () => hasPlayableMorse(activeCode),
+    [activeCode],
+  );
   const durationMs = React.useMemo(() => {
     if (!canPlay) return 0;
     return player.estimateDurationMs({
@@ -270,6 +326,21 @@ export default function MorseAudioTranslator({
   const renderedSoundOn = hydrated ? soundOn : true;
   const renderedRepeat = hydrated ? repeat : false;
   const renderedFlash = hydrated ? effectiveFlash : false;
+
+  const handleCharWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+    );
+    setCharWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, charWpm));
+    },
+    [charWpm],
+  );
 
   const unsupportedPlain = React.useMemo(
     () => getUnsupportedTextCharacters(text),
@@ -292,25 +363,22 @@ export default function MorseAudioTranslator({
 
   const setFeedback = React.useCallback(
     (key: "sound" | "repeat" | "flash", next: boolean) => {
-      if (key === "flash" && disableFlashEffects) return;
+      if (key === "flash" && !flashAllowed) return;
 
       const current = { sound: soundOn, repeat, flash: effectiveFlash };
-      const updated = { ...current, [key]: key === "flash" ? next && !disableFlashEffects : next };
+      const updated = { ...current, [key]: key === "flash" ? next && flashAllowed : next };
 
       if (key === "sound") setSoundOn(next);
       if (key === "repeat") setRepeat(next);
-      if (key === "flash") setFlash(next && !disableFlashEffects);
+      if (key === "flash") setFlash(next && flashAllowed);
 
       // If sound is turned off while playing, mute instantly via live options
-      const anyPlayer: any = player as any;
-      if (anyPlayer.setLiveOptions) {
-        anyPlayer.setLiveOptions({
-          soundEnabled: updated.sound,
-          flash: updated.flash,
-        });
-      }
+      player.setLiveOptions({
+        soundEnabled: updated.sound,
+        flash: updated.flash,
+      });
     },
-    [soundOn, repeat, effectiveFlash, disableFlashEffects, player],
+    [soundOn, repeat, effectiveFlash, flashAllowed, player],
   );
 
   const handleCopyMorse = async () => {
@@ -349,6 +417,7 @@ export default function MorseAudioTranslator({
   const handleExportWav = async () => {
     if (!canPlay) return;
     if (!soundOn) return;
+    player.stop();
 
     const safeBase = sanitizeFileBase(fileName || "morse-audio");
     try {
@@ -379,13 +448,6 @@ export default function MorseAudioTranslator({
 
   return (
     <div style={styles.page}>
-      {renderedFlash && (
-        <div
-          id="mw_flash_overlay"
-          className="mw-strobe-flash fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75"
-        />
-      )}
-
       <section className="mw-tool-section mt-0">
             <div>
               <ToolHero
@@ -644,8 +706,16 @@ export default function MorseAudioTranslator({
                           ? STROBE_WARNING_ID
                           : undefined
                     }
-                    disabled={disableFlashEffects}
+                    disabled={!flashAllowed}
                   />
+                  {hydrated && flash ? (
+                    <FlashLamp
+                      active={flashLamp.active}
+                      disabled={!renderedFlash}
+                      label="Morse audio flash lamp"
+                      size="sm"
+                    />
+                  ) : null}
                 </div>
               </div>
 
@@ -657,16 +727,16 @@ export default function MorseAudioTranslator({
                   max={60}
                   step={1}
                   unit="WPM"
-                  onChange={setCharWpm}
+                  onChange={handleCharWpmChange}
                 />
                 <SliderRow
                   label="Farnsworth spacing"
                   value={farnsworthWpm}
                   min={5}
-                  max={60}
+                  max={Math.max(5, charWpm)}
                   step={1}
                   unit="WPM"
-                  onChange={setFarnsworthWpm}
+                  onChange={handleFarnsworthWpmChange}
                 />
                 <SliderRow
                   label="Pitch"
@@ -705,7 +775,9 @@ export default function MorseAudioTranslator({
                     <LabeledAudioSelect
                       label="Preset"
                       value={preset}
-                      onChange={(e) => setPreset(e.target.value as SoundPreset)}
+                      onChange={(e) =>
+                        setPreset(sanitizeAudioGeneratorPreset(e.target.value))
+                      }
                     >
                         <option value="cw_radio">CW (Radio)</option>
                         <option value="sine">Sine</option>
@@ -771,7 +843,9 @@ export default function MorseAudioTranslator({
                       <LabeledAudioSelect
                         label="Sample rate"
                         value={sampleRate}
-                        onChange={(e) => setSampleRate(Number(e.target.value) as any)}
+                        onChange={(e) =>
+                          setSampleRate(sanitizeAudioSampleRate(Number(e.target.value)))
+                        }
                         className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
                       >
                           <option value={22050}>22050</option>
@@ -828,96 +902,6 @@ export default function MorseAudioTranslator({
 
             </div>
       </section>
-    </div>
-  );
-}
-
-function TogglePill({
-  label,
-  checked,
-  onChange,
-  icon,
-  describedBy,
-  disabled = false,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (v: boolean) => void;
-  icon?: React.ReactNode;
-  describedBy?: string;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        if (!disabled) onChange(!checked);
-      }}
-      disabled={disabled}
-      className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold ${disabled ? "cursor-not-allowed bg-[#fffaf2] text-slate-400" : "cursor-pointer"} active:scale-95 transition focus:outline-none ${
-        disabled
-          ? ""
-          : checked
-          ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white"
-          : "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
-      }`}
-      aria-pressed={checked}
-      aria-describedby={describedBy}
-    >
-      {icon}
-      <span>{label}</span>
-    </button>
-  );
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-  disabled,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (v: number) => void;
-  help?: string;
-  disabled?: boolean;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between">
-        <label htmlFor={id} className="text-sm font-semibold text-slate-700">
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help && <p className="mt-0.5 text-xs text-slate-500">{help}</p>}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        disabled={disabled}
-        style={{ accentColor: "#38bdf8" }}
-        className={`w-full mt-2 ${
-          disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
-        } focus:outline-none focus:ring-0 focus-visible:outline-none rounded-full`}
-      />
     </div>
   );
 }
@@ -986,68 +970,20 @@ function LabeledAudioInput({
   );
 }
 
-function readNum(key: string, fallback: number) {
-  const raw = readStorageValue(key);
-  const n = raw ? Number(raw) : NaN;
-  return Number.isFinite(n) ? n : fallback;
-}
-
-function readBool(key: string, fallback: boolean) {
-  const raw = readStorageValue(key);
-  if (raw === null) return fallback;
-  if (raw === "1") return true;
-  if (raw === "0") return false;
-  if (raw === "true") return true;
-  if (raw === "false") return false;
-  return fallback;
-}
-
-function readStr(key: string, fallback: string) {
-  return readStorageValue(key) ?? fallback;
-}
-
-function readStorageValue(key: string) {
-  if (typeof window === "undefined") return null;
-  try {
-    return window.localStorage.getItem(key);
-  } catch {
-    return null;
-  }
-}
-
 function writeNum(key: string, value: number) {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.setItem(key, String(value));
-  } catch {
-    // ignore
-  }
+  safeWriteStorage(key, String(value));
 }
 
 function writeBool(key: string, value: boolean) {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.setItem(key, value ? "1" : "0");
-  } catch {
-    // ignore
-  }
+  safeWriteStorage(key, value ? "1" : "0");
 }
 
 function writeStr(key: string, value: string) {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.setItem(key, value);
-  } catch {
-    // ignore
-  }
+  safeWriteStorage(key, value);
 }
 
 function clampNum(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
-}
-
-function validateSampleRate(value: number): 22050 | 44100 | 48000 {
-  return value === 22050 || value === 44100 || value === 48000 ? value : 44100;
 }
 
 function formatMs(ms: number) {

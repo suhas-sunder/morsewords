@@ -6,11 +6,27 @@ import {
   textToMorse,
 } from "~/client/components/shared/morseUtils";
 import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
+import {
+  TOOL_SPEED_RANGE,
+  TRANSLATOR_AUDIO_PRESETS,
+  TRANSLATOR_PITCH_RANGE,
+  VOLUME_RANGE,
+  clampFarnsworthWpm,
+} from "~/client/components/shared/morseSettings";
+import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
+import {
+  clampNumber,
+  readStoredBoolean,
+  readStoredEnum,
+  readStoredNumber,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
 } from "~/client/components/shared/StrobeWarning";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
 import {
   ActionButton,
   ActionRow,
@@ -97,7 +113,6 @@ export default function TranslatorSectionsBasic({
   const queryPrefillApplied = React.useRef(false);
 
   const player = useAudio();
-  const { disableFlashEffects } = useDisplaySettings();
 
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -115,17 +130,50 @@ export default function TranslatorSectionsBasic({
   const [advancedOpen, setAdvancedOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    setToneHz(readNum("mw_hz", 600));
-    setVolume(readNum("mw_vol", 0.75));
-    setSoundOn(readBool("mw_sound", true));
-    setRepeat(readBool("mw_repeat", false));
-    setFlash(readBool("mw_flash", false));
-    setPreset((readStr("mw_preset", "cw_radio") as SoundPreset) || "cw_radio");
+    setToneHz(
+      readStoredNumber("mw_hz", {
+        fallback: 600,
+        min: TRANSLATOR_PITCH_RANGE.min,
+        max: TRANSLATOR_PITCH_RANGE.max,
+        integer: true,
+      }),
+    );
+    setVolume(
+      readStoredNumber("mw_vol", {
+        fallback: 0.75,
+        min: VOLUME_RANGE.min,
+        max: VOLUME_RANGE.max,
+      }),
+    );
+    setSoundOn(readStoredBoolean("mw_sound", true));
+    setRepeat(readStoredBoolean("mw_repeat", false));
+    setFlash(readStoredBoolean("mw_flash", false));
+    setPreset(
+      readStoredEnum("mw_preset", TRANSLATOR_AUDIO_PRESETS, "cw_radio"),
+    );
 
-    const legacyWpm = readNum("mw_wpm", 20);
-    setCharWpm(readNum("mw_char_wpm", legacyWpm));
-    setFarnsworthWpm(readNum("mw_fwpm", 20));
-    setAdvancedOpen(readBool("mw_adv_open", false));
+    const legacyWpm = readStoredNumber("mw_wpm", {
+      fallback: 20,
+      min: TOOL_SPEED_RANGE.min,
+      max: TOOL_SPEED_RANGE.max,
+      integer: true,
+    });
+    const storedCharWpm = readStoredNumber("mw_char_wpm", {
+      fallback: legacyWpm,
+      min: TOOL_SPEED_RANGE.min,
+      max: TOOL_SPEED_RANGE.max,
+      integer: true,
+    });
+    setCharWpm(storedCharWpm);
+    setFarnsworthWpm(
+      readStoredNumber("mw_fwpm", {
+        fallback: 20,
+        min: TOOL_SPEED_RANGE.min,
+        max: storedCharWpm,
+        integer: true,
+      }),
+    );
+    setAdvancedOpen(readStoredBoolean("mw_adv_open", false));
     setIsHydrated(true);
   }, []);
 
@@ -193,27 +241,15 @@ export default function TranslatorSectionsBasic({
     }
   }, []);
 
-  const [flashOn, setFlashOn] = useState(false);
-  const effectiveFlash = !disableFlashEffects && flash;
+  const flashLamp = useFlashLampState(flash);
+  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const effectiveFlash = flashAllowed && flash;
 
   useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     setFlash(false);
-    setFlashOn(false);
-    (player as any)?.setLiveOptions?.({ flash: false });
-  }, [disableFlashEffects, player]);
-
-  useEffect(() => {
-    const handler = (e: Event) => {
-      if (!effectiveFlash) return;
-      const ms = (e as CustomEvent).detail?.ms ?? 80;
-      setFlashOn(true);
-      window.setTimeout(() => setFlashOn(false), Math.max(30, ms));
-    };
-
-    window.addEventListener("morsewords:flash", handler as any);
-    return () => window.removeEventListener("morsewords:flash", handler as any);
-  }, [effectiveFlash]);
+    player.setLiveOptions({ flash: false });
+  }, [flashAllowed, player]);
 
   const liveInputId = direction === "encode" ? "plainA" : "morseB";
   const inputLabel = direction === "encode" ? "Input (Text)" : "Input (Morse)";
@@ -225,6 +261,21 @@ export default function TranslatorSectionsBasic({
   const activeMorseForPlayback = useMemo(() => {
     return direction === "encode" ? morseA : morseB;
   }, [direction, morseA, morseB]);
+
+  const handleCharWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
+    );
+    setCharWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, charWpm));
+    },
+    [charWpm],
+  );
 
   const handleCopy = async (text: string, label: string) => {
     if (!text) return;
@@ -269,13 +320,18 @@ export default function TranslatorSectionsBasic({
     set: () => applyExampleText(text),
   }));
 
-  const canPlay = !!activeMorseForPlayback.trim();
+  const canPlay = useMemo(
+    () => hasPlayableMorse(activeMorseForPlayback),
+    [activeMorseForPlayback],
+  );
 
   const handlePlay = async () => {
     if (!canPlay) return;
 
-    const effectiveChar = clampNum(charWpm, 5, 60);
-    const effectiveF = clampNum(farnsworthWpm, 5, 60);
+    const effectiveChar = Math.round(
+      clampNumber(charWpm, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
+    );
+    const effectiveF = clampFarnsworthWpm(farnsworthWpm, effectiveChar);
 
     await player.play({
       code: activeMorseForPlayback,
@@ -291,10 +347,12 @@ export default function TranslatorSectionsBasic({
   };
 
   useEffect(() => {
-    (player as any)?.setLiveOptions?.({
+    player.setLiveOptions({
       code: activeMorseForPlayback,
-      wpm: clampNum(charWpm, 5, 60),
-      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      wpm: Math.round(
+        clampNumber(charWpm, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
+      ),
+      farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, charWpm),
       hz: toneHz,
       volume,
       soundEnabled: soundOn,
@@ -318,12 +376,15 @@ export default function TranslatorSectionsBasic({
 
   const handleSaveAudio = async () => {
     if (!canPlay || !soundOn) return;
+    player.stop();
 
     try {
       const blob = await player.renderWav({
         code: activeMorseForPlayback,
-        wpm: clampNum(charWpm, 5, 60),
-        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        wpm: Math.round(
+          clampNumber(charWpm, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
+        ),
+        farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, charWpm),
         hz: toneHz,
         volume,
         soundEnabled: true,
@@ -357,12 +418,12 @@ export default function TranslatorSectionsBasic({
 
       const canShareFiles =
         typeof navigator !== "undefined" &&
-        !!(navigator as any).share &&
-        !!(navigator as any).canShare &&
-        (navigator as any).canShare({ files: [file] });
+        typeof navigator.share === "function" &&
+        typeof navigator.canShare === "function" &&
+        navigator.canShare({ files: [file] });
 
       if (canShareFiles) {
-        await (navigator as any).share({
+        await navigator.share({
           title: "MorseWords",
           text: shareText,
           files: [file],
@@ -397,13 +458,6 @@ export default function TranslatorSectionsBasic({
 
   return (
     <div className={isHome ? "mb-0" : "mb-8"}>
-      {flashOn && (
-        <div
-          className="pointer-events-none fixed inset-0 z-[999]"
-          style={{ background: "var(--mw-translator-shell-bg)" }}
-        />
-      )}
-
       <section
           className={
             isHome
@@ -800,7 +854,7 @@ export default function TranslatorSectionsBasic({
                     <TogglePill
                       label="Flash Light"
                       checked={effectiveFlash}
-                      onChange={setFlash}
+                      onChange={(value) => setFlash(value && flashAllowed)}
                       icon={<LightBulbIcon size={16} title="Light" />}
                       describedBy={
                         disableFlashEffects
@@ -809,9 +863,17 @@ export default function TranslatorSectionsBasic({
                             ? STROBE_WARNING_ID
                             : undefined
                       }
-                      disabled={disableFlashEffects}
+                      disabled={!flashAllowed}
                       isHome={isHome}
                     />
+                    {flash ? (
+                      <FlashLamp
+                        active={flashLamp.active}
+                        disabled={!effectiveFlash}
+                        label="Morse translator flash lamp"
+                        size="sm"
+                      />
+                    ) : null}
                   </div>
                 </div>
 
@@ -823,7 +885,7 @@ export default function TranslatorSectionsBasic({
                     max={40}
                     step={1}
                     unit="WPM"
-                    onChange={setCharWpm}
+                    onChange={handleCharWpmChange}
                     quietInputFocus={quietInputFocus}
                   />
                   <SliderRow
@@ -908,10 +970,10 @@ export default function TranslatorSectionsBasic({
                         label="Farnsworth"
                         value={farnsworthWpm}
                         min={5}
-                        max={50}
+                        max={Math.max(5, charWpm)}
                         step={1}
                         unit="WPM"
-                        onChange={setFarnsworthWpm}
+                        onChange={handleFarnsworthWpmChange}
                         help="Slows spacing only."
                         quietInputFocus={quietInputFocus}
                       />
@@ -1037,64 +1099,16 @@ function SliderRow({
   );
 }
 
-function clampNum(n: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, n));
-}
-
-function readNum(key: string, fallback: number) {
-  const raw = readStorageValue(key);
-  const n = raw ? Number(raw) : NaN;
-  return Number.isFinite(n) ? n : fallback;
-}
-
-function readBool(key: string, fallback: boolean) {
-  const raw = readStorageValue(key);
-  if (raw === null) return fallback;
-  if (raw === "1") return true;
-  if (raw === "0") return false;
-  if (raw === "true") return true;
-  if (raw === "false") return false;
-  return fallback;
-}
-
-function readStr(key: string, fallback: string) {
-  return readStorageValue(key) ?? fallback;
-}
-
-function readStorageValue(key: string) {
-  if (typeof window === "undefined") return null;
-  try {
-    return window.localStorage.getItem(key);
-  } catch {
-    return null;
-  }
-}
-
 function writeNum(key: string, value: number) {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.setItem(key, String(value));
-  } catch {
-    // ignore
-  }
+  safeWriteStorage(key, String(value));
 }
 
 function writeBool(key: string, value: boolean) {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.setItem(key, value ? "1" : "0");
-  } catch {
-    // ignore
-  }
+  safeWriteStorage(key, value ? "1" : "0");
 }
 
 function writeStr(key: string, value: string) {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.setItem(key, value);
-  } catch {
-    // ignore
-  }
+  safeWriteStorage(key, value);
 }
 
 async function makeShareImagePng({

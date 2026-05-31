@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useLocation } from "react-router";
 
 import logoUrl from "~/client/assets/images/logo.png";
+import type { ThemeMode } from "~/client/theme/themeStorage";
 import DisplaySettingsToggle from "./DisplaySettingsToggle";
 import ThemeToggle from "./ThemeToggle";
 
@@ -301,7 +302,10 @@ function ChevronDown(props: { open: boolean }) {
   );
 }
 
-export default function NavBar(props: { pathname?: string }) {
+export default function NavBar(props: {
+  pathname?: string;
+  initialTheme?: ThemeMode;
+}) {
   const [open, setOpen] = React.useState(false);
   const [moreOpen, setMoreOpen] = React.useState(false);
   const [moreQuery, setMoreQuery] = React.useState("");
@@ -586,7 +590,7 @@ export default function NavBar(props: { pathname?: string }) {
             </div>
 
             <DisplaySettingsToggle onOpen={() => setMoreOpen(false)} />
-            <ThemeToggle />
+            <ThemeToggle initialTheme={props.initialTheme} />
           </nav>
 
           <button
@@ -636,7 +640,10 @@ export default function NavBar(props: { pathname?: string }) {
                     className="h-12 w-12"
                     onOpen={() => setMoreOpen(false)}
                   />
-                  <ThemeToggle className="h-12 w-12" />
+                  <ThemeToggle
+                    className="h-12 w-12"
+                    initialTheme={props.initialTheme}
+                  />
                   <button
                     type="button"
                     onClick={() => setOpen(false)}

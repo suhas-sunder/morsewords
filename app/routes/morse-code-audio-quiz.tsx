@@ -16,12 +16,14 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import TogglePill from "~/client/components/shared/ui/TogglePill";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import {
   audioDifficultyOptions,
   buildPromptDeck,
   getAudioPrompts,
-  isAudioDifficulty,
   normalizeAudioAnswer,
   promptTypeLabel,
   type AudioDifficulty,
@@ -31,6 +33,17 @@ import styles from "~/client/components/shared/pageStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
+import {
+  TOOL_SPEED_RANGE,
+  clampFarnsworthWpm,
+  sanitizeAudioGeneratorPreset,
+} from "~/client/components/shared/morseSettings";
+import {
+  clampNumber,
+  readStoredEnum,
+  readStoredNumber,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import {
   CheckCircleIcon,
   LightBulbIcon,
@@ -51,6 +64,12 @@ const BEST_STREAK_STORAGE_KEY = "mw_audio_quiz_best_streak";
 const TOTAL_QUESTIONS = 10;
 const DEFAULT_AUDIO_DIFFICULTY: AudioDifficulty = "easy";
 const INITIAL_AUDIO_QUIZ_SEED = 12053;
+const AUDIO_DIFFICULTIES: readonly AudioDifficulty[] = [
+  "beginner",
+  "easy",
+  "medium",
+  "hard",
+] as const;
 
 type FeedbackState = "idle" | "correct" | "missed";
 
@@ -94,8 +113,10 @@ export function meta({}: Route.MetaArgs) {
 
 export default function MorseCodeAudioQuiz() {
   const player = useMorseAudio();
-  const { disableFlashEffects } = useDisplaySettings();
+  const playerRef = React.useRef(player);
   const didResetInitialDifficulty = React.useRef(false);
+  const answeredQuestionRef = React.useRef(false);
+  const advancingQuestionRef = React.useRef(false);
   const [hydrated, setHydrated] = React.useState(false);
   const [difficulty, setDifficulty] =
     React.useState<AudioDifficulty>(DEFAULT_AUDIO_DIFFICULTY);
@@ -122,7 +143,9 @@ export default function MorseCodeAudioQuiz() {
   const [soundOn, setSoundOn] = React.useState(true);
   const [flash, setFlash] = React.useState(false);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
-  const effectiveFlash = !disableFlashEffects && flash;
+  const flashLamp = useFlashLampState(flash);
+  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const effectiveFlash = flashAllowed && flash;
 
   const promptPool = React.useMemo(() => getAudioPrompts(difficulty), [difficulty]);
   const deck = React.useMemo(
@@ -143,6 +166,25 @@ export default function MorseCodeAudioQuiz() {
     farnsworthWpm,
   });
 
+  const handleCharWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
+    );
+    setCharWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, charWpm));
+    },
+    [charWpm],
+  );
+
+  React.useEffect(() => {
+    playerRef.current = player;
+  }, [player]);
+
   React.useEffect(() => {
     setDifficulty(readStoredDifficulty(DIFFICULTY_STORAGE_KEY, "easy"));
     setBestStreak(readStoredInt(BEST_STREAK_STORAGE_KEY, 0));
@@ -151,21 +193,17 @@ export default function MorseCodeAudioQuiz() {
   }, []);
 
   React.useEffect(() => {
+    return () => playerRef.current.stop();
+  }, []);
+
+  React.useEffect(() => {
     if (!hydrated) return;
-    try {
-      window.localStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
-    } catch {
-      // local-only preference; ignore storage failures
-    }
+    safeWriteStorage(DIFFICULTY_STORAGE_KEY, difficulty);
   }, [difficulty, hydrated]);
 
   React.useEffect(() => {
     if (!hydrated) return;
-    try {
-      window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
-    } catch {
-      // ignore
-    }
+    safeWriteStorage(BEST_STREAK_STORAGE_KEY, String(bestStreak));
   }, [bestStreak, hydrated]);
 
   React.useEffect(() => {
@@ -177,6 +215,12 @@ export default function MorseCodeAudioQuiz() {
     resetQuiz({ preserveDifficulty: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [difficulty, hydrated]);
+
+  React.useEffect(() => {
+    if (feedback !== "idle") return;
+    answeredQuestionRef.current = false;
+    advancingQuestionRef.current = false;
+  }, [feedback, index]);
 
   React.useEffect(() => {
     const anyPlayer = player as typeof player & {
@@ -211,32 +255,13 @@ export default function MorseCodeAudioQuiz() {
   ]);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     setFlash(false);
     const anyPlayer = player as typeof player & {
       setLiveOptions?: (options: unknown) => void;
     };
     anyPlayer.setLiveOptions?.({ flash: false });
-  }, [disableFlashEffects, player]);
-
-  React.useEffect(() => {
-    if (!effectiveFlash) return;
-    const handler = (ev: Event) => {
-      const detail = (ev as CustomEvent).detail as { ms?: number } | undefined;
-      const ms = detail?.ms ?? 0;
-      const el = document.getElementById("mw_audio_quiz_flash");
-      if (!el || !ms) return;
-      el.classList.remove("opacity-0");
-      el.classList.add("opacity-100");
-      window.setTimeout(() => {
-        el.classList.remove("opacity-100");
-        el.classList.add("opacity-0");
-      }, ms);
-    };
-    window.addEventListener("morsewords:flash", handler as EventListener);
-    return () =>
-      window.removeEventListener("morsewords:flash", handler as EventListener);
-  }, [effectiveFlash]);
+  }, [flashAllowed, player]);
 
   async function playPrompt() {
     if (runStartedAt === null) setRunStartedAt(Date.now());
@@ -256,7 +281,15 @@ export default function MorseCodeAudioQuiz() {
   }
 
   function checkAnswer() {
-    if (gameOver || feedback !== "idle" || !normalizedAnswer) return;
+    if (
+      gameOver ||
+      feedback !== "idle" ||
+      !normalizedAnswer ||
+      answeredQuestionRef.current
+    ) {
+      return;
+    }
+    answeredQuestionRef.current = true;
     if (runStartedAt === null) setRunStartedAt(Date.now());
     setAttempts((value) => value + 1);
     if (isCorrect) {
@@ -274,6 +307,8 @@ export default function MorseCodeAudioQuiz() {
   }
 
   function nextQuestion() {
+    if (gameOver || advancingQuestionRef.current) return;
+    advancingQuestionRef.current = true;
     player.stop();
     if (feedback === "idle") {
       setSkipped((value) => value + 1);
@@ -287,6 +322,8 @@ export default function MorseCodeAudioQuiz() {
   }
 
   function resetQuiz(_: { preserveDifficulty?: boolean } = {}) {
+    answeredQuestionRef.current = false;
+    advancingQuestionRef.current = false;
     player.stop();
     setDeckSeed(Date.now());
     setIndex(0);
@@ -335,13 +372,6 @@ export default function MorseCodeAudioQuiz() {
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
-      {effectiveFlash ? (
-        <div
-          id="mw_audio_quiz_flash"
-          className="mw-strobe-flash pointer-events-none fixed inset-0 z-50 bg-white opacity-0 transition-opacity duration-75"
-        />
-      ) : null}
-
       <main style={styles.wrap}>
         <PageHero
           eyebrow="Audio test"
@@ -592,25 +622,28 @@ export default function MorseCodeAudioQuiz() {
             <div className="mt-4 grid gap-5 md:grid-cols-3">
               <SliderRow
                 label="Character speed"
+                labelTone="sky"
                 value={charWpm}
                 min={5}
                 max={40}
                 step={1}
                 unit="WPM"
-                onChange={setCharWpm}
+                onChange={handleCharWpmChange}
               />
               <SliderRow
                 label="Farnsworth spacing"
+                labelTone="sky"
                 value={farnsworthWpm}
                 min={5}
-                max={40}
+                max={Math.max(5, charWpm)}
                 step={1}
                 unit="WPM"
-                onChange={setFarnsworthWpm}
+                onChange={handleFarnsworthWpmChange}
                 help="Slows spacing only."
               />
               <SliderRow
                 label="Pitch"
+                labelTone="sky"
                 value={toneHz}
                 min={300}
                 max={1000}
@@ -621,6 +654,7 @@ export default function MorseCodeAudioQuiz() {
               />
               <SliderRow
                 label="Volume"
+                labelTone="sky"
                 value={Math.round(volume * 100)}
                 min={0}
                 max={100}
@@ -631,6 +665,7 @@ export default function MorseCodeAudioQuiz() {
               />
               <SliderRow
                 label="Attack"
+                labelTone="sky"
                 value={attackMs}
                 min={0}
                 max={40}
@@ -641,6 +676,7 @@ export default function MorseCodeAudioQuiz() {
               />
               <SliderRow
                 label="Release"
+                labelTone="sky"
                 value={releaseMs}
                 min={0}
                 max={80}
@@ -660,7 +696,9 @@ export default function MorseCodeAudioQuiz() {
                     </span>
                     <select
                       value={preset}
-                      onChange={(event) => setPreset(event.target.value as SoundPreset)}
+                      onChange={(event) =>
+                        setPreset(sanitizeAudioGeneratorPreset(event.target.value))
+                      }
                 className="mt-2 min-h-11 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none"
                     >
                       <option value="cw_radio">CW (Radio)</option>
@@ -678,27 +716,38 @@ export default function MorseCodeAudioQuiz() {
                       checked={soundOn}
                       onChange={setSoundOn}
                       icon={<SoundIcon size={16} title="Sound" />}
+                      hover="soft"
                     />
                     <TogglePill
                       label="Repeat"
                       checked={repeat}
                       onChange={setRepeat}
                       icon={<LoopIcon size={16} title="Repeat" />}
+                      hover="soft"
                     />
                     <TogglePill
                       label="Flash"
                       checked={effectiveFlash}
-                      onChange={setFlash}
+                      onChange={(value) => setFlash(value && flashAllowed)}
                       icon={<LightBulbIcon size={16} title="Flash" />}
                       describedBy={
                         disableFlashEffects
                           ? FLASH_DISABLED_NOTICE_ID
                           : effectiveFlash
                             ? STROBE_WARNING_ID
-                            : undefined
+                          : undefined
                       }
-                      disabled={disableFlashEffects}
+                      disabled={!flashAllowed}
+                      hover="soft"
                     />
+                    {flash ? (
+                      <FlashLamp
+                        active={flashLamp.active}
+                        disabled={!effectiveFlash}
+                        label="Morse audio quiz flash lamp"
+                        size="sm"
+                      />
+                    ) : null}
                   </div>
                 </div>
                 {disableFlashEffects ? (
@@ -977,112 +1026,17 @@ function QuizComplete({
   );
 }
 
-function TogglePill({
-  label,
-  checked,
-  onChange,
-  icon,
-  describedBy,
-  disabled = false,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (value: boolean) => void;
-  icon?: React.ReactNode;
-  describedBy?: string;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        if (!disabled) onChange(!checked);
-      }}
-      disabled={disabled}
-      className={toolControlButtonClass({
-        active: checked,
-        disabled,
-        size: "sm",
-        rounded: "full",
-      })}
-      aria-pressed={checked}
-      aria-describedby={describedBy}
-    >
-      {icon}
-      {label}
-    </button>
-  );
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-  disabled,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (value: number) => void;
-  help?: string;
-  disabled?: boolean;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        disabled={disabled}
-        style={{ accentColor: "#38bdf8" }}
- className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60"
-      />
-    </div>
-  );
-}
-
 function readStoredDifficulty(key: string, fallback: AudioDifficulty): AudioDifficulty {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const stored = window.localStorage.getItem(key);
-    return isAudioDifficulty(stored) ? stored : fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredEnum(key, AUDIO_DIFFICULTIES, fallback);
 }
 
 function readStoredInt(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const raw = window.localStorage.getItem(key);
-    const parsed = raw ? Number(raw) : fallback;
-    return Number.isFinite(parsed) ? parsed : fallback;
-  } catch {
-    return fallback;
-  }
+  return readStoredNumber(key, {
+    fallback,
+    min: 0,
+    max: 9999,
+    integer: true,
+  });
 }
 
 function difficultyLabel(difficulty: AudioDifficulty) {

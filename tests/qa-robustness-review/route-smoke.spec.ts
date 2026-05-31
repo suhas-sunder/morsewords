@@ -424,6 +424,8 @@ const REDIRECT_ROUTE_EXPECTATIONS = [
   { from: "/text-to-morse-code", to: "/morse-code-encoder" },
   { from: "/morse-to-text", to: "/morse-code-decoder" },
   { from: "/morse-code-translator", to: "/" },
+  { from: "/morse-code-dictionary", to: "/dictionary" },
+  { from: "/morse-code-word-game", to: "/morse-code-word-trainer" },
   { from: "/morse-code-audio-generator", to: "/audio" },
   { from: "/morse-code-vidual-quiz", to: "/morse-code-visual-quiz" },
   { from: "/audio-to-morse-code", to: "/morse-code-audio-decoder" },

@@ -7,10 +7,36 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
+import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
+import {
+  AUDIO_ATTACK_RANGE,
+  AUDIO_GENERATOR_PRESETS,
+  AUDIO_PITCH_RANGE,
+  AUDIO_RELEASE_RANGE,
+  AUDIO_SAMPLE_RATES,
+  AUDIO_SPEED_RANGE,
+  AUDIO_TAIL_RANGE,
+  MP3_BITRATES,
+  VOLUME_RANGE,
+  clampFarnsworthWpm,
+  sanitizeAudioGeneratorPreset,
+  sanitizeAudioSampleRate,
+  sanitizeMp3Bitrate,
+} from "~/client/components/shared/morseSettings";
+import {
+  clampNumber,
+  readStoredBoolean,
+  readStoredEnum,
+  readStoredNumber,
+  readStoredNumberEnum,
+  readStoredString,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
 } from "~/client/components/shared/StrobeWarning";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
@@ -22,6 +48,9 @@ import {
   ToolSampleButtons,
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import StatusMessage from "~/client/components/shared/ui/StatusMessage";
+import TogglePill from "~/client/components/shared/ui/TogglePill";
 import {
   CheckCircleIcon,
   CopyIcon,
@@ -38,6 +67,7 @@ import {
 } from "~/client/assets/svg/Icons";
 
 type SourceMode = "text" | "morse";
+const SOURCE_MODES = ["text", "morse"] as const;
 
 const EXAMPLES = ["SOS", "HELLO WORLD", "HELP ME", "I LOVE YOU", "TEST"];
 const DEFAULT_TEXT = "sos help";
@@ -47,7 +77,6 @@ const FLASH_DISABLED_NOTICE_ID = "mp3-generator-flash-disabled";
 
 export default function MorseMp3GeneratorTool() {
   const player = useMorseAudio();
-  const { disableFlashEffects } = useDisplaySettings();
   const sourceInputId = React.useId();
   const fileNameId = React.useId();
   const mp3KbpsId = React.useId();
@@ -82,37 +111,108 @@ export default function MorseMp3GeneratorTool() {
   }>(null);
 
   React.useEffect(() => {
-    const storedSource = readStr("mw_audio_source", "text");
-    setSourceMode(storedSource === "morse" ? "morse" : "text");
-    setText(readStr("mw_audio_text", DEFAULT_TEXT));
-    setMorse(readStr("mw_audio_morse", DEFAULT_MORSE));
-    setCharWpm(readNum("mw_audio_wpm", 18));
-    setFarnsworthWpm(readNum("mw_audio_fwpm", 12));
-    setToneHz(readNum("mw_audio_hz", 650));
-    setVolume(readNum("mw_audio_vol", 0.75));
-    setPreset(
-      validatePreset(readStr("mw_audio_preset", "cw_radio")) ?? "cw_radio",
+    setSourceMode(readStoredEnum("mw_audio_source", SOURCE_MODES, "text"));
+    setText(readStoredString("mw_audio_text", DEFAULT_TEXT, { maxLength: 25000 }));
+    setMorse(
+      readStoredString("mw_audio_morse", DEFAULT_MORSE, { maxLength: 25000 }),
     );
-    setAttackMs(readNum("mw_audio_attack", 8));
-    setReleaseMs(readNum("mw_audio_release", 12));
-    setRepeat(readBool("mw_audio_repeat", false));
-    setSoundOn(readBool("mw_audio_sound", true));
-    setFlash(readBool("mw_audio_flash", false));
-    setAdvancedOpen(readBool("mw_audio_adv_open", true));
-    setFileName(readStr("mw_mp3_filename", "morse-code"));
-    setSampleRate(validateSampleRate(readNum("mw_audio_sr", 44100)));
-    setTailMs(readNum("mw_audio_tail", 120));
-    setMp3Kbps(validateKbps(readNum("mw_mp3_kbps", 128)));
+    const storedCharWpm = readStoredNumber("mw_audio_wpm", {
+      fallback: 18,
+      min: AUDIO_SPEED_RANGE.min,
+      max: AUDIO_SPEED_RANGE.max,
+      integer: true,
+    });
+    setCharWpm(storedCharWpm);
+    setFarnsworthWpm(
+      readStoredNumber("mw_audio_fwpm", {
+        fallback: 12,
+        min: AUDIO_SPEED_RANGE.min,
+        max: storedCharWpm,
+        integer: true,
+      }),
+    );
+    setToneHz(
+      readStoredNumber("mw_audio_hz", {
+        fallback: 650,
+        min: AUDIO_PITCH_RANGE.min,
+        max: AUDIO_PITCH_RANGE.max,
+        integer: true,
+      }),
+    );
+    setVolume(
+      readStoredNumber("mw_audio_vol", {
+        fallback: 0.75,
+        min: VOLUME_RANGE.min,
+        max: VOLUME_RANGE.max,
+      }),
+    );
+    setPreset(
+      readStoredEnum("mw_audio_preset", AUDIO_GENERATOR_PRESETS, "cw_radio"),
+    );
+    setAttackMs(
+      readStoredNumber("mw_audio_attack", {
+        fallback: 8,
+        min: AUDIO_ATTACK_RANGE.min,
+        max: AUDIO_ATTACK_RANGE.max,
+        integer: true,
+      }),
+    );
+    setReleaseMs(
+      readStoredNumber("mw_audio_release", {
+        fallback: 12,
+        min: AUDIO_RELEASE_RANGE.min,
+        max: AUDIO_RELEASE_RANGE.max,
+        integer: true,
+      }),
+    );
+    setRepeat(readStoredBoolean("mw_audio_repeat", false));
+    setSoundOn(readStoredBoolean("mw_audio_sound", true));
+    setFlash(readStoredBoolean("mw_audio_flash", false));
+    setAdvancedOpen(readStoredBoolean("mw_audio_adv_open", true));
+    setFileName(
+      readStoredString("mw_mp3_filename", "morse-code", { maxLength: 120 }),
+    );
+    setSampleRate(readStoredNumberEnum("mw_audio_sr", AUDIO_SAMPLE_RATES, 44100));
+    setTailMs(
+      readStoredNumber("mw_audio_tail", {
+        fallback: 120,
+        min: AUDIO_TAIL_RANGE.min,
+        max: AUDIO_TAIL_RANGE.max,
+        integer: true,
+      }),
+    );
+    setMp3Kbps(readStoredNumberEnum("mw_mp3_kbps", MP3_BITRATES, 128));
     setHydrated(true);
   }, []);
 
   const computedMorse = React.useMemo(() => textToMorse(text), [text]);
   const activeCode = sourceMode === "text" ? computedMorse : morse;
-  const canRender = activeCode.trim().length > 0;
-  const effectiveFlash = !disableFlashEffects && flash;
+  const hasSourceCode = activeCode.trim().length > 0;
+  const canRender = React.useMemo(
+    () => hasPlayableMorse(activeCode),
+    [activeCode],
+  );
+  const flashLamp = useFlashLampState(hydrated && flash);
+  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const effectiveFlash = flashAllowed && flash;
   const renderedSoundOn = hydrated ? soundOn : true;
   const renderedRepeat = hydrated ? repeat : false;
   const renderedFlash = hydrated ? effectiveFlash : false;
+
+  const handleCharWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+    );
+    setCharWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, charWpm));
+    },
+    [charWpm],
+  );
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -226,13 +326,29 @@ export default function MorseMp3GeneratorTool() {
   }, [hydrated, player, previewAudioOptions]);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    if (flashAllowed) return;
     setFlash(false);
     const livePlayer = player as typeof player & {
       setLiveOptions?: (options: Partial<typeof previewAudioOptions>) => void;
     };
     livePlayer.setLiveOptions?.({ flash: false });
-  }, [disableFlashEffects, player, previewAudioOptions]);
+  }, [flashAllowed, player, previewAudioOptions]);
+
+  React.useEffect(() => {
+    setDownloadStatus(null);
+  }, [
+    activeCode,
+    charWpm,
+    farnsworthWpm,
+    toneHz,
+    volume,
+    preset,
+    attackMs,
+    releaseMs,
+    sampleRate,
+    tailMs,
+    mp3Kbps,
+  ]);
 
   const handlePickExample = (exampleText: string) => {
     if (sourceMode === "text") {
@@ -271,7 +387,15 @@ export default function MorseMp3GeneratorTool() {
   const renderAudioBuffer = () => player.renderAudioBuffer(exportAudioOptions);
 
   const handleDownloadMp3 = async () => {
-    if (!canRender || !renderedSoundOn) return;
+    if (!hasSourceCode || !renderedSoundOn) return;
+    if (!canRender) {
+      setDownloadStatus({
+        kind: "error",
+        message: "Enter text or valid dots and dashes before exporting audio.",
+      });
+      return;
+    }
+    player.stop();
     setDownloadStatus({ kind: "working", message: "Preparing MP3 file..." });
     try {
       const buffer = await renderAudioBuffer();
@@ -288,7 +412,15 @@ export default function MorseMp3GeneratorTool() {
   };
 
   const handleDownloadWav = async () => {
-    if (!canRender || !renderedSoundOn) return;
+    if (!hasSourceCode || !renderedSoundOn) return;
+    if (!canRender) {
+      setDownloadStatus({
+        kind: "error",
+        message: "Enter text or valid dots and dashes before exporting audio.",
+      });
+      return;
+    }
+    player.stop();
     setDownloadStatus({ kind: "working", message: "Preparing WAV file..." });
     try {
       const blob = await player.renderWav(exportAudioOptions);
@@ -304,12 +436,12 @@ export default function MorseMp3GeneratorTool() {
 
   const setFeedback = React.useCallback(
     (key: "sound" | "repeat" | "flash", nextValue: boolean) => {
-      if (key === "flash" && disableFlashEffects) return;
+      if (key === "flash" && !flashAllowed) return;
       if (key === "sound") setSoundOn(nextValue);
       if (key === "repeat") setRepeat(nextValue);
-      if (key === "flash") setFlash(nextValue && !disableFlashEffects);
+      if (key === "flash") setFlash(nextValue && flashAllowed);
     },
-    [disableFlashEffects],
+    [flashAllowed],
   );
 
   return (
@@ -444,7 +576,7 @@ export default function MorseMp3GeneratorTool() {
                 type="button"
                 tone="darkPanel"
                 onClick={handleDownloadWav}
-                disabled={!canRender || !renderedSoundOn}
+                disabled={!hasSourceCode || !renderedSoundOn}
                 className="rounded-lg"
               >
                 <DownloadIcon size={18} title={undefined} aria-hidden="true" />
@@ -510,7 +642,7 @@ export default function MorseMp3GeneratorTool() {
           type="button"
           tone="light"
           onClick={handleDownloadMp3}
-          disabled={!canRender || !renderedSoundOn}
+          disabled={!hasSourceCode || !renderedSoundOn}
           hover="dark"
           className="rounded-xl"
         >
@@ -555,8 +687,16 @@ export default function MorseMp3GeneratorTool() {
                   ? STROBE_WARNING_ID
                   : undefined
             }
-            disabled={disableFlashEffects}
+            disabled={!flashAllowed}
           />
+          {hydrated && flash ? (
+            <FlashLamp
+              active={flashLamp.active}
+              disabled={!renderedFlash}
+              label="Morse MP3 preview flash lamp"
+              size="sm"
+            />
+          ) : null}
         </div>
       </div>
 
@@ -568,16 +708,16 @@ export default function MorseMp3GeneratorTool() {
           max={60}
           step={1}
           unit="WPM"
-          onChange={setCharWpm}
+          onChange={handleCharWpmChange}
         />
         <SliderRow
           label="Farnsworth spacing"
           value={farnsworthWpm}
           min={5}
-          max={60}
+          max={Math.max(5, charWpm)}
           step={1}
           unit="WPM"
-          onChange={setFarnsworthWpm}
+          onChange={handleFarnsworthWpmChange}
         />
         <SliderRow
           label="Pitch"
@@ -619,7 +759,7 @@ export default function MorseMp3GeneratorTool() {
               label="Sound type"
               value={preset}
               onChange={(event) =>
-                setPreset(validatePreset(event.target.value) ?? "cw_radio")
+                setPreset(sanitizeAudioGeneratorPreset(event.target.value))
               }
               disabled={!renderedSoundOn}
             >
@@ -692,7 +832,9 @@ export default function MorseMp3GeneratorTool() {
           id={mp3KbpsId}
           label="MP3 kbps"
           value={String(mp3Kbps)}
-          onChange={(event) => setMp3Kbps(validateKbps(Number(event.target.value)))}
+          onChange={(event) =>
+            setMp3Kbps(sanitizeMp3Bitrate(Number(event.target.value)))
+          }
         >
           <option value={96}>96</option>
           <option value={128}>128</option>
@@ -704,7 +846,7 @@ export default function MorseMp3GeneratorTool() {
           label="Sample rate"
           value={String(sampleRate)}
           onChange={(event) =>
-            setSampleRate(validateSampleRate(Number(event.target.value)))
+            setSampleRate(sanitizeAudioSampleRate(Number(event.target.value)))
           }
         >
           <option value={22050}>22050</option>
@@ -726,114 +868,21 @@ export default function MorseMp3GeneratorTool() {
 
       <div className="mt-4">
         {downloadStatus ? (
-          <p
-            className="text-sm font-semibold text-slate-700"
-            aria-live="polite"
+          <StatusMessage
+            kind={downloadStatus.kind === "ok" ? "success" : downloadStatus.kind}
+            live
           >
             {downloadStatus.message}
-          </p>
+          </StatusMessage>
         ) : (
-          <p className="text-sm leading-relaxed text-slate-600">
+          <StatusMessage>
             MP3 encoding starts when you click download. Preview, WAV, and MP3
             use the same speed, spacing, tone, volume, sound type, and envelope
             settings.
-          </p>
+          </StatusMessage>
         )}
       </div>
     </section>
-  );
-}
-
-function TogglePill({
-  checked,
-  describedBy,
-  icon,
-  label,
-  onChange,
-  disabled = false,
-}: {
-  checked: boolean;
-  describedBy?: string;
-  disabled?: boolean;
-  icon?: React.ReactNode;
-  label: string;
-  onChange: (value: boolean) => void;
-}) {
-  return (
-    <ToolButton
-      type="button"
-      active={checked}
-      tone="light"
-      hover="dark"
-      disabled={disabled}
-      onClick={() => {
-        if (!disabled) onChange(!checked);
-      }}
-      className="min-h-10 rounded-full px-3 py-1.5 text-sm"
-      aria-pressed={checked}
-      aria-describedby={describedBy}
-    >
-      {icon}
-      {label}
-    </ToolButton>
-  );
-}
-
-function SliderRow({
-  disabled,
-  help,
-  icon,
-  label,
-  max,
-  min,
-  onChange,
-  step,
-  unit,
-  value,
-}: {
-  disabled?: boolean;
-  help?: string;
-  icon?: React.ReactNode;
-  label: string;
-  max: number;
-  min: number;
-  onChange: (value: number) => void;
-  step: number;
-  unit: string;
-  value: number;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label
-          htmlFor={id}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700"
-        >
-          {icon}
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help ? <p className="mt-0.5 text-xs text-slate-500">{help}</p> : null}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        disabled={disabled}
-        style={{ accentColor: "#38bdf8" }}
-        className={`mt-2 w-full rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none ${
-          disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
-        }`}
-      />
-    </div>
   );
 }
 
@@ -933,69 +982,18 @@ function downloadBlob(blob: Blob, filename: string) {
   window.setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
-function validateSampleRate(value: number): 22050 | 44100 | 48000 {
-  if (value === 22050 || value === 44100 || value === 48000) {
-    return value;
-  }
-  return 44100;
-}
-
-function validateKbps(value: number) {
-  if (value === 96 || value === 128 || value === 192 || value === 256) {
-    return value;
-  }
-  return 128;
-}
-
-function validatePreset(value: string): SoundPreset | null {
-  if (
-    value === "cw_radio" ||
-    value === "sine" ||
-    value === "square" ||
-    value === "triangle" ||
-    value === "sawtooth" ||
-    value === "sounder"
-  ) {
-    return value;
-  }
-  return null;
-}
-
 function clampNum(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
-function readNum(key: string, fallback: number) {
-  if (typeof window === "undefined") return fallback;
-  const raw = window.localStorage.getItem(key);
-  const next = raw ? Number(raw) : Number.NaN;
-  return Number.isFinite(next) ? next : fallback;
-}
-
-function readStr(key: string, fallback: string) {
-  if (typeof window === "undefined") return fallback;
-  return window.localStorage.getItem(key) || fallback;
-}
-
-function readBool(key: string, fallback: boolean) {
-  if (typeof window === "undefined") return fallback;
-  const raw = window.localStorage.getItem(key);
-  if (raw === "true") return true;
-  if (raw === "false") return false;
-  return fallback;
-}
-
 function writeNum(key: string, value: number) {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(key, String(value));
+  safeWriteStorage(key, String(value));
 }
 
 function writeStr(key: string, value: string) {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(key, value);
+  safeWriteStorage(key, value);
 }
 
 function writeBool(key: string, value: boolean) {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(key, String(value));
+  safeWriteStorage(key, value ? "true" : "false");
 }

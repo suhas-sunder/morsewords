@@ -1,7 +1,7 @@
 import * as React from "react";
 import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import styles from "~/client/components/shared/pageStyles";
-import { TEXT_TO_MORSE } from "~/client/components/shared/morseMaps";
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
 import { PHRASE_ROWS, type PhraseRow } from "./dictionaryData";
 
 type CharCategory = "All" | "Letters" | "Numbers" | "Punctuation";
@@ -99,7 +99,6 @@ function ChipButton(props: {
   children: React.ReactNode;
 }) {
   const { active, onClick, children } = props;
-  const [hover, setHover] = React.useState(false);
 
   const style: React.CSSProperties = {
     background: active ? "#0b2447" : "#fffdf8",
@@ -118,8 +117,6 @@ function ChipButton(props: {
       type="button"
       onClick={onClick}
       style={style}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
     >
       {children}
     </button>
@@ -181,7 +178,7 @@ function ScrollTable(props: { children: React.ReactNode }) {
       style={{
         width: "100%",
         overflowX: "auto",
-        WebkitOverflowScrolling: "touch" as any,
+        WebkitOverflowScrolling: "touch",
       }}
     >
       {props.children}
@@ -267,7 +264,7 @@ function QuickLinks(props: { items: { id: string; label: string }[] }) {
           display: "flex",
           gap: 10,
           overflowX: "auto",
-          WebkitOverflowScrolling: "touch" as any,
+          WebkitOverflowScrolling: "touch",
           paddingBottom: 4,
           paddingLeft: 16,
           paddingRight: 16,
@@ -439,7 +436,7 @@ function DictionarySections() {
                 display: "flex",
                 gap: 8,
                 overflowX: "auto",
-                WebkitOverflowScrolling: "touch" as any,
+                WebkitOverflowScrolling: "touch",
                 paddingBottom: 2,
               }}
             >

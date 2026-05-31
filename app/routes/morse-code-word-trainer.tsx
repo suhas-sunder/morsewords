@@ -31,8 +31,26 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { textToMorse } from "~/client/components/shared/morseUtils";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import {
+ normalizeMorseForDecode,
+ textToMorse,
+} from "~/client/components/shared/morseUtils";
+import {
+ normalizePlainAnswer,
+ shufflePrompts,
+} from "~/client/components/shared/practiceSessionUtils";
+import {
+ WORD_TRAINER_SPEED_RANGE,
+ clampFarnsworthWpm,
+} from "~/client/components/shared/morseSettings";
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
+import {
+ clampNumber,
+ readStoredNumber,
+ readStoredString,
+ safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 import styles from "~/client/components/shared/pageStyles";
 import { WORD_LISTS } from "~/client/data/morseLearning";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -88,33 +106,12 @@ export function meta({}: Route.MetaArgs) {
  });
 }
 
-function createSeededRandom(seed: number) {
- let state = seed >>> 0;
- return () => {
- state += 0x6d2b79f5;
- let t = state;
- t = Math.imul(t ^ (t >>> 15), t | 1);
- t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
- return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
- };
-}
-
 function shuffleWords(words: string[], seed: number) {
- const rng = createSeededRandom(seed);
- const copy = [...words];
- for (let index = copy.length - 1; index > 0; index -= 1) {
- const swapIndex = Math.floor(rng() * (index + 1));
- [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
- }
- return copy;
+ return shufflePrompts(words, seed);
 }
 
 function normalizeTrainerWord(raw: string) {
- return raw
- .normalize("NFKC")
- .toUpperCase()
- .replace(/[^A-Z0-9]/g,"")
- .trim();
+ return normalizePlainAnswer(raw).replace(/\s+/g,"");
 }
 
 function parseTrainerWords(input: string): ParsedTrainerWords {
@@ -148,36 +145,20 @@ function parseTrainerWords(input: string): ParsedTrainerWords {
 }
 
 function normalizeTextAnswer(value: string) {
- return value.trim().replace(/\s+/g,"").toUpperCase();
+ return normalizePlainAnswer(value).replace(/\s+/g,"");
 }
 
 function normalizeMorseAnswer(value: string) {
- return value
- .replace(/[\u00b7\u2022]/g,".")
- .replace(/[\u2013\u2014\u2212]/g,"-")
- .replace(/\s*\/\s*/g,"/")
- .replace(/\s+/g,"")
- .trim();
-}
-
-function readStoredString(key: string, fallback: string) {
- if (typeof window ==="undefined") return fallback;
- try {
- return window.localStorage.getItem(key) || fallback;
- } catch {
- return fallback;
- }
+ return normalizeMorseForDecode(value).replace(/\s+/g,"");
 }
 
 function readStoredInt(key: string, fallback: number) {
- if (typeof window ==="undefined") return fallback;
- try {
- const raw = window.localStorage.getItem(key);
- const parsed = raw ? Number(raw) : fallback;
- return Number.isFinite(parsed) ? parsed : fallback;
- } catch {
- return fallback;
- }
+ return readStoredNumber(key, {
+ fallback,
+ min: 0,
+ max: 9999,
+ integer: true,
+ });
 }
 
 function listLabel(name: WordListName) {
@@ -194,9 +175,12 @@ function getBuiltInWords(name: Exclude<WordListName,"custom">) {
 }
 
 export default function MorseCodeWordTrainer() {
+ const answeredPromptRef = React.useRef(false);
  const [listName, setListName] = React.useState<WordListName>("beginner");
  const [customWords, setCustomWords] = React.useState(() =>
- readStoredString(CUSTOM_WORDS_STORAGE_KEY, "signal\nteacher\npractice\ncopy"),
+ readStoredString(CUSTOM_WORDS_STORAGE_KEY, "signal\nteacher\npractice\ncopy", {
+ maxLength: 4000,
+ }),
  );
  const [mode, setMode] = React.useState<TrainerMode>("morse_to_text");
  const [deckSource, setDeckSource] = React.useState<DeckSource>("list");
@@ -253,20 +237,27 @@ export default function MorseCodeWordTrainer() {
  ? Math.round((progressValue / deck.length) * 100)
  : 0;
 
+ const handleWpmChange = React.useCallback((value: number) => {
+ const next = Math.round(
+ clampNumber(value, WORD_TRAINER_SPEED_RANGE.min, WORD_TRAINER_SPEED_RANGE.max),
+ );
+ setWpm(next);
+ setFarnsworthWpm((current) => clampFarnsworthWpm(current, next));
+ }, []);
+
+ const handleFarnsworthWpmChange = React.useCallback(
+ (value: number) => {
+ setFarnsworthWpm(clampFarnsworthWpm(value, wpm));
+ },
+ [wpm],
+ );
+
  React.useEffect(() => {
- try {
- window.localStorage.setItem(CUSTOM_WORDS_STORAGE_KEY, customWords);
- } catch {
- // Ignore storage failures.
- }
+ safeWriteStorage(CUSTOM_WORDS_STORAGE_KEY, customWords);
  }, [customWords]);
 
  React.useEffect(() => {
- try {
- window.localStorage.setItem(BEST_STREAK_STORAGE_KEY, String(bestStreak));
- } catch {
- // Ignore storage failures.
- }
+ safeWriteStorage(BEST_STREAK_STORAGE_KEY, String(bestStreak));
  }, [bestStreak]);
 
  React.useEffect(() => {
@@ -279,6 +270,7 @@ export default function MorseCodeWordTrainer() {
  }, [deckSource, weakWords.length]);
 
  function resetPromptOnly() {
+ answeredPromptRef.current = false;
  setAnswer("");
  setFeedback("idle");
  setShowAnswer(false);
@@ -348,7 +340,8 @@ export default function MorseCodeWordTrainer() {
  }
 
  function checkAnswer() {
- if (!activeWord || feedback ==="correct") return;
+ if (!activeWord || feedback !=="idle" || !normalizedAnswer || answeredPromptRef.current) return;
+ answeredPromptRef.current = true;
  if (runStartedAt === null) setRunStartedAt(Date.now());
 
  setAttempts((value) => value + 1);
@@ -371,6 +364,7 @@ export default function MorseCodeWordTrainer() {
  }
 
  function tryAgain() {
+ answeredPromptRef.current = false;
  setAnswer("");
  setFeedback("idle");
  setShowAnswer(false);
@@ -627,7 +621,10 @@ className="mt-2 min-h-36 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-sm tr
  value={answer}
  onChange={(event) => {
  setAnswer(event.target.value);
- if (feedback ==="incorrect") setFeedback("idle");
+ if (feedback ==="incorrect") {
+ answeredPromptRef.current = false;
+ setFeedback("idle");
+ }
  }}
  onKeyDown={(event) => {
  if (event.key ==="Enter") {
@@ -650,7 +647,7 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  ) : (
  <ToolButton
  onClick={checkAnswer}
- disabled={!activeWord || !answer.trim()}
+ disabled={!activeWord || feedback !=="idle" || !normalizedAnswer}
  >
  <CheckCircleIcon size={18} title="Check answer"/>
  Check answer
@@ -746,17 +743,19 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  <div className="mt-4 grid gap-5">
  <SliderRow
  label="Character speed" value={wpm}
+ labelTone="sky"
  min={5}
  max={35}
  step={1}
- unit="WPM" onChange={setWpm}
+ unit="WPM" onChange={handleWpmChange}
  />
  <SliderRow
  label="Farnsworth spacing" value={farnsworthWpm}
+ labelTone="sky"
  min={5}
- max={35}
+ max={Math.max(5, wpm)}
  step={1}
- unit="WPM" onChange={setFarnsworthWpm}
+ unit="WPM" onChange={handleFarnsworthWpmChange}
  help="Slows spacing only."/>
  </div>
  </div>
@@ -1043,7 +1042,6 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  </div>
  );
 }
-
 function NoticeList({
  parsed,
  listName,
@@ -1221,50 +1219,5 @@ function MiniLink({
  })} whitespace-nowrap text-center leading-none`}>
  {children}
  </a>
- );
-}
-
-function SliderRow({
- label,
- value,
- min,
- max,
- step,
- unit,
- onChange,
- help,
-}: {
- label: string;
- value: number;
- min: number;
- max: number;
- step: number;
- unit: string;
- onChange: (value: number) => void;
- help?: string;
-}) {
- const id = React.useId();
-
- return (
- <div>
- <div className="flex items-baseline justify-between gap-3">
- <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
- {label}
- </label>
- <span className="text-sm text-slate-600">
- {value} {unit}
- </span>
- </div>
- {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
- <input
- id={id}
- type="range" min={min}
- max={max}
- step={step}
- value={value}
- onChange={(event) => onChange(Number(event.target.value))}
- style={{ accentColor:"#38bdf8"}}
-className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none"/>
- </div>
  );
 }

@@ -25,83 +25,55 @@ import TypingFaq from "./TypingFaq";
 // NOTE: We intentionally keep stats inline on this page to match the Practice UI density.
 
 import { decodeTypingRaw } from "./typingEngine";
+import { TYPING_DURATIONS } from "~/client/components/shared/morseSettings";
+import {
+  readStoredBoolean,
+  readStoredEnum,
+  readStoredNumberEnum,
+  safeWriteStorage,
+} from "~/client/components/shared/settingsStorage";
 
 const LS_INPUT_MODE = "mw_typing_input_mode";
 const LS_SHOW_STATS = "mw_typing_show_stats";
 const LS_TYPING_DURATION = "mw_typing_duration_sec";
-
-function readStr(key: string, fallback: string) {
-  if (typeof window === "undefined") return fallback;
-  try {
-    return window.localStorage.getItem(key) || fallback;
-  } catch {
-    return fallback;
-  }
-}
+const INPUT_MODES: readonly InputMode[] = ["dotdash", "fj"] as const;
+const DURATION_PRESETS: Array<{ label: string; sec: number }> = [
+  { label: "10s", sec: 10 },
+  { label: "30s", sec: 30 },
+  { label: "1m", sec: 60 },
+  { label: "2m", sec: 120 },
+  { label: "5m", sec: 300 },
+  { label: "30m", sec: 1800 },
+];
 
 function writeStr(key: string, val: string) {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.setItem(key, val);
-  } catch {
-    // ignore
-  }
-}
-
-function readBool(key: string, fallback: boolean) {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const v = window.localStorage.getItem(key);
-    if (v == null) return fallback;
-    return v === "1";
-  } catch {
-    return fallback;
-  }
+  safeWriteStorage(key, val);
 }
 
 function writeBool(key: string, val: boolean) {
-  writeStr(key, val ? "1" : "0");
-}
-
-function readNum(key: string, fallback: number) {
-  const s = readStr(key, "");
-  const n = Number(s);
-  return Number.isFinite(n) ? n : fallback;
+  safeWriteStorage(key, val ? "1" : "0");
 }
 
 function writeNum(key: string, val: number) {
-  writeStr(key, String(val));
+  safeWriteStorage(key, String(val));
 }
 
 type Props = {
-  jsonLd: any[];
+  jsonLd: unknown[];
 };
 
 export default function TypingPage({ jsonLd }: Props) {
   const inputRef = React.useRef<HTMLTextAreaElement | null>(null);
 
   const [inputMode, setInputMode] = React.useState<InputMode>(
-    () => (readStr(LS_INPUT_MODE, "dotdash") as InputMode) || "dotdash",
+    () => readStoredEnum(LS_INPUT_MODE, INPUT_MODES, "dotdash"),
   );
   const [showStats, setShowStats] = React.useState(() =>
-    readBool(LS_SHOW_STATS, true),
-  );
-
-  // Session timer (endurance typing)
-  const DURATION_PRESETS: Array<{ label: string; sec: number }> = React.useMemo(
-    () => [
-      { label: "10s", sec: 10 },
-      { label: "30s", sec: 30 },
-      { label: "1m", sec: 60 },
-      { label: "2m", sec: 120 },
-      { label: "5m", sec: 300 },
-      { label: "30m", sec: 1800 },
-    ],
-    [],
+    readStoredBoolean(LS_SHOW_STATS, true),
   );
 
   const [durationSec, setDurationSec] = React.useState<number>(() =>
-    readNum(LS_TYPING_DURATION, 30),
+    readStoredNumberEnum(LS_TYPING_DURATION, TYPING_DURATIONS, 30),
   );
   const [sessionState, setSessionState] = React.useState<
     "idle" | "running" | "paused" | "done"

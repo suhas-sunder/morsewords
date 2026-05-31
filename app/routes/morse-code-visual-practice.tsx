@@ -15,8 +15,18 @@ import StrobeWarning, {
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
+import FlashLamp from "~/client/components/shared/FlashLamp";
+import {
+  isFlashAllowedNow,
+  useFlashSafety,
+} from "~/client/components/shared/useFlashSafety";
 import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
+import {
+  VISUAL_SPEED_RANGE,
+  clampFarnsworthWpm,
+} from "~/client/components/shared/morseSettings";
+import { clampNumber } from "~/client/components/shared/settingsStorage";
 import styles from "~/client/components/shared/pageStyles";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import {
@@ -99,7 +109,7 @@ function useVisualPlayback(pattern: string, wpm: number, farnsworthWpm: number) 
 }
 
 export default function MorseCodeVisualPractice() {
-  const { disableFlashEffects } = useDisplaySettings();
+  const { disableFlashEffects, flashAllowed } = useFlashSafety();
   const [message, setMessage] = React.useState("sos");
   const [wpm, setWpm] = React.useState(14);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
@@ -107,15 +117,40 @@ export default function MorseCodeVisualPractice() {
   const [hasFlashed, setHasFlashed] = React.useState(false);
   const morse = React.useMemo(() => textToMorse(message), [message]);
   const { active, play, stop } = useVisualPlayback(morse, wpm, farnsworthWpm);
+  const stopPlaybackRef = React.useRef(stop);
 
   React.useEffect(() => {
-    if (!disableFlashEffects) return;
+    stopPlaybackRef.current = stop;
+  }, [stop]);
+
+  const handleWpmChange = React.useCallback((value: number) => {
+    const next = Math.round(
+      clampNumber(value, VISUAL_SPEED_RANGE.min, VISUAL_SPEED_RANGE.max),
+    );
+    setWpm(next);
+    setFarnsworthWpm((current) => clampFarnsworthWpm(current, next, 5));
+  }, []);
+
+  const handleFarnsworthWpmChange = React.useCallback(
+    (value: number) => {
+      setFarnsworthWpm(clampFarnsworthWpm(value, wpm, 5));
+    },
+    [wpm],
+  );
+
+  React.useEffect(() => {
+    if (flashAllowed) return;
     stop();
     setHasFlashed(false);
-  }, [disableFlashEffects, stop]);
+  }, [flashAllowed, stop]);
+
+  React.useEffect(() => {
+    stopPlaybackRef.current();
+    setHasFlashed(false);
+  }, [message, wpm, farnsworthWpm]);
 
   function flashMessage() {
-    if (disableFlashEffects) return;
+    if (!morse || !flashAllowed || !isFlashAllowedNow()) return;
     setHasFlashed(true);
     play();
   }
@@ -187,18 +222,16 @@ export default function MorseCodeVisualPractice() {
               ) : hasFlashed ? (
                 <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
               ) : null}
-              <div
-                role="img"
-                className={
-                  "h-44 w-44 rounded-full transition-all duration-75 " +
-                  (active ? "bg-sky-200" : "bg-[#fffaf2]")
-                }
-                aria-label={active ? "Morse light on" : "Morse light off"}
+              <FlashLamp
+                active={active && flashAllowed}
+                disabled={!flashAllowed}
+                label="Morse visual practice flash lamp"
+                size="lg"
               />
               <button
                 type="button"
                 onClick={flashMessage}
-                disabled={disableFlashEffects}
+                disabled={!flashAllowed}
                 aria-describedby={
                   disableFlashEffects
                     ? FLASH_DISABLED_NOTICE_ID
@@ -210,7 +243,7 @@ export default function MorseCodeVisualPractice() {
                   tone: "dark",
                   size: "lg",
                   full: true,
-                  disabled: disableFlashEffects,
+                  disabled: !flashAllowed,
                 })} mt-6`}
               >
                 <LightBulbIcon size={20} title="Flash message" />
@@ -233,21 +266,23 @@ export default function MorseCodeVisualPractice() {
               <div className="mt-5 grid gap-5">
                 <SliderRow
                   label="Character speed"
+                  labelTone="sky"
                   value={wpm}
                   min={6}
                   max={30}
                   step={1}
                   unit="WPM"
-                  onChange={setWpm}
+                  onChange={handleWpmChange}
                 />
                 <SliderRow
                   label="Farnsworth spacing"
+                  labelTone="sky"
                   value={farnsworthWpm}
                   min={5}
-                  max={30}
+                  max={Math.max(5, wpm)}
                   step={1}
                   unit="WPM"
-                  onChange={setFarnsworthWpm}
+                  onChange={handleFarnsworthWpmChange}
                   help="Slows spacing only."
                 />
               </div>
@@ -447,53 +482,6 @@ export default function MorseCodeVisualPractice() {
         <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
       <BreadcrumbTrail current="Morse Code Visual Practice" />
-    </div>
-  );
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (value: number) => void;
-  help?: string;
-}) {
-  const id = React.useId();
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-extrabold text-sky-950">
-          {label}
-        </label>
-        <span className="text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-      {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        style={{ accentColor: "#38bdf8" }}
- className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0 focus-visible:outline-none"
-      />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 import { blockExternalNetwork } from "./helpers";
 
 const THEME_STORAGE_KEY = "morsewords-theme";
@@ -87,6 +87,66 @@ function isExpectedTestHarnessConsoleError(text: string) {
   );
 }
 
+function parseRgbTriplet(value: string) {
+  const match = value.match(/rgba?\(([^)]+)\)/);
+  if (!match) return null;
+
+  const channels = match[1]
+    .split(",")
+    .slice(0, 3)
+    .map((part) => Number.parseFloat(part.trim()));
+
+  return channels.length === 3 && channels.every(Number.isFinite)
+    ? channels
+    : null;
+}
+
+function relativeLuminance(rgb: number[]) {
+  return rgb
+    .map((value) => {
+      const channel = value / 255;
+      return channel <= 0.03928
+        ? channel / 12.92
+        : Math.pow((channel + 0.055) / 1.055, 2.4);
+    })
+    .reduce((sum, channel, index) => {
+      return sum + channel * [0.2126, 0.7152, 0.0722][index];
+    }, 0);
+}
+
+function contrastRatio(foreground: string, background: string) {
+  const foregroundRgb = parseRgbTriplet(foreground);
+  const backgroundRgb = parseRgbTriplet(background);
+  expect(foregroundRgb, `foreground color ${foreground}`).not.toBeNull();
+  expect(backgroundRgb, `background color ${background}`).not.toBeNull();
+
+  const foregroundLuminance = relativeLuminance(foregroundRgb as number[]);
+  const backgroundLuminance = relativeLuminance(backgroundRgb as number[]);
+  const light = Math.max(foregroundLuminance, backgroundLuminance);
+  const dark = Math.min(foregroundLuminance, backgroundLuminance);
+
+  return (light + 0.05) / (dark + 0.05);
+}
+
+async function renderedColors(locator: Locator) {
+  return locator.evaluate((element) => {
+    const styles = window.getComputedStyle(element);
+    return {
+      color: styles.color,
+      backgroundColor: styles.backgroundColor,
+    };
+  });
+}
+
+function themeCookieValueScript(key: string) {
+  const prefix = `${key}=`;
+  return document.cookie
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(prefix))
+    ?.slice(prefix.length) ?? null;
+}
+
 async function expectRootTheme(page: Page, expected: "light" | "dark") {
   await expect
     .poll(() =>
@@ -117,6 +177,9 @@ test.describe("navbar theme mode", () => {
     await expect
       .poll(() => page.evaluate((key) => localStorage.getItem(key), THEME_STORAGE_KEY))
       .toBe("dark");
+    await expect
+      .poll(() => page.evaluate(themeCookieValueScript, THEME_STORAGE_KEY))
+      .toBe("dark");
 
     await page.reload({ waitUntil: "domcontentloaded" });
     await waitForHydration(page);
@@ -129,6 +192,9 @@ test.describe("navbar theme mode", () => {
     await expect
       .poll(() => page.evaluate((key) => localStorage.getItem(key), THEME_STORAGE_KEY))
       .toBe("light");
+    await expect
+      .poll(() => page.evaluate(themeCookieValueScript, THEME_STORAGE_KEY))
+      .toBe("light");
   });
 
   test("keeps light as the default when storage is empty", async ({ page }) => {
@@ -140,6 +206,40 @@ test.describe("navbar theme mode", () => {
     await expect
       .poll(() => page.evaluate((key) => localStorage.getItem(key), THEME_STORAGE_KEY))
       .toBe(null);
+  });
+
+  test("dark theme cookie is rendered on the server before hydration", async ({
+    page,
+  }) => {
+    for (const route of ["/morse-code-printable-chart", "/typing"]) {
+      const response = await page.request.get(route, {
+        headers: { Cookie: `${THEME_STORAGE_KEY}=dark` },
+      });
+      expect(response.ok(), route).toBe(true);
+      const html = await response.text();
+
+      expect(html, `${route} server html`).toContain(
+        '<html lang="en" data-theme="dark"',
+      );
+    }
+  });
+
+  test("legacy localStorage dark preference is mirrored into the theme cookie", async ({
+    page,
+  }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.evaluate((key) => {
+      window.localStorage.setItem(key, "dark");
+      document.cookie = `${key}=; Max-Age=0; Path=/; SameSite=Lax`;
+    }, THEME_STORAGE_KEY);
+
+    await page.goto("/typing", { waitUntil: "domcontentloaded" });
+    await waitForHydration(page);
+
+    await expectRootTheme(page, "dark");
+    await expect
+      .poll(() => page.evaluate(themeCookieValueScript, THEME_STORAGE_KEY))
+      .toBe("dark");
   });
 
   test("storage-heavy routes do not crash when localStorage is unavailable", async ({
@@ -309,6 +409,113 @@ test.describe("navbar theme mode", () => {
     expect(shadowAudit.buttonShadow).not.toBe("none");
     expect(shadowAudit.buttonShadow).not.toContain("0px 0px 0px 1px");
     expect(shadowAudit.buttonShadow).not.toContain("0px 0px");
+  });
+
+  test("dark hover and SOS mark contrast stays readable", async ({ page }) => {
+    await page.addInitScript((key) => {
+      try {
+        window.localStorage.setItem(key, "dark");
+        if (document.documentElement) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      } catch (error) {
+        if (document.documentElement) {
+          document.documentElement.dataset.theme = "light";
+        }
+      }
+    }, THEME_STORAGE_KEY);
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForHydration(page);
+    await expectRootTheme(page, "dark");
+
+    const worksheetCard = page
+      .locator('#morse-code-navigation a[href="/morse-code-printable-chart"]')
+      .first();
+    await worksheetCard.hover();
+    const worksheetCardColors = await renderedColors(worksheetCard);
+    const worksheetTitleColors = await renderedColors(
+      worksheetCard.locator(".mw-heading"),
+    );
+    const worksheetDescriptionColors = await renderedColors(
+      worksheetCard.locator(".mw-text-muted"),
+    );
+
+    expect(
+      contrastRatio(
+        worksheetTitleColors.color,
+        worksheetCardColors.backgroundColor,
+      ),
+      "hovered toolkit title contrast",
+    ).toBeGreaterThanOrEqual(4.5);
+    expect(
+      contrastRatio(
+        worksheetDescriptionColors.color,
+        worksheetCardColors.backgroundColor,
+      ),
+      "hovered toolkit description contrast",
+    ).toBeGreaterThanOrEqual(4.5);
+
+    await page.goto("/audio", { waitUntil: "domcontentloaded" });
+    await waitForHydration(page);
+    const controlButtons = [
+      page.getByRole("button", { name: /^(Hide|Show) advanced$/ }),
+      page.getByRole("button", { name: /^(Hide|Show) export$/ }),
+    ];
+    for (const controlButton of controlButtons) {
+      await expect(controlButton).toBeVisible();
+      const controlLabel =
+        (await controlButton.textContent()) ?? "audio control contrast";
+      const colors = await renderedColors(controlButton);
+      expect(
+        contrastRatio(colors.color, colors.backgroundColor),
+        controlLabel,
+      ).toBeGreaterThanOrEqual(4.5);
+
+      await controlButton.hover();
+      const hoverColors = await renderedColors(controlButton);
+      expect(
+        contrastRatio(hoverColors.color, hoverColors.backgroundColor),
+        `${controlLabel} hover`,
+      ).toBeGreaterThanOrEqual(4.5);
+      await page.mouse.move(0, 0);
+    }
+
+    await page.goto("/morse-code-sos", { waitUntil: "domcontentloaded" });
+    await waitForHydration(page);
+    const sosReference = page
+      .locator("section")
+      .filter({ hasText: "What is SOS in Morse code?" })
+      .first();
+    const sosTileColors = await renderedColors(
+      sosReference.locator("div.rounded-xl").filter({ hasText: /^S$/ }).first(),
+    );
+    const sosMarkColors = await renderedColors(
+      sosReference.locator(".mw-sos-mark").first(),
+    );
+    expect(
+      contrastRatio(sosMarkColors.backgroundColor, sosTileColors.backgroundColor),
+      "SOS dot/dash mark contrast",
+    ).toBeGreaterThanOrEqual(4.5);
+
+    await page.evaluate((key) => {
+      window.localStorage.setItem(key, "light");
+      document.documentElement.dataset.theme = "light";
+    }, THEME_STORAGE_KEY);
+    await expectRootTheme(page, "light");
+    const lightSosMarkColors = await renderedColors(
+      page.locator(".mw-sos-mark").first(),
+    );
+    const expectedLightMarkBackground = await page.evaluate(() => {
+      const probe = document.createElement("span");
+      probe.className = "bg-slate-950";
+      document.body.appendChild(probe);
+      const color = window.getComputedStyle(probe).backgroundColor;
+      probe.remove();
+      return color;
+    });
+
+    expect(lightSosMarkColors.backgroundColor).toBe(expectedLightMarkBackground);
   });
 
   test("representative routes render in persisted dark mode", async ({ page }) => {

@@ -1,7 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-import { TEXT_TO_MORSE } from "../../app/client/components/shared/morseMaps";
+import { TEXT_TO_MORSE } from "../../app/client/components/shared/morseUtils";
 import {
   LETTER_ITEMS,
   NUMBER_ITEMS,
