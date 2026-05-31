@@ -1,5 +1,4 @@
 import * as React from "react";
-import QRCode from "qrcode";
 
 import { DownloadIcon, ShareIcon, WarningIcon } from "~/client/assets/svg/Icons";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
@@ -87,6 +86,7 @@ type StoredPresetMap = Partial<Record<PresetName, PrintableSettings>>;
 const SITE_NAME = "MorseWords";
 const WEBSITE_URL = "https://www.morsewords.com";
 const DISPLAY_URL = "www.morsewords.com";
+let qrCodeModulePromise: Promise<typeof import("qrcode")> | null = null;
 const SIGN_OFF_MORSE = "-- .- -.. . / .-- .. - .... / 💖";
 
 const SETTINGS_STORAGE_KEY = "morsewords-printable-chart-settings-v6";
@@ -571,6 +571,7 @@ function buildPracticeRow({
 }
 
 async function makeWebsiteQrCodeDataUrl() {
+  const QRCode = await loadQrCodeModule();
   return QRCode.toDataURL(WEBSITE_URL, {
     width: 180,
     margin: 1,
@@ -580,6 +581,14 @@ async function makeWebsiteQrCodeDataUrl() {
       light: "#ffffff",
     },
   });
+}
+
+function loadQrCodeModule() {
+  if (!qrCodeModulePromise) {
+    qrCodeModulePromise = import("qrcode");
+  }
+
+  return qrCodeModulePromise;
 }
 
 function buildReferenceTableHtml({

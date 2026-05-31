@@ -20,7 +20,7 @@ import {
   ToolSampleButtons,
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
-import { audioBufferToMp3Blob, type ExportFormat } from "~/client/components/morse-code-sound-generator/audioExport";
+import type { ExportFormat } from "~/client/components/morse-code-sound-generator/audioExport";
 import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import {
   downloadBlobFile,
@@ -434,6 +434,9 @@ export default function MorseAudioTranslator({
         sampleRate,
         tailMs,
       });
+      const { audioBufferToMp3Blob } = await import(
+        "~/client/components/audio/mp3Export"
+      );
       const blob = await audioBufferToMp3Blob(buffer, mp3Kbps);
       const download = downloadBlobFile({
         blob,
