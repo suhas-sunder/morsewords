@@ -12,7 +12,7 @@ import {
   SUPPORTED_TEXT_CHARACTERS,
   textToMorse,
 } from "../../app/client/components/shared/morseUtils";
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const supportedText = fc
   .array(fc.constantFrom(...SUPPORTED_TEXT_CHARACTERS, " "), {
@@ -114,22 +114,33 @@ test("reader and word separator routes use shared repeated-separator behavior", 
   await blockExternalNetwork(page);
 
   await page.goto("/morse-code-reader", { waitUntil: "domcontentloaded" });
-  await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+  await waitForRouteReady(page);
   const readerInput = page.getByLabel("Morse code input");
-  await readerInput.fill("... /// //// --- ||| ...");
-  await expect(readerInput).toHaveValue("... /// //// --- ||| ...");
-  await expect(page.getByLabel("Decoded text output")).toHaveText("S O S");
-  await expect(page.getByLabel("Normalized Morse output")).toHaveText(
-    "... / --- / ...",
-  );
+  await expect(async () => {
+    await readerInput.fill("... /// //// --- ||| ...");
+    await expect(readerInput).toHaveValue("... /// //// --- ||| ...");
+    await expect(page.getByLabel("Decoded text output")).toHaveText("S O S", {
+      timeout: 1_000,
+    });
+    await expect(page.getByLabel("Normalized Morse output")).toHaveText(
+      "... / --- / ...",
+      { timeout: 1_000 },
+    );
+  }).toPass({ timeout: 15_000 });
 
   await page.goto("/morse-code-word-separator", {
     waitUntil: "domcontentloaded",
   });
-  await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+  await waitForRouteReady(page);
   const separatorInput = page.getByLabel("Paste Morse");
-  await separatorInput.fill("... /// //// --- ||| ...");
-  await expect(separatorInput).toHaveValue("... /// //// --- ||| ...");
-  await expect(page.getByText("Words: 3 | Letters: 3")).toBeVisible();
-  await expect(page.locator("pre").first()).toHaveText("...       ---       ...");
+  await expect(async () => {
+    await separatorInput.fill("... /// //// --- ||| ...");
+    await expect(separatorInput).toHaveValue("... /// //// --- ||| ...");
+    await expect(page.getByText("Words: 3 | Letters: 3")).toBeVisible({
+      timeout: 1_000,
+    });
+    await expect(page.locator("pre").first()).toHaveText("...       ---       ...", {
+      timeout: 1_000,
+    });
+  }).toPass({ timeout: 15_000 });
 });

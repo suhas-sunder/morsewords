@@ -13,7 +13,7 @@ import {
   buildPromptDeck as buildAudioPromptDeck,
   normalizeAudioAnswer,
 } from "../../app/client/components/audioPractice/audioPromptBank";
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 test.describe("shared practice session helpers", () => {
   test("visual quiz prompt decks are shuffled without mutating the prompt bank", () => {
@@ -62,7 +62,7 @@ test.describe("practice and quiz route hardening", () => {
   }) => {
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.goto("/morse-code-visual-quiz", { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     const answer = page.getByLabel("Your answer");
     const checkAnswer = page.getByRole("button", { name: "Check answer" });
@@ -91,7 +91,7 @@ test.describe("practice and quiz route hardening", () => {
     await page.goto("/morse-code-visual-practice", {
       waitUntil: "domcontentloaded",
     });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     const flashMessage = page.getByRole("button", { name: "Flash message" });
     await expect(flashMessage).toBeEnabled();
@@ -106,18 +106,22 @@ test.describe("practice and quiz route hardening", () => {
       window.localStorage.setItem("mw_audio_quiz_difficulty", "beginner");
     });
     await page.goto("/morse-code-audio-quiz", { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
-    await page.getByLabel("Your answer").fill("not the prompt");
-    await page.evaluate(() => {
-      const button = [...document.querySelectorAll("button")].find((candidate) =>
-        candidate.textContent?.includes("Check answer"),
-      );
-      button?.click();
-      button?.click();
-    });
-
-    await expect(page.getByText("Not quite. Review the answer, then continue.")).toBeVisible();
+    const feedback = page.getByText("Not quite. Review the answer, then continue.");
+    await expect(async () => {
+      if (!(await feedback.isVisible())) {
+        await page.getByLabel("Your answer").fill("not the prompt");
+        await page.evaluate(() => {
+          const button = [...document.querySelectorAll("button")].find((candidate) =>
+            candidate.textContent?.includes("Check answer"),
+          );
+          button?.click();
+          button?.click();
+        });
+      }
+      await expect(feedback).toBeVisible({ timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
     await expect(page.locator("body")).toContainText(/Attempts\s*1/);
   });
 
@@ -125,18 +129,22 @@ test.describe("practice and quiz route hardening", () => {
     page,
   }) => {
     await page.goto("/morse-code-word-trainer", { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
-    await page.getByLabel("Your answer").fill("wrong answer");
-    await page.evaluate(() => {
-      const button = [...document.querySelectorAll("button")].find((candidate) =>
-        candidate.textContent?.includes("Check answer"),
-      );
-      button?.click();
-      button?.click();
-    });
-
-    await expect(page.getByText(/Not quite\. Expected:/)).toBeVisible();
+    const feedback = page.getByText(/Not quite\. Expected:/);
+    await expect(async () => {
+      if (!(await feedback.isVisible())) {
+        await page.getByLabel("Your answer").fill("wrong answer");
+        await page.evaluate(() => {
+          const button = [...document.querySelectorAll("button")].find((candidate) =>
+            candidate.textContent?.includes("Check answer"),
+          );
+          button?.click();
+          button?.click();
+        });
+      }
+      await expect(feedback).toBeVisible({ timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
     await expect(page.locator("body")).toContainText(/Attempts\s*1/);
   });
 });

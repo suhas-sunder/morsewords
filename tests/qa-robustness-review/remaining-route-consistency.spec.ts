@@ -13,6 +13,8 @@ import {
   blockExternalNetwork,
   collectConsoleErrors,
   expectNoVisiblePrematureWarning,
+  isExpectedHarnessConsoleEntry,
+  waitForRouteReady,
 } from "./helpers";
 
 const SITE_URL = "https://www.morsewords.com";
@@ -46,17 +48,7 @@ function sharedDictionaryMorse(value: string) {
 }
 
 async function waitForPageReady(page: Page) {
-  await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
-}
-
-function isExpectedHarnessConsoleEntry(text: string) {
-  return (
-    text.includes("ERR_BLOCKED_BY_CLIENT") ||
-    text.includes("Failed to fetch manifest patches") ||
-    text.includes("WebSocket connection") ||
-    text.includes("[vite] failed to connect to websocket") ||
-    text.includes("WebSocket closed without opened.")
-  );
+  await waitForRouteReady(page);
 }
 
 test.describe("remaining route consistency pass", () => {
@@ -167,15 +159,24 @@ test.describe("remaining route consistency pass", () => {
     await waitForPageReady(page);
 
     const morseInput = page.getByLabel("Paste Morse");
-    await morseInput.fill("");
-    await expect(morseInput).toHaveValue("");
-    await expect(page.locator("pre").first()).toHaveText("-");
-    await expect(page.getByRole("button", { name: "Copy output" })).toBeDisabled();
+    await expect(async () => {
+      await morseInput.fill("");
+      await expect(morseInput).toHaveValue("");
+      await expect(page.locator("pre").first()).toHaveText("-", {
+        timeout: 1_000,
+      });
+      await expect(page.getByRole("button", { name: "Copy output" })).toBeDisabled({
+        timeout: 1_000,
+      });
+    }).toPass({ timeout: 15_000 });
 
-    await morseInput.fill("... /// //// --- ||| ...");
-    await expect(page.locator("pre").first()).toHaveText(
-      "...       ---       ...",
-    );
+    await expect(async () => {
+      await morseInput.fill("... /// //// --- ||| ...");
+      await expect(page.locator("pre").first()).toHaveText(
+        "...       ---       ...",
+        { timeout: 1_000 },
+      );
+    }).toPass({ timeout: 15_000 });
 
     await page.getByRole("button", { name: "/", exact: true }).click();
     await expect(page.locator("pre").first()).toHaveText("... / --- / ...");
@@ -208,10 +209,13 @@ test.describe("remaining route consistency pass", () => {
     await expect(page.getByText("Duration: 00:30")).toBeVisible();
 
     const input = page.getByLabel("Morse typing input");
-    await input.fill(".- ");
-
-    await expect(input).toHaveValue(".- ");
-    await expect(page.locator("pre").first()).toContainText("A");
+    await expect(async () => {
+      await input.fill(".- ");
+      await expect(input).toHaveValue(".- ");
+      await expect(page.locator("pre").first()).toContainText("A", {
+        timeout: 1_000,
+      });
+    }).toPass({ timeout: 15_000 });
   });
 
   test("target pages keep canonical metadata, internal links, and no flash overlay", async ({

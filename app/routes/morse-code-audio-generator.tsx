@@ -1,10 +1,8 @@
-// app/routes/morse-code-audio-generator.tsx
-import { redirect, type LoaderFunction } from "react-router";
+import { ROUTES } from "~/client/data/routes";
+import { makeRedirectAliasLoader } from "./redirectAliases";
 
-export const loader: LoaderFunction = async () => {
-  throw redirect("/audio", { status: 301 });
-};
+export const loader = makeRedirectAliasLoader(ROUTES.audioGeneratorAlias);
 
-export default function MorseCodeTranslatorRedirect() {
+export default function RedirectAliasRoute() {
   return null;
 }

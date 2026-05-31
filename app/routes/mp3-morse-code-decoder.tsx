@@ -1,9 +1,8 @@
-import { redirect, type LoaderFunction } from "react-router";
+import { ROUTES } from "~/client/data/routes";
+import { makeRedirectAliasLoader } from "./redirectAliases";
 
-export const loader: LoaderFunction = async () => {
-  throw redirect("/morse-code-audio-decoder", { status: 301 });
-};
+export const loader = makeRedirectAliasLoader(ROUTES.mp3AudioDecoderAlias);
 
-export default function Mp3MorseCodeDecoderRedirect() {
+export default function RedirectAliasRoute() {
   return null;
 }

@@ -552,6 +552,18 @@ export default function MorseAudioDecoderTool() {
                 onChange={setAnalysisWindowMs}
               />
             </div>
+
+            <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-4 text-sm leading-relaxed text-slate-700">
+              <p className="font-extrabold text-sky-950">
+                Advanced setting guide
+              </p>
+              <p className="mt-2">
+                Use Auto first. Raise sensitivity when clean beeps are missed;
+                lower it when noise turns into dots and dashes. Minimum tone
+                filters clicks, tone smoothing bridges tiny dropouts, and exact
+                spacing keeps the original gaps for manual review.
+              </p>
+            </div>
           </div>
         )}
       </div>

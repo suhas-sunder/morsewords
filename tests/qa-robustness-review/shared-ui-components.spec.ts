@@ -2,7 +2,7 @@ import { expect, test, type Locator } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const ROOT = process.cwd();
 
@@ -102,14 +102,20 @@ test.describe("shared route controls", () => {
       page,
     }) => {
       await page.goto(route, { waitUntil: "domcontentloaded" });
-      await page
-        .waitForLoadState("networkidle", { timeout: 15_000 })
-        .catch(() => {});
+      await waitForRouteReady(page);
 
       await expect(page.getByLabel("Character speed").first()).toBeVisible();
-      await page.getByRole("button", { name: "Show advanced settings" }).click();
 
       const flashButton = page.getByRole("button", { name: /Flash/ });
+      const advancedButton = page.getByRole("button", {
+        name: "Show advanced settings",
+      });
+      await expect(async () => {
+        if (await advancedButton.isVisible()) {
+          await advancedButton.click();
+        }
+        await expect(flashButton).toBeEnabled({ timeout: 1_000 });
+      }).toPass({ timeout: 15_000 });
       await expect(flashButton).toBeEnabled();
       await expect(flashButton).toHaveAttribute("aria-pressed", "false");
 
@@ -132,9 +138,7 @@ test.describe("shared route controls", () => {
       page,
     }) => {
       await page.goto(route, { waitUntil: "domcontentloaded" });
-      await page
-        .waitForLoadState("networkidle", { timeout: 15_000 })
-        .catch(() => {});
+      await waitForRouteReady(page);
 
       const speed = page.getByLabel("Character speed").first();
       const spacing = page.getByLabel("Farnsworth spacing").first();
@@ -151,9 +155,7 @@ test.describe("shared route controls", () => {
     await page.goto("/morse-code-word-trainer", {
       waitUntil: "domcontentloaded",
     });
-    await page
-      .waitForLoadState("networkidle", { timeout: 15_000 })
-      .catch(() => {});
+    await waitForRouteReady(page);
 
     const answerField = page.getByLabel("Your answer").first();
     await expect(answerField).toBeEnabled();

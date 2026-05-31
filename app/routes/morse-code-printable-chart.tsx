@@ -3437,6 +3437,11 @@ export default function MorseCodePrintableChart() {
                   }
                 />
               </div>
+              <p className="mt-3 break-words text-xs leading-relaxed text-slate-500">
+                The QR links to the MorseWords printable chart page. It does not
+                include your worksheet settings, custom text, practice words, or
+                answer key.
+              </p>
             </SettingsSection>
           </div>
 

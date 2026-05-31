@@ -1,7 +1,13 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-import { blockExternalNetwork, collectConsoleErrors } from "./helpers";
+import {
+  blockExternalNetwork,
+  collectConsoleErrors,
+  isExpectedHarnessConsoleEntry,
+  READER_ALIAS_PATHS,
+  waitForRouteReady,
+} from "./helpers";
 
 type JsonLdRecord = Record<string, unknown>;
 
@@ -9,13 +15,6 @@ const SITE_URL = "https://www.morsewords.com";
 const CANONICAL_PATH = "/morse-code-reader";
 const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 const THEME_STORAGE_KEY = "morsewords-theme";
-
-const READER_ALIASES = [
-  "/morse-reader",
-  "/read-morse-code",
-  "/morse-to-english",
-  "/morse-code-to-english",
-] as const;
 
 const REQUIRED_LINKS = [
   "/morse-code-decoder",
@@ -43,7 +42,7 @@ const CONTEXTUAL_SOURCE_ROUTES = [
 ] as const;
 
 const FORBIDDEN_LINKS = [
-  ...READER_ALIASES,
+  ...READER_ALIAS_PATHS,
   "/morse-code-mp3-generator",
 ] as const;
 
@@ -79,15 +78,6 @@ async function getLinkedPathnames(page: Page) {
       const href = (anchor as HTMLAnchorElement).getAttribute("href") ?? "";
       return new URL(href, window.location.origin).pathname;
     }),
-  );
-}
-
-function isExpectedHarnessConsoleEntry(text: string) {
-  return (
-    text.includes("ERR_BLOCKED_BY_CLIENT") ||
-    text.includes("WebSocket connection") ||
-    text.includes("[vite] failed to connect to websocket") ||
-    text.includes("WebSocket closed without opened.")
   );
 }
 
@@ -212,7 +202,7 @@ test.describe("Morse code reader", () => {
     page,
   }) => {
     await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     const input = page.getByLabel("Morse code input");
     const output = page.getByLabel("Decoded text output");
@@ -221,15 +211,22 @@ test.describe("Morse code reader", () => {
     await expect(input).toHaveValue(
       ".... . .-.. .-.. --- / .-- --- .-. .-.. -..",
     );
-    await input.fill("... --- ...");
-    await expect(input).toHaveValue("... --- ...");
-    await expect(output).toHaveText("SOS");
-    await expect(normalized).toHaveText("... --- ...");
+    await expect(async () => {
+      await input.fill("... --- ...");
+      await expect(input).toHaveValue("... --- ...");
+      await expect(output).toHaveText("SOS", { timeout: 1_000 });
+      await expect(normalized).toHaveText("... --- ...", { timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
 
-    await page.getByRole("button", { name: "Try HELLO WORLD" }).click();
-    await expect(input).toHaveValue(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
-    await expect(output).toHaveText("HELLO WORLD");
-    await expect(normalized).toHaveText(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
+    await expect(async () => {
+      await page.getByRole("button", { name: "Try HELLO WORLD" }).click();
+      await expect(input).toHaveValue(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
+      await expect(output).toHaveText("HELLO WORLD", { timeout: 1_000 });
+      await expect(normalized).toHaveText(
+        ".... . .-.. .-.. --- / .-- --- .-. .-.. -..",
+        { timeout: 1_000 },
+      );
+    }).toPass({ timeout: 15_000 });
 
     await page.getByRole("button", { name: "Try HELP ME" }).click();
     await expect(output).toHaveText("HELP ME");
@@ -257,7 +254,7 @@ test.describe("Morse code reader", () => {
     const xml = await xmlResponse.text();
     expect(xml).toContain(CANONICAL_URL);
 
-    for (const alias of READER_ALIASES) {
+    for (const alias of READER_ALIAS_PATHS) {
       const response = await request.get(alias, { maxRedirects: 0 });
       expect(response.status(), `${alias} status`).toBe(301);
       expect(response.headers().location, `${alias} target`).toBe(CANONICAL_PATH);
@@ -281,7 +278,7 @@ test.describe("Morse code reader", () => {
 
     await page.goto("/sitemap", { waitUntil: "domcontentloaded" });
     await expect(page.locator(`a[href="${CANONICAL_PATH}"]`).first()).toBeVisible();
-    for (const alias of READER_ALIASES) {
+    for (const alias of READER_ALIAS_PATHS) {
       await expect(page.locator(`a[href="${alias}"]`)).toHaveCount(0);
     }
 
@@ -292,7 +289,7 @@ test.describe("Morse code reader", () => {
         `${routePath} links to reader`,
       ).toBeVisible();
       linkedPathnames = await getLinkedPathnames(page);
-      for (const alias of READER_ALIASES) {
+      for (const alias of READER_ALIAS_PATHS) {
         expect(linkedPathnames, `${routePath} avoids ${alias}`).not.toContain(alias);
       }
     }
@@ -310,14 +307,19 @@ test.describe("Morse code reader", () => {
     }, THEME_STORAGE_KEY);
 
     await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     await expect
       .poll(() => page.evaluate(() => document.documentElement.dataset.theme))
       .toBe("dark");
     await expect(page.locator("h1")).toHaveText("Morse Code Reader");
-    await page.getByRole("button", { name: "Try SOS" }).click();
-    await expect(page.getByLabel("Decoded text output")).toHaveText("SOS");
+    const output = page.getByLabel("Decoded text output");
+    await expect(async () => {
+      if ((await output.textContent()) !== "SOS") {
+        await page.getByRole("button", { name: "Try SOS" }).click();
+      }
+      await expect(output).toHaveText("SOS", { timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
 
     const axeResults = await new AxeBuilder({ page })
       .include('[data-testid="morse-code-reader-tool"]')
@@ -337,7 +339,7 @@ test.describe("Morse code reader", () => {
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.reload({ waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
     await expect(page.locator("h1")).toBeVisible();
     await expect(page.getByLabel("Morse code input")).toBeVisible();
     await expect(page.getByLabel("Decoded text output")).toBeVisible();

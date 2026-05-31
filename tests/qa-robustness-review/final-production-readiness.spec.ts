@@ -1,6 +1,10 @@
 import { expect, test } from "@playwright/test";
 
-import { blockExternalNetwork } from "./helpers";
+import {
+  blockExternalNetwork,
+  collectConsoleErrors,
+  gotoRoute,
+} from "./helpers";
 
 const ROUTES = [
   { path: "/", h1: "Morse Code Translator", finalPath: "/" },
@@ -87,30 +91,14 @@ const ROUTES = [
   },
 ] as const;
 
-const VITE_DEV_NOISE =
-  /\[vite\]|WebSocket closed without opened|failed to connect to websocket|WebSocket connection to 'ws:\/\/127\.0\.0\.1:24678|ERR_BLOCKED_BY_CLIENT\.Inspector/i;
-
 test.describe("final production readiness route smoke", () => {
   for (const route of ROUTES) {
     test(`${route.path} loads controls without console regressions`, async ({
       page,
     }) => {
       await blockExternalNetwork(page);
-      const consoleEntries: string[] = [];
-      page.on("console", (message) => {
-        if (!["error", "warning"].includes(message.type())) return;
-        if (VITE_DEV_NOISE.test(message.text())) return;
-        consoleEntries.push(`${message.type()}: ${message.text()}`);
-      });
-      page.on("pageerror", (error) => {
-        if (VITE_DEV_NOISE.test(error.message)) return;
-        consoleEntries.push(`pageerror: ${error.message}`);
-      });
-
-      const response = await page.goto(route.path, {
-        waitUntil: "domcontentloaded",
-      });
-      await page.waitForLoadState("networkidle", { timeout: 10_000 }).catch(() => {});
+      const consoleEntries = collectConsoleErrors(page);
+      const response = await gotoRoute(page, route.path);
 
       expect(response?.status(), `${route.path} HTTP status`).toBeLessThan(400);
       await expect(page).toHaveURL(new RegExp(`${route.finalPath}$`));

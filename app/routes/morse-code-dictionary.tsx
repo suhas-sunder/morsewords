@@ -1,9 +1,8 @@
-import { redirect, type LoaderFunction } from "react-router";
+import { ROUTES } from "~/client/data/routes";
+import { makeRedirectAliasLoader } from "./redirectAliases";
 
-export const loader: LoaderFunction = async () => {
-  throw redirect("/dictionary", { status: 301 });
-};
+export const loader = makeRedirectAliasLoader(ROUTES.dictionaryAlias);
 
-export default function MorseCodeDictionaryRedirect() {
+export default function RedirectAliasRoute() {
   return null;
 }

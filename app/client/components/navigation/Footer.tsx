@@ -1,17 +1,18 @@
 import { Link } from "react-router";
 
 import logoUrl from "~/client/assets/images/logo.png";
+import { ROUTES } from "~/client/data/routes";
 import SocialLinks from "./SocialLinks";
 
 const footerLinks = [
-  { label: "About", to: "/about" },
-  { label: "Contact", to: "/contact" },
-  { label: "Sitemap", to: "/sitemap" },
-  { label: "Sources", to: "/sources" },
-  { label: "Socials", to: "/misc/socials" },
-  { label: "Privacy", to: "/misc/privacy-policy" },
-  { label: "Terms", to: "/misc/terms-of-service" },
-  { label: "Cookies", to: "/misc/cookies-policy" },
+  { label: "About", to: ROUTES.about },
+  { label: "Contact", to: ROUTES.contact },
+  { label: "Sitemap", to: ROUTES.sitemap },
+  { label: "Sources", to: ROUTES.sources },
+  { label: "Socials", to: ROUTES.miscSocials },
+  { label: "Privacy", to: ROUTES.miscPrivacy },
+  { label: "Terms", to: ROUTES.miscTerms },
+  { label: "Cookies", to: ROUTES.miscCookies },
 ];
 
 export default function Footer() {
@@ -24,7 +25,7 @@ export default function Footer() {
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="mb-7 flex flex-col items-center gap-5 md:flex-row md:items-center md:justify-between">
             <Link
-              to="/"
+              to={ROUTES.home}
               className="mw-footer-brand flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
               aria-label="MorseWords home"
             >

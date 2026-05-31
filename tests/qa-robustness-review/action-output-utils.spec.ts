@@ -9,7 +9,7 @@ import {
   openPrintWindow,
   sanitizeDownloadFilename,
 } from "../../app/client/components/shared/actionOutputUtils";
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const globalKeys = ["document", "navigator", "URL", "window"] as const;
 const originalGlobals = new Map<
@@ -143,7 +143,7 @@ test.describe("action output route smoke", () => {
     await page.goto("/morse-code-word-separator", {
       waitUntil: "domcontentloaded",
     });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     await page.getByRole("button", { name: "Copy output" }).click();
     await expect(page.getByText("Copied", { exact: true })).toBeVisible();
@@ -153,7 +153,7 @@ test.describe("action output route smoke", () => {
     await page.goto("/morse-code-mp3-generator", {
       waitUntil: "domcontentloaded",
     });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     await page.locator("textarea").first().fill("");
     await expect(page.getByRole("button", { name: "Download MP3" }).first()).toBeDisabled();

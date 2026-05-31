@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { blockExternalNetwork, writeArtifact } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady, writeArtifact } from "./helpers";
 
 const ACCESSIBILITY_ROUTES = [
   "/",
@@ -39,8 +39,8 @@ test.describe("axe accessibility scans", () => {
             }
           }, THEME_STORAGE_KEY);
         }
-        await page.goto(route);
-        await page.waitForLoadState("networkidle");
+        await page.goto(route, { waitUntil: "domcontentloaded" });
+        await waitForRouteReady(page);
 
         const results = await new AxeBuilder({ page })
           .disableRules(["color-contrast"])

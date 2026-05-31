@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useLocation } from "react-router";
 
 import logoUrl from "~/client/assets/images/logo.png";
+import { ROUTES } from "~/client/data/routes";
 import type { ThemeMode } from "~/client/theme/themeStorage";
 import DisplaySettingsToggle from "./DisplaySettingsToggle";
 import ThemeToggle from "./ThemeToggle";
@@ -19,12 +20,12 @@ type NavGroup = {
 };
 
 const MAIN_ITEMS: NavItem[] = [
-  { label: "Translator", href: "/" },
-  { label: "Audio", href: "/audio" },
-  { label: "Practice", href: "/practice" },
-  { label: "Worksheets", href: "/morse-code-printable-chart" },
-  { label: "Typing", href: "/typing" },
-  { label: "How to use", href: "/how-to-use" },
+  { label: "Translator", href: ROUTES.home },
+  { label: "Audio", href: ROUTES.audio },
+  { label: "Practice", href: ROUTES.practice },
+  { label: "Worksheets", href: ROUTES.printableChart },
+  { label: "Typing", href: ROUTES.typing },
+  { label: "How to use", href: ROUTES.howToUse },
 ];
 
 const MORE_GROUPS: NavGroup[] = [
@@ -33,32 +34,32 @@ const MORE_GROUPS: NavGroup[] = [
     items: [
       {
         label: "Learn Morse code",
-        href: "/learn-morse-code",
+        href: ROUTES.learn,
         description: "Start with letters, sound, words, and short sessions.",
       },
       {
         label: "How to read Morse",
-        href: "/how-to-read-morse-code",
+        href: ROUTES.howToRead,
         description: "Read rhythm, spacing, and beginner examples.",
       },
       {
         label: "How to write Morse",
-        href: "/how-to-write-in-morse-code",
+        href: ROUTES.howToWrite,
         description: "Write letters, words, punctuation, and word gaps.",
       },
       {
         label: "Practice plan",
-        href: "/morse-code-practice-plan",
+        href: ROUTES.practicePlan,
         description: "Follow a 2-week or 6-week practice path.",
       },
       {
         label: "Timing guide",
-        href: "/morse-code-timing",
+        href: ROUTES.timing,
         description: "Understand WPM, spacing, dots, and dashes.",
       },
       {
         label: "Farnsworth timing",
-        href: "/farnsworth-timing",
+        href: ROUTES.farnsworth,
         description: "Slow the gaps while keeping character speed steady.",
       },
     ],
@@ -68,32 +69,32 @@ const MORE_GROUPS: NavGroup[] = [
     items: [
       {
         label: "Sentence practice",
-        href: "/morse-code-sentence-practice",
+        href: ROUTES.sentencePractice,
         description: "Practice short sentence-style prompts.",
       },
       {
         label: "Word trainer",
-        href: "/morse-code-word-trainer",
+        href: ROUTES.wordTrainer,
         description: "Repeat custom words and weak words.",
       },
       {
         label: "Audio practice",
-        href: "/morse-code-audio-practice",
+        href: ROUTES.audioPractice,
         description: "Listen and recognize Morse by ear.",
       },
       {
         label: "Audio quiz",
-        href: "/morse-code-audio-quiz",
+        href: ROUTES.audioQuiz,
         description: "Test listening recall with score feedback.",
       },
       {
         label: "Visual practice",
-        href: "/morse-code-visual-practice",
+        href: ROUTES.visualPractice,
         description: "Recognize dot-dash patterns by sight.",
       },
       {
         label: "Visual quiz",
-        href: "/morse-code-visual-quiz",
+        href: ROUTES.visualQuiz,
         description: "Test visual recognition with feedback.",
       },
     ],
@@ -103,52 +104,52 @@ const MORE_GROUPS: NavGroup[] = [
     items: [
       {
         label: "Morse code alphabet",
-        href: "/morse-code-alphabet",
+        href: ROUTES.alphabet,
         description: "View A-Z Morse patterns in one place.",
       },
       {
         label: "Morse code numbers",
-        href: "/morse-code-numbers",
+        href: ROUTES.numbers,
         description: "Review the 0-9 number chart and pattern logic.",
       },
       {
         label: "Dictionary",
-        href: "/dictionary",
+        href: ROUTES.dictionary,
         description: "Look up letters, numbers, punctuation, and signals.",
       },
       {
         label: "International reference",
-        href: "/international-morse-code-reference",
+        href: ROUTES.internationalReference,
         description: "Check International Morse code reference patterns.",
       },
       {
         label: "Punctuation",
-        href: "/morse-code-punctuation",
+        href: ROUTES.punctuation,
         description: "Find supported punctuation and spacing notes.",
       },
       {
         label: "Prosigns",
-        href: "/morse-code-prosigns",
+        href: ROUTES.prosigns,
         description: "Review common procedural signal patterns.",
       },
       {
         label: "Q-codes",
-        href: "/morse-code-q-codes",
+        href: ROUTES.qCodes,
         description: "Browse common Q-code meanings and use cases.",
       },
       {
         label: "Morse code words",
-        href: "/morse-code-words",
+        href: ROUTES.words,
         description: "Explore common word examples and practice ideas.",
       },
       {
         label: "SOS in Morse code",
-        href: "/morse-code-sos",
+        href: ROUTES.sos,
         description: "Understand the SOS distress pattern.",
       },
       {
         label: "Quick Brown Fox",
-        href: "/the-quick-brown-fox-morse-code",
+        href: ROUTES.quickBrownFox,
         description: "Use the pangram for full alphabet practice.",
       },
     ],
@@ -158,47 +159,47 @@ const MORE_GROUPS: NavGroup[] = [
     items: [
       {
         label: "Morse code encoder",
-        href: "/morse-code-encoder",
+        href: ROUTES.encoder,
         description: "Turn regular text into clean Morse output.",
       },
       {
         label: "Name to Morse code",
-        href: "/name-to-morse-code",
+        href: ROUTES.nameToMorse,
         description: "Convert names and open them in audio or translator tools.",
       },
       {
         label: "Morse code decoder",
-        href: "/morse-code-decoder",
+        href: ROUTES.decoder,
         description: "Decode dots, dashes, spaces, and separators.",
       },
       {
         label: "Word separator",
-        href: "/morse-code-word-separator",
+        href: ROUTES.wordSeparator,
         description: "Fix Morse word and letter spacing.",
       },
       {
         label: "How to separate words",
-        href: "/how-to-separate-words-in-morse-code",
+        href: ROUTES.separateWords,
         description: "Follow step-by-step spacing and slash examples.",
       },
       {
         label: "Copy and paste Morse",
-        href: "/copy-and-paste-morse-code",
+        href: ROUTES.copyAndPaste,
         description: "Use safe dots, dashes, spaces, and slashes.",
       },
       {
         label: "Sound generator",
-        href: "/morse-code-sound-generator",
+        href: ROUTES.soundGenerator,
         description: "Generate Morse tone clips with audio settings.",
       },
       {
         label: "International translator",
-        href: "/morse-code-international-translator",
+        href: ROUTES.internationalTranslator,
         description: "Convert international text to Morse with transliteration.",
       },
       {
         label: "Word search builder",
-        href: "/morse-code-word-search-builder",
+        href: ROUTES.wordSearchBuilder,
         description: "Build printable Morse learning puzzles.",
       },
     ],
@@ -208,17 +209,17 @@ const MORE_GROUPS: NavGroup[] = [
     items: [
       {
         label: "About MorseWords",
-        href: "/about",
+        href: ROUTES.about,
         description: "Learn what the site is for and who it helps.",
       },
       {
         label: "Sources",
-        href: "/sources",
+        href: ROUTES.sources,
         description: "Review reference approach and site notes.",
       },
       {
         label: "Sitemap",
-        href: "/sitemap",
+        href: ROUTES.sitemap,
         description: "See the public page index.",
       },
     ],
@@ -434,7 +435,7 @@ export default function NavBar(props: {
       <div className="mx-auto max-w-[1680px] px-4 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between gap-3 py-3">
           <a
-            href="/"
+            href={ROUTES.home}
             className="mw-nav-link flex min-w-0 cursor-pointer items-center gap-3 text-white transition hover:text-sky-200 2xl:shrink-0"
           >
             <img
@@ -616,7 +617,7 @@ export default function NavBar(props: {
             <div className="flex h-full min-h-0 flex-col">
               <div className="flex items-center justify-between px-4 py-3">
                 <a
-                  href="/"
+                  href={ROUTES.home}
                   onClick={() => setOpen(false)}
                   className="mw-nav-link flex cursor-pointer items-center gap-3 text-white transition hover:text-sky-200"
                 >

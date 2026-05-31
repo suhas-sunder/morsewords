@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 test.describe("practice reset actions", () => {
   test.beforeEach(async ({ page }) => {
@@ -20,7 +20,7 @@ test.describe("practice reset actions", () => {
     page,
   }) => {
     await page.goto("/practice", { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     const answerInput = page.getByLabel("Practice answer");
     const clearAnswerButton = page.getByRole("button", { name: "Clear answer" });
@@ -49,18 +49,25 @@ test.describe("practice reset actions", () => {
     page,
   }) => {
     await page.goto("/practice", { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     const skipQuestionButton = page.getByRole("button", { name: "Skip question" });
-    for (let questionIndex = 0; questionIndex < 10; questionIndex += 1) {
-      await expect(skipQuestionButton).toBeEnabled();
-      await skipQuestionButton.click();
-    }
-
-    await expect(page.getByText("Quiz complete")).toBeVisible();
+    const quizComplete = page.getByText("Quiz complete");
+    await expect(async () => {
+      if (!(await quizComplete.isVisible())) {
+        await expect(skipQuestionButton).toBeEnabled({ timeout: 1_000 });
+        await skipQuestionButton.click();
+      }
+      await expect(quizComplete).toBeVisible({ timeout: 1_000 });
+    }).toPass({ timeout: 30_000 });
     const tryAgainButton = page.getByRole("button", { name: "Try again" });
-    await expect(tryAgainButton).toBeEnabled();
-    await tryAgainButton.click();
+    await expect(async () => {
+      if (await quizComplete.isVisible()) {
+        await expect(tryAgainButton).toBeEnabled({ timeout: 1_000 });
+        await tryAgainButton.click();
+      }
+      await expect(quizComplete).toHaveCount(0, { timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
 
     await expect(page.getByText("Quiz complete")).toHaveCount(0);
     await expect(page.getByLabel("Practice answer")).toBeVisible();

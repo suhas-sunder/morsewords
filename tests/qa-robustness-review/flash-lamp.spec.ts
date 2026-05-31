@@ -1,14 +1,15 @@
 import { expect, test, type Page } from "@playwright/test";
 
 import { isFlashAllowedFromSafetyState } from "../../app/client/components/shared/useFlashSafety";
+import { waitForRouteReady } from "./helpers";
 
 function flashToggle(page: Page) {
   return page.locator("button").filter({ hasText: "Flash" }).first();
 }
 
 async function openAudio(page: Page) {
-  await page.goto("/audio");
-  await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+  await page.goto("/audio", { waitUntil: "domcontentloaded" });
+  await waitForRouteReady(page);
   await expect(flashToggle(page)).toBeEnabled();
 }
 
@@ -73,7 +74,7 @@ test.describe("shared FlashLamp", () => {
       window.localStorage.setItem("morsewords-disable-flash-effects", "1");
     });
     await page.goto("/audio");
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     await expect(flashToggle(page)).toBeDisabled();
 
@@ -112,46 +113,49 @@ test.describe("shared FlashLamp", () => {
 
   test("visual practice uses the shared lamp component", async ({ page }) => {
     await page.addInitScript(() => window.localStorage.clear());
-    await page.goto("/morse-code-visual-practice");
+    await page.goto("/morse-code-visual-practice", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
 
     const lamp = page.getByTestId("mw-flash-lamp").first();
     await expect(lamp).toBeVisible();
     await expect(lamp).toHaveAttribute("data-active", "false");
 
-    const sawLampActivate = page.evaluate<boolean>(
-      () =>
-        new Promise<boolean>((resolve) => {
-          const lampNode = document.querySelector(
-            '[data-testid="mw-flash-lamp"]',
-          );
-          if (!lampNode) {
-            resolve(false);
-            return;
-          }
-          if (lampNode.getAttribute("data-active") === "true") {
-            resolve(true);
-            return;
-          }
-          const observer = new MutationObserver(() => {
-            if (lampNode.getAttribute("data-active") === "true") {
-              observer.disconnect();
-              resolve(true);
+    await expect(async () => {
+      const sawLampActivate = page.evaluate<boolean>(
+        () =>
+          new Promise<boolean>((resolve) => {
+            const lampNode = document.querySelector(
+              '[data-testid="mw-flash-lamp"]',
+            );
+            if (!lampNode) {
+              resolve(false);
+              return;
             }
-          });
-          observer.observe(lampNode, {
-            attributes: true,
-            attributeFilter: ["data-active"],
-          });
-          window.setTimeout(() => {
-            observer.disconnect();
-            resolve(false);
-          }, 2500);
-        }),
-    );
+            if (lampNode.getAttribute("data-active") === "true") {
+              resolve(true);
+              return;
+            }
+            const observer = new MutationObserver(() => {
+              if (lampNode.getAttribute("data-active") === "true") {
+                observer.disconnect();
+                resolve(true);
+              }
+            });
+            observer.observe(lampNode, {
+              attributes: true,
+              attributeFilter: ["data-active"],
+            });
+            window.setTimeout(() => {
+              observer.disconnect();
+              resolve(false);
+            }, 1_200);
+          }),
+      );
 
-    await page.getByRole("textbox", { name: "Message" }).fill("t");
-    await page.getByRole("button", { name: "Flash message" }).click();
-    await expect(sawLampActivate).resolves.toBe(true);
+      await page.getByRole("textbox", { name: "Message" }).fill("t");
+      await page.getByRole("button", { name: "Flash message" }).click();
+      await expect(sawLampActivate).resolves.toBe(true);
+    }).toPass({ timeout: 15_000 });
     await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
   });
 });

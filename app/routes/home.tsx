@@ -7,9 +7,10 @@ import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import { morseToText, textToMorse } from "~/client/components/shared/morseUtils";
 import HowItWorks from "~/client/components/home/HowItWorks";
-import { seoMeta, SITE_URL } from "~/client/seo";
+import { ROUTES } from "~/client/data/routes";
+import { canonicalUrl, seoMeta } from "~/client/seo";
 
-const CANONICAL_PATH = "/";
+const CANONICAL_PATH = ROUTES.home;
 
 const homeRelatedToolsStyles = `
   .mw-home-page ~ #morse-code-navigation {
@@ -36,7 +37,7 @@ const homeRelatedToolsStyles = `
 `;
 
 export function links() {
-  return [{ rel: "canonical", href: SITE_URL + "/" }];
+  return [{ rel: "canonical", href: canonicalUrl(CANONICAL_PATH) }];
 }
 
 export function meta({}: Route.MetaArgs) {
@@ -57,14 +58,13 @@ export default function Home() {
   const [morseB, setMorseB] = React.useState("... --- ...");
   const textB = React.useMemo(() => morseToText(morseB), [morseB]);
 
-  const baseUrl = SITE_URL;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "MorseWords Morse Code Translator",
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
-    url: baseUrl + "/",
+    url: canonicalUrl(CANONICAL_PATH),
     description:
       "Browser-based Morse toolkit for translating, listening, practicing, and printing Morse code.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },

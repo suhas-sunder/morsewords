@@ -1,10 +1,8 @@
-import { redirect } from "react-router";
+import { ROUTES } from "~/client/data/routes";
+import { makeRedirectAliasLoader } from "./redirectAliases";
 
-export function loader() {
-  return redirect("/morse-code-visual-quiz", 301);
-}
+export const loader = makeRedirectAliasLoader(ROUTES.visualQuizTypoAlias);
 
-export default function MorseCodeVidualQuizRedirect() {
+export default function RedirectAliasRoute() {
   return null;
 }
-

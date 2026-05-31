@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 
-import { blockExternalNetwork } from "./helpers";
+import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const AUDIO_PRESETS = [
   "cw_radio",
@@ -46,7 +46,7 @@ test.describe("consolidated audio behavior", () => {
     await installAudioHarness(page);
     await page.addInitScript(() => window.localStorage.clear());
     await page.goto("/");
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     await page.getByLabel("Input (Text)").fill("T");
     await page.getByLabel("Speed").fill("5");
@@ -99,7 +99,7 @@ test.describe("consolidated audio behavior", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.addInitScript(() => window.localStorage.clear());
     await page.goto("/");
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     const flashButton = page.locator("button").filter({ hasText: "Flash Light" });
     await expect(flashButton).toBeEnabled();
@@ -115,7 +115,7 @@ test.describe("consolidated audio behavior", () => {
       await page.emulateMedia({ reducedMotion: "reduce" });
       await page.addInitScript(() => window.localStorage.clear());
       await page.goto(route, { waitUntil: "domcontentloaded" });
-      await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+      await waitForRouteReady(page);
 
       await expect(
         page.getByRole("button", { name: /Play|Replay/ }).first(),

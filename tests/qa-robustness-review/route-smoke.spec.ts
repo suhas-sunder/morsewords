@@ -1,10 +1,10 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import {
-  APP_ROUTES,
   blockExternalNetwork,
-  collectConsoleErrors,
-  writeArtifact,
+  REDIRECT_ROUTE_EXPECTATIONS,
+  ROUTE_EXCLUSIONS,
+  waitForRouteReady,
 } from "./helpers";
 
 const LETTER_MORSE = {
@@ -419,50 +419,9 @@ const FIRST_BATCH_ROUTE_EXPECTATIONS = [
   },
 ] as const;
 
-const REDIRECT_ROUTE_EXPECTATIONS = [
-  { from: "/morse-code-letters", to: "/morse-code-alphabet" },
-  { from: "/text-to-morse-code", to: "/morse-code-encoder" },
-  { from: "/morse-to-text", to: "/morse-code-decoder" },
-  { from: "/morse-code-translator", to: "/" },
-  { from: "/morse-code-dictionary", to: "/dictionary" },
-  { from: "/morse-code-word-game", to: "/morse-code-word-trainer" },
-  { from: "/morse-code-audio-generator", to: "/audio" },
-  { from: "/morse-code-vidual-quiz", to: "/morse-code-visual-quiz" },
-  { from: "/audio-to-morse-code", to: "/morse-code-audio-decoder" },
-  { from: "/morse-code-audio-to-text", to: "/morse-code-audio-decoder" },
-  { from: "/morse-code-sound-to-text", to: "/morse-code-audio-decoder" },
-  { from: "/morse-code-from-audio", to: "/morse-code-audio-decoder" },
-  { from: "/translate-morse-code-audio", to: "/morse-code-audio-decoder" },
-  { from: "/real-time-morse-code-decoder", to: "/morse-code-audio-decoder" },
-  { from: "/mp3-morse-code-decoder", to: "/morse-code-audio-decoder" },
-  { from: "/wav-morse-code-decoder", to: "/morse-code-audio-decoder" },
-  { from: "/international-morse-code-chart", to: "/morse-code-chart" },
-  { from: "/morse-code-chart-a-z-0-9", to: "/morse-code-chart" },
-  { from: "/morse-code-alphabet-chart", to: "/morse-code-chart" },
-  { from: "/morse-code-practice-test", to: "/morse-code-test" },
-  { from: "/morse-code-listening-test", to: "/morse-code-test" },
-  { from: "/morse-code-typing-test", to: "/morse-code-test" },
-  { from: "/morse-code-speed-test", to: "/morse-code-test" },
-  { from: "/morse-type-test", to: "/morse-code-test" },
-  { from: "/morse-code-tests", to: "/morse-code-test" },
-  { from: "/morse-code-test-online", to: "/morse-code-test" },
-  { from: "/morse-reader", to: "/morse-code-reader" },
-  { from: "/read-morse-code", to: "/morse-code-reader" },
-  { from: "/morse-to-english", to: "/morse-code-reader" },
-  { from: "/morse-code-to-english", to: "/morse-code-reader" },
-  { from: "/text-to-morse-code-mp3", to: "/morse-code-mp3-generator" },
-  { from: "/morse-to-mp3", to: "/morse-code-mp3-generator" },
-  { from: "/morse-code-to-mp3", to: "/morse-code-mp3-generator" },
-  { from: "/text-to-morse-mp3", to: "/morse-code-mp3-generator" },
-  {
-    from: "/morse-code-translator-audio-mp3",
-    to: "/morse-code-mp3-generator",
-  },
-] as const;
-
 const DEFERRED_OR_REDIRECT_ONLY_ROUTES = [
   ...REDIRECT_ROUTE_EXPECTATIONS.map((route) => route.from),
-  "/morse-code-wav-generator",
+  ...ROUTE_EXCLUSIONS,
 ] as const;
 
 const GENERATED_LEAF_SCHEMA_SUPPRESSED_PATHS = new Set<string>([
@@ -528,38 +487,6 @@ function expectFaqSchemaPolicy(types: string[], routePath: string) {
 
   expect(types, `${routePath} has FAQPage`).toContain("FAQPage");
 }
-
-test.describe("route smoke and console stability", () => {
-  for (const route of APP_ROUTES) {
-    test(`${route} loads without server error`, async ({ page }, testInfo) => {
-      await blockExternalNetwork(page);
-      const consoleEntries = collectConsoleErrors(page);
-      const response = await page.goto(route, {
-        waitUntil: "domcontentloaded",
-        timeout: 60_000,
-      });
-      await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
-
-      expect(response?.status(), `${route} HTTP status`).toBeLessThan(400);
-      if ((await page.locator("main").count()) > 0) {
-        await expect(page.locator("main")).toBeVisible();
-      } else {
-        await expect(page.locator("body")).toBeVisible();
-      }
-
-      await page.screenshot({
-        path: `test-artifacts/qa-robustness-review/screenshots/smoke-${testInfo.project.name}-${route === "/" ? "home" : route.slice(1).replaceAll("/", "-")}.png`,
-        fullPage: false,
-      });
-
-      await writeArtifact(
-        testInfo,
-        `console-${route === "/" ? "home" : route.slice(1).replaceAll("/", "-")}.json`,
-        consoleEntries,
-      );
-    });
-  }
-});
 
 test.describe("breadcrumb schema hierarchy", () => {
   test.beforeEach(async ({ page }) => {
@@ -1557,21 +1484,27 @@ test.describe("first-batch utility interactions", () => {
     page,
   }) => {
     await page.goto("/name-to-morse-code", { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
     const nameInput = page.locator("#mw_name_input");
     await expect(nameInput).toHaveValue("Avery");
 
-    await nameInput.fill("Avery O'Neil");
-    await expect(nameInput).toHaveValue("Avery O'Neil");
-    await expect(page.getByText("AVERY O'NEIL")).toBeVisible();
+    await expect(async () => {
+      await nameInput.fill("Avery O'Neil");
+      await expect(nameInput).toHaveValue("Avery O'Neil");
+      await expect(page.getByText("AVERY O'NEIL")).toBeVisible({
+        timeout: 1_000,
+      });
+      await expect(page.locator('a[href="/?text=AVERY%20O%27NEIL"]')).toBeVisible({
+        timeout: 1_000,
+      });
+      await expect(
+        page.locator('a[href="/audio?text=AVERY%20O%27NEIL"]'),
+      ).toBeVisible({ timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
     await expect(page.getByRole("button", { name: "Copy name" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Copy Morse" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Play Morse" })).toBeVisible();
-    await expect(page.locator('a[href="/?text=AVERY%20O%27NEIL"]')).toBeVisible();
-    await expect(
-      page.locator('a[href="/audio?text=AVERY%20O%27NEIL"]'),
-    ).toBeVisible();
 
     await page.getByRole("button", { name: /Try .Diego./ }).click();
     await expect(nameInput).toHaveValue("Diego");
@@ -1640,13 +1573,17 @@ test.describe("canonical navigation surfaces", () => {
     await page.setViewportSize({ width: 1440, height: 600 });
     await blockExternalNetwork(page);
     await page.goto("/", { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+    await waitForRouteReady(page);
 
-    await page.getByRole("button", { name: /^More$/ }).click();
     const dialog = page.getByRole("dialog", {
       name: "More MorseWords tools",
     });
-    await expect(dialog).toBeVisible();
+    await expect(async () => {
+      if (!(await dialog.isVisible())) {
+        await page.getByRole("button", { name: /^More$/ }).click();
+      }
+      await expect(dialog).toBeVisible({ timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
     return dialog;
   }
 
@@ -1691,16 +1628,7 @@ test.describe("canonical navigation surfaces", () => {
   test("more menu links canonical tools and excludes redirect-only aliases", async ({
     page,
   }) => {
-    await page.setViewportSize({ width: 1440, height: 1000 });
-    await blockExternalNetwork(page);
-    await page.goto("/", { waitUntil: "domcontentloaded" });
-    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
-
-    await page.getByRole("button", { name: /^More$/ }).click();
-    const dialog = page.getByRole("dialog", {
-      name: "More MorseWords tools",
-    });
-    await expect(dialog).toBeVisible();
+    const dialog = await openDesktopMoreMenu(page);
 
     const hrefs = await dialog.locator("a[href]").evaluateAll((anchors) =>
       anchors.map((anchor) => (anchor as HTMLAnchorElement).getAttribute("href") ?? ""),

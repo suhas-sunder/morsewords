@@ -1,10 +1,8 @@
-// app/routes/morse-code-translator.tsx
-import { redirect, type LoaderFunction } from "react-router";
+import { ROUTES } from "~/client/data/routes";
+import { makeRedirectAliasLoader } from "./redirectAliases";
 
-export const loader: LoaderFunction = async () => {
-  throw redirect("/", { status: 301 });
-};
+export const loader = makeRedirectAliasLoader(ROUTES.translatorAlias);
 
-export default function MorseCodeTranslatorRedirect() {
+export default function RedirectAliasRoute() {
   return null;
 }
