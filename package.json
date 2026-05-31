@@ -1,13 +1,15 @@
 {
-  "name": "",
+  "name": "morsewords",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "react-router build",
     "dev": "cross-env NODE_ENV=development node server.js",
     "start": "node server.js",
+    "test": "npm run test:smoke",
     "test:e2e": "playwright test",
     "test:fuzz": "playwright test tests/qa-robustness-review/morse-utils.fuzz.spec.ts",
+    "test:smoke": "playwright test tests/qa-robustness-review/route-registry.spec.ts tests/qa-robustness-review/route-smoke-core.spec.ts tests/qa-robustness-review/runtime-performance-hardening.spec.ts --project=desktop-chromium",
     "typecheck": "react-router typegen && tsc -b"
   },
   "dependencies": {
@@ -35,7 +37,6 @@
     "@tailwindcss/vite": "^4.1.4",
     "@types/compression": "^1.7.5",
     "@types/express": "^5.0.1",
-    "@types/express-serve-static-core": "^5.0.6",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20",
     "@types/qrcode": "^1.5.6",
