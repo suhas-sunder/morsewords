@@ -32,6 +32,10 @@ import {
   ActionRow,
   copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
+import {
+  downloadBlobFile,
+  sanitizeDownloadFilename,
+} from "~/client/components/shared/actionOutputUtils";
 
 import {
   CheckCircleIcon,
@@ -391,12 +395,10 @@ export default function TranslatorSectionsBasic({
         preset,
       });
 
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "morsewords.wav";
-      a.click();
-      URL.revokeObjectURL(url);
+      downloadBlobFile({
+        blob,
+        filename: sanitizeDownloadFilename("morsewords.wav", "morsewords.wav"),
+      });
     } catch (e) {
       console.error("Save audio failed", e);
     }
@@ -433,12 +435,10 @@ export default function TranslatorSectionsBasic({
         return;
       }
 
-      const url = URL.createObjectURL(file);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "morsewords.png";
-      a.click();
-      URL.revokeObjectURL(url);
+      downloadBlobFile({
+        blob: file,
+        filename: sanitizeDownloadFilename("morsewords.png", "morsewords.png"),
+      });
 
       const didCopy = await copyTextToClipboard(shareText);
       if (!didCopy) return;

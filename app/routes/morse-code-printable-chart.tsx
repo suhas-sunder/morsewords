@@ -7,8 +7,13 @@ import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ActionButton,
-  copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
+import {
+  downloadBlobFile,
+  copyTextToClipboard,
+  isBlankOutput,
+  sanitizeDownloadFilename,
+} from "~/client/components/shared/actionOutputUtils";
 import {
   ActionLinks,
   DarkNote,
@@ -1845,6 +1850,17 @@ function buildExportHtml(settings: PrintableSettings, qrCodeDataUrl: string) {
 }
 
 function printHtml(html: string) {
+  if (isBlankOutput(html)) {
+    return { ok: false, message: "There is nothing to print yet." };
+  }
+
+  if (typeof document === "undefined") {
+    return {
+      ok: false,
+      message: "Printing is not available in this browser context.",
+    };
+  }
+
   const existingFrame = document.getElementById("morse-print-frame");
   if (existingFrame) existingFrame.remove();
 
@@ -1866,7 +1882,10 @@ function printHtml(html: string) {
 
   if (!iframeDocument) {
     iframe.remove();
-    return;
+    return {
+      ok: false,
+      message: "Print could not start in this browser. Try again from the page controls.",
+    };
   }
 
   iframeDocument.open();
@@ -1877,8 +1896,13 @@ function printHtml(html: string) {
   const printFrame = () => {
     if (didPrint) return;
     didPrint = true;
-    iframe.contentWindow?.focus();
-    iframe.contentWindow?.print();
+    try {
+      iframe.contentWindow?.focus();
+      iframe.contentWindow?.print();
+    } catch {
+      iframe.remove();
+      return;
+    }
 
     window.setTimeout(() => {
       iframe.remove();
@@ -1887,6 +1911,7 @@ function printHtml(html: string) {
 
   iframe.onload = printFrame;
   window.setTimeout(printFrame, 250);
+  return { ok: true, message: "Print dialog opened." };
 }
 
 function downloadBlob({
@@ -1896,15 +1921,10 @@ function downloadBlob({
   blob: Blob;
   filename: string;
 }) {
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-
-  link.href = url;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+  return downloadBlobFile({
+    blob,
+    filename: sanitizeDownloadFilename(filename, "morse-code-chart-and-worksheet.png"),
+  });
 }
 
 async function waitForImagesToLoad(container: HTMLElement) {
@@ -2035,7 +2055,7 @@ async function exportPrintableImage(
 ) {
   const blob = await makePrintableImageBlob(settings, qrCodeDataUrl, format);
 
-  downloadBlob({
+  return downloadBlob({
     blob,
     filename: `morse-code-chart-and-worksheet.${getImageExtension(format)}`,
   });
@@ -2059,8 +2079,8 @@ async function sharePrintable({
     return "";
   }
 
-  const didCopy = await copyTextToClipboard(url);
-  if (didCopy) {
+  const copy = await copyTextToClipboard(url);
+  if (copy.ok) {
     return "Link copied to clipboard.";
   }
 
@@ -2830,16 +2850,16 @@ export default function MorseCodePrintableChart() {
     setStatusMessage("");
 
     if (downloadFormat === "pdf") {
-      printHtml(printableHtml);
-      setStatusMessage("PDF print dialog opened.");
+      const print = printHtml(printableHtml);
+      setStatusMessage(print.ok ? "PDF print dialog opened." : print.message);
       return;
     }
 
     setIsExporting(true);
 
     try {
-      await exportPrintableImage(settings, qrCodeDataUrl, downloadFormat);
-      setStatusMessage("Download started.");
+      const download = await exportPrintableImage(settings, qrCodeDataUrl, downloadFormat);
+      setStatusMessage(download.ok ? "Download started." : download.message);
     } catch {
       setStatusMessage(
         "The image export could not be generated in this browser. Try PDF export or remove uploaded images.",

@@ -14,6 +14,7 @@ import {
   ActionRow,
   CopyActionButton,
 } from "~/client/components/shared/ActionControls";
+import { downloadTextFile } from "~/client/components/shared/actionOutputUtils";
 import {
   ToolOutputPanel,
   ToolPanel,
@@ -240,14 +241,10 @@ export default function MorseAudioDecoderTool() {
       `Estimated dot length: ${formatMs(result.timing.estimatedUnitMs)}`,
       `Confidence: ${formatPercent(result.confidence)}`,
     ].join("\n");
-    const url = URL.createObjectURL(new Blob([body], { type: "text/plain" }));
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = "morse-audio-decoder-result.txt";
-    document.body.appendChild(anchor);
-    anchor.click();
-    document.body.removeChild(anchor);
-    URL.revokeObjectURL(url);
+    downloadTextFile({
+      filename: "morse-audio-decoder-result.txt",
+      content: body,
+    });
   }, [hasDecodedText, result]);
 
   const openFilePicker = React.useCallback(() => {

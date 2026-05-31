@@ -1,6 +1,10 @@
 import * as React from "react";
 
 import { CheckCircleIcon, CopyIcon } from "~/client/assets/svg/Icons";
+import {
+  copyTextToClipboard as copyTextToClipboardResult,
+  type ActionOutputResult,
+} from "~/client/components/shared/actionOutputUtils";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 
 type ToolActionSize = "sm" | "md" | "lg";
@@ -49,7 +53,9 @@ type CopyActionButtonProps = Omit<
   iconSize?: number;
   label: string;
   onCopiedChange?: (copied: boolean) => void;
-  onCopy?: (value: string) => Promise<boolean | void> | boolean | void;
+  onCopy?: (
+    value: string,
+  ) => Promise<ActionOutputResult | boolean | void> | ActionOutputResult | boolean | void;
   resetDelayMs?: number;
   value: string;
 };
@@ -183,7 +189,11 @@ export function CopyActionButton({
           const copyResult = onCopy
             ? await onCopy(value)
             : await copyTextToClipboard(value);
-          if (copyResult === false) {
+          const didCopy = isActionOutputResult(copyResult)
+            ? copyResult.ok
+            : copyResult !== false;
+
+          if (!didCopy) {
             setCopiedState(false);
             return;
           }
@@ -219,32 +229,21 @@ export function ActionRow({
 }
 
 export async function copyTextToClipboard(value: string) {
-  if (!value) return false;
-
-  if (typeof navigator !== "undefined" && navigator.clipboard) {
-    try {
-      await navigator.clipboard.writeText(value);
-      return true;
-    } catch {
-      // Fall through to the textarea fallback below.
-    }
-  }
-
-  if (typeof document === "undefined") return false;
-
-  const textarea = document.createElement("textarea");
-  textarea.value = value;
-  textarea.style.position = "fixed";
-  textarea.style.opacity = "0";
-  document.body.appendChild(textarea);
-  textarea.select();
-  const copied = document.execCommand("copy");
-  document.body.removeChild(textarea);
-  return copied;
+  const result = await copyTextToClipboardResult(value);
+  return result.ok;
 }
 
 function joinClassNames(
   ...classNames: Array<string | false | null | undefined>
 ) {
   return classNames.filter(Boolean).join(" ");
+}
+
+function isActionOutputResult(value: unknown): value is ActionOutputResult {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "ok" in value &&
+    typeof (value as ActionOutputResult).ok === "boolean"
+  );
 }

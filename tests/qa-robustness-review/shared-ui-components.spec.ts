@@ -46,14 +46,14 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
   }
 
   const appCss = readRepoFile("app/app.css");
-  expect(appCss).toContain(
-    ".mw-home-page\n  :where(input:not([type=\"range\"]), textarea, select):focus-visible",
+  expect(appCss).toMatch(
+    /\.mw-page-content\s+\.mw-home-page\s+:where\(input:not\(\[type="range"\]\), textarea, select\):focus-visible/,
   );
-  expect(appCss).toContain(
-    ".mw-non-home-page :where(input, textarea, select):focus-visible",
+  expect(appCss).toMatch(
+    /\.mw-page-content\s+\.mw-non-home-page\s+:where\(input, textarea, select\):focus-visible/,
   );
-  expect(appCss).toContain(
-    ".mw-non-home-page\n  :where(input[type=\"range\"]):focus-visible",
+  expect(appCss).toMatch(
+    /\.mw-page-content\s+\.mw-non-home-page\s+:where\(input\[type="range"\]\):focus-visible/,
   );
 
   const togglePill = readRepoFile(

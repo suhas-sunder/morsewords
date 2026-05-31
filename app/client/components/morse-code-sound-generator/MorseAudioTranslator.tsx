@@ -22,6 +22,10 @@ import {
 } from "~/client/components/shared/ToolWorkspace";
 import { audioBufferToMp3Blob, type ExportFormat } from "~/client/components/morse-code-sound-generator/audioExport";
 import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
+import {
+  downloadBlobFile,
+  sanitizeDownloadFilename,
+} from "~/client/components/shared/actionOutputUtils";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import StatusMessage from "~/client/components/shared/ui/StatusMessage";
 import TogglePill from "~/client/components/shared/ui/TogglePill";
@@ -405,7 +409,14 @@ export default function MorseAudioTranslator({
           sampleRate,
           tailMs,
         });
-        downloadBlob(blob, `${safeBase}.wav`);
+        const download = downloadBlobFile({
+          blob,
+          filename: sanitizeDownloadFilename(`${safeBase}.wav`, "morse-audio.wav"),
+        });
+        if (!download.ok) {
+          setExportStatus({ kind: "error", message: download.message });
+          return;
+        }
         setExportStatus({ kind: "ok", message: "WAV download started." });
         return;
       }
@@ -424,7 +435,14 @@ export default function MorseAudioTranslator({
         tailMs,
       });
       const blob = await audioBufferToMp3Blob(buffer, mp3Kbps);
-      downloadBlob(blob, `${safeBase}.mp3`);
+      const download = downloadBlobFile({
+        blob,
+        filename: sanitizeDownloadFilename(`${safeBase}.mp3`, "morse-audio.mp3"),
+      });
+      if (!download.ok) {
+        setExportStatus({ kind: "error", message: download.message });
+        return;
+      }
       setExportStatus({ kind: "ok", message: "MP3 download started." });
     } catch (error) {
       setExportStatus({
@@ -775,17 +793,6 @@ function formatMs(ms: number) {
 
 function sanitizeFileBase(name: string) {
   return name.trim().replace(/[\\/:*?"<>|]+/g, "-").replace(/\s+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "").slice(0, 80) || "morse-audio";
-}
-
-function downloadBlob(blob: Blob, filename: string) {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
 function presetLabel(preset: SoundPreset) {
