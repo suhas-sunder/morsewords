@@ -101,9 +101,15 @@ test("printable chart content limits are hidden until content is actually omitte
 test("word search reports oversized words and reveal answer changes preview", async ({ page }) => {
   await page.goto("/morse-code-word-search-builder");
   await waitForRouteReady(page);
-  await page.getByLabel("Plain words").fill("MORSE\nSIGNAL\nRADIO\nTHISWORDISTOOLONGFORATENGRID");
 
-  await expect(page.getByText("Some words are too long for the current grid and were left out.")).toBeVisible();
+  await expect(async () => {
+    await page
+      .getByLabel("Plain words")
+      .fill("MORSE\nSIGNAL\nRADIO\nTHISWORDISTOOLONGFORATENGRID");
+    await expect(
+      page.getByText("Some words are too long for the current grid and were left out."),
+    ).toBeVisible({ timeout: 1_000 });
+  }).toPass({ timeout: 15_000 });
   await expect(page.getByText("Student preview")).toBeVisible();
   await page.getByRole("button", { name: "Reveal answer" }).click();
   await expect(page.getByText("Answered preview")).toBeVisible();

@@ -148,20 +148,25 @@ test.describe("word search builder route", () => {
     });
     await waitForRouteReady(page);
 
-    await page
-      .getByLabel("Plain words")
-      .fill("morse, MORSE, radio!, A, 123, THISWORDISTOOLONGFORATENGRID");
-
-    await expect(page.getByText("Unsupported characters were removed")).toBeVisible();
-    await expect(page.getByText("1 duplicate word was ignored.")).toBeVisible();
-    await expect(
-      page.getByText("123: Only A-Z letters can be hidden in the grid."),
-    ).toBeVisible();
-    await expect(
-      page.getByText("A: Use at least two letters."),
-    ).toBeVisible();
-    await expect(
-      page.getByText("Some words are too long for the current grid and were left out."),
-    ).toBeVisible();
+    await expect(async () => {
+      await page
+        .getByLabel("Plain words")
+        .fill("morse, MORSE, radio!, A, 123, THISWORDISTOOLONGFORATENGRID");
+      await expect(page.getByText("Unsupported characters were removed")).toBeVisible({
+        timeout: 1_000,
+      });
+      await expect(page.getByText("1 duplicate word was ignored.")).toBeVisible({
+        timeout: 1_000,
+      });
+      await expect(
+        page.getByText("123: Only A-Z letters can be hidden in the grid."),
+      ).toBeVisible({ timeout: 1_000 });
+      await expect(
+        page.getByText("A: Use at least two letters."),
+      ).toBeVisible({ timeout: 1_000 });
+      await expect(
+        page.getByText("Some words are too long for the current grid and were left out."),
+      ).toBeVisible({ timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
   });
 });

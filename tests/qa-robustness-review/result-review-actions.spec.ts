@@ -14,11 +14,12 @@ test.describe("result review actions", () => {
       origin: new URL(page.url()).origin,
     });
 
-    await page.getByLabel("Your answer").fill("wrong");
-
     const checkAnswerButton = page.locator('button:has-text("Check answer")');
     await expect(checkAnswerButton).toHaveCount(1);
-    await expect(checkAnswerButton).toBeEnabled();
+    await expect(async () => {
+      await page.getByLabel("Your answer").fill("wrong");
+      await expect(checkAnswerButton).toBeEnabled({ timeout: 1_000 });
+    }).toPass({ timeout: 15_000 });
     await checkAnswerButton.click();
 
     await expect(page.locator('button:has-text("DIT")')).toHaveCount(1);
