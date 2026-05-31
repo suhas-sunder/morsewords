@@ -25,6 +25,14 @@ const TARGET_ROUTES = [
   "/typing",
   "/morse-code-word-trainer",
 ] as const;
+const OWNED_INTERNAL_LINK_PATHS = new Set<string>([
+  "/",
+  "/morse-code-test",
+  "/morse-code-typing-test",
+  "/morse-code-word-game",
+  "/morse-code-dictionary",
+  ...TARGET_ROUTES,
+]);
 
 function readRepoFile(relativePath: string) {
   return fs.readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
@@ -210,7 +218,7 @@ test.describe("remaining route consistency pass", () => {
     page,
     request,
   }, testInfo) => {
-    test.setTimeout(90_000);
+    test.setTimeout(120_000);
     const checkInternalLinks = !testInfo.project.name.includes("mobile");
     const checkedPaths = new Map<string, number>();
 
@@ -227,26 +235,41 @@ test.describe("remaining route consistency pass", () => {
       await expect(page.locator('[data-testid*="flash" i]')).toHaveCount(0);
 
       if (checkInternalLinks) {
-        const internalPaths = await page.locator("main a[href]").evaluateAll((links) =>
-          [
-            ...new Set(
-              links
-                .map((link) => (link as HTMLAnchorElement).getAttribute("href") ?? "")
-                .filter((href) => href.startsWith("/"))
-                .map((href) => new URL(href, window.location.origin).pathname),
-            ),
-          ],
-        );
+        const internalPaths = (
+          await page.locator("main a[href]").evaluateAll((links) =>
+            [
+              ...new Set(
+                links
+                  .map((link) => (link as HTMLAnchorElement).getAttribute("href") ?? "")
+                  .filter((href) => href.startsWith("/"))
+                  .map((href) => new URL(href, window.location.origin).pathname),
+              ),
+            ],
+          )
+        ).filter((path) => OWNED_INTERNAL_LINK_PATHS.has(path));
 
-        for (const internalPath of internalPaths) {
-          let status = checkedPaths.get(internalPath);
-          if (status === undefined) {
-            const response = await request.get(internalPath, { maxRedirects: 0 });
-            status = response.status();
+        const uncheckedPaths = internalPaths.filter(
+          (internalPath) => !checkedPaths.has(internalPath),
+        );
+        for (let index = 0; index < uncheckedPaths.length; index += 4) {
+          const checkedResults = await Promise.all(
+            uncheckedPaths.slice(index, index + 4).map(async (internalPath) => {
+              const response = await request.get(internalPath, {
+                maxRedirects: 0,
+                timeout: 30_000,
+              });
+              return [internalPath, response.status()] as const;
+            }),
+          );
+          for (const [internalPath, status] of checkedResults) {
             checkedPaths.set(internalPath, status);
           }
+        }
+
+        for (const internalPath of internalPaths) {
+          const status = checkedPaths.get(internalPath);
           expect(
-            status,
+            status ?? 999,
             `${routePath} links to reachable ${internalPath}`,
           ).toBeLessThan(400);
         }

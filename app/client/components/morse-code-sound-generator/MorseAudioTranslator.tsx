@@ -243,8 +243,7 @@ export default function MorseAudioTranslator({
 
   React.useEffect(() => {
     if (!hydrated) return;
-    const anyPlayer: any = player as any;
-    anyPlayer.setLiveOptions?.({
+    player.setLiveOptions({
       code: activeCode,
       wpm: clampNum(charWpm, 5, 60),
       farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
@@ -262,8 +261,7 @@ export default function MorseAudioTranslator({
   React.useEffect(() => {
     if (flashAllowed) return;
     setFlash(false);
-    const anyPlayer: any = player as any;
-    anyPlayer.setLiveOptions?.({ flash: false });
+    player.setLiveOptions({ flash: false });
   }, [flashAllowed, player]);
 
   React.useEffect(() => {
@@ -447,8 +445,7 @@ export default function MorseAudioTranslator({
       if (key === "sound") setSoundOn(next);
       if (key === "repeat") setRepeat(next);
       if (key === "flash") setFlash(next && flashAllowed);
-      const anyPlayer: any = player as any;
-      anyPlayer.setLiveOptions?.({ soundEnabled: updated.sound, flash: updated.flash });
+      player.setLiveOptions({ soundEnabled: updated.sound, flash: updated.flash });
     },
     [soundOn, repeat, effectiveFlash, flashAllowed, player],
   );

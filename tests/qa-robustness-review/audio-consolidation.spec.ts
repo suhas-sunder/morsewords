@@ -46,6 +46,7 @@ test.describe("consolidated audio behavior", () => {
     await installAudioHarness(page);
     await page.addInitScript(() => window.localStorage.clear());
     await page.goto("/");
+    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
 
     await page.getByLabel("Input (Text)").fill("T");
     await page.getByLabel("Speed").fill("5");
@@ -75,12 +76,15 @@ test.describe("consolidated audio behavior", () => {
     const afterTextChange = await readAudioHarness(page);
     expect(afterTextChange.active).toBe(0);
 
+    await page.getByLabel("Input (Text)").fill("TTTTT");
     await page.getByRole("button", { name: /Play/ }).first().click();
     await expect(page.getByTestId("mw-flash-lamp").first()).toHaveAttribute(
       "data-active",
       "true",
     );
-    await page.getByRole("button", { name: /Stop/ }).first().click();
+    const stopButton = page.getByRole("button", { name: /Stop/ }).first();
+    await expect(stopButton).toBeEnabled();
+    await stopButton.click();
     await expect(page.getByTestId("mw-flash-lamp").first()).toHaveAttribute(
       "data-active",
       "false",
@@ -95,6 +99,7 @@ test.describe("consolidated audio behavior", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.addInitScript(() => window.localStorage.clear());
     await page.goto("/");
+    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
 
     const flashButton = page.locator("button").filter({ hasText: "Flash Light" });
     await expect(flashButton).toBeEnabled();

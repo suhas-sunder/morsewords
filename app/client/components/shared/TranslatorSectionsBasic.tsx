@@ -248,7 +248,7 @@ export default function TranslatorSectionsBasic({
   useEffect(() => {
     if (flashAllowed) return;
     setFlash(false);
-    (player as any)?.setLiveOptions?.({ flash: false });
+    player.setLiveOptions({ flash: false });
   }, [flashAllowed, player]);
 
   const liveInputId = direction === "encode" ? "plainA" : "morseB";
@@ -347,7 +347,7 @@ export default function TranslatorSectionsBasic({
   };
 
   useEffect(() => {
-    (player as any)?.setLiveOptions?.({
+    player.setLiveOptions({
       code: activeMorseForPlayback,
       wpm: Math.round(
         clampNumber(charWpm, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
@@ -418,12 +418,12 @@ export default function TranslatorSectionsBasic({
 
       const canShareFiles =
         typeof navigator !== "undefined" &&
-        !!(navigator as any).share &&
-        !!(navigator as any).canShare &&
-        (navigator as any).canShare({ files: [file] });
+        typeof navigator.share === "function" &&
+        typeof navigator.canShare === "function" &&
+        navigator.canShare({ files: [file] });
 
       if (canShareFiles) {
-        await (navigator as any).share({
+        await navigator.share({
           title: "MorseWords",
           text: shareText,
           files: [file],

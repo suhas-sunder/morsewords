@@ -227,10 +227,8 @@ export default function MorseAudioTranslator({
   // Live update audio settings during playback/paused
   React.useEffect(() => {
     if (!hydrated) return;
-    const anyPlayer: any = player as any;
-    if (!anyPlayer.setLiveOptions) return;
 
-    anyPlayer.setLiveOptions({
+    player.setLiveOptions({
       code: activeCode,
       wpm: clampNum(charWpm, 5, 60),
       farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
@@ -262,8 +260,7 @@ export default function MorseAudioTranslator({
   React.useEffect(() => {
     if (flashAllowed) return;
     setFlash(false);
-    const anyPlayer: any = player as any;
-    anyPlayer.setLiveOptions?.({ flash: false });
+    player.setLiveOptions({ flash: false });
   }, [flashAllowed, player]);
 
   // Persist settings as they change
@@ -376,13 +373,10 @@ export default function MorseAudioTranslator({
       if (key === "flash") setFlash(next && flashAllowed);
 
       // If sound is turned off while playing, mute instantly via live options
-      const anyPlayer: any = player as any;
-      if (anyPlayer.setLiveOptions) {
-        anyPlayer.setLiveOptions({
-          soundEnabled: updated.sound,
-          flash: updated.flash,
-        });
-      }
+      player.setLiveOptions({
+        soundEnabled: updated.sound,
+        flash: updated.flash,
+      });
     },
     [soundOn, repeat, effectiveFlash, flashAllowed, player],
   );

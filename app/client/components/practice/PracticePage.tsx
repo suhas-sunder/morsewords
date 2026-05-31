@@ -94,7 +94,7 @@ function writeInt(key: string, val: number) {
   writeStr(key, String(val));
 }
 
-export default function PracticePage({ jsonLd }: { jsonLd: any }) {
+export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
   const didBuildInitialPrompt = React.useRef(false);
   const [hydrated, setHydrated] = React.useState(false);
 

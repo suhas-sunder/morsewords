@@ -82,6 +82,17 @@ function clamp(n: number, min: number, max: number) {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+type WebkitAudioWindow = Window &
+  typeof globalThis & {
+    webkitAudioContext?: typeof AudioContext;
+  };
+
+function getAudioContextCtor() {
+  if (typeof window === "undefined") return undefined;
+  const audioWindow = window as WebkitAudioWindow;
+  return audioWindow.AudioContext || audioWindow.webkitAudioContext;
+}
+
 function presetToOscType(preset: SoundPreset): OscillatorType {
   if (preset === "square") return "square";
   if (preset === "triangle") return "triangle";
@@ -219,20 +230,14 @@ export default function useMorseAudio() {
   }, []);
 
   React.useEffect(() => {
-    const supported =
-      typeof window !== "undefined" &&
-      (!!(
-        window.AudioContext || (window as any).webkitAudioContext
-      ) as boolean);
-    setIsSupported(!!supported);
+    setIsSupported(!!getAudioContextCtor());
   }, []);
 
   function ensureCtx() {
     if (typeof window === "undefined") return null;
 
     if (!ctxRef.current) {
-      const Ctx = (window.AudioContext ||
-        (window as any).webkitAudioContext) as typeof AudioContext | undefined;
+      const Ctx = getAudioContextCtor();
       if (!Ctx) return null;
       ctxRef.current = new Ctx();
     }

@@ -289,7 +289,7 @@ function MorseLine({ text }: { text: string }) {
  );
 }
 
-export default function SentencePracticePage({ jsonLd }: { jsonLd: any }) {
+export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  const initialPool = React.useMemo(
  () => buildPool(DEFAULT_DIFFICULTY, DEFAULT_SET_FILTER),
  [],

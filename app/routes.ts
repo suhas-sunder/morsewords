@@ -147,6 +147,8 @@ export default [
 
   // Redirects for old URLs. Ignore these routes
   route("morse-code-translator", "routes/morse-code-translator.tsx"),
+  route("morse-code-dictionary", "routes/morse-code-dictionary.tsx"),
+  route("morse-code-word-game", "routes/morse-code-word-game.tsx"),
   route("morse-code-audio-generator", "routes/morse-code-audio-generator.tsx"),
   route("text-to-morse-code", "routes/text-to-morse-code.tsx"),
   route("morse-to-text", "routes/morse-to-text.tsx"),
