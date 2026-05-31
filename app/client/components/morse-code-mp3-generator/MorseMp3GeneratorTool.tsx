@@ -902,9 +902,10 @@ export default function MorseMp3GeneratorTool() {
           </StatusMessage>
         ) : (
           <StatusMessage>
-            MP3 encoding starts when you click download. Preview, WAV, and MP3
-            use the same speed, spacing, tone, volume, sound type, and envelope
-            settings.
+            MP3 encoding starts when you click download. Use MP3 for compact
+            clips and WAV when you need lossless audio or the most reliable
+            fallback. Preview, WAV, and MP3 use the same speed, spacing, tone,
+            volume, sound type, and envelope settings.
           </StatusMessage>
         )}
       </div>

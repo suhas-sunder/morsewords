@@ -1456,6 +1456,10 @@ export default function MorseCodeWordSearchBuilder() {
  label="Include QR code" checked={includeQrCode}
  onChange={setIncludeQrCode}
  className="mt-2"/>
+ <p className="mt-3 text-xs leading-relaxed text-slate-500">
+ The QR links to this builder page only. It does not include your word
+ list, puzzle grid, or answer key.
+ </p>
  <label className="mt-3 block">
  <span className="text-sm font-extrabold text-sky-950">
  Brand name
@@ -1537,7 +1541,7 @@ export default function MorseCodeWordSearchBuilder() {
  {
  kicker:"Classroom copies",
  title:"Printing",
- text:"Print the student copy without answers, or print an answered version with highlighted cells and a placement table. Branding and QR controls stay local to the browser.",
+ text:"Print the student copy without answers, or print an answered version with highlighted cells and a placement table. Branding and QR controls stay local to the browser, and the QR points to MorseWords rather than your custom word list.",
  },
  ]}
  />
