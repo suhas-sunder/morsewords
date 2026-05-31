@@ -17,7 +17,11 @@ import {
  WarningIcon,
 } from "~/client/assets/svg/Icons";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
-import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
+import {
+ copyTextToClipboard,
+ downloadBlobFile,
+ sanitizeDownloadFilename,
+} from "~/client/components/shared/actionOutputUtils";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -901,14 +905,10 @@ async function renderWordSearchShareImage({
 }
 
 function downloadBlob(blob: Blob, filename: string) {
- const url = URL.createObjectURL(blob);
- const link = document.createElement("a");
- link.href = url;
- link.download = filename;
- document.body.appendChild(link);
- link.click();
- link.remove();
- window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+ return downloadBlobFile({
+ blob,
+ filename: sanitizeDownloadFilename(filename, "morse-code-word-search.png"),
+ });
 }
 
 export default function MorseCodeWordSearchBuilder() {
@@ -1131,12 +1131,18 @@ export default function MorseCodeWordSearchBuilder() {
  if (!mountedRef.current) return;
  setStatus({ kind:"ok", message:"Share sheet opened."});
  } else {
- downloadBlob(blob, filename);
- await copyTextToClipboard(CANONICAL);
+ const download = downloadBlob(blob, filename);
+ const copy = await copyTextToClipboard(CANONICAL);
  if (!mountedRef.current) return;
+ if (!download.ok) {
+ setStatus({ kind:"error", message:download.message });
+ return;
+ }
  setStatus({
  kind:"ok",
- message:"Share image downloaded and the page link was copied.",
+ message:copy.ok
+ ?"Share image downloaded and the page link was copied."
+ :"Share image downloaded. Select the page URL and copy it manually if you need the link.",
  });
  }
  } catch (error) {

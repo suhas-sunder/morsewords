@@ -3,6 +3,10 @@ import * as React from "react";
 import { audioBufferToMp3Blob } from "~/client/components/audio/mp3Export";
 import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import {
+  downloadBlobFile,
+  sanitizeDownloadFilename,
+} from "~/client/components/shared/actionOutputUtils";
+import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
   textToMorse,
@@ -400,7 +404,17 @@ export default function MorseMp3GeneratorTool() {
     try {
       const buffer = await renderAudioBuffer();
       const blob = await audioBufferToMp3Blob(buffer, mp3Kbps);
-      downloadBlob(blob, `${sanitizeFileBase(fileName || "morse-code")}.mp3`);
+      const download = downloadBlobFile({
+        blob,
+        filename: sanitizeDownloadFilename(
+          `${sanitizeFileBase(fileName || "morse-code")}.mp3`,
+          "morse-code.mp3",
+        ),
+      });
+      if (!download.ok) {
+        setDownloadStatus({ kind: "error", message: download.message });
+        return;
+      }
       setDownloadStatus({ kind: "ok", message: "MP3 download started." });
     } catch {
       setDownloadStatus({
@@ -424,7 +438,17 @@ export default function MorseMp3GeneratorTool() {
     setDownloadStatus({ kind: "working", message: "Preparing WAV file..." });
     try {
       const blob = await player.renderWav(exportAudioOptions);
-      downloadBlob(blob, `${sanitizeFileBase(fileName || "morse-code")}.wav`);
+      const download = downloadBlobFile({
+        blob,
+        filename: sanitizeDownloadFilename(
+          `${sanitizeFileBase(fileName || "morse-code")}.wav`,
+          "morse-code.wav",
+        ),
+      });
+      if (!download.ok) {
+        setDownloadStatus({ kind: "error", message: download.message });
+        return;
+      }
       setDownloadStatus({ kind: "ok", message: "WAV download started." });
     } catch {
       setDownloadStatus({
@@ -969,17 +993,6 @@ function sanitizeFileBase(name: string) {
       .replace(/^-|-$/g, "")
       .slice(0, 80) || "morse-code"
   );
-}
-
-function downloadBlob(blob: Blob, filename: string) {
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = filename;
-  document.body.appendChild(anchor);
-  anchor.click();
-  anchor.remove();
-  window.setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
 function clampNum(value: number, min: number, max: number) {

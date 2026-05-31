@@ -26,6 +26,10 @@ import {
   copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
 import {
+  downloadBlobFile,
+  sanitizeDownloadFilename,
+} from "~/client/components/shared/actionOutputUtils";
+import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
   textToMorse,
@@ -435,12 +439,10 @@ export default function MorseAudioTranslator({
         tailMs,
       });
 
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${safeBase}.wav`;
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      downloadBlobFile({
+        blob,
+        filename: sanitizeDownloadFilename(`${safeBase}.wav`, "morse-audio.wav"),
+      });
     } catch {
       // ignore
     }
