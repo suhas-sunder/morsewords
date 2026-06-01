@@ -46,9 +46,9 @@ function sourceStep(page: Page) {
 async function expectWorkflowReadyNearSource(page: Page) {
   await expect(
     sourceStep(page).getByRole("link", { name: "Review export" }),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(
-    page.getByRole("heading", { name: "Ready to export" }),
+    sourceStep(page).getByRole("heading", { name: "Export details" }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Details and previews" }),
@@ -56,6 +56,17 @@ async function expectWorkflowReadyNearSource(page: Page) {
   await expect(
     bookTool(page).getByRole("button", { name: "Export ZIP bundle" }),
   ).toHaveCount(1);
+  await expect(
+    sourceStep(page).getByRole("button", { name: "Export ZIP bundle" }),
+  ).toBeVisible();
+  await expect(page.getByRole("radio", { name: /MP3 ZIP/ })).toBeVisible();
+  await expect(page.getByRole("radio", { name: /WAV ZIP/ })).toBeVisible();
+}
+
+async function chooseOutputFormat(page: Page, format: "mp3" | "wav") {
+  await page
+    .getByRole("radio", { name: format === "mp3" ? /MP3 ZIP/ : /WAV ZIP/ })
+    .click();
 }
 
 async function grantClipboard(page: Page) {
@@ -357,9 +368,7 @@ test("TXT and MD uploads populate source review", async ({
   await expect(
     page.getByRole("heading", { name: "Source ready" }),
   ).toBeVisible();
-  await expect(
-    sourceStep(page).getByRole("link", { name: "Review export" }),
-  ).toBeVisible();
+  await expectWorkflowReadyNearSource(page);
 });
 
 test("large uploaded text uses a capped extracted source preview", async ({
@@ -388,6 +397,62 @@ test("large uploaded text uses a capped extracted source preview", async ({
   ).toBeEnabled();
   await expectWorkflowReadyNearSource(page);
   await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
+});
+
+test("large extracted edit mode uses apply and cancel without exporting draft text", async ({
+  page,
+}, testInfo) => {
+  await openBookTranslator(page);
+  const largeSource = `Original active source SOS.\n\n${"ALPHA BRAVO HELP ".repeat(
+    3_200,
+  )}`;
+  const txtPath = writeFixture(testInfo, "large-edit-source.txt", largeSource);
+
+  await page.setInputFiles("#book-source-file", txtPath);
+  await page.getByRole("button", { name: "Edit extracted text" }).click();
+  await expect(page.getByText("Large edits apply manually")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Apply edits" })).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Cancel edits" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Export ZIP bundle" }),
+  ).toBeEnabled();
+
+  await page
+    .getByRole("textbox", { name: "Edit extracted text draft" })
+    .fill("Draft only SOS");
+  await expect(page.getByText("Draft edits are not exported")).toBeVisible();
+  await expect(
+    page
+      .locator("pre")
+      .filter({ hasText: "Original active source SOS" })
+      .first(),
+  ).toBeVisible();
+  await expect(
+    page.locator("pre").filter({ hasText: "Draft only SOS" }),
+  ).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Cancel edits" }).click();
+  await expect(
+    page.getByRole("textbox", { name: "Edit extracted text draft" }),
+  ).toHaveCount(0);
+  await expect(
+    page
+      .locator("pre")
+      .filter({ hasText: "Original active source SOS" })
+      .first(),
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "Edit extracted text" }).click();
+  await page
+    .getByRole("textbox", { name: "Edit extracted text draft" })
+    .fill("Applied draft source SOS");
+  await page.getByRole("button", { name: "Apply edits" }).click();
+  await expect(
+    page.locator("pre").filter({ hasText: "Applied draft source SOS" }).first(),
+  ).toBeVisible();
+  await expect(page.getByText("Extracted text edits applied.")).toBeVisible();
 });
 
 test("EPUB parser extracts metadata and spine text in reading order", async ({
@@ -451,11 +516,32 @@ test("source preview actions copy, edit, and clear uploaded content", async ({
     .toContain("Charlie follows.");
 
   await page.getByRole("button", { name: "Edit extracted text" }).click();
-  await expect(page.getByLabel("Paste long-form source text")).toBeVisible();
+  await expect(
+    page.getByRole("textbox", { name: "Edit extracted text draft" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("textbox", { name: "Edit extracted text draft" }),
+  ).toHaveValue(/First Signal[\s\S]*Second Signal/);
+  await expect(
+    page.getByRole("button", { name: "Copy extracted text" }),
+  ).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Copy cleaned text" }),
+  ).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Export ZIP bundle" }),
+  ).toBeEnabled();
+  await expect(page.getByRole("button", { name: "Apply edits" })).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Cancel edits" }),
+  ).toBeVisible();
+  await page
+    .getByRole("textbox", { name: "Edit extracted text draft" })
+    .fill("Edited extracted source SOS");
+  await page.getByRole("button", { name: "Apply edits" }).click();
   await expect(page.getByLabel("Paste long-form source text")).toHaveValue(
-    /First Signal[\s\S]*Second Signal/,
+    "Edited extracted source SOS",
   );
-  await expect(page.getByText("Extracted source preview")).toHaveCount(0);
 
   await page.getByRole("button", { name: "Clear source" }).first().click();
   await expect(page.getByLabel("Paste long-form source text")).toHaveValue("");
@@ -672,6 +758,78 @@ Footer`,
   expect(strippedEmpty.cleanedText).toBe("");
 });
 
+test("custom cleanup rules are plain-text, ordered, reversible transforms", async () => {
+  const cleanupOptions = {
+    normalizeSmartPunctuation: true,
+    stripZeroWidthAndSoftHyphen: true,
+    stripGutenbergHeaderFooter: false,
+    simplifyPunctuation: false,
+  };
+
+  const cleaned = applyCleanupOptions(
+    "Intro REMOVE old phrase cat scatter Cat",
+    cleanupOptions,
+    [
+      {
+        id: "remove",
+        enabled: true,
+        find: "REMOVE ",
+        replacement: "",
+        caseSensitive: false,
+        wholeWord: false,
+      },
+      {
+        id: "replace",
+        enabled: true,
+        find: "old phrase",
+        replacement: "new phrase",
+        caseSensitive: false,
+        wholeWord: false,
+      },
+      {
+        id: "disabled",
+        enabled: false,
+        find: "Intro",
+        replacement: "Hidden",
+        caseSensitive: false,
+        wholeWord: false,
+      },
+      {
+        id: "case",
+        enabled: true,
+        find: "Cat",
+        replacement: "Lynx",
+        caseSensitive: true,
+        wholeWord: true,
+      },
+      {
+        id: "whole-word",
+        enabled: true,
+        find: "cat",
+        replacement: "dog",
+        caseSensitive: false,
+        wholeWord: true,
+      },
+    ],
+  );
+
+  expect(cleaned.cleanedText).toBe("Intro new phrase dog scatter Lynx");
+  expect(cleaned.customRuleMatches).toEqual([
+    { id: "remove", count: 1, active: true },
+    { id: "replace", count: 1, active: true },
+    { id: "disabled", count: 0, active: false },
+    { id: "case", count: 1, active: true },
+    { id: "whole-word", count: 1, active: true },
+  ]);
+
+  const reverted = applyCleanupOptions(
+    "Intro REMOVE old phrase cat scatter Cat",
+    cleanupOptions,
+    [],
+  );
+  expect(reverted.cleanedText).toBe("Intro REMOVE old phrase cat scatter Cat");
+});
+
 test("preset settings, reset, and safe route preferences persist", async ({
   page,
 }) => {
@@ -693,8 +851,11 @@ test("preset settings, reset, and safe route preferences persist", async ({
     .locator("summary")
     .filter({ hasText: "Advanced export settings" });
   await advancedToggle.click();
-  await expect(page.getByLabel("Output format")).toBeVisible();
-  await page.getByLabel("Output format").selectOption("wav");
+  await expect(page.getByLabel("MP3 bitrate")).toBeVisible();
+  await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
+  await chooseOutputFormat(page, "wav");
+  await expect(page.getByLabel("MP3 bitrate")).toHaveCount(0);
+  await expect(page.getByLabel("WAV sample rate")).toBeVisible();
   await expect(page.getByText("Modified from preset")).toBeVisible();
 
   await page.getByLabel("Paste long-form source text").fill(RAW_SECRET_TEXT);
@@ -715,9 +876,12 @@ test("preset settings, reset, and safe route preferences persist", async ({
 
   await page.getByRole("button", { name: "Reset preset" }).click();
   await expect(page.getByText("Modified from preset")).toHaveCount(0);
-  await expect(page.getByLabel("Output format")).toHaveValue("mp3");
+  await expect(page.getByRole("radio", { name: /MP3 ZIP/ })).toHaveAttribute(
+    "aria-checked",
+    "true",
+  );
 
-  await page.getByLabel("Output format").selectOption("wav");
+  await chooseOutputFormat(page, "wav");
   await expect
     .poll(() =>
       page.evaluate(
@@ -732,8 +896,10 @@ test("preset settings, reset, and safe route preferences persist", async ({
   await expect(
     page.locator("[data-mw-book-export-ready='true']"),
   ).toBeVisible();
-  await expect(page.getByLabel("Output format")).toBeVisible();
-  await expect(page.getByLabel("Output format")).toHaveValue("wav");
+  await expect(page.getByRole("radio", { name: /WAV ZIP/ })).toHaveAttribute(
+    "aria-checked",
+    "true",
+  );
   await expect(page.getByText("Modified from preset")).toBeVisible();
 });
 
@@ -785,8 +951,9 @@ test("empty source, cleaned-empty source, large WAV, and progress semantics are 
     bookTool(page).getByRole("button", { name: "Export ZIP bundle" }),
   ).toHaveCount(1);
   await expect(
-    page.getByRole("heading", { name: "Review export" }),
+    page.getByRole("heading", { name: "Export details" }),
   ).toBeVisible();
+  await expect(page.getByText("Review export")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Add source" })).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Choose export style" }),
@@ -798,7 +965,8 @@ test("empty source, cleaned-empty source, large WAV, and progress semantics are 
     page.getByText("Add source text or upload a source file to enable export."),
   ).toBeVisible();
   await expect(advancedToggle).toHaveAttribute("aria-expanded", "false");
-  await expect(page.getByLabel("Output format")).toBeHidden();
+  await expect(page.getByRole("radio", { name: /MP3 ZIP/ })).toBeVisible();
+  await expect(page.getByRole("radio", { name: /WAV ZIP/ })).toBeVisible();
   await expect(exportButton).toBeDisabled();
 
   await page.getByLabel("Paste long-form source text").fill("   \n   ");
@@ -819,10 +987,12 @@ test("empty source, cleaned-empty source, large WAV, and progress semantics are 
   await page
     .getByLabel("Paste long-form source text")
     .fill("ALPHA BRAVO SOS ".repeat(4_000));
+  await chooseOutputFormat(page, "wav");
+  await expect(page.getByText("WAV output may be very large")).toBeVisible();
   await advancedToggle.click();
   await expect(advancedToggle).toHaveAttribute("aria-expanded", "true");
-  await page.getByLabel("Output format").selectOption("wav");
-  await expect(page.getByText("WAV output may be very large")).toBeVisible();
+  await expect(page.getByLabel("WAV sample rate")).toBeVisible();
+  await expect(page.getByLabel("MP3 bitrate")).toHaveCount(0);
 
   const progressbar = page.getByRole("progressbar", {
     name: "Book export progress",
@@ -841,7 +1011,7 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   await page.getByRole("button", { name: "Practice Copy" }).click();
   await expectWorkflowReadyNearSource(page);
   await expect(
-    page.locator("#book-review-export").getByText("Practice Copy"),
+    page.locator("#book-export-details").getByText("Practice Copy"),
   ).toBeVisible();
   await expect(page.getByText("Split summary")).toBeVisible();
 
@@ -939,8 +1109,7 @@ test("route exports WAV ZIP bundles and sample audio on demand", async ({
 }, testInfo) => {
   await openBookTranslator(page);
   await page.getByLabel("Paste long-form source text").fill("WAV sample SOS");
-  await page.getByText("Advanced export settings").click();
-  await page.getByLabel("Output format").selectOption("wav");
+  await chooseOutputFormat(page, "wav");
 
   const sampleDownload = page.waitForEvent("download", { timeout: 60_000 });
   await page.getByRole("button", { name: "Download sample" }).click();
@@ -979,8 +1148,7 @@ test("route cancellation state is distinct from failure", async ({ page }) => {
   await page
     .getByLabel("Paste long-form source text")
     .fill("SOS HELP ALPHA BRAVO ".repeat(4_000));
-  await page.getByText("Advanced export settings").click();
-  await page.getByLabel("Output format").selectOption("wav");
+  await chooseOutputFormat(page, "wav");
 
   await page.getByRole("button", { name: "Export ZIP bundle" }).click();
   await expect(
@@ -1001,8 +1169,7 @@ test("source changes during active export cancel stale completion", async ({
   await page
     .getByLabel("Paste long-form source text")
     .fill("SOS HELP ALPHA BRAVO ".repeat(4_000));
-  await page.getByText("Advanced export settings").click();
-  await page.getByLabel("Output format").selectOption("wav");
+  await chooseOutputFormat(page, "wav");
 
   await page.getByRole("button", { name: "Export ZIP bundle" }).click();
   await expect(
@@ -1151,6 +1318,66 @@ Footer`,
   await expect(cleanedPreview).toHaveCount(0);
   await page.getByLabel("Simplify punctuation for practice").check();
   await expect(page.getByText("Top unsupported characters")).toBeVisible();
+});
+
+test("custom cleanup rules update previews, estimates, and exported transcripts", async ({
+  page,
+}, testInfo) => {
+  await openBookTranslator(page);
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("REMOVE ME\nOld phrase SOS. cat scatter Cat.");
+
+  await page.getByRole("button", { name: "Add cleanup rule" }).click();
+  await page.getByLabel("Find text").fill("REMOVE ME");
+  await expect(page.getByText("Rule 1 - 1 match")).toBeVisible();
+  await expect(
+    page.locator("pre").filter({ hasText: "REMOVE ME" }),
+  ).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Add cleanup rule" }).click();
+  await page.getByLabel("Find text").nth(1).fill("Old phrase");
+  await page.getByLabel("Replacement text").nth(1).fill("New phrase");
+  await expect(
+    page.locator("pre").filter({ hasText: "New phrase SOS" }).first(),
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "Add cleanup rule" }).click();
+  await page.getByLabel("Find text").nth(2).fill("cat");
+  await page.getByLabel("Replacement text").nth(2).fill("dog");
+  await page.getByLabel("Whole word").nth(2).check();
+  await expect(page.getByText("Rule 3 - 2 matches")).toBeVisible();
+  await expect(
+    page.locator("pre").filter({ hasText: "dog scatter dog" }).first(),
+  ).toBeVisible();
+
+  await page.getByLabel("Case-sensitive").nth(2).check();
+  await expect(page.getByText("Rule 3 - 1 match")).toBeVisible();
+  await expect(
+    page.locator("pre").filter({ hasText: "dog scatter Cat" }).first(),
+  ).toBeVisible();
+
+  await page.getByLabel("Enabled").nth(2).uncheck();
+  await expect(page.getByText("Rule 3 - Disabled")).toBeVisible();
+  await expect(
+    page.locator("pre").filter({ hasText: "cat scatter Cat" }).first(),
+  ).toBeVisible();
+
+  await page.getByLabel("Enabled").nth(2).check();
+  await page.getByLabel("Case-sensitive").nth(2).uncheck();
+  const zip = await exportZip(page, testInfo);
+  expect(zipText(zip.entries, "cleaned-text.txt")).not.toContain("REMOVE ME");
+  expect(zipText(zip.entries, "cleaned-text.txt")).toContain("New phrase SOS");
+  expect(zipText(zip.entries, "cleaned-text.txt")).toContain("dog scatter dog");
+  expect(zipText(zip.entries, "morse-transcript.txt")).toContain(
+    "...   ---   ...",
+  );
+
+  await page.getByRole("button", { name: "Clear custom rules" }).click();
+  await expect(
+    page.locator("pre").filter({ hasText: "REMOVE ME" }).first(),
+  ).toBeVisible();
+  await expect(page.getByText("Last export")).toHaveCount(0);
 });
 
 test("large synthetic input and quick file replacement stay usable", async ({

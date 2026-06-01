@@ -69,6 +69,7 @@ import { segmentBookText } from "./bookSegmentation";
 import {
   DEFAULT_CLEANUP_OPTIONS,
   type CleanupOptions,
+  type CustomCleanupRule,
   type ParsedBookSource,
   type PreflightSummary,
   sourceTypeLabel,
@@ -89,10 +90,14 @@ import {
 type ParseStatus = "idle" | "parsing" | "ready" | "error";
 type ExportStatusKind = "info" | "success" | "error" | "working";
 type SourceEntryMode = "pasted" | "uploaded-textarea" | "uploaded-preview";
+type SourceEditMode = "idle" | "draft";
 
 // Plain TXT/MD uploads under this cap stay directly editable without putting
 // full book-length documents into a large textarea by default.
 const INLINE_UPLOAD_TEXTAREA_LIMIT = 40_000;
+// Large extracted sources stay in draft edit mode so typing does not recompute
+// cleanup, Morse preview, runtime estimates, and splitting on every keystroke.
+const LARGE_SOURCE_EDIT_THRESHOLD = 40_000;
 const EXTRACTED_SOURCE_PREVIEW_LIMIT = 6_000;
 
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
@@ -233,6 +238,12 @@ export default function BookTranslatorTool() {
   const [cleanupOptions, setCleanupOptions] = React.useState<CleanupOptions>(
     DEFAULT_CLEANUP_OPTIONS,
   );
+  const [customCleanupRules, setCustomCleanupRules] = React.useState<
+    CustomCleanupRule[]
+  >([]);
+  const [sourceEditMode, setSourceEditMode] =
+    React.useState<SourceEditMode>("idle");
+  const [sourceEditDraft, setSourceEditDraft] = React.useState("");
   const [exportSettings, setExportSettings] =
     React.useState<BookExportSettings>(DEFAULT_BOOK_EXPORT_SETTINGS);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
@@ -262,6 +273,7 @@ export default function BookTranslatorTool() {
   const exportVersionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
   const mountedRef = React.useRef(true);
+  const customCleanupRuleIdRef = React.useRef(1);
 
   const cancelActiveExport = React.useCallback(
     (message = "Export cancelled.") => {
@@ -311,12 +323,21 @@ export default function BookTranslatorTool() {
   );
 
   const preflight = React.useMemo<PreflightSummary>(() => {
-    return buildPreflightSummary(parsedSource, effectiveCleanupOptions);
-  }, [effectiveCleanupOptions, parsedSource]);
+    return buildPreflightSummary(
+      parsedSource,
+      effectiveCleanupOptions,
+      customCleanupRules,
+    );
+  }, [customCleanupRules, effectiveCleanupOptions, parsedSource]);
 
   const sourceSections = React.useMemo(
-    () => buildCleanedSourceSections(parsedSource, effectiveCleanupOptions),
-    [effectiveCleanupOptions, parsedSource],
+    () =>
+      buildCleanedSourceSections(
+        parsedSource,
+        effectiveCleanupOptions,
+        customCleanupRules,
+      ),
+    [customCleanupRules, effectiveCleanupOptions, parsedSource],
   );
 
   const exportParts = React.useMemo<BookExportPart[]>(() => {
@@ -349,6 +370,9 @@ export default function BookTranslatorTool() {
   const isUploaded = parsedSource.sourceType !== "pasted";
   const isUploadedPreviewMode = sourceEntryMode === "uploaded-preview";
   const isTextareaMode = sourceEntryMode !== "uploaded-preview";
+  const sourceDraftActive = sourceEditMode === "draft";
+  const sourceDraftIsLarge =
+    sourceEditDraft.length > LARGE_SOURCE_EDIT_THRESHOLD;
   const extractedPreview = React.useMemo(
     () => capExtractedPreview(parsedSource.rawText),
     [parsedSource.rawText],
@@ -369,7 +393,8 @@ export default function BookTranslatorTool() {
     status === "error" ||
     Boolean(parsedSource.filename) ||
     Boolean(pendingFilename) ||
-    sourceText.length > 0;
+    sourceText.length > 0 ||
+    sourceEditDraft.length > 0;
   const cleanedSourceEmptyWarning =
     hasSource && !hasCleanedSource
       ? "Cleanup removed all source text. Turn off the cleanup option or add text before exporting."
@@ -393,15 +418,24 @@ export default function BookTranslatorTool() {
           : "";
   const sourcePreviewStatus = !hasSource
     ? "No source loaded"
-    : isUploadedPreviewMode
-      ? extractedPreviewTruncated
-        ? "Capped extracted preview"
-        : "Extracted preview"
-      : "Editable source";
+    : sourceDraftActive
+      ? sourceDraftIsLarge
+        ? "Large edit draft"
+        : "Edit draft"
+      : isUploadedPreviewMode
+        ? extractedPreviewTruncated
+          ? "Capped extracted preview"
+          : "Extracted preview"
+        : "Editable source";
   const presetModified = !settingsMatchBookPreset(exportSettings);
   const activePresetDetails =
     BOOK_EXPORT_PRESET_DETAILS[exportSettings.presetName];
   const activeSettingsSummary = describeBookExportSettings(exportSettings);
+  const customRuleMatchesById = React.useMemo(
+    () =>
+      new Map(preflight.customRuleMatches.map((match) => [match.id, match])),
+    [preflight.customRuleMatches],
+  );
   const progressPercent =
     exportProgress.totalParts > 0
       ? Math.round(
@@ -420,8 +454,34 @@ export default function BookTranslatorTool() {
       fileSelectionRef.current = null;
       setPendingFilename("");
       setSourceEntryMode("pasted");
+      setSourceEditMode("idle");
+      setSourceEditDraft("");
       setSourceText(value);
       setParsedSource(parsePastedSource(value));
+      setStatus(value.trim() ? "ready" : "idle");
+      setErrorMessage("");
+      setSourceActionStatus(null);
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, exportProgress],
+  );
+
+  const updateUploadedText = React.useCallback(
+    (value: string) => {
+      if (isExportRunning(exportProgress)) {
+        cancelActiveExport("Source changed; export cancelled.");
+      }
+      parseVersionRef.current += 1;
+      setSourceText(value);
+      setParsedSource((current) => ({
+        ...current,
+        rawText: value,
+        sections: undefined,
+        sectionCount: undefined,
+      }));
+      setSourceEditMode("idle");
+      setSourceEditDraft("");
       setStatus(value.trim() ? "ready" : "idle");
       setErrorMessage("");
       setSourceActionStatus(null);
@@ -456,6 +516,8 @@ export default function BookTranslatorTool() {
       setPendingFilename(file.name);
       setDragActive(false);
       setSourceText("");
+      setSourceEditMode("idle");
+      setSourceEditDraft("");
       setSourceEntryMode("uploaded-preview");
       setParsedSource(createEmptyParsedSource());
       setSourceActionStatus(null);
@@ -496,6 +558,8 @@ export default function BookTranslatorTool() {
     }
     parseVersionRef.current += 1;
     setSourceText("");
+    setSourceEditMode("idle");
+    setSourceEditDraft("");
     setSourceEntryMode("pasted");
     fileSelectionRef.current = null;
     setPendingFilename("");
@@ -528,28 +592,65 @@ export default function BookTranslatorTool() {
       });
       return;
     }
+    setSourceEditMode("draft");
+    setSourceEditDraft(parsedSource.rawText);
+    setSourceActionStatus({
+      kind: "info",
+      message:
+        parsedSource.rawText.length > LARGE_SOURCE_EDIT_THRESHOLD
+          ? "Large source edits are held as a draft until you apply them."
+          : "Edit the extracted text, then apply or cancel your draft.",
+    });
+    window.requestAnimationFrame(() => {
+      document.getElementById("book-source-edit-draft")?.focus();
+    });
+  }, [parsedSource.rawText]);
+
+  const applyExtractedTextDraft = React.useCallback(() => {
     if (isExportRunning(exportProgress)) {
       cancelActiveExport("Source changed; export cancelled.");
     }
     parseVersionRef.current += 1;
     fileSelectionRef.current = null;
     setPendingFilename("");
-    setSourceEntryMode("pasted");
-    setSourceText(parsedSource.rawText);
-    setParsedSource(parsePastedSource(parsedSource.rawText));
-    setStatus("ready");
+    setParsedSource((current) => ({
+      ...current,
+      rawText: sourceEditDraft,
+      sections: undefined,
+      sectionCount: undefined,
+      warnings: current.warnings,
+    }));
+    setSourceText(
+      sourceEditDraft.length <= LARGE_SOURCE_EDIT_THRESHOLD
+        ? sourceEditDraft
+        : "",
+    );
+    setSourceEntryMode(
+      sourceEditDraft.length <= LARGE_SOURCE_EDIT_THRESHOLD
+        ? "uploaded-textarea"
+        : "uploaded-preview",
+    );
+    setSourceEditMode("idle");
+    setSourceEditDraft("");
+    setStatus(sourceEditDraft.trim() ? "ready" : "idle");
     setErrorMessage("");
     setSourceActionStatus({
       kind: "success",
-      message: "Extracted text is now editable in the source field.",
+      message: "Extracted text edits applied.",
     });
     setExportStatus(null);
     setCompletedExport(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
-    window.requestAnimationFrame(() => {
-      document.getElementById("book-source-text")?.focus();
+  }, [cancelActiveExport, exportProgress, sourceEditDraft]);
+
+  const cancelExtractedTextDraft = React.useCallback(() => {
+    setSourceEditMode("idle");
+    setSourceEditDraft("");
+    setSourceActionStatus({
+      kind: "info",
+      message: "Draft edits cancelled; active source is unchanged.",
     });
-  }, [cancelActiveExport, exportProgress, parsedSource.rawText]);
+  }, []);
 
   const handleFileInputChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -583,6 +684,88 @@ export default function BookTranslatorTool() {
     },
     [cancelActiveExport, exportProgress],
   );
+
+  const addCustomCleanupRule = React.useCallback(() => {
+    if (isExportRunning(exportProgress)) {
+      cancelActiveExport("Settings changed; export cancelled.");
+    }
+    const id = `custom-cleanup-${customCleanupRuleIdRef.current}`;
+    customCleanupRuleIdRef.current += 1;
+    setCustomCleanupRules((current) => [
+      ...current,
+      {
+        id,
+        enabled: true,
+        find: "",
+        replacement: "",
+        caseSensitive: false,
+        wholeWord: false,
+      },
+    ]);
+    setExportStatus(null);
+    setCompletedExport(null);
+  }, [cancelActiveExport, exportProgress]);
+
+  const updateCustomCleanupRule = React.useCallback(
+    (id: string, patch: Partial<CustomCleanupRule>) => {
+      if (isExportRunning(exportProgress)) {
+        cancelActiveExport("Settings changed; export cancelled.");
+      }
+      setCustomCleanupRules((current) =>
+        current.map((rule) =>
+          rule.id === id ? { ...rule, ...patch, id: rule.id } : rule,
+        ),
+      );
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, exportProgress],
+  );
+
+  const deleteCustomCleanupRule = React.useCallback(
+    (id: string) => {
+      if (isExportRunning(exportProgress)) {
+        cancelActiveExport("Settings changed; export cancelled.");
+      }
+      setCustomCleanupRules((current) =>
+        current.filter((rule) => rule.id !== id),
+      );
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, exportProgress],
+  );
+
+  const moveCustomCleanupRule = React.useCallback(
+    (id: string, direction: -1 | 1) => {
+      if (isExportRunning(exportProgress)) {
+        cancelActiveExport("Settings changed; export cancelled.");
+      }
+      setCustomCleanupRules((current) => {
+        const index = current.findIndex((rule) => rule.id === id);
+        const nextIndex = index + direction;
+        if (index < 0 || nextIndex < 0 || nextIndex >= current.length) {
+          return current;
+        }
+        const next = [...current];
+        const [rule] = next.splice(index, 1);
+        next.splice(nextIndex, 0, rule);
+        return next;
+      });
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, exportProgress],
+  );
+
+  const clearCustomCleanupRules = React.useCallback(() => {
+    if (isExportRunning(exportProgress)) {
+      cancelActiveExport("Settings changed; export cancelled.");
+    }
+    setCustomCleanupRules([]);
+    setExportStatus(null);
+    setCompletedExport(null);
+  }, [cancelActiveExport, exportProgress]);
 
   const updateExportSettings = React.useCallback(
     (patch: Partial<BookExportSettings>) => {
@@ -833,17 +1016,6 @@ export default function BookTranslatorTool() {
             <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
               {hasSource ? "Source ready" : "Waiting for source"}
             </span>
-            {hasSource ? (
-              <a
-                href="#book-review-export"
-                className={toolControlButtonClass({
-                  size: "sm",
-                  tone: "dark",
-                })}
-              >
-                Review export
-              </a>
-            ) : null}
           </div>
         </div>
 
@@ -862,12 +1034,43 @@ export default function BookTranslatorTool() {
                 <ToolTextarea
                   id="book-source-text"
                   value={sourceText}
-                  onChange={(event) => updatePastedText(event.target.value)}
+                  onChange={(event) =>
+                    isUploaded
+                      ? updateUploadedText(event.target.value)
+                      : updatePastedText(event.target.value)
+                  }
                   placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
                   className="min-h-[18rem]"
                   spellCheck={false}
                 />
               </>
+            ) : sourceDraftActive ? (
+              <div
+                className="px-4 pb-4"
+                aria-labelledby="book-source-edit-draft-heading"
+              >
+                <h3
+                  id="book-source-edit-draft-heading"
+                  className="text-base font-extrabold text-sky-950"
+                >
+                  Edit extracted text draft
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                  {sourceDraftIsLarge
+                    ? "Large edits apply manually. Export, preview, runtime, and split details keep using the last applied source until you choose Apply edits."
+                    : "Apply the draft to update cleanup, preview, runtime, splitting, and export output."}
+                </p>
+                <label htmlFor="book-source-edit-draft" className="sr-only">
+                  Edit extracted text draft
+                </label>
+                <ToolTextarea
+                  id="book-source-edit-draft"
+                  value={sourceEditDraft}
+                  onChange={(event) => setSourceEditDraft(event.target.value)}
+                  className="mt-3 min-h-[18rem] rounded-lg bg-[#fffaf2]/70"
+                  spellCheck={false}
+                />
+              </div>
             ) : (
               <div
                 className="px-4 pb-4"
@@ -939,11 +1142,13 @@ export default function BookTranslatorTool() {
                           ? errorMessage
                           : !hasSource
                             ? "Extraction finished, but no source text was found."
-                            : isUploadedPreviewMode
-                              ? "The full extracted source is ready for review and export without rendering the entire file into the page."
-                              : isUploaded
-                                ? "This upload is small enough to edit directly in the source field."
-                                : "This text is editable and ready for review and export."}
+                            : sourceDraftActive
+                              ? "Draft edits are open. Copy, clear, and export still use the last applied source until edits are applied."
+                              : isUploadedPreviewMode
+                                ? "The full extracted source is ready for review and export without rendering the entire file into the page."
+                                : isUploaded
+                                  ? "This upload is small enough to edit directly in the source field."
+                                  : "This text is editable and ready for review and export."}
                     </p>
                   </div>
                   {isUploaded && parsedSource.filename ? (
@@ -1029,7 +1234,31 @@ export default function BookTranslatorTool() {
                     <CopyIcon size={16} title={undefined} aria-hidden="true" />
                     Copy cleaned text
                   </button>
-                  {isUploaded ? (
+                  {sourceDraftActive ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={applyExtractedTextDraft}
+                        className={toolControlButtonClass({
+                          size: "sm",
+                          tone: "dark",
+                        })}
+                      >
+                        Apply edits
+                      </button>
+                      <button
+                        type="button"
+                        onClick={cancelExtractedTextDraft}
+                        className={toolControlButtonClass({
+                          size: "sm",
+                          tone: "light",
+                          hover: "dark",
+                        })}
+                      >
+                        Cancel edits
+                      </button>
+                    </>
+                  ) : isUploadedPreviewMode ? (
                     <button
                       type="button"
                       onClick={editExtractedText}
@@ -1162,6 +1391,157 @@ export default function BookTranslatorTool() {
           tone="warning"
         />
 
+        <section
+          id="book-export-details"
+          className="rounded-xl bg-[#fffdf8] p-5 sm:p-6"
+          aria-labelledby="book-export-details-heading"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2
+              id="book-export-details-heading"
+              className="text-xl font-extrabold text-sky-950"
+            >
+              Export details
+            </h2>
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+              ZIP bundle
+            </span>
+          </div>
+          <p className="mt-2 max-w-[76ch] text-sm leading-relaxed text-slate-700">
+            Export runs locally from the active cleaned source and packages
+            sortable audio parts with the selected sidecar files.
+          </p>
+          <dl className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+            <Metric label="Preset" value={exportSettings.presetName} />
+            <Metric
+              label="Format"
+              value={exportSettings.outputFormat.toUpperCase()}
+            />
+            <Metric
+              label="Runtime"
+              value={
+                hasSource
+                  ? formatDuration(exportAnalysis.totalRuntimeMs)
+                  : "Waiting"
+              }
+            />
+            <Metric
+              label="Parts"
+              value={hasSource ? formatNumber(exportParts.length) : "0"}
+            />
+            <Metric
+              label="Target part"
+              value={formatDuration(exportAnalysis.targetPartMs)}
+            />
+            <Metric
+              label="Output size"
+              value={`~${exportAnalysis.estimatedSizeLabel}`}
+            />
+          </dl>
+
+          {sourceDraftActive ? (
+            <p className="mt-4 text-sm font-semibold text-slate-600">
+              Draft edits are not exported until you apply them.
+            </p>
+          ) : null}
+          {exportDisabledReason ? (
+            <p
+              id="book-export-disabled-reason"
+              className="mt-4 text-sm font-semibold text-slate-600"
+            >
+              {exportDisabledReason}
+            </p>
+          ) : null}
+          <MessageList
+            title="Export warnings"
+            items={exportWarnings}
+            tone="warning"
+          />
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <ToolButton
+              type="button"
+              tone="dark"
+              onClick={handleExportBundle}
+              disabled={!canExport}
+              aria-describedby={
+                exportDisabledReason ? "book-export-disabled-reason" : undefined
+              }
+              className="rounded-xl"
+            >
+              <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+              Export ZIP bundle
+            </ToolButton>
+            <ToolButton
+              type="button"
+              tone="light"
+              hover="dark"
+              onClick={handleDownloadSample}
+              disabled={!hasCleanedSource || exportRunning}
+              className="rounded-xl"
+            >
+              <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+              Download sample
+            </ToolButton>
+            <ToolButton
+              type="button"
+              tone="light"
+              hover="dark"
+              onClick={() => cancelActiveExport()}
+              disabled={!exportRunning}
+              className="rounded-xl"
+            >
+              <StopIcon size={18} title={undefined} aria-hidden="true" />
+              Cancel export
+            </ToolButton>
+          </div>
+
+          <div className="mt-5">
+            <progress
+              value={progressPercent}
+              max={100}
+              role="progressbar"
+              aria-label="Book export progress"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={progressPercent}
+              className="h-2 w-full overflow-hidden rounded-full"
+            />
+            <StatusMessage
+              kind={exportStatus?.kind ?? (exportRunning ? "working" : "info")}
+              live
+              className="mt-3"
+            >
+              {exportStatus?.message ?? exportProgress.message}
+            </StatusMessage>
+          </div>
+
+          {completedExport ? (
+            <div className="mt-5 border-t border-slate-200/70 pt-5">
+              <h3 className="text-base font-extrabold text-sky-950">
+                Last export
+              </h3>
+              <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <Metric label="ZIP file" value={completedExport.filename} />
+                <Metric
+                  label="Format"
+                  value={completedExport.outputFormat.toUpperCase()}
+                />
+                <Metric
+                  label="Parts"
+                  value={completedExport.partCount.toLocaleString()}
+                />
+                <Metric label="Runtime" value={completedExport.runtimeLabel} />
+              </dl>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                Bundle contents: {completedExport.contents.join(", ")}. Use
+                Export ZIP bundle again to download another copy, change
+                settings to rebuild, or clear the source when you are done.
+              </p>
+            </div>
+          ) : null}
+        </section>
+
         <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
@@ -1188,6 +1568,196 @@ export default function BookTranslatorTool() {
                   <span>{cleanupLabel(key)}</span>
                 </label>
               ),
+            )}
+          </div>
+          <div className="mt-5 border-t border-slate-200/70 pt-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 className="text-base font-extrabold text-sky-950">
+                  Custom cleanup rules
+                </h3>
+                <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                  Plain text rules apply top to bottom before preview,
+                  estimates, splitting, transcripts, and export.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={addCustomCleanupRule}
+                  className={toolControlButtonClass({
+                    size: "sm",
+                    tone: "dark",
+                  })}
+                >
+                  Add cleanup rule
+                </button>
+                <button
+                  type="button"
+                  onClick={clearCustomCleanupRules}
+                  disabled={customCleanupRules.length === 0}
+                  className={toolControlButtonClass({
+                    size: "sm",
+                    disabled: customCleanupRules.length === 0,
+                  })}
+                >
+                  Clear custom rules
+                </button>
+              </div>
+            </div>
+
+            {customCleanupRules.length === 0 ? (
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                Add a rule to remove boilerplate, replace recurring phrases, or
+                simplify source-specific text without changing the original
+                upload.
+              </p>
+            ) : (
+              <div className="mt-4 space-y-4">
+                {customCleanupRules.map((rule, index) => {
+                  const match = customRuleMatchesById.get(rule.id);
+                  const matchLabel = !rule.enabled
+                    ? "Disabled"
+                    : rule.find.trim().length === 0
+                      ? "Add find text"
+                      : `${formatNumber(match?.count ?? 0)} match${
+                          (match?.count ?? 0) === 1 ? "" : "es"
+                        }`;
+                  const findId = `${rule.id}-find`;
+                  const replacementId = `${rule.id}-replacement`;
+                  return (
+                    <div
+                      key={rule.id}
+                      className="border-t border-slate-200/70 pt-4"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                          Rule {index + 1} - {matchLabel}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          <button
+                            type="button"
+                            onClick={() => moveCustomCleanupRule(rule.id, -1)}
+                            disabled={index === 0}
+                            aria-label={`Move cleanup rule ${index + 1} up`}
+                            className={toolControlButtonClass({
+                              size: "sm",
+                              disabled: index === 0,
+                            })}
+                          >
+                            Up
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => moveCustomCleanupRule(rule.id, 1)}
+                            disabled={index === customCleanupRules.length - 1}
+                            aria-label={`Move cleanup rule ${index + 1} down`}
+                            className={toolControlButtonClass({
+                              size: "sm",
+                              disabled: index === customCleanupRules.length - 1,
+                            })}
+                          >
+                            Down
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => deleteCustomCleanupRule(rule.id)}
+                            aria-label={`Delete cleanup rule ${index + 1}`}
+                            className={toolControlButtonClass({ size: "sm" })}
+                          >
+                            <TrashIcon
+                              size={16}
+                              title={undefined}
+                              aria-hidden="true"
+                            />
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                      <div className="mt-3 grid gap-3 lg:grid-cols-2">
+                        <div>
+                          <label
+                            htmlFor={findId}
+                            className="text-sm font-semibold text-slate-700"
+                          >
+                            Find text
+                          </label>
+                          <input
+                            id={findId}
+                            value={rule.find}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                find: event.target.value,
+                              })
+                            }
+                            className="mt-2 w-full rounded-lg bg-[#fffaf2] px-3 py-2 font-mono text-sm text-slate-950 focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            htmlFor={replacementId}
+                            className="text-sm font-semibold text-slate-700"
+                          >
+                            Replacement text
+                          </label>
+                          <input
+                            id={replacementId}
+                            value={rule.replacement}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                replacement: event.target.value,
+                              })
+                            }
+                            placeholder="Leave empty to remove matches"
+                            className="mt-2 w-full rounded-lg bg-[#fffaf2] px-3 py-2 font-mono text-sm text-slate-950 focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                        </div>
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-4">
+                        <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-slate-800">
+                          <input
+                            type="checkbox"
+                            checked={rule.enabled}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                enabled: event.target.checked,
+                              })
+                            }
+                            className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                          <span>Enabled</span>
+                        </label>
+                        <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-slate-800">
+                          <input
+                            type="checkbox"
+                            checked={rule.caseSensitive}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                caseSensitive: event.target.checked,
+                              })
+                            }
+                            className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                          <span>Case-sensitive</span>
+                        </label>
+                        <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-slate-800">
+                          <input
+                            type="checkbox"
+                            checked={rule.wholeWord}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                wholeWord: event.target.checked,
+                              })
+                            }
+                            className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                          <span>Whole word</span>
+                        </label>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             )}
           </div>
         </section>
@@ -1257,149 +1827,53 @@ export default function BookTranslatorTool() {
             <p className="mt-1">{activeSettingsSummary}</p>
           </div>
         </div>
-      </section>
-
-      <section
-        id="book-review-export"
-        className="rounded-xl bg-[#fffdf8] p-5 sm:p-6"
-        aria-labelledby="book-review-export-heading"
-      >
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2
-            id="book-review-export-heading"
-            className="text-xl font-extrabold text-sky-950"
+        <fieldset className="mt-5 border-t border-slate-200/70 pt-5">
+          <legend className="text-base font-extrabold text-sky-950">
+            Output format
+          </legend>
+          <div
+            className="mt-3 flex flex-wrap gap-2"
+            role="radiogroup"
+            aria-label="Book export output format"
           >
-            {canExport ? "Ready to export" : "Review export"}
-          </h2>
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            ZIP bundle
-          </span>
-        </div>
-        <p className="mt-2 max-w-[76ch] text-sm leading-relaxed text-slate-700">
-          Review the selected preset and estimated bundle before downloading.
-          Exports run locally and package sortable audio parts with the selected
-          sidecar files.
-        </p>
-        <dl className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          <Metric label="Preset" value={exportSettings.presetName} />
-          <Metric
-            label="Format"
-            value={exportSettings.outputFormat.toUpperCase()}
-          />
-          <Metric
-            label="Runtime"
-            value={
-              hasSource
-                ? formatDuration(exportAnalysis.totalRuntimeMs)
-                : "Waiting"
-            }
-          />
-          <Metric
-            label="Parts"
-            value={hasSource ? formatNumber(exportParts.length) : "0"}
-          />
-          <Metric
-            label="Target part"
-            value={formatDuration(exportAnalysis.targetPartMs)}
-          />
-        </dl>
-
-        {exportDisabledReason ? (
-          <p
-            id="book-export-disabled-reason"
-            className="mt-4 text-sm font-semibold text-slate-600"
-          >
-            {exportDisabledReason}
-          </p>
-        ) : null}
-        <MessageList
-          title="Export warnings"
-          items={exportWarnings}
-          tone="warning"
-        />
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          <ToolButton
-            type="button"
-            tone="dark"
-            onClick={handleExportBundle}
-            disabled={!canExport}
-            aria-describedby={
-              exportDisabledReason ? "book-export-disabled-reason" : undefined
-            }
-            className="rounded-xl"
-          >
-            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-            Export ZIP bundle
-          </ToolButton>
-          <ToolButton
-            type="button"
-            tone="light"
-            hover="dark"
-            onClick={handleDownloadSample}
-            disabled={!hasCleanedSource || exportRunning}
-            className="rounded-xl"
-          >
-            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-            Download sample
-          </ToolButton>
-          <ToolButton
-            type="button"
-            tone="light"
-            hover="dark"
-            onClick={() => cancelActiveExport()}
-            disabled={!exportRunning}
-            className="rounded-xl"
-          >
-            <StopIcon size={18} title={undefined} aria-hidden="true" />
-            Cancel export
-          </ToolButton>
-        </div>
-
-        <div className="mt-5">
-          <progress
-            value={progressPercent}
-            max={100}
-            role="progressbar"
-            aria-label="Book export progress"
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-valuenow={progressPercent}
-            className="h-2 w-full overflow-hidden rounded-full"
-          />
-          <StatusMessage
-            kind={exportStatus?.kind ?? (exportRunning ? "working" : "info")}
-            live
-            className="mt-3"
-          >
-            {exportStatus?.message ?? exportProgress.message}
-          </StatusMessage>
-        </div>
-
-        {completedExport ? (
-          <div className="mt-5 border-t border-slate-200/70 pt-5">
-            <h3 className="text-base font-extrabold text-sky-950">
-              Last export
-            </h3>
-            <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <Metric label="ZIP file" value={completedExport.filename} />
-              <Metric
-                label="Format"
-                value={completedExport.outputFormat.toUpperCase()}
-              />
-              <Metric
-                label="Parts"
-                value={completedExport.partCount.toLocaleString()}
-              />
-              <Metric label="Runtime" value={completedExport.runtimeLabel} />
-            </dl>
-            <p className="mt-3 text-sm leading-relaxed text-slate-700">
-              Bundle contents: {completedExport.contents.join(", ")}. Use Export
-              ZIP bundle again to download another copy, change settings to
-              rebuild, or clear the source when you are done.
-            </p>
+            <button
+              type="button"
+              role="radio"
+              aria-checked={exportSettings.outputFormat === "mp3"}
+              onClick={() => updateExportSettings({ outputFormat: "mp3" })}
+              className={toolControlButtonClass({
+                active: exportSettings.outputFormat === "mp3",
+                tone: exportSettings.outputFormat === "mp3" ? "dark" : "light",
+                size: "md",
+                rounded: "xl",
+                hover: "dark",
+              })}
+            >
+              <span className="font-extrabold">MP3 ZIP</span>
+              <span className="text-xs font-semibold">
+                Recommended for long exports
+              </span>
+            </button>
+            <button
+              type="button"
+              role="radio"
+              aria-checked={exportSettings.outputFormat === "wav"}
+              onClick={() => updateExportSettings({ outputFormat: "wav" })}
+              className={toolControlButtonClass({
+                active: exportSettings.outputFormat === "wav",
+                tone: exportSettings.outputFormat === "wav" ? "dark" : "light",
+                size: "md",
+                rounded: "xl",
+                hover: "dark",
+              })}
+            >
+              <span className="font-extrabold">WAV ZIP</span>
+              <span className="text-xs font-semibold">
+                Uncompressed and larger
+              </span>
+            </button>
           </div>
-        ) : null}
+        </fieldset>
       </section>
 
       <details open={advancedOpen} onToggle={handleAdvancedToggle}>
@@ -1468,49 +1942,40 @@ export default function BookTranslatorTool() {
                 </option>
               ))}
             </LabeledSelect>
-            <LabeledSelect
-              label="Output format"
-              value={exportSettings.outputFormat}
-              onChange={(value) =>
-                updateExportSettings({
-                  outputFormat: value === "wav" ? "wav" : "mp3",
-                })
-              }
-            >
-              <option value="mp3">MP3 bundle</option>
-              <option value="wav">WAV bundle</option>
-            </LabeledSelect>
-            <LabeledSelect
-              label="MP3 bitrate"
-              value={String(exportSettings.mp3Bitrate)}
-              onChange={(value) =>
-                updateExportSettings({
-                  mp3Bitrate: sanitizeMp3Bitrate(Number(value)),
-                })
-              }
-              disabled={exportSettings.outputFormat !== "mp3"}
-            >
-              {MP3_BITRATES.map((bitrate) => (
-                <option key={bitrate} value={bitrate}>
-                  {bitrate} kbps
-                </option>
-              ))}
-            </LabeledSelect>
-            <LabeledSelect
-              label="Sample rate"
-              value={String(exportSettings.sampleRate)}
-              onChange={(value) =>
-                updateExportSettings({
-                  sampleRate: sanitizeAudioSampleRate(Number(value)),
-                })
-              }
-            >
-              {AUDIO_SAMPLE_RATES.map((sampleRate) => (
-                <option key={sampleRate} value={sampleRate}>
-                  {sampleRate} Hz
-                </option>
-              ))}
-            </LabeledSelect>
+            {exportSettings.outputFormat === "mp3" ? (
+              <LabeledSelect
+                label="MP3 bitrate"
+                value={String(exportSettings.mp3Bitrate)}
+                onChange={(value) =>
+                  updateExportSettings({
+                    mp3Bitrate: sanitizeMp3Bitrate(Number(value)),
+                  })
+                }
+              >
+                {MP3_BITRATES.map((bitrate) => (
+                  <option key={bitrate} value={bitrate}>
+                    {bitrate} kbps
+                  </option>
+                ))}
+              </LabeledSelect>
+            ) : null}
+            {exportSettings.outputFormat === "wav" ? (
+              <LabeledSelect
+                label="WAV sample rate"
+                value={String(exportSettings.sampleRate)}
+                onChange={(value) =>
+                  updateExportSettings({
+                    sampleRate: sanitizeAudioSampleRate(Number(value)),
+                  })
+                }
+              >
+                {AUDIO_SAMPLE_RATES.map((sampleRate) => (
+                  <option key={sampleRate} value={sampleRate}>
+                    {sampleRate} Hz
+                  </option>
+                ))}
+              </LabeledSelect>
+            ) : null}
             <SliderRow
               label="Target part length"
               value={exportSettings.targetPartMinutes}

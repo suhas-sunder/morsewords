@@ -6,6 +6,8 @@ import {
 import {
   CLEANED_PREVIEW_LIMIT,
   type CleanupOptions,
+  type CustomCleanupRule,
+  type CustomCleanupRuleMatch,
   ensureTextLength,
   MORSE_PREVIEW_INPUT_LIMIT,
   type BookSourceSection,
@@ -30,6 +32,7 @@ const SIMPLIFY_PUNCTUATION: Array<[RegExp, string]> = [
   [/[~`^]/g, ""],
   [/[#$%*<>]/g, ""],
 ];
+const WORD_BOUNDARY_CHARACTER = /[\p{L}\p{N}_]/u;
 
 export function decodeUtf8(bytes: ArrayBuffer) {
   return new TextDecoder("utf-8", { fatal: false }).decode(bytes);
@@ -87,6 +90,7 @@ function stripGutenbergBounds(text: string) {
 export function applyCleanupOptions(
   sourceText: string,
   options: CleanupOptions,
+  customRules: CustomCleanupRule[] = [],
 ) {
   const warnings: string[] = [];
   let cleaned = normalizePlainText(sourceText);
@@ -118,7 +122,9 @@ export function applyCleanupOptions(
         }.`,
       );
     } else {
-      warnings.push("No Project Gutenberg header or footer markers were found.");
+      warnings.push(
+        "No Project Gutenberg header or footer markers were found.",
+      );
     }
   }
 
@@ -135,15 +141,23 @@ export function applyCleanupOptions(
     }
   }
 
+  const customResult = applyCustomCleanupRules(cleaned, customRules);
+  cleaned = customResult.text;
+
   cleaned = normalizePlainText(cleaned);
   ensureTextLength(cleaned);
 
-  return { cleanedText: cleaned, cleanupWarnings: warnings };
+  return {
+    cleanedText: cleaned,
+    cleanupWarnings: warnings,
+    customRuleMatches: customResult.matches,
+  };
 }
 
 export function buildCleanedSourceSections(
   parsed: ParsedBookSource,
   options: CleanupOptions,
+  customRules: CustomCleanupRule[] = [],
 ): BookSourceSection[] {
   const sections = parsed.sections ?? [];
   if (sections.length === 0) return [];
@@ -152,7 +166,11 @@ export function buildCleanedSourceSections(
   const cleanedSections: BookSourceSection[] = [];
 
   sections.forEach((section) => {
-    const cleaned = applyCleanupOptions(section.rawText, options).cleanedText;
+    const cleaned = applyCleanupOptions(
+      section.rawText,
+      options,
+      customRules,
+    ).cleanedText;
     if (!cleaned) return;
     const startOffset = cursor;
     cursor += cleaned.length;
@@ -183,11 +201,10 @@ function excerpt(text: string, limit: number) {
 export function buildPreflightSummary(
   parsed: ParsedBookSource,
   options: CleanupOptions,
+  customRules: CustomCleanupRule[] = [],
 ): PreflightSummary {
-  const { cleanedText, cleanupWarnings } = applyCleanupOptions(
-    parsed.rawText,
-    options,
-  );
+  const { cleanedText, cleanupWarnings, customRuleMatches } =
+    applyCleanupOptions(parsed.rawText, options, customRules);
   const unsupportedCounts = getUnsupportedTextCharacters(cleanedText);
   const unsupportedCharacters = Object.entries(unsupportedCounts)
     .map(([character, count]) => ({ character, count }))
@@ -221,5 +238,86 @@ export function buildPreflightSummary(
     unsupportedCharacters,
     extractionWarnings: parsed.warnings,
     cleanupWarnings,
+    customRuleMatches,
   };
+}
+
+export function applyCustomCleanupRules(
+  sourceText: string,
+  rules: CustomCleanupRule[],
+): { text: string; matches: CustomCleanupRuleMatch[] } {
+  let next = sourceText;
+  const matches: CustomCleanupRuleMatch[] = [];
+
+  rules.forEach((rule) => {
+    const find = rule.find;
+    const active = rule.enabled && find.trim().length > 0;
+    if (!active) {
+      matches.push({ id: rule.id, count: 0, active: false });
+      return;
+    }
+
+    const result = replacePlainText(next, {
+      find,
+      replacement: rule.replacement,
+      caseSensitive: rule.caseSensitive,
+      wholeWord: rule.wholeWord,
+    });
+    next = result.text;
+    matches.push({ id: rule.id, count: result.count, active: true });
+  });
+
+  return { text: next, matches };
+}
+
+function replacePlainText(
+  text: string,
+  options: {
+    find: string;
+    replacement: string;
+    caseSensitive: boolean;
+    wholeWord: boolean;
+  },
+) {
+  const needle = options.find;
+  if (!needle) return { text, count: 0 };
+
+  const haystack = options.caseSensitive ? text : text.toLocaleLowerCase();
+  const searchNeedle = options.caseSensitive
+    ? needle
+    : needle.toLocaleLowerCase();
+  const chunks: string[] = [];
+  let searchFrom = 0;
+  let appendFrom = 0;
+  let count = 0;
+
+  while (searchFrom < text.length) {
+    const index = haystack.indexOf(searchNeedle, searchFrom);
+    if (index === -1) break;
+    const end = index + needle.length;
+
+    if (options.wholeWord && !hasWordBoundaries(text, index, end)) {
+      searchFrom = index + Math.max(needle.length, 1);
+      continue;
+    }
+
+    chunks.push(text.slice(appendFrom, index), options.replacement);
+    appendFrom = end;
+    searchFrom = end;
+    count += 1;
+  }
+
+  if (count === 0) return { text, count };
+  chunks.push(text.slice(appendFrom));
+  return { text: chunks.join(""), count };
+}
+
+function hasWordBoundaries(text: string, start: number, end: number) {
+  const before = start > 0 ? text[start - 1] : "";
+  const after = end < text.length ? text[end] : "";
+  return !isWordCharacter(before) && !isWordCharacter(after);
+}
+
+function isWordCharacter(value: string) {
+  return value ? WORD_BOUNDARY_CHARACTER.test(value) : false;
 }
