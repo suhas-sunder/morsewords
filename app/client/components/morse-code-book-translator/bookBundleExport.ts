@@ -51,6 +51,7 @@ export async function createBookExportZip({
   const { strToU8, zipSync } = await import("fflate");
   const files: Record<string, Uint8Array> = {};
   const generatedAudioFiles: string[] = [];
+  const generatedAt = new Date().toISOString();
 
   for (const part of parts) {
     throwIfAborted(signal);
@@ -87,7 +88,13 @@ export async function createBookExportZip({
   if (settings.includeManifest) {
     files["manifest.json"] = strToU8(
       JSON.stringify(
-        buildManifest({ metadata, parts, settings, generatedAudioFiles }),
+        buildManifest({
+          generatedAt,
+          metadata,
+          parts,
+          settings,
+          generatedAudioFiles,
+        }),
         null,
         2,
       ),
@@ -95,14 +102,41 @@ export async function createBookExportZip({
   }
 
   if (settings.includeSettings) {
-    files["settings.json"] = strToU8(JSON.stringify(settings, null, 2));
+    files["settings.json"] = strToU8(
+      JSON.stringify(
+        {
+          generatedAt,
+          presetName: settings.presetName,
+          outputFormat: settings.outputFormat,
+          charWpm: settings.charWpm,
+          farnsworthWpm: settings.farnsworthWpm,
+          tonePreset: settings.tonePreset,
+          pitch: settings.pitch,
+          volume: settings.volume,
+          mp3Bitrate: settings.mp3Bitrate,
+          sampleRate: settings.sampleRate,
+          targetPartMinutes: settings.targetPartMinutes,
+          preferSourceSections: settings.preferSourceSections,
+          paragraphPauseMultiplier: settings.paragraphPauseMultiplier,
+          sentencePauseMultiplier: settings.sentencePauseMultiplier,
+          punctuationMode: settings.punctuationMode,
+          includeCleanedText: settings.includeCleanedText,
+          includeMorseTranscript: settings.includeMorseTranscript,
+          includeManifest: settings.includeManifest,
+          includeSettings: settings.includeSettings,
+          includeReadme: settings.includeReadme,
+        },
+        null,
+        2,
+      ),
+    );
   }
 
   files["playlist.m3u"] = strToU8(buildPlaylist(generatedAudioFiles));
 
   if (settings.includeReadme) {
     files["README.txt"] = strToU8(
-      buildReadme({ metadata, parts, settings, generatedAudioFiles }),
+      buildReadme({ generatedAt, metadata, parts, settings, generatedAudioFiles }),
     );
   }
 
@@ -396,11 +430,13 @@ function buildPlaylist(files: string[]) {
 }
 
 function buildManifest({
+  generatedAt,
   generatedAudioFiles,
   metadata,
   parts,
   settings,
 }: {
+  generatedAt: string;
   generatedAudioFiles: string[];
   metadata: BookBundleMetadata;
   parts: BookExportPart[];
@@ -408,10 +444,18 @@ function buildManifest({
 }) {
   const runtimeMs = parts.reduce((sum, part) => sum + part.morseDurationMs, 0);
   return {
+    generatedAt,
+    sourceKind: metadata.sourceType,
     title: metadata.title,
     author: metadata.author,
     filename: metadata.filename,
     sourceType: metadata.sourceType,
+    source: {
+      kind: metadata.sourceType,
+      title: metadata.title,
+      author: metadata.author,
+      filename: metadata.filename,
+    },
     partCount: parts.length,
     runtimeEstimate: formatDuration(runtimeMs),
     runtimeMs,
@@ -426,6 +470,11 @@ function buildManifest({
       paragraphPauseMultiplier: settings.paragraphPauseMultiplier,
       sentencePauseMultiplier: settings.sentencePauseMultiplier,
       punctuationMode: settings.punctuationMode,
+      outputFormat: settings.outputFormat,
+      mp3Bitrate: settings.mp3Bitrate,
+      sampleRate: settings.sampleRate,
+      targetPartMinutes: settings.targetPartMinutes,
+      preferSourceSections: settings.preferSourceSections,
     },
     files: {
       audio: generatedAudioFiles,
@@ -451,11 +500,13 @@ function buildManifest({
 }
 
 function buildReadme({
+  generatedAt,
   generatedAudioFiles,
   metadata,
   parts,
   settings,
 }: {
+  generatedAt: string;
   generatedAudioFiles: string[];
   metadata: BookBundleMetadata;
   parts: BookExportPart[];
@@ -467,9 +518,11 @@ function buildReadme({
     `${title}`,
     metadata.author ? `Author: ${metadata.author}` : "",
     `Source type: ${metadata.sourceType}`,
+    `Generated: ${generatedAt}`,
     `Preset: ${settings.presetName}`,
     `Output: ${settings.outputFormat.toUpperCase()} parts`,
     `Estimated runtime: ${formatDuration(runtimeMs)}`,
+    `Part count: ${parts.length}`,
     "",
     "Files",
     ...generatedAudioFiles.map((file) => `- ${file}`),
@@ -479,7 +532,11 @@ function buildReadme({
     settings.includeManifest ? "- manifest.json" : "",
     settings.includeSettings ? "- settings.json" : "",
     "",
-    "MorseWords exports long sources as separate parts so browsers do not need to render one massive audio buffer.",
+    "Notes",
+    "- Audio parts are sorted by filename and listed in playlist.m3u.",
+    "- Parts are based on estimated Morse runtime and safe text boundaries, not necessarily original book chapters.",
+    "- MP3 is recommended for long exports. WAV is uncompressed and can be large.",
+    "- Source files are processed in your browser. Use source text you have the right to convert and use.",
   ]
     .filter((line) => line !== "")
     .join("\n");

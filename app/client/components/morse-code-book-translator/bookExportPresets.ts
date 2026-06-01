@@ -28,6 +28,37 @@ export const BOOK_EXPORT_PRESET_NAMES = [
 export const BOOK_EXPORT_FORMATS = ["mp3", "wav"] as const;
 export const BOOK_PUNCTUATION_MODES = ["preserve", "simplify"] as const;
 
+export const BOOK_EXPORT_PRESET_DETAILS: Record<
+  BookExportPresetName,
+  { description: string; bestFor: string }
+> = {
+  "Reader Quick Start": {
+    description:
+      "Balanced MP3 settings for turning a chapter or short book into listenable Morse parts.",
+    bestFor: "Most first exports",
+  },
+  "Long Listen": {
+    description:
+      "Longer MP3 parts with a softer tone and fewer transcript extras for extended listening.",
+    bestFor: "Long books and relaxed listening",
+  },
+  "Practice Copy": {
+    description:
+      "Shorter parts, slower Farnsworth spacing, and transcripts for copy-practice sessions.",
+    bestFor: "Training and review",
+  },
+  "Faithful Source": {
+    description:
+      "Preserves supported punctuation and source sections when possible while keeping MP3 output.",
+    bestFor: "Closer source structure",
+  },
+  "Archive Export": {
+    description:
+      "Uncompressed WAV parts with full metadata. Useful for short archival exports, but large.",
+    bestFor: "Short uncompressed bundles",
+  },
+};
+
 export const BOOK_EXPORT_PRESETS: Record<
   BookExportPresetName,
   BookExportSettings
@@ -248,4 +279,21 @@ export function applyBookPreset(
   presetName: BookExportPresetName,
 ): BookExportSettings {
   return sanitizeBookExportSettings(BOOK_EXPORT_PRESETS[presetName]);
+}
+
+export function describeBookExportSettings(settings: BookExportSettings) {
+  const format =
+    settings.outputFormat === "mp3"
+      ? `MP3 ${settings.mp3Bitrate} kbps`
+      : `WAV ${settings.sampleRate} Hz`;
+  const split = settings.preferSourceSections
+    ? "uses EPUB/PDF section hints when available"
+    : "splits by Morse runtime boundaries";
+  return `${settings.charWpm}/${settings.farnsworthWpm} WPM, ${format}, ${settings.targetPartMinutes} minute target parts, ${split}.`;
+}
+
+export function settingsMatchBookPreset(settings: BookExportSettings) {
+  const preset = applyBookPreset(settings.presetName);
+  const keys = Object.keys(preset) as Array<keyof BookExportSettings>;
+  return keys.every((key) => settings[key] === preset[key]);
 }

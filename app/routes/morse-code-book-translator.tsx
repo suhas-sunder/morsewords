@@ -18,7 +18,7 @@ const CANONICAL_PATH = ROUTES.bookTranslator;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 const TITLE = "Book to Morse Code Translator and Audio Exporter";
 const DESCRIPTION =
-  "Paste or upload long-form text, TXT, MD, EPUB, or text-native PDF, estimate Morse runtime, split parts, and download MP3 or WAV ZIP bundles.";
+  "Paste or upload TXT, MD, EPUB, or text-native PDF, estimate Morse runtime, split safe parts, and download local MP3 or WAV ZIP bundles.";
 
 const jsonLd = [
   {
@@ -50,7 +50,7 @@ const jsonLd = [
 const howItWorksItems = [
   {
     title: "Load source text",
-    text: "Paste directly, upload TXT or MD, or extract readable text from unprotected EPUB and text-native PDF files.",
+    text: "Paste directly, upload TXT or MD, or extract readable text from unprotected EPUB and text-native PDF files in your browser.",
   },
   {
     title: "Clean before converting",
@@ -58,7 +58,7 @@ const howItWorksItems = [
   },
   {
     title: "Estimate and split",
-    text: "Use shared Morse timing to estimate runtime, then split long sources into stable parts by section, paragraph, sentence, or word boundaries.",
+    text: "Estimate Morse runtime, then split long sources at safe section, paragraph, sentence, or word boundaries rather than assuming original chapters.",
   },
   {
     title: "Export a bundle",
@@ -68,20 +68,28 @@ const howItWorksItems = [
 
 const formatItems = [
   {
-    title: "TXT and MD",
-    text: "Plain text and Markdown are the best sources because paragraph breaks and punctuation are easy to preserve.",
+    title: "Best sources",
+    text: "TXT and EPUB usually produce the cleanest long-form Morse text. Markdown also works well when headings and paragraphs are simple.",
   },
   {
     title: "EPUB",
     text: "Unprotected EPUB files are read from their declared spine order. DRM-protected books are rejected.",
   },
   {
-    title: "PDF",
-    text: "PDF extraction is best effort and only supports selectable text. Scanned image-only PDFs need OCR, which is intentionally out of scope.",
+    title: "PDF limits",
+    text: "PDF support is text-native and best effort. Scanned or image-only PDFs are not supported because OCR is not included.",
+  },
+  {
+    title: "MP3 or WAV",
+    text: "MP3 is recommended for long exports because it stays smaller. WAV is available for short or uncompressed exports, but can get large quickly.",
+  },
+  {
+    title: "Local processing",
+    text: "Source files are handled locally in your browser. MorseWords does not upload book text, cleaned text, transcripts, or export results.",
   },
   {
     title: "Rights and privacy",
-    text: "Only use source text you have the right to process. You are responsible for the content you choose, including copyright or other usage limits; MorseWords does not host or authorize uploaded material.",
+    text: "Use source text you have the right to convert and use. You are responsible for the content you choose, including copyright or other usage limits.",
   },
 ];
 
@@ -105,11 +113,11 @@ export default function MorseCodeBookTranslatorRoute() {
       <PageHero
         eyebrow="Book export"
         title={TITLE}
-        description="Prepare long-form source text for Morse code conversion, estimate listening time, split it into parts, and download a local MP3 or WAV bundle."
+        description="Prepare long-form source text for Morse code conversion, estimate listening time, split it into safe parts, and download an MP3 or WAV bundle."
         aside={
           <DarkNote label="Supported sources" value="TXT MD EPUB PDF">
-            TXT and MD are preferred. EPUB must be unprotected. PDF must contain
-            selectable text; scanned PDFs are not OCR'd here.
+            TXT and EPUB are best for long exports. PDF must contain selectable
+            text; scanned PDFs are not OCR'd here.
           </DarkNote>
         }
       >
@@ -127,7 +135,7 @@ export default function MorseCodeBookTranslatorRoute() {
       <SectionCard
         eyebrow="Long-form workflow"
         title="How book export works"
-        description="The page keeps the source local, extracts readable text, estimates Morse timing, and renders audio part by part instead of one huge book-length file."
+        description="The page extracts readable text locally, estimates Morse timing, and renders audio part by part instead of one huge book-length file."
         layout="stacked"
       >
         <SimpleGrid items={howItWorksItems} variant="plain" />

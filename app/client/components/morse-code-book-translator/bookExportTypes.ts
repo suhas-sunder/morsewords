@@ -85,3 +85,12 @@ export type BookExportProgress = {
   currentPart: number;
   totalParts: number;
 };
+
+export type BookExportResultSummary = {
+  filename: string;
+  outputFormat: BookExportFormat;
+  partCount: number;
+  runtimeLabel: string;
+  sizeLabel: string;
+  contents: string[];
+};

@@ -10,6 +10,7 @@ import {
   buildMorseTranscript,
   estimateBookTextDurationMs,
 } from "../../app/client/components/morse-code-book-translator/bookDurationEstimate";
+import { BOOK_EXPORT_PREFERENCES_KEY } from "../../app/client/components/morse-code-book-translator/bookExportPreferences";
 import { BOOK_EXPORT_PRESETS } from "../../app/client/components/morse-code-book-translator/bookExportPresets";
 import { segmentBookText } from "../../app/client/components/morse-code-book-translator/bookSegmentation";
 import { estimateMorseDurationMs } from "../../app/client/components/shared/morseTiming";
@@ -287,6 +288,95 @@ test("duration estimates and segmentation use shared Morse timing", async () => 
   expect(hinted.some((part) => part.title.includes("Second"))).toBe(true);
 });
 
+test("preset settings, reset, and safe route preferences persist", async ({
+  page,
+}) => {
+  await openBookTranslator(page);
+  await expect(page.getByText("Balanced MP3 settings")).toBeVisible();
+
+  await page.getByRole("button", { name: "Practice Copy" }).click();
+  await expect(
+    page.getByText("Shorter parts, slower Farnsworth spacing"),
+  ).toBeVisible();
+  await expect(page.getByText("Best for: Training and review")).toBeVisible();
+  await expect(
+    page.getByText(
+      "20/10 WPM, MP3 128 kbps, 5 minute target parts, splits by Morse runtime boundaries.",
+    ),
+  ).toBeVisible();
+
+  const advancedToggle = page
+    .locator("summary")
+    .filter({ hasText: "Advanced export settings" });
+  await advancedToggle.click();
+  await expect(page.getByLabel("Output format")).toBeVisible();
+  await page.getByLabel("Output format").selectOption("wav");
+  await expect(page.getByText("Modified from preset")).toBeVisible();
+
+  await page.getByLabel("Paste long-form source text").fill(RAW_SECRET_TEXT);
+  await expect
+    .poll(() =>
+      page.evaluate((key) => localStorage.getItem(key), BOOK_EXPORT_PREFERENCES_KEY),
+    )
+    .toContain('"outputFormat":"wav"');
+  const storageSnapshot = await page.evaluate(() =>
+    Object.keys(localStorage)
+      .map((key) => `${key}:${localStorage.getItem(key)}`)
+      .join("\n"),
+  );
+  expect(storageSnapshot).not.toContain(RAW_SECRET_TEXT);
+
+  await page.getByRole("button", { name: "Reset preset" }).click();
+  await expect(page.getByText("Modified from preset")).toHaveCount(0);
+  await expect(page.getByLabel("Output format")).toHaveValue("mp3");
+
+  await page.getByLabel("Output format").selectOption("wav");
+  await expect
+    .poll(() =>
+      page.evaluate((key) => localStorage.getItem(key), BOOK_EXPORT_PREFERENCES_KEY),
+    )
+    .toContain('"advancedOpen":true');
+
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await waitForRouteReady(page);
+  await expect(page.locator("[data-mw-book-export-ready='true']")).toBeVisible();
+  await expect(page.getByLabel("Output format")).toBeVisible();
+  await expect(page.getByLabel("Output format")).toHaveValue("wav");
+  await expect(page.getByText("Modified from preset")).toBeVisible();
+});
+
+test("empty source, cleaned-empty source, large WAV, and progress semantics are clear", async ({
+  page,
+}) => {
+  await openBookTranslator(page);
+  const exportButton = page.getByRole("button", { name: "Export ZIP bundle" });
+  await expect(exportButton).toBeDisabled();
+
+  await page.getByLabel("Paste long-form source text").fill("   \n   ");
+  await expect(exportButton).toBeDisabled();
+
+  await page.getByLabel("Paste long-form source text").fill(`*** START OF THE PROJECT GUTENBERG EBOOK TEST ***
+
+*** END OF THE PROJECT GUTENBERG EBOOK TEST ***`);
+  await page.getByLabel("Strip Project Gutenberg header/footer").check();
+  await expect(page.getByText("Cleanup removed all source text")).toBeVisible();
+  await expect(exportButton).toBeDisabled();
+
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("ALPHA BRAVO SOS ".repeat(4_000));
+  await page.getByText("Advanced export settings").click();
+  await page.getByLabel("Output format").selectOption("wav");
+  await expect(page.getByText("WAV output may be very large")).toBeVisible();
+
+  const progressbar = page.getByRole("progressbar", {
+    name: "Book export progress",
+  });
+  await expect(progressbar).toHaveAttribute("aria-valuemin", "0");
+  await expect(progressbar).toHaveAttribute("aria-valuemax", "100");
+  await expect(progressbar).toHaveAttribute("aria-valuenow", "0");
+});
+
 test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and playlist", async ({
   page,
 }, testInfo) => {
@@ -295,10 +385,13 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   await page.getByLabel("Paste long-form source text").fill(raw);
   await page.getByRole("button", { name: "Practice Copy" }).click();
   await expect(page.getByText("Export preflight summary")).toBeVisible();
-  await expect(page.getByText("Part split")).toBeVisible();
+  await expect(page.getByText("Split summary")).toBeVisible();
 
   const zip = await exportZip(page, testInfo);
   expect(zip.filename).toMatch(/morse-audio-bundle\.zip$/);
+  await expect(page.getByText("Last export")).toBeVisible();
+  await expect(page.getByText(zip.filename)).toBeVisible();
+  await expect(page.getByText("Bundle contents:")).toBeVisible();
   expect(zip.names.some((name) => name.endsWith(".mp3"))).toBe(true);
   for (const name of [
     "cleaned-text.txt",
@@ -313,11 +406,27 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   expect(zipText(zip.entries, "cleaned-text.txt")).toContain("SOS HELP");
   expect(zipText(zip.entries, "morse-transcript.txt")).toContain("...   ---   ...");
   const manifest = JSON.parse(zipText(zip.entries, "manifest.json"));
+  expect(manifest.generatedAt).toEqual(expect.any(String));
+  expect(manifest.sourceKind).toBe("pasted");
+  expect(manifest.source.kind).toBe("pasted");
+  expect(manifest.runtimeMs).toBeGreaterThan(0);
   expect(manifest.outputFormat).toBe("mp3");
   expect(manifest.partCount).toBeGreaterThan(0);
   expect(manifest.files.audio[0]).toMatch(/part-001\.mp3$/);
+  expect(manifest.settingsSummary.targetPartMinutes).toBe(5);
+  expect(manifest.parts[0].filename).toMatch(/part-001\.mp3$/);
   const settings = JSON.parse(zipText(zip.entries, "settings.json"));
+  expect(settings.generatedAt).toEqual(expect.any(String));
   expect(settings.presetName).toBe("Practice Copy");
+  expect(settings.targetPartMinutes).toBe(5);
+  const playlist = zipText(zip.entries, "playlist.m3u");
+  expect(playlist).toContain("#EXTM3U");
+  expect(playlist).toContain(`./${manifest.files.audio[0]}`);
+  const readme = zipText(zip.entries, "README.txt");
+  expect(readme).toContain("Generated:");
+  expect(readme).toContain("Part count:");
+  expect(readme).toContain("MP3 is recommended for long exports");
+  expect(readme).toContain("right to convert and use");
 
   const storageSnapshot = await page.evaluate(() =>
     Object.keys(localStorage)
@@ -356,6 +465,24 @@ test("export cancellation can abort stale work before completion", async () => {
       controller.signal,
     ),
   ).rejects.toThrow();
+});
+
+test("route cancellation state is distinct from failure", async ({ page }) => {
+  await openBookTranslator(page);
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("SOS HELP ALPHA BRAVO ".repeat(4_000));
+  await page.getByText("Advanced export settings").click();
+  await page.getByLabel("Output format").selectOption("wav");
+
+  await page.getByRole("button", { name: "Export ZIP bundle" }).click();
+  await expect(page.getByRole("button", { name: "Cancel export" })).toBeEnabled();
+  await page.getByRole("button", { name: "Cancel export" }).click();
+  await expect(page.getByText("Export cancelled.")).toBeVisible({
+    timeout: 30_000,
+  });
+  await expect(page.getByText("Last export")).toHaveCount(0);
+  await expect(page.getByText("Export failed.")).toHaveCount(0);
 });
 
 test("EPUB rejection paths are clear for encrypted and broken files", async ({

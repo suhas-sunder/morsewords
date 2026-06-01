@@ -5,6 +5,7 @@ import {
   ClockIcon,
   DownloadIcon,
   EqualizerIcon,
+  RefreshIcon,
   SparklesIcon,
   StopIcon,
   TrashIcon,
@@ -42,14 +43,22 @@ import {
 } from "./bookDurationEstimate";
 import {
   applyBookPreset,
+  BOOK_EXPORT_PRESET_DETAILS,
   BOOK_EXPORT_PRESET_NAMES,
   DEFAULT_BOOK_EXPORT_SETTINGS,
+  describeBookExportSettings,
   sanitizeBookExportSettings,
+  settingsMatchBookPreset,
 } from "./bookExportPresets";
+import {
+  loadBookExportPreferences,
+  saveBookExportPreferences,
+} from "./bookExportPreferences";
 import type {
   BookExportPart,
   BookExportPresetName,
   BookExportProgress,
+  BookExportResultSummary,
   BookExportSettings,
 } from "./bookExportTypes";
 import { segmentBookText } from "./bookSegmentation";
@@ -138,7 +147,10 @@ function MessageList({
         : "text-slate-700";
 
   return (
-    <section className="rounded-xl bg-[#fffdf8] p-4">
+    <section
+      className="rounded-xl bg-[#fffdf8] p-4"
+      role={tone === "error" ? "alert" : undefined}
+    >
       <h3 className="flex items-center gap-2 text-sm font-extrabold text-sky-950">
         <WarningBadgeIcon size={16} title={undefined} aria-hidden="true" />
         {title}
@@ -173,6 +185,18 @@ function isExportRunning(progress: BookExportProgress) {
   );
 }
 
+function bundleContentsForSettings(settings: BookExportSettings) {
+  return [
+    `${settings.outputFormat.toUpperCase()} audio parts`,
+    "playlist.m3u",
+    settings.includeCleanedText ? "cleaned-text.txt" : "",
+    settings.includeMorseTranscript ? "morse-transcript.txt" : "",
+    settings.includeManifest ? "manifest.json" : "",
+    settings.includeSettings ? "settings.json" : "",
+    settings.includeReadme ? "README.txt" : "",
+  ].filter(Boolean);
+}
+
 export default function BookTranslatorTool() {
   const [sourceText, setSourceText] = React.useState("");
   const [parsedSource, setParsedSource] = React.useState<ParsedBookSource>(
@@ -192,6 +216,9 @@ export default function BookTranslatorTool() {
     kind: ExportStatusKind;
     message: string;
   } | null>(null);
+  const [completedExport, setCompletedExport] =
+    React.useState<BookExportResultSummary | null>(null);
+  const [preferencesLoaded, setPreferencesLoaded] = React.useState(false);
   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
   const parseVersionRef = React.useRef(0);
   const fileSelectionRef = React.useRef<{
@@ -214,6 +241,18 @@ export default function BookTranslatorTool() {
     });
     setExportStatus({ kind: "info", message });
   }, []);
+
+  React.useEffect(() => {
+    const preferences = loadBookExportPreferences();
+    setExportSettings(preferences.exportSettings);
+    setAdvancedOpen(preferences.advancedOpen);
+    setPreferencesLoaded(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (!preferencesLoaded) return;
+    saveBookExportPreferences({ exportSettings, advancedOpen });
+  }, [advancedOpen, exportSettings, preferencesLoaded]);
 
   React.useEffect(() => {
     return () => {
@@ -263,13 +302,22 @@ export default function BookTranslatorTool() {
   );
 
   const hasSource = sourceText.trim().length > 0;
+  const hasCleanedSource = preflight.cleanedText.trim().length > 0;
   const isUploaded = parsedSource.sourceType !== "pasted";
+  const cleanedSourceEmptyWarning =
+    hasSource && !hasCleanedSource
+      ? "Cleanup removed all source text. Turn off the cleanup option or add text before exporting."
+      : "";
   const allWarnings = [
     ...preflight.extractionWarnings,
     ...preflight.cleanupWarnings,
     ...exportAnalysis.warnings,
-  ];
+    cleanedSourceEmptyWarning,
+  ].filter(Boolean);
   const canExport = hasSource && exportParts.length > 0 && !isExportRunning(exportProgress);
+  const presetModified = !settingsMatchBookPreset(exportSettings);
+  const activePresetDetails = BOOK_EXPORT_PRESET_DETAILS[exportSettings.presetName];
+  const activeSettingsSummary = describeBookExportSettings(exportSettings);
   const progressPercent =
     exportProgress.totalParts > 0
       ? Math.round((exportProgress.currentPart / exportProgress.totalParts) * 100)
@@ -289,6 +337,7 @@ export default function BookTranslatorTool() {
       setStatus(value.trim() ? "ready" : "idle");
       setErrorMessage("");
       setExportStatus(null);
+      setCompletedExport(null);
     },
     [cancelActiveExport, exportProgress],
   );
@@ -317,6 +366,7 @@ export default function BookTranslatorTool() {
       setErrorMessage("");
       setDragActive(false);
       setExportStatus(null);
+      setCompletedExport(null);
 
       try {
         const parsed = await parseFileSource(file);
@@ -348,6 +398,7 @@ export default function BookTranslatorTool() {
     setStatus("idle");
     setErrorMessage("");
     setExportStatus(null);
+    setCompletedExport(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   }, [cancelActiveExport, exportProgress]);
 
@@ -384,6 +435,7 @@ export default function BookTranslatorTool() {
         [key]: !current[key],
       }));
       setExportStatus(null);
+      setCompletedExport(null);
     },
     [cancelActiveExport, exportProgress],
   );
@@ -397,6 +449,7 @@ export default function BookTranslatorTool() {
         sanitizeBookExportSettings({ ...current, ...patch }),
       );
       setExportStatus(null);
+      setCompletedExport(null);
     },
     [cancelActiveExport, exportProgress],
   );
@@ -408,8 +461,34 @@ export default function BookTranslatorTool() {
       }
       setExportSettings(applyBookPreset(presetName));
       setExportStatus(null);
+      setCompletedExport(null);
     },
     [cancelActiveExport, exportProgress],
+  );
+
+  const resetCurrentPreset = React.useCallback(() => {
+    if (isExportRunning(exportProgress)) {
+      cancelActiveExport("Preset reset; export cancelled.");
+    }
+    setExportSettings((current) => applyBookPreset(current.presetName));
+    setExportStatus(null);
+    setCompletedExport(null);
+  }, [cancelActiveExport, exportProgress]);
+
+  const handleUploadKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLElement>) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      fileInputRef.current?.click();
+    },
+    [],
+  );
+
+  const handleAdvancedToggle = React.useCallback(
+    (event: React.SyntheticEvent<HTMLDetailsElement>) => {
+      setAdvancedOpen(event.currentTarget.open);
+    },
+    [],
   );
 
   const handleCharWpmChange = React.useCallback(
@@ -439,6 +518,7 @@ export default function BookTranslatorTool() {
     exportAbortRef.current = controller;
     const version = exportVersionRef.current + 1;
     exportVersionRef.current = version;
+    setCompletedExport(null);
     setExportStatus({ kind: "working", message: "Starting book export..." });
     setExportProgress({
       phase: "splitting",
@@ -479,6 +559,14 @@ export default function BookTranslatorTool() {
         setExportStatus({ kind: "error", message: download.message });
         return;
       }
+      setCompletedExport({
+        filename: result.filename,
+        outputFormat: exportSettings.outputFormat,
+        partCount: exportParts.length,
+        runtimeLabel: formatDuration(exportAnalysis.totalRuntimeMs),
+        sizeLabel: exportAnalysis.estimatedSizeLabel,
+        contents: bundleContentsForSettings(exportSettings),
+      });
       setExportProgress({
         phase: "complete",
         message: `Bundle download started with ${exportParts.length} part${
@@ -518,7 +606,7 @@ export default function BookTranslatorTool() {
         exportAbortRef.current = null;
       }
     }
-  }, [exportParts, exportSettings, hasSource, preflight]);
+  }, [exportAnalysis.estimatedSizeLabel, exportAnalysis.totalRuntimeMs, exportParts, exportSettings, hasSource, preflight]);
 
   const handleDownloadSample = React.useCallback(async () => {
     if (!hasSource || !exportAnalysis.cleanedText.trim()) {
@@ -589,8 +677,22 @@ export default function BookTranslatorTool() {
         </ToolPanel>
 
         <div className="space-y-4">
-          <label
-            htmlFor="book-source-file"
+          <input
+            ref={fileInputRef}
+            id="book-source-file"
+            type="file"
+            accept=".txt,.md,.markdown,.epub,.pdf,text/plain,text/markdown,application/epub+zip,application/pdf"
+            onChange={handleFileInputChange}
+            className="sr-only"
+            aria-describedby="book-source-file-help"
+          />
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label="Upload a book source file"
+            aria-describedby="book-source-file-help"
+            onClick={() => fileInputRef.current?.click()}
+            onKeyDown={handleUploadKeyDown}
             onDragOver={(event) => {
               event.preventDefault();
               setDragActive(true);
@@ -602,7 +704,7 @@ export default function BookTranslatorTool() {
             onDragLeave={() => setDragActive(false)}
             onDrop={handleDrop}
             className={[
-              "flex min-h-[14rem] cursor-pointer flex-col justify-center rounded-xl border border-dashed border-slate-300/80 bg-white/88 p-5 text-center transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-sky-500",
+              "flex min-h-[14rem] cursor-pointer flex-col justify-center rounded-xl border border-dashed border-slate-300/80 bg-white/88 p-5 text-center transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
               dragActive
                 ? "border-sky-500 bg-[#fffaf2] outline outline-2 outline-offset-2 outline-sky-500"
                 : "",
@@ -610,15 +712,6 @@ export default function BookTranslatorTool() {
               .filter(Boolean)
               .join(" ")}
           >
-            <input
-              ref={fileInputRef}
-              id="book-source-file"
-              type="file"
-              accept=".txt,.md,.markdown,.epub,.pdf,text/plain,text/markdown,application/epub+zip,application/pdf"
-              onChange={handleFileInputChange}
-              className="sr-only"
-              aria-describedby="book-source-file-help"
-            />
             <UploadIcon
               size={28}
               title={undefined}
@@ -642,7 +735,7 @@ export default function BookTranslatorTool() {
             <span className="mx-auto mt-3 block max-w-[38ch] text-xs leading-relaxed text-slate-500">
               {uploadRightsText}
             </span>
-          </label>
+          </div>
 
           <div className="flex flex-wrap gap-2">
             <button
@@ -668,32 +761,36 @@ export default function BookTranslatorTool() {
             ) : null}
           </div>
 
-          <div className="rounded-xl bg-[#fffdf8] p-5">
-            <h2 className="flex items-center gap-2 text-base font-extrabold text-sky-950">
-              <SparklesIcon size={18} title={undefined} aria-hidden="true" />
-              Source cleanup
-            </h2>
-            <div className="mt-4 space-y-3">
-              {(Object.keys(cleanupOptions) as Array<keyof CleanupOptions>).map(
-                (key) => (
-                  <label
-                    key={key}
-                    className="flex cursor-pointer items-start gap-3 text-sm font-semibold text-slate-800"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={cleanupOptions[key]}
-                      onChange={() => toggleCleanup(key)}
-                      className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                    />
-                    <span>{cleanupLabel(key)}</span>
-                  </label>
-                ),
-              )}
-            </div>
-          </div>
         </div>
       </div>
+
+      <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
+            <SparklesIcon size={20} title={undefined} aria-hidden="true" />
+            Source cleanup
+          </h2>
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+            Before export
+          </span>
+        </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          {(Object.keys(cleanupOptions) as Array<keyof CleanupOptions>).map((key) => (
+            <label
+              key={key}
+              className="flex cursor-pointer items-start gap-3 text-sm font-semibold text-slate-800"
+            >
+              <input
+                type="checkbox"
+                checked={cleanupOptions[key]}
+                onChange={() => toggleCleanup(key)}
+                className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+              />
+              <span>{cleanupLabel(key)}</span>
+            </label>
+          ))}
+        </div>
+      </section>
 
       <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -701,9 +798,25 @@ export default function BookTranslatorTool() {
             <ClockIcon size={20} title={undefined} aria-hidden="true" />
             Export presets
           </h2>
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            {exportSettings.presetName}
-          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            {presetModified ? (
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                Modified from preset
+              </span>
+            ) : null}
+            <button
+              type="button"
+              onClick={resetCurrentPreset}
+              disabled={!presetModified}
+              className={toolControlButtonClass({
+                size: "sm",
+                disabled: !presetModified,
+              })}
+            >
+              <RefreshIcon size={16} title={undefined} aria-hidden="true" />
+              Reset preset
+            </button>
+          </div>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           {BOOK_EXPORT_PRESET_NAMES.map((presetName) => {
@@ -727,17 +840,140 @@ export default function BookTranslatorTool() {
             );
           })}
         </div>
-        <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          {exportSettings.charWpm}/{exportSettings.farnsworthWpm} WPM,{" "}
-          {exportSettings.outputFormat.toUpperCase()} at{" "}
-          {exportSettings.outputFormat === "mp3"
-            ? `${exportSettings.mp3Bitrate} kbps`
-            : `${exportSettings.sampleRate} Hz`}
-          , {exportSettings.targetPartMinutes} minute target parts.
-        </p>
+        <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,0.68fr)_minmax(260px,0.32fr)] lg:items-start">
+          <div>
+            <p className="text-base font-extrabold text-sky-950">
+              {exportSettings.presetName}
+            </p>
+            <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+              {activePresetDetails.description}
+            </p>
+          </div>
+          <div className="text-sm leading-relaxed text-slate-600">
+            <p className="font-semibold text-slate-800">
+              Best for: {activePresetDetails.bestFor}
+            </p>
+            <p className="mt-1">{activeSettingsSummary}</p>
+          </div>
+        </div>
       </section>
 
-      <details open={advancedOpen} onToggle={(event) => setAdvancedOpen(event.currentTarget.open)}>
+      {status === "parsing" ? (
+        <div
+          role="status"
+          className="rounded-xl bg-[#fffdf8] p-4 text-sm font-semibold text-slate-700"
+        >
+          Parsing source locally in your browser...
+        </div>
+      ) : null}
+      {status === "error" ? (
+        <MessageList title="Extraction error" items={[errorMessage]} tone="error" />
+      ) : null}
+
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.65fr)]">
+        <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
+              <ChecklistIcon size={20} title={undefined} aria-hidden="true" />
+              Export preflight summary
+            </h2>
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+              {status === "ready" ? "Ready" : status === "parsing" ? "Parsing" : "Preview"}
+            </span>
+          </div>
+
+          {hasSource ? (
+            <dl className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <Metric label="Source type" value={sourceTypeLabel(preflight.sourceType)} />
+              <Metric label="Words" value={formatNumber(preflight.wordCount)} />
+              <Metric
+                label="Characters"
+                value={formatNumber(preflight.characterCount)}
+              />
+              <Metric label="Runtime" value={formatDuration(exportAnalysis.totalRuntimeMs)} />
+              <Metric label="Parts" value={formatNumber(exportParts.length)} />
+              <Metric
+                label="Target part"
+                value={formatDuration(exportAnalysis.targetPartMs)}
+              />
+              <Metric
+                label="Output size"
+                value={`~${exportAnalysis.estimatedSizeLabel}`}
+              />
+              <Metric
+                label="Format"
+                value={exportSettings.outputFormat.toUpperCase()}
+              />
+              <Metric label="Preset" value={exportSettings.presetName} />
+              <Metric
+                label="Unsupported"
+                value={formatNumber(preflight.unsupportedCount)}
+              />
+              {preflight.pageCount ? (
+                <Metric label="PDF pages" value={formatNumber(preflight.pageCount)} />
+              ) : null}
+              {preflight.sectionCount ? (
+                <Metric
+                  label={
+                    preflight.sourceType === "epub"
+                      ? "EPUB sections"
+                      : preflight.sourceType === "pdf"
+                        ? "PDF sections"
+                        : "Source sections"
+                  }
+                  value={formatNumber(preflight.sectionCount)}
+                />
+              ) : null}
+              {preflight.title ? <Metric label="Title" value={preflight.title} /> : null}
+              {preflight.author ? <Metric label="Author" value={preflight.author} /> : null}
+            </dl>
+          ) : (
+            <EmptyPreview>
+              Paste text or upload TXT, MD, EPUB, or text-native PDF to see word
+              counts, runtime, part splitting, unsupported characters, and Morse
+              previews before export.
+            </EmptyPreview>
+          )}
+
+          {preflight.unsupportedCharacters.length > 0 ? (
+            <div className="mt-5 border-t border-slate-200/70 pt-5">
+              <h3 className="text-sm font-extrabold text-sky-950">
+                Top unsupported characters
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {preflight.unsupportedCharacters.map((item) => (
+                  <span
+                    key={item.character}
+                    className="font-mono text-sm font-bold text-slate-800"
+                  >
+                    {item.character === " " ? "space" : item.character} x
+                    {item.count}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                {exportAnalysis.unsupportedImpact}
+              </p>
+            </div>
+          ) : null}
+        </section>
+
+        <div className="space-y-4">
+          <MessageList title="Warnings" items={allWarnings} tone="warning" />
+          <section className="rounded-xl bg-[#fffdf8] p-5">
+            <h2 className="text-base font-extrabold text-sky-950">
+              Source guidance
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700">
+              TXT and EPUB usually produce the cleanest long-form Morse source.
+              PDF extraction is best effort for selectable text; scanned PDFs
+              are not supported because this tool does not include OCR.
+            </p>
+          </section>
+        </div>
+      </div>
+
+      <details open={advancedOpen} onToggle={handleAdvancedToggle}>
         <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
           <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
           Advanced export settings
@@ -912,177 +1148,18 @@ export default function BookTranslatorTool() {
         </div>
       </details>
 
-      {status === "parsing" ? (
-        <div
-          role="status"
-          className="rounded-xl bg-[#fffdf8] p-4 text-sm font-semibold text-slate-700"
-        >
-          Parsing source locally in your browser...
-        </div>
-      ) : null}
-      {status === "error" ? (
-        <MessageList title="Extraction error" items={[errorMessage]} tone="error" />
-      ) : null}
-
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.65fr)]">
-        <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
-              <ChecklistIcon size={20} title={undefined} aria-hidden="true" />
-              Export preflight summary
-            </h2>
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-              {status === "ready" ? "Ready" : status === "parsing" ? "Parsing" : "Preview"}
-            </span>
-          </div>
-
-          {hasSource ? (
-            <dl className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <Metric label="Source type" value={sourceTypeLabel(preflight.sourceType)} />
-              <Metric label="Words" value={formatNumber(preflight.wordCount)} />
-              <Metric
-                label="Characters"
-                value={formatNumber(preflight.characterCount)}
-              />
-              <Metric label="Runtime" value={formatDuration(exportAnalysis.totalRuntimeMs)} />
-              <Metric label="Parts" value={formatNumber(exportParts.length)} />
-              <Metric
-                label="Target part"
-                value={formatDuration(exportAnalysis.targetPartMs)}
-              />
-              <Metric
-                label="Output size"
-                value={`~${exportAnalysis.estimatedSizeLabel}`}
-              />
-              <Metric
-                label="Format"
-                value={exportSettings.outputFormat.toUpperCase()}
-              />
-              <Metric label="Preset" value={exportSettings.presetName} />
-              <Metric
-                label="Unsupported"
-                value={formatNumber(preflight.unsupportedCount)}
-              />
-              {preflight.pageCount ? (
-                <Metric label="PDF pages" value={formatNumber(preflight.pageCount)} />
-              ) : null}
-              {preflight.sectionCount ? (
-                <Metric
-                  label={
-                    preflight.sourceType === "epub"
-                      ? "EPUB sections"
-                      : preflight.sourceType === "pdf"
-                        ? "PDF sections"
-                        : "Source sections"
-                  }
-                  value={formatNumber(preflight.sectionCount)}
-                />
-              ) : null}
-              {preflight.title ? <Metric label="Title" value={preflight.title} /> : null}
-              {preflight.author ? <Metric label="Author" value={preflight.author} /> : null}
-            </dl>
-          ) : (
-            <EmptyPreview>
-              Paste text or upload TXT, MD, EPUB, or text-native PDF to see word
-              counts, runtime, part splitting, unsupported characters, and Morse
-              previews before export.
-            </EmptyPreview>
-          )}
-
-          {preflight.unsupportedCharacters.length > 0 ? (
-            <div className="mt-5 border-t border-slate-200/70 pt-5">
-              <h3 className="text-sm font-extrabold text-sky-950">
-                Top unsupported characters
-              </h3>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {preflight.unsupportedCharacters.map((item) => (
-                  <span
-                    key={item.character}
-                    className="font-mono text-sm font-bold text-slate-800"
-                  >
-                    {item.character === " " ? "space" : item.character} x
-                    {item.count}
-                  </span>
-                ))}
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                {exportAnalysis.unsupportedImpact}
-              </p>
-            </div>
-          ) : null}
-        </section>
-
-        <div className="space-y-4">
-          <MessageList title="Warnings" items={allWarnings} tone="warning" />
-          <section className="rounded-xl bg-[#fffdf8] p-5">
-            <h2 className="text-base font-extrabold text-sky-950">
-              Bundle export
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-slate-700">
-              Export runs one part at a time in this browser. Long sources are
-              packaged as sorted part files, transcripts, manifest, settings,
-              playlist, and README.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <ToolButton
-                type="button"
-                tone="dark"
-                onClick={handleExportBundle}
-                disabled={!canExport}
-                className="rounded-xl"
-              >
-                <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-                Export ZIP bundle
-              </ToolButton>
-              <ToolButton
-                type="button"
-                tone="light"
-                hover="dark"
-                onClick={handleDownloadSample}
-                disabled={!hasSource || isExportRunning(exportProgress)}
-                className="rounded-xl"
-              >
-                <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-                Download sample
-              </ToolButton>
-              <ToolButton
-                type="button"
-                tone="light"
-                hover="dark"
-                onClick={() => cancelActiveExport()}
-                disabled={!isExportRunning(exportProgress)}
-                className="rounded-xl"
-              >
-                <StopIcon size={18} title={undefined} aria-hidden="true" />
-                Cancel export
-              </ToolButton>
-            </div>
-            <div className="mt-4">
-              <progress
-                value={progressPercent}
-                max={100}
-                className="h-2 w-full overflow-hidden rounded-full"
-                aria-label="Book export progress"
-              />
-              <StatusMessage
-                kind={exportStatus?.kind ?? (isExportRunning(exportProgress) ? "working" : "info")}
-                live
-                className="mt-3"
-              >
-                {exportStatus?.message ?? exportProgress.message}
-              </StatusMessage>
-            </div>
-          </section>
-        </div>
-      </div>
-
       <section>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-xl font-extrabold text-sky-950">Part split</h2>
+          <h2 className="text-xl font-extrabold text-sky-950">Split summary</h2>
           <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
             {exportParts.length} part{exportParts.length === 1 ? "" : "s"}
           </span>
         </div>
+        <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+          Parts are based on estimated Morse runtime and safe paragraph,
+          sentence, or word boundaries. EPUB/PDF section hints help when
+          available, but parts are not guaranteed to match original chapters.
+        </p>
         {exportParts.length > 0 ? (
           <div className="mt-4 grid gap-3">
             {exportParts.slice(0, 6).map((part) => (
@@ -1118,6 +1195,100 @@ export default function BookTranslatorTool() {
             <EmptyPreview>Part splitting appears after source text is available.</EmptyPreview>
           </div>
         )}
+      </section>
+
+      <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-xl font-extrabold text-sky-950">
+            Export actions
+          </h2>
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+            ZIP bundle
+          </span>
+        </div>
+        <p className="mt-2 max-w-[80ch] text-sm leading-relaxed text-slate-700">
+          MP3 is recommended for long exports because the files stay smaller.
+          WAV is available for shorter or uncompressed exports, but it can
+          become large quickly. Exports run locally and package sortable parts
+          with the selected metadata files.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <ToolButton
+            type="button"
+            tone="dark"
+            onClick={handleExportBundle}
+            disabled={!canExport}
+            className="rounded-xl"
+          >
+            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+            Export ZIP bundle
+          </ToolButton>
+          <ToolButton
+            type="button"
+            tone="light"
+            hover="dark"
+            onClick={handleDownloadSample}
+            disabled={!hasCleanedSource || isExportRunning(exportProgress)}
+            className="rounded-xl"
+          >
+            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+            Download sample
+          </ToolButton>
+          <ToolButton
+            type="button"
+            tone="light"
+            hover="dark"
+            onClick={() => cancelActiveExport()}
+            disabled={!isExportRunning(exportProgress)}
+            className="rounded-xl"
+          >
+            <StopIcon size={18} title={undefined} aria-hidden="true" />
+            Cancel export
+          </ToolButton>
+        </div>
+        <div className="mt-5">
+          <progress
+            value={progressPercent}
+            max={100}
+            role="progressbar"
+            aria-label="Book export progress"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={progressPercent}
+            className="h-2 w-full overflow-hidden rounded-full"
+          />
+          <StatusMessage
+            kind={exportStatus?.kind ?? (isExportRunning(exportProgress) ? "working" : "info")}
+            live
+            className="mt-3"
+          >
+            {exportStatus?.message ?? exportProgress.message}
+          </StatusMessage>
+        </div>
+        {completedExport ? (
+          <div className="mt-5 border-t border-slate-200/70 pt-5">
+            <h3 className="text-base font-extrabold text-sky-950">
+              Last export
+            </h3>
+            <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <Metric label="ZIP file" value={completedExport.filename} />
+              <Metric
+                label="Format"
+                value={completedExport.outputFormat.toUpperCase()}
+              />
+              <Metric
+                label="Parts"
+                value={completedExport.partCount.toLocaleString()}
+              />
+              <Metric label="Runtime" value={completedExport.runtimeLabel} />
+            </dl>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700">
+              Bundle contents: {completedExport.contents.join(", ")}. Use
+              Export ZIP bundle again to download another copy, change settings
+              to rebuild, or clear the source when you are done.
+            </p>
+          </div>
+        ) : null}
       </section>
 
       <div className="grid gap-5 lg:grid-cols-2">
@@ -1175,7 +1346,7 @@ function LabeledSelect({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         disabled={disabled}
-        className={`mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none ${
+        className={`mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
           disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
         }`}
       >
