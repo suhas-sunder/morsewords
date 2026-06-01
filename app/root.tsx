@@ -27,6 +27,7 @@ import RelatedTools from "./client/components/navigation/RelatedTools";
 import PageBackdrop, {
   paperBackground,
 } from "./client/components/shared/PageBackdrop";
+import PageFlashOverlay from "./client/components/shared/PageFlashOverlay";
 import {
   THEME_COOKIE_MAX_AGE,
   THEME_STORAGE_KEY,
@@ -129,6 +130,13 @@ const THEME_INIT_SCRIPT = `
   } catch (error) {
     document.documentElement.dataset.flashEffects = "enabled";
   }
+
+  try {
+    var fullPageFlash = window.localStorage.getItem("morsewords-full-page-flash");
+    document.documentElement.dataset.fullPageFlash = fullPageFlash === "1" || fullPageFlash === "true" ? "enabled" : "disabled";
+  } catch (error) {
+    document.documentElement.dataset.fullPageFlash = "disabled";
+  }
 })();
 `;
 
@@ -148,6 +156,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <PHogProvider>
           <NavBar initialTheme={initialTheme} />
+          <PageFlashOverlay />
           <div
             className="relative min-h-screen overflow-hidden"
             style={paperBackground}

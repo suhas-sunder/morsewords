@@ -11,6 +11,7 @@ import {
   sanitizeAudioSampleRate,
 } from "~/client/components/shared/morseSettings";
 import {
+  dispatchMorseFlash,
   dispatchFlashClear,
   isFlashAllowedNow,
 } from "~/client/components/shared/useFlashSafety";
@@ -289,10 +290,7 @@ export default function useMorseAudio() {
   }
 
   function triggerFlash(ms: number) {
-    if (!isFlashAllowedNow()) return;
-    window.dispatchEvent(
-      new CustomEvent("morsewords:flash", { detail: { ms } }),
-    );
+    dispatchMorseFlash(ms);
   }
 
   async function ensureRunning() {

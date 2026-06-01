@@ -166,6 +166,13 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Listen",
       },
       {
+        title: "Book to Morse Code",
+        description:
+          "Preflight long-form TXT, EPUB, and PDF sources before Morse conversion.",
+        href: ROUTES.bookTranslator,
+        badge: "Books",
+      },
+      {
         title: "Word Search Builder",
         description:
           "Create printable Morse vocabulary puzzles from custom word lists.",

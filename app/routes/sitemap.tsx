@@ -88,6 +88,12 @@ const GROUPS: SitemapGroup[] = [
           "Type text or Morse, preview the tone, and download a browser-generated MP3 file.",
       },
       {
+        label: "Book to Morse Code Translator",
+        to: ROUTES.bookTranslator,
+        description:
+          "Paste or upload long-form TXT, MD, EPUB, or text-native PDF sources and preflight them for Morse conversion.",
+      },
+      {
         label: "Morse Code Encoder",
         to: ROUTES.encoder,
         description: "Turn English text into Morse code dots and dashes.",

@@ -16,7 +16,9 @@ export default function DisplaySettingsToggle({
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const {
     disableFlashEffects,
+    fullPageFlash,
     setDisableFlashEffects,
+    setFullPageFlash,
     setShowAmbientMorse,
     showAmbientMorse,
   } = useDisplaySettings();
@@ -82,9 +84,15 @@ export default function DisplaySettingsToggle({
               onChange={setShowAmbientMorse}
             />
             <SettingsSwitch
+              checked={fullPageFlash}
+              label="Flash whole page"
+              description="Adds the full-page flash when Flash Light is on."
+              onChange={setFullPageFlash}
+            />
+            <SettingsSwitch
               checked={disableFlashEffects}
               label="Disable flashing light effects"
-              description="Stops visual flash playback while keeping audio available."
+              description="Turns off visual flash while keeping audio available."
               onChange={setDisableFlashEffects}
             />
           </div>

@@ -142,8 +142,10 @@ export default function MorseCodeAudioPractice() {
   const [flash, setFlash] = React.useState(false);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const flashLamp = useFlashLampState(flash);
-  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const { disableFlashEffects, flashAllowed, fullPageFlash } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
+  const showStrobeWarning =
+    fullPageFlash && effectiveFlash && player.state === "playing";
 
   const morse = React.useMemo(() => textToMorse(prompt.text), [prompt.text]);
   const normalizedAnswer = normalizeAudioAnswer(answer);
@@ -603,7 +605,7 @@ export default function MorseCodeAudioPractice() {
                     </select>
                   </label>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <TogglePill
                       label="Sound"
                       checked={soundOn}
@@ -619,28 +621,32 @@ export default function MorseCodeAudioPractice() {
                       hover="soft"
                     />
                     <TogglePill
-                      label="Flash"
+                      label="Flash Light"
                       checked={effectiveFlash}
                       onChange={(value) => setFlash(value && flashAllowed)}
-                      icon={<LightBulbIcon size={16} title="Flash" />}
+                      icon={
+                        <LightBulbIcon
+                          size={16}
+                          title={undefined}
+                          aria-hidden="true"
+                        />
+                      }
                       describedBy={
                         disableFlashEffects
                           ? FLASH_DISABLED_NOTICE_ID
-                          : effectiveFlash
+                          : showStrobeWarning
                             ? STROBE_WARNING_ID
                           : undefined
                       }
                       disabled={!flashAllowed}
                       hover="soft"
                     />
-                    {flash ? (
-                      <FlashLamp
-                        active={flashLamp.active}
-                        disabled={!effectiveFlash}
-                        label="Morse audio practice flash lamp"
-                        size="sm"
-                      />
-                    ) : null}
+                    <FlashLamp
+                      active={flashLamp.active}
+                      disabled={!flashAllowed}
+                      label="Morse audio practice flash lamp"
+                      size="sm"
+                    />
                   </div>
                 </div>
                 {disableFlashEffects ? (
@@ -648,7 +654,7 @@ export default function MorseCodeAudioPractice() {
                     id={FLASH_DISABLED_NOTICE_ID}
                     className="mt-4"
                   />
-                ) : effectiveFlash ? (
+                ) : showStrobeWarning ? (
                   <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
                 ) : null}
               </div>

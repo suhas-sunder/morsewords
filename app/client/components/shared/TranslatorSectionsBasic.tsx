@@ -246,8 +246,10 @@ export default function TranslatorSectionsBasic({
   }, []);
 
   const flashLamp = useFlashLampState(flash);
-  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const { disableFlashEffects, flashAllowed, fullPageFlash } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
+  const showStrobeWarning =
+    fullPageFlash && effectiveFlash && player.state === "playing";
 
   useEffect(() => {
     if (flashAllowed) return;
@@ -828,7 +830,7 @@ export default function TranslatorSectionsBasic({
                     Playback Settings
                   </h3>
 
-                  <div className="flex flex-wrap gap-2 sm:justify-end">
+                  <div className="flex flex-wrap items-center gap-2 sm:justify-end">
                     <TogglePill
                       label="Sound"
                       checked={soundOn}
@@ -855,25 +857,29 @@ export default function TranslatorSectionsBasic({
                       label="Flash Light"
                       checked={effectiveFlash}
                       onChange={(value) => setFlash(value && flashAllowed)}
-                      icon={<LightBulbIcon size={16} title="Light" />}
+                      icon={
+                        <LightBulbIcon
+                          size={16}
+                          title={undefined}
+                          aria-hidden="true"
+                        />
+                      }
                       describedBy={
                         disableFlashEffects
                           ? FLASH_DISABLED_NOTICE_ID
-                          : effectiveFlash
+                          : showStrobeWarning
                             ? STROBE_WARNING_ID
                             : undefined
                       }
                       disabled={!flashAllowed}
                       isHome={isHome}
                     />
-                    {flash ? (
-                      <FlashLamp
-                        active={flashLamp.active}
-                        disabled={!effectiveFlash}
-                        label="Morse translator flash lamp"
-                        size="sm"
-                      />
-                    ) : null}
+                    <FlashLamp
+                      active={flashLamp.active}
+                      disabled={!flashAllowed}
+                      label="Morse translator flash lamp"
+                      size="sm"
+                    />
                   </div>
                 </div>
 
@@ -914,7 +920,7 @@ export default function TranslatorSectionsBasic({
 
                 {disableFlashEffects ? (
                   <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} />
-                ) : effectiveFlash ? (
+                ) : showStrobeWarning ? (
                   <StrobeWarning id={STROBE_WARNING_ID} />
                 ) : null}
 

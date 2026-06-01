@@ -2,19 +2,21 @@ import * as React from "react";
 
 import {
   areFlashEffectsDisabled,
+  areFullPageFlashEffectsEnabled,
   useDisplaySettings,
 } from "~/client/settings/displaySettings";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-const MIN_FLASH_MS = 30;
-const MAX_FLASH_MS = 1200;
-const FLASH_EVENT = "morsewords:flash";
-const FLASH_CLEAR_EVENT = "morsewords:flash-clear";
+export const MIN_FLASH_MS = 30;
+export const MAX_FLASH_MS = 1200;
+export const FLASH_EVENT = "morsewords:flash";
+export const FLASH_CLEAR_EVENT = "morsewords:flash-clear";
 
 export type FlashSafetyState = {
   flashAllowed: boolean;
   reducedMotion: boolean;
   disableFlashEffects: boolean;
+  fullPageFlash: boolean;
 };
 
 export function isFlashAllowedFromSafetyState({
@@ -32,13 +34,32 @@ export function isFlashAllowedNow() {
   return !areFlashEffectsDisabled();
 }
 
+export function isFullPageFlashEnabledNow() {
+  return areFullPageFlashEffectsEnabled();
+}
+
+export function getClampedFlashDurationMs(ms: number) {
+  return Math.min(MAX_FLASH_MS, Math.max(MIN_FLASH_MS, ms));
+}
+
+export function dispatchMorseFlash(ms: number) {
+  if (typeof window === "undefined" || !isFlashAllowedNow()) return;
+  if (!Number.isFinite(ms) || ms <= 0) return;
+
+  window.dispatchEvent(
+    new CustomEvent(FLASH_EVENT, {
+      detail: { ms: getClampedFlashDurationMs(ms) },
+    }),
+  );
+}
+
 export function dispatchFlashClear() {
   if (typeof window === "undefined") return;
   window.dispatchEvent(new CustomEvent(FLASH_CLEAR_EVENT));
 }
 
 export function useFlashSafety(): FlashSafetyState {
-  const { disableFlashEffects } = useDisplaySettings();
+  const { disableFlashEffects, fullPageFlash } = useDisplaySettings();
   const [reducedMotion, setReducedMotion] = React.useState(false);
 
   React.useEffect(() => {
@@ -59,6 +80,7 @@ export function useFlashSafety(): FlashSafetyState {
 
   return {
     disableFlashEffects,
+    fullPageFlash,
     reducedMotion,
     flashAllowed: isFlashAllowedFromSafetyState({
       disableFlashEffects,
@@ -102,7 +124,7 @@ export function useFlashLampState(enabled: boolean) {
 
       clearTimer();
       setActive(true);
-      const ms = Math.min(MAX_FLASH_MS, Math.max(MIN_FLASH_MS, rawMs));
+      const ms = getClampedFlashDurationMs(rawMs);
       timerRef.current = window.setTimeout(() => {
         timerRef.current = null;
         setActive(false);

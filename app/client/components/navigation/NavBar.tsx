@@ -168,6 +168,11 @@ const MORE_GROUPS: NavGroup[] = [
         description: "Convert names and open them in audio or translator tools.",
       },
       {
+        label: "Book translator",
+        href: ROUTES.bookTranslator,
+        description: "Preflight TXT, EPUB, and PDF sources for Morse conversion.",
+      },
+      {
         label: "Morse code decoder",
         href: ROUTES.decoder,
         description: "Decode dots, dashes, spaces, and separators.",

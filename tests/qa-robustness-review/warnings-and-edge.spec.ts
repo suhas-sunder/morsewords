@@ -23,13 +23,13 @@ test.beforeEach(async ({ page }) => {
   await blockExternalNetwork(page);
 });
 
-test("flash/strobe warnings are hidden until the user enables flash", async ({ page }) => {
+test("Flash Light shows the small lamp without a strobe warning by default", async ({ page }) => {
   await page.goto("/morse-code-audio-practice");
   await waitForRouteReady(page);
   await expectNoVisiblePrematureWarning(page);
 
   const showAdvanced = page.getByRole("button", { name: "Show advanced settings" });
-  const flashButton = page.getByRole("button", { name: "Flash" });
+  const flashButton = page.getByRole("button", { name: "Flash Light" });
   await expect(async () => {
     if (await showAdvanced.isVisible()) {
       await showAdvanced.click();
@@ -41,12 +41,38 @@ test("flash/strobe warnings are hidden until the user enables flash", async ({ p
   const warning = page
     .getByText("Strobe warning:", { exact: false })
     .filter({ visible: true });
+  await flashButton.click();
+  await expect(flashButton).toHaveAttribute("aria-pressed", "true");
+  await expect(warning).toHaveCount(0);
+  await expect(page.getByTestId("mw-flash-lamp")).toBeVisible();
+});
+
+test("whole-page flash setting shows the strobe warning with Flash Light", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    window.localStorage.setItem("morsewords-full-page-flash", "1");
+  });
+  await page.goto("/morse-code-audio-practice");
+  await waitForRouteReady(page);
+  await expectNoVisiblePrematureWarning(page);
+
+  const showAdvanced = page.getByRole("button", { name: "Show advanced settings" });
+  const flashButton = page.getByRole("button", { name: "Flash Light" });
   await expect(async () => {
-    if (!(await warning.isVisible())) {
-      await flashButton.click();
+    if (await showAdvanced.isVisible()) {
+      await showAdvanced.click();
     }
-    await expect(warning).toBeVisible({ timeout: 1_000 });
+    await expect(flashButton).toBeVisible({ timeout: 1_000 });
   }).toPass({ timeout: 15_000 });
+
+  const warning = page
+    .getByText("Strobe warning:", { exact: false })
+    .filter({ visible: true });
+  await flashButton.click();
+  await expect(warning).toHaveCount(0);
+  await page.locator("button").filter({ hasText: "Play prompt" }).click();
+  await expect(warning).toBeVisible();
 });
 
 test("audio practice locks scoring after correct and revealed prompts", async ({ page }) => {
@@ -73,7 +99,7 @@ test("audio practice locks scoring after correct and revealed prompts", async ({
   await expect(checkAnswer).toBeDisabled();
 });
 
-test("visual practice does not show strobe warning before first flash", async ({ page }) => {
+test("visual practice small lamp does not show strobe warning by default", async ({ page }) => {
   await page.goto("/morse-code-visual-practice");
   await waitForRouteReady(page);
   await expectNoVisiblePrematureWarning(page);
@@ -81,7 +107,45 @@ test("visual practice does not show strobe warning before first flash", async ({
   await page.getByRole("button", { name: "Flash message" }).click();
   await expect(
     page.getByText("Strobe warning:", { exact: false }).filter({ visible: true }),
-  ).toBeVisible();
+  ).toHaveCount(0);
+});
+
+test("visual practice shows strobe warning when whole-page flash is enabled", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    window.localStorage.setItem("morsewords-full-page-flash", "1");
+  });
+  await page.goto("/morse-code-visual-practice");
+  await waitForRouteReady(page);
+  await expectNoVisiblePrematureWarning(page);
+
+  const warning = page
+    .getByText("Strobe warning:", { exact: false })
+    .filter({ visible: true });
+  const sawPageFlash = page.evaluate<boolean>(
+    () =>
+      new Promise<boolean>((resolve) => {
+        if (document.querySelector(".mw-strobe-flash")) {
+          resolve(true);
+          return;
+        }
+        const observer = new MutationObserver(() => {
+          if (document.querySelector(".mw-strobe-flash")) {
+            observer.disconnect();
+            resolve(true);
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        window.setTimeout(() => {
+          observer.disconnect();
+          resolve(false);
+        }, 1_200);
+      }),
+  );
+  await page.getByRole("button", { name: "Flash message" }).click();
+  await expect(warning).toBeVisible();
+  await expect(sawPageFlash).resolves.toBe(true);
 });
 
 test("printable chart content limits are hidden until content is actually omitted", async ({ page }) => {

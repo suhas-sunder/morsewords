@@ -162,8 +162,10 @@ export default function MorseAudioTranslator({
   const [exportStatus, setExportStatus] = React.useState<null | { kind: "ok" | "error" | "working"; message: string }>(null);
   const [hydrated, setHydrated] = React.useState(false);
   const flashLamp = useFlashLampState(hydrated && flash);
-  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const { disableFlashEffects, flashAllowed, fullPageFlash } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
+  const showStrobeWarning =
+    fullPageFlash && effectiveFlash && player.state === "playing";
 
   React.useEffect(() => {
     setSourceMode(readStoredEnum(storageKey("source"), SOURCE_MODES, "text"));
@@ -645,14 +647,14 @@ export default function MorseAudioTranslator({
                     </div>
                   </div>
 
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
                     <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} rounded="lg" />
                     <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} rounded="lg" />
-                    <TogglePill label="Flash" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title="Flash" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : effectiveFlash ? STROBE_WARNING_ID : undefined} disabled={!flashAllowed} rounded="lg" />
-                    {hydrated && flash ? <FlashLamp active={flashLamp.active} disabled={!effectiveFlash} label="Morse audio flash lamp" size="sm" /> : null}
+                    <TogglePill label="Flash Light" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : showStrobeWarning ? STROBE_WARNING_ID : undefined} disabled={!flashAllowed} rounded="lg" />
+                    <FlashLamp active={flashLamp.active} disabled={!flashAllowed} label="Morse audio flash lamp" size="sm" />
                   </div>
 
-                  {disableFlashEffects ? <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-3" /> : effectiveFlash ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}
+                  {disableFlashEffects ? <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-3" /> : showStrobeWarning ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}
                 </div>
               ) : null}
 

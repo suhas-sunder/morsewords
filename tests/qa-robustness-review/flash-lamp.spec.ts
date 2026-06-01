@@ -4,7 +4,7 @@ import { isFlashAllowedFromSafetyState } from "../../app/client/components/share
 import { waitForRouteReady } from "./helpers";
 
 function flashToggle(page: Page) {
-  return page.locator("button").filter({ hasText: "Flash" }).first();
+  return page.locator("button").filter({ hasText: "Flash Light" }).first();
 }
 
 async function openAudio(page: Page) {
@@ -68,7 +68,46 @@ test.describe("shared FlashLamp", () => {
     await expect(page.locator(".fixed.inset-0.bg-white")).toHaveCount(0);
   });
 
-  test("global flash disable prevents lamp activation", async ({ page }) => {
+  test("visual practice lamp does not sit inside a filled nested card", async ({
+    page,
+  }) => {
+    await page.addInitScript(() => window.localStorage.clear());
+    await page.goto("/morse-code-visual-practice", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+
+    const lamp = page.getByTestId("mw-flash-lamp").first();
+    await expect(lamp).toBeVisible();
+    const lampWrapper = lamp.locator("xpath=..");
+    await expect(lampWrapper).not.toHaveClass(/mw-static-panel/);
+    await expect(lampWrapper).not.toHaveClass(/bg-\[/);
+
+    const wrapperBackground = await lampWrapper.evaluate((element) => {
+      return window.getComputedStyle(element).backgroundColor;
+    });
+    expect(wrapperBackground).toBe("rgba(0, 0, 0, 0)");
+  });
+
+  test("audio Flash Light button and lamp stay vertically aligned", async ({
+    page,
+  }) => {
+    await page.addInitScript(() => window.localStorage.clear());
+    await openAudio(page);
+
+    const flashButtonBox = await flashToggle(page).boundingBox();
+    const lampBox = await page.getByTestId("mw-flash-lamp").first().boundingBox();
+
+    expect(flashButtonBox).not.toBeNull();
+    expect(lampBox).not.toBeNull();
+
+    const flashButtonCenter =
+      flashButtonBox!.y + flashButtonBox!.height / 2;
+    const lampCenter = lampBox!.y + lampBox!.height / 2;
+    expect(Math.abs(flashButtonCenter - lampCenter)).toBeLessThanOrEqual(4);
+  });
+
+  test("explicit flash disable setting turns off visual flash controls", async ({ page }) => {
     await page.addInitScript(() => {
       window.localStorage.clear();
       window.localStorage.setItem("morsewords-disable-flash-effects", "1");
@@ -77,6 +116,9 @@ test.describe("shared FlashLamp", () => {
     await waitForRouteReady(page);
 
     await expect(flashToggle(page)).toBeDisabled();
+    const lamp = page.getByTestId("mw-flash-lamp").first();
+    await expect(lamp).toBeVisible();
+    await expect(lamp).toHaveAttribute("data-disabled", "true");
 
     await page.evaluate(() => {
       window.dispatchEvent(
@@ -84,7 +126,51 @@ test.describe("shared FlashLamp", () => {
       );
     });
 
-    await expect(page.locator('[data-mw-flash-lamp][data-active="true"]')).toHaveCount(0);
+    await expect(lamp).toHaveAttribute("data-active", "false");
+    await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
+  });
+
+  test("whole-page flash setting restores the full-page flash and warning", async ({
+    page,
+  }) => {
+    await page.addInitScript(() => {
+      window.localStorage.clear();
+      window.localStorage.setItem("morsewords-full-page-flash", "1");
+    });
+    await openAudio(page);
+
+    await enableAudioFlash(page);
+    const warning = page
+      .getByText("Strobe warning: flashing light may be uncomfortable", {
+        exact: false,
+      })
+      .filter({ visible: true });
+    await expect(warning).toHaveCount(0);
+
+    const sawPageFlash = page.evaluate<boolean>(
+      () =>
+        new Promise<boolean>((resolve) => {
+          if (document.querySelector(".mw-strobe-flash")) {
+            resolve(true);
+            return;
+          }
+          const observer = new MutationObserver(() => {
+            if (document.querySelector(".mw-strobe-flash")) {
+              observer.disconnect();
+              resolve(true);
+            }
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
+          window.setTimeout(() => {
+            observer.disconnect();
+            resolve(false);
+          }, 1_200);
+        }),
+    );
+
+    await page.getByRole("button", { name: "Play audio Play" }).click();
+    await expect(warning).toBeVisible();
+    await expect(sawPageFlash).resolves.toBe(true);
     await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
   });
 
@@ -119,6 +205,8 @@ test.describe("shared FlashLamp", () => {
     const lamp = page.getByTestId("mw-flash-lamp").first();
     await expect(lamp).toBeVisible();
     await expect(lamp).toHaveAttribute("data-active", "false");
+    await expect(lamp).not.toHaveClass(/mw-static-tile/);
+    await expect(lamp).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
 
     await expect(async () => {
       const sawLampActivate = page.evaluate<boolean>(
