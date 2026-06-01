@@ -2,12 +2,14 @@ import {
   AUDIO_PITCH_RANGE,
   AUDIO_SAMPLE_RATES,
   AUDIO_SPEED_RANGE,
+  AUDIO_TAIL_RANGE,
   MP3_BITRATES,
   VOLUME_RANGE,
   sanitizeAudioGeneratorPreset,
   sanitizeAudioSampleRate,
   sanitizeMp3Bitrate,
 } from "~/client/components/shared/morseSettings";
+import { getAudioPresetShortLabel } from "~/client/components/shared/audioPresetRegistry";
 import { clampNumber } from "~/client/components/shared/settingsStorage";
 
 import type {
@@ -73,6 +75,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     outputFormat: "mp3",
     mp3Bitrate: 128,
     sampleRate: 44100,
+    tailPaddingMs: 180,
     targetPartMinutes: 8,
     preferSourceSections: true,
     paragraphPauseMultiplier: 2.4,
@@ -94,6 +97,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     outputFormat: "mp3",
     mp3Bitrate: 96,
     sampleRate: 44100,
+    tailPaddingMs: 180,
     targetPartMinutes: 18,
     preferSourceSections: true,
     paragraphPauseMultiplier: 3,
@@ -115,6 +119,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     outputFormat: "mp3",
     mp3Bitrate: 128,
     sampleRate: 44100,
+    tailPaddingMs: 180,
     targetPartMinutes: 5,
     preferSourceSections: false,
     paragraphPauseMultiplier: 2,
@@ -136,6 +141,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     outputFormat: "mp3",
     mp3Bitrate: 192,
     sampleRate: 44100,
+    tailPaddingMs: 180,
     targetPartMinutes: 10,
     preferSourceSections: true,
     paragraphPauseMultiplier: 1.8,
@@ -157,6 +163,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     outputFormat: "wav",
     mp3Bitrate: 192,
     sampleRate: 48000,
+    tailPaddingMs: 220,
     targetPartMinutes: 6,
     preferSourceSections: true,
     paragraphPauseMultiplier: 2,
@@ -240,6 +247,13 @@ export function sanitizeBookExportSettings(
     sampleRate: AUDIO_SAMPLE_RATES.includes(settings.sampleRate as never)
       ? sanitizeAudioSampleRate(settings.sampleRate)
       : fallback.sampleRate,
+    tailPaddingMs: Math.round(
+      clampNumber(
+        settings.tailPaddingMs ?? fallback.tailPaddingMs,
+        AUDIO_TAIL_RANGE.min,
+        AUDIO_TAIL_RANGE.max,
+      ),
+    ),
     targetPartMinutes:
       Math.round(clampNumber(settings.targetPartMinutes ?? fallback.targetPartMinutes, 1, 30) * 10) /
       10,
@@ -289,7 +303,8 @@ export function describeBookExportSettings(settings: BookExportSettings) {
   const split = settings.preferSourceSections
     ? "uses EPUB/PDF section hints when available"
     : "splits by Morse runtime boundaries";
-  return `${settings.charWpm}/${settings.farnsworthWpm} WPM, ${format}, ${settings.targetPartMinutes} minute target parts, ${split}.`;
+  const tone = getAudioPresetShortLabel(settings.tonePreset);
+  return `${settings.charWpm}/${settings.farnsworthWpm} WPM, ${tone}, ${format}, ${settings.targetPartMinutes} minute target parts, ${split}.`;
 }
 
 export function settingsMatchBookPreset(settings: BookExportSettings) {

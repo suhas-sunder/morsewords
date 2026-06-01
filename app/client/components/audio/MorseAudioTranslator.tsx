@@ -20,6 +20,9 @@ import {
 } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import TogglePill from "~/client/components/shared/ui/TogglePill";
+import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
+import { getAudioPresetDefaults } from "~/client/components/shared/audioPresetRegistry";
+import { presetSupportsPitchControl } from "~/client/components/shared/audioToneSynthesis";
 import {
   ActionButton,
   ActionRow,
@@ -37,7 +40,6 @@ import {
 import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   AUDIO_ATTACK_RANGE,
-  AUDIO_GENERATOR_PRESETS,
   AUDIO_PITCH_RANGE,
   AUDIO_RELEASE_RANGE,
   AUDIO_SAMPLE_RATES,
@@ -170,7 +172,11 @@ export default function MorseAudioTranslator({
       }),
     );
     setPreset(
-      readStoredEnum("mw_audio_preset", AUDIO_GENERATOR_PRESETS, "cw_radio"),
+      sanitizeAudioGeneratorPreset(
+        readStoredString("mw_audio_preset", "cw_radio", {
+          maxLength: 64,
+        }),
+      ),
     );
     setAttackMs(
       readStoredNumber("mw_audio_attack", {
@@ -347,6 +353,15 @@ export default function MorseAudioTranslator({
     },
     [charWpm],
   );
+
+  const handlePresetChange = React.useCallback((nextPreset: SoundPreset) => {
+    const defaults = getAudioPresetDefaults(nextPreset);
+    setPreset(nextPreset);
+    setToneHz(defaults.pitchHz);
+    setVolume(defaults.volume);
+    setAttackMs(defaults.attackMs);
+    setReleaseMs(defaults.releaseMs);
+  }, []);
 
   const unsupportedPlain = React.useMemo(
     () => getUnsupportedTextCharacters(text),
@@ -754,7 +769,7 @@ export default function MorseAudioTranslator({
                   step={10}
                   unit="Hz"
                   onChange={setToneHz}
-                    disabled={!renderedSoundOn || preset === "sounder"}
+                    disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
                 />
                 <SliderRow
                   label="Volume"
@@ -781,18 +796,15 @@ export default function MorseAudioTranslator({
                 <div className="mt-4 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <LabeledAudioSelect
-                      label="Preset"
+                      label="Tone preset"
                       value={preset}
                       onChange={(e) =>
-                        setPreset(sanitizeAudioGeneratorPreset(e.target.value))
+                        handlePresetChange(
+                          sanitizeAudioGeneratorPreset(e.target.value),
+                        )
                       }
                     >
-                        <option value="cw_radio">CW (Radio)</option>
-                        <option value="sine">Sine</option>
-                        <option value="square">Square</option>
-                        <option value="triangle">Triangle</option>
-                        <option value="sawtooth">Sawtooth</option>
-                        <option value="sounder">Telegraph sounder</option>
+                        <AudioPresetOptions context="audio" />
                     </LabeledAudioSelect>
 
                     <div className="grid grid-cols-2 gap-3">
@@ -804,7 +816,7 @@ export default function MorseAudioTranslator({
                         step={1}
                         unit="ms"
                         onChange={setAttackMs}
-                        disabled={!renderedSoundOn || preset === "sounder"}
+                        disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
                         help="Softens clicks at the start."
                       />
                       <SliderRow
@@ -815,7 +827,7 @@ export default function MorseAudioTranslator({
                         step={1}
                         unit="ms"
                         onChange={setReleaseMs}
-                        disabled={!renderedSoundOn || preset === "sounder"}
+                        disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
                         help="Softens clicks at the end."
                       />
                     </div>

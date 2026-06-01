@@ -61,6 +61,7 @@ async function expectWorkflowReadyNearSource(page: Page) {
   ).toBeVisible();
   await expect(page.getByRole("radio", { name: /MP3 ZIP/ })).toBeVisible();
   await expect(page.getByRole("radio", { name: /WAV ZIP/ })).toBeVisible();
+  await expect(page.getByLabel("Tone preset")).toBeVisible();
 }
 
 async function chooseOutputFormat(page: Page, format: "mp3" | "wav") {
@@ -254,12 +255,28 @@ type BundleManifest = {
     sourceStart: number;
     sourceEnd: number;
   }>;
-  settingsSummary: { outputFormat: string; targetPartMinutes: number };
+  settingsSummary: {
+    outputFormat: string;
+    targetPartMinutes: number;
+    tonePreset: string;
+    pitch: number;
+    volume: number;
+    mp3Bitrate: number;
+    sampleRate: number;
+    tailPaddingMs: number;
+  };
 };
 
 type BundleSettings = {
+  generatedAt: string;
   presetName: string;
   outputFormat: "mp3" | "wav";
+  tonePreset: string;
+  pitch: number;
+  volume: number;
+  mp3Bitrate: number;
+  sampleRate: number;
+  tailPaddingMs: number;
   targetPartMinutes: number;
   includeCleanedText: boolean;
   includeMorseTranscript: boolean;
@@ -843,20 +860,29 @@ test("preset settings, reset, and safe route preferences persist", async ({
   await expect(page.getByText("Best for: Training and review")).toBeVisible();
   await expect(
     page.getByText(
-      "20/10 WPM, MP3 128 kbps, 5 minute target parts, splits by Morse runtime boundaries.",
+      "20/10 WPM, CW radio, MP3 128 kbps, 5 minute target parts, splits by Morse runtime boundaries.",
     ),
   ).toBeVisible();
+  await expect(page.getByLabel("Tone preset")).toHaveValue("cw_radio");
+  await expect(page.getByLabel("MP3 bitrate")).toBeVisible();
+  await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
+  await expect(page.getByLabel("Tail padding")).toHaveCount(0);
 
   const advancedToggle = page
     .locator("summary")
     .filter({ hasText: "Advanced export settings" });
   await advancedToggle.click();
-  await expect(page.getByLabel("MP3 bitrate")).toBeVisible();
-  await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
+  await expect(page.getByLabel("Include Morse transcript")).toBeVisible();
   await chooseOutputFormat(page, "wav");
   await expect(page.getByLabel("MP3 bitrate")).toHaveCount(0);
   await expect(page.getByLabel("WAV sample rate")).toBeVisible();
+  await expect(page.getByLabel("Tail padding")).toBeVisible();
   await expect(page.getByText("Modified from preset")).toBeVisible();
+
+  await page.getByLabel("Tone preset").selectOption("warm_tone");
+  await expect(page.getByLabel("Tone preset")).toHaveValue("warm_tone");
+  await expect(page.getByLabel("Pitch")).toHaveValue("560");
+  await expect(page.getByLabel("Volume")).toHaveValue("72");
 
   await page.getByLabel("Paste long-form source text").fill(RAW_SECRET_TEXT);
   await expect
@@ -992,6 +1018,7 @@ test("empty source, cleaned-empty source, large WAV, and progress semantics are 
   await advancedToggle.click();
   await expect(advancedToggle).toHaveAttribute("aria-expanded", "true");
   await expect(page.getByLabel("WAV sample rate")).toBeVisible();
+  await expect(page.getByLabel("Tail padding")).toBeVisible();
   await expect(page.getByLabel("MP3 bitrate")).toHaveCount(0);
 
   const progressbar = page.getByRole("progressbar", {
@@ -1009,10 +1036,14 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   const raw = "Private Export Draft\n\nSOS HELP. CQ CQ.";
   await page.getByLabel("Paste long-form source text").fill(raw);
   await page.getByRole("button", { name: "Practice Copy" }).click();
+  await page.getByLabel("Tone preset").selectOption("warm_tone");
+  await page.getByLabel("Pitch").fill("590");
+  await page.getByLabel("Volume").fill("64");
   await expectWorkflowReadyNearSource(page);
   await expect(
     page.locator("#book-export-details").getByText("Practice Copy"),
   ).toBeVisible();
+  await expect(page.getByLabel("Tone preset")).toHaveValue("warm_tone");
   await expect(page.getByText("Split summary")).toBeVisible();
 
   const zip = await exportZip(page, testInfo);
@@ -1052,11 +1083,23 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   ).toBe(true);
   expect(manifest.settingsSummary.targetPartMinutes).toBe(5);
   expect(manifest.settingsSummary.outputFormat).toBe("mp3");
+  expect(manifest.settingsSummary.tonePreset).toBe("warm_tone");
+  expect(manifest.settingsSummary.pitch).toBe(590);
+  expect(manifest.settingsSummary.volume).toBe(0.64);
+  expect(manifest.settingsSummary.mp3Bitrate).toBe(128);
+  expect(manifest.settingsSummary.sampleRate).toBe(44100);
+  expect(manifest.settingsSummary.tailPaddingMs).toBe(180);
   expect(manifest.parts[0].filename).toMatch(/part-001\.mp3$/);
   const settings = zipJson<BundleSettings>(zip.entries, "settings.json");
   expect(settings.generatedAt).toEqual(expect.any(String));
   expect(settings.presetName).toBe("Practice Copy");
   expect(settings.outputFormat).toBe("mp3");
+  expect(settings.tonePreset).toBe("warm_tone");
+  expect(settings.pitch).toBe(590);
+  expect(settings.volume).toBe(0.64);
+  expect(settings.mp3Bitrate).toBe(128);
+  expect(settings.sampleRate).toBe(44100);
+  expect(settings.tailPaddingMs).toBe(180);
   expect(settings.targetPartMinutes).toBe(5);
   expect(settings.includeCleanedText).toBe(true);
   expect(settings.includeMorseTranscript).toBe(true);
@@ -1075,6 +1118,9 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   );
   expect(storageSnapshot).not.toContain("Private Export Draft");
   await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
+
+  await page.getByLabel("Pitch").fill("610");
+  await expect(page.getByText("Last export")).toHaveCount(0);
 });
 
 test("route exports uploaded extracted text without persisting raw source", async ({
@@ -1110,6 +1156,8 @@ test("route exports WAV ZIP bundles and sample audio on demand", async ({
   await openBookTranslator(page);
   await page.getByLabel("Paste long-form source text").fill("WAV sample SOS");
   await chooseOutputFormat(page, "wav");
+  await page.getByLabel("WAV sample rate").selectOption("48000");
+  await page.getByLabel("Tail padding").fill("240");
 
   const sampleDownload = page.waitForEvent("download", { timeout: 60_000 });
   await page.getByRole("button", { name: "Download sample" }).click();
@@ -1129,6 +1177,10 @@ test("route exports WAV ZIP bundles and sample audio on demand", async ({
   const settings = zipJson<BundleSettings>(zip.entries, "settings.json");
   expect(settings.outputFormat).toBe("wav");
   expect(settings.presetName).toBe("Reader Quick Start");
+  expect(settings.sampleRate).toBe(48000);
+  expect(settings.tailPaddingMs).toBe(240);
+  expect(manifest.settingsSummary.sampleRate).toBe(48000);
+  expect(manifest.settingsSummary.tailPaddingMs).toBe(240);
 });
 
 test("export cancellation can abort stale work before completion", async () => {

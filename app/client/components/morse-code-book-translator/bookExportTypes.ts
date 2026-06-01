@@ -27,6 +27,7 @@ export type BookExportSettings = {
   outputFormat: BookExportFormat;
   mp3Bitrate: Mp3Bitrate;
   sampleRate: AudioSampleRate;
+  tailPaddingMs: number;
   targetPartMinutes: number;
   preferSourceSections: boolean;
   paragraphPauseMultiplier: number;

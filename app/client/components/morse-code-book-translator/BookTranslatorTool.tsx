@@ -18,15 +18,16 @@ import {
   downloadBlobFile,
 } from "~/client/components/shared/actionOutputUtils";
 import {
-  AUDIO_GENERATOR_PRESETS,
-  AUDIO_PITCH_RANGE,
-  AUDIO_SAMPLE_RATES,
   AUDIO_SPEED_RANGE,
-  MP3_BITRATES,
-  sanitizeAudioGeneratorPreset,
   sanitizeAudioSampleRate,
   sanitizeMp3Bitrate,
 } from "~/client/components/shared/morseSettings";
+import AudioSettingsPanel from "~/client/components/shared/AudioSettingsPanel";
+import {
+  getAudioPresetDefaults,
+  getAudioPresetLabel,
+  type AudioTonePresetId,
+} from "~/client/components/shared/audioPresetRegistry";
 import { clampNumber } from "~/client/components/shared/settingsStorage";
 import {
   ToolButton,
@@ -829,6 +830,18 @@ export default function BookTranslatorTool() {
       });
     },
     [exportSettings.farnsworthWpm, updateExportSettings],
+  );
+
+  const handleTonePresetChange = React.useCallback(
+    (tonePreset: AudioTonePresetId) => {
+      const defaults = getAudioPresetDefaults(tonePreset);
+      updateExportSettings({
+        tonePreset,
+        pitch: defaults.pitchHz,
+        volume: defaults.volume,
+      });
+    },
+    [updateExportSettings],
   );
 
   const handleExportBundle = React.useCallback(async () => {
@@ -1874,6 +1887,58 @@ export default function BookTranslatorTool() {
             </button>
           </div>
         </fieldset>
+        <div className="mt-5 border-t border-slate-200/70 pt-5">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h3 className="text-base font-extrabold text-sky-950">
+                Audio settings
+              </h3>
+              <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                These settings drive estimates, sample downloads, and the ZIP
+                export manifest.
+              </p>
+            </div>
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+              {tonePresetLabel(exportSettings.tonePreset)}
+            </span>
+          </div>
+          <AudioSettingsPanel
+            className="mt-5"
+            context="bookExport"
+            idPrefix="book-export-audio"
+            preset={exportSettings.tonePreset}
+            onPresetChange={handleTonePresetChange}
+            charWpm={exportSettings.charWpm}
+            onCharWpmChange={handleCharWpmChange}
+            farnsworthWpm={exportSettings.farnsworthWpm}
+            onFarnsworthWpmChange={(value) =>
+              updateExportSettings({ farnsworthWpm: value })
+            }
+            pitch={exportSettings.pitch}
+            onPitchChange={(value) => updateExportSettings({ pitch: value })}
+            volume={exportSettings.volume}
+            onVolumeChange={(value) => updateExportSettings({ volume: value })}
+            outputFormat={exportSettings.outputFormat}
+            mp3Bitrate={exportSettings.mp3Bitrate}
+            onMp3BitrateChange={(value) =>
+              updateExportSettings({ mp3Bitrate: sanitizeMp3Bitrate(value) })
+            }
+            sampleRate={exportSettings.sampleRate}
+            onSampleRateChange={(value) =>
+              updateExportSettings({
+                sampleRate: sanitizeAudioSampleRate(value),
+              })
+            }
+            tailMs={exportSettings.tailPaddingMs}
+            onTailMsChange={(value) =>
+              updateExportSettings({ tailPaddingMs: value })
+            }
+            targetPartMinutes={exportSettings.targetPartMinutes}
+            onTargetPartMinutesChange={(value) =>
+              updateExportSettings({ targetPartMinutes: value })
+            }
+          />
+        </div>
       </section>
 
       <details open={advancedOpen} onToggle={handleAdvancedToggle}>
@@ -1886,107 +1951,6 @@ export default function BookTranslatorTool() {
         </summary>
         <div className="mt-4 rounded-xl bg-[#fffdf8] p-5 sm:p-6">
           <div className="grid gap-5 lg:grid-cols-2">
-            <SliderRow
-              label="Character speed"
-              value={exportSettings.charWpm}
-              min={5}
-              max={60}
-              step={1}
-              unit="WPM"
-              onChange={handleCharWpmChange}
-            />
-            <SliderRow
-              label="Farnsworth spacing"
-              value={exportSettings.farnsworthWpm}
-              min={5}
-              max={Math.max(5, exportSettings.charWpm)}
-              step={1}
-              unit="WPM"
-              onChange={(value) =>
-                updateExportSettings({ farnsworthWpm: value })
-              }
-            />
-            <SliderRow
-              label="Pitch"
-              value={exportSettings.pitch}
-              min={AUDIO_PITCH_RANGE.min}
-              max={AUDIO_PITCH_RANGE.max}
-              step={10}
-              unit="Hz"
-              onChange={(value) => updateExportSettings({ pitch: value })}
-              disabled={exportSettings.tonePreset === "sounder"}
-            />
-            <SliderRow
-              label="Volume"
-              value={Math.round(exportSettings.volume * 100)}
-              min={0}
-              max={100}
-              step={1}
-              unit="%"
-              onChange={(value) =>
-                updateExportSettings({ volume: value / 100 })
-              }
-            />
-            <LabeledSelect
-              label="Tone preset"
-              value={exportSettings.tonePreset}
-              onChange={(value) =>
-                updateExportSettings({
-                  tonePreset: sanitizeAudioGeneratorPreset(value),
-                })
-              }
-            >
-              {AUDIO_GENERATOR_PRESETS.map((preset) => (
-                <option key={preset} value={preset}>
-                  {tonePresetLabel(preset)}
-                </option>
-              ))}
-            </LabeledSelect>
-            {exportSettings.outputFormat === "mp3" ? (
-              <LabeledSelect
-                label="MP3 bitrate"
-                value={String(exportSettings.mp3Bitrate)}
-                onChange={(value) =>
-                  updateExportSettings({
-                    mp3Bitrate: sanitizeMp3Bitrate(Number(value)),
-                  })
-                }
-              >
-                {MP3_BITRATES.map((bitrate) => (
-                  <option key={bitrate} value={bitrate}>
-                    {bitrate} kbps
-                  </option>
-                ))}
-              </LabeledSelect>
-            ) : null}
-            {exportSettings.outputFormat === "wav" ? (
-              <LabeledSelect
-                label="WAV sample rate"
-                value={String(exportSettings.sampleRate)}
-                onChange={(value) =>
-                  updateExportSettings({
-                    sampleRate: sanitizeAudioSampleRate(Number(value)),
-                  })
-                }
-              >
-                {AUDIO_SAMPLE_RATES.map((sampleRate) => (
-                  <option key={sampleRate} value={sampleRate}>
-                    {sampleRate} Hz
-                  </option>
-                ))}
-              </LabeledSelect>
-            ) : null}
-            <SliderRow
-              label="Target part length"
-              value={exportSettings.targetPartMinutes}
-              min={1}
-              max={30}
-              step={1}
-              unit="min"
-              onChange={(value) =>
-                updateExportSettings({ targetPartMinutes: value })
-              }
-            />
             <SliderRow
               label="Paragraph pause"
               value={exportSettings.paragraphPauseMultiplier}
@@ -2024,6 +1988,14 @@ export default function BookTranslatorTool() {
                 Simplify punctuation for practice
               </option>
             </LabeledSelect>
+          </div>
+          <div className="mt-5 border-t border-slate-200/70 pt-5">
+            <h3 className="text-base font-extrabold text-sky-950">
+              Bundle extras
+            </h3>
+            <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+              Choose which readable sidecar files ship with the audio parts.
+            </p>
           </div>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <ExportCheckbox
@@ -2339,22 +2311,7 @@ function ExportCheckbox({
 }
 
 function tonePresetLabel(value: string) {
-  switch (value) {
-    case "cw_radio":
-      return "CW radio tone";
-    case "sine":
-      return "Sine";
-    case "square":
-      return "Square";
-    case "triangle":
-      return "Triangle";
-    case "sawtooth":
-      return "Sawtooth";
-    case "sounder":
-      return "Telegraph sounder";
-    default:
-      return value;
-  }
+  return getAudioPresetLabel(value);
 }
 
 function sampleExcerpt(text: string) {

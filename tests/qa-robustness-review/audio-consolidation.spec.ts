@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -11,7 +11,39 @@ const AUDIO_PRESETS = [
   "triangle",
   "sawtooth",
   "sounder",
+  "soft_bell",
+  "warm_tone",
+  "low_beacon",
+  "submarine_ping",
+  "digital_blip",
+  "soft_click",
+  "bird_chirp",
 ] as const;
+
+async function openAdvancedSettings(page: Page) {
+  const showButton = page.getByRole("button", {
+    name: "Show advanced settings",
+  });
+  const hideButton = page.getByRole("button", {
+    name: "Hide advanced settings",
+  });
+
+  await expect(showButton).toBeEnabled();
+
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    if (await hideButton.isVisible().catch(() => false)) return;
+
+    await showButton.click();
+    const opened = await hideButton
+      .waitFor({ state: "visible", timeout: 1_000 })
+      .then(() => true)
+      .catch(() => false);
+
+    if (opened) return;
+  }
+
+  await expect(hideButton).toBeVisible();
+}
 
 test("useAudio remains a compatibility wrapper around useMorseAudio", () => {
   const source = fs.readFileSync(
@@ -121,7 +153,7 @@ test.describe("consolidated audio behavior", () => {
         page.getByRole("button", { name: /Play|Replay/ }).first(),
       ).toBeEnabled();
 
-      await page.getByRole("button", { name: "Show advanced settings" }).click();
+      await openAdvancedSettings(page);
 
       const flashButton = page.getByRole("button", { name: /Flash/ });
       await expect(flashButton).toBeEnabled();

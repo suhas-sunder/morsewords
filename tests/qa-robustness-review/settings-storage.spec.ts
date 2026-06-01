@@ -171,6 +171,7 @@ test.describe("settingsStorage helpers", () => {
       expect(sanitizeTranslatorAudioPreset(preset)).toBe(preset);
     }
     expect(sanitizeAudioGeneratorPreset("old_square")).toBe("cw_radio");
+    expect(sanitizeAudioGeneratorPreset("smooth_sine")).toBe("sine");
     expect(sanitizeTranslatorAudioPreset("sounder")).toBe("cw_radio");
     expect(sanitizeAudioSampleRate(96000)).toBe(44100);
     expect(sanitizeMp3Bitrate(320)).toBe(128);
@@ -181,6 +182,13 @@ test.describe("settingsStorage helpers", () => {
       "triangle",
       "sawtooth",
       "sounder",
+      "soft_bell",
+      "warm_tone",
+      "low_beacon",
+      "submarine_ping",
+      "digital_blip",
+      "soft_click",
+      "bird_chirp",
     ]);
     expect(MP3_BITRATES).toEqual([96, 128, 192, 256]);
   });

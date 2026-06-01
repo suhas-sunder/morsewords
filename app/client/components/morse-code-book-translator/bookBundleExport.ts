@@ -1,4 +1,10 @@
 import { buildMorseEvents } from "~/client/components/shared/morseTiming";
+import {
+  defaultAttackMs,
+  defaultReleaseMs,
+  envelopeAt,
+  samplePresetWaveform,
+} from "~/client/components/shared/audioToneSynthesis";
 
 import {
   buildMorseTranscript,
@@ -28,9 +34,8 @@ type SignalEvent =
   | { type: "mark"; ms: number; symbol: "." | "-" }
   | { type: "gap"; ms: number };
 
-const TAIL_PADDING_MS = 180;
+const DEFAULT_TAIL_PADDING_MS = 180;
 const YIELD_EVERY_EVENTS = 80;
-const TWO_PI = Math.PI * 2;
 
 export async function createBookExportZip({
   metadata,
@@ -115,6 +120,7 @@ export async function createBookExportZip({
           volume: settings.volume,
           mp3Bitrate: settings.mp3Bitrate,
           sampleRate: settings.sampleRate,
+          tailPaddingMs: settings.tailPaddingMs,
           targetPartMinutes: settings.targetPartMinutes,
           preferSourceSections: settings.preferSourceSections,
           paragraphPauseMultiplier: settings.paragraphPauseMultiplier,
@@ -169,7 +175,8 @@ export async function renderBookPartPcm(
   const events = buildBookSignalEvents(text, settings);
   const sampleRate = settings.sampleRate;
   const totalMs =
-    events.reduce((sum, event) => sum + event.ms, 0) + TAIL_PADDING_MS;
+    events.reduce((sum, event) => sum + event.ms, 0) +
+    (settings.tailPaddingMs ?? DEFAULT_TAIL_PADDING_MS);
   const totalSamples = Math.max(1, Math.ceil((totalMs / 1000) * sampleRate));
   const output = new Float32Array(totalSamples);
   const amplitude = clamp(settings.volume, 0, 1) * 0.38;
@@ -276,59 +283,28 @@ function writeTone({
   sampleRate: number;
   samples: number;
 }) {
-  const attackSamples = preset === "sounder" ? 1 : Math.min(samples / 2, sampleRate * 0.008);
-  const releaseSamples =
-    preset === "sounder" ? 1 : Math.min(samples / 2, sampleRate * 0.012);
+  const attackSamples = Math.min(
+    samples / 2,
+    (sampleRate * defaultAttackMs(preset)) / 1000,
+  );
+  const releaseSamples = Math.min(
+    samples / 2,
+    (sampleRate * defaultReleaseMs(preset)) / 1000,
+  );
 
   for (let localIndex = 0; localIndex < samples; localIndex += 1) {
     const targetIndex = offset + localIndex;
     if (targetIndex >= output.length) break;
     const envelope = envelopeAt(localIndex, samples, attackSamples, releaseSamples);
-    output[targetIndex] = waveformSample({
+    output[targetIndex] = samplePresetWaveform({
       preset,
       sampleIndex: targetIndex,
+      localSampleIndex: localIndex,
+      samples,
       hz,
       sampleRate,
     }) * amplitude * envelope;
   }
-}
-
-function waveformSample({
-  hz,
-  preset,
-  sampleIndex,
-  sampleRate,
-}: {
-  hz: number;
-  preset: BookExportSettings["tonePreset"];
-  sampleIndex: number;
-  sampleRate: number;
-}) {
-  if (preset === "sounder") {
-    const noise = Math.sin((sampleIndex + 1) * 12.9898) * 43758.5453;
-    return ((noise - Math.floor(noise)) * 2 - 1) * 0.75;
-  }
-
-  const phase = ((sampleIndex * hz) / sampleRate) % 1;
-  if (preset === "square") return phase < 0.5 ? 1 : -1;
-  if (preset === "triangle") return 1 - 4 * Math.abs(Math.round(phase - 0.25) - (phase - 0.25));
-  if (preset === "sawtooth") return 2 * phase - 1;
-  return Math.sin(TWO_PI * phase);
-}
-
-function envelopeAt(
-  sampleIndex: number,
-  samples: number,
-  attackSamples: number,
-  releaseSamples: number,
-) {
-  const attack = attackSamples > 0 ? Math.min(1, sampleIndex / attackSamples) : 1;
-  const releaseStart = samples - releaseSamples;
-  const release =
-    releaseSamples > 0 && sampleIndex > releaseStart
-      ? Math.max(0, (samples - sampleIndex) / releaseSamples)
-      : 1;
-  return Math.min(attack, release);
 }
 
 function pcmToWavBlob(pcm: Float32Array, sampleRate: number) {
@@ -473,6 +449,7 @@ function buildManifest({
       outputFormat: settings.outputFormat,
       mp3Bitrate: settings.mp3Bitrate,
       sampleRate: settings.sampleRate,
+      tailPaddingMs: settings.tailPaddingMs,
       targetPartMinutes: settings.targetPartMinutes,
       preferSourceSections: settings.preferSourceSections,
     },

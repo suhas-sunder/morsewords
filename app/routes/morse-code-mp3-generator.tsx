@@ -27,7 +27,7 @@ const howItWorksItems = [
   },
   {
     title: "Generate tone audio",
-    text: "Preview the tone with the selected speed, spacing, pitch, sound type, and volume before downloading.",
+    text: "Preview the tone with the selected speed, spacing, pitch, tone preset, and volume before downloading.",
   },
   {
     title: "Encode the MP3",
@@ -58,8 +58,8 @@ const settingItems = [
     text: "Farnsworth spacing can leave more room between characters while keeping the character rhythm intact.",
   },
   {
-    title: "Pitch and sound type",
-    text: "Pitch changes the tone frequency. Sound type changes the waveform or sounder style.",
+    title: "Pitch and tone preset",
+    text: "Pitch changes the tone frequency. Tone preset changes the waveform or sounder style.",
   },
   {
     title: "Volume",
@@ -169,7 +169,7 @@ const faqItems = [
   },
   {
     q: "Which settings change the exported MP3?",
-    a: "Speed, spacing, pitch, sound type, volume, attack, release, sample rate, tail padding, and MP3 bitrate affect the generated audio or file output.",
+    a: "Speed, spacing, pitch, tone preset, volume, attack, release, sample rate, tail padding, and MP3 bitrate affect the generated audio or file output.",
   },
   {
     q: "What filename does the tool use by default?",
@@ -185,7 +185,7 @@ export function meta({}: Route.MetaArgs) {
   return seoMeta({
     title: "Morse Code MP3 Generator | Download Morse Audio | MorseWords",
     description:
-      "Type text, generate Morse audio, and download an MP3 in your browser with speed, spacing, sound type, tone, volume, and WAV options.",
+      "Type text, generate Morse audio, and download an MP3 in your browser with speed, spacing, tone preset, volume, and WAV options.",
     path: CANONICAL_PATH,
     keywords:
       "morse code mp3 generator, text to morse code mp3, morse to mp3, morse code to mp3, morse audio mp3",

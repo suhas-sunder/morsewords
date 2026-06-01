@@ -100,7 +100,9 @@ export function buildExportAnalysis({
   const morseTranscript = buildMorseTranscript(
     cleanedText.slice(0, SAMPLE_EXPORT_CHARACTER_LIMIT),
   );
-  const totalRuntimeMs = estimateBookTextDurationMs(cleanedText, settings);
+  const totalRuntimeMs =
+    estimateBookTextDurationMs(cleanedText, settings) +
+    Math.max(0, partCount) * (settings.tailPaddingMs ?? 0);
   const estimatedBytes = estimateBundleBytes(totalRuntimeMs, settings, partCount);
   const warnings: string[] = [];
 

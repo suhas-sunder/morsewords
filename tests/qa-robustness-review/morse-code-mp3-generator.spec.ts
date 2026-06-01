@@ -71,7 +71,7 @@ test.describe("Morse code MP3 generator", () => {
     await expect(page.getByRole("button", { name: "Sound" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Repeat" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Flash Light" })).toBeVisible();
-    await expect(page.getByLabel("Sound type")).toBeVisible();
+    await expect(page.getByLabel("Tone preset")).toBeVisible();
     await expect(page.getByLabel("Attack")).toBeVisible();
     await expect(page.getByLabel("Release")).toBeVisible();
     await expect(page.getByLabel("Tail padding")).toBeVisible();
