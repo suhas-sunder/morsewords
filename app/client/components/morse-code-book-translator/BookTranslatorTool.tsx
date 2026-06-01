@@ -3,6 +3,7 @@ import * as React from "react";
 import {
   ChecklistIcon,
   ClockIcon,
+  CopyIcon,
   DownloadIcon,
   EqualizerIcon,
   RefreshIcon,
@@ -12,7 +13,10 @@ import {
   UploadIcon,
   WarningBadgeIcon,
 } from "~/client/assets/svg/Icons";
-import { downloadBlobFile } from "~/client/components/shared/actionOutputUtils";
+import {
+  copyTextToClipboard,
+  downloadBlobFile,
+} from "~/client/components/shared/actionOutputUtils";
 import {
   AUDIO_GENERATOR_PRESETS,
   AUDIO_PITCH_RANGE,
@@ -84,6 +88,12 @@ import {
 
 type ParseStatus = "idle" | "parsing" | "ready" | "error";
 type ExportStatusKind = "info" | "success" | "error" | "working";
+type SourceEntryMode = "pasted" | "uploaded-textarea" | "uploaded-preview";
+
+// Plain TXT/MD uploads under this cap stay directly editable without putting
+// full book-length documents into a large textarea by default.
+const INLINE_UPLOAD_TEXTAREA_LIMIT = 40_000;
+const EXTRACTED_SOURCE_PREVIEW_LIMIT = 6_000;
 
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   phase: "idle",
@@ -94,6 +104,31 @@ const IDLE_EXPORT_PROGRESS: BookExportProgress = {
 
 function formatNumber(value: number | undefined) {
   return typeof value === "number" ? value.toLocaleString() : "0";
+}
+
+function createEmptyParsedSource(warnings: string[] = []): ParsedBookSource {
+  return {
+    sourceType: "pasted",
+    rawText: "",
+    warnings,
+  };
+}
+
+function countSourceWords(text: string) {
+  const matches = text.trim().match(/[\p{L}\p{N}]+(?:['-][\p{L}\p{N}]+)*/gu);
+  return matches?.length ?? 0;
+}
+
+function capExtractedPreview(text: string) {
+  if (text.length <= EXTRACTED_SOURCE_PREVIEW_LIMIT) return text;
+  return text.slice(0, EXTRACTED_SOURCE_PREVIEW_LIMIT).trimEnd();
+}
+
+function shouldUseEditableUpload(parsed: ParsedBookSource) {
+  return (
+    (parsed.sourceType === "txt" || parsed.sourceType === "md") &&
+    parsed.rawText.length <= INLINE_UPLOAD_TEXTAREA_LIMIT
+  );
 }
 
 function cleanupLabel(key: keyof CleanupOptions) {
@@ -200,8 +235,10 @@ function bundleContentsForSettings(settings: BookExportSettings) {
 export default function BookTranslatorTool() {
   const [sourceText, setSourceText] = React.useState("");
   const [parsedSource, setParsedSource] = React.useState<ParsedBookSource>(
-    () => parsePastedSource(""),
+    () => createEmptyParsedSource(),
   );
+  const [sourceEntryMode, setSourceEntryMode] =
+    React.useState<SourceEntryMode>("pasted");
   const [cleanupOptions, setCleanupOptions] =
     React.useState<CleanupOptions>(DEFAULT_CLEANUP_OPTIONS);
   const [exportSettings, setExportSettings] =
@@ -209,6 +246,11 @@ export default function BookTranslatorTool() {
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [status, setStatus] = React.useState<ParseStatus>("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
+  const [pendingFilename, setPendingFilename] = React.useState("");
+  const [sourceActionStatus, setSourceActionStatus] = React.useState<{
+    kind: ExportStatusKind;
+    message: string;
+  } | null>(null);
   const [dragActive, setDragActive] = React.useState(false);
   const [exportProgress, setExportProgress] =
     React.useState<BookExportProgress>(IDLE_EXPORT_PROGRESS);
@@ -301,9 +343,32 @@ export default function BookTranslatorTool() {
     [exportParts.length, exportSettings, preflight],
   );
 
-  const hasSource = sourceText.trim().length > 0;
+  const hasSource = parsedSource.rawText.trim().length > 0;
   const hasCleanedSource = preflight.cleanedText.trim().length > 0;
   const isUploaded = parsedSource.sourceType !== "pasted";
+  const isUploadedPreviewMode = sourceEntryMode === "uploaded-preview";
+  const isTextareaMode = sourceEntryMode !== "uploaded-preview";
+  const extractedPreview = React.useMemo(
+    () => capExtractedPreview(parsedSource.rawText),
+    [parsedSource.rawText],
+  );
+  const extractedPreviewTruncated =
+    parsedSource.rawText.length > EXTRACTED_SOURCE_PREVIEW_LIMIT;
+  const extractedWordCount = React.useMemo(
+    () => countSourceWords(parsedSource.rawText),
+    [parsedSource.rawText],
+  );
+  const showSourceState =
+    status === "parsing" ||
+    status === "error" ||
+    Boolean(parsedSource.filename) ||
+    (isUploaded && status === "ready");
+  const canClearSource =
+    hasSource ||
+    status === "error" ||
+    Boolean(parsedSource.filename) ||
+    Boolean(pendingFilename) ||
+    sourceText.length > 0;
   const cleanedSourceEmptyWarning =
     hasSource && !hasCleanedSource
       ? "Cleanup removed all source text. Turn off the cleanup option or add text before exporting."
@@ -332,10 +397,13 @@ export default function BookTranslatorTool() {
       }
       parseVersionRef.current += 1;
       fileSelectionRef.current = null;
+      setPendingFilename("");
+      setSourceEntryMode("pasted");
       setSourceText(value);
       setParsedSource(parsePastedSource(value));
       setStatus(value.trim() ? "ready" : "idle");
       setErrorMessage("");
+      setSourceActionStatus(null);
       setExportStatus(null);
       setCompletedExport(null);
     },
@@ -364,24 +432,36 @@ export default function BookTranslatorTool() {
       parseVersionRef.current = version;
       setStatus("parsing");
       setErrorMessage("");
+      setPendingFilename(file.name);
       setDragActive(false);
+      setSourceText("");
+      setSourceEntryMode("uploaded-preview");
+      setParsedSource(createEmptyParsedSource());
+      setSourceActionStatus(null);
       setExportStatus(null);
       setCompletedExport(null);
 
       try {
         const parsed = await parseFileSource(file);
         if (!mountedRef.current || parseVersionRef.current !== version) return;
+        const editableUpload = shouldUseEditableUpload(parsed);
         setParsedSource(parsed);
-        setSourceText(parsed.rawText);
+        setSourceText(editableUpload ? parsed.rawText : "");
+        setSourceEntryMode(editableUpload ? "uploaded-textarea" : "uploaded-preview");
         setStatus("ready");
+        setPendingFilename("");
       } catch (error) {
         if (!mountedRef.current || parseVersionRef.current !== version) return;
         const message =
           error instanceof BookSourceError || error instanceof Error
             ? error.message
             : "This source could not be parsed.";
+        setParsedSource(createEmptyParsedSource());
+        setSourceText("");
+        setSourceEntryMode("uploaded-preview");
         setStatus("error");
         setErrorMessage(message);
+        setPendingFilename(file.name);
       }
     },
     [cancelActiveExport, exportProgress],
@@ -393,19 +473,60 @@ export default function BookTranslatorTool() {
     }
     parseVersionRef.current += 1;
     setSourceText("");
+    setSourceEntryMode("pasted");
     fileSelectionRef.current = null;
-    setParsedSource(parsePastedSource(""));
+    setPendingFilename("");
+    setParsedSource(createEmptyParsedSource());
     setStatus("idle");
     setErrorMessage("");
+    setSourceActionStatus(null);
+    setExportProgress(IDLE_EXPORT_PROGRESS);
     setExportStatus(null);
     setCompletedExport(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   }, [cancelActiveExport, exportProgress]);
 
-  const removeUploadedFile = React.useCallback(() => {
-    if (!isUploaded) return;
-    clearSource();
-  }, [clearSource, isUploaded]);
+  const copySourceValue = React.useCallback(
+    async (label: string, value: string) => {
+      const result = await copyTextToClipboard(value);
+      setSourceActionStatus({
+        kind: result.ok ? "success" : "error",
+        message: result.ok ? `${label} copied.` : result.message,
+      });
+    },
+    [],
+  );
+
+  const editExtractedText = React.useCallback(() => {
+    if (!parsedSource.rawText.trim()) {
+      setSourceActionStatus({
+        kind: "error",
+        message: "There is no extracted text to edit yet.",
+      });
+      return;
+    }
+    if (isExportRunning(exportProgress)) {
+      cancelActiveExport("Source changed; export cancelled.");
+    }
+    parseVersionRef.current += 1;
+    fileSelectionRef.current = null;
+    setPendingFilename("");
+    setSourceEntryMode("pasted");
+    setSourceText(parsedSource.rawText);
+    setParsedSource(parsePastedSource(parsedSource.rawText));
+    setStatus("ready");
+    setErrorMessage("");
+    setSourceActionStatus({
+      kind: "success",
+      message: "Extracted text is now editable in the source field.",
+    });
+    setExportStatus(null);
+    setCompletedExport(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+    window.requestAnimationFrame(() => {
+      document.getElementById("book-source-text")?.focus();
+    });
+  }, [cancelActiveExport, exportProgress, parsedSource.rawText]);
 
   const handleFileInputChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -656,24 +777,212 @@ export default function BookTranslatorTool() {
     <section
       className="mt-6 space-y-6"
       aria-label="Book source preflight and export tool"
-      data-mw-book-export-ready="true"
+      data-mw-book-export-ready={preferencesLoaded ? "true" : "loading"}
     >
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
         <ToolPanel
           label="Source text"
           badge={isUploaded ? sourceTypeLabel(parsedSource.sourceType) : "Paste"}
         >
-          <label htmlFor="book-source-text" className="sr-only">
-            Paste long-form source text
-          </label>
-          <ToolTextarea
-            id="book-source-text"
-            value={sourceText}
-            onChange={(event) => updatePastedText(event.target.value)}
-            placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
-            className="min-h-[18rem]"
-            spellCheck={false}
-          />
+          {isTextareaMode ? (
+            <>
+              <label htmlFor="book-source-text" className="sr-only">
+                Paste long-form source text
+              </label>
+              <ToolTextarea
+                id="book-source-text"
+                value={sourceText}
+                onChange={(event) => updatePastedText(event.target.value)}
+                placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
+                className="min-h-[18rem]"
+                spellCheck={false}
+              />
+            </>
+          ) : (
+            <div
+              className="px-4 pb-4"
+              aria-labelledby="book-source-preview-heading"
+            >
+              {hasSource ? (
+                <>
+                  <h3
+                    id="book-source-preview-heading"
+                    className="text-base font-extrabold text-sky-950"
+                  >
+                    Extracted source preview
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                    Previewing the first{" "}
+                    {Math.min(
+                      parsedSource.rawText.length,
+                      EXTRACTED_SOURCE_PREVIEW_LIMIT,
+                    ).toLocaleString()}{" "}
+                    characters from the uploaded source.
+                  </p>
+                  <pre
+                    data-testid="book-source-preview"
+                    className="mt-4 max-h-80 overflow-auto whitespace-pre-wrap font-mono text-sm leading-relaxed text-slate-900"
+                  >
+                    {extractedPreview}
+                  </pre>
+                  {extractedPreviewTruncated ? (
+                    <p className="mt-3 text-sm font-semibold text-slate-600">
+                      Preview is truncated. Copy or edit the extracted text to
+                      use the full source held in this browser session.
+                    </p>
+                  ) : null}
+                </>
+              ) : (
+                <EmptyPreview>
+                  {status === "parsing"
+                    ? `Reading ${pendingFilename || "the selected file"}...`
+                    : "Upload a file to preview extracted source text here."}
+                </EmptyPreview>
+              )}
+            </div>
+          )}
+
+          {showSourceState ? (
+            <section
+              className="border-t border-slate-200/70 px-4 py-4"
+              aria-labelledby="book-source-state-heading"
+              role={status === "error" ? "alert" : undefined}
+            >
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h3
+                    id="book-source-state-heading"
+                    className="text-base font-extrabold text-sky-950"
+                  >
+                    {status === "parsing"
+                      ? "Reading source file"
+                      : status === "error"
+                        ? "Source upload failed"
+                        : isUploaded
+                          ? "Uploaded source"
+                          : "Editable source"}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    {status === "parsing"
+                      ? `Extracting text from ${pendingFilename || "the selected file"}.`
+                      : status === "error"
+                        ? errorMessage
+                        : !hasSource
+                          ? "Extraction finished, but no source text was found."
+                          : isUploadedPreviewMode
+                            ? "The full extracted source is ready for preflight and export without rendering the entire file into the page."
+                            : isUploaded
+                              ? "This upload is small enough to edit directly in the source field."
+                              : "This text is editable and will be used for preflight and export."}
+                  </p>
+                </div>
+                {isUploaded && parsedSource.filename ? (
+                  <span className="max-w-full break-words font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                    {parsedSource.filename}
+                  </span>
+                ) : null}
+              </div>
+
+              {status === "ready" ? (
+                <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  <Metric
+                    label="Source type"
+                    value={sourceTypeLabel(parsedSource.sourceType)}
+                  />
+                  {parsedSource.filename ? (
+                    <Metric label="Filename" value={parsedSource.filename} />
+                  ) : null}
+                  {parsedSource.title ? (
+                    <Metric label="Title" value={parsedSource.title} />
+                  ) : null}
+                  {parsedSource.author ? (
+                    <Metric label="Author" value={parsedSource.author} />
+                  ) : null}
+                  <Metric
+                    label="Extracted chars"
+                    value={formatNumber(parsedSource.rawText.length)}
+                  />
+                  <Metric
+                    label="Extracted words"
+                    value={formatNumber(extractedWordCount)}
+                  />
+                  <Metric
+                    label="Cleaned output"
+                    value={`${formatNumber(preflight.characterCount)} chars`}
+                  />
+                </dl>
+              ) : null}
+
+              {sourceEntryMode === "uploaded-textarea" && hasSource ? (
+                <p className="mt-4 text-sm leading-relaxed text-slate-700">
+                  The extracted TXT/MD content is loaded into the editable
+                  source field above.
+                </p>
+              ) : null}
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    void copySourceValue("Extracted text", parsedSource.rawText)
+                  }
+                  disabled={!parsedSource.rawText.trim()}
+                  className={toolControlButtonClass({
+                    size: "sm",
+                    disabled: !parsedSource.rawText.trim(),
+                  })}
+                >
+                  <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                  Copy extracted text
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    void copySourceValue("Cleaned text", preflight.cleanedText)
+                  }
+                  disabled={!preflight.cleanedText.trim()}
+                  className={toolControlButtonClass({
+                    size: "sm",
+                    disabled: !preflight.cleanedText.trim(),
+                  })}
+                >
+                  <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                  Copy cleaned text
+                </button>
+                {isUploaded ? (
+                  <button
+                    type="button"
+                    onClick={editExtractedText}
+                    disabled={!parsedSource.rawText.trim()}
+                    className={toolControlButtonClass({
+                      size: "sm",
+                      disabled: !parsedSource.rawText.trim(),
+                    })}
+                  >
+                    Edit extracted text
+                  </button>
+                ) : null}
+                <button
+                  type="button"
+                  onClick={clearSource}
+                  disabled={!canClearSource}
+                  className={toolControlButtonClass({
+                    size: "sm",
+                    disabled: !canClearSource,
+                  })}
+                >
+                  <TrashIcon size={16} title={undefined} aria-hidden="true" />
+                  Clear source
+                </button>
+              </div>
+
+              {sourceActionStatus ? (
+                <StatusMessage kind={sourceActionStatus.kind} className="mt-3">
+                  {sourceActionStatus.message}
+                </StatusMessage>
+              ) : null}
+            </section>
+          ) : null}
         </ToolPanel>
 
         <div className="space-y-4">
@@ -737,29 +1046,22 @@ export default function BookTranslatorTool() {
             </span>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={clearSource}
-              disabled={!hasSource && status !== "error"}
-              className={toolControlButtonClass({
-                size: "sm",
-                disabled: !hasSource && status !== "error",
-              })}
-            >
-              <TrashIcon size={16} title={undefined} aria-hidden="true" />
-              Clear source
-            </button>
-            {isUploaded ? (
+          {!showSourceState ? (
+            <div className="flex flex-wrap gap-2">
               <button
                 type="button"
-                onClick={removeUploadedFile}
-                className={toolControlButtonClass({ size: "sm" })}
+                onClick={clearSource}
+                disabled={!canClearSource}
+                className={toolControlButtonClass({
+                  size: "sm",
+                  disabled: !canClearSource,
+                })}
               >
-                Remove uploaded file
+                <TrashIcon size={16} title={undefined} aria-hidden="true" />
+                Clear source
               </button>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
 
         </div>
       </div>
