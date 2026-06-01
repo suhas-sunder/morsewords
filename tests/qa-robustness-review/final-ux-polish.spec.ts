@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const SHOW_AMBIENT_STORAGE_KEY = "morsewords-show-ambient-morse";
+const FULL_PAGE_FLASH_STORAGE_KEY = "morsewords-full-page-flash";
 const DISABLE_FLASH_STORAGE_KEY = "morsewords-disable-flash-effects";
 
 test.beforeEach(async ({ page }) => {
@@ -119,8 +120,16 @@ test("display settings open, close with Escape, and persist ambient Morse prefer
   const ambientToggle = dialog.getByRole("switch", {
     name: "Show Morse background text",
   });
+  const fullPageFlashToggle = dialog.getByRole("switch", {
+    name: "Flash whole page",
+  });
+  const disableFlashToggle = dialog.getByRole("switch", {
+    name: "Disable flashing light effects",
+  });
 
   await expect(ambientToggle).toHaveAttribute("aria-checked", "true");
+  await expect(fullPageFlashToggle).toHaveAttribute("aria-checked", "false");
+  await expect(disableFlashToggle).toHaveAttribute("aria-checked", "false");
   await expect(page.locator(".mw-ambient-morse")).toBeVisible();
 
   await ambientToggle.click();
@@ -143,7 +152,7 @@ test("display settings open, close with Escape, and persist ambient Morse prefer
   ).toHaveCount(0);
 });
 
-test("global flash setting disables visual flash controls and persists", async ({
+test("whole-page flash setting persists without disabling visual flash controls", async ({
   page,
 }) => {
   await page.goto("/", { waitUntil: "domcontentloaded" });
@@ -151,13 +160,13 @@ test("global flash setting disables visual flash controls and persists", async (
 
   const dialog = await openSettings(page);
   const flashToggle = dialog.getByRole("switch", {
-    name: "Disable flashing light effects",
+    name: "Flash whole page",
   });
   await flashToggle.click();
   await expect(flashToggle).toHaveAttribute("aria-checked", "true");
   await expect
     .poll(() =>
-      page.evaluate((key) => localStorage.getItem(key), DISABLE_FLASH_STORAGE_KEY),
+      page.evaluate((key) => localStorage.getItem(key), FULL_PAGE_FLASH_STORAGE_KEY),
     )
     .toBe("1");
 
@@ -166,14 +175,60 @@ test("global flash setting disables visual flash controls and persists", async (
   });
   await waitForHydration(page);
 
+  await expect(page.getByRole("button", { name: "Flash message" })).toBeEnabled();
+  await expect(page.locator("#visual-practice-strobe-warning")).toHaveCount(0);
+  await page.getByRole("button", { name: "Flash message" }).click();
+  await expect(page.locator("#visual-practice-strobe-warning")).toBeVisible();
+
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await waitForHydration(page);
+  await expect(page.getByRole("button", { name: "Flash message" })).toBeEnabled();
+  await expect(page.locator("#visual-practice-strobe-warning")).toHaveCount(0);
+  await expect
+    .poll(() =>
+      page.evaluate((key) => localStorage.getItem(key), FULL_PAGE_FLASH_STORAGE_KEY),
+    )
+    .toBe("1");
+});
+
+test("explicit disable flash setting persists without enabling whole-page flash", async ({
+  page,
+}) => {
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await waitForHydration(page);
+
+  const dialog = await openSettings(page);
+  const disableFlashToggle = dialog.getByRole("switch", {
+    name: "Disable flashing light effects",
+  });
+  const fullPageFlashToggle = dialog.getByRole("switch", {
+    name: "Flash whole page",
+  });
+  await expect(disableFlashToggle).toHaveAttribute("aria-checked", "false");
+  await expect(fullPageFlashToggle).toHaveAttribute("aria-checked", "false");
+
+  await disableFlashToggle.click();
+  await expect(disableFlashToggle).toHaveAttribute("aria-checked", "true");
+  await expect(fullPageFlashToggle).toHaveAttribute("aria-checked", "false");
+  await expect
+    .poll(() =>
+      page.evaluate((key) => localStorage.getItem(key), DISABLE_FLASH_STORAGE_KEY),
+    )
+    .toBe("1");
+  await expect
+    .poll(() =>
+      page.evaluate((key) => localStorage.getItem(key), FULL_PAGE_FLASH_STORAGE_KEY),
+    )
+    .toBe("0");
+
+  await page.goto("/morse-code-visual-practice", {
+    waitUntil: "domcontentloaded",
+  });
+  await waitForHydration(page);
   await expect(page.getByRole("button", { name: "Flash message" })).toBeDisabled();
   await expect(
     page.getByText("Flashing effects are disabled in display settings."),
   ).toBeVisible();
-
-  await page.reload({ waitUntil: "domcontentloaded" });
-  await waitForHydration(page);
-  await expect(page.getByRole("button", { name: "Flash message" })).toBeDisabled();
 });
 
 test("mobile navigation hides logo text while menu is open", async ({ page }) => {

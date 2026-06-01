@@ -196,11 +196,13 @@ export default function MorseMp3GeneratorTool() {
     [activeCode],
   );
   const flashLamp = useFlashLampState(hydrated && flash);
-  const { disableFlashEffects, flashAllowed } = flashLamp;
+  const { disableFlashEffects, flashAllowed, fullPageFlash } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
   const renderedSoundOn = hydrated ? soundOn : true;
   const renderedRepeat = hydrated ? repeat : false;
   const renderedFlash = hydrated ? effectiveFlash : false;
+  const showStrobeWarning =
+    fullPageFlash && renderedFlash && player.state === "playing";
 
   const handleCharWpmChange = React.useCallback((value: number) => {
     const next = Math.round(
@@ -682,7 +684,7 @@ export default function MorseMp3GeneratorTool() {
           Audio controls
         </h2>
 
-        <div className="flex flex-wrap gap-2 sm:justify-end">
+        <div className="flex flex-wrap items-center gap-2 sm:justify-end">
           <TogglePill
             label="Sound"
             checked={renderedSoundOn}
@@ -709,20 +711,18 @@ export default function MorseMp3GeneratorTool() {
             describedBy={
               disableFlashEffects
                 ? FLASH_DISABLED_NOTICE_ID
-                : renderedFlash
+                : showStrobeWarning
                   ? STROBE_WARNING_ID
                   : undefined
             }
             disabled={!flashAllowed}
           />
-          {hydrated && flash ? (
-            <FlashLamp
-              active={flashLamp.active}
-              disabled={!renderedFlash}
-              label="Morse MP3 preview flash lamp"
-              size="sm"
-            />
-          ) : null}
+          <FlashLamp
+            active={flashLamp.active}
+            disabled={!flashAllowed}
+            label="Morse MP3 preview flash lamp"
+            size="sm"
+          />
         </div>
       </div>
 
@@ -773,7 +773,7 @@ export default function MorseMp3GeneratorTool() {
           id={FLASH_DISABLED_NOTICE_ID}
           className="mt-3"
         />
-      ) : renderedFlash ? (
+      ) : showStrobeWarning ? (
         <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
       ) : null}
 

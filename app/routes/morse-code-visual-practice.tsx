@@ -18,6 +18,8 @@ import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import FlashLamp from "~/client/components/shared/FlashLamp";
 import {
+  dispatchFlashClear,
+  dispatchMorseFlash,
   isFlashAllowedNow,
   useFlashSafety,
 } from "~/client/components/shared/useFlashSafety";
@@ -81,6 +83,7 @@ export function meta({}: Route.MetaArgs) {
 
 function useVisualPlayback(pattern: string, wpm: number, farnsworthWpm: number) {
   const [active, setActive] = React.useState(false);
+  const [playing, setPlaying] = React.useState(false);
   const timers = React.useRef<number[]>([]);
 
   React.useEffect(() => {
@@ -93,30 +96,51 @@ function useVisualPlayback(pattern: string, wpm: number, farnsworthWpm: number) 
     timers.current.forEach((timer) => window.clearTimeout(timer));
     timers.current = [];
     setActive(false);
+    setPlaying(false);
+    dispatchFlashClear();
   }, []);
 
   const play = React.useCallback(() => {
     stop();
     let cursor = 0;
-    for (const event of morseVisualEvents(pattern, wpm, farnsworthWpm)) {
-      timers.current.push(window.setTimeout(() => setActive(event.on), cursor));
+    const events = morseVisualEvents(pattern, wpm, farnsworthWpm);
+    if (events.length === 0) return;
+    setPlaying(true);
+    for (const event of events) {
+      timers.current.push(
+        window.setTimeout(() => {
+          setActive(event.on);
+          if (event.on) dispatchMorseFlash(event.ms);
+          else dispatchFlashClear();
+        }, cursor),
+      );
       cursor += event.ms;
     }
-    timers.current.push(window.setTimeout(() => setActive(false), cursor + 80));
+    timers.current.push(
+      window.setTimeout(() => {
+        setActive(false);
+        setPlaying(false);
+        dispatchFlashClear();
+      }, cursor + 80),
+    );
   }, [farnsworthWpm, pattern, stop, wpm]);
 
-  return { active, play, stop };
+  return { active, playing, play, stop };
 }
 
 export default function MorseCodeVisualPractice() {
-  const { disableFlashEffects, flashAllowed } = useFlashSafety();
+  const { disableFlashEffects, flashAllowed, fullPageFlash } = useFlashSafety();
   const [message, setMessage] = React.useState("sos");
   const [wpm, setWpm] = React.useState(14);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
   const [showAnswer, setShowAnswer] = React.useState(false);
-  const [hasFlashed, setHasFlashed] = React.useState(false);
   const morse = React.useMemo(() => textToMorse(message), [message]);
-  const { active, play, stop } = useVisualPlayback(morse, wpm, farnsworthWpm);
+  const { active, playing, play, stop } = useVisualPlayback(
+    morse,
+    wpm,
+    farnsworthWpm,
+  );
+  const showStrobeWarning = fullPageFlash && playing;
   const stopPlaybackRef = React.useRef(stop);
 
   React.useEffect(() => {
@@ -141,17 +165,14 @@ export default function MorseCodeVisualPractice() {
   React.useEffect(() => {
     if (flashAllowed) return;
     stop();
-    setHasFlashed(false);
   }, [flashAllowed, stop]);
 
   React.useEffect(() => {
     stopPlaybackRef.current();
-    setHasFlashed(false);
   }, [message, wpm, farnsworthWpm]);
 
   function flashMessage() {
     if (!morse || !flashAllowed || !isFlashAllowedNow()) return;
-    setHasFlashed(true);
     play();
   }
 
@@ -213,13 +234,13 @@ export default function MorseCodeVisualPractice() {
 
         <section className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
           <div className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-center">
-            <div className="mw-static-panel flex flex-col items-center justify-center rounded-xl bg-[#fffdf8]/85 p-8">
+            <div className="flex flex-col items-center justify-center p-2 sm:p-4">
               {disableFlashEffects ? (
                 <FlashEffectsDisabledNotice
                   id={FLASH_DISABLED_NOTICE_ID}
                   className="mb-5 w-full"
                 />
-              ) : hasFlashed ? (
+              ) : showStrobeWarning ? (
                 <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
               ) : null}
               <FlashLamp
@@ -235,7 +256,7 @@ export default function MorseCodeVisualPractice() {
                 aria-describedby={
                   disableFlashEffects
                     ? FLASH_DISABLED_NOTICE_ID
-                    : hasFlashed
+                    : showStrobeWarning
                       ? STROBE_WARNING_ID
                       : undefined
                 }
@@ -246,7 +267,7 @@ export default function MorseCodeVisualPractice() {
                   disabled: !flashAllowed,
                 })} mt-6`}
               >
-                <LightBulbIcon size={20} title="Flash message" />
+                <LightBulbIcon size={20} title={undefined} aria-hidden="true" />
                 Flash message
               </button>
             </div>

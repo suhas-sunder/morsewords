@@ -23,6 +23,9 @@ test("heavy browser-only helpers stay behind user-triggered dynamic imports", ()
   );
   const printableChart = readRepoFile("app/routes/morse-code-printable-chart.tsx");
   const wordSearch = readRepoFile("app/routes/morse-code-word-search-builder.tsx");
+  const bookBundleExport = readRepoFile(
+    "app/client/components/morse-code-book-translator/bookBundleExport.ts",
+  );
 
   expect(mp3Generator).not.toContain(
     'import { audioBufferToMp3Blob } from "~/client/components/audio/mp3Export"',
@@ -38,4 +41,9 @@ test("heavy browser-only helpers stay behind user-triggered dynamic imports", ()
   expect(wordSearch).not.toContain('import QRCode from "qrcode"');
   expectDynamicImport(printableChart, "qrcode");
   expectDynamicImport(wordSearch, "qrcode");
+
+  expect(bookBundleExport).not.toContain('from "fflate"');
+  expect(bookBundleExport).not.toContain('from "@breezystack/lamejs"');
+  expectDynamicImport(bookBundleExport, "fflate");
+  expectDynamicImport(bookBundleExport, "@breezystack/lamejs");
 });

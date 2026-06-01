@@ -8,10 +8,12 @@ export const SHOW_AMBIENT_MORSE_STORAGE_KEY =
   "morsewords-show-ambient-morse";
 export const DISABLE_FLASH_EFFECTS_STORAGE_KEY =
   "morsewords-disable-flash-effects";
+export const FULL_PAGE_FLASH_STORAGE_KEY = "morsewords-full-page-flash";
 
 export type DisplaySettings = {
   showAmbientMorse: boolean;
   disableFlashEffects: boolean;
+  fullPageFlash: boolean;
 };
 
 const DISPLAY_SETTINGS_EVENT = "morsewords:display-settings-change";
@@ -19,6 +21,7 @@ const DISPLAY_SETTINGS_EVENT = "morsewords:display-settings-change";
 const DEFAULT_DISPLAY_SETTINGS: DisplaySettings = {
   showAmbientMorse: true,
   disableFlashEffects: false,
+  fullPageFlash: false,
 };
 
 function writeStoredBoolean(key: string, value: boolean) {
@@ -35,6 +38,10 @@ export function readDisplaySettings(): DisplaySettings {
       DISABLE_FLASH_EFFECTS_STORAGE_KEY,
       DEFAULT_DISPLAY_SETTINGS.disableFlashEffects,
     ),
+    fullPageFlash: readStoredBoolean(
+      FULL_PAGE_FLASH_STORAGE_KEY,
+      DEFAULT_DISPLAY_SETTINGS.fullPageFlash,
+    ),
   };
 }
 
@@ -46,6 +53,7 @@ export function getAppliedDisplaySettings(): DisplaySettings {
   return {
     showAmbientMorse: root.ambientMorse === "hidden" ? false : true,
     disableFlashEffects: root.flashEffects === "disabled",
+    fullPageFlash: root.fullPageFlash === "enabled",
   };
 }
 
@@ -58,6 +66,9 @@ export function setRootDisplaySettings(settings: DisplaySettings) {
   document.documentElement.dataset.flashEffects = settings.disableFlashEffects
     ? "disabled"
     : "enabled";
+  document.documentElement.dataset.fullPageFlash = settings.fullPageFlash
+    ? "enabled"
+    : "disabled";
 }
 
 export function writeDisplaySettings(settings: DisplaySettings) {
@@ -69,6 +80,7 @@ export function writeDisplaySettings(settings: DisplaySettings) {
     DISABLE_FLASH_EFFECTS_STORAGE_KEY,
     settings.disableFlashEffects,
   );
+  writeStoredBoolean(FULL_PAGE_FLASH_STORAGE_KEY, settings.fullPageFlash);
 }
 
 export function applyDisplaySettings(settings: DisplaySettings) {
@@ -92,6 +104,14 @@ export function areFlashEffectsDisabled() {
   return readDisplaySettings().disableFlashEffects;
 }
 
+export function areFullPageFlashEffectsEnabled() {
+  if (typeof document !== "undefined") {
+    return document.documentElement.dataset.fullPageFlash === "enabled";
+  }
+
+  return readDisplaySettings().fullPageFlash;
+}
+
 export function useDisplaySettings() {
   const [settings, setSettingsState] = React.useState<DisplaySettings>(
     DEFAULT_DISPLAY_SETTINGS,
@@ -110,7 +130,8 @@ export function useDisplaySettings() {
     const handleStorage = (event: StorageEvent) => {
       if (
         event.key !== SHOW_AMBIENT_MORSE_STORAGE_KEY &&
-        event.key !== DISABLE_FLASH_EFFECTS_STORAGE_KEY
+        event.key !== DISABLE_FLASH_EFFECTS_STORAGE_KEY &&
+        event.key !== FULL_PAGE_FLASH_STORAGE_KEY
       ) {
         return;
       }
@@ -160,10 +181,18 @@ export function useDisplaySettings() {
     [setDisplaySettings],
   );
 
+  const setFullPageFlash = React.useCallback(
+    (fullPageFlash: boolean) => {
+      setDisplaySettings({ fullPageFlash });
+    },
+    [setDisplaySettings],
+  );
+
   return {
     ...settings,
     setDisplaySettings,
     setShowAmbientMorse,
     setDisableFlashEffects,
+    setFullPageFlash,
   };
 }

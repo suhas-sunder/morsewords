@@ -98,7 +98,7 @@ test.describe("shared route controls", () => {
     "/morse-code-audio-practice",
     "/morse-code-audio-quiz",
   ] as const) {
-    test(`${route} keeps Flash as an enabled strobe-warning control`, async ({
+    test(`${route} keeps Flash Light enabled without default strobe warning`, async ({
       page,
     }) => {
       await page.goto(route, { waitUntil: "domcontentloaded" });
@@ -106,7 +106,7 @@ test.describe("shared route controls", () => {
 
       await expect(page.getByLabel("Character speed").first()).toBeVisible();
 
-      const flashButton = page.getByRole("button", { name: /Flash/ });
+      const flashButton = page.getByRole("button", { name: "Flash Light" });
       const advancedButton = page.getByRole("button", {
         name: "Show advanced settings",
       });
@@ -125,7 +125,8 @@ test.describe("shared route controls", () => {
         page.getByText("Strobe warning: flashing light may be uncomfortable", {
           exact: false,
         }),
-      ).toBeVisible();
+      ).toHaveCount(0);
+      await expect(page.getByTestId("mw-flash-lamp")).toBeVisible();
     });
   }
 

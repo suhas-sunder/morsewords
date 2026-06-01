@@ -20,6 +20,8 @@ import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import FlashLamp from "~/client/components/shared/FlashLamp";
 import {
+  dispatchFlashClear,
+  dispatchMorseFlash,
   isFlashAllowedNow,
   useFlashSafety,
 } from "~/client/components/shared/useFlashSafety";
@@ -111,6 +113,7 @@ export function meta({}: Route.MetaArgs) {
 
 function useFlash(pattern: string, wpm: number, farnsworthWpm: number) {
   const [active, setActive] = React.useState(false);
+  const [playing, setPlaying] = React.useState(false);
   const timers = React.useRef<number[]>([]);
 
   React.useEffect(() => {
@@ -123,19 +126,36 @@ function useFlash(pattern: string, wpm: number, farnsworthWpm: number) {
     timers.current.forEach((timer) => window.clearTimeout(timer));
     timers.current = [];
     setActive(false);
+    setPlaying(false);
+    dispatchFlashClear();
   }, []);
 
   const play = React.useCallback(() => {
     stop();
     let cursor = 0;
-    for (const event of morseVisualEvents(pattern, wpm, farnsworthWpm)) {
-      timers.current.push(window.setTimeout(() => setActive(event.on), cursor));
+    const events = morseVisualEvents(pattern, wpm, farnsworthWpm);
+    if (events.length === 0) return;
+    setPlaying(true);
+    for (const event of events) {
+      timers.current.push(
+        window.setTimeout(() => {
+          setActive(event.on);
+          if (event.on) dispatchMorseFlash(event.ms);
+          else dispatchFlashClear();
+        }, cursor),
+      );
       cursor += event.ms;
     }
-    timers.current.push(window.setTimeout(() => setActive(false), cursor + 80));
+    timers.current.push(
+      window.setTimeout(() => {
+        setActive(false);
+        setPlaying(false);
+        dispatchFlashClear();
+      }, cursor + 80),
+    );
   }, [farnsworthWpm, pattern, stop, wpm]);
 
-  return { active, play, stop };
+  return { active, playing, play, stop };
 }
 
 export function buildVisualQuizPromptDeck(seed: number) {
@@ -148,7 +168,7 @@ function createVisualQuizSeed() {
 }
 
 export default function MorseCodeVisualQuiz() {
-  const { disableFlashEffects, flashAllowed } = useFlashSafety();
+  const { disableFlashEffects, flashAllowed, fullPageFlash } = useFlashSafety();
   const didHydratePromptOrder = React.useRef(false);
   const [roundSeed, setRoundSeed] = React.useState(INITIAL_VISUAL_QUIZ_SEED);
   const [index, setIndex] = React.useState(0);
@@ -165,7 +185,6 @@ export default function MorseCodeVisualQuiz() {
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
   const [wpm, setWpm] = React.useState(14);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
-  const [hasFlashed, setHasFlashed] = React.useState(false);
 
   const promptDeck = React.useMemo(
     () => buildVisualQuizPromptDeck(roundSeed),
@@ -175,7 +194,8 @@ export default function MorseCodeVisualQuiz() {
     promptDeck[Math.min(index, Math.max(0, promptDeck.length - 1))] ??
     VISUAL_QUIZ_FALLBACK_PROMPTS[0];
   const morse = textToMorse(prompt);
-  const { active, play, stop } = useFlash(morse, wpm, farnsworthWpm);
+  const { active, playing, play, stop } = useFlash(morse, wpm, farnsworthWpm);
+  const showStrobeWarning = fullPageFlash && playing;
   const normalizedAnswer = normalizePlainAnswer(answer);
   const isCorrect = comparePlainAnswers(answer, prompt);
   const gameOver = completed >= TOTAL_QUESTIONS;
@@ -183,7 +203,6 @@ export default function MorseCodeVisualQuiz() {
 
   const handleWpmChange = React.useCallback((value: number) => {
     stop();
-    setHasFlashed(false);
     const next = Math.round(
       clampNumber(value, VISUAL_SPEED_RANGE.min, VISUAL_SPEED_RANGE.max),
     );
@@ -194,7 +213,6 @@ export default function MorseCodeVisualQuiz() {
   const handleFarnsworthWpmChange = React.useCallback(
     (value: number) => {
       stop();
-      setHasFlashed(false);
       setFarnsworthWpm(clampFarnsworthWpm(value, wpm, 5));
     },
     [stop, wpm],
@@ -213,7 +231,6 @@ export default function MorseCodeVisualQuiz() {
   React.useEffect(() => {
     if (flashAllowed) return;
     stop();
-    setHasFlashed(false);
   }, [flashAllowed, stop]);
 
   function checkAnswer() {
@@ -242,7 +259,6 @@ export default function MorseCodeVisualQuiz() {
     setAnswer("");
     setChecked(false);
     setSolved(false);
-    setHasFlashed(false);
     if (nextCompleted < TOTAL_QUESTIONS) {
       setIndex((value) => Math.min(value + 1, TOTAL_QUESTIONS - 1));
     }
@@ -260,12 +276,10 @@ export default function MorseCodeVisualQuiz() {
     setSolved(false);
     setStreak(0);
     setRunStartedAt(null);
-    setHasFlashed(false);
   }
 
   function flashPrompt() {
     if (!morse || !flashAllowed || !isFlashAllowedNow()) return;
-    setHasFlashed(true);
     play();
   }
 
@@ -420,13 +434,13 @@ export default function MorseCodeVisualQuiz() {
             </div>
           ) : (
             <div className="grid gap-6 py-6 lg:grid-cols-[320px_minmax(0,1fr)]">
-                <div className="mw-static-panel flex flex-col items-center rounded-xl bg-[#fffdf8]/85 p-6">
+                <div className="flex flex-col items-center p-2 sm:p-4">
                 {disableFlashEffects ? (
                   <FlashEffectsDisabledNotice
                     id={FLASH_DISABLED_NOTICE_ID}
                     className="mb-5 w-full"
                   />
-                ) : hasFlashed ? (
+                ) : showStrobeWarning ? (
                   <StrobeWarning id={STROBE_WARNING_ID} className="mb-5 w-full" />
                 ) : null}
                 <FlashLamp
@@ -442,7 +456,7 @@ export default function MorseCodeVisualQuiz() {
                   aria-describedby={
                     disableFlashEffects
                       ? FLASH_DISABLED_NOTICE_ID
-                      : hasFlashed
+                      : showStrobeWarning
                         ? STROBE_WARNING_ID
                         : undefined
                   }
@@ -453,7 +467,7 @@ export default function MorseCodeVisualQuiz() {
                       disabled: !flashAllowed,
                     })} mt-5`}
                 >
-                  <LightBulbIcon size={20} title="Flash prompt" />
+                  <LightBulbIcon size={20} title={undefined} aria-hidden="true" />
                   Flash prompt
                 </button>
               </div>

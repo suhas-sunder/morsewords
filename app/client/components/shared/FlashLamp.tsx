@@ -10,15 +10,15 @@ type FlashLampProps = {
 
 const sizeClasses = {
   sm: {
-    shell: "h-9 w-9 rounded-lg",
+    shell: "h-9 w-9",
     bulb: "h-4 w-4",
   },
   md: {
-    shell: "h-12 w-12 rounded-xl",
+    shell: "h-12 w-12",
     bulb: "h-5 w-5",
   },
   lg: {
-    shell: "h-28 w-28 rounded-xl",
+    shell: "h-28 w-28",
     bulb: "h-16 w-16",
   },
 } as const;
@@ -49,7 +49,7 @@ export default function FlashLamp({
       data-active={lit ? "true" : "false"}
       data-disabled={disabled ? "true" : "false"}
       className={[
-        "mw-static-tile inline-flex shrink-0 items-center justify-center bg-[#fffdf8] text-slate-700",
+        "inline-flex shrink-0 items-center justify-center self-center text-slate-700",
         "transition-colors duration-75 motion-reduce:transition-none",
         disabled ? "opacity-60" : "",
         classes.shell,
