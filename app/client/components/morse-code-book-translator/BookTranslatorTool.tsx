@@ -144,13 +144,7 @@ function cleanupLabel(key: keyof CleanupOptions) {
   }
 }
 
-function Metric({
-  label,
-  value,
-}: {
-  label: string;
-  value: React.ReactNode;
-}) {
+function Metric({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="min-w-0">
       <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
@@ -200,16 +194,13 @@ function MessageList({
 }
 
 function EmptyPreview({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-sm leading-relaxed text-slate-600">
-      {children}
-    </p>
-  );
+  return <p className="text-sm leading-relaxed text-slate-600">{children}</p>;
 }
 
 async function parseFileSource(file: File) {
   const sourceType = detectFileSourceType(file);
-  if (sourceType === "txt" || sourceType === "md") return parseTextFileSource(file);
+  if (sourceType === "txt" || sourceType === "md")
+    return parseTextFileSource(file);
   if (sourceType === "epub") return parseEpubSource(file);
   return parsePdfSource(file);
 }
@@ -234,13 +225,14 @@ function bundleContentsForSettings(settings: BookExportSettings) {
 
 export default function BookTranslatorTool() {
   const [sourceText, setSourceText] = React.useState("");
-  const [parsedSource, setParsedSource] = React.useState<ParsedBookSource>(
-    () => createEmptyParsedSource(),
+  const [parsedSource, setParsedSource] = React.useState<ParsedBookSource>(() =>
+    createEmptyParsedSource(),
   );
   const [sourceEntryMode, setSourceEntryMode] =
     React.useState<SourceEntryMode>("pasted");
-  const [cleanupOptions, setCleanupOptions] =
-    React.useState<CleanupOptions>(DEFAULT_CLEANUP_OPTIONS);
+  const [cleanupOptions, setCleanupOptions] = React.useState<CleanupOptions>(
+    DEFAULT_CLEANUP_OPTIONS,
+  );
   const [exportSettings, setExportSettings] =
     React.useState<BookExportSettings>(DEFAULT_BOOK_EXPORT_SETTINGS);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
@@ -271,18 +263,21 @@ export default function BookTranslatorTool() {
   const exportAbortRef = React.useRef<AbortController | null>(null);
   const mountedRef = React.useRef(true);
 
-  const cancelActiveExport = React.useCallback((message = "Export cancelled.") => {
-    exportVersionRef.current += 1;
-    exportAbortRef.current?.abort();
-    exportAbortRef.current = null;
-    setExportProgress({
-      phase: "cancelled",
-      message,
-      currentPart: 0,
-      totalParts: 0,
-    });
-    setExportStatus({ kind: "info", message });
-  }, []);
+  const cancelActiveExport = React.useCallback(
+    (message = "Export cancelled.") => {
+      exportVersionRef.current += 1;
+      exportAbortRef.current?.abort();
+      exportAbortRef.current = null;
+      setExportProgress({
+        phase: "cancelled",
+        message,
+        currentPart: 0,
+        totalParts: 0,
+      });
+      setExportStatus({ kind: "info", message });
+    },
+    [],
+  );
 
   React.useEffect(() => {
     const preferences = loadBookExportPreferences();
@@ -331,7 +326,13 @@ export default function BookTranslatorTool() {
       sourceSections,
       sourceTitle: preflight.title || preflight.filename,
     });
-  }, [exportSettings, preflight.cleanedText, preflight.filename, preflight.title, sourceSections]);
+  }, [
+    exportSettings,
+    preflight.cleanedText,
+    preflight.filename,
+    preflight.title,
+    sourceSections,
+  ]);
 
   const exportAnalysis = React.useMemo(
     () =>
@@ -362,7 +363,7 @@ export default function BookTranslatorTool() {
     status === "parsing" ||
     status === "error" ||
     Boolean(parsedSource.filename) ||
-    (isUploaded && status === "ready");
+    hasSource;
   const canClearSource =
     hasSource ||
     status === "error" ||
@@ -373,19 +374,39 @@ export default function BookTranslatorTool() {
     hasSource && !hasCleanedSource
       ? "Cleanup removed all source text. Turn off the cleanup option or add text before exporting."
       : "";
-  const allWarnings = [
+  const sourceWarnings = [
     ...preflight.extractionWarnings,
     ...preflight.cleanupWarnings,
-    ...exportAnalysis.warnings,
     cleanedSourceEmptyWarning,
   ].filter(Boolean);
-  const canExport = hasSource && exportParts.length > 0 && !isExportRunning(exportProgress);
+  const exportWarnings = exportAnalysis.warnings.filter(Boolean);
+  const exportRunning = isExportRunning(exportProgress);
+  const canExport = hasSource && exportParts.length > 0 && !exportRunning;
+  const exportDisabledReason = !hasSource
+    ? "Add source text or upload a source file to enable export."
+    : !hasCleanedSource
+      ? "Cleaned source is empty. Adjust source cleanup or add exportable text."
+      : exportParts.length === 0
+        ? "Review the source text before exporting."
+        : exportRunning
+          ? "Export is currently running."
+          : "";
+  const sourcePreviewStatus = !hasSource
+    ? "No source loaded"
+    : isUploadedPreviewMode
+      ? extractedPreviewTruncated
+        ? "Capped extracted preview"
+        : "Extracted preview"
+      : "Editable source";
   const presetModified = !settingsMatchBookPreset(exportSettings);
-  const activePresetDetails = BOOK_EXPORT_PRESET_DETAILS[exportSettings.presetName];
+  const activePresetDetails =
+    BOOK_EXPORT_PRESET_DETAILS[exportSettings.presetName];
   const activeSettingsSummary = describeBookExportSettings(exportSettings);
   const progressPercent =
     exportProgress.totalParts > 0
-      ? Math.round((exportProgress.currentPart / exportProgress.totalParts) * 100)
+      ? Math.round(
+          (exportProgress.currentPart / exportProgress.totalParts) * 100,
+        )
       : exportProgress.phase === "complete"
         ? 100
         : 0;
@@ -447,7 +468,9 @@ export default function BookTranslatorTool() {
         const editableUpload = shouldUseEditableUpload(parsed);
         setParsedSource(parsed);
         setSourceText(editableUpload ? parsed.rawText : "");
-        setSourceEntryMode(editableUpload ? "uploaded-textarea" : "uploaded-preview");
+        setSourceEntryMode(
+          editableUpload ? "uploaded-textarea" : "uploaded-preview",
+        );
         setStatus("ready");
         setPendingFilename("");
       } catch (error) {
@@ -714,20 +737,29 @@ export default function BookTranslatorTool() {
       }
       setExportProgress({
         phase: "failed",
-        message: "Book export failed. Try a shorter part duration or MP3 output.",
+        message:
+          "Book export failed. Try a shorter part duration or MP3 output.",
         currentPart: 0,
         totalParts: exportParts.length,
       });
       setExportStatus({
         kind: "error",
-        message: "Book export failed. Try a shorter part duration or MP3 output.",
+        message:
+          "Book export failed. Try a shorter part duration or MP3 output.",
       });
     } finally {
       if (exportVersionRef.current === version) {
         exportAbortRef.current = null;
       }
     }
-  }, [exportAnalysis.estimatedSizeLabel, exportAnalysis.totalRuntimeMs, exportParts, exportSettings, hasSource, preflight]);
+  }, [
+    exportAnalysis.estimatedSizeLabel,
+    exportAnalysis.totalRuntimeMs,
+    exportParts,
+    exportSettings,
+    hasSource,
+    preflight,
+  ]);
 
   const handleDownloadSample = React.useCallback(async () => {
     if (!hasSource || !exportAnalysis.cleanedText.trim()) {
@@ -751,7 +783,11 @@ export default function BookTranslatorTool() {
     const controller = new AbortController();
     setExportStatus({ kind: "working", message: "Preparing sample audio..." });
     try {
-      const blob = await renderBookPartAudio(samplePart, exportSettings, controller.signal);
+      const blob = await renderBookPartAudio(
+        samplePart,
+        exportSettings,
+        controller.signal,
+      );
       const download = downloadBlobFile({
         blob,
         filename: samplePart.estimatedFilename,
@@ -776,192 +812,325 @@ export default function BookTranslatorTool() {
   return (
     <section
       className="mt-6 space-y-6"
-      aria-label="Book source preflight and export tool"
+      aria-label="Book source review and export tool"
       data-mw-book-export-ready={preferencesLoaded ? "true" : "loading"}
     >
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
-        <ToolPanel
-          label="Source text"
-          badge={isUploaded ? sourceTypeLabel(parsedSource.sourceType) : "Paste"}
-        >
-          {isTextareaMode ? (
-            <>
-              <label htmlFor="book-source-text" className="sr-only">
-                Paste long-form source text
-              </label>
-              <ToolTextarea
-                id="book-source-text"
-                value={sourceText}
-                onChange={(event) => updatePastedText(event.target.value)}
-                placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
-                className="min-h-[18rem]"
-                spellCheck={false}
-              />
-            </>
-          ) : (
-            <div
-              className="px-4 pb-4"
-              aria-labelledby="book-source-preview-heading"
+      <section className="space-y-4" aria-labelledby="book-add-source-heading">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2
+              id="book-add-source-heading"
+              className="text-xl font-extrabold text-sky-950"
             >
-              {hasSource ? (
-                <>
-                  <h3
-                    id="book-source-preview-heading"
-                    className="text-base font-extrabold text-sky-950"
-                  >
-                    Extracted source preview
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                    Previewing the first{" "}
-                    {Math.min(
-                      parsedSource.rawText.length,
-                      EXTRACTED_SOURCE_PREVIEW_LIMIT,
-                    ).toLocaleString()}{" "}
-                    characters from the uploaded source.
-                  </p>
-                  <pre
-                    data-testid="book-source-preview"
-                    className="mt-4 max-h-80 overflow-auto whitespace-pre-wrap font-mono text-sm leading-relaxed text-slate-900"
-                  >
-                    {extractedPreview}
-                  </pre>
-                  {extractedPreviewTruncated ? (
-                    <p className="mt-3 text-sm font-semibold text-slate-600">
-                      Preview is truncated. Copy or edit the extracted text to
-                      use the full source held in this browser session.
+              Add source
+            </h2>
+            <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+              Paste long-form text or upload a local TXT, MD, EPUB, or
+              text-native PDF. The source stays in this browser session.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+              {hasSource ? "Source ready" : "Waiting for source"}
+            </span>
+            {hasSource ? (
+              <a
+                href="#book-review-export"
+                className={toolControlButtonClass({
+                  size: "sm",
+                  tone: "dark",
+                })}
+              >
+                Review export
+              </a>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
+          <ToolPanel
+            label="Source text"
+            badge={
+              isUploaded ? sourceTypeLabel(parsedSource.sourceType) : "Paste"
+            }
+          >
+            {isTextareaMode ? (
+              <>
+                <label htmlFor="book-source-text" className="sr-only">
+                  Paste long-form source text
+                </label>
+                <ToolTextarea
+                  id="book-source-text"
+                  value={sourceText}
+                  onChange={(event) => updatePastedText(event.target.value)}
+                  placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
+                  className="min-h-[18rem]"
+                  spellCheck={false}
+                />
+              </>
+            ) : (
+              <div
+                className="px-4 pb-4"
+                aria-labelledby="book-source-preview-heading"
+              >
+                {hasSource ? (
+                  <>
+                    <h3
+                      id="book-source-preview-heading"
+                      className="text-base font-extrabold text-sky-950"
+                    >
+                      Extracted source preview
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                      Previewing the first{" "}
+                      {Math.min(
+                        parsedSource.rawText.length,
+                        EXTRACTED_SOURCE_PREVIEW_LIMIT,
+                      ).toLocaleString()}{" "}
+                      characters from the uploaded source.
                     </p>
-                  ) : null}
-                </>
-              ) : (
-                <EmptyPreview>
-                  {status === "parsing"
-                    ? `Reading ${pendingFilename || "the selected file"}...`
-                    : "Upload a file to preview extracted source text here."}
-                </EmptyPreview>
-              )}
-            </div>
-          )}
-
-          {showSourceState ? (
-            <section
-              className="border-t border-slate-200/70 px-4 py-4"
-              aria-labelledby="book-source-state-heading"
-              role={status === "error" ? "alert" : undefined}
-            >
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <h3
-                    id="book-source-state-heading"
-                    className="text-base font-extrabold text-sky-950"
-                  >
+                    <pre
+                      data-testid="book-source-preview"
+                      className="mt-4 max-h-80 overflow-auto whitespace-pre-wrap font-mono text-sm leading-relaxed text-slate-900"
+                    >
+                      {extractedPreview}
+                    </pre>
+                    {extractedPreviewTruncated ? (
+                      <p className="mt-3 text-sm font-semibold text-slate-600">
+                        Preview is truncated. Copy or edit the extracted text to
+                        use the full source held in this browser session.
+                      </p>
+                    ) : null}
+                  </>
+                ) : (
+                  <EmptyPreview>
                     {status === "parsing"
-                      ? "Reading source file"
-                      : status === "error"
-                        ? "Source upload failed"
-                        : isUploaded
-                          ? "Uploaded source"
-                          : "Editable source"}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    {status === "parsing"
-                      ? `Extracting text from ${pendingFilename || "the selected file"}.`
-                      : status === "error"
-                        ? errorMessage
-                        : !hasSource
-                          ? "Extraction finished, but no source text was found."
-                          : isUploadedPreviewMode
-                            ? "The full extracted source is ready for preflight and export without rendering the entire file into the page."
-                            : isUploaded
-                              ? "This upload is small enough to edit directly in the source field."
-                              : "This text is editable and will be used for preflight and export."}
-                  </p>
-                </div>
-                {isUploaded && parsedSource.filename ? (
-                  <span className="max-w-full break-words font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
-                    {parsedSource.filename}
-                  </span>
-                ) : null}
+                      ? `Reading ${pendingFilename || "the selected file"}...`
+                      : "Upload a file to preview extracted source text here."}
+                  </EmptyPreview>
+                )}
               </div>
+            )}
 
-              {status === "ready" ? (
-                <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  <Metric
-                    label="Source type"
-                    value={sourceTypeLabel(parsedSource.sourceType)}
-                  />
-                  {parsedSource.filename ? (
-                    <Metric label="Filename" value={parsedSource.filename} />
+            {showSourceState ? (
+              <section
+                className="border-t border-slate-200/70 px-4 py-4"
+                aria-labelledby="book-source-state-heading"
+                role={status === "error" ? "alert" : undefined}
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h3
+                      id="book-source-state-heading"
+                      className="text-base font-extrabold text-sky-950"
+                    >
+                      {status === "parsing"
+                        ? "Reading source file"
+                        : status === "error"
+                          ? "Source upload failed"
+                          : hasSource
+                            ? "Source ready"
+                            : "Source status"}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                      {status === "parsing"
+                        ? `Extracting text from ${pendingFilename || "the selected file"}.`
+                        : status === "error"
+                          ? errorMessage
+                          : !hasSource
+                            ? "Extraction finished, but no source text was found."
+                            : isUploadedPreviewMode
+                              ? "The full extracted source is ready for review and export without rendering the entire file into the page."
+                              : isUploaded
+                                ? "This upload is small enough to edit directly in the source field."
+                                : "This text is editable and ready for review and export."}
+                    </p>
+                  </div>
+                  {isUploaded && parsedSource.filename ? (
+                    <span className="max-w-full break-words font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                      {parsedSource.filename}
+                    </span>
                   ) : null}
-                  {parsedSource.title ? (
-                    <Metric label="Title" value={parsedSource.title} />
-                  ) : null}
-                  {parsedSource.author ? (
-                    <Metric label="Author" value={parsedSource.author} />
-                  ) : null}
-                  <Metric
-                    label="Extracted chars"
-                    value={formatNumber(parsedSource.rawText.length)}
-                  />
-                  <Metric
-                    label="Extracted words"
-                    value={formatNumber(extractedWordCount)}
-                  />
-                  <Metric
-                    label="Cleaned output"
-                    value={`${formatNumber(preflight.characterCount)} chars`}
-                  />
-                </dl>
-              ) : null}
+                </div>
 
-              {sourceEntryMode === "uploaded-textarea" && hasSource ? (
-                <p className="mt-4 text-sm leading-relaxed text-slate-700">
-                  The extracted TXT/MD content is loaded into the editable
-                  source field above.
-                </p>
-              ) : null}
+                {status === "ready" ? (
+                  <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <Metric
+                      label="Source type"
+                      value={sourceTypeLabel(parsedSource.sourceType)}
+                    />
+                    {parsedSource.filename ? (
+                      <Metric label="Filename" value={parsedSource.filename} />
+                    ) : null}
+                    {parsedSource.title ? (
+                      <Metric label="Title" value={parsedSource.title} />
+                    ) : null}
+                    {parsedSource.author ? (
+                      <Metric label="Author" value={parsedSource.author} />
+                    ) : null}
+                    <Metric
+                      label="Active chars"
+                      value={formatNumber(parsedSource.rawText.length)}
+                    />
+                    <Metric
+                      label="Active words"
+                      value={formatNumber(extractedWordCount)}
+                    />
+                    <Metric
+                      label="Preview status"
+                      value={sourcePreviewStatus}
+                    />
+                    <Metric
+                      label="Cleaned output"
+                      value={`${formatNumber(preflight.characterCount)} chars`}
+                    />
+                  </dl>
+                ) : null}
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() =>
-                    void copySourceValue("Extracted text", parsedSource.rawText)
-                  }
-                  disabled={!parsedSource.rawText.trim()}
-                  className={toolControlButtonClass({
-                    size: "sm",
-                    disabled: !parsedSource.rawText.trim(),
-                  })}
-                >
-                  <CopyIcon size={16} title={undefined} aria-hidden="true" />
-                  Copy extracted text
-                </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    void copySourceValue("Cleaned text", preflight.cleanedText)
-                  }
-                  disabled={!preflight.cleanedText.trim()}
-                  className={toolControlButtonClass({
-                    size: "sm",
-                    disabled: !preflight.cleanedText.trim(),
-                  })}
-                >
-                  <CopyIcon size={16} title={undefined} aria-hidden="true" />
-                  Copy cleaned text
-                </button>
-                {isUploaded ? (
+                {sourceEntryMode === "uploaded-textarea" && hasSource ? (
+                  <p className="mt-4 text-sm leading-relaxed text-slate-700">
+                    The extracted TXT/MD content is loaded into the editable
+                    source field above.
+                  </p>
+                ) : null}
+
+                <div className="mt-4 flex flex-wrap gap-2">
                   <button
                     type="button"
-                    onClick={editExtractedText}
+                    onClick={() =>
+                      void copySourceValue(
+                        "Extracted text",
+                        parsedSource.rawText,
+                      )
+                    }
                     disabled={!parsedSource.rawText.trim()}
                     className={toolControlButtonClass({
                       size: "sm",
                       disabled: !parsedSource.rawText.trim(),
                     })}
                   >
-                    Edit extracted text
+                    <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                    Copy extracted text
                   </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      void copySourceValue(
+                        "Cleaned text",
+                        preflight.cleanedText,
+                      )
+                    }
+                    disabled={!preflight.cleanedText.trim()}
+                    className={toolControlButtonClass({
+                      size: "sm",
+                      disabled: !preflight.cleanedText.trim(),
+                    })}
+                  >
+                    <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                    Copy cleaned text
+                  </button>
+                  {isUploaded ? (
+                    <button
+                      type="button"
+                      onClick={editExtractedText}
+                      disabled={!parsedSource.rawText.trim()}
+                      className={toolControlButtonClass({
+                        size: "sm",
+                        disabled: !parsedSource.rawText.trim(),
+                      })}
+                    >
+                      Edit extracted text
+                    </button>
+                  ) : null}
+                  <button
+                    type="button"
+                    onClick={clearSource}
+                    disabled={!canClearSource}
+                    className={toolControlButtonClass({
+                      size: "sm",
+                      disabled: !canClearSource,
+                    })}
+                  >
+                    <TrashIcon size={16} title={undefined} aria-hidden="true" />
+                    Clear source
+                  </button>
+                </div>
+
+                {sourceActionStatus ? (
+                  <StatusMessage
+                    kind={sourceActionStatus.kind}
+                    className="mt-3"
+                  >
+                    {sourceActionStatus.message}
+                  </StatusMessage>
                 ) : null}
+              </section>
+            ) : null}
+          </ToolPanel>
+
+          <div className="space-y-4">
+            <input
+              ref={fileInputRef}
+              id="book-source-file"
+              type="file"
+              accept=".txt,.md,.markdown,.epub,.pdf,text/plain,text/markdown,application/epub+zip,application/pdf"
+              onChange={handleFileInputChange}
+              className="sr-only"
+              aria-describedby="book-source-file-help"
+            />
+            <div
+              role="button"
+              tabIndex={0}
+              aria-label="Upload a book source file"
+              aria-describedby="book-source-file-help"
+              onClick={() => fileInputRef.current?.click()}
+              onKeyDown={handleUploadKeyDown}
+              onDragOver={(event) => {
+                event.preventDefault();
+                setDragActive(true);
+              }}
+              onDragEnter={(event) => {
+                event.preventDefault();
+                setDragActive(true);
+              }}
+              onDragLeave={() => setDragActive(false)}
+              onDrop={handleDrop}
+              className={[
+                "flex min-h-[14rem] cursor-pointer flex-col justify-center rounded-xl border border-dashed border-slate-300/80 bg-white/88 p-5 text-center transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+                dragActive
+                  ? "border-sky-500 bg-[#fffaf2] outline outline-2 outline-offset-2 outline-sky-500"
+                  : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              <UploadIcon
+                size={28}
+                title={undefined}
+                aria-hidden="true"
+                className="mx-auto text-sky-950"
+              />
+              <span className="mt-3 block text-base font-extrabold text-sky-950">
+                Drag a source file here or click to upload
+              </span>
+              <span
+                id="book-source-file-help"
+                className="mx-auto mt-2 block max-w-[34ch] text-sm leading-relaxed text-slate-600"
+              >
+                {uploadHelpText}
+              </span>
+              {parsedSource.filename ? (
+                <span className="mt-3 block break-words text-sm font-semibold text-slate-700">
+                  Current file: {parsedSource.filename}
+                </span>
+              ) : null}
+              <span className="mx-auto mt-3 block max-w-[38ch] text-xs leading-relaxed text-slate-500">
+                {uploadRightsText}
+              </span>
+            </div>
+
+            {!showSourceState ? (
+              <div className="flex flex-wrap gap-2">
                 <button
                   type="button"
                   onClick={clearSource}
@@ -975,130 +1144,60 @@ export default function BookTranslatorTool() {
                   Clear source
                 </button>
               </div>
-
-              {sourceActionStatus ? (
-                <StatusMessage kind={sourceActionStatus.kind} className="mt-3">
-                  {sourceActionStatus.message}
-                </StatusMessage>
-              ) : null}
-            </section>
-          ) : null}
-        </ToolPanel>
-
-        <div className="space-y-4">
-          <input
-            ref={fileInputRef}
-            id="book-source-file"
-            type="file"
-            accept=".txt,.md,.markdown,.epub,.pdf,text/plain,text/markdown,application/epub+zip,application/pdf"
-            onChange={handleFileInputChange}
-            className="sr-only"
-            aria-describedby="book-source-file-help"
-          />
-          <div
-            role="button"
-            tabIndex={0}
-            aria-label="Upload a book source file"
-            aria-describedby="book-source-file-help"
-            onClick={() => fileInputRef.current?.click()}
-            onKeyDown={handleUploadKeyDown}
-            onDragOver={(event) => {
-              event.preventDefault();
-              setDragActive(true);
-            }}
-            onDragEnter={(event) => {
-              event.preventDefault();
-              setDragActive(true);
-            }}
-            onDragLeave={() => setDragActive(false)}
-            onDrop={handleDrop}
-            className={[
-              "flex min-h-[14rem] cursor-pointer flex-col justify-center rounded-xl border border-dashed border-slate-300/80 bg-white/88 p-5 text-center transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
-              dragActive
-                ? "border-sky-500 bg-[#fffaf2] outline outline-2 outline-offset-2 outline-sky-500"
-                : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            <UploadIcon
-              size={28}
-              title={undefined}
-              aria-hidden="true"
-              className="mx-auto text-sky-950"
-            />
-            <span className="mt-3 block text-base font-extrabold text-sky-950">
-              Drag a source file here or click to upload
-            </span>
-            <span
-              id="book-source-file-help"
-              className="mx-auto mt-2 block max-w-[34ch] text-sm leading-relaxed text-slate-600"
-            >
-              {uploadHelpText}
-            </span>
-            {parsedSource.filename ? (
-              <span className="mt-3 block break-words text-sm font-semibold text-slate-700">
-                Current file: {parsedSource.filename}
-              </span>
             ) : null}
-            <span className="mx-auto mt-3 block max-w-[38ch] text-xs leading-relaxed text-slate-500">
-              {uploadRightsText}
+          </div>
+        </div>
+
+        {status === "parsing" ? (
+          <div
+            role="status"
+            className="rounded-xl bg-[#fffdf8] p-4 text-sm font-semibold text-slate-700"
+          >
+            Parsing source locally in your browser...
+          </div>
+        ) : null}
+        <MessageList
+          title="Source warnings"
+          items={sourceWarnings}
+          tone="warning"
+        />
+
+        <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
+              <SparklesIcon size={20} title={undefined} aria-hidden="true" />
+              Source cleanup
+            </h2>
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+              Before export
             </span>
           </div>
-
-          {!showSourceState ? (
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={clearSource}
-                disabled={!canClearSource}
-                className={toolControlButtonClass({
-                  size: "sm",
-                  disabled: !canClearSource,
-                })}
-              >
-                <TrashIcon size={16} title={undefined} aria-hidden="true" />
-                Clear source
-              </button>
-            </div>
-          ) : null}
-
-        </div>
-      </div>
-
-      <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
-            <SparklesIcon size={20} title={undefined} aria-hidden="true" />
-            Source cleanup
-          </h2>
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            Before export
-          </span>
-        </div>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          {(Object.keys(cleanupOptions) as Array<keyof CleanupOptions>).map((key) => (
-            <label
-              key={key}
-              className="flex cursor-pointer items-start gap-3 text-sm font-semibold text-slate-800"
-            >
-              <input
-                type="checkbox"
-                checked={cleanupOptions[key]}
-                onChange={() => toggleCleanup(key)}
-                className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-              />
-              <span>{cleanupLabel(key)}</span>
-            </label>
-          ))}
-        </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {(Object.keys(cleanupOptions) as Array<keyof CleanupOptions>).map(
+              (key) => (
+                <label
+                  key={key}
+                  className="flex cursor-pointer items-start gap-3 text-sm font-semibold text-slate-800"
+                >
+                  <input
+                    type="checkbox"
+                    checked={cleanupOptions[key]}
+                    onChange={() => toggleCleanup(key)}
+                    className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  />
+                  <span>{cleanupLabel(key)}</span>
+                </label>
+              ),
+            )}
+          </div>
+        </section>
       </section>
 
       <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
             <ClockIcon size={20} title={undefined} aria-hidden="true" />
-            Export presets
+            Choose export style
           </h2>
           <div className="flex flex-wrap items-center gap-2">
             {presetModified ? (
@@ -1160,39 +1259,391 @@ export default function BookTranslatorTool() {
         </div>
       </section>
 
-      {status === "parsing" ? (
-        <div
-          role="status"
-          className="rounded-xl bg-[#fffdf8] p-4 text-sm font-semibold text-slate-700"
-        >
-          Parsing source locally in your browser...
+      <section
+        id="book-review-export"
+        className="rounded-xl bg-[#fffdf8] p-5 sm:p-6"
+        aria-labelledby="book-review-export-heading"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2
+            id="book-review-export-heading"
+            className="text-xl font-extrabold text-sky-950"
+          >
+            {canExport ? "Ready to export" : "Review export"}
+          </h2>
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+            ZIP bundle
+          </span>
         </div>
-      ) : null}
-      {status === "error" ? (
-        <MessageList title="Extraction error" items={[errorMessage]} tone="error" />
-      ) : null}
+        <p className="mt-2 max-w-[76ch] text-sm leading-relaxed text-slate-700">
+          Review the selected preset and estimated bundle before downloading.
+          Exports run locally and package sortable audio parts with the selected
+          sidecar files.
+        </p>
+        <dl className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <Metric label="Preset" value={exportSettings.presetName} />
+          <Metric
+            label="Format"
+            value={exportSettings.outputFormat.toUpperCase()}
+          />
+          <Metric
+            label="Runtime"
+            value={
+              hasSource
+                ? formatDuration(exportAnalysis.totalRuntimeMs)
+                : "Waiting"
+            }
+          />
+          <Metric
+            label="Parts"
+            value={hasSource ? formatNumber(exportParts.length) : "0"}
+          />
+          <Metric
+            label="Target part"
+            value={formatDuration(exportAnalysis.targetPartMs)}
+          />
+        </dl>
+
+        {exportDisabledReason ? (
+          <p
+            id="book-export-disabled-reason"
+            className="mt-4 text-sm font-semibold text-slate-600"
+          >
+            {exportDisabledReason}
+          </p>
+        ) : null}
+        <MessageList
+          title="Export warnings"
+          items={exportWarnings}
+          tone="warning"
+        />
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          <ToolButton
+            type="button"
+            tone="dark"
+            onClick={handleExportBundle}
+            disabled={!canExport}
+            aria-describedby={
+              exportDisabledReason ? "book-export-disabled-reason" : undefined
+            }
+            className="rounded-xl"
+          >
+            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+            Export ZIP bundle
+          </ToolButton>
+          <ToolButton
+            type="button"
+            tone="light"
+            hover="dark"
+            onClick={handleDownloadSample}
+            disabled={!hasCleanedSource || exportRunning}
+            className="rounded-xl"
+          >
+            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+            Download sample
+          </ToolButton>
+          <ToolButton
+            type="button"
+            tone="light"
+            hover="dark"
+            onClick={() => cancelActiveExport()}
+            disabled={!exportRunning}
+            className="rounded-xl"
+          >
+            <StopIcon size={18} title={undefined} aria-hidden="true" />
+            Cancel export
+          </ToolButton>
+        </div>
+
+        <div className="mt-5">
+          <progress
+            value={progressPercent}
+            max={100}
+            role="progressbar"
+            aria-label="Book export progress"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={progressPercent}
+            className="h-2 w-full overflow-hidden rounded-full"
+          />
+          <StatusMessage
+            kind={exportStatus?.kind ?? (exportRunning ? "working" : "info")}
+            live
+            className="mt-3"
+          >
+            {exportStatus?.message ?? exportProgress.message}
+          </StatusMessage>
+        </div>
+
+        {completedExport ? (
+          <div className="mt-5 border-t border-slate-200/70 pt-5">
+            <h3 className="text-base font-extrabold text-sky-950">
+              Last export
+            </h3>
+            <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <Metric label="ZIP file" value={completedExport.filename} />
+              <Metric
+                label="Format"
+                value={completedExport.outputFormat.toUpperCase()}
+              />
+              <Metric
+                label="Parts"
+                value={completedExport.partCount.toLocaleString()}
+              />
+              <Metric label="Runtime" value={completedExport.runtimeLabel} />
+            </dl>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700">
+              Bundle contents: {completedExport.contents.join(", ")}. Use Export
+              ZIP bundle again to download another copy, change settings to
+              rebuild, or clear the source when you are done.
+            </p>
+          </div>
+        ) : null}
+      </section>
+
+      <details open={advancedOpen} onToggle={handleAdvancedToggle}>
+        <summary
+          aria-expanded={advancedOpen}
+          className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+        >
+          <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
+          Advanced export settings
+        </summary>
+        <div className="mt-4 rounded-xl bg-[#fffdf8] p-5 sm:p-6">
+          <div className="grid gap-5 lg:grid-cols-2">
+            <SliderRow
+              label="Character speed"
+              value={exportSettings.charWpm}
+              min={5}
+              max={60}
+              step={1}
+              unit="WPM"
+              onChange={handleCharWpmChange}
+            />
+            <SliderRow
+              label="Farnsworth spacing"
+              value={exportSettings.farnsworthWpm}
+              min={5}
+              max={Math.max(5, exportSettings.charWpm)}
+              step={1}
+              unit="WPM"
+              onChange={(value) =>
+                updateExportSettings({ farnsworthWpm: value })
+              }
+            />
+            <SliderRow
+              label="Pitch"
+              value={exportSettings.pitch}
+              min={AUDIO_PITCH_RANGE.min}
+              max={AUDIO_PITCH_RANGE.max}
+              step={10}
+              unit="Hz"
+              onChange={(value) => updateExportSettings({ pitch: value })}
+              disabled={exportSettings.tonePreset === "sounder"}
+            />
+            <SliderRow
+              label="Volume"
+              value={Math.round(exportSettings.volume * 100)}
+              min={0}
+              max={100}
+              step={1}
+              unit="%"
+              onChange={(value) =>
+                updateExportSettings({ volume: value / 100 })
+              }
+            />
+            <LabeledSelect
+              label="Tone preset"
+              value={exportSettings.tonePreset}
+              onChange={(value) =>
+                updateExportSettings({
+                  tonePreset: sanitizeAudioGeneratorPreset(value),
+                })
+              }
+            >
+              {AUDIO_GENERATOR_PRESETS.map((preset) => (
+                <option key={preset} value={preset}>
+                  {tonePresetLabel(preset)}
+                </option>
+              ))}
+            </LabeledSelect>
+            <LabeledSelect
+              label="Output format"
+              value={exportSettings.outputFormat}
+              onChange={(value) =>
+                updateExportSettings({
+                  outputFormat: value === "wav" ? "wav" : "mp3",
+                })
+              }
+            >
+              <option value="mp3">MP3 bundle</option>
+              <option value="wav">WAV bundle</option>
+            </LabeledSelect>
+            <LabeledSelect
+              label="MP3 bitrate"
+              value={String(exportSettings.mp3Bitrate)}
+              onChange={(value) =>
+                updateExportSettings({
+                  mp3Bitrate: sanitizeMp3Bitrate(Number(value)),
+                })
+              }
+              disabled={exportSettings.outputFormat !== "mp3"}
+            >
+              {MP3_BITRATES.map((bitrate) => (
+                <option key={bitrate} value={bitrate}>
+                  {bitrate} kbps
+                </option>
+              ))}
+            </LabeledSelect>
+            <LabeledSelect
+              label="Sample rate"
+              value={String(exportSettings.sampleRate)}
+              onChange={(value) =>
+                updateExportSettings({
+                  sampleRate: sanitizeAudioSampleRate(Number(value)),
+                })
+              }
+            >
+              {AUDIO_SAMPLE_RATES.map((sampleRate) => (
+                <option key={sampleRate} value={sampleRate}>
+                  {sampleRate} Hz
+                </option>
+              ))}
+            </LabeledSelect>
+            <SliderRow
+              label="Target part length"
+              value={exportSettings.targetPartMinutes}
+              min={1}
+              max={30}
+              step={1}
+              unit="min"
+              onChange={(value) =>
+                updateExportSettings({ targetPartMinutes: value })
+              }
+            />
+            <SliderRow
+              label="Paragraph pause"
+              value={exportSettings.paragraphPauseMultiplier}
+              min={1}
+              max={6}
+              step={0.1}
+              unit="x"
+              onChange={(value) =>
+                updateExportSettings({ paragraphPauseMultiplier: value })
+              }
+            />
+            <SliderRow
+              label="Sentence pause"
+              value={exportSettings.sentencePauseMultiplier}
+              min={1}
+              max={4}
+              step={0.1}
+              unit="x"
+              onChange={(value) =>
+                updateExportSettings({ sentencePauseMultiplier: value })
+              }
+            />
+            <LabeledSelect
+              label="Punctuation"
+              value={exportSettings.punctuationMode}
+              onChange={(value) =>
+                updateExportSettings({
+                  punctuationMode:
+                    value === "preserve" ? "preserve" : "simplify",
+                })
+              }
+            >
+              <option value="preserve">Preserve supported punctuation</option>
+              <option value="simplify">
+                Simplify punctuation for practice
+              </option>
+            </LabeledSelect>
+          </div>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <ExportCheckbox
+              label="Prefer EPUB/PDF section hints"
+              checked={exportSettings.preferSourceSections}
+              onChange={(value) =>
+                updateExportSettings({ preferSourceSections: value })
+              }
+            />
+            <ExportCheckbox
+              label="Include cleaned text"
+              checked={exportSettings.includeCleanedText}
+              onChange={(value) =>
+                updateExportSettings({ includeCleanedText: value })
+              }
+            />
+            <ExportCheckbox
+              label="Include Morse transcript"
+              checked={exportSettings.includeMorseTranscript}
+              onChange={(value) =>
+                updateExportSettings({ includeMorseTranscript: value })
+              }
+            />
+            <ExportCheckbox
+              label="Include manifest"
+              checked={exportSettings.includeManifest}
+              onChange={(value) =>
+                updateExportSettings({ includeManifest: value })
+              }
+            />
+            <ExportCheckbox
+              label="Include settings"
+              checked={exportSettings.includeSettings}
+              onChange={(value) =>
+                updateExportSettings({ includeSettings: value })
+              }
+            />
+            <ExportCheckbox
+              label="Include README"
+              checked={exportSettings.includeReadme}
+              onChange={(value) =>
+                updateExportSettings({ includeReadme: value })
+              }
+            />
+          </div>
+        </div>
+      </details>
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.65fr)]">
-        <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
+        <section
+          className="rounded-xl bg-[#fffdf8] p-5 sm:p-6"
+          aria-labelledby="book-details-previews-heading"
+        >
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
+            <h2
+              id="book-details-previews-heading"
+              className="flex items-center gap-2 text-xl font-extrabold text-sky-950"
+            >
               <ChecklistIcon size={20} title={undefined} aria-hidden="true" />
-              Export preflight summary
+              Details and previews
             </h2>
             <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-              {status === "ready" ? "Ready" : status === "parsing" ? "Parsing" : "Preview"}
+              {status === "ready"
+                ? "Ready"
+                : status === "parsing"
+                  ? "Parsing"
+                  : "Preview"}
             </span>
           </div>
 
           {hasSource ? (
             <dl className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <Metric label="Source type" value={sourceTypeLabel(preflight.sourceType)} />
+              <Metric
+                label="Source type"
+                value={sourceTypeLabel(preflight.sourceType)}
+              />
               <Metric label="Words" value={formatNumber(preflight.wordCount)} />
               <Metric
                 label="Characters"
                 value={formatNumber(preflight.characterCount)}
               />
-              <Metric label="Runtime" value={formatDuration(exportAnalysis.totalRuntimeMs)} />
+              <Metric
+                label="Runtime"
+                value={formatDuration(exportAnalysis.totalRuntimeMs)}
+              />
               <Metric label="Parts" value={formatNumber(exportParts.length)} />
               <Metric
                 label="Target part"
@@ -1212,7 +1663,10 @@ export default function BookTranslatorTool() {
                 value={formatNumber(preflight.unsupportedCount)}
               />
               {preflight.pageCount ? (
-                <Metric label="PDF pages" value={formatNumber(preflight.pageCount)} />
+                <Metric
+                  label="PDF pages"
+                  value={formatNumber(preflight.pageCount)}
+                />
               ) : null}
               {preflight.sectionCount ? (
                 <Metric
@@ -1226,8 +1680,12 @@ export default function BookTranslatorTool() {
                   value={formatNumber(preflight.sectionCount)}
                 />
               ) : null}
-              {preflight.title ? <Metric label="Title" value={preflight.title} /> : null}
-              {preflight.author ? <Metric label="Author" value={preflight.author} /> : null}
+              {preflight.title ? (
+                <Metric label="Title" value={preflight.title} />
+              ) : null}
+              {preflight.author ? (
+                <Metric label="Author" value={preflight.author} />
+              ) : null}
             </dl>
           ) : (
             <EmptyPreview>
@@ -1261,7 +1719,6 @@ export default function BookTranslatorTool() {
         </section>
 
         <div className="space-y-4">
-          <MessageList title="Warnings" items={allWarnings} tone="warning" />
           <section className="rounded-xl bg-[#fffdf8] p-5">
             <h2 className="text-base font-extrabold text-sky-950">
               Source guidance
@@ -1274,181 +1731,6 @@ export default function BookTranslatorTool() {
           </section>
         </div>
       </div>
-
-      <details open={advancedOpen} onToggle={handleAdvancedToggle}>
-        <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
-          <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
-          Advanced export settings
-        </summary>
-        <div className="mt-4 rounded-xl bg-[#fffdf8] p-5 sm:p-6">
-          <div className="grid gap-5 lg:grid-cols-2">
-            <SliderRow
-              label="Character speed"
-              value={exportSettings.charWpm}
-              min={5}
-              max={60}
-              step={1}
-              unit="WPM"
-              onChange={handleCharWpmChange}
-            />
-            <SliderRow
-              label="Farnsworth spacing"
-              value={exportSettings.farnsworthWpm}
-              min={5}
-              max={Math.max(5, exportSettings.charWpm)}
-              step={1}
-              unit="WPM"
-              onChange={(value) => updateExportSettings({ farnsworthWpm: value })}
-            />
-            <SliderRow
-              label="Pitch"
-              value={exportSettings.pitch}
-              min={AUDIO_PITCH_RANGE.min}
-              max={AUDIO_PITCH_RANGE.max}
-              step={10}
-              unit="Hz"
-              onChange={(value) => updateExportSettings({ pitch: value })}
-              disabled={exportSettings.tonePreset === "sounder"}
-            />
-            <SliderRow
-              label="Volume"
-              value={Math.round(exportSettings.volume * 100)}
-              min={0}
-              max={100}
-              step={1}
-              unit="%"
-              onChange={(value) => updateExportSettings({ volume: value / 100 })}
-            />
-            <LabeledSelect
-              label="Tone preset"
-              value={exportSettings.tonePreset}
-              onChange={(value) =>
-                updateExportSettings({
-                  tonePreset: sanitizeAudioGeneratorPreset(value),
-                })
-              }
-            >
-              {AUDIO_GENERATOR_PRESETS.map((preset) => (
-                <option key={preset} value={preset}>
-                  {tonePresetLabel(preset)}
-                </option>
-              ))}
-            </LabeledSelect>
-            <LabeledSelect
-              label="Output format"
-              value={exportSettings.outputFormat}
-              onChange={(value) =>
-                updateExportSettings({ outputFormat: value === "wav" ? "wav" : "mp3" })
-              }
-            >
-              <option value="mp3">MP3 bundle</option>
-              <option value="wav">WAV bundle</option>
-            </LabeledSelect>
-            <LabeledSelect
-              label="MP3 bitrate"
-              value={String(exportSettings.mp3Bitrate)}
-              onChange={(value) =>
-                updateExportSettings({ mp3Bitrate: sanitizeMp3Bitrate(Number(value)) })
-              }
-              disabled={exportSettings.outputFormat !== "mp3"}
-            >
-              {MP3_BITRATES.map((bitrate) => (
-                <option key={bitrate} value={bitrate}>
-                  {bitrate} kbps
-                </option>
-              ))}
-            </LabeledSelect>
-            <LabeledSelect
-              label="Sample rate"
-              value={String(exportSettings.sampleRate)}
-              onChange={(value) =>
-                updateExportSettings({ sampleRate: sanitizeAudioSampleRate(Number(value)) })
-              }
-            >
-              {AUDIO_SAMPLE_RATES.map((sampleRate) => (
-                <option key={sampleRate} value={sampleRate}>
-                  {sampleRate} Hz
-                </option>
-              ))}
-            </LabeledSelect>
-            <SliderRow
-              label="Target part length"
-              value={exportSettings.targetPartMinutes}
-              min={1}
-              max={30}
-              step={1}
-              unit="min"
-              onChange={(value) => updateExportSettings({ targetPartMinutes: value })}
-            />
-            <SliderRow
-              label="Paragraph pause"
-              value={exportSettings.paragraphPauseMultiplier}
-              min={1}
-              max={6}
-              step={0.1}
-              unit="x"
-              onChange={(value) =>
-                updateExportSettings({ paragraphPauseMultiplier: value })
-              }
-            />
-            <SliderRow
-              label="Sentence pause"
-              value={exportSettings.sentencePauseMultiplier}
-              min={1}
-              max={4}
-              step={0.1}
-              unit="x"
-              onChange={(value) =>
-                updateExportSettings({ sentencePauseMultiplier: value })
-              }
-            />
-            <LabeledSelect
-              label="Punctuation"
-              value={exportSettings.punctuationMode}
-              onChange={(value) =>
-                updateExportSettings({
-                  punctuationMode: value === "preserve" ? "preserve" : "simplify",
-                })
-              }
-            >
-              <option value="preserve">Preserve supported punctuation</option>
-              <option value="simplify">Simplify punctuation for practice</option>
-            </LabeledSelect>
-          </div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <ExportCheckbox
-              label="Prefer EPUB/PDF section hints"
-              checked={exportSettings.preferSourceSections}
-              onChange={(value) => updateExportSettings({ preferSourceSections: value })}
-            />
-            <ExportCheckbox
-              label="Include cleaned text"
-              checked={exportSettings.includeCleanedText}
-              onChange={(value) => updateExportSettings({ includeCleanedText: value })}
-            />
-            <ExportCheckbox
-              label="Include Morse transcript"
-              checked={exportSettings.includeMorseTranscript}
-              onChange={(value) => updateExportSettings({ includeMorseTranscript: value })}
-            />
-            <ExportCheckbox
-              label="Include manifest"
-              checked={exportSettings.includeManifest}
-              onChange={(value) => updateExportSettings({ includeManifest: value })}
-            />
-            <ExportCheckbox
-              label="Include settings"
-              checked={exportSettings.includeSettings}
-              onChange={(value) => updateExportSettings({ includeSettings: value })}
-            />
-            <ExportCheckbox
-              label="Include README"
-              checked={exportSettings.includeReadme}
-              onChange={(value) => updateExportSettings({ includeReadme: value })}
-            />
-          </div>
-        </div>
-      </details>
 
       <section>
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -1492,105 +1774,13 @@ export default function BookTranslatorTool() {
               </p>
             ) : null}
           </div>
-          ) : (
+        ) : (
           <div className="mt-3">
-            <EmptyPreview>Part splitting appears after source text is available.</EmptyPreview>
+            <EmptyPreview>
+              Part splitting appears after source text is available.
+            </EmptyPreview>
           </div>
         )}
-      </section>
-
-      <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-xl font-extrabold text-sky-950">
-            Export actions
-          </h2>
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            ZIP bundle
-          </span>
-        </div>
-        <p className="mt-2 max-w-[80ch] text-sm leading-relaxed text-slate-700">
-          MP3 is recommended for long exports because the files stay smaller.
-          WAV is available for shorter or uncompressed exports, but it can
-          become large quickly. Exports run locally and package sortable parts
-          with the selected metadata files.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <ToolButton
-            type="button"
-            tone="dark"
-            onClick={handleExportBundle}
-            disabled={!canExport}
-            className="rounded-xl"
-          >
-            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-            Export ZIP bundle
-          </ToolButton>
-          <ToolButton
-            type="button"
-            tone="light"
-            hover="dark"
-            onClick={handleDownloadSample}
-            disabled={!hasCleanedSource || isExportRunning(exportProgress)}
-            className="rounded-xl"
-          >
-            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-            Download sample
-          </ToolButton>
-          <ToolButton
-            type="button"
-            tone="light"
-            hover="dark"
-            onClick={() => cancelActiveExport()}
-            disabled={!isExportRunning(exportProgress)}
-            className="rounded-xl"
-          >
-            <StopIcon size={18} title={undefined} aria-hidden="true" />
-            Cancel export
-          </ToolButton>
-        </div>
-        <div className="mt-5">
-          <progress
-            value={progressPercent}
-            max={100}
-            role="progressbar"
-            aria-label="Book export progress"
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-valuenow={progressPercent}
-            className="h-2 w-full overflow-hidden rounded-full"
-          />
-          <StatusMessage
-            kind={exportStatus?.kind ?? (isExportRunning(exportProgress) ? "working" : "info")}
-            live
-            className="mt-3"
-          >
-            {exportStatus?.message ?? exportProgress.message}
-          </StatusMessage>
-        </div>
-        {completedExport ? (
-          <div className="mt-5 border-t border-slate-200/70 pt-5">
-            <h3 className="text-base font-extrabold text-sky-950">
-              Last export
-            </h3>
-            <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <Metric label="ZIP file" value={completedExport.filename} />
-              <Metric
-                label="Format"
-                value={completedExport.outputFormat.toUpperCase()}
-              />
-              <Metric
-                label="Parts"
-                value={completedExport.partCount.toLocaleString()}
-              />
-              <Metric label="Runtime" value={completedExport.runtimeLabel} />
-            </dl>
-            <p className="mt-3 text-sm leading-relaxed text-slate-700">
-              Bundle contents: {completedExport.contents.join(", ")}. Use
-              Export ZIP bundle again to download another copy, change settings
-              to rebuild, or clear the source when you are done.
-            </p>
-          </div>
-        ) : null}
       </section>
 
       <div className="grid gap-5 lg:grid-cols-2">
@@ -1601,7 +1791,9 @@ export default function BookTranslatorTool() {
             </pre>
           ) : (
             <div className="p-4">
-              <EmptyPreview>Cleaned text will appear here after input.</EmptyPreview>
+              <EmptyPreview>
+                Cleaned text will appear here after input.
+              </EmptyPreview>
             </div>
           )}
         </ToolPanel>
@@ -1614,7 +1806,8 @@ export default function BookTranslatorTool() {
           ) : (
             <div className="p-4">
               <p className="text-sm leading-relaxed text-slate-300">
-                Morse preview appears here after cleaned source text is available.
+                Morse preview appears here after cleaned source text is
+                available.
               </p>
             </div>
           )}

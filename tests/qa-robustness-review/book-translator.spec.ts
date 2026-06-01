@@ -24,12 +24,38 @@ import {
 const CANONICAL_PATH = ROUTES.bookTranslator;
 const ALIAS_PATH = ROUTES.ebookTranslatorAlias;
 const RAW_SECRET_TEXT = "Private Draft Source";
+const BOOK_TOOL_LABEL = "Book source review and export tool";
 
 async function openBookTranslator(page: Page) {
   await blockExternalNetwork(page);
   await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
   await waitForRouteReady(page);
-  await expect(page.locator("[data-mw-book-export-ready='true']")).toBeVisible();
+  await expect(
+    page.locator("[data-mw-book-export-ready='true']"),
+  ).toBeVisible();
+}
+
+function bookTool(page: Page) {
+  return page.locator(`section[aria-label="${BOOK_TOOL_LABEL}"]`);
+}
+
+function sourceStep(page: Page) {
+  return page.locator("section[aria-labelledby='book-add-source-heading']");
+}
+
+async function expectWorkflowReadyNearSource(page: Page) {
+  await expect(
+    sourceStep(page).getByRole("link", { name: "Review export" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Ready to export" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Details and previews" }),
+  ).toBeVisible();
+  await expect(
+    bookTool(page).getByRole("button", { name: "Export ZIP bundle" }),
+  ).toHaveCount(1);
 }
 
 async function grantClipboard(page: Page) {
@@ -41,8 +67,12 @@ async function grantClipboard(page: Page) {
 async function expectNoRawSourceInStorage(page: Page, rawText: string) {
   const storageSnapshot = await page.evaluate(() =>
     [
-      ...Object.keys(localStorage).map((key) => `${key}:${localStorage.getItem(key)}`),
-      ...Object.keys(sessionStorage).map((key) => `${key}:${sessionStorage.getItem(key)}`),
+      ...Object.keys(localStorage).map(
+        (key) => `${key}:${localStorage.getItem(key)}`,
+      ),
+      ...Object.keys(sessionStorage).map(
+        (key) => `${key}:${sessionStorage.getItem(key)}`,
+      ),
     ].join("\n"),
   );
   expect(storageSnapshot).not.toContain(rawText);
@@ -62,7 +92,9 @@ function makeEpub(options: {
   author?: string;
 }) {
   if (options.broken) {
-    return Buffer.from(zipSync({ "OPS/chapter.xhtml": strToU8("<p>Missing container</p>") }));
+    return Buffer.from(
+      zipSync({ "OPS/chapter.xhtml": strToU8("<p>Missing container</p>") }),
+    );
   }
 
   const title = options.title ?? "Signal Book";
@@ -95,13 +127,18 @@ function makeEpub(options: {
     ),
   };
   if (options.encrypted) {
-    files["META-INF/encryption.xml"] = strToU8("<encryption><EncryptedData/></encryption>");
+    files["META-INF/encryption.xml"] = strToU8(
+      "<encryption><EncryptedData/></encryption>",
+    );
   }
   return Buffer.from(zipSync(files));
 }
 
 function escapePdfText(text: string) {
-  return text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+  return text
+    .replace(/\\/g, "\\\\")
+    .replace(/\(/g, "\\(")
+    .replace(/\)/g, "\\)");
 }
 
 function makePdf(text: string) {
@@ -200,7 +237,12 @@ type BundleManifest = {
   partCount: number;
   outputFormat: "mp3" | "wav";
   files: { audio: string[]; cleanedText?: string; morseTranscript?: string };
-  parts: Array<{ filename: string; runtimeMs: number; sourceStart: number; sourceEnd: number }>;
+  parts: Array<{
+    filename: string;
+    runtimeMs: number;
+    sourceStart: number;
+    sourceEnd: number;
+  }>;
   settingsSummary: { outputFormat: string; targetPartMinutes: number };
 };
 
@@ -218,7 +260,9 @@ test("book translator route metadata, alias, and sitemap use canonical URL", asy
 }) => {
   await openBookTranslator(page);
 
-  await expect(page).toHaveTitle(/Book to Morse Code Translator and Audio Exporter/);
+  await expect(page).toHaveTitle(
+    /Book to Morse Code Translator and Audio Exporter/,
+  );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
     absoluteUrl(CANONICAL_PATH),
@@ -230,7 +274,9 @@ test("book translator route metadata, alias, and sitemap use canonical URL", asy
 
   const jsonLd = await page
     .locator('script[type="application/ld+json"]')
-    .evaluateAll((scripts) => scripts.map((script) => script.textContent ?? "").join("\n"));
+    .evaluateAll((scripts) =>
+      scripts.map((script) => script.textContent ?? "").join("\n"),
+    );
   expect(jsonLd).toContain(absoluteUrl(CANONICAL_PATH));
   expect(jsonLd).toContain("WebApplication");
 
@@ -243,7 +289,7 @@ test("book translator route metadata, alias, and sitemap use canonical URL", asy
   expect(sitemap).not.toContain(absoluteUrl(ALIAS_PATH));
 });
 
-test("pasted text preflight reports unsupported characters and avoids localStorage", async ({
+test("pasted text review reports unsupported characters and avoids localStorage", async ({
   page,
 }) => {
   await openBookTranslator(page);
@@ -252,6 +298,7 @@ test("pasted text preflight reports unsupported characters and avoids localStora
     .fill(`${RAW_SECRET_TEXT}\nHello 世界 -- SOS`);
 
   await expect(page.getByText("Top unsupported characters")).toBeVisible();
+  await expectWorkflowReadyNearSource(page);
   await expect(
     page.locator("pre").filter({ hasText: ".... . .-.. .-.. ---" }).first(),
   ).toBeVisible();
@@ -271,26 +318,48 @@ test("pasted text preflight reports unsupported characters and avoids localStora
   expect(sessionStorageSnapshot).not.toContain(RAW_SECRET_TEXT);
 });
 
-test("TXT and MD uploads populate source preflight", async ({ page }, testInfo) => {
+test("TXT and MD uploads populate source review", async ({
+  page,
+}, testInfo) => {
   await openBookTranslator(page);
-  const txtPath = writeFixture(testInfo, "book-source.txt", "Plain text chapter\nSOS help");
-  const mdPath = writeFixture(testInfo, "book-source.md", "# Markdown Chapter\n\nCQ CQ");
+  const txtPath = writeFixture(
+    testInfo,
+    "book-source.txt",
+    "Plain text chapter\nSOS help",
+  );
+  const mdPath = writeFixture(
+    testInfo,
+    "book-source.md",
+    "# Markdown Chapter\n\nCQ CQ",
+  );
 
   await page.setInputFiles("#book-source-file", txtPath);
   await expect(page.getByText("Current file: book-source.txt")).toBeVisible();
-  await expect(page.getByText("This upload is small enough to edit directly")).toBeVisible();
+  await expect(
+    page.getByText("This upload is small enough to edit directly"),
+  ).toBeVisible();
   await expect(page.getByLabel("Paste long-form source text")).toHaveValue(
     "Plain text chapter\nSOS help",
   );
-  await expect(page.getByRole("button", { name: "Copy extracted text" })).toBeEnabled();
-  await expect(page.getByRole("button", { name: "Copy cleaned text" })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Copy extracted text" }),
+  ).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Copy cleaned text" }),
+  ).toBeEnabled();
+  await expectWorkflowReadyNearSource(page);
 
   await page.setInputFiles("#book-source-file", mdPath);
   await expect(page.getByText("Current file: book-source.md")).toBeVisible();
   await expect(page.getByLabel("Paste long-form source text")).toHaveValue(
     "# Markdown Chapter\n\nCQ CQ",
   );
-  await expect(page.getByText("Uploaded source")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Source ready" }),
+  ).toBeVisible();
+  await expect(
+    sourceStep(page).getByRole("link", { name: "Review export" }),
+  ).toBeVisible();
 });
 
 test("large uploaded text uses a capped extracted source preview", async ({
@@ -307,11 +376,17 @@ test("large uploaded text uses a capped extracted source preview", async ({
   await expect(page.getByText("Extracted source preview")).toBeVisible();
   await expect(page.getByText("Preview is truncated.")).toBeVisible();
   await expect(page.getByLabel("Paste long-form source text")).toHaveCount(0);
-  const previewText = (await page.getByTestId("book-source-preview").textContent()) ?? "";
+  const previewText =
+    (await page.getByTestId("book-source-preview").textContent()) ?? "";
   expect(previewText).toContain("Preview starts here.");
-  expect(previewText).not.toContain("Preview should not reach this ending marker.");
+  expect(previewText).not.toContain(
+    "Preview should not reach this ending marker.",
+  );
   expect(previewText.length).toBeLessThanOrEqual(6_050);
-  await expect(page.getByRole("button", { name: "Edit extracted text" })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Edit extracted text" }),
+  ).toBeEnabled();
+  await expectWorkflowReadyNearSource(page);
   await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
 });
 
@@ -326,19 +401,24 @@ test("EPUB parser extracts metadata and spine text in reading order", async ({
   );
 
   await page.setInputFiles("#book-source-file", epubPath);
-  await expect(page.getByLabel("Uploaded source").getByText("Signal Book")).toBeVisible();
-  await expect(page.getByLabel("Uploaded source").getByText("Ada Morse")).toBeVisible();
+  await expect(
+    page.getByLabel("Source ready").getByText("Signal Book"),
+  ).toBeVisible();
+  await expect(
+    page.getByLabel("Source ready").getByText("Ada Morse"),
+  ).toBeVisible();
   await expect(page.getByText("EPUB sections")).toBeVisible();
   await expect(page.getByText("Extracted source preview")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Edit extracted text" })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Edit extracted text" }),
+  ).toBeEnabled();
+  await expectWorkflowReadyNearSource(page);
   await expect(page.getByLabel("Paste long-form source text")).toHaveCount(0);
 
   const preview = page.getByTestId("book-source-preview");
   await expect(preview).toBeVisible();
   await expect(preview).toContainText("First Signal");
-  const previewText = await page
-    .getByLabel("Book source preflight and export tool")
-    .textContent();
+  const previewText = await bookTool(page).textContent();
   expect(previewText?.indexOf("First Signal")).toBeLessThan(
     previewText?.indexOf("Second Signal") ?? Number.POSITIVE_INFINITY,
   );
@@ -379,9 +459,15 @@ test("source preview actions copy, edit, and clear uploaded content", async ({
 
   await page.getByRole("button", { name: "Clear source" }).first().click();
   await expect(page.getByLabel("Paste long-form source text")).toHaveValue("");
-  await expect(page.getByText("Export preflight summary")).toBeVisible();
-  await expect(page.getByText("Part splitting appears after source text is available.")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Export ZIP bundle" })).toBeDisabled();
+  await expect(
+    page.getByRole("heading", { name: "Details and previews" }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Part splitting appears after source text is available."),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Export ZIP bundle" }),
+  ).toBeDisabled();
   await expect(page.getByText("Last export")).toHaveCount(0);
 });
 
@@ -396,14 +482,25 @@ test("empty uploaded source disables source copy actions", async ({
   await expect(
     page.getByText("Extraction finished, but no source text was found."),
   ).toBeVisible();
-  await expect(page.getByRole("button", { name: "Copy extracted text" })).toBeDisabled();
-  await expect(page.getByRole("button", { name: "Copy cleaned text" })).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Copy extracted text" }),
+  ).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Copy cleaned text" }),
+  ).toBeDisabled();
   await expect(page.getByText("Extracted text copied.")).toHaveCount(0);
   await expect(page.getByText("Cleaned text copied.")).toHaveCount(0);
-  await expect(page.getByRole("button", { name: "Clear source" })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Clear source" }),
+  ).toBeEnabled();
   await page.getByRole("button", { name: "Clear source" }).click();
   await expect(page.getByText("Current file: empty-source.txt")).toHaveCount(0);
-  await expect(page.getByText("Uploaded source")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Source ready" })).toHaveCount(
+    0,
+  );
+  await expect(
+    page.getByText("Add source text or upload a source file to enable export."),
+  ).toBeVisible();
 });
 
 test("duration estimates and segmentation use shared Morse timing", async () => {
@@ -449,9 +546,18 @@ test("duration estimates and segmentation use shared Morse timing", async () => 
 
   const hinted = segmentBookText({
     cleanedText: "FIRST SECTION SOS.\n\nSECOND SECTION HELP.",
-    settings: { ...settings, preferSourceSections: true, targetPartMinutes: 0.02 },
+    settings: {
+      ...settings,
+      preferSourceSections: true,
+      targetPartMinutes: 0.02,
+    },
     sourceSections: [
-      { title: "First", rawText: "FIRST SECTION SOS.", startOffset: 0, endOffset: 18 },
+      {
+        title: "First",
+        rawText: "FIRST SECTION SOS.",
+        startOffset: 0,
+        endOffset: 18,
+      },
       {
         title: "Second",
         rawText: "SECOND SECTION HELP.",
@@ -471,9 +577,10 @@ test("segmentation handles long-source boundary edge cases without empty parts",
   };
   const cases = [
     "SOS",
-    Array.from({ length: 40 }, (_, index) => `Paragraph ${index + 1} SOS.`).join(
-      "\n\n",
-    ),
+    Array.from(
+      { length: 40 },
+      (_, index) => `Paragraph ${index + 1} SOS.`,
+    ).join("\n\n"),
     "ALPHA BRAVO CHARLIE DELTA ECHO FOXTROT. ".repeat(120),
     "ALPHA BRAVO CHARLIE DELTA ECHO FOXTROT GOLF HOTEL INDIA ".repeat(80),
     "ALPHA   BRAVO\n\n\nSOS\tHELP ".repeat(80),
@@ -487,7 +594,11 @@ test("segmentation handles long-source boundary edge cases without empty parts",
       stripGutenbergHeaderFooter: false,
       simplifyPunctuation: true,
     }).cleanedText;
-    const parts = segmentBookText({ cleanedText, settings, sourceTitle: "QA/Stress" });
+    const parts = segmentBookText({
+      cleanedText,
+      settings,
+      sourceTitle: "QA/Stress",
+    });
     expect(parts.length).toBeGreaterThan(0);
     parts.forEach((part, index) => {
       expect(part.cleanedText.trim()).toBeTruthy();
@@ -504,16 +615,21 @@ test("segmentation handles long-source boundary edge cases without empty parts",
   }
 
   const wordBoundarySource =
-    "ALPHA BRAVO CHARLIE DELTA ECHO FOXTROT GOLF HOTEL INDIA JULIET ".repeat(20);
+    "ALPHA BRAVO CHARLIE DELTA ECHO FOXTROT GOLF HOTEL INDIA JULIET ".repeat(
+      20,
+    );
   const wordParts = segmentBookText({
     cleanedText: wordBoundarySource,
     settings: { ...settings, targetPartMinutes: 0.01 },
   });
   expect(wordParts.length).toBeGreaterThan(1);
   for (const part of wordParts) {
-    const before = part.sourceStart > 0 ? wordBoundarySource[part.sourceStart - 1] : " ";
+    const before =
+      part.sourceStart > 0 ? wordBoundarySource[part.sourceStart - 1] : " ";
     const after =
-      part.sourceEnd < wordBoundarySource.length ? wordBoundarySource[part.sourceEnd] : " ";
+      part.sourceEnd < wordBoundarySource.length
+        ? wordBoundarySource[part.sourceEnd]
+        : " ";
     expect(before).toMatch(/\s/);
     expect(after).toMatch(/\s/);
   }
@@ -584,7 +700,10 @@ test("preset settings, reset, and safe route preferences persist", async ({
   await page.getByLabel("Paste long-form source text").fill(RAW_SECRET_TEXT);
   await expect
     .poll(() =>
-      page.evaluate((key) => localStorage.getItem(key), BOOK_EXPORT_PREFERENCES_KEY),
+      page.evaluate(
+        (key) => localStorage.getItem(key),
+        BOOK_EXPORT_PREFERENCES_KEY,
+      ),
     )
     .toContain('"outputFormat":"wav"');
   const storageSnapshot = await page.evaluate(() =>
@@ -601,13 +720,18 @@ test("preset settings, reset, and safe route preferences persist", async ({
   await page.getByLabel("Output format").selectOption("wav");
   await expect
     .poll(() =>
-      page.evaluate((key) => localStorage.getItem(key), BOOK_EXPORT_PREFERENCES_KEY),
+      page.evaluate(
+        (key) => localStorage.getItem(key),
+        BOOK_EXPORT_PREFERENCES_KEY,
+      ),
     )
     .toContain('"advancedOpen":true');
 
   await page.reload({ waitUntil: "domcontentloaded" });
   await waitForRouteReady(page);
-  await expect(page.locator("[data-mw-book-export-ready='true']")).toBeVisible();
+  await expect(
+    page.locator("[data-mw-book-export-ready='true']"),
+  ).toBeVisible();
   await expect(page.getByLabel("Output format")).toBeVisible();
   await expect(page.getByLabel("Output format")).toHaveValue("wav");
   await expect(page.getByText("Modified from preset")).toBeVisible();
@@ -620,19 +744,30 @@ test("malformed saved preferences fall back safely without source persistence", 
     localStorage.setItem(key, "{not valid json");
   }, BOOK_EXPORT_PREFERENCES_KEY);
   await openBookTranslator(page);
-  await expect(page.getByRole("button", { name: "Reader Quick Start" })).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Reader Quick Start" }),
+  ).toBeVisible();
   await page.getByLabel("Paste long-form source text").fill(RAW_SECRET_TEXT);
-  await expect(page.locator("pre").filter({ hasText: RAW_SECRET_TEXT }).first()).toBeVisible();
+  await expect(
+    page.locator("pre").filter({ hasText: RAW_SECRET_TEXT }).first(),
+  ).toBeVisible();
 
   await expect
     .poll(() =>
-      page.evaluate((key) => localStorage.getItem(key), BOOK_EXPORT_PREFERENCES_KEY),
+      page.evaluate(
+        (key) => localStorage.getItem(key),
+        BOOK_EXPORT_PREFERENCES_KEY,
+      ),
     )
     .toContain('"presetName":"Reader Quick Start"');
   const storageSnapshot = await page.evaluate(() =>
     [
-      ...Object.keys(localStorage).map((key) => `${key}:${localStorage.getItem(key)}`),
-      ...Object.keys(sessionStorage).map((key) => `${key}:${sessionStorage.getItem(key)}`),
+      ...Object.keys(localStorage).map(
+        (key) => `${key}:${localStorage.getItem(key)}`,
+      ),
+      ...Object.keys(sessionStorage).map(
+        (key) => `${key}:${sessionStorage.getItem(key)}`,
+      ),
     ].join("\n"),
   );
   expect(storageSnapshot).not.toContain(RAW_SECRET_TEXT);
@@ -642,23 +777,50 @@ test("empty source, cleaned-empty source, large WAV, and progress semantics are 
   page,
 }) => {
   await openBookTranslator(page);
+  const advancedToggle = page
+    .locator("summary")
+    .filter({ hasText: "Advanced export settings" });
   const exportButton = page.getByRole("button", { name: "Export ZIP bundle" });
+  await expect(
+    bookTool(page).getByRole("button", { name: "Export ZIP bundle" }),
+  ).toHaveCount(1);
+  await expect(
+    page.getByRole("heading", { name: "Review export" }),
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Add source" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Choose export style" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Details and previews" }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Add source text or upload a source file to enable export."),
+  ).toBeVisible();
+  await expect(advancedToggle).toHaveAttribute("aria-expanded", "false");
+  await expect(page.getByLabel("Output format")).toBeHidden();
   await expect(exportButton).toBeDisabled();
 
   await page.getByLabel("Paste long-form source text").fill("   \n   ");
   await expect(exportButton).toBeDisabled();
 
-  await page.getByLabel("Paste long-form source text").fill(`*** START OF THE PROJECT GUTENBERG EBOOK TEST ***
+  await page.getByLabel("Paste long-form source text")
+    .fill(`*** START OF THE PROJECT GUTENBERG EBOOK TEST ***
 
 *** END OF THE PROJECT GUTENBERG EBOOK TEST ***`);
   await page.getByLabel("Strip Project Gutenberg header/footer").check();
   await expect(page.getByText("Cleanup removed all source text")).toBeVisible();
+  const toolText = (await bookTool(page).textContent()) ?? "";
+  expect(toolText.indexOf("Cleanup removed all source text")).toBeLessThan(
+    toolText.indexOf("Choose export style"),
+  );
   await expect(exportButton).toBeDisabled();
 
   await page
     .getByLabel("Paste long-form source text")
     .fill("ALPHA BRAVO SOS ".repeat(4_000));
-  await page.getByText("Advanced export settings").click();
+  await advancedToggle.click();
+  await expect(advancedToggle).toHaveAttribute("aria-expanded", "true");
   await page.getByLabel("Output format").selectOption("wav");
   await expect(page.getByText("WAV output may be very large")).toBeVisible();
 
@@ -677,7 +839,10 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   const raw = "Private Export Draft\n\nSOS HELP. CQ CQ.";
   await page.getByLabel("Paste long-form source text").fill(raw);
   await page.getByRole("button", { name: "Practice Copy" }).click();
-  await expect(page.getByText("Export preflight summary")).toBeVisible();
+  await expectWorkflowReadyNearSource(page);
+  await expect(
+    page.locator("#book-review-export").getByText("Practice Copy"),
+  ).toBeVisible();
   await expect(page.getByText("Split summary")).toBeVisible();
 
   const zip = await exportZip(page, testInfo);
@@ -698,7 +863,9 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   }
   expectMp3Like(zip.entries[partFiles[0]]);
   expect(zipText(zip.entries, "cleaned-text.txt")).toContain("SOS HELP");
-  expect(zipText(zip.entries, "morse-transcript.txt")).toContain("...   ---   ...");
+  expect(zipText(zip.entries, "morse-transcript.txt")).toContain(
+    "...   ---   ...",
+  );
   const manifest = zipJson<BundleManifest>(zip.entries, "manifest.json");
   expect(manifest.generatedAt).toEqual(expect.any(String));
   expect(manifest.sourceKind).toBe("pasted");
@@ -710,7 +877,9 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   expect(manifest.files.audio[0]).toMatch(/part-001\.mp3$/);
   expect(manifest.parts.map((part) => part.filename)).toEqual(partFiles);
   expect(manifest.parts.every((part) => part.runtimeMs > 0)).toBe(true);
-  expect(manifest.parts.every((part) => part.sourceStart < part.sourceEnd)).toBe(true);
+  expect(
+    manifest.parts.every((part) => part.sourceStart < part.sourceEnd),
+  ).toBe(true);
   expect(manifest.settingsSummary.targetPartMinutes).toBe(5);
   expect(manifest.settingsSummary.outputFormat).toBe("mp3");
   expect(manifest.parts[0].filename).toMatch(/part-001\.mp3$/);
@@ -746,14 +915,18 @@ test("route exports uploaded extracted text without persisting raw source", asyn
   const txtPath = writeFixture(testInfo, "uploaded-export.txt", raw);
 
   await page.setInputFiles("#book-source-file", txtPath);
-  await expect(page.getByText("Current file: uploaded-export.txt")).toBeVisible();
-  await expect(page.getByText("Export preflight summary")).toBeVisible();
+  await expect(
+    page.getByText("Current file: uploaded-export.txt"),
+  ).toBeVisible();
+  await expectWorkflowReadyNearSource(page);
 
   const zip = await exportZip(page, testInfo);
   expect(zipText(zip.entries, "cleaned-text.txt")).toContain(
     "Uploaded Private Export Draft",
   );
-  expect(zipText(zip.entries, "morse-transcript.txt")).toContain("...   ---   ...");
+  expect(zipText(zip.entries, "morse-transcript.txt")).toContain(
+    "...   ---   ...",
+  );
   const manifest = zipJson<BundleManifest>(zip.entries, "manifest.json");
   expect(manifest.sourceKind).toBe("txt");
   expect(manifest.source.kind).toBe("txt");
@@ -771,7 +944,9 @@ test("route exports WAV ZIP bundles and sample audio on demand", async ({
 
   const sampleDownload = page.waitForEvent("download", { timeout: 60_000 });
   await page.getByRole("button", { name: "Download sample" }).click();
-  expect((await sampleDownload).suggestedFilename()).toBe("morse-book-sample.wav");
+  expect((await sampleDownload).suggestedFilename()).toBe(
+    "morse-book-sample.wav",
+  );
 
   const zip = await exportZip(page, testInfo);
   const partFiles = expectOrderedPartFiles(zip.names, "wav");
@@ -808,7 +983,9 @@ test("route cancellation state is distinct from failure", async ({ page }) => {
   await page.getByLabel("Output format").selectOption("wav");
 
   await page.getByRole("button", { name: "Export ZIP bundle" }).click();
-  await expect(page.getByRole("button", { name: "Cancel export" })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Cancel export" }),
+  ).toBeEnabled();
   await page.getByRole("button", { name: "Cancel export" }).click();
   await expect(page.getByText("Export cancelled.")).toBeVisible({
     timeout: 30_000,
@@ -817,7 +994,9 @@ test("route cancellation state is distinct from failure", async ({ page }) => {
   await expect(page.getByText("Export failed.")).toHaveCount(0);
 });
 
-test("source changes during active export cancel stale completion", async ({ page }) => {
+test("source changes during active export cancel stale completion", async ({
+  page,
+}) => {
   await openBookTranslator(page);
   await page
     .getByLabel("Paste long-form source text")
@@ -826,12 +1005,20 @@ test("source changes during active export cancel stale completion", async ({ pag
   await page.getByLabel("Output format").selectOption("wav");
 
   await page.getByRole("button", { name: "Export ZIP bundle" }).click();
-  await expect(page.getByRole("button", { name: "Cancel export" })).toBeEnabled();
-  await page.getByLabel("Paste long-form source text").fill("Replacement source wins");
-  await expect(page.getByText("Source changed; export cancelled.")).toBeVisible({
-    timeout: 30_000,
-  });
-  await expect(page.locator("pre").filter({ hasText: "Replacement source wins" })).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Cancel export" }),
+  ).toBeEnabled();
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("Replacement source wins");
+  await expect(page.getByText("Source changed; export cancelled.")).toBeVisible(
+    {
+      timeout: 30_000,
+    },
+  );
+  await expect(
+    page.locator("pre").filter({ hasText: "Replacement source wins" }),
+  ).toBeVisible();
   await expect(page.getByText("Last export")).toHaveCount(0);
   await expect(page.getByText("Bundle download started")).toHaveCount(0);
 });
@@ -840,7 +1027,9 @@ test("transcript inclusion toggles remove private text artifacts from bundle", a
   page,
 }, testInfo) => {
   await openBookTranslator(page);
-  await page.getByLabel("Paste long-form source text").fill("Toggle export SOS HELP.");
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("Toggle export SOS HELP.");
   await page.getByText("Advanced export settings").click();
   await page.getByLabel("Include cleaned text").uncheck();
   await page.getByLabel("Include Morse transcript").uncheck();
@@ -867,16 +1056,22 @@ test("EPUB rejection paths are clear for encrypted and broken files", async ({
     "encrypted.epub",
     makeEpub({ encrypted: true }),
   );
-  const brokenPath = writeFixture(testInfo, "broken.epub", makeEpub({ broken: true }));
+  const brokenPath = writeFixture(
+    testInfo,
+    "broken.epub",
+    makeEpub({ broken: true }),
+  );
 
   await page.setInputFiles("#book-source-file", encryptedPath);
   await expect(
-    page.locator("li").filter({ hasText: "DRM-protected" }).first(),
+    page.getByLabel("Source upload failed").getByText("DRM-protected"),
   ).toBeVisible();
 
   await page.setInputFiles("#book-source-file", brokenPath);
   await expect(
-    page.getByLabel("Source upload failed").getByText("missing META-INF/container.xml"),
+    page
+      .getByLabel("Source upload failed")
+      .getByText("missing META-INF/container.xml"),
   ).toBeVisible();
 });
 
@@ -902,15 +1097,24 @@ test("PDF parser extracts text-native PDFs and rejects image-like PDFs", async (
   await expect(page.getByTestId("book-source-preview")).toContainText(
     "PDF Morse source text",
   );
-  await expect(page.getByRole("button", { name: "Edit extracted text" })).toBeEnabled();
-  await expect(page.getByLabel("Uploaded source").getByText("Tiny PDF")).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Edit extracted text" }),
+  ).toBeEnabled();
+  await expect(
+    page.getByLabel("Source ready").getByText("Tiny PDF"),
+  ).toBeVisible();
+  await expectWorkflowReadyNearSource(page);
 
   await page.setInputFiles("#book-source-file", blankPdfPath);
-  await expect(page.getByText("scanned or image-only", { exact: false })).toBeVisible();
+  await expect(
+    page.getByText("scanned or image-only", { exact: false }),
+  ).toBeVisible();
 
   await page.setInputFiles("#book-source-file", brokenPdfPath);
   await expect(
-    page.getByLabel("Source upload failed").getByText("This PDF could not be parsed as text."),
+    page
+      .getByLabel("Source upload failed")
+      .getByText("This PDF could not be parsed as text."),
   ).toBeVisible();
 });
 
@@ -918,19 +1122,31 @@ test("cleanup toggles update preview and report Gutenberg stripping", async ({
   page,
 }, testInfo) => {
   await openBookTranslator(page);
-  const cleanupPath = writeFixture(testInfo, "cleanup-upload.txt", `Header
+  const cleanupPath = writeFixture(
+    testInfo,
+    "cleanup-upload.txt",
+    `Header
 *** START OF THE PROJECT GUTENBERG EBOOK TEST ***
 This is \u201cpractice\u201d text \u2014 with an emoji \u2603.
 *** END OF THE PROJECT GUTENBERG EBOOK TEST ***
-Footer`);
+Footer`,
+  );
 
   await page.setInputFiles("#book-source-file", cleanupPath);
-  await expect(page.getByText("Current file: cleanup-upload.txt")).toBeVisible();
-  const cleanedPreview = page.locator("pre").filter({ hasText: "Header" }).first();
+  await expect(
+    page.getByText("Current file: cleanup-upload.txt"),
+  ).toBeVisible();
+  const cleanedPreview = page
+    .locator("pre")
+    .filter({ hasText: "Header" })
+    .first();
   await expect(cleanedPreview).toBeVisible();
   await page.getByLabel("Strip Project Gutenberg header/footer").check();
   await expect(
-    page.locator("li").filter({ hasText: "Project Gutenberg header/footer" }).first(),
+    page
+      .locator("li")
+      .filter({ hasText: "Project Gutenberg header/footer" })
+      .first(),
   ).toBeVisible();
   await expect(cleanedPreview).toHaveCount(0);
   await page.getByLabel("Simplify punctuation for practice").check();
@@ -943,11 +1159,22 @@ test("large synthetic input and quick file replacement stay usable", async ({
   await openBookTranslator(page);
   const largeText = "ALPHA BRAVO SOS ".repeat(4_000);
   await page.getByLabel("Paste long-form source text").fill(largeText);
-  await expect(page.getByText("Characters", { exact: true })).toBeVisible();
-  await expect(page.getByText("63,999")).toBeVisible();
+  const detailsSection = page.locator(
+    "section[aria-labelledby='book-details-previews-heading']",
+  );
+  await expect(
+    detailsSection.getByText("Characters", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    detailsSection.getByText("63,999", { exact: true }),
+  ).toBeVisible();
 
   const epubPath = writeFixture(testInfo, "slowish.epub", makeEpub({}));
-  const txtPath = writeFixture(testInfo, "replacement.txt", "Replacement source wins");
+  const txtPath = writeFixture(
+    testInfo,
+    "replacement.txt",
+    "Replacement source wins",
+  );
   const input = page.locator("#book-source-file");
   await Promise.allSettled([
     input.setInputFiles(epubPath),
@@ -967,9 +1194,13 @@ test("mobile route smoke has no horizontal overflow or console regressions", asy
   const consoleEntries = collectConsoleErrors(page);
   await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
   await waitForRouteReady(page);
-  await expect(page.getByRole("heading", { name: /Book to Morse Code/ })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /Book to Morse Code/ }),
+  ).toBeVisible();
   const overflow = await page.evaluate(
-    () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    () =>
+      document.documentElement.scrollWidth -
+      document.documentElement.clientWidth,
   );
   expect(overflow).toBeLessThanOrEqual(1);
   expect(consoleEntries, testInfo.title).toEqual([]);
