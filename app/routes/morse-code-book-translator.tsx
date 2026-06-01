@@ -18,7 +18,7 @@ const CANONICAL_PATH = ROUTES.bookTranslator;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 const TITLE = "Book to Morse Code Translator and Audio Exporter";
 const DESCRIPTION =
-  "Paste or upload long-form text, TXT, MD, EPUB, or text-native PDF and preview cleanup, unsupported characters, and Morse output before export work.";
+  "Paste or upload long-form text, TXT, MD, EPUB, or text-native PDF, estimate Morse runtime, split parts, and download MP3 or WAV ZIP bundles.";
 
 const jsonLd = [
   {
@@ -57,12 +57,12 @@ const howItWorksItems = [
     text: "Preview smart punctuation normalization, zero-width cleanup, Gutenberg stripping, and practice-friendly punctuation simplification.",
   },
   {
-    title: "Check Morse readiness",
-    text: "Use the preflight panel to review words, characters, unsupported symbols, warnings, and capped text and Morse excerpts.",
+    title: "Estimate and split",
+    text: "Use shared Morse timing to estimate runtime, then split long sources into stable parts by section, paragraph, sentence, or word boundaries.",
   },
   {
-    title: "Keep export separate",
-    text: "This foundation does not auto-play, auto-flash, or export chaptered audio yet. It prepares the source safely first.",
+    title: "Export a bundle",
+    text: "Download sorted MP3 or WAV parts with cleaned text, Morse transcript, manifest, settings, playlist, and README files.",
   },
 ];
 
@@ -80,8 +80,8 @@ const formatItems = [
     text: "PDF extraction is best effort and only supports selectable text. Scanned image-only PDFs need OCR, which is intentionally out of scope.",
   },
   {
-    title: "Privacy",
-    text: "Files are handled locally in your browser. Raw book text is not written to localStorage.",
+    title: "Rights and privacy",
+    text: "Only use source text you have the right to process. You are responsible for the content you choose, including copyright or other usage limits; MorseWords does not host or authorize uploaded material.",
   },
 ];
 
@@ -103,9 +103,9 @@ export default function MorseCodeBookTranslatorRoute() {
     <main className={WAVE_PAGE_MAIN_CLASS}>
       <JsonLdScript jsonLd={jsonLd} />
       <PageHero
-        eyebrow="Book preflight"
+        eyebrow="Book export"
         title={TITLE}
-        description="Prepare long-form source text for Morse code conversion. Files are processed locally in your browser, and this first version focuses on extraction, cleanup, and preflight analysis."
+        description="Prepare long-form source text for Morse code conversion, estimate listening time, split it into parts, and download a local MP3 or WAV bundle."
         aside={
           <DarkNote label="Supported sources" value="TXT MD EPUB PDF">
             TXT and MD are preferred. EPUB must be unprotected. PDF must contain
@@ -126,8 +126,8 @@ export default function MorseCodeBookTranslatorRoute() {
 
       <SectionCard
         eyebrow="Long-form workflow"
-        title="How book preflight works"
-        description="The page keeps the source local, extracts only readable text, and shows a capped preview instead of rendering a whole book-length Morse output."
+        title="How book export works"
+        description="The page keeps the source local, extracts readable text, estimates Morse timing, and renders audio part by part instead of one huge book-length file."
         layout="stacked"
       >
         <SimpleGrid items={howItWorksItems} variant="plain" />

@@ -16,8 +16,17 @@ export type SourceMetadata = {
   sectionCount?: number;
 };
 
+export type BookSourceSection = {
+  title?: string;
+  rawText: string;
+  sourceLabel?: string;
+  startOffset?: number;
+  endOffset?: number;
+};
+
 export type ParsedBookSource = SourceMetadata & {
   rawText: string;
+  sections?: BookSourceSection[];
   warnings: string[];
 };
 

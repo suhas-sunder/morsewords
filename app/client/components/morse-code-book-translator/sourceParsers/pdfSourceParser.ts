@@ -2,6 +2,7 @@ import {
   BookSourceError,
   ensureSourceSize,
   ensureTextLength,
+  type BookSourceSection,
   type ParsedBookSource,
 } from "../bookSourceTypes";
 import { normalizePlainText } from "../textNormalization";
@@ -56,7 +57,7 @@ export async function parsePdfSource(file: File): Promise<ParsedBookSource> {
       );
     }
 
-    const pages: string[] = [];
+    const pages: BookSourceSection[] = [];
     for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
       const page = await pdf.getPage(pageNumber);
       const content = await page.getTextContent();
@@ -66,10 +67,27 @@ export async function parsePdfSource(file: File): Promise<ParsedBookSource> {
         .join(" ")
         .replace(/\s+/g, " ")
         .trim();
-      if (pageText) pages.push(pageText);
+      if (pageText) {
+        pages.push({
+          title: `Page ${pageNumber}`,
+          rawText: pageText,
+          sourceLabel: `PDF page ${pageNumber}`,
+        });
+      }
     }
 
-    const rawText = normalizePlainText(pages.join("\n\n"));
+    let cursor = 0;
+    const pageTexts: string[] = [];
+    const rangedPages = pages.map((page) => {
+      const startOffset = cursor;
+      pageTexts.push(page.rawText);
+      cursor += page.rawText.length;
+      const endOffset = cursor;
+      cursor += 2;
+      return { ...page, startOffset, endOffset };
+    });
+
+    const rawText = normalizePlainText(pageTexts.join("\n\n"));
     ensureTextLength(rawText);
     if (!rawText || rawText.length < Math.max(24, pdf.numPages * 8)) {
       throw new BookSourceError(
@@ -83,7 +101,9 @@ export async function parsePdfSource(file: File): Promise<ParsedBookSource> {
       title: info?.Title?.trim() || undefined,
       author: info?.Author?.trim() || undefined,
       pageCount: pdf.numPages,
+      sectionCount: rangedPages.length,
       rawText,
+      sections: rangedPages,
       warnings,
     };
   } catch (error) {

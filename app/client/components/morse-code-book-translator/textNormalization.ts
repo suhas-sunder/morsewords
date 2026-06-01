@@ -8,6 +8,7 @@ import {
   type CleanupOptions,
   ensureTextLength,
   MORSE_PREVIEW_INPUT_LIMIT,
+  type BookSourceSection,
   type ParsedBookSource,
   type PreflightSummary,
 } from "./bookSourceTypes";
@@ -138,6 +139,35 @@ export function applyCleanupOptions(
   ensureTextLength(cleaned);
 
   return { cleanedText: cleaned, cleanupWarnings: warnings };
+}
+
+export function buildCleanedSourceSections(
+  parsed: ParsedBookSource,
+  options: CleanupOptions,
+): BookSourceSection[] {
+  const sections = parsed.sections ?? [];
+  if (sections.length === 0) return [];
+
+  let cursor = 0;
+  const cleanedSections: BookSourceSection[] = [];
+
+  sections.forEach((section) => {
+    const cleaned = applyCleanupOptions(section.rawText, options).cleanedText;
+    if (!cleaned) return;
+    const startOffset = cursor;
+    cursor += cleaned.length;
+    const endOffset = cursor;
+    cursor += 2;
+    cleanedSections.push({
+      title: section.title,
+      sourceLabel: section.sourceLabel,
+      rawText: cleaned,
+      startOffset,
+      endOffset,
+    });
+  });
+
+  return cleanedSections;
 }
 
 function countWords(text: string) {

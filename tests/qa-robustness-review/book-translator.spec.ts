@@ -2,9 +2,17 @@ import { expect, test } from "@playwright/test";
 import type { Page, TestInfo } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
-import { strToU8, zipSync } from "fflate";
+import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
 
 import { ROUTES, absoluteUrl } from "../../app/client/data/routes";
+import { renderBookPartPcm } from "../../app/client/components/morse-code-book-translator/bookBundleExport";
+import {
+  buildMorseTranscript,
+  estimateBookTextDurationMs,
+} from "../../app/client/components/morse-code-book-translator/bookDurationEstimate";
+import { BOOK_EXPORT_PRESETS } from "../../app/client/components/morse-code-book-translator/bookExportPresets";
+import { segmentBookText } from "../../app/client/components/morse-code-book-translator/bookSegmentation";
+import { estimateMorseDurationMs } from "../../app/client/components/shared/morseTiming";
 import {
   blockExternalNetwork,
   collectConsoleErrors,
@@ -19,6 +27,7 @@ async function openBookTranslator(page: Page) {
   await blockExternalNetwork(page);
   await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
   await waitForRouteReady(page);
+  await expect(page.locator("[data-mw-book-export-ready='true']")).toBeVisible();
 }
 
 function writeFixture(testInfo: TestInfo, name: string, data: Buffer | string) {
@@ -102,6 +111,26 @@ function makePdf(text: string) {
   }
   pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R /Info 6 0 R >>\nstartxref\n${xrefOffset}\n%%EOF\n`;
   return Buffer.from(pdf, "ascii");
+}
+
+async function exportZip(page: Page, testInfo: TestInfo) {
+  const downloadPromise = page.waitForEvent("download", { timeout: 90_000 });
+  await page.getByRole("button", { name: "Export ZIP bundle" }).click();
+  const download = await downloadPromise;
+  const zipPath = testInfo.outputPath(download.suggestedFilename());
+  await download.saveAs(zipPath);
+  const entries = unzipSync(new Uint8Array(fs.readFileSync(zipPath)));
+  return {
+    filename: download.suggestedFilename(),
+    entries,
+    names: Object.keys(entries).sort(),
+  };
+}
+
+function zipText(entries: Record<string, Uint8Array>, name: string) {
+  const entry = entries[name];
+  if (!entry) throw new Error(`Missing ZIP entry: ${name}`);
+  return strFromU8(entry);
 }
 
 test("book translator route metadata, alias, and sitemap use canonical URL", async ({
@@ -192,10 +221,141 @@ test("EPUB parser extracts metadata and spine text in reading order", async ({
 
   const preview = page.locator("pre").filter({ hasText: "First Signal" }).first();
   await expect(preview).toBeVisible();
-  const previewText = await page.getByLabel("Book source preflight tool").textContent();
+  const previewText = await page
+    .getByLabel("Book source preflight and export tool")
+    .textContent();
   expect(previewText?.indexOf("First Signal")).toBeLessThan(
     previewText?.indexOf("Second Signal") ?? Number.POSITIVE_INFINITY,
   );
+});
+
+test("duration estimates and segmentation use shared Morse timing", async () => {
+  const settings = {
+    ...BOOK_EXPORT_PRESETS["Faithful Source"],
+    targetPartMinutes: 0.035,
+  };
+  const plainText = "SOS HELP";
+  const morse = buildMorseTranscript(plainText);
+  expect(estimateBookTextDurationMs(plainText, settings)).toBeCloseTo(
+    estimateMorseDurationMs(morse, {
+      charWpm: settings.charWpm,
+      farnsworthWpm: settings.farnsworthWpm,
+    }),
+    5,
+  );
+
+  const paragraphParts = segmentBookText({
+    cleanedText: "ALPHA SOS.\n\nBRAVO HELP.\n\nCHARLIE CQ.",
+    settings,
+    sourceTitle: "Unsafe:/Book Name",
+  });
+  expect(paragraphParts.length).toBeGreaterThan(1);
+  expect(paragraphParts.every((part) => part.cleanedText.trim())).toBe(true);
+  expect(paragraphParts.map((part) => part.estimatedFilename)).toEqual(
+    paragraphParts.map((part, index) =>
+      expect.stringContaining(`part-${String(index + 1).padStart(3, "0")}`),
+    ),
+  );
+  expect(paragraphParts[0].estimatedFilename).not.toContain(":");
+
+  const sentenceParts = segmentBookText({
+    cleanedText: "ALPHA SOS. BRAVO HELP. CHARLIE CQ. DELTA TEST.",
+    settings: { ...settings, targetPartMinutes: 0.02 },
+  });
+  expect(sentenceParts.length).toBeGreaterThan(1);
+
+  const wordParts = segmentBookText({
+    cleanedText: "ALPHA BRAVO CHARLIE DELTA ECHO FOXTROT GOLF HOTEL INDIA",
+    settings: { ...settings, targetPartMinutes: 0.01 },
+  });
+  expect(wordParts.length).toBeGreaterThan(1);
+
+  const hinted = segmentBookText({
+    cleanedText: "FIRST SECTION SOS.\n\nSECOND SECTION HELP.",
+    settings: { ...settings, preferSourceSections: true, targetPartMinutes: 0.02 },
+    sourceSections: [
+      { title: "First", rawText: "FIRST SECTION SOS.", startOffset: 0, endOffset: 18 },
+      {
+        title: "Second",
+        rawText: "SECOND SECTION HELP.",
+        startOffset: 20,
+        endOffset: 40,
+      },
+    ],
+  });
+  expect(hinted.some((part) => part.title.includes("First"))).toBe(true);
+  expect(hinted.some((part) => part.title.includes("Second"))).toBe(true);
+});
+
+test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and playlist", async ({
+  page,
+}, testInfo) => {
+  await openBookTranslator(page);
+  const raw = "Private Export Draft\n\nSOS HELP. CQ CQ.";
+  await page.getByLabel("Paste long-form source text").fill(raw);
+  await page.getByRole("button", { name: "Practice Copy" }).click();
+  await expect(page.getByText("Export preflight summary")).toBeVisible();
+  await expect(page.getByText("Part split")).toBeVisible();
+
+  const zip = await exportZip(page, testInfo);
+  expect(zip.filename).toMatch(/morse-audio-bundle\.zip$/);
+  expect(zip.names.some((name) => name.endsWith(".mp3"))).toBe(true);
+  for (const name of [
+    "cleaned-text.txt",
+    "morse-transcript.txt",
+    "manifest.json",
+    "settings.json",
+    "playlist.m3u",
+    "README.txt",
+  ]) {
+    expect(zip.names).toContain(name);
+  }
+  expect(zipText(zip.entries, "cleaned-text.txt")).toContain("SOS HELP");
+  expect(zipText(zip.entries, "morse-transcript.txt")).toContain("...   ---   ...");
+  const manifest = JSON.parse(zipText(zip.entries, "manifest.json"));
+  expect(manifest.outputFormat).toBe("mp3");
+  expect(manifest.partCount).toBeGreaterThan(0);
+  expect(manifest.files.audio[0]).toMatch(/part-001\.mp3$/);
+  const settings = JSON.parse(zipText(zip.entries, "settings.json"));
+  expect(settings.presetName).toBe("Practice Copy");
+
+  const storageSnapshot = await page.evaluate(() =>
+    Object.keys(localStorage)
+      .map((key) => `${key}:${localStorage.getItem(key)}`)
+      .join("\n"),
+  );
+  expect(storageSnapshot).not.toContain("Private Export Draft");
+  await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
+});
+
+test("route exports WAV ZIP bundles and sample audio on demand", async ({
+  page,
+}, testInfo) => {
+  await openBookTranslator(page);
+  await page.getByLabel("Paste long-form source text").fill("WAV sample SOS");
+  await page.getByText("Advanced export settings").click();
+  await page.getByLabel("Output format").selectOption("wav");
+
+  const sampleDownload = page.waitForEvent("download", { timeout: 60_000 });
+  await page.getByRole("button", { name: "Download sample" }).click();
+  expect((await sampleDownload).suggestedFilename()).toBe("morse-book-sample.wav");
+
+  const zip = await exportZip(page, testInfo);
+  expect(zip.names.some((name) => name.endsWith(".wav"))).toBe(true);
+  const manifest = JSON.parse(zipText(zip.entries, "manifest.json"));
+  expect(manifest.outputFormat).toBe("wav");
+});
+
+test("export cancellation can abort stale work before completion", async () => {
+  const controller = new AbortController();
+  controller.abort();
+  await expect(
+    renderBookPartPcm(
+      "SOS HELP",
+      BOOK_EXPORT_PRESETS["Reader Quick Start"],
+      controller.signal,
+    ),
+  ).rejects.toThrow();
 });
 
 test("EPUB rejection paths are clear for encrypted and broken files", async ({

@@ -2,6 +2,7 @@ import {
   BookSourceError,
   ensureSourceSize,
   ensureTextLength,
+  type BookSourceSection,
   type ParsedBookSource,
 } from "../bookSourceTypes";
 import { normalizePlainText } from "../textNormalization";
@@ -75,6 +76,15 @@ function extractHtmlText(html: string) {
   return normalizePlainText(body.textContent ?? "");
 }
 
+function extractHtmlTitle(html: string) {
+  const document = new DOMParser().parseFromString(html, "text/html");
+  return (
+    document.querySelector("h1,h2,h3")?.textContent?.trim() ||
+    document.querySelector("title")?.textContent?.trim() ||
+    undefined
+  );
+}
+
 export async function parseEpubSource(file: File): Promise<ParsedBookSource> {
   ensureSourceSize(file.size);
   const [{ unzipSync }, bytes] = await Promise.all([
@@ -133,7 +143,7 @@ export async function parseEpubSource(file: File): Promise<ParsedBookSource> {
     throw new BookSourceError("This EPUB has no readable spine order.");
   }
 
-  const sections: string[] = [];
+  const sections: BookSourceSection[] = [];
   for (const id of spineIds) {
     const manifestItem = manifest.get(id);
     if (!manifestItem) continue;
@@ -148,10 +158,27 @@ export async function parseEpubSource(file: File): Promise<ParsedBookSource> {
       continue;
     }
     const text = extractHtmlText(html);
-    if (text) sections.push(text);
+    if (text) {
+      sections.push({
+        title: extractHtmlTitle(html),
+        rawText: text,
+        sourceLabel: manifestItem.href,
+      });
+    }
   }
 
-  const rawText = normalizePlainText(sections.join("\n\n"));
+  let cursor = 0;
+  const sectionTexts: string[] = [];
+  const rangedSections = sections.map((section) => {
+    const startOffset = cursor;
+    sectionTexts.push(section.rawText);
+    cursor += section.rawText.length;
+    const endOffset = cursor;
+    cursor += 2;
+    return { ...section, startOffset, endOffset };
+  });
+
+  const rawText = normalizePlainText(sectionTexts.join("\n\n"));
   ensureTextLength(rawText);
   if (!rawText) {
     throw new BookSourceError("No readable text was found in the EPUB spine.");
@@ -164,6 +191,7 @@ export async function parseEpubSource(file: File): Promise<ParsedBookSource> {
     author,
     sectionCount: sections.length,
     rawText,
+    sections: rangedSections,
     warnings,
   };
 }
