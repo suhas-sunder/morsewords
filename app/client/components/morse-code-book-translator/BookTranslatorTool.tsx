@@ -1775,11 +1775,9 @@ export default function BookTranslatorTool() {
               onDragLeave={() => setDragActive(false)}
               onDrop={handleDrop}
               className={[
-                "flex cursor-pointer flex-col justify-center rounded-xl border border-dashed border-slate-300/80 bg-white/88 text-center transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+                "flex cursor-pointer flex-col justify-center rounded-xl border border-dashed border-slate-300/80 bg-white/88 text-center transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2]",
                 hasSource ? "min-h-[9rem] p-4" : "min-h-[14rem] p-5",
-                dragActive
-                  ? "border-sky-500 bg-[#fffaf2] outline outline-2 outline-offset-2 outline-sky-500"
-                  : "",
+                dragActive ? "bg-[#fffaf2] text-sky-950" : "",
               ]
                 .filter(Boolean)
                 .join(" ")}

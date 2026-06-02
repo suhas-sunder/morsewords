@@ -27,17 +27,71 @@ function readRepoFile(filePath: string) {
   return fs.readFileSync(path.join(ROOT, filePath), "utf8");
 }
 
-async function expectVisibleFocusOutline(locator: Locator) {
-  const outline = await locator.evaluate((element) => {
+type FocusArtifactSnapshot = {
+  backgroundColor: string;
+  borderBottomWidth: string;
+  borderLeftWidth: string;
+  borderRightWidth: string;
+  borderTopWidth: string;
+  boxShadow: string;
+  outlineStyle: string;
+  outlineWidth: string;
+  ringShadow: string;
+  ringOffsetShadow: string;
+};
+
+async function readFocusArtifactSnapshot(locator: Locator) {
+  return locator.evaluate((element) => {
     const style = window.getComputedStyle(element);
     return {
-      style: style.outlineStyle,
-      width: style.outlineWidth,
-    };
+      backgroundColor: style.backgroundColor,
+      borderBottomWidth: style.borderBottomWidth,
+      borderLeftWidth: style.borderLeftWidth,
+      borderRightWidth: style.borderRightWidth,
+      borderTopWidth: style.borderTopWidth,
+      boxShadow: style.boxShadow,
+      outlineStyle: style.outlineStyle,
+      outlineWidth: style.outlineWidth,
+      ringShadow: style.getPropertyValue("--tw-ring-shadow").trim(),
+      ringOffsetShadow: style
+        .getPropertyValue("--tw-ring-offset-shadow")
+        .trim(),
+    } satisfies FocusArtifactSnapshot;
   });
+}
 
-  expect(outline.style).not.toBe("none");
-  expect(outline.width).not.toBe("0px");
+function expectNoOutlineRingOrBorder(snapshot: FocusArtifactSnapshot) {
+  expect(snapshot.outlineStyle).toBe("none");
+  if (snapshot.outlineStyle !== "none") {
+    expect(snapshot.outlineWidth).toBe("0px");
+  }
+  expect(snapshot.borderTopWidth).toBe("0px");
+  expect(snapshot.borderRightWidth).toBe("0px");
+  expect(snapshot.borderBottomWidth).toBe("0px");
+  expect(snapshot.borderLeftWidth).toBe("0px");
+  expect(snapshot.ringShadow).toMatch(/^(?:0 0 #0000|none)?$/);
+  expect(snapshot.ringOffsetShadow).toMatch(/^(?:0 0 #0000|none)?$/);
+}
+
+async function expectCleanFieldFocus(locator: Locator) {
+  const before = await readFocusArtifactSnapshot(locator);
+
+  await locator.focus();
+  await expect(locator).toBeFocused();
+  const focused = await readFocusArtifactSnapshot(locator);
+
+  expectNoOutlineRingOrBorder(focused);
+  expect(focused.boxShadow).toBe("none");
+  expect(focused.backgroundColor).not.toBe(before.backgroundColor);
+}
+
+async function expectCleanControlFocus(locator: Locator) {
+  await locator.focus();
+  await expect(locator).toBeFocused();
+  const focused = await readFocusArtifactSnapshot(locator);
+
+  expectNoOutlineRingOrBorder(focused);
+  expect(focused.boxShadow).toContain("inset");
 }
 
 test("shared UI control primitives keep accessibility and disabled-state contracts", () => {
@@ -47,14 +101,16 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
 
   const appCss = readRepoFile("app/app.css");
   expect(appCss).toMatch(
-    /\.mw-page-content\s+\.mw-home-page\s+:where\(input:not\(\[type="range"\]\), textarea, select\):focus-visible/,
+    /\.mw-page-content\s+:where\(input:not\(\[type="range"\]\), textarea, select\):focus-visible/,
   );
   expect(appCss).toMatch(
-    /\.mw-page-content\s+\.mw-non-home-page\s+:where\(input, textarea, select\):focus-visible/,
+    /background-color: var\(--mw-focus-field-bg\) !important;/,
   );
   expect(appCss).toMatch(
-    /\.mw-page-content\s+\.mw-non-home-page\s+:where\(input\[type="range"\]\):focus-visible/,
+    /\.mw-page-content\s+:where\(input\[type="range"\]\):focus-visible/,
   );
+  expect(appCss).toMatch(/--mw-focus-control-inset:/);
+  expect(appCss).not.toMatch(/:focus-visible\s*\{[^}]*outline:\s*2px/s);
 
   const togglePill = readRepoFile(
     "app/client/components/shared/ui/TogglePill.tsx",
@@ -150,7 +206,7 @@ test.describe("shared route controls", () => {
     });
   }
 
-  test("non-home route fields and range controls have visible keyboard focus", async ({
+  test("shared route controls have clean keyboard focus states", async ({
     page,
   }) => {
     await page.goto("/morse-code-word-trainer", {
@@ -160,13 +216,80 @@ test.describe("shared route controls", () => {
 
     const answerField = page.getByLabel("Your answer").first();
     await expect(answerField).toBeEnabled();
-    await answerField.focus();
-    await expect(answerField).toBeFocused();
-    await expectVisibleFocusOutline(answerField);
+    await expectCleanFieldFocus(answerField);
 
     const speed = page.getByLabel("Character speed").first();
-    await speed.focus();
-    await expect(speed).toBeFocused();
-    await expectVisibleFocusOutline(speed);
+    await expectCleanFieldFocus(speed);
+
+    const revealButton = page.getByRole("button", { name: "Reveal answer" });
+    await expect(revealButton).toBeEnabled();
+    await expectCleanControlFocus(revealButton);
+  });
+
+  test("homepage, book translator, audio, MP3, and separator controls avoid focus artifacts", async ({
+    page,
+  }) => {
+    const cases = [
+      { route: "/", label: "Input (Text)" },
+      { route: "/morse-code-book-translator", label: "Paste long-form source text" },
+      { route: "/audio", label: "Input (Text)" },
+      { route: "/morse-code-mp3-generator", label: "Message to turn into MP3 audio" },
+      { route: "/morse-code-word-separator", label: "Paste Morse" },
+    ] as const;
+
+    for (const item of cases) {
+      await page.goto(item.route, { waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+
+      const field = page.getByLabel(item.label).first();
+      await expect(field, `${item.route} focused field`).toBeVisible();
+      await expectCleanFieldFocus(field);
+    }
+
+    await page.goto("/morse-code-book-translator", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+    await expectCleanControlFocus(
+      page.getByRole("button", { name: "Upload a book source file" }),
+    );
+
+    await page.goto("/audio", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    let tonePreset = page.getByLabel("Tone preset").first();
+    if (!(await tonePreset.isVisible())) {
+      await page.getByRole("button", { name: /Show advanced/i }).click();
+      tonePreset = page.getByLabel("Tone preset").first();
+    }
+    await expectCleanFieldFocus(tonePreset);
+
+    await page.goto("/morse-code-sound-generator", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+    tonePreset = page.getByLabel("Tone preset").first();
+    if (!(await tonePreset.isVisible())) {
+      await page.getByRole("button", { name: /Show advanced/i }).click();
+      tonePreset = page.getByLabel("Tone preset").first();
+    }
+    await expectCleanFieldFocus(tonePreset);
+
+    await page.goto("/morse-code-mp3-generator", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+    await expectCleanFieldFocus(page.getByLabel("Sample rate").first());
+  });
+
+  test("disabled controls remain disabled and do not look clickable", async ({
+    page,
+  }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+
+    const stopButton = page.getByRole("button", { name: /Stop/i }).first();
+    await expect(stopButton).toBeDisabled();
+    await expect(stopButton).toHaveCSS("cursor", "not-allowed");
+    await expect(stopButton).not.toHaveAttribute("aria-pressed", "true");
   });
 });
