@@ -50,6 +50,7 @@ export const CANONICAL_ROUTES = {
   soundGenerator: "/morse-code-sound-generator",
   mp3Generator: "/morse-code-mp3-generator",
   bookTranslator: "/morse-code-book-translator",
+  videoGenerator: "/morse-code-video-generator",
 
   howToRead: "/how-to-read-morse-code",
   howToWrite: "/how-to-write-in-morse-code",
@@ -132,6 +133,7 @@ export const REDIRECT_ROUTE_ALIASES = {
   morseCodeToMp3Alias: "/morse-code-to-mp3",
   textToMorseMp3ShortAlias: "/text-to-morse-mp3",
   translatorAudioMp3Alias: "/morse-code-translator-audio-mp3",
+  textToMorseVideoAlias: "/text-to-morse-code-video",
   visualQuizTypoAlias: "/morse-code-vidual-quiz",
   ebookTranslatorAlias: "/morse-code-ebook-translator",
 } as const;
@@ -186,6 +188,7 @@ export const REDIRECT_ALIASES = {
   [ROUTES.morseCodeToMp3Alias]: ROUTES.mp3Generator,
   [ROUTES.textToMorseMp3ShortAlias]: ROUTES.mp3Generator,
   [ROUTES.translatorAudioMp3Alias]: ROUTES.mp3Generator,
+  [ROUTES.textToMorseVideoAlias]: ROUTES.videoGenerator,
   [ROUTES.visualQuizTypoAlias]: ROUTES.visualQuiz,
   [ROUTES.ebookTranslatorAlias]: ROUTES.bookTranslator,
 } as const;

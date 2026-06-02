@@ -94,6 +94,12 @@ const GROUPS: SitemapGroup[] = [
           "Paste or upload long-form TXT, MD, EPUB, or text-native PDF sources and preflight them for Morse conversion.",
       },
       {
+        label: "Morse Code Video Generator",
+        to: ROUTES.videoGenerator,
+        description:
+          "Type text or Morse, preview a short visual signal, and download a browser-generated WebM clip.",
+      },
+      {
         label: "Morse Code Encoder",
         to: ROUTES.encoder,
         description: "Turn English text into Morse code dots and dashes.",
