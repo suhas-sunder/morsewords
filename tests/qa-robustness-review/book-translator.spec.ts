@@ -51,6 +51,10 @@ async function expectWorkflowReadyNearSource(page: Page) {
     sourceStep(page).getByRole("heading", { name: "Download audio" }),
   ).toBeVisible();
   await expect(
+    sourceStep(page).getByRole("heading", { name: "Preview audio" }),
+  ).toBeVisible();
+  await expectPreviewReady(page);
+  await expect(
     page.getByRole("heading", { name: "Details and previews" }),
   ).toBeVisible();
   await expect(
@@ -99,6 +103,16 @@ function outputTypeRadio(page: Page, outputType: "audio" | "video") {
 
 async function chooseOutputType(page: Page, outputType: "audio" | "video") {
   await outputTypeRadio(page, outputType).click();
+}
+
+function previewSection(page: Page) {
+  return bookTool(page).getByTestId("book-preview-section");
+}
+
+async function expectPreviewReady(page: Page) {
+  await expect(previewSection(page).getByTestId("book-preview-status")).toContainText(
+    /Ready|Stopped/,
+  );
 }
 
 async function grantClipboard(page: Page) {
@@ -417,6 +431,10 @@ test("TXT and MD uploads populate source review", async ({
   ).toBeVisible();
   await expect(page.getByLabel("Paste long-form source text")).toHaveValue(
     "Plain text chapter\nSOS help",
+  );
+  await expect(previewSection(page).getByRole("heading", { name: "Preview audio" })).toBeVisible();
+  await expect(previewSection(page).getByTestId("book-preview-sample")).toContainText(
+    "Plain text chapter",
   );
   await expect(
     page.getByRole("button", { name: "Copy extracted text" }),
@@ -1037,6 +1055,62 @@ test("malformed saved preferences fall back safely without source persistence", 
   expect(storageSnapshot).not.toContain(RAW_SECRET_TEXT);
 });
 
+test("audio preview plays current cleaned source and updates with audio settings", async ({
+  page,
+}) => {
+  await openBookTranslator(page);
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("Preview KEEP REMOVE SOS HELP. ".repeat(8));
+
+  const preview = previewSection(page);
+  await expect(preview.getByRole("heading", { name: "Preview audio" })).toBeVisible();
+  await expectPreviewReady(page);
+  await expect(preview.getByTestId("book-preview-sample")).toContainText("REMOVE");
+  await expect(preview.getByText("18/12 WPM")).toBeVisible();
+  await expect(preview.getByText("650 Hz")).toBeVisible();
+  await expect(preview.getByText("75%")).toBeVisible();
+
+  await page.getByRole("button", { name: "Add cleanup rule" }).click();
+  await page.getByLabel("Find text").fill("REMOVE");
+  await expect(preview.getByTestId("book-preview-sample")).not.toContainText(
+    "REMOVE",
+  );
+  await expectPreviewReady(page);
+
+  await openDownloadSettings(page);
+  await page.getByRole("button", { name: "Long Listen" }).click();
+  await expect(preview.getByText("16/12 WPM")).toBeVisible();
+  await expect(preview.getByText("600 Hz")).toBeVisible();
+  await expect(preview.getByText("68%")).toBeVisible();
+  await expectPreviewReady(page);
+
+  const playButton = preview.getByRole("button", { name: "Play preview" });
+  await playButton.click();
+  await expect(preview.getByRole("button", { name: "Stop preview" })).toBeVisible();
+  const clickedFocusStyle = await preview
+    .getByRole("button", { name: "Stop preview" })
+    .evaluate((element) => {
+      const style = window.getComputedStyle(element);
+      return {
+        outlineStyle: style.outlineStyle,
+        outlineWidth: style.outlineWidth,
+      };
+    });
+  expect(clickedFocusStyle).toEqual({
+    outlineStyle: "none",
+    outlineWidth: "0px",
+  });
+
+  await page.getByLabel("Paste long-form source text").fill("Changed preview SOS");
+  await expect(preview.getByRole("button", { name: "Play preview" })).toBeVisible();
+  await expect(preview.getByTestId("book-preview-sample")).toContainText(
+    "Changed preview SOS",
+  );
+  await expectNoRawSourceInStorage(page, "Changed preview SOS");
+  await expect(page.getByRole("button", { name: "Download sample" })).toHaveCount(0);
+});
+
 test("output type selector gates audio and video settings without clearing source", async ({
   page,
 }) => {
@@ -1059,12 +1133,23 @@ test("output type selector gates audio and video settings without clearing sourc
   await expect(page.getByRole("heading", { name: "Video settings" })).toHaveCount(
     0,
   );
+  await expectPreviewReady(page);
+  await previewSection(page).getByRole("button", { name: "Play preview" }).click();
+  await expect(
+    previewSection(page).getByRole("button", { name: "Stop preview" }),
+  ).toBeVisible();
 
   await chooseOutputType(page, "video");
   await expect(outputTypeRadio(page, "video")).toHaveAttribute(
     "aria-checked",
     "true",
   );
+  await expect(
+    previewSection(page).getByRole("button", { name: "Stop preview" }),
+  ).toHaveCount(0);
+  await expect(
+    previewSection(page).getByRole("heading", { name: "Preview video" }),
+  ).toBeVisible();
   const clickedVideoFocusStyle = await outputTypeRadio(page, "video").evaluate(
     (element) => {
       const style = window.getComputedStyle(element);
@@ -1128,6 +1213,15 @@ test("video preview modes, branding, and full-frame warning stay scoped", async 
   await chooseOutputType(page, "video");
   await openDownloadSettings(page);
 
+  await expect(previewSection(page).getByRole("heading", { name: "Preview video" })).toBeVisible();
+  await expectPreviewReady(page);
+  await expect(previewSection(page).getByTestId("book-preview-sample")).toContainText(
+    "SOS HELP preview",
+  );
+  await expect(previewSection(page).getByText("Audio track on")).toBeVisible();
+  await expect(
+    previewSection(page).getByRole("button", { name: "Play visual preview" }),
+  ).toBeVisible();
   await expect(page.getByTestId("book-video-preview")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-lightbulb")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-branding")).toContainText(
@@ -1143,21 +1237,39 @@ test("video preview modes, branding, and full-frame warning stay scoped", async 
   await page.getByRole("radio", { name: /Full-frame flash/ }).click();
   await expect(page.getByTestId("book-video-preview-full-frame")).toBeVisible();
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(1);
+  await expect(page.getByText("Strobe warning:")).toBeVisible();
   await expect(
     page.getByText("can create rapid full-frame flashing"),
+  ).toBeVisible();
+  await expectPreviewReady(page);
+  await previewSection(page)
+    .getByRole("button", { name: "Play visual preview" })
+    .click();
+  await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
+    "data-preview-playing",
+    "true",
+  );
+  await expect(
+    previewSection(page).getByRole("button", { name: "Stop visual preview" }),
   ).toBeVisible();
   await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
 
   await page.getByRole("radio", { name: /Animated Morse text/ }).click();
+  await expect(
+    previewSection(page).getByRole("button", { name: "Play visual preview" }),
+  ).toBeVisible();
   await expect(page.getByTestId("book-video-preview-morse-text")).toBeVisible();
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(0);
   await page.getByLabel("Show small MorseWords branding").uncheck();
   await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
   await expect(page.getByTestId("book-video-preview-morse-overlay")).toBeVisible();
   await page.getByLabel("Show Morse text overlay").uncheck();
+  await expect(previewSection(page).getByText("Morse overlay off")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-morse-overlay")).toHaveCount(
     0,
   );
+  await page.getByLabel("Include audio track").uncheck();
+  await expect(previewSection(page).getByText("Audio track off")).toBeVisible();
 });
 
 test("switching output type clears stale results and audio still downloads", async ({
