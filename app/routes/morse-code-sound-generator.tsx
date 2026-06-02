@@ -7,43 +7,60 @@ import SoundGeneratorGuide from "~/client/components/morse-code-sound-generator/
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const CANONICAL_PATH = "/morse-code-sound-generator";
+const CANONICAL_PATH = ROUTES.soundGenerator;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 const faqItems = [
   {
-    q: "What tone should I use for Morse practice?",
-    a: "A sine or CW radio tone around 600 to 700 Hz is a clean starting point. Raise or lower the pitch for comfort, but keep the tone simple until the rhythm is easy to recognize.",
+    q: "What does a Morse code sound generator do?",
+    a: "It turns text or typed Morse into playable Morse sound so you can hear the dots, dashes, gaps, tone color, pitch, and practice rhythm.",
   },
   {
-    q: "Is pitch the same as speed?",
-    a: "No. Pitch controls how high or low the beep sounds. Speed controls the duration of dits, dahs, and spaces. If the Morse feels rushed, change WPM or Farnsworth spacing, not pitch.",
+    q: "Can I turn text into Morse code sound?",
+    a: "Yes. Use text mode to type a short message, then play it as Morse sound. You can also switch to Morse input and play pasted dots, dashes, spaces, and slashes.",
   },
   {
-    q: "What waveform should I choose?",
-    a: "Use sine or CW radio for normal listening practice, square for a sharper electronic beep, triangle for a softer tone, and sounder when you want a click-like telegraph feel.",
+    q: "What tone should I use for Morse code?",
+    a: "CW radio is the safest default for normal Morse listening. A clean tone around 600 to 700 Hz is usually comfortable, but the best pitch is the one you can hear clearly without fatigue.",
   },
   {
-    q: "Why does my Morse sound too fast or too cramped?",
-    a: "The character speed may be too high, or the Farnsworth spacing may be too low. Keep the tone settings steady, then slow the spacing between letters and words until the signal is readable.",
+    q: "What is the CW radio tone preset?",
+    a: "CW radio is a clean keyed sine-style tone shaped for Morse sidetone practice. It is less harsh than many synthetic beeps, which is why it works well as the default.",
   },
   {
-    q: "Is this page different from the audio generator?",
-    a: "Yes. This page is for shaping the beep, tone, waveform, and downloadable sound. Use the audio generator when your main goal is to turn a full message into playable or saved WAV audio.",
+    q: "Can I change the pitch or frequency?",
+    a: "Yes. Use the pitch control for presets that support frequency changes. Pitch changes how high or low the tone sounds; it does not change Morse timing.",
+  },
+  {
+    q: "Can I use creative sounds like bells or chirps?",
+    a: "Yes. Creative presets such as soft bell, warm tone, low beacon, submarine ping, digital blip, soft click, and bird chirp are synthesized options for experiments. They are not sampled audio and are optional.",
+  },
+  {
+    q: "Why is CW radio the default?",
+    a: "CW radio keeps the Morse signal clear, simple, and familiar. Creative waveforms can be fun, but a plain CW-style tone usually makes timing and character recognition easier.",
   },
   {
     q: "Can I download the sound as MP3 or WAV?",
-    a: "Yes. The sound generator supports WAV for lossless editing and MP3 for smaller practice clips. Both exports are generated in the browser.",
+    a: "This page includes quick MP3 and WAV export for the current tone. Use the Morse code MP3 generator when a dedicated downloadable MP3 or WAV workflow is your main goal.",
   },
   {
-    q: "Can I paste Morse code directly instead of typing text?",
-    a: "Yes. Switch to Morse input and paste dots, dashes, spaces, or slash-separated word gaps. The generator plays that pattern as a tone signal.",
+    q: "Can I make long book-length Morse audio?",
+    a: "Use this sound generator for short tone tests and practice signals. Use the book translator when long text should be split into manageable Morse audio or video parts.",
   },
   {
-    q: "Does this tool upload my message or generated sound?",
-    a: "No. Playback, WAV rendering, and MP3 encoding happen in your browser.",
+    q: "Can I decode Morse sound back into text?",
+    a: "No. This page creates sound from text or typed Morse. Use the Morse code audio decoder when you already have an audio file or recording and need text.",
+  },
+  {
+    q: "What is Farnsworth spacing?",
+    a: "Farnsworth spacing keeps the character rhythm while adding extra silence between characters and words. It is useful when you want the tone speed to stay realistic but need more time to copy.",
+  },
+  {
+    q: "Is my text uploaded to a server?",
+    a: "No. The sound preview and quick audio exports are generated in your browser. The tool does not upload your typed message to make the Morse sound.",
   },
 ];
 
@@ -53,12 +70,12 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Sound Generator | Create Beeps and Practice Tones | MorseWords",
+    title: "Morse Code Sound Generator | Tone, Beep & CW Audio | MorseWords",
     description:
-      "Create Morse code beep sounds for practice. Adjust tone, speed, pitch, waveform, and signal settings while keeping the Morse pattern readable.",
+      "Play Morse code sound from text or typed Morse. Shape CW radio tone, beep waveform, pitch, volume, WPM, and Farnsworth spacing in your browser.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code sound generator, morse code beep generator, morse code tone generator, morse signal generator, morse practice tone, morse code mp3",
+      "morse code sound generator, morse code sound maker, morse code generator sound, morse code to sound, text to morse code sound, morse code tone generator, morse code beep generator, play morse code sound, morse code with sound, morse code audio generator",
   });
 }
 export default function MorseCodeSoundGeneratorRoute() {
@@ -79,13 +96,14 @@ export default function MorseCodeSoundGeneratorRoute() {
         operatingSystem: "All",
         url: CANONICAL_URL,
         description:
-          "Browser-based Morse code sound generator for shaping beeps, tones, waveform, pitch, and practice signals from text or Morse code.",
+          "Browser-based Morse code sound generator for playing and shaping beeps, CW tones, waveform presets, pitch, volume, and practice signals from text or Morse code.",
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         featureList: [
           "Text to Morse sound generation",
           "Morse code beep playback",
-          "Morse code tone and waveform controls",
-          "MP3 and WAV export",
+          "CW radio, sine, square, triangle, sawtooth, and sounder presets",
+          "Synthesized creative tone presets",
+          "Quick MP3 and WAV export for the current tone",
           "Adjustable WPM and Farnsworth spacing",
           "Adjustable pitch, waveform, volume, attack, and release",
           "Browser-based audio generation",
@@ -106,12 +124,12 @@ export default function MorseCodeSoundGeneratorRoute() {
           {
             "@type": "HowToStep",
             name: "Shape the tone",
-            text: "Adjust WPM, Farnsworth spacing, pitch, waveform, volume, attack, and release until the signal is readable.",
+            text: "Choose CW radio or another synthesized tone preset, then adjust WPM, Farnsworth spacing, pitch, volume, attack, and release until the signal is readable.",
           },
           {
             "@type": "HowToStep",
             name: "Play or download the practice sound",
-            text: "Play the generated Morse sound in the browser, loop it for drills, or download MP3 or WAV audio.",
+            text: "Play the generated Morse sound in the browser, loop it for drills, or use the related MP3 generator when downloadable audio is the main goal.",
           },
         ],
       },
@@ -152,7 +170,7 @@ export default function MorseCodeSoundGeneratorRoute() {
           pageIntent="sound"
           introEyebrow="Morse code sound maker"
           heading="Morse Code Sound Generator"
-          lead="Create Morse beep and tone signals from text or pasted Morse code. Tune the sound character, adjust timing, then play or download the practice signal."
+          lead="Play Morse code sound from text or pasted Morse. Tune CW-style tone, beep waveform, pitch, volume, WPM, and Farnsworth spacing before moving to downloads, long audio, decoding, or listening drills."
           defaultText="CQ CQ DE MORSEWORDS TEST 123"
           defaultMorse="-.-. --.-   -.-. --.-   -.. .   -- --- .-. ... . .-- --- .-. -.. ..."
           defaultFileName="morse-code-sound"
@@ -164,10 +182,12 @@ export default function MorseCodeSoundGeneratorRoute() {
           exportFormats={["wav", "mp3"]}
         />
         <SoundGeneratorGuide />
-        <FaqSectionGeneric
-          title="Morse code sound generator FAQ"
-          items={faqItems}
-        />
+        <div id="faq">
+          <FaqSectionGeneric
+            title="Morse code sound generator FAQ"
+            items={faqItems}
+          />
+        </div>
       </div>
       <BreadcrumbTrail
         current="Morse Code Sound Generator"
