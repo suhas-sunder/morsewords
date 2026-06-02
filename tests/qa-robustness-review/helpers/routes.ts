@@ -61,6 +61,8 @@ export const PRIMARY_TOOL_ROUTES = [
   ROUTES.reader,
   ROUTES.soundGenerator,
   ROUTES.mp3Generator,
+  ROUTES.bookTranslator,
+  ROUTES.videoGenerator,
   ROUTES.wordSearchBuilder,
   ROUTES.printableChart,
 ] as const;
@@ -90,6 +92,8 @@ const AUDIO_EXPORT_ROUTES = [
   ROUTES.audioQuiz,
   ROUTES.soundGenerator,
   ROUTES.mp3Generator,
+  ROUTES.bookTranslator,
+  ROUTES.videoGenerator,
 ] as const;
 
 const PRACTICE_QUIZ_ROUTES = [

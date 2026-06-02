@@ -8,11 +8,12 @@ import {
   PageHero,
 } from "~/client/components/shared/MorseLearningLayout";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
+import { ROUTES } from "~/client/data/routes";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
-const CANONICAL_PATH = "/farnsworth-timing";
+const CANONICAL_PATH = ROUTES.farnsworth;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
@@ -104,9 +105,11 @@ export default function FarnsworthTiming() {
         >
           <ActionLinks
             links={[
-              { href: "/audio", label: "Open audio generator", primary: true },
-              { href: "/morse-code-audio-practice", label: "Audio practice" },
-              { href: "/morse-code-timing", label: "Standard timing" },
+              { href: ROUTES.audio, label: "Open audio generator", primary: true },
+              { href: ROUTES.soundGenerator, label: "Shape a tone" },
+              { href: ROUTES.bookTranslator, label: "Long text audio" },
+              { href: ROUTES.audioPractice, label: "Audio practice" },
+              { href: ROUTES.timing, label: "Standard timing" },
             ]}
           />
         </PageHero>
@@ -198,7 +201,7 @@ export default function FarnsworthTiming() {
                   <p>
                     Use the{" "}
                     <a
-                      href="/morse-code-timing"
+                      href={ROUTES.timing}
                       className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
                     >
                       standard timing page
@@ -218,19 +221,19 @@ export default function FarnsworthTiming() {
               {
                 title: "Farnsworth timing",
                 text: "Use this page when character speed and effective speed are intentionally different.",
-                href: "/farnsworth-timing",
+                href: ROUTES.farnsworth,
                 badge: "Learner",
               },
               {
                 title: "Morse Code Timing",
                 text: "Use the standard timing page for dot, dash, letter gap, word gap, and WPM ratios.",
-                href: "/morse-code-timing",
+                href: ROUTES.timing,
                 badge: "Standard",
               },
               {
                 title: "Audio practice",
                 text: "Use audio practice when you want answer checking with listening settings.",
-                href: "/morse-code-audio-practice",
+                href: ROUTES.audioPractice,
                 badge: "Practice",
               },
             ],
@@ -240,10 +243,12 @@ export default function FarnsworthTiming() {
             description:
               "Test the concept with a short message and adjust only one setting at a time.",
             links: [
-              { href: "/audio", label: "Try audio settings", primary: true },
-              { href: "/morse-code-audio-practice", label: "Practice by ear" },
-              { href: "/learn-morse-code", label: "Learning path" },
-              { href: "/morse-code-practice-plan", label: "Practice routine" },
+              { href: ROUTES.audio, label: "Try audio settings", primary: true },
+              { href: ROUTES.soundGenerator, label: "Shape sound timing" },
+              { href: ROUTES.bookTranslator, label: "Long text export" },
+              { href: ROUTES.audioPractice, label: "Practice by ear" },
+              { href: ROUTES.learn, label: "Learning path" },
+              { href: ROUTES.practicePlan, label: "Practice routine" },
             ],
           }}
         />

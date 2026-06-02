@@ -10,10 +10,11 @@ import {
   SectionCard,
   SimpleGrid,
 } from "~/client/components/shared/MorseLearningLayout";
+import { ROUTES } from "~/client/data/routes";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const CANONICAL_PATH = "/morse-code-mp3-generator";
+const CANONICAL_PATH = ROUTES.mp3Generator;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 const howItWorksItems = [
@@ -43,7 +44,7 @@ const mp3VsWavItems = [
   {
     title: "WAV",
     text: "WAV is uncompressed, so it can be better when you plan to edit the audio or need a lossless export.",
-    href: "/audio",
+    href: ROUTES.audio,
     badge: "Audio",
   },
 ];
@@ -105,12 +106,14 @@ const troubleshootingItems = [
   },
   {
     title: "File is too long",
-    text: "Long messages take more time to render and encode. Split long text into shorter files.",
+    text: "Long messages take more time to render and encode. Use the book translator when a chapter or article should become a longer listening file.",
+    href: ROUTES.bookTranslator,
+    badge: "Long text",
   },
   {
     title: "Unsupported characters",
     text: "Unsupported text characters are ignored so the generated Morse stays readable.",
-    href: "/morse-code-chart",
+    href: ROUTES.chart,
     badge: "Chart",
   },
   {
@@ -120,7 +123,7 @@ const troubleshootingItems = [
   {
     title: "Wrong input direction",
     text: "This page creates audio from text or typed Morse. It does not decode uploaded audio files.",
-    href: "/morse-code-audio-decoder",
+    href: ROUTES.audioDecoder,
     badge: "Decoder",
   },
 ];
@@ -133,19 +136,19 @@ const comparisonItems = [
   {
     title: "Audio decoder",
     text: "Use the audio decoder when you have an uploaded MP3, WAV, or recording and want readable text.",
-    href: "/morse-code-audio-decoder",
+    href: ROUTES.audioDecoder,
     badge: "Decode",
   },
   {
     title: "Morse encoder",
     text: "Use the encoder when you only need dots and dashes without an audio file.",
-    href: "/morse-code-encoder",
+    href: ROUTES.encoder,
     badge: "Encode",
   },
   {
     title: "Morse decoder",
     text: "Use the decoder when you need to convert typed Morse back to readable text.",
-    href: "/morse-code-decoder",
+    href: ROUTES.decoder,
     badge: "Read",
   },
 ];
@@ -296,17 +299,19 @@ export default function MorseCodeMp3GeneratorRoute() {
         >
           <ActionLinks
             links={[
-              { href: "/audio", label: "Broader audio tool", primary: true },
-              { href: "/morse-code-encoder", label: "Text to Morse encoder" },
-              { href: "/morse-code-decoder", label: "Morse decoder" },
+              { href: ROUTES.audio, label: "Broader audio tool", primary: true },
+              { href: ROUTES.bookTranslator, label: "Long text/books" },
+              { href: ROUTES.videoGenerator, label: "Make Morse video" },
+              { href: ROUTES.encoder, label: "Text to Morse encoder" },
+              { href: ROUTES.decoder, label: "Morse decoder" },
               {
-                href: "/morse-code-audio-decoder",
+                href: ROUTES.audioDecoder,
                 label: "Audio file decoder",
               },
-              { href: "/morse-code-chart", label: "Morse code chart" },
-              { href: "/morse-code-alphabet", label: "Morse alphabet" },
+              { href: ROUTES.chart, label: "Morse code chart" },
+              { href: ROUTES.alphabet, label: "Morse alphabet" },
               {
-                href: "/copy-and-paste-morse-code",
+                href: ROUTES.copyAndPaste,
                 label: "Copy-paste Morse guide",
               },
             ]}

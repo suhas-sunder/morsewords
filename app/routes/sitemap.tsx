@@ -91,7 +91,7 @@ const GROUPS: SitemapGroup[] = [
         label: "Book to Morse Code Translator",
         to: ROUTES.bookTranslator,
         description:
-          "Paste or upload long-form TXT, MD, EPUB, or text-native PDF sources and preflight them for Morse conversion.",
+          "Convert long text, TXT, EPUB, or PDF into Morse audio or video downloads.",
       },
       {
         label: "Morse Code Video Generator",

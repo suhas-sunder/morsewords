@@ -21,10 +21,11 @@ import {
   SimpleGrid,
 } from "~/client/components/shared/MorseLearningLayout";
 import StrobeWarning from "~/client/components/shared/StrobeWarning";
+import { ROUTES } from "~/client/data/routes";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const CANONICAL_PATH = "/morse-code-test";
+const CANONICAL_PATH = ROUTES.test;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 const testChooserItems = [
@@ -213,6 +214,13 @@ const pathItems = [
       "Look for repeated errors first, then use a plan so the next session targets the exact problem.",
     href: "/morse-code-practice-plan",
     badge: "Review",
+  },
+  {
+    title: "Long custom audio path",
+    text:
+      "Use the book translator when a longer practice passage should become downloadable audio or video instead of one quiz prompt.",
+    href: ROUTES.bookTranslator,
+    badge: "Long text",
   },
 ];
 

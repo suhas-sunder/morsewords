@@ -11,10 +11,11 @@ import {
   SimpleGrid,
   StaticPanel,
 } from "~/client/components/shared/MorseLearningLayout";
+import { ROUTES } from "~/client/data/routes";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const CANONICAL_PATH = "/morse-code-audio-decoder";
+const CANONICAL_PATH = ROUTES.audioDecoder;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
@@ -211,15 +212,16 @@ export default function MorseCodeAudioDecoderRoute() {
         >
           <ActionLinks
             links={[
-              { href: "/audio", label: "Generate Morse audio", primary: true },
-              { href: "/morse-code-mp3-generator", label: "Create MP3 from text" },
-              { href: "/morse-code-reader", label: "Read pasted Morse" },
-              { href: "/morse-code-decoder", label: "Morse code decoder" },
-              { href: "/morse-code-encoder", label: "Morse code encoder" },
-              { href: "/morse-code-word-separator", label: "Word separator" },
-              { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
+              { href: ROUTES.audio, label: "Generate Morse audio", primary: true },
+              { href: ROUTES.soundGenerator, label: "Shape tone signal" },
+              { href: ROUTES.mp3Generator, label: "Create MP3 from text" },
+              { href: ROUTES.reader, label: "Read pasted Morse" },
+              { href: ROUTES.decoder, label: "Morse code decoder" },
+              { href: ROUTES.encoder, label: "Morse code encoder" },
+              { href: ROUTES.wordSeparator, label: "Word separator" },
+              { href: ROUTES.copyAndPaste, label: "Copy-paste guide" },
               {
-                href: "/how-to-separate-words-in-morse-code",
+                href: ROUTES.separateWords,
                 label: "Spacing guide",
               },
             ]}

@@ -9,11 +9,12 @@ import {
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
+import { ROUTES } from "~/client/data/routes";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
-const CANONICAL_PATH = "/morse-code-timing";
+const CANONICAL_PATH = ROUTES.timing;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 export function links() {
@@ -105,9 +106,11 @@ export default function MorseCodeTiming() {
         >
           <ActionLinks
             links={[
-              { href: "/farnsworth-timing", label: "Farnsworth timing", primary: true },
-              { href: "/morse-code-word-separator", label: "Spacing guide" },
-              { href: "/audio", label: "Try audio timing" },
+              { href: ROUTES.farnsworth, label: "Farnsworth timing", primary: true },
+              { href: ROUTES.wordSeparator, label: "Spacing guide" },
+              { href: ROUTES.audio, label: "Try audio timing" },
+              { href: ROUTES.soundGenerator, label: "Shape a tone" },
+              { href: ROUTES.bookTranslator, label: "Long text timing" },
             ]}
           />
         </PageHero>
@@ -211,7 +214,7 @@ export default function MorseCodeTiming() {
                   <p>
                     A letter gap and a word gap are different. Use the{" "}
                     <a
-                      href="/morse-code-word-separator"
+                      href={ROUTES.wordSeparator}
                       className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
                     >
                       word separator
@@ -235,7 +238,7 @@ export default function MorseCodeTiming() {
                   <p>
                     Farnsworth timing intentionally widens gaps. Use the{" "}
                     <a
-                      href="/farnsworth-timing"
+                      href={ROUTES.farnsworth}
                       className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
                     >
                       Farnsworth guide
@@ -255,19 +258,19 @@ export default function MorseCodeTiming() {
               {
                 title: "Morse Code Timing",
                 text: "Use this page for dot, dash, letter gap, word gap, and WPM rules.",
-                href: "/morse-code-timing",
+                href: ROUTES.timing,
                 badge: "Standard",
               },
               {
                 title: "Farnsworth timing",
                 text: "Use Farnsworth when characters stay fast but the spaces are widened for learning.",
-                href: "/farnsworth-timing",
+                href: ROUTES.farnsworth,
                 badge: "Learner",
               },
               {
                 title: "Word separator",
                 text: "Use the separator page when timing gaps need to become clean copied text.",
-                href: "/morse-code-word-separator",
+                href: ROUTES.wordSeparator,
                 badge: "Spacing",
               },
             ],
@@ -277,10 +280,12 @@ export default function MorseCodeTiming() {
             description:
               "Apply the timing rules in a tool where you can hear or clean up the result.",
             links: [
-              { href: "/audio", label: "Try audio timing", primary: true },
-              { href: "/morse-code-audio-practice", label: "Audio practice" },
-              { href: "/morse-code-decoder", label: "Decode spaced Morse" },
-              { href: "/farnsworth-timing", label: "Learn Farnsworth" },
+              { href: ROUTES.audio, label: "Try audio timing", primary: true },
+              { href: ROUTES.soundGenerator, label: "Shape sound timing" },
+              { href: ROUTES.bookTranslator, label: "Long text export" },
+              { href: ROUTES.audioPractice, label: "Audio practice" },
+              { href: ROUTES.decoder, label: "Decode spaced Morse" },
+              { href: ROUTES.farnsworth, label: "Learn Farnsworth" },
             ],
           }}
         />

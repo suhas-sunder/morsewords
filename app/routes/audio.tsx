@@ -11,9 +11,10 @@ import {
   ActionLinks,
   SectionCard,
 } from "~/client/components/shared/MorseLearningLayout";
+import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const CANONICAL_PATH = "/audio";
+const CANONICAL_PATH = ROUTES.audio;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 type AudioFaqItem = {
@@ -138,19 +139,21 @@ export default function AudioRoute() {
         <HowItWorksAudio />
         <SectionCard
           eyebrow="Try useful audio"
-          title="Load common examples into audio"
-          description="Use these links when you want to hear a name, short phrase, radio call, or punctuation mark without retyping it."
+          title="Load common examples and exports"
+          description="Use these links when you want to hear a short example, save a compact audio file, or move longer source text into the right export tool."
         >
           <ActionLinks
             links={[
-              { href: "/name-to-morse-code", label: "Name to Morse", primary: true },
-              { href: "/morse-code-mp3-generator", label: "Download MP3" },
-              { href: "/morse-code-chart", label: "Complete chart" },
-              { href: "/morse-code-audio-decoder", label: "Decode audio file" },
-              { href: "/audio?text=I%20LOVE%20YOU", label: "I love you" },
-              { href: "/audio?text=CQ", label: "CQ" },
-              { href: "/audio?text=%3F", label: "Question mark" },
-              { href: "/audio?text=%40", label: "At sign" },
+              { href: ROUTES.nameToMorse, label: "Name to Morse", primary: true },
+              { href: ROUTES.mp3Generator, label: "Download MP3" },
+              { href: ROUTES.bookTranslator, label: "Long text/books" },
+              { href: ROUTES.videoGenerator, label: "Make Morse video" },
+              { href: ROUTES.chart, label: "Complete chart" },
+              { href: ROUTES.audioDecoder, label: "Decode audio file" },
+              { href: `${ROUTES.audio}?text=I%20LOVE%20YOU`, label: "I love you" },
+              { href: `${ROUTES.audio}?text=CQ`, label: "CQ" },
+              { href: `${ROUTES.audio}?text=%3F`, label: "Question mark" },
+              { href: `${ROUTES.audio}?text=%40`, label: "At sign" },
             ]}
           />
         </SectionCard>

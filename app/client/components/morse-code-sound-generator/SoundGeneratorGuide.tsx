@@ -1,5 +1,6 @@
 import * as React from "react";
 import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
+import { ROUTES } from "~/client/data/routes";
 
 const soundExamples = [
   {
@@ -144,14 +145,14 @@ export default function SoundGeneratorGuide() {
         <p className="mt-4 text-base leading-relaxed text-slate-700 sm:text-lg">
           Timing details are covered in the{" "}
           <a
-            href="/morse-code-timing"
+            href={ROUTES.timing}
             className="font-semibold text-sky-900 underline-offset-4 hover:underline"
           >
             Morse code timing guide
           </a>{" "}
           and the{" "}
           <a
-            href="/farnsworth-timing"
+            href={ROUTES.farnsworth}
             className="font-semibold text-sky-900 underline-offset-4 hover:underline"
           >
             Farnsworth timing guide
@@ -168,13 +169,27 @@ export default function SoundGeneratorGuide() {
           Use this page when you want to shape the beep or tone signal itself.
           Use the{" "}
           <a
-            href="/audio"
+            href={ROUTES.audio}
             className="font-semibold text-sky-900 underline-offset-4 hover:underline"
           >
             Morse code audio generator
           </a>{" "}
           when your main goal is to turn a full message into playable or saved
-          WAV audio.
+          WAV audio. Use the{" "}
+          <a
+            href={ROUTES.bookTranslator}
+            className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+          >
+            book to Morse code translator
+          </a>{" "}
+          for long-form audio or video exports, and the{" "}
+          <a
+            href={ROUTES.videoGenerator}
+            className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+          >
+            Morse code video generator
+          </a>{" "}
+          for short visual clips.
         </p>
       </section>
 
@@ -210,21 +225,21 @@ export default function SoundGeneratorGuide() {
         <p className="mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
           When the tone is comfortable, use it for{" "}
           <a
-            href="/morse-code-audio-practice"
+            href={ROUTES.audioPractice}
             className="font-semibold text-sky-900 underline-offset-4 hover:underline"
           >
             audio practice
           </a>{" "}
           or test recognition with the{" "}
           <a
-            href="/morse-code-audio-quiz"
+            href={ROUTES.audioQuiz}
             className="font-semibold text-sky-900 underline-offset-4 hover:underline"
           >
             audio quiz
           </a>
           . If you want broader recall work, move to the{" "}
           <a
-            href="/practice"
+            href={ROUTES.practice}
             className="font-semibold text-sky-900 underline-offset-4 hover:underline"
           >
             Morse practice drill

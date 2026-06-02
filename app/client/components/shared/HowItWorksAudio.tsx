@@ -1,5 +1,6 @@
 import * as React from "react";
 import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
+import { ROUTES } from "~/client/data/routes";
 
 const workedExamples = [
   {
@@ -141,7 +142,7 @@ export default function HowItWorksAudio() {
               <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
                 For more context on the short emergency pattern, see{" "}
                 <a
-                  href="/morse-code-sos"
+                  href={ROUTES.sos}
                   className="font-semibold text-sky-900 underline-offset-4 hover:underline"
                 >
                   SOS in Morse code
@@ -174,14 +175,14 @@ export default function HowItWorksAudio() {
               <p className="mt-6 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
                 For deeper timing rules, use the{" "}
                 <a
-                  href="/morse-code-timing"
+                  href={ROUTES.timing}
                   className="font-semibold text-sky-900 underline-offset-4 hover:underline"
                 >
                   Morse code timing guide
                 </a>{" "}
                 and the{" "}
                 <a
-                  href="/farnsworth-timing"
+                  href={ROUTES.farnsworth}
                   className="font-semibold text-sky-900 underline-offset-4 hover:underline"
                 >
                   Farnsworth timing guide
@@ -233,12 +234,27 @@ export default function HowItWorksAudio() {
               Use this page when you want to hear or save a full Morse message
               as WAV audio. Use the{" "}
               <a
-                href="/morse-code-mp3-generator"
+                href={ROUTES.mp3Generator}
                 className="font-semibold text-sky-900 underline-offset-4 hover:underline"
               >
                 Morse code MP3 generator
               </a>{" "}
-              when you need a smaller downloadable MP3 file for sharing.
+              when you need a smaller downloadable MP3 file for sharing. For
+              longer source text, use the{" "}
+              <a
+                href={ROUTES.bookTranslator}
+                className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+              >
+                book to Morse code translator
+              </a>{" "}
+              for chapter-length audio or video exports, and the{" "}
+              <a
+                href={ROUTES.videoGenerator}
+                className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+              >
+                Morse code video generator
+              </a>
+              .
             </p>
           </section>
 
@@ -254,14 +270,14 @@ export default function HowItWorksAudio() {
             <p className="max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               If the file is for listening drills, move into{" "}
               <a
-                href="/morse-code-audio-practice"
+                href={ROUTES.audioPractice}
                 className="font-semibold text-sky-900 underline-offset-4 hover:underline"
               >
                 Morse audio practice
               </a>{" "}
               or test recognition with the{" "}
               <a
-                href="/morse-code-audio-quiz"
+                href={ROUTES.audioQuiz}
                 className="font-semibold text-sky-900 underline-offset-4 hover:underline"
               >
                 Morse audio quiz
