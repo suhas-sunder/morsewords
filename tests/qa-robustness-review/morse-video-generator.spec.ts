@@ -112,7 +112,9 @@ test.describe("Morse code video generator", () => {
     await installFastVideoRecorder(page);
     await openVideoGenerator(page);
 
-    await expect(page).toHaveTitle("Morse Code Video Generator | MorseWords");
+    await expect(page).toHaveTitle(
+      "Morse Code Video Generator | Text to Morse Code Video | MorseWords",
+    );
     await expect(page.locator("h1")).toHaveText("Morse Code Video Generator");
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",

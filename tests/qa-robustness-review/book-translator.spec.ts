@@ -508,7 +508,7 @@ test("book translator route metadata, alias, and sitemap use canonical URL", asy
   await openBookTranslator(page);
 
   await expect(page).toHaveTitle(
-    /Book to Morse Code Translator and Audio Download Tool/,
+    /Book to Morse Code Translator \| Long Text to Morse Audio/,
   );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
