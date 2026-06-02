@@ -154,8 +154,11 @@ test.describe("action output route smoke", () => {
       waitUntil: "domcontentloaded",
     });
     await waitForRouteReady(page);
+    await expect(page.locator("[data-mw-mp3-tool-ready='true']")).toBeVisible();
 
-    await page.locator("textarea").first().fill("");
+    const sourceInput = page.locator("textarea").first();
+    await sourceInput.fill("");
+    await expect(sourceInput).toHaveValue("");
     await expect(page.getByRole("button", { name: "Download MP3" }).first()).toBeDisabled();
     await expect(page.getByRole("button", { name: "Download WAV" }).first()).toBeDisabled();
   });

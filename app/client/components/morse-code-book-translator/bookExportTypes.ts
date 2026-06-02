@@ -17,7 +17,7 @@ export type BookExportFormat = "mp3" | "wav";
 
 export type BookOutputType = "audio" | "video";
 
-export type BookDownloadKind = "audio" | "zip";
+export type BookDownloadKind = "audio" | "video" | "zip";
 
 export type BookPunctuationMode = "preserve" | "simplify";
 
@@ -95,7 +95,7 @@ export type BookExportProgress = {
 export type BookExportResultSummary = {
   filename: string;
   downloadKind: BookDownloadKind;
-  outputFormat: BookExportFormat;
+  outputFormat: BookExportFormat | "webm";
   partCount: number;
   runtimeLabel: string;
   sizeLabel: string;

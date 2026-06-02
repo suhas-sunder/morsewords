@@ -84,10 +84,12 @@ test("audio practice locks scoring after correct and revealed prompts", async ({
   await page.goto("/morse-code-audio-practice");
   await waitForRouteReady(page);
 
-  const answer = page.getByLabel("Your answer");
+  const answer = page.getByPlaceholder("Type what you hear");
   const checkAnswer = page.getByRole("button", { name: "Check answer" });
 
   await answer.fill("A");
+  await expect(answer).toHaveValue("A");
+  await expect(checkAnswer).toBeEnabled();
   await checkAnswer.click();
   await expect(page.getByText("Correct. Move to the next hidden prompt when ready.")).toBeVisible();
   await expect(page.getByText(/Streak\s*1/)).toBeVisible();

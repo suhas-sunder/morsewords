@@ -5,11 +5,19 @@ import path from "node:path";
 import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
 
 import { ROUTES, absoluteUrl } from "../../app/client/data/routes";
-import { renderBookPartPcm } from "../../app/client/components/morse-code-book-translator/bookBundleExport";
+import {
+  buildBookSignalEvents,
+  renderBookPartPcm,
+} from "../../app/client/components/morse-code-book-translator/bookBundleExport";
 import {
   buildMorseTranscript,
   estimateBookTextDurationMs,
 } from "../../app/client/components/morse-code-book-translator/bookDurationEstimate";
+import {
+  describeBookVideoDownloadContents,
+  getBookVideoDownloadKind,
+} from "../../app/client/components/morse-code-book-translator/bookVideoExport";
+import { buildBookVideoTimeline } from "../../app/client/components/morse-code-book-translator/bookVideoRenderer";
 import { BOOK_EXPORT_PREFERENCES_KEY } from "../../app/client/components/morse-code-book-translator/bookExportPreferences";
 import { BOOK_EXPORT_PRESETS } from "../../app/client/components/morse-code-book-translator/bookExportPresets";
 import { segmentBookText } from "../../app/client/components/morse-code-book-translator/bookSegmentation";
@@ -255,6 +263,22 @@ async function downloadAudioFile(
   };
 }
 
+async function downloadVideoFile(
+  page: Page,
+  testInfo: TestInfo,
+  buttonName: RegExp,
+) {
+  const downloadPromise = page.waitForEvent("download", { timeout: 90_000 });
+  await page.getByRole("button", { name: buttonName }).click();
+  const download = await downloadPromise;
+  const filePath = testInfo.outputPath(download.suggestedFilename());
+  await download.saveAs(filePath);
+  return {
+    filename: download.suggestedFilename(),
+    bytes: new Uint8Array(fs.readFileSync(filePath)),
+  };
+}
+
 function zipText(entries: Record<string, Uint8Array>, name: string) {
   const entry = entries[name];
   if (!entry) throw new Error(`Missing ZIP entry: ${name}`);
@@ -269,6 +293,23 @@ function zipJson<T = Record<string, unknown>>(
 }
 
 function expectOrderedPartFiles(names: string[], extension: "mp3" | "wav") {
+  const partFiles = names.filter((name) =>
+    new RegExp(`part-\\d{3}\\.${extension}$`).test(name),
+  );
+  expect(partFiles.length).toBeGreaterThan(0);
+  expect(partFiles).toEqual([...partFiles].sort());
+  partFiles.forEach((name, index) => {
+    expect(name).toMatch(
+      new RegExp(`part-${String(index + 1).padStart(3, "0")}\\.${extension}$`),
+    );
+  });
+  return partFiles;
+}
+
+function expectOrderedMediaPartFiles(
+  names: string[],
+  extension: "mp3" | "wav" | "webm",
+) {
   const partFiles = names.filter((name) =>
     new RegExp(`part-\\d{3}\\.${extension}$`).test(name),
   );
@@ -304,6 +345,68 @@ function expectWavHeader(bytes: Uint8Array) {
   expect(strFromU8(bytes.slice(0, 4))).toBe("RIFF");
   expect(strFromU8(bytes.slice(8, 12))).toBe("WAVE");
   expect(strFromU8(bytes.slice(12, 16))).toBe("fmt ");
+}
+
+function expectWebmLike(bytes: Uint8Array) {
+  expect(bytes.length).toBeGreaterThan(4);
+  expect(strFromU8(bytes)).toContain("WEBM");
+}
+
+async function installFastVideoRecorder(page: Page) {
+  await page.addInitScript(() => {
+    class FakeMediaRecorder {
+      static isTypeSupported(type: string) {
+        return type.startsWith("video/webm");
+      }
+
+      state = "inactive";
+      ondataavailable: ((event: BlobEvent) => void) | null = null;
+      onerror: (() => void) | null = null;
+      onstop: (() => void) | null = null;
+      readonly mimeType: string;
+
+      constructor(_stream: MediaStream, options?: MediaRecorderOptions) {
+        this.mimeType = options?.mimeType || "video/webm";
+      }
+
+      start() {
+        this.state = "recording";
+      }
+
+      stop() {
+        if (this.state === "inactive") return;
+        this.state = "inactive";
+        const blob = new Blob(["WEBM-BOOK-VIDEO"], {
+          type: this.mimeType,
+        });
+        window.setTimeout(() => {
+          this.ondataavailable?.({ data: blob } as BlobEvent);
+          this.onstop?.();
+        }, 0);
+      }
+    }
+
+    Object.defineProperty(window, "MediaRecorder", {
+      configurable: true,
+      value: FakeMediaRecorder,
+    });
+    HTMLCanvasElement.prototype.captureStream = function captureStream() {
+      return new MediaStream();
+    };
+  });
+}
+
+async function installUnsupportedVideoRecorder(page: Page) {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, "MediaRecorder", {
+      configurable: true,
+      value: undefined,
+    });
+    Object.defineProperty(HTMLCanvasElement.prototype, "captureStream", {
+      configurable: true,
+      value: undefined,
+    });
+  });
 }
 
 type BundleManifest = {
@@ -344,6 +447,59 @@ type BundleSettings = {
   includeCleanedText: boolean;
   includeMorseTranscript: boolean;
 };
+
+type VideoBundleManifest = {
+  outputType: "video";
+  outputFormat: "webm";
+  mimeType: string;
+  partCount: number;
+  files: { video: string[]; cleanedText?: string; morseTranscript?: string };
+  parts: Array<{
+    filename: string;
+    runtimeMs: number;
+    sourceStart: number;
+    sourceEnd: number;
+  }>;
+  settingsSummary: {
+    visualStyle: string;
+    includeAudioTrack: boolean;
+    resolution: string;
+    showBranding: boolean;
+    targetPartMinutes: number;
+    charWpm: number;
+    farnsworthWpm: number;
+  };
+};
+
+type VideoBundleSettings = {
+  outputType: "video";
+  outputFormat: "webm";
+  mimeType: string;
+  frameRate: number;
+  visualStyle: string;
+  includeAudioTrack: boolean;
+  resolution: string;
+  showBranding: boolean;
+  targetPartMinutes: number;
+  charWpm: number;
+  farnsworthWpm: number;
+};
+
+function makeVideoPart(index: number, text = "E") {
+  return {
+    index,
+    title: `Part ${index}`,
+    sourceStart: index - 1,
+    sourceEnd: index,
+    cleanedText: text,
+    cleanedExcerpt: text,
+    morseDurationMs: estimateBookTextDurationMs(
+      text,
+      BOOK_EXPORT_PRESETS["Reader Quick Start"],
+    ),
+    estimatedFilename: `morse-book-part-${String(index).padStart(3, "0")}.mp3`,
+  };
+}
 
 test("book translator route metadata, alias, and sitemap use canonical URL", async ({
   page,
@@ -749,6 +905,34 @@ test("duration estimates and segmentation use shared Morse timing", async () => 
   expect(hinted.some((part) => part.title.includes("Second"))).toBe(true);
 });
 
+test("video timeline and package kind use shared timing and direct-vs-ZIP rules", () => {
+  const settings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
+  const text = "SOS HELP";
+  const timeline = buildBookVideoTimeline(text, settings);
+  const signalEvents = buildBookSignalEvents(text, settings);
+  expect(timeline.events.length).toBe(signalEvents.length);
+  expect(timeline.durationMs).toBeGreaterThanOrEqual(
+    signalEvents.reduce((sum, event) => sum + event.ms, 0),
+  );
+
+  const singlePart = [makeVideoPart(1)];
+  const multiPart = [makeVideoPart(1), makeVideoPart(2)];
+  expect(getBookVideoDownloadKind(singlePart, settings)).toBe("video");
+  expect(getBookVideoDownloadKind(multiPart, settings)).toBe("zip");
+  expect(describeBookVideoDownloadContents(singlePart, settings)).toEqual([
+    "WebM video file",
+  ]);
+  expect(describeBookVideoDownloadContents(multiPart, settings)).toContain(
+    "WebM video parts",
+  );
+
+  const sidecarSettings = {
+    ...settings,
+    includeManifest: true,
+  };
+  expect(getBookVideoDownloadKind(singlePart, sidecarSettings)).toBe("zip");
+});
+
 test("segmentation handles long-source boundary edge cases without empty parts", async () => {
   const settings = {
     ...BOOK_EXPORT_PRESETS["Practice Copy"],
@@ -1114,6 +1298,7 @@ test("audio preview plays current cleaned source and updates with audio settings
 test("output type selector gates audio and video settings without clearing source", async ({
   page,
 }) => {
+  await installFastVideoRecorder(page);
   await openBookTranslator(page);
   await page
     .getByLabel("Paste long-form source text")
@@ -1165,8 +1350,8 @@ test("output type selector gates audio and video settings without clearing sourc
   });
   await expect(page.getByRole("heading", { name: "Download video" })).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Download video" }),
-  ).toBeDisabled();
+    page.getByRole("button", { name: "Download WebM" }),
+  ).toBeEnabled();
   await expect(page.getByRole("heading", { name: "Video settings" })).toBeVisible();
   await expect(page.getByRole("radio", { name: /Lightbulb/ })).toHaveAttribute(
     "aria-checked",
@@ -1208,6 +1393,7 @@ test("output type selector gates audio and video settings without clearing sourc
 test("video preview modes, branding, and full-frame warning stay scoped", async ({
   page,
 }) => {
+  await installFastVideoRecorder(page);
   await openBookTranslator(page);
   await page.getByLabel("Paste long-form source text").fill("SOS HELP preview");
   await chooseOutputType(page, "video");
@@ -1272,9 +1458,138 @@ test("video preview modes, branding, and full-frame warning stay scoped", async 
   await expect(previewSection(page).getByText("Audio track off")).toBeVisible();
 });
 
+test("unsupported video export APIs show a clear unavailable message", async ({
+  page,
+}) => {
+  await installUnsupportedVideoRecorder(page);
+  await openBookTranslator(page);
+  await page.getByLabel("Paste long-form source text").fill("Video fallback SOS");
+  await chooseOutputType(page, "video");
+
+  await expect(
+    page.locator("#book-download-disabled-reason"),
+  ).toContainText(
+    "This browser does not support MediaRecorder video export.",
+  );
+  await expect(
+    page.getByRole("button", { name: "Download WebM" }),
+  ).toBeDisabled();
+  await expect(
+    page.getByText("MP4 is not guaranteed in-browser"),
+  ).toBeVisible();
+});
+
+for (const mode of [
+  { label: "Lightbulb", testId: "book-video-preview-lightbulb" },
+  { label: "Dot", testId: "book-video-preview-dot" },
+  { label: "Animated Morse text", testId: "book-video-preview-morse-text" },
+] as const) {
+  test(`${mode.label} mode downloads a non-empty direct WebM`, async ({
+    page,
+  }, testInfo) => {
+    await installFastVideoRecorder(page);
+    await openBookTranslator(page);
+    const rawSource = `qz ${mode.label.toLowerCase().split(" ")[0]}`;
+    await page.getByLabel("Paste long-form source text").fill(rawSource);
+    await chooseOutputType(page, "video");
+    await openDownloadSettings(page);
+    if (mode.label !== "Lightbulb") {
+      await page.getByRole("radio", { name: new RegExp(mode.label) }).click();
+    }
+
+    await expect(page.getByTestId(mode.testId)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Download WebM" })).toBeEnabled();
+    const video = await downloadVideoFile(page, testInfo, /Download WebM/);
+    expect(video.filename).toMatch(/morse-video\.webm$/);
+    expectWebmLike(video.bytes);
+    await expect(page.getByText("Last download")).toBeVisible();
+    await expect(page.getByText("WebM video file")).toBeVisible();
+    await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
+    await expectNoRawSourceInStorage(page, rawSource);
+  });
+}
+
+test("video sidecar downloads use a ZIP with WebM parts and video metadata", async ({
+  page,
+}, testInfo) => {
+  await installFastVideoRecorder(page);
+  await openBookTranslator(page);
+  await page.getByLabel("Paste long-form source text").fill("ZIP video SOS");
+  await openDownloadSettings(page);
+  await page.getByRole("button", { name: "Practice Copy" }).click();
+  await chooseOutputType(page, "video");
+  await expect(page.getByRole("button", { name: "Download ZIP bundle" })).toBeEnabled();
+
+  const zip = await downloadZip(page, testInfo);
+  expect(zip.filename).toMatch(/morse-video-bundle\.zip$/);
+  const partFiles = expectOrderedMediaPartFiles(zip.names, "webm");
+  expectWebmLike(zip.entries[partFiles[0]]);
+  for (const name of [
+    "cleaned-text.txt",
+    "morse-transcript.txt",
+    "manifest.json",
+    "settings.json",
+    "playlist.m3u",
+    "README.txt",
+  ]) {
+    expect(zip.names).toContain(name);
+  }
+  const manifest = zipJson<VideoBundleManifest>(zip.entries, "manifest.json");
+  expect(manifest.outputType).toBe("video");
+  expect(manifest.outputFormat).toBe("webm");
+  expect(manifest.mimeType).toContain("video/webm");
+  expect(manifest.files.video).toEqual(partFiles);
+  expect(manifest.parts.map((part) => part.filename)).toEqual(partFiles);
+  expect(manifest.settingsSummary.visualStyle).toBe("lightbulb");
+  expect(manifest.settingsSummary.showBranding).toBe(true);
+  expect(manifest.settingsSummary.resolution).toBe("720p");
+  const settings = zipJson<VideoBundleSettings>(zip.entries, "settings.json");
+  expect(settings.outputType).toBe("video");
+  expect(settings.outputFormat).toBe("webm");
+  expect(settings.frameRate).toBe(24);
+  expect(settings.visualStyle).toBe("lightbulb");
+  expect(settings.showBranding).toBe(true);
+  expectPlaylistOrder(zipText(zip.entries, "playlist.m3u"), partFiles);
+  const readme = zipText(zip.entries, "README.txt");
+  expect(readme).toContain("WebM is the browser-native video format");
+  expect(readme).toContain("MP4 is not guaranteed");
+
+  await page.getByLabel("Show small MorseWords branding").uncheck();
+  await expect(page.getByText("Last download")).toHaveCount(0);
+});
+
+test("video cancellation and source changes prevent stale completed state", async ({
+  page,
+}) => {
+  await installFastVideoRecorder(page);
+  await openBookTranslator(page);
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("Long video cancel SOS HELP ".repeat(8));
+  await chooseOutputType(page, "video");
+
+  await page.getByRole("button", { name: "Download WebM" }).click();
+  await expect(page.getByRole("button", { name: "Cancel download" })).toBeEnabled();
+  await page.getByRole("button", { name: "Cancel download" }).click();
+  await expect(page.getByText("Download cancelled.")).toBeVisible({
+    timeout: 30_000,
+  });
+  await expect(page.getByText("Last download")).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Download WebM" }).click();
+  await expect(page.getByRole("button", { name: "Cancel download" })).toBeEnabled();
+  await page.getByLabel("Paste long-form source text").fill("Replacement video source");
+  await expect(page.getByText("Source changed; download cancelled.")).toBeVisible({
+    timeout: 30_000,
+  });
+  await expect(page.getByText("Last download")).toHaveCount(0);
+  await expect(page.getByText("WebM download started.")).toHaveCount(0);
+});
+
 test("switching output type clears stale results and audio still downloads", async ({
   page,
 }, testInfo) => {
+  await installFastVideoRecorder(page);
   await openBookTranslator(page);
   await page
     .getByLabel("Paste long-form source text")
@@ -1291,8 +1606,8 @@ test("switching output type clears stale results and audio still downloads", asy
     "Mode switch download SOS HELP.",
   );
   await expect(
-    page.getByRole("button", { name: "Download video" }),
-  ).toBeDisabled();
+    page.getByRole("button", { name: "Download WebM" }),
+  ).toBeEnabled();
 
   await chooseOutputType(page, "audio");
   await expect(

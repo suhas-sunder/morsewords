@@ -51,6 +51,7 @@ import {
 import {
   buildExportAnalysis,
   buildMorseTranscript,
+  formatBytes,
   formatDuration,
 } from "./bookDurationEstimate";
 import { estimateMorseDurationMs } from "~/client/components/shared/morseTiming";
@@ -104,10 +105,20 @@ import {
   type BookVideoPreview,
 } from "./bookVideoPreview";
 import {
+  buildBookVideoWarnings,
+  createBookVideoDownloadPackage,
+  getBookVideoDownloadKind,
+} from "./bookVideoExport";
+import {
   BOOK_VIDEO_INTENSITY_LABELS,
   BOOK_VIDEO_RESOLUTION_LABELS,
   BOOK_VIDEO_VISUAL_STYLE_DETAILS,
 } from "./bookVideoPresets";
+import {
+  describeBookVideoFormat,
+  detectBookVideoSupport,
+  type BookVideoSupport,
+} from "./bookVideoSupport";
 import {
   BOOK_VIDEO_INTENSITIES,
   BOOK_VIDEO_RESOLUTIONS,
@@ -478,6 +489,8 @@ export default function BookTranslatorTool() {
     React.useState<BookExportSettings>(DEFAULT_BOOK_EXPORT_SETTINGS);
   const [videoSettings, setVideoSettings] =
     React.useState<BookVideoSettings>(DEFAULT_BOOK_VIDEO_SETTINGS);
+  const [videoSupport, setVideoSupport] =
+    React.useState<BookVideoSupport | null>(null);
   const [previewStatus, setPreviewStatus] =
     React.useState<BookPreviewStatus>("waiting");
   const [previewErrorMessage, setPreviewErrorMessage] = React.useState("");
@@ -509,12 +522,22 @@ export default function BookTranslatorTool() {
   } | null>(null);
   const exportVersionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
+  const exportProgressRef = React.useRef<BookExportProgress>(IDLE_EXPORT_PROGRESS);
   const visualPreviewIntervalRef = React.useRef<number | null>(null);
   const visualPreviewTimeoutRef = React.useRef<number | null>(null);
   const mountedRef = React.useRef(true);
   const customCleanupRuleIdRef = React.useRef(1);
   const previewAudioPlayer = useMorseAudio();
   const stopPreviewAudioRef = React.useRef(previewAudioPlayer.stop);
+
+  React.useEffect(() => {
+    exportProgressRef.current = exportProgress;
+  }, [exportProgress]);
+
+  const hasActiveExport = React.useCallback(
+    () => exportAbortRef.current !== null || isExportRunning(exportProgressRef.current),
+    [],
+  );
 
   const cancelActiveExport = React.useCallback(
     (message = "Download cancelled.") => {
@@ -584,6 +607,19 @@ export default function BookTranslatorTool() {
     preferencesLoaded,
     videoSettings,
   ]);
+
+  React.useEffect(() => {
+    setVideoSupport(detectBookVideoSupport());
+  }, []);
+
+  React.useEffect(() => {
+    if (!videoSupport || videoSupport.audioTrackSupported) return;
+    setVideoSettings((current) =>
+      current.includeAudioTrack
+        ? sanitizeBookVideoSettings({ ...current, includeAudioTrack: false })
+        : current,
+    );
+  }, [videoSupport]);
 
   React.useEffect(() => {
     return () => {
@@ -707,6 +743,16 @@ export default function BookTranslatorTool() {
   const appliedThemeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(appliedThemeMode);
+  const effectiveVideoSettings = React.useMemo<BookVideoSettings>(
+    () =>
+      sanitizeBookVideoSettings({
+        ...videoSettings,
+        includeAudioTrack:
+          videoSettings.includeAudioTrack &&
+          Boolean(videoSupport?.audioTrackSupported),
+      }),
+    [videoSettings, videoSupport?.audioTrackSupported],
+  );
   const audioPreview = React.useMemo(
     () => buildBookAudioPreview(preflight.cleanedText, exportSettings),
     [exportSettings, preflight.cleanedText],
@@ -714,10 +760,10 @@ export default function BookTranslatorTool() {
   const videoPreview = React.useMemo(
     () =>
       buildBookVideoPreview(
-        videoSettings,
+        effectiveVideoSettings,
         audioPreview?.sampleText ?? preflight.cleanedText,
       ),
-    [audioPreview?.sampleText, preflight.cleanedText, videoSettings],
+    [audioPreview?.sampleText, effectiveVideoSettings, preflight.cleanedText],
   );
   const previewSettingsSignature = React.useMemo(
     () =>
@@ -731,11 +777,11 @@ export default function BookTranslatorTool() {
         exportSettings.volume,
         exportSettings.tonePreset,
         exportSettings.outputFormat,
-        videoSettings.visualStyle,
-        videoSettings.intensity,
-        videoSettings.includeAudioTrack,
-        videoSettings.showBranding,
-        videoSettings.showMorseOverlay,
+        effectiveVideoSettings.visualStyle,
+        effectiveVideoSettings.intensity,
+        effectiveVideoSettings.includeAudioTrack,
+        effectiveVideoSettings.showBranding,
+        effectiveVideoSettings.showMorseOverlay,
         resolvedVideoBackgroundStyle,
       ].join("|"),
     [
@@ -749,17 +795,35 @@ export default function BookTranslatorTool() {
       exportSettings.volume,
       outputType,
       resolvedVideoBackgroundStyle,
-      videoSettings.includeAudioTrack,
-      videoSettings.intensity,
-      videoSettings.showBranding,
-      videoSettings.showMorseOverlay,
-      videoSettings.visualStyle,
+      effectiveVideoSettings.includeAudioTrack,
+      effectiveVideoSettings.intensity,
+      effectiveVideoSettings.showBranding,
+      effectiveVideoSettings.showMorseOverlay,
+      effectiveVideoSettings.visualStyle,
     ],
   );
   const canAudioExport = hasSource && exportParts.length > 0 && !exportRunning;
-  const canExport = isAudioOutput && canAudioExport;
+  const canVideoExport =
+    hasSource &&
+    hasCleanedSource &&
+    exportParts.length > 0 &&
+    !exportRunning &&
+    Boolean(videoSupport?.supported);
+  const canExport = isAudioOutput ? canAudioExport : canVideoExport;
   const exportDisabledReason = isVideoOutput
-    ? ""
+    ? !hasSource
+      ? "Add source text or upload a source file to enable video download."
+      : !hasCleanedSource
+        ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
+        : exportParts.length === 0
+          ? "Review the source text before downloading."
+          : !videoSupport
+            ? "Checking browser video export support."
+            : !videoSupport.supported
+              ? videoSupport.reason
+              : exportRunning
+                ? "Download is currently running."
+                : ""
     : !hasSource
       ? "Add source text or upload a source file to enable download."
       : !hasCleanedSource
@@ -784,14 +848,24 @@ export default function BookTranslatorTool() {
   const activePresetDetails =
     BOOK_EXPORT_PRESET_DETAILS[exportSettings.presetName];
   const activeSettingsSummary = describeBookExportSettings(exportSettings);
-  const downloadKind =
-    isAudioOutput && hasSource && exportParts.length > 0
-      ? getBookDownloadKind(exportParts, exportSettings)
+  const downloadKind = hasSource && exportParts.length > 0
+    ? isVideoOutput
+      ? getBookVideoDownloadKind(exportParts, exportSettings)
+      : getBookDownloadKind(exportParts, exportSettings)
+    : isVideoOutput
+      ? "video"
       : "audio";
   const downloadFormatLabel = exportSettings.outputFormat.toUpperCase();
+  const videoFormatLabel = describeBookVideoFormat(videoSupport);
   const primaryDownloadLabel =
     isVideoOutput
-      ? "Download video"
+      ? downloadKind === "zip"
+        ? `Download ZIP bundle${
+            exportParts.length > 1
+              ? ` (${exportParts.length.toLocaleString()} WebM files)`
+              : ""
+          }`
+        : "Download WebM"
       : downloadKind === "zip"
       ? `Download ZIP bundle${
           exportParts.length > 1
@@ -801,10 +875,20 @@ export default function BookTranslatorTool() {
       : `Download ${downloadFormatLabel}`;
   const downloadBadge =
     isVideoOutput
-      ? "Video"
+      ? downloadKind === "zip"
+        ? "ZIP bundle"
+        : videoFormatLabel
       : downloadKind === "zip"
         ? "ZIP bundle"
         : `${downloadFormatLabel} file`;
+  const videoWarnings = isVideoOutput
+    ? buildBookVideoWarnings({
+        partCount: exportParts.length,
+        support: videoSupport,
+        totalRuntimeMs: exportAnalysis.totalRuntimeMs,
+        videoSettings: effectiveVideoSettings,
+      })
+    : [];
   const customRuleMatchesById = React.useMemo(
     () =>
       new Map(preflight.customRuleMatches.map((match) => [match.id, match])),
@@ -818,6 +902,11 @@ export default function BookTranslatorTool() {
       : exportProgress.phase === "complete"
         ? 100
         : 0;
+  const showExportProgress =
+    isAudioOutput ||
+    Boolean(exportStatus) ||
+    exportRunning ||
+    ["cancelled", "failed", "complete"].includes(exportProgress.phase);
 
   React.useEffect(() => {
     stopPreviewAudioRef.current?.();
@@ -924,7 +1013,7 @@ export default function BookTranslatorTool() {
 
   const updatePastedText = React.useCallback(
     (value: string) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Source changed; download cancelled.");
       }
       parseVersionRef.current += 1;
@@ -941,12 +1030,12 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const updateUploadedText = React.useCallback(
     (value: string) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Source changed; download cancelled.");
       }
       parseVersionRef.current += 1;
@@ -965,12 +1054,12 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const parseSelectedFile = React.useCallback(
     async (file: File) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Source changed; download cancelled.");
       }
       const selectedAt = performance.now();
@@ -1026,11 +1115,11 @@ export default function BookTranslatorTool() {
         setPendingFilename(file.name);
       }
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const clearSource = React.useCallback(() => {
-    if (isExportRunning(exportProgress)) {
+    if (hasActiveExport()) {
       cancelActiveExport("Source changed; download cancelled.");
     }
     parseVersionRef.current += 1;
@@ -1050,7 +1139,7 @@ export default function BookTranslatorTool() {
     setExportStatus(null);
     setCompletedExport(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
-  }, [cancelActiveExport, exportProgress, outputType]);
+  }, [cancelActiveExport, hasActiveExport, outputType]);
 
   const copySourceValue = React.useCallback(
     async (label: string, value: string) => {
@@ -1086,7 +1175,7 @@ export default function BookTranslatorTool() {
   }, [parsedSource.rawText]);
 
   const applyExtractedTextDraft = React.useCallback(() => {
-    if (isExportRunning(exportProgress)) {
+    if (hasActiveExport()) {
       cancelActiveExport("Source changed; download cancelled.");
     }
     parseVersionRef.current += 1;
@@ -1120,7 +1209,7 @@ export default function BookTranslatorTool() {
     setExportStatus(null);
     setCompletedExport(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
-  }, [cancelActiveExport, exportProgress, sourceEditDraft]);
+  }, [cancelActiveExport, hasActiveExport, sourceEditDraft]);
 
   const cancelExtractedTextDraft = React.useCallback(() => {
     setSourceEditMode("idle");
@@ -1151,7 +1240,7 @@ export default function BookTranslatorTool() {
 
   const toggleCleanup = React.useCallback(
     (key: keyof CleanupOptions) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Settings changed; download cancelled.");
       }
       setCleanupOptions((current) => ({
@@ -1161,11 +1250,11 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const addCustomCleanupRule = React.useCallback(() => {
-    if (isExportRunning(exportProgress)) {
+    if (hasActiveExport()) {
       cancelActiveExport("Settings changed; download cancelled.");
     }
     const id = `custom-cleanup-${customCleanupRuleIdRef.current}`;
@@ -1183,11 +1272,11 @@ export default function BookTranslatorTool() {
     ]);
     setExportStatus(null);
     setCompletedExport(null);
-  }, [cancelActiveExport, exportProgress]);
+  }, [cancelActiveExport, hasActiveExport]);
 
   const updateCustomCleanupRule = React.useCallback(
     (id: string, patch: Partial<CustomCleanupRule>) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Settings changed; download cancelled.");
       }
       setCustomCleanupRules((current) =>
@@ -1198,12 +1287,12 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const deleteCustomCleanupRule = React.useCallback(
     (id: string) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Settings changed; download cancelled.");
       }
       setCustomCleanupRules((current) =>
@@ -1212,12 +1301,12 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const moveCustomCleanupRule = React.useCallback(
     (id: string, direction: -1 | 1) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Settings changed; download cancelled.");
       }
       setCustomCleanupRules((current) => {
@@ -1234,21 +1323,21 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const clearCustomCleanupRules = React.useCallback(() => {
-    if (isExportRunning(exportProgress)) {
+    if (hasActiveExport()) {
       cancelActiveExport("Settings changed; download cancelled.");
     }
     setCustomCleanupRules([]);
     setExportStatus(null);
     setCompletedExport(null);
-  }, [cancelActiveExport, exportProgress]);
+  }, [cancelActiveExport, hasActiveExport]);
 
   const updateExportSettings = React.useCallback(
     (patch: Partial<BookExportSettings>) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Settings changed; download cancelled.");
       }
       setExportSettings((current) =>
@@ -1257,13 +1346,13 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const updateOutputType = React.useCallback(
     (nextOutputType: BookOutputType) => {
       if (nextOutputType === outputType) return;
-      const wasRunning = isExportRunning(exportProgress);
+      const wasRunning = hasActiveExport();
       if (wasRunning) {
         cancelActiveExport("Output type changed; download cancelled.");
       }
@@ -1283,12 +1372,12 @@ export default function BookTranslatorTool() {
       );
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress, outputType],
+    [cancelActiveExport, hasActiveExport, outputType],
   );
 
   const updateVideoSettings = React.useCallback(
     (patch: Partial<BookVideoSettings>) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Settings changed; download cancelled.");
       }
       setVideoSettings((current) =>
@@ -1297,29 +1386,29 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const pickPreset = React.useCallback(
     (presetName: BookExportPresetName) => {
-      if (isExportRunning(exportProgress)) {
+      if (hasActiveExport()) {
         cancelActiveExport("Preset changed; download cancelled.");
       }
       setExportSettings(applyBookPreset(presetName));
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const resetCurrentPreset = React.useCallback(() => {
-    if (isExportRunning(exportProgress)) {
+    if (hasActiveExport()) {
       cancelActiveExport("Preset reset; download cancelled.");
     }
     setExportSettings((current) => applyBookPreset(current.presetName));
     setExportStatus(null);
     setCompletedExport(null);
-  }, [cancelActiveExport, exportProgress]);
+  }, [cancelActiveExport, hasActiveExport]);
 
   const handleUploadKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
@@ -1363,21 +1452,32 @@ export default function BookTranslatorTool() {
   );
 
   const handleDownloadBook = React.useCallback(async () => {
-    if (outputType !== "audio") {
-      setCompletedExport(null);
-      setExportStatus({
-        kind: "info",
-        message: "Video downloads are not available yet.",
-      });
-      setExportProgress(VIDEO_IDLE_EXPORT_PROGRESS);
-      return;
-    }
-
     if (!hasSource || exportParts.length === 0) {
       setExportStatus({
         kind: "error",
-        message: "Add source text before downloading audio.",
+        message: isVideoOutput
+          ? "Add source text before downloading video."
+          : "Add source text before downloading audio.",
       });
+      return;
+    }
+
+    if (!hasCleanedSource) {
+      setExportStatus({
+        kind: "error",
+        message: "Cleaned source is empty. Adjust cleanup before downloading.",
+      });
+      return;
+    }
+
+    if (isVideoOutput && (!videoSupport || !videoSupport.supported)) {
+      setExportStatus({
+        kind: "error",
+        message:
+          videoSupport?.reason ??
+          "Checking browser video export support. Try again in a moment.",
+      });
+      setExportProgress(VIDEO_IDLE_EXPORT_PROGRESS);
       return;
     }
 
@@ -1387,31 +1487,51 @@ export default function BookTranslatorTool() {
     const version = exportVersionRef.current + 1;
     exportVersionRef.current = version;
     setCompletedExport(null);
-    setExportStatus({ kind: "working", message: "Starting book download..." });
+    setExportStatus({
+      kind: "working",
+      message: isVideoOutput
+        ? "Starting book video download..."
+        : "Starting book download...",
+    });
     setExportProgress({
       phase: "analyzing",
-      message: "Preparing cleaned source for download...",
+      message: isVideoOutput
+        ? "Preparing cleaned source for video..."
+        : "Preparing cleaned source for download...",
       currentPart: 0,
       totalParts: exportParts.length,
     });
 
     try {
-      const result = await createBookDownloadPackage({
-        metadata: {
-          title: preflight.title,
-          author: preflight.author,
-          filename: preflight.filename,
-          sourceType: preflight.sourceType,
-        },
-        parts: exportParts,
-        settings: exportSettings,
-        signal: controller.signal,
-        onProgress: (progress) => {
-          if (mountedRef.current && exportVersionRef.current === version) {
-            setExportProgress(progress);
-          }
-        },
-      });
+      const metadata = {
+        title: preflight.title,
+        author: preflight.author,
+        filename: preflight.filename,
+        sourceType: preflight.sourceType,
+      };
+      const progressHandler = (progress: BookExportProgress) => {
+        if (mountedRef.current && exportVersionRef.current === version) {
+          setExportProgress(progress);
+        }
+      };
+      const result = isVideoOutput
+        ? await createBookVideoDownloadPackage({
+            metadata,
+            parts: exportParts,
+            exportSettings,
+            videoSettings: effectiveVideoSettings,
+            resolvedBackgroundStyle: resolvedVideoBackgroundStyle,
+            support: videoSupport as BookVideoSupport,
+            signal: controller.signal,
+            onProgress: progressHandler,
+          })
+        : await createBookDownloadPackage({
+            metadata,
+            parts: exportParts,
+            settings: exportSettings,
+            signal: controller.signal,
+            onProgress: progressHandler,
+          });
       if (!mountedRef.current || exportVersionRef.current !== version) return;
       const download = downloadBlobFile({
         blob: result.blob,
@@ -1430,10 +1550,12 @@ export default function BookTranslatorTool() {
       setCompletedExport({
         filename: result.filename,
         downloadKind: result.downloadKind,
-        outputFormat: exportSettings.outputFormat,
+        outputFormat: isVideoOutput ? "webm" : exportSettings.outputFormat,
         partCount: exportParts.length,
         runtimeLabel: formatDuration(exportAnalysis.totalRuntimeMs),
-        sizeLabel: exportAnalysis.estimatedSizeLabel,
+        sizeLabel: isVideoOutput
+          ? formatBytes(result.blob.size)
+          : exportAnalysis.estimatedSizeLabel,
         contents: result.contents,
       });
       setExportProgress({
@@ -1443,7 +1565,9 @@ export default function BookTranslatorTool() {
             ? `ZIP download started with ${exportParts.length} part${
                 exportParts.length === 1 ? "" : "s"
               }.`
-            : `${downloadFormatLabel} download started.`,
+            : isVideoOutput
+              ? "WebM download started."
+              : `${downloadFormatLabel} download started.`,
         currentPart: exportParts.length,
         totalParts: exportParts.length,
       });
@@ -1452,7 +1576,9 @@ export default function BookTranslatorTool() {
         message:
           result.downloadKind === "zip"
             ? "ZIP download started."
-            : `${downloadFormatLabel} download started.`,
+            : isVideoOutput
+              ? "WebM download started."
+              : `${downloadFormatLabel} download started.`,
       });
     } catch (error) {
       if (!mountedRef.current || exportVersionRef.current !== version) return;
@@ -1466,17 +1592,18 @@ export default function BookTranslatorTool() {
         setExportStatus({ kind: "info", message: "Download cancelled." });
         return;
       }
+      const failedMessage = isVideoOutput
+        ? "Video export failed. Try 720p, a shorter part duration, or silent video."
+        : "Book download failed. Try a shorter part duration or MP3 output.";
       setExportProgress({
         phase: "failed",
-        message:
-          "Book download failed. Try a shorter part duration or MP3 output.",
+        message: failedMessage,
         currentPart: 0,
         totalParts: exportParts.length,
       });
       setExportStatus({
         kind: "error",
-        message:
-          "Book download failed. Try a shorter part duration or MP3 output.",
+        message: failedMessage,
       });
     } finally {
       if (exportVersionRef.current === version) {
@@ -1484,13 +1611,17 @@ export default function BookTranslatorTool() {
       }
     }
   }, [
+    effectiveVideoSettings,
     exportAnalysis.estimatedSizeLabel,
     exportAnalysis.totalRuntimeMs,
     exportParts,
     exportSettings,
+    hasCleanedSource,
     hasSource,
-    outputType,
+    isVideoOutput,
     preflight,
+    resolvedVideoBackgroundStyle,
+    videoSupport,
     downloadFormatLabel,
   ]);
 
@@ -1896,7 +2027,7 @@ export default function BookTranslatorTool() {
                   value={
                     isVideoOutput
                       ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[
-                          videoSettings.visualStyle
+                          effectiveVideoSettings.visualStyle
                         ].label
                       : downloadFormatLabel
                   }
@@ -1931,7 +2062,7 @@ export default function BookTranslatorTool() {
                   label={isVideoOutput ? "Resolution" : "Output size"}
                   value={
                     isVideoOutput
-                      ? BOOK_VIDEO_RESOLUTION_LABELS[videoSettings.resolution]
+                      ? BOOK_VIDEO_RESOLUTION_LABELS[effectiveVideoSettings.resolution]
                       : `~${exportAnalysis.estimatedSizeLabel}`
                   }
                 />
@@ -1957,8 +2088,15 @@ export default function BookTranslatorTool() {
                   tone="warning"
                 />
               ) : null}
+              {isVideoOutput ? (
+                <MessageList
+                  title="Video warnings"
+                  items={videoWarnings}
+                  tone="warning"
+                />
+              ) : null}
 
-              {isVideoOutput && videoSettings.visualStyle === "full-frame" ? (
+              {isVideoOutput && effectiveVideoSettings.visualStyle === "full-frame" ? (
                 <FullFrameFlashWarning className="mt-4" />
               ) : null}
 
@@ -1978,7 +2116,7 @@ export default function BookTranslatorTool() {
                 previewStatus={previewStatus}
                 resolvedVideoBackgroundStyle={resolvedVideoBackgroundStyle}
                 videoPreview={videoPreview}
-                videoSettings={videoSettings}
+                videoSettings={effectiveVideoSettings}
                 visualPreviewPlaying={visualPreviewPlaying}
                 visualPreviewStep={visualPreviewStep}
               />
@@ -2014,7 +2152,7 @@ export default function BookTranslatorTool() {
                 ) : null}
               </div>
 
-              {isAudioOutput || exportStatus ? (
+              {showExportProgress ? (
                 <div className="mt-5">
                   <progress
                     value={progressPercent}
@@ -2038,7 +2176,7 @@ export default function BookTranslatorTool() {
                 </div>
               ) : null}
 
-              {isAudioOutput && completedExport ? (
+              {completedExport ? (
                 <div className="mt-5 border-t border-slate-200/70 pt-5">
                   <h3 className="text-base font-extrabold text-sky-950">
                     Last download
@@ -2418,6 +2556,7 @@ export default function BookTranslatorTool() {
                       onVolumeChange={(value) =>
                         updateExportSettings({ volume: value })
                       }
+                      videoSupport={videoSupport}
                       videoSettings={videoSettings}
                     />
                   )}
@@ -2721,8 +2860,9 @@ export default function BookTranslatorTool() {
                 label={isVideoOutput ? "Video style" : "Format"}
                 value={
                   isVideoOutput
-                    ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[videoSettings.visualStyle]
-                        .label
+                    ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[
+                        effectiveVideoSettings.visualStyle
+                      ].label
                     : exportSettings.outputFormat.toUpperCase()
                 }
               />
@@ -3103,6 +3243,7 @@ function BookVideoSettingsEditor({
   onTonePresetChange,
   onVideoSettingsChange,
   onVolumeChange,
+  videoSupport,
   videoSettings,
 }: {
   exportSettings: BookExportSettings;
@@ -3112,8 +3253,11 @@ function BookVideoSettingsEditor({
   onTonePresetChange: (value: AudioTonePresetId) => void;
   onVideoSettingsChange: (patch: Partial<BookVideoSettings>) => void;
   onVolumeChange: (value: number) => void;
+  videoSupport: BookVideoSupport | null;
   videoSettings: BookVideoSettings;
 }) {
+  const audioTrackAvailable = Boolean(videoSupport?.audioTrackSupported);
+
   return (
     <div className="space-y-5">
       <div>
@@ -3240,7 +3384,8 @@ function BookVideoSettingsEditor({
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <ExportCheckbox
             label="Include audio track"
-            checked={videoSettings.includeAudioTrack}
+            checked={videoSettings.includeAudioTrack && audioTrackAvailable}
+            disabled={!audioTrackAvailable}
             onChange={(value) =>
               onVideoSettingsChange({
                 includeAudioTrack: value,
@@ -3266,6 +3411,12 @@ function BookVideoSettingsEditor({
             }
           />
         </div>
+        {!audioTrackAvailable ? (
+          <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+            {videoSupport?.audioTrackReason ??
+              "Checking audio-track support for video export."}
+          </p>
+        ) : null}
       </div>
 
       <div className="border-t border-slate-200/70 pt-5">
@@ -3281,7 +3432,7 @@ function BookVideoSettingsEditor({
             </p>
           </div>
           <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            {videoSettings.includeAudioTrack
+            {videoSettings.includeAudioTrack && audioTrackAvailable
               ? tonePresetLabel(exportSettings.tonePreset)
               : "Silent video"}
           </span>
@@ -3289,7 +3440,7 @@ function BookVideoSettingsEditor({
         <AudioSettingsPanel
           className="mt-5"
           context="bookExport"
-          disabledSound={!videoSettings.includeAudioTrack}
+          disabledSound={!videoSettings.includeAudioTrack || !audioTrackAvailable}
           idPrefix="book-download-video-audio"
           preset={exportSettings.tonePreset}
           onPresetChange={onTonePresetChange}
@@ -3558,18 +3709,25 @@ function LabeledSelect({
 
 function ExportCheckbox({
   checked,
+  disabled = false,
   label,
   onChange,
 }: {
   checked: boolean;
+  disabled?: boolean;
   label: string;
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-start gap-3 text-sm font-semibold text-slate-800">
+    <label
+      className={`flex items-start gap-3 text-sm font-semibold ${
+        disabled ? "cursor-not-allowed text-slate-400" : "cursor-pointer text-slate-800"
+      }`}
+    >
       <input
         type="checkbox"
         checked={checked}
+        disabled={disabled}
         onChange={(event) => onChange(event.target.checked)}
         className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
       />
