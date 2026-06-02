@@ -472,7 +472,7 @@ export default function MorseAudioTranslator({
               <ToolHero
                 eyebrow="Audio tool"
                 title="Morse Code Audio Generator"
-                lead="Convert text or pasted Morse into playable audio. Adjust listening settings, then export a WAV file from your browser."
+                lead="Convert text or pasted Morse into playable audio. Adjust speed, Farnsworth spacing, tone, pitch, and volume, then export WAV from your browser or use the audio tools below for MP3, decoding, books, video, and listening practice."
               />
               <div className="pb-4 pt-4 sm:pb-5 sm:pt-4">
               <div className="flex flex-wrap items-center gap-3">

@@ -8,8 +8,8 @@ import HowItWorksAudio from "~/client/components/shared/HowItWorksAudio";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
-  ActionLinks,
   SectionCard,
+  SimpleGrid,
 } from "~/client/components/shared/MorseLearningLayout";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -31,34 +31,132 @@ type AudioFaqQuestionSchema = {
   };
 };
 
+const audioToolPathItems = [
+  {
+    title: "Create Morse sound",
+    text: "Shape a beep, tone, or radio-style signal when tone character matters more than a full message workflow.",
+    href: ROUTES.soundGenerator,
+    badge: "Sound",
+  },
+  {
+    title: "Download MP3",
+    text: "Use the MP3 generator when you need a smaller shareable file instead of the WAV export on this page.",
+    href: ROUTES.mp3Generator,
+    badge: "MP3",
+  },
+  {
+    title: "Decode audio",
+    text: "Use the audio decoder when you have a local Morse audio file and want to turn the tones back into readable text.",
+    href: ROUTES.audioDecoder,
+    badge: "Decode",
+  },
+  {
+    title: "Convert long text or books",
+    text: "Move TXT, EPUB, PDF, or chapter-length source material into the book translator for longer audio or video output.",
+    href: ROUTES.bookTranslator,
+    badge: "Books",
+  },
+  {
+    title: "Make a Morse video",
+    text: "Create a downloadable visual Morse clip with an optional audio track for short messages and demos.",
+    href: ROUTES.videoGenerator,
+    badge: "Video",
+  },
+  {
+    title: "Practice listening",
+    text: "Build ear training with focused copy practice after you understand the speed and spacing you want.",
+    href: ROUTES.audioPractice,
+    badge: "Listen",
+  },
+  {
+    title: "Take an audio quiz",
+    text: "Check recognition with short listening prompts and immediate review when you are ready for a test.",
+    href: ROUTES.audioQuiz,
+    badge: "Quiz",
+  },
+];
+
+const faqItems: AudioFaqItem[] = [
+  {
+    q: "Can I translate text into Morse code audio?",
+    a: "Yes. Type a message in text mode and the page converts it to Morse code, plays it as audio, and shows the Morse output beside the input.",
+  },
+  {
+    q: "Can I change the Morse speed?",
+    a: "Yes. Character speed controls how fast each dit and dah is sent, while Farnsworth spacing can add extra room between letters and words for easier listening.",
+  },
+  {
+    q: "What is Farnsworth timing?",
+    a: "Farnsworth timing keeps the characters crisp but stretches the gaps between characters and words. It is useful when you can hear individual letters but need more time to copy words.",
+  },
+  {
+    q: "Can I change the tone or pitch?",
+    a: "Yes. The tone preset, pitch, volume, attack, and release controls change how the audio sounds. They do not change the Morse letters, word gaps, or decoded message.",
+  },
+  {
+    q: "Can I download the audio from this page?",
+    a: "Yes. This page exports a WAV file rendered in your browser, so the saved file matches the timing and tone settings you preview.",
+  },
+  {
+    q: "When should I use the MP3 generator instead?",
+    a: "Use the Morse code MP3 generator when you need a smaller downloadable MP3 for sharing, embedding, or sending. Use this page when you want quick playback or a clean WAV export.",
+  },
+  {
+    q: "Can I convert a whole book into Morse audio?",
+    a: "Use the book to Morse code translator for long text, TXT, EPUB, or PDF input. The audio page is best for shorter messages you want to preview and tune quickly.",
+  },
+  {
+    q: "Can I decode Morse audio back into text?",
+    a: "Use the Morse code audio decoder for that job. This page creates and plays Morse audio; the decoder page analyzes a local audio file and turns recognizable Morse tones into text.",
+  },
+  {
+    q: "Can I make a Morse code video?",
+    a: "Yes, use the Morse code video generator when you need visual dots and dashes with an optional audio track. This page focuses on playable audio and WAV export.",
+  },
+  {
+    q: "Which audio format should I use, MP3 or WAV?",
+    a: "WAV is larger but keeps short Morse tones clean for editing and timing checks. MP3 is smaller and easier to share, but it is compressed.",
+  },
+  {
+    q: "Is my text or audio uploaded to a server?",
+    a: "No. On this page, playback and WAV export happen locally in your browser. Your message is not uploaded for audio generation.",
+  },
+];
+
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Audio Generator | Play, Tune, and Save Morse Sound | MorseWords",
+    title: "Morse Code Audio Translator & Generator | WAV, MP3, Decoder Tools | MorseWords",
     description:
-      "Generate Morse code audio from text or dots and dashes. Play the signal, adjust listening settings, and save WAV audio for practice or sharing.",
+      "Translate text or Morse into playable audio, tune WPM and Farnsworth spacing, export WAV, and find Morse MP3, decoder, book, video, and listening tools.",
     path: CANONICAL_PATH,
     keywords:
-      "morse code audio generator, text to morse audio, morse code to audio, morse wav export, morse listening practice",
+      "morse code audio translator, morse code audio generator, text to morse audio, morse code to audio, morse code mp3 generator, morse code audio decoder, morse listening practice",
   });
 }
 
 export default function AudioRoute() {
+  const faqMainEntity: AudioFaqQuestionSchema[] = faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  }));
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
         "@id": `${CANONICAL_URL}#webapp`,
-        name: "Morse Code Audio Generator",
+        name: "Morse Code Audio Translator and Generator",
         applicationCategory: "UtilityApplication",
         operatingSystem: "All",
         url: CANONICAL_URL,
         description:
-          "Browser-based Morse code audio generator for playing full messages, tuning listening settings, and exporting WAV practice audio.",
+          "Browser-based Morse code audio hub for playing messages, tuning listening settings, exporting WAV practice audio, and finding related MP3, decoder, book, video, and listening tools.",
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         featureList: [
           "Text to Morse audio playback",
@@ -67,6 +165,7 @@ export default function AudioRoute() {
           "Adjustable pitch, waveform, volume, attack, and release",
           "Local WAV export",
           "Browser-based audio generation",
+          "Canonical links to Morse MP3, audio decoder, book, video, and listening practice tools",
         ],
       },
       {
@@ -90,47 +189,10 @@ export default function AudioRoute() {
       {
         "@type": "FAQPage",
         "@id": `${CANONICAL_URL}#faq`,
-        mainEntity: [] as AudioFaqQuestionSchema[],
+        mainEntity: faqMainEntity,
       },
     ],
   };
-
-  const faqItems: AudioFaqItem[] = [
-    {
-      q: "Can I save the Morse audio from this page?",
-      a: "Yes. This page exports a WAV file rendered in your browser, so the timing in the saved file matches the Morse pattern and settings you preview.",
-    },
-    {
-      q: "Can I paste Morse code directly and hear it?",
-      a: "Yes. Switch to Morse input and paste dots, dashes, spaces, or slash-separated word gaps. The page plays the pasted pattern using the same timing grid shown in the preview.",
-    },
-    {
-      q: "What speed should I use for listening practice?",
-      a: "Start with a character speed you can recognize cleanly, often 12 to 18 WPM for early listening. If the characters sound clear but words feel rushed, increase Farnsworth spacing before lowering character speed.",
-    },
-    {
-      q: "Why does changing pitch not change the Morse message?",
-      a: "Pitch changes the frequency of the tone, not the dot, dash, letter, or word timing. Use speed and Farnsworth controls for timing changes, and use pitch only for listening comfort or tone character.",
-    },
-    {
-      q: "Should I use the audio generator or the sound generator?",
-      a: "Use this page when you want to hear or save a full Morse message as audio. Use the sound generator when you mainly want to shape the beep or tone signal for practice and testing.",
-    },
-    {
-      q: "Why does the exported WAV sound larger than an MP3?",
-      a: "WAV is uncompressed, which keeps symbol timing and short dits clean for editing. If you need a smaller shareable file, use the Morse code MP3 generator.",
-    },
-    {
-      q: "Does this upload my message or audio anywhere?",
-      a: "No. Playback and WAV export happen locally in your browser.",
-    },
-  ];
-
-  jsonLd["@graph"][2].mainEntity = faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  }));
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
@@ -138,24 +200,12 @@ export default function AudioRoute() {
         <MorseAudioTranslator enableQueryPrefill />
         <HowItWorksAudio />
         <SectionCard
-          eyebrow="Try useful audio"
-          title="Load common examples and exports"
-          description="Use these links when you want to hear a short example, save a compact audio file, or move longer source text into the right export tool."
+          eyebrow="Audio tools path"
+          title="Choose the right Morse audio tool"
+          description="Start here for playable text-to-Morse audio, then move to the specific audio, export, decoding, book, video, or listening-practice tool that matches the job."
+          layout="stacked"
         >
-          <ActionLinks
-            links={[
-              { href: ROUTES.nameToMorse, label: "Name to Morse", primary: true },
-              { href: ROUTES.mp3Generator, label: "Download MP3" },
-              { href: ROUTES.bookTranslator, label: "Long text/books" },
-              { href: ROUTES.videoGenerator, label: "Make Morse video" },
-              { href: ROUTES.chart, label: "Complete chart" },
-              { href: ROUTES.audioDecoder, label: "Decode audio file" },
-              { href: `${ROUTES.audio}?text=I%20LOVE%20YOU`, label: "I love you" },
-              { href: `${ROUTES.audio}?text=CQ`, label: "CQ" },
-              { href: `${ROUTES.audio}?text=%3F`, label: "Question mark" },
-              { href: `${ROUTES.audio}?text=%40`, label: "At sign" },
-            ]}
-          />
+          <SimpleGrid items={audioToolPathItems} linkedItemStyle="card" />
         </SectionCard>
         <FaqSectionGeneric title="Audio FAQ" items={faqItems} />
       </div>
