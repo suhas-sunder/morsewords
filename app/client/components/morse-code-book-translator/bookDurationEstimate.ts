@@ -114,7 +114,7 @@ export function buildExportAnalysis({
 
   if (totalRuntimeMs > 0 && partCount > 1) {
     warnings.push(
-      "MorseWords downloads sortable parts in a ZIP bundle instead of one huge merged file.",
+      "Split downloads save timed audio parts in a ZIP bundle.",
     );
   }
 

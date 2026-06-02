@@ -3,6 +3,7 @@ import { sanitizeDownloadFilename } from "~/client/components/shared/actionOutpu
 import type { BookSourceSection } from "./bookSourceTypes";
 import {
   estimateBookTextDurationMs,
+  getWordGapMs,
   splitParagraphRanges,
   splitSentenceRanges,
   splitWordRanges,
@@ -33,6 +34,23 @@ export function segmentBookText({
   sourceTitle,
 }: SegmentInput): BookExportPart[] {
   if (!cleanedText.trim()) return [];
+  if (!settings.splitAudio) {
+    const text = cleanedText.trim();
+    const leadingWhitespace = cleanedText.search(/\S/);
+    const sourceStart = Math.max(0, leadingWhitespace);
+    return finalizeParts(
+      [
+        {
+          text,
+          start: sourceStart,
+          end: sourceStart + text.length,
+        },
+      ],
+      settings,
+      sourceTitle,
+    );
+  }
+
   const targetMs = settings.targetPartMinutes * 60_000;
   const units =
     settings.preferSourceSections && sourceSections.length > 1
@@ -79,6 +97,7 @@ function collectPartsFromUnits({
   const rawParts: TextUnit[] = [];
   let current: TextUnit | null = null;
   let currentMs = 0;
+  const combinedUnitGapMs = getWordGapMs(settings) * settings.paragraphPauseMultiplier;
 
   for (const unit of units) {
     const unitMs = estimateBookTextDurationMs(unit.text, settings);
@@ -99,15 +118,14 @@ function collectPartsFromUnits({
       continue;
     }
 
-    const combinedText: string = `${current.text}\n\n${unit.text}`;
-    const combinedMs = estimateBookTextDurationMs(combinedText, settings);
+    const combinedMs = currentMs + combinedUnitGapMs + unitMs;
     if (combinedMs > targetMs && currentMs > targetMs * 0.55) {
       rawParts.push(current);
       current = { ...unit };
       currentMs = unitMs;
     } else {
       current = {
-        text: combinedText,
+        text: `${current.text}\n\n${unit.text}`,
         start: current.start,
         end: unit.end,
         title: current.title,

@@ -18,7 +18,7 @@ const CANONICAL_PATH = ROUTES.bookTranslator;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 const TITLE = "Book to Morse Code Translator and Audio Download Tool";
 const DESCRIPTION =
-  "Paste or upload TXT, MD, EPUB, or text-native PDF, estimate Morse runtime, split safe parts, and download local MP3 or WAV ZIP bundles.";
+  "Paste or upload TXT, MD, EPUB, or text-native PDF, estimate Morse runtime, and download a local MP3 or WAV file with optional safe splitting.";
 
 const jsonLd = [
   {
@@ -57,12 +57,12 @@ const howItWorksItems = [
     text: "Preview smart punctuation normalization, zero-width cleanup, Gutenberg stripping, and practice-friendly punctuation simplification.",
   },
   {
-    title: "Estimate and split",
-    text: "Estimate Morse runtime, then split long sources at safe section, paragraph, sentence, or word boundaries rather than assuming original chapters.",
+    title: "Estimate runtime",
+    text: "Estimate Morse listening time before download. When you turn on splitting, long sources can use safe section, paragraph, sentence, or word boundaries.",
   },
   {
     title: "Download the audio",
-    text: "Download one MP3 or WAV when the source fits, or a sorted ZIP bundle with transcripts, manifest, settings, playlist, and README files when extras are selected.",
+    text: "Download one MP3 or WAV by default. Turn on splitting for a sorted ZIP bundle, or add sidecar files when you need transcripts, settings, or a manifest.",
   },
 ];
 
@@ -113,7 +113,7 @@ export default function MorseCodeBookTranslatorRoute() {
       <PageHero
         eyebrow="Book download"
         title={TITLE}
-        description="Prepare long-form source text for Morse code conversion, estimate listening time, split it into safe parts, and download an MP3 or WAV bundle."
+        description="Prepare long-form source text for Morse code conversion, estimate listening time, and download a local MP3 or WAV file. Split into timed parts only when you choose it."
         aside={
           <DarkNote label="Supported sources" value="TXT MD EPUB PDF">
             TXT and EPUB are best for long downloads. PDF must contain selectable
@@ -135,7 +135,7 @@ export default function MorseCodeBookTranslatorRoute() {
       <SectionCard
         eyebrow="Long-form workflow"
         title="How book downloads work"
-        description="The page extracts readable text locally, estimates Morse timing, and renders audio part by part instead of one huge book-length file."
+        description="The page extracts readable text locally, estimates Morse timing, and renders a direct audio file by default. Optional splitting creates timed parts when that fits your workflow."
         layout="stacked"
       >
         <SimpleGrid items={howItWorksItems} variant="plain" />

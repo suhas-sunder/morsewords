@@ -5,6 +5,7 @@ import {
   CopyIcon,
   DownloadIcon,
   EqualizerIcon,
+  LightBulbIcon,
   RefreshIcon,
   SparklesIcon,
   StopIcon,
@@ -37,6 +38,10 @@ import {
 } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import StatusMessage from "~/client/components/shared/ui/StatusMessage";
+import {
+  getAppliedThemeMode,
+  type ThemeMode,
+} from "~/client/theme/themeStorage";
 
 import {
   createBookDownloadPackage,
@@ -65,6 +70,7 @@ import type {
   BookExportProgress,
   BookExportResultSummary,
   BookExportSettings,
+  BookOutputType,
 } from "./bookExportTypes";
 import { segmentBookText } from "./bookSegmentation";
 import {
@@ -87,6 +93,23 @@ import {
   buildCleanedSourceSections,
   buildPreflightSummary,
 } from "./textNormalization";
+import {
+  buildBookVideoPreview,
+  type BookVideoPreview,
+} from "./bookVideoPreview";
+import {
+  BOOK_VIDEO_INTENSITY_LABELS,
+  BOOK_VIDEO_RESOLUTION_LABELS,
+  BOOK_VIDEO_VISUAL_STYLE_DETAILS,
+} from "./bookVideoPresets";
+import {
+  BOOK_VIDEO_INTENSITIES,
+  BOOK_VIDEO_RESOLUTIONS,
+  BOOK_VIDEO_VISUAL_STYLES,
+  DEFAULT_BOOK_VIDEO_SETTINGS,
+  sanitizeBookVideoSettings,
+  type BookVideoSettings,
+} from "./bookVideoTypes";
 
 type ParseStatus = "idle" | "parsing" | "ready" | "error";
 type ExportStatusKind = "info" | "success" | "error" | "working";
@@ -103,10 +126,44 @@ const EXTRACTED_SOURCE_PREVIEW_LIMIT = 6_000;
 
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   phase: "idle",
-  message: "Choose download settings, review the split, then download audio.",
+  message: "Choose download settings, then download audio.",
   currentPart: 0,
   totalParts: 0,
 };
+
+const VIDEO_IDLE_EXPORT_PROGRESS: BookExportProgress = {
+  phase: "idle",
+  message: "",
+  currentPart: 0,
+  totalParts: 0,
+};
+
+const FULL_FRAME_FLASH_WARNING =
+  "Full-frame flash mode can create rapid full-frame flashing in the finished video and may be uncomfortable or unsafe for some viewers. Use Lightbulb or Dot for a smaller flash area.";
+
+function useAppliedThemeMode() {
+  const [themeMode, setThemeMode] = React.useState<ThemeMode>("light");
+
+  React.useEffect(() => {
+    setThemeMode(getAppliedThemeMode());
+
+    if (typeof document === "undefined") return undefined;
+    const observer = new MutationObserver(() => {
+      setThemeMode(getAppliedThemeMode());
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  return themeMode;
+}
+
+function resolveBookVideoBackgroundStyle(themeMode: ThemeMode) {
+  return themeMode === "dark" ? "dark-morsewords" : "warm-morsewords";
+}
 
 function formatNumber(value: number | undefined) {
   return typeof value === "number" ? value.toLocaleString() : "0";
@@ -183,24 +240,121 @@ function MessageList({
 
   return (
     <section
-      className="rounded-xl bg-[#fffdf8] p-4"
+      className="flex items-start gap-2 text-sm leading-relaxed"
       role={tone === "error" ? "alert" : undefined}
     >
-      <h3 className="flex items-center gap-2 text-sm font-extrabold text-sky-950">
-        <WarningBadgeIcon size={16} title={undefined} aria-hidden="true" />
-        {title}
-      </h3>
-      <ul className={`mt-2 space-y-1 text-sm leading-relaxed ${toneClass}`}>
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
+      <WarningBadgeIcon
+        size={16}
+        title={undefined}
+        aria-hidden="true"
+        className="mt-0.5 shrink-0 text-sky-950"
+      />
+      <div>
+        <h3 className="text-sm font-extrabold text-sky-950">{title}</h3>
+        <ul className={`mt-1 space-y-1 ${toneClass}`}>
+          {items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
 
 function EmptyPreview({ children }: { children: React.ReactNode }) {
   return <p className="text-sm leading-relaxed text-slate-600">{children}</p>;
+}
+
+function SourceUploadDropzone({
+  dragActive,
+  fileInputRef,
+  filename,
+  hasSource,
+  onDrop,
+  onFileInputChange,
+  onUploadKeyDown,
+  setDragActive,
+  uploadHelpText,
+  uploadRightsText,
+  uploadTitle,
+}: {
+  dragActive: boolean;
+  fileInputRef: React.RefObject<HTMLInputElement | null>;
+  filename?: string;
+  hasSource: boolean;
+  onDrop: (event: React.DragEvent<HTMLDivElement>) => void;
+  onFileInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onUploadKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void;
+  setDragActive: (value: boolean) => void;
+  uploadHelpText: string;
+  uploadRightsText: string;
+  uploadTitle: string;
+}) {
+  return (
+    <div>
+      <input
+        ref={fileInputRef}
+        id="book-source-file"
+        type="file"
+        accept=".txt,.md,.markdown,.epub,.pdf,text/plain,text/markdown,application/epub+zip,application/pdf"
+        onChange={onFileInputChange}
+        className="sr-only"
+        aria-describedby="book-source-file-help"
+      />
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label={hasSource ? "Replace book source file" : "Upload a book source file"}
+        aria-describedby="book-source-file-help"
+        onClick={() => fileInputRef.current?.click()}
+        onKeyDown={onUploadKeyDown}
+        onDragOver={(event) => {
+          event.preventDefault();
+          setDragActive(true);
+        }}
+        onDragEnter={(event) => {
+          event.preventDefault();
+          setDragActive(true);
+        }}
+        onDragLeave={() => setDragActive(false)}
+        onDrop={onDrop}
+        className={[
+          "flex cursor-pointer flex-col gap-3 rounded-xl border border-dashed border-slate-300/80 bg-white/88 p-4 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] sm:flex-row sm:items-center sm:justify-between",
+          dragActive ? "border-sky-500 bg-[#fffaf2] text-sky-950" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        <div className="flex min-w-0 items-start gap-3">
+          <UploadIcon
+            size={24}
+            title={undefined}
+            aria-hidden="true"
+            className="mt-0.5 shrink-0 text-sky-950"
+          />
+          <div className="min-w-0">
+            <span className="block text-base font-extrabold text-sky-950">
+              {uploadTitle}
+            </span>
+            <span
+              id="book-source-file-help"
+              className="mt-1 block max-w-[68ch] text-sm leading-relaxed text-slate-600"
+            >
+              {uploadHelpText}
+            </span>
+            {filename ? (
+              <span className="mt-2 block break-words text-sm font-semibold text-slate-700">
+                Current file: {filename}
+              </span>
+            ) : null}
+          </div>
+        </div>
+        <p className="max-w-[42ch] text-xs leading-relaxed text-slate-500 sm:text-right">
+          {uploadRightsText}
+        </p>
+      </div>
+    </div>
+  );
 }
 
 async function parseFileSource(file: File) {
@@ -233,8 +387,12 @@ export default function BookTranslatorTool() {
   const [sourceEditMode, setSourceEditMode] =
     React.useState<SourceEditMode>("idle");
   const [sourceEditDraft, setSourceEditDraft] = React.useState("");
+  const [outputType, setOutputType] =
+    React.useState<BookOutputType>("audio");
   const [exportSettings, setExportSettings] =
     React.useState<BookExportSettings>(DEFAULT_BOOK_EXPORT_SETTINGS);
+  const [videoSettings, setVideoSettings] =
+    React.useState<BookVideoSettings>(DEFAULT_BOOK_VIDEO_SETTINGS);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [status, setStatus] = React.useState<ParseStatus>("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -282,15 +440,33 @@ export default function BookTranslatorTool() {
 
   React.useEffect(() => {
     const preferences = loadBookExportPreferences();
+    setOutputType(preferences.outputType);
     setExportSettings(preferences.exportSettings);
+    setVideoSettings(preferences.videoSettings);
+    setExportProgress(
+      preferences.outputType === "video"
+        ? VIDEO_IDLE_EXPORT_PROGRESS
+        : IDLE_EXPORT_PROGRESS,
+    );
     setAdvancedOpen(preferences.advancedOpen);
     setPreferencesLoaded(true);
   }, []);
 
   React.useEffect(() => {
     if (!preferencesLoaded) return;
-    saveBookExportPreferences({ exportSettings, advancedOpen });
-  }, [advancedOpen, exportSettings, preferencesLoaded]);
+    saveBookExportPreferences({
+      outputType,
+      exportSettings,
+      videoSettings,
+      advancedOpen,
+    });
+  }, [
+    advancedOpen,
+    exportSettings,
+    outputType,
+    preferencesLoaded,
+    videoSettings,
+  ]);
 
   React.useEffect(() => {
     return () => {
@@ -329,15 +505,24 @@ export default function BookTranslatorTool() {
     [customCleanupRules, effectiveCleanupOptions, parsedSource],
   );
 
+  const activeSegmentationSettings = React.useMemo<BookExportSettings>(() => {
+    if (outputType === "audio") return exportSettings;
+    return sanitizeBookExportSettings({
+      ...exportSettings,
+      splitAudio: true,
+      targetPartMinutes: videoSettings.targetPartMinutes,
+    });
+  }, [exportSettings, outputType, videoSettings.targetPartMinutes]);
+
   const exportParts = React.useMemo<BookExportPart[]>(() => {
     return segmentBookText({
       cleanedText: preflight.cleanedText,
-      settings: exportSettings,
+      settings: activeSegmentationSettings,
       sourceSections,
       sourceTitle: preflight.title || preflight.filename,
     });
   }, [
-    exportSettings,
+    activeSegmentationSettings,
     preflight.cleanedText,
     preflight.filename,
     preflight.title,
@@ -348,10 +533,10 @@ export default function BookTranslatorTool() {
     () =>
       buildExportAnalysis({
         preflight,
-        settings: exportSettings,
+        settings: activeSegmentationSettings,
         partCount: exportParts.length,
       }),
-    [exportParts.length, exportSettings, preflight],
+    [activeSegmentationSettings, exportParts.length, preflight],
   );
 
   const hasSource = parsedSource.rawText.trim().length > 0;
@@ -388,23 +573,38 @@ export default function BookTranslatorTool() {
     hasSource && !hasCleanedSource
       ? "Cleanup removed all source text. Turn off the cleanup option or add text before downloading."
       : "";
-  const sourceWarnings = [
-    ...preflight.extractionWarnings,
-    ...preflight.cleanupWarnings,
-    cleanedSourceEmptyWarning,
-  ].filter(Boolean);
+  const sourceWarnings = showSourceState
+    ? [
+        ...preflight.extractionWarnings,
+        ...preflight.cleanupWarnings,
+        cleanedSourceEmptyWarning,
+      ].filter(Boolean)
+    : [];
   const exportWarnings = exportAnalysis.warnings.filter(Boolean);
   const exportRunning = isExportRunning(exportProgress);
-  const canExport = hasSource && exportParts.length > 0 && !exportRunning;
-  const exportDisabledReason = !hasSource
-    ? "Add source text or upload a source file to enable download."
-    : !hasCleanedSource
-      ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
-      : exportParts.length === 0
-        ? "Review the source text before downloading."
-        : exportRunning
-          ? "Download is currently running."
-          : "";
+  const isAudioOutput = outputType === "audio";
+  const isVideoOutput = outputType === "video";
+  const isSegmentedOutput = isVideoOutput || exportSettings.splitAudio;
+  const appliedThemeMode = useAppliedThemeMode();
+  const resolvedVideoBackgroundStyle =
+    resolveBookVideoBackgroundStyle(appliedThemeMode);
+  const videoPreview = React.useMemo(
+    () => buildBookVideoPreview(videoSettings, preflight.cleanedText),
+    [preflight.cleanedText, videoSettings],
+  );
+  const canAudioExport = hasSource && exportParts.length > 0 && !exportRunning;
+  const canExport = isAudioOutput && canAudioExport;
+  const exportDisabledReason = isVideoOutput
+    ? ""
+    : !hasSource
+      ? "Add source text or upload a source file to enable download."
+      : !hasCleanedSource
+        ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
+        : exportParts.length === 0
+          ? "Review the source text before downloading."
+          : exportRunning
+            ? "Download is currently running."
+            : "";
   const sourcePreviewStatus = !hasSource
     ? "No source loaded"
     : sourceDraftActive
@@ -421,12 +621,14 @@ export default function BookTranslatorTool() {
     BOOK_EXPORT_PRESET_DETAILS[exportSettings.presetName];
   const activeSettingsSummary = describeBookExportSettings(exportSettings);
   const downloadKind =
-    hasSource && exportParts.length > 0
+    isAudioOutput && hasSource && exportParts.length > 0
       ? getBookDownloadKind(exportParts, exportSettings)
       : "audio";
   const downloadFormatLabel = exportSettings.outputFormat.toUpperCase();
   const primaryDownloadLabel =
-    downloadKind === "zip"
+    isVideoOutput
+      ? "Download video"
+      : downloadKind === "zip"
       ? `Download ZIP bundle${
           exportParts.length > 1
             ? ` (${exportParts.length.toLocaleString()} ${downloadFormatLabel} files)`
@@ -434,7 +636,11 @@ export default function BookTranslatorTool() {
         }`
       : `Download ${downloadFormatLabel}`;
   const downloadBadge =
-    downloadKind === "zip" ? "ZIP bundle" : `${downloadFormatLabel} file`;
+    isVideoOutput
+      ? "Video"
+      : downloadKind === "zip"
+        ? "ZIP bundle"
+        : `${downloadFormatLabel} file`;
   const customRuleMatchesById = React.useMemo(
     () =>
       new Map(preflight.customRuleMatches.map((match) => [match.id, match])),
@@ -571,11 +777,13 @@ export default function BookTranslatorTool() {
     setStatus("idle");
     setErrorMessage("");
     setSourceActionStatus(null);
-    setExportProgress(IDLE_EXPORT_PROGRESS);
+    setExportProgress(
+      outputType === "video" ? VIDEO_IDLE_EXPORT_PROGRESS : IDLE_EXPORT_PROGRESS,
+    );
     setExportStatus(null);
     setCompletedExport(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
-  }, [cancelActiveExport, exportProgress]);
+  }, [cancelActiveExport, exportProgress, outputType]);
 
   const copySourceValue = React.useCallback(
     async (label: string, value: string) => {
@@ -785,6 +993,46 @@ export default function BookTranslatorTool() {
     [cancelActiveExport, exportProgress],
   );
 
+  const updateOutputType = React.useCallback(
+    (nextOutputType: BookOutputType) => {
+      if (nextOutputType === outputType) return;
+      const wasRunning = isExportRunning(exportProgress);
+      if (wasRunning) {
+        cancelActiveExport("Output type changed; download cancelled.");
+      }
+      setOutputType(nextOutputType);
+      setExportProgress(
+        nextOutputType === "video"
+          ? VIDEO_IDLE_EXPORT_PROGRESS
+          : IDLE_EXPORT_PROGRESS,
+      );
+      setExportStatus(
+        wasRunning
+          ? {
+              kind: "info",
+              message: "Output type changed; download cancelled.",
+            }
+          : null,
+      );
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, exportProgress, outputType],
+  );
+
+  const updateVideoSettings = React.useCallback(
+    (patch: Partial<BookVideoSettings>) => {
+      if (isExportRunning(exportProgress)) {
+        cancelActiveExport("Settings changed; download cancelled.");
+      }
+      setVideoSettings((current) =>
+        sanitizeBookVideoSettings({ ...current, ...patch }),
+      );
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, exportProgress],
+  );
+
   const pickPreset = React.useCallback(
     (presetName: BookExportPresetName) => {
       if (isExportRunning(exportProgress)) {
@@ -848,6 +1096,16 @@ export default function BookTranslatorTool() {
   );
 
   const handleDownloadBook = React.useCallback(async () => {
+    if (outputType !== "audio") {
+      setCompletedExport(null);
+      setExportStatus({
+        kind: "info",
+        message: "Video downloads are not available yet.",
+      });
+      setExportProgress(VIDEO_IDLE_EXPORT_PROGRESS);
+      return;
+    }
+
     if (!hasSource || exportParts.length === 0) {
       setExportStatus({
         kind: "error",
@@ -864,7 +1122,7 @@ export default function BookTranslatorTool() {
     setCompletedExport(null);
     setExportStatus({ kind: "working", message: "Starting book download..." });
     setExportProgress({
-      phase: "splitting",
+      phase: "analyzing",
       message: "Preparing cleaned source for download...",
       currentPart: 0,
       totalParts: exportParts.length,
@@ -964,6 +1222,7 @@ export default function BookTranslatorTool() {
     exportParts,
     exportSettings,
     hasSource,
+    outputType,
     preflight,
     downloadFormatLabel,
   ]);
@@ -1004,7 +1263,21 @@ export default function BookTranslatorTool() {
           </div>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="space-y-5">
+          <SourceUploadDropzone
+            dragActive={dragActive}
+            fileInputRef={fileInputRef}
+            filename={parsedSource.filename}
+            hasSource={hasSource}
+            onDrop={handleDrop}
+            onFileInputChange={handleFileInputChange}
+            onUploadKeyDown={handleUploadKeyDown}
+            setDragActive={setDragActive}
+            uploadHelpText={uploadHelpText}
+            uploadRightsText={uploadRightsText}
+            uploadTitle={uploadTitle}
+          />
+
           <ToolPanel
             label="Source text"
             badge={
@@ -1042,8 +1315,8 @@ export default function BookTranslatorTool() {
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-700">
                   {sourceDraftIsLarge
-                    ? "Large edits apply manually. Downloads, preview, runtime, and split details keep using the last applied source until you choose Apply edits."
-                    : "Apply the draft to update cleanup, preview, runtime, splitting, and download output."}
+                    ? "Large edits apply manually. Downloads, preview, runtime, and download details keep using the last applied source until you choose Apply edits."
+                    : "Apply the draft to update cleanup, preview, runtime, and download output."}
                 </p>
                 <label htmlFor="book-source-edit-draft" className="sr-only">
                   Edit extracted text draft
@@ -1292,12 +1565,14 @@ export default function BookTranslatorTool() {
                     id="book-download-controls-heading"
                     className="text-base font-extrabold text-sky-950"
                   >
-                    Download audio
+                    {isVideoOutput ? "Download video" : "Download audio"}
                   </h3>
                   <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                    {downloadKind === "zip"
-                      ? "A ZIP bundle is used when the source is split into parts or selected sidecar files need to travel with the audio."
-                      : "This source can download as one audio file because it fits in one part and no sidecar files are selected."}
+                    {isVideoOutput
+                      ? "Choose the video options and review the frame below."
+                      : downloadKind === "zip"
+                        ? "A ZIP bundle is used when the source is split into parts or selected sidecar files need to travel with the audio."
+                        : "This source can download as one audio file because it fits in one part and no sidecar files are selected."}
                   </p>
                 </div>
                 <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
@@ -1305,9 +1580,60 @@ export default function BookTranslatorTool() {
                 </span>
               </div>
 
+              <fieldset className="mt-4">
+                <legend className="text-sm font-extrabold text-sky-950">
+                  Output type
+                </legend>
+                <div
+                  className="mt-2 flex flex-wrap gap-2"
+                  role="radiogroup"
+                  aria-label="Book output type"
+                >
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={isAudioOutput}
+                    onClick={() => updateOutputType("audio")}
+                    className={toolControlButtonClass({
+                      active: isAudioOutput,
+                      tone: isAudioOutput ? "dark" : "light",
+                      size: "sm",
+                      rounded: "full",
+                      hover: "dark",
+                    })}
+                  >
+                    Audio
+                  </button>
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={isVideoOutput}
+                    onClick={() => updateOutputType("video")}
+                    className={toolControlButtonClass({
+                      active: isVideoOutput,
+                      tone: isVideoOutput ? "dark" : "light",
+                      size: "sm",
+                      rounded: "full",
+                      hover: "dark",
+                    })}
+                  >
+                    Video
+                  </button>
+                </div>
+              </fieldset>
+
               <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 <Metric label="Preset" value={exportSettings.presetName} />
-                <Metric label="Format" value={downloadFormatLabel} />
+                <Metric
+                  label={isVideoOutput ? "Style" : "Format"}
+                  value={
+                    isVideoOutput
+                      ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[
+                          videoSettings.visualStyle
+                        ].label
+                      : downloadFormatLabel
+                  }
+                />
                 <Metric
                   label="Runtime"
                   value={
@@ -1321,12 +1647,26 @@ export default function BookTranslatorTool() {
                   value={hasSource ? formatNumber(exportParts.length) : "0"}
                 />
                 <Metric
-                  label="Target part"
-                  value={formatDuration(exportAnalysis.targetPartMs)}
+                  label={
+                    isVideoOutput
+                      ? "Video target"
+                      : exportSettings.splitAudio
+                        ? "Target part"
+                        : "Split"
+                  }
+                  value={
+                    isVideoOutput || exportSettings.splitAudio
+                      ? formatDuration(exportAnalysis.targetPartMs)
+                      : "Off"
+                  }
                 />
                 <Metric
-                  label="Output size"
-                  value={`~${exportAnalysis.estimatedSizeLabel}`}
+                  label={isVideoOutput ? "Resolution" : "Output size"}
+                  value={
+                    isVideoOutput
+                      ? BOOK_VIDEO_RESOLUTION_LABELS[videoSettings.resolution]
+                      : `~${exportAnalysis.estimatedSizeLabel}`
+                  }
                 />
               </dl>
 
@@ -1343,11 +1683,25 @@ export default function BookTranslatorTool() {
                   {exportDisabledReason}
                 </p>
               ) : null}
-              <MessageList
-                title="Download warnings"
-                items={exportWarnings}
-                tone="warning"
-              />
+              {isAudioOutput ? (
+                <MessageList
+                  title="Download warnings"
+                  items={exportWarnings}
+                  tone="warning"
+                />
+              ) : null}
+
+              {isVideoOutput && videoSettings.visualStyle === "full-frame" ? (
+                <FullFrameFlashWarning className="mt-4" />
+              ) : null}
+
+              {isVideoOutput ? (
+                <BookVideoPreviewPanel
+                  preview={videoPreview}
+                  resolvedBackgroundStyle={resolvedVideoBackgroundStyle}
+                  settings={videoSettings}
+                />
+              ) : null}
 
               <div className="mt-4 flex flex-wrap gap-2">
                 <ToolButton
@@ -1365,42 +1719,46 @@ export default function BookTranslatorTool() {
                   <DownloadIcon size={18} title={undefined} aria-hidden="true" />
                   {primaryDownloadLabel}
                 </ToolButton>
-                <ToolButton
-                  type="button"
-                  tone="light"
-                  hover="dark"
-                  onClick={() => cancelActiveExport()}
-                  disabled={!exportRunning}
-                  className="rounded-xl"
-                >
-                  <StopIcon size={18} title={undefined} aria-hidden="true" />
-                  Cancel download
-                </ToolButton>
+                {isAudioOutput || exportRunning ? (
+                  <ToolButton
+                    type="button"
+                    tone="light"
+                    hover="dark"
+                    onClick={() => cancelActiveExport()}
+                    disabled={!exportRunning}
+                    className="rounded-xl"
+                  >
+                    <StopIcon size={18} title={undefined} aria-hidden="true" />
+                    Cancel download
+                  </ToolButton>
+                ) : null}
               </div>
 
-              <div className="mt-5">
-                <progress
-                  value={progressPercent}
-                  max={100}
-                  role="progressbar"
-                  aria-label="Book download progress"
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-valuenow={progressPercent}
-                  className="h-2 w-full overflow-hidden rounded-full"
-                />
-                <StatusMessage
-                  kind={
-                    exportStatus?.kind ?? (exportRunning ? "working" : "info")
-                  }
-                  live
-                  className="mt-3"
-                >
-                  {exportStatus?.message ?? exportProgress.message}
-                </StatusMessage>
-              </div>
+              {isAudioOutput || exportStatus ? (
+                <div className="mt-5">
+                  <progress
+                    value={progressPercent}
+                    max={100}
+                    role="progressbar"
+                    aria-label="Book download progress"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={progressPercent}
+                    className="h-2 w-full overflow-hidden rounded-full"
+                  />
+                  <StatusMessage
+                    kind={
+                      exportStatus?.kind ?? (exportRunning ? "working" : "info")
+                    }
+                    live
+                    className="mt-3"
+                  >
+                    {exportStatus?.message ?? exportProgress.message}
+                  </StatusMessage>
+                </div>
+              ) : null}
 
-              {completedExport ? (
+              {isAudioOutput && completedExport ? (
                 <div className="mt-5 border-t border-slate-200/70 pt-5">
                   <h3 className="text-base font-extrabold text-sky-950">
                     Last download
@@ -1441,6 +1799,8 @@ export default function BookTranslatorTool() {
                   Download settings
                 </summary>
                 <div className="mt-5 space-y-5">
+                  {isAudioOutput ? (
+                    <>
                   <div>
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div>
@@ -1448,8 +1808,8 @@ export default function BookTranslatorTool() {
                           Choose download style
                         </h4>
                         <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                          Presets adjust speed, part length, audio format, and
-                          optional sidecar files.
+                          Presets adjust speed, audio format, and optional
+                          sidecar files.
                         </p>
                       </div>
                       <div className="flex flex-wrap items-center gap-2">
@@ -1581,13 +1941,40 @@ export default function BookTranslatorTool() {
                           Audio settings
                         </h4>
                         <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                          These settings drive estimates, part splitting, and
-                          generated downloads.
+                          These settings drive estimates and generated
+                          downloads.
                         </p>
                       </div>
                       <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                         {tonePresetLabel(exportSettings.tonePreset)}
                       </span>
+                    </div>
+                    <div className="mt-4">
+                      <ExportCheckbox
+                        label="Split into parts"
+                        checked={exportSettings.splitAudio}
+                        onChange={(value) =>
+                          updateExportSettings({ splitAudio: value })
+                        }
+                      />
+                      <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+                        {exportSettings.splitAudio
+                          ? "Downloads are split by the target part length below and saved as a ZIP bundle."
+                          : "Downloads use one audio file by default."}
+                      </p>
+                      {exportSettings.splitAudio ? (
+                        <div className="mt-3">
+                          <ExportCheckbox
+                            label="Prefer EPUB/PDF section hints"
+                            checked={exportSettings.preferSourceSections}
+                            onChange={(value) =>
+                              updateExportSettings({
+                                preferSourceSections: value,
+                              })
+                            }
+                          />
+                        </div>
+                      ) : null}
                     </div>
                     <AudioSettingsPanel
                       className="mt-5"
@@ -1626,7 +2013,11 @@ export default function BookTranslatorTool() {
                       onTailMsChange={(value) =>
                         updateExportSettings({ tailPaddingMs: value })
                       }
-                      targetPartMinutes={exportSettings.targetPartMinutes}
+                      targetPartMinutes={
+                        exportSettings.splitAudio
+                          ? exportSettings.targetPartMinutes
+                          : undefined
+                      }
                       onTargetPartMinutesChange={(value) =>
                         updateExportSettings({ targetPartMinutes: value })
                       }
@@ -1693,15 +2084,6 @@ export default function BookTranslatorTool() {
                     </div>
                     <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                       <ExportCheckbox
-                        label="Prefer EPUB/PDF section hints"
-                        checked={exportSettings.preferSourceSections}
-                        onChange={(value) =>
-                          updateExportSettings({
-                            preferSourceSections: value,
-                          })
-                        }
-                      />
-                      <ExportCheckbox
                         label="Include cleaned text"
                         checked={exportSettings.includeCleanedText}
                         onChange={(value) =>
@@ -1740,90 +2122,30 @@ export default function BookTranslatorTool() {
                       />
                     </div>
                   </div>
+                    </>
+                  ) : (
+                    <BookVideoSettingsEditor
+                      exportSettings={exportSettings}
+                      onCharWpmChange={handleCharWpmChange}
+                      onFarnsworthWpmChange={(value) =>
+                        updateExportSettings({ farnsworthWpm: value })
+                      }
+                      onPitchChange={(value) =>
+                        updateExportSettings({ pitch: value })
+                      }
+                      onTonePresetChange={handleTonePresetChange}
+                      onVideoSettingsChange={updateVideoSettings}
+                      onVolumeChange={(value) =>
+                        updateExportSettings({ volume: value })
+                      }
+                      videoSettings={videoSettings}
+                    />
+                  )}
                 </div>
               </details>
             </section>
           </ToolPanel>
 
-          <div className="space-y-4">
-            <input
-              ref={fileInputRef}
-              id="book-source-file"
-              type="file"
-              accept=".txt,.md,.markdown,.epub,.pdf,text/plain,text/markdown,application/epub+zip,application/pdf"
-              onChange={handleFileInputChange}
-              className="sr-only"
-              aria-describedby="book-source-file-help"
-            />
-            <div
-              role="button"
-              tabIndex={0}
-              aria-label={
-                hasSource ? "Replace book source file" : "Upload a book source file"
-              }
-              aria-describedby="book-source-file-help"
-              onClick={() => fileInputRef.current?.click()}
-              onKeyDown={handleUploadKeyDown}
-              onDragOver={(event) => {
-                event.preventDefault();
-                setDragActive(true);
-              }}
-              onDragEnter={(event) => {
-                event.preventDefault();
-                setDragActive(true);
-              }}
-              onDragLeave={() => setDragActive(false)}
-              onDrop={handleDrop}
-              className={[
-                "flex cursor-pointer flex-col justify-center rounded-xl border border-dashed border-slate-300/80 bg-white/88 text-center transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2]",
-                hasSource ? "min-h-[9rem] p-4" : "min-h-[14rem] p-5",
-                dragActive ? "bg-[#fffaf2] text-sky-950" : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-            >
-              <UploadIcon
-                size={hasSource ? 24 : 28}
-                title={undefined}
-                aria-hidden="true"
-                className="mx-auto text-sky-950"
-              />
-              <span className="mt-3 block text-base font-extrabold text-sky-950">
-                {uploadTitle}
-              </span>
-              <span
-                id="book-source-file-help"
-                className="mx-auto mt-2 block max-w-[34ch] text-sm leading-relaxed text-slate-600"
-              >
-                {uploadHelpText}
-              </span>
-              {parsedSource.filename ? (
-                <span className="mt-3 block break-words text-sm font-semibold text-slate-700">
-                  Current file: {parsedSource.filename}
-                </span>
-              ) : null}
-              <span className="mx-auto mt-3 block max-w-[38ch] text-xs leading-relaxed text-slate-500">
-                {uploadRightsText}
-              </span>
-            </div>
-
-            {!showSourceState ? (
-              <div className="flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={clearSource}
-                  disabled={!canClearSource}
-                  className={toolControlButtonClass({
-                    size: "sm",
-                    disabled: !canClearSource,
-                  })}
-                >
-                  <TrashIcon size={16} title={undefined} aria-hidden="true" />
-                  Clear source
-                </button>
-              </div>
-            ) : null}
-          </div>
         </div>
 
         {status === "parsing" ? (
@@ -2100,16 +2422,29 @@ export default function BookTranslatorTool() {
               />
               <Metric label="Parts" value={formatNumber(exportParts.length)} />
               <Metric
-                label="Target part"
-                value={formatDuration(exportAnalysis.targetPartMs)}
+                label={isSegmentedOutput ? "Target part" : "Split"}
+                value={
+                  isSegmentedOutput
+                    ? formatDuration(exportAnalysis.targetPartMs)
+                    : "Off"
+                }
               />
               <Metric
-                label="Output size"
-                value={`~${exportAnalysis.estimatedSizeLabel}`}
+                label={isVideoOutput ? "Output type" : "Output size"}
+                value={
+                  isVideoOutput
+                    ? "Video"
+                    : `~${exportAnalysis.estimatedSizeLabel}`
+                }
               />
               <Metric
-                label="Format"
-                value={exportSettings.outputFormat.toUpperCase()}
+                label={isVideoOutput ? "Video style" : "Format"}
+                value={
+                  isVideoOutput
+                    ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[videoSettings.visualStyle]
+                        .label
+                    : exportSettings.outputFormat.toUpperCase()
+                }
               />
               <Metric label="Preset" value={exportSettings.presetName} />
               <Metric
@@ -2144,7 +2479,7 @@ export default function BookTranslatorTool() {
           ) : (
             <EmptyPreview>
               Paste text or upload TXT, MD, EPUB, or text-native PDF to see word
-              counts, runtime, part splitting, unsupported characters, and Morse
+              counts, runtime, download shape, unsupported characters, and Morse
               previews before download.
             </EmptyPreview>
           )}
@@ -2188,53 +2523,59 @@ export default function BookTranslatorTool() {
 
       <section>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-xl font-extrabold text-sky-950">Split summary</h2>
+          <h2 className="text-xl font-extrabold text-sky-950">
+            {isSegmentedOutput ? "Split summary" : "Audio file summary"}
+          </h2>
           <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            {exportParts.length} part{exportParts.length === 1 ? "" : "s"}
+            {isSegmentedOutput
+              ? `${exportParts.length} part${exportParts.length === 1 ? "" : "s"}`
+              : "Single file"}
           </span>
         </div>
         <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-          Parts are based on estimated Morse runtime and safe paragraph,
-          sentence, or word boundaries. EPUB/PDF section hints help when
-          available, but parts are not guaranteed to match original chapters.
+          {isSegmentedOutput
+            ? "Parts are based on estimated Morse runtime and safe paragraph, sentence, or word boundaries. EPUB/PDF section hints help when available, but parts are not guaranteed to match original chapters."
+            : "Audio downloads stay as one file by default. Turn on Split into parts in Download settings when you want a ZIP bundle with timed parts."}
         </p>
-        {exportParts.length > 0 ? (
-          <div className="mt-4 grid gap-3">
-            {exportParts.slice(0, 6).map((part) => (
-              <div
-                key={`${part.index}-${part.sourceStart}`}
-                className="rounded-xl bg-[#fffdf8] p-4"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="text-sm font-extrabold text-sky-950">
-                    {part.title}
-                  </h3>
-                  <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
-                    {formatDuration(part.morseDurationMs)}
-                  </span>
+        {isSegmentedOutput ? (
+          exportParts.length > 0 ? (
+            <div className="mt-4 grid gap-3">
+              {exportParts.slice(0, 6).map((part) => (
+                <div
+                  key={`${part.index}-${part.sourceStart}`}
+                  className="rounded-xl bg-[#fffdf8] p-4"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-sm font-extrabold text-sky-950">
+                      {part.title}
+                    </h3>
+                    <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                      {formatDuration(part.morseDurationMs)}
+                    </span>
+                  </div>
+                  <p className="mt-2 break-words font-mono text-xs font-bold text-slate-600">
+                    {part.estimatedFilename}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                    {part.cleanedExcerpt}
+                  </p>
                 </div>
-                <p className="mt-2 break-words font-mono text-xs font-bold text-slate-600">
-                  {part.estimatedFilename}
+              ))}
+              {exportParts.length > 6 ? (
+                <p className="text-sm font-semibold text-slate-600">
+                  Showing first 6 parts. The ZIP download includes all{" "}
+                  {exportParts.length.toLocaleString()} parts.
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                  {part.cleanedExcerpt}
-                </p>
-              </div>
-            ))}
-            {exportParts.length > 6 ? (
-              <p className="text-sm font-semibold text-slate-600">
-                Showing first 6 parts. The ZIP download includes all{" "}
-                {exportParts.length.toLocaleString()} parts.
-              </p>
-            ) : null}
-          </div>
-        ) : (
-          <div className="mt-3">
-            <EmptyPreview>
-              Part splitting appears after source text is available.
-            </EmptyPreview>
-          </div>
-        )}
+              ) : null}
+            </div>
+          ) : (
+            <div className="mt-3">
+              <EmptyPreview>
+                Part splitting appears after source text is available.
+              </EmptyPreview>
+            </div>
+          )
+        ) : null}
       </section>
 
       <div className="grid gap-5 lg:grid-cols-2">
@@ -2268,6 +2609,385 @@ export default function BookTranslatorTool() {
         </ToolOutputPanel>
       </div>
     </section>
+  );
+}
+
+function BookVideoSettingsEditor({
+  exportSettings,
+  onCharWpmChange,
+  onFarnsworthWpmChange,
+  onPitchChange,
+  onTonePresetChange,
+  onVideoSettingsChange,
+  onVolumeChange,
+  videoSettings,
+}: {
+  exportSettings: BookExportSettings;
+  onCharWpmChange: (value: number) => void;
+  onFarnsworthWpmChange: (value: number) => void;
+  onPitchChange: (value: number) => void;
+  onTonePresetChange: (value: AudioTonePresetId) => void;
+  onVideoSettingsChange: (patch: Partial<BookVideoSettings>) => void;
+  onVolumeChange: (value: number) => void;
+  videoSettings: BookVideoSettings;
+}) {
+  return (
+    <div className="space-y-5">
+      <div>
+        <h4 className="text-base font-extrabold text-sky-950">
+          Video settings
+        </h4>
+        <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+          Choose how the Morse signal appears in the video frame.
+        </p>
+      </div>
+
+      <fieldset className="border-t border-slate-200/70 pt-5">
+        <legend className="text-base font-extrabold text-sky-950">
+          Visual style
+        </legend>
+        <div
+          className="mt-3 grid gap-2 sm:grid-cols-2"
+          role="radiogroup"
+          aria-label="Video visual style"
+        >
+          {BOOK_VIDEO_VISUAL_STYLES.map((style) => {
+            const details = BOOK_VIDEO_VISUAL_STYLE_DETAILS[style];
+            const active = videoSettings.visualStyle === style;
+            return (
+              <button
+                key={style}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() =>
+                  onVideoSettingsChange({
+                    visualStyle: style,
+                  })
+                }
+                className={toolControlButtonClass({
+                  active,
+                  tone: active ? "dark" : "light",
+                  size: "md",
+                  rounded: "xl",
+                  hover: "dark",
+                })}
+              >
+                <span className="font-extrabold">{details.label}</span>
+                <span className="text-xs font-semibold">
+                  {details.description}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
+
+      <div className="border-t border-slate-200/70 pt-5">
+        <h4 className="text-base font-extrabold text-sky-950">Video frame</h4>
+        <div className="mt-4 grid gap-5 lg:grid-cols-2">
+          <fieldset>
+            <legend className="text-sm font-semibold text-slate-700">
+              Video resolution
+            </legend>
+            <div
+              className="mt-2 flex flex-wrap gap-2"
+              role="radiogroup"
+              aria-label="Video resolution"
+            >
+              {BOOK_VIDEO_RESOLUTIONS.map((resolution) => (
+                <VideoSettingButton
+                  key={resolution}
+                  active={videoSettings.resolution === resolution}
+                  label={BOOK_VIDEO_RESOLUTION_LABELS[resolution]}
+                  onClick={() =>
+                    onVideoSettingsChange({
+                      resolution,
+                    })
+                  }
+                />
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend className="text-sm font-semibold text-slate-700">
+              Visual intensity
+            </legend>
+            <div
+              className="mt-2 flex flex-wrap gap-2"
+              role="radiogroup"
+              aria-label="Video visual intensity"
+            >
+              {BOOK_VIDEO_INTENSITIES.map((intensity) => (
+                <VideoSettingButton
+                  key={intensity}
+                  active={videoSettings.intensity === intensity}
+                  label={BOOK_VIDEO_INTENSITY_LABELS[intensity]}
+                  onClick={() =>
+                    onVideoSettingsChange({
+                      intensity,
+                    })
+                  }
+                />
+              ))}
+            </div>
+          </fieldset>
+
+          <SliderRow
+            label="Video part duration"
+            value={videoSettings.targetPartMinutes}
+            min={1}
+            max={30}
+            step={1}
+            unit="min"
+            onChange={(value) =>
+              onVideoSettingsChange({
+                targetPartMinutes: value,
+              })
+            }
+          />
+        </div>
+      </div>
+
+      <div className="border-t border-slate-200/70 pt-5">
+        <h4 className="text-base font-extrabold text-sky-950">
+          Video options
+        </h4>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ExportCheckbox
+            label="Include audio track"
+            checked={videoSettings.includeAudioTrack}
+            onChange={(value) =>
+              onVideoSettingsChange({
+                includeAudioTrack: value,
+              })
+            }
+          />
+          <ExportCheckbox
+            label="Show Morse text overlay"
+            checked={videoSettings.showMorseOverlay}
+            onChange={(value) =>
+              onVideoSettingsChange({
+                showMorseOverlay: value,
+              })
+            }
+          />
+          <ExportCheckbox
+            label="Show small MorseWords branding"
+            checked={videoSettings.showBranding}
+            onChange={(value) =>
+              onVideoSettingsChange({
+                showBranding: value,
+              })
+            }
+          />
+        </div>
+      </div>
+
+      <div className="border-t border-slate-200/70 pt-5">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h4 className="text-base font-extrabold text-sky-950">
+              Timing and audio track
+            </h4>
+            <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+              Character speed and Farnsworth spacing use the same Morse timing
+              layer as audio export. Tone controls apply only when the video
+              includes an audio track.
+            </p>
+          </div>
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+            {videoSettings.includeAudioTrack
+              ? tonePresetLabel(exportSettings.tonePreset)
+              : "Silent video"}
+          </span>
+        </div>
+        <AudioSettingsPanel
+          className="mt-5"
+          context="bookExport"
+          disabledSound={!videoSettings.includeAudioTrack}
+          idPrefix="book-download-video-audio"
+          preset={exportSettings.tonePreset}
+          onPresetChange={onTonePresetChange}
+          charWpm={exportSettings.charWpm}
+          onCharWpmChange={onCharWpmChange}
+          farnsworthWpm={exportSettings.farnsworthWpm}
+          onFarnsworthWpmChange={onFarnsworthWpmChange}
+          pitch={exportSettings.pitch}
+          onPitchChange={onPitchChange}
+          volume={exportSettings.volume}
+          onVolumeChange={onVolumeChange}
+        />
+      </div>
+    </div>
+  );
+}
+
+function VideoSettingButton({
+  active,
+  label,
+  onClick,
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      role="radio"
+      aria-checked={active}
+      onClick={onClick}
+      className={toolControlButtonClass({
+        active,
+        tone: active ? "dark" : "light",
+        size: "sm",
+        rounded: "full",
+        hover: "dark",
+      })}
+    >
+      {label}
+    </button>
+  );
+}
+
+function FullFrameFlashWarning({ className = "" }: { className?: string }) {
+  return (
+    <div
+      data-testid="book-video-full-frame-warning"
+      className={[
+        "flex items-start gap-2 text-sm leading-relaxed text-slate-700",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <WarningBadgeIcon
+        size={16}
+        title={undefined}
+        aria-hidden="true"
+        className="mt-0.5 shrink-0 text-sky-950"
+      />
+      <p>
+        <span className="font-extrabold text-sky-950">
+          Full-frame flash warning:
+        </span>{" "}
+        {FULL_FRAME_FLASH_WARNING}
+      </p>
+    </div>
+  );
+}
+
+function BookVideoPreviewPanel({
+  preview,
+  resolvedBackgroundStyle,
+  settings,
+}: {
+  preview: BookVideoPreview;
+  resolvedBackgroundStyle: "warm-morsewords" | "dark-morsewords";
+  settings: BookVideoSettings;
+}) {
+  const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
+  const frameStyle = darkFrame
+    ? {
+        backgroundColor: "#020617",
+        color: "#e0f2fe",
+      }
+    : {
+        backgroundColor: "#fffdf8",
+        color: "#08324f",
+      };
+
+  return (
+    <section
+      data-testid="book-video-preview"
+      aria-labelledby="book-video-preview-heading"
+      className="mt-4 space-y-3"
+    >
+      <div
+        className="flex aspect-video min-h-[12rem] w-full max-w-[720px] flex-col justify-between rounded-xl p-4 sm:p-5"
+        style={frameStyle}
+      >
+        <h3
+          id="book-video-preview-heading"
+          className="text-sm font-extrabold"
+        >
+          Video preview
+        </h3>
+        <div className="flex min-h-[5rem] items-center justify-center">
+          <BookVideoPreviewVisual preview={preview} settings={settings} />
+        </div>
+        {settings.showMorseOverlay ? (
+          <p
+            data-testid="book-video-preview-morse-overlay"
+            className="mt-3 break-words font-mono text-xs font-bold"
+          >
+            {preview.sampleMorse}
+          </p>
+        ) : null}
+        {settings.showBranding ? (
+          <p
+            data-testid="book-video-preview-branding"
+            className="mt-3 text-right font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80"
+          >
+            {preview.brandLabel}
+          </p>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+function BookVideoPreviewVisual({
+  preview,
+  settings,
+}: {
+  preview: BookVideoPreview;
+  settings: BookVideoSettings;
+}) {
+  if (settings.visualStyle === "dot") {
+    return (
+      <span
+        data-testid="book-video-preview-dot"
+        aria-label="Dot preview"
+        role="img"
+        className="block h-12 w-12 rounded-full bg-sky-200"
+      />
+    );
+  }
+
+  if (settings.visualStyle === "full-frame") {
+    return (
+      <div
+        data-testid="book-video-preview-full-frame"
+        aria-label="Full-frame flash preview"
+        role="img"
+        className="h-16 w-16 rounded-full bg-sky-200/80"
+      />
+    );
+  }
+
+  if (settings.visualStyle === "morse-text") {
+    return (
+      <div
+        data-testid="book-video-preview-morse-text"
+        className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-lg font-bold tracking-normal"
+      >
+        {preview.sampleMorse}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      data-testid="book-video-preview-lightbulb"
+      aria-label="Lightbulb preview"
+      role="img"
+      className="text-sky-200"
+    >
+      <LightBulbIcon size={54} title={undefined} aria-hidden="true" />
+    </div>
   );
 }
 
