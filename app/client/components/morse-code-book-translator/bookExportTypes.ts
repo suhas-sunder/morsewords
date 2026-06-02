@@ -15,6 +15,8 @@ export type BookExportPresetName =
 
 export type BookExportFormat = "mp3" | "wav";
 
+export type BookDownloadKind = "audio" | "zip";
+
 export type BookPunctuationMode = "preserve" | "simplify";
 
 export type BookExportSettings = {
@@ -89,6 +91,7 @@ export type BookExportProgress = {
 
 export type BookExportResultSummary = {
   filename: string;
+  downloadKind: BookDownloadKind;
   outputFormat: BookExportFormat;
   partCount: number;
   runtimeLabel: string;

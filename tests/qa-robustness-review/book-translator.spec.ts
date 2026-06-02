@@ -24,7 +24,7 @@ import {
 const CANONICAL_PATH = ROUTES.bookTranslator;
 const ALIAS_PATH = ROUTES.ebookTranslatorAlias;
 const RAW_SECRET_TEXT = "Private Draft Source";
-const BOOK_TOOL_LABEL = "Book source review and export tool";
+const BOOK_TOOL_LABEL = "Book source review and download tool";
 
 async function openBookTranslator(page: Page) {
   await blockExternalNetwork(page);
@@ -48,25 +48,45 @@ async function expectWorkflowReadyNearSource(page: Page) {
     sourceStep(page).getByRole("link", { name: "Review export" }),
   ).toHaveCount(0);
   await expect(
-    sourceStep(page).getByRole("heading", { name: "Export details" }),
+    sourceStep(page).getByRole("heading", { name: "Download audio" }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Details and previews" }),
   ).toBeVisible();
   await expect(
-    bookTool(page).getByRole("button", { name: "Export ZIP bundle" }),
+    bookTool(page).getByRole("button", {
+      name: /Download (MP3|WAV|ZIP bundle)/,
+    }),
   ).toHaveCount(1);
   await expect(
-    sourceStep(page).getByRole("button", { name: "Export ZIP bundle" }),
+    sourceStep(page).getByRole("button", {
+      name: /Download (MP3|WAV|ZIP bundle)/,
+    }),
   ).toBeVisible();
-  await expect(page.getByRole("radio", { name: /MP3 ZIP/ })).toBeVisible();
-  await expect(page.getByRole("radio", { name: /WAV ZIP/ })).toBeVisible();
-  await expect(page.getByLabel("Tone preset")).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Download sample" }),
+  ).toHaveCount(0);
+  await expect(downloadSettingsToggle(page)).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  );
+}
+
+function downloadSettingsToggle(page: Page) {
+  return page.locator("summary").filter({ hasText: "Download settings" });
+}
+
+async function openDownloadSettings(page: Page) {
+  const toggle = downloadSettingsToggle(page);
+  if ((await toggle.getAttribute("aria-expanded")) !== "true") {
+    await toggle.click();
+  }
 }
 
 async function chooseOutputFormat(page: Page, format: "mp3" | "wav") {
+  await openDownloadSettings(page);
   await page
-    .getByRole("radio", { name: format === "mp3" ? /MP3 ZIP/ : /WAV ZIP/ })
+    .getByRole("radio", { name: format === "mp3" ? /MP3/ : /WAV/ })
     .click();
 }
 
@@ -180,9 +200,9 @@ function makePdf(text: string) {
   return Buffer.from(pdf, "ascii");
 }
 
-async function exportZip(page: Page, testInfo: TestInfo) {
+async function downloadZip(page: Page, testInfo: TestInfo) {
   const downloadPromise = page.waitForEvent("download", { timeout: 90_000 });
-  await page.getByRole("button", { name: "Export ZIP bundle" }).click();
+  await page.getByRole("button", { name: /Download ZIP bundle/ }).click();
   const download = await downloadPromise;
   const zipPath = testInfo.outputPath(download.suggestedFilename());
   await download.saveAs(zipPath);
@@ -191,6 +211,22 @@ async function exportZip(page: Page, testInfo: TestInfo) {
     filename: download.suggestedFilename(),
     entries,
     names: Object.keys(entries).sort(),
+  };
+}
+
+async function downloadAudioFile(
+  page: Page,
+  testInfo: TestInfo,
+  buttonName: RegExp,
+) {
+  const downloadPromise = page.waitForEvent("download", { timeout: 90_000 });
+  await page.getByRole("button", { name: buttonName }).click();
+  const download = await downloadPromise;
+  const filePath = testInfo.outputPath(download.suggestedFilename());
+  await download.saveAs(filePath);
+  return {
+    filename: download.suggestedFilename(),
+    bytes: new Uint8Array(fs.readFileSync(filePath)),
   };
 }
 
@@ -289,7 +325,7 @@ test("book translator route metadata, alias, and sitemap use canonical URL", asy
   await openBookTranslator(page);
 
   await expect(page).toHaveTitle(
-    /Book to Morse Code Translator and Audio Exporter/,
+    /Book to Morse Code Translator and Audio Download Tool/,
   );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
@@ -416,7 +452,7 @@ test("large uploaded text uses a capped extracted source preview", async ({
   await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
 });
 
-test("large extracted edit mode uses apply and cancel without exporting draft text", async ({
+test("large extracted edit mode uses apply and cancel without downloading draft text", async ({
   page,
 }, testInfo) => {
   await openBookTranslator(page);
@@ -433,13 +469,13 @@ test("large extracted edit mode uses apply and cancel without exporting draft te
     page.getByRole("button", { name: "Cancel edits" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Export ZIP bundle" }),
+    page.getByRole("button", { name: /Download (MP3|WAV|ZIP bundle)/ }),
   ).toBeEnabled();
 
   await page
     .getByRole("textbox", { name: "Edit extracted text draft" })
     .fill("Draft only SOS");
-  await expect(page.getByText("Draft edits are not exported")).toBeVisible();
+  await expect(page.getByText("Draft edits are not included")).toBeVisible();
   await expect(
     page
       .locator("pre")
@@ -546,7 +582,7 @@ test("source preview actions copy, edit, and clear uploaded content", async ({
     page.getByRole("button", { name: "Copy cleaned text" }),
   ).toBeEnabled();
   await expect(
-    page.getByRole("button", { name: "Export ZIP bundle" }),
+    page.getByRole("button", { name: /Download (MP3|WAV|ZIP bundle)/ }),
   ).toBeEnabled();
   await expect(page.getByRole("button", { name: "Apply edits" })).toBeVisible();
   await expect(
@@ -569,9 +605,9 @@ test("source preview actions copy, edit, and clear uploaded content", async ({
     page.getByText("Part splitting appears after source text is available."),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Export ZIP bundle" }),
+    page.getByRole("button", { name: /Download (MP3|WAV|ZIP bundle)/ }),
   ).toBeDisabled();
-  await expect(page.getByText("Last export")).toHaveCount(0);
+  await expect(page.getByText("Last download")).toHaveCount(0);
 });
 
 test("empty uploaded source disables source copy actions", async ({
@@ -602,7 +638,7 @@ test("empty uploaded source disables source copy actions", async ({
     0,
   );
   await expect(
-    page.getByText("Add source text or upload a source file to enable export."),
+    page.getByText("Add source text or upload a source file to enable download."),
   ).toBeVisible();
 });
 
@@ -851,7 +887,12 @@ test("preset settings, reset, and safe route preferences persist", async ({
   page,
 }) => {
   await openBookTranslator(page);
-  await expect(page.getByText("Balanced MP3 settings")).toBeVisible();
+  await expect(downloadSettingsToggle(page)).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  );
+  await openDownloadSettings(page);
+  await expect(page.getByText("Compact MP3 settings")).toBeVisible();
 
   await page.getByRole("button", { name: "Practice Copy" }).click();
   await expect(
@@ -860,7 +901,7 @@ test("preset settings, reset, and safe route preferences persist", async ({
   await expect(page.getByText("Best for: Training and review")).toBeVisible();
   await expect(
     page.getByText(
-      "20/10 WPM, CW radio, MP3 128 kbps, 5 minute target parts, splits by Morse runtime boundaries.",
+      "20/10 WPM, CW radio, MP3 48 kbps, 5 minute target parts, splits by Morse runtime boundaries.",
     ),
   ).toBeVisible();
   await expect(page.getByLabel("Tone preset")).toHaveValue("cw_radio");
@@ -868,10 +909,8 @@ test("preset settings, reset, and safe route preferences persist", async ({
   await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
   await expect(page.getByLabel("Tail padding")).toHaveCount(0);
 
-  const advancedToggle = page
-    .locator("summary")
-    .filter({ hasText: "Advanced export settings" });
-  await advancedToggle.click();
+  const settingsToggle = downloadSettingsToggle(page);
+  await expect(settingsToggle).toHaveAttribute("aria-expanded", "true");
   await expect(page.getByLabel("Include Morse transcript")).toBeVisible();
   await chooseOutputFormat(page, "wav");
   await expect(page.getByLabel("MP3 bitrate")).toHaveCount(0);
@@ -902,7 +941,7 @@ test("preset settings, reset, and safe route preferences persist", async ({
 
   await page.getByRole("button", { name: "Reset preset" }).click();
   await expect(page.getByText("Modified from preset")).toHaveCount(0);
-  await expect(page.getByRole("radio", { name: /MP3 ZIP/ })).toHaveAttribute(
+  await expect(page.getByRole("radio", { name: /MP3/ })).toHaveAttribute(
     "aria-checked",
     "true",
   );
@@ -922,7 +961,7 @@ test("preset settings, reset, and safe route preferences persist", async ({
   await expect(
     page.locator("[data-mw-book-export-ready='true']"),
   ).toBeVisible();
-  await expect(page.getByRole("radio", { name: /WAV ZIP/ })).toHaveAttribute(
+  await expect(page.getByRole("radio", { name: /WAV/ })).toHaveAttribute(
     "aria-checked",
     "true",
   );
@@ -936,6 +975,11 @@ test("malformed saved preferences fall back safely without source persistence", 
     localStorage.setItem(key, "{not valid json");
   }, BOOK_EXPORT_PREFERENCES_KEY);
   await openBookTranslator(page);
+  await expect(downloadSettingsToggle(page)).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  );
+  await openDownloadSettings(page);
   await expect(
     page.getByRole("button", { name: "Reader Quick Start" }),
   ).toBeVisible();
@@ -969,34 +1013,31 @@ test("empty source, cleaned-empty source, large WAV, and progress semantics are 
   page,
 }) => {
   await openBookTranslator(page);
-  const advancedToggle = page
-    .locator("summary")
-    .filter({ hasText: "Advanced export settings" });
-  const exportButton = page.getByRole("button", { name: "Export ZIP bundle" });
+  const settingsToggle = downloadSettingsToggle(page);
+  const downloadButton = page.getByRole("button", {
+    name: /Download (MP3|WAV|ZIP bundle)/,
+  });
   await expect(
-    bookTool(page).getByRole("button", { name: "Export ZIP bundle" }),
+    bookTool(page).getByRole("button", {
+      name: /Download (MP3|WAV|ZIP bundle)/,
+    }),
   ).toHaveCount(1);
   await expect(
-    page.getByRole("heading", { name: "Export details" }),
+    page.getByRole("heading", { name: "Download audio" }),
   ).toBeVisible();
   await expect(page.getByText("Review export")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Add source" })).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Choose export style" }),
-  ).toBeVisible();
-  await expect(
     page.getByRole("heading", { name: "Details and previews" }),
   ).toBeVisible();
   await expect(
-    page.getByText("Add source text or upload a source file to enable export."),
+    page.getByText("Add source text or upload a source file to enable download."),
   ).toBeVisible();
-  await expect(advancedToggle).toHaveAttribute("aria-expanded", "false");
-  await expect(page.getByRole("radio", { name: /MP3 ZIP/ })).toBeVisible();
-  await expect(page.getByRole("radio", { name: /WAV ZIP/ })).toBeVisible();
-  await expect(exportButton).toBeDisabled();
+  await expect(settingsToggle).toHaveAttribute("aria-expanded", "false");
+  await expect(downloadButton).toBeDisabled();
 
   await page.getByLabel("Paste long-form source text").fill("   \n   ");
-  await expect(exportButton).toBeDisabled();
+  await expect(downloadButton).toBeDisabled();
 
   await page.getByLabel("Paste long-form source text")
     .fill(`*** START OF THE PROJECT GUTENBERG EBOOK TEST ***
@@ -1004,53 +1045,68 @@ test("empty source, cleaned-empty source, large WAV, and progress semantics are 
 *** END OF THE PROJECT GUTENBERG EBOOK TEST ***`);
   await page.getByLabel("Strip Project Gutenberg header/footer").check();
   await expect(page.getByText("Cleanup removed all source text")).toBeVisible();
-  const toolText = (await bookTool(page).textContent()) ?? "";
-  expect(toolText.indexOf("Cleanup removed all source text")).toBeLessThan(
-    toolText.indexOf("Choose export style"),
-  );
-  await expect(exportButton).toBeDisabled();
+  await expect(downloadButton).toBeDisabled();
 
   await page
     .getByLabel("Paste long-form source text")
     .fill("ALPHA BRAVO SOS ".repeat(4_000));
   await chooseOutputFormat(page, "wav");
   await expect(page.getByText("WAV output may be very large")).toBeVisible();
-  await advancedToggle.click();
-  await expect(advancedToggle).toHaveAttribute("aria-expanded", "true");
+  await expect(settingsToggle).toHaveAttribute("aria-expanded", "true");
   await expect(page.getByLabel("WAV sample rate")).toBeVisible();
   await expect(page.getByLabel("Tail padding")).toBeVisible();
   await expect(page.getByLabel("MP3 bitrate")).toHaveCount(0);
 
   const progressbar = page.getByRole("progressbar", {
-    name: "Book export progress",
+    name: "Book download progress",
   });
   await expect(progressbar).toHaveAttribute("aria-valuemin", "0");
   await expect(progressbar).toHaveAttribute("aria-valuemax", "100");
   await expect(progressbar).toHaveAttribute("aria-valuenow", "0");
 });
 
-test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and playlist", async ({
+test("route downloads a direct MP3 by default when no sidecars are selected", async ({
+  page,
+}, testInfo) => {
+  await openBookTranslator(page);
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("Direct MP3 SOS HELP.");
+  await expectWorkflowReadyNearSource(page);
+  await expect(
+    sourceStep(page).getByRole("button", { name: "Download MP3" }),
+  ).toBeEnabled();
+
+  const audio = await downloadAudioFile(page, testInfo, /Download MP3/);
+  expect(audio.filename).toMatch(/morse-audio\.mp3$/);
+  expectMp3Like(audio.bytes);
+  await expect(page.getByText("Last download")).toBeVisible();
+  await expect(page.getByText("MP3 audio file")).toBeVisible();
+});
+
+test("route downloads MP3 ZIP bundles with transcripts, manifest, settings, and playlist", async ({
   page,
 }, testInfo) => {
   await openBookTranslator(page);
   const raw = "Private Export Draft\n\nSOS HELP. CQ CQ.";
   await page.getByLabel("Paste long-form source text").fill(raw);
+  await expectWorkflowReadyNearSource(page);
+  await openDownloadSettings(page);
   await page.getByRole("button", { name: "Practice Copy" }).click();
   await page.getByLabel("Tone preset").selectOption("warm_tone");
   await page.getByLabel("Pitch").fill("590");
   await page.getByLabel("Volume").fill("64");
-  await expectWorkflowReadyNearSource(page);
   await expect(
-    page.locator("#book-export-details").getByText("Practice Copy"),
+    sourceStep(page).getByText("Practice Copy").first(),
   ).toBeVisible();
   await expect(page.getByLabel("Tone preset")).toHaveValue("warm_tone");
   await expect(page.getByText("Split summary")).toBeVisible();
 
-  const zip = await exportZip(page, testInfo);
+  const zip = await downloadZip(page, testInfo);
   expect(zip.filename).toMatch(/morse-audio-bundle\.zip$/);
-  await expect(page.getByText("Last export")).toBeVisible();
+  await expect(page.getByText("Last download")).toBeVisible();
   await expect(page.getByText(zip.filename)).toBeVisible();
-  await expect(page.getByText("Bundle contents:")).toBeVisible();
+  await expect(page.getByText("Download contents:")).toBeVisible();
   const partFiles = expectOrderedPartFiles(zip.names, "mp3");
   for (const name of [
     "cleaned-text.txt",
@@ -1086,7 +1142,7 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   expect(manifest.settingsSummary.tonePreset).toBe("warm_tone");
   expect(manifest.settingsSummary.pitch).toBe(590);
   expect(manifest.settingsSummary.volume).toBe(0.64);
-  expect(manifest.settingsSummary.mp3Bitrate).toBe(128);
+  expect(manifest.settingsSummary.mp3Bitrate).toBe(48);
   expect(manifest.settingsSummary.sampleRate).toBe(44100);
   expect(manifest.settingsSummary.tailPaddingMs).toBe(180);
   expect(manifest.parts[0].filename).toMatch(/part-001\.mp3$/);
@@ -1097,7 +1153,7 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   expect(settings.tonePreset).toBe("warm_tone");
   expect(settings.pitch).toBe(590);
   expect(settings.volume).toBe(0.64);
-  expect(settings.mp3Bitrate).toBe(128);
+  expect(settings.mp3Bitrate).toBe(48);
   expect(settings.sampleRate).toBe(44100);
   expect(settings.tailPaddingMs).toBe(180);
   expect(settings.targetPartMinutes).toBe(5);
@@ -1108,7 +1164,7 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   const readme = zipText(zip.entries, "README.txt");
   expect(readme).toContain("Generated:");
   expect(readme).toContain("Part count:");
-  expect(readme).toContain("MP3 is recommended for long exports");
+  expect(readme).toContain("MP3 is recommended for long downloads");
   expect(readme).toContain("right to convert and use");
 
   const storageSnapshot = await page.evaluate(() =>
@@ -1120,10 +1176,10 @@ test("route exports MP3 ZIP bundles with transcripts, manifest, settings, and pl
   await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
 
   await page.getByLabel("Pitch").fill("610");
-  await expect(page.getByText("Last export")).toHaveCount(0);
+  await expect(page.getByText("Last download")).toHaveCount(0);
 });
 
-test("route exports uploaded extracted text without persisting raw source", async ({
+test("route downloads uploaded extracted text without persisting raw source", async ({
   page,
 }, testInfo) => {
   await openBookTranslator(page);
@@ -1135,8 +1191,10 @@ test("route exports uploaded extracted text without persisting raw source", asyn
     page.getByText("Current file: uploaded-export.txt"),
   ).toBeVisible();
   await expectWorkflowReadyNearSource(page);
+  await openDownloadSettings(page);
+  await page.getByRole("button", { name: "Practice Copy" }).click();
 
-  const zip = await exportZip(page, testInfo);
+  const zip = await downloadZip(page, testInfo);
   expect(zipText(zip.entries, "cleaned-text.txt")).toContain(
     "Uploaded Private Export Draft",
   );
@@ -1150,7 +1208,7 @@ test("route exports uploaded extracted text without persisting raw source", asyn
   await expectNoRawSourceInStorage(page, "Uploaded Private Export Draft");
 });
 
-test("route exports WAV ZIP bundles and sample audio on demand", async ({
+test("route downloads direct WAV files and ZIP bundles when extras require it", async ({
   page,
 }, testInfo) => {
   await openBookTranslator(page);
@@ -1159,13 +1217,18 @@ test("route exports WAV ZIP bundles and sample audio on demand", async ({
   await page.getByLabel("WAV sample rate").selectOption("48000");
   await page.getByLabel("Tail padding").fill("240");
 
-  const sampleDownload = page.waitForEvent("download", { timeout: 60_000 });
-  await page.getByRole("button", { name: "Download sample" }).click();
-  expect((await sampleDownload).suggestedFilename()).toBe(
-    "morse-book-sample.wav",
-  );
+  const direct = await downloadAudioFile(page, testInfo, /Download WAV/);
+  expect(direct.filename).toMatch(/morse-audio\.wav$/);
+  expectWavHeader(direct.bytes);
+  await expect(page.getByText("Last download")).toBeVisible();
+  await expect(page.getByText("WAV audio file")).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Download sample" }),
+  ).toHaveCount(0);
 
-  const zip = await exportZip(page, testInfo);
+  await page.getByLabel("Include manifest").check();
+  await page.getByLabel("Include settings").check();
+  const zip = await downloadZip(page, testInfo);
   const partFiles = expectOrderedPartFiles(zip.names, "wav");
   expectWavHeader(zip.entries[partFiles[0]]);
   const manifest = zipJson<BundleManifest>(zip.entries, "manifest.json");
@@ -1183,7 +1246,7 @@ test("route exports WAV ZIP bundles and sample audio on demand", async ({
   expect(manifest.settingsSummary.tailPaddingMs).toBe(240);
 });
 
-test("export cancellation can abort stale work before completion", async () => {
+test("download cancellation can abort stale work before completion", async () => {
   const controller = new AbortController();
   controller.abort();
   await expect(
@@ -1202,19 +1265,19 @@ test("route cancellation state is distinct from failure", async ({ page }) => {
     .fill("SOS HELP ALPHA BRAVO ".repeat(4_000));
   await chooseOutputFormat(page, "wav");
 
-  await page.getByRole("button", { name: "Export ZIP bundle" }).click();
+  await page.getByRole("button", { name: /Download ZIP bundle/ }).click();
   await expect(
-    page.getByRole("button", { name: "Cancel export" }),
+    page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();
-  await page.getByRole("button", { name: "Cancel export" }).click();
-  await expect(page.getByText("Export cancelled.")).toBeVisible({
+  await page.getByRole("button", { name: "Cancel download" }).click();
+  await expect(page.getByText("Download cancelled.")).toBeVisible({
     timeout: 30_000,
   });
-  await expect(page.getByText("Last export")).toHaveCount(0);
-  await expect(page.getByText("Export failed.")).toHaveCount(0);
+  await expect(page.getByText("Last download")).toHaveCount(0);
+  await expect(page.getByText("Download failed.")).toHaveCount(0);
 });
 
-test("source changes during active export cancel stale completion", async ({
+test("source changes during active download cancel stale completion", async ({
   page,
 }) => {
   await openBookTranslator(page);
@@ -1223,14 +1286,14 @@ test("source changes during active export cancel stale completion", async ({
     .fill("SOS HELP ALPHA BRAVO ".repeat(4_000));
   await chooseOutputFormat(page, "wav");
 
-  await page.getByRole("button", { name: "Export ZIP bundle" }).click();
+  await page.getByRole("button", { name: /Download ZIP bundle/ }).click();
   await expect(
-    page.getByRole("button", { name: "Cancel export" }),
+    page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();
   await page
     .getByLabel("Paste long-form source text")
     .fill("Replacement source wins");
-  await expect(page.getByText("Source changed; export cancelled.")).toBeVisible(
+  await expect(page.getByText("Source changed; download cancelled.")).toBeVisible(
     {
       timeout: 30_000,
     },
@@ -1238,8 +1301,8 @@ test("source changes during active export cancel stale completion", async ({
   await expect(
     page.locator("pre").filter({ hasText: "Replacement source wins" }),
   ).toBeVisible();
-  await expect(page.getByText("Last export")).toHaveCount(0);
-  await expect(page.getByText("Bundle download started")).toHaveCount(0);
+  await expect(page.getByText("Last download")).toHaveCount(0);
+  await expect(page.getByText("ZIP download started")).toHaveCount(0);
 });
 
 test("transcript inclusion toggles remove private text artifacts from bundle", async ({
@@ -1248,12 +1311,13 @@ test("transcript inclusion toggles remove private text artifacts from bundle", a
   await openBookTranslator(page);
   await page
     .getByLabel("Paste long-form source text")
-    .fill("Toggle export SOS HELP.");
-  await page.getByText("Advanced export settings").click();
+    .fill("Toggle download SOS HELP.");
+  await openDownloadSettings(page);
+  await page.getByRole("button", { name: "Practice Copy" }).click();
   await page.getByLabel("Include cleaned text").uncheck();
   await page.getByLabel("Include Morse transcript").uncheck();
 
-  const zip = await exportZip(page, testInfo);
+  const zip = await downloadZip(page, testInfo);
   const partFiles = expectOrderedPartFiles(zip.names, "mp3");
   expect(zip.names).not.toContain("cleaned-text.txt");
   expect(zip.names).not.toContain("morse-transcript.txt");
@@ -1372,13 +1436,15 @@ Footer`,
   await expect(page.getByText("Top unsupported characters")).toBeVisible();
 });
 
-test("custom cleanup rules update previews, estimates, and exported transcripts", async ({
+test("custom cleanup rules update previews, estimates, and downloaded transcripts", async ({
   page,
 }, testInfo) => {
   await openBookTranslator(page);
   await page
     .getByLabel("Paste long-form source text")
     .fill("REMOVE ME\nOld phrase SOS. cat scatter Cat.");
+  await openDownloadSettings(page);
+  await page.getByRole("button", { name: "Practice Copy" }).click();
 
   await page.getByRole("button", { name: "Add cleanup rule" }).click();
   await page.getByLabel("Find text").fill("REMOVE ME");
@@ -1417,7 +1483,7 @@ test("custom cleanup rules update previews, estimates, and exported transcripts"
 
   await page.getByLabel("Enabled").nth(2).check();
   await page.getByLabel("Case-sensitive").nth(2).uncheck();
-  const zip = await exportZip(page, testInfo);
+  const zip = await downloadZip(page, testInfo);
   expect(zipText(zip.entries, "cleaned-text.txt")).not.toContain("REMOVE ME");
   expect(zipText(zip.entries, "cleaned-text.txt")).toContain("New phrase SOS");
   expect(zipText(zip.entries, "cleaned-text.txt")).toContain("dog scatter dog");
@@ -1429,7 +1495,7 @@ test("custom cleanup rules update previews, estimates, and exported transcripts"
   await expect(
     page.locator("pre").filter({ hasText: "REMOVE ME" }).first(),
   ).toBeVisible();
-  await expect(page.getByText("Last export")).toHaveCount(0);
+  await expect(page.getByText("Last download")).toHaveCount(0);
 });
 
 test("large synthetic input and quick file replacement stay usable", async ({

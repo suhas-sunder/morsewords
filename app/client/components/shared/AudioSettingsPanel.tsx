@@ -13,6 +13,7 @@ import {
   AUDIO_SAMPLE_RATES,
   AUDIO_SPEED_RANGE,
   AUDIO_TAIL_RANGE,
+  MP3_BITRATE_LABELS,
   MP3_BITRATES,
   VOLUME_RANGE,
   type AudioSampleRate,
@@ -159,7 +160,7 @@ export default function AudioSettingsPanel({
         >
           {MP3_BITRATES.map((bitrate) => (
             <option key={bitrate} value={bitrate}>
-              {bitrate} kbps
+              {MP3_BITRATE_LABELS[bitrate]}
             </option>
           ))}
         </LabeledSelect>

@@ -36,8 +36,8 @@ export const BOOK_EXPORT_PRESET_DETAILS: Record<
 > = {
   "Reader Quick Start": {
     description:
-      "Balanced MP3 settings for turning a chapter or short book into listenable Morse parts.",
-    bestFor: "Most first exports",
+      "Compact MP3 settings for turning a chapter or short book into listenable Morse audio.",
+    bestFor: "Most first downloads",
   },
   "Long Listen": {
     description:
@@ -56,7 +56,7 @@ export const BOOK_EXPORT_PRESET_DETAILS: Record<
   },
   "Archive Export": {
     description:
-      "Uncompressed WAV parts with full metadata. Useful for short archival exports, but large.",
+      "Uncompressed WAV parts with full metadata. Useful for short archival downloads, but large.",
     bestFor: "Short uncompressed bundles",
   },
 };
@@ -73,7 +73,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 650,
     volume: 0.75,
     outputFormat: "mp3",
-    mp3Bitrate: 128,
+    mp3Bitrate: 32,
     sampleRate: 44100,
     tailPaddingMs: 180,
     targetPartMinutes: 8,
@@ -81,11 +81,11 @@ export const BOOK_EXPORT_PRESETS: Record<
     paragraphPauseMultiplier: 2.4,
     sentencePauseMultiplier: 1.35,
     punctuationMode: "simplify",
-    includeCleanedText: true,
-    includeMorseTranscript: true,
-    includeManifest: true,
-    includeSettings: true,
-    includeReadme: true,
+    includeCleanedText: false,
+    includeMorseTranscript: false,
+    includeManifest: false,
+    includeSettings: false,
+    includeReadme: false,
   },
   "Long Listen": {
     presetName: "Long Listen",
@@ -95,7 +95,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 600,
     volume: 0.68,
     outputFormat: "mp3",
-    mp3Bitrate: 96,
+    mp3Bitrate: 32,
     sampleRate: 44100,
     tailPaddingMs: 180,
     targetPartMinutes: 18,
@@ -103,11 +103,11 @@ export const BOOK_EXPORT_PRESETS: Record<
     paragraphPauseMultiplier: 3,
     sentencePauseMultiplier: 1.5,
     punctuationMode: "simplify",
-    includeCleanedText: true,
+    includeCleanedText: false,
     includeMorseTranscript: false,
-    includeManifest: true,
-    includeSettings: true,
-    includeReadme: true,
+    includeManifest: false,
+    includeSettings: false,
+    includeReadme: false,
   },
   "Practice Copy": {
     presetName: "Practice Copy",
@@ -117,7 +117,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 700,
     volume: 0.78,
     outputFormat: "mp3",
-    mp3Bitrate: 128,
+    mp3Bitrate: 48,
     sampleRate: 44100,
     tailPaddingMs: 180,
     targetPartMinutes: 5,
@@ -139,7 +139,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 620,
     volume: 0.72,
     outputFormat: "mp3",
-    mp3Bitrate: 192,
+    mp3Bitrate: 64,
     sampleRate: 44100,
     tailPaddingMs: 180,
     targetPartMinutes: 10,
@@ -161,7 +161,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 650,
     volume: 0.74,
     outputFormat: "wav",
-    mp3Bitrate: 192,
+    mp3Bitrate: 64,
     sampleRate: 48000,
     tailPaddingMs: 220,
     targetPartMinutes: 6,

@@ -18,6 +18,7 @@ import {
   AUDIO_SAMPLE_RATES,
   AUDIO_SPEED_RANGE,
   AUDIO_TAIL_RANGE,
+  MP3_BITRATE_LABELS,
   MP3_BITRATES,
   VOLUME_RANGE,
   clampFarnsworthWpm,
@@ -872,10 +873,11 @@ export default function MorseMp3GeneratorTool() {
             setMp3Kbps(sanitizeMp3Bitrate(Number(event.target.value)))
           }
         >
-          <option value={96}>96</option>
-          <option value={128}>128</option>
-          <option value={192}>192</option>
-          <option value={256}>256</option>
+          {MP3_BITRATES.map((bitrate) => (
+            <option key={bitrate} value={bitrate}>
+              {MP3_BITRATE_LABELS[bitrate]}
+            </option>
+          ))}
         </LabeledSelect>
         <LabeledSelect
           id={sampleRateId}

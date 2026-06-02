@@ -14,11 +14,12 @@ import {
 } from "./bookDurationEstimate";
 import type {
   BookBundleMetadata,
+  BookDownloadKind,
   BookExportPart,
   BookExportProgress,
   BookExportSettings,
 } from "./bookExportTypes";
-import { buildBundleFilename } from "./bookSegmentation";
+import { buildBundleFilename, buildSingleAudioFilename } from "./bookSegmentation";
 
 type LameModule = typeof import("@breezystack/lamejs");
 
@@ -37,6 +38,104 @@ type SignalEvent =
 const DEFAULT_TAIL_PADDING_MS = 180;
 const YIELD_EVERY_EVENTS = 80;
 
+export type BookDownloadPackage = {
+  blob: Blob;
+  filename: string;
+  downloadKind: BookDownloadKind;
+  contents: string[];
+};
+
+export function hasBookDownloadSidecars(settings: BookExportSettings) {
+  return (
+    settings.includeCleanedText ||
+    settings.includeMorseTranscript ||
+    settings.includeManifest ||
+    settings.includeSettings ||
+    settings.includeReadme
+  );
+}
+
+export function getBookDownloadKind(
+  parts: BookExportPart[],
+  settings: BookExportSettings,
+): BookDownloadKind {
+  return parts.length === 1 && !hasBookDownloadSidecars(settings)
+    ? "audio"
+    : "zip";
+}
+
+export function describeBookDownloadContents(
+  parts: BookExportPart[],
+  settings: BookExportSettings,
+  downloadKind = getBookDownloadKind(parts, settings),
+) {
+  const format = settings.outputFormat.toUpperCase();
+  if (downloadKind === "audio") return [`${format} audio file`];
+  return [
+    `${format} audio ${parts.length === 1 ? "file" : "parts"}`,
+    "playlist.m3u",
+    settings.includeCleanedText ? "cleaned-text.txt" : "",
+    settings.includeMorseTranscript ? "morse-transcript.txt" : "",
+    settings.includeManifest ? "manifest.json" : "",
+    settings.includeSettings ? "settings.json" : "",
+    settings.includeReadme ? "README.txt" : "",
+  ].filter(Boolean);
+}
+
+export async function createBookDownloadPackage({
+  metadata,
+  parts,
+  settings,
+  signal,
+  onProgress,
+}: ExportBundleOptions): Promise<BookDownloadPackage> {
+  throwIfAborted(signal);
+  if (parts.length === 0) {
+    throw new Error("No book parts are available for download.");
+  }
+
+  const downloadKind = getBookDownloadKind(parts, settings);
+  if (downloadKind === "zip") {
+    const zip = await createBookExportZip({
+      metadata,
+      parts,
+      settings,
+      signal,
+      onProgress,
+    });
+    return {
+      ...zip,
+      downloadKind,
+      contents: describeBookDownloadContents(parts, settings, downloadKind),
+    };
+  }
+
+  const [part] = parts;
+  onProgress?.({
+    phase: "encoding",
+    message: `Encoding ${settings.outputFormat.toUpperCase()} audio file...`,
+    currentPart: 0,
+    totalParts: 1,
+  });
+  const blob = await renderBookPartAudio(part, settings, signal);
+  await cooperativeYield(signal);
+  onProgress?.({
+    phase: "complete",
+    message: "Audio file ready.",
+    currentPart: 1,
+    totalParts: 1,
+  });
+  return {
+    blob,
+    filename: buildSingleAudioFilename({
+      sourceTitle: metadata.title || metadata.filename,
+      format: settings.outputFormat,
+    }),
+    downloadKind,
+    contents: describeBookDownloadContents(parts, settings, downloadKind),
+  };
+}
+
 export async function createBookExportZip({
   metadata,
   parts,
@@ -47,7 +146,7 @@ export async function createBookExportZip({
   throwIfAborted(signal);
   onProgress?.({
     phase: "analyzing",
-    message: "Preparing export manifest...",
+    message: "Preparing download details...",
     currentPart: 0,
     totalParts: parts.length,
   });
@@ -75,7 +174,7 @@ export async function createBookExportZip({
   throwIfAborted(signal);
   onProgress?.({
     phase: "bundling",
-    message: "Bundling transcripts and metadata...",
+    message: "Bundling audio and selected files...",
     currentPart: parts.length,
     totalParts: parts.length,
   });
@@ -489,7 +588,7 @@ function buildReadme({
   parts: BookExportPart[];
   settings: BookExportSettings;
 }) {
-  const title = metadata.title || metadata.filename || "MorseWords book export";
+  const title = metadata.title || metadata.filename || "MorseWords book download";
   const runtimeMs = parts.reduce((sum, part) => sum + part.morseDurationMs, 0);
   return [
     `${title}`,
@@ -512,7 +611,7 @@ function buildReadme({
     "Notes",
     "- Audio parts are sorted by filename and listed in playlist.m3u.",
     "- Parts are based on estimated Morse runtime and safe text boundaries, not necessarily original book chapters.",
-    "- MP3 is recommended for long exports. WAV is uncompressed and can be large.",
+    "- MP3 is recommended for long downloads. WAV is uncompressed and can be large.",
     "- Source files are processed in your browser. Use source text you have the right to convert and use.",
   ]
     .filter((line) => line !== "")
@@ -542,6 +641,6 @@ async function cooperativeYield(signal: AbortSignal) {
 
 function throwIfAborted(signal: AbortSignal) {
   if (signal.aborted) {
-    throw new DOMException("Book export cancelled.", "AbortError");
+    throw new DOMException("Book download cancelled.", "AbortError");
   }
 }

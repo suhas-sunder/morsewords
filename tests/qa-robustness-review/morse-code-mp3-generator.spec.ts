@@ -120,15 +120,18 @@ test.describe("Morse code MP3 generator", () => {
 
     await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
+    await expect(page.locator("[data-mw-mp3-tool-ready='true']")).toBeVisible();
     expect(
       requestedUrls.filter((url) => /lame|mp3-encoder/i.test(url)),
       "MP3 encoder should not load during initial render",
     ).toHaveLength(0);
 
-    await page.getByLabel("Message to turn into MP3 audio").fill("SOS");
+    const messageInput = page.getByLabel("Message to turn into MP3 audio");
+    await messageInput.fill("SOS");
+    await expect(messageInput).toHaveValue("SOS");
     await page.getByLabel("File name").fill("morse-code");
 
-    const mp3Download = page.waitForEvent("download");
+    const mp3Download = page.waitForEvent("download", { timeout: 30_000 });
     await page.getByRole("button", { name: "Download MP3" }).click();
     const download = await mp3Download;
     expect(download.suggestedFilename()).toBe("morse-code.mp3");
@@ -141,7 +144,7 @@ test.describe("Morse code MP3 generator", () => {
     expect(mp3Blob?.type).toBe("audio/mpeg");
     expect(mp3Blob?.size ?? 0).toBeGreaterThan(100);
 
-    const wavDownload = page.waitForEvent("download");
+    const wavDownload = page.waitForEvent("download", { timeout: 30_000 });
     await page.getByRole("button", { name: "Download WAV" }).click();
     const wav = await wavDownload;
     expect(wav.suggestedFilename()).toBe("morse-code.wav");

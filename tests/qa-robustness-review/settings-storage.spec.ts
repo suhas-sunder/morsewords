@@ -190,7 +190,7 @@ test.describe("settingsStorage helpers", () => {
       "soft_click",
       "bird_chirp",
     ]);
-    expect(MP3_BITRATES).toEqual([96, 128, 192, 256]);
+    expect(MP3_BITRATES).toEqual([32, 48, 64, 96, 128, 192, 256]);
   });
 });
 

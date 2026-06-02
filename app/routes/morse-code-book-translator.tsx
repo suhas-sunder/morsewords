@@ -16,7 +16,7 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = ROUTES.bookTranslator;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
-const TITLE = "Book to Morse Code Translator and Audio Exporter";
+const TITLE = "Book to Morse Code Translator and Audio Download Tool";
 const DESCRIPTION =
   "Paste or upload TXT, MD, EPUB, or text-native PDF, estimate Morse runtime, split safe parts, and download local MP3 or WAV ZIP bundles.";
 
@@ -61,8 +61,8 @@ const howItWorksItems = [
     text: "Estimate Morse runtime, then split long sources at safe section, paragraph, sentence, or word boundaries rather than assuming original chapters.",
   },
   {
-    title: "Export a bundle",
-    text: "Download sorted MP3 or WAV parts with cleaned text, Morse transcript, manifest, settings, playlist, and README files.",
+    title: "Download the audio",
+    text: "Download one MP3 or WAV when the source fits, or a sorted ZIP bundle with transcripts, manifest, settings, playlist, and README files when extras are selected.",
   },
 ];
 
@@ -81,11 +81,11 @@ const formatItems = [
   },
   {
     title: "MP3 or WAV",
-    text: "MP3 is recommended for long exports because it stays smaller. WAV is available for short or uncompressed exports, but can get large quickly.",
+    text: "MP3 is recommended for long downloads because it stays smaller. WAV is available for short or uncompressed downloads, but can get large quickly.",
   },
   {
     title: "Local processing",
-    text: "Source files are handled locally in your browser. MorseWords does not upload book text, cleaned text, transcripts, or export results.",
+    text: "Source files are handled locally in your browser. MorseWords does not upload book text, cleaned text, transcripts, or download results.",
   },
   {
     title: "Rights and privacy",
@@ -111,12 +111,12 @@ export default function MorseCodeBookTranslatorRoute() {
     <main className={WAVE_PAGE_MAIN_CLASS}>
       <JsonLdScript jsonLd={jsonLd} />
       <PageHero
-        eyebrow="Book export"
+        eyebrow="Book download"
         title={TITLE}
         description="Prepare long-form source text for Morse code conversion, estimate listening time, split it into safe parts, and download an MP3 or WAV bundle."
         aside={
           <DarkNote label="Supported sources" value="TXT MD EPUB PDF">
-            TXT and EPUB are best for long exports. PDF must contain selectable
+            TXT and EPUB are best for long downloads. PDF must contain selectable
             text; scanned PDFs are not OCR'd here.
           </DarkNote>
         }
@@ -134,7 +134,7 @@ export default function MorseCodeBookTranslatorRoute() {
 
       <SectionCard
         eyebrow="Long-form workflow"
-        title="How book export works"
+        title="How book downloads work"
         description="The page extracts readable text locally, estimates Morse timing, and renders audio part by part instead of one huge book-length file."
         layout="stacked"
       >

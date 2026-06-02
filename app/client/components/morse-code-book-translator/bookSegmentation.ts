@@ -259,6 +259,19 @@ export function buildPartFilename({
   return `${base || "morse-book"}-part-${String(partIndex).padStart(3, "0")}.${format}`;
 }
 
+export function buildSingleAudioFilename({
+  sourceTitle,
+  format,
+}: {
+  sourceTitle?: string;
+  format: "mp3" | "wav";
+}) {
+  const base = sanitizeDownloadFilename(sourceTitle || "morse-book", "morse-book")
+    .replace(/\.(mp3|wav|zip|txt|json|m3u)$/i, "")
+    .slice(0, MAX_FILENAME_BASE_LENGTH);
+  return `${base || "morse-book"}-morse-audio.${format}`;
+}
+
 export function buildBundleFilename(sourceTitle?: string) {
   const base = sanitizeDownloadFilename(sourceTitle || "morse-book", "morse-book")
     .replace(/\.zip$/i, "")
