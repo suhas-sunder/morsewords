@@ -132,7 +132,7 @@ export default function MorseAudioTranslator({
 
   const [hydrated, setHydrated] = React.useState(false);
   const flashLamp = useFlashLampState(hydrated && flash);
-  const { disableFlashEffects, flashAllowed, fullPageFlash } = flashLamp;
+  const { disableFlashEffects, flashAllowed } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
 
   React.useEffect(() => {
@@ -336,8 +336,7 @@ export default function MorseAudioTranslator({
   const renderedSoundOn = hydrated ? soundOn : true;
   const renderedRepeat = hydrated ? repeat : false;
   const renderedFlash = hydrated ? effectiveFlash : false;
-  const showStrobeWarning =
-    fullPageFlash && renderedFlash && player.state === "playing";
+  const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
 
   const handleCharWpmChange = React.useCallback((value: number) => {
     const next = Math.round(

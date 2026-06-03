@@ -167,10 +167,9 @@ export default function MorseAudioTranslator({
   const [exportStatus, setExportStatus] = React.useState<null | { kind: "ok" | "error" | "working"; message: string }>(null);
   const [hydrated, setHydrated] = React.useState(false);
   const flashLamp = useFlashLampState(hydrated && flash);
-  const { disableFlashEffects, flashAllowed, fullPageFlash } = flashLamp;
+  const { disableFlashEffects, flashAllowed } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
-  const showStrobeWarning =
-    fullPageFlash && effectiveFlash && player.state === "playing";
+  const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
 
   React.useEffect(() => {
     setSourceMode(readStoredEnum(storageKey("source"), SOURCE_MODES, "text"));

@@ -1,4 +1,4 @@
-import { expect, test, type Locator } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -181,6 +181,27 @@ async function readOutputColorSnapshot(panel: Locator, text: Locator) {
   };
 }
 
+async function readWarningColorSnapshot(warningText: Locator) {
+  return warningText.evaluate((element) => {
+    const normalizeColor = (value: string) => {
+      const canvas = element.ownerDocument.createElement("canvas");
+      const context = canvas.getContext("2d");
+      if (!context) return value;
+      context.fillStyle = "#000000";
+      context.fillStyle = value;
+      return context.fillStyle;
+    };
+    const panel = element.closest(".mw-surface") ?? element;
+    const text = element.closest("p") ?? element;
+    return {
+      panelBackgroundColor: normalizeColor(
+        window.getComputedStyle(panel).backgroundColor,
+      ),
+      textColor: normalizeColor(window.getComputedStyle(text).color),
+    };
+  });
+}
+
 async function expectStableReadableOutputPanel({
   focusTarget,
   panel,
@@ -210,6 +231,32 @@ async function expectStableReadableOutputPanel({
   expect(
     contrastRatio(after.panelBackgroundColor, after.textColor),
   ).toBeGreaterThan(7);
+}
+
+function strobeWarning(page: Page) {
+  return page
+    .getByText("Strobe warning: flashing light may be uncomfortable", {
+      exact: false,
+    })
+    .filter({ visible: true });
+}
+
+function flashLightButton(page: Page) {
+  return page.getByRole("button", { name: "Flash Light" }).first();
+}
+
+async function revealFlashLightButton(page: Page) {
+  const flashButton = flashLightButton(page);
+  if (await flashButton.isVisible().catch(() => false)) return flashButton;
+
+  const advancedButton = page
+    .getByRole("button", { name: /Show advanced/ })
+    .first();
+  if (await advancedButton.isVisible().catch(() => false)) {
+    await advancedButton.click();
+  }
+  await expect(flashButton).toBeVisible();
+  return flashButton;
 }
 
 test("shared UI control primitives keep accessibility and disabled-state contracts", () => {
@@ -245,6 +292,12 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
   expect(togglePill).toContain("disabled={disabled}");
   expect(togglePill).toContain("onChange(!checked)");
 
+  const flashSafety = readRepoFile(
+    "app/client/components/shared/useFlashSafety.ts",
+  );
+  expect(flashSafety).toContain("shouldShowWholePageFlashWarning");
+  expect(flashSafety).toContain("fullPageFlash && flashEnabled");
+
   const sliderRow = readRepoFile(
     "app/client/components/shared/ui/SliderRow.tsx",
   );
@@ -266,6 +319,9 @@ test("targeted routes reuse shared controls instead of route-local copies", () =
     const source = readRepoFile(filePath);
     expect(source, filePath).not.toContain("function TogglePill(");
     expect(source, filePath).not.toContain("function SliderRow(");
+    expect(source, filePath).not.toMatch(
+      /fullPageFlash\s*&&[\s\S]{0,80}player\.state/,
+    );
     expect(source, filePath).not.toContain(
       'style={{ accentColor: "#38bdf8" }}',
     );
@@ -313,6 +369,41 @@ test.describe("shared route controls", () => {
       await expect(page.getByTestId("mw-flash-lamp")).toBeVisible();
     });
   }
+
+  test("whole-page flash warning stays readable in dark mode on mobile", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.addInitScript(() => {
+      window.localStorage.clear();
+      window.localStorage.setItem("morsewords-theme", "dark");
+      window.localStorage.setItem("morsewords-full-page-flash", "1");
+      document.documentElement.dataset.theme = "dark";
+    });
+    await page.goto("/audio", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+
+    const flashButton = await revealFlashLightButton(page);
+    await flashButton.click();
+
+    const warning = strobeWarning(page);
+    await expect(warning).toBeVisible();
+    const warningColors = await readWarningColorSnapshot(warning.first());
+    expect(
+      contrastRatio(
+        warningColors.panelBackgroundColor,
+        warningColors.textColor,
+      ),
+    ).toBeGreaterThan(4.5);
+
+    const horizontalOverflow = await page.evaluate(
+      () =>
+        document.documentElement.scrollWidth -
+        document.documentElement.clientWidth,
+    );
+    expect(horizontalOverflow).toBeLessThanOrEqual(1);
+    await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
+  });
 
   for (const route of [
     "/morse-code-visual-practice",
