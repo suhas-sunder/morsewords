@@ -3,6 +3,7 @@ import {
   safeReadStorage,
   safeWriteStorage,
 } from "~/client/components/shared/settingsStorage";
+import { STORAGE_KEYS } from "~/client/components/shared/storageRegistry";
 
 import {
   DEFAULT_BOOK_EXPORT_SETTINGS,
@@ -19,7 +20,7 @@ import {
 import type { BookVideoSettings } from "./bookVideoTypes";
 
 export const BOOK_EXPORT_PREFERENCES_KEY =
-  "morsewords:book-translator:preferences:v1";
+  STORAGE_KEYS.bookExportPreferences;
 
 export type BookExportPreferences = {
   outputType: BookOutputType;

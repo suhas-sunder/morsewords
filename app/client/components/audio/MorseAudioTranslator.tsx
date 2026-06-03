@@ -59,6 +59,8 @@ import {
   readStoredNumberEnum,
   readStoredString,
   safeWriteStorage,
+  safeWriteStorageResult,
+  sourceStorageWriteMessage,
 } from "~/client/components/shared/settingsStorage";
 
 import {
@@ -129,6 +131,7 @@ export default function MorseAudioTranslator({
   const [sampleRate, setSampleRate] =
     React.useState<22050 | 44100 | 48000>(44100);
   const [tailMs, setTailMs] = React.useState<number>(120);
+  const [sourceSaveNotice, setSourceSaveNotice] = React.useState("");
 
   const [hydrated, setHydrated] = React.useState(false);
   const flashLamp = useFlashLampState(hydrated && flash);
@@ -278,8 +281,9 @@ export default function MorseAudioTranslator({
     if (!hydrated) return;
 
     writeStr("mw_audio_source", sourceMode);
-    writeStr("mw_audio_text", text);
-    writeStr("mw_audio_morse", morse);
+    const textWrite = safeWriteStorageResult("mw_audio_text", text);
+    const morseWrite = safeWriteStorageResult("mw_audio_morse", morse);
+    setSourceSaveNotice(sourceStorageWriteMessage([textWrite, morseWrite]));
 
     writeNum("mw_audio_wpm", charWpm);
     writeNum("mw_audio_fwpm", farnsworthWpm);
@@ -531,7 +535,7 @@ export default function MorseAudioTranslator({
                   badge="Source"
                   footer={
                     <p className="text-sm leading-relaxed text-slate-600">
-                      {TOOL_SPACING_HELPER}
+                      {sourceSaveNotice || TOOL_SPACING_HELPER}
                     </p>
                   }
                 >

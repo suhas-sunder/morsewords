@@ -67,7 +67,7 @@ const videoFaqItems = [
   },
   {
     q: "Is my input uploaded or stored?",
-    a: "No. Input, Morse conversion, preview, and WebM recording happen locally in the browser, and raw input is not saved to localStorage by this route.",
+    a: "No. Input, Morse conversion, preview, and WebM recording happen locally in the browser. Raw input is not uploaded to MorseWords servers, stored in a database, or saved to browser storage by this route.",
   },
   {
     q: "Why is video export unavailable in some browsers?",
@@ -237,7 +237,7 @@ const safetyItems = [
   },
   {
     title: "Local processing",
-    text: "The page converts and records in the browser. It does not upload your message or save raw input to localStorage.",
+    text: "MorseWords processes your source text locally in your browser. Your message is not uploaded to MorseWords servers or stored in a database. This route saves video settings only, not raw input or generated WebM files.",
   },
   {
     title: "Browser support",

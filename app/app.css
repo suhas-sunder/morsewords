@@ -607,7 +607,8 @@ input[type="range"]:focus-visible {
 
 .mw-theme-toggle:focus-visible,
 .mw-nav-icon-button:focus-visible,
-.mw-display-settings-switch:focus-visible {
+.mw-display-settings-switch:focus-visible,
+.mw-display-settings-action:focus-visible {
   background: var(--mw-nav-bg-muted) !important;
   color: var(--mw-nav-muted) !important;
   outline: none !important;
@@ -653,8 +654,18 @@ input[type="range"]:focus-visible {
   color: var(--mw-nav-panel-text) !important;
 }
 
+.mw-display-settings-action,
 .mw-display-settings-switch:hover {
   background: var(--mw-nav-bg-muted) !important;
+}
+
+.mw-display-settings-action {
+  color: var(--mw-nav-panel-text) !important;
+}
+
+.mw-display-settings-action:hover {
+  background: color-mix(in srgb, var(--mw-nav-panel-text) 14%, var(--mw-nav-bg-muted)) !important;
+  color: var(--mw-nav-muted) !important;
 }
 
 .mw-display-settings-track {

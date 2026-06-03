@@ -46,7 +46,7 @@ const bookFaqItems = [
   },
   {
     q: "Is my uploaded book stored?",
-    a: "No. Source text, extracted text, cleaned text, Morse transcripts, audio, and video are processed locally in your browser and are not uploaded to MorseWords.",
+    a: "No. Source text, extracted text, cleaned text, Morse transcripts, audio, and video are processed locally in your browser. They are not uploaded to MorseWords servers, stored in a database, or saved to browser storage by this route.",
   },
   {
     q: "Can I edit extracted text before download?",
@@ -262,7 +262,7 @@ const videoGuideItems = [
 const responsibilityItems = [
   {
     title: "Local processing",
-    text: "Raw source text stays in the browser during the session. MorseWords does not upload your book, article, cleaned text, transcript, audio, or video.",
+    text: "MorseWords processes your source text locally in your browser. Your text and uploaded files are not uploaded to MorseWords servers or stored in a database. This route keeps source text in the page session only; site settings can clear source saved by other tools.",
   },
   {
     title: "Use text you can use",

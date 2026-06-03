@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 import {
   AUDIO_GENERATOR_PRESETS,
@@ -18,13 +18,25 @@ import {
   readStoredNumber,
   readStoredNumberEnum,
   readStoredString,
+  resetMorseWordsSettings,
   safeReadStorage,
   safeRemoveStorage,
   safeWriteStorage,
+  safeWriteStorageResult,
+  clearMorseWordsSourceData,
+  sourceStorageWriteMessage,
 } from "../../app/client/components/shared/settingsStorage";
+import {
+  STORAGE_KEY_REGISTRY,
+  STORAGE_KEYS,
+  STORAGE_LIMITS,
+  getStorageKeyDefinition,
+  validateStorageRegistryValue,
+} from "../../app/client/components/shared/storageRegistry";
 import {
   blockExternalNetwork,
   collectConsoleErrors,
+  waitForRouteReady,
   writeArtifact,
 } from "./helpers";
 
@@ -194,6 +206,331 @@ test.describe("settingsStorage helpers", () => {
   });
 });
 
+test.describe("storage registry policy", () => {
+  test("documents known keys with validators and clear behavior", () => {
+    const knownKeys = [
+      STORAGE_KEYS.theme,
+      STORAGE_KEYS.showAmbientMorse,
+      STORAGE_KEYS.disableFlashEffects,
+      STORAGE_KEYS.fullPageFlash,
+      "mw_audio_text",
+      "mw_audio_morse",
+      "mw_sound_generator_text",
+      "mw_sound_generator_morse",
+      "mw_mp3_kbps",
+      "mw_word_trainer_custom_words",
+      STORAGE_KEYS.bookExportPreferences,
+      STORAGE_KEYS.videoGeneratorPreferences,
+      STORAGE_KEYS.printableChartSettings,
+      STORAGE_KEYS.printableChartPresets,
+    ];
+
+    for (const key of knownKeys) {
+      expect(getStorageKeyDefinition(key), key).toBeTruthy();
+    }
+
+    for (const definition of STORAGE_KEY_REGISTRY) {
+      expect(definition.key).toBeTruthy();
+      expect(definition.routeScope).toBeTruthy();
+      expect(definition.defaultValue).toEqual(expect.any(String));
+      expect(definition.validatorName).toBeTruthy();
+      expect(definition.validate).toEqual(expect.any(Function));
+      expect(definition.clearBehaviors.length, definition.key).toBeGreaterThan(0);
+      expect(definition.versionStrategy).toBeTruthy();
+      expect([
+        "preference",
+        "source text",
+        "source metadata",
+        "cache",
+        "generated media, forbidden",
+      ]).toContain(definition.sensitivity);
+    }
+  });
+
+  test("registry validators reject corrupted JSON, invalid enums, and bad numbers", () => {
+    expect(validateStorageRegistryValue(STORAGE_KEYS.theme, "dark")).toBe(true);
+    expect(validateStorageRegistryValue(STORAGE_KEYS.theme, "system")).toBe(false);
+    expect(validateStorageRegistryValue("mw_audio_wpm", "18")).toBe(true);
+    expect(validateStorageRegistryValue("mw_audio_wpm", "9000")).toBe(false);
+    expect(validateStorageRegistryValue("mw_audio_hz", "NaN")).toBe(false);
+    expect(validateStorageRegistryValue("mw_audio_hz", "Infinity")).toBe(false);
+    expect(validateStorageRegistryValue("mw_audio_sr", "44100")).toBe(true);
+    expect(validateStorageRegistryValue("mw_audio_sr", "96000")).toBe(false);
+    expect(validateStorageRegistryValue("mw_audio_preset", "warm_tone")).toBe(true);
+    expect(validateStorageRegistryValue("mw_audio_preset", "old_square")).toBe(false);
+    expect(validateStorageRegistryValue(STORAGE_KEYS.bookExportPreferences, "{bad")).toBe(false);
+    expect(
+      validateStorageRegistryValue(
+        STORAGE_KEYS.videoGeneratorPreferences,
+        JSON.stringify({ videoSettings: { visualStyle: "laser" } }),
+      ),
+    ).toBe(false);
+  });
+
+  test("write policy refuses generated media and oversize source but sanitizes printable logo data", () => {
+    withMockStorage({}, (store) => {
+      const mediaResult = safeWriteStorageResult(
+        "mw_audio_mp3_blob",
+        "GENERATED-MP3-BLOB",
+      );
+      expect(mediaResult.ok).toBe(false);
+      expect(store.has("mw_audio_mp3_blob")).toBe(false);
+      expect(sourceStorageWriteMessage([mediaResult])).toBe(
+        "Generated media is never saved to browser storage.",
+      );
+
+      const largeSource = "A".repeat(STORAGE_LIMITS.sourceTextMaxLength + 1);
+      const sourceResult = safeWriteStorageResult("mw_audio_text", largeSource);
+      expect(sourceResult.ok).toBe(false);
+      expect(store.has("mw_audio_text")).toBe(false);
+      expect(sourceStorageWriteMessage([sourceResult])).toContain(
+        "Source text is too large to save locally",
+      );
+
+      const printablePayload = JSON.stringify({
+        brandName: "Private class",
+        customLogoDataUrl: "data:image/png;base64,SECRET",
+        customLogoName: "secret-logo.png",
+      });
+      expect(
+        safeWriteStorageResult(
+          STORAGE_KEYS.printableChartSettings,
+          printablePayload,
+        ).ok,
+      ).toBe(true);
+      const stored = JSON.parse(
+        store.get(STORAGE_KEYS.printableChartSettings) ?? "{}",
+      ) as Record<string, unknown>;
+      expect(stored.brandName).toBe("Private class");
+      expect(stored.customLogoDataUrl).toBe("");
+      expect(stored.customLogoName).toBe("");
+    });
+  });
+
+  test("quota errors are reported without blocking callers", () => {
+    const originalWindow = globalWindow.window;
+    globalWindow.window = {
+      localStorage: {
+        getItem: () => null,
+        setItem: () => {
+          throw new DOMException("full", "QuotaExceededError");
+        },
+        removeItem: () => {},
+      },
+    };
+
+    try {
+      const result = safeWriteStorageResult("mw_audio_text", "SOS");
+      expect(result.ok).toBe(false);
+      expect(result.ok ? "" : result.reason).toBe("quota-exceeded");
+      expect(sourceStorageWriteMessage([result])).toContain(
+        "Browser storage is full",
+      );
+    } finally {
+      if (originalWindow) {
+        globalWindow.window = originalWindow;
+      } else {
+        delete globalWindow.window;
+      }
+    }
+  });
+
+  test("clear source data and reset settings keep preference and source scopes separate", () => {
+    withMockStorage(
+      {
+        [STORAGE_KEYS.theme]: "dark",
+        mw_audio_text: "PRIVATE SOURCE",
+        mw_audio_morse: "... --- ...",
+        mw_audio_wpm: "24",
+        mw_audio_hz: "700",
+      },
+      (store) => {
+        const resetResult = resetMorseWordsSettings();
+        expect(resetResult.failedKeys).toEqual([]);
+        expect(store.get("mw_audio_text")).toBe("PRIVATE SOURCE");
+        expect(store.get("mw_audio_morse")).toBe("... --- ...");
+        expect(store.has("mw_audio_wpm")).toBe(false);
+        expect(store.has(STORAGE_KEYS.theme)).toBe(false);
+
+        store.set(STORAGE_KEYS.theme, "dark");
+        store.set("mw_audio_wpm", "20");
+        const clearResult = clearMorseWordsSourceData();
+        expect(clearResult.failedKeys).toEqual([]);
+        expect(store.has("mw_audio_text")).toBe(false);
+        expect(store.has("mw_audio_morse")).toBe(false);
+        expect(store.get("mw_audio_wpm")).toBe("20");
+        expect(store.get(STORAGE_KEYS.theme)).toBe("dark");
+      },
+    );
+  });
+});
+
+async function openDisplaySettingsDialog(page: Page) {
+  const openNav = page.getByRole("button", { name: "Open navigation" });
+  if (await openNav.isVisible().catch(() => false)) {
+    await openNav.click();
+  }
+
+  const settingsButton = page.getByRole("button", {
+    name: "Open display settings",
+  });
+  await expect(settingsButton).toBeVisible();
+  await settingsButton.click();
+
+  const dialog = page.getByRole("dialog", { name: "Display settings" });
+  await expect(dialog).toBeVisible();
+  return dialog;
+}
+
+test.describe("nav storage controls", () => {
+  test.beforeEach(async ({ page }) => {
+    await blockExternalNetwork(page);
+  });
+
+  test("clear source data removes source keys while preserving theme and preferences", async ({
+    page,
+  }) => {
+    await page.addInitScript((keys) => {
+      window.localStorage.setItem(keys.theme, "dark");
+      window.localStorage.setItem("mw_audio_text", "PRIVATE SOURCE");
+      window.localStorage.setItem("mw_audio_morse", "... --- ...");
+      window.localStorage.setItem("mw_audio_wpm", "24");
+    }, STORAGE_KEYS);
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    const dialog = await openDisplaySettingsDialog(page);
+
+    page.once("dialog", async (confirmDialog) => {
+      expect(confirmDialog.message()).toContain(
+        "Clear locally saved source text",
+      );
+      await confirmDialog.accept();
+    });
+    await dialog
+      .getByRole("button", { name: "Clear locally saved source data" })
+      .click();
+
+    await expect(dialog.getByText("Locally saved source data cleared.")).toBeVisible();
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem("mw_audio_text")))
+      .toBeNull();
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem("mw_audio_morse")))
+      .toBeNull();
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem("mw_audio_wpm")))
+      .toBe("24");
+    await expect
+      .poll(() =>
+        page.evaluate(
+          (storageKey) => localStorage.getItem(storageKey),
+          STORAGE_KEYS.theme,
+        ),
+      )
+      .toBe("dark");
+  });
+
+  test("reset settings clears preference keys without wiping separated source text", async ({
+    page,
+  }) => {
+    await page.addInitScript((keys) => {
+      window.localStorage.setItem(keys.theme, "dark");
+      window.localStorage.setItem(keys.fullPageFlash, "1");
+      window.localStorage.setItem("mw_audio_text", "PRIVATE SOURCE");
+      window.localStorage.setItem("mw_audio_wpm", "24");
+      document.documentElement.dataset.theme = "dark";
+    }, STORAGE_KEYS);
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    const dialog = await openDisplaySettingsDialog(page);
+
+    page.once("dialog", async (confirmDialog) => {
+      expect(confirmDialog.message()).toContain("Reset MorseWords settings");
+      await confirmDialog.accept();
+    });
+    await dialog
+      .getByRole("button", { name: "Reset MorseWords settings" })
+      .click();
+
+    await expect(dialog.getByText("MorseWords settings reset.")).toBeVisible();
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem("mw_audio_text")))
+      .toBe("PRIVATE SOURCE");
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem("mw_audio_wpm")))
+      .toBeNull();
+    await expect
+      .poll(() =>
+        page.evaluate(
+          (storageKey) => localStorage.getItem(storageKey),
+          STORAGE_KEYS.theme,
+        ),
+      )
+      .toBeNull();
+    await expect
+      .poll(() => page.evaluate(() => document.documentElement.dataset.theme))
+      .toBe("light");
+  });
+
+  test("mobile dark-mode settings panel exposes usable storage controls", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.addInitScript((keys) => {
+      window.localStorage.setItem(keys.theme, "dark");
+      window.localStorage.setItem("mw_audio_text", "MOBILE PRIVATE SOURCE");
+      document.documentElement.dataset.theme = "dark";
+    }, STORAGE_KEYS);
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    const dialog = await openDisplaySettingsDialog(page);
+    const clearButton = dialog.getByRole("button", {
+      name: "Clear locally saved source data",
+    });
+    const resetButton = dialog.getByRole("button", {
+      name: "Reset MorseWords settings",
+    });
+
+    await expect(clearButton).toBeVisible();
+    await expect(resetButton).toBeVisible();
+    const colorSnapshot = await resetButton.evaluate((element) => {
+      const styles = window.getComputedStyle(element);
+      return {
+        color: styles.color,
+        backgroundColor: styles.backgroundColor,
+      };
+    });
+    expect(colorSnapshot.color).not.toBe(colorSnapshot.backgroundColor);
+
+    page.once("dialog", async (confirmDialog) => {
+      await confirmDialog.accept();
+    });
+    await clearButton.click();
+    await expect(dialog.getByText("Locally saved source data cleared.")).toBeVisible();
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem("mw_audio_text")))
+      .toBeNull();
+  });
+
+  for (const route of [
+    "/audio",
+    "/morse-code-sound-generator",
+    "/morse-code-mp3-generator",
+  ] as const) {
+    test(`${route} discloses local browser source saving`, async ({ page }) => {
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+
+      await expect(page.locator("body")).toContainText(
+        /source may be saved only in this browser on this device and can be cleared from site settings\./i,
+      );
+    });
+  }
+});
+
 const CORRUPTED_SETTINGS: Record<string, string> = {
   mw_hz: "nope",
   mw_vol: "2",
@@ -229,8 +566,17 @@ const CORRUPTED_SETTINGS: Record<string, string> = {
   mw_audio_practice_best_streak: "-10",
   mw_audio_quiz_difficulty: "expert",
   mw_audio_quiz_best_streak: "Infinity",
+  mw_sound_generator_source: "video",
+  mw_sound_generator_text: "SAFE TEXT",
+  mw_sound_generator_wpm: "Infinity",
+  mw_sound_generator_preset: "old_square",
   mw_visual_quiz_best_streak: "Infinity",
   mw_word_trainer_best_streak: "Infinity",
+  "morsewords:book-translator:preferences:v1": "{not json",
+  "morsewords:video-generator:preferences:v1": JSON.stringify({
+    charWpm: Infinity,
+    videoSettings: { visualStyle: "laser" },
+  }),
   "morsewords-printable-chart-settings-v6": "{not json",
   "morsewords-printable-chart-presets-v3": "{not json",
 };
@@ -248,6 +594,8 @@ const CORRUPTED_STORAGE_ROUTES = [
   "/morse-code-visual-quiz",
   "/morse-code-word-trainer",
   "/morse-code-printable-chart",
+  "/morse-code-book-translator",
+  "/morse-code-video-generator",
   "/morse-code-word-search-builder",
 ] as const;
 

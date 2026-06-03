@@ -232,7 +232,7 @@ const faqItems = [
   },
   {
     q: "Is my text uploaded to a server?",
-    a: "No. This tool renders and exports the audio in your browser. It does not upload your typed message to generate the MP3 or WAV file.",
+    a: "No. This tool renders and exports audio in your browser. Your message is not uploaded to MorseWords servers or stored in a database. The source may be saved only in this browser on this device and can be cleared from site settings.",
   },
   {
     q: "Can I convert an MP3 back into Morse text?",

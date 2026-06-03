@@ -78,7 +78,6 @@ import {
   type MorseVideoSupport,
 } from "~/client/components/shared/video/morseVideoSupport";
 import {
-  DEFAULT_MORSE_VIDEO_SETTINGS,
   MORSE_VIDEO_INTENSITIES,
   MORSE_VIDEO_RESOLUTIONS,
   MORSE_VIDEO_STANDALONE_BACKGROUND_STYLES,
@@ -88,6 +87,12 @@ import {
   type MorseVideoSettings,
   type MorseVideoTextDisplayMode,
 } from "~/client/components/shared/video/morseVideoTypes";
+import {
+  DEFAULT_VIDEO_GENERATOR_PREFERENCES,
+  DEFAULT_STANDALONE_VIDEO_SETTINGS,
+  loadVideoGeneratorPreferences,
+  saveVideoGeneratorPreferences,
+} from "./videoGeneratorPreferences";
 
 type SourceMode = "text" | "morse";
 type DownloadStatus = {
@@ -101,11 +106,8 @@ const DEFAULT_TEXT = "sos help";
 const DEFAULT_MORSE = "... --- ...";
 const MAX_SHORT_VIDEO_MS = 180_000;
 const DEFAULT_AUDIO = getAudioPresetDefaults("cw_radio");
-const DEFAULT_VIDEO_SETTINGS: MorseVideoSettings = {
-  ...DEFAULT_MORSE_VIDEO_SETTINGS,
-  backgroundStyle: "warm-morsewords",
-  targetPartMinutes: 8,
-};
+const DEFAULT_VIDEO_SETTINGS: MorseVideoSettings =
+  DEFAULT_STANDALONE_VIDEO_SETTINGS;
 const FULL_FRAME_FLASH_WARNING =
   "Full-frame flash mode can create rapid full-frame flashing in the finished video and may be uncomfortable or unsafe for some viewers. Use Lightbulb or Dot for a smaller flash area.";
 
@@ -135,6 +137,7 @@ export default function MorseVideoGeneratorTool() {
   const [videoSupport, setVideoSupport] =
     React.useState<MorseVideoSupport | null>(null);
   const [hydrated, setHydrated] = React.useState(false);
+  const [preferencesLoaded, setPreferencesLoaded] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
   const [previewPlaying, setPreviewPlaying] = React.useState(false);
   const [visualStep, setVisualStep] = React.useState(0);
@@ -151,6 +154,17 @@ export default function MorseVideoGeneratorTool() {
   } | null>(null);
 
   React.useEffect(() => {
+    const preferences = loadVideoGeneratorPreferences();
+    setSourceMode(preferences.sourceMode);
+    setVideoSettings(preferences.videoSettings);
+    setCharWpm(preferences.charWpm);
+    setFarnsworthWpm(preferences.farnsworthWpm);
+    setTonePreset(preferences.tonePreset);
+    setPitch(preferences.pitch);
+    setVolume(preferences.volume);
+    setSampleRate(preferences.sampleRate);
+    setFileName(preferences.fileName);
+    setPreferencesLoaded(true);
     setVideoSupport(detectMorseVideoSupport());
     setHydrated(true);
   }, []);
@@ -168,6 +182,33 @@ export default function MorseVideoGeneratorTool() {
         : current,
     );
   }, [videoSupport]);
+
+  React.useEffect(() => {
+    if (!preferencesLoaded) return;
+    saveVideoGeneratorPreferences({
+      ...DEFAULT_VIDEO_GENERATOR_PREFERENCES,
+      sourceMode,
+      videoSettings,
+      charWpm,
+      farnsworthWpm,
+      tonePreset,
+      pitch,
+      volume,
+      sampleRate,
+      fileName,
+    });
+  }, [
+    charWpm,
+    farnsworthWpm,
+    fileName,
+    pitch,
+    preferencesLoaded,
+    sampleRate,
+    sourceMode,
+    tonePreset,
+    videoSettings,
+    volume,
+  ]);
 
   React.useEffect(() => {
     if (!previewPlaying) return undefined;

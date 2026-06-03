@@ -1,3 +1,10 @@
+import {
+  getStorageKeysForClearBehavior,
+  prepareStorageValueForWrite,
+  type StorageClearBehavior,
+  type StorageWriteBlockReason,
+} from "~/client/components/shared/storageRegistry";
+
 export type StoredNumberOptions = {
   fallback: number;
   min?: number;
@@ -16,6 +23,24 @@ export type StoredReadOptions = {
   selfHeal?: boolean;
 };
 
+export type SafeWriteStorageResult =
+  | { ok: true }
+  | {
+      ok: false;
+      reason:
+        | StorageWriteBlockReason
+        | "unavailable"
+        | "quota-exceeded"
+        | "unknown";
+      message: string;
+      maxLength?: number;
+    };
+
+export type StorageClearResult = {
+  removedKeys: string[];
+  failedKeys: string[];
+};
+
 export function safeReadStorage(key: string): string | null {
   if (typeof window === "undefined") return null;
 
@@ -26,15 +51,62 @@ export function safeReadStorage(key: string): string | null {
   }
 }
 
-export function safeWriteStorage(key: string, value: string): boolean {
-  if (typeof window === "undefined") return false;
+export function safeWriteStorageResult(
+  key: string,
+  value: string,
+): SafeWriteStorageResult {
+  if (typeof window === "undefined") {
+    return {
+      ok: false,
+      reason: "unavailable",
+      message: "Browser storage is unavailable during server rendering.",
+    };
+  }
+
+  const prepared = prepareStorageValueForWrite(key, value);
+  if (!prepared.ok) {
+    return {
+      ok: false,
+      reason: prepared.reason,
+      message: prepared.message,
+      maxLength: prepared.maxLength,
+    };
+  }
 
   try {
-    window.localStorage.setItem(key, value);
-    return true;
-  } catch {
-    return false;
+    window.localStorage.setItem(key, prepared.value);
+    return { ok: true };
+  } catch (error) {
+    return {
+      ok: false,
+      reason: isQuotaExceededError(error) ? "quota-exceeded" : "unknown",
+      message: isQuotaExceededError(error)
+        ? "Browser storage quota is full. The current tool can continue, but this value was not saved."
+        : "Browser storage could not save this value.",
+    };
   }
+}
+
+export function safeWriteStorage(key: string, value: string): boolean {
+  return safeWriteStorageResult(key, value).ok;
+}
+
+export function sourceStorageWriteMessage(
+  results: SafeWriteStorageResult[],
+) {
+  const blocked = results.find((result) => !result.ok);
+  if (!blocked || blocked.ok) return "";
+
+  if (blocked.reason === "too-large") {
+    return blocked.message;
+  }
+  if (blocked.reason === "quota-exceeded") {
+    return "Browser storage is full, so this source was not saved locally. Conversion and downloads can continue.";
+  }
+  if (blocked.reason === "forbidden") {
+    return "Generated media is never saved to browser storage.";
+  }
+  return "This source could not be saved locally, but the tool can continue.";
 }
 
 export function safeRemoveStorage(key: string): boolean {
@@ -46,6 +118,49 @@ export function safeRemoveStorage(key: string): boolean {
   } catch {
     return false;
   }
+}
+
+export function clearMorseWordsStorageByBehavior(
+  behavior: StorageClearBehavior,
+): StorageClearResult {
+  const result: StorageClearResult = {
+    removedKeys: [],
+    failedKeys: [],
+  };
+
+  for (const key of getStorageKeysForClearBehavior(behavior)) {
+    if (safeRemoveStorage(key)) {
+      result.removedKeys.push(key);
+    } else {
+      result.failedKeys.push(key);
+    }
+  }
+
+  if (
+    typeof window !== "undefined" &&
+    typeof window.dispatchEvent === "function" &&
+    typeof CustomEvent !== "undefined"
+  ) {
+    window.dispatchEvent(
+      new CustomEvent<StorageClearResult>("morsewords:storage-clear", {
+        detail: result,
+      }),
+    );
+  }
+
+  return result;
+}
+
+export function clearMorseWordsSourceData() {
+  return clearMorseWordsStorageByBehavior("clear source data");
+}
+
+export function resetMorseWordsSettings() {
+  return clearMorseWordsStorageByBehavior("reset settings");
+}
+
+export function clearAllMorseWordsSiteData() {
+  return clearMorseWordsStorageByBehavior("clear all site data");
 }
 
 export function parseStoredJson<T>(
@@ -199,4 +314,13 @@ function normalizeStoredString(
 
   if (allowEmpty || limited.trim() !== "") return limited;
   return "";
+}
+
+function isQuotaExceededError(error: unknown) {
+  return (
+    typeof DOMException !== "undefined" &&
+    error instanceof DOMException &&
+    (error.name === "QuotaExceededError" ||
+      error.name === "NS_ERROR_DOM_QUOTA_REACHED")
+  );
 }

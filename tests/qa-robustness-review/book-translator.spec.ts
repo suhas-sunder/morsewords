@@ -540,6 +540,11 @@ test("book translator route metadata, alias, and sitemap use canonical URL", asy
     );
   expect(jsonLd).toContain(absoluteUrl(CANONICAL_PATH));
   expect(jsonLd).toContain("WebApplication");
+  await expect(
+    page.getByText(
+      "Your text and uploaded files are not uploaded to MorseWords servers or stored in a database.",
+    ),
+  ).toBeVisible();
 
   const aliasResponse = await request.get(ALIAS_PATH, { maxRedirects: 0 });
   expect(aliasResponse.status()).toBe(301);

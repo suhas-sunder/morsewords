@@ -73,6 +73,7 @@ import {
 } from "./bookExportPreferences";
 import type {
   BookExportPart,
+  BookExportAnalysis,
   BookExportPresetName,
   BookExportProgress,
   BookExportResultSummary,
@@ -82,6 +83,7 @@ import type {
 import { segmentBookText } from "./bookSegmentation";
 import {
   DEFAULT_CLEANUP_OPTIONS,
+  type BookSourceSection,
   type CleanupOptions,
   type CustomCleanupRule,
   type ParsedBookSource,
@@ -189,6 +191,18 @@ type BookAudioPreview = {
   truncated: boolean;
 };
 
+type CacheEntry<T> = {
+  key: string;
+  value: T;
+};
+
+type BookDerivedCache = {
+  preflight?: CacheEntry<PreflightSummary>;
+  sourceSections?: CacheEntry<BookSourceSection[]>;
+  exportParts?: CacheEntry<BookExportPart[]>;
+  exportAnalysis?: CacheEntry<BookExportAnalysis>;
+};
+
 function useAppliedThemeMode() {
   const [themeMode, setThemeMode] = React.useState<ThemeMode>("light");
 
@@ -240,6 +254,61 @@ function shouldUseEditableUpload(parsed: ParsedBookSource) {
     (parsed.sourceType === "txt" || parsed.sourceType === "md") &&
     parsed.rawText.length <= INLINE_UPLOAD_TEXTAREA_LIMIT
   );
+}
+
+function hashString(value: string) {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return `${value.length}:${(hash >>> 0).toString(36)}`;
+}
+
+function parsedSourceSignature(parsed: ParsedBookSource) {
+  const sections =
+    parsed.sections?.map((section) => ({
+      title: section.title ?? "",
+      sourceLabel: section.sourceLabel ?? "",
+      startOffset: section.startOffset ?? 0,
+      endOffset: section.endOffset ?? 0,
+      rawText: hashString(section.rawText),
+    })) ?? [];
+
+  return JSON.stringify({
+    sourceType: parsed.sourceType,
+    filename: parsed.filename ?? "",
+    title: parsed.title ?? "",
+    author: parsed.author ?? "",
+    pageCount: parsed.pageCount ?? 0,
+    sectionCount: parsed.sectionCount ?? 0,
+    rawText: hashString(parsed.rawText),
+    sections,
+    warnings: parsed.warnings,
+  });
+}
+
+function cleanupSignature(
+  options: CleanupOptions,
+  customRules: CustomCleanupRule[],
+) {
+  return JSON.stringify({ options, customRules });
+}
+
+function sourceSectionsSignature(sections: BookSourceSection[]) {
+  return JSON.stringify(
+    sections.map((section) => ({
+      title: section.title ?? "",
+      sourceLabel: section.sourceLabel ?? "",
+      startOffset: section.startOffset ?? 0,
+      endOffset: section.endOffset ?? 0,
+      rawText: hashString(section.rawText),
+    })),
+  );
+}
+
+function settingsSignature(value: unknown) {
+  return JSON.stringify(value);
 }
 
 function cleanupLabel(key: keyof CleanupOptions) {
@@ -550,6 +619,7 @@ export default function BookTranslatorTool() {
   const customCleanupRuleIdRef = React.useRef(1);
   const previewAudioPlayer = useMorseAudio();
   const stopPreviewAudioRef = React.useRef(previewAudioPlayer.stop);
+  const derivedCacheRef = React.useRef<BookDerivedCache>({});
 
   React.useEffect(() => {
     exportProgressRef.current = exportProgress;
@@ -660,6 +730,7 @@ export default function BookTranslatorTool() {
       mountedRef.current = false;
       parseVersionRef.current += 1;
       exportVersionRef.current += 1;
+      derivedCacheRef.current = {};
       exportAbortRef.current?.abort();
       stopPreviewAudioRef.current?.();
       stopVisualPreview();
@@ -675,23 +746,56 @@ export default function BookTranslatorTool() {
     }),
     [cleanupOptions, exportSettings.punctuationMode],
   );
+  const sourceCacheSignature = React.useMemo(
+    () => parsedSourceSignature(parsedSource),
+    [parsedSource],
+  );
+  const cleanupCacheSignature = React.useMemo(
+    () => cleanupSignature(effectiveCleanupOptions, customCleanupRules),
+    [customCleanupRules, effectiveCleanupOptions],
+  );
 
   const preflight = React.useMemo<PreflightSummary>(() => {
-    return buildPreflightSummary(
+    const cacheKey = `${sourceCacheSignature}|${cleanupCacheSignature}`;
+    const cached = derivedCacheRef.current.preflight;
+    if (cached?.key === cacheKey) return cached.value;
+
+    const value = buildPreflightSummary(
       parsedSource,
       effectiveCleanupOptions,
       customCleanupRules,
     );
-  }, [customCleanupRules, effectiveCleanupOptions, parsedSource]);
+    derivedCacheRef.current.preflight = { key: cacheKey, value };
+    return value;
+  }, [
+    cleanupCacheSignature,
+    customCleanupRules,
+    effectiveCleanupOptions,
+    parsedSource,
+    sourceCacheSignature,
+  ]);
 
   const sourceSections = React.useMemo(
-    () =>
-      buildCleanedSourceSections(
+    () => {
+      const cacheKey = `${sourceCacheSignature}|${cleanupCacheSignature}`;
+      const cached = derivedCacheRef.current.sourceSections;
+      if (cached?.key === cacheKey) return cached.value;
+
+      const value = buildCleanedSourceSections(
         parsedSource,
         effectiveCleanupOptions,
         customCleanupRules,
-      ),
-    [customCleanupRules, effectiveCleanupOptions, parsedSource],
+      );
+      derivedCacheRef.current.sourceSections = { key: cacheKey, value };
+      return value;
+    },
+    [
+      cleanupCacheSignature,
+      customCleanupRules,
+      effectiveCleanupOptions,
+      parsedSource,
+      sourceCacheSignature,
+    ],
   );
 
   const activeSegmentationSettings = React.useMemo<BookExportSettings>(() => {
@@ -701,31 +805,69 @@ export default function BookTranslatorTool() {
       targetPartMinutes: videoSettings.targetPartMinutes,
     });
   }, [exportSettings, outputType, videoSettings.targetPartMinutes]);
+  const segmentationCacheSignature = React.useMemo(
+    () => settingsSignature(activeSegmentationSettings),
+    [activeSegmentationSettings],
+  );
+  const sourceSectionsCacheSignature = React.useMemo(
+    () => sourceSectionsSignature(sourceSections),
+    [sourceSections],
+  );
 
   const exportParts = React.useMemo<BookExportPart[]>(() => {
-    return segmentBookText({
+    const cacheKey = [
+      hashString(preflight.cleanedText),
+      segmentationCacheSignature,
+      sourceSectionsCacheSignature,
+      preflight.title ?? "",
+      preflight.filename ?? "",
+    ].join("|");
+    const cached = derivedCacheRef.current.exportParts;
+    if (cached?.key === cacheKey) return cached.value;
+
+    const value = segmentBookText({
       cleanedText: preflight.cleanedText,
       settings: activeSegmentationSettings,
       sourceSections,
       sourceTitle: preflight.title || preflight.filename,
     });
+    derivedCacheRef.current.exportParts = { key: cacheKey, value };
+    return value;
   }, [
     activeSegmentationSettings,
     preflight.cleanedText,
     preflight.filename,
     preflight.title,
+    segmentationCacheSignature,
     sourceSections,
+    sourceSectionsCacheSignature,
   ]);
 
-  const exportAnalysis = React.useMemo(
-    () =>
-      buildExportAnalysis({
+  const exportAnalysis = React.useMemo(() => {
+    const cacheKey = [
+      hashString(preflight.cleanedText),
+      segmentationCacheSignature,
+      exportParts.length,
+      preflight.unsupportedCount,
+    ].join("|");
+    const cached = derivedCacheRef.current.exportAnalysis;
+    if (cached?.key === cacheKey) return cached.value;
+
+    const value = buildExportAnalysis({
         preflight,
         settings: activeSegmentationSettings,
         partCount: exportParts.length,
-      }),
-    [activeSegmentationSettings, exportParts.length, preflight],
-  );
+      });
+    derivedCacheRef.current.exportAnalysis = { key: cacheKey, value };
+    return value;
+  }, [
+    activeSegmentationSettings,
+    exportParts.length,
+    preflight,
+    preflight.cleanedText,
+    preflight.unsupportedCount,
+    segmentationCacheSignature,
+  ]);
 
   const hasSource = parsedSource.rawText.trim().length > 0;
   const hasCleanedSource = preflight.cleanedText.trim().length > 0;
@@ -1264,6 +1406,7 @@ export default function BookTranslatorTool() {
     setSourceEditMode("idle");
     setSourceEditDraft("");
     setSourceEntryMode("pasted");
+    derivedCacheRef.current = {};
     fileSelectionRef.current = null;
     setPendingFilename("");
     setParsedSource(createEmptyParsedSource());
