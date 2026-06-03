@@ -81,6 +81,11 @@
   --mw-focus-ring: #38bdf8;
   --mw-focus-ring-muted: rgba(11, 36, 71, 0.34);
   --mw-range-focus-ring: rgba(11, 36, 71, 0.38);
+  --mw-focus-control-tint: color-mix(in srgb, var(--mw-accent) 8%, transparent);
+  --mw-focus-field-bg: color-mix(in srgb, var(--mw-accent) 6%, var(--mw-input-hover-bg));
+  --mw-focus-link-bg: color-mix(in srgb, var(--mw-accent) 12%, transparent);
+  --mw-focus-range-bg: color-mix(in srgb, var(--mw-accent) 16%, transparent);
+  --mw-focus-control-inset: inset 0 0 0 999px var(--mw-focus-control-tint);
   --mw-shadow-soft: 0 1px 1px rgba(15, 23, 42, 0.14), 0 2px 3px rgba(11, 36, 71, 0.13);
   --mw-shadow-soft-disabled: 0 1px 1px rgba(15, 23, 42, 0.08), 0 2px 3px rgba(11, 36, 71, 0.07);
   --mw-shadow-panel: none;
@@ -253,8 +258,13 @@ input[type="range"] {
 }
 
 input[type="range"]:focus-visible {
-  outline: 2px solid var(--mw-range-focus-ring);
-  outline-offset: 3px;
+  background-color: var(--mw-focus-range-bg) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 .mw-bg-page {
@@ -486,8 +496,12 @@ input[type="range"]:focus-visible {
 }
 
 .mw-focus-ring:focus-visible {
-  outline: 2px solid var(--mw-focus-ring-muted) !important;
-  outline-offset: 2px;
+  box-shadow: var(--mw-button-shadow), var(--mw-focus-control-inset) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 .mw-nav-shell {
@@ -530,6 +544,7 @@ input[type="range"]:focus-visible {
 .mw-nav-item:focus-visible {
   background: var(--mw-nav-bg-muted) !important;
   color: var(--mw-nav-panel-text) !important;
+  outline: none !important;
 }
 
 .mw-nav-item:hover .mw-nav-item-description,
@@ -593,8 +608,39 @@ input[type="range"]:focus-visible {
 .mw-theme-toggle:focus-visible,
 .mw-nav-icon-button:focus-visible,
 .mw-display-settings-switch:focus-visible {
-  outline: 2px solid var(--mw-focus-ring) !important;
-  outline-offset: 2px;
+  background: var(--mw-nav-bg-muted) !important;
+  color: var(--mw-nav-muted) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+.mw-nav-link:focus-visible,
+.mw-nav-mobile-item:focus-visible {
+  background: var(--mw-nav-bg-muted) !important;
+  color: var(--mw-nav-muted) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+.mw-nav-input:focus,
+.mw-nav-input:focus-visible {
+  background: var(--mw-nav-bg-muted) !important;
+  color: var(--mw-nav-panel-text) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 .mw-display-settings-panel {
@@ -800,9 +846,12 @@ main *::after {
     summary,
     .mw-button-outline
   ):focus-visible {
-  box-shadow: var(--mw-button-shadow) !important;
-  outline: 2px solid color-mix(in srgb, currentColor 52%, var(--mw-focus-ring)) !important;
-  outline-offset: 2px;
+  box-shadow: var(--mw-button-shadow), var(--mw-focus-control-inset) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 .mw-page-content
@@ -860,7 +909,9 @@ main *::after {
       summary,
       .mw-button-outline
     ):focus-visible {
-    outline: 2px solid var(--mw-focus-ring) !important;
+    box-shadow: var(--mw-button-shadow), var(--mw-focus-control-inset) !important;
+    outline: none !important;
+    outline-offset: 0 !important;
   }
 }
 
@@ -878,9 +929,12 @@ main *::after {
     summary,
     .mw-button-outline
   ):focus-visible {
-  box-shadow: var(--mw-button-shadow) !important;
-  outline: 2px solid var(--mw-focus-ring-muted) !important;
-  outline-offset: 2px;
+  box-shadow: var(--mw-button-shadow), var(--mw-focus-control-inset) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 .mw-page-content .mw-non-home-page .mw-faq-trigger,
@@ -891,9 +945,14 @@ main *::after {
 }
 
 .mw-page-content .mw-non-home-page .mw-faq-trigger:focus-visible {
+  background: var(--mw-button-secondary-hover) !important;
   box-shadow: none !important;
-  outline: 2px solid var(--mw-focus-ring-muted) !important;
-  outline-offset: 2px;
+  color: var(--mw-link-hover) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 .mw-page-content .mw-non-home-page .mw-faq-answer {
@@ -981,8 +1040,11 @@ main *::after {
   )
   :where(.mw-related-tool-link, .mw-related-quick-link, .mw-related-summary):focus-visible {
   box-shadow: none !important;
-  outline: 2px solid var(--mw-focus-ring-muted) !important;
-  outline-offset: 2px;
+  outline: none !important;
+  outline-offset: 0 !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 .mw-page-content
@@ -1001,12 +1063,15 @@ main *::after {
 }
 
 .mw-page-content #morse-code-navigation .mw-toolkit-card-light:not([aria-disabled="true"]):hover,
-.mw-page-content #morse-code-navigation .mw-toolkit-summary:not([aria-disabled="true"]):hover {
+.mw-page-content #morse-code-navigation .mw-toolkit-card-light:not([aria-disabled="true"]):focus-visible,
+.mw-page-content #morse-code-navigation .mw-toolkit-summary:not([aria-disabled="true"]):hover,
+.mw-page-content #morse-code-navigation .mw-toolkit-summary:not([aria-disabled="true"]):focus-visible {
   background-color: var(--mw-button-global-hover-bg) !important;
   color: var(--mw-button-global-hover-text) !important;
 }
 
-.mw-page-content #morse-code-navigation .mw-toolkit-card-light:hover .mw-toolkit-badge {
+.mw-page-content #morse-code-navigation .mw-toolkit-card-light:hover .mw-toolkit-badge,
+.mw-page-content #morse-code-navigation .mw-toolkit-card-light:focus-visible .mw-toolkit-badge {
   background: transparent !important;
   color: currentColor !important;
 }
@@ -1016,7 +1081,13 @@ main *::after {
     .mw-non-home-page,
     .mw-non-home-page ~ #morse-code-navigation
   )
-  :where(.mw-related-tool-link, .mw-related-summary):not([aria-disabled="true"]):hover {
+  :where(.mw-related-tool-link, .mw-related-summary):not([aria-disabled="true"]):hover,
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  :where(.mw-related-tool-link, .mw-related-summary):not([aria-disabled="true"]):focus-visible {
   background-color: var(--mw-button-secondary-hover) !important;
   color: var(--mw-link-hover) !important;
 }
@@ -1027,6 +1098,13 @@ main *::after {
     .mw-non-home-page ~ #morse-code-navigation
   )
   :where(.mw-related-tool-link, .mw-related-summary):hover
+  :where(*),
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  :where(.mw-related-tool-link, .mw-related-summary):focus-visible
   :where(*) {
   color: currentColor !important;
 }
@@ -1037,6 +1115,13 @@ main *::after {
     .mw-non-home-page ~ #morse-code-navigation
   )
   :where(.mw-related-tool-link, .mw-related-summary):hover
+  .mw-related-badge,
+.mw-page-content
+  :where(
+    .mw-non-home-page,
+    .mw-non-home-page ~ #morse-code-navigation
+  )
+  :where(.mw-related-tool-link, .mw-related-summary):focus-visible
   .mw-related-badge {
   background-color: transparent !important;
   color: var(--mw-text-faint) !important;
@@ -1044,12 +1129,16 @@ main *::after {
 
 .mw-page-content
   .mw-non-home-page
-  .mw-light-interactive-link:not([aria-disabled="true"]):hover {
+  .mw-light-interactive-link:not([aria-disabled="true"]):hover,
+.mw-page-content
+  .mw-non-home-page
+  .mw-light-interactive-link:not([aria-disabled="true"]):focus-visible {
   background-color: var(--mw-button-secondary-hover) !important;
   color: var(--mw-link-hover) !important;
 }
 
-.mw-page-content .mw-non-home-page .mw-light-interactive-link:hover :where(*) {
+.mw-page-content .mw-non-home-page .mw-light-interactive-link:hover :where(*),
+.mw-page-content .mw-non-home-page .mw-light-interactive-link:focus-visible :where(*) {
   color: currentColor !important;
 }
 
@@ -1078,52 +1167,88 @@ main *::after {
   cursor: pointer;
 }
 
-/* Home-page visual rule: input-like fields do not gain an extra focus outline/glow. */
-.mw-page-content
-  .mw-home-page
-  :where(input:not([type="range"]), textarea, select):focus {
-  outline: none !important;
-  box-shadow: none !important;
-  --tw-ring-color: transparent !important;
-  --tw-ring-offset-shadow: 0 0 #0000 !important;
-  --tw-ring-shadow: 0 0 #0000 !important;
-}
-
-.mw-page-content
-  .mw-home-page
-  :where(input:not([type="range"]), textarea, select):focus-visible {
-  box-shadow: none !important;
-  outline: none !important;
-  --tw-ring-color: transparent !important;
-  --tw-ring-offset-shadow: 0 0 #0000 !important;
-  --tw-ring-shadow: 0 0 #0000 !important;
-}
-
-.mw-page-content .mw-non-home-page :where(input, textarea, select):focus,
-.mw-page-content .mw-non-home-page :where(input, textarea, select):focus-within {
+.mw-page-content :where(input:not([type="range"]), textarea, select):focus,
+.mw-page-content :where(input:not([type="range"]), textarea, select):focus-within {
   border-color: transparent !important;
-  outline: 0 !important;
+  outline: none !important;
+  outline-offset: 0 !important;
   box-shadow: none !important;
   --tw-ring-color: transparent !important;
   --tw-ring-offset-shadow: 0 0 #0000 !important;
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
-.mw-page-content .mw-non-home-page :where(input, textarea, select):focus-visible {
+.mw-page-content :where(input:not([type="range"]), textarea, select):focus-visible {
+  background-color: var(--mw-focus-field-bg) !important;
   border-color: transparent !important;
+  caret-color: var(--mw-accent);
   box-shadow: none !important;
-  outline: 2px solid var(--mw-focus-ring-muted) !important;
-  outline-offset: 2px;
+  outline: none !important;
+  outline-offset: 0 !important;
   --tw-ring-color: transparent !important;
   --tw-ring-offset-shadow: 0 0 #0000 !important;
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 .mw-page-content
-  .mw-non-home-page
-  :where(input[type="range"]):focus-visible {
-  outline: 2px solid var(--mw-range-focus-ring) !important;
-  outline-offset: 3px;
+  :where(input[type="checkbox"], input[type="radio"]):focus-visible {
+  accent-color: var(--mw-accent) !important;
+  background-color: var(--mw-focus-range-bg) !important;
+  filter: saturate(1.18);
+}
+
+.mw-page-content :where(input[type="range"]):focus,
+.mw-page-content :where(input[type="range"]):focus-visible {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+.mw-page-content :where(input[type="range"]):focus-visible {
+  background-color: var(--mw-focus-range-bg) !important;
+}
+
+.mw-page-content :where(input, textarea, select):disabled:focus,
+.mw-page-content :where(input, textarea, select):disabled:focus-visible {
+  background-color: var(--mw-input-bg-soft) !important;
+  cursor: not-allowed !important;
+}
+
+.mw-page-content
+  a:not(.mw-button-outline):not(.mw-related-tool-link):not(.mw-related-quick-link):not(.mw-related-summary):not(.mw-toolkit-card):not(.mw-toolkit-subcard):not(.mw-toolkit-summary):focus-visible {
+  background-color: var(--mw-focus-link-bg) !important;
+  color: var(--mw-link-hover) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+.mw-page-content
+  :where(button, [role="button"], summary, .mw-button-outline, input, textarea, select, a):where(:focus, :focus-visible),
+.mw-page-content :where([class*="focus-within:outline"]):focus-within,
+.mw-nav-link:focus-visible,
+.mw-nav-item:focus-visible,
+.mw-nav-mobile-item:focus-visible,
+.mw-theme-toggle:focus-visible,
+.mw-nav-icon-button:focus-visible,
+.mw-display-settings-switch:focus-visible,
+.mw-nav-input:focus,
+.mw-nav-input:focus-visible {
+  outline: none !important;
+  outline-color: transparent !important;
+  outline-offset: 0 !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 .mw-how-section > .flex.flex-col:first-child {

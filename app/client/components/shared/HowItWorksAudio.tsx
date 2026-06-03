@@ -1,5 +1,6 @@
 import * as React from "react";
 import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
+import { ROUTES } from "~/client/data/routes";
 
 const workedExamples = [
   {
@@ -38,6 +39,48 @@ const settingRows = [
   },
 ];
 
+const audioToolRows = [
+  {
+    title: "Morse code sound generator",
+    href: ROUTES.soundGenerator,
+    body: "Use it when you mainly want to shape the beep, tone preset, waveform, WAV, or MP3 sound for a short practice signal.",
+  },
+  {
+    title: "Morse code MP3 generator",
+    href: ROUTES.mp3Generator,
+    body: "Use it when the final deliverable should be a compact MP3 instead of the larger WAV file exported on this page.",
+  },
+  {
+    title: "Morse code audio decoder",
+    href: ROUTES.audioDecoder,
+    body: "Use it when you have a local audio file and need Morse audio to text. Clear tones and simple backgrounds decode best.",
+  },
+  {
+    title: "Book to Morse code translator",
+    href: ROUTES.bookTranslator,
+    body: "Use it for long text, TXT, EPUB, PDF, chapters, or book-length audio and video workflows.",
+  },
+  {
+    title: "Morse code video generator",
+    href: ROUTES.videoGenerator,
+    body: "Use it for short visual Morse clips with optional audio when you need video output instead of only sound.",
+  },
+  {
+    title: "Morse audio practice",
+    href: ROUTES.audioPractice,
+    body: "Use practice and the audio quiz when the goal is listening recall, not just exporting a finished sound file.",
+    extraHref: ROUTES.audioQuiz,
+    extraLabel: "audio quiz",
+  },
+  {
+    title: "Morse code timing",
+    href: ROUTES.timing,
+    body: "Use the timing and Farnsworth guides when WPM, character speed, or learner spacing feels confusing.",
+    extraHref: ROUTES.farnsworth,
+    extraLabel: "Farnsworth timing",
+  },
+];
+
 export default function HowItWorksAudio() {
   return (
     <section className="relative left-1/2 mt-14 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/35 px-4 py-12 sm:px-6 lg:px-8">
@@ -51,9 +94,10 @@ export default function HowItWorksAudio() {
             </h2>
 
             <p className="mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-              This page turns a message into playable Morse audio. Type text or
-              paste Morse, listen to the signal, tune the timing and tone, then
-              export a WAV file when you need a reusable clip.
+              This is the MorseWords audio hub. Type text or paste Morse,
+              listen to the signal, tune the timing and tone, then export a WAV
+              file or move to the right audio, MP3, decoder, book, video, or
+              listening-practice tool.
             </p>
           </div>
 
@@ -70,7 +114,8 @@ export default function HowItWorksAudio() {
             </h3>
             <p className="mt-2 max-w-[34ch] text-base leading-relaxed text-slate-700">
               Use it when you want to hear a complete Morse message or save a
-              WAV file for practice, lessons, demos, videos, or sharing.
+              WAV file for practice, lessons, demos, timing checks, videos, or
+              sharing.
             </p>
           </section>
 
@@ -90,7 +135,8 @@ export default function HowItWorksAudio() {
             </h3>
             <p className="mt-2 max-w-[34ch] text-base leading-relaxed text-slate-700">
               WAV export is rendered locally, so the saved file preserves the
-              same speed, spacing, and tone you preview.
+              same speed, Farnsworth spacing, pitch, volume, and tone you
+              preview.
             </p>
           </section>
         </div>
@@ -141,13 +187,54 @@ export default function HowItWorksAudio() {
               <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
                 For more context on the short emergency pattern, see{" "}
                 <a
-                  href="/morse-code-sos"
+                  href={ROUTES.sos}
                   className="font-semibold text-sky-900 underline-offset-4 hover:underline"
                 >
                   SOS in Morse code
                 </a>
                 .
               </p>
+            </div>
+          </section>
+
+          <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                Audio paths
+              </span>
+              <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
+                When to use each Morse audio tool
+              </h3>
+            </div>
+            <div className="grid gap-x-8 gap-y-6 md:grid-cols-2">
+              {audioToolRows.map((item) => (
+                <section key={item.title}>
+                  <h4 className="font-extrabold text-sky-950">
+                    <a
+                      href={item.href}
+                      className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                    >
+                      {item.title}
+                    </a>
+                  </h4>
+                  <p className="mt-2 max-w-[36ch] text-base leading-relaxed text-slate-700">
+                    {item.body}
+                    {item.extraHref && item.extraLabel ? (
+                      <>
+                        {" "}
+                        Also see{" "}
+                        <a
+                          href={item.extraHref}
+                          className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                        >
+                          {item.extraLabel}
+                        </a>
+                        .
+                      </>
+                    ) : null}
+                  </p>
+                </section>
+              ))}
             </div>
           </section>
 
@@ -174,14 +261,14 @@ export default function HowItWorksAudio() {
               <p className="mt-6 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
                 For deeper timing rules, use the{" "}
                 <a
-                  href="/morse-code-timing"
+                  href={ROUTES.timing}
                   className="font-semibold text-sky-900 underline-offset-4 hover:underline"
                 >
                   Morse code timing guide
                 </a>{" "}
                 and the{" "}
                 <a
-                  href="/farnsworth-timing"
+                  href={ROUTES.farnsworth}
                   className="font-semibold text-sky-900 underline-offset-4 hover:underline"
                 >
                   Farnsworth timing guide
@@ -226,20 +313,65 @@ export default function HowItWorksAudio() {
                 Compare
               </span>
               <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
-                Audio generator vs MP3 generator
+                MP3 vs WAV for Morse audio
               </h3>
             </div>
             <p className="max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-              Use this page when you want to hear or save a full Morse message
-              as WAV audio. Use the{" "}
+              Use WAV when you want clean timing, short dits, and editable
+              audio. WAV files are larger because they are not compressed. Use
+              the{" "}
               <a
-                href="/morse-code-mp3-generator"
+                href={ROUTES.mp3Generator}
                 className="font-semibold text-sky-900 underline-offset-4 hover:underline"
               >
                 Morse code MP3 generator
               </a>{" "}
-              when you need a smaller downloadable MP3 file for sharing.
+              when you need a smaller downloadable file for sharing or
+              embedding. For longer source text, use the{" "}
+              <a
+                href={ROUTES.bookTranslator}
+                className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+              >
+                book to Morse code translator
+              </a>{" "}
+              for chapter-length audio or video exports, and the{" "}
+              <a
+                href={ROUTES.videoGenerator}
+                className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+              >
+                Morse code video generator
+              </a>
+              .
             </p>
+          </section>
+
+          <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                Limits
+              </span>
+              <h3 className="mt-3 text-2xl font-extrabold text-sky-950">
+                Practical audio expectations
+              </h3>
+            </div>
+            <ul className="grid max-w-[58rem] list-disc gap-x-10 gap-y-4 pl-6 text-base leading-relaxed sm:text-lg md:grid-cols-2">
+              <li>
+                This page creates Morse audio from typed text or pasted dots
+                and dashes; use the decoder page for audio-to-text.
+              </li>
+              <li>
+                Long documents belong in the book translator, which is designed
+                for larger source files and longer exports.
+              </li>
+              <li>
+                Pitch and tone controls change listening comfort, not the Morse
+                characters or the decoded text.
+              </li>
+              <li>
+                Playback and WAV export run locally in the browser; no remote
+                URL import or server upload is required here.
+              </li>
+            </ul>
           </section>
 
           <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
@@ -254,14 +386,14 @@ export default function HowItWorksAudio() {
             <p className="max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               If the file is for listening drills, move into{" "}
               <a
-                href="/morse-code-audio-practice"
+                href={ROUTES.audioPractice}
                 className="font-semibold text-sky-900 underline-offset-4 hover:underline"
               >
                 Morse audio practice
               </a>{" "}
               or test recognition with the{" "}
               <a
-                href="/morse-code-audio-quiz"
+                href={ROUTES.audioQuiz}
                 className="font-semibold text-sky-900 underline-offset-4 hover:underline"
               >
                 Morse audio quiz

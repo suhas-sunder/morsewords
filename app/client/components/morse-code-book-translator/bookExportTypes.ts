@@ -15,6 +15,10 @@ export type BookExportPresetName =
 
 export type BookExportFormat = "mp3" | "wav";
 
+export type BookOutputType = "audio" | "video";
+
+export type BookDownloadKind = "audio" | "video" | "zip";
+
 export type BookPunctuationMode = "preserve" | "simplify";
 
 export type BookExportSettings = {
@@ -27,6 +31,8 @@ export type BookExportSettings = {
   outputFormat: BookExportFormat;
   mp3Bitrate: Mp3Bitrate;
   sampleRate: AudioSampleRate;
+  tailPaddingMs: number;
+  splitAudio: boolean;
   targetPartMinutes: number;
   preferSourceSections: boolean;
   paragraphPauseMultiplier: number;
@@ -88,7 +94,8 @@ export type BookExportProgress = {
 
 export type BookExportResultSummary = {
   filename: string;
-  outputFormat: BookExportFormat;
+  downloadKind: BookDownloadKind;
+  outputFormat: BookExportFormat | "webm";
   partCount: number;
   runtimeLabel: string;
   sizeLabel: string;

@@ -12,7 +12,13 @@ import {
   TRANSLATOR_PITCH_RANGE,
   VOLUME_RANGE,
   clampFarnsworthWpm,
+  sanitizeTranslatorAudioPreset,
 } from "~/client/components/shared/morseSettings";
+import { TranslatorAudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
+import {
+  getAudioPresetDefaults,
+  mapTranslatorAudioPreset,
+} from "~/client/components/shared/audioPresetRegistry";
 import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   clampNumber,
@@ -282,6 +288,22 @@ export default function TranslatorSectionsBasic({
     },
     [charWpm],
   );
+
+  const handlePresetChange = React.useCallback((value: string) => {
+    const nextPreset = sanitizeTranslatorAudioPreset(value);
+    const defaults = getAudioPresetDefaults(mapTranslatorAudioPreset(nextPreset));
+    setPreset(nextPreset);
+    setToneHz(
+      Math.round(
+        clampNumber(
+          defaults.pitchHz,
+          TRANSLATOR_PITCH_RANGE.min,
+          TRANSLATOR_PITCH_RANGE.max,
+        ),
+      ),
+    );
+    setVolume(defaults.volume);
+  }, []);
 
   const handleCopy = async (text: string, label: string) => {
     if (!text) return;
@@ -948,27 +970,20 @@ export default function TranslatorSectionsBasic({
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                       <div>
                         <label className="mw-text-muted text-sm font-semibold text-slate-700">
-                          Sound type
+                          Tone preset
                         </label>
 
                         <select
                           value={preset}
-                          onChange={(e) =>
-                            setPreset(e.target.value as SoundPreset)
-                          }
+                          onChange={(e) => handlePresetChange(e.target.value)}
                           disabled={!soundOn}
                           className={`mt-1 w-full rounded-xl p-2 transition hover:text-sky-950 ${inputFocusClass} ${
                             soundOn
                               ? "mw-button-home-soft cursor-pointer bg-white/85 hover:bg-slate-900 hover:text-sky-100"
-                              : "cursor-not-allowed opacity-60"
+                            : "cursor-not-allowed opacity-60"
                           }`}
                         >
-                          <option value="cw_radio">CW radio tone</option>
-                          <option value="smooth_sine">Smooth sine</option>
-                          <option value="bright_square">Bright square</option>
-                          <option value="telegraph_sounder">
-                            Telegraph sounder
-                          </option>
+                          <TranslatorAudioPresetOptions />
                         </select>
                       </div>
 

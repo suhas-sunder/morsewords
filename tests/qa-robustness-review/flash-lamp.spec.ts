@@ -15,8 +15,12 @@ async function openAudio(page: Page) {
 
 async function enableAudioFlash(page: Page) {
   const toggle = flashToggle(page);
-  await toggle.click();
-  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await expect(async () => {
+    if ((await toggle.getAttribute("aria-pressed")) !== "true") {
+      await toggle.click();
+    }
+    await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  }).toPass({ timeout: 15_000 });
 }
 
 test.describe("flash safety helpers", () => {

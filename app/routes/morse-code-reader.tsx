@@ -10,10 +10,11 @@ import {
   SectionCard,
   SimpleGrid,
 } from "~/client/components/shared/MorseLearningLayout";
+import { ROUTES } from "~/client/data/routes";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-const CANONICAL_PATH = "/morse-code-reader";
+const CANONICAL_PATH = ROUTES.reader;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 const readerExamples = [
@@ -61,13 +62,13 @@ const howToItems = [
   {
     title: "Use / between words",
     text: "Slash separators are easier to preserve than repeated spaces when Morse is copied through apps.",
-    href: "/slash-in-morse-code",
+    href: ROUTES.slash,
     badge: "Slash",
   },
   {
     title: "Read the result",
     text: "Check the decoded text, then fix spacing or unknown groups if the output includes ? or looks joined together.",
-    href: "/morse-code-word-separator",
+    href: ROUTES.wordSeparator,
     badge: "Spacing",
   },
 ];
@@ -76,25 +77,25 @@ const spacingItems = [
   {
     title: "One visible gap between letters",
     text: "Typed Morse needs a visible separator between character groups so .... . reads as H E, not one long unknown group.",
-    href: "/space-in-morse-code",
+    href: ROUTES.space,
     badge: "Spaces",
   },
   {
     title: "Slash between words",
     text: "Use / for word breaks when a normal word gap might be collapsed by a text field, chat app, or note.",
-    href: "/slash-in-morse-code",
+    href: ROUTES.slash,
     badge: "Words",
   },
   {
     title: "Audio timing is different",
     text: "Real Morse uses pauses for letter and word gaps. Typed Morse uses visible spacing so a reader can keep the same boundaries.",
-    href: "/morse-code-word-separator",
+    href: ROUTES.wordSeparator,
     badge: "Timing",
   },
   {
     title: "No-space Morse is ambiguous",
     text: "A continuous run can often be split more than one way. Add separators before trusting the decoded result.",
-    href: "/morse-code-without-spaces",
+    href: ROUTES.withoutSpaces,
     badge: "Ambiguous",
   },
 ];
@@ -103,26 +104,32 @@ const comparisonItems = [
   {
     title: "Reader",
     text: "Use this page when you want the simplest paste-and-read flow for typed dots, dashes, spaces, and slashes.",
-    href: "/morse-code-reader",
+    href: ROUTES.reader,
     badge: "Simple",
   },
   {
     title: "Decoder",
     text: "Use the technical decoder when you want the standard conversion tool for checking unknown groups and spacing details.",
-    href: "/morse-code-decoder",
+    href: ROUTES.decoder,
     badge: "Advanced",
   },
   {
     title: "Audio decoder",
     text: "Use the audio decoder when your input is a sound file rather than pasted text symbols.",
-    href: "/morse-code-audio-decoder",
+    href: ROUTES.audioDecoder,
     badge: "Audio",
   },
   {
     title: "Encoder",
     text: "Use the encoder when you are starting with normal text and need clean Morse output.",
-    href: "/morse-code-encoder",
+    href: ROUTES.encoder,
     badge: "Encode",
+  },
+  {
+    title: "Book translator",
+    text: "Use the book translator when the readable text is long enough to become a chapter, article, or book-length audio export.",
+    href: ROUTES.bookTranslator,
+    badge: "Long text",
   },
 ];
 
@@ -134,31 +141,31 @@ const mistakeItems = [
   {
     title: "Using long dashes",
     text: "Hyphen-minus is safest for typed dashes. Rich text can replace it with dash characters that are harder to share.",
-    href: "/copy-and-paste-morse-code",
+    href: ROUTES.copyAndPaste,
     badge: "Copy",
   },
   {
     title: "Mixing punctuation dots",
     text: "A period in normal writing is not the same job as a Morse dot inside a separated Morse group.",
-    href: "/morse-code-chart",
+    href: ROUTES.chart,
     badge: "Chart",
   },
   {
     title: "Losing slashes",
     text: "If word separators disappear, decoded words can run together or become harder to check.",
-    href: "/morse-code-word-separator",
+    href: ROUTES.wordSeparator,
     badge: "Fix",
   },
   {
     title: "Expecting audio files to work here",
     text: "This reader handles typed symbols. Use the audio decoder for uploaded recordings.",
-    href: "/morse-code-audio-decoder",
+    href: ROUTES.audioDecoder,
     badge: "Audio",
   },
   {
     title: "Copying stylized symbols",
     text: "Decorative dots, bullets, and styled dash characters can change how pasted Morse behaves.",
-    href: "/copy-and-paste-morse-code",
+    href: ROUTES.copyAndPaste,
     badge: "Plain text",
   },
 ];
@@ -326,13 +333,14 @@ export default function MorseCodeReaderRoute() {
           <ActionLinks
             links={[
               {
-                href: "/morse-code-alphabet",
+                href: ROUTES.alphabet,
                 label: "Morse alphabet",
                 primary: true,
               },
-              { href: "/morse-code-chart", label: "Complete chart" },
-              { href: "/morse-code-encoder", label: "Encode text" },
-              { href: "/how-to-read-morse-code", label: "How to read Morse" },
+              { href: ROUTES.chart, label: "Complete chart" },
+              { href: ROUTES.encoder, label: "Encode text" },
+              { href: ROUTES.bookTranslator, label: "Long text to audio" },
+              { href: ROUTES.howToRead, label: "How to read Morse" },
             ]}
           />
         </SectionCard>

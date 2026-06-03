@@ -6,6 +6,7 @@ import useMorseAudio, {
   type SoundPreset as MorseSoundPreset,
 } from "~/client/components/shared/useMorseAudio";
 import { sanitizeTranslatorAudioPreset } from "~/client/components/shared/morseSettings";
+import { mapTranslatorAudioPreset } from "~/client/components/shared/audioPresetRegistry";
 
 export type SoundPreset =
   | "cw_radio"
@@ -43,15 +44,10 @@ export type PlayOptions = {
   soundEnabled?: boolean;
 };
 
-const PRESET_MAP: Record<SoundPreset, MorseSoundPreset> = {
-  cw_radio: "cw_radio",
-  smooth_sine: "sine",
-  bright_square: "square",
-  telegraph_sounder: "sounder",
-};
-
 function mapPreset(preset: unknown): MorseSoundPreset {
-  return PRESET_MAP[sanitizeTranslatorAudioPreset(preset)];
+  return mapTranslatorAudioPreset(
+    sanitizeTranslatorAudioPreset(preset),
+  ) as MorseSoundPreset;
 }
 
 function toMorseOptions(opts: PlayOptions): MorsePlayOptions {

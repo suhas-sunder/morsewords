@@ -41,10 +41,7 @@ const CONTEXTUAL_SOURCE_ROUTES = [
   "/morse-code-audio-decoder",
 ] as const;
 
-const FORBIDDEN_LINKS = [
-  ...READER_ALIAS_PATHS,
-  "/morse-code-mp3-generator",
-] as const;
+const FORBIDDEN_LINKS = [...READER_ALIAS_PATHS] as const;
 
 function flattenJsonLd(value: unknown): JsonLdRecord[] {
   if (Array.isArray(value)) return value.flatMap(flattenJsonLd);

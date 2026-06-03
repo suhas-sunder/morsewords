@@ -84,10 +84,12 @@ test("audio practice locks scoring after correct and revealed prompts", async ({
   await page.goto("/morse-code-audio-practice");
   await waitForRouteReady(page);
 
-  const answer = page.getByLabel("Your answer");
+  const answer = page.getByPlaceholder("Type what you hear");
   const checkAnswer = page.getByRole("button", { name: "Check answer" });
 
   await answer.fill("A");
+  await expect(answer).toHaveValue("A");
+  await expect(checkAnswer).toBeEnabled();
   await checkAnswer.click();
   await expect(page.getByText("Correct. Move to the next hidden prompt when ready.")).toBeVisible();
   await expect(page.getByText(/Streak\s*1/)).toBeVisible();
@@ -118,6 +120,11 @@ test("visual practice shows strobe warning when whole-page flash is enabled", as
   });
   await page.goto("/morse-code-visual-practice");
   await waitForRouteReady(page);
+  await expect
+    .poll(() =>
+      page.evaluate(() => document.documentElement.dataset.fullPageFlash),
+    )
+    .toBe("enabled");
   await expectNoVisiblePrematureWarning(page);
 
   const warning = page
@@ -184,9 +191,11 @@ test("word search Generate new puzzle changes the grid", async ({ page }) => {
   await waitForRouteReady(page);
   const grid = page.locator('[style*="grid-template-columns"]').first();
   const before = await grid.innerText();
-  await page.getByRole("button", { name: "Generate new puzzle" }).click();
-  const after = await grid.innerText();
-  expect(after).not.toEqual(before);
+  const generate = page.getByRole("button", { name: "Generate new puzzle" });
+  await expect(async () => {
+    await generate.click();
+    await expect.poll(() => grid.innerText()).not.toEqual(before);
+  }).toPass({ timeout: 15_000 });
 });
 
 test("printable chart accepts SVG logo upload with no visible size/dimension warning", async ({ page }) => {

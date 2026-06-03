@@ -1,4 +1,10 @@
 import { buildMorseEvents } from "~/client/components/shared/morseTiming";
+import {
+  defaultAttackMs,
+  defaultReleaseMs,
+  envelopeAt,
+  samplePresetWaveform,
+} from "~/client/components/shared/audioToneSynthesis";
 
 import {
   buildMorseTranscript,
@@ -8,11 +14,12 @@ import {
 } from "./bookDurationEstimate";
 import type {
   BookBundleMetadata,
+  BookDownloadKind,
   BookExportPart,
   BookExportProgress,
   BookExportSettings,
 } from "./bookExportTypes";
-import { buildBundleFilename } from "./bookSegmentation";
+import { buildBundleFilename, buildSingleAudioFilename } from "./bookSegmentation";
 
 type LameModule = typeof import("@breezystack/lamejs");
 
@@ -28,9 +35,106 @@ type SignalEvent =
   | { type: "mark"; ms: number; symbol: "." | "-" }
   | { type: "gap"; ms: number };
 
-const TAIL_PADDING_MS = 180;
+const DEFAULT_TAIL_PADDING_MS = 180;
 const YIELD_EVERY_EVENTS = 80;
-const TWO_PI = Math.PI * 2;
+
+export type BookDownloadPackage = {
+  blob: Blob;
+  filename: string;
+  downloadKind: BookDownloadKind;
+  contents: string[];
+};
+
+export function hasBookDownloadSidecars(settings: BookExportSettings) {
+  return (
+    settings.includeCleanedText ||
+    settings.includeMorseTranscript ||
+    settings.includeManifest ||
+    settings.includeSettings ||
+    settings.includeReadme
+  );
+}
+
+export function getBookDownloadKind(
+  parts: BookExportPart[],
+  settings: BookExportSettings,
+): BookDownloadKind {
+  return parts.length === 1 && !hasBookDownloadSidecars(settings)
+    ? "audio"
+    : "zip";
+}
+
+export function describeBookDownloadContents(
+  parts: BookExportPart[],
+  settings: BookExportSettings,
+  downloadKind = getBookDownloadKind(parts, settings),
+) {
+  const format = settings.outputFormat.toUpperCase();
+  if (downloadKind === "audio") return [`${format} audio file`];
+  return [
+    `${format} audio ${parts.length === 1 ? "file" : "parts"}`,
+    "playlist.m3u",
+    settings.includeCleanedText ? "cleaned-text.txt" : "",
+    settings.includeMorseTranscript ? "morse-transcript.txt" : "",
+    settings.includeManifest ? "manifest.json" : "",
+    settings.includeSettings ? "settings.json" : "",
+    settings.includeReadme ? "README.txt" : "",
+  ].filter(Boolean);
+}
+
+export async function createBookDownloadPackage({
+  metadata,
+  parts,
+  settings,
+  signal,
+  onProgress,
+}: ExportBundleOptions): Promise<BookDownloadPackage> {
+  throwIfAborted(signal);
+  if (parts.length === 0) {
+    throw new Error("No book parts are available for download.");
+  }
+
+  const downloadKind = getBookDownloadKind(parts, settings);
+  if (downloadKind === "zip") {
+    const zip = await createBookExportZip({
+      metadata,
+      parts,
+      settings,
+      signal,
+      onProgress,
+    });
+    return {
+      ...zip,
+      downloadKind,
+      contents: describeBookDownloadContents(parts, settings, downloadKind),
+    };
+  }
+
+  const [part] = parts;
+  onProgress?.({
+    phase: "encoding",
+    message: `Encoding ${settings.outputFormat.toUpperCase()} audio file...`,
+    currentPart: 0,
+    totalParts: 1,
+  });
+  const blob = await renderBookPartAudio(part, settings, signal);
+  await cooperativeYield(signal);
+  onProgress?.({
+    phase: "complete",
+    message: "Audio file ready.",
+    currentPart: 1,
+    totalParts: 1,
+  });
+  return {
+    blob,
+    filename: buildSingleAudioFilename({
+      sourceTitle: metadata.title || metadata.filename,
+      format: settings.outputFormat,
+    }),
+    downloadKind,
+    contents: describeBookDownloadContents(parts, settings, downloadKind),
+  };
+}
 
 export async function createBookExportZip({
   metadata,
@@ -42,7 +146,7 @@ export async function createBookExportZip({
   throwIfAborted(signal);
   onProgress?.({
     phase: "analyzing",
-    message: "Preparing export manifest...",
+    message: "Preparing download details...",
     currentPart: 0,
     totalParts: parts.length,
   });
@@ -70,7 +174,7 @@ export async function createBookExportZip({
   throwIfAborted(signal);
   onProgress?.({
     phase: "bundling",
-    message: "Bundling transcripts and metadata...",
+    message: "Bundling audio and selected files...",
     currentPart: parts.length,
     totalParts: parts.length,
   });
@@ -115,6 +219,8 @@ export async function createBookExportZip({
           volume: settings.volume,
           mp3Bitrate: settings.mp3Bitrate,
           sampleRate: settings.sampleRate,
+          tailPaddingMs: settings.tailPaddingMs,
+          splitAudio: settings.splitAudio,
           targetPartMinutes: settings.targetPartMinutes,
           preferSourceSections: settings.preferSourceSections,
           paragraphPauseMultiplier: settings.paragraphPauseMultiplier,
@@ -169,7 +275,8 @@ export async function renderBookPartPcm(
   const events = buildBookSignalEvents(text, settings);
   const sampleRate = settings.sampleRate;
   const totalMs =
-    events.reduce((sum, event) => sum + event.ms, 0) + TAIL_PADDING_MS;
+    events.reduce((sum, event) => sum + event.ms, 0) +
+    (settings.tailPaddingMs ?? DEFAULT_TAIL_PADDING_MS);
   const totalSamples = Math.max(1, Math.ceil((totalMs / 1000) * sampleRate));
   const output = new Float32Array(totalSamples);
   const amplitude = clamp(settings.volume, 0, 1) * 0.38;
@@ -276,59 +383,28 @@ function writeTone({
   sampleRate: number;
   samples: number;
 }) {
-  const attackSamples = preset === "sounder" ? 1 : Math.min(samples / 2, sampleRate * 0.008);
-  const releaseSamples =
-    preset === "sounder" ? 1 : Math.min(samples / 2, sampleRate * 0.012);
+  const attackSamples = Math.min(
+    samples / 2,
+    (sampleRate * defaultAttackMs(preset)) / 1000,
+  );
+  const releaseSamples = Math.min(
+    samples / 2,
+    (sampleRate * defaultReleaseMs(preset)) / 1000,
+  );
 
   for (let localIndex = 0; localIndex < samples; localIndex += 1) {
     const targetIndex = offset + localIndex;
     if (targetIndex >= output.length) break;
     const envelope = envelopeAt(localIndex, samples, attackSamples, releaseSamples);
-    output[targetIndex] = waveformSample({
+    output[targetIndex] = samplePresetWaveform({
       preset,
       sampleIndex: targetIndex,
+      localSampleIndex: localIndex,
+      samples,
       hz,
       sampleRate,
     }) * amplitude * envelope;
   }
-}
-
-function waveformSample({
-  hz,
-  preset,
-  sampleIndex,
-  sampleRate,
-}: {
-  hz: number;
-  preset: BookExportSettings["tonePreset"];
-  sampleIndex: number;
-  sampleRate: number;
-}) {
-  if (preset === "sounder") {
-    const noise = Math.sin((sampleIndex + 1) * 12.9898) * 43758.5453;
-    return ((noise - Math.floor(noise)) * 2 - 1) * 0.75;
-  }
-
-  const phase = ((sampleIndex * hz) / sampleRate) % 1;
-  if (preset === "square") return phase < 0.5 ? 1 : -1;
-  if (preset === "triangle") return 1 - 4 * Math.abs(Math.round(phase - 0.25) - (phase - 0.25));
-  if (preset === "sawtooth") return 2 * phase - 1;
-  return Math.sin(TWO_PI * phase);
-}
-
-function envelopeAt(
-  sampleIndex: number,
-  samples: number,
-  attackSamples: number,
-  releaseSamples: number,
-) {
-  const attack = attackSamples > 0 ? Math.min(1, sampleIndex / attackSamples) : 1;
-  const releaseStart = samples - releaseSamples;
-  const release =
-    releaseSamples > 0 && sampleIndex > releaseStart
-      ? Math.max(0, (samples - sampleIndex) / releaseSamples)
-      : 1;
-  return Math.min(attack, release);
 }
 
 function pcmToWavBlob(pcm: Float32Array, sampleRate: number) {
@@ -473,6 +549,8 @@ function buildManifest({
       outputFormat: settings.outputFormat,
       mp3Bitrate: settings.mp3Bitrate,
       sampleRate: settings.sampleRate,
+      tailPaddingMs: settings.tailPaddingMs,
+      splitAudio: settings.splitAudio,
       targetPartMinutes: settings.targetPartMinutes,
       preferSourceSections: settings.preferSourceSections,
     },
@@ -512,7 +590,7 @@ function buildReadme({
   parts: BookExportPart[];
   settings: BookExportSettings;
 }) {
-  const title = metadata.title || metadata.filename || "MorseWords book export";
+  const title = metadata.title || metadata.filename || "MorseWords book download";
   const runtimeMs = parts.reduce((sum, part) => sum + part.morseDurationMs, 0);
   return [
     `${title}`,
@@ -520,7 +598,9 @@ function buildReadme({
     `Source type: ${metadata.sourceType}`,
     `Generated: ${generatedAt}`,
     `Preset: ${settings.presetName}`,
-    `Output: ${settings.outputFormat.toUpperCase()} parts`,
+    `Output: ${settings.outputFormat.toUpperCase()} ${
+      settings.splitAudio ? "parts" : "audio file"
+    }`,
     `Estimated runtime: ${formatDuration(runtimeMs)}`,
     `Part count: ${parts.length}`,
     "",
@@ -533,9 +613,13 @@ function buildReadme({
     settings.includeSettings ? "- settings.json" : "",
     "",
     "Notes",
-    "- Audio parts are sorted by filename and listed in playlist.m3u.",
-    "- Parts are based on estimated Morse runtime and safe text boundaries, not necessarily original book chapters.",
-    "- MP3 is recommended for long exports. WAV is uncompressed and can be large.",
+    settings.splitAudio
+      ? "- Audio parts are sorted by filename and listed in playlist.m3u."
+      : "",
+    settings.splitAudio
+      ? "- Parts are based on estimated Morse runtime and safe text boundaries, not necessarily original book chapters."
+      : "",
+    "- MP3 is recommended for long downloads. WAV is uncompressed and can be large.",
     "- Source files are processed in your browser. Use source text you have the right to convert and use.",
   ]
     .filter((line) => line !== "")
@@ -565,6 +649,6 @@ async function cooperativeYield(signal: AbortSignal) {
 
 function throwIfAborted(signal: AbortSignal) {
   if (signal.aborted) {
-    throw new DOMException("Book export cancelled.", "AbortError");
+    throw new DOMException("Book download cancelled.", "AbortError");
   }
 }

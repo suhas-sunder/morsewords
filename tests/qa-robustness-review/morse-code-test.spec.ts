@@ -34,11 +34,7 @@ const REQUIRED_SUPPORT_LINKS = [
   "/morse-code-word-separator",
 ] as const;
 
-const FORBIDDEN_LINKS = [
-  ...TEST_ALIAS_PATHS,
-  "/morse-to-english",
-  "/morse-code-mp3-generator",
-] as const;
+const FORBIDDEN_LINKS = [...TEST_ALIAS_PATHS, "/morse-to-english"] as const;
 
 const CONTEXTUAL_LINK_SOURCE_ROUTES = [
   "/practice",

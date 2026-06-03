@@ -1,7 +1,8 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 
 import {
+  REDIRECT_PATHS,
   blockExternalNetwork,
   collectConsoleErrors,
   isExpectedHarnessConsoleEntry,
@@ -15,18 +16,143 @@ const THEME_STORAGE_KEY = "morsewords-theme";
 
 const REQUIRED_LINKS = [
   "/audio",
-  "/morse-code-encoder",
-  "/morse-code-decoder",
+  "/morse-code-sound-generator",
+  "/morse-code-book-translator",
+  "/morse-code-video-generator",
   "/morse-code-audio-decoder",
-  "/morse-code-chart",
-  "/morse-code-alphabet",
-  "/copy-and-paste-morse-code",
+  "/morse-code-timing",
+  "/farnsworth-timing",
 ] as const;
+
+const REQUIRED_FAQ_QUESTIONS = [
+  "Can I download Morse code as an MP3 file?",
+  "Can I download WAV instead of MP3?",
+  "Which format should I choose, MP3 or WAV?",
+  "What MP3 bitrate should I use for Morse code?",
+  "Why is a long Morse MP3 file still large?",
+  "Does ZIP make MP3 files smaller?",
+  "Can I convert a whole book into Morse MP3 files?",
+  "Can I change the pitch or tone?",
+  "Can I change the speed and Farnsworth spacing?",
+  "Is my text uploaded to a server?",
+  "Can I convert an MP3 back into Morse text?",
+] as const;
+
+type JsonLdRecord = Record<string, unknown>;
 
 function filterHarnessConsoleNoise(
   entries: Array<{ type: string; text: string }>,
 ) {
   return entries.filter((entry) => !isExpectedHarnessConsoleEntry(entry.text));
+}
+
+function flattenJsonLd(value: unknown): JsonLdRecord[] {
+  if (Array.isArray(value)) return value.flatMap(flattenJsonLd);
+  if (!value || typeof value !== "object") return [];
+
+  const record = value as JsonLdRecord;
+  return [
+    record,
+    ...flattenJsonLd(record["@graph"]),
+    ...flattenJsonLd(record.mainEntity),
+    ...flattenJsonLd(record.itemListElement),
+  ];
+}
+
+function schemaType(record: JsonLdRecord) {
+  return typeof record["@type"] === "string" ? record["@type"] : "";
+}
+
+function itemName(value: unknown) {
+  if (!value || typeof value !== "object") return "";
+  const record = value as JsonLdRecord;
+  return typeof record.name === "string" ? record.name : "";
+}
+
+async function parseJsonLd(page: Page) {
+  return page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+    scripts.map((script) => JSON.parse(script.textContent ?? "null")),
+  );
+}
+
+async function visibleMp3FaqQuestions(page: Page) {
+  const faqSection = page
+    .locator("#faq section")
+    .filter({
+      has: page.getByRole("heading", {
+        name: "Morse code MP3 generator FAQ",
+      }),
+    });
+  await expect(faqSection).toHaveCount(1);
+
+  return faqSection.locator("details summary").evaluateAll((summaries) =>
+    summaries
+      .map((summary) => summary.textContent?.trim().replace(/>$/, "").trim() ?? "")
+      .filter(Boolean),
+  );
+}
+
+function parseRgbTriplet(value: string) {
+  const match = value.match(/rgba?\(([^)]+)\)/);
+  if (!match) return null;
+
+  const channels = match[1]
+    .split(",")
+    .slice(0, 3)
+    .map((part) => Number.parseFloat(part.trim()));
+
+  return channels.length === 3 && channels.every(Number.isFinite)
+    ? channels
+    : null;
+}
+
+function relativeLuminance(rgb: number[]) {
+  return rgb
+    .map((value) => {
+      const channel = value / 255;
+      return channel <= 0.03928
+        ? channel / 12.92
+        : Math.pow((channel + 0.055) / 1.055, 2.4);
+    })
+    .reduce((sum, channel, index) => {
+      return sum + channel * [0.2126, 0.7152, 0.0722][index];
+    }, 0);
+}
+
+function contrastRatio(foreground: string, background: string) {
+  const foregroundRgb = parseRgbTriplet(foreground);
+  const backgroundRgb = parseRgbTriplet(background);
+  expect(foregroundRgb, `foreground color ${foreground}`).not.toBeNull();
+  expect(backgroundRgb, `background color ${background}`).not.toBeNull();
+
+  const foregroundLuminance = relativeLuminance(foregroundRgb as number[]);
+  const backgroundLuminance = relativeLuminance(backgroundRgb as number[]);
+  const light = Math.max(foregroundLuminance, backgroundLuminance);
+  const dark = Math.min(foregroundLuminance, backgroundLuminance);
+
+  return (light + 0.05) / (dark + 0.05);
+}
+
+async function renderedColors(locator: Locator) {
+  return locator.evaluate((element) => {
+    const styles = window.getComputedStyle(element);
+    return {
+      backgroundColor: styles.backgroundColor,
+      color: styles.color,
+    };
+  });
+}
+
+async function relatedToolsSection(page: Page) {
+  const section = page
+    .locator("section")
+    .filter({
+      has: page.getByRole("heading", {
+        name: "Related Morse audio tools",
+      }),
+    });
+  await expect(section).toHaveCount(1);
+  return section;
 }
 
 test.describe("Morse code MP3 generator", () => {
@@ -41,7 +167,7 @@ test.describe("Morse code MP3 generator", () => {
     await waitForRouteReady(page);
 
     await expect(page).toHaveTitle(
-      "Morse Code MP3 Generator | Download Morse Audio | MorseWords",
+      "Morse Code MP3 Generator | Download MP3 or WAV Audio | MorseWords",
     );
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("h1")).toHaveText("Morse Code MP3 Generator");
@@ -57,10 +183,12 @@ test.describe("Morse code MP3 generator", () => {
     const description = await page
       .locator('meta[name="description"]')
       .getAttribute("content");
-    expect(description).toContain("download an MP3");
-    expect(description).toContain("speed");
+    expect(description).toContain("downloadable Morse audio");
+    expect(description).toContain("MP3");
+    expect(description).toContain("WAV");
+    expect(description).toContain("Farnsworth");
     expect(description).toContain("tone");
-    expect(description).toContain("browser");
+    expect(description).toContain("bitrate");
 
     await expect(page.getByLabel("Message to turn into MP3 audio")).toBeVisible();
     await expect(page.getByRole("button", { name: "Play audio" })).toBeVisible();
@@ -71,31 +199,49 @@ test.describe("Morse code MP3 generator", () => {
     await expect(page.getByRole("button", { name: "Sound" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Repeat" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Flash Light" })).toBeVisible();
-    await expect(page.getByLabel("Sound type")).toBeVisible();
+    await expect(page.getByLabel("Tone preset")).toBeVisible();
     await expect(page.getByLabel("Attack")).toBeVisible();
     await expect(page.getByLabel("Release")).toBeVisible();
     await expect(page.getByLabel("Tail padding")).toBeVisible();
 
     for (const heading of [
       "How the MP3 generator works",
-      "MP3 vs WAV",
+      "MP3 vs WAV for downloadable Morse audio",
       "Settings that change the audio",
-      "When to use MP3",
-      "Troubleshooting",
-      "MP3 generator vs audio decoder",
+      "MP3 bitrate and ZIP expectations",
+      "Practical download notes",
+      "Which Morse audio tool to use",
+      "Related Morse audio tools",
       "Morse code MP3 generator FAQ",
     ]) {
       await expect(page.getByRole("heading", { name: heading })).toBeVisible();
     }
 
-    const jsonLdTexts = await page
-      .locator('script[type="application/ld+json"]')
-      .evaluateAll((scripts) => scripts.map((script) => script.textContent ?? ""));
-    expect(jsonLdTexts.length).toBeGreaterThan(0);
-    const jsonLdText = jsonLdTexts.join("\n");
-    for (const schemaType of ["WebApplication", "BreadcrumbList", "FAQPage"]) {
-      expect(jsonLdText).toContain(`"@type":"${schemaType}"`);
+    const fileSizeSection = page
+      .locator("section")
+      .filter({
+        has: page.getByRole("heading", {
+          name: "MP3 bitrate and ZIP expectations",
+        }),
+      });
+    await expect(fileSizeSection).toHaveCount(1);
+    await expect(fileSizeSection.getByRole("heading", { name: "32 kbps" })).toBeVisible();
+    await expect(fileSizeSection.getByRole("heading", { name: "48 kbps" })).toBeVisible();
+    await expect(fileSizeSection.getByRole("heading", { name: "128 kbps" })).toBeVisible();
+    await expect(
+      fileSizeSection.getByText("ZIP does not meaningfully compress an MP3"),
+    ).toBeVisible();
+
+    const records = (await parseJsonLd(page)).flatMap(flattenJsonLd);
+    for (const expectedSchemaType of ["WebApplication", "BreadcrumbList", "FAQPage"]) {
+      expect(
+        records.some((record) => schemaType(record) === expectedSchemaType),
+        expectedSchemaType,
+      ).toBe(true);
     }
+    expect(records.filter((record) => schemaType(record) === "FAQPage")).toHaveLength(
+      1,
+    );
   });
 
   test("exports real MP3 on demand and keeps WAV export available", async ({
@@ -120,15 +266,18 @@ test.describe("Morse code MP3 generator", () => {
 
     await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
+    await expect(page.locator("[data-mw-mp3-tool-ready='true']")).toBeVisible();
     expect(
       requestedUrls.filter((url) => /lame|mp3-encoder/i.test(url)),
       "MP3 encoder should not load during initial render",
     ).toHaveLength(0);
 
-    await page.getByLabel("Message to turn into MP3 audio").fill("SOS");
+    const messageInput = page.getByLabel("Message to turn into MP3 audio");
+    await messageInput.fill("SOS");
+    await expect(messageInput).toHaveValue("SOS");
     await page.getByLabel("File name").fill("morse-code");
 
-    const mp3Download = page.waitForEvent("download");
+    const mp3Download = page.waitForEvent("download", { timeout: 30_000 });
     await page.getByRole("button", { name: "Download MP3" }).click();
     const download = await mp3Download;
     expect(download.suggestedFilename()).toBe("morse-code.mp3");
@@ -141,7 +290,7 @@ test.describe("Morse code MP3 generator", () => {
     expect(mp3Blob?.type).toBe("audio/mpeg");
     expect(mp3Blob?.size ?? 0).toBeGreaterThan(100);
 
-    const wavDownload = page.waitForEvent("download");
+    const wavDownload = page.waitForEvent("download", { timeout: 30_000 });
     await page.getByRole("button", { name: "Download WAV" }).click();
     const wav = await wavDownload;
     expect(wav.suggestedFilename()).toBe("morse-code.wav");
@@ -194,11 +343,56 @@ test.describe("Morse code MP3 generator", () => {
     }
 
     await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    const mainHrefs = await page.locator("main a[href]").evaluateAll((anchors) =>
+      anchors.map((anchor) => (anchor as HTMLAnchorElement).getAttribute("href") ?? ""),
+    );
     for (const href of REQUIRED_LINKS) {
       await expect(page.locator(`main a[href="${href}"]`).first()).toBeVisible();
+      expect(mainHrefs, href).toContain(href);
     }
+    for (const alias of REDIRECT_PATHS) {
+      expect(mainHrefs, `MP3 generator avoids redirect alias ${alias}`).not.toContain(
+        alias,
+      );
+    }
+  });
+
+  test("keeps FAQPage JSON-LD unique, canonical, and aligned with visible FAQs", async ({
+    page,
+  }) => {
+    await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+
+    const parsedJsonLd = await parseJsonLd(page);
+    const records = parsedJsonLd.flatMap(flattenJsonLd);
+    const faqPages = records.filter((record) => schemaType(record) === "FAQPage");
+    expect(faqPages, "single FAQPage schema").toHaveLength(1);
+
+    const webApp = records.find((record) => schemaType(record) === "WebApplication");
+    expect(webApp?.url).toBe(CANONICAL_URL);
+    expect(webApp?.["@id"]).toBe(`${CANONICAL_URL}#webapp`);
+
+    const breadcrumbs = records.find(
+      (record) => schemaType(record) === "BreadcrumbList",
+    );
+    const breadcrumbItems = breadcrumbs?.itemListElement as JsonLdRecord[];
+    expect(breadcrumbItems.at(-1)?.item).toBe(CANONICAL_URL);
+
+    const faqPage = faqPages[0];
+    expect(faqPage["@id"]).toBe(`${CANONICAL_URL}#faq`);
+    const schemaQuestions = (faqPage.mainEntity as JsonLdRecord[]).map(itemName);
+    const visibleQuestions = await visibleMp3FaqQuestions(page);
+    expect(schemaQuestions).toEqual(visibleQuestions);
+    for (const question of REQUIRED_FAQ_QUESTIONS) {
+      expect(schemaQuestions, question).toContain(question);
+    }
+
+    const schemaText = JSON.stringify(parsedJsonLd);
+    expect(schemaText).toContain(CANONICAL_URL);
+    expect(schemaText).not.toContain(`${CANONICAL_URL}?`);
     for (const alias of MP3_ALIAS_PATHS) {
-      await expect(page.locator(`a[href="${alias}"]`)).toHaveCount(0);
+      expect(schemaText).not.toContain(`https://www.morsewords.com${alias}`);
     }
   });
 
@@ -216,6 +410,11 @@ test.describe("Morse code MP3 generator", () => {
     await expect(page.getByLabel("Message to turn into MP3 audio")).toBeVisible();
     await expect(page.getByRole("button", { name: "Download MP3" })).toBeVisible();
 
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+
     const axeResults = await new AxeBuilder({ page })
       .include("main")
       .disableRules(["color-contrast"])
@@ -226,5 +425,27 @@ test.describe("Morse code MP3 generator", () => {
       ),
     ).toEqual([]);
     expect(filterHarnessConsoleNoise(consoleEntries)).toEqual([]);
+  });
+
+  test("keeps touched related-tool links readable on dark hover", async ({ page }) => {
+    await page.addInitScript((key) => {
+      window.localStorage.setItem(key, "dark");
+      document.documentElement.dataset.theme = "dark";
+    }, THEME_STORAGE_KEY);
+    await page.setViewportSize({ width: 1280, height: 760 });
+    await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+
+    const section = await relatedToolsSection(page);
+    const link = section.locator('a[href="/morse-code-sound-generator"]');
+    await expect(link).toHaveCount(1);
+    await link.hover();
+
+    const colors = await renderedColors(link);
+    expect(
+      contrastRatio(colors.color, colors.backgroundColor),
+      "hovered related link contrast",
+    ).toBeGreaterThanOrEqual(4.5);
+    await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
   });
 });

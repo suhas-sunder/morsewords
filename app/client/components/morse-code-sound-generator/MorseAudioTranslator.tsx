@@ -29,6 +29,12 @@ import {
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import StatusMessage from "~/client/components/shared/ui/StatusMessage";
 import TogglePill from "~/client/components/shared/ui/TogglePill";
+import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
+import {
+  getAudioPresetDefaults,
+  getAudioPresetShortLabel,
+} from "~/client/components/shared/audioPresetRegistry";
+import { presetSupportsPitchControl } from "~/client/components/shared/audioToneSynthesis";
 import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
@@ -37,7 +43,6 @@ import {
 import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   AUDIO_ATTACK_RANGE,
-  AUDIO_GENERATOR_PRESETS,
   AUDIO_PITCH_RANGE,
   AUDIO_RELEASE_RANGE,
   AUDIO_SAMPLE_RATES,
@@ -204,7 +209,9 @@ export default function MorseAudioTranslator({
       }),
     );
     setPreset(
-      readStoredEnum(storageKey("preset"), AUDIO_GENERATOR_PRESETS, "cw_radio"),
+      sanitizeAudioGeneratorPreset(
+        readStoredString(storageKey("preset"), "cw_radio", { maxLength: 64 }),
+      ),
     );
     setAttackMs(
       readStoredNumber(storageKey("attack"), {
@@ -337,6 +344,15 @@ export default function MorseAudioTranslator({
     },
     [charWpm],
   );
+
+  const handlePresetChange = React.useCallback((nextPreset: SoundPreset) => {
+    const defaults = getAudioPresetDefaults(nextPreset);
+    setPreset(nextPreset);
+    setToneHz(defaults.pitchHz);
+    setVolume(defaults.volume);
+    setAttackMs(defaults.attackMs);
+    setReleaseMs(defaults.releaseMs);
+  }, []);
 
   const unsupportedPlain = React.useMemo(() => getUnsupportedTextCharacters(text), [text]);
   const morseIssues = React.useMemo(() => {
@@ -476,7 +492,12 @@ export default function MorseAudioTranslator({
   const heroStats = [
     ["Output", exportFormats.includes("mp3") ? "WAV + MP3" : "WAV"],
     ["Tone", presetLabel(preset)],
-    ["Pitch", preset === "sounder" ? "Sounder" : `${toneHz} Hz`],
+    [
+      "Pitch",
+      presetSupportsPitchControl(preset)
+        ? `${toneHz} Hz`
+        : getAudioPresetShortLabel(preset),
+    ],
     ["Speed", `${charWpm} WPM`],
   ];
 
@@ -623,7 +644,7 @@ export default function MorseAudioTranslator({
               <div className="mt-4 grid sm:grid-cols-2 gap-4">
                 <SliderRow label="Character speed" value={charWpm} min={5} max={60} step={1} unit="WPM" onChange={handleCharWpmChange} />
                 <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={Math.max(5, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed" />
-                <SliderRow label="Pitch" value={toneHz} min={200} max={1600} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} />
+                <SliderRow label="Pitch" value={toneHz} min={200} max={1600} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || !presetSupportsPitchControl(preset)} />
                 <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(v) => setVolume(v / 100)} disabled={!soundOn} />
               </div>
 
@@ -632,18 +653,13 @@ export default function MorseAudioTranslator({
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor={tonePresetId} className="text-sm font-semibold text-slate-700">Tone preset</label>
-                      <select id={tonePresetId} value={preset} onChange={(e) => setPreset(sanitizeAudioGeneratorPreset(e.target.value))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
-                        <option value="cw_radio">CW radio tone</option>
-                        <option value="sine">Sine tone</option>
-                        <option value="square">Square beep</option>
-                        <option value="triangle">Soft triangle tone</option>
-                        <option value="sawtooth">Sawtooth buzzer</option>
-                        <option value="sounder">Telegraph sounder</option>
+                      <select id={tonePresetId} value={preset} onChange={(e) => handlePresetChange(sanitizeAudioGeneratorPreset(e.target.value))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none">
+                        <AudioPresetOptions context="soundGenerator" />
                       </select>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
-                      <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || preset === "sounder"} help="Softens clicks at the start." />
-                      <SliderRow label="Release" value={releaseMs} min={0} max={80} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || preset === "sounder"} help="Softens clicks at the end." />
+                      <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || !presetSupportsPitchControl(preset)} help="Softens clicks at the start." />
+                      <SliderRow label="Release" value={releaseMs} min={0} max={80} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || !presetSupportsPitchControl(preset)} help="Softens clicks at the end." />
                     </div>
                   </div>
 
@@ -801,10 +817,5 @@ function sanitizeFileBase(name: string) {
 }
 
 function presetLabel(preset: SoundPreset) {
-  if (preset === "cw_radio") return "CW radio";
-  if (preset === "sine") return "Sine";
-  if (preset === "square") return "Square beep";
-  if (preset === "triangle") return "Triangle";
-  if (preset === "sawtooth") return "Sawtooth";
-  return "Sounder";
+  return getAudioPresetShortLabel(preset);
 }

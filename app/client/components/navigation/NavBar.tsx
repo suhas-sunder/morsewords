@@ -170,7 +170,12 @@ const MORE_GROUPS: NavGroup[] = [
       {
         label: "Book translator",
         href: ROUTES.bookTranslator,
-        description: "Preflight TXT, EPUB, and PDF sources for Morse conversion.",
+        description: "Convert long text into Morse audio or video downloads.",
+      },
+      {
+        label: "Video generator",
+        href: ROUTES.videoGenerator,
+        description: "Create a short downloadable Morse WebM clip.",
       },
       {
         label: "Morse code decoder",
@@ -196,6 +201,11 @@ const MORE_GROUPS: NavGroup[] = [
         label: "Sound generator",
         href: ROUTES.soundGenerator,
         description: "Generate Morse tone clips with audio settings.",
+      },
+      {
+        label: "MP3 generator",
+        href: ROUTES.mp3Generator,
+        description: "Download compact Morse audio from text or typed Morse.",
       },
       {
         label: "International translator",

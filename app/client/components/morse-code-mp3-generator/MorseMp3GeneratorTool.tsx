@@ -13,12 +13,12 @@ import {
 import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   AUDIO_ATTACK_RANGE,
-  AUDIO_GENERATOR_PRESETS,
   AUDIO_PITCH_RANGE,
   AUDIO_RELEASE_RANGE,
   AUDIO_SAMPLE_RATES,
   AUDIO_SPEED_RANGE,
   AUDIO_TAIL_RANGE,
+  MP3_BITRATE_LABELS,
   MP3_BITRATES,
   VOLUME_RANGE,
   clampFarnsworthWpm,
@@ -26,6 +26,9 @@ import {
   sanitizeAudioSampleRate,
   sanitizeMp3Bitrate,
 } from "~/client/components/shared/morseSettings";
+import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
+import { getAudioPresetDefaults } from "~/client/components/shared/audioPresetRegistry";
+import { presetSupportsPitchControl } from "~/client/components/shared/audioToneSynthesis";
 import {
   clampNumber,
   readStoredBoolean,
@@ -150,7 +153,9 @@ export default function MorseMp3GeneratorTool() {
       }),
     );
     setPreset(
-      readStoredEnum("mw_audio_preset", AUDIO_GENERATOR_PRESETS, "cw_radio"),
+      sanitizeAudioGeneratorPreset(
+        readStoredString("mw_audio_preset", "cw_radio", { maxLength: 64 }),
+      ),
     );
     setAttackMs(
       readStoredNumber("mw_audio_attack", {
@@ -218,6 +223,15 @@ export default function MorseMp3GeneratorTool() {
     },
     [charWpm],
   );
+
+  const handlePresetChange = React.useCallback((nextPreset: SoundPreset) => {
+    const defaults = getAudioPresetDefaults(nextPreset);
+    setPreset(nextPreset);
+    setToneHz(defaults.pitchHz);
+    setVolume(defaults.volume);
+    setAttackMs(defaults.attackMs);
+    setReleaseMs(defaults.releaseMs);
+  }, []);
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -753,7 +767,7 @@ export default function MorseMp3GeneratorTool() {
           step={10}
           unit="Hz"
           onChange={setToneHz}
-          disabled={!renderedSoundOn || preset === "sounder"}
+          disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
         />
         <SliderRow
           label="Volume"
@@ -782,19 +796,16 @@ export default function MorseMp3GeneratorTool() {
           <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <LabeledSelect
               id={soundTypeId}
-              label="Sound type"
+              label="Tone preset"
               value={preset}
               onChange={(event) =>
-                setPreset(sanitizeAudioGeneratorPreset(event.target.value))
+                handlePresetChange(
+                  sanitizeAudioGeneratorPreset(event.target.value),
+                )
               }
               disabled={!renderedSoundOn}
             >
-              <option value="cw_radio">CW radio tone</option>
-              <option value="sine">Sine</option>
-              <option value="square">Square</option>
-              <option value="triangle">Triangle</option>
-              <option value="sawtooth">Sawtooth</option>
-              <option value="sounder">Telegraph sounder</option>
+              <AudioPresetOptions context="mp3Generator" />
             </LabeledSelect>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -806,7 +817,7 @@ export default function MorseMp3GeneratorTool() {
                 step={1}
                 unit="ms"
                 onChange={setAttackMs}
-                disabled={!renderedSoundOn || preset === "sounder"}
+                disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
                 help="Softens clicks at the start."
               />
               <SliderRow
@@ -817,7 +828,7 @@ export default function MorseMp3GeneratorTool() {
                 step={1}
                 unit="ms"
                 onChange={setReleaseMs}
-                disabled={!renderedSoundOn || preset === "sounder"}
+                disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
                 help="Softens clicks at the end."
               />
             </div>
@@ -862,10 +873,11 @@ export default function MorseMp3GeneratorTool() {
             setMp3Kbps(sanitizeMp3Bitrate(Number(event.target.value)))
           }
         >
-          <option value={96}>96</option>
-          <option value={128}>128</option>
-          <option value={192}>192</option>
-          <option value={256}>256</option>
+          {MP3_BITRATES.map((bitrate) => (
+            <option key={bitrate} value={bitrate}>
+              {MP3_BITRATE_LABELS[bitrate]}
+            </option>
+          ))}
         </LabeledSelect>
         <LabeledSelect
           id={sampleRateId}
@@ -905,7 +917,7 @@ export default function MorseMp3GeneratorTool() {
             MP3 encoding starts when you click download. Use MP3 for compact
             clips and WAV when you need lossless audio or the most reliable
             fallback. Preview, WAV, and MP3 use the same speed, spacing, tone,
-            volume, sound type, and envelope settings.
+            volume, tone preset, and envelope settings.
           </StatusMessage>
         )}
       </div>

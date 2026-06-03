@@ -10,19 +10,21 @@ import {
   sanitizeAudioGeneratorPreset,
   sanitizeAudioSampleRate,
 } from "~/client/components/shared/morseSettings";
+import type { AudioTonePresetId } from "~/client/components/shared/audioPresetRegistry";
+import {
+  defaultAttackMs,
+  defaultReleaseMs,
+  isNoiseLikePreset,
+  oscillatorLayers,
+  renderPresetPcmTone,
+} from "~/client/components/shared/audioToneSynthesis";
 import {
   dispatchMorseFlash,
   dispatchFlashClear,
   isFlashAllowedNow,
 } from "~/client/components/shared/useFlashSafety";
 
-export type SoundPreset =
-  | "cw_radio"
-  | "sine"
-  | "square"
-  | "triangle"
-  | "sawtooth"
-  | "sounder";
+export type SoundPreset = AudioTonePresetId;
 
 export type MorsePlayerState = "idle" | "playing" | "paused";
 
@@ -83,6 +85,22 @@ function clamp(n: number, min: number, max: number) {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+function setAudioParamValue(param: AudioParam, value: number, time: number) {
+  if (typeof param.setValueAtTime === "function") {
+    param.setValueAtTime(value, time);
+    return;
+  }
+  param.value = value;
+}
+
+function rampAudioParamValue(param: AudioParam, value: number, time: number) {
+  if (typeof param.exponentialRampToValueAtTime === "function") {
+    param.exponentialRampToValueAtTime(value, time);
+    return;
+  }
+  param.value = value;
+}
+
 type WebkitAudioWindow = Window &
   typeof globalThis & {
     webkitAudioContext?: typeof AudioContext;
@@ -92,26 +110,6 @@ function getAudioContextCtor() {
   if (typeof window === "undefined") return undefined;
   const audioWindow = window as WebkitAudioWindow;
   return audioWindow.AudioContext || audioWindow.webkitAudioContext;
-}
-
-function presetToOscType(preset: SoundPreset): OscillatorType {
-  if (preset === "square") return "square";
-  if (preset === "triangle") return "triangle";
-  if (preset === "sawtooth") return "sawtooth";
-  return "sine";
-}
-
-function defaultAttackMs(preset: SoundPreset) {
-  // Keep CW snappy; let musical waveforms be slightly softer
-  if (preset === "cw_radio") return 8;
-  if (preset === "sounder") return 0;
-  return 10;
-}
-
-function defaultReleaseMs(preset: SoundPreset) {
-  if (preset === "cw_radio") return 12;
-  if (preset === "sounder") return 0;
-  return 14;
 }
 
 function hasAudibleOutput(opts: PlayOptions) {
@@ -343,16 +341,9 @@ export default function useMorseAudio() {
       return;
     }
 
-    const osc = ctx.createOscillator();
-    trackNode(osc);
-    osc.type = presetToOscType(params.preset);
-    osc.frequency.value = params.hz;
-
-    // Per-tone envelope so master gain can truly hit 0 with no bleed.
     const env = ctx.createGain();
     env.gain.value = 0;
-
-    osc.connect(env).connect(master);
+    env.connect(master);
 
     const now = ctx.currentTime;
     const durationS = Math.max(0.001, params.ms / 1000);
@@ -370,22 +361,53 @@ export default function useMorseAudio() {
     env.gain.setValueAtTime(1, Math.max(attackEnd, releaseStart));
     env.gain.linearRampToValueAtTime(0, now + durationS);
 
+    const nodes: OscillatorNode[] = [];
+    for (const layer of oscillatorLayers({
+      preset: params.preset,
+      hz: params.hz,
+    })) {
+      const osc = trackNode(ctx.createOscillator());
+      const layerGain = ctx.createGain();
+      layerGain.gain.value = layer.gain;
+      osc.type = layer.type;
+      setAudioParamValue(osc.frequency, layer.startHz, now);
+      if (layer.endHz) {
+        rampAudioParamValue(osc.frequency, Math.max(1, layer.endHz), now + durationS);
+      }
+      osc.connect(layerGain).connect(env);
+      nodes.push(osc);
+    }
+
     if (!isActiveSession(params.sessionId)) {
-      try {
-        osc.stop(0);
-      } catch {
-        // already stopped
+      for (const node of nodes) {
+        try {
+          node.stop(0);
+        } catch {
+          // already stopped
+        }
       }
       return;
     }
 
-    osc.start();
-    osc.stop(now + durationS);
+    for (const node of nodes) {
+      node.start();
+      node.stop(now + durationS);
+    }
 
     await sleep(params.ms);
   }
 
-  async function playSounder(sessionId: number, ms: number, audible: boolean) {
+  async function playNoiseTexture({
+    audible,
+    ms,
+    preset,
+    sessionId,
+  }: {
+    audible: boolean;
+    ms: number;
+    preset: SoundPreset;
+    sessionId: number;
+  }) {
     if (!isActiveSession(sessionId)) return;
     const ctx = await ensureRunning();
     if (!ctx || !isActiveSession(sessionId)) return;
@@ -398,13 +420,15 @@ export default function useMorseAudio() {
       return;
     }
 
-    // Telegraph sounder: filtered noise burst
+    // Telegraph sounder and soft-click presets are synthesized noise textures.
     const bufferSize = Math.max(256, Math.floor((ctx.sampleRate * ms) / 1000));
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
 
     for (let i = 0; i < bufferSize; i++) {
-      const env = 1 - i / bufferSize;
+      const progress = bufferSize > 1 ? i / (bufferSize - 1) : 0;
+      const env =
+        preset === "soft_click" ? Math.exp(-progress * 10) : 1 - progress;
       data[i] = (Math.random() * 2 - 1) * env;
     }
 
@@ -413,8 +437,8 @@ export default function useMorseAudio() {
 
     const biquad = ctx.createBiquadFilter();
     biquad.type = "bandpass";
-    biquad.frequency.value = 1100;
-    biquad.Q.value = 1.5;
+    biquad.frequency.value = preset === "soft_click" ? 1800 : 1100;
+    biquad.Q.value = preset === "soft_click" ? 0.8 : 1.5;
 
     const localGain = ctx.createGain();
     localGain.gain.value = 1;
@@ -467,8 +491,13 @@ export default function useMorseAudio() {
 
       const audible = hasAudibleOutput(live);
 
-      if (live.preset === "sounder") {
-        await playSounder(sessionId, dur, audible);
+      if (isNoiseLikePreset(live.preset)) {
+        await playNoiseTexture({
+          sessionId,
+          ms: dur,
+          audible,
+          preset: live.preset ?? "cw_radio",
+        });
       } else {
         await playTone({
           sessionId,
@@ -612,53 +641,27 @@ export default function useMorseAudio() {
     function addTone(durS: number) {
       if (effective <= 0.000001) return;
 
-      if (safe.preset === "sounder") {
-        const bufferSize = Math.max(256, Math.floor(offline.sampleRate * durS));
-        const buffer = offline.createBuffer(1, bufferSize, offline.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          const env = 1 - i / bufferSize;
-          data[i] = (Math.random() * 2 - 1) * env;
-        }
-        const src = offline.createBufferSource();
-        src.buffer = buffer;
-
-        const biquad = offline.createBiquadFilter();
-        biquad.type = "bandpass";
-        biquad.frequency.value = 1100;
-        biquad.Q.value = 1.5;
-
-        src.connect(biquad).connect(master);
-        src.start(t);
-        src.stop(t + durS);
-        return;
-      }
-
-      const osc = offline.createOscillator();
-      osc.type = presetToOscType(safe.preset ?? "cw_radio");
-      osc.frequency.value = clamp(safe.hz, 200, 1600);
-
-      const env = offline.createGain();
-      const attackS = Math.min(
-        clamp(safe.attackMs ?? defaultAttackMs(safePreset), 0, 200) / 1000,
-        durS / 2,
-      );
-      const releaseS = Math.min(
-        clamp(safe.releaseMs ?? defaultReleaseMs(safePreset), 0, 400) / 1000,
-        durS / 2,
-      );
-      const attackEnd = t + Math.max(0.001, attackS);
-      const releaseStart =
-        t + Math.max(0.001, durS - Math.max(0.001, releaseS));
-
-      env.gain.setValueAtTime(0, t);
-      env.gain.linearRampToValueAtTime(1, attackEnd);
-      env.gain.setValueAtTime(1, Math.max(attackEnd, releaseStart));
-      env.gain.linearRampToValueAtTime(0, t + durS);
-
-      osc.connect(env).connect(master);
-      osc.start(t);
-      osc.stop(t + durS);
+      const samples = Math.max(1, Math.ceil(durS * offline.sampleRate));
+      const pcm = renderPresetPcmTone({
+        amplitude: 1,
+        attackMs: clamp(safe.attackMs ?? defaultAttackMs(safePreset), 0, 200),
+        releaseMs: clamp(
+          safe.releaseMs ?? defaultReleaseMs(safePreset),
+          0,
+          400,
+        ),
+        hz: clamp(safe.hz, 200, 1600),
+        preset: safe.preset ?? "cw_radio",
+        sampleRate: offline.sampleRate,
+        samples,
+      });
+      const buffer = offline.createBuffer(1, samples, offline.sampleRate);
+      buffer.copyToChannel(pcm, 0);
+      const src = offline.createBufferSource();
+      src.buffer = buffer;
+      src.connect(master);
+      src.start(t);
+      src.stop(t + durS);
     }
 
     for (const event of events) {

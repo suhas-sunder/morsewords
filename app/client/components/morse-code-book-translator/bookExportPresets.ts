@@ -2,12 +2,14 @@ import {
   AUDIO_PITCH_RANGE,
   AUDIO_SAMPLE_RATES,
   AUDIO_SPEED_RANGE,
+  AUDIO_TAIL_RANGE,
   MP3_BITRATES,
   VOLUME_RANGE,
   sanitizeAudioGeneratorPreset,
   sanitizeAudioSampleRate,
   sanitizeMp3Bitrate,
 } from "~/client/components/shared/morseSettings";
+import { getAudioPresetShortLabel } from "~/client/components/shared/audioPresetRegistry";
 import { clampNumber } from "~/client/components/shared/settingsStorage";
 
 import type {
@@ -34,17 +36,17 @@ export const BOOK_EXPORT_PRESET_DETAILS: Record<
 > = {
   "Reader Quick Start": {
     description:
-      "Balanced MP3 settings for turning a chapter or short book into listenable Morse parts.",
-    bestFor: "Most first exports",
+      "Compact MP3 settings for turning a chapter or short book into listenable Morse audio.",
+    bestFor: "Most first downloads",
   },
   "Long Listen": {
     description:
-      "Longer MP3 parts with a softer tone and fewer transcript extras for extended listening.",
+      "A softer MP3 tone with fewer transcript extras for extended listening.",
     bestFor: "Long books and relaxed listening",
   },
   "Practice Copy": {
     description:
-      "Shorter parts, slower Farnsworth spacing, and transcripts for copy-practice sessions.",
+      "Slower Farnsworth spacing and transcript options for copy-practice sessions.",
     bestFor: "Training and review",
   },
   "Faithful Source": {
@@ -54,7 +56,7 @@ export const BOOK_EXPORT_PRESET_DETAILS: Record<
   },
   "Archive Export": {
     description:
-      "Uncompressed WAV parts with full metadata. Useful for short archival exports, but large.",
+      "Uncompressed WAV output with metadata options. Useful for short archival downloads, but large.",
     bestFor: "Short uncompressed bundles",
   },
 };
@@ -71,18 +73,20 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 650,
     volume: 0.75,
     outputFormat: "mp3",
-    mp3Bitrate: 128,
+    mp3Bitrate: 32,
     sampleRate: 44100,
+    tailPaddingMs: 180,
+    splitAudio: false,
     targetPartMinutes: 8,
     preferSourceSections: true,
     paragraphPauseMultiplier: 2.4,
     sentencePauseMultiplier: 1.35,
     punctuationMode: "simplify",
-    includeCleanedText: true,
-    includeMorseTranscript: true,
-    includeManifest: true,
-    includeSettings: true,
-    includeReadme: true,
+    includeCleanedText: false,
+    includeMorseTranscript: false,
+    includeManifest: false,
+    includeSettings: false,
+    includeReadme: false,
   },
   "Long Listen": {
     presetName: "Long Listen",
@@ -92,18 +96,20 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 600,
     volume: 0.68,
     outputFormat: "mp3",
-    mp3Bitrate: 96,
+    mp3Bitrate: 32,
     sampleRate: 44100,
+    tailPaddingMs: 180,
+    splitAudio: false,
     targetPartMinutes: 18,
     preferSourceSections: true,
     paragraphPauseMultiplier: 3,
     sentencePauseMultiplier: 1.5,
     punctuationMode: "simplify",
-    includeCleanedText: true,
+    includeCleanedText: false,
     includeMorseTranscript: false,
-    includeManifest: true,
-    includeSettings: true,
-    includeReadme: true,
+    includeManifest: false,
+    includeSettings: false,
+    includeReadme: false,
   },
   "Practice Copy": {
     presetName: "Practice Copy",
@@ -113,8 +119,10 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 700,
     volume: 0.78,
     outputFormat: "mp3",
-    mp3Bitrate: 128,
+    mp3Bitrate: 48,
     sampleRate: 44100,
+    tailPaddingMs: 180,
+    splitAudio: false,
     targetPartMinutes: 5,
     preferSourceSections: false,
     paragraphPauseMultiplier: 2,
@@ -134,8 +142,10 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 620,
     volume: 0.72,
     outputFormat: "mp3",
-    mp3Bitrate: 192,
+    mp3Bitrate: 64,
     sampleRate: 44100,
+    tailPaddingMs: 180,
+    splitAudio: false,
     targetPartMinutes: 10,
     preferSourceSections: true,
     paragraphPauseMultiplier: 1.8,
@@ -155,8 +165,10 @@ export const BOOK_EXPORT_PRESETS: Record<
     pitch: 650,
     volume: 0.74,
     outputFormat: "wav",
-    mp3Bitrate: 192,
+    mp3Bitrate: 64,
     sampleRate: 48000,
+    tailPaddingMs: 220,
+    splitAudio: false,
     targetPartMinutes: 6,
     preferSourceSections: true,
     paragraphPauseMultiplier: 2,
@@ -240,6 +252,14 @@ export function sanitizeBookExportSettings(
     sampleRate: AUDIO_SAMPLE_RATES.includes(settings.sampleRate as never)
       ? sanitizeAudioSampleRate(settings.sampleRate)
       : fallback.sampleRate,
+    tailPaddingMs: Math.round(
+      clampNumber(
+        settings.tailPaddingMs ?? fallback.tailPaddingMs,
+        AUDIO_TAIL_RANGE.min,
+        AUDIO_TAIL_RANGE.max,
+      ),
+    ),
+    splitAudio: Boolean(settings.splitAudio ?? fallback.splitAudio),
     targetPartMinutes:
       Math.round(clampNumber(settings.targetPartMinutes ?? fallback.targetPartMinutes, 1, 30) * 10) /
       10,
@@ -286,10 +306,15 @@ export function describeBookExportSettings(settings: BookExportSettings) {
     settings.outputFormat === "mp3"
       ? `MP3 ${settings.mp3Bitrate} kbps`
       : `WAV ${settings.sampleRate} Hz`;
-  const split = settings.preferSourceSections
-    ? "uses EPUB/PDF section hints when available"
-    : "splits by Morse runtime boundaries";
-  return `${settings.charWpm}/${settings.farnsworthWpm} WPM, ${format}, ${settings.targetPartMinutes} minute target parts, ${split}.`;
+  const split = settings.splitAudio
+    ? `${settings.targetPartMinutes} minute target parts${
+        settings.preferSourceSections
+          ? ", using EPUB/PDF section hints when available"
+          : ", split by Morse runtime boundaries"
+      }`
+    : "single audio file";
+  const tone = getAudioPresetShortLabel(settings.tonePreset);
+  return `${settings.charWpm}/${settings.farnsworthWpm} WPM, ${tone}, ${format}, ${split}.`;
 }
 
 export function settingsMatchBookPreset(settings: BookExportSettings) {

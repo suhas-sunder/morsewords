@@ -100,7 +100,9 @@ export function buildExportAnalysis({
   const morseTranscript = buildMorseTranscript(
     cleanedText.slice(0, SAMPLE_EXPORT_CHARACTER_LIMIT),
   );
-  const totalRuntimeMs = estimateBookTextDurationMs(cleanedText, settings);
+  const totalRuntimeMs =
+    estimateBookTextDurationMs(cleanedText, settings) +
+    Math.max(0, partCount) * (settings.tailPaddingMs ?? 0);
   const estimatedBytes = estimateBundleBytes(totalRuntimeMs, settings, partCount);
   const warnings: string[] = [];
 
@@ -112,7 +114,7 @@ export function buildExportAnalysis({
 
   if (totalRuntimeMs > 0 && partCount > 1) {
     warnings.push(
-      "MorseWords exports sortable parts in a ZIP bundle instead of one huge merged file.",
+      "Split downloads save timed audio parts in a ZIP bundle.",
     );
   }
 

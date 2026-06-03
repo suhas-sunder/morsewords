@@ -99,6 +99,7 @@ export default [
     "routes/morse-code-mp3-generator.tsx",
   ),
   route("morse-code-book-translator", "routes/morse-code-book-translator.tsx"),
+  route("morse-code-video-generator", "routes/morse-code-video-generator.tsx"),
   route("how-to-read-morse-code", "routes/how-to-read-morse-code.tsx"),
   route("how-to-write-in-morse-code", "routes/how-to-write-in-morse-code.tsx"),
   route("how-to-type-in-morse-code", "routes/how-to-type-in-morse-code.tsx"),
@@ -184,6 +185,7 @@ export default [
     routeSlug(ROUTES.translatorAudioMp3Alias),
     "routes/morse-code-translator-audio-mp3.tsx",
   ),
+  route(routeSlug(ROUTES.textToMorseVideoAlias), "routes/text-to-morse-code-video.tsx"),
   route(routeSlug(ROUTES.ebookTranslatorAlias), "routes/morse-code-ebook-translator.tsx"),
 
   // Misc / legal

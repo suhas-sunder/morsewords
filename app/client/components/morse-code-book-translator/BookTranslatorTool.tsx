@@ -2,9 +2,11 @@ import * as React from "react";
 
 import {
   ChecklistIcon,
-  ClockIcon,
+  CopyIcon,
   DownloadIcon,
   EqualizerIcon,
+  LightBulbIcon,
+  PlayIcon,
   RefreshIcon,
   SparklesIcon,
   StopIcon,
@@ -12,17 +14,21 @@ import {
   UploadIcon,
   WarningBadgeIcon,
 } from "~/client/assets/svg/Icons";
-import { downloadBlobFile } from "~/client/components/shared/actionOutputUtils";
 import {
-  AUDIO_GENERATOR_PRESETS,
-  AUDIO_PITCH_RANGE,
-  AUDIO_SAMPLE_RATES,
+  copyTextToClipboard,
+  downloadBlobFile,
+} from "~/client/components/shared/actionOutputUtils";
+import {
   AUDIO_SPEED_RANGE,
-  MP3_BITRATES,
-  sanitizeAudioGeneratorPreset,
   sanitizeAudioSampleRate,
   sanitizeMp3Bitrate,
 } from "~/client/components/shared/morseSettings";
+import AudioSettingsPanel from "~/client/components/shared/AudioSettingsPanel";
+import {
+  getAudioPresetDefaults,
+  getAudioPresetLabel,
+  type AudioTonePresetId,
+} from "~/client/components/shared/audioPresetRegistry";
 import { clampNumber } from "~/client/components/shared/settingsStorage";
 import {
   ToolButton,
@@ -33,14 +39,25 @@ import {
 } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import StatusMessage from "~/client/components/shared/ui/StatusMessage";
-
-import { createBookExportZip, renderBookPartAudio } from "./bookBundleExport";
 import {
-  applyExportPunctuationMode,
+  getAppliedThemeMode,
+  type ThemeMode,
+} from "~/client/theme/themeStorage";
+
+import {
+  createBookDownloadPackage,
+  getBookDownloadKind,
+} from "./bookBundleExport";
+import {
   buildExportAnalysis,
+  buildMorseTranscript,
+  formatBytes,
   formatDuration,
-  SAMPLE_EXPORT_CHARACTER_LIMIT,
 } from "./bookDurationEstimate";
+import { estimateMorseDurationMs } from "~/client/components/shared/morseTiming";
+import useMorseAudio, {
+  type MorsePlayerState,
+} from "~/client/components/shared/useMorseAudio";
 import {
   applyBookPreset,
   BOOK_EXPORT_PRESET_DETAILS,
@@ -60,11 +77,13 @@ import type {
   BookExportProgress,
   BookExportResultSummary,
   BookExportSettings,
+  BookOutputType,
 } from "./bookExportTypes";
 import { segmentBookText } from "./bookSegmentation";
 import {
   DEFAULT_CLEANUP_OPTIONS,
   type CleanupOptions,
+  type CustomCleanupRule,
   type ParsedBookSource,
   type PreflightSummary,
   sourceTypeLabel,
@@ -81,19 +100,136 @@ import {
   buildCleanedSourceSections,
   buildPreflightSummary,
 } from "./textNormalization";
+import {
+  buildBookVideoPreview,
+  type BookVideoPreview,
+} from "./bookVideoPreview";
+import {
+  buildBookVideoWarnings,
+  createBookVideoDownloadPackage,
+  getBookVideoDownloadKind,
+} from "./bookVideoExport";
+import {
+  BOOK_VIDEO_INTENSITY_LABELS,
+  BOOK_VIDEO_RESOLUTION_LABELS,
+  BOOK_VIDEO_VISUAL_STYLE_DETAILS,
+} from "./bookVideoPresets";
+import {
+  describeBookVideoFormat,
+  detectBookVideoSupport,
+  type BookVideoSupport,
+} from "./bookVideoSupport";
+import {
+  BOOK_VIDEO_INTENSITIES,
+  BOOK_VIDEO_RESOLUTIONS,
+  BOOK_VIDEO_VISUAL_STYLES,
+  DEFAULT_BOOK_VIDEO_SETTINGS,
+  sanitizeBookVideoSettings,
+  type BookVideoSettings,
+} from "./bookVideoTypes";
 
 type ParseStatus = "idle" | "parsing" | "ready" | "error";
 type ExportStatusKind = "info" | "success" | "error" | "working";
+type SourceEntryMode = "pasted" | "uploaded-textarea" | "uploaded-preview";
+type SourceEditMode = "idle" | "draft";
+
+// Plain TXT/MD uploads under this cap stay directly editable without putting
+// full book-length documents into a large textarea by default.
+const INLINE_UPLOAD_TEXTAREA_LIMIT = 40_000;
+// Large extracted sources stay in draft edit mode so typing does not recompute
+// cleanup, Morse preview, runtime estimates, and splitting on every keystroke.
+const LARGE_SOURCE_EDIT_THRESHOLD = 40_000;
+const EXTRACTED_SOURCE_PREVIEW_LIMIT = 6_000;
+const BOOK_PREVIEW_MIN_DURATION_MS = 15_000;
+const BOOK_PREVIEW_MAX_DURATION_MS = 30_000;
+const BOOK_PREVIEW_MAX_WORDS = 90;
+const BOOK_PREVIEW_MAX_CHARS = 900;
 
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   phase: "idle",
-  message: "Choose a preset, review the split, then export a ZIP bundle.",
+  message: "Choose download settings, then download audio.",
   currentPart: 0,
   totalParts: 0,
 };
 
+const VIDEO_IDLE_EXPORT_PROGRESS: BookExportProgress = {
+  phase: "idle",
+  message: "",
+  currentPart: 0,
+  totalParts: 0,
+};
+
+const FULL_FRAME_FLASH_WARNING =
+  "Full-frame flash mode can create rapid full-frame flashing in the finished video and may be uncomfortable or unsafe for some viewers. Use Lightbulb or Dot for a smaller flash area.";
+
+type BookPreviewStatus =
+  | "waiting"
+  | "updating"
+  | "ready"
+  | "playing"
+  | "stopped"
+  | "unavailable"
+  | "failed";
+
+type BookAudioPreview = {
+  sampleText: string;
+  sampleMorse: string;
+  durationMs: number;
+  label: string;
+  truncated: boolean;
+};
+
+function useAppliedThemeMode() {
+  const [themeMode, setThemeMode] = React.useState<ThemeMode>("light");
+
+  React.useEffect(() => {
+    setThemeMode(getAppliedThemeMode());
+
+    if (typeof document === "undefined") return undefined;
+    const observer = new MutationObserver(() => {
+      setThemeMode(getAppliedThemeMode());
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  return themeMode;
+}
+
+function resolveBookVideoBackgroundStyle(themeMode: ThemeMode) {
+  return themeMode === "dark" ? "dark-morsewords" : "warm-morsewords";
+}
+
 function formatNumber(value: number | undefined) {
   return typeof value === "number" ? value.toLocaleString() : "0";
+}
+
+function createEmptyParsedSource(warnings: string[] = []): ParsedBookSource {
+  return {
+    sourceType: "pasted",
+    rawText: "",
+    warnings,
+  };
+}
+
+function countSourceWords(text: string) {
+  const matches = text.trim().match(/[\p{L}\p{N}]+(?:['-][\p{L}\p{N}]+)*/gu);
+  return matches?.length ?? 0;
+}
+
+function capExtractedPreview(text: string) {
+  if (text.length <= EXTRACTED_SOURCE_PREVIEW_LIMIT) return text;
+  return text.slice(0, EXTRACTED_SOURCE_PREVIEW_LIMIT).trimEnd();
+}
+
+function shouldUseEditableUpload(parsed: ParsedBookSource) {
+  return (
+    (parsed.sourceType === "txt" || parsed.sourceType === "md") &&
+    parsed.rawText.length <= INLINE_UPLOAD_TEXTAREA_LIMIT
+  );
 }
 
 function cleanupLabel(key: keyof CleanupOptions) {
@@ -109,13 +245,7 @@ function cleanupLabel(key: keyof CleanupOptions) {
   }
 }
 
-function Metric({
-  label,
-  value,
-}: {
-  label: string;
-  value: React.ReactNode;
-}) {
+function Metric({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="min-w-0">
       <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
@@ -148,33 +278,185 @@ function MessageList({
 
   return (
     <section
-      className="rounded-xl bg-[#fffdf8] p-4"
+      className="flex items-start gap-2 text-sm leading-relaxed"
       role={tone === "error" ? "alert" : undefined}
     >
-      <h3 className="flex items-center gap-2 text-sm font-extrabold text-sky-950">
-        <WarningBadgeIcon size={16} title={undefined} aria-hidden="true" />
-        {title}
-      </h3>
-      <ul className={`mt-2 space-y-1 text-sm leading-relaxed ${toneClass}`}>
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
+      <WarningBadgeIcon
+        size={16}
+        title={undefined}
+        aria-hidden="true"
+        className="mt-0.5 shrink-0 text-sky-950"
+      />
+      <div>
+        <h3 className="text-sm font-extrabold text-sky-950">{title}</h3>
+        <ul className={`mt-1 space-y-1 ${toneClass}`}>
+          {items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
 
 function EmptyPreview({ children }: { children: React.ReactNode }) {
+  return <p className="text-sm leading-relaxed text-slate-600">{children}</p>;
+}
+
+function buildBookAudioPreview(
+  cleanedText: string,
+  settings: BookExportSettings,
+): BookAudioPreview | null {
+  const normalized = cleanedText.trim().replace(/\s+/g, " ");
+  if (!normalized) return null;
+
+  const words = normalized.split(" ").filter(Boolean);
+  let sampleText = "";
+  let sampleMorse = "";
+  let durationMs = 0;
+  let usedWords = 0;
+
+  for (let index = 0; index < words.length && index < BOOK_PREVIEW_MAX_WORDS; index += 1) {
+    const candidate = sampleText ? `${sampleText} ${words[index]}` : words[index];
+    if (candidate.length > BOOK_PREVIEW_MAX_CHARS && sampleText) break;
+
+    const candidateMorse = buildMorseTranscript(candidate);
+    const candidateDurationMs = estimateMorseDurationMs(candidateMorse, {
+      charWpm: settings.charWpm,
+      farnsworthWpm: settings.farnsworthWpm,
+    });
+
+    if (
+      candidateDurationMs > BOOK_PREVIEW_MAX_DURATION_MS &&
+      durationMs >= BOOK_PREVIEW_MIN_DURATION_MS
+    ) {
+      break;
+    }
+
+    sampleText = candidate;
+    sampleMorse = candidateMorse;
+    durationMs = candidateDurationMs;
+    usedWords = index + 1;
+
+    if (durationMs >= BOOK_PREVIEW_MAX_DURATION_MS) break;
+  }
+
+  if (!sampleMorse.trim()) return null;
+
+  const truncated =
+    usedWords < words.length || normalized.length > sampleText.length;
+  const cappedAtTarget = durationMs >= BOOK_PREVIEW_MAX_DURATION_MS * 0.92;
+  const label = truncated
+    ? cappedAtTarget
+      ? "Previewing the first 30 seconds"
+      : `Previewing about ${formatDuration(durationMs)} from the start`
+    : `Previewing the full ${formatDuration(durationMs)} source`;
+
+  return {
+    sampleText,
+    sampleMorse,
+    durationMs,
+    label,
+    truncated,
+  };
+}
+
+function SourceUploadDropzone({
+  dragActive,
+  fileInputRef,
+  filename,
+  hasSource,
+  onDrop,
+  onFileInputChange,
+  onUploadKeyDown,
+  setDragActive,
+  uploadHelpText,
+  uploadRightsText,
+  uploadTitle,
+}: {
+  dragActive: boolean;
+  fileInputRef: React.RefObject<HTMLInputElement | null>;
+  filename?: string;
+  hasSource: boolean;
+  onDrop: (event: React.DragEvent<HTMLDivElement>) => void;
+  onFileInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onUploadKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void;
+  setDragActive: (value: boolean) => void;
+  uploadHelpText: string;
+  uploadRightsText: string;
+  uploadTitle: string;
+}) {
   return (
-    <p className="text-sm leading-relaxed text-slate-600">
-      {children}
-    </p>
+    <div>
+      <input
+        ref={fileInputRef}
+        id="book-source-file"
+        type="file"
+        accept=".txt,.md,.markdown,.epub,.pdf,text/plain,text/markdown,application/epub+zip,application/pdf"
+        onChange={onFileInputChange}
+        className="sr-only"
+        aria-describedby="book-source-file-help"
+      />
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label={hasSource ? "Replace book source file" : "Upload a book source file"}
+        aria-describedby="book-source-file-help"
+        onClick={() => fileInputRef.current?.click()}
+        onKeyDown={onUploadKeyDown}
+        onDragOver={(event) => {
+          event.preventDefault();
+          setDragActive(true);
+        }}
+        onDragEnter={(event) => {
+          event.preventDefault();
+          setDragActive(true);
+        }}
+        onDragLeave={() => setDragActive(false)}
+        onDrop={onDrop}
+        className={[
+          "flex cursor-pointer flex-col gap-3 rounded-xl border border-dashed border-slate-300/80 bg-white/88 p-4 transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] sm:flex-row sm:items-center sm:justify-between",
+          dragActive ? "border-sky-500 bg-[#fffaf2] text-sky-950" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        <div className="flex min-w-0 items-start gap-3">
+          <UploadIcon
+            size={24}
+            title={undefined}
+            aria-hidden="true"
+            className="mt-0.5 shrink-0 text-sky-950"
+          />
+          <div className="min-w-0">
+            <span className="block text-base font-extrabold text-sky-950">
+              {uploadTitle}
+            </span>
+            <span
+              id="book-source-file-help"
+              className="mt-1 block max-w-[68ch] text-sm leading-relaxed text-slate-600"
+            >
+              {uploadHelpText}
+            </span>
+            {filename ? (
+              <span className="mt-2 block break-words text-sm font-semibold text-slate-700">
+                Current file: {filename}
+              </span>
+            ) : null}
+          </div>
+        </div>
+        <p className="max-w-[42ch] text-xs leading-relaxed text-slate-500 sm:text-right">
+          {uploadRightsText}
+        </p>
+      </div>
+    </div>
   );
 }
 
 async function parseFileSource(file: File) {
   const sourceType = detectFileSourceType(file);
-  if (sourceType === "txt" || sourceType === "md") return parseTextFileSource(file);
+  if (sourceType === "txt" || sourceType === "md")
+    return parseTextFileSource(file);
   if (sourceType === "epub") return parseEpubSource(file);
   return parsePdfSource(file);
 }
@@ -185,30 +467,43 @@ function isExportRunning(progress: BookExportProgress) {
   );
 }
 
-function bundleContentsForSettings(settings: BookExportSettings) {
-  return [
-    `${settings.outputFormat.toUpperCase()} audio parts`,
-    "playlist.m3u",
-    settings.includeCleanedText ? "cleaned-text.txt" : "",
-    settings.includeMorseTranscript ? "morse-transcript.txt" : "",
-    settings.includeManifest ? "manifest.json" : "",
-    settings.includeSettings ? "settings.json" : "",
-    settings.includeReadme ? "README.txt" : "",
-  ].filter(Boolean);
-}
-
 export default function BookTranslatorTool() {
   const [sourceText, setSourceText] = React.useState("");
-  const [parsedSource, setParsedSource] = React.useState<ParsedBookSource>(
-    () => parsePastedSource(""),
+  const [parsedSource, setParsedSource] = React.useState<ParsedBookSource>(() =>
+    createEmptyParsedSource(),
   );
-  const [cleanupOptions, setCleanupOptions] =
-    React.useState<CleanupOptions>(DEFAULT_CLEANUP_OPTIONS);
+  const [sourceEntryMode, setSourceEntryMode] =
+    React.useState<SourceEntryMode>("pasted");
+  const [cleanupOptions, setCleanupOptions] = React.useState<CleanupOptions>(
+    DEFAULT_CLEANUP_OPTIONS,
+  );
+  const [customCleanupRules, setCustomCleanupRules] = React.useState<
+    CustomCleanupRule[]
+  >([]);
+  const [sourceEditMode, setSourceEditMode] =
+    React.useState<SourceEditMode>("idle");
+  const [sourceEditDraft, setSourceEditDraft] = React.useState("");
+  const [outputType, setOutputType] =
+    React.useState<BookOutputType>("audio");
   const [exportSettings, setExportSettings] =
     React.useState<BookExportSettings>(DEFAULT_BOOK_EXPORT_SETTINGS);
+  const [videoSettings, setVideoSettings] =
+    React.useState<BookVideoSettings>(DEFAULT_BOOK_VIDEO_SETTINGS);
+  const [videoSupport, setVideoSupport] =
+    React.useState<BookVideoSupport | null>(null);
+  const [previewStatus, setPreviewStatus] =
+    React.useState<BookPreviewStatus>("waiting");
+  const [previewErrorMessage, setPreviewErrorMessage] = React.useState("");
+  const [visualPreviewPlaying, setVisualPreviewPlaying] = React.useState(false);
+  const [visualPreviewStep, setVisualPreviewStep] = React.useState(0);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [status, setStatus] = React.useState<ParseStatus>("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
+  const [pendingFilename, setPendingFilename] = React.useState("");
+  const [sourceActionStatus, setSourceActionStatus] = React.useState<{
+    kind: ExportStatusKind;
+    message: string;
+  } | null>(null);
   const [dragActive, setDragActive] = React.useState(false);
   const [exportProgress, setExportProgress] =
     React.useState<BookExportProgress>(IDLE_EXPORT_PROGRESS);
@@ -227,32 +522,104 @@ export default function BookTranslatorTool() {
   } | null>(null);
   const exportVersionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
+  const exportProgressRef = React.useRef<BookExportProgress>(IDLE_EXPORT_PROGRESS);
+  const visualPreviewIntervalRef = React.useRef<number | null>(null);
+  const visualPreviewTimeoutRef = React.useRef<number | null>(null);
   const mountedRef = React.useRef(true);
+  const customCleanupRuleIdRef = React.useRef(1);
+  const previewAudioPlayer = useMorseAudio();
+  const stopPreviewAudioRef = React.useRef(previewAudioPlayer.stop);
 
-  const cancelActiveExport = React.useCallback((message = "Export cancelled.") => {
-    exportVersionRef.current += 1;
-    exportAbortRef.current?.abort();
-    exportAbortRef.current = null;
-    setExportProgress({
-      phase: "cancelled",
-      message,
-      currentPart: 0,
-      totalParts: 0,
-    });
-    setExportStatus({ kind: "info", message });
+  React.useEffect(() => {
+    exportProgressRef.current = exportProgress;
+  }, [exportProgress]);
+
+  const hasActiveExport = React.useCallback(
+    () => exportAbortRef.current !== null || isExportRunning(exportProgressRef.current),
+    [],
+  );
+
+  const cancelActiveExport = React.useCallback(
+    (message = "Download cancelled.") => {
+      exportVersionRef.current += 1;
+      exportAbortRef.current?.abort();
+      exportAbortRef.current = null;
+      setExportProgress({
+        phase: "cancelled",
+        message,
+        currentPart: 0,
+        totalParts: 0,
+      });
+      setExportStatus({ kind: "info", message });
+    },
+    [],
+  );
+
+  React.useEffect(() => {
+    stopPreviewAudioRef.current = previewAudioPlayer.stop;
+  });
+
+  const stopVisualPreview = React.useCallback(() => {
+    if (visualPreviewIntervalRef.current !== null) {
+      window.clearInterval(visualPreviewIntervalRef.current);
+      visualPreviewIntervalRef.current = null;
+    }
+    if (visualPreviewTimeoutRef.current !== null) {
+      window.clearTimeout(visualPreviewTimeoutRef.current);
+      visualPreviewTimeoutRef.current = null;
+    }
+    setVisualPreviewPlaying(false);
+    setVisualPreviewStep(0);
   }, []);
+
+  const stopActivePreview = React.useCallback(() => {
+    stopPreviewAudioRef.current?.();
+    stopVisualPreview();
+    setPreviewStatus((current) => (current === "playing" ? "stopped" : current));
+  }, [stopVisualPreview]);
 
   React.useEffect(() => {
     const preferences = loadBookExportPreferences();
+    setOutputType(preferences.outputType);
     setExportSettings(preferences.exportSettings);
+    setVideoSettings(preferences.videoSettings);
+    setExportProgress(
+      preferences.outputType === "video"
+        ? VIDEO_IDLE_EXPORT_PROGRESS
+        : IDLE_EXPORT_PROGRESS,
+    );
     setAdvancedOpen(preferences.advancedOpen);
     setPreferencesLoaded(true);
   }, []);
 
   React.useEffect(() => {
     if (!preferencesLoaded) return;
-    saveBookExportPreferences({ exportSettings, advancedOpen });
-  }, [advancedOpen, exportSettings, preferencesLoaded]);
+    saveBookExportPreferences({
+      outputType,
+      exportSettings,
+      videoSettings,
+      advancedOpen,
+    });
+  }, [
+    advancedOpen,
+    exportSettings,
+    outputType,
+    preferencesLoaded,
+    videoSettings,
+  ]);
+
+  React.useEffect(() => {
+    setVideoSupport(detectBookVideoSupport());
+  }, []);
+
+  React.useEffect(() => {
+    if (!videoSupport || videoSupport.audioTrackSupported) return;
+    setVideoSettings((current) =>
+      current.includeAudioTrack
+        ? sanitizeBookVideoSettings({ ...current, includeAudioTrack: false })
+        : current,
+    );
+  }, [videoSupport]);
 
   React.useEffect(() => {
     return () => {
@@ -260,8 +627,10 @@ export default function BookTranslatorTool() {
       parseVersionRef.current += 1;
       exportVersionRef.current += 1;
       exportAbortRef.current?.abort();
+      stopPreviewAudioRef.current?.();
+      stopVisualPreview();
     };
-  }, []);
+  }, [stopVisualPreview]);
 
   const effectiveCleanupOptions = React.useMemo<CleanupOptions>(
     () => ({
@@ -274,78 +643,424 @@ export default function BookTranslatorTool() {
   );
 
   const preflight = React.useMemo<PreflightSummary>(() => {
-    return buildPreflightSummary(parsedSource, effectiveCleanupOptions);
-  }, [effectiveCleanupOptions, parsedSource]);
+    return buildPreflightSummary(
+      parsedSource,
+      effectiveCleanupOptions,
+      customCleanupRules,
+    );
+  }, [customCleanupRules, effectiveCleanupOptions, parsedSource]);
 
   const sourceSections = React.useMemo(
-    () => buildCleanedSourceSections(parsedSource, effectiveCleanupOptions),
-    [effectiveCleanupOptions, parsedSource],
+    () =>
+      buildCleanedSourceSections(
+        parsedSource,
+        effectiveCleanupOptions,
+        customCleanupRules,
+      ),
+    [customCleanupRules, effectiveCleanupOptions, parsedSource],
   );
+
+  const activeSegmentationSettings = React.useMemo<BookExportSettings>(() => {
+    if (outputType === "audio") return exportSettings;
+    return sanitizeBookExportSettings({
+      ...exportSettings,
+      splitAudio: true,
+      targetPartMinutes: videoSettings.targetPartMinutes,
+    });
+  }, [exportSettings, outputType, videoSettings.targetPartMinutes]);
 
   const exportParts = React.useMemo<BookExportPart[]>(() => {
     return segmentBookText({
       cleanedText: preflight.cleanedText,
-      settings: exportSettings,
+      settings: activeSegmentationSettings,
       sourceSections,
       sourceTitle: preflight.title || preflight.filename,
     });
-  }, [exportSettings, preflight.cleanedText, preflight.filename, preflight.title, sourceSections]);
+  }, [
+    activeSegmentationSettings,
+    preflight.cleanedText,
+    preflight.filename,
+    preflight.title,
+    sourceSections,
+  ]);
 
   const exportAnalysis = React.useMemo(
     () =>
       buildExportAnalysis({
         preflight,
-        settings: exportSettings,
+        settings: activeSegmentationSettings,
         partCount: exportParts.length,
       }),
-    [exportParts.length, exportSettings, preflight],
+    [activeSegmentationSettings, exportParts.length, preflight],
   );
 
-  const hasSource = sourceText.trim().length > 0;
+  const hasSource = parsedSource.rawText.trim().length > 0;
   const hasCleanedSource = preflight.cleanedText.trim().length > 0;
   const isUploaded = parsedSource.sourceType !== "pasted";
+  const isUploadedPreviewMode = sourceEntryMode === "uploaded-preview";
+  const isTextareaMode = sourceEntryMode !== "uploaded-preview";
+  const sourceDraftActive = sourceEditMode === "draft";
+  const sourceDraftIsLarge =
+    sourceEditDraft.length > LARGE_SOURCE_EDIT_THRESHOLD;
+  const extractedPreview = React.useMemo(
+    () => capExtractedPreview(parsedSource.rawText),
+    [parsedSource.rawText],
+  );
+  const extractedPreviewTruncated =
+    parsedSource.rawText.length > EXTRACTED_SOURCE_PREVIEW_LIMIT;
+  const extractedWordCount = React.useMemo(
+    () => countSourceWords(parsedSource.rawText),
+    [parsedSource.rawText],
+  );
+  const showSourceState =
+    status === "parsing" ||
+    status === "error" ||
+    Boolean(parsedSource.filename) ||
+    hasSource;
+  const canClearSource =
+    hasSource ||
+    status === "error" ||
+    Boolean(parsedSource.filename) ||
+    Boolean(pendingFilename) ||
+    sourceText.length > 0 ||
+    sourceEditDraft.length > 0;
   const cleanedSourceEmptyWarning =
     hasSource && !hasCleanedSource
-      ? "Cleanup removed all source text. Turn off the cleanup option or add text before exporting."
+      ? "Cleanup removed all source text. Turn off the cleanup option or add text before downloading."
       : "";
-  const allWarnings = [
-    ...preflight.extractionWarnings,
-    ...preflight.cleanupWarnings,
-    ...exportAnalysis.warnings,
-    cleanedSourceEmptyWarning,
-  ].filter(Boolean);
-  const canExport = hasSource && exportParts.length > 0 && !isExportRunning(exportProgress);
+  const sourceWarnings = showSourceState
+    ? [
+        ...preflight.extractionWarnings,
+        ...preflight.cleanupWarnings,
+        cleanedSourceEmptyWarning,
+      ].filter(Boolean)
+    : [];
+  const exportWarnings = exportAnalysis.warnings.filter(Boolean);
+  const exportRunning = isExportRunning(exportProgress);
+  const isAudioOutput = outputType === "audio";
+  const isVideoOutput = outputType === "video";
+  const isSegmentedOutput = isVideoOutput || exportSettings.splitAudio;
+  const appliedThemeMode = useAppliedThemeMode();
+  const resolvedVideoBackgroundStyle =
+    resolveBookVideoBackgroundStyle(appliedThemeMode);
+  const effectiveVideoSettings = React.useMemo<BookVideoSettings>(
+    () =>
+      sanitizeBookVideoSettings({
+        ...videoSettings,
+        includeAudioTrack:
+          videoSettings.includeAudioTrack &&
+          Boolean(videoSupport?.audioTrackSupported),
+      }),
+    [videoSettings, videoSupport?.audioTrackSupported],
+  );
+  const audioPreview = React.useMemo(
+    () => buildBookAudioPreview(preflight.cleanedText, exportSettings),
+    [exportSettings, preflight.cleanedText],
+  );
+  const videoPreview = React.useMemo(
+    () =>
+      buildBookVideoPreview(
+        effectiveVideoSettings,
+        audioPreview?.sampleText ?? preflight.cleanedText,
+      ),
+    [audioPreview?.sampleText, effectiveVideoSettings, preflight.cleanedText],
+  );
+  const previewSettingsSignature = React.useMemo(
+    () =>
+      [
+        outputType,
+        audioPreview?.sampleMorse.length ?? 0,
+        audioPreview?.durationMs ?? 0,
+        exportSettings.charWpm,
+        exportSettings.farnsworthWpm,
+        exportSettings.pitch,
+        exportSettings.volume,
+        exportSettings.tonePreset,
+        exportSettings.outputFormat,
+        effectiveVideoSettings.visualStyle,
+        effectiveVideoSettings.intensity,
+        effectiveVideoSettings.includeAudioTrack,
+        effectiveVideoSettings.showBranding,
+        effectiveVideoSettings.showMorseOverlay,
+        resolvedVideoBackgroundStyle,
+      ].join("|"),
+    [
+      audioPreview?.durationMs,
+      audioPreview?.sampleMorse.length,
+      exportSettings.charWpm,
+      exportSettings.farnsworthWpm,
+      exportSettings.outputFormat,
+      exportSettings.pitch,
+      exportSettings.tonePreset,
+      exportSettings.volume,
+      outputType,
+      resolvedVideoBackgroundStyle,
+      effectiveVideoSettings.includeAudioTrack,
+      effectiveVideoSettings.intensity,
+      effectiveVideoSettings.showBranding,
+      effectiveVideoSettings.showMorseOverlay,
+      effectiveVideoSettings.visualStyle,
+    ],
+  );
+  const canAudioExport = hasSource && exportParts.length > 0 && !exportRunning;
+  const canVideoExport =
+    hasSource &&
+    hasCleanedSource &&
+    exportParts.length > 0 &&
+    !exportRunning &&
+    Boolean(videoSupport?.supported);
+  const canExport = isAudioOutput ? canAudioExport : canVideoExport;
+  const exportDisabledReason = isVideoOutput
+    ? !hasSource
+      ? "Add source text or upload a source file to enable video download."
+      : !hasCleanedSource
+        ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
+        : exportParts.length === 0
+          ? "Review the source text before downloading."
+          : !videoSupport
+            ? "Checking browser video export support."
+            : !videoSupport.supported
+              ? videoSupport.reason
+              : exportRunning
+                ? "Download is currently running."
+                : ""
+    : !hasSource
+      ? "Add source text or upload a source file to enable download."
+      : !hasCleanedSource
+        ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
+        : exportParts.length === 0
+          ? "Review the source text before downloading."
+          : exportRunning
+            ? "Download is currently running."
+            : "";
+  const sourcePreviewStatus = !hasSource
+    ? "No source loaded"
+    : sourceDraftActive
+      ? sourceDraftIsLarge
+        ? "Large edit draft"
+        : "Edit draft"
+      : isUploadedPreviewMode
+        ? extractedPreviewTruncated
+          ? "Capped extracted preview"
+          : "Extracted preview"
+        : "Editable source";
   const presetModified = !settingsMatchBookPreset(exportSettings);
-  const activePresetDetails = BOOK_EXPORT_PRESET_DETAILS[exportSettings.presetName];
+  const activePresetDetails =
+    BOOK_EXPORT_PRESET_DETAILS[exportSettings.presetName];
   const activeSettingsSummary = describeBookExportSettings(exportSettings);
+  const downloadKind = hasSource && exportParts.length > 0
+    ? isVideoOutput
+      ? getBookVideoDownloadKind(exportParts, exportSettings)
+      : getBookDownloadKind(exportParts, exportSettings)
+    : isVideoOutput
+      ? "video"
+      : "audio";
+  const downloadFormatLabel = exportSettings.outputFormat.toUpperCase();
+  const videoFormatLabel = describeBookVideoFormat(videoSupport);
+  const primaryDownloadLabel =
+    isVideoOutput
+      ? downloadKind === "zip"
+        ? `Download ZIP bundle${
+            exportParts.length > 1
+              ? ` (${exportParts.length.toLocaleString()} WebM files)`
+              : ""
+          }`
+        : "Download WebM"
+      : downloadKind === "zip"
+      ? `Download ZIP bundle${
+          exportParts.length > 1
+            ? ` (${exportParts.length.toLocaleString()} ${downloadFormatLabel} files)`
+            : ""
+        }`
+      : `Download ${downloadFormatLabel}`;
+  const downloadBadge =
+    isVideoOutput
+      ? downloadKind === "zip"
+        ? "ZIP bundle"
+        : videoFormatLabel
+      : downloadKind === "zip"
+        ? "ZIP bundle"
+        : `${downloadFormatLabel} file`;
+  const videoWarnings = isVideoOutput
+    ? buildBookVideoWarnings({
+        partCount: exportParts.length,
+        support: videoSupport,
+        totalRuntimeMs: exportAnalysis.totalRuntimeMs,
+        videoSettings: effectiveVideoSettings,
+      })
+    : [];
+  const customRuleMatchesById = React.useMemo(
+    () =>
+      new Map(preflight.customRuleMatches.map((match) => [match.id, match])),
+    [preflight.customRuleMatches],
+  );
   const progressPercent =
     exportProgress.totalParts > 0
-      ? Math.round((exportProgress.currentPart / exportProgress.totalParts) * 100)
+      ? Math.round(
+          (exportProgress.currentPart / exportProgress.totalParts) * 100,
+        )
       : exportProgress.phase === "complete"
         ? 100
         : 0;
+  const showExportProgress =
+    isAudioOutput ||
+    Boolean(exportStatus) ||
+    exportRunning ||
+    ["cancelled", "failed", "complete"].includes(exportProgress.phase);
+
+  React.useEffect(() => {
+    stopPreviewAudioRef.current?.();
+    stopVisualPreview();
+    setPreviewErrorMessage("");
+
+    if (!hasSource) {
+      setPreviewStatus("waiting");
+      return undefined;
+    }
+    if (!hasCleanedSource || !audioPreview) {
+      setPreviewStatus("unavailable");
+      return undefined;
+    }
+
+    setPreviewStatus("updating");
+    const timer = window.setTimeout(() => {
+      if (mountedRef.current) setPreviewStatus("ready");
+    }, 160);
+    return () => window.clearTimeout(timer);
+  }, [
+    audioPreview,
+    hasCleanedSource,
+    hasSource,
+    previewSettingsSignature,
+    stopVisualPreview,
+  ]);
+
+  React.useEffect(() => {
+    if (
+      outputType === "audio" &&
+      previewStatus === "playing" &&
+      previewAudioPlayer.state === "idle"
+    ) {
+      setPreviewStatus("stopped");
+    }
+  }, [outputType, previewAudioPlayer.state, previewStatus]);
+
+  const handlePlayAudioPreview = React.useCallback(() => {
+    if (!audioPreview) {
+      setPreviewStatus("unavailable");
+      setPreviewErrorMessage("There is no previewable source yet.");
+      return;
+    }
+    if (!previewAudioPlayer.isSupported) {
+      setPreviewStatus("unavailable");
+      setPreviewErrorMessage("Audio preview is unavailable in this browser.");
+      return;
+    }
+
+    stopVisualPreview();
+    setPreviewErrorMessage("");
+    setPreviewStatus("playing");
+    void previewAudioPlayer
+      .play({
+        code: audioPreview.sampleMorse,
+        wpm: exportSettings.charWpm,
+        farnsworthWpm: exportSettings.farnsworthWpm,
+        hz: exportSettings.pitch,
+        volume: exportSettings.volume,
+        preset: exportSettings.tonePreset,
+        repeat: false,
+        flash: false,
+        soundEnabled: true,
+      })
+      .catch(() => {
+        if (!mountedRef.current) return;
+        setPreviewStatus("failed");
+        setPreviewErrorMessage("Audio preview failed. Try again or adjust the source.");
+      });
+  }, [
+    audioPreview,
+    exportSettings.charWpm,
+    exportSettings.farnsworthWpm,
+    exportSettings.pitch,
+    exportSettings.tonePreset,
+    exportSettings.volume,
+    previewAudioPlayer,
+    stopVisualPreview,
+  ]);
+
+  const handlePlayVisualPreview = React.useCallback(() => {
+    if (!audioPreview) {
+      setPreviewStatus("unavailable");
+      setPreviewErrorMessage("There is no previewable source yet.");
+      return;
+    }
+
+    stopPreviewAudioRef.current?.();
+    stopVisualPreview();
+    setPreviewErrorMessage("");
+    setPreviewStatus("playing");
+    setVisualPreviewPlaying(true);
+    setVisualPreviewStep(1);
+
+    visualPreviewIntervalRef.current = window.setInterval(() => {
+      setVisualPreviewStep((current) => (current + 1) % 4);
+    }, 800);
+    visualPreviewTimeoutRef.current = window.setTimeout(() => {
+      stopVisualPreview();
+      if (mountedRef.current) setPreviewStatus("stopped");
+    }, 5_600);
+  }, [audioPreview, stopVisualPreview]);
 
   const updatePastedText = React.useCallback(
     (value: string) => {
-      if (isExportRunning(exportProgress)) {
-        cancelActiveExport("Source changed; export cancelled.");
+      if (hasActiveExport()) {
+        cancelActiveExport("Source changed; download cancelled.");
       }
       parseVersionRef.current += 1;
       fileSelectionRef.current = null;
+      setPendingFilename("");
+      setSourceEntryMode("pasted");
+      setSourceEditMode("idle");
+      setSourceEditDraft("");
       setSourceText(value);
       setParsedSource(parsePastedSource(value));
       setStatus(value.trim() ? "ready" : "idle");
       setErrorMessage("");
+      setSourceActionStatus(null);
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
+  );
+
+  const updateUploadedText = React.useCallback(
+    (value: string) => {
+      if (hasActiveExport()) {
+        cancelActiveExport("Source changed; download cancelled.");
+      }
+      parseVersionRef.current += 1;
+      setSourceText(value);
+      setParsedSource((current) => ({
+        ...current,
+        rawText: value,
+        sections: undefined,
+        sectionCount: undefined,
+      }));
+      setSourceEditMode("idle");
+      setSourceEditDraft("");
+      setStatus(value.trim() ? "ready" : "idle");
+      setErrorMessage("");
+      setSourceActionStatus(null);
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, hasActiveExport],
   );
 
   const parseSelectedFile = React.useCallback(
     async (file: File) => {
-      if (isExportRunning(exportProgress)) {
-        cancelActiveExport("Source changed; export cancelled.");
+      if (hasActiveExport()) {
+        cancelActiveExport("Source changed; download cancelled.");
       }
       const selectedAt = performance.now();
       const previousSelection = fileSelectionRef.current;
@@ -364,48 +1079,146 @@ export default function BookTranslatorTool() {
       parseVersionRef.current = version;
       setStatus("parsing");
       setErrorMessage("");
+      setPendingFilename(file.name);
       setDragActive(false);
+      setSourceText("");
+      setSourceEditMode("idle");
+      setSourceEditDraft("");
+      setSourceEntryMode("uploaded-preview");
+      setParsedSource(createEmptyParsedSource());
+      setSourceActionStatus(null);
       setExportStatus(null);
       setCompletedExport(null);
 
       try {
         const parsed = await parseFileSource(file);
         if (!mountedRef.current || parseVersionRef.current !== version) return;
+        const editableUpload = shouldUseEditableUpload(parsed);
         setParsedSource(parsed);
-        setSourceText(parsed.rawText);
+        setSourceText(editableUpload ? parsed.rawText : "");
+        setSourceEntryMode(
+          editableUpload ? "uploaded-textarea" : "uploaded-preview",
+        );
         setStatus("ready");
+        setPendingFilename("");
       } catch (error) {
         if (!mountedRef.current || parseVersionRef.current !== version) return;
         const message =
           error instanceof BookSourceError || error instanceof Error
             ? error.message
             : "This source could not be parsed.";
+        setParsedSource(createEmptyParsedSource());
+        setSourceText("");
+        setSourceEntryMode("uploaded-preview");
         setStatus("error");
         setErrorMessage(message);
+        setPendingFilename(file.name);
       }
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const clearSource = React.useCallback(() => {
-    if (isExportRunning(exportProgress)) {
-      cancelActiveExport("Source changed; export cancelled.");
+    if (hasActiveExport()) {
+      cancelActiveExport("Source changed; download cancelled.");
     }
     parseVersionRef.current += 1;
     setSourceText("");
+    setSourceEditMode("idle");
+    setSourceEditDraft("");
+    setSourceEntryMode("pasted");
     fileSelectionRef.current = null;
-    setParsedSource(parsePastedSource(""));
+    setPendingFilename("");
+    setParsedSource(createEmptyParsedSource());
     setStatus("idle");
     setErrorMessage("");
+    setSourceActionStatus(null);
+    setExportProgress(
+      outputType === "video" ? VIDEO_IDLE_EXPORT_PROGRESS : IDLE_EXPORT_PROGRESS,
+    );
     setExportStatus(null);
     setCompletedExport(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
-  }, [cancelActiveExport, exportProgress]);
+  }, [cancelActiveExport, hasActiveExport, outputType]);
 
-  const removeUploadedFile = React.useCallback(() => {
-    if (!isUploaded) return;
-    clearSource();
-  }, [clearSource, isUploaded]);
+  const copySourceValue = React.useCallback(
+    async (label: string, value: string) => {
+      const result = await copyTextToClipboard(value);
+      setSourceActionStatus({
+        kind: result.ok ? "success" : "error",
+        message: result.ok ? `${label} copied.` : result.message,
+      });
+    },
+    [],
+  );
+
+  const editExtractedText = React.useCallback(() => {
+    if (!parsedSource.rawText.trim()) {
+      setSourceActionStatus({
+        kind: "error",
+        message: "There is no extracted text to edit yet.",
+      });
+      return;
+    }
+    setSourceEditMode("draft");
+    setSourceEditDraft(parsedSource.rawText);
+    setSourceActionStatus({
+      kind: "info",
+      message:
+        parsedSource.rawText.length > LARGE_SOURCE_EDIT_THRESHOLD
+          ? "Large source edits are held as a draft until you apply them."
+          : "Edit the extracted text, then apply or cancel your draft.",
+    });
+    window.requestAnimationFrame(() => {
+      document.getElementById("book-source-edit-draft")?.focus();
+    });
+  }, [parsedSource.rawText]);
+
+  const applyExtractedTextDraft = React.useCallback(() => {
+    if (hasActiveExport()) {
+      cancelActiveExport("Source changed; download cancelled.");
+    }
+    parseVersionRef.current += 1;
+    fileSelectionRef.current = null;
+    setPendingFilename("");
+    setParsedSource((current) => ({
+      ...current,
+      rawText: sourceEditDraft,
+      sections: undefined,
+      sectionCount: undefined,
+      warnings: current.warnings,
+    }));
+    setSourceText(
+      sourceEditDraft.length <= LARGE_SOURCE_EDIT_THRESHOLD
+        ? sourceEditDraft
+        : "",
+    );
+    setSourceEntryMode(
+      sourceEditDraft.length <= LARGE_SOURCE_EDIT_THRESHOLD
+        ? "uploaded-textarea"
+        : "uploaded-preview",
+    );
+    setSourceEditMode("idle");
+    setSourceEditDraft("");
+    setStatus(sourceEditDraft.trim() ? "ready" : "idle");
+    setErrorMessage("");
+    setSourceActionStatus({
+      kind: "success",
+      message: "Extracted text edits applied.",
+    });
+    setExportStatus(null);
+    setCompletedExport(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }, [cancelActiveExport, hasActiveExport, sourceEditDraft]);
+
+  const cancelExtractedTextDraft = React.useCallback(() => {
+    setSourceEditMode("idle");
+    setSourceEditDraft("");
+    setSourceActionStatus({
+      kind: "info",
+      message: "Draft edits cancelled; active source is unchanged.",
+    });
+  }, []);
 
   const handleFileInputChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -427,8 +1240,8 @@ export default function BookTranslatorTool() {
 
   const toggleCleanup = React.useCallback(
     (key: keyof CleanupOptions) => {
-      if (isExportRunning(exportProgress)) {
-        cancelActiveExport("Settings changed; export cancelled.");
+      if (hasActiveExport()) {
+        cancelActiveExport("Settings changed; download cancelled.");
       }
       setCleanupOptions((current) => ({
         ...current,
@@ -437,13 +1250,95 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
+
+  const addCustomCleanupRule = React.useCallback(() => {
+    if (hasActiveExport()) {
+      cancelActiveExport("Settings changed; download cancelled.");
+    }
+    const id = `custom-cleanup-${customCleanupRuleIdRef.current}`;
+    customCleanupRuleIdRef.current += 1;
+    setCustomCleanupRules((current) => [
+      ...current,
+      {
+        id,
+        enabled: true,
+        find: "",
+        replacement: "",
+        caseSensitive: false,
+        wholeWord: false,
+      },
+    ]);
+    setExportStatus(null);
+    setCompletedExport(null);
+  }, [cancelActiveExport, hasActiveExport]);
+
+  const updateCustomCleanupRule = React.useCallback(
+    (id: string, patch: Partial<CustomCleanupRule>) => {
+      if (hasActiveExport()) {
+        cancelActiveExport("Settings changed; download cancelled.");
+      }
+      setCustomCleanupRules((current) =>
+        current.map((rule) =>
+          rule.id === id ? { ...rule, ...patch, id: rule.id } : rule,
+        ),
+      );
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, hasActiveExport],
+  );
+
+  const deleteCustomCleanupRule = React.useCallback(
+    (id: string) => {
+      if (hasActiveExport()) {
+        cancelActiveExport("Settings changed; download cancelled.");
+      }
+      setCustomCleanupRules((current) =>
+        current.filter((rule) => rule.id !== id),
+      );
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, hasActiveExport],
+  );
+
+  const moveCustomCleanupRule = React.useCallback(
+    (id: string, direction: -1 | 1) => {
+      if (hasActiveExport()) {
+        cancelActiveExport("Settings changed; download cancelled.");
+      }
+      setCustomCleanupRules((current) => {
+        const index = current.findIndex((rule) => rule.id === id);
+        const nextIndex = index + direction;
+        if (index < 0 || nextIndex < 0 || nextIndex >= current.length) {
+          return current;
+        }
+        const next = [...current];
+        const [rule] = next.splice(index, 1);
+        next.splice(nextIndex, 0, rule);
+        return next;
+      });
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, hasActiveExport],
+  );
+
+  const clearCustomCleanupRules = React.useCallback(() => {
+    if (hasActiveExport()) {
+      cancelActiveExport("Settings changed; download cancelled.");
+    }
+    setCustomCleanupRules([]);
+    setExportStatus(null);
+    setCompletedExport(null);
+  }, [cancelActiveExport, hasActiveExport]);
 
   const updateExportSettings = React.useCallback(
     (patch: Partial<BookExportSettings>) => {
-      if (isExportRunning(exportProgress)) {
-        cancelActiveExport("Settings changed; export cancelled.");
+      if (hasActiveExport()) {
+        cancelActiveExport("Settings changed; download cancelled.");
       }
       setExportSettings((current) =>
         sanitizeBookExportSettings({ ...current, ...patch }),
@@ -451,29 +1346,69 @@ export default function BookTranslatorTool() {
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
+  );
+
+  const updateOutputType = React.useCallback(
+    (nextOutputType: BookOutputType) => {
+      if (nextOutputType === outputType) return;
+      const wasRunning = hasActiveExport();
+      if (wasRunning) {
+        cancelActiveExport("Output type changed; download cancelled.");
+      }
+      setOutputType(nextOutputType);
+      setExportProgress(
+        nextOutputType === "video"
+          ? VIDEO_IDLE_EXPORT_PROGRESS
+          : IDLE_EXPORT_PROGRESS,
+      );
+      setExportStatus(
+        wasRunning
+          ? {
+              kind: "info",
+              message: "Output type changed; download cancelled.",
+            }
+          : null,
+      );
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, hasActiveExport, outputType],
+  );
+
+  const updateVideoSettings = React.useCallback(
+    (patch: Partial<BookVideoSettings>) => {
+      if (hasActiveExport()) {
+        cancelActiveExport("Settings changed; download cancelled.");
+      }
+      setVideoSettings((current) =>
+        sanitizeBookVideoSettings({ ...current, ...patch }),
+      );
+      setExportStatus(null);
+      setCompletedExport(null);
+    },
+    [cancelActiveExport, hasActiveExport],
   );
 
   const pickPreset = React.useCallback(
     (presetName: BookExportPresetName) => {
-      if (isExportRunning(exportProgress)) {
-        cancelActiveExport("Preset changed; export cancelled.");
+      if (hasActiveExport()) {
+        cancelActiveExport("Preset changed; download cancelled.");
       }
       setExportSettings(applyBookPreset(presetName));
       setExportStatus(null);
       setCompletedExport(null);
     },
-    [cancelActiveExport, exportProgress],
+    [cancelActiveExport, hasActiveExport],
   );
 
   const resetCurrentPreset = React.useCallback(() => {
-    if (isExportRunning(exportProgress)) {
-      cancelActiveExport("Preset reset; export cancelled.");
+    if (hasActiveExport()) {
+      cancelActiveExport("Preset reset; download cancelled.");
     }
     setExportSettings((current) => applyBookPreset(current.presetName));
     setExportStatus(null);
     setCompletedExport(null);
-  }, [cancelActiveExport, exportProgress]);
+  }, [cancelActiveExport, hasActiveExport]);
 
   const handleUploadKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
@@ -504,12 +1439,45 @@ export default function BookTranslatorTool() {
     [exportSettings.farnsworthWpm, updateExportSettings],
   );
 
-  const handleExportBundle = React.useCallback(async () => {
+  const handleTonePresetChange = React.useCallback(
+    (tonePreset: AudioTonePresetId) => {
+      const defaults = getAudioPresetDefaults(tonePreset);
+      updateExportSettings({
+        tonePreset,
+        pitch: defaults.pitchHz,
+        volume: defaults.volume,
+      });
+    },
+    [updateExportSettings],
+  );
+
+  const handleDownloadBook = React.useCallback(async () => {
     if (!hasSource || exportParts.length === 0) {
       setExportStatus({
         kind: "error",
-        message: "Add source text before exporting a bundle.",
+        message: isVideoOutput
+          ? "Add source text before downloading video."
+          : "Add source text before downloading audio.",
       });
+      return;
+    }
+
+    if (!hasCleanedSource) {
+      setExportStatus({
+        kind: "error",
+        message: "Cleaned source is empty. Adjust cleanup before downloading.",
+      });
+      return;
+    }
+
+    if (isVideoOutput && (!videoSupport || !videoSupport.supported)) {
+      setExportStatus({
+        kind: "error",
+        message:
+          videoSupport?.reason ??
+          "Checking browser video export support. Try again in a moment.",
+      });
+      setExportProgress(VIDEO_IDLE_EXPORT_PROGRESS);
       return;
     }
 
@@ -519,31 +1487,51 @@ export default function BookTranslatorTool() {
     const version = exportVersionRef.current + 1;
     exportVersionRef.current = version;
     setCompletedExport(null);
-    setExportStatus({ kind: "working", message: "Starting book export..." });
+    setExportStatus({
+      kind: "working",
+      message: isVideoOutput
+        ? "Starting book video download..."
+        : "Starting book download...",
+    });
     setExportProgress({
-      phase: "splitting",
-      message: "Splitting source into export parts...",
+      phase: "analyzing",
+      message: isVideoOutput
+        ? "Preparing cleaned source for video..."
+        : "Preparing cleaned source for download...",
       currentPart: 0,
       totalParts: exportParts.length,
     });
 
     try {
-      const result = await createBookExportZip({
-        metadata: {
-          title: preflight.title,
-          author: preflight.author,
-          filename: preflight.filename,
-          sourceType: preflight.sourceType,
-        },
-        parts: exportParts,
-        settings: exportSettings,
-        signal: controller.signal,
-        onProgress: (progress) => {
-          if (mountedRef.current && exportVersionRef.current === version) {
-            setExportProgress(progress);
-          }
-        },
-      });
+      const metadata = {
+        title: preflight.title,
+        author: preflight.author,
+        filename: preflight.filename,
+        sourceType: preflight.sourceType,
+      };
+      const progressHandler = (progress: BookExportProgress) => {
+        if (mountedRef.current && exportVersionRef.current === version) {
+          setExportProgress(progress);
+        }
+      };
+      const result = isVideoOutput
+        ? await createBookVideoDownloadPackage({
+            metadata,
+            parts: exportParts,
+            exportSettings,
+            videoSettings: effectiveVideoSettings,
+            resolvedBackgroundStyle: resolvedVideoBackgroundStyle,
+            support: videoSupport as BookVideoSupport,
+            signal: controller.signal,
+            onProgress: progressHandler,
+          })
+        : await createBookDownloadPackage({
+            metadata,
+            parts: exportParts,
+            settings: exportSettings,
+            signal: controller.signal,
+            onProgress: progressHandler,
+          });
       if (!mountedRef.current || exportVersionRef.current !== version) return;
       const download = downloadBlobFile({
         blob: result.blob,
@@ -561,348 +1549,1322 @@ export default function BookTranslatorTool() {
       }
       setCompletedExport({
         filename: result.filename,
-        outputFormat: exportSettings.outputFormat,
+        downloadKind: result.downloadKind,
+        outputFormat: isVideoOutput ? "webm" : exportSettings.outputFormat,
         partCount: exportParts.length,
         runtimeLabel: formatDuration(exportAnalysis.totalRuntimeMs),
-        sizeLabel: exportAnalysis.estimatedSizeLabel,
-        contents: bundleContentsForSettings(exportSettings),
+        sizeLabel: isVideoOutput
+          ? formatBytes(result.blob.size)
+          : exportAnalysis.estimatedSizeLabel,
+        contents: result.contents,
       });
       setExportProgress({
         phase: "complete",
-        message: `Bundle download started with ${exportParts.length} part${
-          exportParts.length === 1 ? "" : "s"
-        }.`,
+        message:
+          result.downloadKind === "zip"
+            ? `ZIP download started with ${exportParts.length} part${
+                exportParts.length === 1 ? "" : "s"
+              }.`
+            : isVideoOutput
+              ? "WebM download started."
+              : `${downloadFormatLabel} download started.`,
         currentPart: exportParts.length,
         totalParts: exportParts.length,
       });
       setExportStatus({
         kind: "success",
-        message: "ZIP bundle download started.",
+        message:
+          result.downloadKind === "zip"
+            ? "ZIP download started."
+            : isVideoOutput
+              ? "WebM download started."
+              : `${downloadFormatLabel} download started.`,
       });
     } catch (error) {
       if (!mountedRef.current || exportVersionRef.current !== version) return;
       if (error instanceof DOMException && error.name === "AbortError") {
         setExportProgress({
           phase: "cancelled",
-          message: "Export cancelled.",
+          message: "Download cancelled.",
           currentPart: 0,
           totalParts: exportParts.length,
         });
-        setExportStatus({ kind: "info", message: "Export cancelled." });
+        setExportStatus({ kind: "info", message: "Download cancelled." });
         return;
       }
+      const failedMessage = isVideoOutput
+        ? "Video export failed. Try 720p, a shorter part duration, or silent video."
+        : "Book download failed. Try a shorter part duration or MP3 output.";
       setExportProgress({
         phase: "failed",
-        message: "Book export failed. Try a shorter part duration or MP3 output.",
+        message: failedMessage,
         currentPart: 0,
         totalParts: exportParts.length,
       });
       setExportStatus({
         kind: "error",
-        message: "Book export failed. Try a shorter part duration or MP3 output.",
+        message: failedMessage,
       });
     } finally {
       if (exportVersionRef.current === version) {
         exportAbortRef.current = null;
       }
     }
-  }, [exportAnalysis.estimatedSizeLabel, exportAnalysis.totalRuntimeMs, exportParts, exportSettings, hasSource, preflight]);
+  }, [
+    effectiveVideoSettings,
+    exportAnalysis.estimatedSizeLabel,
+    exportAnalysis.totalRuntimeMs,
+    exportParts,
+    exportSettings,
+    hasCleanedSource,
+    hasSource,
+    isVideoOutput,
+    preflight,
+    resolvedVideoBackgroundStyle,
+    videoSupport,
+    downloadFormatLabel,
+  ]);
 
-  const handleDownloadSample = React.useCallback(async () => {
-    if (!hasSource || !exportAnalysis.cleanedText.trim()) {
-      setExportStatus({
-        kind: "error",
-        message: "Add source text before exporting a sample.",
-      });
-      return;
-    }
-    const sampleText = sampleExcerpt(exportAnalysis.cleanedText);
-    const samplePart: BookExportPart = {
-      index: 1,
-      title: "Sample",
-      sourceStart: 0,
-      sourceEnd: sampleText.length,
-      cleanedText: sampleText,
-      cleanedExcerpt: sampleText,
-      morseDurationMs: exportParts[0]?.morseDurationMs ?? 0,
-      estimatedFilename: `morse-book-sample.${exportSettings.outputFormat}`,
-    };
-    const controller = new AbortController();
-    setExportStatus({ kind: "working", message: "Preparing sample audio..." });
-    try {
-      const blob = await renderBookPartAudio(samplePart, exportSettings, controller.signal);
-      const download = downloadBlobFile({
-        blob,
-        filename: samplePart.estimatedFilename,
-      });
-      setExportStatus({
-        kind: download.ok ? "success" : "error",
-        message: download.ok ? "Sample download started." : download.message,
-      });
-    } catch {
-      setExportStatus({
-        kind: "error",
-        message: "Sample export failed. Try a shorter source excerpt.",
-      });
-    }
-  }, [exportAnalysis.cleanedText, exportParts, exportSettings, hasSource]);
-
-  const uploadHelpText =
-    "Drop TXT, MD, unprotected EPUB, or text-native PDF here, or click to choose a file.";
+  const uploadHelpText = hasSource
+    ? "Drop a replacement TXT, MD, unprotected EPUB, or text-native PDF here, or click to choose a file."
+    : "Drop TXT, MD, unprotected EPUB, or text-native PDF here, or click to choose a file.";
+  const uploadTitle = hasSource
+    ? "Replace source file"
+    : "Drag a source file here or click to upload";
   const uploadRightsText =
     "Only use text you have the right to process. You are responsible for your source content, including copyright or other usage restrictions.";
 
   return (
     <section
       className="mt-6 space-y-6"
-      aria-label="Book source preflight and export tool"
-      data-mw-book-export-ready="true"
+      aria-label="Book source review and download tool"
+      data-mw-book-export-ready={preferencesLoaded ? "true" : "loading"}
     >
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
-        <ToolPanel
-          label="Source text"
-          badge={isUploaded ? sourceTypeLabel(parsedSource.sourceType) : "Paste"}
-        >
-          <label htmlFor="book-source-text" className="sr-only">
-            Paste long-form source text
-          </label>
-          <ToolTextarea
-            id="book-source-text"
-            value={sourceText}
-            onChange={(event) => updatePastedText(event.target.value)}
-            placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
-            className="min-h-[18rem]"
-            spellCheck={false}
-          />
-        </ToolPanel>
-
-        <div className="space-y-4">
-          <input
-            ref={fileInputRef}
-            id="book-source-file"
-            type="file"
-            accept=".txt,.md,.markdown,.epub,.pdf,text/plain,text/markdown,application/epub+zip,application/pdf"
-            onChange={handleFileInputChange}
-            className="sr-only"
-            aria-describedby="book-source-file-help"
-          />
-          <div
-            role="button"
-            tabIndex={0}
-            aria-label="Upload a book source file"
-            aria-describedby="book-source-file-help"
-            onClick={() => fileInputRef.current?.click()}
-            onKeyDown={handleUploadKeyDown}
-            onDragOver={(event) => {
-              event.preventDefault();
-              setDragActive(true);
-            }}
-            onDragEnter={(event) => {
-              event.preventDefault();
-              setDragActive(true);
-            }}
-            onDragLeave={() => setDragActive(false)}
-            onDrop={handleDrop}
-            className={[
-              "flex min-h-[14rem] cursor-pointer flex-col justify-center rounded-xl border border-dashed border-slate-300/80 bg-white/88 p-5 text-center transition-[background-color,border-color,color] duration-100 ease-out hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
-              dragActive
-                ? "border-sky-500 bg-[#fffaf2] outline outline-2 outline-offset-2 outline-sky-500"
-                : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            <UploadIcon
-              size={28}
-              title={undefined}
-              aria-hidden="true"
-              className="mx-auto text-sky-950"
-            />
-            <span className="mt-3 block text-base font-extrabold text-sky-950">
-              Drag a source file here or click to upload
-            </span>
-            <span
-              id="book-source-file-help"
-              className="mx-auto mt-2 block max-w-[34ch] text-sm leading-relaxed text-slate-600"
-            >
-              {uploadHelpText}
-            </span>
-            {parsedSource.filename ? (
-              <span className="mt-3 block break-words text-sm font-semibold text-slate-700">
-                Current file: {parsedSource.filename}
-              </span>
-            ) : null}
-            <span className="mx-auto mt-3 block max-w-[38ch] text-xs leading-relaxed text-slate-500">
-              {uploadRightsText}
-            </span>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={clearSource}
-              disabled={!hasSource && status !== "error"}
-              className={toolControlButtonClass({
-                size: "sm",
-                disabled: !hasSource && status !== "error",
-              })}
-            >
-              <TrashIcon size={16} title={undefined} aria-hidden="true" />
-              Clear source
-            </button>
-            {isUploaded ? (
-              <button
-                type="button"
-                onClick={removeUploadedFile}
-                className={toolControlButtonClass({ size: "sm" })}
-              >
-                Remove uploaded file
-              </button>
-            ) : null}
-          </div>
-
-        </div>
-      </div>
-
-      <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
-            <SparklesIcon size={20} title={undefined} aria-hidden="true" />
-            Source cleanup
-          </h2>
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            Before export
-          </span>
-        </div>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          {(Object.keys(cleanupOptions) as Array<keyof CleanupOptions>).map((key) => (
-            <label
-              key={key}
-              className="flex cursor-pointer items-start gap-3 text-sm font-semibold text-slate-800"
-            >
-              <input
-                type="checkbox"
-                checked={cleanupOptions[key]}
-                onChange={() => toggleCleanup(key)}
-                className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-              />
-              <span>{cleanupLabel(key)}</span>
-            </label>
-          ))}
-        </div>
-      </section>
-
-      <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
-            <ClockIcon size={20} title={undefined} aria-hidden="true" />
-            Export presets
-          </h2>
-          <div className="flex flex-wrap items-center gap-2">
-            {presetModified ? (
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                Modified from preset
-              </span>
-            ) : null}
-            <button
-              type="button"
-              onClick={resetCurrentPreset}
-              disabled={!presetModified}
-              className={toolControlButtonClass({
-                size: "sm",
-                disabled: !presetModified,
-              })}
-            >
-              <RefreshIcon size={16} title={undefined} aria-hidden="true" />
-              Reset preset
-            </button>
-          </div>
-        </div>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {BOOK_EXPORT_PRESET_NAMES.map((presetName) => {
-            const active = exportSettings.presetName === presetName;
-            return (
-              <button
-                key={presetName}
-                type="button"
-                onClick={() => pickPreset(presetName)}
-                className={toolControlButtonClass({
-                  active,
-                  tone: active ? "dark" : "light",
-                  size: "sm",
-                  rounded: "full",
-                  hover: "dark",
-                })}
-                aria-pressed={active}
-              >
-                {presetName}
-              </button>
-            );
-          })}
-        </div>
-        <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,0.68fr)_minmax(260px,0.32fr)] lg:items-start">
+      <section className="space-y-4" aria-labelledby="book-add-source-heading">
+        <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="text-base font-extrabold text-sky-950">
-              {exportSettings.presetName}
-            </p>
+            <h2
+              id="book-add-source-heading"
+              className="text-xl font-extrabold text-sky-950"
+            >
+              Add source
+            </h2>
             <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-              {activePresetDetails.description}
+              Paste long-form text or upload a local TXT, MD, EPUB, or
+              text-native PDF. The source stays in this browser session.
             </p>
           </div>
-          <div className="text-sm leading-relaxed text-slate-600">
-            <p className="font-semibold text-slate-800">
-              Best for: {activePresetDetails.bestFor}
-            </p>
-            <p className="mt-1">{activeSettingsSummary}</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+              {hasSource ? "Source ready" : "Waiting for source"}
+            </span>
           </div>
         </div>
-      </section>
 
-      {status === "parsing" ? (
-        <div
-          role="status"
-          className="rounded-xl bg-[#fffdf8] p-4 text-sm font-semibold text-slate-700"
-        >
-          Parsing source locally in your browser...
+        <div className="space-y-5">
+          <SourceUploadDropzone
+            dragActive={dragActive}
+            fileInputRef={fileInputRef}
+            filename={parsedSource.filename}
+            hasSource={hasSource}
+            onDrop={handleDrop}
+            onFileInputChange={handleFileInputChange}
+            onUploadKeyDown={handleUploadKeyDown}
+            setDragActive={setDragActive}
+            uploadHelpText={uploadHelpText}
+            uploadRightsText={uploadRightsText}
+            uploadTitle={uploadTitle}
+          />
+
+          <ToolPanel
+            label="Source text"
+            badge={
+              isUploaded ? sourceTypeLabel(parsedSource.sourceType) : "Paste"
+            }
+          >
+            {isTextareaMode ? (
+              <>
+                <label htmlFor="book-source-text" className="sr-only">
+                  Paste long-form source text
+                </label>
+                <ToolTextarea
+                  id="book-source-text"
+                  value={sourceText}
+                  onChange={(event) =>
+                    isUploaded
+                      ? updateUploadedText(event.target.value)
+                      : updatePastedText(event.target.value)
+                  }
+                  placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
+                  className="min-h-[18rem]"
+                  spellCheck={false}
+                />
+              </>
+            ) : sourceDraftActive ? (
+              <div
+                className="px-4 pb-4"
+                aria-labelledby="book-source-edit-draft-heading"
+              >
+                <h3
+                  id="book-source-edit-draft-heading"
+                  className="text-base font-extrabold text-sky-950"
+                >
+                  Edit extracted text draft
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                  {sourceDraftIsLarge
+                    ? "Large edits apply manually. Downloads, preview, runtime, and download details keep using the last applied source until you choose Apply edits."
+                    : "Apply the draft to update cleanup, preview, runtime, and download output."}
+                </p>
+                <label htmlFor="book-source-edit-draft" className="sr-only">
+                  Edit extracted text draft
+                </label>
+                <ToolTextarea
+                  id="book-source-edit-draft"
+                  value={sourceEditDraft}
+                  onChange={(event) => setSourceEditDraft(event.target.value)}
+                  className="mt-3 min-h-[18rem] rounded-lg bg-[#fffaf2]/70"
+                  spellCheck={false}
+                />
+              </div>
+            ) : (
+              <div
+                className="px-4 pb-4"
+                aria-labelledby="book-source-preview-heading"
+              >
+                {hasSource ? (
+                  <>
+                    <h3
+                      id="book-source-preview-heading"
+                      className="text-base font-extrabold text-sky-950"
+                    >
+                      Extracted source preview
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                      Previewing the first{" "}
+                      {Math.min(
+                        parsedSource.rawText.length,
+                        EXTRACTED_SOURCE_PREVIEW_LIMIT,
+                      ).toLocaleString()}{" "}
+                      characters from the uploaded source.
+                    </p>
+                    <pre
+                      data-testid="book-source-preview"
+                      className="mt-4 max-h-80 overflow-auto whitespace-pre-wrap font-mono text-sm leading-relaxed text-slate-900"
+                    >
+                      {extractedPreview}
+                    </pre>
+                    {extractedPreviewTruncated ? (
+                      <p className="mt-3 text-sm font-semibold text-slate-600">
+                        Preview is truncated. Copy or edit the extracted text to
+                        use the full source held in this browser session.
+                      </p>
+                    ) : null}
+                  </>
+                ) : (
+                  <EmptyPreview>
+                    {status === "parsing"
+                      ? `Reading ${pendingFilename || "the selected file"}...`
+                      : "Upload a file to preview extracted source text here."}
+                  </EmptyPreview>
+                )}
+              </div>
+            )}
+
+            {showSourceState ? (
+              <section
+                className="border-t border-slate-200/70 px-4 py-4"
+                aria-labelledby="book-source-state-heading"
+                role={status === "error" ? "alert" : undefined}
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h3
+                      id="book-source-state-heading"
+                      className="text-base font-extrabold text-sky-950"
+                    >
+                      {status === "parsing"
+                        ? "Reading source file"
+                        : status === "error"
+                          ? "Source upload failed"
+                          : hasSource
+                            ? "Source ready"
+                            : "Source status"}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                      {status === "parsing"
+                        ? `Extracting text from ${pendingFilename || "the selected file"}.`
+                        : status === "error"
+                          ? errorMessage
+                          : !hasSource
+                            ? "Extraction finished, but no source text was found."
+                            : sourceDraftActive
+                              ? "Draft edits are open. Copy, clear, and download still use the last applied source until edits are applied."
+                              : isUploadedPreviewMode
+                                ? "The full extracted source is ready for review and download without rendering the entire file into the page."
+                                : isUploaded
+                                  ? "This upload is small enough to edit directly in the source field."
+                                  : "This text is editable and ready for review and download."}
+                    </p>
+                  </div>
+                  {isUploaded && parsedSource.filename ? (
+                    <span className="max-w-full break-words font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                      {parsedSource.filename}
+                    </span>
+                  ) : null}
+                </div>
+
+                {status === "ready" ? (
+                  <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <Metric
+                      label="Source type"
+                      value={sourceTypeLabel(parsedSource.sourceType)}
+                    />
+                    {parsedSource.filename ? (
+                      <Metric label="Filename" value={parsedSource.filename} />
+                    ) : null}
+                    {parsedSource.title ? (
+                      <Metric label="Title" value={parsedSource.title} />
+                    ) : null}
+                    {parsedSource.author ? (
+                      <Metric label="Author" value={parsedSource.author} />
+                    ) : null}
+                    <Metric
+                      label="Active chars"
+                      value={formatNumber(parsedSource.rawText.length)}
+                    />
+                    <Metric
+                      label="Active words"
+                      value={formatNumber(extractedWordCount)}
+                    />
+                    <Metric
+                      label="Preview status"
+                      value={sourcePreviewStatus}
+                    />
+                    <Metric
+                      label="Cleaned output"
+                      value={`${formatNumber(preflight.characterCount)} chars`}
+                    />
+                  </dl>
+                ) : null}
+
+                {sourceEntryMode === "uploaded-textarea" && hasSource ? (
+                  <p className="mt-4 text-sm leading-relaxed text-slate-700">
+                    The extracted TXT/MD content is loaded into the editable
+                    source field above.
+                  </p>
+                ) : null}
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      void copySourceValue(
+                        "Extracted text",
+                        parsedSource.rawText,
+                      )
+                    }
+                    disabled={!parsedSource.rawText.trim()}
+                    className={toolControlButtonClass({
+                      size: "sm",
+                      disabled: !parsedSource.rawText.trim(),
+                    })}
+                  >
+                    <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                    Copy extracted text
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      void copySourceValue(
+                        "Cleaned text",
+                        preflight.cleanedText,
+                      )
+                    }
+                    disabled={!preflight.cleanedText.trim()}
+                    className={toolControlButtonClass({
+                      size: "sm",
+                      disabled: !preflight.cleanedText.trim(),
+                    })}
+                  >
+                    <CopyIcon size={16} title={undefined} aria-hidden="true" />
+                    Copy cleaned text
+                  </button>
+                  {sourceDraftActive ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={applyExtractedTextDraft}
+                        className={toolControlButtonClass({
+                          size: "sm",
+                          tone: "dark",
+                        })}
+                      >
+                        Apply edits
+                      </button>
+                      <button
+                        type="button"
+                        onClick={cancelExtractedTextDraft}
+                        className={toolControlButtonClass({
+                          size: "sm",
+                          tone: "light",
+                          hover: "dark",
+                        })}
+                      >
+                        Cancel edits
+                      </button>
+                    </>
+                  ) : isUploadedPreviewMode ? (
+                    <button
+                      type="button"
+                      onClick={editExtractedText}
+                      disabled={!parsedSource.rawText.trim()}
+                      className={toolControlButtonClass({
+                        size: "sm",
+                        disabled: !parsedSource.rawText.trim(),
+                      })}
+                    >
+                      Edit extracted text
+                    </button>
+                  ) : null}
+                  <button
+                    type="button"
+                    onClick={clearSource}
+                    disabled={!canClearSource}
+                    className={toolControlButtonClass({
+                      size: "sm",
+                      disabled: !canClearSource,
+                    })}
+                  >
+                    <TrashIcon size={16} title={undefined} aria-hidden="true" />
+                    Clear source
+                  </button>
+                </div>
+
+                {sourceActionStatus ? (
+                  <StatusMessage
+                    kind={sourceActionStatus.kind}
+                    className="mt-3"
+                  >
+                    {sourceActionStatus.message}
+                  </StatusMessage>
+                ) : null}
+              </section>
+            ) : null}
+
+            <section
+              id="book-download-controls"
+              className="border-t border-slate-200/70 px-4 py-4"
+              aria-labelledby="book-download-controls-heading"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h3
+                    id="book-download-controls-heading"
+                    className="text-base font-extrabold text-sky-950"
+                  >
+                    {isVideoOutput ? "Download video" : "Download audio"}
+                  </h3>
+                  <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                    {isVideoOutput
+                      ? "Choose the video options and review the frame below."
+                      : downloadKind === "zip"
+                        ? "A ZIP bundle is used when the source is split into parts or selected sidecar files need to travel with the audio."
+                        : "This source can download as one audio file because it fits in one part and no sidecar files are selected."}
+                  </p>
+                </div>
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                  {downloadBadge}
+                </span>
+              </div>
+
+              <fieldset className="mt-4">
+                <legend className="text-sm font-extrabold text-sky-950">
+                  Output type
+                </legend>
+                <div
+                  className="mt-2 flex flex-wrap gap-2"
+                  role="radiogroup"
+                  aria-label="Book output type"
+                >
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={isAudioOutput}
+                    onClick={() => updateOutputType("audio")}
+                    className={toolControlButtonClass({
+                      active: isAudioOutput,
+                      tone: isAudioOutput ? "dark" : "light",
+                      size: "sm",
+                      rounded: "full",
+                      hover: "dark",
+                    })}
+                  >
+                    Audio
+                  </button>
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={isVideoOutput}
+                    onClick={() => updateOutputType("video")}
+                    className={toolControlButtonClass({
+                      active: isVideoOutput,
+                      tone: isVideoOutput ? "dark" : "light",
+                      size: "sm",
+                      rounded: "full",
+                      hover: "dark",
+                    })}
+                  >
+                    Video
+                  </button>
+                </div>
+              </fieldset>
+
+              <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <Metric label="Preset" value={exportSettings.presetName} />
+                <Metric
+                  label={isVideoOutput ? "Style" : "Format"}
+                  value={
+                    isVideoOutput
+                      ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[
+                          effectiveVideoSettings.visualStyle
+                        ].label
+                      : downloadFormatLabel
+                  }
+                />
+                <Metric
+                  label="Runtime"
+                  value={
+                    hasSource
+                      ? formatDuration(exportAnalysis.totalRuntimeMs)
+                      : "Waiting"
+                  }
+                />
+                <Metric
+                  label="Parts"
+                  value={hasSource ? formatNumber(exportParts.length) : "0"}
+                />
+                <Metric
+                  label={
+                    isVideoOutput
+                      ? "Video target"
+                      : exportSettings.splitAudio
+                        ? "Target part"
+                        : "Split"
+                  }
+                  value={
+                    isVideoOutput || exportSettings.splitAudio
+                      ? formatDuration(exportAnalysis.targetPartMs)
+                      : "Off"
+                  }
+                />
+                <Metric
+                  label={isVideoOutput ? "Resolution" : "Output size"}
+                  value={
+                    isVideoOutput
+                      ? BOOK_VIDEO_RESOLUTION_LABELS[effectiveVideoSettings.resolution]
+                      : `~${exportAnalysis.estimatedSizeLabel}`
+                  }
+                />
+              </dl>
+
+              {sourceDraftActive ? (
+                <p className="mt-4 text-sm font-semibold text-slate-600">
+                  Draft edits are not included until you apply them.
+                </p>
+              ) : null}
+              {exportDisabledReason ? (
+                <p
+                  id="book-download-disabled-reason"
+                  className="mt-4 text-sm font-semibold text-slate-600"
+                >
+                  {exportDisabledReason}
+                </p>
+              ) : null}
+              {isAudioOutput ? (
+                <MessageList
+                  title="Download warnings"
+                  items={exportWarnings}
+                  tone="warning"
+                />
+              ) : null}
+              {isVideoOutput ? (
+                <MessageList
+                  title="Video warnings"
+                  items={videoWarnings}
+                  tone="warning"
+                />
+              ) : null}
+
+              {isVideoOutput && effectiveVideoSettings.visualStyle === "full-frame" ? (
+                <FullFrameFlashWarning className="mt-4" />
+              ) : null}
+
+              <BookPreviewSection
+                audioPlayerState={previewAudioPlayer.state}
+                audioPreview={audioPreview}
+                audioSupported={previewAudioPlayer.isSupported}
+                exportSettings={exportSettings}
+                hasCleanedSource={hasCleanedSource}
+                hasSource={hasSource}
+                isDraftActive={sourceDraftActive}
+                onPlayAudioPreview={handlePlayAudioPreview}
+                onPlayVisualPreview={handlePlayVisualPreview}
+                onStopPreview={stopActivePreview}
+                outputType={outputType}
+                previewErrorMessage={previewErrorMessage}
+                previewStatus={previewStatus}
+                resolvedVideoBackgroundStyle={resolvedVideoBackgroundStyle}
+                videoPreview={videoPreview}
+                videoSettings={effectiveVideoSettings}
+                visualPreviewPlaying={visualPreviewPlaying}
+                visualPreviewStep={visualPreviewStep}
+              />
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                <ToolButton
+                  type="button"
+                  tone="dark"
+                  onClick={handleDownloadBook}
+                  disabled={!canExport}
+                  aria-describedby={
+                    exportDisabledReason
+                      ? "book-download-disabled-reason"
+                      : undefined
+                  }
+                  className="rounded-xl"
+                >
+                  <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                  {primaryDownloadLabel}
+                </ToolButton>
+                {isAudioOutput || exportRunning ? (
+                  <ToolButton
+                    type="button"
+                    tone="light"
+                    hover="dark"
+                    onClick={() => cancelActiveExport()}
+                    disabled={!exportRunning}
+                    className="rounded-xl"
+                  >
+                    <StopIcon size={18} title={undefined} aria-hidden="true" />
+                    Cancel download
+                  </ToolButton>
+                ) : null}
+              </div>
+
+              {showExportProgress ? (
+                <div className="mt-5">
+                  <progress
+                    value={progressPercent}
+                    max={100}
+                    role="progressbar"
+                    aria-label="Book download progress"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={progressPercent}
+                    className="h-2 w-full overflow-hidden rounded-full"
+                  />
+                  <StatusMessage
+                    kind={
+                      exportStatus?.kind ?? (exportRunning ? "working" : "info")
+                    }
+                    live
+                    className="mt-3"
+                  >
+                    {exportStatus?.message ?? exportProgress.message}
+                  </StatusMessage>
+                </div>
+              ) : null}
+
+              {completedExport ? (
+                <div className="mt-5 border-t border-slate-200/70 pt-5">
+                  <h3 className="text-base font-extrabold text-sky-950">
+                    Last download
+                  </h3>
+                  <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                    <Metric label="File" value={completedExport.filename} />
+                    <Metric
+                      label="Format"
+                      value={completedExport.outputFormat.toUpperCase()}
+                    />
+                    <Metric
+                      label="Parts"
+                      value={completedExport.partCount.toLocaleString()}
+                    />
+                    <Metric
+                      label="Runtime"
+                      value={completedExport.runtimeLabel}
+                    />
+                  </dl>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                    Download contents: {completedExport.contents.join(", ")}.
+                    Use the Download button again to save another copy, change
+                    settings to rebuild, or clear the source when you are done.
+                  </p>
+                </div>
+              ) : null}
+
+              <details
+                open={advancedOpen}
+                onToggle={handleAdvancedToggle}
+                className="mt-5 border-t border-slate-200/70 pt-5"
+              >
+                <summary
+                  aria-expanded={advancedOpen}
+                  className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                >
+                  <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
+                  Download settings
+                </summary>
+                <div className="mt-5 space-y-5">
+                  {isAudioOutput ? (
+                    <>
+                  <div>
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div>
+                        <h4 className="text-base font-extrabold text-sky-950">
+                          Choose download style
+                        </h4>
+                        <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                          Presets adjust speed, audio format, and optional
+                          sidecar files.
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        {presetModified ? (
+                          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                            Modified from preset
+                          </span>
+                        ) : null}
+                        <button
+                          type="button"
+                          onClick={resetCurrentPreset}
+                          disabled={!presetModified}
+                          className={toolControlButtonClass({
+                            size: "sm",
+                            disabled: !presetModified,
+                          })}
+                        >
+                          <RefreshIcon
+                            size={16}
+                            title={undefined}
+                            aria-hidden="true"
+                          />
+                          Reset preset
+                        </button>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {BOOK_EXPORT_PRESET_NAMES.map((presetName) => {
+                        const active = exportSettings.presetName === presetName;
+                        return (
+                          <button
+                            key={presetName}
+                            type="button"
+                            onClick={() => pickPreset(presetName)}
+                            className={toolControlButtonClass({
+                              active,
+                              tone: active ? "dark" : "light",
+                              size: "sm",
+                              rounded: "full",
+                              hover: "dark",
+                            })}
+                            aria-pressed={active}
+                          >
+                            {presetName}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,0.68fr)_minmax(260px,0.32fr)] lg:items-start">
+                      <div>
+                        <p className="text-base font-extrabold text-sky-950">
+                          {exportSettings.presetName}
+                        </p>
+                        <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                          {activePresetDetails.description}
+                        </p>
+                      </div>
+                      <div className="text-sm leading-relaxed text-slate-600">
+                        <p className="font-semibold text-slate-800">
+                          Best for: {activePresetDetails.bestFor}
+                        </p>
+                        <p className="mt-1">{activeSettingsSummary}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <fieldset className="border-t border-slate-200/70 pt-5">
+                    <legend className="text-base font-extrabold text-sky-950">
+                      Output format
+                    </legend>
+                    <div
+                      className="mt-3 flex flex-wrap gap-2"
+                      role="radiogroup"
+                      aria-label="Book download output format"
+                    >
+                      <button
+                        type="button"
+                        role="radio"
+                        aria-checked={exportSettings.outputFormat === "mp3"}
+                        onClick={() =>
+                          updateExportSettings({ outputFormat: "mp3" })
+                        }
+                        className={toolControlButtonClass({
+                          active: exportSettings.outputFormat === "mp3",
+                          tone:
+                            exportSettings.outputFormat === "mp3"
+                              ? "dark"
+                              : "light",
+                          size: "md",
+                          rounded: "xl",
+                          hover: "dark",
+                        })}
+                      >
+                        <span className="font-extrabold">MP3</span>
+                        <span className="text-xs font-semibold">
+                          Recommended for long Morse audio
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        role="radio"
+                        aria-checked={exportSettings.outputFormat === "wav"}
+                        onClick={() =>
+                          updateExportSettings({ outputFormat: "wav" })
+                        }
+                        className={toolControlButtonClass({
+                          active: exportSettings.outputFormat === "wav",
+                          tone:
+                            exportSettings.outputFormat === "wav"
+                              ? "dark"
+                              : "light",
+                          size: "md",
+                          rounded: "xl",
+                          hover: "dark",
+                        })}
+                      >
+                        <span className="font-extrabold">WAV</span>
+                        <span className="text-xs font-semibold">
+                          Uncompressed and larger
+                        </span>
+                      </button>
+                    </div>
+                  </fieldset>
+
+                  <div className="border-t border-slate-200/70 pt-5">
+                    <div className="flex flex-wrap items-end justify-between gap-3">
+                      <div>
+                        <h4 className="text-base font-extrabold text-sky-950">
+                          Audio settings
+                        </h4>
+                        <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                          These settings drive estimates and generated
+                          downloads.
+                        </p>
+                      </div>
+                      <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                        {tonePresetLabel(exportSettings.tonePreset)}
+                      </span>
+                    </div>
+                    <div className="mt-4">
+                      <ExportCheckbox
+                        label="Split into parts"
+                        checked={exportSettings.splitAudio}
+                        onChange={(value) =>
+                          updateExportSettings({ splitAudio: value })
+                        }
+                      />
+                      <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+                        {exportSettings.splitAudio
+                          ? "Downloads are split by the target part length below and saved as a ZIP bundle."
+                          : "Downloads use one audio file by default."}
+                      </p>
+                      {exportSettings.splitAudio ? (
+                        <div className="mt-3">
+                          <ExportCheckbox
+                            label="Prefer EPUB/PDF section hints"
+                            checked={exportSettings.preferSourceSections}
+                            onChange={(value) =>
+                              updateExportSettings({
+                                preferSourceSections: value,
+                              })
+                            }
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+                    <AudioSettingsPanel
+                      className="mt-5"
+                      context="bookExport"
+                      idPrefix="book-download-audio"
+                      preset={exportSettings.tonePreset}
+                      onPresetChange={handleTonePresetChange}
+                      charWpm={exportSettings.charWpm}
+                      onCharWpmChange={handleCharWpmChange}
+                      farnsworthWpm={exportSettings.farnsworthWpm}
+                      onFarnsworthWpmChange={(value) =>
+                        updateExportSettings({ farnsworthWpm: value })
+                      }
+                      pitch={exportSettings.pitch}
+                      onPitchChange={(value) =>
+                        updateExportSettings({ pitch: value })
+                      }
+                      volume={exportSettings.volume}
+                      onVolumeChange={(value) =>
+                        updateExportSettings({ volume: value })
+                      }
+                      outputFormat={exportSettings.outputFormat}
+                      mp3Bitrate={exportSettings.mp3Bitrate}
+                      onMp3BitrateChange={(value) =>
+                        updateExportSettings({
+                          mp3Bitrate: sanitizeMp3Bitrate(value),
+                        })
+                      }
+                      sampleRate={exportSettings.sampleRate}
+                      onSampleRateChange={(value) =>
+                        updateExportSettings({
+                          sampleRate: sanitizeAudioSampleRate(value),
+                        })
+                      }
+                      tailMs={exportSettings.tailPaddingMs}
+                      onTailMsChange={(value) =>
+                        updateExportSettings({ tailPaddingMs: value })
+                      }
+                      targetPartMinutes={
+                        exportSettings.splitAudio
+                          ? exportSettings.targetPartMinutes
+                          : undefined
+                      }
+                      onTargetPartMinutesChange={(value) =>
+                        updateExportSettings({ targetPartMinutes: value })
+                      }
+                    />
+                  </div>
+
+                  <div className="border-t border-slate-200/70 pt-5">
+                    <h4 className="text-base font-extrabold text-sky-950">
+                      Advanced download settings
+                    </h4>
+                    <div className="mt-4 grid gap-5 lg:grid-cols-2">
+                      <SliderRow
+                        label="Paragraph pause"
+                        value={exportSettings.paragraphPauseMultiplier}
+                        min={1}
+                        max={6}
+                        step={0.1}
+                        unit="x"
+                        onChange={(value) =>
+                          updateExportSettings({
+                            paragraphPauseMultiplier: value,
+                          })
+                        }
+                      />
+                      <SliderRow
+                        label="Sentence pause"
+                        value={exportSettings.sentencePauseMultiplier}
+                        min={1}
+                        max={4}
+                        step={0.1}
+                        unit="x"
+                        onChange={(value) =>
+                          updateExportSettings({
+                            sentencePauseMultiplier: value,
+                          })
+                        }
+                      />
+                      <LabeledSelect
+                        label="Punctuation"
+                        value={exportSettings.punctuationMode}
+                        onChange={(value) =>
+                          updateExportSettings({
+                            punctuationMode:
+                              value === "preserve" ? "preserve" : "simplify",
+                          })
+                        }
+                      >
+                        <option value="preserve">
+                          Preserve supported punctuation
+                        </option>
+                        <option value="simplify">
+                          Simplify punctuation for practice
+                        </option>
+                      </LabeledSelect>
+                    </div>
+                    <div className="mt-5 border-t border-slate-200/70 pt-5">
+                      <h4 className="text-base font-extrabold text-sky-950">
+                        Download extras
+                      </h4>
+                      <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                        Sidecar files are included in a ZIP bundle. Turn them
+                        off for a direct one-part audio download.
+                      </p>
+                    </div>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                      <ExportCheckbox
+                        label="Include cleaned text"
+                        checked={exportSettings.includeCleanedText}
+                        onChange={(value) =>
+                          updateExportSettings({ includeCleanedText: value })
+                        }
+                      />
+                      <ExportCheckbox
+                        label="Include Morse transcript"
+                        checked={exportSettings.includeMorseTranscript}
+                        onChange={(value) =>
+                          updateExportSettings({
+                            includeMorseTranscript: value,
+                          })
+                        }
+                      />
+                      <ExportCheckbox
+                        label="Include manifest"
+                        checked={exportSettings.includeManifest}
+                        onChange={(value) =>
+                          updateExportSettings({ includeManifest: value })
+                        }
+                      />
+                      <ExportCheckbox
+                        label="Include settings"
+                        checked={exportSettings.includeSettings}
+                        onChange={(value) =>
+                          updateExportSettings({ includeSettings: value })
+                        }
+                      />
+                      <ExportCheckbox
+                        label="Include README"
+                        checked={exportSettings.includeReadme}
+                        onChange={(value) =>
+                          updateExportSettings({ includeReadme: value })
+                        }
+                      />
+                    </div>
+                  </div>
+                    </>
+                  ) : (
+                    <BookVideoSettingsEditor
+                      exportSettings={exportSettings}
+                      onCharWpmChange={handleCharWpmChange}
+                      onFarnsworthWpmChange={(value) =>
+                        updateExportSettings({ farnsworthWpm: value })
+                      }
+                      onPitchChange={(value) =>
+                        updateExportSettings({ pitch: value })
+                      }
+                      onTonePresetChange={handleTonePresetChange}
+                      onVideoSettingsChange={updateVideoSettings}
+                      onVolumeChange={(value) =>
+                        updateExportSettings({ volume: value })
+                      }
+                      videoSupport={videoSupport}
+                      videoSettings={videoSettings}
+                    />
+                  )}
+                </div>
+              </details>
+            </section>
+          </ToolPanel>
+
         </div>
-      ) : null}
-      {status === "error" ? (
-        <MessageList title="Extraction error" items={[errorMessage]} tone="error" />
-      ) : null}
 
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.65fr)]">
+        {status === "parsing" ? (
+          <div
+            role="status"
+            className="rounded-xl bg-[#fffdf8] p-4 text-sm font-semibold text-slate-700"
+          >
+            Parsing source locally in your browser...
+          </div>
+        ) : null}
+        <MessageList
+          title="Source warnings"
+          items={sourceWarnings}
+          tone="warning"
+        />
+
         <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
-              <ChecklistIcon size={20} title={undefined} aria-hidden="true" />
-              Export preflight summary
+              <SparklesIcon size={20} title={undefined} aria-hidden="true" />
+              Source cleanup
             </h2>
             <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-              {status === "ready" ? "Ready" : status === "parsing" ? "Parsing" : "Preview"}
+              Before download
+            </span>
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {(Object.keys(cleanupOptions) as Array<keyof CleanupOptions>).map(
+              (key) => (
+                <label
+                  key={key}
+                  className="flex cursor-pointer items-start gap-3 text-sm font-semibold text-slate-800"
+                >
+                  <input
+                    type="checkbox"
+                    checked={cleanupOptions[key]}
+                    onChange={() => toggleCleanup(key)}
+                    className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  />
+                  <span>{cleanupLabel(key)}</span>
+                </label>
+              ),
+            )}
+          </div>
+          <div className="mt-5 border-t border-slate-200/70 pt-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 className="text-base font-extrabold text-sky-950">
+                  Custom cleanup rules
+                </h3>
+                <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                  Plain text rules apply top to bottom before preview,
+                  estimates, splitting, transcripts, and downloads.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={addCustomCleanupRule}
+                  className={toolControlButtonClass({
+                    size: "sm",
+                    tone: "dark",
+                  })}
+                >
+                  Add cleanup rule
+                </button>
+                <button
+                  type="button"
+                  onClick={clearCustomCleanupRules}
+                  disabled={customCleanupRules.length === 0}
+                  className={toolControlButtonClass({
+                    size: "sm",
+                    disabled: customCleanupRules.length === 0,
+                  })}
+                >
+                  Clear custom rules
+                </button>
+              </div>
+            </div>
+
+            {customCleanupRules.length === 0 ? (
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                Add a rule to remove boilerplate, replace recurring phrases, or
+                simplify source-specific text without changing the original
+                upload.
+              </p>
+            ) : (
+              <div className="mt-4 space-y-4">
+                {customCleanupRules.map((rule, index) => {
+                  const match = customRuleMatchesById.get(rule.id);
+                  const matchLabel = !rule.enabled
+                    ? "Disabled"
+                    : rule.find.trim().length === 0
+                      ? "Add find text"
+                      : `${formatNumber(match?.count ?? 0)} match${
+                          (match?.count ?? 0) === 1 ? "" : "es"
+                        }`;
+                  const findId = `${rule.id}-find`;
+                  const replacementId = `${rule.id}-replacement`;
+                  return (
+                    <div
+                      key={rule.id}
+                      className="border-t border-slate-200/70 pt-4"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                          Rule {index + 1} - {matchLabel}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          <button
+                            type="button"
+                            onClick={() => moveCustomCleanupRule(rule.id, -1)}
+                            disabled={index === 0}
+                            aria-label={`Move cleanup rule ${index + 1} up`}
+                            className={toolControlButtonClass({
+                              size: "sm",
+                              disabled: index === 0,
+                            })}
+                          >
+                            Up
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => moveCustomCleanupRule(rule.id, 1)}
+                            disabled={index === customCleanupRules.length - 1}
+                            aria-label={`Move cleanup rule ${index + 1} down`}
+                            className={toolControlButtonClass({
+                              size: "sm",
+                              disabled: index === customCleanupRules.length - 1,
+                            })}
+                          >
+                            Down
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => deleteCustomCleanupRule(rule.id)}
+                            aria-label={`Delete cleanup rule ${index + 1}`}
+                            className={toolControlButtonClass({ size: "sm" })}
+                          >
+                            <TrashIcon
+                              size={16}
+                              title={undefined}
+                              aria-hidden="true"
+                            />
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                      <div className="mt-3 grid gap-3 lg:grid-cols-2">
+                        <div>
+                          <label
+                            htmlFor={findId}
+                            className="text-sm font-semibold text-slate-700"
+                          >
+                            Find text
+                          </label>
+                          <input
+                            id={findId}
+                            value={rule.find}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                find: event.target.value,
+                              })
+                            }
+                            className="mt-2 w-full rounded-lg bg-[#fffaf2] px-3 py-2 font-mono text-sm text-slate-950 focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            htmlFor={replacementId}
+                            className="text-sm font-semibold text-slate-700"
+                          >
+                            Replacement text
+                          </label>
+                          <input
+                            id={replacementId}
+                            value={rule.replacement}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                replacement: event.target.value,
+                              })
+                            }
+                            placeholder="Leave empty to remove matches"
+                            className="mt-2 w-full rounded-lg bg-[#fffaf2] px-3 py-2 font-mono text-sm text-slate-950 focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                        </div>
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-4">
+                        <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-slate-800">
+                          <input
+                            type="checkbox"
+                            checked={rule.enabled}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                enabled: event.target.checked,
+                              })
+                            }
+                            className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                          <span>Enabled</span>
+                        </label>
+                        <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-slate-800">
+                          <input
+                            type="checkbox"
+                            checked={rule.caseSensitive}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                caseSensitive: event.target.checked,
+                              })
+                            }
+                            className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                          <span>Case-sensitive</span>
+                        </label>
+                        <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-slate-800">
+                          <input
+                            type="checkbox"
+                            checked={rule.wholeWord}
+                            onChange={(event) =>
+                              updateCustomCleanupRule(rule.id, {
+                                wholeWord: event.target.checked,
+                              })
+                            }
+                            className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                          />
+                          <span>Whole word</span>
+                        </label>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </section>
+      </section>
+
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.65fr)]">
+        <section
+          className="rounded-xl bg-[#fffdf8] p-5 sm:p-6"
+          aria-labelledby="book-details-previews-heading"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2
+              id="book-details-previews-heading"
+              className="flex items-center gap-2 text-xl font-extrabold text-sky-950"
+            >
+              <ChecklistIcon size={20} title={undefined} aria-hidden="true" />
+              Details and previews
+            </h2>
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+              {status === "ready"
+                ? "Ready"
+                : status === "parsing"
+                  ? "Parsing"
+                  : "Preview"}
             </span>
           </div>
 
           {hasSource ? (
             <dl className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <Metric label="Source type" value={sourceTypeLabel(preflight.sourceType)} />
+              <Metric
+                label="Source type"
+                value={sourceTypeLabel(preflight.sourceType)}
+              />
               <Metric label="Words" value={formatNumber(preflight.wordCount)} />
               <Metric
                 label="Characters"
                 value={formatNumber(preflight.characterCount)}
               />
-              <Metric label="Runtime" value={formatDuration(exportAnalysis.totalRuntimeMs)} />
+              <Metric
+                label="Runtime"
+                value={formatDuration(exportAnalysis.totalRuntimeMs)}
+              />
               <Metric label="Parts" value={formatNumber(exportParts.length)} />
               <Metric
-                label="Target part"
-                value={formatDuration(exportAnalysis.targetPartMs)}
+                label={isSegmentedOutput ? "Target part" : "Split"}
+                value={
+                  isSegmentedOutput
+                    ? formatDuration(exportAnalysis.targetPartMs)
+                    : "Off"
+                }
               />
               <Metric
-                label="Output size"
-                value={`~${exportAnalysis.estimatedSizeLabel}`}
+                label={isVideoOutput ? "Output type" : "Output size"}
+                value={
+                  isVideoOutput
+                    ? "Video"
+                    : `~${exportAnalysis.estimatedSizeLabel}`
+                }
               />
               <Metric
-                label="Format"
-                value={exportSettings.outputFormat.toUpperCase()}
+                label={isVideoOutput ? "Video style" : "Format"}
+                value={
+                  isVideoOutput
+                    ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[
+                        effectiveVideoSettings.visualStyle
+                      ].label
+                    : exportSettings.outputFormat.toUpperCase()
+                }
               />
               <Metric label="Preset" value={exportSettings.presetName} />
               <Metric
@@ -910,7 +2872,10 @@ export default function BookTranslatorTool() {
                 value={formatNumber(preflight.unsupportedCount)}
               />
               {preflight.pageCount ? (
-                <Metric label="PDF pages" value={formatNumber(preflight.pageCount)} />
+                <Metric
+                  label="PDF pages"
+                  value={formatNumber(preflight.pageCount)}
+                />
               ) : null}
               {preflight.sectionCount ? (
                 <Metric
@@ -924,14 +2889,18 @@ export default function BookTranslatorTool() {
                   value={formatNumber(preflight.sectionCount)}
                 />
               ) : null}
-              {preflight.title ? <Metric label="Title" value={preflight.title} /> : null}
-              {preflight.author ? <Metric label="Author" value={preflight.author} /> : null}
+              {preflight.title ? (
+                <Metric label="Title" value={preflight.title} />
+              ) : null}
+              {preflight.author ? (
+                <Metric label="Author" value={preflight.author} />
+              ) : null}
             </dl>
           ) : (
             <EmptyPreview>
               Paste text or upload TXT, MD, EPUB, or text-native PDF to see word
-              counts, runtime, part splitting, unsupported characters, and Morse
-              previews before export.
+              counts, runtime, download shape, unsupported characters, and Morse
+              previews before download.
             </EmptyPreview>
           )}
 
@@ -959,7 +2928,6 @@ export default function BookTranslatorTool() {
         </section>
 
         <div className="space-y-4">
-          <MessageList title="Warnings" items={allWarnings} tone="warning" />
           <section className="rounded-xl bg-[#fffdf8] p-5">
             <h2 className="text-base font-extrabold text-sky-950">
               Source guidance
@@ -973,321 +2941,60 @@ export default function BookTranslatorTool() {
         </div>
       </div>
 
-      <details open={advancedOpen} onToggle={handleAdvancedToggle}>
-        <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
-          <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
-          Advanced export settings
-        </summary>
-        <div className="mt-4 rounded-xl bg-[#fffdf8] p-5 sm:p-6">
-          <div className="grid gap-5 lg:grid-cols-2">
-            <SliderRow
-              label="Character speed"
-              value={exportSettings.charWpm}
-              min={5}
-              max={60}
-              step={1}
-              unit="WPM"
-              onChange={handleCharWpmChange}
-            />
-            <SliderRow
-              label="Farnsworth spacing"
-              value={exportSettings.farnsworthWpm}
-              min={5}
-              max={Math.max(5, exportSettings.charWpm)}
-              step={1}
-              unit="WPM"
-              onChange={(value) => updateExportSettings({ farnsworthWpm: value })}
-            />
-            <SliderRow
-              label="Pitch"
-              value={exportSettings.pitch}
-              min={AUDIO_PITCH_RANGE.min}
-              max={AUDIO_PITCH_RANGE.max}
-              step={10}
-              unit="Hz"
-              onChange={(value) => updateExportSettings({ pitch: value })}
-              disabled={exportSettings.tonePreset === "sounder"}
-            />
-            <SliderRow
-              label="Volume"
-              value={Math.round(exportSettings.volume * 100)}
-              min={0}
-              max={100}
-              step={1}
-              unit="%"
-              onChange={(value) => updateExportSettings({ volume: value / 100 })}
-            />
-            <LabeledSelect
-              label="Tone preset"
-              value={exportSettings.tonePreset}
-              onChange={(value) =>
-                updateExportSettings({
-                  tonePreset: sanitizeAudioGeneratorPreset(value),
-                })
-              }
-            >
-              {AUDIO_GENERATOR_PRESETS.map((preset) => (
-                <option key={preset} value={preset}>
-                  {tonePresetLabel(preset)}
-                </option>
-              ))}
-            </LabeledSelect>
-            <LabeledSelect
-              label="Output format"
-              value={exportSettings.outputFormat}
-              onChange={(value) =>
-                updateExportSettings({ outputFormat: value === "wav" ? "wav" : "mp3" })
-              }
-            >
-              <option value="mp3">MP3 bundle</option>
-              <option value="wav">WAV bundle</option>
-            </LabeledSelect>
-            <LabeledSelect
-              label="MP3 bitrate"
-              value={String(exportSettings.mp3Bitrate)}
-              onChange={(value) =>
-                updateExportSettings({ mp3Bitrate: sanitizeMp3Bitrate(Number(value)) })
-              }
-              disabled={exportSettings.outputFormat !== "mp3"}
-            >
-              {MP3_BITRATES.map((bitrate) => (
-                <option key={bitrate} value={bitrate}>
-                  {bitrate} kbps
-                </option>
-              ))}
-            </LabeledSelect>
-            <LabeledSelect
-              label="Sample rate"
-              value={String(exportSettings.sampleRate)}
-              onChange={(value) =>
-                updateExportSettings({ sampleRate: sanitizeAudioSampleRate(Number(value)) })
-              }
-            >
-              {AUDIO_SAMPLE_RATES.map((sampleRate) => (
-                <option key={sampleRate} value={sampleRate}>
-                  {sampleRate} Hz
-                </option>
-              ))}
-            </LabeledSelect>
-            <SliderRow
-              label="Target part length"
-              value={exportSettings.targetPartMinutes}
-              min={1}
-              max={30}
-              step={1}
-              unit="min"
-              onChange={(value) => updateExportSettings({ targetPartMinutes: value })}
-            />
-            <SliderRow
-              label="Paragraph pause"
-              value={exportSettings.paragraphPauseMultiplier}
-              min={1}
-              max={6}
-              step={0.1}
-              unit="x"
-              onChange={(value) =>
-                updateExportSettings({ paragraphPauseMultiplier: value })
-              }
-            />
-            <SliderRow
-              label="Sentence pause"
-              value={exportSettings.sentencePauseMultiplier}
-              min={1}
-              max={4}
-              step={0.1}
-              unit="x"
-              onChange={(value) =>
-                updateExportSettings({ sentencePauseMultiplier: value })
-              }
-            />
-            <LabeledSelect
-              label="Punctuation"
-              value={exportSettings.punctuationMode}
-              onChange={(value) =>
-                updateExportSettings({
-                  punctuationMode: value === "preserve" ? "preserve" : "simplify",
-                })
-              }
-            >
-              <option value="preserve">Preserve supported punctuation</option>
-              <option value="simplify">Simplify punctuation for practice</option>
-            </LabeledSelect>
-          </div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <ExportCheckbox
-              label="Prefer EPUB/PDF section hints"
-              checked={exportSettings.preferSourceSections}
-              onChange={(value) => updateExportSettings({ preferSourceSections: value })}
-            />
-            <ExportCheckbox
-              label="Include cleaned text"
-              checked={exportSettings.includeCleanedText}
-              onChange={(value) => updateExportSettings({ includeCleanedText: value })}
-            />
-            <ExportCheckbox
-              label="Include Morse transcript"
-              checked={exportSettings.includeMorseTranscript}
-              onChange={(value) => updateExportSettings({ includeMorseTranscript: value })}
-            />
-            <ExportCheckbox
-              label="Include manifest"
-              checked={exportSettings.includeManifest}
-              onChange={(value) => updateExportSettings({ includeManifest: value })}
-            />
-            <ExportCheckbox
-              label="Include settings"
-              checked={exportSettings.includeSettings}
-              onChange={(value) => updateExportSettings({ includeSettings: value })}
-            />
-            <ExportCheckbox
-              label="Include README"
-              checked={exportSettings.includeReadme}
-              onChange={(value) => updateExportSettings({ includeReadme: value })}
-            />
-          </div>
-        </div>
-      </details>
-
       <section>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-xl font-extrabold text-sky-950">Split summary</h2>
+          <h2 className="text-xl font-extrabold text-sky-950">
+            {isSegmentedOutput ? "Split summary" : "Audio file summary"}
+          </h2>
           <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            {exportParts.length} part{exportParts.length === 1 ? "" : "s"}
+            {isSegmentedOutput
+              ? `${exportParts.length} part${exportParts.length === 1 ? "" : "s"}`
+              : "Single file"}
           </span>
         </div>
         <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-          Parts are based on estimated Morse runtime and safe paragraph,
-          sentence, or word boundaries. EPUB/PDF section hints help when
-          available, but parts are not guaranteed to match original chapters.
+          {isSegmentedOutput
+            ? "Parts are based on estimated Morse runtime and safe paragraph, sentence, or word boundaries. EPUB/PDF section hints help when available, but parts are not guaranteed to match original chapters."
+            : "Audio downloads stay as one file by default. Turn on Split into parts in Download settings when you want a ZIP bundle with timed parts."}
         </p>
-        {exportParts.length > 0 ? (
-          <div className="mt-4 grid gap-3">
-            {exportParts.slice(0, 6).map((part) => (
-              <div
-                key={`${part.index}-${part.sourceStart}`}
-                className="rounded-xl bg-[#fffdf8] p-4"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="text-sm font-extrabold text-sky-950">
-                    {part.title}
-                  </h3>
-                  <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
-                    {formatDuration(part.morseDurationMs)}
-                  </span>
+        {isSegmentedOutput ? (
+          exportParts.length > 0 ? (
+            <div className="mt-4 grid gap-3">
+              {exportParts.slice(0, 6).map((part) => (
+                <div
+                  key={`${part.index}-${part.sourceStart}`}
+                  className="rounded-xl bg-[#fffdf8] p-4"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-sm font-extrabold text-sky-950">
+                      {part.title}
+                    </h3>
+                    <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                      {formatDuration(part.morseDurationMs)}
+                    </span>
+                  </div>
+                  <p className="mt-2 break-words font-mono text-xs font-bold text-slate-600">
+                    {part.estimatedFilename}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                    {part.cleanedExcerpt}
+                  </p>
                 </div>
-                <p className="mt-2 break-words font-mono text-xs font-bold text-slate-600">
-                  {part.estimatedFilename}
+              ))}
+              {exportParts.length > 6 ? (
+                <p className="text-sm font-semibold text-slate-600">
+                  Showing first 6 parts. The ZIP download includes all{" "}
+                  {exportParts.length.toLocaleString()} parts.
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                  {part.cleanedExcerpt}
-                </p>
-              </div>
-            ))}
-            {exportParts.length > 6 ? (
-              <p className="text-sm font-semibold text-slate-600">
-                Showing first 6 parts. The ZIP manifest includes all{" "}
-                {exportParts.length.toLocaleString()} parts.
-              </p>
-            ) : null}
-          </div>
+              ) : null}
+            </div>
           ) : (
-          <div className="mt-3">
-            <EmptyPreview>Part splitting appears after source text is available.</EmptyPreview>
-          </div>
-        )}
-      </section>
-
-      <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-xl font-extrabold text-sky-950">
-            Export actions
-          </h2>
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            ZIP bundle
-          </span>
-        </div>
-        <p className="mt-2 max-w-[80ch] text-sm leading-relaxed text-slate-700">
-          MP3 is recommended for long exports because the files stay smaller.
-          WAV is available for shorter or uncompressed exports, but it can
-          become large quickly. Exports run locally and package sortable parts
-          with the selected metadata files.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <ToolButton
-            type="button"
-            tone="dark"
-            onClick={handleExportBundle}
-            disabled={!canExport}
-            className="rounded-xl"
-          >
-            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-            Export ZIP bundle
-          </ToolButton>
-          <ToolButton
-            type="button"
-            tone="light"
-            hover="dark"
-            onClick={handleDownloadSample}
-            disabled={!hasCleanedSource || isExportRunning(exportProgress)}
-            className="rounded-xl"
-          >
-            <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-            Download sample
-          </ToolButton>
-          <ToolButton
-            type="button"
-            tone="light"
-            hover="dark"
-            onClick={() => cancelActiveExport()}
-            disabled={!isExportRunning(exportProgress)}
-            className="rounded-xl"
-          >
-            <StopIcon size={18} title={undefined} aria-hidden="true" />
-            Cancel export
-          </ToolButton>
-        </div>
-        <div className="mt-5">
-          <progress
-            value={progressPercent}
-            max={100}
-            role="progressbar"
-            aria-label="Book export progress"
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-valuenow={progressPercent}
-            className="h-2 w-full overflow-hidden rounded-full"
-          />
-          <StatusMessage
-            kind={exportStatus?.kind ?? (isExportRunning(exportProgress) ? "working" : "info")}
-            live
-            className="mt-3"
-          >
-            {exportStatus?.message ?? exportProgress.message}
-          </StatusMessage>
-        </div>
-        {completedExport ? (
-          <div className="mt-5 border-t border-slate-200/70 pt-5">
-            <h3 className="text-base font-extrabold text-sky-950">
-              Last export
-            </h3>
-            <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <Metric label="ZIP file" value={completedExport.filename} />
-              <Metric
-                label="Format"
-                value={completedExport.outputFormat.toUpperCase()}
-              />
-              <Metric
-                label="Parts"
-                value={completedExport.partCount.toLocaleString()}
-              />
-              <Metric label="Runtime" value={completedExport.runtimeLabel} />
-            </dl>
-            <p className="mt-3 text-sm leading-relaxed text-slate-700">
-              Bundle contents: {completedExport.contents.join(", ")}. Use
-              Export ZIP bundle again to download another copy, change settings
-              to rebuild, or clear the source when you are done.
-            </p>
-          </div>
+            <div className="mt-3">
+              <EmptyPreview>
+                Part splitting appears after source text is available.
+              </EmptyPreview>
+            </div>
+          )
         ) : null}
       </section>
 
@@ -1299,7 +3006,9 @@ export default function BookTranslatorTool() {
             </pre>
           ) : (
             <div className="p-4">
-              <EmptyPreview>Cleaned text will appear here after input.</EmptyPreview>
+              <EmptyPreview>
+                Cleaned text will appear here after input.
+              </EmptyPreview>
             </div>
           )}
         </ToolPanel>
@@ -1312,13 +3021,655 @@ export default function BookTranslatorTool() {
           ) : (
             <div className="p-4">
               <p className="text-sm leading-relaxed text-slate-300">
-                Morse preview appears here after cleaned source text is available.
+                Morse preview appears here after cleaned source text is
+                available.
               </p>
             </div>
           )}
         </ToolOutputPanel>
       </div>
     </section>
+  );
+}
+
+function BookPreviewSection({
+  audioPlayerState,
+  audioPreview,
+  audioSupported,
+  exportSettings,
+  hasCleanedSource,
+  hasSource,
+  isDraftActive,
+  onPlayAudioPreview,
+  onPlayVisualPreview,
+  onStopPreview,
+  outputType,
+  previewErrorMessage,
+  previewStatus,
+  resolvedVideoBackgroundStyle,
+  videoPreview,
+  videoSettings,
+  visualPreviewPlaying,
+  visualPreviewStep,
+}: {
+  audioPlayerState: MorsePlayerState;
+  audioPreview: BookAudioPreview | null;
+  audioSupported: boolean;
+  exportSettings: BookExportSettings;
+  hasCleanedSource: boolean;
+  hasSource: boolean;
+  isDraftActive: boolean;
+  onPlayAudioPreview: () => void;
+  onPlayVisualPreview: () => void;
+  onStopPreview: () => void;
+  outputType: BookOutputType;
+  previewErrorMessage: string;
+  previewStatus: BookPreviewStatus;
+  resolvedVideoBackgroundStyle: "warm-morsewords" | "dark-morsewords";
+  videoPreview: BookVideoPreview;
+  videoSettings: BookVideoSettings;
+  visualPreviewPlaying: boolean;
+  visualPreviewStep: number;
+}) {
+  const isAudioOutput = outputType === "audio";
+  const canPreview = hasSource && hasCleanedSource && Boolean(audioPreview);
+  const previewPlaying =
+    previewStatus === "playing" &&
+    (isAudioOutput
+      ? audioPlayerState === "playing" || audioPlayerState === "paused"
+      : visualPreviewPlaying);
+  const actionDisabled =
+    !canPreview ||
+    previewStatus === "updating" ||
+    (isAudioOutput && !audioSupported);
+  const heading = isAudioOutput ? "Preview audio" : "Preview video";
+  const statusText = previewErrorMessage
+    ? previewErrorMessage
+    : previewStatusText({
+        audioSupported,
+        canPreview,
+        hasCleanedSource,
+        hasSource,
+        isAudioOutput,
+        previewStatus,
+      });
+
+  return (
+    <section
+      className="mt-5 border-t border-slate-200/70 pt-5"
+      aria-labelledby="book-preview-heading"
+      data-testid="book-preview-section"
+    >
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h3
+            id="book-preview-heading"
+            className="text-base font-extrabold text-sky-950"
+          >
+            {heading}
+          </h3>
+          <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+            {audioPreview?.label ??
+              "Add source text to preview the current settings before download."}
+          </p>
+        </div>
+        <span
+          data-testid="book-preview-status"
+          role="status"
+          aria-live="polite"
+          className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+        >
+          {statusText}
+        </span>
+      </div>
+
+      {isDraftActive ? (
+        <p className="mt-3 text-sm font-semibold text-slate-600">
+          Draft edits are not previewed until you apply them.
+        </p>
+      ) : null}
+
+      {audioPreview ? (
+        <p
+          data-testid="book-preview-sample"
+          className="mt-3 max-w-[68ch] break-words font-mono text-sm leading-relaxed text-slate-700"
+        >
+          {audioPreview.sampleText}
+        </p>
+      ) : null}
+
+      <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Metric label="Tone" value={tonePresetLabel(exportSettings.tonePreset)} />
+        <Metric
+          label="Speed"
+          value={`${exportSettings.charWpm}/${exportSettings.farnsworthWpm} WPM`}
+        />
+        <Metric label="Pitch" value={`${exportSettings.pitch} Hz`} />
+        <Metric
+          label="Volume"
+          value={`${Math.round(exportSettings.volume * 100)}%`}
+        />
+      </dl>
+
+      {isAudioOutput ? (
+        <div className="mt-4 flex flex-wrap gap-2" data-testid="book-audio-preview">
+          <ToolButton
+            type="button"
+            tone={previewPlaying ? "light" : "dark"}
+            hover={previewPlaying ? "dark" : undefined}
+            onClick={previewPlaying ? onStopPreview : onPlayAudioPreview}
+            disabled={actionDisabled && !previewPlaying}
+            className="rounded-xl"
+          >
+            {previewPlaying ? (
+              <StopIcon size={18} title={undefined} aria-hidden="true" />
+            ) : (
+              <PlayIcon size={18} title={undefined} aria-hidden="true" />
+            )}
+            {previewPlaying ? "Stop preview" : "Play preview"}
+          </ToolButton>
+        </div>
+      ) : (
+        <div data-testid="book-video-preview-workflow">
+          <BookVideoPreviewPanel
+            className="mt-4"
+            isPlaying={visualPreviewPlaying}
+            preview={videoPreview}
+            resolvedBackgroundStyle={resolvedVideoBackgroundStyle}
+            settings={videoSettings}
+            visualStep={visualPreviewStep}
+          />
+          <div className="mt-4 flex flex-wrap gap-2">
+            <ToolButton
+              type="button"
+              tone={previewPlaying ? "light" : "dark"}
+              hover={previewPlaying ? "dark" : undefined}
+              onClick={previewPlaying ? onStopPreview : onPlayVisualPreview}
+              disabled={actionDisabled && !previewPlaying}
+              className="rounded-xl"
+            >
+              {previewPlaying ? (
+                <StopIcon size={18} title={undefined} aria-hidden="true" />
+              ) : (
+                <PlayIcon size={18} title={undefined} aria-hidden="true" />
+              )}
+              {previewPlaying ? "Stop visual preview" : "Play visual preview"}
+            </ToolButton>
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-slate-700">
+            {videoSettings.includeAudioTrack ? "Audio track on" : "Audio track off"}
+            {" · "}
+            {videoSettings.showMorseOverlay ? "Morse overlay on" : "Morse overlay off"}
+            {" · "}
+            {videoSettings.showBranding ? "Branding on" : "Branding off"}
+          </p>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function previewStatusText({
+  audioSupported,
+  canPreview,
+  hasCleanedSource,
+  hasSource,
+  isAudioOutput,
+  previewStatus,
+}: {
+  audioSupported: boolean;
+  canPreview: boolean;
+  hasCleanedSource: boolean;
+  hasSource: boolean;
+  isAudioOutput: boolean;
+  previewStatus: BookPreviewStatus;
+}) {
+  if (!hasSource) return "Waiting for source";
+  if (!hasCleanedSource) return "Unavailable";
+  if (isAudioOutput && !audioSupported) return "Unavailable";
+  if (!canPreview) return "Unavailable";
+  if (previewStatus === "updating") return "Updating preview";
+  if (previewStatus === "playing") return "Playing";
+  if (previewStatus === "stopped") return "Stopped";
+  if (previewStatus === "failed") return "Failed";
+  return "Ready";
+}
+
+function BookVideoSettingsEditor({
+  exportSettings,
+  onCharWpmChange,
+  onFarnsworthWpmChange,
+  onPitchChange,
+  onTonePresetChange,
+  onVideoSettingsChange,
+  onVolumeChange,
+  videoSupport,
+  videoSettings,
+}: {
+  exportSettings: BookExportSettings;
+  onCharWpmChange: (value: number) => void;
+  onFarnsworthWpmChange: (value: number) => void;
+  onPitchChange: (value: number) => void;
+  onTonePresetChange: (value: AudioTonePresetId) => void;
+  onVideoSettingsChange: (patch: Partial<BookVideoSettings>) => void;
+  onVolumeChange: (value: number) => void;
+  videoSupport: BookVideoSupport | null;
+  videoSettings: BookVideoSettings;
+}) {
+  const audioTrackAvailable = Boolean(videoSupport?.audioTrackSupported);
+
+  return (
+    <div className="space-y-5">
+      <div>
+        <h4 className="text-base font-extrabold text-sky-950">
+          Video settings
+        </h4>
+        <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+          Choose how the Morse signal appears in the video frame.
+        </p>
+      </div>
+
+      <fieldset className="border-t border-slate-200/70 pt-5">
+        <legend className="text-base font-extrabold text-sky-950">
+          Visual style
+        </legend>
+        <div
+          className="mt-3 grid gap-2 sm:grid-cols-2"
+          role="radiogroup"
+          aria-label="Video visual style"
+        >
+          {BOOK_VIDEO_VISUAL_STYLES.map((style) => {
+            const details = BOOK_VIDEO_VISUAL_STYLE_DETAILS[style];
+            const active = videoSettings.visualStyle === style;
+            return (
+              <button
+                key={style}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() =>
+                  onVideoSettingsChange({
+                    visualStyle: style,
+                  })
+                }
+                className={toolControlButtonClass({
+                  active,
+                  tone: active ? "dark" : "light",
+                  size: "md",
+                  rounded: "xl",
+                  hover: "dark",
+                })}
+              >
+                <span className="font-extrabold">{details.label}</span>
+                <span className="text-xs font-semibold">
+                  {details.description}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
+
+      <div className="border-t border-slate-200/70 pt-5">
+        <h4 className="text-base font-extrabold text-sky-950">Video frame</h4>
+        <div className="mt-4 grid gap-5 lg:grid-cols-2">
+          <fieldset>
+            <legend className="text-sm font-semibold text-slate-700">
+              Video resolution
+            </legend>
+            <div
+              className="mt-2 flex flex-wrap gap-2"
+              role="radiogroup"
+              aria-label="Video resolution"
+            >
+              {BOOK_VIDEO_RESOLUTIONS.map((resolution) => (
+                <VideoSettingButton
+                  key={resolution}
+                  active={videoSettings.resolution === resolution}
+                  label={BOOK_VIDEO_RESOLUTION_LABELS[resolution]}
+                  onClick={() =>
+                    onVideoSettingsChange({
+                      resolution,
+                    })
+                  }
+                />
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend className="text-sm font-semibold text-slate-700">
+              Visual intensity
+            </legend>
+            <div
+              className="mt-2 flex flex-wrap gap-2"
+              role="radiogroup"
+              aria-label="Video visual intensity"
+            >
+              {BOOK_VIDEO_INTENSITIES.map((intensity) => (
+                <VideoSettingButton
+                  key={intensity}
+                  active={videoSettings.intensity === intensity}
+                  label={BOOK_VIDEO_INTENSITY_LABELS[intensity]}
+                  onClick={() =>
+                    onVideoSettingsChange({
+                      intensity,
+                    })
+                  }
+                />
+              ))}
+            </div>
+          </fieldset>
+
+          <SliderRow
+            label="Video part duration"
+            value={videoSettings.targetPartMinutes}
+            min={1}
+            max={30}
+            step={1}
+            unit="min"
+            onChange={(value) =>
+              onVideoSettingsChange({
+                targetPartMinutes: value,
+              })
+            }
+          />
+        </div>
+      </div>
+
+      <div className="border-t border-slate-200/70 pt-5">
+        <h4 className="text-base font-extrabold text-sky-950">
+          Video options
+        </h4>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ExportCheckbox
+            label="Include audio track"
+            checked={videoSettings.includeAudioTrack && audioTrackAvailable}
+            disabled={!audioTrackAvailable}
+            onChange={(value) =>
+              onVideoSettingsChange({
+                includeAudioTrack: value,
+              })
+            }
+          />
+          <ExportCheckbox
+            label="Show Morse text overlay"
+            checked={videoSettings.showMorseOverlay}
+            onChange={(value) =>
+              onVideoSettingsChange({
+                showMorseOverlay: value,
+              })
+            }
+          />
+          <ExportCheckbox
+            label="Show small MorseWords branding"
+            checked={videoSettings.showBranding}
+            onChange={(value) =>
+              onVideoSettingsChange({
+                showBranding: value,
+              })
+            }
+          />
+        </div>
+        {!audioTrackAvailable ? (
+          <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+            {videoSupport?.audioTrackReason ??
+              "Checking audio-track support for video export."}
+          </p>
+        ) : null}
+      </div>
+
+      <div className="border-t border-slate-200/70 pt-5">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h4 className="text-base font-extrabold text-sky-950">
+              Timing and audio track
+            </h4>
+            <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+              Character speed and Farnsworth spacing use the same Morse timing
+              layer as audio export. Tone controls apply only when the video
+              includes an audio track.
+            </p>
+          </div>
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+            {videoSettings.includeAudioTrack && audioTrackAvailable
+              ? tonePresetLabel(exportSettings.tonePreset)
+              : "Silent video"}
+          </span>
+        </div>
+        <AudioSettingsPanel
+          className="mt-5"
+          context="bookExport"
+          disabledSound={!videoSettings.includeAudioTrack || !audioTrackAvailable}
+          idPrefix="book-download-video-audio"
+          preset={exportSettings.tonePreset}
+          onPresetChange={onTonePresetChange}
+          charWpm={exportSettings.charWpm}
+          onCharWpmChange={onCharWpmChange}
+          farnsworthWpm={exportSettings.farnsworthWpm}
+          onFarnsworthWpmChange={onFarnsworthWpmChange}
+          pitch={exportSettings.pitch}
+          onPitchChange={onPitchChange}
+          volume={exportSettings.volume}
+          onVolumeChange={onVolumeChange}
+        />
+      </div>
+    </div>
+  );
+}
+
+function VideoSettingButton({
+  active,
+  label,
+  onClick,
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      role="radio"
+      aria-checked={active}
+      onClick={onClick}
+      className={toolControlButtonClass({
+        active,
+        tone: active ? "dark" : "light",
+        size: "sm",
+        rounded: "full",
+        hover: "dark",
+      })}
+    >
+      {label}
+    </button>
+  );
+}
+
+function FullFrameFlashWarning({ className = "" }: { className?: string }) {
+  return (
+    <div
+      data-testid="book-video-full-frame-warning"
+      className={[
+        "flex items-start gap-2 text-sm leading-relaxed text-slate-700",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <WarningBadgeIcon
+        size={16}
+        title={undefined}
+        aria-hidden="true"
+        className="mt-0.5 shrink-0 text-sky-950"
+      />
+      <p>
+        <span className="font-extrabold text-sky-950">
+          Strobe warning:
+        </span>{" "}
+        {FULL_FRAME_FLASH_WARNING}
+      </p>
+    </div>
+  );
+}
+
+function BookVideoPreviewPanel({
+  className = "",
+  isPlaying = false,
+  preview,
+  resolvedBackgroundStyle,
+  settings,
+  visualStep = 0,
+}: {
+  className?: string;
+  isPlaying?: boolean;
+  preview: BookVideoPreview;
+  resolvedBackgroundStyle: "warm-morsewords" | "dark-morsewords";
+  settings: BookVideoSettings;
+  visualStep?: number;
+}) {
+  const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
+  const frameStyle = darkFrame
+    ? {
+        backgroundColor: "#020617",
+        color: "#e0f2fe",
+      }
+    : {
+        backgroundColor: "#fffdf8",
+        color: "#08324f",
+      };
+
+  return (
+    <section
+      data-testid="book-video-preview"
+      data-preview-playing={isPlaying ? "true" : "false"}
+      aria-labelledby="book-video-preview-heading"
+      className={["space-y-3", className].filter(Boolean).join(" ")}
+    >
+      <div
+        className="flex aspect-video min-h-[12rem] w-full max-w-[720px] flex-col justify-between rounded-xl p-4 sm:p-5"
+        style={frameStyle}
+        data-preview-playing={isPlaying ? "true" : "false"}
+      >
+        <h3
+          id="book-video-preview-heading"
+          className="text-sm font-extrabold"
+        >
+          Video preview
+        </h3>
+        <div className="flex min-h-[5rem] items-center justify-center">
+          <BookVideoPreviewVisual
+            isPlaying={isPlaying}
+            preview={preview}
+            settings={settings}
+            visualStep={visualStep}
+          />
+        </div>
+        {settings.showMorseOverlay ? (
+          <p
+            data-testid="book-video-preview-morse-overlay"
+            className="mt-3 break-words font-mono text-xs font-bold"
+          >
+            {preview.sampleMorse}
+          </p>
+        ) : null}
+        {settings.showBranding ? (
+          <p
+            data-testid="book-video-preview-branding"
+            className="mt-3 text-right font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80"
+          >
+            {preview.brandLabel}
+          </p>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+function BookVideoPreviewVisual({
+  isPlaying,
+  preview,
+  settings,
+  visualStep,
+}: {
+  isPlaying: boolean;
+  preview: BookVideoPreview;
+  settings: BookVideoSettings;
+  visualStep: number;
+}) {
+  const markActive = isPlaying && visualStep % 2 === 1;
+  const intensityClass =
+    settings.intensity === "high"
+      ? "opacity-100"
+      : settings.intensity === "low"
+        ? "opacity-60"
+        : "opacity-80";
+
+  if (settings.visualStyle === "dot") {
+    return (
+      <span
+        data-testid="book-video-preview-dot"
+        aria-label="Dot preview"
+        role="img"
+        className={[
+          "block h-12 w-12 rounded-full bg-sky-200",
+          intensityClass,
+          markActive ? "ring-4 ring-sky-200/50" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      />
+    );
+  }
+
+  if (settings.visualStyle === "full-frame") {
+    return (
+      <div
+        data-testid="book-video-preview-full-frame"
+        aria-label="Subdued full-frame flash preview"
+        role="img"
+        className={[
+          "h-16 w-16 rounded-full bg-sky-200/80",
+          intensityClass,
+          markActive ? "ring-4 ring-sky-200/50" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      />
+    );
+  }
+
+  if (settings.visualStyle === "morse-text") {
+    return (
+      <div
+        data-testid="book-video-preview-morse-text"
+        className={[
+          "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-lg font-bold tracking-normal",
+          markActive ? "text-sky-200" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        {preview.sampleMorse}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      data-testid="book-video-preview-lightbulb"
+      aria-label="Lightbulb preview"
+      role="img"
+      className={[
+        "text-sky-200",
+        intensityClass,
+        markActive ? "text-sky-100" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <LightBulbIcon size={54} title={undefined} aria-hidden="true" />
+    </div>
   );
 }
 
@@ -1358,18 +3709,25 @@ function LabeledSelect({
 
 function ExportCheckbox({
   checked,
+  disabled = false,
   label,
   onChange,
 }: {
   checked: boolean;
+  disabled?: boolean;
   label: string;
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-start gap-3 text-sm font-semibold text-slate-800">
+    <label
+      className={`flex items-start gap-3 text-sm font-semibold ${
+        disabled ? "cursor-not-allowed text-slate-400" : "cursor-pointer text-slate-800"
+      }`}
+    >
       <input
         type="checkbox"
         checked={checked}
+        disabled={disabled}
         onChange={(event) => onChange(event.target.checked)}
         className="mt-1 h-4 w-4 accent-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
       />
@@ -1379,29 +3737,5 @@ function ExportCheckbox({
 }
 
 function tonePresetLabel(value: string) {
-  switch (value) {
-    case "cw_radio":
-      return "CW radio tone";
-    case "sine":
-      return "Sine";
-    case "square":
-      return "Square";
-    case "triangle":
-      return "Triangle";
-    case "sawtooth":
-      return "Sawtooth";
-    case "sounder":
-      return "Telegraph sounder";
-    default:
-      return value;
-  }
-}
-
-function sampleExcerpt(text: string) {
-  const truncated = applyExportPunctuationMode(
-    text.slice(0, SAMPLE_EXPORT_CHARACTER_LIMIT),
-    DEFAULT_BOOK_EXPORT_SETTINGS,
-  );
-  const lastSpace = truncated.lastIndexOf(" ");
-  return (lastSpace > 160 ? truncated.slice(0, lastSpace) : truncated).trim();
+  return getAudioPresetLabel(value);
 }

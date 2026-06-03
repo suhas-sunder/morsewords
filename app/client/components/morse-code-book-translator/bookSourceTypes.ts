@@ -7,6 +7,21 @@ export type CleanupOptions = {
   simplifyPunctuation: boolean;
 };
 
+export type CustomCleanupRule = {
+  id: string;
+  enabled: boolean;
+  find: string;
+  replacement: string;
+  caseSensitive: boolean;
+  wholeWord: boolean;
+};
+
+export type CustomCleanupRuleMatch = {
+  id: string;
+  count: number;
+  active: boolean;
+};
+
 export type SourceMetadata = {
   sourceType: BookSourceType;
   filename?: string;
@@ -45,6 +60,7 @@ export type PreflightSummary = SourceMetadata & {
   unsupportedCharacters: UnsupportedCharacterSummary[];
   extractionWarnings: string[];
   cleanupWarnings: string[];
+  customRuleMatches: CustomCleanupRuleMatch[];
 };
 
 export class BookSourceError extends Error {
@@ -99,7 +115,9 @@ export function ensureTextLength(text: string) {
   }
 }
 
-export function detectFileSourceType(file: File): Exclude<BookSourceType, "pasted"> {
+export function detectFileSourceType(
+  file: File,
+): Exclude<BookSourceType, "pasted"> {
   const filename = file.name.toLowerCase();
   if (filename.endsWith(".txt")) return "txt";
   if (filename.endsWith(".md") || filename.endsWith(".markdown")) return "md";

@@ -166,11 +166,32 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Listen",
       },
       {
+        title: "Morse Code Sound Generator",
+        description:
+          "Shape Morse beeps and tone clips with WAV or MP3 export.",
+        href: ROUTES.soundGenerator,
+        badge: "Sound",
+      },
+      {
+        title: "Morse Code MP3 Generator",
+        description:
+          "Create a compact downloadable MP3 from text or typed Morse.",
+        href: ROUTES.mp3Generator,
+        badge: "MP3",
+      },
+      {
         title: "Book to Morse Code",
         description:
-          "Preflight long-form TXT, EPUB, and PDF sources before Morse conversion.",
+          "Convert long text, TXT, EPUB, or PDF into Morse audio or video downloads.",
         href: ROUTES.bookTranslator,
         badge: "Books",
+      },
+      {
+        title: "Morse Code Video Generator",
+        description:
+          "Create a downloadable Morse video from text or pasted Morse code.",
+        href: ROUTES.videoGenerator,
+        badge: "Video",
       },
       {
         title: "Word Search Builder",
