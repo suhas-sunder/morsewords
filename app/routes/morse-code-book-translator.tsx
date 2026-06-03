@@ -21,16 +21,24 @@ const TITLE = "Book to Morse Code Translator";
 const META_TITLE =
   "Book to Morse Code Translator | Long Text to Morse Audio";
 const DESCRIPTION =
-  "Convert long text, TXT, MD, EPUB, or text-native PDF to Morse code audio, estimate runtime, and download MP3/WAV or optional split ZIP locally.";
+  "Convert long text, TXT, MD, EPUB, or text-native PDF into Morse audiobook-style MP3/WAV files or WebM video locally, with cleanup and optional split ZIP parts.";
 
 const bookFaqItems = [
   {
+    q: "Can I make a Morse code audiobook?",
+    a: "Yes. You can turn readable long-form text into audiobook-style Morse listening files, then choose one MP3 or WAV file by default or split parts for easier practice sessions.",
+  },
+  {
     q: "Can I convert a whole book to Morse code audio?",
-    a: "Yes, when the source is readable text and your browser can handle the length. The tool estimates runtime first, then downloads one audio file by default or split parts when you turn splitting on.",
+    a: "Yes, when the source is readable text and your browser can handle the length. For very long books, chapters or timed parts are usually easier to render, download, resume, and review.",
+  },
+  {
+    q: "Can I convert a chapter instead of a full book?",
+    a: "Yes. A single chapter is often the best unit for Morse listening practice because it keeps the runtime manageable and makes cleanup easier to check before export.",
   },
   {
     q: "What file formats work best?",
-    a: "TXT, MD, and EPUB are usually the cleanest formats for long Morse audio. They keep paragraphs and chapters simpler than PDF, which often has page headers, line breaks, and extraction artifacts.",
+    a: "Pasted text, TXT, MD, and EPUB are usually the cleanest formats for long Morse audio. Text-native PDF can work too, but page layout often adds headers, footers, broken lines, or extraction artifacts.",
   },
   {
     q: "Can I upload EPUB files?",
@@ -45,8 +53,12 @@ const bookFaqItems = [
     a: "A PDF made from page images is a picture of text, not readable text. This page does not include OCR, so it cannot turn those images into Morse source text.",
   },
   {
-    q: "Is my uploaded book stored?",
-    a: "No. Source text, extracted text, cleaned text, Morse transcripts, audio, and video are processed locally in your browser. They are not uploaded to MorseWords servers, stored in a database, or saved to browser storage by this route.",
+    q: "Is my source uploaded to MorseWords servers?",
+    a: "No. MorseWords processes your source text and uploaded files locally in your browser. The book translator does not upload your source to MorseWords servers.",
+  },
+  {
+    q: "Is the source stored in a database or browser storage?",
+    a: "No database is used for this route. The book translator keeps source text in the current browser session while you work, and generated MP3, WAV, WebM, and ZIP files are not stored in browser storage.",
   },
   {
     q: "Can I edit extracted text before download?",
@@ -57,8 +69,16 @@ const bookFaqItems = [
     a: "Yes. Cleanup rules can remove repeated source phrases, normalize punctuation, and simplify text before the Morse conversion step.",
   },
   {
+    q: "What happens if the source is too large?",
+    a: "Very long sources can take time because extraction, cleanup, Morse timing, audio rendering, and video recording all run in the browser. If a full book feels slow, convert one chapter or a shorter section at a time.",
+  },
+  {
     q: "Why does the tool split long Morse audio into parts?",
     a: "Splitting keeps long practice files easier to download, sort, resume, and listen to. It is optional, and the default is one direct MP3 or WAV file.",
+  },
+  {
+    q: "Can I save the audio as one file?",
+    a: "Yes. No split is the default, so the normal download is one direct MP3 or WAV file when your browser can render it comfortably.",
   },
   {
     q: "Should I download MP3 or WAV?",
@@ -67,6 +87,10 @@ const bookFaqItems = [
   {
     q: "Can I create a Morse video from a book or long text?",
     a: "Yes. Video mode can create WebM output from long-form text, with optional splitting when the source is too long for one comfortable file.",
+  },
+  {
+    q: "Can I show the translated text in the video?",
+    a: "Yes. Video settings can show visual Morse only, plain text, Morse text, or both depending on the practice or demonstration style you want.",
   },
   {
     q: "What does the full-frame flash warning mean?",
@@ -107,6 +131,7 @@ const jsonLd = [
       "Text-native PDF source import",
       "Local MP3 and WAV download",
       "Optional split ZIP bundle",
+      "Morse audiobook-style practice files",
       "Long-form Morse video preview and WebM export",
       "Browser-local source processing",
     ],
@@ -136,6 +161,25 @@ const jsonLd = [
   },
 ];
 
+const longFormUseItems = [
+  {
+    title: "What this tool does",
+    text: "Convert long-form source text into Morse code audio or video. It is built for chapters, public-domain books, notes, lesson material, and passages that are too long for a normal translator.",
+  },
+  {
+    title: "Who it helps",
+    text: "Morse learners, teachers, and practice-file makers can turn readable source text into listening drills, long copy sessions, or Morse audiobook-style playback.",
+  },
+  {
+    title: "Book-to-audio workflow",
+    text: "Paste text or upload TXT, MD, EPUB, or text-native PDF, review the extracted source, estimate runtime, then export compact MP3, uncompressed WAV, or browser-native WebM video.",
+  },
+  {
+    title: "Long-form practice files",
+    text: "Use a chapter, public-domain reading passage, or personal notes to make Morse code listening practice files that can be repeated in short sessions.",
+  },
+];
+
 const howItWorksItems = [
   {
     title: "Load source text",
@@ -157,24 +201,28 @@ const howItWorksItems = [
 
 const sourceGuideItems = [
   {
+    title: "Pasted source text",
+    text: "Paste a chapter, notes, a training passage, or an excerpt directly when you already have clean text and want a fast long text to Morse code workflow.",
+  },
+  {
     title: "TXT and Markdown",
     text: "Plain text and simple Markdown are the most predictable sources for long text to Morse audio because headings, paragraphs, and punctuation are easy to review.",
   },
   {
     title: "EPUB books",
-    text: "Unprotected EPUB files can work well for chapters and public-domain books because the file includes a reading order. DRM ebooks are not supported.",
+    text: "Unprotected EPUB files can work well for chapters and public-domain books because the file includes a reading order. Protected or DRM ebooks are not supported.",
   },
   {
     title: "Text-native PDF",
-    text: "PDF import is best effort. It works when text is selectable, but page numbers, columns, headers, footers, and hyphenation can still need cleanup.",
+    text: "PDF import is best effort. It works when text is selectable, but page numbers, columns, headers, footers, hyphenation, and reading order can still need cleanup.",
   },
   {
     title: "Scanned PDF",
     text: "Image-only scans do not provide selectable text. This page does not run OCR, so use a text source when you want reliable Morse conversion.",
   },
   {
-    title: "Public-domain sources",
-    text: "Project Gutenberg texts are a practical fit when the work is public domain for your use. Cleanup can remove repeated boilerplate before export.",
+    title: "DRM and protected ebooks",
+    text: "The page reads ordinary browser-accessible files. It does not bypass DRM, unlock protected ebooks, fetch remote URLs, or process books from cloud accounts.",
   },
   {
     title: "Review before export",
@@ -188,12 +236,8 @@ const audioGuideItems = [
     text: "The default download is one MP3 or WAV, not a ZIP. Splitting is opt-in for sources that are too long for one convenient listening file.",
   },
   {
-    title: "Split when useful",
-    text: "Optional splitting can create sorted parts at the interval you choose, with sidecars such as transcripts or settings only when you ask for them.",
-  },
-  {
     title: "MP3 for long listening",
-    text: "MP3 is usually the right format for books and chapters because it keeps file size manageable while preserving practice timing.",
+    text: "MP3 is usually the right format for books, chapters, and Morse audiobook-style practice because it keeps file size manageable while preserving timing.",
     href: ROUTES.mp3Generator,
     badge: "MP3",
   },
@@ -202,6 +246,16 @@ const audioGuideItems = [
     text: "WAV is uncompressed and can become large quickly, but it is useful when you plan to edit the audio outside the browser.",
     href: ROUTES.audio,
     badge: "WAV",
+  },
+  {
+    title: "Lower bitrates can work",
+    text: "Morse is a simple tone, not full music. Lower MP3 bitrates are often usable for practice, especially when you are trying to keep long files compact.",
+  },
+  {
+    title: "Duration drives size",
+    text: "Speed, Farnsworth spacing, word gaps, tail padding, and split settings affect runtime. Longer runtime usually means larger MP3, WAV, or ZIP downloads.",
+    href: ROUTES.timing,
+    badge: "Timing",
   },
   {
     title: "Speed and spacing",
@@ -217,18 +271,53 @@ const audioGuideItems = [
   },
 ];
 
+const splitGuideItems = [
+  {
+    title: "No split",
+    text: "No split is the default. Use it when you want one direct MP3 or WAV file and the estimated runtime is comfortable for your browser and listening plan.",
+  },
+  {
+    title: "Split by duration",
+    text: "Duration splitting makes parts around the target length you choose, which is useful for daily listening, classroom drills, or shorter repeatable practice sessions.",
+  },
+  {
+    title: "Split by source sections",
+    text: "When uploaded source sections are available, the tool can use those hints. EPUB spine order is helpful, but extracted book chapters are not always perfectly preserved.",
+  },
+  {
+    title: "Why chapters can be hard",
+    text: "Books do not all mark chapters the same way. PDF layout, front matter, and repeated headings can blur the boundary between a chapter title and ordinary text.",
+  },
+  {
+    title: "Why parts help",
+    text: "Parts make long Morse listening files easier to resume, sort, repeat, and move between devices without committing to one very large export.",
+  },
+  {
+    title: "When ZIP appears",
+    text: "A ZIP bundle is used when multiple media parts or requested sidecar files need to travel together. A single audio file stays a direct download when possible.",
+  },
+];
+
 const cleanupGuideItems = [
+  {
+    title: "Edit extracted source",
+    text: "Use edit mode after extraction to remove front matter, repair broken lines, rename chapter headings, or keep only the passage you actually want to hear.",
+  },
+  {
+    title: "Custom cleanup rules",
+    text: "Replacement rules can remove repeated source phrases or change text before conversion, which is helpful when a PDF repeats the same header or footer on every page.",
+  },
+  {
+    title: "Project Gutenberg boilerplate",
+    text: "Public-domain texts often include license, title, and ending sections. Strip or trim any boilerplate you do not want repeated in your Morse practice file.",
+  },
   {
     title: "Normalize punctuation",
     text: "Long texts often contain smart quotes, dashes, ellipses, footnote markers, or symbols that do not belong in practice audio.",
   },
   {
-    title: "Remove repeated text",
-    text: "Headers, footers, boilerplate, and repeated phrases can be removed before conversion so they do not appear every few pages.",
-  },
-  {
-    title: "Edit source text",
-    text: "Use edit mode for chapter titles, line breaks, or extraction problems. The cleaned source is what becomes Morse audio or video.",
+    title: "Unsupported characters",
+    text: "If characters cannot be represented in the current Morse output, review them before export. Replace important words rather than leaving confusing gaps.",
   },
   {
     title: "Check word breaks",
@@ -240,8 +329,16 @@ const cleanupGuideItems = [
 
 const videoGuideItems = [
   {
-    title: "Long-form video",
-    text: "Video mode uses the same cleaned source and timing settings to create Morse video output for longer passages.",
+    title: "Browser-native WebM",
+    text: "Video mode exports WebM because that is the browser-native recording format available without uploading the job to a server renderer.",
+  },
+  {
+    title: "Visual Morse styles",
+    text: "Choose lightbulb, dot, full-frame flash, or animated Morse text depending on whether the video is for practice, demonstration, or visual reference.",
+  },
+  {
+    title: "Text display modes",
+    text: "Optional plain text and Morse text overlays can help viewers follow a long passage, compare source to code, or focus on signal-only practice.",
   },
   {
     title: "Short-form clips",
@@ -257,24 +354,86 @@ const videoGuideItems = [
     title: "WebM expectations",
     text: "Browser video recording is WebM-first. MP4 is not guaranteed because this page does not run a heavy server renderer or ffmpeg/WASM encoder.",
   },
+  {
+    title: "Browser support varies",
+    text: "Long video exports depend on MediaRecorder, canvas capture, device performance, and browser codec support. Audio is usually the simpler long-form export.",
+  },
 ];
 
-const responsibilityItems = [
+const privacyRightsItems = [
   {
-    title: "Local processing",
-    text: "MorseWords processes your source text locally in your browser. Your text and uploaded files are not uploaded to MorseWords servers or stored in a database. This route keeps source text in the page session only; site settings can clear source saved by other tools.",
+    title: "Local browser processing",
+    text: "MorseWords processes your source text locally in your browser. Your text and uploaded files are not uploaded to MorseWords servers or stored in a database. If source saving is enabled for supported tools, saved source is stored only in this browser on this device and can be cleared from site settings.",
+  },
+  {
+    title: "Book route session scope",
+    text: "For this book translator route, source text stays in the current browser session while the page is open. It is not saved to localStorage or sessionStorage by this route.",
+  },
+  {
+    title: "Generated media is not stored",
+    text: "Generated MP3, WAV, WebM, and ZIP files are created for download. They are not stored in browser storage, and uploaded source files are not sent to MorseWords servers.",
   },
   {
     title: "Use text you can use",
     text: "You are responsible for the source content you upload or paste, including copyright, license, school, workplace, or publication rules.",
   },
   {
-    title: "No OCR or DRM bypass",
-    text: "The page does not read scanned images, bypass DRM, fetch remote URLs, or promise perfect PDF extraction.",
+    title: "Public-domain sources",
+    text: "Project Gutenberg and other public-domain works are a good fit when the text is available for your intended use. Check the source terms before sharing exports.",
   },
   {
-    title: "Practical examples",
-    text: "Try a public-domain chapter, a classroom reading passage, your own notes, or a short article you have permission to convert.",
+    title: "No rights advice",
+    text: "MorseWords helps with local conversion, not legal clearance. When in doubt, use your own writing, licensed material, or public-domain passages.",
+  },
+];
+
+const workflowGuideItems = [
+  {
+    title: "Project Gutenberg chapter to MP3",
+    text: "Paste or upload a public-domain chapter, remove the Gutenberg header or footer if it appears in the excerpt, choose MP3, estimate the runtime, and download one listening file.",
+  },
+  {
+    title: "Practice audiobook",
+    text: "Convert a public-domain story or a few chapters into shorter Morse audio parts so you can repeat one section until the rhythm feels familiar.",
+  },
+  {
+    title: "Class notes to listening practice",
+    text: "Paste your own notes, simplify punctuation, and export compact audio for spaced review while walking, commuting, or doing short listening sessions.",
+  },
+  {
+    title: "Long passage to video",
+    text: "Switch to video mode when you need a visual Morse demonstration. Use text display options when viewers should see the source, the Morse, or both.",
+  },
+  {
+    title: "Daily spaced parts",
+    text: "Split a long text by target duration to create a sequence of practice parts, then repeat one part per day before moving to the next.",
+  },
+];
+
+const limitationsGuideItems = [
+  {
+    title: "No OCR",
+    text: "Scanned PDF pages and image-only books are not converted because this route does not perform optical character recognition.",
+  },
+  {
+    title: "No DRM extraction",
+    text: "Protected ebooks are outside the tool's scope. Use readable text, unprotected EPUB, TXT, MD, or text-native PDF sources.",
+  },
+  {
+    title: "PDF extraction can be imperfect",
+    text: "PDFs preserve page layout more than reading order. Columns, page numbers, hyphenation, headers, and footers may need manual cleanup.",
+  },
+  {
+    title: "Very long output takes time",
+    text: "Book-length audio and especially video can take noticeable browser time. Chapters, excerpts, and split parts are easier to render and check.",
+  },
+  {
+    title: "MP4 is not guaranteed",
+    text: "Video export is WebM-first because it uses browser recording APIs. Browser and codec support determine whether a WebM export can be created.",
+  },
+  {
+    title: "Full-frame flash needs care",
+    text: "Full-frame flash can be uncomfortable or unsafe for some viewers, including people with photosensitive epilepsy or light sensitivity.",
   },
 ];
 
@@ -288,7 +447,7 @@ export const meta: Route.MetaFunction = () =>
     description: DESCRIPTION,
     path: CANONICAL_PATH,
     keywords:
-      "book to Morse code, long text to Morse audio, text file to Morse code audio, EPUB to Morse audio, PDF to Morse audio, Morse code MP3 WAV download",
+      "book to Morse code, book to Morse audio, Morse code audiobook, long text to Morse audio, Project Gutenberg to Morse code, EPUB to Morse audio, PDF to Morse audio, TXT file to Morse code audio, Morse code MP3 WAV WebM download",
   });
 
 export default function MorseCodeBookTranslatorRoute() {
@@ -318,7 +477,16 @@ export default function MorseCodeBookTranslatorRoute() {
       <BookTranslatorTool />
 
       <SectionCard
-        eyebrow="Long-form workflow"
+        eyebrow="Long-form guide"
+        title="Turn books, chapters, and long text into Morse practice files"
+        description="Use this page when a normal translator is too small for the job. It is meant for readable source text, longer listening practice, and local audio or video export."
+        layout="stacked"
+      >
+        <SimpleGrid items={longFormUseItems} variant="plain" />
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="Workflow"
         title="How book downloads work"
         description="The page extracts readable text locally, estimates Morse timing, and renders a direct audio file by default. Optional splitting creates timed parts when that fits your workflow."
         layout="stacked"
@@ -327,8 +495,8 @@ export default function MorseCodeBookTranslatorRoute() {
       </SectionCard>
 
       <SectionCard
-        eyebrow="Book to Morse guide"
-        title="Choose a source that will convert cleanly"
+        eyebrow="Source types"
+        title="Supported source types for long text"
         description="Book-length Morse works best when the source already contains real text. The cleaner the source, the cleaner the Morse audio, transcript, and video preview."
         layout="stacked"
       >
@@ -337,8 +505,8 @@ export default function MorseCodeBookTranslatorRoute() {
 
       <SectionCard
         eyebrow="Audio download"
-        title="One audio file by default, split parts by choice"
-        description="Use direct MP3 or WAV export for normal long text to Morse audio. Turn on splitting only when the source is long enough that smaller listening parts are more useful."
+        title="Choose MP3 or WAV for long Morse audio"
+        description="Use direct MP3 or WAV export for normal long text to Morse audio. Morse audio is simpler than music, so compact MP3 settings can still be useful for long practice files."
         layout="stacked"
       >
         <SimpleGrid
@@ -346,6 +514,15 @@ export default function MorseCodeBookTranslatorRoute() {
           variant="plain"
           linkedItemStyle="inline"
         />
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="Splitting"
+        title="Make long Morse output easier to listen to"
+        description="Splitting is optional. Use it when a full book, chapter collection, or long training text is easier to handle as several named parts."
+        layout="stacked"
+      >
+        <SimpleGrid items={splitGuideItems} variant="plain" />
       </SectionCard>
 
       <SectionCard
@@ -362,7 +539,7 @@ export default function MorseCodeBookTranslatorRoute() {
       </SectionCard>
 
       <SectionCard
-        eyebrow="Long video"
+        eyebrow="Video output"
         title="Book text can also become Morse video"
         description="Video mode is useful for demonstrations and visual practice, but long exports should stay deliberate because video files take more browser work than audio."
         layout="stacked"
@@ -376,11 +553,29 @@ export default function MorseCodeBookTranslatorRoute() {
 
       <SectionCard
         eyebrow="Privacy and rights"
-        title="Use source text responsibly"
+        title="Private local processing and source responsibility"
         description="MorseWords gives you local tools for conversion. You choose the source and remain responsible for whether that source is appropriate to process, download, and share."
         layout="stacked"
       >
-        <SimpleGrid items={responsibilityItems} variant="plain" />
+        <SimpleGrid items={privacyRightsItems} variant="plain" />
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="Workflows"
+        title="Practical long-form Morse workflows"
+        description="A good book-to-Morse workflow starts small: choose a clean chapter or excerpt, review the source, then export a file length you will actually practice with."
+        layout="stacked"
+      >
+        <SimpleGrid items={workflowGuideItems} variant="plain" />
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="Limitations"
+        title="Limits to plan around"
+        description="Long-form browser export is useful, but it still depends on readable source text, local device performance, and browser media support."
+        layout="stacked"
+      >
+        <SimpleGrid items={limitationsGuideItems} variant="plain" />
       </SectionCard>
 
       <div id="faq">

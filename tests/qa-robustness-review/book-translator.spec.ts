@@ -555,6 +555,62 @@ test("book translator route metadata, alias, and sitemap use canonical URL", asy
   expect(sitemap).not.toContain(absoluteUrl(ALIAS_PATH));
 });
 
+test("expanded SEO guide covers long-form workflows and dark-mode copy", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    window.localStorage.setItem("morsewords-theme", "dark");
+    document.documentElement.dataset.theme = "dark";
+  });
+  await openBookTranslator(page);
+
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(
+    page.getByRole("heading", {
+      name: "Turn books, chapters, and long text into Morse practice files",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Supported source types for long text" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      name: "Choose MP3 or WAV for long Morse audio",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      name: "Make long Morse output easier to listen to",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      name: "Practical long-form Morse workflows",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Limits to plan around" }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Morse audiobook-style playback").first(),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Project Gutenberg chapter to MP3").first(),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Generated MP3, WAV, WebM, and ZIP files").first(),
+  ).toBeVisible();
+  await expect(
+    page
+      .getByText(
+        "MorseWords processes your source text locally in your browser.",
+      )
+      .first(),
+  ).toBeVisible();
+  await expect(page.getByText("No OCR").first()).toBeVisible();
+  await expect(page.getByText("MP4 is not guaranteed").first()).toBeVisible();
+});
+
 test("pasted text review reports unsupported characters and avoids localStorage", async ({
   page,
 }) => {
