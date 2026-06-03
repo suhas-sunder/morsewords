@@ -94,6 +94,124 @@ async function expectCleanControlFocus(locator: Locator) {
   expect(focused.boxShadow).toContain("inset");
 }
 
+function parseRgb(value: string) {
+  const hex = value.match(/^#([0-9a-f]{6})$/i);
+  if (hex) {
+    return [
+      Number.parseInt(hex[1].slice(0, 2), 16),
+      Number.parseInt(hex[1].slice(2, 4), 16),
+      Number.parseInt(hex[1].slice(4, 6), 16),
+    ] as const;
+  }
+
+  const match = value.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (!match) {
+    const oklch = value.match(
+      /oklch\(\s*([0-9.]+%?)\s+([0-9.]+)\s+([0-9.]+)/,
+    );
+    if (oklch) {
+      const lightness = oklch[1].endsWith("%")
+        ? Number.parseFloat(oklch[1]) / 100
+        : Number.parseFloat(oklch[1]);
+      const chroma = Number.parseFloat(oklch[2]);
+      const hue = (Number.parseFloat(oklch[3]) * Math.PI) / 180;
+      const okA = chroma * Math.cos(hue);
+      const okB = chroma * Math.sin(hue);
+      const lPrime = lightness + 0.3963377774 * okA + 0.2158037573 * okB;
+      const mPrime = lightness - 0.1055613458 * okA - 0.0638541728 * okB;
+      const sPrime = lightness - 0.0894841775 * okA - 1.291485548 * okB;
+      const l = lPrime ** 3;
+      const m = mPrime ** 3;
+      const s = sPrime ** 3;
+      const linear = [
+        4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+        -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+        -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
+      ];
+      return linear.map((channel) => {
+        const value =
+          channel <= 0.0031308
+            ? 12.92 * channel
+            : 1.055 * channel ** (1 / 2.4) - 0.055;
+        return Math.round(Math.max(0, Math.min(1, value)) * 255);
+      }) as [number, number, number];
+    }
+    throw new Error(`Expected a parseable color, received ${value}`);
+  }
+  return [Number(match[1]), Number(match[2]), Number(match[3])] as const;
+}
+
+function relativeLuminance([red, green, blue]: readonly number[]) {
+  const [r, g, b] = [red, green, blue].map((channel) => {
+    const normalized = channel / 255;
+    return normalized <= 0.03928
+      ? normalized / 12.92
+      : ((normalized + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function contrastRatio(colorA: string, colorB: string) {
+  const first = relativeLuminance(parseRgb(colorA));
+  const second = relativeLuminance(parseRgb(colorB));
+  const lighter = Math.max(first, second);
+  const darker = Math.min(first, second);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+async function readComputedColor(
+  locator: Locator,
+  property: "backgroundColor" | "color",
+) {
+  return locator.evaluate((element, cssProperty) => {
+    const value = window.getComputedStyle(element)[cssProperty];
+    const canvas = element.ownerDocument.createElement("canvas");
+    const context = canvas.getContext("2d");
+    if (!context) return value;
+    context.fillStyle = "#000000";
+    context.fillStyle = value;
+    return context.fillStyle;
+  }, property);
+}
+
+async function readOutputColorSnapshot(panel: Locator, text: Locator) {
+  return {
+    panelBackgroundColor: await readComputedColor(panel, "backgroundColor"),
+    textColor: await readComputedColor(text, "color"),
+  };
+}
+
+async function expectStableReadableOutputPanel({
+  focusTarget,
+  panel,
+  text,
+}: {
+  focusTarget?: Locator;
+  panel: Locator;
+  text: Locator;
+}) {
+  const before = await readOutputColorSnapshot(panel, text);
+  expect(
+    contrastRatio(before.panelBackgroundColor, before.textColor),
+  ).toBeGreaterThan(7);
+
+  await panel.hover();
+  if (focusTarget) {
+    await focusTarget.focus();
+    await expect(focusTarget).toBeFocused();
+    await focusTarget.click();
+  } else {
+    await panel.click();
+  }
+
+  const after = await readOutputColorSnapshot(panel, text);
+  expect(after.panelBackgroundColor).toBe(before.panelBackgroundColor);
+  expect(after.textColor).toBe(before.textColor);
+  expect(
+    contrastRatio(after.panelBackgroundColor, after.textColor),
+  ).toBeGreaterThan(7);
+}
+
 test("shared UI control primitives keep accessibility and disabled-state contracts", () => {
   for (const filePath of sharedComponentFiles) {
     expect(fs.existsSync(path.join(ROOT, filePath)), filePath).toBe(true);
@@ -109,6 +227,12 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
   expect(appCss).toMatch(
     /\.mw-page-content\s+:where\(input\[type="range"\]\):focus-visible/,
   );
+  expect(appCss).toMatch(
+    /\.mw-page-content\s+:where\(\.mw-panel-dark, \.mw-output-panel\):where\(:hover, :focus-within\)/,
+  );
+  expect(appCss).toMatch(
+    /:where\(textarea\[readonly\], textarea\[readonly\]:focus, textarea\[readonly\]:focus-visible\)\s*\{[^}]*background-color: transparent !important;/s,
+  );
   expect(appCss).toMatch(/--mw-focus-control-inset:/);
   expect(appCss).not.toMatch(/:focus-visible\s*\{[^}]*outline:\s*2px/s);
 
@@ -121,18 +245,20 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
   expect(togglePill).toContain("disabled={disabled}");
   expect(togglePill).toContain("onChange(!checked)");
 
-  const sliderRow = readRepoFile("app/client/components/shared/ui/SliderRow.tsx");
+  const sliderRow = readRepoFile(
+    "app/client/components/shared/ui/SliderRow.tsx",
+  );
   expect(sliderRow).toContain("React.useId()");
   expect(sliderRow).toContain("htmlFor={inputId}");
-  expect(sliderRow).toContain("type=\"range\"");
+  expect(sliderRow).toContain('type="range"');
   expect(sliderRow).toContain("disabled={disabled}");
   expect(sliderRow).toContain("cursor-not-allowed");
 
   const statusMessage = readRepoFile(
     "app/client/components/shared/ui/StatusMessage.tsx",
   );
-  expect(statusMessage).toContain("role={kind === \"error\" ? \"alert\"");
-  expect(statusMessage).toContain("aria-live={live && kind !== \"error\"");
+  expect(statusMessage).toContain('role={kind === "error" ? "alert"');
+  expect(statusMessage).toContain('aria-live={live && kind !== "error"');
 });
 
 test("targeted routes reuse shared controls instead of route-local copies", () => {
@@ -140,7 +266,9 @@ test("targeted routes reuse shared controls instead of route-local copies", () =
     const source = readRepoFile(filePath);
     expect(source, filePath).not.toContain("function TogglePill(");
     expect(source, filePath).not.toContain("function SliderRow(");
-    expect(source, filePath).not.toContain('style={{ accentColor: "#38bdf8" }}');
+    expect(source, filePath).not.toContain(
+      'style={{ accentColor: "#38bdf8" }}',
+    );
   }
 });
 
@@ -231,9 +359,15 @@ test.describe("shared route controls", () => {
   }) => {
     const cases = [
       { route: "/", label: "Input (Text)" },
-      { route: "/morse-code-book-translator", label: "Paste long-form source text" },
+      {
+        route: "/morse-code-book-translator",
+        label: "Paste long-form source text",
+      },
       { route: "/audio", label: "Input (Text)" },
-      { route: "/morse-code-mp3-generator", label: "Message to turn into MP3 audio" },
+      {
+        route: "/morse-code-mp3-generator",
+        label: "Message to turn into MP3 audio",
+      },
       { route: "/morse-code-word-separator", label: "Paste Morse" },
     ] as const;
 
@@ -279,6 +413,67 @@ test.describe("shared route controls", () => {
     });
     await waitForRouteReady(page);
     await expectCleanFieldFocus(page.getByLabel("Sample rate").first());
+  });
+
+  test("output panels stay dark and readable on hover, click, and focus", async ({
+    page,
+  }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await page.getByLabel("Input (Text)").fill("HELLO WORLD");
+    const homeOutput = page.locator("#mw_output");
+    await expect(homeOutput).toHaveValue(/\.{4}/);
+    await expectStableReadableOutputPanel({
+      focusTarget: homeOutput,
+      panel: homeOutput.locator(
+        "xpath=ancestor::div[contains(@class, 'mw-panel-dark')][1]",
+      ),
+      text: homeOutput,
+    });
+
+    await page.goto("/audio", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await page.getByLabel("Input (Text)").fill("HELLO WORLD");
+    const audioPanel = page
+      .locator(".mw-output-panel")
+      .filter({ hasText: "Output (Morse)" })
+      .first();
+    await expect(audioPanel).toBeVisible();
+    await expectStableReadableOutputPanel({
+      panel: audioPanel,
+      text: audioPanel.locator("pre").first(),
+    });
+
+    await page.goto("/morse-code-word-separator", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+    await page.getByLabel("Paste Morse").fill(".... . .-.. .-.. ---");
+    const separatorPanel = page.locator(".mw-output-panel").first();
+    await expect(separatorPanel).toBeVisible();
+    await expectStableReadableOutputPanel({
+      panel: separatorPanel,
+      text: separatorPanel.locator("pre").first(),
+    });
+
+    await page.goto("/morse-code-book-translator", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+    await page
+      .getByLabel("Paste long-form source text")
+      .fill("HELLO WORLD SOS HELP");
+    const bookPanel = page
+      .locator(
+        "section[aria-label='Book source review and download tool'] .mw-output-panel",
+      )
+      .filter({ hasText: "Morse preview" })
+      .first();
+    await expect(bookPanel).toBeVisible();
+    await expectStableReadableOutputPanel({
+      panel: bookPanel,
+      text: bookPanel.locator("pre").first(),
+    });
   });
 
   test("disabled controls remain disabled and do not look clickable", async ({

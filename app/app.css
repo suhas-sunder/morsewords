@@ -1190,6 +1190,20 @@ main *::after {
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
+.mw-page-content :where(.mw-panel-dark, .mw-output-panel):where(:hover, :focus-within) {
+  background: var(--mw-panel-dark) !important;
+  color: var(--mw-output-text) !important;
+}
+
+.mw-page-content
+  :where(.mw-panel-dark, .mw-output-panel)
+  :where(textarea[readonly], textarea[readonly]:focus, textarea[readonly]:focus-visible) {
+  background-color: transparent !important;
+  color: var(--mw-output-text) !important;
+  caret-color: var(--mw-accent);
+  box-shadow: none !important;
+}
+
 .mw-page-content
   :where(input[type="checkbox"], input[type="radio"]):focus-visible {
   accent-color: var(--mw-accent) !important;

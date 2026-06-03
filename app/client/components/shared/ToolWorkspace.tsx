@@ -250,7 +250,7 @@ export function ToolOutputPanel({
 }) {
   return (
     <div
-      className={["mw-panel-dark overflow-hidden rounded-xl bg-slate-950", className]
+      className={["mw-panel-dark mw-output-panel overflow-hidden rounded-xl bg-slate-950", className]
         .filter(Boolean)
         .join(" ")}
     >
