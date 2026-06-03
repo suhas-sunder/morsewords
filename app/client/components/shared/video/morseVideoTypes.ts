@@ -15,6 +15,12 @@ export type MorseVideoBackgroundStyle =
 
 export type MorseVideoIntensity = "low" | "medium" | "high";
 
+export type MorseVideoTextDisplayMode =
+  | "none"
+  | "morse"
+  | "text"
+  | "both";
+
 export type MorseVideoSettings = {
   visualStyle: MorseVideoVisualStyle;
   includeAudioTrack: boolean;
@@ -22,6 +28,7 @@ export type MorseVideoSettings = {
   backgroundStyle: MorseVideoBackgroundStyle;
   intensity: MorseVideoIntensity;
   showMorseOverlay: boolean;
+  textDisplayMode: MorseVideoTextDisplayMode;
   showBranding: boolean;
   targetPartMinutes: number;
 };
@@ -55,6 +62,13 @@ export const MORSE_VIDEO_INTENSITIES = [
   "high",
 ] as const satisfies readonly MorseVideoIntensity[];
 
+export const MORSE_VIDEO_TEXT_DISPLAY_MODES = [
+  "none",
+  "morse",
+  "text",
+  "both",
+] as const satisfies readonly MorseVideoTextDisplayMode[];
+
 export const DEFAULT_MORSE_VIDEO_SETTINGS: MorseVideoSettings = {
   visualStyle: "lightbulb",
   includeAudioTrack: true,
@@ -62,6 +76,7 @@ export const DEFAULT_MORSE_VIDEO_SETTINGS: MorseVideoSettings = {
   backgroundStyle: "site-theme",
   intensity: "medium",
   showMorseOverlay: true,
+  textDisplayMode: "morse",
   showBranding: true,
   targetPartMinutes: 8,
 };
@@ -92,9 +107,26 @@ export function isMorseVideoIntensity(
   return MORSE_VIDEO_INTENSITIES.includes(value as MorseVideoIntensity);
 }
 
+export function isMorseVideoTextDisplayMode(
+  value: unknown,
+): value is MorseVideoTextDisplayMode {
+  return MORSE_VIDEO_TEXT_DISPLAY_MODES.includes(
+    value as MorseVideoTextDisplayMode,
+  );
+}
+
 export function sanitizeMorseVideoSettings(
   settings: Partial<MorseVideoSettings>,
 ): MorseVideoSettings {
+  const textDisplayMode = isMorseVideoTextDisplayMode(settings.textDisplayMode)
+    ? settings.textDisplayMode
+    : settings.showMorseOverlay === false
+      ? "none"
+      : DEFAULT_MORSE_VIDEO_SETTINGS.textDisplayMode;
+
+  const showMorseOverlay =
+    textDisplayMode === "morse" || textDisplayMode === "both";
+
   return {
     visualStyle: isMorseVideoVisualStyle(settings.visualStyle)
       ? settings.visualStyle
@@ -112,10 +144,8 @@ export function sanitizeMorseVideoSettings(
     intensity: isMorseVideoIntensity(settings.intensity)
       ? settings.intensity
       : DEFAULT_MORSE_VIDEO_SETTINGS.intensity,
-    showMorseOverlay: Boolean(
-      settings.showMorseOverlay ??
-        DEFAULT_MORSE_VIDEO_SETTINGS.showMorseOverlay,
-    ),
+    showMorseOverlay,
+    textDisplayMode,
     showBranding: Boolean(
       settings.showBranding ?? DEFAULT_MORSE_VIDEO_SETTINGS.showBranding,
     ),

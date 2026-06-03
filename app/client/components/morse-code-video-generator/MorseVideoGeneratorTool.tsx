@@ -86,6 +86,7 @@ import {
   sanitizeMorseVideoSettings,
   type MorseVideoBackgroundStyle,
   type MorseVideoSettings,
+  type MorseVideoTextDisplayMode,
 } from "~/client/components/shared/video/morseVideoTypes";
 
 type SourceMode = "text" | "morse";
@@ -303,10 +304,26 @@ export default function MorseVideoGeneratorTool() {
 
   const updateVideoSettings = React.useCallback(
     (patch: Partial<MorseVideoSettings>) => {
+      const normalizedPatch =
+        patch.textDisplayMode !== undefined
+          ? {
+              ...patch,
+              showMorseOverlay:
+                patch.textDisplayMode === "morse" ||
+                patch.textDisplayMode === "both",
+            }
+          : patch.showMorseOverlay !== undefined
+            ? {
+                ...patch,
+                textDisplayMode: (patch.showMorseOverlay
+                  ? "morse"
+                  : "none") as MorseVideoTextDisplayMode,
+              }
+            : patch;
       setVideoSettings((current) =>
         sanitizeMorseVideoSettings({
           ...current,
-          ...patch,
+          ...normalizedPatch,
         }),
       );
     },
@@ -388,6 +405,7 @@ export default function MorseVideoGeneratorTool() {
       const result = await createMorseVideoBlob({
         audioSettings,
         morse: activeMorse,
+        text: activeText,
         resolvedBackgroundStyle,
         settings: effectiveVideoSettings,
         signal: controller.signal,
@@ -912,7 +930,10 @@ function VideoSettingsEditor({
             checked={settings.showMorseOverlay}
             label="Show Morse text overlay"
             onChange={(value) =>
-              onVideoSettingsChange({ showMorseOverlay: value })
+              onVideoSettingsChange({
+                showMorseOverlay: value,
+                textDisplayMode: value ? "morse" : "none",
+              })
             }
             rounded="lg"
           />

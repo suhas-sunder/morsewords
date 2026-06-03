@@ -16,6 +16,7 @@ export type MorseVideoBlobResult = {
 export async function createMorseVideoBlob({
   audioSettings,
   morse,
+  text,
   resolvedBackgroundStyle,
   settings,
   signal,
@@ -24,6 +25,7 @@ export async function createMorseVideoBlob({
 }: {
   audioSettings: MorseVideoAudioSettings;
   morse: string;
+  text?: string;
   resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
   settings: MorseVideoSettings;
   signal: AbortSignal;
@@ -43,7 +45,7 @@ export async function createMorseVideoBlob({
   canvas.width = frame.width;
   canvas.height = frame.height;
 
-  const timeline = buildMorseVideoTimelineFromMorse(morse, audioSettings);
+  const timeline = buildMorseVideoTimelineFromMorse(morse, audioSettings, text);
   const blob = await recordMorseVideoCanvas({
     audioSettings,
     canvas,

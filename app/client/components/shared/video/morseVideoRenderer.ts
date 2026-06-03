@@ -43,6 +43,7 @@ export type MorseVideoTimedEvent = {
 export type MorseVideoTimeline = {
   events: MorseVideoTimedEvent[];
   morse: string;
+  text: string;
   durationMs: number;
   tailPaddingMs: number;
 };
@@ -75,6 +76,7 @@ export function getMorseVideoFrameRate() {
 export function buildMorseVideoTimelineFromMorse(
   morse: string,
   audioSettings: MorseVideoAudioSettings,
+  text = "",
 ): MorseVideoTimeline {
   const normalizedMorse = normalizePlayableMorse(morse);
   const timedEvents: MorseVideoTimedEvent[] = [];
@@ -98,6 +100,7 @@ export function buildMorseVideoTimelineFromMorse(
   return {
     events: timedEvents,
     morse: normalizedMorse,
+    text: normalizeFrameText(text),
     durationMs: Math.max(MIN_VIDEO_MS, cursorMs + tailPaddingMs),
     tailPaddingMs,
   };
@@ -252,13 +255,22 @@ export function renderMorseVideoFrame({
   } else if (settings.visualStyle === "full-frame") {
     drawFullFrameSignal(ctx, frame, active, accent, muted, settings.intensity);
   } else if (settings.visualStyle === "morse-text") {
-    drawAnimatedMorseText(ctx, frame, timeline, elapsedMs, text, accent, muted);
+    drawAnimatedMorseText(
+      ctx,
+      frame,
+      timeline,
+      elapsedMs,
+      text,
+      accent,
+      muted,
+      settings.textDisplayMode,
+    );
   } else {
     drawLightbulb(ctx, frame, active, accent, muted, settings.intensity);
   }
 
-  if (settings.showMorseOverlay && settings.visualStyle !== "morse-text") {
-    drawMorseOverlay(ctx, frame, timeline.morse, text, muted, padding);
+  if (settings.visualStyle !== "morse-text") {
+    drawTextDisplay(ctx, frame, timeline, elapsedMs, settings, text, muted, padding);
   }
 
   if (settings.showBranding) {
@@ -502,6 +514,7 @@ function drawAnimatedMorseText(
   text: string,
   accent: string,
   muted: string,
+  textDisplayMode: MorseVideoSettings["textDisplayMode"],
 ) {
   const symbols = recentMorseSymbols(timeline, elapsedMs, 44);
   ctx.textAlign = "center";
@@ -516,6 +529,15 @@ function drawAnimatedMorseText(
     frame.width / 2,
     frame.height / 2 - frame.height * 0.16,
   );
+  if (textDisplayMode === "text" || textDisplayMode === "both") {
+    ctx.fillStyle = muted;
+    ctx.font = `${Math.round(frame.width * 0.024)}px "Space Grotesk", sans-serif`;
+    ctx.fillText(
+      currentTextExcerpt(timeline, elapsedMs, 58),
+      frame.width / 2,
+      frame.height / 2 + frame.height * 0.16,
+    );
+  }
   ctx.textAlign = "left";
 }
 
@@ -548,20 +570,42 @@ function drawLightbulb(
   );
 }
 
-function drawMorseOverlay(
+function drawTextDisplay(
   ctx: CanvasRenderingContext2D,
   frame: MorseVideoFrameSize,
-  morse: string,
+  timeline: MorseVideoTimeline,
+  elapsedMs: number,
+  settings: MorseVideoSettings,
   text: string,
   muted: string,
   padding: number,
 ) {
-  const excerpt = morse.replace(/\s+/g, " ").slice(0, 92);
+  const mode = settings.textDisplayMode;
+  if (mode === "none") return;
+  const rows: string[] = [];
+  if (mode === "morse" || mode === "both") {
+    rows.push(recentMorseExcerpt(timeline, elapsedMs, 92));
+  }
+  if (mode === "text" || mode === "both") {
+    rows.push(currentTextExcerpt(timeline, elapsedMs, 84));
+  }
+  const visibleRows = rows.filter(Boolean);
+  if (visibleRows.length === 0) return;
+
   ctx.fillStyle = muted;
   ctx.textAlign = "left";
   ctx.textBaseline = "bottom";
-  ctx.font = `${Math.round(frame.width * 0.022)}px "Space Mono", monospace`;
-  ctx.fillText(excerpt, padding, frame.height - padding);
+  visibleRows.forEach((row, index) => {
+    const isMorseRow = (mode === "morse" || mode === "both") && index === 0;
+    ctx.font = `${Math.round(frame.width * (isMorseRow ? 0.022 : 0.024))}px "${
+      isMorseRow ? "Space Mono" : "Space Grotesk"
+    }", ${isMorseRow ? "monospace" : "sans-serif"}`;
+    ctx.fillText(
+      row,
+      padding,
+      frame.height - padding - (visibleRows.length - index - 1) * frame.height * 0.055,
+    );
+  });
   ctx.fillStyle = text;
 }
 
@@ -575,6 +619,46 @@ function recentMorseSymbols(
     .map((event) => event.symbol ?? "")
     .join("");
   return symbols.slice(Math.max(0, symbols.length - limit));
+}
+
+function recentMorseExcerpt(
+  timeline: MorseVideoTimeline,
+  elapsedMs: number,
+  limit: number,
+) {
+  const completed = timeline.events
+    .filter((event) => event.type === "mark" && event.startMs <= elapsedMs)
+    .map((event) => event.symbol ?? "")
+    .join("");
+  const normalized = completed || timeline.morse.replace(/\s+/g, " ");
+  return normalized.slice(Math.max(0, normalized.length - limit));
+}
+
+function currentTextExcerpt(
+  timeline: MorseVideoTimeline,
+  elapsedMs: number,
+  limit: number,
+) {
+  const text = normalizeFrameText(timeline.text);
+  if (!text) return "";
+  const words = text.split(" ").filter(Boolean);
+  if (words.length === 0) return "";
+  const progress = Math.max(
+    0,
+    Math.min(1, elapsedMs / Math.max(1, timeline.durationMs - timeline.tailPaddingMs)),
+  );
+  const start = Math.max(0, Math.floor(progress * words.length) - 5);
+  let excerpt = "";
+  for (let index = start; index < words.length; index += 1) {
+    const candidate = excerpt ? `${excerpt} ${words[index]}` : words[index];
+    if (candidate.length > limit && excerpt) break;
+    excerpt = candidate;
+  }
+  return excerpt.length > limit ? `${excerpt.slice(0, limit - 3).trimEnd()}...` : excerpt;
+}
+
+function normalizeFrameText(text: string) {
+  return text.trim().replace(/\s+/g, " ");
 }
 
 function intensityAlpha(intensity: MorseVideoSettings["intensity"]) {

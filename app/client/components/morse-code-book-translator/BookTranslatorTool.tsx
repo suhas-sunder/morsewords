@@ -102,6 +102,7 @@ import {
 } from "./textNormalization";
 import {
   buildBookVideoPreview,
+  getMorseVideoPreviewFrame,
   type BookVideoPreview,
 } from "./bookVideoPreview";
 import {
@@ -112,6 +113,7 @@ import {
 import {
   BOOK_VIDEO_INTENSITY_LABELS,
   BOOK_VIDEO_RESOLUTION_LABELS,
+  BOOK_VIDEO_TEXT_DISPLAY_LABELS,
   BOOK_VIDEO_VISUAL_STYLE_DETAILS,
 } from "./bookVideoPresets";
 import {
@@ -122,11 +124,14 @@ import {
 import {
   BOOK_VIDEO_INTENSITIES,
   BOOK_VIDEO_RESOLUTIONS,
+  BOOK_VIDEO_TEXT_DISPLAY_MODES,
   BOOK_VIDEO_VISUAL_STYLES,
   DEFAULT_BOOK_VIDEO_SETTINGS,
   sanitizeBookVideoSettings,
   type BookVideoSettings,
+  type BookVideoTextDisplayMode,
 } from "./bookVideoTypes";
+import type { BookSplitMode } from "./bookExportTypes";
 
 type ParseStatus = "idle" | "parsing" | "ready" | "error";
 type ExportStatusKind = "info" | "success" | "error" | "working";
@@ -161,6 +166,12 @@ const VIDEO_IDLE_EXPORT_PROGRESS: BookExportProgress = {
 
 const FULL_FRAME_FLASH_WARNING =
   "Full-frame flash mode can create rapid full-frame flashing in the finished video and may be uncomfortable or unsafe for some viewers. Use Lightbulb or Dot for a smaller flash area.";
+
+const BOOK_SPLIT_MODE_LABELS: Record<BookSplitMode, string> = {
+  none: "No split",
+  duration: "By duration",
+  "source-sections": "By source sections",
+};
 
 type BookPreviewStatus =
   | "waiting"
@@ -495,7 +506,7 @@ export default function BookTranslatorTool() {
     React.useState<BookPreviewStatus>("waiting");
   const [previewErrorMessage, setPreviewErrorMessage] = React.useState("");
   const [visualPreviewPlaying, setVisualPreviewPlaying] = React.useState(false);
-  const [visualPreviewStep, setVisualPreviewStep] = React.useState(0);
+  const [visualPreviewElapsedMs, setVisualPreviewElapsedMs] = React.useState(0);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [status, setStatus] = React.useState<ParseStatus>("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -569,7 +580,7 @@ export default function BookTranslatorTool() {
       visualPreviewTimeoutRef.current = null;
     }
     setVisualPreviewPlaying(false);
-    setVisualPreviewStep(0);
+    setVisualPreviewElapsedMs(0);
   }, []);
 
   const stopActivePreview = React.useCallback(() => {
@@ -664,7 +675,6 @@ export default function BookTranslatorTool() {
     if (outputType === "audio") return exportSettings;
     return sanitizeBookExportSettings({
       ...exportSettings,
-      splitAudio: true,
       targetPartMinutes: videoSettings.targetPartMinutes,
     });
   }, [exportSettings, outputType, videoSettings.targetPartMinutes]);
@@ -739,7 +749,9 @@ export default function BookTranslatorTool() {
   const exportRunning = isExportRunning(exportProgress);
   const isAudioOutput = outputType === "audio";
   const isVideoOutput = outputType === "video";
-  const isSegmentedOutput = isVideoOutput || exportSettings.splitAudio;
+  const splitEnabled = activeSegmentationSettings.splitMode !== "none";
+  const isSegmentedOutput = splitEnabled;
+  const hasSourceSectionHints = sourceSections.length > 1;
   const appliedThemeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(appliedThemeMode);
@@ -762,8 +774,18 @@ export default function BookTranslatorTool() {
       buildBookVideoPreview(
         effectiveVideoSettings,
         audioPreview?.sampleText ?? preflight.cleanedText,
+        {
+          charWpm: exportSettings.charWpm,
+          farnsworthWpm: exportSettings.farnsworthWpm,
+        },
       ),
-    [audioPreview?.sampleText, effectiveVideoSettings, preflight.cleanedText],
+    [
+      audioPreview?.sampleText,
+      effectiveVideoSettings,
+      exportSettings.charWpm,
+      exportSettings.farnsworthWpm,
+      preflight.cleanedText,
+    ],
   );
   const previewSettingsSignature = React.useMemo(
     () =>
@@ -782,6 +804,7 @@ export default function BookTranslatorTool() {
         effectiveVideoSettings.includeAudioTrack,
         effectiveVideoSettings.showBranding,
         effectiveVideoSettings.showMorseOverlay,
+        effectiveVideoSettings.textDisplayMode,
         resolvedVideoBackgroundStyle,
       ].join("|"),
     [
@@ -799,6 +822,7 @@ export default function BookTranslatorTool() {
       effectiveVideoSettings.intensity,
       effectiveVideoSettings.showBranding,
       effectiveVideoSettings.showMorseOverlay,
+      effectiveVideoSettings.textDisplayMode,
       effectiveVideoSettings.visualStyle,
     ],
   );
@@ -850,8 +874,8 @@ export default function BookTranslatorTool() {
   const activeSettingsSummary = describeBookExportSettings(exportSettings);
   const downloadKind = hasSource && exportParts.length > 0
     ? isVideoOutput
-      ? getBookVideoDownloadKind(exportParts, exportSettings)
-      : getBookDownloadKind(exportParts, exportSettings)
+      ? getBookVideoDownloadKind(exportParts, activeSegmentationSettings)
+      : getBookDownloadKind(exportParts, activeSegmentationSettings)
     : isVideoOutput
       ? "video"
       : "audio";
@@ -881,6 +905,30 @@ export default function BookTranslatorTool() {
       : downloadKind === "zip"
         ? "ZIP bundle"
         : `${downloadFormatLabel} file`;
+  const splitMode = activeSegmentationSettings.splitMode;
+  const splitTargetPartMinutes = isVideoOutput
+    ? videoSettings.targetPartMinutes
+    : exportSettings.targetPartMinutes;
+  const splitSummaryText =
+    splitMode === "none"
+      ? downloadKind === "zip"
+        ? "No split is selected. A ZIP is still required because selected sidecar files need to travel with the media."
+        : `No split is selected. This can download as one ${isVideoOutput ? "WebM video" : downloadFormatLabel} file.`
+      : splitMode === "source-sections"
+        ? hasSourceSectionHints
+          ? `Using available source sections with ${formatDuration(
+              exportAnalysis.targetPartMs,
+            )} duration fallback. Estimated parts: ${formatNumber(
+              exportParts.length,
+            )}.`
+          : `No EPUB/PDF section hints are available, so the download falls back to ${formatDuration(
+              exportAnalysis.targetPartMs,
+            )} duration parts and safe text boundaries.`
+        : `Using ${formatDuration(
+            exportAnalysis.targetPartMs,
+          )} target parts and safe text boundaries. Estimated parts: ${formatNumber(
+            exportParts.length,
+          )}.`;
   const videoWarnings = isVideoOutput
     ? buildBookVideoWarnings({
         partCount: exportParts.length,
@@ -1000,16 +1048,21 @@ export default function BookTranslatorTool() {
     setPreviewErrorMessage("");
     setPreviewStatus("playing");
     setVisualPreviewPlaying(true);
-    setVisualPreviewStep(1);
+    setVisualPreviewElapsedMs(0);
 
+    const startedAt = performance.now();
+    const previewDurationMs = Math.min(
+      30_000,
+      Math.max(10_000, videoPreview.durationMs),
+    );
     visualPreviewIntervalRef.current = window.setInterval(() => {
-      setVisualPreviewStep((current) => (current + 1) % 4);
-    }, 800);
+      setVisualPreviewElapsedMs(Math.max(0, performance.now() - startedAt));
+    }, 80);
     visualPreviewTimeoutRef.current = window.setTimeout(() => {
       stopVisualPreview();
       if (mountedRef.current) setPreviewStatus("stopped");
-    }, 5_600);
-  }, [audioPreview, stopVisualPreview]);
+    }, previewDurationMs);
+  }, [audioPreview, stopVisualPreview, videoPreview.durationMs]);
 
   const updatePastedText = React.useCallback(
     (value: string) => {
@@ -1380,8 +1433,24 @@ export default function BookTranslatorTool() {
       if (hasActiveExport()) {
         cancelActiveExport("Settings changed; download cancelled.");
       }
+      const normalizedPatch =
+        patch.textDisplayMode !== undefined
+          ? {
+              ...patch,
+              showMorseOverlay:
+                patch.textDisplayMode === "morse" ||
+                patch.textDisplayMode === "both",
+            }
+          : patch.showMorseOverlay !== undefined
+            ? {
+                ...patch,
+                textDisplayMode: (patch.showMorseOverlay
+                  ? "morse"
+                  : "none") as BookVideoTextDisplayMode,
+              }
+            : patch;
       setVideoSettings((current) =>
-        sanitizeBookVideoSettings({ ...current, ...patch }),
+        sanitizeBookVideoSettings({ ...current, ...normalizedPatch }),
       );
       setExportStatus(null);
       setCompletedExport(null);
@@ -1518,7 +1587,7 @@ export default function BookTranslatorTool() {
         ? await createBookVideoDownloadPackage({
             metadata,
             parts: exportParts,
-            exportSettings,
+            exportSettings: activeSegmentationSettings,
             videoSettings: effectiveVideoSettings,
             resolvedBackgroundStyle: resolvedVideoBackgroundStyle,
             support: videoSupport as BookVideoSupport,
@@ -1611,6 +1680,7 @@ export default function BookTranslatorTool() {
       }
     }
   }, [
+    activeSegmentationSettings,
     effectiveVideoSettings,
     exportAnalysis.estimatedSizeLabel,
     exportAnalysis.totalRuntimeMs,
@@ -2045,17 +2115,9 @@ export default function BookTranslatorTool() {
                   value={hasSource ? formatNumber(exportParts.length) : "0"}
                 />
                 <Metric
-                  label={
-                    isVideoOutput
-                      ? "Video target"
-                      : exportSettings.splitAudio
-                        ? "Target part"
-                        : "Split"
-                  }
+                  label={splitEnabled ? "Target part" : "Split"}
                   value={
-                    isVideoOutput || exportSettings.splitAudio
-                      ? formatDuration(exportAnalysis.targetPartMs)
-                      : "Off"
+                    splitEnabled ? formatDuration(exportAnalysis.targetPartMs) : "Off"
                   }
                 />
                 <Metric
@@ -2118,7 +2180,7 @@ export default function BookTranslatorTool() {
                 videoPreview={videoPreview}
                 videoSettings={effectiveVideoSettings}
                 visualPreviewPlaying={visualPreviewPlaying}
-                visualPreviewStep={visualPreviewStep}
+                visualPreviewElapsedMs={visualPreviewElapsedMs}
               />
 
               <div className="mt-4 flex flex-wrap gap-2">
@@ -2217,6 +2279,73 @@ export default function BookTranslatorTool() {
                   Download settings
                 </summary>
                 <div className="mt-5 space-y-5">
+                  <fieldset>
+                    <legend className="text-sm font-semibold text-slate-700">
+                      Split download
+                    </legend>
+                    <div
+                      className="mt-2 flex flex-wrap gap-2"
+                      role="radiogroup"
+                      aria-label="Split download"
+                    >
+                      {(["none", "duration", "source-sections"] as const).map(
+                        (mode) => (
+                          <button
+                            key={mode}
+                            type="button"
+                            role="radio"
+                            aria-checked={splitMode === mode}
+                            onClick={() =>
+                              updateExportSettings({ splitMode: mode })
+                            }
+                            className={toolControlButtonClass({
+                              active: splitMode === mode,
+                              tone: splitMode === mode ? "dark" : "light",
+                              size: "sm",
+                              rounded: "full",
+                              hover: "dark",
+                            })}
+                          >
+                            {BOOK_SPLIT_MODE_LABELS[mode]}
+                          </button>
+                        ),
+                      )}
+                    </div>
+                    <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+                      {splitSummaryText}
+                    </p>
+                    {splitMode === "source-sections" ? (
+                      <p
+                        className="mt-2 max-w-[68ch] text-sm font-semibold leading-relaxed text-slate-600"
+                        data-testid="book-split-section-fallback"
+                      >
+                        {hasSourceSectionHints
+                          ? "Source section hints are available for this source."
+                          : "No source section hints are available; duration fallback is active."}
+                      </p>
+                    ) : null}
+                    {splitMode !== "none" ? (
+                      <SliderRow
+                        className="mt-4"
+                        label="Target part length"
+                        value={splitTargetPartMinutes}
+                        min={1}
+                        max={30}
+                        step={1}
+                        unit="min"
+                        onChange={(value) =>
+                          isVideoOutput
+                            ? updateVideoSettings({
+                                targetPartMinutes: value,
+                              })
+                            : updateExportSettings({
+                                targetPartMinutes: value,
+                              })
+                        }
+                      />
+                    ) : null}
+                  </fieldset>
+
                   {isAudioOutput ? (
                     <>
                   <div>
@@ -2367,33 +2496,6 @@ export default function BookTranslatorTool() {
                         {tonePresetLabel(exportSettings.tonePreset)}
                       </span>
                     </div>
-                    <div className="mt-4">
-                      <ExportCheckbox
-                        label="Split into parts"
-                        checked={exportSettings.splitAudio}
-                        onChange={(value) =>
-                          updateExportSettings({ splitAudio: value })
-                        }
-                      />
-                      <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
-                        {exportSettings.splitAudio
-                          ? "Downloads are split by the target part length below and saved as a ZIP bundle."
-                          : "Downloads use one audio file by default."}
-                      </p>
-                      {exportSettings.splitAudio ? (
-                        <div className="mt-3">
-                          <ExportCheckbox
-                            label="Prefer EPUB/PDF section hints"
-                            checked={exportSettings.preferSourceSections}
-                            onChange={(value) =>
-                              updateExportSettings({
-                                preferSourceSections: value,
-                              })
-                            }
-                          />
-                        </div>
-                      ) : null}
-                    </div>
                     <AudioSettingsPanel
                       className="mt-5"
                       context="bookExport"
@@ -2430,14 +2532,6 @@ export default function BookTranslatorTool() {
                       tailMs={exportSettings.tailPaddingMs}
                       onTailMsChange={(value) =>
                         updateExportSettings({ tailPaddingMs: value })
-                      }
-                      targetPartMinutes={
-                        exportSettings.splitAudio
-                          ? exportSettings.targetPartMinutes
-                          : undefined
-                      }
-                      onTargetPartMinutesChange={(value) =>
-                        updateExportSettings({ targetPartMinutes: value })
                       }
                     />
                   </div>
@@ -2944,7 +3038,11 @@ export default function BookTranslatorTool() {
       <section>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-xl font-extrabold text-sky-950">
-            {isSegmentedOutput ? "Split summary" : "Audio file summary"}
+            {isSegmentedOutput
+              ? "Split summary"
+              : isVideoOutput
+                ? "Video file summary"
+                : "Audio file summary"}
           </h2>
           <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
             {isSegmentedOutput
@@ -2954,8 +3052,12 @@ export default function BookTranslatorTool() {
         </div>
         <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
           {isSegmentedOutput
-            ? "Parts are based on estimated Morse runtime and safe paragraph, sentence, or word boundaries. EPUB/PDF section hints help when available, but parts are not guaranteed to match original chapters."
-            : "Audio downloads stay as one file by default. Turn on Split into parts in Download settings when you want a ZIP bundle with timed parts."}
+            ? splitMode === "source-sections"
+              ? "Parts use EPUB/PDF section hints when available, then fall back to the target part length and safe paragraph, sentence, or word boundaries."
+              : "Parts are based on the target part length and safe paragraph, sentence, or word boundaries."
+            : isVideoOutput
+              ? "Video downloads stay as one WebM file by default unless selected sidecar files require a ZIP bundle."
+              : "Audio downloads stay as one file by default. Choose a split mode in Download settings when you want timed parts."}
         </p>
         {isSegmentedOutput ? (
           exportParts.length > 0 ? (
@@ -3049,8 +3151,8 @@ function BookPreviewSection({
   resolvedVideoBackgroundStyle,
   videoPreview,
   videoSettings,
+  visualPreviewElapsedMs,
   visualPreviewPlaying,
-  visualPreviewStep,
 }: {
   audioPlayerState: MorsePlayerState;
   audioPreview: BookAudioPreview | null;
@@ -3068,8 +3170,8 @@ function BookPreviewSection({
   resolvedVideoBackgroundStyle: "warm-morsewords" | "dark-morsewords";
   videoPreview: BookVideoPreview;
   videoSettings: BookVideoSettings;
+  visualPreviewElapsedMs: number;
   visualPreviewPlaying: boolean;
-  visualPreviewStep: number;
 }) {
   const isAudioOutput = outputType === "audio";
   const canPreview = hasSource && hasCleanedSource && Boolean(audioPreview);
@@ -3177,7 +3279,7 @@ function BookPreviewSection({
             preview={videoPreview}
             resolvedBackgroundStyle={resolvedVideoBackgroundStyle}
             settings={videoSettings}
-            visualStep={visualPreviewStep}
+            visualElapsedMs={visualPreviewElapsedMs}
           />
           <div className="mt-4 flex flex-wrap gap-2">
             <ToolButton
@@ -3199,7 +3301,7 @@ function BookPreviewSection({
           <p className="mt-3 text-sm leading-relaxed text-slate-700">
             {videoSettings.includeAudioTrack ? "Audio track on" : "Audio track off"}
             {" · "}
-            {videoSettings.showMorseOverlay ? "Morse overlay on" : "Morse overlay off"}
+            {BOOK_VIDEO_TEXT_DISPLAY_LABELS[videoSettings.textDisplayMode]}
             {" · "}
             {videoSettings.showBranding ? "Branding on" : "Branding off"}
           </p>
@@ -3310,6 +3412,35 @@ function BookVideoSettingsEditor({
         </div>
       </fieldset>
 
+      <fieldset className="border-t border-slate-200/70 pt-5">
+        <legend className="text-base font-extrabold text-sky-950">
+          Text shown in video
+        </legend>
+        <div
+          className="mt-3 flex flex-wrap gap-2"
+          role="radiogroup"
+          aria-label="Text shown in video"
+        >
+          {BOOK_VIDEO_TEXT_DISPLAY_MODES.map((mode) => (
+            <VideoSettingButton
+              key={mode}
+              active={videoSettings.textDisplayMode === mode}
+              label={BOOK_VIDEO_TEXT_DISPLAY_LABELS[mode]}
+              onClick={() =>
+                onVideoSettingsChange({
+                  textDisplayMode: mode as BookVideoTextDisplayMode,
+                })
+              }
+            />
+          ))}
+        </div>
+        <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+          Plain text uses a short cleaned excerpt from the current source;
+          Morse text uses the generated Morse for the same preview/export
+          segment.
+        </p>
+      </fieldset>
+
       <div className="border-t border-slate-200/70 pt-5">
         <h4 className="text-base font-extrabold text-sky-950">Video frame</h4>
         <div className="mt-4 grid gap-5 lg:grid-cols-2">
@@ -3360,20 +3491,6 @@ function BookVideoSettingsEditor({
               ))}
             </div>
           </fieldset>
-
-          <SliderRow
-            label="Video part duration"
-            value={videoSettings.targetPartMinutes}
-            min={1}
-            max={30}
-            step={1}
-            unit="min"
-            onChange={(value) =>
-              onVideoSettingsChange({
-                targetPartMinutes: value,
-              })
-            }
-          />
         </div>
       </div>
 
@@ -3389,15 +3506,6 @@ function BookVideoSettingsEditor({
             onChange={(value) =>
               onVideoSettingsChange({
                 includeAudioTrack: value,
-              })
-            }
-          />
-          <ExportCheckbox
-            label="Show Morse text overlay"
-            checked={videoSettings.showMorseOverlay}
-            onChange={(value) =>
-              onVideoSettingsChange({
-                showMorseOverlay: value,
               })
             }
           />
@@ -3519,14 +3627,14 @@ function BookVideoPreviewPanel({
   preview,
   resolvedBackgroundStyle,
   settings,
-  visualStep = 0,
+  visualElapsedMs = 0,
 }: {
   className?: string;
   isPlaying?: boolean;
   preview: BookVideoPreview;
   resolvedBackgroundStyle: "warm-morsewords" | "dark-morsewords";
   settings: BookVideoSettings;
-  visualStep?: number;
+  visualElapsedMs?: number;
 }) {
   const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
   const frameStyle = darkFrame
@@ -3538,6 +3646,10 @@ function BookVideoPreviewPanel({
         backgroundColor: "#fffdf8",
         color: "#08324f",
       };
+  const previewFrame = getMorseVideoPreviewFrame(
+    preview,
+    isPlaying ? visualElapsedMs : 0,
+  );
 
   return (
     <section
@@ -3551,26 +3663,43 @@ function BookVideoPreviewPanel({
         style={frameStyle}
         data-preview-playing={isPlaying ? "true" : "false"}
       >
-        <h3
-          id="book-video-preview-heading"
-          className="text-sm font-extrabold"
-        >
-          Video preview
-        </h3>
+        <div className="flex items-center justify-between gap-3">
+          <h3
+            id="book-video-preview-heading"
+            className="text-sm font-extrabold"
+          >
+            Video preview
+          </h3>
+          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80">
+            {settings.visualStyle === "full-frame"
+              ? "Subdued preview"
+              : "Timed excerpt"}
+          </span>
+        </div>
         <div className="flex min-h-[5rem] items-center justify-center">
           <BookVideoPreviewVisual
             isPlaying={isPlaying}
             preview={preview}
             settings={settings}
-            visualStep={visualStep}
+            visualElapsedMs={visualElapsedMs}
           />
         </div>
-        {settings.showMorseOverlay ? (
+        {settings.textDisplayMode === "morse" ||
+        settings.textDisplayMode === "both" ? (
           <p
             data-testid="book-video-preview-morse-overlay"
             className="mt-3 break-words font-mono text-xs font-bold"
           >
-            {preview.sampleMorse}
+            {previewFrame.morseExcerpt}
+          </p>
+        ) : null}
+        {settings.textDisplayMode === "text" ||
+        settings.textDisplayMode === "both" ? (
+          <p
+            data-testid="book-video-preview-text-overlay"
+            className="mt-2 break-words text-xs font-bold"
+          >
+            {previewFrame.textExcerpt}
           </p>
         ) : null}
         {settings.showBranding ? (
@@ -3590,14 +3719,15 @@ function BookVideoPreviewVisual({
   isPlaying,
   preview,
   settings,
-  visualStep,
+  visualElapsedMs,
 }: {
   isPlaying: boolean;
   preview: BookVideoPreview;
   settings: BookVideoSettings;
-  visualStep: number;
+  visualElapsedMs: number;
 }) {
-  const markActive = isPlaying && visualStep % 2 === 1;
+  const frame = getMorseVideoPreviewFrame(preview, isPlaying ? visualElapsedMs : 0);
+  const markActive = isPlaying && frame.active;
   const intensityClass =
     settings.intensity === "high"
       ? "opacity-100"
@@ -3612,7 +3742,8 @@ function BookVideoPreviewVisual({
         aria-label="Dot preview"
         role="img"
         className={[
-          "block h-12 w-12 rounded-full bg-sky-200",
+          "block h-12 w-12 rounded-full",
+          markActive ? "bg-sky-100" : "bg-sky-200",
           intensityClass,
           markActive ? "ring-4 ring-sky-200/50" : "",
         ]
@@ -3650,7 +3781,7 @@ function BookVideoPreviewVisual({
           .filter(Boolean)
           .join(" ")}
       >
-        {preview.sampleMorse}
+        {frame.symbols || preview.sampleMorse}
       </div>
     );
   }

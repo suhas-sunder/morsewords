@@ -17,6 +17,7 @@ import type {
   BookExportPresetName,
   BookExportSettings,
   BookPunctuationMode,
+  BookSplitMode,
 } from "./bookExportTypes";
 
 export const BOOK_EXPORT_PRESET_NAMES = [
@@ -29,6 +30,11 @@ export const BOOK_EXPORT_PRESET_NAMES = [
 
 export const BOOK_EXPORT_FORMATS = ["mp3", "wav"] as const;
 export const BOOK_PUNCTUATION_MODES = ["preserve", "simplify"] as const;
+export const BOOK_SPLIT_MODES = [
+  "none",
+  "duration",
+  "source-sections",
+] as const satisfies readonly BookSplitMode[];
 
 export const BOOK_EXPORT_PRESET_DETAILS: Record<
   BookExportPresetName,
@@ -76,6 +82,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     mp3Bitrate: 32,
     sampleRate: 44100,
     tailPaddingMs: 180,
+    splitMode: "none",
     splitAudio: false,
     targetPartMinutes: 8,
     preferSourceSections: true,
@@ -99,6 +106,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     mp3Bitrate: 32,
     sampleRate: 44100,
     tailPaddingMs: 180,
+    splitMode: "none",
     splitAudio: false,
     targetPartMinutes: 18,
     preferSourceSections: true,
@@ -122,6 +130,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     mp3Bitrate: 48,
     sampleRate: 44100,
     tailPaddingMs: 180,
+    splitMode: "none",
     splitAudio: false,
     targetPartMinutes: 5,
     preferSourceSections: false,
@@ -145,6 +154,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     mp3Bitrate: 64,
     sampleRate: 44100,
     tailPaddingMs: 180,
+    splitMode: "none",
     splitAudio: false,
     targetPartMinutes: 10,
     preferSourceSections: true,
@@ -168,6 +178,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     mp3Bitrate: 64,
     sampleRate: 48000,
     tailPaddingMs: 220,
+    splitMode: "none",
     splitAudio: false,
     targetPartMinutes: 6,
     preferSourceSections: true,
@@ -189,6 +200,10 @@ export function isBookExportPresetName(
   value: unknown,
 ): value is BookExportPresetName {
   return BOOK_EXPORT_PRESET_NAMES.includes(value as BookExportPresetName);
+}
+
+export function isBookSplitMode(value: unknown): value is BookSplitMode {
+  return BOOK_SPLIT_MODES.includes(value as BookSplitMode);
 }
 
 export function sanitizeBookExportSettings(
@@ -221,6 +236,15 @@ export function sanitizeBookExportSettings(
     settings.punctuationMode === "simplify"
       ? settings.punctuationMode
       : fallback.punctuationMode;
+  const splitMode = isBookSplitMode(settings.splitMode)
+    ? settings.splitMode
+    : typeof settings.splitAudio === "boolean"
+      ? settings.splitAudio
+        ? settings.preferSourceSections
+          ? "source-sections"
+          : "duration"
+        : "none"
+      : fallback.splitMode;
 
   return {
     ...fallback,
@@ -259,13 +283,12 @@ export function sanitizeBookExportSettings(
         AUDIO_TAIL_RANGE.max,
       ),
     ),
-    splitAudio: Boolean(settings.splitAudio ?? fallback.splitAudio),
+    splitMode,
+    splitAudio: splitMode !== "none",
     targetPartMinutes:
       Math.round(clampNumber(settings.targetPartMinutes ?? fallback.targetPartMinutes, 1, 30) * 10) /
       10,
-    preferSourceSections: Boolean(
-      settings.preferSourceSections ?? fallback.preferSourceSections,
-    ),
+    preferSourceSections: splitMode === "source-sections",
     paragraphPauseMultiplier:
       Math.round(
         clampNumber(
@@ -306,13 +329,12 @@ export function describeBookExportSettings(settings: BookExportSettings) {
     settings.outputFormat === "mp3"
       ? `MP3 ${settings.mp3Bitrate} kbps`
       : `WAV ${settings.sampleRate} Hz`;
-  const split = settings.splitAudio
-    ? `${settings.targetPartMinutes} minute target parts${
-        settings.preferSourceSections
-          ? ", using EPUB/PDF section hints when available"
-          : ", split by Morse runtime boundaries"
-      }`
-    : "single audio file";
+  const split =
+    settings.splitMode === "source-sections"
+      ? `source-section parts with ${settings.targetPartMinutes} minute fallback`
+      : settings.splitMode === "duration"
+        ? `${settings.targetPartMinutes} minute target parts`
+        : "single audio file";
   const tone = getAudioPresetShortLabel(settings.tonePreset);
   return `${settings.charWpm}/${settings.farnsworthWpm} WPM, ${tone}, ${format}, ${split}.`;
 }

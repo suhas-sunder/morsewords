@@ -21,6 +21,8 @@ export type BookDownloadKind = "audio" | "video" | "zip";
 
 export type BookPunctuationMode = "preserve" | "simplify";
 
+export type BookSplitMode = "none" | "duration" | "source-sections";
+
 export type BookExportSettings = {
   presetName: BookExportPresetName;
   charWpm: number;
@@ -32,6 +34,7 @@ export type BookExportSettings = {
   mp3Bitrate: Mp3Bitrate;
   sampleRate: AudioSampleRate;
   tailPaddingMs: number;
+  splitMode: BookSplitMode;
   splitAudio: boolean;
   targetPartMinutes: number;
   preferSourceSections: boolean;
