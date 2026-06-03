@@ -155,7 +155,33 @@ const INTERNAL_LINK_EXPECTATIONS = [
 
 type JsonLdRecord = Record<string, unknown>;
 function routeFilePath(routePath: string) {
-  return path.join(ROOT, "app", "routes", `${routeSlug(routePath)}.tsx`);
+  const slug = routeSlug(routePath);
+  return path.join(ROOT, "app", "routes", slug ? `${slug}.tsx` : "home.tsx");
+}
+
+function routeFileCandidates(routePath: string) {
+  const slug = routeSlug(routePath);
+  if (!slug) return [routeFilePath(routePath)];
+
+  const parts = slug.split("/");
+  if (parts.length === 1) return [routeFilePath(routePath)];
+
+  return [
+    routeFilePath(routePath),
+    path.join(
+      ROOT,
+      "app",
+      "routes",
+      parts[0],
+      `${parts[0]}.${parts.slice(1).join(".")}.tsx`,
+    ),
+  ];
+}
+
+function routeFileExists(routePath: string) {
+  return routeFileCandidates(routePath).some((candidate) =>
+    fs.existsSync(candidate),
+  );
 }
 
 async function pageLinkPaths(page: Page, selector = "a[href]") {
@@ -481,10 +507,24 @@ test.describe("final SEO schema sitemap and internal link audit", () => {
     expect(response.ok()).toBe(true);
     const xml = await response.text();
     const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+    const sitemapPaths = locs.map(
+      (loc) => new URL(loc).pathname.replace(/\/$/, "") || "/",
+    );
 
     expect(new Set(locs).size, "XML sitemap duplicate locs").toBe(locs.length);
+    expect(new Set(sitemapPaths).size, "XML sitemap duplicate paths").toBe(
+      sitemapPaths.length,
+    );
     for (const loc of locs) {
       expect(loc, `canonical host for ${loc}`).toMatch(/^https:\/\/www\.morsewords\.com\//);
+    }
+    for (const routePath of sitemapPaths) {
+      expect(getCanonicalRoutePath(routePath), `${routePath} is canonical`).toBe(
+        routePath,
+      );
+      expect(routeFileExists(routePath), `${routePath} XML sitemap route file`).toBe(
+        true,
+      );
     }
     for (const routePath of KEY_CANONICAL_ROUTES) {
       expect(locs, `${routePath} XML sitemap loc`).toContain(absoluteUrl(routePath));

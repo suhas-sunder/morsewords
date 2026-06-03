@@ -1231,13 +1231,14 @@ test("preset settings, reset, and safe route preferences persist", async ({
     "false",
   );
   await openDownloadSettings(page);
-  await expect(page.getByText("Compact MP3 settings")).toBeVisible();
+  const tool = bookTool(page);
+  await expect(tool.getByText("Compact MP3 settings")).toBeVisible();
 
-  await page.getByRole("button", { name: "Practice Copy" }).click();
-  await expect(page.getByText("Slower Farnsworth spacing")).toBeVisible();
-  await expect(page.getByText("Best for: Training and review")).toBeVisible();
+  await tool.getByRole("button", { name: "Practice Copy" }).click();
+  await expect(tool.getByText("Slower Farnsworth spacing")).toBeVisible();
+  await expect(tool.getByText("Best for: Training and review")).toBeVisible();
   await expect(
-    page.getByText("20/10 WPM, CW radio, MP3 48 kbps, single audio file."),
+    tool.getByText("20/10 WPM, CW radio, MP3 48 kbps, single audio file."),
   ).toBeVisible();
   await expect(
     page.getByRole("radiogroup", { name: "Split download" }),
