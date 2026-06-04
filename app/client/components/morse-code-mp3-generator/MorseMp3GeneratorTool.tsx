@@ -37,6 +37,8 @@ import {
   readStoredNumberEnum,
   readStoredString,
   safeWriteStorage,
+  safeWriteStorageResult,
+  sourceStorageWriteMessage,
 } from "~/client/components/shared/settingsStorage";
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
@@ -111,6 +113,7 @@ export default function MorseMp3GeneratorTool() {
   const [mp3Kbps, setMp3Kbps] = React.useState(128);
   const [copied, setCopied] = React.useState(false);
   const [hydrated, setHydrated] = React.useState(false);
+  const [sourceSaveNotice, setSourceSaveNotice] = React.useState("");
   const [downloadStatus, setDownloadStatus] = React.useState<null | {
     kind: "ok" | "error" | "working";
     message: string;
@@ -201,13 +204,12 @@ export default function MorseMp3GeneratorTool() {
     [activeCode],
   );
   const flashLamp = useFlashLampState(hydrated && flash);
-  const { disableFlashEffects, flashAllowed, fullPageFlash } = flashLamp;
+  const { disableFlashEffects, flashAllowed } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
   const renderedSoundOn = hydrated ? soundOn : true;
   const renderedRepeat = hydrated ? repeat : false;
   const renderedFlash = hydrated ? effectiveFlash : false;
-  const showStrobeWarning =
-    fullPageFlash && renderedFlash && player.state === "playing";
+  const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
 
   const handleCharWpmChange = React.useCallback((value: number) => {
     const next = Math.round(
@@ -237,8 +239,9 @@ export default function MorseMp3GeneratorTool() {
     if (!hydrated) return;
 
     writeStr("mw_audio_source", sourceMode);
-    writeStr("mw_audio_text", text);
-    writeStr("mw_audio_morse", morse);
+    const textWrite = safeWriteStorageResult("mw_audio_text", text);
+    const morseWrite = safeWriteStorageResult("mw_audio_morse", morse);
+    setSourceSaveNotice(sourceStorageWriteMessage([textWrite, morseWrite]));
     writeNum("mw_audio_wpm", charWpm);
     writeNum("mw_audio_fwpm", farnsworthWpm);
     writeNum("mw_audio_hz", toneHz);
@@ -533,7 +536,10 @@ export default function MorseMp3GeneratorTool() {
           badge="Source"
           footer={
             <div className="flex flex-wrap items-center gap-2 text-sm leading-relaxed text-slate-600">
-              <span>Spaces separate letters. Use / between words.</span>
+              <span>
+                {sourceSaveNotice ||
+                  "Spaces separate letters. Use / between words."}
+              </span>
               <span aria-hidden="true">Est. time: {formatMs(durationMs)}</span>
             </div>
           }

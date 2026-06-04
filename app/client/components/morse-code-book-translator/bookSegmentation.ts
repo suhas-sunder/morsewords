@@ -34,7 +34,7 @@ export function segmentBookText({
   sourceTitle,
 }: SegmentInput): BookExportPart[] {
   if (!cleanedText.trim()) return [];
-  if (!settings.splitAudio) {
+  if (settings.splitMode === "none") {
     const text = cleanedText.trim();
     const leadingWhitespace = cleanedText.search(/\S/);
     const sourceStart = Math.max(0, leadingWhitespace);
@@ -53,7 +53,7 @@ export function segmentBookText({
 
   const targetMs = settings.targetPartMinutes * 60_000;
   const units =
-    settings.preferSourceSections && sourceSections.length > 1
+    settings.splitMode === "source-sections" && sourceSections.length > 1
       ? buildSectionUnits(sourceSections, cleanedText)
       : splitParagraphRanges(cleanedText).map((paragraph) => ({
           text: paragraph.text,

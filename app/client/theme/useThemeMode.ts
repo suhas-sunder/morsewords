@@ -5,6 +5,7 @@ import {
   getAppliedThemeMode,
   readStoredThemeMode,
   setRootThemeMode,
+  subscribeThemeModeChanges,
   type ThemeMode,
 } from "./themeStorage";
 
@@ -15,6 +16,10 @@ export function useThemeMode(initialTheme: ThemeMode = "light") {
     const initialTheme = readStoredThemeMode() ?? getAppliedThemeMode();
     setRootThemeMode(initialTheme);
     setTheme(initialTheme);
+    return subscribeThemeModeChanges((nextTheme) => {
+      setRootThemeMode(nextTheme);
+      setTheme(nextTheme);
+    });
   }, []);
 
   const setThemeMode = React.useCallback((nextTheme: ThemeMode) => {

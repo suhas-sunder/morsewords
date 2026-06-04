@@ -19,10 +19,25 @@ export type FlashSafetyState = {
   fullPageFlash: boolean;
 };
 
+type WholePageFlashWarningState = Pick<
+  FlashSafetyState,
+  "disableFlashEffects" | "fullPageFlash"
+> & {
+  flashEnabled: boolean;
+};
+
 export function isFlashAllowedFromSafetyState({
   disableFlashEffects,
 }: Pick<FlashSafetyState, "disableFlashEffects" | "reducedMotion">) {
   return !disableFlashEffects;
+}
+
+export function shouldShowWholePageFlashWarning({
+  disableFlashEffects,
+  flashEnabled,
+  fullPageFlash,
+}: WholePageFlashWarningState) {
+  return fullPageFlash && flashEnabled && !disableFlashEffects;
 }
 
 export function prefersReducedMotionNow() {
@@ -143,5 +158,10 @@ export function useFlashLampState(enabled: boolean) {
   return {
     ...safety,
     active: enabled && safety.flashAllowed ? active : false,
+    shouldShowWholePageFlashWarning: shouldShowWholePageFlashWarning({
+      disableFlashEffects: safety.disableFlashEffects,
+      flashEnabled: enabled,
+      fullPageFlash: safety.fullPageFlash,
+    }),
   };
 }

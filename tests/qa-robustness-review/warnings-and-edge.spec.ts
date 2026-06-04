@@ -70,7 +70,8 @@ test("whole-page flash setting shows the strobe warning with Flash Light", async
     .getByText("Strobe warning:", { exact: false })
     .filter({ visible: true });
   await flashButton.click();
-  await expect(warning).toHaveCount(0);
+  await expect(warning).toBeVisible();
+  await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
   await page.locator("button").filter({ hasText: "Play prompt" }).click();
   await expect(warning).toBeVisible();
 });

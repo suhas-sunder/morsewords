@@ -49,6 +49,7 @@ export function buildBookVideoTimeline(
   return {
     events: timedEvents,
     morse: buildMorseTranscript(text),
+    text: text.trim().replace(/\s+/g, " "),
     durationMs: Math.max(MIN_VIDEO_MS, cursorMs + tailPaddingMs),
     tailPaddingMs,
   };

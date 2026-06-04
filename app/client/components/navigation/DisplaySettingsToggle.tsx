@@ -1,7 +1,15 @@
 import * as React from "react";
 
 import { SmartSettingsIcon } from "~/client/assets/svg/Icons";
-import { useDisplaySettings } from "~/client/settings/displaySettings";
+import {
+  resetDisplaySettingsToDefault,
+  useDisplaySettings,
+} from "~/client/settings/displaySettings";
+import {
+  clearMorseWordsSourceData,
+  resetMorseWordsSettings,
+} from "~/client/components/shared/settingsStorage";
+import { resetThemeModeToDefault } from "~/client/theme/themeStorage";
 
 type DisplaySettingsToggleProps = {
   className?: string;
@@ -13,6 +21,7 @@ export default function DisplaySettingsToggle({
   onOpen,
 }: DisplaySettingsToggleProps) {
   const [open, setOpen] = React.useState(false);
+  const [statusMessage, setStatusMessage] = React.useState("");
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const {
     disableFlashEffects,
@@ -51,6 +60,42 @@ export default function DisplaySettingsToggle({
       if (nextOpen) onOpen?.();
       return nextOpen;
     });
+  }
+
+  function clearSavedSourceData() {
+    if (
+      typeof window !== "undefined" &&
+      !window.confirm(
+        "Clear locally saved source text and source metadata for MorseWords on this device?",
+      )
+    ) {
+      return;
+    }
+
+    const result = clearMorseWordsSourceData();
+    setStatusMessage(
+      result.failedKeys.length > 0
+        ? "Some saved source data could not be cleared in this browser."
+        : "Locally saved source data cleared.",
+    );
+  }
+
+  function resetSettings() {
+    if (
+      typeof window !== "undefined" &&
+      !window.confirm("Reset MorseWords settings on this device?")
+    ) {
+      return;
+    }
+
+    const result = resetMorseWordsSettings();
+    resetDisplaySettingsToDefault();
+    resetThemeModeToDefault();
+    setStatusMessage(
+      result.failedKeys.length > 0
+        ? "Some settings could not be reset in this browser."
+        : "MorseWords settings reset.",
+    );
   }
 
   return (
@@ -95,6 +140,30 @@ export default function DisplaySettingsToggle({
               description="Turns off visual flash while keeping audio available."
               onChange={setDisableFlashEffects}
             />
+          </div>
+
+          <div className="mt-4 grid gap-2 border-t border-sky-100/10 pt-3">
+            <button
+              type="button"
+              className="mw-display-settings-action flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-3 text-left text-sm font-extrabold"
+              onClick={clearSavedSourceData}
+            >
+              Clear locally saved source data
+            </button>
+            <button
+              type="button"
+              className="mw-display-settings-action flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-3 text-left text-sm font-extrabold"
+              onClick={resetSettings}
+            >
+              Reset MorseWords settings
+            </button>
+            <p
+              className="text-xs leading-snug text-sky-100/70"
+              aria-live="polite"
+            >
+              {statusMessage ||
+                "Source text saved by tools stays only in this browser and can be cleared here."}
+            </p>
           </div>
         </div>
       ) : null}

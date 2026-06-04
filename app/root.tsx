@@ -34,6 +34,7 @@ import {
   isThemeMode,
   type ThemeMode,
 } from "./client/theme/themeStorage";
+import { STORAGE_KEYS } from "./client/components/shared/storageRegistry";
 
 /* ---------- Trailing slash helpers (one place, app-level) ---------- */
 function needsStrip(pathname: string) {
@@ -81,6 +82,9 @@ export const links: Route.LinksFunction = () => [];
 const THEME_INIT_SCRIPT = `
 (function () {
   var themeKey = ${JSON.stringify(THEME_STORAGE_KEY)};
+  var showAmbientMorseKey = ${JSON.stringify(STORAGE_KEYS.showAmbientMorse)};
+  var disableFlashEffectsKey = ${JSON.stringify(STORAGE_KEYS.disableFlashEffects)};
+  var fullPageFlashKey = ${JSON.stringify(STORAGE_KEYS.fullPageFlash)};
   var cookieMaxAge = ${THEME_COOKIE_MAX_AGE};
   function isThemeMode(value) {
     return value === "dark" || value === "light";
@@ -118,21 +122,21 @@ const THEME_INIT_SCRIPT = `
   writeThemeCookie(theme);
 
   try {
-    var showAmbientMorse = window.localStorage.getItem("morsewords-show-ambient-morse");
+    var showAmbientMorse = window.localStorage.getItem(showAmbientMorseKey);
     document.documentElement.dataset.ambientMorse = showAmbientMorse === "0" || showAmbientMorse === "false" ? "hidden" : "visible";
   } catch (error) {
     document.documentElement.dataset.ambientMorse = "visible";
   }
 
   try {
-    var disableFlashEffects = window.localStorage.getItem("morsewords-disable-flash-effects");
+    var disableFlashEffects = window.localStorage.getItem(disableFlashEffectsKey);
     document.documentElement.dataset.flashEffects = disableFlashEffects === "1" || disableFlashEffects === "true" ? "disabled" : "enabled";
   } catch (error) {
     document.documentElement.dataset.flashEffects = "enabled";
   }
 
   try {
-    var fullPageFlash = window.localStorage.getItem("morsewords-full-page-flash");
+    var fullPageFlash = window.localStorage.getItem(fullPageFlashKey);
     document.documentElement.dataset.fullPageFlash = fullPageFlash === "1" || fullPageFlash === "true" ? "enabled" : "disabled";
   } catch (error) {
     document.documentElement.dataset.fullPageFlash = "disabled";

@@ -142,10 +142,9 @@ export default function MorseCodeAudioPractice() {
   const [flash, setFlash] = React.useState(false);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const flashLamp = useFlashLampState(flash);
-  const { disableFlashEffects, flashAllowed, fullPageFlash } = flashLamp;
+  const { disableFlashEffects, flashAllowed } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
-  const showStrobeWarning =
-    fullPageFlash && effectiveFlash && player.state === "playing";
+  const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
 
   const morse = React.useMemo(() => textToMorse(prompt.text), [prompt.text]);
   const normalizedAnswer = normalizeAudioAnswer(answer);

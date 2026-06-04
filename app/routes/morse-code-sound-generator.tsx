@@ -60,7 +60,7 @@ const faqItems = [
   },
   {
     q: "Is my text uploaded to a server?",
-    a: "No. The sound preview and quick audio exports are generated in your browser. The tool does not upload your typed message to make the Morse sound.",
+    a: "No. The sound preview and quick audio exports are generated in your browser. Your message is not uploaded to MorseWords servers or stored in a database. The source may be saved only in this browser on this device and can be cleared from site settings.",
   },
 ];
 

@@ -2,6 +2,7 @@ import { expect, test, type Page, type TestInfo } from "@playwright/test";
 import fs from "node:fs";
 
 import { ROUTES, absoluteUrl } from "../../app/client/data/routes";
+import { VIDEO_GENERATOR_PREFERENCES_KEY } from "../../app/client/components/morse-code-video-generator/videoGeneratorPreferences";
 import {
   blockExternalNetwork,
   collectConsoleErrors,
@@ -136,6 +137,11 @@ test.describe("Morse code video generator", () => {
     await expect(page.getByTestId("morse-video-preview")).toBeVisible();
     await expect(page.getByRole("button", { name: "Download WebM" })).toBeEnabled();
     await expect(page.getByText("WebM export starts only when")).toBeVisible();
+    await expect(
+      page.getByText(
+        "Your message is not uploaded to MorseWords servers or stored in a database.",
+      ),
+    ).toBeVisible();
 
     const jsonLd = await page
       .locator('script[type="application/ld+json"]')
@@ -187,6 +193,40 @@ test.describe("Morse code video generator", () => {
     await expect(page.getByLabel("Morse code to turn into a video")).toHaveValue("");
     await expect(page.getByRole("button", { name: "Download WebM" })).toBeDisabled();
     await expect(page.getByText("Add text or typed Morse")).toBeVisible();
+  });
+
+  test("video preferences persist without saving raw source input", async ({
+    page,
+  }) => {
+    await installFastVideoRecorder(page);
+    await openVideoGenerator(page);
+    await page
+      .getByLabel("Message to turn into a Morse code video")
+      .fill(RAW_SECRET_TEXT);
+    await page.getByRole("radio", { name: /Dot/ }).click();
+    await page.getByLabel("File name").fill("private-video-title");
+
+    await expect
+      .poll(() =>
+        page.evaluate((key) => localStorage.getItem(key), VIDEO_GENERATOR_PREFERENCES_KEY),
+      )
+      .toContain('"visualStyle":"dot"');
+    await expect
+      .poll(() =>
+        page.evaluate((key) => localStorage.getItem(key), VIDEO_GENERATOR_PREFERENCES_KEY),
+      )
+      .toContain('"fileName":"private-video-title"');
+    await expectNoRawInputInStorage(page, RAW_SECRET_TEXT);
+
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await expect(
+      page.locator("[data-mw-video-generator-ready='true']"),
+    ).toBeVisible();
+    await expect(page.getByTestId("morse-video-preview-dot")).toBeVisible();
+    await expect(page.getByLabel("Message to turn into a Morse code video")).not.toHaveValue(
+      RAW_SECRET_TEXT,
+    );
   });
 
   test("visual styles, warning, audio controls, and preview stay scoped", async ({

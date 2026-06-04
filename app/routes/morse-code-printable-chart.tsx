@@ -321,6 +321,8 @@ function mergeSettings(value: unknown): PrintableSettings {
       typeof incoming.brandName === "string"
         ? normalizeBrandName(incoming.brandName)
         : DEFAULT_SETTINGS.brandName,
+    customLogoDataUrl: "",
+    customLogoName: "",
     includeAnswerKey:
       typeof incoming.includeAnswerKey === "boolean"
         ? incoming.includeAnswerKey
@@ -376,7 +378,11 @@ function mergeSettings(value: unknown): PrintableSettings {
 
 function readInitialPrintableSettings(): PrintableSettings {
   return mergeSettings(
-    parseStoredJson(safeReadStorage(SETTINGS_STORAGE_KEY), DEFAULT_SETTINGS),
+    parseStoredJson(
+      safeReadStorage(SETTINGS_STORAGE_KEY),
+      DEFAULT_SETTINGS,
+      isStringRecord,
+    ),
   );
 }
 
@@ -3540,8 +3546,8 @@ export default function MorseCodePrintableChart() {
                   Return later
                 </h3>
                 <p className="mt-2 break-words text-sm leading-relaxed text-slate-600">
-                  The browser saves worksheet settings and preset snapshots with
-                  localStorage for future visits.
+                  The browser can save worksheet settings and preset snapshots
+                  for future visits. Uploaded logo file data stays session-only.
                 </p>
               </div>
             </div>

@@ -3,6 +3,7 @@ import type {
   MorseVideoIntensity,
   MorseVideoResolution,
   MorseVideoSettings,
+  MorseVideoTextDisplayMode,
   MorseVideoVisualStyle,
 } from "./morseVideoTypes";
 
@@ -54,11 +55,20 @@ export const MORSE_VIDEO_INTENSITY_LABELS: Record<
   high: "High",
 };
 
+export const MORSE_VIDEO_TEXT_DISPLAY_LABELS: Record<
+  MorseVideoTextDisplayMode,
+  string
+> = {
+  none: "None",
+  morse: "Morse only",
+  text: "Text only",
+  both: "Morse + text",
+};
+
 export function describeMorseVideoSettings(settings: MorseVideoSettings) {
   const style = MORSE_VIDEO_VISUAL_STYLE_DETAILS[settings.visualStyle].label;
   const audio = settings.includeAudioTrack ? "audio track on" : "silent video";
-  const overlay = settings.showMorseOverlay
-    ? "Morse overlay on"
-    : "Morse overlay off";
-  return `${style}, ${settings.resolution}, ${MORSE_VIDEO_BACKGROUND_LABELS[settings.backgroundStyle]}, ${MORSE_VIDEO_INTENSITY_LABELS[settings.intensity].toLowerCase()} intensity, ${audio}, ${overlay}, ${settings.targetPartMinutes} minute target parts.`;
+  const textDisplay =
+    MORSE_VIDEO_TEXT_DISPLAY_LABELS[settings.textDisplayMode].toLowerCase();
+  return `${style}, ${settings.resolution}, ${MORSE_VIDEO_BACKGROUND_LABELS[settings.backgroundStyle]}, ${MORSE_VIDEO_INTENSITY_LABELS[settings.intensity].toLowerCase()} intensity, ${audio}, ${textDisplay} text, ${settings.targetPartMinutes} minute target parts.`;
 }

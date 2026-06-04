@@ -1,16 +1,39 @@
 import { expect, test, type Page } from "@playwright/test";
 
-import { isFlashAllowedFromSafetyState } from "../../app/client/components/shared/useFlashSafety";
+import {
+  isFlashAllowedFromSafetyState,
+  shouldShowWholePageFlashWarning,
+} from "../../app/client/components/shared/useFlashSafety";
 import { waitForRouteReady } from "./helpers";
+
+const STROBE_WARNING_PREFIX =
+  "Strobe warning: flashing light may be uncomfortable";
 
 function flashToggle(page: Page) {
   return page.locator("button").filter({ hasText: "Flash Light" }).first();
+}
+
+function strobeWarning(page: Page) {
+  return page
+    .getByText(STROBE_WARNING_PREFIX, { exact: false })
+    .filter({ visible: true });
 }
 
 async function openAudio(page: Page) {
   await page.goto("/audio", { waitUntil: "domcontentloaded" });
   await waitForRouteReady(page);
   await expect(flashToggle(page)).toBeEnabled();
+}
+
+async function revealFlashControls(page: Page) {
+  if (await flashToggle(page).isVisible().catch(() => false)) return;
+  const advancedButton = page
+    .getByRole("button", { name: /Show advanced/ })
+    .first();
+  if (await advancedButton.isVisible().catch(() => false)) {
+    await advancedButton.click();
+  }
+  await expect(flashToggle(page)).toBeVisible();
 }
 
 async function enableAudioFlash(page: Page) {
@@ -21,6 +44,13 @@ async function enableAudioFlash(page: Page) {
     }
     await expect(toggle).toHaveAttribute("aria-pressed", "true");
   }).toPass({ timeout: 15_000 });
+}
+
+async function openDisplaySettings(page: Page) {
+  await page.getByRole("button", { name: "Open display settings" }).click();
+  const dialog = page.getByRole("dialog", { name: "Display settings" });
+  await expect(dialog).toBeVisible();
+  return dialog;
 }
 
 test.describe("flash safety helpers", () => {
@@ -44,9 +74,101 @@ test.describe("flash safety helpers", () => {
       }),
     ).toBe(true);
   });
+
+  test("shows whole-page flash warnings from settings state, not playback state", () => {
+    expect(
+      shouldShowWholePageFlashWarning({
+        disableFlashEffects: false,
+        flashEnabled: true,
+        fullPageFlash: true,
+      }),
+    ).toBe(true);
+    expect(
+      shouldShowWholePageFlashWarning({
+        disableFlashEffects: false,
+        flashEnabled: false,
+        fullPageFlash: true,
+      }),
+    ).toBe(false);
+    expect(
+      shouldShowWholePageFlashWarning({
+        disableFlashEffects: false,
+        flashEnabled: true,
+        fullPageFlash: false,
+      }),
+    ).toBe(false);
+    expect(
+      shouldShowWholePageFlashWarning({
+        disableFlashEffects: true,
+        flashEnabled: true,
+        fullPageFlash: true,
+      }),
+    ).toBe(false);
+  });
 });
 
 test.describe("shared FlashLamp", () => {
+  test("homepage warning follows Flash Light and Flash whole page before playback", async ({
+    page,
+  }) => {
+    await page.addInitScript(() => {
+      window.localStorage.clear();
+      window.localStorage.setItem("morsewords-full-page-flash", "1");
+    });
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+
+    await page.getByLabel("Input (Text)").fill("T");
+    const toggle = flashToggle(page);
+    const warning = strobeWarning(page);
+
+    await expect(toggle).toHaveAttribute("aria-pressed", "false");
+    await expect(warning).toHaveCount(0);
+
+    await toggle.click();
+    await expect(toggle).toHaveAttribute("aria-pressed", "true");
+    await expect(warning).toBeVisible();
+    await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
+
+    await toggle.click();
+    await expect(toggle).toHaveAttribute("aria-pressed", "false");
+    await expect(warning).toHaveCount(0);
+
+    await toggle.click();
+    await expect(warning).toBeVisible();
+
+    const dialog = await openDisplaySettings(page);
+    const fullPageFlash = dialog.getByRole("switch", {
+      name: "Flash whole page",
+    });
+    await fullPageFlash.click();
+    await expect(fullPageFlash).toHaveAttribute("aria-checked", "false");
+    await expect(warning).toHaveCount(0);
+
+    await fullPageFlash.click();
+    await expect(fullPageFlash).toHaveAttribute("aria-checked", "true");
+    await page.keyboard.press("Escape");
+    await expect(dialog).toHaveCount(0);
+    await expect(warning).toBeVisible();
+
+    await page.getByRole("button", { name: /Play/ }).first().click();
+    await expect(warning).toBeVisible();
+  });
+
+  test("homepage small-lamp-only flash does not show the strobe warning", async ({
+    page,
+  }) => {
+    await page.addInitScript(() => window.localStorage.clear());
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+
+    await flashToggle(page).click();
+    await expect(flashToggle(page)).toHaveAttribute("aria-pressed", "true");
+    await expect(strobeWarning(page)).toHaveCount(0);
+    await expect(page.getByTestId("mw-flash-lamp").first()).toBeVisible();
+    await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
+  });
+
   test("uses a small lamp for morsewords:flash events instead of a full-screen strobe", async ({
     page,
   }) => {
@@ -144,12 +266,9 @@ test.describe("shared FlashLamp", () => {
     await openAudio(page);
 
     await enableAudioFlash(page);
-    const warning = page
-      .getByText("Strobe warning: flashing light may be uncomfortable", {
-        exact: false,
-      })
-      .filter({ visible: true });
-    await expect(warning).toHaveCount(0);
+    const warning = strobeWarning(page);
+    await expect(warning).toBeVisible();
+    await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
 
     const sawPageFlash = page.evaluate<boolean>(
       () =>
@@ -177,6 +296,39 @@ test.describe("shared FlashLamp", () => {
     await expect(sawPageFlash).resolves.toBe(true);
     await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
   });
+
+  for (const route of [
+    "/audio",
+    "/morse-code-sound-generator",
+    "/morse-code-mp3-generator",
+    "/morse-code-audio-practice",
+    "/morse-code-audio-quiz",
+  ] as const) {
+    test(`${route} shows and removes the warning from settings before playback`, async ({
+      page,
+    }) => {
+      await page.addInitScript(() => {
+        window.localStorage.clear();
+        window.localStorage.setItem("morsewords-full-page-flash", "1");
+      });
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+      await revealFlashControls(page);
+
+      const toggle = flashToggle(page);
+      const warning = strobeWarning(page);
+      await expect(warning).toHaveCount(0);
+
+      await toggle.click();
+      await expect(toggle).toHaveAttribute("aria-pressed", "true");
+      await expect(warning).toBeVisible();
+      await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
+
+      await toggle.click();
+      await expect(toggle).toHaveAttribute("aria-pressed", "false");
+      await expect(warning).toHaveCount(0);
+    });
+  }
 
   test("prefers-reduced-motion does not permanently disable user-triggered flash", async ({
     page,

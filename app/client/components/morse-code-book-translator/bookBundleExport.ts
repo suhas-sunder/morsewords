@@ -220,6 +220,7 @@ export async function createBookExportZip({
           mp3Bitrate: settings.mp3Bitrate,
           sampleRate: settings.sampleRate,
           tailPaddingMs: settings.tailPaddingMs,
+          splitMode: settings.splitMode,
           splitAudio: settings.splitAudio,
           targetPartMinutes: settings.targetPartMinutes,
           preferSourceSections: settings.preferSourceSections,
@@ -550,6 +551,7 @@ function buildManifest({
       mp3Bitrate: settings.mp3Bitrate,
       sampleRate: settings.sampleRate,
       tailPaddingMs: settings.tailPaddingMs,
+      splitMode: settings.splitMode,
       splitAudio: settings.splitAudio,
       targetPartMinutes: settings.targetPartMinutes,
       preferSourceSections: settings.preferSourceSections,
@@ -599,7 +601,7 @@ function buildReadme({
     `Generated: ${generatedAt}`,
     `Preset: ${settings.presetName}`,
     `Output: ${settings.outputFormat.toUpperCase()} ${
-      settings.splitAudio ? "parts" : "audio file"
+      settings.splitMode !== "none" ? "parts" : "audio file"
     }`,
     `Estimated runtime: ${formatDuration(runtimeMs)}`,
     `Part count: ${parts.length}`,
@@ -613,10 +615,10 @@ function buildReadme({
     settings.includeSettings ? "- settings.json" : "",
     "",
     "Notes",
-    settings.splitAudio
+    settings.splitMode !== "none"
       ? "- Audio parts are sorted by filename and listed in playlist.m3u."
       : "",
-    settings.splitAudio
+    settings.splitMode !== "none"
       ? "- Parts are based on estimated Morse runtime and safe text boundaries, not necessarily original book chapters."
       : "",
     "- MP3 is recommended for long downloads. WAV is uncompressed and can be large.",

@@ -119,7 +119,7 @@ const faqItems: AudioFaqItem[] = [
   },
   {
     q: "Is my text or audio uploaded to a server?",
-    a: "No. On this page, playback and WAV export happen locally in your browser. Your message is not uploaded for audio generation.",
+    a: "No. Playback and WAV export happen locally in your browser. Your message is not uploaded to MorseWords servers or stored in a database. The audio source may be saved only in this browser on this device and can be cleared from site settings.",
   },
 ];
 

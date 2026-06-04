@@ -3,12 +3,13 @@ import {
   readStoredBoolean,
   safeWriteStorage,
 } from "~/client/components/shared/settingsStorage";
+import { STORAGE_KEYS } from "~/client/components/shared/storageRegistry";
 
 export const SHOW_AMBIENT_MORSE_STORAGE_KEY =
-  "morsewords-show-ambient-morse";
+  STORAGE_KEYS.showAmbientMorse;
 export const DISABLE_FLASH_EFFECTS_STORAGE_KEY =
-  "morsewords-disable-flash-effects";
-export const FULL_PAGE_FLASH_STORAGE_KEY = "morsewords-full-page-flash";
+  STORAGE_KEYS.disableFlashEffects;
+export const FULL_PAGE_FLASH_STORAGE_KEY = STORAGE_KEYS.fullPageFlash;
 
 export type DisplaySettings = {
   showAmbientMorse: boolean;
@@ -18,7 +19,7 @@ export type DisplaySettings = {
 
 const DISPLAY_SETTINGS_EVENT = "morsewords:display-settings-change";
 
-const DEFAULT_DISPLAY_SETTINGS: DisplaySettings = {
+export const DEFAULT_DISPLAY_SETTINGS: DisplaySettings = {
   showAmbientMorse: true,
   disableFlashEffects: false,
   fullPageFlash: false,
@@ -91,6 +92,18 @@ export function applyDisplaySettings(settings: DisplaySettings) {
     window.dispatchEvent(
       new CustomEvent<DisplaySettings>(DISPLAY_SETTINGS_EVENT, {
         detail: settings,
+      }),
+    );
+  }
+}
+
+export function resetDisplaySettingsToDefault() {
+  setRootDisplaySettings(DEFAULT_DISPLAY_SETTINGS);
+
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent<DisplaySettings>(DISPLAY_SETTINGS_EVENT, {
+        detail: DEFAULT_DISPLAY_SETTINGS,
       }),
     );
   }

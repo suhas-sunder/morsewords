@@ -72,11 +72,13 @@ export function describeBookVideoDownloadContents(
 }
 
 export function buildBookVideoWarnings({
+  downloadKind,
   partCount,
   support,
   totalRuntimeMs,
   videoSettings,
 }: {
+  downloadKind?: BookDownloadKind;
   partCount: number;
   support: BookVideoSupport | null;
   totalRuntimeMs: number;
@@ -89,9 +91,19 @@ export function buildBookVideoWarnings({
     warnings.push("Browser video export support varies; WebM is used when available.");
   }
   if (totalRuntimeMs > 90_000 || partCount > 1) {
-    warnings.push(
-      "Long videos may take time to render and are split into ZIP parts when needed.",
-    );
+    if (partCount > 1) {
+      warnings.push(
+        "Long videos may take time to render. Split video downloads are packaged in ZIP files.",
+      );
+    } else if (downloadKind === "zip") {
+      warnings.push(
+        "Long videos may take time to render. Selected extras are packaged with the WebM in a ZIP download.",
+      );
+    } else {
+      warnings.push(
+        "Long videos may take time to render. Keep this tab open until the WebM is ready.",
+      );
+    }
   }
   if (videoSettings.resolution === "1080p") {
     warnings.push("1080p video may render more slowly than 720p.");
@@ -477,12 +489,16 @@ function buildVideoSettingsSummary(
     paragraphPauseMultiplier: exportSettings.paragraphPauseMultiplier,
     sentencePauseMultiplier: exportSettings.sentencePauseMultiplier,
     punctuationMode: exportSettings.punctuationMode,
+    splitMode: exportSettings.splitMode,
+    splitAudio: exportSettings.splitAudio,
+    preferSourceSections: exportSettings.preferSourceSections,
     visualStyle: videoSettings.visualStyle,
     includeAudioTrack: videoSettings.includeAudioTrack,
     resolution: videoSettings.resolution,
     backgroundStyle: videoSettings.backgroundStyle,
     intensity: videoSettings.intensity,
     showMorseOverlay: videoSettings.showMorseOverlay,
+    textDisplayMode: videoSettings.textDisplayMode,
     showBranding: videoSettings.showBranding,
     targetPartMinutes: videoSettings.targetPartMinutes,
     settingsDescription: describeBookVideoSettings(videoSettings),

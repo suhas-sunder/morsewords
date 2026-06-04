@@ -115,16 +115,56 @@ test.describe("new book and video route SEO FAQ schema", () => {
     ).toBeVisible();
     await expect(
       page.getByRole("heading", {
-        name: "Choose a source that will convert cleanly",
+        name: "Turn books, chapters, and long text into Morse practice files",
       }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", {
-        name: "One audio file by default, split parts by choice",
+        name: "Supported source types for long text",
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "Use source text responsibly" }),
+      page.getByRole("heading", {
+        name: "Choose MP3 or WAV for long Morse audio",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "Make long Morse output easier to listen to",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "Private local processing and source responsibility",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "Practical long-form Morse workflows",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Limits to plan around" }),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Morse audiobook-style playback").first(),
+    ).toBeVisible();
+    await expect(page.getByText("Scanned PDF").first()).toBeVisible();
+    await expect(page.getByText("No OCR").first()).toBeVisible();
+    await expect(
+      page.getByText("DRM and protected ebooks").first(),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Project Gutenberg chapter to MP3").first(),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Generated MP3, WAV, WebM, and ZIP files").first(),
+    ).toBeVisible();
+    await expect(page.getByText("MP4 is not guaranteed").first()).toBeVisible();
+    await expect(
+      page.getByText(
+        "saved source is stored only in this browser on this device and can be cleared from site settings.",
+      ).first(),
     ).toBeVisible();
     await expect(page.locator("#faq")).toBeVisible();
 

@@ -73,6 +73,7 @@ import {
 } from "./bookExportPreferences";
 import type {
   BookExportPart,
+  BookExportAnalysis,
   BookExportPresetName,
   BookExportProgress,
   BookExportResultSummary,
@@ -82,6 +83,7 @@ import type {
 import { segmentBookText } from "./bookSegmentation";
 import {
   DEFAULT_CLEANUP_OPTIONS,
+  type BookSourceSection,
   type CleanupOptions,
   type CustomCleanupRule,
   type ParsedBookSource,
@@ -102,6 +104,7 @@ import {
 } from "./textNormalization";
 import {
   buildBookVideoPreview,
+  getMorseVideoPreviewFrame,
   type BookVideoPreview,
 } from "./bookVideoPreview";
 import {
@@ -112,21 +115,24 @@ import {
 import {
   BOOK_VIDEO_INTENSITY_LABELS,
   BOOK_VIDEO_RESOLUTION_LABELS,
+  BOOK_VIDEO_TEXT_DISPLAY_LABELS,
   BOOK_VIDEO_VISUAL_STYLE_DETAILS,
 } from "./bookVideoPresets";
 import {
-  describeBookVideoFormat,
   detectBookVideoSupport,
   type BookVideoSupport,
 } from "./bookVideoSupport";
 import {
   BOOK_VIDEO_INTENSITIES,
   BOOK_VIDEO_RESOLUTIONS,
+  BOOK_VIDEO_TEXT_DISPLAY_MODES,
   BOOK_VIDEO_VISUAL_STYLES,
   DEFAULT_BOOK_VIDEO_SETTINGS,
   sanitizeBookVideoSettings,
   type BookVideoSettings,
+  type BookVideoTextDisplayMode,
 } from "./bookVideoTypes";
+import type { BookSplitMode } from "./bookExportTypes";
 
 type ParseStatus = "idle" | "parsing" | "ready" | "error";
 type ExportStatusKind = "info" | "success" | "error" | "working";
@@ -147,7 +153,7 @@ const BOOK_PREVIEW_MAX_CHARS = 900;
 
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   phase: "idle",
-  message: "Choose download settings, then download audio.",
+  message: "",
   currentPart: 0,
   totalParts: 0,
 };
@@ -161,6 +167,12 @@ const VIDEO_IDLE_EXPORT_PROGRESS: BookExportProgress = {
 
 const FULL_FRAME_FLASH_WARNING =
   "Full-frame flash mode can create rapid full-frame flashing in the finished video and may be uncomfortable or unsafe for some viewers. Use Lightbulb or Dot for a smaller flash area.";
+
+const BOOK_SPLIT_MODE_LABELS: Record<BookSplitMode, string> = {
+  none: "No split",
+  duration: "By duration",
+  "source-sections": "By source sections",
+};
 
 type BookPreviewStatus =
   | "waiting"
@@ -177,6 +189,18 @@ type BookAudioPreview = {
   durationMs: number;
   label: string;
   truncated: boolean;
+};
+
+type CacheEntry<T> = {
+  key: string;
+  value: T;
+};
+
+type BookDerivedCache = {
+  preflight?: CacheEntry<PreflightSummary>;
+  sourceSections?: CacheEntry<BookSourceSection[]>;
+  exportParts?: CacheEntry<BookExportPart[]>;
+  exportAnalysis?: CacheEntry<BookExportAnalysis>;
 };
 
 function useAppliedThemeMode() {
@@ -230,6 +254,61 @@ function shouldUseEditableUpload(parsed: ParsedBookSource) {
     (parsed.sourceType === "txt" || parsed.sourceType === "md") &&
     parsed.rawText.length <= INLINE_UPLOAD_TEXTAREA_LIMIT
   );
+}
+
+function hashString(value: string) {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return `${value.length}:${(hash >>> 0).toString(36)}`;
+}
+
+function parsedSourceSignature(parsed: ParsedBookSource) {
+  const sections =
+    parsed.sections?.map((section) => ({
+      title: section.title ?? "",
+      sourceLabel: section.sourceLabel ?? "",
+      startOffset: section.startOffset ?? 0,
+      endOffset: section.endOffset ?? 0,
+      rawText: hashString(section.rawText),
+    })) ?? [];
+
+  return JSON.stringify({
+    sourceType: parsed.sourceType,
+    filename: parsed.filename ?? "",
+    title: parsed.title ?? "",
+    author: parsed.author ?? "",
+    pageCount: parsed.pageCount ?? 0,
+    sectionCount: parsed.sectionCount ?? 0,
+    rawText: hashString(parsed.rawText),
+    sections,
+    warnings: parsed.warnings,
+  });
+}
+
+function cleanupSignature(
+  options: CleanupOptions,
+  customRules: CustomCleanupRule[],
+) {
+  return JSON.stringify({ options, customRules });
+}
+
+function sourceSectionsSignature(sections: BookSourceSection[]) {
+  return JSON.stringify(
+    sections.map((section) => ({
+      title: section.title ?? "",
+      sourceLabel: section.sourceLabel ?? "",
+      startOffset: section.startOffset ?? 0,
+      endOffset: section.endOffset ?? 0,
+      rawText: hashString(section.rawText),
+    })),
+  );
+}
+
+function settingsSignature(value: unknown) {
+  return JSON.stringify(value);
 }
 
 function cleanupLabel(key: keyof CleanupOptions) {
@@ -316,8 +395,14 @@ function buildBookAudioPreview(
   let durationMs = 0;
   let usedWords = 0;
 
-  for (let index = 0; index < words.length && index < BOOK_PREVIEW_MAX_WORDS; index += 1) {
-    const candidate = sampleText ? `${sampleText} ${words[index]}` : words[index];
+  for (
+    let index = 0;
+    index < words.length && index < BOOK_PREVIEW_MAX_WORDS;
+    index += 1
+  ) {
+    const candidate = sampleText
+      ? `${sampleText} ${words[index]}`
+      : words[index];
     if (candidate.length > BOOK_PREVIEW_MAX_CHARS && sampleText) break;
 
     const candidateMorse = buildMorseTranscript(candidate);
@@ -400,7 +485,9 @@ function SourceUploadDropzone({
       <div
         role="button"
         tabIndex={0}
-        aria-label={hasSource ? "Replace book source file" : "Upload a book source file"}
+        aria-label={
+          hasSource ? "Replace book source file" : "Upload a book source file"
+        }
         aria-describedby="book-source-file-help"
         onClick={() => fileInputRef.current?.click()}
         onKeyDown={onUploadKeyDown}
@@ -483,19 +570,19 @@ export default function BookTranslatorTool() {
   const [sourceEditMode, setSourceEditMode] =
     React.useState<SourceEditMode>("idle");
   const [sourceEditDraft, setSourceEditDraft] = React.useState("");
-  const [outputType, setOutputType] =
-    React.useState<BookOutputType>("audio");
+  const [outputType, setOutputType] = React.useState<BookOutputType>("audio");
   const [exportSettings, setExportSettings] =
     React.useState<BookExportSettings>(DEFAULT_BOOK_EXPORT_SETTINGS);
-  const [videoSettings, setVideoSettings] =
-    React.useState<BookVideoSettings>(DEFAULT_BOOK_VIDEO_SETTINGS);
+  const [videoSettings, setVideoSettings] = React.useState<BookVideoSettings>(
+    DEFAULT_BOOK_VIDEO_SETTINGS,
+  );
   const [videoSupport, setVideoSupport] =
     React.useState<BookVideoSupport | null>(null);
   const [previewStatus, setPreviewStatus] =
     React.useState<BookPreviewStatus>("waiting");
   const [previewErrorMessage, setPreviewErrorMessage] = React.useState("");
   const [visualPreviewPlaying, setVisualPreviewPlaying] = React.useState(false);
-  const [visualPreviewStep, setVisualPreviewStep] = React.useState(0);
+  const [visualPreviewElapsedMs, setVisualPreviewElapsedMs] = React.useState(0);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [status, setStatus] = React.useState<ParseStatus>("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -522,20 +609,26 @@ export default function BookTranslatorTool() {
   } | null>(null);
   const exportVersionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
-  const exportProgressRef = React.useRef<BookExportProgress>(IDLE_EXPORT_PROGRESS);
+  const exportProgressRef =
+    React.useRef<BookExportProgress>(IDLE_EXPORT_PROGRESS);
   const visualPreviewIntervalRef = React.useRef<number | null>(null);
   const visualPreviewTimeoutRef = React.useRef<number | null>(null);
+  const visualPreviewStartedAtRef = React.useRef(0);
+  const visualPreviewBaseElapsedRef = React.useRef(0);
   const mountedRef = React.useRef(true);
   const customCleanupRuleIdRef = React.useRef(1);
   const previewAudioPlayer = useMorseAudio();
   const stopPreviewAudioRef = React.useRef(previewAudioPlayer.stop);
+  const derivedCacheRef = React.useRef<BookDerivedCache>({});
 
   React.useEffect(() => {
     exportProgressRef.current = exportProgress;
   }, [exportProgress]);
 
   const hasActiveExport = React.useCallback(
-    () => exportAbortRef.current !== null || isExportRunning(exportProgressRef.current),
+    () =>
+      exportAbortRef.current !== null ||
+      isExportRunning(exportProgressRef.current),
     [],
   );
 
@@ -544,12 +637,14 @@ export default function BookTranslatorTool() {
       exportVersionRef.current += 1;
       exportAbortRef.current?.abort();
       exportAbortRef.current = null;
-      setExportProgress({
+      const nextProgress: BookExportProgress = {
         phase: "cancelled",
         message,
         currentPart: 0,
         totalParts: 0,
-      });
+      };
+      exportProgressRef.current = nextProgress;
+      setExportProgress(nextProgress);
       setExportStatus({ kind: "info", message });
     },
     [],
@@ -559,7 +654,7 @@ export default function BookTranslatorTool() {
     stopPreviewAudioRef.current = previewAudioPlayer.stop;
   });
 
-  const stopVisualPreview = React.useCallback(() => {
+  const clearVisualPreviewTimers = React.useCallback(() => {
     if (visualPreviewIntervalRef.current !== null) {
       window.clearInterval(visualPreviewIntervalRef.current);
       visualPreviewIntervalRef.current = null;
@@ -568,14 +663,23 @@ export default function BookTranslatorTool() {
       window.clearTimeout(visualPreviewTimeoutRef.current);
       visualPreviewTimeoutRef.current = null;
     }
-    setVisualPreviewPlaying(false);
-    setVisualPreviewStep(0);
   }, []);
+
+  const stopVisualPreview = React.useCallback(
+    (resetElapsed = true) => {
+      clearVisualPreviewTimers();
+      setVisualPreviewPlaying(false);
+      if (resetElapsed) setVisualPreviewElapsedMs(0);
+    },
+    [clearVisualPreviewTimers],
+  );
 
   const stopActivePreview = React.useCallback(() => {
     stopPreviewAudioRef.current?.();
     stopVisualPreview();
-    setPreviewStatus((current) => (current === "playing" ? "stopped" : current));
+    setPreviewStatus((current) =>
+      current === "playing" ? "stopped" : current,
+    );
   }, [stopVisualPreview]);
 
   React.useEffect(() => {
@@ -626,6 +730,7 @@ export default function BookTranslatorTool() {
       mountedRef.current = false;
       parseVersionRef.current += 1;
       exportVersionRef.current += 1;
+      derivedCacheRef.current = {};
       exportAbortRef.current?.abort();
       stopPreviewAudioRef.current?.();
       stopVisualPreview();
@@ -641,58 +746,128 @@ export default function BookTranslatorTool() {
     }),
     [cleanupOptions, exportSettings.punctuationMode],
   );
+  const sourceCacheSignature = React.useMemo(
+    () => parsedSourceSignature(parsedSource),
+    [parsedSource],
+  );
+  const cleanupCacheSignature = React.useMemo(
+    () => cleanupSignature(effectiveCleanupOptions, customCleanupRules),
+    [customCleanupRules, effectiveCleanupOptions],
+  );
 
   const preflight = React.useMemo<PreflightSummary>(() => {
-    return buildPreflightSummary(
+    const cacheKey = `${sourceCacheSignature}|${cleanupCacheSignature}`;
+    const cached = derivedCacheRef.current.preflight;
+    if (cached?.key === cacheKey) return cached.value;
+
+    const value = buildPreflightSummary(
       parsedSource,
       effectiveCleanupOptions,
       customCleanupRules,
     );
-  }, [customCleanupRules, effectiveCleanupOptions, parsedSource]);
+    derivedCacheRef.current.preflight = { key: cacheKey, value };
+    return value;
+  }, [
+    cleanupCacheSignature,
+    customCleanupRules,
+    effectiveCleanupOptions,
+    parsedSource,
+    sourceCacheSignature,
+  ]);
 
   const sourceSections = React.useMemo(
-    () =>
-      buildCleanedSourceSections(
+    () => {
+      const cacheKey = `${sourceCacheSignature}|${cleanupCacheSignature}`;
+      const cached = derivedCacheRef.current.sourceSections;
+      if (cached?.key === cacheKey) return cached.value;
+
+      const value = buildCleanedSourceSections(
         parsedSource,
         effectiveCleanupOptions,
         customCleanupRules,
-      ),
-    [customCleanupRules, effectiveCleanupOptions, parsedSource],
+      );
+      derivedCacheRef.current.sourceSections = { key: cacheKey, value };
+      return value;
+    },
+    [
+      cleanupCacheSignature,
+      customCleanupRules,
+      effectiveCleanupOptions,
+      parsedSource,
+      sourceCacheSignature,
+    ],
   );
 
   const activeSegmentationSettings = React.useMemo<BookExportSettings>(() => {
     if (outputType === "audio") return exportSettings;
     return sanitizeBookExportSettings({
       ...exportSettings,
-      splitAudio: true,
       targetPartMinutes: videoSettings.targetPartMinutes,
     });
   }, [exportSettings, outputType, videoSettings.targetPartMinutes]);
+  const segmentationCacheSignature = React.useMemo(
+    () => settingsSignature(activeSegmentationSettings),
+    [activeSegmentationSettings],
+  );
+  const sourceSectionsCacheSignature = React.useMemo(
+    () => sourceSectionsSignature(sourceSections),
+    [sourceSections],
+  );
 
   const exportParts = React.useMemo<BookExportPart[]>(() => {
-    return segmentBookText({
+    const cacheKey = [
+      hashString(preflight.cleanedText),
+      segmentationCacheSignature,
+      sourceSectionsCacheSignature,
+      preflight.title ?? "",
+      preflight.filename ?? "",
+    ].join("|");
+    const cached = derivedCacheRef.current.exportParts;
+    if (cached?.key === cacheKey) return cached.value;
+
+    const value = segmentBookText({
       cleanedText: preflight.cleanedText,
       settings: activeSegmentationSettings,
       sourceSections,
       sourceTitle: preflight.title || preflight.filename,
     });
+    derivedCacheRef.current.exportParts = { key: cacheKey, value };
+    return value;
   }, [
     activeSegmentationSettings,
     preflight.cleanedText,
     preflight.filename,
     preflight.title,
+    segmentationCacheSignature,
     sourceSections,
+    sourceSectionsCacheSignature,
   ]);
 
-  const exportAnalysis = React.useMemo(
-    () =>
-      buildExportAnalysis({
+  const exportAnalysis = React.useMemo(() => {
+    const cacheKey = [
+      hashString(preflight.cleanedText),
+      segmentationCacheSignature,
+      exportParts.length,
+      preflight.unsupportedCount,
+    ].join("|");
+    const cached = derivedCacheRef.current.exportAnalysis;
+    if (cached?.key === cacheKey) return cached.value;
+
+    const value = buildExportAnalysis({
         preflight,
         settings: activeSegmentationSettings,
         partCount: exportParts.length,
-      }),
-    [activeSegmentationSettings, exportParts.length, preflight],
-  );
+      });
+    derivedCacheRef.current.exportAnalysis = { key: cacheKey, value };
+    return value;
+  }, [
+    activeSegmentationSettings,
+    exportParts.length,
+    preflight,
+    preflight.cleanedText,
+    preflight.unsupportedCount,
+    segmentationCacheSignature,
+  ]);
 
   const hasSource = parsedSource.rawText.trim().length > 0;
   const hasCleanedSource = preflight.cleanedText.trim().length > 0;
@@ -739,7 +914,9 @@ export default function BookTranslatorTool() {
   const exportRunning = isExportRunning(exportProgress);
   const isAudioOutput = outputType === "audio";
   const isVideoOutput = outputType === "video";
-  const isSegmentedOutput = isVideoOutput || exportSettings.splitAudio;
+  const splitEnabled = activeSegmentationSettings.splitMode !== "none";
+  const isSegmentedOutput = splitEnabled;
+  const hasSourceSectionHints = sourceSections.length > 1;
   const appliedThemeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(appliedThemeMode);
@@ -762,8 +939,22 @@ export default function BookTranslatorTool() {
       buildBookVideoPreview(
         effectiveVideoSettings,
         audioPreview?.sampleText ?? preflight.cleanedText,
+        {
+          charWpm: exportSettings.charWpm,
+          farnsworthWpm: exportSettings.farnsworthWpm,
+        },
       ),
-    [audioPreview?.sampleText, effectiveVideoSettings, preflight.cleanedText],
+    [
+      audioPreview?.sampleText,
+      effectiveVideoSettings,
+      exportSettings.charWpm,
+      exportSettings.farnsworthWpm,
+      preflight.cleanedText,
+    ],
+  );
+  const visualPreviewDurationMs = React.useMemo(
+    () => Math.min(30_000, Math.max(10_000, videoPreview.durationMs)),
+    [videoPreview.durationMs],
   );
   const previewSettingsSignature = React.useMemo(
     () =>
@@ -782,6 +973,7 @@ export default function BookTranslatorTool() {
         effectiveVideoSettings.includeAudioTrack,
         effectiveVideoSettings.showBranding,
         effectiveVideoSettings.showMorseOverlay,
+        effectiveVideoSettings.textDisplayMode,
         resolvedVideoBackgroundStyle,
       ].join("|"),
     [
@@ -799,6 +991,7 @@ export default function BookTranslatorTool() {
       effectiveVideoSettings.intensity,
       effectiveVideoSettings.showBranding,
       effectiveVideoSettings.showMorseOverlay,
+      effectiveVideoSettings.textDisplayMode,
       effectiveVideoSettings.visualStyle,
     ],
   );
@@ -848,41 +1041,57 @@ export default function BookTranslatorTool() {
   const activePresetDetails =
     BOOK_EXPORT_PRESET_DETAILS[exportSettings.presetName];
   const activeSettingsSummary = describeBookExportSettings(exportSettings);
-  const downloadKind = hasSource && exportParts.length > 0
-    ? isVideoOutput
-      ? getBookVideoDownloadKind(exportParts, exportSettings)
-      : getBookDownloadKind(exportParts, exportSettings)
-    : isVideoOutput
-      ? "video"
-      : "audio";
+  const downloadKind =
+    hasSource && exportParts.length > 0
+      ? isVideoOutput
+        ? getBookVideoDownloadKind(exportParts, activeSegmentationSettings)
+        : getBookDownloadKind(exportParts, activeSegmentationSettings)
+      : isVideoOutput
+        ? "video"
+        : "audio";
   const downloadFormatLabel = exportSettings.outputFormat.toUpperCase();
-  const videoFormatLabel = describeBookVideoFormat(videoSupport);
-  const primaryDownloadLabel =
-    isVideoOutput
-      ? downloadKind === "zip"
-        ? `Download ZIP bundle${
-            exportParts.length > 1
-              ? ` (${exportParts.length.toLocaleString()} WebM files)`
-              : ""
-          }`
-        : "Download WebM"
-      : downloadKind === "zip"
+  const primaryDownloadLabel = isVideoOutput
+    ? downloadKind === "zip"
+      ? `Download ZIP bundle${
+          exportParts.length > 1
+            ? ` (${exportParts.length.toLocaleString()} WebM files)`
+            : ""
+        }`
+      : "Download WebM"
+    : downloadKind === "zip"
       ? `Download ZIP bundle${
           exportParts.length > 1
             ? ` (${exportParts.length.toLocaleString()} ${downloadFormatLabel} files)`
             : ""
         }`
       : `Download ${downloadFormatLabel}`;
-  const downloadBadge =
-    isVideoOutput
+  const splitMode = activeSegmentationSettings.splitMode;
+  const splitTargetPartMinutes = isVideoOutput
+    ? videoSettings.targetPartMinutes
+    : exportSettings.targetPartMinutes;
+  const splitSummaryText =
+    splitMode === "none"
       ? downloadKind === "zip"
-        ? "ZIP bundle"
-        : videoFormatLabel
-      : downloadKind === "zip"
-        ? "ZIP bundle"
-        : `${downloadFormatLabel} file`;
+        ? "No split is selected. A ZIP is still required because selected sidecar files need to travel with the media."
+        : `No split is selected. This can download as one ${isVideoOutput ? "WebM video" : downloadFormatLabel} file.`
+      : splitMode === "source-sections"
+        ? hasSourceSectionHints
+          ? `Using available source sections with ${formatDuration(
+              exportAnalysis.targetPartMs,
+            )} duration fallback. Estimated parts: ${formatNumber(
+              exportParts.length,
+            )}.`
+          : `No EPUB/PDF section hints are available, so the download falls back to ${formatDuration(
+              exportAnalysis.targetPartMs,
+            )} duration parts and safe text boundaries.`
+        : `Using ${formatDuration(
+            exportAnalysis.targetPartMs,
+          )} target parts and safe text boundaries. Estimated parts: ${formatNumber(
+            exportParts.length,
+          )}.`;
   const videoWarnings = isVideoOutput
     ? buildBookVideoWarnings({
+        downloadKind,
         partCount: exportParts.length,
         support: videoSupport,
         totalRuntimeMs: exportAnalysis.totalRuntimeMs,
@@ -902,11 +1111,18 @@ export default function BookTranslatorTool() {
       : exportProgress.phase === "complete"
         ? 100
         : 0;
-  const showExportProgress =
-    isAudioOutput ||
-    Boolean(exportStatus) ||
-    exportRunning ||
-    ["cancelled", "failed", "complete"].includes(exportProgress.phase);
+  const showExportProgress = exportRunning;
+  const showExportStatus = Boolean(exportStatus) && !exportRunning;
+  const runningDownloadLabel = isVideoOutput
+    ? exportProgress.phase === "bundling" || downloadKind === "zip"
+      ? "Building ZIP..."
+      : "Rendering video..."
+    : exportProgress.phase === "bundling" || downloadKind === "zip"
+      ? "Building ZIP..."
+      : "Preparing...";
+  const downloadButtonLabel = exportRunning
+    ? runningDownloadLabel
+    : primaryDownloadLabel;
 
   React.useEffect(() => {
     stopPreviewAudioRef.current?.();
@@ -975,7 +1191,9 @@ export default function BookTranslatorTool() {
       .catch(() => {
         if (!mountedRef.current) return;
         setPreviewStatus("failed");
-        setPreviewErrorMessage("Audio preview failed. Try again or adjust the source.");
+        setPreviewErrorMessage(
+          "Audio preview failed. Try again or adjust the source.",
+        );
       });
   }, [
     audioPreview,
@@ -996,24 +1214,82 @@ export default function BookTranslatorTool() {
     }
 
     stopPreviewAudioRef.current?.();
-    stopVisualPreview();
+    clearVisualPreviewTimers();
     setPreviewErrorMessage("");
     setPreviewStatus("playing");
     setVisualPreviewPlaying(true);
-    setVisualPreviewStep(1);
+    const currentElapsed = Math.max(
+      0,
+      Math.min(visualPreviewDurationMs, visualPreviewElapsedMs),
+    );
+    const startElapsed =
+      currentElapsed >= visualPreviewDurationMs ? 0 : currentElapsed;
+    visualPreviewStartedAtRef.current = performance.now();
+    visualPreviewBaseElapsedRef.current = startElapsed;
+    setVisualPreviewElapsedMs(startElapsed);
 
     visualPreviewIntervalRef.current = window.setInterval(() => {
-      setVisualPreviewStep((current) => (current + 1) % 4);
-    }, 800);
-    visualPreviewTimeoutRef.current = window.setTimeout(() => {
-      stopVisualPreview();
-      if (mountedRef.current) setPreviewStatus("stopped");
-    }, 5_600);
-  }, [audioPreview, stopVisualPreview]);
+      const nextElapsed =
+        visualPreviewBaseElapsedRef.current +
+        Math.max(0, performance.now() - visualPreviewStartedAtRef.current);
+      setVisualPreviewElapsedMs(Math.min(visualPreviewDurationMs, nextElapsed));
+    }, 80);
+    visualPreviewTimeoutRef.current = window.setTimeout(
+      () => {
+        stopVisualPreview();
+        if (mountedRef.current) setPreviewStatus("stopped");
+      },
+      Math.max(0, visualPreviewDurationMs - startElapsed),
+    );
+  }, [
+    audioPreview,
+    clearVisualPreviewTimers,
+    stopVisualPreview,
+    visualPreviewDurationMs,
+    visualPreviewElapsedMs,
+  ]);
+
+  const handleSeekVisualPreview = React.useCallback(
+    (elapsedMs: number) => {
+      const nextElapsed = Math.max(
+        0,
+        Math.min(visualPreviewDurationMs, elapsedMs),
+      );
+      setVisualPreviewElapsedMs(nextElapsed);
+      visualPreviewBaseElapsedRef.current = nextElapsed;
+      visualPreviewStartedAtRef.current = performance.now();
+
+      if (!visualPreviewPlaying) return;
+
+      clearVisualPreviewTimers();
+      visualPreviewIntervalRef.current = window.setInterval(() => {
+        const updatedElapsed =
+          visualPreviewBaseElapsedRef.current +
+          Math.max(0, performance.now() - visualPreviewStartedAtRef.current);
+        setVisualPreviewElapsedMs(
+          Math.min(visualPreviewDurationMs, updatedElapsed),
+        );
+      }, 80);
+      visualPreviewTimeoutRef.current = window.setTimeout(
+        () => {
+          stopVisualPreview();
+          if (mountedRef.current) setPreviewStatus("stopped");
+        },
+        Math.max(0, visualPreviewDurationMs - nextElapsed),
+      );
+    },
+    [
+      clearVisualPreviewTimers,
+      stopVisualPreview,
+      visualPreviewDurationMs,
+      visualPreviewPlaying,
+    ],
+  );
 
   const updatePastedText = React.useCallback(
     (value: string) => {
-      if (hasActiveExport()) {
+      const cancelledActiveExport = hasActiveExport();
+      if (cancelledActiveExport) {
         cancelActiveExport("Source changed; download cancelled.");
       }
       parseVersionRef.current += 1;
@@ -1027,7 +1303,7 @@ export default function BookTranslatorTool() {
       setStatus(value.trim() ? "ready" : "idle");
       setErrorMessage("");
       setSourceActionStatus(null);
-      setExportStatus(null);
+      if (!cancelledActiveExport) setExportStatus(null);
       setCompletedExport(null);
     },
     [cancelActiveExport, hasActiveExport],
@@ -1035,7 +1311,8 @@ export default function BookTranslatorTool() {
 
   const updateUploadedText = React.useCallback(
     (value: string) => {
-      if (hasActiveExport()) {
+      const cancelledActiveExport = hasActiveExport();
+      if (cancelledActiveExport) {
         cancelActiveExport("Source changed; download cancelled.");
       }
       parseVersionRef.current += 1;
@@ -1051,7 +1328,7 @@ export default function BookTranslatorTool() {
       setStatus(value.trim() ? "ready" : "idle");
       setErrorMessage("");
       setSourceActionStatus(null);
-      setExportStatus(null);
+      if (!cancelledActiveExport) setExportStatus(null);
       setCompletedExport(null);
     },
     [cancelActiveExport, hasActiveExport],
@@ -1059,7 +1336,8 @@ export default function BookTranslatorTool() {
 
   const parseSelectedFile = React.useCallback(
     async (file: File) => {
-      if (hasActiveExport()) {
+      const cancelledActiveExport = hasActiveExport();
+      if (cancelledActiveExport) {
         cancelActiveExport("Source changed; download cancelled.");
       }
       const selectedAt = performance.now();
@@ -1087,7 +1365,7 @@ export default function BookTranslatorTool() {
       setSourceEntryMode("uploaded-preview");
       setParsedSource(createEmptyParsedSource());
       setSourceActionStatus(null);
-      setExportStatus(null);
+      if (!cancelledActiveExport) setExportStatus(null);
       setCompletedExport(null);
 
       try {
@@ -1119,7 +1397,8 @@ export default function BookTranslatorTool() {
   );
 
   const clearSource = React.useCallback(() => {
-    if (hasActiveExport()) {
+    const cancelledActiveExport = hasActiveExport();
+    if (cancelledActiveExport) {
       cancelActiveExport("Source changed; download cancelled.");
     }
     parseVersionRef.current += 1;
@@ -1127,16 +1406,20 @@ export default function BookTranslatorTool() {
     setSourceEditMode("idle");
     setSourceEditDraft("");
     setSourceEntryMode("pasted");
+    derivedCacheRef.current = {};
     fileSelectionRef.current = null;
     setPendingFilename("");
     setParsedSource(createEmptyParsedSource());
     setStatus("idle");
     setErrorMessage("");
     setSourceActionStatus(null);
-    setExportProgress(
-      outputType === "video" ? VIDEO_IDLE_EXPORT_PROGRESS : IDLE_EXPORT_PROGRESS,
-    );
-    setExportStatus(null);
+    const idleProgress =
+      outputType === "video"
+        ? VIDEO_IDLE_EXPORT_PROGRESS
+        : IDLE_EXPORT_PROGRESS;
+    exportProgressRef.current = idleProgress;
+    setExportProgress(idleProgress);
+    if (!cancelledActiveExport) setExportStatus(null);
     setCompletedExport(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   }, [cancelActiveExport, hasActiveExport, outputType]);
@@ -1380,8 +1663,24 @@ export default function BookTranslatorTool() {
       if (hasActiveExport()) {
         cancelActiveExport("Settings changed; download cancelled.");
       }
+      const normalizedPatch =
+        patch.textDisplayMode !== undefined
+          ? {
+              ...patch,
+              showMorseOverlay:
+                patch.textDisplayMode === "morse" ||
+                patch.textDisplayMode === "both",
+            }
+          : patch.showMorseOverlay !== undefined
+            ? {
+                ...patch,
+                textDisplayMode: (patch.showMorseOverlay
+                  ? "morse"
+                  : "none") as BookVideoTextDisplayMode,
+              }
+            : patch;
       setVideoSettings((current) =>
-        sanitizeBookVideoSettings({ ...current, ...patch }),
+        sanitizeBookVideoSettings({ ...current, ...normalizedPatch }),
       );
       setExportStatus(null);
       setCompletedExport(null);
@@ -1493,14 +1792,16 @@ export default function BookTranslatorTool() {
         ? "Starting book video download..."
         : "Starting book download...",
     });
-    setExportProgress({
+    const initialProgress: BookExportProgress = {
       phase: "analyzing",
       message: isVideoOutput
         ? "Preparing cleaned source for video..."
         : "Preparing cleaned source for download...",
       currentPart: 0,
       totalParts: exportParts.length,
-    });
+    };
+    exportProgressRef.current = initialProgress;
+    setExportProgress(initialProgress);
 
     try {
       const metadata = {
@@ -1511,6 +1812,7 @@ export default function BookTranslatorTool() {
       };
       const progressHandler = (progress: BookExportProgress) => {
         if (mountedRef.current && exportVersionRef.current === version) {
+          exportProgressRef.current = progress;
           setExportProgress(progress);
         }
       };
@@ -1518,7 +1820,7 @@ export default function BookTranslatorTool() {
         ? await createBookVideoDownloadPackage({
             metadata,
             parts: exportParts,
-            exportSettings,
+            exportSettings: activeSegmentationSettings,
             videoSettings: effectiveVideoSettings,
             resolvedBackgroundStyle: resolvedVideoBackgroundStyle,
             support: videoSupport as BookVideoSupport,
@@ -1611,6 +1913,7 @@ export default function BookTranslatorTool() {
       }
     }
   }, [
+    activeSegmentationSettings,
     effectiveVideoSettings,
     exportAnalysis.estimatedSizeLabel,
     exportAnalysis.totalRuntimeMs,
@@ -1951,286 +2254,369 @@ export default function BookTranslatorTool() {
                 ) : null}
               </section>
             ) : null}
+          </ToolPanel>
 
-            <section
-              id="book-download-controls"
-              className="border-t border-slate-200/70 px-4 py-4"
-              aria-labelledby="book-download-controls-heading"
+          <section
+            id="book-download-controls"
+            className="space-y-4 pt-1"
+            aria-labelledby="book-download-controls-heading"
+          >
+            <h3
+              id="book-download-controls-heading"
+              className="text-base font-extrabold text-sky-950"
             >
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <h3
-                    id="book-download-controls-heading"
-                    className="text-base font-extrabold text-sky-950"
-                  >
-                    {isVideoOutput ? "Download video" : "Download audio"}
-                  </h3>
-                  <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                    {isVideoOutput
-                      ? "Choose the video options and review the frame below."
-                      : downloadKind === "zip"
-                        ? "A ZIP bundle is used when the source is split into parts or selected sidecar files need to travel with the audio."
-                        : "This source can download as one audio file because it fits in one part and no sidecar files are selected."}
-                  </p>
-                </div>
-                <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                  {downloadBadge}
-                </span>
+              {isVideoOutput ? "Download video" : "Download audio"}
+            </h3>
+
+            <fieldset className="mt-4">
+              <legend className="text-sm font-extrabold text-sky-950">
+                Output type
+              </legend>
+              <div
+                className="mt-2 flex flex-wrap gap-2"
+                role="radiogroup"
+                aria-label="Book output type"
+              >
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={isAudioOutput}
+                  onClick={() => updateOutputType("audio")}
+                  className={toolControlButtonClass({
+                    active: isAudioOutput,
+                    tone: isAudioOutput ? "dark" : "light",
+                    size: "sm",
+                    rounded: "full",
+                    hover: "dark",
+                  })}
+                >
+                  Audio
+                </button>
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={isVideoOutput}
+                  onClick={() => updateOutputType("video")}
+                  className={toolControlButtonClass({
+                    active: isVideoOutput,
+                    tone: isVideoOutput ? "dark" : "light",
+                    size: "sm",
+                    rounded: "full",
+                    hover: "dark",
+                  })}
+                >
+                  Video
+                </button>
               </div>
+            </fieldset>
 
-              <fieldset className="mt-4">
-                <legend className="text-sm font-extrabold text-sky-950">
-                  Output type
-                </legend>
-                <div
-                  className="mt-2 flex flex-wrap gap-2"
-                  role="radiogroup"
-                  aria-label="Book output type"
-                >
-                  <button
-                    type="button"
-                    role="radio"
-                    aria-checked={isAudioOutput}
-                    onClick={() => updateOutputType("audio")}
-                    className={toolControlButtonClass({
-                      active: isAudioOutput,
-                      tone: isAudioOutput ? "dark" : "light",
-                      size: "sm",
-                      rounded: "full",
-                      hover: "dark",
-                    })}
-                  >
-                    Audio
-                  </button>
-                  <button
-                    type="button"
-                    role="radio"
-                    aria-checked={isVideoOutput}
-                    onClick={() => updateOutputType("video")}
-                    className={toolControlButtonClass({
-                      active: isVideoOutput,
-                      tone: isVideoOutput ? "dark" : "light",
-                      size: "sm",
-                      rounded: "full",
-                      hover: "dark",
-                    })}
-                  >
-                    Video
-                  </button>
-                </div>
-              </fieldset>
-
-              <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                <Metric label="Preset" value={exportSettings.presetName} />
-                <Metric
-                  label={isVideoOutput ? "Style" : "Format"}
-                  value={
-                    isVideoOutput
-                      ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[
-                          effectiveVideoSettings.visualStyle
-                        ].label
-                      : downloadFormatLabel
-                  }
-                />
-                <Metric
-                  label="Runtime"
-                  value={
-                    hasSource
-                      ? formatDuration(exportAnalysis.totalRuntimeMs)
-                      : "Waiting"
-                  }
-                />
-                <Metric
-                  label="Parts"
-                  value={hasSource ? formatNumber(exportParts.length) : "0"}
-                />
-                <Metric
-                  label={
-                    isVideoOutput
-                      ? "Video target"
-                      : exportSettings.splitAudio
-                        ? "Target part"
-                        : "Split"
-                  }
-                  value={
-                    isVideoOutput || exportSettings.splitAudio
-                      ? formatDuration(exportAnalysis.targetPartMs)
-                      : "Off"
-                  }
-                />
-                <Metric
-                  label={isVideoOutput ? "Resolution" : "Output size"}
-                  value={
-                    isVideoOutput
-                      ? BOOK_VIDEO_RESOLUTION_LABELS[effectiveVideoSettings.resolution]
-                      : `~${exportAnalysis.estimatedSizeLabel}`
-                  }
-                />
-              </dl>
-
-              {sourceDraftActive ? (
-                <p className="mt-4 text-sm font-semibold text-slate-600">
-                  Draft edits are not included until you apply them.
-                </p>
-              ) : null}
-              {exportDisabledReason ? (
-                <p
-                  id="book-download-disabled-reason"
-                  className="mt-4 text-sm font-semibold text-slate-600"
-                >
-                  {exportDisabledReason}
-                </p>
-              ) : null}
-              {isAudioOutput ? (
-                <MessageList
-                  title="Download warnings"
-                  items={exportWarnings}
-                  tone="warning"
-                />
-              ) : null}
-              {isVideoOutput ? (
-                <MessageList
-                  title="Video warnings"
-                  items={videoWarnings}
-                  tone="warning"
-                />
-              ) : null}
-
-              {isVideoOutput && effectiveVideoSettings.visualStyle === "full-frame" ? (
-                <FullFrameFlashWarning className="mt-4" />
-              ) : null}
-
-              <BookPreviewSection
-                audioPlayerState={previewAudioPlayer.state}
-                audioPreview={audioPreview}
-                audioSupported={previewAudioPlayer.isSupported}
-                exportSettings={exportSettings}
-                hasCleanedSource={hasCleanedSource}
-                hasSource={hasSource}
-                isDraftActive={sourceDraftActive}
-                onPlayAudioPreview={handlePlayAudioPreview}
-                onPlayVisualPreview={handlePlayVisualPreview}
-                onStopPreview={stopActivePreview}
-                outputType={outputType}
-                previewErrorMessage={previewErrorMessage}
-                previewStatus={previewStatus}
-                resolvedVideoBackgroundStyle={resolvedVideoBackgroundStyle}
-                videoPreview={videoPreview}
-                videoSettings={effectiveVideoSettings}
-                visualPreviewPlaying={visualPreviewPlaying}
-                visualPreviewStep={visualPreviewStep}
+            <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <Metric label="Preset" value={exportSettings.presetName} />
+              <Metric
+                label={isVideoOutput ? "Style" : "Format"}
+                value={
+                  isVideoOutput
+                    ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[
+                        effectiveVideoSettings.visualStyle
+                      ].label
+                    : downloadFormatLabel
+                }
               />
+              <Metric
+                label="Runtime"
+                value={
+                  hasSource
+                    ? formatDuration(exportAnalysis.totalRuntimeMs)
+                    : "Waiting"
+                }
+              />
+              <Metric
+                label="Parts"
+                value={hasSource ? formatNumber(exportParts.length) : "0"}
+              />
+              <Metric
+                label={splitEnabled ? "Target part" : "Split"}
+                value={
+                  splitEnabled
+                    ? formatDuration(exportAnalysis.targetPartMs)
+                    : "Off"
+                }
+              />
+              <Metric
+                label={isVideoOutput ? "Resolution" : "Output size"}
+                value={
+                  isVideoOutput
+                    ? BOOK_VIDEO_RESOLUTION_LABELS[
+                        effectiveVideoSettings.resolution
+                      ]
+                    : `~${exportAnalysis.estimatedSizeLabel}`
+                }
+              />
+            </dl>
 
-              <div className="mt-4 flex flex-wrap gap-2">
+            {sourceDraftActive ? (
+              <p className="mt-4 text-sm font-semibold text-slate-600">
+                Draft edits are not included until you apply them.
+              </p>
+            ) : null}
+            {exportDisabledReason ? (
+              <p
+                id="book-download-disabled-reason"
+                className="mt-4 text-sm font-semibold text-slate-600"
+              >
+                {exportDisabledReason}
+              </p>
+            ) : null}
+            {isAudioOutput ? (
+              <MessageList
+                title="Download warnings"
+                items={exportWarnings}
+                tone="warning"
+              />
+            ) : null}
+            {isVideoOutput ? (
+              <MessageList
+                title="Video warnings"
+                items={videoWarnings}
+                tone="warning"
+              />
+            ) : null}
+
+            {isVideoOutput &&
+            effectiveVideoSettings.visualStyle === "full-frame" ? (
+              <FullFrameFlashWarning className="mt-4" />
+            ) : null}
+
+            <BookPreviewSection
+              audioPlayerState={previewAudioPlayer.state}
+              audioPreview={audioPreview}
+              audioSupported={previewAudioPlayer.isSupported}
+              exportSettings={exportSettings}
+              hasCleanedSource={hasCleanedSource}
+              hasSource={hasSource}
+              isDraftActive={sourceDraftActive}
+              onPlayAudioPreview={handlePlayAudioPreview}
+              onPlayVisualPreview={handlePlayVisualPreview}
+              onSeekVisualPreview={handleSeekVisualPreview}
+              onStopPreview={stopActivePreview}
+              outputType={outputType}
+              previewErrorMessage={previewErrorMessage}
+              previewStatus={previewStatus}
+              resolvedVideoBackgroundStyle={resolvedVideoBackgroundStyle}
+              videoPreview={videoPreview}
+              videoSettings={effectiveVideoSettings}
+              visualPreviewDurationMs={visualPreviewDurationMs}
+              visualPreviewPlaying={visualPreviewPlaying}
+              visualPreviewElapsedMs={visualPreviewElapsedMs}
+            />
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              <ToolButton
+                type="button"
+                tone="dark"
+                onClick={handleDownloadBook}
+                disabled={!canExport}
+                aria-describedby={
+                  exportDisabledReason
+                    ? "book-download-disabled-reason"
+                    : undefined
+                }
+                className="rounded-xl"
+              >
+                <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                {downloadButtonLabel}
+              </ToolButton>
+              {exportRunning ? (
                 <ToolButton
                   type="button"
-                  tone="dark"
-                  onClick={handleDownloadBook}
-                  disabled={!canExport}
-                  aria-describedby={
-                    exportDisabledReason
-                      ? "book-download-disabled-reason"
-                      : undefined
-                  }
+                  tone="light"
+                  hover="dark"
+                  onClick={() => cancelActiveExport()}
+                  disabled={!exportRunning}
                   className="rounded-xl"
                 >
-                  <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-                  {primaryDownloadLabel}
+                  <StopIcon size={18} title={undefined} aria-hidden="true" />
+                  Cancel download
                 </ToolButton>
-                {isAudioOutput || exportRunning ? (
-                  <ToolButton
-                    type="button"
-                    tone="light"
-                    hover="dark"
-                    onClick={() => cancelActiveExport()}
-                    disabled={!exportRunning}
-                    className="rounded-xl"
-                  >
-                    <StopIcon size={18} title={undefined} aria-hidden="true" />
-                    Cancel download
-                  </ToolButton>
-                ) : null}
-              </div>
-
-              {showExportProgress ? (
-                <div className="mt-5">
-                  <progress
-                    value={progressPercent}
-                    max={100}
-                    role="progressbar"
-                    aria-label="Book download progress"
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-valuenow={progressPercent}
-                    className="h-2 w-full overflow-hidden rounded-full"
-                  />
-                  <StatusMessage
-                    kind={
-                      exportStatus?.kind ?? (exportRunning ? "working" : "info")
-                    }
-                    live
-                    className="mt-3"
-                  >
-                    {exportStatus?.message ?? exportProgress.message}
-                  </StatusMessage>
-                </div>
               ) : null}
+            </div>
 
-              {completedExport ? (
-                <div className="mt-5 border-t border-slate-200/70 pt-5">
-                  <h3 className="text-base font-extrabold text-sky-950">
-                    Last download
-                  </h3>
-                  <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                    <Metric label="File" value={completedExport.filename} />
-                    <Metric
-                      label="Format"
-                      value={completedExport.outputFormat.toUpperCase()}
-                    />
-                    <Metric
-                      label="Parts"
-                      value={completedExport.partCount.toLocaleString()}
-                    />
-                    <Metric
-                      label="Runtime"
-                      value={completedExport.runtimeLabel}
-                    />
-                  </dl>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                    Download contents: {completedExport.contents.join(", ")}.
-                    Use the Download button again to save another copy, change
-                    settings to rebuild, or clear the source when you are done.
-                  </p>
-                </div>
-              ) : null}
-
-              <details
-                open={advancedOpen}
-                onToggle={handleAdvancedToggle}
-                className="mt-5 border-t border-slate-200/70 pt-5"
-              >
-                <summary
-                  aria-expanded={advancedOpen}
-                  className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+            {showExportProgress ? (
+              <div className="mt-5">
+                <progress
+                  value={progressPercent}
+                  max={100}
+                  role="progressbar"
+                  aria-label="Book download progress"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={progressPercent}
+                  className="h-2 w-full overflow-hidden rounded-full"
+                />
+                <StatusMessage
+                  kind={
+                    exportStatus?.kind ?? (exportRunning ? "working" : "info")
+                  }
+                  live
+                  className="mt-3"
                 >
-                  <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
-                  Download settings
-                </summary>
-                <div className="mt-5 space-y-5">
-                  {isAudioOutput ? (
-                    <>
-                  <div>
-                    <div className="flex flex-wrap items-center justify-between gap-3">
+                  {exportStatus?.message ?? exportProgress.message}
+                </StatusMessage>
+              </div>
+            ) : null}
+            {showExportStatus && exportStatus ? (
+              <StatusMessage kind={exportStatus.kind} live className="mt-3">
+                {exportStatus.message}
+              </StatusMessage>
+            ) : null}
+
+            {completedExport ? (
+              <div className="mt-5 border-t border-slate-200/70 pt-5">
+                <h3 className="text-base font-extrabold text-sky-950">
+                  Last download
+                </h3>
+                <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  <Metric label="File" value={completedExport.filename} />
+                  <Metric
+                    label="Format"
+                    value={completedExport.outputFormat.toUpperCase()}
+                  />
+                  <Metric
+                    label="Parts"
+                    value={completedExport.partCount.toLocaleString()}
+                  />
+                  <Metric
+                    label="Runtime"
+                    value={completedExport.runtimeLabel}
+                  />
+                </dl>
+                <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                  Download contents: {completedExport.contents.join(", ")}. Use
+                  the Download button again to save another copy, change
+                  settings to rebuild, or clear the source when you are done.
+                </p>
+              </div>
+            ) : null}
+
+            <details
+              open={advancedOpen}
+              onToggle={handleAdvancedToggle}
+              className="mt-5 border-t border-slate-200/70 pt-5"
+            >
+              <summary
+                aria-expanded={advancedOpen}
+                className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+              >
+                <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
+                Download settings
+              </summary>
+              <div className="mt-5 space-y-5">
+                <fieldset>
+                  <legend className="text-sm font-semibold text-slate-700">
+                    Split download
+                  </legend>
+                  <div
+                    className="mt-2 flex flex-wrap gap-2"
+                    role="radiogroup"
+                    aria-label="Split download"
+                  >
+                    {(["none", "duration", "source-sections"] as const).map(
+                      (mode) => (
+                        <button
+                          key={mode}
+                          type="button"
+                          role="radio"
+                          aria-checked={splitMode === mode}
+                          onClick={() =>
+                            updateExportSettings({ splitMode: mode })
+                          }
+                          className={toolControlButtonClass({
+                            active: splitMode === mode,
+                            tone: splitMode === mode ? "dark" : "light",
+                            size: "sm",
+                            rounded: "full",
+                            hover: "dark",
+                          })}
+                        >
+                          {BOOK_SPLIT_MODE_LABELS[mode]}
+                        </button>
+                      ),
+                    )}
+                  </div>
+                  <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+                    {splitSummaryText}
+                  </p>
+                  {splitMode === "source-sections" ? (
+                    <p
+                      className="mt-2 max-w-[68ch] text-sm font-semibold leading-relaxed text-slate-600"
+                      data-testid="book-split-section-fallback"
+                    >
+                      {hasSourceSectionHints
+                        ? "Source section hints are available for this source."
+                        : "No source section hints are available; duration fallback is active."}
+                    </p>
+                  ) : null}
+                  {splitMode !== "none" ? (
+                    <SliderRow
+                      className="mt-4"
+                      label="Target part length"
+                      value={splitTargetPartMinutes}
+                      min={1}
+                      max={30}
+                      step={1}
+                      unit="min"
+                      onChange={(value) =>
+                        isVideoOutput
+                          ? updateVideoSettings({
+                              targetPartMinutes: value,
+                            })
+                          : updateExportSettings({
+                              targetPartMinutes: value,
+                            })
+                      }
+                    />
+                  ) : null}
+                </fieldset>
+
+                {isAudioOutput ? (
+                  <>
+                    <div>
                       <div>
-                        <h4 className="text-base font-extrabold text-sky-950">
-                          Choose download style
-                        </h4>
-                        <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                          Presets adjust speed, audio format, and optional
-                          sidecar files.
-                        </p>
+                        <div>
+                          <h4 className="text-base font-extrabold text-sky-950">
+                            Choose download style
+                          </h4>
+                          <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                            Presets adjust speed, audio format, and optional
+                            sidecar files.
+                          </p>
+                        </div>
                       </div>
-                      <div className="flex flex-wrap items-center gap-2">
+                      <div
+                        className="mt-4 flex flex-wrap items-center gap-2"
+                        data-testid="book-preset-controls"
+                      >
+                        {BOOK_EXPORT_PRESET_NAMES.map((presetName) => {
+                          const active =
+                            exportSettings.presetName === presetName;
+                          return (
+                            <button
+                              key={presetName}
+                              type="button"
+                              onClick={() => pickPreset(presetName)}
+                              className={toolControlButtonClass({
+                                active,
+                                tone: active ? "dark" : "light",
+                                size: "sm",
+                                rounded: "full",
+                                hover: "dark",
+                              })}
+                              aria-pressed={active}
+                            >
+                              {presetName}
+                            </button>
+                          );
+                        })}
                         {presetModified ? (
                           <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                             Modified from preset
@@ -2253,318 +2639,259 @@ export default function BookTranslatorTool() {
                           Reset preset
                         </button>
                       </div>
-                    </div>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {BOOK_EXPORT_PRESET_NAMES.map((presetName) => {
-                        const active = exportSettings.presetName === presetName;
-                        return (
-                          <button
-                            key={presetName}
-                            type="button"
-                            onClick={() => pickPreset(presetName)}
-                            className={toolControlButtonClass({
-                              active,
-                              tone: active ? "dark" : "light",
-                              size: "sm",
-                              rounded: "full",
-                              hover: "dark",
-                            })}
-                            aria-pressed={active}
-                          >
-                            {presetName}
-                          </button>
-                        );
-                      })}
-                    </div>
-                    <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,0.68fr)_minmax(260px,0.32fr)] lg:items-start">
-                      <div>
-                        <p className="text-base font-extrabold text-sky-950">
-                          {exportSettings.presetName}
-                        </p>
-                        <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                          {activePresetDetails.description}
-                        </p>
-                      </div>
-                      <div className="text-sm leading-relaxed text-slate-600">
-                        <p className="font-semibold text-slate-800">
-                          Best for: {activePresetDetails.bestFor}
-                        </p>
-                        <p className="mt-1">{activeSettingsSummary}</p>
+                      <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,0.68fr)_minmax(260px,0.32fr)] lg:items-start">
+                        <div>
+                          <p className="text-base font-extrabold text-sky-950">
+                            {exportSettings.presetName}
+                          </p>
+                          <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                            {activePresetDetails.description}
+                          </p>
+                        </div>
+                        <div className="text-sm leading-relaxed text-slate-600">
+                          <p className="font-semibold text-slate-800">
+                            Best for: {activePresetDetails.bestFor}
+                          </p>
+                          <p className="mt-1">{activeSettingsSummary}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <fieldset className="border-t border-slate-200/70 pt-5">
-                    <legend className="text-base font-extrabold text-sky-950">
-                      Output format
-                    </legend>
-                    <div
-                      className="mt-3 flex flex-wrap gap-2"
-                      role="radiogroup"
-                      aria-label="Book download output format"
-                    >
-                      <button
-                        type="button"
-                        role="radio"
-                        aria-checked={exportSettings.outputFormat === "mp3"}
-                        onClick={() =>
-                          updateExportSettings({ outputFormat: "mp3" })
-                        }
-                        className={toolControlButtonClass({
-                          active: exportSettings.outputFormat === "mp3",
-                          tone:
-                            exportSettings.outputFormat === "mp3"
-                              ? "dark"
-                              : "light",
-                          size: "md",
-                          rounded: "xl",
-                          hover: "dark",
-                        })}
+                    <fieldset className="border-t border-slate-200/70 pt-5">
+                      <legend className="text-base font-extrabold text-sky-950">
+                        Output format
+                      </legend>
+                      <div
+                        className="mt-3 flex flex-wrap gap-2"
+                        role="radiogroup"
+                        aria-label="Book download output format"
                       >
-                        <span className="font-extrabold">MP3</span>
-                        <span className="text-xs font-semibold">
-                          Recommended for long Morse audio
+                        <button
+                          type="button"
+                          role="radio"
+                          aria-checked={exportSettings.outputFormat === "mp3"}
+                          onClick={() =>
+                            updateExportSettings({ outputFormat: "mp3" })
+                          }
+                          className={toolControlButtonClass({
+                            active: exportSettings.outputFormat === "mp3",
+                            tone:
+                              exportSettings.outputFormat === "mp3"
+                                ? "dark"
+                                : "light",
+                            size: "md",
+                            rounded: "xl",
+                            hover: "dark",
+                          })}
+                        >
+                          <span className="font-extrabold">MP3</span>
+                          <span className="text-xs font-semibold">
+                            Recommended for long Morse audio
+                          </span>
+                        </button>
+                        <button
+                          type="button"
+                          role="radio"
+                          aria-checked={exportSettings.outputFormat === "wav"}
+                          onClick={() =>
+                            updateExportSettings({ outputFormat: "wav" })
+                          }
+                          className={toolControlButtonClass({
+                            active: exportSettings.outputFormat === "wav",
+                            tone:
+                              exportSettings.outputFormat === "wav"
+                                ? "dark"
+                                : "light",
+                            size: "md",
+                            rounded: "xl",
+                            hover: "dark",
+                          })}
+                        >
+                          <span className="font-extrabold">WAV</span>
+                          <span className="text-xs font-semibold">
+                            Uncompressed and larger
+                          </span>
+                        </button>
+                      </div>
+                    </fieldset>
+
+                    <div className="border-t border-slate-200/70 pt-5">
+                      <div className="flex flex-wrap items-end justify-between gap-3">
+                        <div>
+                          <h4 className="text-base font-extrabold text-sky-950">
+                            Audio settings
+                          </h4>
+                          <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                            These settings drive estimates and generated
+                            downloads.
+                          </p>
+                        </div>
+                        <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                          {tonePresetLabel(exportSettings.tonePreset)}
                         </span>
-                      </button>
-                      <button
-                        type="button"
-                        role="radio"
-                        aria-checked={exportSettings.outputFormat === "wav"}
-                        onClick={() =>
-                          updateExportSettings({ outputFormat: "wav" })
+                      </div>
+                      <AudioSettingsPanel
+                        className="mt-5"
+                        context="bookExport"
+                        idPrefix="book-download-audio"
+                        preset={exportSettings.tonePreset}
+                        onPresetChange={handleTonePresetChange}
+                        charWpm={exportSettings.charWpm}
+                        onCharWpmChange={handleCharWpmChange}
+                        farnsworthWpm={exportSettings.farnsworthWpm}
+                        onFarnsworthWpmChange={(value) =>
+                          updateExportSettings({ farnsworthWpm: value })
                         }
-                        className={toolControlButtonClass({
-                          active: exportSettings.outputFormat === "wav",
-                          tone:
-                            exportSettings.outputFormat === "wav"
-                              ? "dark"
-                              : "light",
-                          size: "md",
-                          rounded: "xl",
-                          hover: "dark",
-                        })}
-                      >
-                        <span className="font-extrabold">WAV</span>
-                        <span className="text-xs font-semibold">
-                          Uncompressed and larger
-                        </span>
-                      </button>
+                        pitch={exportSettings.pitch}
+                        onPitchChange={(value) =>
+                          updateExportSettings({ pitch: value })
+                        }
+                        volume={exportSettings.volume}
+                        onVolumeChange={(value) =>
+                          updateExportSettings({ volume: value })
+                        }
+                        outputFormat={exportSettings.outputFormat}
+                        mp3Bitrate={exportSettings.mp3Bitrate}
+                        onMp3BitrateChange={(value) =>
+                          updateExportSettings({
+                            mp3Bitrate: sanitizeMp3Bitrate(value),
+                          })
+                        }
+                        sampleRate={exportSettings.sampleRate}
+                        onSampleRateChange={(value) =>
+                          updateExportSettings({
+                            sampleRate: sanitizeAudioSampleRate(value),
+                          })
+                        }
+                        tailMs={exportSettings.tailPaddingMs}
+                        onTailMsChange={(value) =>
+                          updateExportSettings({ tailPaddingMs: value })
+                        }
+                      />
                     </div>
-                  </fieldset>
 
-                  <div className="border-t border-slate-200/70 pt-5">
-                    <div className="flex flex-wrap items-end justify-between gap-3">
-                      <div>
+                    <div className="border-t border-slate-200/70 pt-5">
+                      <h4 className="text-base font-extrabold text-sky-950">
+                        Advanced download settings
+                      </h4>
+                      <div className="mt-4 grid gap-5 lg:grid-cols-2">
+                        <SliderRow
+                          label="Paragraph pause"
+                          value={exportSettings.paragraphPauseMultiplier}
+                          min={1}
+                          max={6}
+                          step={0.1}
+                          unit="x"
+                          onChange={(value) =>
+                            updateExportSettings({
+                              paragraphPauseMultiplier: value,
+                            })
+                          }
+                        />
+                        <SliderRow
+                          label="Sentence pause"
+                          value={exportSettings.sentencePauseMultiplier}
+                          min={1}
+                          max={4}
+                          step={0.1}
+                          unit="x"
+                          onChange={(value) =>
+                            updateExportSettings({
+                              sentencePauseMultiplier: value,
+                            })
+                          }
+                        />
+                        <LabeledSelect
+                          label="Punctuation"
+                          value={exportSettings.punctuationMode}
+                          onChange={(value) =>
+                            updateExportSettings({
+                              punctuationMode:
+                                value === "preserve" ? "preserve" : "simplify",
+                            })
+                          }
+                        >
+                          <option value="preserve">
+                            Preserve supported punctuation
+                          </option>
+                          <option value="simplify">
+                            Simplify punctuation for practice
+                          </option>
+                        </LabeledSelect>
+                      </div>
+                      <div className="mt-5 border-t border-slate-200/70 pt-5">
                         <h4 className="text-base font-extrabold text-sky-950">
-                          Audio settings
+                          Download extras
                         </h4>
                         <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                          These settings drive estimates and generated
-                          downloads.
+                          Turn on optional cleaned text, transcript, manifest,
+                          settings, or README files only when you need them
+                          beside the media.
                         </p>
                       </div>
-                      <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                        {tonePresetLabel(exportSettings.tonePreset)}
-                      </span>
+                      <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        <ExportCheckbox
+                          label="Include cleaned text"
+                          checked={exportSettings.includeCleanedText}
+                          onChange={(value) =>
+                            updateExportSettings({ includeCleanedText: value })
+                          }
+                        />
+                        <ExportCheckbox
+                          label="Include Morse transcript"
+                          checked={exportSettings.includeMorseTranscript}
+                          onChange={(value) =>
+                            updateExportSettings({
+                              includeMorseTranscript: value,
+                            })
+                          }
+                        />
+                        <ExportCheckbox
+                          label="Include manifest"
+                          checked={exportSettings.includeManifest}
+                          onChange={(value) =>
+                            updateExportSettings({ includeManifest: value })
+                          }
+                        />
+                        <ExportCheckbox
+                          label="Include settings"
+                          checked={exportSettings.includeSettings}
+                          onChange={(value) =>
+                            updateExportSettings({ includeSettings: value })
+                          }
+                        />
+                        <ExportCheckbox
+                          label="Include README"
+                          checked={exportSettings.includeReadme}
+                          onChange={(value) =>
+                            updateExportSettings({ includeReadme: value })
+                          }
+                        />
+                      </div>
                     </div>
-                    <div className="mt-4">
-                      <ExportCheckbox
-                        label="Split into parts"
-                        checked={exportSettings.splitAudio}
-                        onChange={(value) =>
-                          updateExportSettings({ splitAudio: value })
-                        }
-                      />
-                      <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
-                        {exportSettings.splitAudio
-                          ? "Downloads are split by the target part length below and saved as a ZIP bundle."
-                          : "Downloads use one audio file by default."}
-                      </p>
-                      {exportSettings.splitAudio ? (
-                        <div className="mt-3">
-                          <ExportCheckbox
-                            label="Prefer EPUB/PDF section hints"
-                            checked={exportSettings.preferSourceSections}
-                            onChange={(value) =>
-                              updateExportSettings({
-                                preferSourceSections: value,
-                              })
-                            }
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                    <AudioSettingsPanel
-                      className="mt-5"
-                      context="bookExport"
-                      idPrefix="book-download-audio"
-                      preset={exportSettings.tonePreset}
-                      onPresetChange={handleTonePresetChange}
-                      charWpm={exportSettings.charWpm}
-                      onCharWpmChange={handleCharWpmChange}
-                      farnsworthWpm={exportSettings.farnsworthWpm}
-                      onFarnsworthWpmChange={(value) =>
-                        updateExportSettings({ farnsworthWpm: value })
-                      }
-                      pitch={exportSettings.pitch}
-                      onPitchChange={(value) =>
-                        updateExportSettings({ pitch: value })
-                      }
-                      volume={exportSettings.volume}
-                      onVolumeChange={(value) =>
-                        updateExportSettings({ volume: value })
-                      }
-                      outputFormat={exportSettings.outputFormat}
-                      mp3Bitrate={exportSettings.mp3Bitrate}
-                      onMp3BitrateChange={(value) =>
-                        updateExportSettings({
-                          mp3Bitrate: sanitizeMp3Bitrate(value),
-                        })
-                      }
-                      sampleRate={exportSettings.sampleRate}
-                      onSampleRateChange={(value) =>
-                        updateExportSettings({
-                          sampleRate: sanitizeAudioSampleRate(value),
-                        })
-                      }
-                      tailMs={exportSettings.tailPaddingMs}
-                      onTailMsChange={(value) =>
-                        updateExportSettings({ tailPaddingMs: value })
-                      }
-                      targetPartMinutes={
-                        exportSettings.splitAudio
-                          ? exportSettings.targetPartMinutes
-                          : undefined
-                      }
-                      onTargetPartMinutesChange={(value) =>
-                        updateExportSettings({ targetPartMinutes: value })
-                      }
-                    />
-                  </div>
-
-                  <div className="border-t border-slate-200/70 pt-5">
-                    <h4 className="text-base font-extrabold text-sky-950">
-                      Advanced download settings
-                    </h4>
-                    <div className="mt-4 grid gap-5 lg:grid-cols-2">
-                      <SliderRow
-                        label="Paragraph pause"
-                        value={exportSettings.paragraphPauseMultiplier}
-                        min={1}
-                        max={6}
-                        step={0.1}
-                        unit="x"
-                        onChange={(value) =>
-                          updateExportSettings({
-                            paragraphPauseMultiplier: value,
-                          })
-                        }
-                      />
-                      <SliderRow
-                        label="Sentence pause"
-                        value={exportSettings.sentencePauseMultiplier}
-                        min={1}
-                        max={4}
-                        step={0.1}
-                        unit="x"
-                        onChange={(value) =>
-                          updateExportSettings({
-                            sentencePauseMultiplier: value,
-                          })
-                        }
-                      />
-                      <LabeledSelect
-                        label="Punctuation"
-                        value={exportSettings.punctuationMode}
-                        onChange={(value) =>
-                          updateExportSettings({
-                            punctuationMode:
-                              value === "preserve" ? "preserve" : "simplify",
-                          })
-                        }
-                      >
-                        <option value="preserve">
-                          Preserve supported punctuation
-                        </option>
-                        <option value="simplify">
-                          Simplify punctuation for practice
-                        </option>
-                      </LabeledSelect>
-                    </div>
-                    <div className="mt-5 border-t border-slate-200/70 pt-5">
-                      <h4 className="text-base font-extrabold text-sky-950">
-                        Download extras
-                      </h4>
-                      <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                        Sidecar files are included in a ZIP bundle. Turn them
-                        off for a direct one-part audio download.
-                      </p>
-                    </div>
-                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                      <ExportCheckbox
-                        label="Include cleaned text"
-                        checked={exportSettings.includeCleanedText}
-                        onChange={(value) =>
-                          updateExportSettings({ includeCleanedText: value })
-                        }
-                      />
-                      <ExportCheckbox
-                        label="Include Morse transcript"
-                        checked={exportSettings.includeMorseTranscript}
-                        onChange={(value) =>
-                          updateExportSettings({
-                            includeMorseTranscript: value,
-                          })
-                        }
-                      />
-                      <ExportCheckbox
-                        label="Include manifest"
-                        checked={exportSettings.includeManifest}
-                        onChange={(value) =>
-                          updateExportSettings({ includeManifest: value })
-                        }
-                      />
-                      <ExportCheckbox
-                        label="Include settings"
-                        checked={exportSettings.includeSettings}
-                        onChange={(value) =>
-                          updateExportSettings({ includeSettings: value })
-                        }
-                      />
-                      <ExportCheckbox
-                        label="Include README"
-                        checked={exportSettings.includeReadme}
-                        onChange={(value) =>
-                          updateExportSettings({ includeReadme: value })
-                        }
-                      />
-                    </div>
-                  </div>
-                    </>
-                  ) : (
-                    <BookVideoSettingsEditor
-                      exportSettings={exportSettings}
-                      onCharWpmChange={handleCharWpmChange}
-                      onFarnsworthWpmChange={(value) =>
-                        updateExportSettings({ farnsworthWpm: value })
-                      }
-                      onPitchChange={(value) =>
-                        updateExportSettings({ pitch: value })
-                      }
-                      onTonePresetChange={handleTonePresetChange}
-                      onVideoSettingsChange={updateVideoSettings}
-                      onVolumeChange={(value) =>
-                        updateExportSettings({ volume: value })
-                      }
-                      videoSupport={videoSupport}
-                      videoSettings={videoSettings}
-                    />
-                  )}
-                </div>
-              </details>
-            </section>
-          </ToolPanel>
-
+                  </>
+                ) : (
+                  <BookVideoSettingsEditor
+                    exportSettings={exportSettings}
+                    onCharWpmChange={handleCharWpmChange}
+                    onFarnsworthWpmChange={(value) =>
+                      updateExportSettings({ farnsworthWpm: value })
+                    }
+                    onPitchChange={(value) =>
+                      updateExportSettings({ pitch: value })
+                    }
+                    onTonePresetChange={handleTonePresetChange}
+                    onVideoSettingsChange={updateVideoSettings}
+                    onVolumeChange={(value) =>
+                      updateExportSettings({ volume: value })
+                    }
+                    videoSupport={videoSupport}
+                    videoSettings={videoSettings}
+                  />
+                )}
+              </div>
+            </details>
+          </section>
         </div>
 
         {status === "parsing" ? (
@@ -2581,7 +2908,7 @@ export default function BookTranslatorTool() {
           tone="warning"
         />
 
-        <section className="rounded-xl bg-[#fffdf8] p-5 sm:p-6">
+        <section className="space-y-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="flex items-center gap-2 text-xl font-extrabold text-sky-950">
               <SparklesIcon size={20} title={undefined} aria-hidden="true" />
@@ -2804,7 +3131,7 @@ export default function BookTranslatorTool() {
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.65fr)]">
         <section
-          className="rounded-xl bg-[#fffdf8] p-5 sm:p-6"
+          className="space-y-5"
           aria-labelledby="book-details-previews-heading"
         >
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -2928,7 +3255,7 @@ export default function BookTranslatorTool() {
         </section>
 
         <div className="space-y-4">
-          <section className="rounded-xl bg-[#fffdf8] p-5">
+          <section className="space-y-2">
             <h2 className="text-base font-extrabold text-sky-950">
               Source guidance
             </h2>
@@ -2944,7 +3271,11 @@ export default function BookTranslatorTool() {
       <section>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-xl font-extrabold text-sky-950">
-            {isSegmentedOutput ? "Split summary" : "Audio file summary"}
+            {isSegmentedOutput
+              ? "Split summary"
+              : isVideoOutput
+                ? "Video file summary"
+                : "Audio file summary"}
           </h2>
           <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
             {isSegmentedOutput
@@ -2954,8 +3285,14 @@ export default function BookTranslatorTool() {
         </div>
         <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
           {isSegmentedOutput
-            ? "Parts are based on estimated Morse runtime and safe paragraph, sentence, or word boundaries. EPUB/PDF section hints help when available, but parts are not guaranteed to match original chapters."
-            : "Audio downloads stay as one file by default. Turn on Split into parts in Download settings when you want a ZIP bundle with timed parts."}
+            ? splitMode === "source-sections"
+              ? "Parts use EPUB/PDF section hints when available, then fall back to the target part length and safe paragraph, sentence, or word boundaries."
+              : "Parts are based on the target part length and safe paragraph, sentence, or word boundaries."
+            : isVideoOutput
+              ? downloadKind === "zip"
+                ? "Selected sidecar files travel with the WebM in one ZIP download."
+                : "Video downloads stay as one WebM file by default."
+              : "Audio downloads stay as one file by default. Choose a split mode in Download settings when you want timed parts."}
         </p>
         {isSegmentedOutput ? (
           exportParts.length > 0 ? (
@@ -2963,7 +3300,7 @@ export default function BookTranslatorTool() {
               {exportParts.slice(0, 6).map((part) => (
                 <div
                   key={`${part.index}-${part.sourceStart}`}
-                  className="rounded-xl bg-[#fffdf8] p-4"
+                  className="border-t border-slate-200/70 pt-4"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <h3 className="text-sm font-extrabold text-sky-950">
@@ -3042,6 +3379,7 @@ function BookPreviewSection({
   isDraftActive,
   onPlayAudioPreview,
   onPlayVisualPreview,
+  onSeekVisualPreview,
   onStopPreview,
   outputType,
   previewErrorMessage,
@@ -3049,8 +3387,9 @@ function BookPreviewSection({
   resolvedVideoBackgroundStyle,
   videoPreview,
   videoSettings,
+  visualPreviewDurationMs,
+  visualPreviewElapsedMs,
   visualPreviewPlaying,
-  visualPreviewStep,
 }: {
   audioPlayerState: MorsePlayerState;
   audioPreview: BookAudioPreview | null;
@@ -3061,6 +3400,7 @@ function BookPreviewSection({
   isDraftActive: boolean;
   onPlayAudioPreview: () => void;
   onPlayVisualPreview: () => void;
+  onSeekVisualPreview: (elapsedMs: number) => void;
   onStopPreview: () => void;
   outputType: BookOutputType;
   previewErrorMessage: string;
@@ -3068,8 +3408,9 @@ function BookPreviewSection({
   resolvedVideoBackgroundStyle: "warm-morsewords" | "dark-morsewords";
   videoPreview: BookVideoPreview;
   videoSettings: BookVideoSettings;
+  visualPreviewDurationMs: number;
+  visualPreviewElapsedMs: number;
   visualPreviewPlaying: boolean;
-  visualPreviewStep: number;
 }) {
   const isAudioOutput = outputType === "audio";
   const canPreview = hasSource && hasCleanedSource && Boolean(audioPreview);
@@ -3083,6 +3424,16 @@ function BookPreviewSection({
     previewStatus === "updating" ||
     (isAudioOutput && !audioSupported);
   const heading = isAudioOutput ? "Preview audio" : "Preview video";
+  const previewElapsedMs = Math.min(
+    visualPreviewDurationMs,
+    Math.max(0, visualPreviewElapsedMs),
+  );
+  const handleVisualPreviewTimelineInput = React.useCallback(
+    (event: React.FormEvent<HTMLInputElement>) => {
+      onSeekVisualPreview(Number(event.currentTarget.value));
+    },
+    [onSeekVisualPreview],
+  );
   const statusText = previewErrorMessage
     ? previewErrorMessage
     : previewStatusText({
@@ -3100,27 +3451,17 @@ function BookPreviewSection({
       aria-labelledby="book-preview-heading"
       data-testid="book-preview-section"
     >
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h3
-            id="book-preview-heading"
-            className="text-base font-extrabold text-sky-950"
-          >
-            {heading}
-          </h3>
-          <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-            {audioPreview?.label ??
-              "Add source text to preview the current settings before download."}
-          </p>
-        </div>
-        <span
-          data-testid="book-preview-status"
-          role="status"
-          aria-live="polite"
-          className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+      <div>
+        <h3
+          id="book-preview-heading"
+          className="text-base font-extrabold text-sky-950"
         >
-          {statusText}
-        </span>
+          {heading}
+        </h3>
+        <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+          {audioPreview?.label ??
+            "Add source text to preview the current settings before download."}
+        </p>
       </div>
 
       {isDraftActive ? (
@@ -3138,8 +3479,20 @@ function BookPreviewSection({
         </p>
       ) : null}
 
+      <p
+        data-testid="book-preview-status"
+        role="status"
+        aria-live="polite"
+        className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+      >
+        {statusText}
+      </p>
+
       <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Metric label="Tone" value={tonePresetLabel(exportSettings.tonePreset)} />
+        <Metric
+          label="Tone"
+          value={tonePresetLabel(exportSettings.tonePreset)}
+        />
         <Metric
           label="Speed"
           value={`${exportSettings.charWpm}/${exportSettings.farnsworthWpm} WPM`}
@@ -3152,22 +3505,32 @@ function BookPreviewSection({
       </dl>
 
       {isAudioOutput ? (
-        <div className="mt-4 flex flex-wrap gap-2" data-testid="book-audio-preview">
-          <ToolButton
-            type="button"
-            tone={previewPlaying ? "light" : "dark"}
-            hover={previewPlaying ? "dark" : undefined}
-            onClick={previewPlaying ? onStopPreview : onPlayAudioPreview}
-            disabled={actionDisabled && !previewPlaying}
-            className="rounded-xl"
-          >
-            {previewPlaying ? (
-              <StopIcon size={18} title={undefined} aria-hidden="true" />
-            ) : (
-              <PlayIcon size={18} title={undefined} aria-hidden="true" />
-            )}
-            {previewPlaying ? "Stop preview" : "Play preview"}
-          </ToolButton>
+        <div className="mt-4" data-testid="book-audio-preview">
+          <div className="flex flex-wrap gap-2">
+            <ToolButton
+              type="button"
+              tone={previewPlaying ? "light" : "dark"}
+              hover={previewPlaying ? "dark" : undefined}
+              onClick={previewPlaying ? onStopPreview : onPlayAudioPreview}
+              disabled={actionDisabled && !previewPlaying}
+              className="rounded-xl"
+            >
+              {previewPlaying ? (
+                <StopIcon size={18} title={undefined} aria-hidden="true" />
+              ) : (
+                <PlayIcon size={18} title={undefined} aria-hidden="true" />
+              )}
+              {previewPlaying ? "Stop preview" : "Play preview"}
+            </ToolButton>
+          </div>
+          {audioPreview ? (
+            <p
+              className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+              data-testid="book-audio-preview-time"
+            >
+              Preview length {formatDuration(audioPreview.durationMs)}
+            </p>
+          ) : null}
         </div>
       ) : (
         <div data-testid="book-video-preview-workflow">
@@ -3177,7 +3540,7 @@ function BookPreviewSection({
             preview={videoPreview}
             resolvedBackgroundStyle={resolvedVideoBackgroundStyle}
             settings={videoSettings}
-            visualStep={visualPreviewStep}
+            visualElapsedMs={visualPreviewElapsedMs}
           />
           <div className="mt-4 flex flex-wrap gap-2">
             <ToolButton
@@ -3196,11 +3559,42 @@ function BookPreviewSection({
               {previewPlaying ? "Stop visual preview" : "Play visual preview"}
             </ToolButton>
           </div>
+          <div
+            className="mt-4 max-w-[900px]"
+            data-testid="book-video-preview-timeline"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                Preview time
+              </span>
+              <span
+                className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+                data-testid="book-video-preview-time"
+              >
+                {formatDuration(previewElapsedMs)} /{" "}
+                {formatDuration(visualPreviewDurationMs)}
+              </span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={visualPreviewDurationMs}
+              step={100}
+              value={Math.round(previewElapsedMs)}
+              onInput={handleVisualPreviewTimelineInput}
+              onChange={handleVisualPreviewTimelineInput}
+              disabled={actionDisabled && !previewPlaying}
+              aria-label="Video preview timeline"
+              className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0"
+            />
+          </div>
           <p className="mt-3 text-sm leading-relaxed text-slate-700">
-            {videoSettings.includeAudioTrack ? "Audio track on" : "Audio track off"}
-            {" · "}
-            {videoSettings.showMorseOverlay ? "Morse overlay on" : "Morse overlay off"}
-            {" · "}
+            {videoSettings.includeAudioTrack
+              ? "Audio track on"
+              : "Audio track off"}
+            {" - "}
+            {BOOK_VIDEO_TEXT_DISPLAY_LABELS[videoSettings.textDisplayMode]}
+            {" - "}
             {videoSettings.showBranding ? "Branding on" : "Branding off"}
           </p>
         </div>
@@ -3310,6 +3704,34 @@ function BookVideoSettingsEditor({
         </div>
       </fieldset>
 
+      <fieldset className="border-t border-slate-200/70 pt-5">
+        <legend className="text-base font-extrabold text-sky-950">
+          Text shown in video
+        </legend>
+        <div
+          className="mt-3 flex flex-wrap gap-2"
+          role="radiogroup"
+          aria-label="Text shown in video"
+        >
+          {BOOK_VIDEO_TEXT_DISPLAY_MODES.map((mode) => (
+            <VideoSettingButton
+              key={mode}
+              active={videoSettings.textDisplayMode === mode}
+              label={BOOK_VIDEO_TEXT_DISPLAY_LABELS[mode]}
+              onClick={() =>
+                onVideoSettingsChange({
+                  textDisplayMode: mode as BookVideoTextDisplayMode,
+                })
+              }
+            />
+          ))}
+        </div>
+        <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+          Plain text uses a short cleaned excerpt from the current source; Morse
+          text uses the generated Morse for the same preview/export segment.
+        </p>
+      </fieldset>
+
       <div className="border-t border-slate-200/70 pt-5">
         <h4 className="text-base font-extrabold text-sky-950">Video frame</h4>
         <div className="mt-4 grid gap-5 lg:grid-cols-2">
@@ -3360,27 +3782,11 @@ function BookVideoSettingsEditor({
               ))}
             </div>
           </fieldset>
-
-          <SliderRow
-            label="Video part duration"
-            value={videoSettings.targetPartMinutes}
-            min={1}
-            max={30}
-            step={1}
-            unit="min"
-            onChange={(value) =>
-              onVideoSettingsChange({
-                targetPartMinutes: value,
-              })
-            }
-          />
         </div>
       </div>
 
       <div className="border-t border-slate-200/70 pt-5">
-        <h4 className="text-base font-extrabold text-sky-950">
-          Video options
-        </h4>
+        <h4 className="text-base font-extrabold text-sky-950">Video options</h4>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <ExportCheckbox
             label="Include audio track"
@@ -3389,15 +3795,6 @@ function BookVideoSettingsEditor({
             onChange={(value) =>
               onVideoSettingsChange({
                 includeAudioTrack: value,
-              })
-            }
-          />
-          <ExportCheckbox
-            label="Show Morse text overlay"
-            checked={videoSettings.showMorseOverlay}
-            onChange={(value) =>
-              onVideoSettingsChange({
-                showMorseOverlay: value,
               })
             }
           />
@@ -3440,7 +3837,9 @@ function BookVideoSettingsEditor({
         <AudioSettingsPanel
           className="mt-5"
           context="bookExport"
-          disabledSound={!videoSettings.includeAudioTrack || !audioTrackAvailable}
+          disabledSound={
+            !videoSettings.includeAudioTrack || !audioTrackAvailable
+          }
           idPrefix="book-download-video-audio"
           preset={exportSettings.tonePreset}
           onPresetChange={onTonePresetChange}
@@ -3504,9 +3903,7 @@ function FullFrameFlashWarning({ className = "" }: { className?: string }) {
         className="mt-0.5 shrink-0 text-sky-950"
       />
       <p>
-        <span className="font-extrabold text-sky-950">
-          Strobe warning:
-        </span>{" "}
+        <span className="font-extrabold text-sky-950">Strobe warning:</span>{" "}
         {FULL_FRAME_FLASH_WARNING}
       </p>
     </div>
@@ -3519,14 +3916,14 @@ function BookVideoPreviewPanel({
   preview,
   resolvedBackgroundStyle,
   settings,
-  visualStep = 0,
+  visualElapsedMs = 0,
 }: {
   className?: string;
   isPlaying?: boolean;
   preview: BookVideoPreview;
   resolvedBackgroundStyle: "warm-morsewords" | "dark-morsewords";
   settings: BookVideoSettings;
-  visualStep?: number;
+  visualElapsedMs?: number;
 }) {
   const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
   const frameStyle = darkFrame
@@ -3538,6 +3935,7 @@ function BookVideoPreviewPanel({
         backgroundColor: "#fffdf8",
         color: "#08324f",
       };
+  const previewFrame = getMorseVideoPreviewFrame(preview, visualElapsedMs);
 
   return (
     <section
@@ -3547,30 +3945,48 @@ function BookVideoPreviewPanel({
       className={["space-y-3", className].filter(Boolean).join(" ")}
     >
       <div
-        className="flex aspect-video min-h-[12rem] w-full max-w-[720px] flex-col justify-between rounded-xl p-4 sm:p-5"
+        className="flex aspect-video min-h-[13rem] w-full max-w-[900px] flex-col justify-between rounded-xl p-5 sm:min-h-[18rem] sm:p-6"
         style={frameStyle}
+        data-testid="book-video-preview-frame"
         data-preview-playing={isPlaying ? "true" : "false"}
       >
-        <h3
-          id="book-video-preview-heading"
-          className="text-sm font-extrabold"
-        >
-          Video preview
-        </h3>
-        <div className="flex min-h-[5rem] items-center justify-center">
+        <div className="flex items-center justify-between gap-3">
+          <h3
+            id="book-video-preview-heading"
+            className="text-sm font-extrabold"
+          >
+            Video preview
+          </h3>
+          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80">
+            {settings.visualStyle === "full-frame"
+              ? "Subdued preview"
+              : "Timed excerpt"}
+          </span>
+        </div>
+        <div className="flex min-h-0 flex-1 items-center justify-center py-5 sm:py-6">
           <BookVideoPreviewVisual
             isPlaying={isPlaying}
             preview={preview}
             settings={settings}
-            visualStep={visualStep}
+            visualElapsedMs={visualElapsedMs}
           />
         </div>
-        {settings.showMorseOverlay ? (
+        {settings.textDisplayMode === "morse" ||
+        settings.textDisplayMode === "both" ? (
           <p
             data-testid="book-video-preview-morse-overlay"
             className="mt-3 break-words font-mono text-xs font-bold"
           >
-            {preview.sampleMorse}
+            {previewFrame.morseExcerpt}
+          </p>
+        ) : null}
+        {settings.textDisplayMode === "text" ||
+        settings.textDisplayMode === "both" ? (
+          <p
+            data-testid="book-video-preview-text-overlay"
+            className="mt-2 break-words text-xs font-bold"
+          >
+            {previewFrame.textExcerpt}
           </p>
         ) : null}
         {settings.showBranding ? (
@@ -3590,14 +4006,15 @@ function BookVideoPreviewVisual({
   isPlaying,
   preview,
   settings,
-  visualStep,
+  visualElapsedMs,
 }: {
   isPlaying: boolean;
   preview: BookVideoPreview;
   settings: BookVideoSettings;
-  visualStep: number;
+  visualElapsedMs: number;
 }) {
-  const markActive = isPlaying && visualStep % 2 === 1;
+  const frame = getMorseVideoPreviewFrame(preview, visualElapsedMs);
+  const markActive = isPlaying && frame.active;
   const intensityClass =
     settings.intensity === "high"
       ? "opacity-100"
@@ -3612,7 +4029,8 @@ function BookVideoPreviewVisual({
         aria-label="Dot preview"
         role="img"
         className={[
-          "block h-12 w-12 rounded-full bg-sky-200",
+          "block h-20 w-20 rounded-full sm:h-24 sm:w-24",
+          markActive ? "bg-sky-100" : "bg-sky-200",
           intensityClass,
           markActive ? "ring-4 ring-sky-200/50" : "",
         ]
@@ -3629,7 +4047,7 @@ function BookVideoPreviewVisual({
         aria-label="Subdued full-frame flash preview"
         role="img"
         className={[
-          "h-16 w-16 rounded-full bg-sky-200/80",
+          "h-24 w-24 rounded-full bg-sky-200/80 sm:h-28 sm:w-28",
           intensityClass,
           markActive ? "ring-4 ring-sky-200/50" : "",
         ]
@@ -3644,13 +4062,13 @@ function BookVideoPreviewVisual({
       <div
         data-testid="book-video-preview-morse-text"
         className={[
-          "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-lg font-bold tracking-normal",
+          "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-3xl font-bold tracking-normal sm:text-4xl",
           markActive ? "text-sky-200" : "",
         ]
           .filter(Boolean)
           .join(" ")}
       >
-        {preview.sampleMorse}
+        {frame.symbols || preview.sampleMorse}
       </div>
     );
   }
@@ -3668,7 +4086,7 @@ function BookVideoPreviewVisual({
         .filter(Boolean)
         .join(" ")}
     >
-      <LightBulbIcon size={54} title={undefined} aria-hidden="true" />
+      <LightBulbIcon size={96} title={undefined} aria-hidden="true" />
     </div>
   );
 }
@@ -3721,7 +4139,9 @@ function ExportCheckbox({
   return (
     <label
       className={`flex items-start gap-3 text-sm font-semibold ${
-        disabled ? "cursor-not-allowed text-slate-400" : "cursor-pointer text-slate-800"
+        disabled
+          ? "cursor-not-allowed text-slate-400"
+          : "cursor-pointer text-slate-800"
       }`}
     >
       <input
