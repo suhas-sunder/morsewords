@@ -27,6 +27,9 @@ export type MorseVideoSettings = {
   resolution: MorseVideoResolution;
   backgroundStyle: MorseVideoBackgroundStyle;
   intensity: MorseVideoIntensity;
+  showVisualSignal: boolean;
+  showMorseSymbols: boolean;
+  showPlainText: boolean;
   showMorseOverlay: boolean;
   textDisplayMode: MorseVideoTextDisplayMode;
   showBranding: boolean;
@@ -75,8 +78,11 @@ export const DEFAULT_MORSE_VIDEO_SETTINGS: MorseVideoSettings = {
   resolution: "720p",
   backgroundStyle: "site-theme",
   intensity: "medium",
+  showVisualSignal: true,
+  showMorseSymbols: true,
+  showPlainText: true,
   showMorseOverlay: true,
-  textDisplayMode: "morse",
+  textDisplayMode: "both",
   showBranding: true,
   targetPartMinutes: 8,
 };
@@ -118,14 +124,40 @@ export function isMorseVideoTextDisplayMode(
 export function sanitizeMorseVideoSettings(
   settings: Partial<MorseVideoSettings>,
 ): MorseVideoSettings {
-  const textDisplayMode = isMorseVideoTextDisplayMode(settings.textDisplayMode)
+  const hasLayerFlags =
+    typeof settings.showMorseSymbols === "boolean" ||
+    typeof settings.showPlainText === "boolean";
+  const legacyTextDisplayMode = isMorseVideoTextDisplayMode(
+    settings.textDisplayMode,
+  )
     ? settings.textDisplayMode
     : settings.showMorseOverlay === false
       ? "none"
       : DEFAULT_MORSE_VIDEO_SETTINGS.textDisplayMode;
 
-  const showMorseOverlay =
-    textDisplayMode === "morse" || textDisplayMode === "both";
+  let showVisualSignal =
+    typeof settings.showVisualSignal === "boolean"
+      ? settings.showVisualSignal
+      : DEFAULT_MORSE_VIDEO_SETTINGS.showVisualSignal;
+  let showMorseSymbols = hasLayerFlags
+    ? settings.showMorseSymbols ??
+      (legacyTextDisplayMode === "morse" || legacyTextDisplayMode === "both")
+    : legacyTextDisplayMode === "morse" || legacyTextDisplayMode === "both";
+  let showPlainText = hasLayerFlags
+    ? settings.showPlainText ??
+      (legacyTextDisplayMode === "text" || legacyTextDisplayMode === "both")
+    : legacyTextDisplayMode === "text" || legacyTextDisplayMode === "both";
+
+  if (!showVisualSignal && !showMorseSymbols && !showPlainText) {
+    showVisualSignal = DEFAULT_MORSE_VIDEO_SETTINGS.showVisualSignal;
+    showMorseSymbols = DEFAULT_MORSE_VIDEO_SETTINGS.showMorseSymbols;
+    showPlainText = DEFAULT_MORSE_VIDEO_SETTINGS.showPlainText;
+  }
+
+  const textDisplayMode = textDisplayModeFromLayers(
+    showMorseSymbols,
+    showPlainText,
+  );
 
   return {
     visualStyle: isMorseVideoVisualStyle(settings.visualStyle)
@@ -144,7 +176,10 @@ export function sanitizeMorseVideoSettings(
     intensity: isMorseVideoIntensity(settings.intensity)
       ? settings.intensity
       : DEFAULT_MORSE_VIDEO_SETTINGS.intensity,
-    showMorseOverlay,
+    showVisualSignal,
+    showMorseSymbols,
+    showPlainText,
+    showMorseOverlay: showMorseSymbols,
     textDisplayMode,
     showBranding: Boolean(
       settings.showBranding ?? DEFAULT_MORSE_VIDEO_SETTINGS.showBranding,
@@ -159,4 +194,14 @@ export function sanitizeMorseVideoSettings(
         ) * 10,
       ) / 10,
   };
+}
+
+function textDisplayModeFromLayers(
+  showMorseSymbols: boolean,
+  showPlainText: boolean,
+): MorseVideoTextDisplayMode {
+  if (showMorseSymbols && showPlainText) return "both";
+  if (showMorseSymbols) return "morse";
+  if (showPlainText) return "text";
+  return "none";
 }

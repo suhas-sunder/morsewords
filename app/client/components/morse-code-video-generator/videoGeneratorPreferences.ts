@@ -44,6 +44,10 @@ export type MorseVideoGeneratorPreferences = {
 export const DEFAULT_STANDALONE_VIDEO_SETTINGS: MorseVideoSettings = {
   ...DEFAULT_MORSE_VIDEO_SETTINGS,
   backgroundStyle: "warm-morsewords",
+  showMorseSymbols: true,
+  showPlainText: false,
+  showMorseOverlay: true,
+  textDisplayMode: "morse",
   targetPartMinutes: 8,
 };
 

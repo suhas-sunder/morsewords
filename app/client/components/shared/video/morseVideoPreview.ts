@@ -1,7 +1,13 @@
 import { textToMorse } from "~/client/components/shared/morseUtils";
-import { buildMorseEvents } from "~/client/components/shared/morseTiming";
 import type { MorseVideoAudioSettings } from "./morseVideoRenderer";
-import type { MorseVideoTimedEvent } from "./morseVideoRenderer";
+import {
+  buildMorseVideoTimelineFromMorse,
+  getMorseVideoFrameTextState,
+} from "./morseVideoRenderer";
+import type {
+  MorseVideoTimedEvent,
+  MorseVideoTimeline,
+} from "./morseVideoRenderer";
 
 import type { MorseVideoSettings } from "./morseVideoTypes";
 
@@ -13,6 +19,7 @@ export type MorseVideoPreview = {
   brandLabel: string;
   durationMs: number;
   events: MorseVideoTimedEvent[];
+  timeline: MorseVideoTimeline;
 };
 
 export type MorseVideoPreviewFrame = {
@@ -39,18 +46,16 @@ export function buildMorseVideoPreview(
     typeof morse === "string" && morse.trim()
       ? morse
       : textToMorse("SOS HELP", { wordSeparator: "spaces" });
-  const events = buildPreviewEvents(sampleMorse, audioSettings);
-  const durationMs = Math.max(
-    1_200,
-    events.reduce((max, event) => Math.max(max, event.endMs), 0),
-  );
+  const timeline = buildMorseVideoTimelineFromMorse(sampleMorse, audioSettings, sampleText);
+  const durationMs = Math.max(1_200, timeline.durationMs);
 
   return {
     sampleText,
     sampleMorse,
     brandLabel: settings.showBranding ? "www.morsewords.com" : "",
     durationMs,
-    events,
+    events: timeline.events,
+    timeline,
   };
 }
 
@@ -71,11 +76,13 @@ export function getMorseVideoPreviewFrame(
     .map((event) => event.symbol ?? "")
     .join("");
   const sampleMorse = preview.sampleMorse.replace(/\s+/g, " ");
+  const textState = getMorseVideoFrameTextState(preview.timeline, loopedElapsedMs);
   return {
     active,
     symbols: readableMorseExcerpt(completedSymbols, sampleMorse, 44),
-    morseExcerpt: readableMorseExcerpt(completedSymbols, sampleMorse, 92),
-    textExcerpt: currentTextExcerpt(preview.sampleText, loopedElapsedMs, preview.durationMs),
+    morseExcerpt:
+      textState.morseText || readableMorseExcerpt(completedSymbols, sampleMorse, 92),
+    textExcerpt: textState.plainText || preview.sampleText,
   };
 }
 
@@ -84,33 +91,6 @@ function buildPreviewSampleText(text: string) {
   if (!normalized) return "SOS HELP";
   const sample = normalized.split(" ").slice(0, 4).join(" ");
   return sample.length > 34 ? `${sample.slice(0, 31).trimEnd()}...` : sample;
-}
-
-function buildPreviewEvents(
-  morse: string,
-  audioSettings: Pick<MorseVideoAudioSettings, "charWpm" | "farnsworthWpm">,
-) {
-  const events: MorseVideoTimedEvent[] = [];
-  let cursorMs = 0;
-  for (const event of buildMorseEvents(morse, audioSettings)) {
-    const startMs = cursorMs;
-    cursorMs += Math.max(0, event.ms);
-    events.push({
-      type: event.type,
-      startMs,
-      endMs: cursorMs,
-      symbol: event.type === "mark" ? event.symbol : undefined,
-    });
-  }
-  return events;
-}
-
-function currentTextExcerpt(text: string, elapsedMs: number, durationMs: number) {
-  const words = text.trim().replace(/\s+/g, " ").split(" ").filter(Boolean);
-  if (words.length === 0) return "";
-  const progress = Math.max(0, Math.min(1, elapsedMs / Math.max(1, durationMs)));
-  const start = Math.max(0, Math.floor(progress * words.length) - 3);
-  return words.slice(start, start + 7).join(" ");
 }
 
 function readableMorseExcerpt(

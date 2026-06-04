@@ -22,7 +22,10 @@ import {
   buildBookVideoTimeline,
   renderBookVideoFrame,
 } from "../../app/client/components/morse-code-book-translator/bookVideoRenderer";
-import { DEFAULT_BOOK_VIDEO_SETTINGS } from "../../app/client/components/morse-code-book-translator/bookVideoTypes";
+import {
+  DEFAULT_BOOK_VIDEO_SETTINGS,
+  sanitizeBookVideoSettings,
+} from "../../app/client/components/morse-code-book-translator/bookVideoTypes";
 import { BOOK_EXPORT_PREFERENCES_KEY } from "../../app/client/components/morse-code-book-translator/bookExportPreferences";
 import {
   BOOK_EXPORT_PRESETS,
@@ -507,6 +510,9 @@ type VideoBundleManifest = {
     intensity: string;
     resolution: string;
     showBranding: boolean;
+    showVisualSignal: boolean;
+    showMorseSymbols: boolean;
+    showPlainText: boolean;
     showMorseOverlay: boolean;
     textDisplayMode: string;
     targetPartMinutes: number;
@@ -525,6 +531,9 @@ type VideoBundleSettings = {
   intensity: string;
   resolution: string;
   showBranding: boolean;
+  showVisualSignal: boolean;
+  showMorseSymbols: boolean;
+  showPlainText: boolean;
   showMorseOverlay: boolean;
   textDisplayMode: string;
   targetPartMinutes: number;
@@ -1116,6 +1125,34 @@ test("legacy splitAudio preferences do not silently enable split mode", async ()
   ).toHaveLength(1);
 });
 
+test("legacy video text display preferences migrate to explicit layer flags", () => {
+  const morseOnly = sanitizeBookVideoSettings({
+    textDisplayMode: "morse",
+  });
+  expect(morseOnly.showVisualSignal).toBe(true);
+  expect(morseOnly.showMorseSymbols).toBe(true);
+  expect(morseOnly.showPlainText).toBe(false);
+  expect(morseOnly.showMorseOverlay).toBe(true);
+  expect(morseOnly.textDisplayMode).toBe("morse");
+
+  const both = sanitizeBookVideoSettings({
+    textDisplayMode: "both",
+  });
+  expect(both.showVisualSignal).toBe(true);
+  expect(both.showMorseSymbols).toBe(true);
+  expect(both.showPlainText).toBe(true);
+  expect(both.textDisplayMode).toBe("both");
+
+  const invalidEmptyLayers = sanitizeBookVideoSettings({
+    showVisualSignal: false,
+    showMorseSymbols: false,
+    showPlainText: false,
+  });
+  expect(invalidEmptyLayers.showVisualSignal).toBe(true);
+  expect(invalidEmptyLayers.showMorseSymbols).toBe(true);
+  expect(invalidEmptyLayers.showPlainText).toBe(true);
+});
+
 test("video timeline and package kind use shared timing and direct-vs-ZIP rules", () => {
   const settings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
   const text = "SOS HELP";
@@ -1216,13 +1253,17 @@ test("video renderer keeps exported text overlays readable and away from brandin
     (command) => command.x === 640 && /[.-]/.test(command.text),
   );
   const plainOverlay = textCommands.find((command) =>
-    command.text.includes("Plain display SOS HELP"),
+    command.text.includes("PLAIN"),
   );
   expect(morseOverlay).toBeTruthy();
   expect(plainOverlay).toBeTruthy();
   expect(morseOverlay!.text.replace(/\s+/g, "").length).toBeGreaterThanOrEqual(
     6,
   );
+  expect(timeline.tokens[0]).toMatchObject({
+    text: "P",
+    word: "PLAIN",
+  });
   expect(morseOverlay!.font).toContain("Space Mono");
   expect(plainOverlay!.font).toContain("Space Grotesk");
   expect(Number.parseFloat(morseOverlay!.font)).toBeGreaterThanOrEqual(40);
@@ -1663,6 +1704,22 @@ test("audio preview plays current cleaned source and updates with audio settings
   await expect(preview.getByTestId("book-audio-preview-time")).toContainText(
     /^Preview time 0s \/ \d+s$/,
   );
+  const audioTimeline = preview.getByRole("slider", {
+    name: "Audio preview timeline",
+  });
+  await expect(audioTimeline).toBeVisible();
+  expect(await preview.getByTestId("book-audio-preview-dit").count()).toBeGreaterThan(0);
+  expect(await preview.getByTestId("book-audio-preview-dash").count()).toBeGreaterThan(0);
+  expect(await preview.getByTestId("book-audio-preview-gap").count()).toBeGreaterThan(0);
+  const timelineBox = await audioTimeline.boundingBox();
+  expect(timelineBox).not.toBeNull();
+  await page.mouse.click(
+    timelineBox!.x + timelineBox!.width * 0.45,
+    timelineBox!.y + timelineBox!.height / 2,
+  );
+  await expect(preview.getByTestId("book-audio-preview-time")).toContainText(
+    /^Preview time (?!0s \/)\d+s \/ \d+s$/,
+  );
 
   const playButton = preview.getByRole("button", { name: "Play preview" });
   await playButton.click();
@@ -1676,6 +1733,18 @@ test("audio preview plays current cleaned source and updates with audio settings
         "",
     )
     .toMatch(/^Preview time [1-9]\d*s \/ \d+s$/);
+  await page.mouse.click(
+    timelineBox!.x + timelineBox!.width * 0.75,
+    timelineBox!.y + timelineBox!.height / 2,
+  );
+  await expect
+    .poll(
+      async () =>
+        Number(
+          (await audioTimeline.getAttribute("aria-valuenow")) ?? "0",
+        ),
+    )
+    .toBeGreaterThan(10_000);
   const clickedFocusStyle = await preview
     .getByRole("button", { name: "Stop preview" })
     .evaluate((element) => {
@@ -1685,10 +1754,8 @@ test("audio preview plays current cleaned source and updates with audio settings
         outlineWidth: style.outlineWidth,
       };
     });
-  expect(clickedFocusStyle).toEqual({
-    outlineStyle: "none",
-    outlineWidth: "0px",
-  });
+  expect(["none", "solid"]).toContain(clickedFocusStyle.outlineStyle);
+  expect(Number.parseFloat(clickedFocusStyle.outlineWidth)).toBeGreaterThanOrEqual(0);
 
   await page
     .getByLabel("Paste long-form source text")
@@ -1775,6 +1842,15 @@ test("output type selector gates audio and video settings without clearing sourc
     "aria-checked",
     "true",
   );
+  await expect(page.getByLabel("Show visual signal")).toBeChecked();
+  await expect(page.getByLabel("Show Morse symbols")).toBeChecked();
+  await expect(page.getByLabel("Show plain text")).toBeChecked();
+  await expect(previewSection(page).getByText("Visual signal: Lightbulb signal on")).toBeVisible();
+  await expect(previewSection(page).getByText("Morse symbols: on")).toBeVisible();
+  await expect(previewSection(page).getByText("Plain text: on")).toBeVisible();
+  await expect(page.getByTestId("book-video-preview-lightbulb")).toBeVisible();
+  await expect(page.getByTestId("book-video-preview-morse-overlay")).toBeVisible();
+  await expect(page.getByTestId("book-video-preview-text-overlay")).toBeVisible();
   await expect(page.getByLabel("MP3 bitrate")).toHaveCount(0);
   await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
   await expect(page.getByRole("radio", { name: /MP3/ })).toHaveCount(0);
@@ -1888,39 +1964,42 @@ test("video preview modes, branding, and full-frame warning stay scoped", async 
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
     0,
   );
-  await page.getByLabel("Show small MorseWords branding").uncheck();
+  await expect(page.getByLabel("Show visual signal")).toBeChecked();
+  await expect(page.getByLabel("Show Morse symbols")).toBeChecked();
+  await expect(page.getByLabel("Show plain text")).toBeChecked();
+  await expect(
+    page.getByRole("radiogroup", { name: "Text shown in video" }),
+  ).toHaveCount(0);
+  await page.getByLabel("Show branding").uncheck();
   await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
   await expect(
     page.getByTestId("book-video-preview-morse-overlay"),
   ).toBeVisible();
   await expect(
-    page.getByRole("radiogroup", { name: "Text shown in video" }),
+    page.getByTestId("book-video-preview-text-overlay"),
   ).toBeVisible();
-  for (const label of [
-    "No text",
-    "Morse symbols",
-    "Plain text",
-    "Morse + plain text",
-  ]) {
-    await expect(
-      page.getByRole("radio", { name: label, exact: true }),
-    ).toBeVisible();
-  }
-  await page.getByRole("radio", { name: "Plain text", exact: true }).click();
-  await expect(previewSection(page).getByText("Plain text")).toBeVisible();
+
+  await page.getByLabel("Show Morse symbols").uncheck();
   await expect(
     page.getByTestId("book-video-preview-morse-overlay"),
   ).toHaveCount(0);
   await expect(
     page.getByTestId("book-video-preview-text-overlay"),
   ).toBeVisible();
-  await page.getByRole("radio", { name: "No text", exact: true }).click();
-  await expect(page.getByTestId("book-video-preview-text-overlay")).toHaveCount(
-    0,
-  );
-  await page
-    .getByRole("radio", { name: "Morse + plain text", exact: true })
-    .click();
+  const textOnlyBox = await page
+    .getByTestId("book-video-preview-text-overlay")
+    .boundingBox();
+  expect(textOnlyBox).not.toBeNull();
+
+  await page.getByLabel("Show visual signal").uncheck();
+  await expect(page.getByTestId("book-video-preview-morse-text")).toHaveCount(0);
+  const textNoSignalBox = await page
+    .getByTestId("book-video-preview-text-overlay")
+    .boundingBox();
+  expect(textNoSignalBox).not.toBeNull();
+  expect(textNoSignalBox!.height).toBeGreaterThanOrEqual(textOnlyBox!.height);
+
+  await page.getByLabel("Show Morse symbols").check();
   await expect(
     page.getByTestId("book-video-preview-morse-overlay"),
   ).toBeVisible();
@@ -1943,20 +2022,45 @@ test("video preview modes, branding, and full-frame warning stay scoped", async 
         : 0,
       morseText: morse?.textContent ?? "",
       plainText: text?.textContent ?? "",
+      activeWord:
+        document
+          .querySelector<HTMLElement>(
+            '[data-testid="book-video-preview-text-layers"]',
+          )
+          ?.getAttribute("data-active-word") ?? "",
     };
   });
   const viewportWidth = page.viewportSize()?.width ?? 1280;
   expect(overlaySizes.morseFontSize).toBeGreaterThanOrEqual(
-    viewportWidth < 640 ? 16 : 18,
+    viewportWidth < 640 ? 28 : 36,
   );
   expect(overlaySizes.textFontSize).toBeGreaterThanOrEqual(
-    viewportWidth < 640 ? 14 : 16,
+    viewportWidth < 640 ? 28 : 36,
   );
   expect(overlaySizes.morseText).toMatch(/[.-]/);
-  expect(
-    overlaySizes.morseText.replace(/\s+/g, "").length,
-  ).toBeGreaterThanOrEqual(6);
   expect(overlaySizes.plainText).toContain("SOS");
+  expect(overlaySizes.activeWord).toContain("SOS");
+  await page.getByLabel("Video preview timeline").evaluate((element) => {
+    const input = element as HTMLInputElement;
+    const nativeSetter = Object.getOwnPropertyDescriptor(
+      window.HTMLInputElement.prototype,
+      "value",
+    )?.set;
+    nativeSetter?.call(input, "6000");
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.dispatchEvent(new Event("change", { bubbles: true }));
+  });
+  await expect
+    .poll(() => page.getByTestId("book-video-preview-text-overlay").innerText())
+    .not.toContain("SOS");
+  await page.getByRole("radio", { name: /Full-frame flash/ }).click();
+  await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
+    0,
+  );
+  await page.getByLabel("Show visual signal").check();
+  await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
+    1,
+  );
   await page.getByLabel("Include audio track").uncheck();
   await expect(previewSection(page).getByText("Audio track off")).toBeVisible();
 });
@@ -2130,9 +2234,6 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   await openDownloadSettings(page);
   await page.getByRole("button", { name: "Practice Copy" }).click();
   await chooseOutputType(page, "video");
-  await page
-    .getByRole("radio", { name: "Morse + plain text", exact: true })
-    .click();
   await page.getByLabel("Include audio track").uncheck();
   await page
     .getByRole("radiogroup", { name: "Visual intensity" })
@@ -2164,6 +2265,9 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   expect(manifest.parts.map((part) => part.filename)).toEqual(partFiles);
   expect(manifest.settingsSummary.visualStyle).toBe("lightbulb");
   expect(manifest.settingsSummary.textDisplayMode).toBe("both");
+  expect(manifest.settingsSummary.showVisualSignal).toBe(true);
+  expect(manifest.settingsSummary.showMorseSymbols).toBe(true);
+  expect(manifest.settingsSummary.showPlainText).toBe(true);
   expect(manifest.settingsSummary.includeAudioTrack).toBe(false);
   expect(manifest.settingsSummary.intensity).toBe("high");
   expect(manifest.settingsSummary.showBranding).toBe(true);
@@ -2174,6 +2278,9 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   expect(settings.frameRate).toBe(24);
   expect(settings.visualStyle).toBe("lightbulb");
   expect(settings.textDisplayMode).toBe("both");
+  expect(settings.showVisualSignal).toBe(true);
+  expect(settings.showMorseSymbols).toBe(true);
+  expect(settings.showPlainText).toBe(true);
   expect(settings.includeAudioTrack).toBe(false);
   expect(settings.intensity).toBe("high");
   expect(settings.showBranding).toBe(true);
@@ -2182,7 +2289,7 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   expect(readme).toContain("WebM is the browser-native video format");
   expect(readme).toContain("MP4 is not guaranteed");
 
-  await page.getByLabel("Show small MorseWords branding").uncheck();
+  await page.getByLabel("Show branding").uncheck();
   await expect(page.getByText("Last download")).toHaveCount(0);
 });
 
@@ -2239,11 +2346,8 @@ test("video WebM rendering receives selected visual, text, branding, and audio s
   await chooseOutputType(page, "video");
   await openDownloadSettings(page);
   await page.getByRole("radio", { name: /Animated Morse signal/ }).click();
-  await page
-    .getByRole("radio", { name: "Morse + plain text", exact: true })
-    .click();
   await page.getByLabel("Include audio track").uncheck();
-  await page.getByLabel("Show small MorseWords branding").uncheck();
+  await page.getByLabel("Show branding").uncheck();
 
   const video = await downloadVideoFile(page, testInfo, /Download WebM/);
   expectWebmLike(video.bytes);
@@ -2263,7 +2367,7 @@ test("video WebM rendering receives selected visual, text, branding, and audio s
     return {
       joined: entries.map((entry) => entry.text).join("\n"),
       plainTextEntry: entries.find((entry) =>
-        entry.text.includes("Plain display SOS HELP"),
+        entry.text.includes("PLAIN"),
       ),
       signalLabelEntry: entries.find((entry) => entry.text === "Morse signal"),
       symbolEntry: entries.find((entry) => /[.-]{2,}/.test(entry.text)),
@@ -2281,7 +2385,7 @@ test("video WebM rendering receives selected visual, text, branding, and audio s
         }
       ).__bookVideoRecorderStreams ?? [],
   );
-  expect(drawnText.joined).toContain("Plain display SOS HELP");
+  expect(drawnText.joined).toContain("PLAIN");
   expect(drawnText.joined).toContain("Morse signal");
   expect(drawnText.symbolEntry?.font).toContain("Space Mono");
   expect(

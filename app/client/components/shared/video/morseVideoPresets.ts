@@ -68,7 +68,11 @@ export const MORSE_VIDEO_TEXT_DISPLAY_LABELS: Record<
 export function describeMorseVideoSettings(settings: MorseVideoSettings) {
   const style = MORSE_VIDEO_VISUAL_STYLE_DETAILS[settings.visualStyle].label;
   const audio = settings.includeAudioTrack ? "audio track on" : "silent video";
-  const textDisplay =
-    MORSE_VIDEO_TEXT_DISPLAY_LABELS[settings.textDisplayMode].toLowerCase();
-  return `${style}, ${settings.resolution}, ${MORSE_VIDEO_BACKGROUND_LABELS[settings.backgroundStyle]}, ${MORSE_VIDEO_INTENSITY_LABELS[settings.intensity].toLowerCase()} intensity, ${audio}, text overlay: ${textDisplay}, ${settings.targetPartMinutes} minute target parts.`;
+  const layers = [
+    settings.showVisualSignal ? "visual signal on" : "visual signal off",
+    settings.showMorseSymbols ? "Morse symbols on" : "Morse symbols off",
+    settings.showPlainText ? "plain text on" : "plain text off",
+    settings.showBranding ? "branding on" : "branding off",
+  ].join(", ");
+  return `${style}, ${settings.resolution}, ${MORSE_VIDEO_BACKGROUND_LABELS[settings.backgroundStyle]}, ${MORSE_VIDEO_INTENSITY_LABELS[settings.intensity].toLowerCase()} intensity, ${audio}, ${layers}, ${settings.targetPartMinutes} minute target parts.`;
 }
