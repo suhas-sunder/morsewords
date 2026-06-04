@@ -93,7 +93,7 @@ export default function Home() {
     },
   ];
   return (
-    <div className="mw-home-page" style={styles.page}>
+    <main className="mw-home-page" style={styles.page}>
       <style dangerouslySetInnerHTML={{ __html: homeRelatedToolsStyles }} />
 
       <div className="mx-auto w-full max-w-[1120px] px-4 pb-0 pt-2 sm:px-6 sm:pt-4 lg:px-8">
@@ -126,6 +126,6 @@ export default function Home() {
       </div>
 
       <JsonLdScript jsonLd={jsonLd} />
-    </div>
+    </main>
   );
 }

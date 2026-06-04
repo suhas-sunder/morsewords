@@ -98,7 +98,7 @@ export default function MorseCodeDecoder() {
   const jsonLd = [breadcrumbJsonLd, webAppJsonLd, faqJsonLd];
 
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <main className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <TranslatorSectionsBasic
           title="Morse Code Decoder"
@@ -293,6 +293,6 @@ export default function MorseCodeDecoder() {
 
       <BreadcrumbTrail current="Morse Code Decoder" />
       <JsonLdScript jsonLd={jsonLd} />
-    </div>
+    </main>
   );
 }

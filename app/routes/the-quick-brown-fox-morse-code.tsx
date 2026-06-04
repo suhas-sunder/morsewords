@@ -105,7 +105,7 @@ export default function Home() {
   };
 
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <main className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <TranslatorSectionsBasic
           title="The Quick Brown Fox in Morse Code"
@@ -291,6 +291,6 @@ export default function Home() {
 
       <BreadcrumbTrail current="The Quick Brown Fox in Morse Code" />
       <JsonLdScript jsonLd={[pageJsonLd, breadcrumbJsonLd, faqJsonLd]} />
-    </div>
+    </main>
   );
 }
