@@ -1220,6 +1220,9 @@ test("video renderer keeps exported text overlays readable and away from brandin
   );
   expect(morseOverlay).toBeTruthy();
   expect(plainOverlay).toBeTruthy();
+  expect(morseOverlay!.text.replace(/\s+/g, "").length).toBeGreaterThanOrEqual(
+    6,
+  );
   expect(morseOverlay!.font).toContain("Space Mono");
   expect(plainOverlay!.font).toContain("Space Grotesk");
   expect(Number.parseFloat(morseOverlay!.font)).toBeGreaterThanOrEqual(40);
@@ -1950,6 +1953,9 @@ test("video preview modes, branding, and full-frame warning stay scoped", async 
     viewportWidth < 640 ? 14 : 16,
   );
   expect(overlaySizes.morseText).toMatch(/[.-]/);
+  expect(
+    overlaySizes.morseText.replace(/\s+/g, "").length,
+  ).toBeGreaterThanOrEqual(6);
   expect(overlaySizes.plainText).toContain("SOS");
   await page.getByLabel("Include audio track").uncheck();
   await expect(previewSection(page).getByText("Audio track off")).toBeVisible();
@@ -2278,6 +2284,9 @@ test("video WebM rendering receives selected visual, text, branding, and audio s
   expect(drawnText.joined).toContain("Plain display SOS HELP");
   expect(drawnText.joined).toContain("Morse signal");
   expect(drawnText.symbolEntry?.font).toContain("Space Mono");
+  expect(
+    drawnText.symbolEntry?.text.replace(/\s+/g, "").length ?? 0,
+  ).toBeGreaterThanOrEqual(6);
   expect(drawnText.plainTextEntry?.font).toContain("Space Grotesk");
   expect(drawnText.joined).not.toContain("www.morsewords.com");
   expect(drawnText.joined).not.toContain("MorseWords");
@@ -2444,6 +2453,9 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
   ).toHaveCount(0);
 
   await openDownloadSettings(page);
+  await expect(
+    tool.locator('[class*="border-t"][class*="border-slate-200/70"]'),
+  ).toHaveCount(0);
   const presetControls = page.getByTestId("book-preset-controls");
   await expect(
     presetControls.getByRole("button", { name: "Reader Quick Start" }),
@@ -2481,6 +2493,9 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
   await page.getByLabel("Include manifest").uncheck();
 
   await chooseOutputType(page, "video");
+  await expect(
+    tool.locator('[class*="border-t"][class*="border-slate-200/70"]'),
+  ).toHaveCount(0);
   await expect(
     sourceStep(page).getByRole("button", { name: "Download WebM" }),
   ).toBeVisible();

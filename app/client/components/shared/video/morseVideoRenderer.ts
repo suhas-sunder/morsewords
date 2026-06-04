@@ -60,6 +60,7 @@ type RenderFrameOptions = {
 
 const FRAME_RATE = 24;
 const MIN_VIDEO_MS = 600;
+const MIN_READABLE_MORSE_SYMBOLS = 6;
 
 export function getMorseVideoFrameSize(
   resolution: MorseVideoResolution,
@@ -624,7 +625,7 @@ function recentMorseSymbols(
     .filter((event) => event.type === "mark" && event.startMs <= elapsedMs)
     .map((event) => event.symbol ?? "")
     .join("");
-  return symbols.slice(Math.max(0, symbols.length - limit));
+  return readableMorseExcerpt(symbols, timeline.morse, limit);
 }
 
 function recentMorseExcerpt(
@@ -636,8 +637,7 @@ function recentMorseExcerpt(
     .filter((event) => event.type === "mark" && event.startMs <= elapsedMs)
     .map((event) => event.symbol ?? "")
     .join("");
-  const normalized = completed || timeline.morse.replace(/\s+/g, " ");
-  return normalized.slice(Math.max(0, normalized.length - limit));
+  return readableMorseExcerpt(completed, timeline.morse, limit);
 }
 
 function currentTextExcerpt(
@@ -665,6 +665,24 @@ function currentTextExcerpt(
 
 function normalizeFrameText(text: string) {
   return text.trim().replace(/\s+/g, " ");
+}
+
+function readableMorseExcerpt(
+  completedSymbols: string,
+  fallbackMorse: string,
+  limit: number,
+) {
+  const normalizedCompleted = completedSymbols.trim();
+  const normalizedFallback = fallbackMorse.trim().replace(/\s+/g, " ");
+  if (
+    normalizedCompleted.replace(/\s+/g, "").length <
+    MIN_READABLE_MORSE_SYMBOLS
+  ) {
+    return normalizedFallback.slice(0, limit);
+  }
+  return normalizedCompleted.slice(
+    Math.max(0, normalizedCompleted.length - limit),
+  );
 }
 
 function intensityAlpha(intensity: MorseVideoSettings["intensity"]) {

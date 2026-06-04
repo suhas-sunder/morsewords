@@ -2134,7 +2134,7 @@ export default function BookTranslatorTool() {
 
             {showSourceState ? (
               <section
-                className="border-t border-slate-200/70 px-4 py-4"
+                className="px-4 py-4"
                 aria-labelledby="book-source-state-heading"
                 role={status === "error" ? "alert" : undefined}
               >
@@ -2530,7 +2530,7 @@ export default function BookTranslatorTool() {
             ) : null}
 
             {completedExport ? (
-              <div className="mt-5 border-t border-slate-200/70 pt-5">
+              <div className="mt-5">
                 <h3 className="text-base font-extrabold text-sky-950">
                   Last download
                 </h3>
@@ -2560,7 +2560,7 @@ export default function BookTranslatorTool() {
             <details
               open={advancedOpen}
               onToggle={handleAdvancedToggle}
-              className="mt-5 border-t border-slate-200/70 pt-5"
+              className="mt-5"
             >
               <summary
                 aria-expanded={advancedOpen}
@@ -2716,7 +2716,7 @@ export default function BookTranslatorTool() {
                       </div>
                     </div>
 
-                    <fieldset className="border-t border-slate-200/70 pt-5">
+                    <fieldset>
                       <legend className="text-base font-extrabold text-sky-950">
                         Output format
                       </legend>
@@ -2774,7 +2774,7 @@ export default function BookTranslatorTool() {
                       </div>
                     </fieldset>
 
-                    <div className="border-t border-slate-200/70 pt-5">
+                    <div>
                       <div className="flex flex-wrap items-end justify-between gap-3">
                         <div>
                           <h4 className="text-base font-extrabold text-sky-950">
@@ -2829,7 +2829,7 @@ export default function BookTranslatorTool() {
                       />
                     </div>
 
-                    <div className="border-t border-slate-200/70 pt-5">
+                    <div>
                       <h4 className="text-base font-extrabold text-sky-950">
                         Advanced download settings
                       </h4>
@@ -2878,7 +2878,7 @@ export default function BookTranslatorTool() {
                           </option>
                         </LabeledSelect>
                       </div>
-                      <div className="mt-5 border-t border-slate-200/70 pt-5">
+                      <div className="mt-5">
                         <h4 className="text-base font-extrabold text-sky-950">
                           Download extras
                         </h4>
@@ -2995,7 +2995,7 @@ export default function BookTranslatorTool() {
               ),
             )}
           </div>
-          <div className="mt-5 border-t border-slate-200/70 pt-5">
+          <div className="mt-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 className="text-base font-extrabold text-sky-950">
@@ -3053,7 +3053,7 @@ export default function BookTranslatorTool() {
                   return (
                     <div
                       key={rule.id}
-                      className="border-t border-slate-200/70 pt-4"
+                      className="pt-1"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
@@ -3291,7 +3291,7 @@ export default function BookTranslatorTool() {
           )}
 
           {preflight.unsupportedCharacters.length > 0 ? (
-            <div className="mt-5 border-t border-slate-200/70 pt-5">
+            <div className="mt-5">
               <h3 className="text-sm font-extrabold text-sky-950">
                 Top unsupported characters
               </h3>
@@ -3359,7 +3359,7 @@ export default function BookTranslatorTool() {
               {exportParts.slice(0, 6).map((part) => (
                 <div
                   key={`${part.index}-${part.sourceStart}`}
-                  className="border-t border-slate-200/70 pt-4"
+                  className="pt-1"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <h3 className="text-sm font-extrabold text-sky-950">
@@ -3512,7 +3512,7 @@ function BookPreviewSection({
 
   return (
     <section
-      className="mt-5 border-t border-slate-200/70 pt-5"
+      className="mt-5"
       aria-labelledby="book-preview-heading"
       data-testid="book-preview-section"
     >
@@ -3733,7 +3733,7 @@ function BookVideoSettingsEditor({
         </p>
       </div>
 
-      <fieldset className="border-t border-slate-200/70 pt-5">
+      <fieldset>
         <legend className="text-base font-extrabold text-sky-950">
           Visual style
         </legend>
@@ -3774,7 +3774,7 @@ function BookVideoSettingsEditor({
         </div>
       </fieldset>
 
-      <fieldset className="border-t border-slate-200/70 pt-5">
+      <fieldset>
         <legend className="text-base font-extrabold text-sky-950">
           Text shown in video
         </legend>
@@ -3803,7 +3803,7 @@ function BookVideoSettingsEditor({
         </p>
       </fieldset>
 
-      <div className="border-t border-slate-200/70 pt-5">
+      <div>
         <h4 className="text-base font-extrabold text-sky-950">Video frame</h4>
         <div className="mt-4 grid gap-5 lg:grid-cols-2">
           <fieldset>
@@ -3856,7 +3856,7 @@ function BookVideoSettingsEditor({
         </div>
       </div>
 
-      <div className="border-t border-slate-200/70 pt-5">
+      <div>
         <h4 className="text-base font-extrabold text-sky-950">Video options</h4>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <ExportCheckbox
@@ -3887,7 +3887,7 @@ function BookVideoSettingsEditor({
         ) : null}
       </div>
 
-      <div className="border-t border-slate-200/70 pt-5">
+      <div>
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h4 className="text-base font-extrabold text-sky-950">

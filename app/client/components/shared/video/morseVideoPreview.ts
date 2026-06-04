@@ -5,6 +5,8 @@ import type { MorseVideoTimedEvent } from "./morseVideoRenderer";
 
 import type { MorseVideoSettings } from "./morseVideoTypes";
 
+const MIN_READABLE_MORSE_SYMBOLS = 6;
+
 export type MorseVideoPreview = {
   sampleText: string;
   sampleMorse: string;
@@ -64,16 +66,15 @@ export function getMorseVideoPreviewFrame(
       loopedElapsedMs >= event.startMs &&
       loopedElapsedMs < event.endMs,
   );
-  const symbols = preview.events
+  const completedSymbols = preview.events
     .filter((event) => event.type === "mark" && event.startMs <= loopedElapsedMs)
     .map((event) => event.symbol ?? "")
     .join("");
+  const sampleMorse = preview.sampleMorse.replace(/\s+/g, " ");
   return {
     active,
-    symbols: symbols.slice(Math.max(0, symbols.length - 44)),
-    morseExcerpt: (symbols || preview.sampleMorse.replace(/\s+/g, " ")).slice(
-      Math.max(0, (symbols || preview.sampleMorse).length - 92),
-    ),
+    symbols: readableMorseExcerpt(completedSymbols, sampleMorse, 44),
+    morseExcerpt: readableMorseExcerpt(completedSymbols, sampleMorse, 92),
     textExcerpt: currentTextExcerpt(preview.sampleText, loopedElapsedMs, preview.durationMs),
   };
 }
@@ -110,4 +111,22 @@ function currentTextExcerpt(text: string, elapsedMs: number, durationMs: number)
   const progress = Math.max(0, Math.min(1, elapsedMs / Math.max(1, durationMs)));
   const start = Math.max(0, Math.floor(progress * words.length) - 3);
   return words.slice(start, start + 7).join(" ");
+}
+
+function readableMorseExcerpt(
+  completedSymbols: string,
+  fallbackMorse: string,
+  limit: number,
+) {
+  const normalizedCompleted = completedSymbols.trim();
+  const normalizedFallback = fallbackMorse.trim();
+  if (
+    normalizedCompleted.replace(/\s+/g, "").length <
+    MIN_READABLE_MORSE_SYMBOLS
+  ) {
+    return normalizedFallback.slice(0, limit);
+  }
+  return normalizedCompleted.slice(
+    Math.max(0, normalizedCompleted.length - limit),
+  );
 }
