@@ -365,7 +365,8 @@ export function renderMorseVideoFrame({
 }: RenderFrameOptions) {
   const palette = getFramePalette(resolvedBackgroundStyle);
   const active = isMarkActive(timeline, elapsedMs);
-  const flashFrame = settings.visualStyle === "full-frame" && active;
+  const flashFrame =
+    settings.showVisualSignal && settings.visualStyle === "full-frame" && active;
   const background = flashFrame ? palette.flashBackground : palette.background;
   const text = flashFrame ? palette.flashText : palette.text;
   const accent = flashFrame ? palette.flashAccent : palette.accent;

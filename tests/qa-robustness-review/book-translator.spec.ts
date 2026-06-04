@@ -1276,6 +1276,57 @@ test("video renderer keeps exported text overlays readable and away from brandin
   expect(plainOverlay!.maxWidth).toBeGreaterThan(1100);
 });
 
+test("video renderer disables full-frame flash when visual signal layer is off", () => {
+  const exportSettings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
+  const timeline = buildBookVideoTimeline("SOS HELP", exportSettings);
+  const frame = { width: 1280, height: 720 };
+
+  const signalOn = createMockCanvasContext();
+  renderBookVideoFrame({
+    ctx: signalOn.ctx,
+    elapsedMs: 0,
+    exportSettings,
+    frame,
+    resolvedBackgroundStyle: "warm-morsewords",
+    settings: {
+      ...DEFAULT_BOOK_VIDEO_SETTINGS,
+      visualStyle: "full-frame",
+      showVisualSignal: true,
+    },
+    timeline,
+  });
+  expect(signalOn.commands[0]).toMatchObject({
+    type: "fillRect",
+    fillStyle: "#08324f",
+  });
+
+  const signalOff = createMockCanvasContext();
+  renderBookVideoFrame({
+    ctx: signalOff.ctx,
+    elapsedMs: 0,
+    exportSettings,
+    frame,
+    resolvedBackgroundStyle: "warm-morsewords",
+    settings: {
+      ...DEFAULT_BOOK_VIDEO_SETTINGS,
+      visualStyle: "full-frame",
+      showVisualSignal: false,
+    },
+    timeline,
+  });
+  expect(signalOff.commands[0]).toMatchObject({
+    type: "fillRect",
+    fillStyle: "#fffdf8",
+  });
+  expect(
+    signalOff.commands.some(
+      (command) =>
+        command.type === "arc" &&
+        (command.fillStyle === "#bae6fd" || command.fillStyle === "#08324f"),
+    ),
+  ).toBe(false);
+});
+
 test("segmentation handles long-source boundary edge cases without empty parts", async () => {
   const settings = {
     ...BOOK_EXPORT_PRESETS["Practice Copy"],
