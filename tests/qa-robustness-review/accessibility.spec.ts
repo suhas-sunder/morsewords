@@ -1,6 +1,11 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { blockExternalNetwork, waitForRouteReady, writeArtifact } from "./helpers";
+import {
+  blockExternalNetwork,
+  gotoRoute,
+  waitForRouteReady,
+  writeArtifact,
+} from "./helpers";
 
 const ACCESSIBILITY_ROUTES = [
   "/",
@@ -17,6 +22,30 @@ const ACCESSIBILITY_ROUTES = [
 ];
 const ACCESSIBILITY_THEMES = ["light", "dark"] as const;
 const THEME_STORAGE_KEY = "morsewords-theme";
+const MAIN_LANDMARK_ROUTES = [
+  "/",
+  "/audio",
+  "/practice",
+  "/morse-code-encoder",
+  "/morse-code-decoder",
+  "/the-quick-brown-fox-morse-code",
+  "/morse-code-word-separator",
+  "/morse-code-words",
+  "/morse-code-sentence-practice",
+  "/morse-code-sound-generator",
+] as const;
+
+test.describe("page landmarks", () => {
+  for (const route of MAIN_LANDMARK_ROUTES) {
+    test(`${route} exposes one visible main landmark`, async ({ page }) => {
+      await blockExternalNetwork(page);
+      await gotoRoute(page, route);
+
+      await expect(page.getByRole("main")).toHaveCount(1);
+      await expect(page.getByRole("main")).toBeVisible();
+    });
+  }
+});
 
 test.describe("axe accessibility scans", () => {
   for (const theme of ACCESSIBILITY_THEMES) {

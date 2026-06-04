@@ -66,12 +66,12 @@ export default function PracticeRoute() {
   ];
 
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <main className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <PracticePage jsonLd={jsonLd} />
       </div>
 
       <BreadcrumbTrail current="Morse Code Practice" placement="pageBottom" />
-    </div>
+    </main>
   );
 }

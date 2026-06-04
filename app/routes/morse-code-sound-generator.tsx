@@ -164,7 +164,7 @@ export default function MorseCodeSoundGeneratorRoute() {
   };
 
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <main className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <MorseAudioTranslator
           pageIntent="sound"
@@ -194,6 +194,6 @@ export default function MorseCodeSoundGeneratorRoute() {
         placement="pageBottom"
       />
       <JsonLdScript jsonLd={jsonLd} />
-    </div>
+    </main>
   );
 }

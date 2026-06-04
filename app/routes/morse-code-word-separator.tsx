@@ -130,7 +130,7 @@ export default function MorseCodeWordSeparator() {
   const jsonLd = [breadcrumbJsonLd, webAppJsonLd, faqJsonLd];
 
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <main className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <WordSeparatorTool />
 
@@ -452,6 +452,6 @@ export default function MorseCodeWordSeparator() {
 
       <BreadcrumbTrail current="Morse Code Word Separator" />
       <JsonLdScript jsonLd={jsonLd} />
-    </div>
+    </main>
   );
 }

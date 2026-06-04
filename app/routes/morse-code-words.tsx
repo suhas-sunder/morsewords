@@ -115,7 +115,7 @@ export default function MorseCodeWords() {
  const linkClass ="font-semibold text-sky-900 underline underline-offset-4 hover:text-sky-950 hover:no-underline cursor-pointer";
 
  return (
- <div className="mw-non-home-page" style={styles.page}>
+ <main className="mw-non-home-page" style={styles.page}>
  <div style={styles.wrap}>
  <PageHero
  eyebrow="Word examples" title="Morse Code Words" description="Explore common word-level Morse examples, spacing guidance, and practice ideas. Use this page for useful words, then move into trainer, sentence, typing, or audio practice.">
@@ -561,6 +561,6 @@ export default function MorseCodeWords() {
  <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
  </div>
  <BreadcrumbTrail current="Morse Code Words" />
- </div>
+ </main>
  );
 }

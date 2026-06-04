@@ -195,7 +195,7 @@ export default function AudioRoute() {
   };
 
   return (
-    <div className="mw-non-home-page" style={styles.page}>
+    <main className="mw-non-home-page" style={styles.page}>
       <div style={{ ...styles.wrap, paddingTop: 16 }}>
         <MorseAudioTranslator enableQueryPrefill />
         <HowItWorksAudio />
@@ -214,6 +214,6 @@ export default function AudioRoute() {
         placement="pageBottom"
       />
       <JsonLdScript jsonLd={jsonLd} />
-    </div>
+    </main>
   );
 }
