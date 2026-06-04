@@ -678,18 +678,28 @@ test.describe("final SEO schema sitemap and internal link audit", () => {
 
     const desktopMoreButton = page.getByRole("button", { name: /^More$/ });
     if (await desktopMoreButton.isVisible().catch(() => false)) {
-      await desktopMoreButton.click();
       const dialog = page.getByRole("dialog", {
         name: "More MorseWords tools",
       });
+      await expect(async () => {
+        await desktopMoreButton.click();
+        await expect(dialog).toBeVisible({ timeout: 1_000 });
+      }).toPass({ timeout: 10_000 });
       await expect(dialog).toBeVisible();
       await expectReadable(
         dialog.locator(`a[href="${ROUTES.videoGenerator}"]`),
         `${testInfo.project.name} More menu video link`,
       );
     } else {
-      await page.getByRole("button", { name: "Open navigation" }).click();
-      const mobileNav = page.locator("#mobile-nav");
+      const mobileButton = page.getByRole("button", { name: "Open navigation" });
+      const mobileDialog = page.getByRole("dialog", {
+        name: "Mobile navigation",
+      });
+      await expect(async () => {
+        await mobileButton.click();
+        await expect(mobileDialog).toBeVisible({ timeout: 1_000 });
+      }).toPass({ timeout: 10_000 });
+      const mobileNav = mobileDialog.locator("#mobile-nav");
       await expect(mobileNav).toBeVisible();
       await expectReadable(
         mobileNav.locator(`a[href="${ROUTES.videoGenerator}"]`),

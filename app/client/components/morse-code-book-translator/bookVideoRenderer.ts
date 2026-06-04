@@ -16,6 +16,7 @@ export type {
 } from "~/client/components/shared/video/morseVideoRenderer";
 
 import {
+  buildMorseVideoTimelineTokens,
   recordMorseVideoCanvas,
   renderMorseVideoFrame,
   type MorseVideoAudioSettings,
@@ -46,11 +47,17 @@ export function buildBookVideoTimeline(
   }
 
   const tailPaddingMs = Math.max(0, settings.tailPaddingMs ?? 0);
+  const durationMs = Math.max(MIN_VIDEO_MS, cursorMs + tailPaddingMs);
   return {
     events: timedEvents,
     morse: buildMorseTranscript(text),
     text: text.trim().replace(/\s+/g, " "),
-    durationMs: Math.max(MIN_VIDEO_MS, cursorMs + tailPaddingMs),
+    tokens: buildMorseVideoTimelineTokens({
+      durationMs,
+      events: timedEvents,
+      text,
+    }),
+    durationMs,
     tailPaddingMs,
   };
 }

@@ -85,7 +85,6 @@ import {
   sanitizeMorseVideoSettings,
   type MorseVideoBackgroundStyle,
   type MorseVideoSettings,
-  type MorseVideoTextDisplayMode,
 } from "~/client/components/shared/video/morseVideoTypes";
 import {
   DEFAULT_VIDEO_GENERATOR_PREFERENCES,
@@ -349,6 +348,12 @@ export default function MorseVideoGeneratorTool() {
         patch.textDisplayMode !== undefined
           ? {
               ...patch,
+              showMorseSymbols:
+                patch.textDisplayMode === "morse" ||
+                patch.textDisplayMode === "both",
+              showPlainText:
+                patch.textDisplayMode === "text" ||
+                patch.textDisplayMode === "both",
               showMorseOverlay:
                 patch.textDisplayMode === "morse" ||
                 patch.textDisplayMode === "both",
@@ -356,9 +361,7 @@ export default function MorseVideoGeneratorTool() {
           : patch.showMorseOverlay !== undefined
             ? {
                 ...patch,
-                textDisplayMode: (patch.showMorseOverlay
-                  ? "morse"
-                  : "none") as MorseVideoTextDisplayMode,
+                showMorseSymbols: patch.showMorseOverlay,
               }
             : patch;
       setVideoSettings((current) =>

@@ -253,7 +253,7 @@ test.describe("Morse code video generator", () => {
     await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
     await page.getByRole("button", { name: "Stop visual preview" }).click();
 
-    await page.getByRole("radio", { name: /Animated Morse text/ }).click();
+    await page.getByRole("radio", { name: /Animated Morse signal/ }).click();
     await expect(page.getByTestId("morse-video-preview-morse-text")).toBeVisible();
     await expect(page.getByLabel("Tone preset")).toBeVisible();
     await page.getByRole("button", { name: "Include audio track" }).click();

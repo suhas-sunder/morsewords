@@ -55,6 +55,12 @@ import {
   formatDuration,
 } from "./bookDurationEstimate";
 import { estimateMorseDurationMs } from "~/client/components/shared/morseTiming";
+import {
+  buildMorseVideoTimelineFromMorse,
+  getMorseVideoActiveToken,
+  getMorseVideoFrameTextState,
+  type MorseVideoTimeline,
+} from "~/client/components/shared/video/morseVideoRenderer";
 import useMorseAudio, {
   type MorsePlayerState,
 } from "~/client/components/shared/useMorseAudio";
@@ -115,7 +121,6 @@ import {
 import {
   BOOK_VIDEO_INTENSITY_LABELS,
   BOOK_VIDEO_RESOLUTION_LABELS,
-  BOOK_VIDEO_TEXT_DISPLAY_LABELS,
   BOOK_VIDEO_VISUAL_STYLE_DETAILS,
 } from "./bookVideoPresets";
 import {
@@ -125,12 +130,10 @@ import {
 import {
   BOOK_VIDEO_INTENSITIES,
   BOOK_VIDEO_RESOLUTIONS,
-  BOOK_VIDEO_TEXT_DISPLAY_MODES,
   BOOK_VIDEO_VISUAL_STYLES,
   DEFAULT_BOOK_VIDEO_SETTINGS,
   sanitizeBookVideoSettings,
   type BookVideoSettings,
-  type BookVideoTextDisplayMode,
 } from "./bookVideoTypes";
 import type { BookSplitMode } from "./bookExportTypes";
 
@@ -186,6 +189,7 @@ type BookPreviewStatus =
 type BookAudioPreview = {
   sampleText: string;
   sampleMorse: string;
+  timeline: MorseVideoTimeline;
   durationMs: number;
   label: string;
   truncated: boolean;
@@ -428,6 +432,17 @@ function buildBookAudioPreview(
 
   if (!sampleMorse.trim()) return null;
 
+  const timeline = buildMorseVideoTimelineFromMorse(
+    sampleMorse,
+    {
+      charWpm: settings.charWpm,
+      farnsworthWpm: settings.farnsworthWpm,
+      tailPaddingMs: 0,
+    },
+    sampleText,
+  );
+  durationMs = timeline.durationMs;
+
   const truncated =
     usedWords < words.length || normalized.length > sampleText.length;
   const cappedAtTarget = durationMs >= BOOK_PREVIEW_MAX_DURATION_MS * 0.92;
@@ -440,10 +455,40 @@ function buildBookAudioPreview(
   return {
     sampleText,
     sampleMorse,
+    timeline,
     durationMs,
     label,
     truncated,
   };
+}
+
+function morseFromPreviewOffset(
+  preview: BookAudioPreview,
+  elapsedMs: number,
+) {
+  if (elapsedMs <= 0) return preview.sampleMorse;
+  if (elapsedMs >= preview.durationMs) return "";
+  const activeToken = getMorseVideoActiveToken(preview.timeline, elapsedMs);
+  if (!activeToken) return preview.sampleMorse;
+  const startIndex = preview.timeline.tokens.findIndex(
+    (token) =>
+      token.startMs === activeToken.startMs &&
+      token.wordIndex === activeToken.wordIndex &&
+      token.charIndex === activeToken.charIndex,
+  );
+  if (startIndex < 0) return preview.sampleMorse;
+
+  let previousWordIndex = preview.timeline.tokens[startIndex]?.wordIndex ?? 0;
+  return preview.timeline.tokens
+    .slice(startIndex)
+    .map((token, index) => {
+      const separator =
+        index === 0 ? "" : token.wordIndex === previousWordIndex ? " " : " / ";
+      previousWordIndex = token.wordIndex;
+      return `${separator}${token.morse}`;
+    })
+    .join("")
+    .trim();
 }
 
 function SourceUploadDropzone({
@@ -583,6 +628,7 @@ export default function BookTranslatorTool() {
   const [previewErrorMessage, setPreviewErrorMessage] = React.useState("");
   const [visualPreviewPlaying, setVisualPreviewPlaying] = React.useState(false);
   const [visualPreviewElapsedMs, setVisualPreviewElapsedMs] = React.useState(0);
+  const [audioPreviewElapsedMs, setAudioPreviewElapsedMs] = React.useState(0);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [status, setStatus] = React.useState<ParseStatus>("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -615,6 +661,11 @@ export default function BookTranslatorTool() {
   const visualPreviewTimeoutRef = React.useRef<number | null>(null);
   const visualPreviewStartedAtRef = React.useRef(0);
   const visualPreviewBaseElapsedRef = React.useRef(0);
+  const audioPreviewIntervalRef = React.useRef<number | null>(null);
+  const audioPreviewTimeoutRef = React.useRef<number | null>(null);
+  const audioPreviewStartedAtRef = React.useRef(0);
+  const audioPreviewBaseElapsedRef = React.useRef(0);
+  const audioPreviewSessionRef = React.useRef(0);
   const mountedRef = React.useRef(true);
   const customCleanupRuleIdRef = React.useRef(1);
   const previewAudioPlayer = useMorseAudio();
@@ -654,6 +705,29 @@ export default function BookTranslatorTool() {
     stopPreviewAudioRef.current = previewAudioPlayer.stop;
   });
 
+  const clearAudioPreviewTimers = React.useCallback(() => {
+    if (audioPreviewIntervalRef.current !== null) {
+      window.clearInterval(audioPreviewIntervalRef.current);
+      audioPreviewIntervalRef.current = null;
+    }
+    if (audioPreviewTimeoutRef.current !== null) {
+      window.clearTimeout(audioPreviewTimeoutRef.current);
+      audioPreviewTimeoutRef.current = null;
+    }
+  }, []);
+
+  const stopAudioPreviewTimer = React.useCallback(
+    (resetElapsed = true) => {
+      audioPreviewSessionRef.current += 1;
+      clearAudioPreviewTimers();
+      if (resetElapsed) {
+        audioPreviewBaseElapsedRef.current = 0;
+        setAudioPreviewElapsedMs(0);
+      }
+    },
+    [clearAudioPreviewTimers],
+  );
+
   const clearVisualPreviewTimers = React.useCallback(() => {
     if (visualPreviewIntervalRef.current !== null) {
       window.clearInterval(visualPreviewIntervalRef.current);
@@ -676,11 +750,12 @@ export default function BookTranslatorTool() {
 
   const stopActivePreview = React.useCallback(() => {
     stopPreviewAudioRef.current?.();
+    stopAudioPreviewTimer();
     stopVisualPreview();
     setPreviewStatus((current) =>
       current === "playing" ? "stopped" : current,
     );
-  }, [stopVisualPreview]);
+  }, [stopAudioPreviewTimer, stopVisualPreview]);
 
   React.useEffect(() => {
     const preferences = loadBookExportPreferences();
@@ -972,6 +1047,9 @@ export default function BookTranslatorTool() {
         effectiveVideoSettings.intensity,
         effectiveVideoSettings.includeAudioTrack,
         effectiveVideoSettings.showBranding,
+        effectiveVideoSettings.showVisualSignal,
+        effectiveVideoSettings.showMorseSymbols,
+        effectiveVideoSettings.showPlainText,
         effectiveVideoSettings.showMorseOverlay,
         effectiveVideoSettings.textDisplayMode,
         resolvedVideoBackgroundStyle,
@@ -990,6 +1068,9 @@ export default function BookTranslatorTool() {
       effectiveVideoSettings.includeAudioTrack,
       effectiveVideoSettings.intensity,
       effectiveVideoSettings.showBranding,
+      effectiveVideoSettings.showVisualSignal,
+      effectiveVideoSettings.showMorseSymbols,
+      effectiveVideoSettings.showPlainText,
       effectiveVideoSettings.showMorseOverlay,
       effectiveVideoSettings.textDisplayMode,
       effectiveVideoSettings.visualStyle,
@@ -1126,6 +1207,7 @@ export default function BookTranslatorTool() {
 
   React.useEffect(() => {
     stopPreviewAudioRef.current?.();
+    stopAudioPreviewTimer();
     stopVisualPreview();
     setPreviewErrorMessage("");
 
@@ -1148,6 +1230,7 @@ export default function BookTranslatorTool() {
     hasCleanedSource,
     hasSource,
     previewSettingsSignature,
+    stopAudioPreviewTimer,
     stopVisualPreview,
   ]);
 
@@ -1161,7 +1244,7 @@ export default function BookTranslatorTool() {
     }
   }, [outputType, previewAudioPlayer.state, previewStatus]);
 
-  const handlePlayAudioPreview = React.useCallback(() => {
+  const startAudioPreviewFrom = React.useCallback((startElapsedMs = 0) => {
     if (!audioPreview) {
       setPreviewStatus("unavailable");
       setPreviewErrorMessage("There is no previewable source yet.");
@@ -1173,12 +1256,46 @@ export default function BookTranslatorTool() {
       return;
     }
 
+    stopPreviewAudioRef.current?.();
     stopVisualPreview();
+    clearAudioPreviewTimers();
     setPreviewErrorMessage("");
+    const safeStartElapsed = Math.max(
+      0,
+      Math.min(audioPreview.durationMs, startElapsedMs),
+    );
+    const previewMorse = morseFromPreviewOffset(audioPreview, safeStartElapsed);
+    if (!previewMorse.trim()) {
+      setAudioPreviewElapsedMs(audioPreview.durationMs);
+      setPreviewStatus("stopped");
+      return;
+    }
+
     setPreviewStatus("playing");
+    const timerSession = audioPreviewSessionRef.current + 1;
+    audioPreviewSessionRef.current = timerSession;
+    audioPreviewBaseElapsedRef.current = safeStartElapsed;
+    audioPreviewStartedAtRef.current = performance.now();
+    setAudioPreviewElapsedMs(safeStartElapsed);
+    audioPreviewIntervalRef.current = window.setInterval(() => {
+      if (audioPreviewSessionRef.current !== timerSession) return;
+      const nextElapsed = Math.max(
+        0,
+        audioPreviewBaseElapsedRef.current +
+          performance.now() -
+          audioPreviewStartedAtRef.current,
+      );
+      setAudioPreviewElapsedMs(Math.min(audioPreview.durationMs, nextElapsed));
+    }, 100);
+    audioPreviewTimeoutRef.current = window.setTimeout(() => {
+      if (audioPreviewSessionRef.current !== timerSession) return;
+      clearAudioPreviewTimers();
+      setAudioPreviewElapsedMs(audioPreview.durationMs);
+      setPreviewStatus("stopped");
+    }, Math.max(0, audioPreview.durationMs - safeStartElapsed));
     void previewAudioPlayer
       .play({
-        code: audioPreview.sampleMorse,
+        code: previewMorse,
         wpm: exportSettings.charWpm,
         farnsworthWpm: exportSettings.farnsworthWpm,
         hz: exportSettings.pitch,
@@ -1188,8 +1305,20 @@ export default function BookTranslatorTool() {
         flash: false,
         soundEnabled: true,
       })
+      .then(() => {
+        if (
+          !mountedRef.current ||
+          audioPreviewSessionRef.current !== timerSession
+        ) {
+          return;
+        }
+        clearAudioPreviewTimers();
+        setAudioPreviewElapsedMs(audioPreview.durationMs);
+        setPreviewStatus("stopped");
+      })
       .catch(() => {
         if (!mountedRef.current) return;
+        clearAudioPreviewTimers();
         setPreviewStatus("failed");
         setPreviewErrorMessage(
           "Audio preview failed. Try again or adjust the source.",
@@ -1197,6 +1326,7 @@ export default function BookTranslatorTool() {
       });
   }, [
     audioPreview,
+    clearAudioPreviewTimers,
     exportSettings.charWpm,
     exportSettings.farnsworthWpm,
     exportSettings.pitch,
@@ -1205,6 +1335,41 @@ export default function BookTranslatorTool() {
     previewAudioPlayer,
     stopVisualPreview,
   ]);
+
+  const handlePlayAudioPreview = React.useCallback(() => {
+    const currentElapsed = audioPreviewElapsedMs;
+    const startElapsed =
+      audioPreview && currentElapsed < audioPreview.durationMs
+        ? currentElapsed
+        : 0;
+    startAudioPreviewFrom(startElapsed);
+  }, [audioPreview, audioPreviewElapsedMs, startAudioPreviewFrom]);
+
+  const handleSeekAudioPreview = React.useCallback(
+    (elapsedMs: number) => {
+      if (!audioPreview) return;
+      const nextElapsed = Math.max(
+        0,
+        Math.min(audioPreview.durationMs, elapsedMs),
+      );
+      setAudioPreviewElapsedMs(nextElapsed);
+      audioPreviewBaseElapsedRef.current = nextElapsed;
+      audioPreviewStartedAtRef.current = performance.now();
+      if (
+        previewStatus === "playing" &&
+        (previewAudioPlayer.state === "playing" ||
+          previewAudioPlayer.state === "paused")
+      ) {
+        startAudioPreviewFrom(nextElapsed);
+      }
+    },
+    [
+      audioPreview,
+      previewAudioPlayer.state,
+      previewStatus,
+      startAudioPreviewFrom,
+    ],
+  );
 
   const handlePlayVisualPreview = React.useCallback(() => {
     if (!audioPreview) {
@@ -1667,6 +1832,12 @@ export default function BookTranslatorTool() {
         patch.textDisplayMode !== undefined
           ? {
               ...patch,
+              showMorseSymbols:
+                patch.textDisplayMode === "morse" ||
+                patch.textDisplayMode === "both",
+              showPlainText:
+                patch.textDisplayMode === "text" ||
+                patch.textDisplayMode === "both",
               showMorseOverlay:
                 patch.textDisplayMode === "morse" ||
                 patch.textDisplayMode === "both",
@@ -1674,9 +1845,7 @@ export default function BookTranslatorTool() {
           : patch.showMorseOverlay !== undefined
             ? {
                 ...patch,
-                textDisplayMode: (patch.showMorseOverlay
-                  ? "morse"
-                  : "none") as BookVideoTextDisplayMode,
+                showMorseSymbols: patch.showMorseOverlay,
               }
             : patch;
       setVideoSettings((current) =>
@@ -2076,7 +2245,7 @@ export default function BookTranslatorTool() {
 
             {showSourceState ? (
               <section
-                className="border-t border-slate-200/70 px-4 py-4"
+                className="px-4 py-4"
                 aria-labelledby="book-source-state-heading"
                 role={status === "error" ? "alert" : undefined}
               >
@@ -2383,11 +2552,13 @@ export default function BookTranslatorTool() {
             ) : null}
 
             {isVideoOutput &&
+            effectiveVideoSettings.showVisualSignal &&
             effectiveVideoSettings.visualStyle === "full-frame" ? (
               <FullFrameFlashWarning className="mt-4" />
             ) : null}
 
             <BookPreviewSection
+              audioPreviewElapsedMs={audioPreviewElapsedMs}
               audioPlayerState={previewAudioPlayer.state}
               audioPreview={audioPreview}
               audioSupported={previewAudioPlayer.isSupported}
@@ -2397,6 +2568,7 @@ export default function BookTranslatorTool() {
               isDraftActive={sourceDraftActive}
               onPlayAudioPreview={handlePlayAudioPreview}
               onPlayVisualPreview={handlePlayVisualPreview}
+              onSeekAudioPreview={handleSeekAudioPreview}
               onSeekVisualPreview={handleSeekVisualPreview}
               onStopPreview={stopActivePreview}
               outputType={outputType}
@@ -2471,7 +2643,7 @@ export default function BookTranslatorTool() {
             ) : null}
 
             {completedExport ? (
-              <div className="mt-5 border-t border-slate-200/70 pt-5">
+              <div className="mt-5">
                 <h3 className="text-base font-extrabold text-sky-950">
                   Last download
                 </h3>
@@ -2501,7 +2673,7 @@ export default function BookTranslatorTool() {
             <details
               open={advancedOpen}
               onToggle={handleAdvancedToggle}
-              className="mt-5 border-t border-slate-200/70 pt-5"
+              className="mt-5"
             >
               <summary
                 aria-expanded={advancedOpen}
@@ -2657,7 +2829,7 @@ export default function BookTranslatorTool() {
                       </div>
                     </div>
 
-                    <fieldset className="border-t border-slate-200/70 pt-5">
+                    <fieldset>
                       <legend className="text-base font-extrabold text-sky-950">
                         Output format
                       </legend>
@@ -2715,7 +2887,7 @@ export default function BookTranslatorTool() {
                       </div>
                     </fieldset>
 
-                    <div className="border-t border-slate-200/70 pt-5">
+                    <div>
                       <div className="flex flex-wrap items-end justify-between gap-3">
                         <div>
                           <h4 className="text-base font-extrabold text-sky-950">
@@ -2770,7 +2942,7 @@ export default function BookTranslatorTool() {
                       />
                     </div>
 
-                    <div className="border-t border-slate-200/70 pt-5">
+                    <div>
                       <h4 className="text-base font-extrabold text-sky-950">
                         Advanced download settings
                       </h4>
@@ -2819,7 +2991,7 @@ export default function BookTranslatorTool() {
                           </option>
                         </LabeledSelect>
                       </div>
-                      <div className="mt-5 border-t border-slate-200/70 pt-5">
+                      <div className="mt-5">
                         <h4 className="text-base font-extrabold text-sky-950">
                           Download extras
                         </h4>
@@ -2936,7 +3108,7 @@ export default function BookTranslatorTool() {
               ),
             )}
           </div>
-          <div className="mt-5 border-t border-slate-200/70 pt-5">
+          <div className="mt-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 className="text-base font-extrabold text-sky-950">
@@ -2994,7 +3166,7 @@ export default function BookTranslatorTool() {
                   return (
                     <div
                       key={rule.id}
-                      className="border-t border-slate-200/70 pt-4"
+                      className="pt-1"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
@@ -3232,7 +3404,7 @@ export default function BookTranslatorTool() {
           )}
 
           {preflight.unsupportedCharacters.length > 0 ? (
-            <div className="mt-5 border-t border-slate-200/70 pt-5">
+            <div className="mt-5">
               <h3 className="text-sm font-extrabold text-sky-950">
                 Top unsupported characters
               </h3>
@@ -3300,7 +3472,7 @@ export default function BookTranslatorTool() {
               {exportParts.slice(0, 6).map((part) => (
                 <div
                   key={`${part.index}-${part.sourceStart}`}
-                  className="border-t border-slate-200/70 pt-4"
+                  className="pt-1"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <h3 className="text-sm font-extrabold text-sky-950">
@@ -3370,6 +3542,7 @@ export default function BookTranslatorTool() {
 }
 
 function BookPreviewSection({
+  audioPreviewElapsedMs,
   audioPlayerState,
   audioPreview,
   audioSupported,
@@ -3379,6 +3552,7 @@ function BookPreviewSection({
   isDraftActive,
   onPlayAudioPreview,
   onPlayVisualPreview,
+  onSeekAudioPreview,
   onSeekVisualPreview,
   onStopPreview,
   outputType,
@@ -3391,6 +3565,7 @@ function BookPreviewSection({
   visualPreviewElapsedMs,
   visualPreviewPlaying,
 }: {
+  audioPreviewElapsedMs: number;
   audioPlayerState: MorsePlayerState;
   audioPreview: BookAudioPreview | null;
   audioSupported: boolean;
@@ -3400,6 +3575,7 @@ function BookPreviewSection({
   isDraftActive: boolean;
   onPlayAudioPreview: () => void;
   onPlayVisualPreview: () => void;
+  onSeekAudioPreview: (elapsedMs: number) => void;
   onSeekVisualPreview: (elapsedMs: number) => void;
   onStopPreview: () => void;
   outputType: BookOutputType;
@@ -3428,6 +3604,10 @@ function BookPreviewSection({
     visualPreviewDurationMs,
     Math.max(0, visualPreviewElapsedMs),
   );
+  const audioElapsedMs = Math.min(
+    audioPreview?.durationMs ?? 0,
+    Math.max(0, audioPreviewElapsedMs),
+  );
   const handleVisualPreviewTimelineInput = React.useCallback(
     (event: React.FormEvent<HTMLInputElement>) => {
       onSeekVisualPreview(Number(event.currentTarget.value));
@@ -3447,7 +3627,7 @@ function BookPreviewSection({
 
   return (
     <section
-      className="mt-5 border-t border-slate-200/70 pt-5"
+      className="mt-5"
       aria-labelledby="book-preview-heading"
       data-testid="book-preview-section"
     >
@@ -3524,12 +3704,21 @@ function BookPreviewSection({
             </ToolButton>
           </div>
           {audioPreview ? (
-            <p
-              className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
-              data-testid="book-audio-preview-time"
-            >
-              Preview length {formatDuration(audioPreview.durationMs)}
-            </p>
+            <>
+              <AudioPreviewTimeline
+                disabled={actionDisabled && !previewPlaying}
+                elapsedMs={audioElapsedMs}
+                onSeek={onSeekAudioPreview}
+                preview={audioPreview}
+              />
+              <p
+                className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+                data-testid="book-audio-preview-time"
+              >
+                Preview time {formatDuration(audioElapsedMs)} /{" "}
+                {formatDuration(audioPreview.durationMs)}
+              </p>
+            </>
           ) : null}
         </div>
       ) : (
@@ -3589,17 +3778,183 @@ function BookPreviewSection({
             />
           </div>
           <p className="mt-3 text-sm leading-relaxed text-slate-700">
+            Visual signal:{" "}
+            {videoSettings.showVisualSignal
+              ? `${BOOK_VIDEO_VISUAL_STYLE_DETAILS[videoSettings.visualStyle].label} on`
+              : "off"}
+            {" - "}Morse symbols:{" "}
+            {videoSettings.showMorseSymbols ? "on" : "off"}
+            {" - "}Plain text:{" "}
+            {videoSettings.showPlainText ? "on" : "off"}
+            {" - "}
             {videoSettings.includeAudioTrack
               ? "Audio track on"
               : "Audio track off"}
-            {" - "}
-            {BOOK_VIDEO_TEXT_DISPLAY_LABELS[videoSettings.textDisplayMode]}
             {" - "}
             {videoSettings.showBranding ? "Branding on" : "Branding off"}
           </p>
         </div>
       )}
     </section>
+  );
+}
+
+function AudioPreviewTimeline({
+  disabled,
+  elapsedMs,
+  onSeek,
+  preview,
+}: {
+  disabled: boolean;
+  elapsedMs: number;
+  onSeek: (elapsedMs: number) => void;
+  preview: BookAudioPreview;
+}) {
+  const stripRef = React.useRef<HTMLDivElement | null>(null);
+  const [dragging, setDragging] = React.useState(false);
+  const durationMs = Math.max(1, preview.durationMs);
+  const playheadPercent = Math.max(
+    0,
+    Math.min(100, (elapsedMs / durationMs) * 100),
+  );
+
+  const seekFromClientX = React.useCallback(
+    (clientX: number) => {
+      const strip = stripRef.current;
+      if (!strip) return;
+      const rect = strip.getBoundingClientRect();
+      const progress =
+        rect.width > 0 ? (clientX - rect.left) / rect.width : 0;
+      onSeek(Math.max(0, Math.min(1, progress)) * durationMs);
+    },
+    [durationMs, onSeek],
+  );
+
+  const handlePointerDown = React.useCallback(
+    (event: React.PointerEvent<HTMLDivElement>) => {
+      if (disabled) return;
+      event.currentTarget.setPointerCapture(event.pointerId);
+      setDragging(true);
+      seekFromClientX(event.clientX);
+    },
+    [disabled, seekFromClientX],
+  );
+
+  const handlePointerMove = React.useCallback(
+    (event: React.PointerEvent<HTMLDivElement>) => {
+      if (!dragging || disabled) return;
+      seekFromClientX(event.clientX);
+    },
+    [disabled, dragging, seekFromClientX],
+  );
+
+  const handlePointerUp = React.useCallback(
+    (event: React.PointerEvent<HTMLDivElement>) => {
+      if (!dragging) return;
+      setDragging(false);
+      try {
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      } catch {
+        // Pointer may already be released by the browser.
+      }
+    },
+    [dragging],
+  );
+
+  const handleKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (disabled) return;
+      const step = event.shiftKey ? 2_000 : 500;
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        onSeek(Math.max(0, elapsedMs - step));
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        onSeek(Math.min(durationMs, elapsedMs + step));
+      } else if (event.key === "Home") {
+        event.preventDefault();
+        onSeek(0);
+      } else if (event.key === "End") {
+        event.preventDefault();
+        onSeek(durationMs);
+      }
+    },
+    [disabled, durationMs, elapsedMs, onSeek],
+  );
+
+  return (
+    <div className="mt-4 max-w-[900px]" data-testid="book-audio-preview-timeline">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+          Morse timing strip
+        </span>
+        <span className="text-xs font-semibold text-slate-600">
+          Click or drag to preview another segment
+        </span>
+      </div>
+      <div
+        ref={stripRef}
+        role="slider"
+        tabIndex={disabled ? -1 : 0}
+        aria-label="Audio preview timeline"
+        aria-valuemin={0}
+        aria-valuemax={Math.round(durationMs)}
+        aria-valuenow={Math.round(elapsedMs)}
+        aria-valuetext={`${formatDuration(elapsedMs)} of ${formatDuration(
+          durationMs,
+        )}`}
+        aria-disabled={disabled ? "true" : undefined}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        onKeyDown={handleKeyDown}
+        className={[
+          "relative mt-2 h-10 w-full overflow-hidden rounded-full bg-slate-950/90",
+          disabled
+            ? "cursor-not-allowed opacity-65"
+            : "cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+        ].join(" ")}
+      >
+        {preview.timeline.events.map((event, index) => {
+          const left = (event.startMs / durationMs) * 100;
+          const width = Math.max(
+            0.16,
+            ((event.endMs - event.startMs) / durationMs) * 100,
+          );
+          const isMark = event.type === "mark";
+          const isDash = event.symbol === "-";
+          return (
+            <span
+              key={`${event.startMs}-${event.endMs}-${index}`}
+              data-testid={
+                isMark
+                  ? `book-audio-preview-${isDash ? "dash" : "dit"}`
+                  : "book-audio-preview-gap"
+              }
+              aria-hidden="true"
+              className={[
+                "absolute top-1/2 block -translate-y-1/2 rounded-full",
+                isMark
+                  ? isDash
+                    ? "h-5 bg-sky-300"
+                    : "h-3 bg-sky-200"
+                  : "h-1 bg-slate-500/55",
+              ].join(" ")}
+              style={{
+                left: `${left}%`,
+                width: `${width}%`,
+              }}
+            />
+          );
+        })}
+        <span
+          aria-hidden="true"
+          className="absolute top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-white"
+          style={{ left: `calc(${playheadPercent}% - 2px)` }}
+        />
+      </div>
+    </div>
   );
 }
 
@@ -3651,6 +4006,10 @@ function BookVideoSettingsEditor({
   videoSettings: BookVideoSettings;
 }) {
   const audioTrackAvailable = Boolean(videoSupport?.audioTrackSupported);
+  const visibleLayerCount =
+    (videoSettings.showVisualSignal ? 1 : 0) +
+    (videoSettings.showMorseSymbols ? 1 : 0) +
+    (videoSettings.showPlainText ? 1 : 0);
 
   return (
     <div className="space-y-5">
@@ -3659,11 +4018,12 @@ function BookVideoSettingsEditor({
           Video settings
         </h4>
         <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-          Choose how the Morse signal appears in the video frame.
+          Visual style controls the flashing Morse signal in the frame. Text
+          shown in video controls overlays only.
         </p>
       </div>
 
-      <fieldset className="border-t border-slate-200/70 pt-5">
+      <fieldset>
         <legend className="text-base font-extrabold text-sky-950">
           Visual style
         </legend>
@@ -3704,35 +4064,50 @@ function BookVideoSettingsEditor({
         </div>
       </fieldset>
 
-      <fieldset className="border-t border-slate-200/70 pt-5">
+      <fieldset>
         <legend className="text-base font-extrabold text-sky-950">
-          Text shown in video
+          Video layers
         </legend>
-        <div
-          className="mt-3 flex flex-wrap gap-2"
-          role="radiogroup"
-          aria-label="Text shown in video"
-        >
-          {BOOK_VIDEO_TEXT_DISPLAY_MODES.map((mode) => (
-            <VideoSettingButton
-              key={mode}
-              active={videoSettings.textDisplayMode === mode}
-              label={BOOK_VIDEO_TEXT_DISPLAY_LABELS[mode]}
-              onClick={() =>
-                onVideoSettingsChange({
-                  textDisplayMode: mode as BookVideoTextDisplayMode,
-                })
-              }
-            />
-          ))}
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          <ExportCheckbox
+            label="Show visual signal"
+            checked={videoSettings.showVisualSignal}
+            disabled={videoSettings.showVisualSignal && visibleLayerCount <= 1}
+            onChange={(value) =>
+              onVideoSettingsChange({
+                showVisualSignal: value,
+              })
+            }
+          />
+          <ExportCheckbox
+            label="Show Morse symbols"
+            checked={videoSettings.showMorseSymbols}
+            disabled={videoSettings.showMorseSymbols && visibleLayerCount <= 1}
+            onChange={(value) =>
+              onVideoSettingsChange({
+                showMorseSymbols: value,
+              })
+            }
+          />
+          <ExportCheckbox
+            label="Show plain text"
+            checked={videoSettings.showPlainText}
+            disabled={videoSettings.showPlainText && visibleLayerCount <= 1}
+            onChange={(value) =>
+              onVideoSettingsChange({
+                showPlainText: value,
+              })
+            }
+          />
         </div>
         <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-slate-600">
-          Plain text uses a short cleaned excerpt from the current source; Morse
-          text uses the generated Morse for the same preview/export segment.
+          Visual signal controls the flashing animation. Morse symbols and
+          plain text are separate timed overlays for the same preview/export
+          segment.
         </p>
       </fieldset>
 
-      <div className="border-t border-slate-200/70 pt-5">
+      <div>
         <h4 className="text-base font-extrabold text-sky-950">Video frame</h4>
         <div className="mt-4 grid gap-5 lg:grid-cols-2">
           <fieldset>
@@ -3785,7 +4160,7 @@ function BookVideoSettingsEditor({
         </div>
       </div>
 
-      <div className="border-t border-slate-200/70 pt-5">
+      <div>
         <h4 className="text-base font-extrabold text-sky-950">Video options</h4>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <ExportCheckbox
@@ -3799,7 +4174,7 @@ function BookVideoSettingsEditor({
             }
           />
           <ExportCheckbox
-            label="Show small MorseWords branding"
+            label="Show branding"
             checked={videoSettings.showBranding}
             onChange={(value) =>
               onVideoSettingsChange({
@@ -3816,7 +4191,7 @@ function BookVideoSettingsEditor({
         ) : null}
       </div>
 
-      <div className="border-t border-slate-200/70 pt-5">
+      <div>
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h4 className="text-base font-extrabold text-sky-950">
@@ -3936,6 +4311,28 @@ function BookVideoPreviewPanel({
         color: "#08324f",
       };
   const previewFrame = getMorseVideoPreviewFrame(preview, visualElapsedMs);
+  const textState = getMorseVideoFrameTextState(
+    preview.timeline,
+    visualElapsedMs,
+  );
+  const showMorseSymbols = settings.showMorseSymbols;
+  const showPlainText = settings.showPlainText;
+  const showTextLayers = showMorseSymbols || showPlainText;
+  const textLayerCount = (showMorseSymbols ? 1 : 0) + (showPlainText ? 1 : 0);
+  const signalVisible = settings.showVisualSignal;
+  const textStackClass = signalVisible
+    ? "w-full max-w-[48rem] space-y-1 sm:space-y-2"
+    : "w-full max-w-[52rem] space-y-3 sm:space-y-4";
+  const morseTextClass = signalVisible
+    ? "mx-auto max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-base font-bold leading-snug sm:break-words sm:text-2xl sm:whitespace-normal lg:text-3xl"
+    : textLayerCount === 1
+      ? "mx-auto max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-4xl font-bold leading-tight sm:break-words sm:text-6xl sm:whitespace-normal"
+      : "mx-auto max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-3xl font-bold leading-tight sm:break-words sm:text-5xl sm:whitespace-normal";
+  const plainTextClass = signalVisible
+    ? "mx-auto max-w-[44rem] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-extrabold leading-snug sm:break-words sm:text-xl sm:whitespace-normal lg:text-2xl"
+    : textLayerCount === 1
+      ? "mx-auto max-w-[52rem] overflow-hidden text-ellipsis whitespace-nowrap text-4xl font-extrabold leading-tight sm:break-words sm:text-6xl sm:whitespace-normal"
+      : "mx-auto max-w-[52rem] overflow-hidden text-ellipsis whitespace-nowrap text-3xl font-extrabold leading-tight sm:break-words sm:text-5xl sm:whitespace-normal";
 
   return (
     <section
@@ -3945,58 +4342,84 @@ function BookVideoPreviewPanel({
       className={["space-y-3", className].filter(Boolean).join(" ")}
     >
       <div
-        className="flex aspect-video min-h-[13rem] w-full max-w-[900px] flex-col justify-between rounded-xl p-5 sm:min-h-[18rem] sm:p-6"
+        className="flex aspect-video min-h-[13rem] w-full max-w-[900px] flex-col overflow-hidden rounded-xl p-4 sm:min-h-[18rem] sm:p-6"
         style={frameStyle}
         data-testid="book-video-preview-frame"
         data-preview-playing={isPlaying ? "true" : "false"}
       >
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-start justify-between gap-3">
           <h3
             id="book-video-preview-heading"
             className="text-sm font-extrabold"
           >
             Video preview
           </h3>
-          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80">
-            {settings.visualStyle === "full-frame"
-              ? "Subdued preview"
-              : "Timed excerpt"}
-          </span>
+          <div className="text-right">
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80">
+              {settings.visualStyle === "full-frame"
+                ? "Subdued preview"
+                : "Timed excerpt"}
+            </span>
+            {settings.showBranding ? (
+              <p
+                data-testid="book-video-preview-branding"
+                className="mt-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] opacity-75 sm:text-[11px]"
+              >
+                {preview.brandLabel}
+              </p>
+            ) : null}
+          </div>
         </div>
-        <div className="flex min-h-0 flex-1 items-center justify-center py-5 sm:py-6">
-          <BookVideoPreviewVisual
-            isPlaying={isPlaying}
-            preview={preview}
-            settings={settings}
-            visualElapsedMs={visualElapsedMs}
-          />
+        <div
+          className={[
+            "flex min-h-0 flex-1 flex-col items-center justify-center py-2 text-center sm:py-5",
+            signalVisible ? "gap-2 sm:gap-5" : "gap-3 sm:gap-6",
+          ].join(" ")}
+        >
+          {signalVisible ? (
+            <BookVideoPreviewVisual
+              isPlaying={isPlaying}
+              preview={preview}
+              settings={settings}
+              visualElapsedMs={visualElapsedMs}
+            />
+          ) : null}
+          {showTextLayers ? (
+            <div
+              className={textStackClass}
+              data-testid="book-video-preview-text-layers"
+              data-active-character={textState.activeCharacter}
+              data-active-morse={textState.activeCharacterMorse}
+              data-active-word={textState.plainText}
+            >
+              {showMorseSymbols ? (
+                <p
+                  data-testid="book-video-preview-morse-overlay"
+                  className={morseTextClass}
+                >
+                  {previewFrame.morseExcerpt}
+                </p>
+              ) : null}
+              {showPlainText ? (
+                <p
+                  data-testid="book-video-preview-text-overlay"
+                  className={plainTextClass}
+                >
+                  {previewFrame.textExcerpt}
+                </p>
+              ) : null}
+              {textState.activeCharacter ? (
+                <p
+                  data-testid="book-video-preview-active-token"
+                  className="mx-auto max-w-full font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-75 sm:text-xs"
+                >
+                  Current {textState.activeCharacter}{" "}
+                  {textState.activeCharacterMorse}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
         </div>
-        {settings.textDisplayMode === "morse" ||
-        settings.textDisplayMode === "both" ? (
-          <p
-            data-testid="book-video-preview-morse-overlay"
-            className="mt-3 break-words font-mono text-xs font-bold"
-          >
-            {previewFrame.morseExcerpt}
-          </p>
-        ) : null}
-        {settings.textDisplayMode === "text" ||
-        settings.textDisplayMode === "both" ? (
-          <p
-            data-testid="book-video-preview-text-overlay"
-            className="mt-2 break-words text-xs font-bold"
-          >
-            {previewFrame.textExcerpt}
-          </p>
-        ) : null}
-        {settings.showBranding ? (
-          <p
-            data-testid="book-video-preview-branding"
-            className="mt-3 text-right font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80"
-          >
-            {preview.brandLabel}
-          </p>
-        ) : null}
       </div>
     </section>
   );
@@ -4026,11 +4449,12 @@ function BookVideoPreviewVisual({
     return (
       <span
         data-testid="book-video-preview-dot"
+        data-preview-active={markActive ? "true" : "false"}
         aria-label="Dot preview"
         role="img"
         className={[
-          "block h-20 w-20 rounded-full sm:h-24 sm:w-24",
-          markActive ? "bg-sky-100" : "bg-sky-200",
+          "block h-16 w-16 rounded-full sm:h-36 sm:w-36",
+          markActive ? "bg-sky-300" : "bg-slate-400",
           intensityClass,
           markActive ? "ring-4 ring-sky-200/50" : "",
         ]
@@ -4044,10 +4468,11 @@ function BookVideoPreviewVisual({
     return (
       <div
         data-testid="book-video-preview-full-frame"
+        data-preview-active={markActive ? "true" : "false"}
         aria-label="Subdued full-frame flash preview"
         role="img"
         className={[
-          "h-24 w-24 rounded-full bg-sky-200/80 sm:h-28 sm:w-28",
+          "h-16 w-16 rounded-full bg-sky-300/80 sm:h-36 sm:w-36",
           intensityClass,
           markActive ? "ring-4 ring-sky-200/50" : "",
         ]
@@ -4061,9 +4486,10 @@ function BookVideoPreviewVisual({
     return (
       <div
         data-testid="book-video-preview-morse-text"
+        data-preview-active={markActive ? "true" : "false"}
         className={[
-          "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-3xl font-bold tracking-normal sm:text-4xl",
-          markActive ? "text-sky-200" : "",
+          "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-4xl font-bold tracking-normal sm:text-6xl",
+          markActive ? "text-sky-300" : "",
         ]
           .filter(Boolean)
           .join(" ")}
@@ -4076,17 +4502,22 @@ function BookVideoPreviewVisual({
   return (
     <div
       data-testid="book-video-preview-lightbulb"
+      data-preview-active={markActive ? "true" : "false"}
       aria-label="Lightbulb preview"
       role="img"
       className={[
-        "text-sky-200",
+        "text-slate-400",
         intensityClass,
-        markActive ? "text-sky-100" : "",
+        markActive ? "text-sky-300" : "",
       ]
         .filter(Boolean)
         .join(" ")}
     >
-      <LightBulbIcon size={96} title={undefined} aria-hidden="true" />
+      <LightBulbIcon
+        size="clamp(3.5rem, 17vw, 8.25rem)"
+        title={undefined}
+        aria-hidden="true"
+      />
     </div>
   );
 }

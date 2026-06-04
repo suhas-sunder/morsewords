@@ -242,7 +242,7 @@ function strobeWarning(page: Page) {
 }
 
 function flashLightButton(page: Page) {
-  return page.getByRole("button", { name: "Flash Light" }).first();
+  return page.locator("button:visible").filter({ hasText: "Flash Light" }).first();
 }
 
 async function revealFlashLightButton(page: Page) {
@@ -257,6 +257,21 @@ async function revealFlashLightButton(page: Page) {
   }
   await expect(flashButton).toBeVisible();
   return flashButton;
+}
+
+async function setFlashLightButton(page: Page, pressed: boolean) {
+  await expect(async () => {
+    const flashButton = await revealFlashLightButton(page);
+    await expect(flashButton).toBeEnabled({ timeout: 1_000 });
+    if ((await flashButton.getAttribute("aria-pressed")) !== String(pressed)) {
+      await flashButton.click();
+    }
+    await expect(flashLightButton(page)).toHaveAttribute(
+      "aria-pressed",
+      String(pressed),
+      { timeout: 1_000 },
+    );
+  }).toPass({ timeout: 15_000 });
 }
 
 test("shared UI control primitives keep accessibility and disabled-state contracts", () => {
@@ -374,17 +389,31 @@ test.describe("shared route controls", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.addInitScript(() => {
-      window.localStorage.clear();
+    await page.goto("/audio", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await page.evaluate(() => {
       window.localStorage.setItem("morsewords-theme", "dark");
       window.localStorage.setItem("morsewords-full-page-flash", "1");
       document.documentElement.dataset.theme = "dark";
+      document.documentElement.dataset.flashEffects = "enabled";
+      document.documentElement.dataset.fullPageFlash = "enabled";
+      window.dispatchEvent(
+        new CustomEvent("morsewords:display-settings-change", {
+          detail: {
+            showAmbientMorse: true,
+            disableFlashEffects: false,
+            fullPageFlash: true,
+          },
+        }),
+      );
     });
-    await page.goto("/audio", { waitUntil: "domcontentloaded" });
-    await waitForRouteReady(page);
+    await expect
+      .poll(() =>
+        page.evaluate(() => document.documentElement.dataset.fullPageFlash),
+      )
+      .toBe("enabled");
 
-    const flashButton = await revealFlashLightButton(page);
-    await flashButton.click();
+    await setFlashLightButton(page, true);
 
     const warning = strobeWarning(page);
     await expect(warning).toBeVisible();
@@ -551,16 +580,23 @@ test.describe("shared route controls", () => {
       waitUntil: "domcontentloaded",
     });
     await waitForRouteReady(page);
-    await page
-      .getByLabel("Paste long-form source text")
-      .fill("HELLO WORLD SOS HELP");
+    const bookSource = page.getByLabel("Paste long-form source text");
     const bookPanel = page
       .locator(
         "section[aria-label='Book source review and download tool'] .mw-output-panel",
       )
       .filter({ hasText: "Morse preview" })
       .first();
-    await expect(bookPanel).toBeVisible();
+    await expect(async () => {
+      await bookSource.fill("HELLO WORLD SOS HELP");
+      await expect(bookSource).toHaveValue("HELLO WORLD SOS HELP", {
+        timeout: 1_000,
+      });
+      await expect(bookPanel).toBeVisible({ timeout: 1_000 });
+      await expect(bookPanel.locator("pre").first()).toBeVisible({
+        timeout: 1_000,
+      });
+    }).toPass({ timeout: 15_000 });
     await expectStableReadableOutputPanel({
       panel: bookPanel,
       text: bookPanel.locator("pre").first(),

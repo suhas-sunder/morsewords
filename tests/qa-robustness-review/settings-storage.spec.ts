@@ -366,16 +366,18 @@ test.describe("storage registry policy", () => {
 });
 
 async function openDisplaySettingsDialog(page: Page) {
-  const openNav = page.getByRole("button", { name: "Open navigation" });
-  if (await openNav.isVisible().catch(() => false)) {
+  const settingsButton = page.locator(
+    'button[aria-label="Open display settings"]:visible',
+  );
+  await expect(async () => {
+    if (await settingsButton.first().isVisible().catch(() => false)) return;
+    const openNav = page.getByRole("button", { name: "Open navigation" });
+    await expect(openNav).toBeVisible({ timeout: 1_000 });
     await openNav.click();
-  }
-
-  const settingsButton = page.getByRole("button", {
-    name: "Open display settings",
-  });
+    await expect(settingsButton.first()).toBeVisible({ timeout: 1_000 });
+  }).toPass({ timeout: 15_000 });
   await expect(settingsButton).toBeVisible();
-  await settingsButton.click();
+  await settingsButton.first().click();
 
   const dialog = page.getByRole("dialog", { name: "Display settings" });
   await expect(dialog).toBeVisible();

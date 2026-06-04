@@ -111,7 +111,7 @@ export function buildBookVideoWarnings({
   if (support && videoSettings.includeAudioTrack && !support.audioTrackSupported) {
     warnings.push(support.audioTrackReason);
   }
-  if (videoSettings.visualStyle === "full-frame") {
+  if (videoSettings.showVisualSignal && videoSettings.visualStyle === "full-frame") {
     warnings.push("Full-frame flash mode can create strobe-like video output.");
   }
   warnings.push("MP4 is not guaranteed in-browser; WebM is the default format.");
@@ -497,6 +497,9 @@ function buildVideoSettingsSummary(
     resolution: videoSettings.resolution,
     backgroundStyle: videoSettings.backgroundStyle,
     intensity: videoSettings.intensity,
+    showVisualSignal: videoSettings.showVisualSignal,
+    showMorseSymbols: videoSettings.showMorseSymbols,
+    showPlainText: videoSettings.showPlainText,
     showMorseOverlay: videoSettings.showMorseOverlay,
     textDisplayMode: videoSettings.textDisplayMode,
     showBranding: videoSettings.showBranding,
