@@ -238,13 +238,7 @@ export function sanitizeBookExportSettings(
       : fallback.punctuationMode;
   const splitMode = isBookSplitMode(settings.splitMode)
     ? settings.splitMode
-    : typeof settings.splitAudio === "boolean"
-      ? settings.splitAudio
-        ? settings.preferSourceSections
-          ? "source-sections"
-          : "duration"
-        : "none"
-      : fallback.splitMode;
+    : fallback.splitMode;
 
   return {
     ...fallback,

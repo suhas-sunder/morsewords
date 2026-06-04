@@ -10,7 +10,7 @@ const STROBE_WARNING_PREFIX =
   "Strobe warning: flashing light may be uncomfortable";
 
 function flashToggle(page: Page) {
-  return page.locator("button").filter({ hasText: "Flash Light" }).first();
+  return page.locator("button:visible").filter({ hasText: "Flash Light" }).first();
 }
 
 function strobeWarning(page: Page) {
@@ -27,30 +27,69 @@ async function openAudio(page: Page) {
 
 async function revealFlashControls(page: Page) {
   if (await flashToggle(page).isVisible().catch(() => false)) return;
-  const advancedButton = page
-    .getByRole("button", { name: /Show advanced/ })
-    .first();
-  if (await advancedButton.isVisible().catch(() => false)) {
+  await expect(async () => {
+    if (await flashToggle(page).isVisible().catch(() => false)) return;
+    const advancedButton = page
+      .getByRole("button", { name: /Show advanced/ })
+      .first();
+    await expect(advancedButton).toBeVisible({ timeout: 1_000 });
     await advancedButton.click();
-  }
-  await expect(flashToggle(page)).toBeVisible();
+    await expect(flashToggle(page)).toBeVisible({ timeout: 1_000 });
+  }).toPass({ timeout: 15_000 });
 }
 
 async function enableAudioFlash(page: Page) {
-  const toggle = flashToggle(page);
   await expect(async () => {
+    const toggle = flashToggle(page);
+    await expect(toggle).toBeEnabled({ timeout: 1_000 });
     if ((await toggle.getAttribute("aria-pressed")) !== "true") {
       await toggle.click();
     }
-    await expect(toggle).toHaveAttribute("aria-pressed", "true");
+    await expect(flashToggle(page)).toHaveAttribute("aria-pressed", "true", {
+      timeout: 1_000,
+    });
+  }).toPass({ timeout: 15_000 });
+}
+
+async function setFlashToggle(page: Page, pressed: boolean) {
+  await expect(async () => {
+    const toggle = flashToggle(page);
+    await expect(toggle).toBeEnabled({ timeout: 1_000 });
+    if ((await toggle.getAttribute("aria-pressed")) !== String(pressed)) {
+      await toggle.click();
+    }
+    await expect(flashToggle(page)).toHaveAttribute(
+      "aria-pressed",
+      String(pressed),
+      { timeout: 1_000 },
+    );
   }).toPass({ timeout: 15_000 });
 }
 
 async function openDisplaySettings(page: Page) {
-  await page.getByRole("button", { name: "Open display settings" }).click();
+  let settingsButton = page.locator(
+    'button[aria-label="Open display settings"]:visible',
+  );
+  if ((await settingsButton.count()) === 0) {
+    await page.getByRole("button", { name: "Open navigation" }).click();
+    await expect(
+      page.getByRole("dialog", { name: "Mobile navigation" }),
+    ).toBeVisible();
+    settingsButton = page.locator(
+      'button[aria-label="Open display settings"]:visible',
+    );
+  }
+  await settingsButton.first().click();
   const dialog = page.getByRole("dialog", { name: "Display settings" });
   await expect(dialog).toBeVisible();
   return dialog;
+}
+
+async function closeMobileNavigationIfOpen(page: Page) {
+  const mobileDialog = page.getByRole("dialog", { name: "Mobile navigation" });
+  if (!(await mobileDialog.isVisible().catch(() => false))) return;
+  await mobileDialog.getByRole("button", { name: "Close navigation" }).click();
+  await expect(mobileDialog).toHaveCount(0);
 }
 
 test.describe("flash safety helpers", () => {
@@ -125,16 +164,14 @@ test.describe("shared FlashLamp", () => {
     await expect(toggle).toHaveAttribute("aria-pressed", "false");
     await expect(warning).toHaveCount(0);
 
-    await toggle.click();
-    await expect(toggle).toHaveAttribute("aria-pressed", "true");
+    await setFlashToggle(page, true);
     await expect(warning).toBeVisible();
     await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
 
-    await toggle.click();
-    await expect(toggle).toHaveAttribute("aria-pressed", "false");
+    await setFlashToggle(page, false);
     await expect(warning).toHaveCount(0);
 
-    await toggle.click();
+    await setFlashToggle(page, true);
     await expect(warning).toBeVisible();
 
     const dialog = await openDisplaySettings(page);
@@ -149,6 +186,7 @@ test.describe("shared FlashLamp", () => {
     await expect(fullPageFlash).toHaveAttribute("aria-checked", "true");
     await page.keyboard.press("Escape");
     await expect(dialog).toHaveCount(0);
+    await closeMobileNavigationIfOpen(page);
     await expect(warning).toBeVisible();
 
     await page.getByRole("button", { name: /Play/ }).first().click();
@@ -162,8 +200,7 @@ test.describe("shared FlashLamp", () => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
 
-    await flashToggle(page).click();
-    await expect(flashToggle(page)).toHaveAttribute("aria-pressed", "true");
+    await setFlashToggle(page, true);
     await expect(strobeWarning(page)).toHaveCount(0);
     await expect(page.getByTestId("mw-flash-lamp").first()).toBeVisible();
     await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
@@ -315,17 +352,14 @@ test.describe("shared FlashLamp", () => {
       await waitForRouteReady(page);
       await revealFlashControls(page);
 
-      const toggle = flashToggle(page);
       const warning = strobeWarning(page);
       await expect(warning).toHaveCount(0);
 
-      await toggle.click();
-      await expect(toggle).toHaveAttribute("aria-pressed", "true");
+      await setFlashToggle(page, true);
       await expect(warning).toBeVisible();
       await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
 
-      await toggle.click();
-      await expect(toggle).toHaveAttribute("aria-pressed", "false");
+      await setFlashToggle(page, false);
       await expect(warning).toHaveCount(0);
     });
   }

@@ -12,19 +12,19 @@ export const MORSE_VIDEO_VISUAL_STYLE_DETAILS: Record<
   { label: string; description: string }
 > = {
   lightbulb: {
-    label: "Lightbulb",
-    description: "A compact bulb signal beside the Morse text.",
+    label: "Lightbulb signal",
+    description: "A compact flashing bulb signal with optional text overlays.",
   },
   dot: {
-    label: "Dot",
-    description: "A minimal dot indicator for clean practice clips.",
+    label: "Dot signal",
+    description: "A minimal flashing dot signal with optional text overlays.",
   },
   "full-frame": {
     label: "Full-frame flash",
     description: "The whole video frame changes brightness on marks.",
   },
   "morse-text": {
-    label: "Animated Morse text",
+    label: "Animated Morse signal",
     description: "Recent Morse symbols become the main visual focus.",
   },
 };
@@ -59,10 +59,10 @@ export const MORSE_VIDEO_TEXT_DISPLAY_LABELS: Record<
   MorseVideoTextDisplayMode,
   string
 > = {
-  none: "None",
-  morse: "Morse only",
-  text: "Text only",
-  both: "Morse + text",
+  none: "No text",
+  morse: "Morse symbols",
+  text: "Plain text",
+  both: "Morse + plain text",
 };
 
 export function describeMorseVideoSettings(settings: MorseVideoSettings) {
@@ -70,5 +70,5 @@ export function describeMorseVideoSettings(settings: MorseVideoSettings) {
   const audio = settings.includeAudioTrack ? "audio track on" : "silent video";
   const textDisplay =
     MORSE_VIDEO_TEXT_DISPLAY_LABELS[settings.textDisplayMode].toLowerCase();
-  return `${style}, ${settings.resolution}, ${MORSE_VIDEO_BACKGROUND_LABELS[settings.backgroundStyle]}, ${MORSE_VIDEO_INTENSITY_LABELS[settings.intensity].toLowerCase()} intensity, ${audio}, ${textDisplay} text, ${settings.targetPartMinutes} minute target parts.`;
+  return `${style}, ${settings.resolution}, ${MORSE_VIDEO_BACKGROUND_LABELS[settings.backgroundStyle]}, ${MORSE_VIDEO_INTENSITY_LABELS[settings.intensity].toLowerCase()} intensity, ${audio}, text overlay: ${textDisplay}, ${settings.targetPartMinutes} minute target parts.`;
 }
