@@ -18,7 +18,10 @@ import {
   describeBookVideoDownloadContents,
   getBookVideoDownloadKind,
 } from "../../app/client/components/morse-code-book-translator/bookVideoExport";
-import { buildBookVideoTimeline } from "../../app/client/components/morse-code-book-translator/bookVideoRenderer";
+import {
+  buildBookVideoTimeline,
+  renderBookVideoFrame,
+} from "../../app/client/components/morse-code-book-translator/bookVideoRenderer";
 import { DEFAULT_BOOK_VIDEO_SETTINGS } from "../../app/client/components/morse-code-book-translator/bookVideoTypes";
 import { BOOK_EXPORT_PREFERENCES_KEY } from "../../app/client/components/morse-code-book-translator/bookExportPreferences";
 import {
@@ -367,6 +370,16 @@ function expectWebmLike(bytes: Uint8Array) {
 
 async function installFastVideoRecorder(page: Page) {
   await page.addInitScript(() => {
+    Object.defineProperty(window, "__bookVideoRecorderStreams", {
+      configurable: true,
+      value: [] as Array<{
+        audioTracks: number;
+        mimeType: string;
+        videoTracks: number;
+      }>,
+      writable: true,
+    });
+
     class FakeMediaRecorder {
       static isTypeSupported(type: string) {
         return type.startsWith("video/webm");
@@ -380,6 +393,19 @@ async function installFastVideoRecorder(page: Page) {
 
       constructor(_stream: MediaStream, options?: MediaRecorderOptions) {
         this.mimeType = options?.mimeType || "video/webm";
+        (
+          window as typeof window & {
+            __bookVideoRecorderStreams: Array<{
+              audioTracks: number;
+              mimeType: string;
+              videoTracks: number;
+            }>;
+          }
+        ).__bookVideoRecorderStreams.push({
+          audioTracks: _stream.getAudioTracks().length,
+          mimeType: this.mimeType,
+          videoTracks: _stream.getVideoTracks().length,
+        });
       }
 
       start() {
@@ -478,8 +504,10 @@ type VideoBundleManifest = {
   settingsSummary: {
     visualStyle: string;
     includeAudioTrack: boolean;
+    intensity: string;
     resolution: string;
     showBranding: boolean;
+    showMorseOverlay: boolean;
     textDisplayMode: string;
     targetPartMinutes: number;
     charWpm: number;
@@ -494,8 +522,10 @@ type VideoBundleSettings = {
   frameRate: number;
   visualStyle: string;
   includeAudioTrack: boolean;
+  intensity: string;
   resolution: string;
   showBranding: boolean;
+  showMorseOverlay: boolean;
   textDisplayMode: string;
   targetPartMinutes: number;
   charWpm: number;
@@ -515,6 +545,82 @@ function makeVideoPart(index: number, text = "E") {
       BOOK_EXPORT_PRESETS["Reader Quick Start"],
     ),
     estimatedFilename: `morse-book-part-${String(index).padStart(3, "0")}.mp3`,
+  };
+}
+
+type MockCanvasCommand =
+  | {
+      type: "fillText";
+      text: string;
+      x: number;
+      y: number;
+      maxWidth?: number;
+      font: string;
+      fillStyle: string;
+    }
+  | { type: "arc"; x: number; y: number; radius: number; fillStyle: string }
+  | { type: "fill"; fillStyle: string }
+  | { type: "fillRect"; fillStyle: string };
+
+function createMockCanvasContext() {
+  const commands: MockCanvasCommand[] = [];
+  let fillStyle = "";
+  let font = "";
+  let textAlign: CanvasTextAlign = "start";
+  let textBaseline: CanvasTextBaseline = "alphabetic";
+
+  const ctx = {
+    clearRect() {},
+    beginPath() {},
+    fill() {
+      commands.push({ type: "fill", fillStyle });
+    },
+    fillRect() {
+      commands.push({ type: "fillRect", fillStyle });
+    },
+    arc(x: number, y: number, radius: number) {
+      commands.push({ type: "arc", x, y, radius, fillStyle });
+    },
+    fillText(text: string, x: number, y: number, maxWidth?: number) {
+      commands.push({
+        type: "fillText",
+        text: String(text),
+        x,
+        y,
+        maxWidth,
+        font,
+        fillStyle,
+      });
+    },
+    set fillStyle(value: string | CanvasGradient | CanvasPattern) {
+      fillStyle = String(value);
+    },
+    get fillStyle() {
+      return fillStyle;
+    },
+    set font(value: string) {
+      font = value;
+    },
+    get font() {
+      return font;
+    },
+    set textAlign(value: CanvasTextAlign) {
+      textAlign = value;
+    },
+    get textAlign() {
+      return textAlign;
+    },
+    set textBaseline(value: CanvasTextBaseline) {
+      textBaseline = value;
+    },
+    get textBaseline() {
+      return textBaseline;
+    },
+  };
+
+  return {
+    commands,
+    ctx: ctx as unknown as CanvasRenderingContext2D,
   };
 }
 
@@ -1069,6 +1175,61 @@ test("video timeline and package kind use shared timing and direct-vs-ZIP rules"
   ).toContain(
     "Long videos may take time to render. Split video downloads are packaged in ZIP files.",
   );
+});
+
+test("video renderer keeps exported text overlays readable and away from branding", () => {
+  const exportSettings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
+  const timeline = buildBookVideoTimeline(
+    "Plain display SOS HELP checks readable WebM overlays",
+    exportSettings,
+  );
+  const { commands, ctx } = createMockCanvasContext();
+
+  renderBookVideoFrame({
+    ctx,
+    elapsedMs: 0,
+    exportSettings,
+    frame: { width: 1280, height: 720 },
+    resolvedBackgroundStyle: "warm-morsewords",
+    settings: {
+      ...DEFAULT_BOOK_VIDEO_SETTINGS,
+      showBranding: true,
+      textDisplayMode: "both",
+      visualStyle: "lightbulb",
+    },
+    timeline,
+  });
+
+  const textCommands = commands.filter(
+    (command): command is Extract<MockCanvasCommand, { type: "fillText" }> =>
+      command.type === "fillText",
+  );
+  const brandText = textCommands.filter((command) =>
+    command.text.includes("Morse"),
+  );
+  expect(textCommands.some((command) => command.text === "www.morsewords.com")).toBe(
+    true,
+  );
+  expect(brandText.map((command) => command.text)).not.toContain("MorseWords");
+
+  const morseOverlay = textCommands.find(
+    (command) => command.x === 640 && /[.-]/.test(command.text),
+  );
+  const plainOverlay = textCommands.find((command) =>
+    command.text.includes("Plain display SOS HELP"),
+  );
+  expect(morseOverlay).toBeTruthy();
+  expect(plainOverlay).toBeTruthy();
+  expect(morseOverlay!.font).toContain("Space Mono");
+  expect(plainOverlay!.font).toContain("Space Grotesk");
+  expect(Number.parseFloat(morseOverlay!.font)).toBeGreaterThanOrEqual(40);
+  expect(Number.parseFloat(plainOverlay!.font)).toBeGreaterThanOrEqual(38);
+  expect(morseOverlay!.x).toBe(640);
+  expect(plainOverlay!.x).toBe(640);
+  expect(morseOverlay!.y).toBeGreaterThan(400);
+  expect(plainOverlay!.y).toBeGreaterThan(morseOverlay!.y);
+  expect(plainOverlay!.y).toBeLessThan(560);
+  expect(plainOverlay!.maxWidth).toBeGreaterThan(1100);
 });
 
 test("segmentation handles long-source boundary edge cases without empty parts", async () => {
@@ -1966,6 +2127,11 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   await page
     .getByRole("radio", { name: "Morse + plain text", exact: true })
     .click();
+  await page.getByLabel("Include audio track").uncheck();
+  await page
+    .getByRole("radiogroup", { name: "Visual intensity" })
+    .getByRole("radio", { name: "High", exact: true })
+    .click();
   await expect(
     page.getByRole("button", { name: "Download ZIP bundle" }),
   ).toBeEnabled();
@@ -1992,6 +2158,8 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   expect(manifest.parts.map((part) => part.filename)).toEqual(partFiles);
   expect(manifest.settingsSummary.visualStyle).toBe("lightbulb");
   expect(manifest.settingsSummary.textDisplayMode).toBe("both");
+  expect(manifest.settingsSummary.includeAudioTrack).toBe(false);
+  expect(manifest.settingsSummary.intensity).toBe("high");
   expect(manifest.settingsSummary.showBranding).toBe(true);
   expect(manifest.settingsSummary.resolution).toBe("720p");
   const settings = zipJson<VideoBundleSettings>(zip.entries, "settings.json");
@@ -2000,6 +2168,8 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   expect(settings.frameRate).toBe(24);
   expect(settings.visualStyle).toBe("lightbulb");
   expect(settings.textDisplayMode).toBe("both");
+  expect(settings.includeAudioTrack).toBe(false);
+  expect(settings.intensity).toBe("high");
   expect(settings.showBranding).toBe(true);
   expectPlaylistOrder(zipText(zip.entries, "playlist.m3u"), partFiles);
   const readme = zipText(zip.entries, "README.txt");
@@ -2010,7 +2180,7 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   await expect(page.getByText("Last download")).toHaveCount(0);
 });
 
-test("video WebM rendering receives selected text display mode", async ({
+test("video WebM rendering receives selected visual, text, branding, and audio settings", async ({
   page,
 }, testInfo) => {
   await installFastVideoRecorder(page);
@@ -2018,7 +2188,13 @@ test("video WebM rendering receives selected text display mode", async ({
     const originalFillText = CanvasRenderingContext2D.prototype.fillText;
     Object.defineProperty(window, "__bookVideoFillText", {
       configurable: true,
-      value: [] as string[],
+      value: [] as Array<{
+        fillStyle: string;
+        font: string;
+        text: string;
+        x: number;
+        y: number;
+      }>,
       writable: true,
     });
     CanvasRenderingContext2D.prototype.fillText = function fillText(
@@ -2028,8 +2204,22 @@ test("video WebM rendering receives selected text display mode", async ({
       maxWidth,
     ) {
       (
-        window as typeof window & { __bookVideoFillText: string[] }
-      ).__bookVideoFillText.push(String(text));
+        window as typeof window & {
+          __bookVideoFillText: Array<{
+            fillStyle: string;
+            font: string;
+            text: string;
+            x: number;
+            y: number;
+          }>;
+        }
+      ).__bookVideoFillText.push({
+        fillStyle: String(this.fillStyle),
+        font: this.font,
+        text: String(text),
+        x,
+        y,
+      });
       if (typeof maxWidth === "number") {
         return originalFillText.call(this, text, x, y, maxWidth);
       }
@@ -2042,18 +2232,59 @@ test("video WebM rendering receives selected text display mode", async ({
     .fill("Plain display SOS HELP");
   await chooseOutputType(page, "video");
   await openDownloadSettings(page);
-  await page.getByRole("radio", { name: "Plain text", exact: true }).click();
+  await page.getByRole("radio", { name: /Animated Morse signal/ }).click();
+  await page
+    .getByRole("radio", { name: "Morse + plain text", exact: true })
+    .click();
+  await page.getByLabel("Include audio track").uncheck();
+  await page.getByLabel("Show small MorseWords branding").uncheck();
 
   const video = await downloadVideoFile(page, testInfo, /Download WebM/);
   expectWebmLike(video.bytes);
-  const drawnText = await page.evaluate(
+  const drawnText = await page.evaluate(() => {
+    const entries =
+      (
+        window as typeof window & {
+          __bookVideoFillText?: Array<{
+            fillStyle: string;
+            font: string;
+            text: string;
+            x: number;
+            y: number;
+          }>;
+        }
+      ).__bookVideoFillText ?? [];
+    return {
+      joined: entries.map((entry) => entry.text).join("\n"),
+      plainTextEntry: entries.find((entry) =>
+        entry.text.includes("Plain display SOS HELP"),
+      ),
+      signalLabelEntry: entries.find((entry) => entry.text === "Morse signal"),
+      symbolEntry: entries.find((entry) => /[.-]{2,}/.test(entry.text)),
+    };
+  });
+  const recorderStreams = await page.evaluate(
     () =>
       (
-        window as typeof window & { __bookVideoFillText?: string[] }
-      ).__bookVideoFillText?.join("\n") ?? "",
+        window as typeof window & {
+          __bookVideoRecorderStreams?: Array<{
+            audioTracks: number;
+            mimeType: string;
+            videoTracks: number;
+          }>;
+        }
+      ).__bookVideoRecorderStreams ?? [],
   );
-  expect(drawnText).toContain("Plain display SOS HELP");
-  expect(drawnText).not.toContain("... .--.");
+  expect(drawnText.joined).toContain("Plain display SOS HELP");
+  expect(drawnText.joined).toContain("Morse signal");
+  expect(drawnText.symbolEntry?.font).toContain("Space Mono");
+  expect(drawnText.plainTextEntry?.font).toContain("Space Grotesk");
+  expect(drawnText.joined).not.toContain("www.morsewords.com");
+  expect(drawnText.joined).not.toContain("MorseWords");
+  expect(recorderStreams.at(-1)).toMatchObject({
+    audioTracks: 0,
+    mimeType: expect.stringContaining("video/webm"),
+  });
 });
 
 test("video cancellation and source changes prevent stale completed state", async ({

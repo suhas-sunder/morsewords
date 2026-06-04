@@ -273,14 +273,7 @@ export function renderMorseVideoFrame({
     drawTextDisplay(ctx, frame, timeline, elapsedMs, settings, text, muted, padding);
   }
 
-  if (settings.showBranding) {
-    ctx.fillStyle = muted;
-    ctx.textAlign = "right";
-    ctx.textBaseline = "bottom";
-    ctx.font = `${Math.round(frame.width * 0.02)}px "Space Grotesk", sans-serif`;
-    ctx.fillText("MorseWords", frame.width - padding, frame.height - padding);
-    ctx.textAlign = "left";
-  }
+  ctx.textAlign = "left";
 }
 
 function renderRealtimeFrames({
@@ -582,31 +575,44 @@ function drawTextDisplay(
 ) {
   const mode = settings.textDisplayMode;
   if (mode === "none") return;
-  const rows: string[] = [];
+  const rows: Array<{ text: string; kind: "morse" | "plain" }> = [];
   if (mode === "morse" || mode === "both") {
-    rows.push(recentMorseExcerpt(timeline, elapsedMs, 92));
+    rows.push({
+      kind: "morse",
+      text: recentMorseExcerpt(timeline, elapsedMs, mode === "both" ? 54 : 72),
+    });
   }
   if (mode === "text" || mode === "both") {
-    rows.push(currentTextExcerpt(timeline, elapsedMs, 84));
+    rows.push({
+      kind: "plain",
+      text: currentTextExcerpt(timeline, elapsedMs, mode === "both" ? 54 : 68),
+    });
   }
-  const visibleRows = rows.filter(Boolean);
+  const visibleRows = rows.filter((row) => row.text);
   if (visibleRows.length === 0) return;
 
+  const firstLineY =
+    visibleRows.length === 1 ? frame.height * 0.66 : frame.height * 0.62;
+  const lineGap = frame.height * 0.074;
+  const maxWidth = frame.width - padding * 2;
+
   ctx.fillStyle = muted;
-  ctx.textAlign = "left";
-  ctx.textBaseline = "bottom";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
   visibleRows.forEach((row, index) => {
-    const isMorseRow = (mode === "morse" || mode === "both") && index === 0;
-    ctx.font = `${Math.round(frame.width * (isMorseRow ? 0.022 : 0.024))}px "${
+    const isMorseRow = row.kind === "morse";
+    ctx.font = `${Math.round(frame.width * (isMorseRow ? 0.032 : 0.03))}px "${
       isMorseRow ? "Space Mono" : "Space Grotesk"
     }", ${isMorseRow ? "monospace" : "sans-serif"}`;
     ctx.fillText(
-      row,
-      padding,
-      frame.height - padding - (visibleRows.length - index - 1) * frame.height * 0.055,
+      row.text,
+      frame.width / 2,
+      firstLineY + index * lineGap,
+      maxWidth,
     );
   });
   ctx.fillStyle = text;
+  ctx.textAlign = "left";
 }
 
 function recentMorseSymbols(
