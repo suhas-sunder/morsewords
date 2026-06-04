@@ -43,6 +43,7 @@ function formatMorse(words: string[][], sep: OutputSep): string {
 }
 
 export default function WordSeparatorTool() {
+  const [hydrated, setHydrated] = React.useState(false);
   const [mode, setMode] = React.useState<Mode>("normalizeMorse");
   const [sep, setSep] = React.useState<OutputSep>("standard");
   const [morseInput, setMorseInput] = React.useState<string>(
@@ -72,6 +73,10 @@ export default function WordSeparatorTool() {
   const out = mode === "normalizeMorse" ? morseOut : englishOut;
 
   React.useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  React.useEffect(() => {
     setCopied(false);
   }, [out]);
 
@@ -99,7 +104,10 @@ export default function WordSeparatorTool() {
         ];
 
   return (
-    <section className={HERO_SECTION_CLASS}>
+    <section
+      className={HERO_SECTION_CLASS}
+      data-mw-word-separator-ready={hydrated ? "true" : "false"}
+    >
       <div className={HERO_HEADER_CLASS}>
         <div className={HERO_EYEBROW_ROW_CLASS}>
           <span className={HERO_EYEBROW_LINE_CLASS} />

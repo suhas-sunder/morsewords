@@ -52,8 +52,14 @@ test.describe("dark mode interactive states", () => {
     }
 
     const moreButton = page.getByRole("button", { name: /^More$/ });
-    await moreButton.click();
-    await expect(moreButton).toHaveAttribute("aria-expanded", "true");
+    await expect(async () => {
+      if ((await moreButton.getAttribute("aria-expanded")) !== "true") {
+        await moreButton.click();
+      }
+      await expect(moreButton).toHaveAttribute("aria-expanded", "true", {
+        timeout: 1_000,
+      });
+    }).toPass({ timeout: 15_000 });
 
     const menu = page.locator(".mw-nav-panel");
     await expect(menu).toBeVisible();
@@ -79,15 +85,22 @@ test.describe("dark mode interactive states", () => {
     const downloadSettings = page
       .locator("summary")
       .filter({ hasText: "Download settings" });
-    await downloadSettings.click();
-    await expect(downloadSettings).toHaveAttribute("aria-expanded", "true");
+    await expect(async () => {
+      if ((await downloadSettings.getAttribute("aria-expanded")) !== "true") {
+        await downloadSettings.click();
+      }
+      await expect(downloadSettings).toHaveAttribute("aria-expanded", "true", {
+        timeout: 1_000,
+      });
+    }).toPass({ timeout: 15_000 });
     await expectReadable(downloadSettings, "book download settings summary");
     await expectCleanFocus(downloadSettings, "book download settings summary");
 
     await clickIfVisible(page.getByRole("radio", { name: /Video/i }).first());
-    await clickIfVisible(
-      page.getByRole("radio", { name: /Full-frame/i }).first(),
-    );
+    const bookFullFrame = page.getByRole("radio", { name: /Full-frame/i }).first();
+    await expect(bookFullFrame).toBeVisible();
+    await bookFullFrame.click();
+    await expect(bookFullFrame).toBeChecked();
     await expectReadable(
       page.getByTestId("book-video-full-frame-warning"),
       "book full-frame warning",
@@ -95,9 +108,10 @@ test.describe("dark mode interactive states", () => {
 
     await gotoDarkRoute(page, "/morse-code-video-generator");
     await page.locator("textarea").first().fill("SOS");
-    await clickIfVisible(
-      page.getByRole("radio", { name: /Full-frame/i }).first(),
-    );
+    const videoFullFrame = page.getByRole("radio", { name: /Full-frame/i }).first();
+    await expect(videoFullFrame).toBeVisible();
+    await videoFullFrame.click();
+    await expect(videoFullFrame).toBeChecked();
     const videoSettings = page
       .locator("summary")
       .filter({ hasText: "Video settings" });

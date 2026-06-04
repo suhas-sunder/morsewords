@@ -246,9 +246,13 @@ test.describe("Morse code word separator", () => {
   test("keeps separator tool behavior intact", async ({ page }) => {
     await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
+    await page.locator('[data-mw-word-separator-ready="true"]').waitFor();
 
     const output = page.locator("pre").first();
     const morseInput = page.getByLabel("Paste Morse");
+
+    await morseInput.fill("...");
+    await expect(output).toHaveText("...");
 
     await morseInput.fill("");
     await expect(output).toHaveText("-");

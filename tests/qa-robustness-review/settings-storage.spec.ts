@@ -377,10 +377,13 @@ async function openDisplaySettingsDialog(page: Page) {
     await expect(settingsButton.first()).toBeVisible({ timeout: 1_000 });
   }).toPass({ timeout: 15_000 });
   await expect(settingsButton).toBeVisible();
-  await settingsButton.first().click();
-
   const dialog = page.getByRole("dialog", { name: "Display settings" });
-  await expect(dialog).toBeVisible();
+
+  await expect(async () => {
+    await settingsButton.first().click();
+    await expect(dialog).toBeVisible({ timeout: 1_000 });
+  }).toPass({ timeout: 15_000 });
+
   return dialog;
 }
 
