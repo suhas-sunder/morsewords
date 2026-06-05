@@ -58,6 +58,7 @@ const SPECIAL_HEADINGS: Array<[RegExp, BookSectionKind, string]> = [
   [/^appendix\b/i, "appendix", "Appendix"],
   [/^notes?$/i, "notes", "Notes"],
   [/^transcriber(?:'|’)?s note/i, "transcriber-note", "Transcriber's Note"],
+  [/^project gutenberg license/i, "source-license", "Project Gutenberg License"],
   [/^contents$/i, "title-page", "Contents"],
 ];
 
@@ -196,13 +197,26 @@ function isLikelyContentsEntry(
 function discoverBoundaries(text: string): SectionBoundary[] {
   const lines = getLineStarts(text);
   const boundaries: SectionBoundary[] = [];
+  let inContents = false;
+  let blankStreak = 0;
 
   lines.forEach(({ line, offset }, index) => {
+    if (line.trim() === "") {
+      blankStreak += 1;
+      if (blankStreak >= 2) inContents = false;
+      return;
+    }
+    blankStreak = 0;
+
     const trimmed = line.trim();
     const heading = classifyHeading(trimmed);
     if (!heading) return;
+    if (inContents && heading.kind === "chapter") return;
     if (heading.kind === "chapter" && line !== line.trimStart()) return;
     if (heading.kind === "chapter" && isLikelyContentsEntry(lines, index)) return;
+    if (heading.kind === "title-page" && heading.label === "Contents") {
+      inContents = true;
+    }
 
     boundaries.push({ offset, ...heading });
   });

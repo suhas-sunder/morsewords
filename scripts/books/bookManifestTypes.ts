@@ -108,6 +108,8 @@ export type BookMetadata = {
     rightsBasis: BookRightsBasis;
     rightsReviewed: boolean;
     rightsNotes: string;
+    allowDuplicateGutenbergId?: boolean;
+    duplicateReason?: string;
   };
   cover: {
     src: string | null;
@@ -176,6 +178,8 @@ export type GeneratedBookManifest = {
     rightsReviewed: boolean;
     publishReady: boolean;
     rightsNotes: string;
+    allowDuplicateGutenbergId?: boolean;
+    duplicateReason?: string;
   };
   cover: BookMetadata["cover"];
   stats: {
@@ -210,6 +214,7 @@ export type GeneratedBookSectionJson = {
   characterCount: number;
   morseCharacterEstimate: number;
   unsupportedCharacterSummary: Record<string, number>;
+  textPreview: string;
   sourceOffsets: {
     start: number;
     end: number;
@@ -230,6 +235,7 @@ export type GeneratedLibraryBookSummary = {
   manifestPath: string;
 };
 
+// Keep this summary-only so app code can list books without bundling full text.
 export type GeneratedLibraryManifest = {
   schemaVersion: 1;
   books: GeneratedLibraryBookSummary[];

@@ -23,6 +23,7 @@ import {
   estimateMorseCharacters,
   splitParagraphs,
   summarizeUnsupportedCharacters,
+  textPreview,
   trimBookText,
 } from "./bookTextNormalization.ts";
 
@@ -40,8 +41,23 @@ export type BookInventory = {
   rawWithoutMetadata: string[];
   metadataWithoutRaw: string[];
   duplicateSlugs: string[];
-  duplicateGutenbergIds: string[];
+  duplicateGutenbergIds: DuplicateGutenbergIdReport[];
   invalidMetadata: Array<{ filePath: string; errors: string[] }>;
+};
+
+export type InventoryReference = {
+  filePath: string;
+  relativePath: string;
+  slug?: string;
+  gutenbergId?: string | null;
+  allowDuplicateGutenbergId?: boolean;
+  duplicateReason?: string;
+};
+
+export type DuplicateGutenbergIdReport = {
+  gutenbergId: string;
+  rawFiles: InventoryReference[];
+  metadataFiles: InventoryReference[];
 };
 
 export type BookBuildResult = {
@@ -50,6 +66,7 @@ export type BookBuildResult = {
   libraryManifest: GeneratedLibraryManifest;
   warnings: string[];
   fatalErrors: string[];
+  generatedArtifacts: string[];
   generatedRoot: string;
 };
 
@@ -68,6 +85,10 @@ function toPosixPath(input: string): string {
 
 function sortByPath(paths: string[]): string[] {
   return [...paths].sort((a, b) => a.localeCompare(b));
+}
+
+function relativeTo(root: string, filePath: string): string {
+  return toPosixPath(path.relative(root, filePath));
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -155,6 +176,201 @@ function validateSectionKindArray(
   }
 }
 
+function validateOptionalString(
+  value: unknown,
+  pathLabel: string,
+  errors: string[],
+): void {
+  if (value !== undefined && typeof value !== "string") {
+    errors.push(`${pathLabel} must be a string when present.`);
+  }
+}
+
+function validateOptionalBoolean(
+  value: unknown,
+  pathLabel: string,
+  errors: string[],
+): void {
+  if (value !== undefined && typeof value !== "boolean") {
+    errors.push(`${pathLabel} must be a boolean when present.`);
+  }
+}
+
+function validateRegexPattern(
+  pattern: string,
+  flags: string | undefined,
+  pathLabel: string,
+  errors: string[],
+): void {
+  try {
+    new RegExp(pattern, flags);
+  } catch (error) {
+    errors.push(
+      `${pathLabel} must be a valid regular expression${
+        error instanceof Error ? `: ${error.message}` : "."
+      }`,
+    );
+  }
+}
+
+function validateCleanupRules(value: unknown, errors: string[]): void {
+  if (!Array.isArray(value)) {
+    errors.push("cleanupRules must be an array.");
+    return;
+  }
+
+  value.forEach((rule, index) => {
+    const label = `cleanupRules[${index}]`;
+    if (!isPlainObject(rule)) {
+      errors.push(`${label} must be an object.`);
+      return;
+    }
+    if (rule.type !== "replace" && rule.type !== "remove-line-matching") {
+      errors.push(`${label}.type must be replace or remove-line-matching.`);
+    }
+    validateString(rule.pattern, `${label}.pattern`, errors);
+    validateOptionalString(rule.replacement, `${label}.replacement`, errors);
+    validateOptionalString(rule.flags, `${label}.flags`, errors);
+    validateOptionalString(rule.note, `${label}.note`, errors);
+    if (typeof rule.pattern === "string") {
+      validateRegexPattern(
+        rule.pattern,
+        typeof rule.flags === "string" ? rule.flags : undefined,
+        `${label}.pattern`,
+        errors,
+      );
+    }
+  });
+}
+
+function validateSectionId(value: unknown, pathLabel: string, errors: string[]): void {
+  validateString(value, pathLabel, errors);
+  if (typeof value === "string" && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value)) {
+    errors.push(`${pathLabel} must be lowercase kebab-case.`);
+  }
+}
+
+function validateOptionalSectionKind(
+  value: unknown,
+  pathLabel: string,
+  errors: string[],
+): void {
+  if (
+    value !== undefined &&
+    !SECTION_KINDS.includes(value as BookSectionKind)
+  ) {
+    errors.push(`${pathLabel} contains unsupported section kind "${String(value)}".`);
+  }
+}
+
+function validateOptionalOffset(
+  value: unknown,
+  pathLabel: string,
+  errors: string[],
+): void {
+  if (
+    value !== undefined &&
+    (typeof value !== "number" || !Number.isFinite(value) || value < 0)
+  ) {
+    errors.push(`${pathLabel} must be a non-negative finite number when present.`);
+  }
+}
+
+function validateSectionOverrides(value: unknown, errors: string[]): void {
+  if (!Array.isArray(value)) {
+    errors.push("sectionOverrides must be an array.");
+    return;
+  }
+
+  value.forEach((override, index) => {
+    const label = `sectionOverrides[${index}]`;
+    if (!isPlainObject(override)) {
+      errors.push(`${label} must be an object.`);
+      return;
+    }
+
+    switch (override.type) {
+      case "force-boundary":
+        validateOptionalString(override.markerText, `${label}.markerText`, errors);
+        validateOptionalOffset(override.offset, `${label}.offset`, errors);
+        validateOptionalSectionKind(override.kind, `${label}.kind`, errors);
+        validateOptionalString(override.label, `${label}.label`, errors);
+        if (override.title !== null) {
+          validateOptionalString(override.title, `${label}.title`, errors);
+        }
+        if (override.markerText === undefined && override.offset === undefined) {
+          errors.push(`${label} needs markerText or offset.`);
+        }
+        break;
+      case "rename-section":
+        validateSectionId(override.sectionId, `${label}.sectionId`, errors);
+        validateOptionalString(override.label, `${label}.label`, errors);
+        if (override.title !== null) {
+          validateOptionalString(override.title, `${label}.title`, errors);
+        }
+        break;
+      case "change-kind":
+        validateSectionId(override.sectionId, `${label}.sectionId`, errors);
+        if (!SECTION_KINDS.includes(override.kind as BookSectionKind)) {
+          errors.push(`${label}.kind contains unsupported section kind.`);
+        }
+        validateOptionalBoolean(
+          override.includeByDefault,
+          `${label}.includeByDefault`,
+          errors,
+        );
+        break;
+      case "set-include":
+        validateSectionId(override.sectionId, `${label}.sectionId`, errors);
+        if (typeof override.includeByDefault !== "boolean") {
+          errors.push(`${label}.includeByDefault must be a boolean.`);
+        }
+        break;
+      case "merge-sections":
+        if (
+          !Array.isArray(override.sectionIds) ||
+          override.sectionIds.length < 2 ||
+          override.sectionIds.some((id) => typeof id !== "string")
+        ) {
+          errors.push(`${label}.sectionIds must contain at least two section ids.`);
+        }
+        validateOptionalString(override.id, `${label}.id`, errors);
+        if (typeof override.id === "string") {
+          validateSectionId(override.id, `${label}.id`, errors);
+        }
+        validateOptionalSectionKind(override.kind, `${label}.kind`, errors);
+        validateOptionalString(override.label, `${label}.label`, errors);
+        if (override.title !== null) {
+          validateOptionalString(override.title, `${label}.title`, errors);
+        }
+        break;
+      case "split-section":
+        validateSectionId(override.sectionId, `${label}.sectionId`, errors);
+        validateOptionalString(override.markerText, `${label}.markerText`, errors);
+        validateOptionalOffset(override.offset, `${label}.offset`, errors);
+        validateOptionalString(
+          override.newSectionId,
+          `${label}.newSectionId`,
+          errors,
+        );
+        if (typeof override.newSectionId === "string") {
+          validateSectionId(override.newSectionId, `${label}.newSectionId`, errors);
+        }
+        validateOptionalSectionKind(override.kind, `${label}.kind`, errors);
+        validateOptionalString(override.label, `${label}.label`, errors);
+        if (override.title !== null) {
+          validateOptionalString(override.title, `${label}.title`, errors);
+        }
+        if (override.markerText === undefined && override.offset === undefined) {
+          errors.push(`${label} needs markerText or offset.`);
+        }
+        break;
+      default:
+        errors.push(`${label}.type is unsupported.`);
+    }
+  });
+}
+
 function validateMetadataShape(
   raw: unknown,
   filePath: string,
@@ -185,13 +401,27 @@ function validateMetadataShape(
     errors.push("source must be an object.");
   } else {
     validateString(raw.source.provider, "source.provider", errors);
+    const gutenbergIdType = typeof raw.source.gutenbergId;
     if (
       raw.source.gutenbergId !== null &&
-      typeof raw.source.gutenbergId !== "string"
+      gutenbergIdType !== "string" &&
+      gutenbergIdType !== "number"
     ) {
-      errors.push("source.gutenbergId must be a string or null.");
+      errors.push("source.gutenbergId must be a string, number, or null.");
+    }
+    if (
+      (gutenbergIdType === "string" || gutenbergIdType === "number") &&
+      !/^\d+$/.test(String(raw.source.gutenbergId))
+    ) {
+      errors.push("source.gutenbergId must contain only digits when present.");
     }
     validateString(raw.source.rawTextFile, "source.rawTextFile", errors);
+    if (
+      typeof raw.source.rawTextFile === "string" &&
+      path.isAbsolute(raw.source.rawTextFile)
+    ) {
+      errors.push("source.rawTextFile must be a relative path.");
+    }
     if (
       raw.source.releaseDate !== null &&
       typeof raw.source.releaseDate !== "string"
@@ -205,6 +435,25 @@ function validateMetadataShape(
       errors.push("source.rightsReviewed must be a boolean.");
     }
     validateString(raw.source.rightsNotes, "source.rightsNotes", errors, true);
+    validateOptionalBoolean(
+      raw.source.allowDuplicateGutenbergId,
+      "source.allowDuplicateGutenbergId",
+      errors,
+    );
+    validateOptionalString(
+      raw.source.duplicateReason,
+      "source.duplicateReason",
+      errors,
+    );
+    if (
+      raw.source.allowDuplicateGutenbergId === true &&
+      (typeof raw.source.duplicateReason !== "string" ||
+        raw.source.duplicateReason.trim() === "")
+    ) {
+      errors.push(
+        "source.duplicateReason is required when allowDuplicateGutenbergId is true.",
+      );
+    }
   }
 
   if (!isPlainObject(raw.cover)) {
@@ -217,6 +466,9 @@ function validateMetadataShape(
       errors.push("cover.placeholder must be a boolean.");
     }
     validateString(raw.cover.alt, "cover.alt", errors);
+    if (raw.cover.src === null && raw.cover.placeholder !== true) {
+      errors.push("cover.placeholder must be true when cover.src is null.");
+    }
   }
 
   if (!isPlainObject(raw.defaults)) {
@@ -225,14 +477,18 @@ function validateMetadataShape(
     validateSectionKindArray(raw.defaults.includeKinds, "defaults.includeKinds", errors);
     validateSectionKindArray(raw.defaults.excludeKinds, "defaults.excludeKinds", errors);
     validateString(raw.defaults.preferredPreset, "defaults.preferredPreset", errors);
+    if (Array.isArray(raw.defaults.includeKinds) && Array.isArray(raw.defaults.excludeKinds)) {
+      const excluded = new Set(raw.defaults.excludeKinds);
+      for (const kind of raw.defaults.includeKinds) {
+        if (excluded.has(kind)) {
+          errors.push(`defaults cannot both include and exclude "${String(kind)}".`);
+        }
+      }
+    }
   }
 
-  if (!Array.isArray(raw.sectionOverrides)) {
-    errors.push("sectionOverrides must be an array.");
-  }
-  if (!Array.isArray(raw.cleanupRules)) {
-    errors.push("cleanupRules must be an array.");
-  }
+  validateSectionOverrides(raw.sectionOverrides, errors);
+  validateCleanupRules(raw.cleanupRules, errors);
 
   if (errors.length > 0) {
     return {
@@ -241,7 +497,19 @@ function validateMetadataShape(
     };
   }
 
-  return { metadata: raw as BookMetadata, errors: [] };
+  const source = raw.source as Record<string, unknown>;
+  const metadata: BookMetadata = {
+    ...(raw as BookMetadata),
+    source: {
+      ...((raw as BookMetadata).source),
+      gutenbergId:
+        source.gutenbergId === null || source.gutenbergId === undefined
+          ? null
+          : String(source.gutenbergId),
+    },
+  };
+
+  return { metadata, errors: [] };
 }
 
 function loadMetadataFiles(
@@ -297,6 +565,51 @@ function duplicateValues(values: Array<string | null | undefined>): string[] {
   return [...duplicates].sort((a, b) => a.localeCompare(b));
 }
 
+function groupDuplicateGutenbergIds(
+  rawRefs: InventoryReference[],
+  metadataRefs: InventoryReference[],
+): DuplicateGutenbergIdReport[] {
+  const groups = new Map<
+    string,
+    { rawFiles: InventoryReference[]; metadataFiles: InventoryReference[] }
+  >();
+
+  for (const ref of rawRefs) {
+    if (!ref.gutenbergId) continue;
+    const group = groups.get(ref.gutenbergId) ?? {
+      rawFiles: [],
+      metadataFiles: [],
+    };
+    group.rawFiles.push(ref);
+    groups.set(ref.gutenbergId, group);
+  }
+
+  for (const ref of metadataRefs) {
+    if (!ref.gutenbergId) continue;
+    const group = groups.get(ref.gutenbergId) ?? {
+      rawFiles: [],
+      metadataFiles: [],
+    };
+    group.metadataFiles.push(ref);
+    groups.set(ref.gutenbergId, group);
+  }
+
+  return [...groups.entries()]
+    .filter(
+      ([, group]) => group.rawFiles.length > 1 || group.metadataFiles.length > 1,
+    )
+    .map(([gutenbergId, group]) => ({
+      gutenbergId,
+      rawFiles: group.rawFiles.sort((a, b) =>
+        a.relativePath.localeCompare(b.relativePath),
+      ),
+      metadataFiles: group.metadataFiles.sort((a, b) =>
+        a.relativePath.localeCompare(b.relativePath),
+      ),
+    }))
+    .sort((a, b) => a.gutenbergId.localeCompare(b.gutenbergId));
+}
+
 function resolveRawTextPath(
   textRoot: string,
   metadataPath: string,
@@ -321,7 +634,7 @@ function applyCleanupRules(
 ): string {
   return rules.reduce((text, rule) => {
     try {
-      const flags = rule.flags ?? "g";
+      const flags = rule.flags ?? (rule.type === "replace" ? "g" : "");
       const pattern = new RegExp(rule.pattern, flags);
       if (rule.type === "replace") {
         return text.replace(pattern, rule.replacement ?? "");
@@ -393,20 +706,36 @@ export function scanBookInventory(
       filePath,
       rawPath: path.resolve(path.dirname(filePath), metadata.source.rawTextFile),
     }))
-    .filter(({ rawPath }) => !fs.existsSync(rawPath))
+    .filter(
+      ({ rawPath }) => !fs.existsSync(rawPath) || !fs.statSync(rawPath).isFile(),
+    )
     .map(({ filePath }) => filePath);
 
-  const rawGutenbergIds = rawTextFiles.map((filePath) => {
+  const rawRefs: InventoryReference[] = rawTextFiles.map((filePath) => {
     try {
-      return readGutenbergIdFromRaw(filePath);
+      return {
+        filePath,
+        relativePath: relativeTo(textRoot, filePath),
+        gutenbergId: readGutenbergIdFromRaw(filePath),
+      };
     } catch {
-      return null;
+      return {
+        filePath,
+        relativePath: relativeTo(textRoot, filePath),
+        gutenbergId: null,
+      };
     }
   });
-  const duplicateGutenbergIds = [
-    ...duplicateValues(rawGutenbergIds),
-    ...duplicateValues(validMetadata.map(({ metadata }) => metadata.source.gutenbergId)),
-  ];
+  const metadataRefs: InventoryReference[] = validMetadata.map(
+    ({ filePath, metadata }) => ({
+      filePath,
+      relativePath: relativeTo(textRoot, filePath),
+      slug: metadata.slug,
+      gutenbergId: metadata.source.gutenbergId,
+      allowDuplicateGutenbergId: metadata.source.allowDuplicateGutenbergId,
+      duplicateReason: metadata.source.duplicateReason,
+    }),
+  );
 
   return {
     rawTextFiles,
@@ -416,9 +745,7 @@ export function scanBookInventory(
     duplicateSlugs: duplicateValues(
       validMetadata.map(({ metadata }) => metadata.slug),
     ),
-    duplicateGutenbergIds: [...new Set(duplicateGutenbergIds)].sort((a, b) =>
-      a.localeCompare(b),
-    ),
+    duplicateGutenbergIds: groupDuplicateGutenbergIds(rawRefs, metadataRefs),
     invalidMetadata,
   };
 }
@@ -430,6 +757,7 @@ function buildGeneratedManifest(
 ): {
   manifest: GeneratedBookManifest;
   sectionJson: GeneratedBookSectionJson[];
+  fatalErrors: string[];
 } {
   const cleaning = cleanGutenbergText(rawText);
   const cleanedText = trimBookText(
@@ -443,6 +771,11 @@ function buildGeneratedManifest(
   warnings.push(...cleaning.report.warnings, ...sectionsResult.warnings);
   const rights = validateBookRights(metadata);
   warnings.push(...rights.warnings);
+  const fatalErrors: string[] = [];
+
+  if (!cleanedText) {
+    fatalErrors.push(`${metadata.slug}: cleaner produced no body text.`);
+  }
 
   const sectionJson: GeneratedBookSectionJson[] = sectionsResult.sections.map((section) => ({
     schemaVersion: BOOK_SCHEMA_VERSION,
@@ -460,11 +793,30 @@ function buildGeneratedManifest(
     characterCount: section.characterCount,
     morseCharacterEstimate: section.morseCharacterEstimate,
     unsupportedCharacterSummary: summarizeUnsupportedCharacters(section.text),
+    textPreview: section.textPreview,
     sourceOffsets: {
       start: section.sourceStartOffset,
       end: section.sourceEndOffset,
     },
   }));
+
+  if (sectionJson.length === 0) {
+    fatalErrors.push(`${metadata.slug}: generated an empty section set.`);
+  }
+
+  const sectionPaths = new Set<string>();
+  const sectionIds = new Set<string>();
+  for (const section of sectionJson) {
+    if (sectionIds.has(section.sectionId)) {
+      fatalErrors.push(`${metadata.slug}: duplicate generated section id ${section.sectionId}.`);
+    }
+    sectionIds.add(section.sectionId);
+    const sectionPath = `sections/${section.sectionId}.json`;
+    if (sectionPaths.has(sectionPath)) {
+      fatalErrors.push(`${metadata.slug}: duplicate generated output path ${sectionPath}.`);
+    }
+    sectionPaths.add(sectionPath);
+  }
 
   const manifest: GeneratedBookManifest = {
     schemaVersion: BOOK_SCHEMA_VERSION,
@@ -482,6 +834,8 @@ function buildGeneratedManifest(
       rightsReviewed: metadata.source.rightsReviewed,
       publishReady: rights.publishReady,
       rightsNotes: metadata.source.rightsNotes,
+      allowDuplicateGutenbergId: metadata.source.allowDuplicateGutenbergId,
+      duplicateReason: metadata.source.duplicateReason,
     },
     cover: metadata.cover,
     stats: {
@@ -507,7 +861,7 @@ function buildGeneratedManifest(
       characterCount: section.characterCount,
       wordCount: section.wordCount,
       morseCharacterEstimate: section.morseCharacterEstimate,
-      textPreview: trimBookText(section.displayText).replace(/\s+/g, " ").slice(0, 160),
+      textPreview: section.textPreview,
     })),
     cleaning: {
       originalCharacterCount: cleaning.report.originalCharacterCount,
@@ -520,7 +874,7 @@ function buildGeneratedManifest(
     warnings,
   };
 
-  return { manifest, sectionJson };
+  return { manifest, sectionJson, fatalErrors };
 }
 
 function makeLibraryManifest(
@@ -544,8 +898,20 @@ function makeLibraryManifest(
   };
 }
 
+function formatList(items: string[], limit = 12): string[] {
+  if (items.length <= limit) return items;
+  return [...items.slice(0, limit), `... ${items.length - limit} more`];
+}
+
 function printSummary(result: BookBuildResult): void {
-  const { inventory, processedBooks, warnings, fatalErrors, generatedRoot } = result;
+  const {
+    inventory,
+    processedBooks,
+    warnings,
+    fatalErrors,
+    generatedArtifacts,
+    generatedRoot,
+  } = result;
   console.log("Morse book inventory");
   console.log(`Raw text files: ${inventory.rawTextFiles.length}`);
   console.log(`Metadata files: ${inventory.metadataFiles.length}`);
@@ -560,6 +926,55 @@ function printSummary(result: BookBuildResult): void {
   console.log(`Duplicate slugs: ${inventory.duplicateSlugs.length}`);
   console.log(`Duplicate Gutenberg IDs: ${inventory.duplicateGutenbergIds.length}`);
   console.log(`Generated output: ${generatedRoot}`);
+
+  if (inventory.rawWithoutMetadata.length > 0) {
+    console.log("\nRaw files without metadata:");
+    for (const filePath of formatList(
+      inventory.rawWithoutMetadata.map((filePath) =>
+        relativeTo(DEFAULT_TEXT_ROOT, filePath),
+      ),
+    )) {
+      console.log(`- ${filePath}`);
+    }
+  }
+
+  if (inventory.metadataWithoutRaw.length > 0) {
+    console.log("\nMetadata files without raw text:");
+    for (const filePath of inventory.metadataWithoutRaw) {
+      console.log(`- ${relativeTo(DEFAULT_TEXT_ROOT, filePath)}`);
+    }
+  }
+
+  if (inventory.duplicateGutenbergIds.length > 0) {
+    console.log("\nDuplicate Gutenberg IDs:");
+    for (const duplicate of inventory.duplicateGutenbergIds) {
+      const rawRefs = duplicate.rawFiles.map((ref) => ref.relativePath).join(", ");
+      const metadataRefs = duplicate.metadataFiles
+        .map((ref) => `${ref.slug ?? "unknown"} (${ref.relativePath})`)
+        .join(", ");
+      console.log(
+        `- ${duplicate.gutenbergId}: raw [${rawRefs || "none"}]; metadata [${
+          metadataRefs || "none"
+        }]`,
+      );
+    }
+  }
+
+  if (processedBooks.length > 0) {
+    console.log("\nPublish readiness:");
+    for (const book of processedBooks) {
+      console.log(
+        `- ${book.slug}: ${book.source.publishReady ? "publish-ready" : "not publish-ready"}`,
+      );
+    }
+  }
+
+  if (generatedArtifacts.length > 0) {
+    console.log("\nGenerated artifacts:");
+    for (const artifact of formatList(generatedArtifacts, 16)) {
+      console.log(`- ${artifact}`);
+    }
+  }
 
   if (warnings.length > 0) {
     console.log("\nWarnings:");
@@ -588,6 +1003,7 @@ export function buildBookLibrary(
   const inventory = scanBookInventory({ textRoot, metadataRoot });
   const warnings: string[] = [];
   const fatalErrors: string[] = [];
+  const generatedArtifacts: string[] = [];
 
   for (const invalid of inventory.invalidMetadata) {
     fatalErrors.push(...invalid.errors);
@@ -595,20 +1011,58 @@ export function buildBookLibrary(
   for (const slug of inventory.duplicateSlugs) {
     fatalErrors.push(`Duplicate metadata slug: ${slug}.`);
   }
-  for (const id of duplicateValues(
-    inventory.metadataFiles.flatMap((filePath) => {
+  const metadataIdGroups = new Map<string, InventoryReference[]>();
+  for (const ref of inventory.metadataFiles.flatMap((filePath) => {
       try {
         const { metadata } = validateMetadataShape(readJson(filePath), filePath);
-        return metadata?.source.gutenbergId ?? [];
+        return metadata?.source.gutenbergId
+          ? [
+              {
+                filePath,
+                relativePath: relativeTo(textRoot, filePath),
+                slug: metadata.slug,
+                gutenbergId: metadata.source.gutenbergId,
+                allowDuplicateGutenbergId:
+                  metadata.source.allowDuplicateGutenbergId,
+                duplicateReason: metadata.source.duplicateReason,
+              },
+            ]
+          : [];
       } catch {
         return [];
       }
-    }),
-  )) {
-    fatalErrors.push(`Duplicate metadata Gutenberg ID: ${id}.`);
+    })) {
+    if (!ref.gutenbergId) continue;
+    const group = metadataIdGroups.get(ref.gutenbergId) ?? [];
+    group.push(ref);
+    metadataIdGroups.set(ref.gutenbergId, group);
+  }
+  for (const [id, refs] of metadataIdGroups.entries()) {
+    if (refs.length < 2) continue;
+    const allExplicitlyAllowed = refs.every(
+      (ref) =>
+        ref.allowDuplicateGutenbergId === true &&
+        typeof ref.duplicateReason === "string" &&
+        ref.duplicateReason.trim() !== "",
+    );
+    if (!allExplicitlyAllowed) {
+      fatalErrors.push(
+        `Duplicate metadata Gutenberg ID ${id}: ${refs
+          .map((ref) => ref.slug ?? ref.relativePath)
+          .join(", ")}. Set allowDuplicateGutenbergId with duplicateReason only for intentional duplicates.`,
+      );
+    }
   }
   for (const metadataPath of inventory.metadataWithoutRaw) {
     fatalErrors.push(`Metadata raw text file is missing: ${metadataPath}.`);
+  }
+  for (const filePath of inventory.metadataFiles) {
+    try {
+      const { metadata } = validateMetadataShape(readJson(filePath), filePath);
+      if (metadata) resolveRawTextPath(textRoot, filePath, metadata);
+    } catch (error) {
+      fatalErrors.push(error instanceof Error ? error.message : String(error));
+    }
   }
 
   if (inventory.rawWithoutMetadata.length > 0) {
@@ -618,7 +1072,9 @@ export function buildBookLibrary(
   }
   if (inventory.duplicateGutenbergIds.length > 0) {
     warnings.push(
-      `Duplicate Gutenberg ID(s) found during inventory: ${inventory.duplicateGutenbergIds.join(", ")}.`,
+      `Duplicate Gutenberg ID(s) found during inventory: ${inventory.duplicateGutenbergIds
+        .map((duplicate) => duplicate.gutenbergId)
+        .join(", ")}.`,
     );
   }
 
@@ -629,7 +1085,8 @@ export function buildBookLibrary(
       libraryManifest: { schemaVersion: BOOK_SCHEMA_VERSION, books: [] },
       warnings,
       fatalErrors,
-      generatedRoot,
+      generatedArtifacts,
+      generatedRoot: toPosixPath(generatedRoot),
     };
     if (!options.quiet) printSummary(result);
     return result;
@@ -662,26 +1119,35 @@ export function buildBookLibrary(
     }
 
     const rawText = fs.readFileSync(rawPath, "utf8");
-    const { manifest, sectionJson } = buildGeneratedManifest(
+    const { manifest, sectionJson, fatalErrors: bookFatalErrors } = buildGeneratedManifest(
       metadata,
       rawText,
       bookWarnings,
     );
+    fatalErrors.push(...bookFatalErrors);
     warnings.push(...bookWarnings.map((warning) => `${metadata.slug}: ${warning}`));
+    if (bookFatalErrors.length > 0) continue;
     processedBooks.push(manifest);
 
     const bookRoot = path.join(generatedRoot, metadata.slug);
-    writeJson(path.join(bookRoot, "manifest.json"), manifest);
+    const manifestPath = path.join(bookRoot, "manifest.json");
+    writeJson(manifestPath, manifest);
+    generatedArtifacts.push(relativeTo(generatedRoot, manifestPath));
     for (const section of sectionJson) {
-      writeJson(
-        path.join(bookRoot, "sections", `${section.sectionId}.json`),
-        section,
+      const sectionPath = path.join(
+        bookRoot,
+        "sections",
+        `${section.sectionId}.json`,
       );
+      writeJson(sectionPath, section);
+      generatedArtifacts.push(relativeTo(generatedRoot, sectionPath));
     }
   }
 
   const libraryManifest = makeLibraryManifest(processedBooks);
-  writeJson(path.join(generatedRoot, "library-manifest.json"), libraryManifest);
+  const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
+  writeJson(libraryManifestPath, libraryManifest);
+  generatedArtifacts.push(relativeTo(generatedRoot, libraryManifestPath));
 
   const result: BookBuildResult = {
     inventory,
@@ -689,6 +1155,7 @@ export function buildBookLibrary(
     libraryManifest,
     warnings,
     fatalErrors,
+    generatedArtifacts: generatedArtifacts.sort((a, b) => a.localeCompare(b)),
     generatedRoot: toPosixPath(generatedRoot),
   };
 

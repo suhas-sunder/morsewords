@@ -120,6 +120,73 @@ Project Gutenberg-like notes without a reliable marker.
     expect(result.cleanedText).toContain("Project Gutenberg-like notes");
   });
 
+  test("supports older markers and malformed marker order safely", () => {
+    const oldMarker = cleanGutenbergText(`
+Header
+*** START OF THIS PROJECT GUTENBERG EBOOK OLD SAMPLE ***
+
+Preface
+
+Real front matter.
+
+End of the Project Gutenberg EBook of Old Sample
+Footer license
+`);
+
+    expect(oldMarker.report.headerStripped).toBe(true);
+    expect(oldMarker.report.footerStripped).toBe(true);
+    expect(oldMarker.cleanedText).toContain("Real front matter.");
+    expect(oldMarker.cleanedText).not.toContain("Footer license");
+
+    const malformed = cleanGutenbergText(`
+*** END OF THE PROJECT GUTENBERG EBOOK BAD SAMPLE ***
+Header-ish text should stay because markers are reversed.
+*** START OF THE PROJECT GUTENBERG EBOOK BAD SAMPLE ***
+`);
+
+    expect(malformed.report.confidence).toBe("low");
+    expect(malformed.report.warnings.join(" ")).toContain("out of order");
+    expect(malformed.cleanedText).toContain("Header-ish text should stay");
+  });
+
+  test("preserves preface and table of contents without creating bogus chapter stubs", () => {
+    const metadata = baseMetadata("contents-sample");
+    const result = detectBookSections(
+      `
+Title Page
+
+Preface
+
+This preface belongs to the book.
+
+Contents
+CHAPTER I
+CHAPTER II
+CHAPTER III
+
+
+CHAPTER I
+
+The first real chapter.
+
+CHAPTER II
+
+The second real chapter.
+`,
+      metadata,
+    );
+
+    expect(result.sections.map((section) => section.kind)).toEqual([
+      "title-page",
+      "preface",
+      "title-page",
+      "chapter",
+      "chapter",
+    ]);
+    expect(result.sections.filter((section) => section.kind === "chapter")).toHaveLength(2);
+    expect(result.sections[1].text).toContain("This preface belongs to the book.");
+  });
+
   test("detects common section headings with stable ids and no empty sections", () => {
     const metadata = baseMetadata("section-sample");
     const result = detectBookSections(
@@ -152,6 +219,102 @@ Roman heading text.
     ]);
     expect(result.sections.map((section) => section.kind)).toContain("part");
     expect(result.sections.every((section) => section.characterCount > 0)).toBe(true);
+  });
+
+  test("detects transcriber and source-license sections as excluded support matter", () => {
+    const metadata = baseMetadata("support-matter");
+    const result = detectBookSections(
+      `
+CHAPTER I
+
+Main chapter text.
+
+Transcriber's Note
+
+This note should not be included by default.
+
+Project Gutenberg License
+
+License text should not be included by default.
+`,
+      metadata,
+    );
+
+    const supportKinds = result.sections.map((section) => [
+      section.kind,
+      section.includeByDefault,
+    ]);
+    expect(supportKinds).toContainEqual(["chapter", true]);
+    expect(supportKinds).toContainEqual(["transcriber-note", false]);
+    expect(supportKinds).toContainEqual(["source-license", false]);
+  });
+
+  test("applies manual rename, kind, include, split, and merge overrides", () => {
+    const metadata = {
+      ...baseMetadata("override-sample"),
+      defaults: {
+        includeKinds: ["chapter", "preface"],
+        excludeKinds: ["source-license", "transcriber-note", "advertisement"],
+        preferredPreset: "main-narrative",
+      },
+      sectionOverrides: [
+        {
+          type: "rename-section",
+          sectionId: "chapter-001",
+          label: "Opening chapter",
+          title: "Manual title",
+        },
+        {
+          type: "change-kind",
+          sectionId: "chapter-001",
+          kind: "preface",
+          includeByDefault: false,
+        },
+        {
+          type: "split-section",
+          sectionId: "chapter-002",
+          markerText: "Split here.",
+          newSectionId: "manual-split",
+          label: "Manual split",
+          kind: "chapter",
+        },
+        {
+          type: "merge-sections",
+          sectionIds: ["manual-split", "chapter-003"],
+          id: "merged-manual-section",
+          label: "Merged manual section",
+          kind: "chapter",
+        },
+      ],
+    } satisfies BookMetadata;
+
+    const result = detectBookSections(
+      `
+CHAPTER I
+
+Opening text.
+
+CHAPTER II
+
+Before split. Split here. After split.
+
+CHAPTER III
+
+Third chapter.
+`,
+      metadata,
+    );
+
+    expect(result.sections[0]).toMatchObject({
+      id: "chapter-001",
+      kind: "preface",
+      label: "Opening chapter",
+      title: "Manual title",
+      includeByDefault: false,
+    });
+    expect(result.sections.map((section) => section.id)).toContain(
+      "merged-manual-section",
+    );
   });
 
   test("creates fallback chunk sections when no chapters are detected", () => {
@@ -198,6 +361,171 @@ Roman heading text.
     expect(result.fatalErrors).toEqual([]);
     expect(result.processedBooks[0].source.publishReady).toBe(false);
     expect(result.warnings.join(" ")).toContain("Rights have not been reviewed");
+  });
+
+  test("reports raw duplicate Gutenberg IDs with file names without failing raw inventory growth", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("raw-duplicates");
+    const generatedRoot = testInfo.outputPath("raw-duplicates-generated");
+    fs.mkdirSync(path.join(textRoot, "raw"), { recursive: true });
+    fs.writeFileSync(
+      path.join(textRoot, "raw", "one.txt"),
+      "Title: One\nRelease date: Today [eBook #42]\n",
+      "utf8",
+    );
+    fs.writeFileSync(
+      path.join(textRoot, "raw", "two.txt"),
+      "Title: Two\nOther information: www.gutenberg.org/ebooks/42\n",
+      "utf8",
+    );
+
+    const inventory = scanBookInventory({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+    });
+    expect(inventory.rawWithoutMetadata.map((filePath) => path.basename(filePath))).toEqual([
+      "one.txt",
+      "two.txt",
+    ]);
+    expect(inventory.duplicateGutenbergIds).toEqual([
+      expect.objectContaining({
+        gutenbergId: "42",
+        rawFiles: expect.arrayContaining([
+          expect.objectContaining({ relativePath: "raw/one.txt" }),
+          expect.objectContaining({ relativePath: "raw/two.txt" }),
+        ]),
+      }),
+    ]);
+
+    const result = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(result.fatalErrors).toEqual([]);
+  });
+
+  test("fails duplicate metadata Gutenberg IDs unless both entries explain the duplicate", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("metadata-duplicate-ids");
+    const generatedRoot = testInfo.outputPath("metadata-duplicate-generated");
+    const rawText =
+      "*** START OF THE PROJECT GUTENBERG EBOOK SAMPLE ***\nCHAPTER I\n\nText.\n*** END OF THE PROJECT GUTENBERG EBOOK SAMPLE ***";
+    writeFixtureBook(textRoot, "sample-one", rawText);
+    writeFixtureBook(
+      textRoot,
+      "sample-two",
+      rawText,
+      {
+        ...baseMetadata("sample-two"),
+        source: {
+          ...baseMetadata("sample-two").source,
+          gutenbergId: "1001",
+        },
+      },
+    );
+
+    const failed = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(failed.fatalErrors.join(" ")).toContain(
+      "Duplicate metadata Gutenberg ID 1001",
+    );
+
+    for (const slug of ["sample-one", "sample-two"]) {
+      const metadata = baseMetadata(slug);
+      writeJson(path.join(textRoot, "meta", `${slug}.json`), {
+        ...metadata,
+        source: {
+          ...metadata.source,
+          gutenbergId: "1001",
+          allowDuplicateGutenbergId: true,
+          duplicateReason: "Same source intentionally used for duplicate-id test.",
+        },
+      });
+    }
+
+    const allowed = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(allowed.fatalErrors).toEqual([]);
+  });
+
+  test("rejects invalid metadata shape, malformed overrides, and path traversal", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("invalid-metadata");
+    const generatedRoot = testInfo.outputPath("invalid-generated");
+    fs.mkdirSync(path.join(textRoot, "meta"), { recursive: true });
+    writeJson(path.join(textRoot, "meta", "bad-shape.json"), {
+      slug: "Bad Shape",
+      title: "",
+      author: "Nobody",
+      language: "",
+      source: {
+        provider: "Project Gutenberg",
+        gutenbergId: "abc",
+        rawTextFile: "../../outside.txt",
+        releaseDate: null,
+        rightsBasis: "not-real",
+        rightsReviewed: "no",
+        rightsNotes: "",
+      },
+      cover: { src: null, placeholder: false, alt: "" },
+      description: "",
+      subjects: [],
+      originalPublicationYear: null,
+      defaults: {
+        includeKinds: ["chapter"],
+        excludeKinds: ["chapter"],
+        preferredPreset: "",
+      },
+      sectionOverrides: [{ type: "split-section", sectionId: "chapter-001" }],
+      cleanupRules: [{ type: "replace", pattern: "[" }],
+    });
+
+    const result = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+    const errors = result.fatalErrors.join(" ");
+    expect(errors).toContain("slug must be lowercase kebab-case");
+    expect(errors).toContain("author must be an array of strings");
+    expect(errors).toContain("source.gutenbergId must contain only digits");
+    expect(errors).toContain("cover.placeholder must be true");
+    expect(errors).toContain("defaults cannot both include and exclude");
+    expect(errors).toContain("sectionOverrides[0] needs markerText or offset");
+    expect(errors).toContain("cleanupRules[0].pattern must be a valid regular expression");
+  });
+
+  test("rejects safe-looking metadata that resolves outside the text asset root", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("path-traversal");
+    const generatedRoot = testInfo.outputPath("path-traversal-generated");
+    fs.mkdirSync(path.join(textRoot, "meta"), { recursive: true });
+    writeJson(
+      path.join(textRoot, "meta", "escape.json"),
+      baseMetadata("escape", "../../outside.txt"),
+    );
+
+    const result = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+
+    expect(result.fatalErrors.join(" ")).toContain(
+      "source.rawTextFile must resolve inside",
+    );
   });
 
   test("builds summary-only manifests, per-section text, and deterministic output", ({
@@ -260,7 +588,50 @@ Project Gutenberg License
     ) as Record<string, unknown>;
     expect(section.displayText).toContain("First chapter text");
     expect(section.morseSourceText).toContain("First chapter text");
+    expect(section.paragraphs).toEqual(expect.arrayContaining([
+      expect.stringContaining("First chapter text"),
+    ]));
+    expect(section.textPreview).toContain("First chapter text");
     expect(String(section.morseSourceText)).not.toContain("Project Gutenberg License");
+    expect(JSON.stringify(firstTree)).not.toMatch(/[A-Z]:\\\\|\/tmp\//);
+    expect(Object.keys(firstTree).some((filePath) => /\.(mp3|wav|webm|zip)$/i.test(filePath))).toBe(
+      false,
+    );
+  });
+
+  test("fails generated duplicate section ids before writing a successful book", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("duplicate-section-id");
+    const generatedRoot = testInfo.outputPath("duplicate-section-generated");
+    const metadata = {
+      ...baseMetadata("duplicate-section-id"),
+      sectionOverrides: [
+        {
+          type: "split-section",
+          sectionId: "chapter-001",
+          markerText: "Split marker.",
+          newSectionId: "chapter-001",
+          label: "Duplicate id",
+        },
+      ],
+    } satisfies BookMetadata;
+    writeFixtureBook(
+      textRoot,
+      "duplicate-section-id",
+      "*** START OF THE PROJECT GUTENBERG EBOOK SAMPLE ***\nCHAPTER I\n\nBefore. Split marker. After.\n*** END OF THE PROJECT GUTENBERG EBOOK SAMPLE ***",
+      metadata,
+    );
+
+    const result = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+
+    expect(result.fatalErrors.join(" ")).toContain(
+      "duplicate generated section id chapter-001",
+    );
   });
 
   test("committed Alice pilot artifact has publish flags and chapter sections", () => {
@@ -302,6 +673,10 @@ Project Gutenberg License
     ).toBeGreaterThanOrEqual(12);
     expect(firstChapter.displayText).toContain("CHAPTER I");
     expect(firstChapter.morseSourceText).toContain("CHAPTER I");
+    expect(firstChapter.paragraphs).toEqual(expect.arrayContaining([
+      expect.stringContaining("Down the Rabbit-Hole"),
+    ]));
+    expect(firstChapter.textPreview).toContain("CHAPTER I");
     expect(String(firstChapter.morseSourceText)).not.toMatch(
       /PROJECT GUTENBERG|license|donation/i,
     );
