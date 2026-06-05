@@ -15,9 +15,14 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "11",
     "releaseDate": null,
+    "sourceUrl": "https://www.gutenberg.org/ebooks/11",
+    "rawTextUrl": null,
     "rightsBasis": "public-domain-us",
     "rightsReviewed": false,
     "publishReady": false,
+    "rightsStatus": "needs_manual_review",
+    "processingAllowed": false,
+    "rightsReportPath": "rights_report.json",
     "rightsNotes": "Initial pilot metadata for local generated artifacts. Rights review has not been completed."
   },
   "cover": {
@@ -231,6 +236,8 @@
     "warnings": []
   },
   "warnings": [
-    "Rights have not been reviewed; generated book is not publish-ready."
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output."
   ]
 }

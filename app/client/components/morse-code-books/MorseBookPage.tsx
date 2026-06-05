@@ -1409,11 +1409,27 @@ export default function MorseBookPage({
           Source and rights notes
         </h2>
         <div className="mt-3 grid gap-4 text-sm leading-relaxed text-slate-700 lg:grid-cols-2">
-          <p>
-            Source material is generated from curated local artifacts, not user
-            uploads. Project Gutenberg boilerplate is kept out of the Morse
-            source text and rights/source notes are shown separately here.
-          </p>
+          <div>
+            <p>
+              Source material is generated from curated local artifacts, not user
+              uploads. Project Gutenberg boilerplate is kept out of the Morse
+              source text and rights/source notes are shown separately here.
+            </p>
+            {book.source.sourceUrl ? (
+              <p className="mt-3">
+                <a
+                  className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                  href={book.source.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {book.source.gutenbergId
+                    ? `Original source: Project Gutenberg ebook #${book.source.gutenbergId}`
+                    : "View the source text on Project Gutenberg"}
+                </a>
+              </p>
+            ) : null}
+          </div>
           <p>
             {book.source.rightsNotes ||
               "No additional rights notes are recorded for this generated book."}

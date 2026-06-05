@@ -115,9 +115,15 @@ const testPublishedBookManifest = {
     provider: "MorseWords test fixture",
     gutenbergId: null,
     releaseDate: null,
+    sourceUrl: null,
+    rawTextUrl: null,
     rightsBasis: "permission-granted",
     rightsReviewed: true,
     publishReady: true,
+    rightsStatus: "approved",
+    processingAllowed: true,
+    rightsReportPath: "test-fixture-rights-report.json",
+    processedBookPath: "test-fixture-processed-book.json",
     rightsNotes:
       "Development-only fixture. It is not included in generated production manifests, navigation, or sitemaps.",
   },
@@ -193,7 +199,12 @@ export function morseBookPath(slug: string) {
 export function isMorseBookPublishReady(
   book: Pick<MorseBookLibrarySummary, "source"> | MorseBookManifest,
 ) {
-  return book.source.rightsReviewed === true && book.source.publishReady === true;
+  return (
+    book.source.rightsReviewed === true &&
+    book.source.publishReady === true &&
+    book.source.rightsStatus === "approved" &&
+    book.source.processingAllowed === true
+  );
 }
 
 export function getGeneratedMorseBookSummaries() {

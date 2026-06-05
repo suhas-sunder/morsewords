@@ -28,6 +28,8 @@ export type MorseBookRightsBasis =
   | "permission-granted"
   | "unknown";
 
+export type MorseBookRightsStatus = "approved" | "needs_manual_review" | "reject";
+
 export type MorseBookCover = {
   src: string | null;
   placeholder: boolean;
@@ -38,9 +40,15 @@ export type MorseBookSourceSummary = {
   provider: string;
   gutenbergId: string | null;
   releaseDate: string | null;
+  sourceUrl: string | null;
+  rawTextUrl: string | null;
   rightsBasis: MorseBookRightsBasis;
   rightsReviewed: boolean;
   publishReady: boolean;
+  rightsStatus: MorseBookRightsStatus;
+  processingAllowed: boolean;
+  rightsReportPath: string;
+  processedBookPath?: string;
   rightsNotes: string;
   allowDuplicateGutenbergId?: boolean;
   duplicateReason?: string;

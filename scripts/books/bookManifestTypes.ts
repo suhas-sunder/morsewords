@@ -36,6 +36,18 @@ export const RIGHTS_BASES = [
 
 export type BookRightsBasis = (typeof RIGHTS_BASES)[number];
 
+export const RIGHTS_RISK_LEVELS = ["none", "low", "medium", "high"] as const;
+
+export type BookRightsRiskLevel = (typeof RIGHTS_RISK_LEVELS)[number];
+
+export const CANADA_US_V1_STATUSES = [
+  "approved",
+  "needs_manual_review",
+  "reject",
+] as const;
+
+export type BookCanadaUsV1Status = (typeof CANADA_US_V1_STATUSES)[number];
+
 export const CLEANING_CONFIDENCE_VALUES = ["high", "medium", "low"] as const;
 
 export type GutenbergCleaningConfidence =
@@ -105,6 +117,7 @@ export type BookMetadata = {
     gutenbergId: string | null;
     rawTextFile: string;
     releaseDate: string | null;
+    rawTextUrl?: string | null;
     rightsBasis: BookRightsBasis;
     rightsReviewed: boolean;
     rightsNotes: string;
@@ -126,6 +139,92 @@ export type BookMetadata = {
   };
   sectionOverrides: BookSectionOverride[];
   cleanupRules: BookCleanupRule[];
+};
+
+export type ApprovedPersonMetadata = {
+  name: string;
+  deathYear: number | null;
+  canadaLifePlus70Safe?: boolean;
+  notes: string;
+};
+
+export type ApprovedPeopleMetadata = Record<string, ApprovedPersonMetadata>;
+
+export type BookRightsReport = {
+  schemaVersion: 1;
+  title: string;
+  author: string;
+  author_death_year: number | null;
+  language: string;
+  original_publication: string;
+  release_date: string;
+  last_updated: string;
+  source: string;
+  gutenberg_ebook_number: string;
+  source_url: string | null;
+  raw_text_url: string | null;
+  gutenberg_header_present: boolean;
+  project_gutenberg_license_present: boolean;
+  us_reuse_language_found: boolean;
+  non_us_warning_found: boolean;
+  credits: string;
+  translator: string;
+  translator_death_year: number | null;
+  illustrator: string;
+  editor: string;
+  introduction_author: string;
+  contains_modern_intro_or_notes: boolean;
+  contains_transcriber_notes: boolean;
+  contains_illustrations_or_image_references: boolean;
+  contains_later_copyright_notice: boolean;
+  contains_creative_commons_license: boolean;
+  contains_permission_based_language: boolean;
+  is_translation: boolean;
+  translation_risk: BookRightsRiskLevel;
+  edition_risk: BookRightsRiskLevel;
+  trademark_or_character_brand_risk: BookRightsRiskLevel;
+  content_brand_safety_risk: BookRightsRiskLevel;
+  canada_us_v1_status: BookCanadaUsV1Status;
+  reasoning_summary: string;
+  evidence_snippets: string[];
+  processing_allowed: boolean;
+};
+
+export type ProcessedBookJson = {
+  schemaVersion: 1;
+  id: string;
+  title: string;
+  author: string;
+  source: {
+    name: "Project Gutenberg" | string;
+    ebook_number: string;
+    source_url: string | null;
+    raw_text_url: string | null;
+    original_publication: string;
+    release_date: string;
+    last_updated: string;
+  };
+  rights: {
+    status: "approved";
+    approved_for_website: boolean;
+    approved_for_youtube_narration: boolean;
+    approved_regions: string[];
+    needs_manual_review: boolean;
+    notes: string;
+  };
+  content: {
+    chapters: Array<{
+      chapter_number: number;
+      title: string;
+      sections: Array<{
+        section_number: number;
+        text: string;
+        word_count: number;
+        character_count: number;
+        estimated_typing_minutes: number;
+      }>;
+    }>;
+  };
 };
 
 export type GutenbergCleaningReport = {
@@ -174,9 +273,15 @@ export type GeneratedBookManifest = {
     provider: string;
     gutenbergId: string | null;
     releaseDate: string | null;
+    sourceUrl: string | null;
+    rawTextUrl: string | null;
     rightsBasis: BookRightsBasis;
     rightsReviewed: boolean;
     publishReady: boolean;
+    rightsStatus: BookCanadaUsV1Status;
+    processingAllowed: boolean;
+    rightsReportPath: string;
+    processedBookPath?: string;
     rightsNotes: string;
     allowDuplicateGutenbergId?: boolean;
     duplicateReason?: string;

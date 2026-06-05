@@ -3,19 +3,28 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import type {
+  ApprovedPeopleMetadata,
   BookCleanupRule,
   BookMetadata,
+  BookRightsReport,
   BookSectionKind,
   GeneratedBookManifest,
   GeneratedBookSectionJson,
   GeneratedLibraryManifest,
+  GutenbergCleaningReport,
+  ProcessedBookJson,
 } from "./bookManifestTypes.ts";
 import {
   BOOK_SCHEMA_VERSION,
   RIGHTS_BASES,
   SECTION_KINDS,
 } from "./bookManifestTypes.ts";
-import { validateBookRights } from "./bookRightsValidation.ts";
+import {
+  buildBookRightsReport,
+  getProjectGutenbergSourceUrl,
+  loadApprovedPeopleMetadata,
+  validateBookRights,
+} from "./bookRightsValidation.ts";
 import { cleanGutenbergText } from "./clean-gutenberg.ts";
 import { detectBookSections } from "./detect-book-sections.ts";
 import {
@@ -31,6 +40,7 @@ export type BookBuildOptions = {
   repoRoot?: string;
   textRoot?: string;
   metadataRoot?: string;
+  approvedPeoplePath?: string;
   generatedRoot?: string;
   quiet?: boolean;
 };
@@ -74,6 +84,11 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const DEFAULT_TEXT_ROOT = path.join(DEFAULT_REPO_ROOT, "app/client/assets/text");
 const DEFAULT_METADATA_ROOT = path.join(DEFAULT_TEXT_ROOT, "meta");
+const DEFAULT_APPROVED_PEOPLE_PATH = path.join(
+  DEFAULT_TEXT_ROOT,
+  "approved-metadata",
+  "authors.json",
+);
 const DEFAULT_GENERATED_ROOT = path.join(
   DEFAULT_REPO_ROOT,
   "app/client/assets/books/generated",
@@ -428,6 +443,13 @@ function validateMetadataShape(
     ) {
       errors.push("source.releaseDate must be a string or null.");
     }
+    if (
+      raw.source.rawTextUrl !== undefined &&
+      raw.source.rawTextUrl !== null &&
+      typeof raw.source.rawTextUrl !== "string"
+    ) {
+      errors.push("source.rawTextUrl must be a string or null when present.");
+    }
     if (!RIGHTS_BASES.includes(raw.source.rightsBasis as never)) {
       errors.push(`source.rightsBasis must be one of ${RIGHTS_BASES.join(", ")}.`);
     }
@@ -659,6 +681,11 @@ function writeJson(filePath: string, value: unknown): void {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
+function writeText(filePath: string, value: string): void {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, value.endsWith("\n") ? value : `${value}\n`, "utf8");
+}
+
 function safeResetGeneratedRoot(generatedRoot: string, allowCustomRoot: boolean): void {
   const normalized = path.normalize(generatedRoot);
   const parsedRoot = path.parse(normalized).root;
@@ -674,6 +701,144 @@ function safeResetGeneratedRoot(generatedRoot: string, allowCustomRoot: boolean)
   }
   fs.rmSync(generatedRoot, { recursive: true, force: true });
   fs.mkdirSync(generatedRoot, { recursive: true });
+}
+
+function estimatedTypingMinutes(wordCount: number): number {
+  return Math.max(1, Math.ceil(wordCount / 40));
+}
+
+function buildProcessedBook(
+  metadata: BookMetadata,
+  sections: GeneratedBookSectionJson[],
+  rightsReport: BookRightsReport,
+): ProcessedBookJson {
+  const storySections = sections.filter((section) => section.includeByDefault);
+
+  return {
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    id: metadata.slug,
+    title: metadata.title,
+    author: metadata.author.join(", "),
+    source: {
+      name: metadata.source.provider,
+      ebook_number: metadata.source.gutenbergId ?? "",
+      source_url: rightsReport.source_url,
+      raw_text_url: rightsReport.raw_text_url,
+      original_publication: rightsReport.original_publication,
+      release_date: rightsReport.release_date,
+      last_updated: rightsReport.last_updated,
+    },
+    rights: {
+      status: "approved",
+      approved_for_website: true,
+      approved_for_youtube_narration: true,
+      approved_regions: ["US", "CA"],
+      needs_manual_review: false,
+      notes: rightsReport.reasoning_summary,
+    },
+    content: {
+      chapters: storySections.map((section, index) => ({
+        chapter_number: index + 1,
+        title: section.title || section.label,
+        sections: [
+          {
+            section_number: 1,
+            text: section.morseSourceText,
+            word_count: section.wordCount,
+            character_count: section.characterCount,
+            estimated_typing_minutes: estimatedTypingMinutes(section.wordCount),
+          },
+        ],
+      })),
+    },
+  };
+}
+
+function buildProcessingNotes({
+  metadata,
+  rightsReport,
+  cleaning,
+  sectionJson,
+  processedBook,
+}: {
+  metadata: BookMetadata;
+  rightsReport: BookRightsReport;
+  cleaning: GutenbergCleaningReport;
+  sectionJson: GeneratedBookSectionJson[];
+  processedBook: ProcessedBookJson | null;
+}): string {
+  const excludedSections = sectionJson.filter((section) => !section.includeByDefault);
+  const manualReasons =
+    rightsReport.canada_us_v1_status === "approved"
+      ? ["No manual review blockers from the current rights gate."]
+      : rightsReport.reasoning_summary
+          .split(/(?<=\.)\s+/)
+          .map((reason) => reason.trim())
+          .filter(Boolean);
+  const evidence =
+    rightsReport.evidence_snippets.length > 0
+      ? rightsReport.evidence_snippets.map((snippet) => `- ${snippet}`).join("\n")
+      : "- No specific source snippets were captured.";
+
+  return [
+    `# ${metadata.title} processing notes`,
+    "",
+    `- Source file: ${metadata.source.rawTextFile}`,
+    `- Gutenberg ID: ${metadata.source.gutenbergId ?? "missing"}`,
+    `- Source URL: ${rightsReport.source_url ?? "missing"}`,
+    `- Approval status: ${rightsReport.canada_us_v1_status}`,
+    `- Processing allowed: ${rightsReport.processing_allowed ? "yes" : "no"}`,
+    `- processed_book.json emitted: ${processedBook ? "yes" : "no"}`,
+    "",
+    "## Rights evidence found",
+    "",
+    evidence,
+    "",
+    "## Risks found",
+    "",
+    `- Translation risk: ${rightsReport.translation_risk}`,
+    `- Edition risk: ${rightsReport.edition_risk}`,
+    `- Trademark or character brand risk: ${rightsReport.trademark_or_character_brand_risk}`,
+    `- Content brand-safety risk: ${rightsReport.content_brand_safety_risk}`,
+    `- Later copyright notice: ${rightsReport.contains_later_copyright_notice ? "yes" : "no"}`,
+    `- Permission-based language: ${rightsReport.contains_permission_based_language ? "yes" : "no"}`,
+    `- Creative Commons notice: ${rightsReport.contains_creative_commons_license ? "yes" : "no"}`,
+    "",
+    "## Cleaning actions",
+    "",
+    `- Original characters: ${cleaning.originalCharacterCount}`,
+    `- Cleaned characters: ${cleaning.cleanedCharacterCount}`,
+    `- Header stripped: ${cleaning.headerStripped ? "yes" : "no"}`,
+    `- Footer stripped: ${cleaning.footerStripped ? "yes" : "no"}`,
+    `- Cleaning confidence: ${cleaning.confidence}`,
+    "",
+    "## Skipped or excluded material",
+    "",
+    excludedSections.length > 0
+      ? excludedSections
+          .map(
+            (section) =>
+              `- ${section.sectionId}: ${section.kind} (${section.label})`,
+          )
+          .join("\n")
+      : "- No generated sections are excluded by default.",
+    "",
+    "## Section detection summary",
+    "",
+    `- Generated sections: ${sectionJson.length}`,
+    `- Included by default: ${sectionJson.filter((section) => section.includeByDefault).length}`,
+    "",
+    "## Manual review reasons",
+    "",
+    manualReasons.map((reason) => `- ${reason}`).join("\n"),
+    "",
+    "## Next metadata needed",
+    "",
+    rightsReport.canada_us_v1_status === "approved"
+      ? "- Keep the metadata and rights report together when publishing the page."
+      : "- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.",
+    "",
+  ].join("\n");
 }
 
 export function scanBookInventory(
@@ -753,10 +918,14 @@ export function scanBookInventory(
 function buildGeneratedManifest(
   metadata: BookMetadata,
   rawText: string,
+  approvedPeople: ApprovedPeopleMetadata,
   warnings: string[],
 ): {
   manifest: GeneratedBookManifest;
   sectionJson: GeneratedBookSectionJson[];
+  rightsReport: BookRightsReport;
+  processingNotes: string;
+  processedBook: ProcessedBookJson | null;
   fatalErrors: string[];
 } {
   const cleaning = cleanGutenbergText(rawText);
@@ -769,7 +938,14 @@ function buildGeneratedManifest(
   );
   const sectionsResult = detectBookSections(cleanedText, metadata);
   warnings.push(...cleaning.report.warnings, ...sectionsResult.warnings);
-  const rights = validateBookRights(metadata);
+  const rightsReport = buildBookRightsReport({
+    metadata,
+    rawText,
+    cleanedText,
+    cleaning: cleaning.report,
+    approvedPeople,
+  });
+  const rights = validateBookRights(metadata, rightsReport);
   warnings.push(...rights.warnings);
   const fatalErrors: string[] = [];
 
@@ -818,6 +994,18 @@ function buildGeneratedManifest(
     sectionPaths.add(sectionPath);
   }
 
+  const sourceUrl = getProjectGutenbergSourceUrl(metadata.source.gutenbergId);
+  const processedBook = rightsReport.processing_allowed
+    ? buildProcessedBook(metadata, sectionJson, rightsReport)
+    : null;
+  const processingNotes = buildProcessingNotes({
+    metadata,
+    rightsReport,
+    cleaning: cleaning.report,
+    sectionJson,
+    processedBook,
+  });
+
   const manifest: GeneratedBookManifest = {
     schemaVersion: BOOK_SCHEMA_VERSION,
     slug: metadata.slug,
@@ -830,9 +1018,15 @@ function buildGeneratedManifest(
       provider: metadata.source.provider,
       gutenbergId: metadata.source.gutenbergId,
       releaseDate: metadata.source.releaseDate,
+      sourceUrl,
+      rawTextUrl: metadata.source.rawTextUrl ?? null,
       rightsBasis: metadata.source.rightsBasis,
       rightsReviewed: metadata.source.rightsReviewed,
       publishReady: rights.publishReady,
+      rightsStatus: rightsReport.canada_us_v1_status,
+      processingAllowed: rightsReport.processing_allowed,
+      rightsReportPath: "rights_report.json",
+      ...(processedBook ? { processedBookPath: "processed_book.json" } : {}),
       rightsNotes: metadata.source.rightsNotes,
       allowDuplicateGutenbergId: metadata.source.allowDuplicateGutenbergId,
       duplicateReason: metadata.source.duplicateReason,
@@ -874,7 +1068,7 @@ function buildGeneratedManifest(
     warnings,
   };
 
-  return { manifest, sectionJson, fatalErrors };
+  return { manifest, sectionJson, rightsReport, processingNotes, processedBook, fatalErrors };
 }
 
 function makeLibraryManifest(
@@ -919,6 +1113,11 @@ function printSummary(result: BookBuildResult): void {
   console.log(
     `Publish-ready books: ${
       processedBooks.filter((book) => book.source.publishReady).length
+    }`,
+  );
+  console.log(
+    `Processing-allowed books: ${
+      processedBooks.filter((book) => book.source.processingAllowed).length
     }`,
   );
   console.log(`Raw files without metadata: ${inventory.rawWithoutMetadata.length}`);
@@ -999,12 +1198,17 @@ export function buildBookLibrary(
 ): BookBuildResult {
   const textRoot = path.resolve(options.textRoot ?? DEFAULT_TEXT_ROOT);
   const metadataRoot = path.resolve(options.metadataRoot ?? DEFAULT_METADATA_ROOT);
+  const approvedPeoplePath = path.resolve(
+    options.approvedPeoplePath ?? DEFAULT_APPROVED_PEOPLE_PATH,
+  );
   const generatedRoot = path.resolve(options.generatedRoot ?? DEFAULT_GENERATED_ROOT);
   const inventory = scanBookInventory({ textRoot, metadataRoot });
+  const approvedPeopleResult = loadApprovedPeopleMetadata(approvedPeoplePath);
   const warnings: string[] = [];
   const fatalErrors: string[] = [];
   const generatedArtifacts: string[] = [];
 
+  fatalErrors.push(...approvedPeopleResult.errors);
   for (const invalid of inventory.invalidMetadata) {
     fatalErrors.push(...invalid.errors);
   }
@@ -1119,9 +1323,17 @@ export function buildBookLibrary(
     }
 
     const rawText = fs.readFileSync(rawPath, "utf8");
-    const { manifest, sectionJson, fatalErrors: bookFatalErrors } = buildGeneratedManifest(
+    const {
+      manifest,
+      sectionJson,
+      rightsReport,
+      processingNotes,
+      processedBook,
+      fatalErrors: bookFatalErrors,
+    } = buildGeneratedManifest(
       metadata,
       rawText,
+      approvedPeopleResult.people,
       bookWarnings,
     );
     fatalErrors.push(...bookFatalErrors);
@@ -1131,8 +1343,19 @@ export function buildBookLibrary(
 
     const bookRoot = path.join(generatedRoot, metadata.slug);
     const manifestPath = path.join(bookRoot, "manifest.json");
+    const rightsReportPath = path.join(bookRoot, "rights_report.json");
+    const processingNotesPath = path.join(bookRoot, "processing_notes.md");
     writeJson(manifestPath, manifest);
+    writeJson(rightsReportPath, rightsReport);
+    writeText(processingNotesPath, processingNotes);
     generatedArtifacts.push(relativeTo(generatedRoot, manifestPath));
+    generatedArtifacts.push(relativeTo(generatedRoot, rightsReportPath));
+    generatedArtifacts.push(relativeTo(generatedRoot, processingNotesPath));
+    if (processedBook) {
+      const processedBookPath = path.join(bookRoot, "processed_book.json");
+      writeJson(processedBookPath, processedBook);
+      generatedArtifacts.push(relativeTo(generatedRoot, processedBookPath));
+    }
     for (const section of sectionJson) {
       const sectionPath = path.join(
         bookRoot,

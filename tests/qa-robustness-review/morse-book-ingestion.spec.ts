@@ -1,9 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { expect, test } from "@playwright/test";
+import { expect, test, type TestInfo } from "@playwright/test";
 
-import type { BookMetadata } from "../../scripts/books/bookManifestTypes.ts";
+import type {
+  BookMetadata,
+  BookRightsReport,
+  ProcessedBookJson,
+} from "../../scripts/books/bookManifestTypes.ts";
 import { buildBookLibrary, scanBookInventory } from "../../scripts/books/build-book-library.ts";
 import { cleanGutenbergText } from "../../scripts/books/clean-gutenberg.ts";
 import { detectBookSections } from "../../scripts/books/detect-book-sections.ts";
@@ -60,6 +64,105 @@ function writeFixtureBook(
   fs.mkdirSync(path.dirname(rawPath), { recursive: true });
   fs.writeFileSync(rawPath, rawText, "utf8");
   writeJson(metadataPath, metadata);
+}
+
+function writeApprovedPeople(
+  textRoot: string,
+  people: Record<string, { name: string; deathYear: number | null; canadaLifePlus70Safe?: boolean; notes: string }>,
+) {
+  writeJson(path.join(textRoot, "approved-metadata", "authors.json"), people);
+}
+
+function approvedMetadata(
+  slug: string,
+  overrides: Partial<BookMetadata> = {},
+): BookMetadata {
+  const base = baseMetadata(slug);
+  return {
+    ...base,
+    ...overrides,
+    originalPublicationYear: overrides.originalPublicationYear ?? 1900,
+    source: {
+      ...base.source,
+      rightsReviewed: true,
+      rightsNotes: "Test fixture rights metadata has been reviewed.",
+      ...(overrides.source ?? {}),
+    },
+  };
+}
+
+function gutenbergFixtureText({
+  title = "Approved Sample",
+  author = "Example Author",
+  language = "English",
+  gutenbergId = "1001",
+  releaseDate = "January 1, 2001",
+  extraHeader = "",
+  body = "CHAPTER I\n\nThe first approved chapter text.",
+  footerExtra = "",
+}: {
+  title?: string;
+  author?: string;
+  language?: string;
+  gutenbergId?: string;
+  releaseDate?: string;
+  extraHeader?: string;
+  body?: string;
+  footerExtra?: string;
+} = {}) {
+  return [
+    `Title: ${title}`,
+    `Author: ${author}`,
+    `Release date: ${releaseDate} [eBook #${gutenbergId}]`,
+    `Language: ${language}`,
+    extraHeader,
+    `*** START OF THE PROJECT GUTENBERG EBOOK ${title.toUpperCase()} ***`,
+    "",
+    body,
+    "",
+    `*** END OF THE PROJECT GUTENBERG EBOOK ${title.toUpperCase()} ***`,
+    "Project Gutenberg License",
+    "This eBook is for the use of anyone anywhere in the United States.",
+    "You may copy it, give it away or re-use it under the terms of the Project Gutenberg License.",
+    "If you are not located in the United States, check the laws of your country.",
+    footerExtra,
+  ]
+    .filter((line) => line !== "")
+    .join("\n");
+}
+
+function buildSingleFixture({
+  testInfo,
+  slug,
+  rawText,
+  metadata = approvedMetadata(slug),
+  approvedPeople = {
+    "example-author": {
+      name: "Example Author",
+      deathYear: 1920,
+      canadaLifePlus70Safe: true,
+      notes: "Test-only approved person metadata.",
+    },
+  },
+}: {
+  testInfo: TestInfo;
+  slug: string;
+  rawText: string;
+  metadata?: BookMetadata;
+  approvedPeople?: Record<string, { name: string; deathYear: number | null; canadaLifePlus70Safe?: boolean; notes: string }>;
+}) {
+  const textRoot = testInfo.outputPath(`${slug}-library`);
+  const generatedRoot = testInfo.outputPath(`${slug}-generated`);
+  writeApprovedPeople(textRoot, approvedPeople);
+  writeFixtureBook(textRoot, slug, rawText, metadata);
+  const result = buildBookLibrary({
+    textRoot,
+    metadataRoot: path.join(textRoot, "meta"),
+    approvedPeoplePath: path.join(textRoot, "approved-metadata", "authors.json"),
+    generatedRoot,
+    quiet: true,
+  });
+  return { result, generatedRoot };
 }
 
 function readGeneratedTree(root: string): Record<string, string> {
@@ -599,6 +702,258 @@ Project Gutenberg License
     );
   });
 
+  test("generates rights reports and blocks processed story JSON for manual-review books", ({
+  }, testInfo) => {
+    const { result, generatedRoot } = buildSingleFixture({
+      testInfo,
+      slug: "manual-review-sample",
+      rawText: gutenbergFixtureText(),
+      metadata: {
+        ...baseMetadata("manual-review-sample"),
+        originalPublicationYear: 1900,
+        source: {
+          ...baseMetadata("manual-review-sample").source,
+          rightsReviewed: false,
+          rightsNotes: "Manual review has not been completed.",
+        },
+      },
+      approvedPeople: {},
+    });
+
+    expect(result.fatalErrors).toEqual([]);
+    const report = JSON.parse(
+      fs.readFileSync(
+        path.join(generatedRoot, "manual-review-sample", "rights_report.json"),
+        "utf8",
+      ),
+    ) as BookRightsReport;
+    const notes = fs.readFileSync(
+      path.join(generatedRoot, "manual-review-sample", "processing_notes.md"),
+      "utf8",
+    );
+
+    expect(report.source_url).toBe("https://www.gutenberg.org/ebooks/1001");
+    expect(report.project_gutenberg_license_present).toBe(true);
+    expect(report.us_reuse_language_found).toBe(true);
+    expect(report.non_us_warning_found).toBe(true);
+    expect(report.author_death_year).toBeNull();
+    expect(report.canada_us_v1_status).toBe("needs_manual_review");
+    expect(report.processing_allowed).toBe(false);
+    expect(notes).toContain("Approval status: needs_manual_review");
+    expect(notes).toContain("processed_book.json emitted: no");
+    expect(
+      fs.existsSync(
+        path.join(generatedRoot, "manual-review-sample", "processed_book.json"),
+      ),
+    ).toBe(false);
+  });
+
+  test("approved metadata and rights evidence produce processed_book without boilerplate", ({
+  }, testInfo) => {
+    const { result, generatedRoot } = buildSingleFixture({
+      testInfo,
+      slug: "approved-sample",
+      rawText: gutenbergFixtureText({
+        body:
+          "CHAPTER I\n\nThe approved chapter stays in story order.\n\nCHAPTER II\n\nThe second chapter stays available for Morse practice.",
+        footerExtra: "Transcriber's Note: This footer note must not enter story text.",
+      }),
+      metadata: approvedMetadata("approved-sample"),
+    });
+
+    expect(result.fatalErrors).toEqual([]);
+    expect(result.processedBooks[0].source.publishReady).toBe(true);
+    expect(result.processedBooks[0].source.processingAllowed).toBe(true);
+    expect(result.processedBooks[0].source.rightsStatus).toBe("approved");
+    expect(result.processedBooks[0].source.sourceUrl).toBe(
+      "https://www.gutenberg.org/ebooks/1001",
+    );
+
+    const report = JSON.parse(
+      fs.readFileSync(
+        path.join(generatedRoot, "approved-sample", "rights_report.json"),
+        "utf8",
+      ),
+    ) as BookRightsReport;
+    const processed = JSON.parse(
+      fs.readFileSync(
+        path.join(generatedRoot, "approved-sample", "processed_book.json"),
+        "utf8",
+      ),
+    ) as ProcessedBookJson;
+
+    expect(report.author_death_year).toBe(1920);
+    expect(report.canada_us_v1_status).toBe("approved");
+    expect(report.processing_allowed).toBe(true);
+    expect(report.contains_transcriber_notes).toBe(true);
+    expect(processed.rights.approved_regions).toEqual(["US", "CA"]);
+    expect(processed.source.source_url).toBe("https://www.gutenberg.org/ebooks/1001");
+    expect(JSON.stringify(processed.content)).toContain("The approved chapter");
+    expect(JSON.stringify(processed.content)).not.toMatch(
+      /Project Gutenberg License|Transcriber/i,
+    );
+  });
+
+  test("rights gate keeps missing source IDs and missing death-year evidence out of publish-ready state", ({
+  }, testInfo) => {
+    const missingId = buildSingleFixture({
+      testInfo,
+      slug: "missing-id-sample",
+      rawText: gutenbergFixtureText(),
+      metadata: {
+        ...approvedMetadata("missing-id-sample"),
+        source: {
+          ...approvedMetadata("missing-id-sample").source,
+          gutenbergId: null,
+        },
+      },
+    });
+    const missingIdReport = JSON.parse(
+      fs.readFileSync(
+        path.join(missingId.generatedRoot, "missing-id-sample", "rights_report.json"),
+        "utf8",
+      ),
+    ) as BookRightsReport;
+    expect(missingIdReport.source_url).toBeNull();
+    expect(missingIdReport.canada_us_v1_status).toBe("needs_manual_review");
+    expect(missingId.result.processedBooks[0].source.publishReady).toBe(false);
+
+    const missingDeathYear = buildSingleFixture({
+      testInfo,
+      slug: "missing-death-year",
+      rawText: gutenbergFixtureText(),
+      metadata: approvedMetadata("missing-death-year"),
+      approvedPeople: {},
+    });
+    const missingDeathYearReport = JSON.parse(
+      fs.readFileSync(
+        path.join(
+          missingDeathYear.generatedRoot,
+          "missing-death-year",
+          "rights_report.json",
+        ),
+        "utf8",
+      ),
+    ) as BookRightsReport;
+    expect(missingDeathYearReport.author_death_year).toBeNull();
+    expect(missingDeathYearReport.reasoning_summary).toContain(
+      "Author death year is missing",
+    );
+    expect(missingDeathYear.result.processedBooks[0].source.publishReady).toBe(false);
+  });
+
+  test("rights gate flags copyright, license, translation, image, brand, and content risks", ({
+  }, testInfo) => {
+    const cases = [
+      {
+        slug: "copyright-risk",
+        rawText: gutenbergFixtureText({
+          extraHeader: "Copyright 1964 Example Estate. All rights reserved.",
+        }),
+        expectReport: (report: BookRightsReport) => {
+          expect(report.contains_later_copyright_notice).toBe(true);
+          expect(report.canada_us_v1_status).toBe("reject");
+        },
+      },
+      {
+        slug: "permission-risk",
+        rawText: gutenbergFixtureText({
+          extraHeader: "Used by permission of the publisher.",
+        }),
+        expectReport: (report: BookRightsReport) => {
+          expect(report.contains_permission_based_language).toBe(true);
+          expect(report.canada_us_v1_status).toBe("reject");
+        },
+      },
+      {
+        slug: "creative-commons-risk",
+        rawText: gutenbergFixtureText({
+          extraHeader: "Creative Commons Attribution 4.0",
+        }),
+        expectReport: (report: BookRightsReport) => {
+          expect(report.contains_creative_commons_license).toBe(true);
+          expect(report.canada_us_v1_status).toBe("reject");
+        },
+      },
+      {
+        slug: "translation-risk",
+        rawText: gutenbergFixtureText({
+          extraHeader:
+            "Translator: Modern Translator\nIntroduction by Modern Scholar",
+        }),
+        expectReport: (report: BookRightsReport) => {
+          expect(report.is_translation).toBe(true);
+          expect(report.translation_risk).toBe("medium");
+          expect(report.contains_modern_intro_or_notes).toBe(true);
+          expect(report.processing_allowed).toBe(false);
+        },
+      },
+      {
+        slug: "image-risk",
+        rawText: gutenbergFixtureText({
+          body: "CHAPTER I\n\n[Illustration]\n\nStory text remains here.",
+        }),
+        expectReport: (report: BookRightsReport) => {
+          expect(report.contains_illustrations_or_image_references).toBe(true);
+          expect(report.canada_us_v1_status).toBe("needs_manual_review");
+        },
+      },
+      {
+        slug: "tarzan-risk",
+        rawText: gutenbergFixtureText({
+          title: "Tarzan Practice Sample",
+          body: "CHAPTER I\n\nStory text remains here.",
+        }),
+        metadata: {
+          ...approvedMetadata("tarzan-risk"),
+          title: "Tarzan Practice Sample",
+          subjects: ["Adventure fiction"],
+        },
+        expectReport: (report: BookRightsReport) => {
+          expect(report.trademark_or_character_brand_risk).toBe("high");
+          expect(report.processing_allowed).toBe(false);
+        },
+      },
+      {
+        slug: "content-brand-risk",
+        rawText: gutenbergFixtureText({
+          title: "Uncle Remus Practice Sample",
+          body: "CHAPTER I\n\nStory text remains here.",
+        }),
+        metadata: {
+          ...approvedMetadata("content-brand-risk"),
+          title: "Uncle Remus Practice Sample",
+          subjects: ["Dialect stories"],
+        },
+        expectReport: (report: BookRightsReport) => {
+          expect(report.content_brand_safety_risk).toBe("medium");
+          expect(report.trademark_or_character_brand_risk).toBe("none");
+          expect(report.processing_allowed).toBe(false);
+        },
+      },
+    ];
+
+    for (const testCase of cases) {
+      const { result, generatedRoot } = buildSingleFixture({
+        testInfo,
+        slug: testCase.slug,
+        rawText: testCase.rawText,
+        metadata: testCase.metadata ?? approvedMetadata(testCase.slug),
+      });
+      const report = JSON.parse(
+        fs.readFileSync(
+          path.join(generatedRoot, testCase.slug, "rights_report.json"),
+          "utf8",
+        ),
+      ) as BookRightsReport;
+      testCase.expectReport(report);
+      expect(result.processedBooks[0].source.publishReady).toBe(false);
+      expect(
+        fs.existsSync(path.join(generatedRoot, testCase.slug, "processed_book.json")),
+      ).toBe(false);
+    }
+  });
+
   test("fails generated duplicate section ids before writing a successful book", ({
   }, testInfo) => {
     const textRoot = testInfo.outputPath("duplicate-section-id");
@@ -647,6 +1002,18 @@ Project Gutenberg License
       ROOT,
       "app/client/assets/books/generated/alices-adventures-in-wonderland/sections/chapter-001.json",
     );
+    const rightsReportPath = path.join(
+      ROOT,
+      "app/client/assets/books/generated/alices-adventures-in-wonderland/rights_report.json",
+    );
+    const processingNotesPath = path.join(
+      ROOT,
+      "app/client/assets/books/generated/alices-adventures-in-wonderland/processing_notes.md",
+    );
+    const processedBookPath = path.join(
+      ROOT,
+      "app/client/assets/books/generated/alices-adventures-in-wonderland/processed_book.json",
+    );
 
     const libraryManifest = JSON.parse(
       fs.readFileSync(libraryManifestPath, "utf8"),
@@ -655,17 +1022,38 @@ Project Gutenberg License
       fs.readFileSync(bookManifestPath, "utf8"),
     ) as {
       slug: string;
-      source: { publishReady: boolean; rightsReviewed: boolean };
+      source: {
+        publishReady: boolean;
+        rightsReviewed: boolean;
+        sourceUrl: string | null;
+        rightsStatus: string;
+        processingAllowed: boolean;
+        rightsReportPath: string;
+      };
       sections: Array<{ kind: string; includeByDefault: boolean }>;
     };
     const firstChapter = JSON.parse(
       fs.readFileSync(firstChapterPath, "utf8"),
     ) as Record<string, unknown>;
+    const rightsReport = JSON.parse(
+      fs.readFileSync(rightsReportPath, "utf8"),
+    ) as BookRightsReport;
+    const processingNotes = fs.readFileSync(processingNotesPath, "utf8");
 
     expect(JSON.stringify(libraryManifest)).not.toContain("morseSourceText");
     expect(bookManifest.slug).toBe("alices-adventures-in-wonderland");
     expect(bookManifest.source.rightsReviewed).toBe(false);
     expect(bookManifest.source.publishReady).toBe(false);
+    expect(bookManifest.source.sourceUrl).toBe("https://www.gutenberg.org/ebooks/11");
+    expect(bookManifest.source.rightsStatus).toBe("needs_manual_review");
+    expect(bookManifest.source.processingAllowed).toBe(false);
+    expect(bookManifest.source.rightsReportPath).toBe("rights_report.json");
+    expect(rightsReport.source_url).toBe("https://www.gutenberg.org/ebooks/11");
+    expect(rightsReport.processing_allowed).toBe(false);
+    expect(rightsReport.canada_us_v1_status).toBe("needs_manual_review");
+    expect(processingNotes).toContain("Approval status: needs_manual_review");
+    expect(processingNotes).toContain("processed_book.json emitted: no");
+    expect(fs.existsSync(processedBookPath)).toBe(false);
     expect(
       bookManifest.sections.filter(
         (section) => section.kind === "chapter" && section.includeByDefault,

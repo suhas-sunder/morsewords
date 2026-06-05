@@ -209,6 +209,11 @@ test.describe("Morse book page foundation", () => {
     await expect(sourcePreview).toContainText("CHAPTER II");
     await expect(sourcePreview).not.toContainText("Project Gutenberg");
     await expect(sourcePreview).not.toContainText("START OF THE PROJECT GUTENBERG");
+    await expect(
+      page.getByRole("link", {
+        name: "Original source: Project Gutenberg ebook #11",
+      }),
+    ).toHaveAttribute("href", "https://www.gutenberg.org/ebooks/11");
     await expect(page.getByText("Downloads are disabled until this book is publish-ready.")).toBeVisible();
     await expect(page.getByRole("button", { name: "Download MP3" })).toBeDisabled();
 
@@ -258,6 +263,9 @@ test.describe("Morse book page foundation", () => {
       "data-mw-morse-book-publish-ready",
       "true",
     );
+    await expect(
+      page.getByRole("link", { name: /Project Gutenberg ebook/ }),
+    ).toHaveCount(0);
     await expect(page.getByRole("button", { name: "Current section" })).toBeVisible();
     await expect(page.getByRole("button", { name: "No split" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Download MP3" })).toBeEnabled();
