@@ -2,6 +2,8 @@ import type { Route } from "./+types/morse-code-books.$slug";
 
 import MorseBookPage from "~/client/components/morse-code-books/MorseBookPage";
 import {
+  TEST_PUBLISHED_BOOK_PREVIEW_VALUE,
+  TEST_PUBLISHED_BOOK_SLUG,
   UNPUBLISHED_BOOK_PREVIEW_PARAM,
   UNPUBLISHED_BOOK_PREVIEW_VALUE,
   getDefaultMorseBookSectionId,
@@ -21,6 +23,16 @@ function isUnpublishedPreviewRequest(request: Request) {
   );
 }
 
+function isTestPublishedPreviewRequest(request: Request, slug: string) {
+  const url = new URL(request.url);
+  return (
+    import.meta.env.DEV &&
+    slug === TEST_PUBLISHED_BOOK_SLUG &&
+    url.searchParams.get(UNPUBLISHED_BOOK_PREVIEW_PARAM) ===
+      TEST_PUBLISHED_BOOK_PREVIEW_VALUE
+  );
+}
+
 export async function loader({ params, request }: Route.LoaderArgs) {
   const slug = params.slug;
   if (!slug) {
@@ -28,14 +40,16 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   }
 
   const previewMode = isUnpublishedPreviewRequest(request);
+  const testPreviewMode = isTestPublishedPreviewRequest(request, slug);
   const book = await getMorseBookManifest(slug, {
     includeUnpublished: previewMode,
+    includeTestFixture: testPreviewMode,
   });
   if (!book) {
     throw new Response("Morse book not found", { status: 404 });
   }
 
-  if (!isMorseBookPublishReady(book) && !previewMode) {
+  if (!isMorseBookPublishReady(book) && !previewMode && !testPreviewMode) {
     throw new Response("Morse book not found", { status: 404 });
   }
 
@@ -49,8 +63,11 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     throw new Response("Morse book section not found", { status: 404 });
   }
 
-  const previewState: "unpublished" | null =
-    previewMode && !isMorseBookPublishReady(book) ? "unpublished" : null;
+  const previewState: "unpublished" | "test-published" | null = testPreviewMode
+    ? "test-published"
+    : previewMode && !isMorseBookPublishReady(book)
+      ? "unpublished"
+      : null;
 
   return {
     book,
@@ -67,13 +84,19 @@ export const meta: Route.MetaFunction = ({ data }) => {
     ];
   }
 
-  if (data.previewMode === "unpublished") {
+  if (data.previewMode === "unpublished" || data.previewMode === "test-published") {
     return [
-      { title: `Unpublished Morse book preview: ${data.book.title} | MorseWords` },
+      {
+        title: `${
+          data.previewMode === "test-published"
+            ? "Test Morse book preview"
+            : "Unpublished Morse book preview"
+        }: ${data.book.title} | MorseWords`,
+      },
       {
         name: "description",
         content:
-          "Development-only noindex preview for a generated Morse book artifact before rights review.",
+          "Development-only noindex preview for a generated Morse book artifact.",
       },
       { name: "robots", content: "noindex,nofollow" },
     ];
