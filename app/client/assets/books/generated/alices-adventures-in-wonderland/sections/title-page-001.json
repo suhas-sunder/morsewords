@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "alices-adventures-in-wonderland",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Front matter",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "[Illustration]\n\n\nAlice’s Adventures in Wonderland\n\nby Lewis Carroll\n\nTHE MILLENNIUM FULCRUM EDITION 3.0",
+  "morseSourceText": "[Illustration]\n\n\nAlice’s Adventures in Wonderland\n\nby Lewis Carroll\n\nTHE MILLENNIUM FULCRUM EDITION 3.0",
+  "paragraphs": [
+    "[Illustration]",
+    "Alice’s Adventures in Wonderland",
+    "by Lewis Carroll",
+    "THE MILLENNIUM FULCRUM EDITION 3.0"
+  ],
+  "wordCount": 15,
+  "characterCount": 103,
+  "morseCharacterEstimate": 532,
+  "unsupportedCharacterSummary": {
+    "[": 1,
+    "]": 1
+  },
+  "textPreview": "[Illustration] Alice’s Adventures in Wonderland by Lewis Carroll THE MILLENNIUM FULCRUM EDITION 3.0",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 105
+  }
+}

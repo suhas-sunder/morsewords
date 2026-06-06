@@ -173,6 +173,11 @@ const MORE_GROUPS: NavGroup[] = [
         description: "Convert long text into Morse audio or video downloads.",
       },
       {
+        label: "Morse books",
+        href: ROUTES.morseBooks,
+        description: "Browse reviewed Morse book and audiobook-style pages.",
+      },
+      {
         label: "Video generator",
         href: ROUTES.videoGenerator,
         description: "Create a short downloadable Morse WebM clip.",

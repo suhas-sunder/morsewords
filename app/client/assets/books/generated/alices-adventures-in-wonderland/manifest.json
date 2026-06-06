@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "slug": "alices-adventures-in-wonderland",
+  "title": "Alice's Adventures in Wonderland",
+  "author": [
+    "Lewis Carroll"
+  ],
+  "language": "en",
+  "description": "A pilot Project Gutenberg source for chapter-level Morse book ingestion and future Morse audiobook workflows.",
+  "subjects": [
+    "Fantasy fiction",
+    "Children's literature"
+  ],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "11",
+    "releaseDate": null,
+    "sourceUrl": "https://www.gutenberg.org/ebooks/11",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": false,
+    "publishReady": false,
+    "rightsStatus": "needs_manual_review",
+    "processingAllowed": false,
+    "rightsReportPath": "rights_report.json",
+    "rightsNotes": "Initial pilot metadata for local generated artifacts. Rights review has not been completed."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Alice's Adventures in Wonderland"
+  },
+  "stats": {
+    "originalCharacterCount": 163885,
+    "cleanedCharacterCount": 144573,
+    "wordCount": 27295,
+    "sectionCount": 14,
+    "includedSectionCount": 12
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Front matter",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-001.json",
+      "characterCount": 103,
+      "wordCount": 15,
+      "morseCharacterEstimate": 532,
+      "textPreview": "[Illustration] Alice’s Adventures in Wonderland by Lewis Carroll THE MILLENNIUM FULCRUM EDITION 3.0"
+    },
+    {
+      "id": "title-page-002",
+      "kind": "title-page",
+      "label": "Contents",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-002.json",
+      "characterCount": 472,
+      "wordCount": 74,
+      "morseCharacterEstimate": 2333,
+      "textPreview": "Contents CHAPTER I. Down the Rabbit-Hole CHAPTER II. The Pool of Tears CHAPTER III. A Caucus-Race and a Long Tale CHAPTER IV. The Rabbit Sends in a Little Bill..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 11551,
+      "wordCount": 2177,
+      "morseCharacterEstimate": 60769,
+      "textPreview": "CHAPTER I. Down the Rabbit-Hole Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 10953,
+      "wordCount": 2181,
+      "morseCharacterEstimate": 59201,
+      "textPreview": "CHAPTER II. The Pool of Tears “Curiouser and curiouser!” cried Alice (she was so much surprised, that for the moment she quite forgot how to speak good English..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 9261,
+      "wordCount": 1733,
+      "morseCharacterEstimate": 50109,
+      "textPreview": "CHAPTER III. A Caucus-Race and a Long Tale They were indeed a queer-looking party that assembled on the bank—the birds with draggled feathers, the animals with..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 13884,
+      "wordCount": 2728,
+      "morseCharacterEstimate": 75093,
+      "textPreview": "CHAPTER IV. The Rabbit Sends in a Little Bill It was the White Rabbit, trotting slowly back again, and looking anxiously about as it went, as if it had lost so..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "order": 7,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 12011,
+      "wordCount": 2242,
+      "morseCharacterEstimate": 64002,
+      "textPreview": "CHAPTER V. Advice from a Caterpillar The Caterpillar and Alice looked at each other for some time in silence: at last the Caterpillar took the hookah out of it..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "order": 8,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-006.json",
+      "characterCount": 13844,
+      "wordCount": 2657,
+      "morseCharacterEstimate": 74654,
+      "textPreview": "CHAPTER VI. Pig and Pepper For a minute or two she stood looking at the house, and wondering what to do next, when suddenly a footman in livery came running ou..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "order": 9,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-007.json",
+      "characterCount": 12703,
+      "wordCount": 2369,
+      "morseCharacterEstimate": 68782,
+      "textPreview": "CHAPTER VII. A Mad Tea-Party There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "order": 10,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-008.json",
+      "characterCount": 13670,
+      "wordCount": 2552,
+      "morseCharacterEstimate": 73726,
+      "textPreview": "CHAPTER VIII. The Queen’s Croquet-Ground A large rose-tree stood near the entrance of the garden: the roses growing on it were white, but there were three gard..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "order": 11,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-009.json",
+      "characterCount": 12631,
+      "wordCount": 2358,
+      "morseCharacterEstimate": 68937,
+      "textPreview": "CHAPTER IX. The Mock Turtle’s Story “You can’t think how glad I am to see you again, you dear old thing!” said the Duchess, as she tucked her arm affectionatel..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "order": 12,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-010.json",
+      "characterCount": 11411,
+      "wordCount": 2100,
+      "morseCharacterEstimate": 62380,
+      "textPreview": "CHAPTER X. The Lobster Quadrille The Mock Turtle sighed deeply, and drew the back of one flapper across his eyes. He looked at Alice, and tried to speak, but f..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "order": 13,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-011.json",
+      "characterCount": 10387,
+      "wordCount": 1932,
+      "morseCharacterEstimate": 56067,
+      "textPreview": "CHAPTER XI. Who Stole the Tarts? The King and Queen of Hearts were seated on their throne when they arrived, with a great crowd assembled about them—all sorts..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "order": 14,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-012.json",
+      "characterCount": 11654,
+      "wordCount": 2177,
+      "morseCharacterEstimate": 62772,
+      "textPreview": "CHAPTER XII. Alice’s Evidence “Here!” cried Alice, quite forgetting in the flurry of the moment how large she had grown in the last few minutes, and she jumped..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 163885,
+    "cleanedCharacterCount": 144573,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output."
+  ]
+}

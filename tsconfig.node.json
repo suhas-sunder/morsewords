@@ -1,6 +1,11 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["server.js", "vite.config.ts"],
+  "include": [
+    "server.js",
+    "vite.config.ts",
+    "scripts/books/**/*.ts",
+    "app/client/components/shared/morseUtils.ts"
+  ],
   "compilerOptions": {
     "composite": true,
     "strict": true,
@@ -8,6 +13,7 @@
     "lib": ["ES2022"],
     "target": "ES2022",
     "module": "ES2022",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true
   }
 }

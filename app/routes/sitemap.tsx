@@ -94,6 +94,12 @@ const GROUPS: SitemapGroup[] = [
           "Convert long text, TXT, EPUB, or PDF into Morse audio or video downloads.",
       },
       {
+        label: "Morse Code Books",
+        to: ROUTES.morseBooks,
+        description:
+          "Browse reviewed Morse book and Morse audiobook-style pages as curated sources become publish-ready.",
+      },
+      {
         label: "Morse Code Video Generator",
         to: ROUTES.videoGenerator,
         description:

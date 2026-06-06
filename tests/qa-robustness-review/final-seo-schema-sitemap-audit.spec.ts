@@ -23,6 +23,7 @@ const KEY_CANONICAL_ROUTES = [
   ROUTES.soundGenerator,
   ROUTES.mp3Generator,
   ROUTES.bookTranslator,
+  ROUTES.morseBooks,
   ROUTES.videoGenerator,
   ROUTES.wordSeparator,
   ROUTES.timing,
@@ -31,6 +32,7 @@ const KEY_CANONICAL_ROUTES = [
 
 const KEY_ALIAS_EXPECTATIONS = [
   [ROUTES.ebookTranslatorAlias, ROUTES.bookTranslator],
+  [ROUTES.morseAudiobooksAlias, ROUTES.morseBooks],
   [ROUTES.textToMorseVideoAlias, ROUTES.videoGenerator],
 ] as const;
 
