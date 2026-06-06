@@ -11,6 +11,23 @@ const TEST_BOOK_SLUG = "test-published-morse-book";
 const TEST_BOOK_HUB_PATH = `${ROUTES.morseBooks}?preview=test-published`;
 const TEST_COLLECTION_HUB_PATH = `${ROUTES.morseBooks}?preview=test-collection`;
 const THEME_STORAGE_KEY = "morsewords-theme";
+const PUBLIC_INTERNAL_TERMS = [
+  "generated artifacts",
+  "generated artifact",
+  "raw text inventory",
+  "metadata files",
+  "pilot artifacts",
+  "pilot artifact",
+  "review trail",
+  "unpublished pilot",
+];
+const FAKE_PUBLIC_SIGNALS = [
+  "star rating",
+  "page count",
+  "reviews",
+  "favorites",
+  "popularity",
+];
 
 async function gotoHub(page: Page, pathName = ROUTES.morseBooks) {
   await blockExternalNetwork(page);
@@ -155,9 +172,32 @@ test.describe("Morse books hub", () => {
     ).toHaveAttribute("href", ROUTES.bookTranslator);
     await expect(page.getByText("Alice's Adventures in Wonderland")).toHaveCount(0);
     await expect(page.locator(`a[href*="${ALICE_SLUG}"]`)).toHaveCount(0);
-    await expect(page.locator("main")).not.toContainText("star rating");
-    await expect(page.locator("main")).not.toContainText("page count");
-    await expect(page.locator("main")).not.toContainText("reviews");
+
+    const publicMainText = (await page.locator("main").innerText()).toLowerCase();
+    for (const term of PUBLIC_INTERNAL_TERMS) {
+      expect(publicMainText, `public hub hides internal term: ${term}`).not.toContain(
+        term,
+      );
+    }
+    for (const term of FAKE_PUBLIC_SIGNALS) {
+      expect(publicMainText, `public hub hides fake signal: ${term}`).not.toContain(
+        term,
+      );
+    }
+
+    const collectionBeforeGuide = await page.evaluate(() => {
+      const toolbar = document.querySelector("[data-testid='morse-books-toolbar']");
+      const guideHeading = [...document.querySelectorAll("h2")].find((heading) =>
+        heading.textContent?.includes("What a Morse book page will do"),
+      );
+      return Boolean(
+        toolbar &&
+          guideHeading &&
+          toolbar.compareDocumentPosition(guideHeading) &
+            Node.DOCUMENT_POSITION_FOLLOWING,
+      );
+    });
+    expect(collectionBeforeGuide).toBe(true);
 
     const links = await pageLinkPaths(page);
     expect(links, "hub links use canonical destinations").toContain(
@@ -234,7 +274,9 @@ test.describe("Morse books hub", () => {
     ).toHaveCount(0);
     await expect(page.getByText("Morse audio/video")).toBeVisible();
 
-    const bookLink = page.getByRole("link", { name: "Open book page" });
+    const bookLink = page.getByRole("link", {
+      name: "Open book page for Test Published Morse Book",
+    });
     await expect(bookLink).toHaveAttribute(
       "href",
       `/morse-code-books/${TEST_BOOK_SLUG}?preview=test-published`,
@@ -248,7 +290,7 @@ test.describe("Morse books hub", () => {
 
     const jsonLd = await parseJsonLd(page);
     const schemaText = JSON.stringify(jsonLd);
-    expect(schemaText).toContain("Test Published Morse Book");
+    expect(schemaText).not.toContain("Test Published Morse Book");
     expect(schemaText).not.toContain(ALICE_SLUG);
 
     await saveScreenshot(page, testInfo, "morse-books-hub-test-card.png");
@@ -293,6 +335,15 @@ test.describe("Morse books hub", () => {
       "Showing 8 of 8 reviewed books",
     );
 
+    await page.getByLabel("Search title, author, or subject").fill("Chapter drills");
+    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(7);
+    await expect(
+      page.getByRole("heading", { name: "Test Collection Morse Book 03" }),
+    ).toBeVisible();
+    await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
+      "Showing 7 of 7 reviewed books",
+    );
+
     await page.getByLabel("Search title, author, or subject").fill("");
     await page.getByLabel("Filter Morse books by subject").selectOption(
       "Adventure practice",
@@ -309,10 +360,31 @@ test.describe("Morse books hub", () => {
     );
 
     await page.getByLabel("Filter Morse books by subject").selectOption("all");
-    await page.getByLabel("Sort Morse books").selectOption("wordCount");
+    await page.getByLabel("Sort Morse books").selectOption("author");
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(5);
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 5 of 5 reviewed books",
+    );
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").first(),
+    ).toHaveText("Test Collection Morse Book 01");
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").nth(1),
+    ).toHaveText("Test Collection Morse Book 29");
+
+    await page.getByLabel("Sort Morse books").selectOption("wordCount");
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").first(),
+    ).toHaveText("Test Collection Morse Book 01");
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").nth(1),
+    ).toHaveText("Test Collection Morse Book 08");
+
+    await page.getByLabel("Search title, author, or subject").fill("not a book");
+    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(0);
+    await expect(page.getByText("No reviewed books match that search.")).toBeVisible();
+    await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
+      "Showing 0 of 0 reviewed books",
     );
 
     await page.getByRole("button", { name: "Clear filters" }).click();
@@ -328,7 +400,9 @@ test.describe("Morse books hub", () => {
     const firstCardLink = page
       .locator("[data-testid='morse-book-card']")
       .filter({ hasText: "Test Collection Morse Book 01" })
-      .getByRole("link", { name: "Open book page" });
+      .getByRole("link", {
+        name: "Open book page for Test Collection Morse Book 01",
+      });
     await expect(firstCardLink).toHaveAttribute(
       "href",
       "/morse-code-books/test-collection-morse-book-01",
@@ -336,7 +410,7 @@ test.describe("Morse books hub", () => {
 
     const jsonLd = await parseJsonLd(page);
     const schemaText = JSON.stringify(jsonLd);
-    expect(schemaText).toContain("Test Collection Morse Book 01");
+    expect(schemaText).not.toContain("Test Collection Morse Book 01");
     expect(schemaText).not.toContain(ALICE_SLUG);
 
     await saveScreenshot(page, testInfo, "morse-books-hub-test-collection.png");

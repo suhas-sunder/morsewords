@@ -37,11 +37,11 @@ const PAGE_SIZE = 12;
 const guideItems = [
   {
     title: "Reviewed book pages",
-    text: "The collection lists books only after source and rights checks are complete. Raw text files and unpublished pilot artifacts do not appear here.",
+    text: "The collection lists books only after source and rights checks are complete. Titles still under review stay hidden until they are ready for public use.",
   },
   {
     title: "Book pages, not uploads",
-    text: "A book page starts from generated, cleaned sections with chapter navigation. The general book translator remains the tool for your own pasted text, TXT, EPUB, MD, or text-native PDF files.",
+    text: "A book page starts from reviewed, cleaned sections with chapter navigation. The general book translator remains the tool for your own pasted text, TXT, EPUB, MD, or text-native PDF files.",
     href: ROUTES.bookTranslator,
     badge: "Use your text",
   },
@@ -57,8 +57,8 @@ const guideItems = [
 
 const reviewItems = [
   {
-    title: "Source metadata",
-    text: "Generated book data keeps provider, Gutenberg ID when available, source link, release details, and rights status separate from the Morse source text.",
+    title: "Source details",
+    text: "Each listed book keeps provider, Gutenberg ID when available, source link, release details, and rights status separate from the Morse source text.",
   },
   {
     title: "Boilerplate excluded",
@@ -66,7 +66,7 @@ const reviewItems = [
   },
   {
     title: "No unreviewed books",
-    text: "A generated artifact can exist for local testing while still being blocked from public listing, book pages, sitemaps, and download workflows.",
+    text: "If a title has not cleared review, it stays off public listings, book pages, sitemaps, and download workflows.",
   },
   {
     title: "Placeholders first",
@@ -252,7 +252,7 @@ export default function MorseCodeBooksHubRoute({
       "Book to Morse code",
       "Long text to Morse audio",
     ],
-    ...(books.length > 0
+    ...(books.length > 0 && !includeTestFixture
       ? {
           mainEntity: {
             "@type": "ItemList",
@@ -320,7 +320,7 @@ export default function MorseCodeBooksHubRoute({
             <p className="mw-text-muted mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Search reviewed titles, filter by source subjects or language,
               and open rights-approved book pages for chapter-based Morse audio,
-              video, and practice. Unpublished pilot data stays out of public
+              video, and practice. Books still under review stay out of public
               cards, navigation, and sitemaps.
             </p>
           </div>
@@ -425,10 +425,10 @@ export default function MorseCodeBooksHubRoute({
             as="section"
             className="mt-6"
             data-testid="morse-books-empty-state"
-            aria-label="Morse books review status"
+            aria-label="Morse books empty collection"
           >
             <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-              Review queue
+              Coming soon
             </p>
             <h3 className="mw-heading mt-3 text-2xl font-extrabold text-sky-950">
               Curated Morse books are being reviewed.
@@ -494,7 +494,7 @@ export default function MorseCodeBooksHubRoute({
       <SectionCard
         eyebrow="How it works"
         title="What a Morse book page will do"
-        description="The collection is for reviewed, structured books. Personal text, drafts, uploads, and unreviewed raw files belong in the general book translator instead."
+        description="The collection is for reviewed, structured books. Personal text, drafts, uploads, and titles still under review belong in the general book translator instead."
         layout="stacked"
       >
         <SimpleGrid items={guideItems} variant="plain" linkedItemStyle="inline" />
@@ -503,7 +503,7 @@ export default function MorseCodeBooksHubRoute({
       <SectionCard
         eyebrow="Source checks"
         title="Why reviewed books are listed slowly"
-        description="MorseWords separates raw text inventory from public book pages so future public-domain Morse audiobook workflows have a clear review trail."
+        description="MorseWords lists only titles that pass source and rights checks so future public-domain Morse audiobook workflows start from reviewed, source-linked text."
         layout="stacked"
       >
         <SimpleGrid items={reviewItems} variant="plain" />
@@ -628,6 +628,7 @@ function BookCard({
           ].join(" ")}
         >
           Open book page
+          <span className="sr-only"> for {book.title}</span>
         </Link>
       </div>
     </article>
