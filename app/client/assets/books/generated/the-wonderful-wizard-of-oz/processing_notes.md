@@ -1,10 +1,10 @@
-# Alice's Adventures in Wonderland rights review notes
+# The Wonderful Wizard of Oz rights review notes
 
-- Source file: ../alices-adventures-in-wonderland.txt
-- Gutenberg ID: 11
-- Source URL: https://www.gutenberg.org/ebooks/11
-- Metadata status: unspecified
-- Manual review required: no
+- Source file: ../the-wonderful-wizard-of-oz.txt
+- Gutenberg ID: 55
+- Source URL: https://www.gutenberg.org/ebooks/55
+- Metadata status: draft
+- Manual review required: yes
 - Approval status: needs_manual_review
 - Processing allowed: no
 - processed_book.json emitted: no
@@ -13,10 +13,9 @@
 ## Rights evidence found
 
 - Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
-- U.S. reuse language: utenberg eBook of Alice's Adventures in Wonderland This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
-- Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Alice's Adventures in Wonderland
-- Illustration or image reference: ** START OF THE PROJECT GUTENBERG EBOOK ALICE'S ADVENTURES IN WONDERLAND *** [Illustration] Alice’s Adventures in Wonderland by Lewis Carroll THE MILLENNIUM FULCRUM EDITION 3.0 Contents CHAPTER I. Down the
-- Edition risk: ustration] Alice’s Adventures in Wonderland by Lewis Carroll THE MILLENNIUM FULCRUM EDITION 3.0 Contents CHAPTER I. Down the Rabbit-Hole CHAPTER II. The Pool of Tears CHAPTER III. A Caucus-Race and a Long Tale
+- U.S. reuse language: ject Gutenberg eBook of The Wonderful Wizard of Oz This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
+- Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Wonderful Wizard of Oz Au
+- Illustration or image reference: *** START OF THE PROJECT GUTENBERG EBOOK THE WONDERFUL WIZARD OF OZ *** [Illustration] The Wonderful Wizard of Oz by L. Frank Baum This book is dedicated to my good friend & comrade My Wife L.F.B. Conte
 
 ## Source clues
 
@@ -24,10 +23,10 @@
 - Project Gutenberg license present: yes
 - U.S. reuse language found: yes
 - Non-U.S. warning found: yes
-- Release date: June 27, 2008
+- Release date: February 1, 1993
 - Last updated: missing
-- Original publication: 1865
-- Credits: Arthur DiBianca and David Widger
+- Original publication: missing
+- Credits: missing
 - Translator: none found
 - Illustrator: none found
 - Editor: none found
@@ -36,7 +35,7 @@
 ## Risks found
 
 - Translation risk: none
-- Edition risk: medium
+- Edition risk: none
 - Trademark or character brand risk: none
 - Content brand-safety risk: none
 - Later copyright notice: no
@@ -50,15 +49,19 @@
 ## Command warnings
 
 - Rights have not been reviewed; generated book is not publish-ready.
+- Rights basis "unknown" is not publish-ready.
 - Rights gate status is needs_manual_review; generated book is not publish-ready.
 - Rights gate did not allow processed public story output.
 
 ## Manual review reasons
 
+- Original publication metadata was not found.
+- Original publication year is missing or not before 1931.
 - Author death year is missing from approved metadata or clear source metadata.
 - Metadata rightsReviewed is false.
+- Rights basis "unknown" is not publish-ready.
 - Illustrations or image references need manual handling.
-- Edition or editorial status needs manual review.
+- Draft or manual-review metadata must be reviewed before processing or publishing.
 
 ## Next action
 

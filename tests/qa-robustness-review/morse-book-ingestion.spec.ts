@@ -11,6 +11,7 @@ import type {
 import { buildBookLibrary, scanBookInventory } from "../../scripts/books/build-book-library.ts";
 import { cleanGutenbergText } from "../../scripts/books/clean-gutenberg.ts";
 import { detectBookSections } from "../../scripts/books/detect-book-sections.ts";
+import { generateBookRightsReports } from "../../scripts/books/generate-book-rights-reports.ts";
 import { scaffoldBookMetadata } from "../../scripts/books/scaffold-book-metadata.ts";
 
 const ROOT = process.cwd();
@@ -720,6 +721,302 @@ Third chapter.
     expect(result.warnings.join(" ")).toContain(
       "draft metadata raw text file is missing",
     );
+  });
+
+  test("rights report command classifies every metadata book without story artifacts", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("rights-report-library");
+    const generatedRoot = testInfo.outputPath("rights-report-generated");
+    const approvedPeoplePath = path.join(
+      textRoot,
+      "approved-metadata",
+      "authors.json",
+    );
+    writeApprovedPeople(textRoot, {
+      "approved-author": {
+        name: "Approved Author",
+        deathYear: 1920,
+        canadaLifePlus70Safe: true,
+        notes: "Fixture author approved for Canada life-plus-70 checks.",
+      },
+    });
+
+    const metadataFor = (
+      slug: string,
+      gutenbergId: string,
+      overrides: Partial<BookMetadata> = {},
+    ): BookMetadata => {
+      const base = approvedMetadata(slug, {
+        ...overrides,
+        source: {
+          ...approvedMetadata(slug).source,
+          gutenbergId,
+          ...(overrides.source ?? {}),
+        },
+      });
+      return {
+        ...base,
+        author: overrides.author ?? ["Approved Author"],
+        source: {
+          ...base.source,
+          gutenbergId,
+          rightsBasis: overrides.source?.rightsBasis ?? "public-domain-us",
+          rightsReviewed: overrides.source?.rightsReviewed ?? true,
+          ...(overrides.source ?? {}),
+        },
+      };
+    };
+    const rawFor = (
+      title: string,
+      gutenbergId: string,
+      extraHeader = "",
+      body = "CHAPTER I\n\nFixture body text.",
+      footerExtra = "",
+    ) =>
+      gutenbergFixtureText({
+        title,
+        author: "Approved Author",
+        language: "English",
+        gutenbergId,
+        releaseDate: "January 1, 2001",
+        extraHeader: ["Original publication: 1900", extraHeader]
+          .filter(Boolean)
+          .join("\n"),
+        body,
+        footerExtra,
+      });
+
+    writeFixtureBook(
+      textRoot,
+      "approved-rights",
+      rawFor("Approved Rights", "2001"),
+      metadataFor("approved-rights", "2001"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "draft-rights",
+      rawFor(
+        "Draft Rights",
+        "2002",
+        "",
+        "CHAPTER I\n\nUNIQUE FULL STORY TEXT SHOULD STAY OUT OF REVIEW REPORT.",
+      ),
+      metadataFor("draft-rights", "2002", {
+        metadataStatus: "draft",
+        manualReviewRequired: true,
+        source: {
+          ...approvedMetadata("draft-rights").source,
+          gutenbergId: "2002",
+          rightsBasis: "unknown",
+          rightsReviewed: false,
+        },
+      }),
+    );
+    writeFixtureBook(
+      textRoot,
+      "duplicate-one",
+      rawFor("Duplicate One", "2077"),
+      metadataFor("duplicate-one", "2077"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "duplicate-two",
+      rawFor("Duplicate Two", "2077"),
+      metadataFor("duplicate-two", "2077"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "copyright-risk",
+      rawFor("Copyright Risk", "2003", "", "CHAPTER I\n\nText.", "All rights reserved."),
+      metadataFor("copyright-risk", "2003"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "permission-risk",
+      rawFor(
+        "Permission Risk",
+        "2004",
+        "",
+        "CHAPTER I\n\nText.",
+        "Used by permission of the publisher.",
+      ),
+      metadataFor("permission-risk", "2004"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "creative-commons-risk",
+      rawFor(
+        "Creative Commons Risk",
+        "2005",
+        "",
+        "CHAPTER I\n\nText.",
+        "Creative Commons Attribution license.",
+      ),
+      metadataFor("creative-commons-risk", "2005"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "translation-intro-risk",
+      rawFor(
+        "Translation Intro Risk",
+        "2006",
+        [
+          "Translator: Modern Translator",
+          "Editor: Modern Editor",
+          "Introduction by Modern Intro",
+        ].join("\n"),
+      ),
+      metadataFor("translation-intro-risk", "2006"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "transcriber-image-risk",
+      rawFor(
+        "Transcriber Image Risk",
+        "2007",
+        "Illustrator: Example Illustrator",
+        "TRANSCRIBER'S NOTE\n\n[Illustration]\n\nCHAPTER I\n\nText.",
+      ),
+      metadataFor("transcriber-image-risk", "2007"),
+    );
+
+    const result = generateBookRightsReports({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath,
+      generatedRoot,
+      quiet: true,
+    });
+
+    expect(result.fatalErrors).toEqual([]);
+    expect(result.rightsReports).toHaveLength(9);
+    expect(result.processingNotes).toHaveLength(9);
+
+    const approvedReport = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "approved-rights", "rights_report.json"),
+    );
+    expect(approvedReport.canada_us_v1_status).toBe("approved");
+    expect(approvedReport.processing_allowed).toBe(true);
+    expect(approvedReport.author_death_year).toBe(1920);
+    expect(approvedReport.source_url).toBe("https://www.gutenberg.org/ebooks/2001");
+
+    const draftReport = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "draft-rights", "rights_report.json"),
+    );
+    expect(draftReport.canada_us_v1_status).toBe("needs_manual_review");
+    expect(draftReport.processing_allowed).toBe(false);
+    expect(
+      fs.existsSync(path.join(generatedRoot, "draft-rights", "processed_book.json")),
+    ).toBe(false);
+    expect(
+      fs.existsSync(path.join(generatedRoot, "draft-rights", "sections")),
+    ).toBe(false);
+    expect(
+      fs.readFileSync(
+        path.join(generatedRoot, "draft-rights", "processing_notes.md"),
+        "utf8",
+      ),
+    ).toContain("Section/story artifacts emitted by rights-only command: no");
+
+    const duplicateReport = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "duplicate-one", "rights_report.json"),
+    );
+    expect(duplicateReport.canada_us_v1_status).toBe("needs_manual_review");
+    expect(duplicateReport.reasoning_summary).toContain(
+      "Duplicate Gutenberg ID requires explicit review",
+    );
+
+    expect(
+      readJsonFile<BookRightsReport>(
+        path.join(generatedRoot, "copyright-risk", "rights_report.json"),
+      ).canada_us_v1_status,
+    ).toBe("reject");
+    expect(
+      readJsonFile<BookRightsReport>(
+        path.join(generatedRoot, "permission-risk", "rights_report.json"),
+      ).contains_permission_based_language,
+    ).toBe(true);
+    expect(
+      readJsonFile<BookRightsReport>(
+        path.join(generatedRoot, "creative-commons-risk", "rights_report.json"),
+      ).contains_creative_commons_license,
+    ).toBe(true);
+
+    const translationReport = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "translation-intro-risk", "rights_report.json"),
+    );
+    expect(translationReport.canada_us_v1_status).toBe("needs_manual_review");
+    expect(translationReport.translator).toBe("Modern Translator");
+    expect(translationReport.translator_death_year).toBeNull();
+    expect(translationReport.editor).toBe("Modern Editor");
+    expect(translationReport.introduction_author).toBe("Modern Intro");
+    expect(translationReport.contains_modern_intro_or_notes).toBe(true);
+
+    const transcriberImageReport = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "transcriber-image-risk", "rights_report.json"),
+    );
+    expect(transcriberImageReport.contains_transcriber_notes).toBe(true);
+    expect(transcriberImageReport.contains_illustrations_or_image_references).toBe(true);
+
+    const reviewReport = readJsonFile<{
+      totalMetadataBooks: number;
+      statusCounts: {
+        approved: number;
+        needsManualReview: number;
+        rejected: number;
+      };
+      processingAllowed: number;
+      duplicateGutenbergIds: Array<{
+        gutenbergId: string;
+        participants: Array<{ slug: string; rawTextFile: string }>;
+      }>;
+      riskCounts: {
+        laterCopyrightOrPermission: number;
+        translationRisk: number;
+        introEditorAnnotationRisk: number;
+        illustrationImageRisk: number;
+        creativeCommons: number;
+      };
+    }>(path.join(generatedRoot, "review-report.json"));
+    expect(reviewReport.totalMetadataBooks).toBe(9);
+    expect(reviewReport.statusCounts.approved).toBe(1);
+    expect(reviewReport.statusCounts.needsManualReview).toBe(5);
+    expect(reviewReport.statusCounts.rejected).toBe(3);
+    expect(reviewReport.processingAllowed).toBe(1);
+    expect(reviewReport.duplicateGutenbergIds).toEqual([
+      expect.objectContaining({
+        gutenbergId: "2077",
+        participants: expect.arrayContaining([
+          expect.objectContaining({ slug: "duplicate-one" }),
+          expect.objectContaining({ slug: "duplicate-two" }),
+        ]),
+      }),
+    ]);
+    expect(reviewReport.riskCounts.laterCopyrightOrPermission).toBe(2);
+    expect(reviewReport.riskCounts.translationRisk).toBe(1);
+    expect(reviewReport.riskCounts.introEditorAnnotationRisk).toBe(1);
+    expect(reviewReport.riskCounts.illustrationImageRisk).toBe(1);
+    expect(reviewReport.riskCounts.creativeCommons).toBe(1);
+
+    const reportJson = fs.readFileSync(
+      path.join(generatedRoot, "review-report.json"),
+      "utf8",
+    );
+    const reportMarkdown = fs.readFileSync(
+      path.join(generatedRoot, "review-report.md"),
+      "utf8",
+    );
+    expect(reportJson).not.toContain(
+      "UNIQUE FULL STORY TEXT SHOULD STAY OUT OF REVIEW REPORT",
+    );
+    expect(reportMarkdown).not.toContain(
+      "UNIQUE FULL STORY TEXT SHOULD STAY OUT OF REVIEW REPORT",
+    );
+
+    for (const artifact of Object.keys(readGeneratedTree(generatedRoot))) {
+      expect(artifact).not.toMatch(/\.(mp3|wav|webm|mp4)$/);
+      expect(path.basename(artifact)).not.toBe("processed_book.json");
+    }
   });
 
   test("fails duplicate metadata Gutenberg IDs unless both entries explain the duplicate", ({
