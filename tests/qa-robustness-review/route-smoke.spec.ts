@@ -1405,7 +1405,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
     const xmlUrls = [...xml.matchAll(/<loc>[^<]+<\/loc>/g)];
-    expect(xmlUrls).toHaveLength(113);
+    expect(xmlUrls).toHaveLength(114);
 
     for (const route of FINAL_ROUTE_EXPECTATIONS) {
       expect(xml).toContain(`https://www.morsewords.com${route.path}`);

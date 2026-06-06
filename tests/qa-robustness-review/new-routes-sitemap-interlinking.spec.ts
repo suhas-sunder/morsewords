@@ -12,11 +12,13 @@ const THEME_STORAGE_KEY = "morsewords-theme";
 
 const NEW_CANONICAL_ROUTES = [
   ROUTES.bookTranslator,
+  ROUTES.morseBooks,
   ROUTES.videoGenerator,
 ] as const;
 
 const NEW_ALIAS_ROUTES = [
   ROUTES.ebookTranslatorAlias,
+  ROUTES.morseAudiobooksAlias,
   ROUTES.textToMorseVideoAlias,
 ] as const;
 
@@ -236,6 +238,7 @@ test.describe("book and video route sitemap and interlinking", () => {
       ROUTES.soundGenerator,
       ROUTES.mp3Generator,
       ROUTES.bookTranslator,
+      ROUTES.morseBooks,
       ROUTES.videoGenerator,
     ]) {
       expect(homeLinks, `${routePath} linked from home toolkit`).toContain(
@@ -262,6 +265,7 @@ test.describe("book and video route sitemap and interlinking", () => {
       ROUTES.soundGenerator,
       ROUTES.mp3Generator,
       ROUTES.bookTranslator,
+      ROUTES.morseBooks,
       ROUTES.videoGenerator,
     ]) {
       expect(moreMenuLinks, `${routePath} More menu link`).toContain(routePath);

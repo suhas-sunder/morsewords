@@ -211,8 +211,14 @@ export function getGeneratedMorseBookSummaries() {
   return [...libraryManifest.books].sort((a, b) => a.title.localeCompare(b.title));
 }
 
-export function getPublishedMorseBookSummaries() {
-  return getGeneratedMorseBookSummaries().filter(isMorseBookPublishReady);
+export function getPublishedMorseBookSummaries(
+  options: { includeTestFixture?: boolean } = {},
+) {
+  const books = getGeneratedMorseBookSummaries().filter(isMorseBookPublishReady);
+  if (options.includeTestFixture && canUseTestPublishedBookFixture()) {
+    books.push(testPublishedBookSummary);
+  }
+  return books.sort((a, b) => a.title.localeCompare(b.title));
 }
 
 export function getMorseBookSummary(

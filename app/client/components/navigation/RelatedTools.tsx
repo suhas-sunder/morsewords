@@ -187,6 +187,13 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Books",
       },
       {
+        title: "Morse Code Books",
+        description:
+          "Browse reviewed book pages as curated Morse audiobook sources become available.",
+        href: ROUTES.morseBooks,
+        badge: "Library",
+      },
+      {
         title: "Morse Code Video Generator",
         description:
           "Create a downloadable Morse video from text or pasted Morse code.",
