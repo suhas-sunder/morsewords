@@ -10,6 +10,8 @@ import {
 const ACCESSIBILITY_ROUTES = [
   "/",
   "/audio",
+  "/morse-code-books",
+  "/morse-code-books/alices-adventures-in-wonderland?preview=unpublished",
   "/morse-code-audio-decoder",
   "/practice",
   "/typing",
@@ -25,6 +27,8 @@ const THEME_STORAGE_KEY = "morsewords-theme";
 const MAIN_LANDMARK_ROUTES = [
   "/",
   "/audio",
+  "/morse-code-books",
+  "/morse-code-books/alices-adventures-in-wonderland?preview=unpublished",
   "/practice",
   "/morse-code-encoder",
   "/morse-code-decoder",
@@ -34,6 +38,16 @@ const MAIN_LANDMARK_ROUTES = [
   "/morse-code-sentence-practice",
   "/morse-code-sound-generator",
 ] as const;
+
+function routeArtifactName(route: string) {
+  if (route === "/") return "home";
+  return route
+    .slice(1)
+    .replaceAll("/", "-")
+    .replace(/[^a-z0-9-]+/gi, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 
 test.describe("page landmarks", () => {
   for (const route of MAIN_LANDMARK_ROUTES) {
@@ -80,7 +94,7 @@ test.describe("axe accessibility scans", () => {
 
         await writeArtifact(
           testInfo,
-          `axe-${theme}-${route === "/" ? "home" : route.slice(1).replaceAll("/", "-")}.json`,
+          `axe-${theme}-${routeArtifactName(route)}.json`,
           results,
         );
 

@@ -1075,6 +1075,8 @@ export default function MorseBookPage({
               <pre
                 className="max-h-[24rem] overflow-auto whitespace-pre-wrap rounded-xl bg-white/90 p-4 font-mono text-sm leading-relaxed text-slate-950"
                 data-mw-morse-book-source-preview="true"
+                tabIndex={0}
+                aria-label="Cleaned reading preview text"
               >
                 {displayPreview.text || "Select a section with readable text."}
               </pre>
@@ -1092,6 +1094,8 @@ export default function MorseBookPage({
               <pre
                 className="mw-output-soft max-h-[18rem] overflow-auto whitespace-pre-wrap font-mono text-sm leading-relaxed text-sky-100"
                 data-mw-morse-book-morse-preview="true"
+                tabIndex={0}
+                aria-label="Morse preview text"
               >
                 {morseOutputPreview.text || "Select a section with translatable text."}
               </pre>
@@ -1301,6 +1305,7 @@ export default function MorseBookPage({
                 Tone preset
               </p>
               <select
+                aria-label="Tone preset"
                 value={exportSettings.tonePreset}
                 onChange={(event) =>
                   updateExportSettings({
