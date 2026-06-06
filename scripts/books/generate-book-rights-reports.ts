@@ -12,6 +12,10 @@ import type {
 } from "./bookManifestTypes.ts";
 import { BOOK_SCHEMA_VERSION } from "./bookManifestTypes.ts";
 import {
+  loadOwnerBookApprovals,
+  ownerBookApprovalMap,
+} from "./bookApprovalFiles.ts";
+import {
   buildBookRightsReport,
   loadApprovedPeopleMetadata,
   validateBookRights,
@@ -113,6 +117,7 @@ export type GenerateBookRightsReportOptions = {
   textRoot?: string;
   metadataRoot?: string;
   approvedPeoplePath?: string;
+  bookApprovalsPath?: string;
   generatedRoot?: string;
   quiet?: boolean;
 };
@@ -136,6 +141,11 @@ const DEFAULT_APPROVED_PEOPLE_PATH = path.join(
   DEFAULT_TEXT_ROOT,
   "approved-metadata",
   "authors.json",
+);
+const DEFAULT_BOOK_APPROVALS_PATH = path.join(
+  DEFAULT_TEXT_ROOT,
+  "approved-metadata",
+  "book-approvals.json",
 );
 const DEFAULT_GENERATED_ROOT = path.join(
   DEFAULT_REPO_ROOT,
@@ -901,6 +911,9 @@ export function generateBookRightsReports(
   const approvedPeoplePath = path.resolve(
     options.approvedPeoplePath ?? DEFAULT_APPROVED_PEOPLE_PATH,
   );
+  const bookApprovalsPath = path.resolve(
+    options.bookApprovalsPath ?? DEFAULT_BOOK_APPROVALS_PATH,
+  );
   const generatedRoot = path.resolve(options.generatedRoot ?? DEFAULT_GENERATED_ROOT);
   const warnings: string[] = [];
   const fatalErrors: string[] = [];
@@ -908,7 +921,11 @@ export function generateBookRightsReports(
   const processingNotes: string[] = [];
 
   const approvedPeopleResult = loadApprovedPeopleMetadata(approvedPeoplePath);
+  const bookApprovalsResult = loadOwnerBookApprovals(bookApprovalsPath);
+  const bookApprovals = ownerBookApprovalMap(bookApprovalsResult.entries);
   fatalErrors.push(...approvedPeopleResult.errors);
+  fatalErrors.push(...bookApprovalsResult.errors);
+  warnings.push(...bookApprovalsResult.warnings);
   const { entries, errors } = loadMetadataEntries(textRoot, metadataRoot);
   fatalErrors.push(...errors);
   const slugCounts = new Map<string, number>();
@@ -977,6 +994,7 @@ export function generateBookRightsReports(
       cleanedText,
       cleaning: cleaning.report,
       approvedPeople: approvedPeopleResult.people as ApprovedPeopleMetadata,
+      ownerBookApproval: bookApprovals.get(entry.metadata.slug) ?? null,
     });
     const report = maybeApplyMetadataReviewLocks(
       entry.metadata,

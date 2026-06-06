@@ -8,6 +8,7 @@ import type {
   BookRightsReport,
   BookRightsRiskLevel,
   GutenbergCleaningReport,
+  OwnerBookApproval,
 } from "./bookManifestTypes.ts";
 import { APPROVED_PERSON_ROLES } from "./bookManifestTypes.ts";
 
@@ -38,6 +39,7 @@ type RightsReportInput = {
   cleanedText: string;
   cleaning: GutenbergCleaningReport;
   approvedPeople?: ApprovedPeopleMetadata;
+  ownerBookApproval?: OwnerBookApproval | null;
 };
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -314,6 +316,7 @@ export function buildBookRightsReport({
   cleanedText,
   cleaning,
   approvedPeople = {},
+  ownerBookApproval = null,
 }: RightsReportInput): BookRightsReport {
   const evidence: string[] = [];
   const title = firstLineField(rawText, "Title") || metadata.title;
@@ -479,6 +482,19 @@ export function buildBookRightsReport({
     reasons.push("Author death year is not Canada life-plus-70 safe under the project rule.");
   }
   if (!metadata.source.rightsReviewed) reasons.push("Metadata rightsReviewed is false.");
+  if (!ownerBookApproval || ownerBookApproval.ownerReviewed !== true) {
+    reasons.push("Owner-reviewed book approval is missing.");
+  } else {
+    if (!ownerBookApproval.approvedForWebsite) {
+      reasons.push("Owner-reviewed book approval does not allow website use.");
+    }
+    if (
+      !ownerBookApproval.approvedRegions.includes("US") ||
+      !ownerBookApproval.approvedRegions.includes("CA")
+    ) {
+      reasons.push("Owner-reviewed book approval must include US and CA regions.");
+    }
+  }
   if (!PUBLISH_READY_RIGHTS.has(metadata.source.rightsBasis)) {
     reasons.push(`Rights basis "${metadata.source.rightsBasis}" is not publish-ready.`);
   }
@@ -555,6 +571,13 @@ export function buildBookRightsReport({
     edition_risk: editionRisk,
     trademark_or_character_brand_risk: trademarkRisk,
     content_brand_safety_risk: contentRisk,
+    owner_reviewed_approval_present:
+      ownerBookApproval?.ownerReviewed === true &&
+      ownerBookApproval.approvedForWebsite === true,
+    approved_for_website: ownerBookApproval?.approvedForWebsite === true,
+    approved_for_youtube_narration:
+      ownerBookApproval?.approvedForYoutubeNarration === true,
+    approved_regions: ownerBookApproval?.approvedRegions ?? [],
     canada_us_v1_status: status,
     reasoning_summary: reasoningSummary,
     evidence_snippets: evidence.slice(0, 20),
@@ -590,12 +613,22 @@ export function validateBookRights(
     warnings.push("Rights gate did not allow processed public story output.");
   }
 
+  if (!rightsReport.owner_reviewed_approval_present) {
+    warnings.push("Owner-reviewed website approval is missing.");
+  }
+
+  if (!rightsReport.approved_for_website) {
+    warnings.push("Owner approval does not allow website use.");
+  }
+
   return {
     publishReady:
       metadata.source.rightsReviewed &&
       PUBLISH_READY_RIGHTS.has(metadata.source.rightsBasis) &&
       rightsReport.canada_us_v1_status === "approved" &&
-      rightsReport.processing_allowed,
+      rightsReport.processing_allowed &&
+      rightsReport.owner_reviewed_approval_present &&
+      rightsReport.approved_for_website,
     warnings,
   };
 }

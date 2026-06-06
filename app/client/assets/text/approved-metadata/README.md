@@ -1,8 +1,15 @@
-# Approved people metadata
+# Approved metadata
 
-`authors.json` stores manually verified person metadata for the Morse book
-rights gate. Despite the file name, entries may now describe authors,
+`authors.json` stores legacy manually verified person metadata for the Morse
+book rights gate. Despite the file name, entries may describe authors,
 translators, editors, illustrators, and introduction authors.
+
+Owner approval intake files now live beside it:
+
+- `people.json`: owner-reviewed people approvals.
+- `book-approvals.json`: per-book website and narration approval.
+- `duplicate-resolutions.json`: owner-reviewed duplicate Gutenberg ID choices.
+- `approval-notes.md`: workflow notes for the owner.
 
 Do not add a death year, safety flag, or rights conclusion unless it has been
 manually verified. The review queue suggests entry shapes with `deathYear:
@@ -38,11 +45,13 @@ Fields:
 ## Manual workflow
 
 1. Run `npm run books:review-queue`.
-2. Review `app/client/assets/books/generated/review/people-review-queue.md`.
-3. Add or update `authors.json` only after manual verification.
-4. Resolve duplicate Gutenberg ID groups manually.
+2. Review generated owner-input files under
+   `app/client/assets/books/generated/review/owner-input/`.
+3. Add or update approval files only after manual verification.
+4. Run `npm run books:apply-review`.
 5. Run `npm run books:rights-report`.
 6. Run `npm run books:build`.
 
 Adding approved person metadata alone does not publish a book. Public exposure
-still requires the normal reviewed rights metadata and processing gate.
+still requires owner-reviewed book approval, reviewed source metadata, resolved
+duplicate groups, and the full processing gate.

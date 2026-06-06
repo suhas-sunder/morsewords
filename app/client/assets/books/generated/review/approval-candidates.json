@@ -22,12 +22,15 @@
       "remainingBlockers": [
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Illustrations or image references need manual handling.",
         "Edition or editorial status needs manual review."
       ],
       "exactMetadataFieldsNeeded": [
         "app/client/assets/text/approved-metadata/authors.json::lewis-carroll.deathYear",
-        "app/client/assets/text/meta/alices-adventures-in-wonderland.json::source.rightsReviewed"
+        "app/client/assets/text/meta/alices-adventures-in-wonderland.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/alices-adventures-in-wonderland.json::source.rightsReviewed",
+        "app/client/assets/text/meta/alices-adventures-in-wonderland.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -48,6 +51,7 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -56,8 +60,10 @@
         "app/client/assets/text/meta/black-beauty.json::metadataStatus reviewed",
         "app/client/assets/text/meta/black-beauty.json::originalPublication",
         "app/client/assets/text/meta/black-beauty.json::originalPublicationYear",
+        "app/client/assets/text/meta/black-beauty.json::owner-reviewed website approval",
         "app/client/assets/text/meta/black-beauty.json::source.rightsBasis",
-        "app/client/assets/text/meta/black-beauty.json::source.rightsReviewed"
+        "app/client/assets/text/meta/black-beauty.json::source.rightsReviewed",
+        "app/client/assets/text/meta/black-beauty.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -77,6 +83,7 @@
       ],
       "remainingBlockers": [
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Content brand-safety risk needs manual review.",
@@ -85,8 +92,10 @@
       "exactMetadataFieldsNeeded": [
         "app/client/assets/text/meta/the-call-of-cthulhu.json::manualReviewRequired false",
         "app/client/assets/text/meta/the-call-of-cthulhu.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-call-of-cthulhu.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-call-of-cthulhu.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-call-of-cthulhu.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-call-of-cthulhu.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-call-of-cthulhu.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -109,6 +118,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -119,8 +129,10 @@
         "app/client/assets/text/meta/a-christmas-carol.json::metadataStatus reviewed",
         "app/client/assets/text/meta/a-christmas-carol.json::originalPublication",
         "app/client/assets/text/meta/a-christmas-carol.json::originalPublicationYear",
+        "app/client/assets/text/meta/a-christmas-carol.json::owner-reviewed website approval",
         "app/client/assets/text/meta/a-christmas-carol.json::source.rightsBasis",
-        "app/client/assets/text/meta/a-christmas-carol.json::source.rightsReviewed"
+        "app/client/assets/text/meta/a-christmas-carol.json::source.rightsReviewed",
+        "app/client/assets/text/meta/a-christmas-carol.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -143,6 +155,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -152,8 +165,10 @@
         "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::metadataStatus reviewed",
         "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::originalPublication",
         "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::originalPublicationYear",
+        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::owner-reviewed website approval",
         "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::source.rightsBasis",
-        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::source.rightsReviewed"
+        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::source.rightsReviewed",
+        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -176,6 +191,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -185,8 +201,10 @@
         "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::metadataStatus reviewed",
         "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::originalPublication",
         "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::originalPublicationYear",
+        "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::owner-reviewed website approval",
         "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::source.rightsBasis",
-        "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::source.rightsReviewed"
+        "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::source.rightsReviewed",
+        "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -209,6 +227,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -218,8 +237,10 @@
         "app/client/assets/text/meta/frankenstein.json::metadataStatus reviewed",
         "app/client/assets/text/meta/frankenstein.json::originalPublication",
         "app/client/assets/text/meta/frankenstein.json::originalPublicationYear",
+        "app/client/assets/text/meta/frankenstein.json::owner-reviewed website approval",
         "app/client/assets/text/meta/frankenstein.json::source.rightsBasis",
-        "app/client/assets/text/meta/frankenstein.json::source.rightsReviewed"
+        "app/client/assets/text/meta/frankenstein.json::source.rightsReviewed",
+        "app/client/assets/text/meta/frankenstein.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -242,6 +263,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -251,8 +273,10 @@
         "app/client/assets/text/meta/gulliver-s-travels.json::metadataStatus reviewed",
         "app/client/assets/text/meta/gulliver-s-travels.json::originalPublication",
         "app/client/assets/text/meta/gulliver-s-travels.json::originalPublicationYear",
+        "app/client/assets/text/meta/gulliver-s-travels.json::owner-reviewed website approval",
         "app/client/assets/text/meta/gulliver-s-travels.json::source.rightsBasis",
-        "app/client/assets/text/meta/gulliver-s-travels.json::source.rightsReviewed"
+        "app/client/assets/text/meta/gulliver-s-travels.json::source.rightsReviewed",
+        "app/client/assets/text/meta/gulliver-s-travels.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -273,6 +297,7 @@
       "remainingBlockers": [
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Translation status or translator death year needs manual review.",
@@ -283,8 +308,10 @@
         "app/client/assets/text/approved-metadata/authors.json::lionel-giles.deathYear",
         "app/client/assets/text/meta/the-art-of-war.json::manualReviewRequired false",
         "app/client/assets/text/meta/the-art-of-war.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-art-of-war.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-art-of-war.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-art-of-war.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-art-of-war.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-art-of-war.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -307,6 +334,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -316,8 +344,10 @@
         "app/client/assets/text/meta/the-call-of-the-wild.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-call-of-the-wild.json::originalPublication",
         "app/client/assets/text/meta/the-call-of-the-wild.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-call-of-the-wild.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-call-of-the-wild.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-call-of-the-wild.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-call-of-the-wild.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-call-of-the-wild.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -340,6 +370,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -349,8 +380,10 @@
         "app/client/assets/text/meta/the-emerald-city-of-oz.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-emerald-city-of-oz.json::originalPublication",
         "app/client/assets/text/meta/the-emerald-city-of-oz.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-emerald-city-of-oz.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-emerald-city-of-oz.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-emerald-city-of-oz.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-emerald-city-of-oz.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-emerald-city-of-oz.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -373,6 +406,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -382,8 +416,10 @@
         "app/client/assets/text/meta/the-great-gatsby.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-great-gatsby.json::originalPublication",
         "app/client/assets/text/meta/the-great-gatsby.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-great-gatsby.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-great-gatsby.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-great-gatsby.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-great-gatsby.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-great-gatsby.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -406,6 +442,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -415,8 +452,10 @@
         "app/client/assets/text/meta/the-jungle-book.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-jungle-book.json::originalPublication",
         "app/client/assets/text/meta/the-jungle-book.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-jungle-book.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-jungle-book.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-jungle-book.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-jungle-book.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-jungle-book.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -439,6 +478,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -448,8 +488,10 @@
         "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::originalPublication",
         "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -472,6 +514,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -481,8 +524,10 @@
         "app/client/assets/text/meta/the-picture-of-dorian-gray.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-picture-of-dorian-gray.json::originalPublication",
         "app/client/assets/text/meta/the-picture-of-dorian-gray.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-picture-of-dorian-gray.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -505,6 +550,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -514,8 +560,10 @@
         "app/client/assets/text/meta/the-princess-and-the-goblin.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-princess-and-the-goblin.json::originalPublication",
         "app/client/assets/text/meta/the-princess-and-the-goblin.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-princess-and-the-goblin.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-princess-and-the-goblin.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-princess-and-the-goblin.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-princess-and-the-goblin.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-princess-and-the-goblin.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -538,6 +586,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -547,8 +596,10 @@
         "app/client/assets/text/meta/the-railway-children.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-railway-children.json::originalPublication",
         "app/client/assets/text/meta/the-railway-children.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-railway-children.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-railway-children.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-railway-children.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-railway-children.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-railway-children.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -571,6 +622,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -580,8 +632,10 @@
         "app/client/assets/text/meta/the-sea-wolf.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-sea-wolf.json::originalPublication",
         "app/client/assets/text/meta/the-sea-wolf.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-sea-wolf.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-sea-wolf.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-sea-wolf.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-sea-wolf.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-sea-wolf.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -604,6 +658,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -613,8 +668,10 @@
         "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::originalPublication",
         "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -637,6 +694,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -646,8 +704,10 @@
         "app/client/assets/text/meta/the-three-musketeers.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-three-musketeers.json::originalPublication",
         "app/client/assets/text/meta/the-three-musketeers.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-three-musketeers.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-three-musketeers.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-three-musketeers.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-three-musketeers.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-three-musketeers.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -670,6 +730,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -680,8 +741,10 @@
         "app/client/assets/text/meta/treasure-island.json::metadataStatus reviewed",
         "app/client/assets/text/meta/treasure-island.json::originalPublication",
         "app/client/assets/text/meta/treasure-island.json::originalPublicationYear",
+        "app/client/assets/text/meta/treasure-island.json::owner-reviewed website approval",
         "app/client/assets/text/meta/treasure-island.json::source.rightsBasis",
-        "app/client/assets/text/meta/treasure-island.json::source.rightsReviewed"
+        "app/client/assets/text/meta/treasure-island.json::source.rightsReviewed",
+        "app/client/assets/text/meta/treasure-island.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -704,6 +767,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -714,8 +778,10 @@
         "app/client/assets/text/meta/a-princess-of-mars.json::metadataStatus reviewed",
         "app/client/assets/text/meta/a-princess-of-mars.json::originalPublication",
         "app/client/assets/text/meta/a-princess-of-mars.json::originalPublicationYear",
+        "app/client/assets/text/meta/a-princess-of-mars.json::owner-reviewed website approval",
         "app/client/assets/text/meta/a-princess-of-mars.json::source.rightsBasis",
-        "app/client/assets/text/meta/a-princess-of-mars.json::source.rightsReviewed"
+        "app/client/assets/text/meta/a-princess-of-mars.json::source.rightsReviewed",
+        "app/client/assets/text/meta/a-princess-of-mars.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -738,6 +804,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -749,8 +816,10 @@
         "app/client/assets/text/meta/botchan.json::metadataStatus reviewed",
         "app/client/assets/text/meta/botchan.json::originalPublication",
         "app/client/assets/text/meta/botchan.json::originalPublicationYear",
+        "app/client/assets/text/meta/botchan.json::owner-reviewed website approval",
         "app/client/assets/text/meta/botchan.json::source.rightsBasis",
-        "app/client/assets/text/meta/botchan.json::source.rightsReviewed"
+        "app/client/assets/text/meta/botchan.json::source.rightsReviewed",
+        "app/client/assets/text/meta/botchan.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -773,6 +842,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -784,8 +854,10 @@
         "app/client/assets/text/meta/crime-and-punishment.json::metadataStatus reviewed",
         "app/client/assets/text/meta/crime-and-punishment.json::originalPublication",
         "app/client/assets/text/meta/crime-and-punishment.json::originalPublicationYear",
+        "app/client/assets/text/meta/crime-and-punishment.json::owner-reviewed website approval",
         "app/client/assets/text/meta/crime-and-punishment.json::source.rightsBasis",
-        "app/client/assets/text/meta/crime-and-punishment.json::source.rightsReviewed"
+        "app/client/assets/text/meta/crime-and-punishment.json::source.rightsReviewed",
+        "app/client/assets/text/meta/crime-and-punishment.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -808,6 +880,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -818,8 +891,10 @@
         "app/client/assets/text/meta/jack-and-jill.json::metadataStatus reviewed",
         "app/client/assets/text/meta/jack-and-jill.json::originalPublication",
         "app/client/assets/text/meta/jack-and-jill.json::originalPublicationYear",
+        "app/client/assets/text/meta/jack-and-jill.json::owner-reviewed website approval",
         "app/client/assets/text/meta/jack-and-jill.json::source.rightsBasis",
-        "app/client/assets/text/meta/jack-and-jill.json::source.rightsReviewed"
+        "app/client/assets/text/meta/jack-and-jill.json::source.rightsReviewed",
+        "app/client/assets/text/meta/jack-and-jill.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -842,6 +917,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -853,8 +929,10 @@
         "app/client/assets/text/meta/jane-eyre.json::metadataStatus reviewed",
         "app/client/assets/text/meta/jane-eyre.json::originalPublication",
         "app/client/assets/text/meta/jane-eyre.json::originalPublicationYear",
+        "app/client/assets/text/meta/jane-eyre.json::owner-reviewed website approval",
         "app/client/assets/text/meta/jane-eyre.json::source.rightsBasis",
-        "app/client/assets/text/meta/jane-eyre.json::source.rightsReviewed"
+        "app/client/assets/text/meta/jane-eyre.json::source.rightsReviewed",
+        "app/client/assets/text/meta/jane-eyre.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -877,6 +955,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Edition or editorial status needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -887,8 +966,10 @@
         "app/client/assets/text/meta/peter-pan.json::metadataStatus reviewed",
         "app/client/assets/text/meta/peter-pan.json::originalPublication",
         "app/client/assets/text/meta/peter-pan.json::originalPublicationYear",
+        "app/client/assets/text/meta/peter-pan.json::owner-reviewed website approval",
         "app/client/assets/text/meta/peter-pan.json::source.rightsBasis",
-        "app/client/assets/text/meta/peter-pan.json::source.rightsReviewed"
+        "app/client/assets/text/meta/peter-pan.json::source.rightsReviewed",
+        "app/client/assets/text/meta/peter-pan.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -911,6 +992,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -921,8 +1003,10 @@
         "app/client/assets/text/meta/pride-and-prejudice.json::metadataStatus reviewed",
         "app/client/assets/text/meta/pride-and-prejudice.json::originalPublication",
         "app/client/assets/text/meta/pride-and-prejudice.json::originalPublicationYear",
+        "app/client/assets/text/meta/pride-and-prejudice.json::owner-reviewed website approval",
         "app/client/assets/text/meta/pride-and-prejudice.json::source.rightsBasis",
-        "app/client/assets/text/meta/pride-and-prejudice.json::source.rightsReviewed"
+        "app/client/assets/text/meta/pride-and-prejudice.json::source.rightsReviewed",
+        "app/client/assets/text/meta/pride-and-prejudice.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -945,6 +1029,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -955,8 +1040,10 @@
         "app/client/assets/text/meta/rainbow-valley.json::metadataStatus reviewed",
         "app/client/assets/text/meta/rainbow-valley.json::originalPublication",
         "app/client/assets/text/meta/rainbow-valley.json::originalPublicationYear",
+        "app/client/assets/text/meta/rainbow-valley.json::owner-reviewed website approval",
         "app/client/assets/text/meta/rainbow-valley.json::source.rightsBasis",
-        "app/client/assets/text/meta/rainbow-valley.json::source.rightsReviewed"
+        "app/client/assets/text/meta/rainbow-valley.json::source.rightsReviewed",
+        "app/client/assets/text/meta/rainbow-valley.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -979,6 +1066,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -990,8 +1078,10 @@
         "app/client/assets/text/meta/rinkitink-in-oz.json::metadataStatus reviewed",
         "app/client/assets/text/meta/rinkitink-in-oz.json::originalPublication",
         "app/client/assets/text/meta/rinkitink-in-oz.json::originalPublicationYear",
+        "app/client/assets/text/meta/rinkitink-in-oz.json::owner-reviewed website approval",
         "app/client/assets/text/meta/rinkitink-in-oz.json::source.rightsBasis",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::source.rightsReviewed"
+        "app/client/assets/text/meta/rinkitink-in-oz.json::source.rightsReviewed",
+        "app/client/assets/text/meta/rinkitink-in-oz.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1014,6 +1104,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -1024,8 +1115,10 @@
         "app/client/assets/text/meta/sense-and-sensibility.json::metadataStatus reviewed",
         "app/client/assets/text/meta/sense-and-sensibility.json::originalPublication",
         "app/client/assets/text/meta/sense-and-sensibility.json::originalPublicationYear",
+        "app/client/assets/text/meta/sense-and-sensibility.json::owner-reviewed website approval",
         "app/client/assets/text/meta/sense-and-sensibility.json::source.rightsBasis",
-        "app/client/assets/text/meta/sense-and-sensibility.json::source.rightsReviewed"
+        "app/client/assets/text/meta/sense-and-sensibility.json::source.rightsReviewed",
+        "app/client/assets/text/meta/sense-and-sensibility.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1046,6 +1139,7 @@
       "remainingBlockers": [
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
@@ -1057,8 +1151,10 @@
         "app/client/assets/text/approved-metadata/authors.json::lionel-giles.deathYear",
         "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::manualReviewRequired false",
         "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::owner-reviewed website approval",
         "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::source.rightsBasis",
-        "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::source.rightsReviewed"
+        "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::source.rightsReviewed",
+        "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1081,6 +1177,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -1092,8 +1189,10 @@
         "app/client/assets/text/meta/the-book-of-dragons.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-book-of-dragons.json::originalPublication",
         "app/client/assets/text/meta/the-book-of-dragons.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-book-of-dragons.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-book-of-dragons.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-book-of-dragons.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-book-of-dragons.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-book-of-dragons.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1116,6 +1215,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -1126,8 +1226,10 @@
         "app/client/assets/text/meta/the-elements-of-style.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-elements-of-style.json::originalPublication",
         "app/client/assets/text/meta/the-elements-of-style.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-elements-of-style.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-elements-of-style.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-elements-of-style.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-elements-of-style.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-elements-of-style.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1150,6 +1252,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -1160,8 +1263,10 @@
         "app/client/assets/text/meta/the-thirty-nine-steps.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-thirty-nine-steps.json::originalPublication",
         "app/client/assets/text/meta/the-thirty-nine-steps.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-thirty-nine-steps.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-thirty-nine-steps.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1184,6 +1289,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -1195,8 +1301,10 @@
         "app/client/assets/text/meta/the-water-babies.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-water-babies.json::originalPublication",
         "app/client/assets/text/meta/the-water-babies.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-water-babies.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-water-babies.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-water-babies.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-water-babies.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-water-babies.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1219,6 +1327,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -1229,8 +1338,10 @@
         "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::originalPublication",
         "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1253,6 +1364,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -1263,8 +1375,10 @@
         "app/client/assets/text/meta/wind-in-the-willows.json::metadataStatus reviewed",
         "app/client/assets/text/meta/wind-in-the-willows.json::originalPublication",
         "app/client/assets/text/meta/wind-in-the-willows.json::originalPublicationYear",
+        "app/client/assets/text/meta/wind-in-the-willows.json::owner-reviewed website approval",
         "app/client/assets/text/meta/wind-in-the-willows.json::source.rightsBasis",
-        "app/client/assets/text/meta/wind-in-the-willows.json::source.rightsReviewed"
+        "app/client/assets/text/meta/wind-in-the-willows.json::source.rightsReviewed",
+        "app/client/assets/text/meta/wind-in-the-willows.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1287,6 +1401,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -1299,8 +1414,10 @@
         "app/client/assets/text/meta/anna-karenina.json::metadataStatus reviewed",
         "app/client/assets/text/meta/anna-karenina.json::originalPublication",
         "app/client/assets/text/meta/anna-karenina.json::originalPublicationYear",
+        "app/client/assets/text/meta/anna-karenina.json::owner-reviewed website approval",
         "app/client/assets/text/meta/anna-karenina.json::source.rightsBasis",
-        "app/client/assets/text/meta/anna-karenina.json::source.rightsReviewed"
+        "app/client/assets/text/meta/anna-karenina.json::source.rightsReviewed",
+        "app/client/assets/text/meta/anna-karenina.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1323,6 +1440,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -1335,8 +1453,10 @@
         "app/client/assets/text/meta/around-the-world-in-eighty-days.json::metadataStatus reviewed",
         "app/client/assets/text/meta/around-the-world-in-eighty-days.json::originalPublication",
         "app/client/assets/text/meta/around-the-world-in-eighty-days.json::originalPublicationYear",
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::owner-reviewed website approval",
         "app/client/assets/text/meta/around-the-world-in-eighty-days.json::source.rightsBasis",
-        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::source.rightsReviewed"
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::source.rightsReviewed",
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1359,6 +1479,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -1373,8 +1494,10 @@
         "app/client/assets/text/meta/don-quixote.json::metadataStatus reviewed",
         "app/client/assets/text/meta/don-quixote.json::originalPublication",
         "app/client/assets/text/meta/don-quixote.json::originalPublicationYear",
+        "app/client/assets/text/meta/don-quixote.json::owner-reviewed website approval",
         "app/client/assets/text/meta/don-quixote.json::source.rightsBasis",
-        "app/client/assets/text/meta/don-quixote.json::source.rightsReviewed"
+        "app/client/assets/text/meta/don-quixote.json::source.rightsReviewed",
+        "app/client/assets/text/meta/don-quixote.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1399,6 +1522,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -1408,8 +1532,10 @@
         "app/client/assets/text/meta/jabberwocky.json::metadataStatus reviewed",
         "app/client/assets/text/meta/jabberwocky.json::originalPublication",
         "app/client/assets/text/meta/jabberwocky.json::originalPublicationYear",
+        "app/client/assets/text/meta/jabberwocky.json::owner-reviewed website approval",
         "app/client/assets/text/meta/jabberwocky.json::source.rightsBasis",
-        "app/client/assets/text/meta/jabberwocky.json::source.rightsReviewed"
+        "app/client/assets/text/meta/jabberwocky.json::source.rightsReviewed",
+        "app/client/assets/text/meta/jabberwocky.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1432,6 +1558,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -1444,8 +1571,10 @@
         "app/client/assets/text/meta/les-miserables.json::metadataStatus reviewed",
         "app/client/assets/text/meta/les-miserables.json::originalPublication",
         "app/client/assets/text/meta/les-miserables.json::originalPublicationYear",
+        "app/client/assets/text/meta/les-miserables.json::owner-reviewed website approval",
         "app/client/assets/text/meta/les-miserables.json::source.rightsBasis",
-        "app/client/assets/text/meta/les-miserables.json::source.rightsReviewed"
+        "app/client/assets/text/meta/les-miserables.json::source.rightsReviewed",
+        "app/client/assets/text/meta/les-miserables.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1468,6 +1597,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
@@ -1482,8 +1612,10 @@
         "app/client/assets/text/meta/little-women.json::metadataStatus reviewed",
         "app/client/assets/text/meta/little-women.json::originalPublication",
         "app/client/assets/text/meta/little-women.json::originalPublicationYear",
+        "app/client/assets/text/meta/little-women.json::owner-reviewed website approval",
         "app/client/assets/text/meta/little-women.json::source.rightsBasis",
-        "app/client/assets/text/meta/little-women.json::source.rightsReviewed"
+        "app/client/assets/text/meta/little-women.json::source.rightsReviewed",
+        "app/client/assets/text/meta/little-women.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1506,6 +1638,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
@@ -1517,8 +1650,10 @@
         "app/client/assets/text/meta/new-treasure-seekers.json::metadataStatus reviewed",
         "app/client/assets/text/meta/new-treasure-seekers.json::originalPublication",
         "app/client/assets/text/meta/new-treasure-seekers.json::originalPublicationYear",
+        "app/client/assets/text/meta/new-treasure-seekers.json::owner-reviewed website approval",
         "app/client/assets/text/meta/new-treasure-seekers.json::source.rightsBasis",
-        "app/client/assets/text/meta/new-treasure-seekers.json::source.rightsReviewed"
+        "app/client/assets/text/meta/new-treasure-seekers.json::source.rightsReviewed",
+        "app/client/assets/text/meta/new-treasure-seekers.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1539,6 +1674,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -1551,8 +1687,10 @@
         "app/client/assets/text/meta/the-arabian-nights.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-arabian-nights.json::originalPublication",
         "app/client/assets/text/meta/the-arabian-nights.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-arabian-nights.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-arabian-nights.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-arabian-nights.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-arabian-nights.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-arabian-nights.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1575,6 +1713,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -1588,8 +1727,10 @@
         "app/client/assets/text/meta/the-divine-comedy.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-divine-comedy.json::originalPublication",
         "app/client/assets/text/meta/the-divine-comedy.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-divine-comedy.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-divine-comedy.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-divine-comedy.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-divine-comedy.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-divine-comedy.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1612,6 +1753,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
@@ -1625,8 +1767,10 @@
         "app/client/assets/text/meta/the-federalist-papers.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-federalist-papers.json::originalPublication",
         "app/client/assets/text/meta/the-federalist-papers.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-federalist-papers.json::owner-reviewed website approval",
         "app/client/assets/text/meta/the-federalist-papers.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-federalist-papers.json::source.rightsReviewed"
+        "app/client/assets/text/meta/the-federalist-papers.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-federalist-papers.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1649,6 +1793,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Edition or editorial status needs manual review.",
@@ -1660,8 +1805,10 @@
         "app/client/assets/text/meta/through-the-looking-glass.json::metadataStatus reviewed",
         "app/client/assets/text/meta/through-the-looking-glass.json::originalPublication",
         "app/client/assets/text/meta/through-the-looking-glass.json::originalPublicationYear",
+        "app/client/assets/text/meta/through-the-looking-glass.json::owner-reviewed website approval",
         "app/client/assets/text/meta/through-the-looking-glass.json::source.rightsBasis",
-        "app/client/assets/text/meta/through-the-looking-glass.json::source.rightsReviewed"
+        "app/client/assets/text/meta/through-the-looking-glass.json::source.rightsReviewed",
+        "app/client/assets/text/meta/through-the-looking-glass.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1685,6 +1832,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Transcriber notes remain in cleaned story text.",
@@ -1699,8 +1847,10 @@
         "app/client/assets/text/meta/candide.json::metadataStatus reviewed",
         "app/client/assets/text/meta/candide.json::originalPublication",
         "app/client/assets/text/meta/candide.json::originalPublicationYear",
+        "app/client/assets/text/meta/candide.json::owner-reviewed website approval",
         "app/client/assets/text/meta/candide.json::source.rightsBasis",
-        "app/client/assets/text/meta/candide.json::source.rightsReviewed"
+        "app/client/assets/text/meta/candide.json::source.rightsReviewed",
+        "app/client/assets/text/meta/candide.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1723,6 +1873,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
@@ -1741,8 +1892,10 @@
         "app/client/assets/text/meta/grimm-s-fairy-tales.json::metadataStatus reviewed",
         "app/client/assets/text/meta/grimm-s-fairy-tales.json::originalPublication",
         "app/client/assets/text/meta/grimm-s-fairy-tales.json::originalPublicationYear",
+        "app/client/assets/text/meta/grimm-s-fairy-tales.json::owner-reviewed website approval",
         "app/client/assets/text/meta/grimm-s-fairy-tales.json::source.rightsBasis",
-        "app/client/assets/text/meta/grimm-s-fairy-tales.json::source.rightsReviewed"
+        "app/client/assets/text/meta/grimm-s-fairy-tales.json::source.rightsReviewed",
+        "app/client/assets/text/meta/grimm-s-fairy-tales.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1765,6 +1918,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Transcriber notes remain in cleaned story text.",
@@ -1780,8 +1934,10 @@
         "app/client/assets/text/meta/heidi.json::metadataStatus reviewed",
         "app/client/assets/text/meta/heidi.json::originalPublication",
         "app/client/assets/text/meta/heidi.json::originalPublicationYear",
+        "app/client/assets/text/meta/heidi.json::owner-reviewed website approval",
         "app/client/assets/text/meta/heidi.json::source.rightsBasis",
-        "app/client/assets/text/meta/heidi.json::source.rightsReviewed"
+        "app/client/assets/text/meta/heidi.json::source.rightsReviewed",
+        "app/client/assets/text/meta/heidi.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true

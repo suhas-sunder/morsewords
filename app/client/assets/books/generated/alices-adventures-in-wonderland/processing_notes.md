@@ -52,11 +52,14 @@
 - Rights have not been reviewed; generated book is not publish-ready.
 - Rights gate status is needs_manual_review; generated book is not publish-ready.
 - Rights gate did not allow processed public story output.
+- Owner-reviewed website approval is missing.
+- Owner approval does not allow website use.
 
 ## Manual review reasons
 
 - Author death year is missing from approved metadata or clear source metadata.
 - Metadata rightsReviewed is false.
+- Owner-reviewed book approval is missing.
 - Illustrations or image references need manual handling.
 - Edition or editorial status needs manual review.
 

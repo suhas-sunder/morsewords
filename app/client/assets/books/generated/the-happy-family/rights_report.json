@@ -32,8 +32,12 @@
   "edition_risk": "none",
   "trademark_or_character_brand_risk": "none",
   "content_brand_safety_risk": "none",
+  "owner_reviewed_approval_present": false,
+  "approved_for_website": false,
+  "approved_for_youtube_narration": false,
+  "approved_regions": [],
   "canada_us_v1_status": "reject",
-  "reasoning_summary": "Source provider is not Project Gutenberg. Missing metadata Gutenberg ID. Project Gutenberg start marker was not found. Project Gutenberg license/reuse language was not detected. U.S. reuse language was not detected. Non-U.S. rights warning was not detected. Author was not found. Release date was not found. Original publication metadata was not found. Original publication year is missing or not before 1931. Author death year is missing from approved metadata or clear source metadata. Metadata rightsReviewed is false. Rights basis \"unknown\" is not publish-ready. Translation status or translator death year needs manual review. Draft or manual-review metadata must be reviewed before processing or publishing.",
+  "reasoning_summary": "Source provider is not Project Gutenberg. Missing metadata Gutenberg ID. Project Gutenberg start marker was not found. Project Gutenberg license/reuse language was not detected. U.S. reuse language was not detected. Non-U.S. rights warning was not detected. Author was not found. Release date was not found. Original publication metadata was not found. Original publication year is missing or not before 1931. Author death year is missing from approved metadata or clear source metadata. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Translation status or translator death year needs manual review. Draft or manual-review metadata must be reviewed before processing or publishing.",
   "evidence_snippets": [],
   "processing_allowed": false
 }

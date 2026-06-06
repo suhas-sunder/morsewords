@@ -14,6 +14,7 @@ import { detectBookSections } from "../../scripts/books/detect-book-sections.ts"
 import { generateBookReviewQueue } from "../../scripts/books/generate-book-review-queue.ts";
 import { generateBookRightsReports } from "../../scripts/books/generate-book-rights-reports.ts";
 import { scaffoldBookMetadata } from "../../scripts/books/scaffold-book-metadata.ts";
+import { applyBookReviewApprovals } from "../../scripts/books/apply-book-review-approvals.ts";
 
 const ROOT = process.cwd();
 
@@ -87,6 +88,72 @@ function writeApprovedPeople(
   writeJson(path.join(textRoot, "approved-metadata", "authors.json"), people);
 }
 
+function writeOwnerPeopleApprovals(
+  textRoot: string,
+  people: Array<{
+    slug: string;
+    name: string;
+    roles: Array<"author" | "translator" | "editor" | "illustrator" | "introduction_author">;
+    deathYear: number | null;
+    canadaLifePlus70Safe: boolean;
+    reviewedByOwner: boolean;
+    notes: string;
+    reviewDate?: string;
+    sourceNotes?: string;
+  }>,
+) {
+  writeJson(path.join(textRoot, "approved-metadata", "people.json"), {
+    schemaVersion: 1,
+    people,
+  });
+}
+
+function writeBookApprovals(
+  textRoot: string,
+  books: Array<{
+    bookSlug: string;
+    approvedForWebsite: boolean;
+    approvedForYoutubeNarration?: boolean;
+    approvedRegions?: string[];
+    originalPublicationYear: number | null;
+    ownerReviewed: boolean;
+    editionNotes?: string;
+    translationNotes?: string;
+    excludeModernAdditions?: boolean;
+    notes?: string;
+  }>,
+) {
+  writeJson(path.join(textRoot, "approved-metadata", "book-approvals.json"), {
+    schemaVersion: 1,
+    books: books.map((book) => ({
+      approvedForYoutubeNarration: false,
+      approvedRegions: ["US", "CA"],
+      editionNotes: "",
+      translationNotes: "",
+      excludeModernAdditions: true,
+      notes: "Test-only owner book approval.",
+      ...book,
+    })),
+  });
+}
+
+function writeDuplicateResolutions(
+  textRoot: string,
+  duplicates: Array<{
+    gutenbergId: string;
+    keepSlug: string | null;
+    duplicateSlugs: string[];
+    resolution: "keep-one" | "allow-multiple" | "ignore-until-reviewed";
+    reason: string;
+    ownerReviewed: boolean;
+  }>,
+) {
+  writeJson(path.join(textRoot, "approved-metadata", "duplicate-resolutions.json"), {
+    schemaVersion: 1,
+    duplicates,
+  });
+}
+
 function approvedMetadata(
   slug: string,
   overrides: Partial<BookMetadata> = {},
@@ -158,21 +225,37 @@ function buildSingleFixture({
       notes: "Test-only approved person metadata.",
     },
   },
+  bookApprovals,
 }: {
   testInfo: TestInfo;
   slug: string;
   rawText: string;
   metadata?: BookMetadata;
   approvedPeople?: Record<string, { name: string; deathYear: number | null; canadaLifePlus70Safe?: boolean; notes: string }>;
+  bookApprovals?: Parameters<typeof writeBookApprovals>[1];
 }) {
   const textRoot = testInfo.outputPath(`${slug}-library`);
   const generatedRoot = testInfo.outputPath(`${slug}-generated`);
   writeApprovedPeople(textRoot, approvedPeople);
+  writeBookApprovals(
+    textRoot,
+    bookApprovals ?? [
+      {
+        bookSlug: slug,
+        approvedForWebsite: true,
+        approvedForYoutubeNarration: true,
+        approvedRegions: ["US", "CA"],
+        originalPublicationYear: metadata.originalPublicationYear ?? 1900,
+        ownerReviewed: true,
+      },
+    ],
+  );
   writeFixtureBook(textRoot, slug, rawText, metadata);
   const result = buildBookLibrary({
     textRoot,
     metadataRoot: path.join(textRoot, "meta"),
     approvedPeoplePath: path.join(textRoot, "approved-metadata", "authors.json"),
+    bookApprovalsPath: path.join(textRoot, "approved-metadata", "book-approvals.json"),
     generatedRoot,
     quiet: true,
   });
@@ -741,6 +824,16 @@ Third chapter.
         notes: "Fixture author approved for Canada life-plus-70 checks.",
       },
     });
+    writeBookApprovals(textRoot, [
+      {
+        bookSlug: "approved-rights",
+        approvedForWebsite: true,
+        approvedForYoutubeNarration: true,
+        approvedRegions: ["US", "CA"],
+        originalPublicationYear: 1900,
+        ownerReviewed: true,
+      },
+    ]);
 
     const metadataFor = (
       slug: string,
@@ -885,6 +978,7 @@ Third chapter.
       textRoot,
       metadataRoot: path.join(textRoot, "meta"),
       approvedPeoplePath,
+      bookApprovalsPath: path.join(textRoot, "approved-metadata", "book-approvals.json"),
       generatedRoot,
       quiet: true,
     });
@@ -1794,6 +1888,409 @@ Project Gutenberg License
     expect(result.fatalErrors.join(" ")).toContain(
       "duplicate generated section id chapter-001",
     );
+  });
+
+  test("approval intake rejects invalid owner input without guessing rights data", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("approval-invalid-library");
+    const generatedRoot = testInfo.outputPath("approval-invalid-generated");
+    writeFixtureBook(
+      textRoot,
+      "invalid-approval",
+      gutenbergFixtureText({
+        title: "Invalid Approval",
+        author: "Invalid Author",
+        gutenbergId: "5101",
+        extraHeader: "Original publication: 1900",
+        body: "CHAPTER I\n\nINVALID STORY TEXT SHOULD NOT APPEAR IN OWNER INPUT.",
+      }),
+      approvedMetadata("invalid-approval", {
+        author: ["Invalid Author"],
+        source: {
+          ...approvedMetadata("invalid-approval").source,
+          gutenbergId: "5101",
+          rightsReviewed: false,
+        },
+      }),
+    );
+    writeOwnerPeopleApprovals(textRoot, [
+      {
+        slug: "invalid-author",
+        name: "Invalid Author",
+        roles: ["author"],
+        deathYear: null,
+        canadaLifePlus70Safe: false,
+        reviewedByOwner: false,
+        notes: "Invalid on purpose.",
+      },
+    ]);
+    writeBookApprovals(textRoot, [
+      {
+        bookSlug: "invalid-approval",
+        approvedForWebsite: true,
+        originalPublicationYear: 1900,
+        ownerReviewed: false,
+      },
+    ]);
+
+    const result = applyBookReviewApprovals({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+
+    expect(result.fatalErrors.join(" ")).toContain("deathYear must be a verified integer year");
+    expect(result.fatalErrors.join(" ")).toContain("reviewedByOwner must be true");
+    expect(result.fatalErrors.join(" ")).toContain("ownerReviewed must be true");
+    expect(result.report.summary.invalidOwnerInputWarnings).toBeGreaterThan(0);
+    expect(
+      fs.existsSync(path.join(textRoot, "approved-metadata", "authors.json")),
+    ).toBe(false);
+    expect(JSON.stringify(readGeneratedTree(generatedRoot))).not.toContain(
+      "INVALID STORY TEXT SHOULD NOT APPEAR IN OWNER INPUT",
+    );
+  });
+
+  test("approval intake can apply a fully owner-approved safe fixture", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("approval-safe-library");
+    const generatedRoot = testInfo.outputPath("approval-safe-generated");
+    const storyMarker = "SAFE OWNER APPROVAL STORY TEXT SHOULD STAY OUT OF OWNER INPUT";
+    writeFixtureBook(
+      textRoot,
+      "owner-approved-safe",
+      gutenbergFixtureText({
+        title: "Owner Approved Safe",
+        author: "Safe Author",
+        gutenbergId: "5201",
+        extraHeader: "Original publication: 1900",
+        body: `CHAPTER I\n\n${storyMarker}.`,
+      }),
+      {
+        ...approvedMetadata("owner-approved-safe", {
+          author: ["Safe Author"],
+          source: {
+            ...approvedMetadata("owner-approved-safe").source,
+            gutenbergId: "5201",
+            rightsReviewed: false,
+          },
+        }),
+        metadataStatus: "draft",
+        manualReviewRequired: true,
+        originalPublicationYear: null,
+      },
+    );
+    writeOwnerPeopleApprovals(textRoot, [
+      {
+        slug: "safe-author",
+        name: "Safe Author",
+        roles: ["author"],
+        deathYear: 1920,
+        canadaLifePlus70Safe: true,
+        reviewedByOwner: true,
+        reviewDate: "2026-06-06",
+        sourceNotes: "Fixture source checked by test owner.",
+        notes: "Test-only owner person approval.",
+      },
+    ]);
+    writeBookApprovals(textRoot, [
+      {
+        bookSlug: "owner-approved-safe",
+        approvedForWebsite: true,
+        approvedForYoutubeNarration: true,
+        approvedRegions: ["US", "CA"],
+        originalPublicationYear: 1900,
+        ownerReviewed: true,
+        notes: "Test-only owner book approval.",
+      },
+    ]);
+
+    const applyResult = applyBookReviewApprovals({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(applyResult.fatalErrors).toEqual([]);
+    expect(applyResult.report.booksNewlyEligibleForProcessing).toContain(
+      "owner-approved-safe",
+    );
+    expect(fs.existsSync(applyResult.paths.approvalApplicationReportJson)).toBe(true);
+    expect(fs.existsSync(applyResult.paths.ownerInputDir)).toBe(true);
+
+    const appliedMetadata = readJsonFile<BookMetadata>(
+      path.join(textRoot, "meta", "owner-approved-safe.json"),
+    );
+    expect(appliedMetadata.metadataStatus).toBe("reviewed");
+    expect(appliedMetadata.manualReviewRequired).toBe(false);
+    expect(appliedMetadata.source.rightsReviewed).toBe(true);
+    expect(appliedMetadata.originalPublicationYear).toBe(1900);
+
+    const rightsReport = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "owner-approved-safe", "rights_report.json"),
+    );
+    expect(rightsReport.author_death_year).toBe(1920);
+    expect(rightsReport.owner_reviewed_approval_present).toBe(true);
+    expect(rightsReport.processing_allowed).toBe(true);
+
+    const generatedText = JSON.stringify(readGeneratedTree(generatedRoot));
+    expect(generatedText).not.toContain(storyMarker);
+    expect(generatedText).not.toMatch(/\.(mp3|wav|webm|mp4)/);
+
+    const build = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath: path.join(textRoot, "approved-metadata", "authors.json"),
+      bookApprovalsPath: path.join(textRoot, "approved-metadata", "book-approvals.json"),
+      generatedRoot: testInfo.outputPath("approval-safe-build-generated"),
+      quiet: true,
+    });
+    expect(build.fatalErrors).toEqual([]);
+    expect(build.processedBooks[0].source.publishReady).toBe(true);
+    expect(build.processedBooks[0].source.processingAllowed).toBe(true);
+  });
+
+  test("approval intake keeps missing translator approval blocked", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("approval-translator-library");
+    const generatedRoot = testInfo.outputPath("approval-translator-generated");
+    writeFixtureBook(
+      textRoot,
+      "translator-needs-review",
+      gutenbergFixtureText({
+        title: "Translator Needs Review",
+        author: "Translated Author",
+        gutenbergId: "5301",
+        extraHeader: "Original publication: 1900\nTranslator: Modern Translator",
+      }),
+      approvedMetadata("translator-needs-review", {
+        author: ["Translated Author"],
+        source: {
+          ...approvedMetadata("translator-needs-review").source,
+          gutenbergId: "5301",
+          rightsReviewed: false,
+        },
+      }),
+    );
+    writeOwnerPeopleApprovals(textRoot, [
+      {
+        slug: "translated-author",
+        name: "Translated Author",
+        roles: ["author"],
+        deathYear: 1910,
+        canadaLifePlus70Safe: true,
+        reviewedByOwner: true,
+        notes: "Author only; translator intentionally missing.",
+      },
+    ]);
+    writeBookApprovals(textRoot, [
+      {
+        bookSlug: "translator-needs-review",
+        approvedForWebsite: true,
+        originalPublicationYear: 1900,
+        ownerReviewed: true,
+      },
+    ]);
+
+    const result = applyBookReviewApprovals({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(result.fatalErrors).toEqual([]);
+    const report = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "translator-needs-review", "rights_report.json"),
+    );
+    expect(report.translator).toBe("Modern Translator");
+    expect(report.translator_death_year).toBeNull();
+    expect(report.processing_allowed).toBe(false);
+    expect(report.canada_us_v1_status).toBe("needs_manual_review");
+  });
+
+  test("approval intake requires owner duplicate resolution before duplicate books can proceed", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("approval-duplicate-library");
+    const generatedRoot = testInfo.outputPath("approval-duplicate-generated");
+    const metadataOne = approvedMetadata("duplicate-approval-one", {
+      title: "Duplicate Approval One",
+      author: ["Duplicate Author"],
+      source: {
+        ...approvedMetadata("duplicate-approval-one").source,
+        gutenbergId: "5401",
+        rightsReviewed: false,
+      },
+    });
+    const metadataTwo = approvedMetadata("duplicate-approval-two", {
+      title: "Duplicate Approval Two",
+      author: ["Duplicate Author"],
+      source: {
+        ...approvedMetadata("duplicate-approval-two").source,
+        gutenbergId: "5401",
+        rightsReviewed: false,
+      },
+    });
+    writeFixtureBook(
+      textRoot,
+      "duplicate-approval-one",
+      gutenbergFixtureText({
+        title: "Duplicate Approval One",
+        author: "Duplicate Author",
+        gutenbergId: "5401",
+        extraHeader: "Original publication: 1900",
+      }),
+      metadataOne,
+    );
+    writeFixtureBook(
+      textRoot,
+      "duplicate-approval-two",
+      gutenbergFixtureText({
+        title: "Duplicate Approval Two",
+        author: "Duplicate Author",
+        gutenbergId: "5401",
+        extraHeader: "Original publication: 1900",
+      }),
+      metadataTwo,
+    );
+    writeOwnerPeopleApprovals(textRoot, [
+      {
+        slug: "duplicate-author",
+        name: "Duplicate Author",
+        roles: ["author"],
+        deathYear: 1915,
+        canadaLifePlus70Safe: true,
+        reviewedByOwner: true,
+        notes: "Test duplicate author approval.",
+      },
+    ]);
+    writeBookApprovals(textRoot, [
+      {
+        bookSlug: "duplicate-approval-one",
+        approvedForWebsite: true,
+        originalPublicationYear: 1900,
+        ownerReviewed: true,
+      },
+    ]);
+
+    const unresolved = applyBookReviewApprovals({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(unresolved.fatalErrors).toEqual([]);
+    const unresolvedReport = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "duplicate-approval-one", "rights_report.json"),
+    );
+    expect(unresolvedReport.processing_allowed).toBe(false);
+    expect(unresolvedReport.reasoning_summary).toContain("Duplicate Gutenberg ID");
+
+    writeDuplicateResolutions(textRoot, [
+      {
+        gutenbergId: "5401",
+        keepSlug: "duplicate-approval-one",
+        duplicateSlugs: ["duplicate-approval-two"],
+        resolution: "keep-one",
+        reason: "Test owner resolution keeps one page for this source text.",
+        ownerReviewed: true,
+      },
+    ]);
+
+    const resolved = applyBookReviewApprovals({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(resolved.fatalErrors).toEqual([]);
+    const resolvedReport = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "duplicate-approval-one", "rights_report.json"),
+    );
+    expect(resolvedReport.processing_allowed).toBe(true);
+    expect(resolved.report.booksNewlyEligibleForProcessing).toContain(
+      "duplicate-approval-one",
+    );
+    const duplicateMetadata = readJsonFile<BookMetadata>(
+      path.join(textRoot, "meta", "duplicate-approval-two.json"),
+    );
+    expect(duplicateMetadata.source.allowDuplicateGutenbergId).toBe(true);
+  });
+
+  test("approval intake cannot make rejected text public", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("approval-rejected-library");
+    const generatedRoot = testInfo.outputPath("approval-rejected-generated");
+    writeFixtureBook(
+      textRoot,
+      "approval-rejected",
+      gutenbergFixtureText({
+        title: "Approval Rejected",
+        author: "Rejected Author",
+        gutenbergId: "5501",
+        extraHeader: "Original publication: 1900\nCopyright 1964 Example Estate. All rights reserved.",
+      }),
+      approvedMetadata("approval-rejected", {
+        author: ["Rejected Author"],
+        source: {
+          ...approvedMetadata("approval-rejected").source,
+          gutenbergId: "5501",
+          rightsReviewed: false,
+        },
+      }),
+    );
+    writeOwnerPeopleApprovals(textRoot, [
+      {
+        slug: "rejected-author",
+        name: "Rejected Author",
+        roles: ["author"],
+        deathYear: 1900,
+        canadaLifePlus70Safe: true,
+        reviewedByOwner: true,
+        notes: "Test person approval cannot override rejection.",
+      },
+    ]);
+    writeBookApprovals(textRoot, [
+      {
+        bookSlug: "approval-rejected",
+        approvedForWebsite: true,
+        originalPublicationYear: 1900,
+        ownerReviewed: true,
+      },
+    ]);
+
+    const applyResult = applyBookReviewApprovals({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(applyResult.fatalErrors).toEqual([]);
+    const report = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "approval-rejected", "rights_report.json"),
+    );
+    expect(report.canada_us_v1_status).toBe("reject");
+    expect(report.processing_allowed).toBe(false);
+
+    const build = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath: path.join(textRoot, "approved-metadata", "authors.json"),
+      bookApprovalsPath: path.join(textRoot, "approved-metadata", "book-approvals.json"),
+      generatedRoot: testInfo.outputPath("approval-rejected-build-generated"),
+      quiet: true,
+    });
+    expect(build.fatalErrors).toEqual([]);
+    expect(build.processedBooks[0].source.publishReady).toBe(false);
+    expect(
+      fs.existsSync(
+        path.join(
+          testInfo.outputPath("approval-rejected-build-generated"),
+          "approval-rejected",
+          "processed_book.json",
+        ),
+      ),
+    ).toBe(false);
   });
 
   test("committed Alice pilot artifact has publish flags and chapter sections", () => {

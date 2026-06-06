@@ -495,6 +495,15 @@ function validateRightsReportShape(
   requireBoolean("contains_modern_intro_or_notes");
   requireBoolean("contains_transcriber_notes");
   requireBoolean("contains_illustrations_or_image_references");
+  requireBoolean("owner_reviewed_approval_present");
+  requireBoolean("approved_for_website");
+  requireBoolean("approved_for_youtube_narration");
+  if (
+    !Array.isArray(raw.approved_regions) ||
+    raw.approved_regions.some((region) => typeof region !== "string")
+  ) {
+    errors.push(`${filePath}: approved_regions must be an array of strings.`);
+  }
   if (typeof raw.reasoning_summary !== "string") {
     errors.push(`${filePath}: reasoning_summary must be a string.`);
   }
@@ -745,6 +754,10 @@ function missingFieldsFor({
   }
   if (rightsReport.illustrator) missing.push("illustrator handling review");
   if (!metadata.source.rightsReviewed) missing.push("source.rightsReviewed");
+  if (!rightsReport.owner_reviewed_approval_present) {
+    missing.push("owner-reviewed website approval");
+  }
+  if (!rightsReport.approved_for_website) missing.push("website approval");
   if (metadata.source.rightsBasis === "unknown") missing.push("source.rightsBasis");
   if (metadata.metadataStatus === "draft") missing.push("metadataStatus reviewed");
   if (metadata.manualReviewRequired === true) missing.push("manualReviewRequired false");
@@ -817,6 +830,9 @@ function nextActionsForBook({
   }
   if (!metadata.source.rightsReviewed || metadata.source.rightsBasis === "unknown") {
     actions.push("Complete manual rights review metadata.");
+  }
+  if (!rightsReport.owner_reviewed_approval_present) {
+    actions.push("Add owner-reviewed book approval before processing.");
   }
   if (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true) {
     actions.push("Move draft metadata through manual review before processing.");

@@ -183,6 +183,21 @@ export type ApprovedPersonMetadata = {
 
 export type ApprovedPeopleMetadata = Record<string, ApprovedPersonMetadata>;
 
+export type OwnerApprovedRegion = "US" | "CA";
+
+export type OwnerBookApproval = {
+  bookSlug: string;
+  approvedForWebsite: boolean;
+  approvedForYoutubeNarration: boolean;
+  approvedRegions: OwnerApprovedRegion[];
+  originalPublicationYear: number | null;
+  editionNotes: string;
+  translationNotes: string;
+  excludeModernAdditions: boolean;
+  ownerReviewed: boolean;
+  notes: string;
+};
+
 export type BookRightsReport = {
   schemaVersion: 1;
   title: string;
@@ -217,6 +232,10 @@ export type BookRightsReport = {
   edition_risk: BookRightsRiskLevel;
   trademark_or_character_brand_risk: BookRightsRiskLevel;
   content_brand_safety_risk: BookRightsRiskLevel;
+  owner_reviewed_approval_present: boolean;
+  approved_for_website: boolean;
+  approved_for_youtube_narration: boolean;
+  approved_regions: string[];
   canada_us_v1_status: BookCanadaUsV1Status;
   reasoning_summary: string;
   evidence_snippets: string[];

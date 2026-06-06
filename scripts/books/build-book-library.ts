@@ -20,6 +20,10 @@ import {
   SECTION_KINDS,
 } from "./bookManifestTypes.ts";
 import {
+  loadOwnerBookApprovals,
+  ownerBookApprovalMap,
+} from "./bookApprovalFiles.ts";
+import {
   buildBookRightsReport,
   getProjectGutenbergSourceUrl,
   loadApprovedPeopleMetadata,
@@ -41,6 +45,7 @@ export type BookBuildOptions = {
   textRoot?: string;
   metadataRoot?: string;
   approvedPeoplePath?: string;
+  bookApprovalsPath?: string;
   generatedRoot?: string;
   quiet?: boolean;
 };
@@ -88,6 +93,11 @@ const DEFAULT_APPROVED_PEOPLE_PATH = path.join(
   DEFAULT_TEXT_ROOT,
   "approved-metadata",
   "authors.json",
+);
+const DEFAULT_BOOK_APPROVALS_PATH = path.join(
+  DEFAULT_TEXT_ROOT,
+  "approved-metadata",
+  "book-approvals.json",
 );
 const DEFAULT_GENERATED_ROOT = path.join(
   DEFAULT_REPO_ROOT,
@@ -753,9 +763,10 @@ function buildProcessedBook(
     },
     rights: {
       status: "approved",
-      approved_for_website: true,
-      approved_for_youtube_narration: true,
-      approved_regions: ["US", "CA"],
+      approved_for_website: rightsReport.approved_for_website,
+      approved_for_youtube_narration:
+        rightsReport.approved_for_youtube_narration,
+      approved_regions: rightsReport.approved_regions,
       needs_manual_review: false,
       notes: rightsReport.reasoning_summary,
     },
@@ -942,6 +953,7 @@ function buildGeneratedManifest(
   metadata: BookMetadata,
   rawText: string,
   approvedPeople: ApprovedPeopleMetadata,
+  ownerBookApproval: Parameters<typeof buildBookRightsReport>[0]["ownerBookApproval"],
   warnings: string[],
 ): {
   manifest: GeneratedBookManifest;
@@ -967,6 +979,7 @@ function buildGeneratedManifest(
     cleanedText,
     cleaning: cleaning.report,
     approvedPeople,
+    ownerBookApproval,
   });
   const rights = validateBookRights(metadata, rightsReport);
   warnings.push(...rights.warnings);
@@ -1224,14 +1237,21 @@ export function buildBookLibrary(
   const approvedPeoplePath = path.resolve(
     options.approvedPeoplePath ?? DEFAULT_APPROVED_PEOPLE_PATH,
   );
+  const bookApprovalsPath = path.resolve(
+    options.bookApprovalsPath ?? DEFAULT_BOOK_APPROVALS_PATH,
+  );
   const generatedRoot = path.resolve(options.generatedRoot ?? DEFAULT_GENERATED_ROOT);
   const inventory = scanBookInventory({ textRoot, metadataRoot });
   const approvedPeopleResult = loadApprovedPeopleMetadata(approvedPeoplePath);
+  const bookApprovalsResult = loadOwnerBookApprovals(bookApprovalsPath);
+  const bookApprovals = ownerBookApprovalMap(bookApprovalsResult.entries);
   const warnings: string[] = [];
   const fatalErrors: string[] = [];
   const generatedArtifacts: string[] = [];
 
   fatalErrors.push(...approvedPeopleResult.errors);
+  fatalErrors.push(...bookApprovalsResult.errors);
+  warnings.push(...bookApprovalsResult.warnings);
   for (const invalid of inventory.invalidMetadata) {
     fatalErrors.push(...invalid.errors);
   }
@@ -1380,6 +1400,7 @@ export function buildBookLibrary(
       metadata,
       rawText,
       approvedPeopleResult.people,
+      bookApprovals.get(metadata.slug) ?? null,
       bookWarnings,
     );
     fatalErrors.push(...bookFatalErrors);

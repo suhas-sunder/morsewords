@@ -47,6 +47,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
@@ -60,8 +61,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -127,6 +130,7 @@
         "Review illustration/image references.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -149,6 +153,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -159,8 +164,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -221,6 +228,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -243,6 +251,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -253,8 +262,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -316,6 +327,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -336,12 +348,15 @@
       "rejectionOrManualReviewReasons": [
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Illustrations or image references need manual handling.",
         "Edition or editorial status needs manual review."
       ],
       "missingFields": [
         "approved author death year",
-        "source.rightsReviewed"
+        "owner-reviewed website approval",
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -401,7 +416,8 @@
       "nextActions": [
         "Add approved author death year metadata.",
         "Review illustration/image references.",
-        "Complete manual rights review metadata."
+        "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing."
       ]
     },
     {
@@ -423,6 +439,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -435,8 +452,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -499,6 +518,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -521,6 +541,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -532,8 +553,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -598,6 +621,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -620,6 +644,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -631,8 +656,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -697,6 +724,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -719,6 +747,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -731,8 +760,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -795,6 +826,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -816,6 +848,7 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -824,8 +857,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -885,6 +920,7 @@
       "nextActions": [
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -907,6 +943,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -918,8 +955,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -981,6 +1020,7 @@
         "Check translator identity and death year.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1003,6 +1043,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Transcriber notes remain in cleaned story text.",
@@ -1016,8 +1057,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1081,6 +1124,7 @@
         "Review content-brand safety before education use.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1103,6 +1147,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -1114,8 +1159,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1177,6 +1224,7 @@
         "Check translator identity and death year.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1200,6 +1248,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -1211,8 +1260,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1277,6 +1328,7 @@
         "Review illustration/image references.",
         "Confirm translation status.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1299,6 +1351,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -1312,8 +1365,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1377,6 +1432,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1399,6 +1455,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -1408,8 +1465,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1470,6 +1529,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1493,6 +1553,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -1502,8 +1563,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1566,6 +1629,7 @@
         "Add original publication metadata.",
         "Review later copyright notice.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1588,6 +1652,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -1597,8 +1662,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1659,6 +1726,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1681,6 +1749,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -1690,8 +1759,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1752,6 +1823,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1774,6 +1846,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
@@ -1790,8 +1863,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1855,6 +1930,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1877,6 +1953,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -1886,8 +1963,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -1948,6 +2027,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -1970,6 +2050,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Transcriber notes remain in cleaned story text.",
@@ -1985,8 +2066,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2050,6 +2133,7 @@
         "Review illustration/image references.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2074,6 +2158,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -2083,8 +2168,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2145,6 +2232,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2167,6 +2255,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -2177,8 +2266,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2240,6 +2331,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2262,6 +2354,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -2273,8 +2366,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2336,6 +2431,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2358,6 +2454,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -2370,8 +2467,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2434,6 +2533,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2456,6 +2556,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
@@ -2469,8 +2570,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2534,6 +2637,7 @@
         "Review illustration/image references.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2556,6 +2660,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
@@ -2567,8 +2672,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2631,6 +2738,7 @@
         "Review illustration/image references.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2654,6 +2762,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
@@ -2667,8 +2776,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2734,6 +2845,7 @@
         "Review illustration/image references.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2756,6 +2868,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Edition or editorial status needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -2766,8 +2879,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2828,6 +2943,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2850,6 +2966,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -2860,8 +2977,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -2923,6 +3042,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -2945,6 +3065,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -2955,8 +3076,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3018,6 +3141,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3040,6 +3164,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -3051,8 +3176,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3114,6 +3241,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3136,6 +3264,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -3146,8 +3275,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3209,6 +3340,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3229,6 +3361,7 @@
       "rejectionOrManualReviewReasons": [
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
@@ -3240,8 +3373,10 @@
         "approved translator death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3303,6 +3438,7 @@
         "Check translator identity and death year.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3325,6 +3461,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Trademark or character brand risk needs manual review.",
@@ -3337,8 +3474,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3402,6 +3541,7 @@
         "Review trademark/character brand risk.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3423,6 +3563,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -3435,8 +3576,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": []
@@ -3492,6 +3635,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3512,6 +3656,7 @@
       "rejectionOrManualReviewReasons": [
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Translation status or translator death year needs manual review.",
@@ -3522,8 +3667,10 @@
         "approved translator death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3584,6 +3731,7 @@
         "Add approved author death year metadata.",
         "Check translator identity and death year.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3606,6 +3754,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -3617,8 +3766,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3691,6 +3842,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3713,6 +3865,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -3724,8 +3877,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3787,6 +3942,7 @@
         "Add original publication metadata.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3806,6 +3962,7 @@
       "processingAllowed": false,
       "rejectionOrManualReviewReasons": [
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Content brand-safety risk needs manual review.",
@@ -3814,8 +3971,10 @@
       "missingFields": [
         "manualReviewRequired false",
         "metadataStatus reviewed",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3876,6 +4035,7 @@
         "Review content-brand safety before education use.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3898,6 +4058,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -3907,8 +4068,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -3969,6 +4132,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -3991,6 +4155,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
@@ -4004,8 +4169,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -4071,6 +4238,7 @@
         "Check translator identity and death year.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4093,6 +4261,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
@@ -4106,8 +4275,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": []
@@ -4166,6 +4337,7 @@
         "Check translator identity and death year.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4188,6 +4360,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
@@ -4201,8 +4374,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -4265,6 +4440,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4287,6 +4463,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -4298,8 +4475,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -4372,6 +4551,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4394,6 +4574,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -4404,8 +4585,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -4467,6 +4650,7 @@
         "Add original publication metadata.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4489,6 +4673,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -4498,8 +4683,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -4560,6 +4747,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4582,6 +4770,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -4593,8 +4782,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -4667,6 +4858,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4689,6 +4881,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
@@ -4701,8 +4894,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -4765,6 +4960,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4787,6 +4983,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -4798,8 +4995,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -4872,6 +5071,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4894,6 +5094,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -4903,8 +5104,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -4965,6 +5168,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -4995,6 +5199,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -5005,10 +5210,12 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.gutenbergId",
         "source.rightsBasis",
         "source.rightsReviewed",
-        "sourceUrl"
+        "sourceUrl",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": []
@@ -5065,6 +5272,7 @@
         "Add original publication metadata.",
         "Confirm translation status.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5087,6 +5295,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -5096,8 +5305,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -5158,6 +5369,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5180,6 +5392,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -5191,8 +5404,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -5265,6 +5480,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5287,6 +5503,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -5296,8 +5513,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -5358,6 +5577,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5380,6 +5600,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -5391,8 +5612,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -5465,6 +5688,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5487,6 +5711,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -5496,8 +5721,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -5558,6 +5785,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5580,6 +5808,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -5589,8 +5818,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -5651,6 +5882,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5673,6 +5905,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -5682,8 +5915,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -5744,6 +5979,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5766,6 +6002,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -5777,8 +6014,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -5851,6 +6090,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5873,6 +6113,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -5882,8 +6123,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -5944,6 +6187,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -5967,6 +6211,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
@@ -5979,8 +6224,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6046,6 +6293,7 @@
         "Review transcriber notes and excluded support matter.",
         "Confirm translation status.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6068,6 +6316,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -6077,8 +6326,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6139,6 +6390,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6161,6 +6413,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -6172,8 +6425,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6246,6 +6501,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6268,6 +6524,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -6279,8 +6536,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6353,6 +6612,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6375,6 +6635,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
@@ -6386,8 +6647,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6460,6 +6723,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6482,6 +6746,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -6492,8 +6757,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6555,6 +6822,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6577,6 +6845,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -6586,8 +6855,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6648,6 +6919,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6670,6 +6942,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -6681,8 +6954,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6744,6 +7019,7 @@
         "Add original publication metadata.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6766,6 +7042,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -6776,8 +7053,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6839,6 +7118,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6861,6 +7141,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Edition or editorial status needs manual review.",
@@ -6872,8 +7153,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -6935,6 +7218,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -6957,6 +7241,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
@@ -6967,8 +7252,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -7029,6 +7316,7 @@
         "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -7051,6 +7339,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
@@ -7061,8 +7350,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -7124,6 +7415,7 @@
         "Add original publication metadata.",
         "Review illustration/image references.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     },
@@ -7147,6 +7439,7 @@
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
@@ -7158,8 +7451,10 @@
         "metadataStatus reviewed",
         "originalPublication",
         "originalPublicationYear",
+        "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed"
+        "source.rightsReviewed",
+        "website approval"
       ],
       "authorDeathYearStatus": {
         "authors": [
@@ -7224,6 +7519,7 @@
         "Review illustration/image references.",
         "Review transcriber notes and excluded support matter.",
         "Complete manual rights review metadata.",
+        "Add owner-reviewed book approval before processing.",
         "Move draft metadata through manual review before processing."
       ]
     }

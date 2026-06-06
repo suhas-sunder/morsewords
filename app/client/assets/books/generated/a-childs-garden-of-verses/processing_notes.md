@@ -54,6 +54,8 @@
 - Rights basis "unknown" is not publish-ready.
 - Rights gate status is reject; generated book is not publish-ready.
 - Rights gate did not allow processed public story output.
+- Owner-reviewed website approval is missing.
+- Owner approval does not allow website use.
 
 ## Manual review reasons
 
@@ -62,6 +64,7 @@
 - Original publication year is missing or not before 1931.
 - Author death year is missing from approved metadata or clear source metadata.
 - Metadata rightsReviewed is false.
+- Owner-reviewed book approval is missing.
 - Rights basis "unknown" is not publish-ready.
 - Transcriber notes remain in cleaned story text.
 - Illustrations or image references need manual handling.
