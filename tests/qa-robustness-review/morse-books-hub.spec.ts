@@ -15,14 +15,18 @@ const PUBLIC_INTERNAL_TERMS = [
   "generated artifacts",
   "generated artifact",
   "raw text inventory",
-  "metadata files",
+  "metadata",
   "pilot artifacts",
   "pilot artifact",
   "review trail",
+  "raw files",
   "unpublished pilot",
+  "What a Morse book page will do",
+  "Why reviewed books are listed slowly",
 ];
 const FAKE_PUBLIC_SIGNALS = [
   "star rating",
+  "rating",
   "page count",
   "reviews",
   "favorites",
@@ -137,14 +141,13 @@ async function contrastRatio(locator: Locator) {
 test.describe("Morse books hub", () => {
   test("loads the canonical hub with empty state and canonical metadata", async ({
     page,
+    request,
   }, testInfo) => {
     await gotoHub(page);
 
     await expect(page).toHaveURL(new RegExp(`${ROUTES.morseBooks}$`));
-    await expect(page).toHaveTitle(/Morse Code Books and Morse Audiobooks/);
-    await expect(page.locator("h1")).toHaveText(
-      "Morse code books and audiobook-style practice",
-    );
+    await expect(page).toHaveTitle(/Morse Code Books and Audiobooks/);
+    await expect(page.locator("h1")).toHaveText("Morse code books and audiobooks");
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
       absoluteUrl(ROUTES.morseBooks),
@@ -153,8 +156,25 @@ test.describe("Morse books hub", () => {
       "content",
       absoluteUrl(ROUTES.morseBooks),
     );
+    await expect(page.locator("main > section").first()).not.toContainText(
+      "source and rights review",
+    );
+    await expect(page.locator("[data-testid='morse-books-browser']")).toBeVisible();
     await expect(page.locator("[data-testid='morse-books-empty-state']")).toContainText(
-      "Curated Morse books are being reviewed.",
+      "Reviewed Morse books are coming soon.",
+    );
+    await expect(page.locator("[data-testid='morse-books-empty-state']")).toContainText(
+      "Books will appear here after they are checked and prepared for chapter-based Morse audio and video.",
+    );
+    await expect(page.locator("[data-testid='morse-books-placeholder-grid']")).toBeVisible();
+    await expect(page.locator("[data-testid='morse-books-placeholder-card']")).toHaveCount(
+      6,
+    );
+    await expect(page.locator("[data-testid='morse-books-placeholder-card']").first()).toContainText(
+      "Coming soon",
+    );
+    await expect(page.locator("[data-testid='morse-books-placeholder-card']").first()).toContainText(
+      "Not a public listing yet",
     );
     await expect(page.locator("[data-testid='morse-books-toolbar']")).toBeVisible();
     await expect(page.getByLabel("Search title, author, or subject")).toBeDisabled();
@@ -165,10 +185,9 @@ test.describe("Morse books hub", () => {
       "0 reviewed books available",
     );
     await expect(
-      page.getByText("Books will appear here after source and rights checks are complete."),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: "Open the book translator" }),
+      page
+        .locator("[data-testid='morse-books-empty-state']")
+        .getByRole("link", { name: "Open the book translator" }),
     ).toHaveAttribute("href", ROUTES.bookTranslator);
     await expect(page.getByText("Alice's Adventures in Wonderland")).toHaveCount(0);
     await expect(page.locator(`a[href*="${ALICE_SLUG}"]`)).toHaveCount(0);
@@ -186,14 +205,14 @@ test.describe("Morse books hub", () => {
     }
 
     const collectionBeforeGuide = await page.evaluate(() => {
-      const toolbar = document.querySelector("[data-testid='morse-books-toolbar']");
+      const browser = document.querySelector("[data-testid='morse-books-browser']");
       const guideHeading = [...document.querySelectorAll("h2")].find((heading) =>
-        heading.textContent?.includes("What a Morse book page will do"),
+        heading.textContent?.includes("How Morse book pages work"),
       );
       return Boolean(
-        toolbar &&
+        browser &&
           guideHeading &&
-          toolbar.compareDocumentPosition(guideHeading) &
+          browser.compareDocumentPosition(guideHeading) &
             Node.DOCUMENT_POSITION_FOLLOWING,
       );
     });
@@ -215,6 +234,17 @@ test.describe("Morse books hub", () => {
     expect(schemaText).not.toContain("aggregateRating");
     expect(schemaText).not.toContain("reviewRating");
     expect(schemaText).not.toContain('"price"');
+
+    const alicePublicResponse = await request.get(
+      `/morse-code-books/${ALICE_SLUG}`,
+    );
+    expect(alicePublicResponse.status()).toBe(404);
+    const alicePreviewResponse = await request.get(
+      `/morse-code-books/${ALICE_SLUG}?preview=unpublished`,
+    );
+    expect(alicePreviewResponse.ok()).toBe(true);
+    const alicePreviewHtml = await alicePreviewResponse.text();
+    expect(alicePreviewHtml).toContain("noindex,nofollow");
 
     await saveScreenshot(page, testInfo, "morse-books-hub-empty-desktop.png");
   });
@@ -272,10 +302,17 @@ test.describe("Morse books hub", () => {
     await expect(
       page.locator("[data-mw-morse-books-cover-placeholder='true'] img"),
     ).toHaveCount(0);
-    await expect(page.getByText("Morse audio/video")).toBeVisible();
+    const card = page.locator("[data-testid='morse-book-card']");
+    await expect(card.locator("[data-testid='morse-book-output-badge']")).toHaveText([
+      "Morse audio",
+      "Morse video",
+      "Chapter practice",
+    ]);
+    await expect(card).toContainText("Sections");
+    await expect(card).toContainText("Words");
 
     const bookLink = page.getByRole("link", {
-      name: "Open book page for Test Published Morse Book",
+      name: "Open book for Test Published Morse Book",
     });
     await expect(bookLink).toHaveAttribute(
       "href",
@@ -305,13 +342,47 @@ test.describe("Morse books hub", () => {
       "content",
       /noindex/,
     );
+    await expect(page.locator("[data-testid='morse-books-card-grid']")).toBeVisible();
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
+    await expect(page.locator("[data-testid='morse-book-cover-placeholder']").first()).toBeVisible();
+    await expect(
+      page.locator("[data-testid='morse-book-output-badge']").filter({
+        hasText: "Morse audio",
+      }),
+    ).toHaveCount(12);
+    await expect(
+      page.locator("[data-testid='morse-book-output-badge']").filter({
+        hasText: "Morse video",
+      }),
+    ).toHaveCount(12);
+    await expect(
+      page.locator("[data-testid='morse-book-output-badge']").filter({
+        hasText: "Chapter practice",
+      }),
+    ).toHaveCount(12);
+    await expect(page.locator("[data-testid='morse-book-card']").first()).toContainText(
+      "MorseWords test fixture",
+    );
+    await expect(page.locator("[data-testid='morse-book-card']").first()).toContainText(
+      "Sections",
+    );
+    await expect(page.locator("[data-testid='morse-book-card']").first()).toContainText(
+      "Words",
+    );
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 12 of 30 reviewed books",
     );
     await expect(page.getByRole("button", { name: "Show more books" })).toBeVisible();
     await expect(page.getByText("Alice's Adventures in Wonderland")).toHaveCount(0);
     await expect(page.locator(`a[href*="${ALICE_SLUG}"]`)).toHaveCount(0);
+
+    const collectionMainText = (await page.locator("main").innerText()).toLowerCase();
+    for (const term of FAKE_PUBLIC_SIGNALS) {
+      expect(
+        collectionMainText,
+        `fixture collection hides fake signal: ${term}`,
+      ).not.toContain(term);
+    }
 
     await page.getByRole("button", { name: "Show more books" }).click();
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(24);
@@ -401,7 +472,7 @@ test.describe("Morse books hub", () => {
       .locator("[data-testid='morse-book-card']")
       .filter({ hasText: "Test Collection Morse Book 01" })
       .getByRole("link", {
-        name: "Open book page for Test Collection Morse Book 01",
+        name: "Open book for Test Collection Morse Book 01",
       });
     await expect(firstCardLink).toHaveAttribute(
       "href",
