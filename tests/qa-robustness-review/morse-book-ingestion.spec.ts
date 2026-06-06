@@ -1603,6 +1603,143 @@ Project Gutenberg License
     );
   });
 
+  test("books build preserves review and approval intake artifacts", ({}, testInfo) => {
+    const textRoot = testInfo.outputPath("build-preserves-review-library");
+    const generatedRoot = testInfo.outputPath("build-preserves-review-generated");
+    const metadataRoot = path.join(textRoot, "meta");
+    const approvedPeoplePath = path.join(textRoot, "approved-metadata", "authors.json");
+    const bookApprovalsPath = path.join(
+      textRoot,
+      "approved-metadata",
+      "book-approvals.json",
+    );
+    const duplicateResolutionsPath = path.join(
+      textRoot,
+      "approved-metadata",
+      "duplicate-resolutions.json",
+    );
+
+    writeApprovedPeople(textRoot, {
+      "example-author": {
+        name: "Example Author",
+        deathYear: 1920,
+        canadaLifePlus70Safe: true,
+        notes: "Test-only approved person metadata.",
+      },
+    });
+    writeOwnerPeopleApprovals(textRoot, []);
+    writeBookApprovals(textRoot, [
+      {
+        bookSlug: "build-preserved-approved",
+        approvedForWebsite: true,
+        approvedForYoutubeNarration: true,
+        approvedRegions: ["US", "CA"],
+        originalPublicationYear: 1900,
+        ownerReviewed: true,
+      },
+    ]);
+    writeDuplicateResolutions(textRoot, []);
+    writeFixtureBook(
+      textRoot,
+      "build-preserved-approved",
+      gutenbergFixtureText({
+        title: "Build Preserved Approved",
+        gutenbergId: "3101",
+      }),
+      approvedMetadata("build-preserved-approved", {
+        source: {
+          ...approvedMetadata("build-preserved-approved").source,
+          gutenbergId: "3101",
+        },
+      }),
+    );
+    writeFixtureBook(
+      textRoot,
+      "build-preserved-draft",
+      gutenbergFixtureText({
+        title: "Build Preserved Draft",
+        gutenbergId: "3102",
+      }),
+      approvedMetadata("build-preserved-draft", {
+        metadataStatus: "draft",
+        manualReviewRequired: true,
+        source: {
+          ...approvedMetadata("build-preserved-draft").source,
+          gutenbergId: "3102",
+          rightsBasis: "unknown",
+          rightsReviewed: false,
+        },
+      }),
+    );
+
+    const rights = generateBookRightsReports({
+      textRoot,
+      metadataRoot,
+      approvedPeoplePath,
+      bookApprovalsPath,
+      generatedRoot,
+      quiet: true,
+    });
+    expect(rights.fatalErrors).toEqual([]);
+    const applied = applyBookReviewApprovals({
+      textRoot,
+      metadataRoot,
+      approvedPeoplePath,
+      peopleApprovalsPath: path.join(textRoot, "approved-metadata", "people.json"),
+      bookApprovalsPath,
+      duplicateResolutionsPath,
+      generatedRoot,
+      reviewRoot: path.join(generatedRoot, "review"),
+      quiet: true,
+    });
+    expect(applied.fatalErrors).toEqual([]);
+
+    const preservedPaths = [
+      "review-report.json",
+      "review-report.md",
+      "review/review-queue.json",
+      "review/people-review-queue.json",
+      "review/duplicate-gutenberg-review.json",
+      "review/owner-input/books-to-review.csv",
+      "review/approval-application-report.json",
+      "build-preserved-draft/rights_report.json",
+      "build-preserved-draft/processing_notes.md",
+    ];
+    const beforeBuild = Object.fromEntries(
+      preservedPaths.map((relativePath) => [
+        relativePath,
+        fs.readFileSync(path.join(generatedRoot, ...relativePath.split("/")), "utf8"),
+      ]),
+    );
+
+    const build = buildBookLibrary({
+      textRoot,
+      metadataRoot,
+      approvedPeoplePath,
+      bookApprovalsPath,
+      generatedRoot,
+      quiet: true,
+    });
+    expect(build.fatalErrors).toEqual([]);
+    expect(build.processedBooks.map((book) => book.slug)).toEqual([
+      "build-preserved-approved",
+    ]);
+
+    for (const [relativePath, contents] of Object.entries(beforeBuild)) {
+      const artifactPath = path.join(generatedRoot, ...relativePath.split("/"));
+      expect(fs.existsSync(artifactPath)).toBe(true);
+      expect(fs.readFileSync(artifactPath, "utf8")).toBe(contents);
+    }
+    expect(
+      fs.existsSync(
+        path.join(generatedRoot, "build-preserved-draft", "processed_book.json"),
+      ),
+    ).toBe(false);
+    expect(
+      fs.existsSync(path.join(generatedRoot, "build-preserved-draft", "sections")),
+    ).toBe(false);
+  });
+
   test("generates rights reports and blocks processed story JSON for manual-review books", ({
   }, testInfo) => {
     const { result, generatedRoot } = buildSingleFixture({

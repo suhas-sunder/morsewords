@@ -719,6 +719,61 @@ function writeText(filePath: string, value: string): void {
   fs.writeFileSync(filePath, value.endsWith("\n") ? value : `${value}\n`, "utf8");
 }
 
+type PreservedGeneratedFile = {
+  relativePath: string;
+  contents: Buffer;
+};
+
+function shouldPreserveGeneratedFile(generatedRoot: string, filePath: string): boolean {
+  const relativePath = relativeTo(generatedRoot, filePath);
+  if (relativePath === "review-report.json" || relativePath === "review-report.md") {
+    return true;
+  }
+  if (relativePath.startsWith("review/")) {
+    return true;
+  }
+
+  const parts = relativePath.split("/");
+  return (
+    parts.length === 2 &&
+    (parts[1] === "rights_report.json" || parts[1] === "processing_notes.md")
+  );
+}
+
+function snapshotPreservedGeneratedFiles(generatedRoot: string): PreservedGeneratedFile[] {
+  if (!fs.existsSync(generatedRoot)) return [];
+
+  const preservedFiles: PreservedGeneratedFile[] = [];
+  const walk = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const entryPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(entryPath);
+        continue;
+      }
+      if (entry.isFile() && shouldPreserveGeneratedFile(generatedRoot, entryPath)) {
+        preservedFiles.push({
+          relativePath: relativeTo(generatedRoot, entryPath),
+          contents: fs.readFileSync(entryPath),
+        });
+      }
+    }
+  };
+  walk(generatedRoot);
+  return preservedFiles;
+}
+
+function restorePreservedGeneratedFiles(
+  generatedRoot: string,
+  preservedFiles: PreservedGeneratedFile[],
+): void {
+  for (const file of preservedFiles) {
+    const targetPath = path.join(generatedRoot, ...file.relativePath.split("/"));
+    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+    fs.writeFileSync(targetPath, file.contents);
+  }
+}
+
 function safeResetGeneratedRoot(generatedRoot: string, allowCustomRoot: boolean): void {
   const normalized = path.normalize(generatedRoot);
   const parsedRoot = path.parse(normalized).root;
@@ -732,8 +787,10 @@ function safeResetGeneratedRoot(generatedRoot: string, allowCustomRoot: boolean)
   ) {
     throw new Error(`Refusing to reset unexpected generated root: ${generatedRoot}`);
   }
+  const preservedFiles = snapshotPreservedGeneratedFiles(generatedRoot);
   fs.rmSync(generatedRoot, { recursive: true, force: true });
   fs.mkdirSync(generatedRoot, { recursive: true });
+  restorePreservedGeneratedFiles(generatedRoot, preservedFiles);
 }
 
 function estimatedTypingMinutes(wordCount: number): number {
