@@ -11,6 +11,7 @@ import type {
 import { buildBookLibrary, scanBookInventory } from "../../scripts/books/build-book-library.ts";
 import { cleanGutenbergText } from "../../scripts/books/clean-gutenberg.ts";
 import { detectBookSections } from "../../scripts/books/detect-book-sections.ts";
+import { generateBookReviewQueue } from "../../scripts/books/generate-book-review-queue.ts";
 import { generateBookRightsReports } from "../../scripts/books/generate-book-rights-reports.ts";
 import { scaffoldBookMetadata } from "../../scripts/books/scaffold-book-metadata.ts";
 
@@ -1017,6 +1018,302 @@ Third chapter.
       expect(artifact).not.toMatch(/\.(mp3|wav|webm|mp4)$/);
       expect(path.basename(artifact)).not.toBe("processed_book.json");
     }
+  });
+
+  test("review queue command groups actionable manual review work", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("review-queue-library");
+    const generatedRoot = testInfo.outputPath("review-queue-generated");
+    const approvedPeoplePath = path.join(
+      textRoot,
+      "approved-metadata",
+      "authors.json",
+    );
+    writeApprovedPeople(textRoot, {});
+
+    const metadataFor = (
+      slug: string,
+      gutenbergId: string,
+      title: string,
+      author = "Shared Author",
+      overrides: Partial<BookMetadata> = {},
+    ): BookMetadata => ({
+      ...approvedMetadata(slug, {
+        ...overrides,
+        title,
+        author: [author],
+        source: {
+          ...approvedMetadata(slug).source,
+          gutenbergId,
+          rightsBasis: "public-domain-us",
+          rightsReviewed: true,
+          ...(overrides.source ?? {}),
+        },
+      }),
+      title,
+      author: [author],
+      originalPublicationYear: overrides.originalPublicationYear ?? 1900,
+    });
+    const rawFor = (
+      title: string,
+      gutenbergId: string,
+      author = "Shared Author",
+      extraHeader = "",
+      body = "CHAPTER I\n\nFixture review body.",
+      footerExtra = "",
+    ) =>
+      gutenbergFixtureText({
+        title,
+        author,
+        gutenbergId,
+        extraHeader: ["Original publication: 1900", extraHeader]
+          .filter(Boolean)
+          .join("\n"),
+        body,
+        footerExtra,
+      });
+
+    writeFixtureBook(
+      textRoot,
+      "candidate-one",
+      rawFor(
+        "Candidate One",
+        "3001",
+        "Shared Author",
+        "",
+        "CHAPTER I\n\nUNIQUE REVIEW STORY TEXT SHOULD NOT APPEAR.",
+      ),
+      metadataFor("candidate-one", "3001", "Candidate One"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "candidate-two",
+      rawFor("Candidate Two", "3002"),
+      metadataFor("candidate-two", "3002", "Candidate Two"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "duplicate-one",
+      rawFor("Duplicate Story", "3999"),
+      metadataFor("duplicate-one", "3999", "Duplicate Story"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "duplicate-two",
+      rawFor("Duplicate Story", "3999"),
+      metadataFor("duplicate-two", "3999", "Duplicate Story"),
+    );
+    writeFixtureBook(
+      textRoot,
+      "translator-editor-review",
+      rawFor(
+        "Translator Editor Review",
+        "3003",
+        "Other Author",
+        [
+          "Translator: Modern Translator",
+          "Editor: Modern Editor",
+          "Introduction by Modern Intro",
+        ].join("\n"),
+      ),
+      metadataFor(
+        "translator-editor-review",
+        "3003",
+        "Translator Editor Review",
+        "Other Author",
+      ),
+    );
+    writeFixtureBook(
+      textRoot,
+      "permission-reject",
+      rawFor(
+        "Permission Reject",
+        "3004",
+        "Blocked Author",
+        "",
+        "CHAPTER I\n\nRejected body.",
+        "Used by permission of the publisher.",
+      ),
+      metadataFor("permission-reject", "3004", "Permission Reject", "Blocked Author"),
+    );
+
+    const rights = generateBookRightsReports({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath,
+      generatedRoot,
+      quiet: true,
+    });
+    expect(rights.fatalErrors).toEqual([]);
+
+    const result = generateBookReviewQueue({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath,
+      generatedRoot,
+      quiet: true,
+    });
+    expect(result.fatalErrors).toEqual([]);
+    expect(fs.existsSync(result.paths.reviewQueueJson)).toBe(true);
+    expect(fs.existsSync(result.paths.reviewQueueMarkdown)).toBe(true);
+    expect(fs.existsSync(result.paths.peopleReviewQueueJson)).toBe(true);
+    expect(fs.existsSync(result.paths.peopleReviewQueueMarkdown)).toBe(true);
+    expect(fs.existsSync(result.paths.duplicateGutenbergReviewJson)).toBe(true);
+    expect(fs.existsSync(result.paths.duplicateGutenbergReviewMarkdown)).toBe(true);
+    expect(fs.existsSync(result.paths.approvalCandidatesJson)).toBe(true);
+    expect(fs.existsSync(result.paths.rejectedBooksMarkdown)).toBe(true);
+
+    const reviewQueue = readJsonFile<{
+      workflow: string[];
+      summary: {
+        totalBooks: number;
+        processingAllowed: number;
+        rejected: number;
+      };
+      books: Array<{
+        slug: string;
+        currentStatus: string;
+        nextAction: string;
+        processingAllowed: boolean;
+      }>;
+    }>(result.paths.reviewQueueJson);
+    expect(reviewQueue.summary.totalBooks).toBe(6);
+    expect(reviewQueue.summary.processingAllowed).toBe(0);
+    expect(reviewQueue.summary.rejected).toBe(1);
+    expect(reviewQueue.workflow.join(" ")).toContain("Run npm run books:rights-report");
+    expect(
+      reviewQueue.books.find((book) => book.slug === "candidate-one")?.nextAction,
+    ).toContain("Add approved author death year metadata");
+
+    const peopleQueue = readJsonFile<{
+      people: Array<{
+        suggestedKey: string;
+        displayName: string;
+        knownDeathYear: number | null;
+        missingDeathYearCount: number;
+        booksAffected: Array<{ slug: string; role: string }>;
+        suggestedMetadataEntry: { deathYear: number | null; notes: string };
+      }>;
+    }>(result.paths.peopleReviewQueueJson);
+    const sharedAuthor = peopleQueue.people.find(
+      (person) => person.suggestedKey === "shared-author",
+    );
+    expect(sharedAuthor).toBeTruthy();
+    expect(sharedAuthor?.displayName).toBe("Shared Author");
+    expect(sharedAuthor?.knownDeathYear).toBeNull();
+    expect(sharedAuthor?.suggestedMetadataEntry.deathYear).toBeNull();
+    expect(sharedAuthor?.suggestedMetadataEntry.notes).toContain(
+      "manual verification",
+    );
+    expect(sharedAuthor?.booksAffected.map((book) => book.slug)).toEqual(
+      expect.arrayContaining([
+        "candidate-one",
+        "candidate-two",
+        "duplicate-one",
+        "duplicate-two",
+      ]),
+    );
+    const modernTranslator = peopleQueue.people.find(
+      (person) => person.suggestedKey === "modern-translator",
+    );
+    expect(modernTranslator?.knownDeathYear).toBeNull();
+    expect(modernTranslator?.booksAffected).toEqual([
+      expect.objectContaining({
+        slug: "translator-editor-review",
+        role: "translator",
+      }),
+    ]);
+
+    const duplicateReport = readJsonFile<{
+      duplicateGutenbergIds: Array<{
+        gutenbergId: string;
+        participants: Array<{ slug: string }>;
+        hasExactDuplicateCandidates: boolean;
+        nextActions: string[];
+      }>;
+    }>(result.paths.duplicateGutenbergReviewJson);
+    expect(duplicateReport.duplicateGutenbergIds).toEqual([
+      expect.objectContaining({
+        gutenbergId: "3999",
+        hasExactDuplicateCandidates: true,
+        participants: expect.arrayContaining([
+          expect.objectContaining({ slug: "duplicate-one" }),
+          expect.objectContaining({ slug: "duplicate-two" }),
+        ]),
+      }),
+    ]);
+    expect(duplicateReport.duplicateGutenbergIds[0].nextActions.join(" ")).toContain(
+      "Manually compare source files",
+    );
+
+    const candidates = readJsonFile<{
+      candidates: Array<{
+        slug: string;
+        currentStatus: string;
+        addingApprovedAuthorMetadataMightBeEnough: boolean;
+      }>;
+    }>(result.paths.approvalCandidatesJson);
+    expect(candidates.candidates.map((candidate) => candidate.slug)).toEqual(
+      expect.arrayContaining(["candidate-one", "candidate-two"]),
+    );
+    expect(candidates.candidates.every((candidate) => candidate.currentStatus !== "approved")).toBe(
+      true,
+    );
+    expect(
+      candidates.candidates.find((candidate) => candidate.slug === "candidate-one")
+        ?.addingApprovedAuthorMetadataMightBeEnough,
+    ).toBe(true);
+
+    const rejectedMarkdown = fs.readFileSync(result.paths.rejectedBooksMarkdown, "utf8");
+    expect(rejectedMarkdown).toContain("permission-reject");
+    expect(rejectedMarkdown).toContain("Reject or remove modern/permission-based text");
+
+    for (const reviewFile of Object.values(result.paths)) {
+      const contents = fs.readFileSync(reviewFile, "utf8");
+      expect(contents).not.toContain("UNIQUE REVIEW STORY TEXT SHOULD NOT APPEAR");
+      expect(contents).not.toMatch(/\.(mp3|wav|webm|mp4)/);
+      expect(path.basename(reviewFile)).not.toBe("processed_book.json");
+    }
+  });
+
+  test("review queue fails helpfully when a generated rights report is missing", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("missing-rights-review-library");
+    const generatedRoot = testInfo.outputPath("missing-rights-review-generated");
+    writeFixtureBook(
+      textRoot,
+      "missing-rights-report",
+      gutenbergFixtureText({
+        title: "Missing Rights Report",
+        author: "Missing Author",
+        gutenbergId: "3101",
+        extraHeader: "Original publication: 1900",
+      }),
+      approvedMetadata("missing-rights-report", {
+        title: "Missing Rights Report",
+        author: ["Missing Author"],
+        originalPublicationYear: 1900,
+        source: {
+          ...approvedMetadata("missing-rights-report").source,
+          gutenbergId: "3101",
+          rightsReviewed: true,
+          rightsBasis: "public-domain-us",
+        },
+      }),
+    );
+
+    const result = generateBookReviewQueue({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath: path.join(textRoot, "approved-metadata", "authors.json"),
+      generatedRoot,
+      quiet: true,
+    });
+
+    expect(result.fatalErrors.join(" ")).toContain("missing rights report");
+    expect(result.fatalErrors.join(" ")).toContain(
+      "Run npm run books:rights-report first",
+    );
   });
 
   test("fails duplicate metadata Gutenberg IDs unless both entries explain the duplicate", ({

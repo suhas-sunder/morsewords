@@ -48,6 +48,16 @@ export const CANADA_US_V1_STATUSES = [
 
 export type BookCanadaUsV1Status = (typeof CANADA_US_V1_STATUSES)[number];
 
+export const APPROVED_PERSON_ROLES = [
+  "author",
+  "translator",
+  "editor",
+  "illustrator",
+  "introduction_author",
+] as const;
+
+export type ApprovedPersonRole = (typeof APPROVED_PERSON_ROLES)[number];
+
 export const CLEANING_CONFIDENCE_VALUES = ["high", "medium", "low"] as const;
 
 export type GutenbergCleaningConfidence =
@@ -166,6 +176,8 @@ export type ApprovedPersonMetadata = {
   name: string;
   deathYear: number | null;
   canadaLifePlus70Safe?: boolean;
+  roles?: ApprovedPersonRole[];
+  sources?: string[];
   notes: string;
 };
 

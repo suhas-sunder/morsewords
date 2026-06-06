@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "summary": {
+    "duplicateGroups": 3,
+    "affectedBooks": 14,
+    "exactDuplicateCandidateGroups": 2
+  },
+  "duplicateGutenbergIds": [
+    {
+      "gutenbergId": "1184",
+      "participants": [
+        {
+          "slug": "the-count-of-monte-cristo",
+          "title": "The Count of Monte Cristo",
+          "authors": [
+            "Alexandre Dumas Auguste Maquet"
+          ],
+          "metadataFile": "meta/the-count-of-monte-cristo.json",
+          "rawTextFile": "../The Count of Monte Cristo.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-count-of-monte-cristo-gutenberg-1184",
+          "title": "The Count of Monte Cristo",
+          "authors": [],
+          "metadataFile": "meta/the-count-of-monte-cristo-gutenberg-1184.json",
+          "rawTextFile": "../the-count-of-monte-cristo.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        }
+      ],
+      "exactDuplicateCandidates": [],
+      "hasExactDuplicateCandidates": false,
+      "nextActions": [
+        "Keep one canonical metadata entry only after manual comparison.",
+        "Mark intentional duplicate metadata with allowDuplicateGutenbergId and duplicateReason.",
+        "Remove duplicate raw files from tracked processing lists only after confirming they are redundant.",
+        "Manually compare source files before resolving the group."
+      ]
+    },
+    {
+      "gutenbergId": "1597",
+      "participants": [
+        {
+          "slug": "the-bell",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-bell.json",
+          "rawTextFile": "../The Bell.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-elderbush",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-elderbush.json",
+          "rawTextFile": "../The Elderbush.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-emperor-s-new-clothes",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-emperor-s-new-clothes.json",
+          "rawTextFile": "../THE EMPEROR'S NEW CLOTHES.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-fir-tree",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-fir-tree.json",
+          "rawTextFile": "../The Fir Tree.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-leap-frog",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-leap-frog.json",
+          "rawTextFile": "../The Leap-Frog.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-old-house",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-old-house.json",
+          "rawTextFile": "../The Old House.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-real-princess",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-real-princess.json",
+          "rawTextFile": "../The Real Princess.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-shoes-of-fortune",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-shoes-of-fortune.json",
+          "rawTextFile": "../The Shoes of Fortune.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-snow-queen",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-snow-queen.json",
+          "rawTextFile": "../The Snow Queen.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "the-swineherd",
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "metadataFile": "meta/the-swineherd.json",
+          "rawTextFile": "../The Swineherd.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        }
+      ],
+      "exactDuplicateCandidates": [
+        {
+          "title": "Andersen's Fairy Tales",
+          "authors": [
+            "H. C. Andersen"
+          ],
+          "slugs": [
+            "the-bell",
+            "the-elderbush",
+            "the-emperor-s-new-clothes",
+            "the-fir-tree",
+            "the-leap-frog",
+            "the-old-house",
+            "the-real-princess",
+            "the-shoes-of-fortune",
+            "the-snow-queen",
+            "the-swineherd"
+          ]
+        }
+      ],
+      "hasExactDuplicateCandidates": true,
+      "nextActions": [
+        "Keep one canonical metadata entry only after manual comparison.",
+        "Mark intentional duplicate metadata with allowDuplicateGutenbergId and duplicateReason.",
+        "Remove duplicate raw files from tracked processing lists only after confirming they are redundant.",
+        "Manually compare source files before resolving the group."
+      ]
+    },
+    {
+      "gutenbergId": "45",
+      "participants": [
+        {
+          "slug": "anne-of-green-gables",
+          "title": "Anne of Green Gables",
+          "authors": [
+            "L. M. Montgomery"
+          ],
+          "metadataFile": "meta/anne-of-green-gables.json",
+          "rawTextFile": "../Anne of Green Gables.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        },
+        {
+          "slug": "anne-of-green-gables-gutenberg-45",
+          "title": "Anne of Green Gables",
+          "authors": [
+            "L. M. Montgomery"
+          ],
+          "metadataFile": "meta/anne-of-green-gables-gutenberg-45.json",
+          "rawTextFile": "../anne-of-green-gables.txt",
+          "allowDuplicateGutenbergId": false,
+          "duplicateReason": null
+        }
+      ],
+      "exactDuplicateCandidates": [
+        {
+          "title": "Anne of Green Gables",
+          "authors": [
+            "L. M. Montgomery"
+          ],
+          "slugs": [
+            "anne-of-green-gables",
+            "anne-of-green-gables-gutenberg-45"
+          ]
+        }
+      ],
+      "hasExactDuplicateCandidates": true,
+      "nextActions": [
+        "Keep one canonical metadata entry only after manual comparison.",
+        "Mark intentional duplicate metadata with allowDuplicateGutenbergId and duplicateReason.",
+        "Remove duplicate raw files from tracked processing lists only after confirming they are redundant.",
+        "Manually compare source files before resolving the group."
+      ]
+    }
+  ]
+}

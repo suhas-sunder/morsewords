@@ -3,11 +3,13 @@ import fs from "node:fs";
 import type {
   ApprovedPeopleMetadata,
   ApprovedPersonMetadata,
+  ApprovedPersonRole,
   BookMetadata,
   BookRightsReport,
   BookRightsRiskLevel,
   GutenbergCleaningReport,
 } from "./bookManifestTypes.ts";
+import { APPROVED_PERSON_ROLES } from "./bookManifestTypes.ts";
 
 const PUBLISH_READY_RIGHTS = new Set([
   "public-domain-us",
@@ -18,6 +20,7 @@ const PUBLISH_READY_RIGHTS = new Set([
 
 const CANADA_SAFE_DEATH_YEAR = 1971;
 const US_PUBLIC_DOMAIN_PUBLICATION_YEAR = 1930;
+const APPROVED_PERSON_ROLE_SET = new Set<string>(APPROVED_PERSON_ROLES);
 
 export type ApprovedPeopleLoadResult = {
   people: ApprovedPeopleMetadata;
@@ -210,6 +213,22 @@ export function loadApprovedPeopleMetadata(
     ) {
       errors.push(`${label}.canadaLifePlus70Safe must be a boolean when present.`);
     }
+    if (
+      value.roles !== undefined &&
+      (!Array.isArray(value.roles) ||
+        value.roles.some((role) => typeof role !== "string" || !APPROVED_PERSON_ROLE_SET.has(role)))
+    ) {
+      errors.push(
+        `${label}.roles must be an array of approved person roles when present.`,
+      );
+    }
+    if (
+      value.sources !== undefined &&
+      (!Array.isArray(value.sources) ||
+        value.sources.some((source) => typeof source !== "string"))
+    ) {
+      errors.push(`${label}.sources must be an array of strings when present.`);
+    }
     if (typeof value.notes !== "string") {
       errors.push(`${label}.notes must be a string.`);
     }
@@ -222,6 +241,17 @@ export function loadApprovedPeopleMetadata(
           typeof value.canadaLifePlus70Safe === "boolean"
             ? value.canadaLifePlus70Safe
             : undefined,
+        roles: Array.isArray(value.roles)
+          ? value.roles.filter(
+              (role): role is ApprovedPersonRole =>
+                typeof role === "string" && APPROVED_PERSON_ROLE_SET.has(role),
+            )
+          : undefined,
+        sources: Array.isArray(value.sources)
+          ? value.sources.filter(
+              (source): source is string => typeof source === "string",
+            )
+          : undefined,
         notes: typeof value.notes === "string" ? value.notes : "",
       };
     }
