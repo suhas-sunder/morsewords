@@ -12,6 +12,7 @@ export const MORSE_BOOKS_BASE_PATH = "/morse-code-books";
 export const UNPUBLISHED_BOOK_PREVIEW_PARAM = "preview";
 export const UNPUBLISHED_BOOK_PREVIEW_VALUE = "unpublished";
 export const TEST_PUBLISHED_BOOK_PREVIEW_VALUE = "test-published";
+export const TEST_COLLECTION_BOOK_PREVIEW_VALUE = "test-collection";
 export const TEST_PUBLISHED_BOOK_SLUG = "test-published-morse-book";
 
 const libraryManifest = libraryManifestJson as MorseBookLibraryManifest;
@@ -181,6 +182,61 @@ const testPublishedBookSummary = {
   manifestPath: `${TEST_PUBLISHED_BOOK_SLUG}/manifest.json`,
 } satisfies MorseBookLibrarySummary;
 
+const testCollectionSubjects = [
+  "Adventure practice",
+  "Beginner listening",
+  "Chapter drills",
+  "Public-domain classics",
+] as const;
+
+const testCollectionAuthors = [
+  "Ada Key",
+  "Samuel Tone",
+  "Clara Signal",
+  "MorseWords QA",
+] as const;
+
+const testCollectionSummaries = Array.from({ length: 30 }, (_, index) => {
+  const number = index + 1;
+  const subject = testCollectionSubjects[index % testCollectionSubjects.length];
+  const author = testCollectionAuthors[index % testCollectionAuthors.length];
+  const language = index % 7 === 0 ? "fr" : "en";
+  const slug = `test-collection-morse-book-${number.toString().padStart(2, "0")}`;
+  const wordCount = 8_000 + number * 425;
+  const includedSectionCount = 4 + (index % 8);
+
+  return {
+    slug,
+    title: `Test Collection Morse Book ${number.toString().padStart(2, "0")}`,
+    author: [author],
+    language,
+    description:
+      "Development-only collection fixture for testing Morse book browsing controls.",
+    subjects: [subject, "Morse audiobook fixture"],
+    source: {
+      ...testPublishedBookSummary.source,
+      rightsReportPath: `${slug}/rights_report.json`,
+      processedBookPath: `${slug}/processed_book.json`,
+      rightsNotes:
+        "Development-only fixture. It is not included in generated production manifests, navigation, or sitemaps.",
+    },
+    cover: {
+      src: null,
+      placeholder: true,
+      alt: `Placeholder cover for Test Collection Morse Book ${number.toString().padStart(2, "0")}`,
+    },
+    stats: {
+      originalCharacterCount: wordCount * 6,
+      cleanedCharacterCount: wordCount * 6,
+      wordCount,
+      sectionCount: includedSectionCount + 1,
+      includedSectionCount,
+    },
+    defaults: testPublishedBookSummary.defaults,
+    manifestPath: `${slug}/manifest.json`,
+  } satisfies MorseBookLibrarySummary;
+});
+
 function canUseTestPublishedBookFixture() {
   return import.meta.env.DEV;
 }
@@ -212,11 +268,17 @@ export function getGeneratedMorseBookSummaries() {
 }
 
 export function getPublishedMorseBookSummaries(
-  options: { includeTestFixture?: boolean } = {},
+  options: {
+    includeTestFixture?: boolean;
+    includeTestCollectionFixture?: boolean;
+  } = {},
 ) {
   const books = getGeneratedMorseBookSummaries().filter(isMorseBookPublishReady);
   if (options.includeTestFixture && canUseTestPublishedBookFixture()) {
     books.push(testPublishedBookSummary);
+  }
+  if (options.includeTestCollectionFixture && canUseTestPublishedBookFixture()) {
+    books.push(...testCollectionSummaries);
   }
   return books.sort((a, b) => a.title.localeCompare(b.title));
 }

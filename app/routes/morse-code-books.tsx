@@ -15,6 +15,7 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import {
+  TEST_COLLECTION_BOOK_PREVIEW_VALUE,
   TEST_PUBLISHED_BOOK_PREVIEW_VALUE,
   TEST_PUBLISHED_BOOK_SLUG,
   UNPUBLISHED_BOOK_PREVIEW_PARAM,
@@ -31,6 +32,7 @@ const TITLE = "Morse Code Books";
 const META_TITLE = "Morse Code Books and Morse Audiobooks | MorseWords";
 const DESCRIPTION =
   "Browse reviewed Morse book and Morse audiobook-style pages that turn curated long-form text into browser-local Morse audio or video.";
+const PAGE_SIZE = 12;
 
 const guideItems = [
   {
@@ -72,7 +74,7 @@ const reviewItems = [
   },
 ];
 
-type SortMode = "title" | "author";
+type SortMode = "title" | "author" | "wordCount";
 
 function isTestPublishedPreviewRequest(request: Request) {
   const url = new URL(request.url);
@@ -80,6 +82,15 @@ function isTestPublishedPreviewRequest(request: Request) {
     import.meta.env.DEV &&
     url.searchParams.get(UNPUBLISHED_BOOK_PREVIEW_PARAM) ===
       TEST_PUBLISHED_BOOK_PREVIEW_VALUE
+  );
+}
+
+function isTestCollectionPreviewRequest(request: Request) {
+  const url = new URL(request.url);
+  return (
+    import.meta.env.DEV &&
+    url.searchParams.get(UNPUBLISHED_BOOK_PREVIEW_PARAM) ===
+      TEST_COLLECTION_BOOK_PREVIEW_VALUE
   );
 }
 
@@ -110,8 +121,26 @@ function sortBooks(books: MorseBookLibrarySummary[], sortMode: SortMode) {
       const authorCompare = bookAuthor(a).localeCompare(bookAuthor(b));
       if (authorCompare !== 0) return authorCompare;
     }
+    if (sortMode === "wordCount") {
+      const wordCompare = a.stats.wordCount - b.stats.wordCount;
+      if (wordCompare !== 0) return wordCompare;
+    }
     return a.title.localeCompare(b.title);
   });
+}
+
+function uniqueSorted(values: string[]) {
+  return [...new Set(values.filter(Boolean))].sort((a, b) =>
+    a.localeCompare(b),
+  );
+}
+
+function formatLanguage(language: string) {
+  return language.toUpperCase();
+}
+
+function formatBookCount(count: number) {
+  return count === 1 ? "1 reviewed book" : `${formatNumber(count)} reviewed books`;
 }
 
 function publicBookHref(book: MorseBookLibrarySummary, includeTestFixture: boolean) {
@@ -124,9 +153,13 @@ function publicBookHref(book: MorseBookLibrarySummary, includeTestFixture: boole
 
 export function loader({ request }: Route.LoaderArgs) {
   const includeTestFixture = isTestPublishedPreviewRequest(request);
+  const includeTestCollectionFixture = isTestCollectionPreviewRequest(request);
   return {
-    books: getPublishedMorseBookSummaries({ includeTestFixture }),
-    includeTestFixture,
+    books: getPublishedMorseBookSummaries({
+      includeTestFixture,
+      includeTestCollectionFixture,
+    }),
+    includeTestFixture: includeTestFixture || includeTestCollectionFixture,
   };
 }
 
@@ -149,15 +182,62 @@ export default function MorseCodeBooksHubRoute({
 }: Route.ComponentProps) {
   const { books, includeTestFixture } = loaderData;
   const [query, setQuery] = React.useState("");
+  const [subjectFilter, setSubjectFilter] = React.useState("all");
+  const [languageFilter, setLanguageFilter] = React.useState("all");
   const [sortMode, setSortMode] = React.useState<SortMode>("title");
+  const [visibleCount, setVisibleCount] = React.useState(PAGE_SIZE);
+
+  const subjectOptions = React.useMemo(
+    () => uniqueSorted(books.flatMap((book) => book.subjects)),
+    [books],
+  );
+  const languageOptions = React.useMemo(
+    () => uniqueSorted(books.map((book) => book.language)),
+    [books],
+  );
 
   const filteredBooks = React.useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
-    const candidates = normalizedQuery
-      ? books.filter((book) => searchableBookText(book).includes(normalizedQuery))
-      : books;
+    const candidates = books.filter((book) => {
+      if (
+        normalizedQuery &&
+        !searchableBookText(book).includes(normalizedQuery)
+      ) {
+        return false;
+      }
+      if (
+        subjectFilter !== "all" &&
+        !book.subjects.includes(subjectFilter)
+      ) {
+        return false;
+      }
+      if (languageFilter !== "all" && book.language !== languageFilter) {
+        return false;
+      }
+      return true;
+    });
     return sortBooks(candidates, sortMode);
-  }, [books, query, sortMode]);
+  }, [books, languageFilter, query, sortMode, subjectFilter]);
+
+  React.useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [languageFilter, query, sortMode, subjectFilter]);
+
+  const visibleBooks = filteredBooks.slice(0, visibleCount);
+  const hasActiveFilters =
+    query.trim().length > 0 ||
+    subjectFilter !== "all" ||
+    languageFilter !== "all" ||
+    sortMode !== "title";
+  const hasMoreBooks = visibleBooks.length < filteredBooks.length;
+  const controlsDisabled = books.length === 0;
+
+  function clearFilters() {
+    setQuery("");
+    setSubjectFilter("all");
+    setLanguageFilter("all");
+    setSortMode("title");
+  }
 
   const collectionJsonLd = {
     "@context": "https://schema.org",
@@ -223,7 +303,7 @@ export default function MorseCodeBooksHubRoute({
       </PageHero>
 
       <section className="mt-8 sm:mt-10" aria-labelledby="morse-books-list">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.7fr)_minmax(260px,0.3fr)] lg:items-end">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.58fr)_minmax(320px,0.42fr)] lg:items-end">
           <div>
             <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-sky-800" />
@@ -238,41 +318,106 @@ export default function MorseCodeBooksHubRoute({
               Reviewed Morse book pages
             </h2>
             <p className="mw-text-muted mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-              Only publish-ready books are listed here. The current generated
-              library can contain unpublished pilot data, but those books stay
-              out of public cards, navigation, and sitemaps until review is
-              complete.
+              Search reviewed titles, filter by source subjects or language,
+              and open rights-approved book pages for chapter-based Morse audio,
+              video, and practice. Unpublished pilot data stays out of public
+              cards, navigation, and sitemaps.
             </p>
           </div>
-          {books.length > 0 ? (
-            <form
-              className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-1"
-              role="search"
-              aria-label="Search reviewed Morse books"
-            >
-              <label className="grid gap-1 text-sm font-semibold text-slate-700">
-                Search title or author
+          <form
+            className="mw-static-panel rounded-xl bg-[#fffdf8] p-4"
+            role="search"
+            aria-label="Browse reviewed Morse books"
+            data-testid="morse-books-toolbar"
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <div className="grid gap-3 sm:grid-cols-2">
+              <label className="grid gap-1 text-sm font-semibold text-slate-700 sm:col-span-2">
+                Search title, author, or subject
                 <input
                   type="search"
                   value={query}
                   onChange={(event) => setQuery(event.currentTarget.value)}
-                  className="min-h-11 rounded-xl bg-white/88 px-4 py-2 text-slate-950 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  className="min-h-11 rounded-xl bg-white/88 px-4 py-2 text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   placeholder="Search reviewed books"
+                  disabled={controlsDisabled}
                 />
+              </label>
+              <label className="grid gap-1 text-sm font-semibold text-slate-700">
+                Subject
+                <select
+                  value={subjectFilter}
+                  onChange={(event) => setSubjectFilter(event.currentTarget.value)}
+                  className="min-h-11 rounded-xl bg-white/88 px-3 py-2 text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  disabled={controlsDisabled || subjectOptions.length === 0}
+                  aria-label="Filter Morse books by subject"
+                >
+                  <option value="all">All subjects</option>
+                  {subjectOptions.map((subject) => (
+                    <option key={subject} value={subject}>
+                      {subject}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="grid gap-1 text-sm font-semibold text-slate-700">
+                Language
+                <select
+                  value={languageFilter}
+                  onChange={(event) => setLanguageFilter(event.currentTarget.value)}
+                  className="min-h-11 rounded-xl bg-white/88 px-3 py-2 text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  disabled={controlsDisabled || languageOptions.length === 0}
+                  aria-label="Filter Morse books by language"
+                >
+                  <option value="all">All languages</option>
+                  {languageOptions.map((language) => (
+                    <option key={language} value={language}>
+                      {formatLanguage(language)}
+                    </option>
+                  ))}
+                </select>
               </label>
               <label className="grid gap-1 text-sm font-semibold text-slate-700">
                 Sort
                 <select
                   value={sortMode}
-                  onChange={(event) => setSortMode(event.currentTarget.value as SortMode)}
-                  className="min-h-11 rounded-xl bg-white/88 px-4 py-2 text-slate-950 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  onChange={(event) =>
+                    setSortMode(event.currentTarget.value as SortMode)
+                  }
+                  className="min-h-11 rounded-xl bg-white/88 px-3 py-2 text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  disabled={controlsDisabled}
+                  aria-label="Sort Morse books"
                 >
                   <option value="title">Title</option>
                   <option value="author">Author</option>
+                  <option value="wordCount">Word count</option>
                 </select>
               </label>
-            </form>
-          ) : null}
+              <div className="flex items-end">
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  disabled={!hasActiveFilters}
+                  className={toolControlButtonClass({
+                    rounded: "xl",
+                    full: true,
+                    disabled: !hasActiveFilters,
+                  })}
+                >
+                  Clear filters
+                </button>
+              </div>
+            </div>
+            <p
+              className="mw-muted-label mt-4 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+              data-testid="morse-books-result-count"
+              aria-live="polite"
+            >
+              {books.length === 0
+                ? "0 reviewed books available"
+                : `Showing ${formatNumber(visibleBooks.length)} of ${formatBookCount(filteredBooks.length)}`}
+            </p>
+          </form>
         </div>
 
         {books.length === 0 ? (
@@ -303,15 +448,33 @@ export default function MorseCodeBooksHubRoute({
             </div>
           </StaticPanel>
         ) : filteredBooks.length > 0 ? (
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredBooks.map((book) => (
-              <BookCard
-                key={book.slug}
-                book={book}
-                href={publicBookHref(book, includeTestFixture)}
-              />
-            ))}
-          </div>
+          <>
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {visibleBooks.map((book) => (
+                <BookCard
+                  key={book.slug}
+                  book={book}
+                  href={publicBookHref(book, includeTestFixture)}
+                />
+              ))}
+            </div>
+            {hasMoreBooks ? (
+              <div className="mt-6 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setVisibleCount((current) => current + PAGE_SIZE)
+                  }
+                  className={toolControlButtonClass({
+                    tone: "dark",
+                    rounded: "xl",
+                  })}
+                >
+                  Show more books
+                </button>
+              </div>
+            ) : null}
+          </>
         ) : (
           <StaticPanel as="section" className="mt-6" aria-live="polite">
             <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
@@ -406,7 +569,7 @@ function BookCard({
   book: MorseBookLibrarySummary;
   href: string;
 }) {
-  const outputText = "Morse audio/video";
+  const outputText = "Morse audio/video, chapter practice";
   return (
     <article
       className="mw-static-surface flex h-full flex-col rounded-xl bg-[#fffdf8]/86 p-4"
@@ -424,6 +587,16 @@ function BookCard({
         <p className="mt-1 text-sm font-semibold text-slate-600">
           {bookAuthor(book)}
         </p>
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {book.subjects.slice(0, 3).map((subject) => (
+            <span
+              key={subject}
+              className="mw-muted-label mw-static-tile rounded-full px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500"
+            >
+              {subject}
+            </span>
+          ))}
+        </div>
         {book.description ? (
           <p className="mw-text-muted mt-3 text-sm leading-relaxed text-slate-700">
             {book.description}
@@ -437,6 +610,10 @@ function BookCard({
           <div className="flex items-center justify-between gap-3">
             <dt className="font-semibold">Words</dt>
             <dd>{formatNumber(book.stats.wordCount)}</dd>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <dt className="font-semibold">Language</dt>
+            <dd>{formatLanguage(book.language)}</dd>
           </div>
           <div className="flex items-center justify-between gap-3">
             <dt className="font-semibold">Outputs</dt>
@@ -463,16 +640,17 @@ function BookCover({ book }: { book: MorseBookLibrarySummary }) {
       <img
         src={book.cover.src}
         alt={book.cover.alt}
-        className="aspect-[3/4] w-full rounded-xl object-cover"
+        className="h-44 w-full rounded-xl object-cover sm:h-48"
       />
     );
   }
 
   return (
     <div
+      role="img"
       aria-label={book.cover.alt}
       data-mw-morse-books-cover-placeholder="true"
-      className="mw-static-tile flex aspect-[3/4] w-full flex-col justify-between rounded-xl p-4"
+      className="mw-static-tile flex min-h-44 w-full flex-col justify-between rounded-xl p-4 sm:min-h-48"
     >
       <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
         MorseWords book
