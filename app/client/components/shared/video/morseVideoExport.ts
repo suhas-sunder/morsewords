@@ -5,7 +5,7 @@ import {
   type MorseVideoAudioSettings,
   type ResolvedMorseVideoBackgroundStyle,
 } from "./morseVideoRenderer";
-import type { MorseVideoSupport } from "./morseVideoSupport";
+import type { MorseVideoFormatSupport } from "./morseVideoSupport";
 import type { MorseVideoSettings } from "./morseVideoTypes";
 
 export type MorseVideoBlobResult = {
@@ -29,7 +29,7 @@ export async function createMorseVideoBlob({
   resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
   settings: MorseVideoSettings;
   signal: AbortSignal;
-  support: MorseVideoSupport;
+  support: MorseVideoFormatSupport;
   onProgress?: (elapsedMs: number, durationMs: number) => void;
 }): Promise<MorseVideoBlobResult> {
   if (!support.supported) {

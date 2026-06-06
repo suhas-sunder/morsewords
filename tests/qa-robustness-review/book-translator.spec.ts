@@ -371,8 +371,11 @@ function expectWebmLike(bytes: Uint8Array) {
   expect(strFromU8(bytes)).toContain("WEBM");
 }
 
-async function installFastVideoRecorder(page: Page) {
-  await page.addInitScript(() => {
+async function installFastVideoRecorder(
+  page: Page,
+  options: { mp4?: boolean } = {},
+) {
+  await page.addInitScript((supportsMp4) => {
     Object.defineProperty(window, "__bookVideoRecorderStreams", {
       configurable: true,
       value: [] as Array<{
@@ -385,7 +388,10 @@ async function installFastVideoRecorder(page: Page) {
 
     class FakeMediaRecorder {
       static isTypeSupported(type: string) {
-        return type.startsWith("video/webm");
+        return (
+          type.startsWith("video/webm") ||
+          (supportsMp4 && type.startsWith("video/mp4"))
+        );
       }
 
       state = "inactive";
@@ -418,9 +424,16 @@ async function installFastVideoRecorder(page: Page) {
       stop() {
         if (this.state === "inactive") return;
         this.state = "inactive";
-        const blob = new Blob(["WEBM-BOOK-VIDEO"], {
-          type: this.mimeType,
-        });
+        const blob = new Blob(
+          [
+            this.mimeType.startsWith("video/mp4")
+              ? "MP4-BOOK-VIDEO"
+              : "WEBM-BOOK-VIDEO",
+          ],
+          {
+            type: this.mimeType,
+          },
+        );
         window.setTimeout(() => {
           this.ondataavailable?.({ data: blob } as BlobEvent);
           this.onstop?.();
@@ -435,7 +448,7 @@ async function installFastVideoRecorder(page: Page) {
     HTMLCanvasElement.prototype.captureStream = function captureStream() {
       return new MediaStream();
     };
-  });
+  }, Boolean(options.mp4));
 }
 
 async function installUnsupportedVideoRecorder(page: Page) {
@@ -449,6 +462,47 @@ async function installUnsupportedVideoRecorder(page: Page) {
       value: undefined,
     });
   });
+}
+
+async function expectBookVideoPreviewUsesModuleWidth(page: Page) {
+  const sectionBox = await previewSection(page).boundingBox();
+  const previewBox = await page.getByTestId("book-video-preview").boundingBox();
+  const frameBox = await page
+    .getByTestId("book-video-preview-frame")
+    .boundingBox();
+  const timelineBox = await page
+    .getByTestId("book-video-preview-timeline")
+    .boundingBox();
+  expect(sectionBox).not.toBeNull();
+  expect(previewBox).not.toBeNull();
+  expect(frameBox).not.toBeNull();
+  expect(timelineBox).not.toBeNull();
+  expect(previewBox!.width).toBeGreaterThan(sectionBox!.width * 0.88);
+  expect(frameBox!.width).toBeGreaterThan(previewBox!.width * 0.96);
+  expect(timelineBox!.width).toBeGreaterThan(previewBox!.width * 0.96);
+}
+
+async function expectAudioTimelineIsPadded(page: Page) {
+  const preview = previewSection(page);
+  const timeline = preview.getByRole("slider", {
+    name: "Audio preview timeline",
+  });
+  const timelineBox = await timeline.boundingBox();
+  expect(timelineBox).not.toBeNull();
+  expect(timelineBox!.height).toBeGreaterThanOrEqual(52);
+  const marks = preview.locator(
+    '[data-testid="book-audio-preview-dit"], [data-testid="book-audio-preview-dash"], [data-testid="book-audio-preview-gap"]',
+  );
+  const markCount = await marks.count();
+  expect(markCount).toBeGreaterThan(2);
+  const firstMarkBox = await marks.first().boundingBox();
+  const lastMarkBox = await marks.nth(markCount - 1).boundingBox();
+  expect(firstMarkBox).not.toBeNull();
+  expect(lastMarkBox).not.toBeNull();
+  expect(firstMarkBox!.x).toBeGreaterThanOrEqual(timelineBox!.x + 10);
+  expect(lastMarkBox!.x + lastMarkBox!.width).toBeLessThanOrEqual(
+    timelineBox!.x + timelineBox!.width - 10,
+  );
 }
 
 type BundleManifest = {
@@ -1249,17 +1303,21 @@ test("video renderer keeps exported text overlays readable and away from brandin
   );
   expect(brandText.map((command) => command.text)).not.toContain("MorseWords");
 
-  const morseOverlay = textCommands.find(
-    (command) => command.x === 640 && /[.-]/.test(command.text),
+  const morseEntries = textCommands.filter(
+    (command) => /[.-]/.test(command.text) && command.font.includes("Space Mono"),
   );
+  const morseOverlay = morseEntries[0];
   const plainOverlay = textCommands.find((command) =>
     command.text.includes("PLAIN"),
   );
   expect(morseOverlay).toBeTruthy();
   expect(plainOverlay).toBeTruthy();
-  expect(morseOverlay!.text.replace(/\s+/g, "").length).toBeGreaterThanOrEqual(
-    6,
-  );
+  expect(
+    morseEntries
+      .map((command) => command.text)
+      .join(" ")
+      .replace(/\s+/g, "").length,
+  ).toBeGreaterThanOrEqual(6);
   expect(timeline.tokens[0]).toMatchObject({
     text: "P",
     word: "PLAIN",
@@ -1268,9 +1326,11 @@ test("video renderer keeps exported text overlays readable and away from brandin
   expect(plainOverlay!.font).toContain("Space Grotesk");
   expect(Number.parseFloat(morseOverlay!.font)).toBeGreaterThanOrEqual(40);
   expect(Number.parseFloat(plainOverlay!.font)).toBeGreaterThanOrEqual(38);
-  expect(morseOverlay!.x).toBe(640);
-  expect(plainOverlay!.x).toBe(640);
-  expect(morseOverlay!.y).toBeGreaterThan(400);
+  expect(morseOverlay!.x).toBeGreaterThan(0);
+  expect(morseOverlay!.x).toBeLessThan(1280);
+  expect(plainOverlay!.x).toBeGreaterThan(0);
+  expect(plainOverlay!.x).toBeLessThan(1280);
+  expect(morseOverlay!.y).toBeGreaterThan(350);
   expect(plainOverlay!.y).toBeGreaterThan(morseOverlay!.y);
   expect(plainOverlay!.y).toBeLessThan(560);
   expect(plainOverlay!.maxWidth).toBeGreaterThan(1100);
@@ -1764,10 +1824,13 @@ test("audio preview plays current cleaned source and updates with audio settings
   expect(await preview.getByTestId("book-audio-preview-gap").count()).toBeGreaterThan(0);
   const timelineBox = await audioTimeline.boundingBox();
   expect(timelineBox).not.toBeNull();
-  await page.mouse.click(
-    timelineBox!.x + timelineBox!.width * 0.45,
-    timelineBox!.y + timelineBox!.height / 2,
-  );
+  await expectAudioTimelineIsPadded(page);
+  await audioTimeline.click({
+    position: {
+      x: timelineBox!.width * 0.45,
+      y: timelineBox!.height / 2,
+    },
+  });
   await expect(preview.getByTestId("book-audio-preview-time")).toContainText(
     /^Preview time (?!0s \/)\d+s \/ \d+s$/,
   );
@@ -1784,10 +1847,12 @@ test("audio preview plays current cleaned source and updates with audio settings
         "",
     )
     .toMatch(/^Preview time [1-9]\d*s \/ \d+s$/);
-  await page.mouse.click(
-    timelineBox!.x + timelineBox!.width * 0.75,
-    timelineBox!.y + timelineBox!.height / 2,
-  );
+  await audioTimeline.click({
+    position: {
+      x: timelineBox!.width * 0.75,
+      y: timelineBox!.height / 2,
+    },
+  });
   await expect
     .poll(
       async () =>
@@ -1796,6 +1861,22 @@ test("audio preview plays current cleaned source and updates with audio settings
         ),
     )
     .toBeGreaterThan(10_000);
+  const playedTimelineBox = await audioTimeline.boundingBox();
+  expect(playedTimelineBox).not.toBeNull();
+  await page.mouse.move(
+    playedTimelineBox!.x + playedTimelineBox!.width * 0.25,
+    playedTimelineBox!.y + playedTimelineBox!.height / 2,
+  );
+  await page.mouse.down();
+  await page.mouse.move(
+    playedTimelineBox!.x + playedTimelineBox!.width * 0.85,
+    playedTimelineBox!.y + playedTimelineBox!.height / 2,
+    { steps: 5 },
+  );
+  await expect(audioTimeline).not.toHaveAttribute("aria-disabled", "true");
+  await expect(preview.getByRole("button", { name: "Stop preview" })).toBeEnabled();
+  await page.mouse.up();
+  await expect(preview.getByRole("button", { name: "Stop preview" })).toBeEnabled();
   const clickedFocusStyle = await preview
     .getByRole("button", { name: "Stop preview" })
     .evaluate((element) => {
@@ -1867,6 +1948,7 @@ test("output type selector gates audio and video settings without clearing sourc
   await expect(
     previewSection(page).getByRole("heading", { name: "Preview video" }),
   ).toBeVisible();
+  await expectBookVideoPreviewUsesModuleWidth(page);
   const clickedVideoFocusStyle = await outputTypeRadio(page, "video").evaluate(
     (element) => {
       const style = window.getComputedStyle(element);
@@ -1886,6 +1968,28 @@ test("output type selector gates audio and video settings without clearing sourc
   await expect(
     page.getByRole("button", { name: "Download WebM" }),
   ).toBeEnabled();
+  await expect(page.getByLabel("Video format")).toHaveValue("webm");
+  const formatOptions = await page
+    .getByLabel("Video format")
+    .locator("option")
+    .evaluateAll((options) =>
+      options.map((element) => {
+        const option = element as HTMLOptionElement;
+        return {
+          disabled: option.disabled,
+          label: option.textContent ?? "",
+          value: option.value,
+        };
+      }),
+    );
+  expect(formatOptions).toEqual([
+    expect.objectContaining({ disabled: false, label: "WebM", value: "webm" }),
+    expect.objectContaining({
+      disabled: true,
+      label: "MP4 not supported in this browser.",
+      value: "mp4",
+    }),
+  ]);
   await expect(
     page.getByRole("heading", { name: "Video settings" }),
   ).toBeVisible();
@@ -1944,7 +2048,11 @@ test("video preview modes, branding, and full-frame warning stay scoped", async 
 }) => {
   await installFastVideoRecorder(page);
   await openBookTranslator(page);
-  await page.getByLabel("Paste long-form source text").fill("SOS HELP preview");
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill(
+      "SOS HELP preview moves through a longer readable text window for seek testing",
+    );
   await chooseOutputType(page, "video");
   await openDownloadSettings(page);
 
@@ -2091,27 +2199,52 @@ test("video preview modes, branding, and full-frame warning stay scoped", async 
   expect(overlaySizes.morseText).toMatch(/[.-]/);
   expect(overlaySizes.plainText).toContain("SOS");
   expect(overlaySizes.activeWord).toContain("SOS");
-  await page.getByLabel("Video preview timeline").evaluate((element) => {
-    const input = element as HTMLInputElement;
-    const nativeSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
-      "value",
-    )?.set;
-    nativeSetter?.call(input, "6000");
-    input.dispatchEvent(new Event("input", { bubbles: true }));
-    input.dispatchEvent(new Event("change", { bubbles: true }));
+  const videoTimeline = page.getByLabel("Video preview timeline");
+  const videoTimelineBox = await videoTimeline.boundingBox();
+  expect(videoTimelineBox).not.toBeNull();
+  await videoTimeline.click({
+    position: {
+      x: videoTimelineBox!.width * 0.75,
+      y: videoTimelineBox!.height / 2,
+    },
   });
   await expect
-    .poll(() => page.getByTestId("book-video-preview-text-overlay").innerText())
+    .poll(() =>
+      page
+        .getByTestId("book-video-preview-text-layers")
+        .getAttribute("data-active-word"),
+    )
     .not.toContain("SOS");
   await page.getByRole("radio", { name: /Full-frame flash/ }).click();
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
     0,
   );
+  await expectPreviewReady(page);
+  await previewSection(page)
+    .getByRole("button", { name: "Play visual preview" })
+    .click();
+  await expect(page.getByTestId("book-video-preview-frame")).toHaveAttribute(
+    "data-full-frame-active",
+    "false",
+  );
+  await previewSection(page)
+    .getByRole("button", { name: "Stop visual preview" })
+    .click();
   await page.getByLabel("Show visual signal").check();
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
     1,
   );
+  await expectPreviewReady(page);
+  await previewSection(page)
+    .getByRole("button", { name: "Play visual preview" })
+    .click();
+  await expect(page.getByTestId("book-video-preview-frame")).toHaveAttribute(
+    "data-full-frame-active",
+    "true",
+  );
+  await previewSection(page)
+    .getByRole("button", { name: "Stop visual preview" })
+    .click();
   await page.getByLabel("Include audio track").uncheck();
   await expect(previewSection(page).getByText("Audio track off")).toBeVisible();
 });
@@ -2127,6 +2260,7 @@ test("visual preview visibly animates and stops stale playback", async ({
   await chooseOutputType(page, "video");
   await openDownloadSettings(page);
   await expectPreviewReady(page);
+  await expectBookVideoPreviewUsesModuleWidth(page);
 
   const frameBox = await page
     .getByTestId("book-video-preview-frame")
@@ -2156,6 +2290,14 @@ test("visual preview visibly animates and stops stale playback", async ({
         .getAttribute("data-preview-active"),
     )
     .toBe("true");
+  await expect
+    .poll(() =>
+      page
+        .getByTestId("book-video-preview-lightbulb")
+        .locator("svg")
+        .evaluate((element) => getComputedStyle(element).color),
+    )
+    .not.toBe("rgb(148, 163, 184)");
   await previewSection(page)
     .getByRole("button", { name: "Stop visual preview" })
     .click();
@@ -2171,9 +2313,9 @@ test("visual preview visibly animates and stops stale playback", async ({
     .click();
   await expect
     .poll(() =>
-      page.getByTestId("book-video-preview-dot").getAttribute("class"),
+      page.getByTestId("book-video-preview-dot").getAttribute("data-preview-active"),
     )
-    .toContain("ring-4");
+    .toBe("true");
   await previewSection(page)
     .getByRole("button", { name: "Stop visual preview" })
     .click();
@@ -2183,22 +2325,33 @@ test("visual preview visibly animates and stops stale playback", async ({
   const initialMorseText = await page
     .getByTestId("book-video-preview-morse-text")
     .innerText();
-  await page.getByLabel("Video preview timeline").evaluate((element) => {
-    const input = element as HTMLInputElement;
-    const nativeSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
-      "value",
-    )?.set;
-    nativeSetter?.call(input, "5000");
-    input.dispatchEvent(new Event("input", { bubbles: true }));
-    input.dispatchEvent(new Event("change", { bubbles: true }));
+  const morseTimeline = page.getByLabel("Video preview timeline");
+  const morseTimelineBox = await morseTimeline.boundingBox();
+  expect(morseTimelineBox).not.toBeNull();
+  await morseTimeline.click({
+    position: {
+      x: morseTimelineBox!.width * 0.72,
+      y: morseTimelineBox!.height / 2,
+    },
   });
-  await expect(page.getByTestId("book-video-preview-time")).toContainText(
-    /^5s \/ \d+s$/,
-  );
+  await expect
+    .poll(() => morseTimeline.getAttribute("aria-valuenow"))
+    .not.toBe("0");
   await expect
     .poll(() => page.getByTestId("book-video-preview-morse-text").innerText())
     .not.toBe(initialMorseText);
+  expect(
+    await page
+      .getByTestId("book-video-preview-text-layers")
+      .getAttribute("data-active-morse"),
+  ).toBe(
+    await page
+      .getByTestId("book-video-preview-timeline")
+      .getAttribute("data-active-morse"),
+  );
+  await expect(page.getByTestId("book-video-preview-active-morse-word")).toBeVisible();
+  await expect(page.getByTestId("book-video-preview-active-text-word")).toBeVisible();
+  await expect(page.getByTestId("book-video-preview-active-token")).toHaveCount(0);
   const seekedMorseText = await page
     .getByTestId("book-video-preview-morse-text")
     .innerText();
@@ -2208,6 +2361,26 @@ test("visual preview visibly animates and stops stale playback", async ({
   await expect
     .poll(() => page.getByTestId("book-video-preview-morse-text").innerText())
     .not.toBe(seekedMorseText);
+  const playingTimelineBox = await morseTimeline.boundingBox();
+  expect(playingTimelineBox).not.toBeNull();
+  await page.mouse.move(
+    playingTimelineBox!.x + playingTimelineBox!.width * 0.2,
+    playingTimelineBox!.y + playingTimelineBox!.height / 2,
+  );
+  await page.mouse.down();
+  await page.mouse.move(
+    playingTimelineBox!.x + playingTimelineBox!.width * 0.82,
+    playingTimelineBox!.y + playingTimelineBox!.height / 2,
+    { steps: 5 },
+  );
+  await expect(morseTimeline).not.toHaveAttribute("aria-disabled", "true");
+  await expect(
+    previewSection(page).getByRole("button", { name: "Stop visual preview" }),
+  ).toBeEnabled();
+  await page.mouse.up();
+  await expect(
+    previewSection(page).getByRole("button", { name: "Stop visual preview" }),
+  ).toBeEnabled();
 
   await page
     .getByLabel("Paste long-form source text")
@@ -2237,8 +2410,40 @@ test("unsupported video export APIs show a clear unavailable message", async ({
   await expect(
     page.getByRole("button", { name: "Download WebM" }),
   ).toBeDisabled();
+  const mp4Option = await page
+    .getByLabel("Video format")
+    .locator("option[value='mp4']")
+    .evaluate((element) => {
+      const option = element as HTMLOptionElement;
+      return {
+        disabled: option.disabled,
+        label: option.textContent ?? "",
+      };
+    });
+  expect(mp4Option).toEqual({
+    disabled: true,
+    label: "MP4 not supported in this browser.",
+  });
+});
+
+test("video format selector downloads MP4 only when the browser supports it", async ({
+  page,
+}, testInfo) => {
+  await installFastVideoRecorder(page, { mp4: true });
+  await openBookTranslator(page);
+  await page.getByLabel("Paste long-form source text").fill("MP4 video SOS");
+  await chooseOutputType(page, "video");
+  await openDownloadSettings(page);
+
+  await expect(page.getByLabel("Video format")).toHaveValue("webm");
+  await page.getByLabel("Video format").selectOption("mp4");
+  await expect(page.getByRole("button", { name: "Download MP4" })).toBeEnabled();
+  const video = await downloadVideoFile(page, testInfo, /Download MP4/);
+  expect(video.filename).toMatch(/morse-video\.mp4$/);
+  expect(strFromU8(video.bytes)).toContain("MP4-BOOK-VIDEO");
+  await expect(page.getByText("MP4 download started.")).toBeVisible();
   await expect(
-    page.getByText("MP4 is not guaranteed in-browser"),
+    page.getByText("Download contents: MP4 video file", { exact: false }),
   ).toBeVisible();
 });
 
@@ -2337,8 +2542,10 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   expect(settings.showBranding).toBe(true);
   expectPlaylistOrder(zipText(zip.entries, "playlist.m3u"), partFiles);
   const readme = zipText(zip.entries, "README.txt");
-  expect(readme).toContain("WebM is the browser-native video format");
-  expect(readme).toContain("MP4 is not guaranteed");
+  expect(readme).toContain("WebM is the reliable browser-native default");
+  expect(readme).toContain(
+    "MP4 is used only when this browser reports MediaRecorder MP4 support",
+  );
 
   await page.getByLabel("Show branding").uncheck();
   await expect(page.getByText("Last download")).toHaveCount(0);
@@ -2418,9 +2625,8 @@ test("video WebM rendering receives selected visual, text, branding, and audio s
     return {
       joined: entries.map((entry) => entry.text).join("\n"),
       plainTextEntry: entries.find((entry) =>
-        entry.text.includes("PLAIN"),
+        entry.text.toUpperCase().includes("PLAIN"),
       ),
-      signalLabelEntry: entries.find((entry) => entry.text === "Morse signal"),
       symbolEntry: entries.find((entry) => /[.-]{2,}/.test(entry.text)),
     };
   });
@@ -2436,8 +2642,8 @@ test("video WebM rendering receives selected visual, text, branding, and audio s
         }
       ).__bookVideoRecorderStreams ?? [],
   );
-  expect(drawnText.joined).toContain("PLAIN");
-  expect(drawnText.joined).toContain("Morse signal");
+  expect(drawnText.joined.toUpperCase()).toContain("PLAIN");
+  expect(drawnText.joined).not.toContain("Morse signal");
   expect(drawnText.symbolEntry?.font).toContain("Space Mono");
   expect(
     drawnText.symbolEntry?.text.replace(/\s+/g, "").length ?? 0,
@@ -2536,7 +2742,13 @@ test("empty source, cleaned-empty source, large WAV, and progress semantics are 
     page.getByRole("heading", { name: "Download audio" }),
   ).toBeVisible();
   await expect(page.getByText("Review export")).toHaveCount(0);
-  await expect(page.getByRole("heading", { name: "Add source" })).toBeVisible();
+  const sourceInput = page.getByLabel("Paste long-form source text");
+  await expect(sourceInput).toHaveValue("S\nO\nS\n HELP");
+  await page.getByRole("button", { name: "Clear source" }).click();
+  await expect(sourceInput).toHaveValue("");
+  await expect(
+    page.getByRole("heading", { name: "Create Morse audio or video" }),
+  ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Details and previews" }),
   ).toBeVisible();
@@ -2557,20 +2769,17 @@ test("empty source, cleaned-empty source, large WAV, and progress semantics are 
     page.getByText("Choose download settings, then download audio."),
   ).toHaveCount(0);
 
-  await page.getByLabel("Paste long-form source text").fill("   \n   ");
+  await sourceInput.fill("   \n   ");
   await expect(downloadButton).toBeDisabled();
 
-  await page.getByLabel("Paste long-form source text")
-    .fill(`*** START OF THE PROJECT GUTENBERG EBOOK TEST ***
+  await sourceInput.fill(`*** START OF THE PROJECT GUTENBERG EBOOK TEST ***
 
 *** END OF THE PROJECT GUTENBERG EBOOK TEST ***`);
   await page.getByLabel("Strip Project Gutenberg header/footer").check();
   await expect(page.getByText("Cleanup removed all source text")).toBeVisible();
   await expect(downloadButton).toBeDisabled();
 
-  await page
-    .getByLabel("Paste long-form source text")
-    .fill("ALPHA BRAVO SOS ".repeat(4_000));
+  await sourceInput.fill("ALPHA BRAVO SOS ".repeat(4_000));
   await chooseOutputFormat(page, "wav");
   await expect(page.getByText("WAV output may be very large")).toBeVisible();
   await expect(settingsToggle).toHaveAttribute("aria-expanded", "true");

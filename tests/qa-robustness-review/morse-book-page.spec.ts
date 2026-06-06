@@ -354,15 +354,22 @@ test.describe("Morse book page foundation", () => {
       "data-preview-playing",
       "true",
     );
-    await page.getByLabel("Video preview timeline").evaluate((node) => {
-      const input = node as HTMLInputElement;
-      input.value = String(Number(input.max) * 0.65);
-      input.dispatchEvent(new Event("input", { bubbles: true }));
+    const videoTimeline = page.getByLabel("Video preview timeline");
+    const videoTimelineBox = await videoTimeline.boundingBox();
+    expect(videoTimelineBox).not.toBeNull();
+    await videoTimeline.click({
+      position: {
+        x: videoTimelineBox!.width * 0.65,
+        y: videoTimelineBox!.height / 2,
+      },
     });
     const laterToken = await page
       .locator("[data-testid='book-video-preview-text-layers']")
       .getAttribute("data-active-character");
     expect(laterToken).not.toEqual(firstToken);
+    await expect(page.locator("[data-testid='book-video-preview-active-morse-word']")).toBeVisible();
+    await expect(page.locator("[data-testid='book-video-preview-active-text-word']")).toBeVisible();
+    await expect(page.locator("[data-testid='book-video-preview-active-token']")).toHaveCount(0);
     await page.getByRole("button", { name: "Stop visual preview" }).click();
 
     await page.getByLabel("Visual signal").uncheck();

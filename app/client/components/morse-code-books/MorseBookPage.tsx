@@ -2,7 +2,6 @@ import * as React from "react";
 
 import {
   DownloadIcon,
-  LightBulbIcon,
   PlayIcon,
   StopIcon,
   WarningBadgeIcon,
@@ -25,12 +24,13 @@ import {
 } from "~/client/components/shared/ToolWorkspace";
 import useMorseAudio from "~/client/components/shared/useMorseAudio";
 import { textToMorse } from "~/client/components/shared/morseUtils";
-import {
-  getMorseVideoFrameTextState,
-  type ResolvedMorseVideoBackgroundStyle,
-} from "~/client/components/shared/video/morseVideoRenderer";
-import { getMorseVideoPreviewFrame } from "~/client/components/shared/video/morseVideoPreview";
+import type { ResolvedMorseVideoBackgroundStyle } from "~/client/components/shared/video/morseVideoRenderer";
 import type { MorseVideoPreview } from "~/client/components/shared/video/morseVideoPreview";
+import {
+  MorseAudioTimingStrip,
+  MorseVideoPreviewPanel,
+  MorseVideoPreviewTimeline,
+} from "~/client/components/shared/video/MorseVideoPreviewControls";
 import {
   DEFAULT_MORSE_VIDEO_SETTINGS,
   MORSE_VIDEO_INTENSITIES,
@@ -41,6 +41,11 @@ import type {
   MorseVideoSettings,
   MorseVideoVisualStyle,
 } from "~/client/components/shared/video/morseVideoTypes";
+import {
+  getMorseVideoFormatSupport,
+  MORSE_VIDEO_FORMATS,
+  type MorseVideoFormat,
+} from "~/client/components/shared/video/morseVideoSupport";
 import { getAppliedThemeMode, type ThemeMode } from "~/client/theme/themeStorage";
 import {
   createBookDownloadPackage,
@@ -96,6 +101,7 @@ import { createBookTranslatorSourceFromSections } from "./bookTranslatorSource";
 const DISPLAY_TEXT_PREVIEW_LIMIT = 3600;
 const MORSE_SOURCE_PREVIEW_LIMIT = 1200;
 const MORSE_OUTPUT_PREVIEW_LIMIT = 2600;
+const MIN_PREVIEW_RESTART_REMAINING_MS = 750;
 
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   phase: "idle",
@@ -296,14 +302,16 @@ function buildBookMetadata(book: MorseBookManifest): BookBundleMetadata {
 function buildDownloadLabel({
   downloadKind,
   exportSettings,
+  formatLabel = "WebM",
   outputType,
 }: {
   downloadKind: BookDownloadKind;
   exportSettings: BookExportSettings;
+  formatLabel?: string;
   outputType: BookOutputType;
 }) {
   if (downloadKind === "zip") return "Download ZIP bundle";
-  if (outputType === "video") return "Download WebM";
+  if (outputType === "video") return `Download ${formatLabel}`;
   return `Download ${exportSettings.outputFormat.toUpperCase()}`;
 }
 
@@ -365,6 +373,8 @@ export default function MorseBookPage({
   );
   const [videoSupport, setVideoSupport] =
     React.useState<BookVideoSupport | null>(null);
+  const [selectedVideoFormat, setSelectedVideoFormat] =
+    React.useState<MorseVideoFormat>("webm");
   const [downloadStatus, setDownloadStatus] = React.useState<DownloadStatus>({
     kind: "idle",
     message: "",
@@ -480,9 +490,26 @@ export default function MorseBookPage({
     outputType === "video"
       ? getBookVideoDownloadKind(exportParts, exportSettings)
       : getBookDownloadKind(exportParts, exportSettings);
+  const selectedVideoFormatSupport = React.useMemo(
+    () => getMorseVideoFormatSupport(videoSupport, selectedVideoFormat),
+    [selectedVideoFormat, videoSupport],
+  );
+  const effectiveVideoSupport = React.useMemo(
+    () =>
+      videoSupport && selectedVideoFormatSupport.supported
+        ? {
+            ...videoSupport,
+            mimeType: selectedVideoFormatSupport.mimeType,
+            extension: selectedVideoFormatSupport.extension,
+            reason: selectedVideoFormatSupport.reason,
+          }
+        : videoSupport,
+    [selectedVideoFormatSupport, videoSupport],
+  );
   const downloadLabel = buildDownloadLabel({
     downloadKind,
     exportSettings,
+    formatLabel: selectedVideoFormatSupport.label,
     outputType,
   });
   const partSummary = getSelectedPartSummary(exportParts);
@@ -544,7 +571,17 @@ export default function MorseBookPage({
     ? ""
     : "Downloads are disabled until this book is publish-ready.";
   const videoUnavailable =
-    outputType === "video" && (!videoSupport || !videoSupport.supported);
+    outputType === "video" &&
+    (!videoSupport ||
+      !videoSupport.supported ||
+      !selectedVideoFormatSupport.supported);
+  const videoUnavailableMessage = !videoSupport
+    ? "Checking video export support."
+    : !videoSupport.supported
+      ? videoSupport.reason
+      : !selectedVideoFormatSupport.supported
+        ? selectedVideoFormatSupport.reason
+        : "";
   const downloadDisabled =
     !publishReady ||
     !scopeReady ||
@@ -750,6 +787,17 @@ export default function MorseBookPage({
     [audioPreview, audioPreviewPlaying, startAudioPreviewFrom],
   );
 
+  const handleScrubAudioPreview = React.useCallback(
+    (elapsedMs: number) => {
+      if (!audioPreview) return;
+      const nextElapsed = Math.max(0, Math.min(audioPreview.durationMs, elapsedMs));
+      setAudioPreviewElapsedMs(nextElapsed);
+      audioPreviewBaseElapsedRef.current = nextElapsed;
+      audioPreviewStartedAtRef.current = performance.now();
+    },
+    [audioPreview],
+  );
+
   const startVideoPreview = React.useCallback(() => {
     if (!videoPreview) return;
     stopAudioPreview();
@@ -758,7 +806,11 @@ export default function MorseBookPage({
       0,
       Math.min(videoPreview.durationMs, videoPreviewElapsedMs),
     );
-    const startElapsed = currentElapsed >= videoPreview.durationMs ? 0 : currentElapsed;
+    const startElapsed =
+      videoPreview.durationMs - currentElapsed <=
+      MIN_PREVIEW_RESTART_REMAINING_MS
+        ? 0
+        : currentElapsed;
     videoPreviewBaseElapsedRef.current = startElapsed;
     videoPreviewStartedAtRef.current = performance.now();
     setVideoPreviewElapsedMs(startElapsed);
@@ -800,7 +852,7 @@ export default function MorseBookPage({
         message:
           downloadBlockedMessage ||
           (videoUnavailable
-            ? videoSupport?.reason ?? "Video export is unavailable."
+            ? videoUnavailableMessage || "Video export is unavailable."
             : "Select previewable text before downloading."),
       });
       return;
@@ -833,7 +885,7 @@ export default function MorseBookPage({
               exportSettings,
               videoSettings,
               resolvedBackgroundStyle: resolvedVideoBackgroundStyle,
-              support: videoSupport as BookVideoSupport,
+              support: effectiveVideoSupport as BookVideoSupport,
               signal: controller.signal,
               onProgress: progressHandler,
             })
@@ -864,7 +916,7 @@ export default function MorseBookPage({
           result.downloadKind === "zip"
             ? "ZIP download started."
             : outputType === "video"
-              ? "WebM download started."
+              ? `${selectedVideoFormatSupport.label} download started.`
               : `${exportSettings.outputFormat.toUpperCase()} download started.`,
       });
       setExportProgress({
@@ -1141,8 +1193,8 @@ export default function MorseBookPage({
                 value={
                   outputType === "video"
                     ? downloadKind === "zip"
-                      ? "WebM ZIP"
-                      : "WebM"
+                      ? `${selectedVideoFormatSupport.label} ZIP`
+                      : selectedVideoFormatSupport.label
                     : formatBytes(estimatedBytes)
                 }
               />
@@ -1176,24 +1228,33 @@ export default function MorseBookPage({
             ) : null}
             {videoUnavailable ? (
               <p className="text-sm leading-relaxed text-slate-600">
-                {videoSupport?.reason}
+                {videoUnavailableMessage}
               </p>
             ) : null}
 
-            <button
-              type="button"
-              disabled={downloadDisabled}
-              onClick={handleDownload}
-              data-mw-morse-book-download-label={downloadLabel}
-              className={toolControlButtonClass({
-                disabled: downloadDisabled,
-                full: true,
-                tone: downloadDisabled ? "light" : "dark",
-              })}
-            >
-              <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-              {activeDownloadLabel}
-            </button>
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+              {outputType === "video" ? (
+                <BookVideoFormatSelect
+                  selectedFormat={selectedVideoFormat}
+                  support={videoSupport}
+                  onChange={setSelectedVideoFormat}
+                />
+              ) : null}
+              <button
+                type="button"
+                disabled={downloadDisabled}
+                onClick={handleDownload}
+                data-mw-morse-book-download-label={downloadLabel}
+                className={toolControlButtonClass({
+                  disabled: downloadDisabled,
+                  full: outputType !== "video",
+                  tone: downloadDisabled ? "light" : "dark",
+                })}
+              >
+                <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                {activeDownloadLabel}
+              </button>
+            </div>
             {downloadStatus.message ? (
               <p
                 className={[
@@ -1216,11 +1277,14 @@ export default function MorseBookPage({
                 elapsedMs={audioPreviewElapsedMs}
                 onPlay={() => {
                   const startElapsed =
-                    audioPreview && audioPreviewElapsedMs < audioPreview.durationMs
+                    audioPreview &&
+                    audioPreviewElapsedMs <
+                      audioPreview.durationMs - MIN_PREVIEW_RESTART_REMAINING_MS
                       ? audioPreviewElapsedMs
                       : 0;
                   startAudioPreviewFrom(startElapsed);
                 }}
+                onScrub={handleScrubAudioPreview}
                 onSeek={handleSeekAudioPreview}
                 onStop={() => stopAudioPreview()}
                 playing={audioPreviewPlaying}
@@ -1230,6 +1294,7 @@ export default function MorseBookPage({
                 elapsedMs={videoPreviewElapsedMs}
                 onPlay={startVideoPreview}
                 onSeek={handleSeekVideoPreview}
+                onSeekCommit={handleSeekVideoPreview}
                 onStop={() => stopVideoPreview()}
                 playing={videoPreviewPlaying}
                 preview={videoPreview}
@@ -1456,6 +1521,43 @@ export default function MorseBookPage({
   );
 }
 
+function BookVideoFormatSelect({
+  onChange,
+  selectedFormat,
+  support,
+}: {
+  onChange: (format: MorseVideoFormat) => void;
+  selectedFormat: MorseVideoFormat;
+  support: BookVideoSupport | null;
+}) {
+  return (
+    <label className="min-w-[12rem] text-sm font-semibold text-slate-700">
+      Video format
+      <select
+        value={selectedFormat}
+        onChange={(event) => onChange(event.target.value as MorseVideoFormat)}
+        className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+        aria-label="Video format"
+      >
+        {MORSE_VIDEO_FORMATS.map((format) => {
+          const formatSupport = getMorseVideoFormatSupport(support, format);
+          return (
+            <option
+              key={format}
+              value={format}
+              disabled={!formatSupport.supported}
+            >
+              {formatSupport.supported
+                ? formatSupport.label
+                : formatSupport.reason}
+            </option>
+          );
+        })}
+      </select>
+    </label>
+  );
+}
+
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div>
@@ -1472,6 +1574,7 @@ function AudioPreviewControls({
   disabled,
   elapsedMs,
   onPlay,
+  onScrub,
   onSeek,
   onStop,
   playing,
@@ -1480,6 +1583,7 @@ function AudioPreviewControls({
   disabled: boolean;
   elapsedMs: number;
   onPlay: () => void;
+  onScrub: (elapsedMs: number) => void;
   onSeek: (elapsedMs: number) => void;
   onStop: () => void;
   playing: boolean;
@@ -1519,10 +1623,12 @@ function AudioPreviewControls({
       </div>
       {audioPreview ? (
         <>
-          <AudioPreviewTimeline
+          <MorseAudioTimingStrip
             disabled={disabled && !playing}
             elapsedMs={elapsedMs}
-            onSeek={onSeek}
+            formatTime={formatDuration}
+            onSeek={onScrub}
+            onSeekCommit={onSeek}
             preview={audioPreview}
           />
           <p
@@ -1538,165 +1644,11 @@ function AudioPreviewControls({
   );
 }
 
-function AudioPreviewTimeline({
-  disabled,
-  elapsedMs,
-  onSeek,
-  preview,
-}: {
-  disabled: boolean;
-  elapsedMs: number;
-  onSeek: (elapsedMs: number) => void;
-  preview: BookAudioPreview;
-}) {
-  const stripRef = React.useRef<HTMLDivElement | null>(null);
-  const [dragging, setDragging] = React.useState(false);
-  const durationMs = Math.max(1, preview.durationMs);
-  const playheadPercent = Math.max(
-    0,
-    Math.min(100, (elapsedMs / durationMs) * 100),
-  );
-
-  const seekFromClientX = React.useCallback(
-    (clientX: number) => {
-      const strip = stripRef.current;
-      if (!strip) return;
-      const rect = strip.getBoundingClientRect();
-      const progress = rect.width > 0 ? (clientX - rect.left) / rect.width : 0;
-      onSeek(Math.max(0, Math.min(1, progress)) * durationMs);
-    },
-    [durationMs, onSeek],
-  );
-
-  const handlePointerDown = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      if (disabled) return;
-      event.currentTarget.setPointerCapture(event.pointerId);
-      setDragging(true);
-      seekFromClientX(event.clientX);
-    },
-    [disabled, seekFromClientX],
-  );
-
-  const handlePointerMove = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      if (!dragging || disabled) return;
-      seekFromClientX(event.clientX);
-    },
-    [disabled, dragging, seekFromClientX],
-  );
-
-  const handlePointerUp = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      if (!dragging) return;
-      setDragging(false);
-      try {
-        event.currentTarget.releasePointerCapture(event.pointerId);
-      } catch {
-        // Pointer capture can already be released by the browser.
-      }
-    },
-    [dragging],
-  );
-
-  const handleKeyDown = React.useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (disabled) return;
-      const step = event.shiftKey ? 2_000 : 500;
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        onSeek(Math.max(0, elapsedMs - step));
-      } else if (event.key === "ArrowRight") {
-        event.preventDefault();
-        onSeek(Math.min(durationMs, elapsedMs + step));
-      } else if (event.key === "Home") {
-        event.preventDefault();
-        onSeek(0);
-      } else if (event.key === "End") {
-        event.preventDefault();
-        onSeek(durationMs);
-      }
-    },
-    [disabled, durationMs, elapsedMs, onSeek],
-  );
-
-  return (
-    <div className="mt-4 max-w-[900px]" data-testid="book-audio-preview-timeline">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-          Morse timing strip
-        </span>
-        <span className="text-xs font-semibold text-slate-600">
-          Click or drag to preview another segment
-        </span>
-      </div>
-      <div
-        ref={stripRef}
-        role="slider"
-        tabIndex={disabled ? -1 : 0}
-        aria-label="Audio preview timeline"
-        aria-valuemin={0}
-        aria-valuemax={Math.round(durationMs)}
-        aria-valuenow={Math.round(elapsedMs)}
-        aria-valuetext={`${formatDuration(elapsedMs)} of ${formatDuration(
-          durationMs,
-        )}`}
-        aria-disabled={disabled ? "true" : undefined}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-        onKeyDown={handleKeyDown}
-        className={[
-          "relative mt-2 h-10 w-full overflow-hidden rounded-full bg-slate-950/90",
-          disabled
-            ? "cursor-not-allowed opacity-65"
-            : "cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
-        ].join(" ")}
-      >
-        {preview.timeline.events.map((event, index) => {
-          const left = (event.startMs / durationMs) * 100;
-          const width = Math.max(
-            0.16,
-            ((event.endMs - event.startMs) / durationMs) * 100,
-          );
-          const isMark = event.type === "mark";
-          const isDash = event.symbol === "-";
-          return (
-            <span
-              key={`${event.startMs}-${event.endMs}-${index}`}
-              data-testid={
-                isMark
-                  ? `book-audio-preview-${isDash ? "dash" : "dit"}`
-                  : "book-audio-preview-gap"
-              }
-              aria-hidden="true"
-              className={[
-                "absolute top-1/2 block -translate-y-1/2 rounded-full",
-                isMark
-                  ? isDash
-                    ? "h-5 bg-sky-300"
-                    : "h-3 bg-sky-200"
-                  : "h-1 bg-slate-500/55",
-              ].join(" ")}
-              style={{ left: `${left}%`, width: `${width}%` }}
-            />
-          );
-        })}
-        <span
-          aria-hidden="true"
-          className="absolute top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-white"
-          style={{ left: `calc(${playheadPercent}% - 2px)` }}
-        />
-      </div>
-    </div>
-  );
-}
-
 function VideoPreviewControls({
   elapsedMs,
   onPlay,
   onSeek,
+  onSeekCommit,
   onStop,
   playing,
   preview,
@@ -1706,23 +1658,26 @@ function VideoPreviewControls({
   elapsedMs: number;
   onPlay: () => void;
   onSeek: (elapsedMs: number) => void;
+  onSeekCommit?: (elapsedMs: number) => void;
   onStop: () => void;
   playing: boolean;
   preview: MorseVideoPreview;
   resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
   settings: MorseVideoSettings;
 }) {
-  const durationMs = Math.max(1, preview.durationMs);
-  const safeElapsed = Math.max(0, Math.min(durationMs, elapsedMs));
+  const safeElapsed = Math.max(0, Math.min(Math.max(1, preview.durationMs), elapsedMs));
 
   return (
     <section data-testid="book-video-preview-workflow">
-      <BookVideoPreviewPanel
+      <MorseVideoPreviewPanel
         className="mt-4"
+        headingId="book-video-preview-heading"
+        headingText="Preview video"
         isPlaying={playing}
         preview={preview}
         resolvedBackgroundStyle={resolvedBackgroundStyle}
         settings={settings}
+        testIdPrefix="book-video-preview"
         visualElapsedMs={safeElapsed}
       />
       <div className="mt-4 flex flex-wrap gap-2">
@@ -1741,30 +1696,13 @@ function VideoPreviewControls({
           {playing ? "Stop visual preview" : "Play visual preview"}
         </ToolButton>
       </div>
-      <div className="mt-4 max-w-[900px]" data-testid="book-video-preview-timeline">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-            Preview time
-          </span>
-          <span
-            className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
-            data-testid="book-video-preview-time"
-          >
-            {formatDuration(safeElapsed)} / {formatDuration(durationMs)}
-          </span>
-        </div>
-        <input
-          type="range"
-          min={0}
-          max={durationMs}
-          step={100}
-          value={Math.round(safeElapsed)}
-          onInput={(event) => onSeek(Number(event.currentTarget.value))}
-          onChange={(event) => onSeek(Number(event.currentTarget.value))}
-          aria-label="Video preview timeline"
-          className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0"
-        />
-      </div>
+      <MorseVideoPreviewTimeline
+        elapsedMs={safeElapsed}
+        onSeek={onSeek}
+        onSeekCommit={onSeekCommit}
+        preview={preview}
+        testIdPrefix="book-video-preview"
+      />
       <p className="mt-3 text-sm leading-relaxed text-slate-700">
         Visual signal: {settings.showVisualSignal ? "on" : "off"} - Morse
         symbols: {settings.showMorseSymbols ? "on" : "off"} - Plain text:{" "}
@@ -1772,225 +1710,6 @@ function VideoPreviewControls({
         {settings.includeAudioTrack ? "Audio track on" : "Audio track off"}.
       </p>
     </section>
-  );
-}
-
-function BookVideoPreviewPanel({
-  className = "",
-  isPlaying = false,
-  preview,
-  resolvedBackgroundStyle,
-  settings,
-  visualElapsedMs = 0,
-}: {
-  className?: string;
-  isPlaying?: boolean;
-  preview: MorseVideoPreview;
-  resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
-  settings: MorseVideoSettings;
-  visualElapsedMs?: number;
-}) {
-  const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
-  const frameStyle = darkFrame
-    ? { backgroundColor: "#020617", color: "#e0f2fe" }
-    : { backgroundColor: "#fffdf8", color: "#08324f" };
-  const previewFrame = getMorseVideoPreviewFrame(preview, visualElapsedMs);
-  const textState = getMorseVideoFrameTextState(preview.timeline, visualElapsedMs);
-  const showTextLayers = settings.showMorseSymbols || settings.showPlainText;
-  const textLayerCount =
-    (settings.showMorseSymbols ? 1 : 0) + (settings.showPlainText ? 1 : 0);
-  const signalVisible = settings.showVisualSignal;
-  const textStackClass = signalVisible
-    ? "w-full max-w-[48rem] space-y-1 sm:space-y-2"
-    : "w-full max-w-[52rem] space-y-3 sm:space-y-4";
-  const morseTextClass = signalVisible
-    ? "mx-auto max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-base font-bold leading-snug sm:break-words sm:text-2xl sm:whitespace-normal lg:text-3xl"
-    : textLayerCount === 1
-      ? "mx-auto max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-4xl font-bold leading-tight sm:break-words sm:text-6xl sm:whitespace-normal"
-      : "mx-auto max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-3xl font-bold leading-tight sm:break-words sm:text-5xl sm:whitespace-normal";
-  const plainTextClass = signalVisible
-    ? "mx-auto max-w-[44rem] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-extrabold leading-snug sm:break-words sm:text-xl sm:whitespace-normal lg:text-2xl"
-    : textLayerCount === 1
-      ? "mx-auto max-w-[52rem] overflow-hidden text-ellipsis whitespace-nowrap text-4xl font-extrabold leading-tight sm:break-words sm:text-6xl sm:whitespace-normal"
-      : "mx-auto max-w-[52rem] overflow-hidden text-ellipsis whitespace-nowrap text-3xl font-extrabold leading-tight sm:break-words sm:text-5xl sm:whitespace-normal";
-
-  return (
-    <section
-      data-testid="book-video-preview"
-      data-preview-playing={isPlaying ? "true" : "false"}
-      aria-labelledby="book-video-preview-heading"
-      className={["space-y-3", className].filter(Boolean).join(" ")}
-    >
-      <div
-        className="flex aspect-video min-h-[13rem] w-full max-w-[900px] flex-col overflow-hidden rounded-xl p-4 sm:min-h-[18rem] sm:p-6"
-        style={frameStyle}
-        data-testid="book-video-preview-frame"
-        data-preview-playing={isPlaying ? "true" : "false"}
-      >
-        <div className="flex items-start justify-between gap-3">
-          <h3 id="book-video-preview-heading" className="text-sm font-extrabold">
-            Preview video
-          </h3>
-          <div className="text-right">
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80">
-              Timed excerpt
-            </span>
-            {settings.showBranding ? (
-              <p
-                data-testid="book-video-preview-branding"
-                className="mt-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] opacity-75 sm:text-[11px]"
-              >
-                {preview.brandLabel}
-              </p>
-            ) : null}
-          </div>
-        </div>
-        <div
-          className={[
-            "flex min-h-0 flex-1 flex-col items-center justify-center py-2 text-center sm:py-5",
-            signalVisible ? "gap-2 sm:gap-5" : "gap-3 sm:gap-6",
-          ].join(" ")}
-        >
-          {signalVisible ? (
-            <BookVideoPreviewVisual
-              preview={preview}
-              settings={settings}
-              visualElapsedMs={visualElapsedMs}
-            />
-          ) : null}
-          {showTextLayers ? (
-            <div
-              className={textStackClass}
-              data-testid="book-video-preview-text-layers"
-              data-active-character={textState.activeCharacter}
-              data-active-morse={textState.activeCharacterMorse}
-              data-active-word={textState.plainText}
-            >
-              {settings.showMorseSymbols ? (
-                <p
-                  data-testid="book-video-preview-morse-overlay"
-                  className={morseTextClass}
-                >
-                  {previewFrame.morseExcerpt}
-                </p>
-              ) : null}
-              {settings.showPlainText ? (
-                <p
-                  data-testid="book-video-preview-text-overlay"
-                  className={plainTextClass}
-                >
-                  {previewFrame.textExcerpt}
-                </p>
-              ) : null}
-              {textState.activeCharacter ? (
-                <p
-                  data-testid="book-video-preview-active-token"
-                  className="mx-auto max-w-full font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-75 sm:text-xs"
-                >
-                  Current {textState.activeCharacter}{" "}
-                  {textState.activeCharacterMorse}
-                </p>
-              ) : null}
-            </div>
-          ) : null}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function BookVideoPreviewVisual({
-  preview,
-  settings,
-  visualElapsedMs,
-}: {
-  preview: MorseVideoPreview;
-  settings: MorseVideoSettings;
-  visualElapsedMs: number;
-}) {
-  const frame = getMorseVideoPreviewFrame(preview, visualElapsedMs);
-  const markActive = frame.active;
-  const intensityClass =
-    settings.intensity === "high"
-      ? "opacity-100"
-      : settings.intensity === "low"
-        ? "opacity-60"
-        : "opacity-80";
-
-  if (settings.visualStyle === "dot") {
-    return (
-      <span
-        data-testid="book-video-preview-dot"
-        data-preview-active={markActive ? "true" : "false"}
-        aria-label="Dot preview"
-        role="img"
-        className={[
-          "block h-16 w-16 rounded-full sm:h-36 sm:w-36",
-          markActive ? "bg-sky-300" : "bg-slate-400",
-          intensityClass,
-          markActive ? "ring-4 ring-sky-200/50" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      />
-    );
-  }
-
-  if (settings.visualStyle === "full-frame") {
-    return (
-      <div
-        data-testid="book-video-preview-full-frame"
-        data-preview-active={markActive ? "true" : "false"}
-        aria-label="Subdued full-frame flash preview"
-        role="img"
-        className={[
-          "h-16 w-16 rounded-full bg-sky-300/80 sm:h-36 sm:w-36",
-          intensityClass,
-          markActive ? "ring-4 ring-sky-200/50" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      />
-    );
-  }
-
-  if (settings.visualStyle === "morse-text") {
-    return (
-      <div
-        data-testid="book-video-preview-morse-text"
-        data-preview-active={markActive ? "true" : "false"}
-        className={[
-          "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-4xl font-bold tracking-normal sm:text-6xl",
-          markActive ? "text-sky-300" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      >
-        {frame.symbols || preview.sampleMorse}
-      </div>
-    );
-  }
-
-  return (
-    <div
-      data-testid="book-video-preview-lightbulb"
-      data-preview-active={markActive ? "true" : "false"}
-      aria-label="Lightbulb preview"
-      role="img"
-      className={[
-        "text-slate-400",
-        intensityClass,
-        markActive ? "text-sky-300" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <LightBulbIcon
-        size="clamp(3.5rem, 17vw, 8.25rem)"
-        title={undefined}
-        aria-hidden="true"
-      />
-    </div>
   );
 }
 

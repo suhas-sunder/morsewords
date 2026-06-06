@@ -5,7 +5,6 @@ import {
   CopyIcon,
   DownloadIcon,
   EqualizerIcon,
-  LightBulbIcon,
   PlayIcon,
   RefreshIcon,
   SparklesIcon,
@@ -54,9 +53,15 @@ import {
   formatDuration,
 } from "./bookDurationEstimate";
 import {
-  getMorseVideoFrameTextState,
-  type MorseVideoTimeline,
-} from "~/client/components/shared/video/morseVideoRenderer";
+  MorseAudioTimingStrip,
+  MorseVideoPreviewPanel,
+  MorseVideoPreviewTimeline,
+} from "~/client/components/shared/video/MorseVideoPreviewControls";
+import {
+  getMorseVideoFormatSupport,
+  MORSE_VIDEO_FORMATS,
+  type MorseVideoFormat,
+} from "~/client/components/shared/video/morseVideoSupport";
 import useMorseAudio, {
   type MorsePlayerState,
 } from "~/client/components/shared/useMorseAudio";
@@ -106,7 +111,6 @@ import {
 } from "./textNormalization";
 import {
   buildBookVideoPreview,
-  getMorseVideoPreviewFrame,
   type BookVideoPreview,
 } from "./bookVideoPreview";
 import {
@@ -118,6 +122,7 @@ import {
   buildBookVideoWarnings,
   createBookVideoDownloadPackage,
   getBookVideoDownloadKind,
+  type BookVideoDownloadPackage,
 } from "./bookVideoExport";
 import {
   BOOK_VIDEO_INTENSITY_LABELS,
@@ -150,6 +155,8 @@ const INLINE_UPLOAD_TEXTAREA_LIMIT = 40_000;
 // cleanup, Morse preview, runtime estimates, and splitting on every keystroke.
 const LARGE_SOURCE_EDIT_THRESHOLD = 40_000;
 const EXTRACTED_SOURCE_PREVIEW_LIMIT = 6_000;
+const DEFAULT_SOURCE_TEXT = "S\nO\nS\n HELP";
+const MIN_PREVIEW_RESTART_REMAINING_MS = 750;
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   phase: "idle",
   message: "",
@@ -220,6 +227,10 @@ function resolveBookVideoBackgroundStyle(themeMode: ThemeMode) {
 
 function formatNumber(value: number | undefined) {
   return typeof value === "number" ? value.toLocaleString() : "0";
+}
+
+function videoFormatLabel(format: string) {
+  return format === "mp4" ? "MP4" : "WebM";
 }
 
 function createEmptyParsedSource(warnings: string[] = []): ParsedBookSource {
@@ -482,9 +493,9 @@ function isExportRunning(progress: BookExportProgress) {
 }
 
 export default function BookTranslatorTool() {
-  const [sourceText, setSourceText] = React.useState("");
+  const [sourceText, setSourceText] = React.useState(DEFAULT_SOURCE_TEXT);
   const [parsedSource, setParsedSource] = React.useState<ParsedBookSource>(() =>
-    createEmptyParsedSource(),
+    parsePastedSource(DEFAULT_SOURCE_TEXT),
   );
   const [sourceEntryMode, setSourceEntryMode] =
     React.useState<SourceEntryMode>("pasted");
@@ -505,6 +516,8 @@ export default function BookTranslatorTool() {
   );
   const [videoSupport, setVideoSupport] =
     React.useState<BookVideoSupport | null>(null);
+  const [selectedVideoFormat, setSelectedVideoFormat] =
+    React.useState<MorseVideoFormat>("webm");
   const [previewStatus, setPreviewStatus] =
     React.useState<BookPreviewStatus>("waiting");
   const [previewErrorMessage, setPreviewErrorMessage] = React.useState("");
@@ -512,7 +525,7 @@ export default function BookTranslatorTool() {
   const [visualPreviewElapsedMs, setVisualPreviewElapsedMs] = React.useState(0);
   const [audioPreviewElapsedMs, setAudioPreviewElapsedMs] = React.useState(0);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
-  const [status, setStatus] = React.useState<ParseStatus>("idle");
+  const [status, setStatus] = React.useState<ParseStatus>("ready");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [pendingFilename, setPendingFilename] = React.useState("");
   const [sourceActionStatus, setSourceActionStatus] = React.useState<{
@@ -895,14 +908,13 @@ export default function BookTranslatorTool() {
     () =>
       buildBookVideoPreview(
         effectiveVideoSettings,
-        audioPreview?.sampleText ?? preflight.cleanedText,
+        preflight.cleanedText,
         {
           charWpm: exportSettings.charWpm,
           farnsworthWpm: exportSettings.farnsworthWpm,
         },
       ),
     [
-      audioPreview?.sampleText,
       effectiveVideoSettings,
       exportSettings.charWpm,
       exportSettings.farnsworthWpm,
@@ -959,12 +971,29 @@ export default function BookTranslatorTool() {
     ],
   );
   const canAudioExport = hasSource && exportParts.length > 0 && !exportRunning;
+  const selectedVideoFormatSupport = React.useMemo(
+    () => getMorseVideoFormatSupport(videoSupport, selectedVideoFormat),
+    [selectedVideoFormat, videoSupport],
+  );
+  const selectedBookVideoSupport = React.useMemo(
+    () =>
+      videoSupport && selectedVideoFormatSupport.supported
+        ? {
+            ...videoSupport,
+            mimeType: selectedVideoFormatSupport.mimeType,
+            extension: selectedVideoFormatSupport.extension,
+            reason: selectedVideoFormatSupport.reason,
+          }
+        : videoSupport,
+    [selectedVideoFormatSupport, videoSupport],
+  );
   const canVideoExport =
     hasSource &&
     hasCleanedSource &&
     exportParts.length > 0 &&
     !exportRunning &&
-    Boolean(videoSupport?.supported);
+    Boolean(selectedBookVideoSupport?.supported) &&
+    selectedVideoFormatSupport.supported;
   const canExport = isAudioOutput ? canAudioExport : canVideoExport;
   const exportDisabledReason = isVideoOutput
     ? !hasSource
@@ -977,9 +1006,11 @@ export default function BookTranslatorTool() {
             ? "Checking browser video export support."
             : !videoSupport.supported
               ? videoSupport.reason
-              : exportRunning
-                ? "Download is currently running."
-                : ""
+              : !selectedVideoFormatSupport.supported
+                ? selectedVideoFormatSupport.reason
+                : exportRunning
+                  ? "Download is currently running."
+                  : ""
     : !hasSource
       ? "Add source text or upload a source file to enable download."
       : !hasCleanedSource
@@ -1017,10 +1048,10 @@ export default function BookTranslatorTool() {
     ? downloadKind === "zip"
       ? `Download ZIP bundle${
           exportParts.length > 1
-            ? ` (${exportParts.length.toLocaleString()} WebM files)`
+            ? ` (${exportParts.length.toLocaleString()} ${selectedVideoFormatSupport.label} files)`
             : ""
         }`
-      : "Download WebM"
+      : `Download ${selectedVideoFormatSupport.label}`
     : downloadKind === "zip"
       ? `Download ZIP bundle${
           exportParts.length > 1
@@ -1056,7 +1087,7 @@ export default function BookTranslatorTool() {
     ? buildBookVideoWarnings({
         downloadKind,
         partCount: exportParts.length,
-        support: videoSupport,
+        support: selectedBookVideoSupport,
         totalRuntimeMs: exportAnalysis.totalRuntimeMs,
         videoSettings: effectiveVideoSettings,
       })
@@ -1221,11 +1252,26 @@ export default function BookTranslatorTool() {
   const handlePlayAudioPreview = React.useCallback(() => {
     const currentElapsed = audioPreviewElapsedMs;
     const startElapsed =
-      audioPreview && currentElapsed < audioPreview.durationMs
+      audioPreview &&
+      currentElapsed < audioPreview.durationMs - MIN_PREVIEW_RESTART_REMAINING_MS
         ? currentElapsed
         : 0;
     startAudioPreviewFrom(startElapsed);
   }, [audioPreview, audioPreviewElapsedMs, startAudioPreviewFrom]);
+
+  const handleScrubAudioPreview = React.useCallback(
+    (elapsedMs: number) => {
+      if (!audioPreview) return;
+      const nextElapsed = Math.max(
+        0,
+        Math.min(audioPreview.durationMs, elapsedMs),
+      );
+      setAudioPreviewElapsedMs(nextElapsed);
+      audioPreviewBaseElapsedRef.current = nextElapsed;
+      audioPreviewStartedAtRef.current = performance.now();
+    },
+    [audioPreview],
+  );
 
   const handleSeekAudioPreview = React.useCallback(
     (elapsedMs: number) => {
@@ -1270,7 +1316,10 @@ export default function BookTranslatorTool() {
       Math.min(visualPreviewDurationMs, visualPreviewElapsedMs),
     );
     const startElapsed =
-      currentElapsed >= visualPreviewDurationMs ? 0 : currentElapsed;
+      visualPreviewDurationMs - currentElapsed <=
+      MIN_PREVIEW_RESTART_REMAINING_MS
+        ? 0
+        : currentElapsed;
     visualPreviewStartedAtRef.current = performance.now();
     visualPreviewBaseElapsedRef.current = startElapsed;
     setVisualPreviewElapsedMs(startElapsed);
@@ -1295,6 +1344,19 @@ export default function BookTranslatorTool() {
     visualPreviewDurationMs,
     visualPreviewElapsedMs,
   ]);
+
+  const handleScrubVisualPreview = React.useCallback(
+    (elapsedMs: number) => {
+      const nextElapsed = Math.max(
+        0,
+        Math.min(visualPreviewDurationMs, elapsedMs),
+      );
+      setVisualPreviewElapsedMs(nextElapsed);
+      visualPreviewBaseElapsedRef.current = nextElapsed;
+      visualPreviewStartedAtRef.current = performance.now();
+    },
+    [visualPreviewDurationMs],
+  );
 
   const handleSeekVisualPreview = React.useCallback(
     (elapsedMs: number) => {
@@ -1820,11 +1882,17 @@ export default function BookTranslatorTool() {
       return;
     }
 
-    if (isVideoOutput && (!videoSupport || !videoSupport.supported)) {
+    if (
+      isVideoOutput &&
+      (!selectedBookVideoSupport ||
+        !selectedBookVideoSupport.supported ||
+        !selectedVideoFormatSupport.supported)
+    ) {
       setExportStatus({
         kind: "error",
         message:
-          videoSupport?.reason ??
+          selectedBookVideoSupport?.reason ??
+          selectedVideoFormatSupport.reason ??
           "Checking browser video export support. Try again in a moment.",
       });
       setExportProgress(VIDEO_IDLE_EXPORT_PROGRESS);
@@ -1874,7 +1942,7 @@ export default function BookTranslatorTool() {
             exportSettings: activeSegmentationSettings,
             videoSettings: effectiveVideoSettings,
             resolvedBackgroundStyle: resolvedVideoBackgroundStyle,
-            support: videoSupport as BookVideoSupport,
+            support: selectedBookVideoSupport as BookVideoSupport,
             signal: controller.signal,
             onProgress: progressHandler,
           })
@@ -1900,10 +1968,13 @@ export default function BookTranslatorTool() {
         setExportStatus({ kind: "error", message: download.message });
         return;
       }
+      const resultOutputFormat = isVideoOutput
+        ? (result as BookVideoDownloadPackage).outputFormat
+        : exportSettings.outputFormat;
       setCompletedExport({
         filename: result.filename,
         downloadKind: result.downloadKind,
-        outputFormat: isVideoOutput ? "webm" : exportSettings.outputFormat,
+        outputFormat: resultOutputFormat,
         partCount: exportParts.length,
         runtimeLabel: formatDuration(exportAnalysis.totalRuntimeMs),
         sizeLabel: isVideoOutput
@@ -1919,7 +1990,7 @@ export default function BookTranslatorTool() {
                 exportParts.length === 1 ? "" : "s"
               }.`
             : isVideoOutput
-              ? "WebM download started."
+              ? `${videoFormatLabel(resultOutputFormat)} download started.`
               : `${downloadFormatLabel} download started.`,
         currentPart: exportParts.length,
         totalParts: exportParts.length,
@@ -1930,7 +2001,7 @@ export default function BookTranslatorTool() {
           result.downloadKind === "zip"
             ? "ZIP download started."
             : isVideoOutput
-              ? "WebM download started."
+              ? `${videoFormatLabel(resultOutputFormat)} download started.`
               : `${downloadFormatLabel} download started.`,
       });
     } catch (error) {
@@ -1975,7 +2046,8 @@ export default function BookTranslatorTool() {
     isVideoOutput,
     preflight,
     resolvedVideoBackgroundStyle,
-    videoSupport,
+    selectedBookVideoSupport,
+    selectedVideoFormatSupport,
     downloadFormatLabel,
   ]);
 
@@ -2001,11 +2073,11 @@ export default function BookTranslatorTool() {
               id="book-add-source-heading"
               className="text-xl font-extrabold text-sky-950"
             >
-              Add source
+              Create Morse audio or video
             </h2>
             <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-              Paste long-form text or upload a local TXT, MD, EPUB, or
-              text-native PDF. The source stays in this browser session.
+              Preview the sample, download Morse output, or edit the source
+              text below when you want to use your own passage.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -2015,27 +2087,14 @@ export default function BookTranslatorTool() {
           </div>
         </div>
 
-        <div className="space-y-5">
-          <SourceUploadDropzone
-            dragActive={dragActive}
-            fileInputRef={fileInputRef}
-            filename={parsedSource.filename}
-            hasSource={hasSource}
-            onDrop={handleDrop}
-            onFileInputChange={handleFileInputChange}
-            onUploadKeyDown={handleUploadKeyDown}
-            setDragActive={setDragActive}
-            uploadHelpText={uploadHelpText}
-            uploadRightsText={uploadRightsText}
-            uploadTitle={uploadTitle}
-          />
-
-          <ToolPanel
-            label="Source text"
-            badge={
-              isUploaded ? sourceTypeLabel(parsedSource.sourceType) : "Paste"
-            }
-          >
+        <div className="flex flex-col gap-5">
+          <div className="order-2">
+            <ToolPanel
+              label="Source text"
+              badge={
+                isUploaded ? sourceTypeLabel(parsedSource.sourceType) : "Paste"
+              }
+            >
             {isTextareaMode ? (
               <>
                 <label htmlFor="book-source-text" className="sr-only">
@@ -2050,7 +2109,7 @@ export default function BookTranslatorTool() {
                       : updatePastedText(event.target.value)
                   }
                   placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
-                  className="min-h-[18rem]"
+                  className="min-h-[7rem] sm:min-h-[8rem]"
                   spellCheck={false}
                 />
               </>
@@ -2077,7 +2136,7 @@ export default function BookTranslatorTool() {
                   id="book-source-edit-draft"
                   value={sourceEditDraft}
                   onChange={(event) => setSourceEditDraft(event.target.value)}
-                  className="mt-3 min-h-[18rem] rounded-lg bg-[#fffaf2]/70"
+                  className="mt-3 min-h-[9rem] rounded-lg bg-[#fffaf2]/70"
                   spellCheck={false}
                 />
               </div>
@@ -2305,11 +2364,28 @@ export default function BookTranslatorTool() {
                 ) : null}
               </section>
             ) : null}
-          </ToolPanel>
+            </ToolPanel>
+          </div>
+
+          <div className="order-3">
+            <SourceUploadDropzone
+              dragActive={dragActive}
+              fileInputRef={fileInputRef}
+              filename={parsedSource.filename}
+              hasSource={hasSource}
+              onDrop={handleDrop}
+              onFileInputChange={handleFileInputChange}
+              onUploadKeyDown={handleUploadKeyDown}
+              setDragActive={setDragActive}
+              uploadHelpText={uploadHelpText}
+              uploadRightsText={uploadRightsText}
+              uploadTitle={uploadTitle}
+            />
+          </div>
 
           <section
             id="book-download-controls"
-            className="space-y-4 pt-1"
+            className="order-1 space-y-4 pt-1"
             aria-labelledby="book-download-controls-heading"
           >
             <h3
@@ -2450,6 +2526,8 @@ export default function BookTranslatorTool() {
               isDraftActive={sourceDraftActive}
               onPlayAudioPreview={handlePlayAudioPreview}
               onPlayVisualPreview={handlePlayVisualPreview}
+              onScrubAudioPreview={handleScrubAudioPreview}
+              onScrubVisualPreview={handleScrubVisualPreview}
               onSeekAudioPreview={handleSeekAudioPreview}
               onSeekVisualPreview={handleSeekVisualPreview}
               onStopPreview={stopActivePreview}
@@ -2464,7 +2542,14 @@ export default function BookTranslatorTool() {
               visualPreviewElapsedMs={visualPreviewElapsedMs}
             />
 
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+              {isVideoOutput ? (
+                <VideoFormatSelect
+                  selectedFormat={selectedVideoFormat}
+                  support={videoSupport}
+                  onChange={setSelectedVideoFormat}
+                />
+              ) : null}
               <ToolButton
                 type="button"
                 tone="dark"
@@ -3434,6 +3519,8 @@ function BookPreviewSection({
   isDraftActive,
   onPlayAudioPreview,
   onPlayVisualPreview,
+  onScrubAudioPreview,
+  onScrubVisualPreview,
   onSeekAudioPreview,
   onSeekVisualPreview,
   onStopPreview,
@@ -3457,6 +3544,8 @@ function BookPreviewSection({
   isDraftActive: boolean;
   onPlayAudioPreview: () => void;
   onPlayVisualPreview: () => void;
+  onScrubAudioPreview: (elapsedMs: number) => void;
+  onScrubVisualPreview: (elapsedMs: number) => void;
   onSeekAudioPreview: (elapsedMs: number) => void;
   onSeekVisualPreview: (elapsedMs: number) => void;
   onStopPreview: () => void;
@@ -3477,10 +3566,7 @@ function BookPreviewSection({
     (isAudioOutput
       ? audioPlayerState === "playing" || audioPlayerState === "paused"
       : visualPreviewPlaying);
-  const actionDisabled =
-    !canPreview ||
-    previewStatus === "updating" ||
-    (isAudioOutput && !audioSupported);
+  const actionDisabled = !canPreview || (isAudioOutput && !audioSupported);
   const heading = isAudioOutput ? "Preview audio" : "Preview video";
   const previewElapsedMs = Math.min(
     visualPreviewDurationMs,
@@ -3489,12 +3575,6 @@ function BookPreviewSection({
   const audioElapsedMs = Math.min(
     audioPreview?.durationMs ?? 0,
     Math.max(0, audioPreviewElapsedMs),
-  );
-  const handleVisualPreviewTimelineInput = React.useCallback(
-    (event: React.FormEvent<HTMLInputElement>) => {
-      onSeekVisualPreview(Number(event.currentTarget.value));
-    },
-    [onSeekVisualPreview],
   );
   const statusText = previewErrorMessage
     ? previewErrorMessage
@@ -3587,10 +3667,12 @@ function BookPreviewSection({
           </div>
           {audioPreview ? (
             <>
-              <AudioPreviewTimeline
+              <MorseAudioTimingStrip
                 disabled={actionDisabled && !previewPlaying}
                 elapsedMs={audioElapsedMs}
-                onSeek={onSeekAudioPreview}
+                formatTime={formatDuration}
+                onSeek={onScrubAudioPreview}
+                onSeekCommit={onSeekAudioPreview}
                 preview={audioPreview}
               />
               <p
@@ -3605,12 +3687,15 @@ function BookPreviewSection({
         </div>
       ) : (
         <div data-testid="book-video-preview-workflow">
-          <BookVideoPreviewPanel
+          <MorseVideoPreviewPanel
             className="mt-4"
+            headingId="book-video-preview-heading"
+            headingText="Video frame"
             isPlaying={visualPreviewPlaying}
             preview={videoPreview}
             resolvedBackgroundStyle={resolvedVideoBackgroundStyle}
             settings={videoSettings}
+            testIdPrefix="book-video-preview"
             visualElapsedMs={visualPreviewElapsedMs}
           />
           <div className="mt-4 flex flex-wrap gap-2">
@@ -3630,35 +3715,14 @@ function BookPreviewSection({
               {previewPlaying ? "Stop visual preview" : "Play visual preview"}
             </ToolButton>
           </div>
-          <div
-            className="mt-4 max-w-[900px]"
-            data-testid="book-video-preview-timeline"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                Preview time
-              </span>
-              <span
-                className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
-                data-testid="book-video-preview-time"
-              >
-                {formatDuration(previewElapsedMs)} /{" "}
-                {formatDuration(visualPreviewDurationMs)}
-              </span>
-            </div>
-            <input
-              type="range"
-              min={0}
-              max={visualPreviewDurationMs}
-              step={100}
-              value={Math.round(previewElapsedMs)}
-              onInput={handleVisualPreviewTimelineInput}
-              onChange={handleVisualPreviewTimelineInput}
-              disabled={actionDisabled && !previewPlaying}
-              aria-label="Video preview timeline"
-              className="mt-2 w-full cursor-pointer rounded-full focus:outline-none focus:ring-0"
-            />
-          </div>
+          <MorseVideoPreviewTimeline
+            disabled={actionDisabled && !previewPlaying}
+            elapsedMs={previewElapsedMs}
+            onSeek={onScrubVisualPreview}
+            onSeekCommit={onSeekVisualPreview}
+            preview={videoPreview}
+            testIdPrefix="book-video-preview"
+          />
           <p className="mt-3 text-sm leading-relaxed text-slate-700">
             Visual signal:{" "}
             {videoSettings.showVisualSignal
@@ -3678,165 +3742,6 @@ function BookPreviewSection({
         </div>
       )}
     </section>
-  );
-}
-
-function AudioPreviewTimeline({
-  disabled,
-  elapsedMs,
-  onSeek,
-  preview,
-}: {
-  disabled: boolean;
-  elapsedMs: number;
-  onSeek: (elapsedMs: number) => void;
-  preview: BookAudioPreview;
-}) {
-  const stripRef = React.useRef<HTMLDivElement | null>(null);
-  const [dragging, setDragging] = React.useState(false);
-  const durationMs = Math.max(1, preview.durationMs);
-  const playheadPercent = Math.max(
-    0,
-    Math.min(100, (elapsedMs / durationMs) * 100),
-  );
-
-  const seekFromClientX = React.useCallback(
-    (clientX: number) => {
-      const strip = stripRef.current;
-      if (!strip) return;
-      const rect = strip.getBoundingClientRect();
-      const progress =
-        rect.width > 0 ? (clientX - rect.left) / rect.width : 0;
-      onSeek(Math.max(0, Math.min(1, progress)) * durationMs);
-    },
-    [durationMs, onSeek],
-  );
-
-  const handlePointerDown = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      if (disabled) return;
-      event.currentTarget.setPointerCapture(event.pointerId);
-      setDragging(true);
-      seekFromClientX(event.clientX);
-    },
-    [disabled, seekFromClientX],
-  );
-
-  const handlePointerMove = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      if (!dragging || disabled) return;
-      seekFromClientX(event.clientX);
-    },
-    [disabled, dragging, seekFromClientX],
-  );
-
-  const handlePointerUp = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      if (!dragging) return;
-      setDragging(false);
-      try {
-        event.currentTarget.releasePointerCapture(event.pointerId);
-      } catch {
-        // Pointer may already be released by the browser.
-      }
-    },
-    [dragging],
-  );
-
-  const handleKeyDown = React.useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (disabled) return;
-      const step = event.shiftKey ? 2_000 : 500;
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        onSeek(Math.max(0, elapsedMs - step));
-      } else if (event.key === "ArrowRight") {
-        event.preventDefault();
-        onSeek(Math.min(durationMs, elapsedMs + step));
-      } else if (event.key === "Home") {
-        event.preventDefault();
-        onSeek(0);
-      } else if (event.key === "End") {
-        event.preventDefault();
-        onSeek(durationMs);
-      }
-    },
-    [disabled, durationMs, elapsedMs, onSeek],
-  );
-
-  return (
-    <div className="mt-4 max-w-[900px]" data-testid="book-audio-preview-timeline">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-          Morse timing strip
-        </span>
-        <span className="text-xs font-semibold text-slate-600">
-          Click or drag to preview another segment
-        </span>
-      </div>
-      <div
-        ref={stripRef}
-        role="slider"
-        tabIndex={disabled ? -1 : 0}
-        aria-label="Audio preview timeline"
-        aria-valuemin={0}
-        aria-valuemax={Math.round(durationMs)}
-        aria-valuenow={Math.round(elapsedMs)}
-        aria-valuetext={`${formatDuration(elapsedMs)} of ${formatDuration(
-          durationMs,
-        )}`}
-        aria-disabled={disabled ? "true" : undefined}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-        onKeyDown={handleKeyDown}
-        className={[
-          "relative mt-2 h-10 w-full overflow-hidden rounded-full bg-slate-950/90",
-          disabled
-            ? "cursor-not-allowed opacity-65"
-            : "cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
-        ].join(" ")}
-      >
-        {preview.timeline.events.map((event, index) => {
-          const left = (event.startMs / durationMs) * 100;
-          const width = Math.max(
-            0.16,
-            ((event.endMs - event.startMs) / durationMs) * 100,
-          );
-          const isMark = event.type === "mark";
-          const isDash = event.symbol === "-";
-          return (
-            <span
-              key={`${event.startMs}-${event.endMs}-${index}`}
-              data-testid={
-                isMark
-                  ? `book-audio-preview-${isDash ? "dash" : "dit"}`
-                  : "book-audio-preview-gap"
-              }
-              aria-hidden="true"
-              className={[
-                "absolute top-1/2 block -translate-y-1/2 rounded-full",
-                isMark
-                  ? isDash
-                    ? "h-5 bg-sky-300"
-                    : "h-3 bg-sky-200"
-                  : "h-1 bg-slate-500/55",
-              ].join(" ")}
-              style={{
-                left: `${left}%`,
-                width: `${width}%`,
-              }}
-            />
-          );
-        })}
-        <span
-          aria-hidden="true"
-          className="absolute top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-white"
-          style={{ left: `calc(${playheadPercent}% - 2px)` }}
-        />
-      </div>
-    </div>
   );
 }
 
@@ -4167,240 +4072,40 @@ function FullFrameFlashWarning({ className = "" }: { className?: string }) {
   );
 }
 
-function BookVideoPreviewPanel({
-  className = "",
-  isPlaying = false,
-  preview,
-  resolvedBackgroundStyle,
-  settings,
-  visualElapsedMs = 0,
+function VideoFormatSelect({
+  onChange,
+  selectedFormat,
+  support,
 }: {
-  className?: string;
-  isPlaying?: boolean;
-  preview: BookVideoPreview;
-  resolvedBackgroundStyle: "warm-morsewords" | "dark-morsewords";
-  settings: BookVideoSettings;
-  visualElapsedMs?: number;
+  onChange: (format: MorseVideoFormat) => void;
+  selectedFormat: MorseVideoFormat;
+  support: BookVideoSupport | null;
 }) {
-  const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
-  const frameStyle = darkFrame
-    ? {
-        backgroundColor: "#020617",
-        color: "#e0f2fe",
-      }
-    : {
-        backgroundColor: "#fffdf8",
-        color: "#08324f",
-      };
-  const previewFrame = getMorseVideoPreviewFrame(preview, visualElapsedMs);
-  const textState = getMorseVideoFrameTextState(
-    preview.timeline,
-    visualElapsedMs,
-  );
-  const showMorseSymbols = settings.showMorseSymbols;
-  const showPlainText = settings.showPlainText;
-  const showTextLayers = showMorseSymbols || showPlainText;
-  const textLayerCount = (showMorseSymbols ? 1 : 0) + (showPlainText ? 1 : 0);
-  const signalVisible = settings.showVisualSignal;
-  const textStackClass = signalVisible
-    ? "w-full max-w-[48rem] space-y-1 sm:space-y-2"
-    : "w-full max-w-[52rem] space-y-3 sm:space-y-4";
-  const morseTextClass = signalVisible
-    ? "mx-auto max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-base font-bold leading-snug sm:break-words sm:text-2xl sm:whitespace-normal lg:text-3xl"
-    : textLayerCount === 1
-      ? "mx-auto max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-4xl font-bold leading-tight sm:break-words sm:text-6xl sm:whitespace-normal"
-      : "mx-auto max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-3xl font-bold leading-tight sm:break-words sm:text-5xl sm:whitespace-normal";
-  const plainTextClass = signalVisible
-    ? "mx-auto max-w-[44rem] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-extrabold leading-snug sm:break-words sm:text-xl sm:whitespace-normal lg:text-2xl"
-    : textLayerCount === 1
-      ? "mx-auto max-w-[52rem] overflow-hidden text-ellipsis whitespace-nowrap text-4xl font-extrabold leading-tight sm:break-words sm:text-6xl sm:whitespace-normal"
-      : "mx-auto max-w-[52rem] overflow-hidden text-ellipsis whitespace-nowrap text-3xl font-extrabold leading-tight sm:break-words sm:text-5xl sm:whitespace-normal";
-
   return (
-    <section
-      data-testid="book-video-preview"
-      data-preview-playing={isPlaying ? "true" : "false"}
-      aria-labelledby="book-video-preview-heading"
-      className={["space-y-3", className].filter(Boolean).join(" ")}
-    >
-      <div
-        className="flex aspect-video min-h-[13rem] w-full max-w-[900px] flex-col overflow-hidden rounded-xl p-4 sm:min-h-[18rem] sm:p-6"
-        style={frameStyle}
-        data-testid="book-video-preview-frame"
-        data-preview-playing={isPlaying ? "true" : "false"}
+    <label className="min-w-[12rem] text-sm font-semibold text-slate-700">
+      Video format
+      <select
+        value={selectedFormat}
+        onChange={(event) => onChange(event.target.value as MorseVideoFormat)}
+        className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+        aria-label="Video format"
       >
-        <div className="flex items-start justify-between gap-3">
-          <h3
-            id="book-video-preview-heading"
-            className="text-sm font-extrabold"
-          >
-            Video preview
-          </h3>
-          <div className="text-right">
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80">
-              {settings.visualStyle === "full-frame"
-                ? "Subdued preview"
-                : "Timed excerpt"}
-            </span>
-            {settings.showBranding ? (
-              <p
-                data-testid="book-video-preview-branding"
-                className="mt-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] opacity-75 sm:text-[11px]"
-              >
-                {preview.brandLabel}
-              </p>
-            ) : null}
-          </div>
-        </div>
-        <div
-          className={[
-            "flex min-h-0 flex-1 flex-col items-center justify-center py-2 text-center sm:py-5",
-            signalVisible ? "gap-2 sm:gap-5" : "gap-3 sm:gap-6",
-          ].join(" ")}
-        >
-          {signalVisible ? (
-            <BookVideoPreviewVisual
-              isPlaying={isPlaying}
-              preview={preview}
-              settings={settings}
-              visualElapsedMs={visualElapsedMs}
-            />
-          ) : null}
-          {showTextLayers ? (
-            <div
-              className={textStackClass}
-              data-testid="book-video-preview-text-layers"
-              data-active-character={textState.activeCharacter}
-              data-active-morse={textState.activeCharacterMorse}
-              data-active-word={textState.plainText}
+        {MORSE_VIDEO_FORMATS.map((format) => {
+          const formatSupport = getMorseVideoFormatSupport(support, format);
+          return (
+            <option
+              key={format}
+              value={format}
+              disabled={!formatSupport.supported}
             >
-              {showMorseSymbols ? (
-                <p
-                  data-testid="book-video-preview-morse-overlay"
-                  className={morseTextClass}
-                >
-                  {previewFrame.morseExcerpt}
-                </p>
-              ) : null}
-              {showPlainText ? (
-                <p
-                  data-testid="book-video-preview-text-overlay"
-                  className={plainTextClass}
-                >
-                  {previewFrame.textExcerpt}
-                </p>
-              ) : null}
-              {textState.activeCharacter ? (
-                <p
-                  data-testid="book-video-preview-active-token"
-                  className="mx-auto max-w-full font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-75 sm:text-xs"
-                >
-                  Current {textState.activeCharacter}{" "}
-                  {textState.activeCharacterMorse}
-                </p>
-              ) : null}
-            </div>
-          ) : null}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function BookVideoPreviewVisual({
-  isPlaying,
-  preview,
-  settings,
-  visualElapsedMs,
-}: {
-  isPlaying: boolean;
-  preview: BookVideoPreview;
-  settings: BookVideoSettings;
-  visualElapsedMs: number;
-}) {
-  const frame = getMorseVideoPreviewFrame(preview, visualElapsedMs);
-  const markActive = isPlaying && frame.active;
-  const intensityClass =
-    settings.intensity === "high"
-      ? "opacity-100"
-      : settings.intensity === "low"
-        ? "opacity-60"
-        : "opacity-80";
-
-  if (settings.visualStyle === "dot") {
-    return (
-      <span
-        data-testid="book-video-preview-dot"
-        data-preview-active={markActive ? "true" : "false"}
-        aria-label="Dot preview"
-        role="img"
-        className={[
-          "block h-16 w-16 rounded-full sm:h-36 sm:w-36",
-          markActive ? "bg-sky-300" : "bg-slate-400",
-          intensityClass,
-          markActive ? "ring-4 ring-sky-200/50" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      />
-    );
-  }
-
-  if (settings.visualStyle === "full-frame") {
-    return (
-      <div
-        data-testid="book-video-preview-full-frame"
-        data-preview-active={markActive ? "true" : "false"}
-        aria-label="Subdued full-frame flash preview"
-        role="img"
-        className={[
-          "h-16 w-16 rounded-full bg-sky-300/80 sm:h-36 sm:w-36",
-          intensityClass,
-          markActive ? "ring-4 ring-sky-200/50" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      />
-    );
-  }
-
-  if (settings.visualStyle === "morse-text") {
-    return (
-      <div
-        data-testid="book-video-preview-morse-text"
-        data-preview-active={markActive ? "true" : "false"}
-        className={[
-          "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-4xl font-bold tracking-normal sm:text-6xl",
-          markActive ? "text-sky-300" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      >
-        {frame.symbols || preview.sampleMorse}
-      </div>
-    );
-  }
-
-  return (
-    <div
-      data-testid="book-video-preview-lightbulb"
-      data-preview-active={markActive ? "true" : "false"}
-      aria-label="Lightbulb preview"
-      role="img"
-      className={[
-        "text-slate-400",
-        intensityClass,
-        markActive ? "text-sky-300" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <LightBulbIcon
-        size="clamp(3.5rem, 17vw, 8.25rem)"
-        title={undefined}
-        aria-hidden="true"
-      />
-    </div>
+              {formatSupport.supported
+                ? formatSupport.label
+                : formatSupport.reason}
+            </option>
+          );
+        })}
+      </select>
+    </label>
   );
 }
 
