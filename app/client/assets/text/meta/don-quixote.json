@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "slug": "don-quixote",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Don Quixote",
+  "author": [
+    "Miguel de Cervantes Saavedra"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "996",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/996",
+    "rawTextFile": "../Don Quixote.txt",
+    "releaseDate": "July 27, 2004",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Don Quixote"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Don Quixote",
+      "author": "Miguel de Cervantes Saavedra",
+      "language": "English",
+      "releaseDate": "July 27, 2004",
+      "lastUpdated": "March 30, 2023",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "996",
+      "credits": "David Widger",
+      "translator": "John Ormsby",
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, illustrator, editor."
+    ]
+  }
+}

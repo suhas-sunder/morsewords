@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "new-treasure-seekers",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "New Treasure Seekers; Or, The Bastable Children in Search of a Fortune",
+  "author": [
+    "E. Nesbit"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "25496",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/25496",
+    "rawTextFile": "../new-treasure-seekers.txt",
+    "releaseDate": "May 16, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for New Treasure Seekers; Or, The Bastable Children in Search of a Fortune"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "New Treasure Seekers; Or, The Bastable Children in Search of a Fortune",
+      "author": "E. Nesbit",
+      "language": "English",
+      "releaseDate": "May 16, 2008",
+      "lastUpdated": "January 3, 2021",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "25496",
+      "credits": "E-text prepared by Suzanne Shell, Emmy, and the Project Gutenberg Online Distributed Proofreading Team",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "frankenstein",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Frankenstein; or, the modern prometheus",
+  "author": [
+    "Mary Wollstonecraft Shelley"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "84",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/84",
+    "rawTextFile": "../Frankenstein.txt",
+    "releaseDate": "October 1, 1993",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Frankenstein; or, the modern prometheus"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Frankenstein; or, the modern prometheus",
+      "author": "Mary Wollstonecraft Shelley",
+      "language": "English",
+      "releaseDate": "October 1, 1993",
+      "lastUpdated": "February 10, 2026",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "84",
+      "credits": "Judith Boss, Christy Phillips, Lynn Hanninen and David Meltzer. HTML version by Al Haines. Further corrections by Menno de Leeuw.",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

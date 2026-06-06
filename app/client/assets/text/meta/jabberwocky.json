@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "slug": "jabberwocky",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Jabberwocky",
+  "author": [
+    "Lewis Carroll"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "23717",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/23717",
+    "rawTextFile": "../jabberwocky.txt",
+    "releaseDate": "December 2007",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: lastUpdated, originalPublication, credits, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Jabberwocky"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Jabberwocky",
+      "author": "Lewis Carroll",
+      "language": "English",
+      "releaseDate": "December 2007",
+      "lastUpdated": null,
+      "originalPublication": null,
+      "gutenbergEbookNumber": "23717",
+      "credits": null,
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "lastUpdated",
+      "originalPublication",
+      "credits",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: lastUpdated, originalPublication, credits, translator, illustrator, editor."
+    ]
+  }
+}

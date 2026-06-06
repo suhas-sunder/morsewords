@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "doctor-dolittle",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Story of Doctor Dolittle",
+  "author": [
+    "Hugh Lofting"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "501",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/501",
+    "rawTextFile": "../doctor-dolittle.txt",
+    "releaseDate": "April 1, 1996",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Story of Doctor Dolittle"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Story of Doctor Dolittle",
+      "author": "Hugh Lofting",
+      "language": "English",
+      "releaseDate": "April 1, 1996",
+      "lastUpdated": "August 19, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "501",
+      "credits": "Produced by Emmy, MWS and the Online Distributed Proofreading Team at http://www.pgdp.net (This file was produced from images generously made available by The Internet Archive)",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

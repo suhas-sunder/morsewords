@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "anne-of-green-gables-gutenberg-45",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Anne of Green Gables",
+  "author": [
+    "L. M. Montgomery"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "45",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/45",
+    "rawTextFile": "../anne-of-green-gables.txt",
+    "releaseDate": "June 27, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor. Possible duplicate Gutenberg ID; verify whether this is a duplicate, alternate file, or renamed copy."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Anne of Green Gables"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Anne of Green Gables",
+      "author": "L. M. Montgomery",
+      "language": "English",
+      "releaseDate": "June 27, 2008",
+      "lastUpdated": "April 29, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "45",
+      "credits": "David Widger and Charles Keller",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor.",
+      "Possible duplicate Gutenberg ID; verify whether this is a duplicate, alternate file, or renamed copy."
+    ]
+  }
+}

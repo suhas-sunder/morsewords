@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-art-of-war",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Art of War",
+  "author": [
+    "active 6th century B.C. Sunzi"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "132",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/132",
+    "rawTextFile": "../The Art of War.txt",
+    "releaseDate": "May 1, 1994",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: credits, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Art of War"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": 1910,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Art of War",
+      "author": "active 6th century B.C. Sunzi",
+      "language": "English",
+      "releaseDate": "May 1, 1994",
+      "lastUpdated": "October 29, 2024",
+      "originalPublication": ", 1910",
+      "gutenbergEbookNumber": "132",
+      "credits": null,
+      "translator": "Lionel Giles",
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "credits",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: credits, illustrator, editor."
+    ]
+  }
+}

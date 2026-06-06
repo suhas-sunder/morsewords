@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "pride-and-prejudice",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Pride and Prejudice",
+  "author": [
+    "Jane Austen"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1342",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1342",
+    "rawTextFile": "../Pride and Prejudice.txt",
+    "releaseDate": "June 1, 1998",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Pride and Prejudice"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "language": "English",
+      "releaseDate": "June 1, 1998",
+      "lastUpdated": "February 10, 2026",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "1342",
+      "credits": "Chuck Greif and the Online Distributed Proofreading Team at http://www.pgdp.net (This file was produced from images available at The Internet Archive)",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

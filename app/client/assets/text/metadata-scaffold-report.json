@@ -1,0 +1,513 @@
+{
+  "schemaVersion": 1,
+  "totalRawFiles": 74,
+  "existingMetadataCount": 1,
+  "totalMetadataFiles": 74,
+  "newMetadataFilesCreated": 73,
+  "rawFilesStillSkipped": [],
+  "duplicateGutenbergIds": [
+    {
+      "gutenbergId": "1184",
+      "rawFiles": [
+        "The Count of Monte Cristo.txt",
+        "the-count-of-monte-cristo.txt"
+      ],
+      "metadataFiles": [
+        "the-count-of-monte-cristo-gutenberg-1184 (meta/the-count-of-monte-cristo-gutenberg-1184.json)",
+        "the-count-of-monte-cristo (meta/the-count-of-monte-cristo.json)"
+      ]
+    },
+    {
+      "gutenbergId": "1597",
+      "rawFiles": [
+        "THE EMPEROR'S NEW CLOTHES.txt",
+        "The Bell.txt",
+        "The Elderbush.txt",
+        "The Fir Tree.txt",
+        "The Leap-Frog.txt",
+        "The Old House.txt",
+        "The Real Princess.txt",
+        "The Shoes of Fortune.txt",
+        "The Snow Queen.txt",
+        "The Swineherd.txt"
+      ],
+      "metadataFiles": [
+        "the-bell (meta/the-bell.json)",
+        "the-elderbush (meta/the-elderbush.json)",
+        "the-emperor-s-new-clothes (meta/the-emperor-s-new-clothes.json)",
+        "the-fir-tree (meta/the-fir-tree.json)",
+        "the-leap-frog (meta/the-leap-frog.json)",
+        "the-old-house (meta/the-old-house.json)",
+        "the-real-princess (meta/the-real-princess.json)",
+        "the-shoes-of-fortune (meta/the-shoes-of-fortune.json)",
+        "the-snow-queen (meta/the-snow-queen.json)",
+        "the-swineherd (meta/the-swineherd.json)"
+      ]
+    },
+    {
+      "gutenbergId": "45",
+      "rawFiles": [
+        "Anne of Green Gables.txt",
+        "anne-of-green-gables.txt"
+      ],
+      "metadataFiles": [
+        "anne-of-green-gables-gutenberg-45 (meta/anne-of-green-gables-gutenberg-45.json)",
+        "anne-of-green-gables (meta/anne-of-green-gables.json)"
+      ]
+    }
+  ],
+  "missingRequiredFieldsSummary": {
+    "author": 3,
+    "credits": 12,
+    "editor": 71,
+    "gutenbergEbookNumber": 1,
+    "illustrator": 60,
+    "language": 2,
+    "lastUpdated": 11,
+    "originalPublication": 70,
+    "releaseDate": 2,
+    "title": 2,
+    "translator": 63
+  },
+  "manualReviewCount": 73,
+  "scaffoldedMetadataFiles": [
+    {
+      "rawTextFile": "a-childs-garden-of-verses.txt",
+      "metadataFile": "meta/a-childs-garden-of-verses.json",
+      "slug": "a-childs-garden-of-verses",
+      "gutenbergId": "25609"
+    },
+    {
+      "rawTextFile": "a-christmas-carol.txt",
+      "metadataFile": "meta/a-christmas-carol.json",
+      "slug": "a-christmas-carol",
+      "gutenbergId": "46"
+    },
+    {
+      "rawTextFile": "a-princess-of-mars.txt",
+      "metadataFile": "meta/a-princess-of-mars.json",
+      "slug": "a-princess-of-mars",
+      "gutenbergId": "62"
+    },
+    {
+      "rawTextFile": "Anna Karenina.txt",
+      "metadataFile": "meta/anna-karenina.json",
+      "slug": "anna-karenina",
+      "gutenbergId": "1399"
+    },
+    {
+      "rawTextFile": "anne-of-green-gables.txt",
+      "metadataFile": "meta/anne-of-green-gables-gutenberg-45.json",
+      "slug": "anne-of-green-gables-gutenberg-45",
+      "gutenbergId": "45"
+    },
+    {
+      "rawTextFile": "Anne of Green Gables.txt",
+      "metadataFile": "meta/anne-of-green-gables.json",
+      "slug": "anne-of-green-gables",
+      "gutenbergId": "45"
+    },
+    {
+      "rawTextFile": "around-the-world-in-eighty-days.txt",
+      "metadataFile": "meta/around-the-world-in-eighty-days.json",
+      "slug": "around-the-world-in-eighty-days",
+      "gutenbergId": "103"
+    },
+    {
+      "rawTextFile": "black-beauty.txt",
+      "metadataFile": "meta/black-beauty.json",
+      "slug": "black-beauty",
+      "gutenbergId": "271"
+    },
+    {
+      "rawTextFile": "Botchan.txt",
+      "metadataFile": "meta/botchan.json",
+      "slug": "botchan",
+      "gutenbergId": "8868"
+    },
+    {
+      "rawTextFile": "Candide.txt",
+      "metadataFile": "meta/candide.json",
+      "slug": "candide",
+      "gutenbergId": "19942"
+    },
+    {
+      "rawTextFile": "Crime and Punishment.txt",
+      "metadataFile": "meta/crime-and-punishment.json",
+      "slug": "crime-and-punishment",
+      "gutenbergId": "2554"
+    },
+    {
+      "rawTextFile": "doctor-dolittle.txt",
+      "metadataFile": "meta/doctor-dolittle.json",
+      "slug": "doctor-dolittle",
+      "gutenbergId": "501"
+    },
+    {
+      "rawTextFile": "Don Quixote.txt",
+      "metadataFile": "meta/don-quixote.json",
+      "slug": "don-quixote",
+      "gutenbergId": "996"
+    },
+    {
+      "rawTextFile": "Dr. Jekyll and Mr. Hyde.txt",
+      "metadataFile": "meta/dr-jekyll-and-mr-hyde.json",
+      "slug": "dr-jekyll-and-mr-hyde",
+      "gutenbergId": "43"
+    },
+    {
+      "rawTextFile": "Dracula.txt",
+      "metadataFile": "meta/dracula.json",
+      "slug": "dracula",
+      "gutenbergId": "345"
+    },
+    {
+      "rawTextFile": "five-little-peppers-and-how-they-grew.txt",
+      "metadataFile": "meta/five-little-peppers-and-how-they-grew.json",
+      "slug": "five-little-peppers-and-how-they-grew",
+      "gutenbergId": "2770"
+    },
+    {
+      "rawTextFile": "Frankenstein.txt",
+      "metadataFile": "meta/frankenstein.json",
+      "slug": "frankenstein",
+      "gutenbergId": "84"
+    },
+    {
+      "rawTextFile": "Grimm's Fairy Tales.txt",
+      "metadataFile": "meta/grimm-s-fairy-tales.json",
+      "slug": "grimm-s-fairy-tales",
+      "gutenbergId": "52521"
+    },
+    {
+      "rawTextFile": "Gulliver's Travels.txt",
+      "metadataFile": "meta/gulliver-s-travels.json",
+      "slug": "gulliver-s-travels",
+      "gutenbergId": "829"
+    },
+    {
+      "rawTextFile": "heidi.txt",
+      "metadataFile": "meta/heidi.json",
+      "slug": "heidi",
+      "gutenbergId": "20781"
+    },
+    {
+      "rawTextFile": "jabberwocky.txt",
+      "metadataFile": "meta/jabberwocky.json",
+      "slug": "jabberwocky",
+      "gutenbergId": "23717"
+    },
+    {
+      "rawTextFile": "jack-and-jill.txt",
+      "metadataFile": "meta/jack-and-jill.json",
+      "slug": "jack-and-jill",
+      "gutenbergId": "2786"
+    },
+    {
+      "rawTextFile": "Jane Eyre.txt",
+      "metadataFile": "meta/jane-eyre.json",
+      "slug": "jane-eyre",
+      "gutenbergId": "1260"
+    },
+    {
+      "rawTextFile": "Les Misérables.txt",
+      "metadataFile": "meta/les-miserables.json",
+      "slug": "les-miserables",
+      "gutenbergId": "135"
+    },
+    {
+      "rawTextFile": "Little Women.txt",
+      "metadataFile": "meta/little-women.json",
+      "slug": "little-women",
+      "gutenbergId": "37106"
+    },
+    {
+      "rawTextFile": "new-treasure-seekers.txt",
+      "metadataFile": "meta/new-treasure-seekers.json",
+      "slug": "new-treasure-seekers",
+      "gutenbergId": "25496"
+    },
+    {
+      "rawTextFile": "nights-with-uncle-remus.txt",
+      "metadataFile": "meta/nights-with-uncle-remus.json",
+      "slug": "nights-with-uncle-remus",
+      "gutenbergId": "24430"
+    },
+    {
+      "rawTextFile": "peter-pan.txt",
+      "metadataFile": "meta/peter-pan.json",
+      "slug": "peter-pan",
+      "gutenbergId": "16"
+    },
+    {
+      "rawTextFile": "Pride and Prejudice.txt",
+      "metadataFile": "meta/pride-and-prejudice.json",
+      "slug": "pride-and-prejudice",
+      "gutenbergId": "1342"
+    },
+    {
+      "rawTextFile": "rainbow-valley.txt",
+      "metadataFile": "meta/rainbow-valley.json",
+      "slug": "rainbow-valley",
+      "gutenbergId": "5343"
+    },
+    {
+      "rawTextFile": "rinkitink-in-oz.txt",
+      "metadataFile": "meta/rinkitink-in-oz.json",
+      "slug": "rinkitink-in-oz",
+      "gutenbergId": "25581"
+    },
+    {
+      "rawTextFile": "Sense and Sensibility.txt",
+      "metadataFile": "meta/sense-and-sensibility.json",
+      "slug": "sense-and-sensibility",
+      "gutenbergId": "161"
+    },
+    {
+      "rawTextFile": "Sun Tzŭ on the Art of War.txt",
+      "metadataFile": "meta/sun-tzu-on-the-art-of-war.json",
+      "slug": "sun-tzu-on-the-art-of-war",
+      "gutenbergId": "66706"
+    },
+    {
+      "rawTextFile": "tarzan-of-the-apes.txt",
+      "metadataFile": "meta/tarzan-of-the-apes.json",
+      "slug": "tarzan-of-the-apes",
+      "gutenbergId": "78"
+    },
+    {
+      "rawTextFile": "the-arabian-nights.txt",
+      "metadataFile": "meta/the-arabian-nights.json",
+      "slug": "the-arabian-nights",
+      "gutenbergId": "20916"
+    },
+    {
+      "rawTextFile": "The Art of War.txt",
+      "metadataFile": "meta/the-art-of-war.json",
+      "slug": "the-art-of-war",
+      "gutenbergId": "132"
+    },
+    {
+      "rawTextFile": "The Bell.txt",
+      "metadataFile": "meta/the-bell.json",
+      "slug": "the-bell",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "the-book-of-dragons.txt",
+      "metadataFile": "meta/the-book-of-dragons.json",
+      "slug": "the-book-of-dragons",
+      "gutenbergId": "23661"
+    },
+    {
+      "rawTextFile": "The call of Cthulhu.txt",
+      "metadataFile": "meta/the-call-of-cthulhu.json",
+      "slug": "the-call-of-cthulhu",
+      "gutenbergId": "68283"
+    },
+    {
+      "rawTextFile": "The call of the wild.txt",
+      "metadataFile": "meta/the-call-of-the-wild.json",
+      "slug": "the-call-of-the-wild",
+      "gutenbergId": "215"
+    },
+    {
+      "rawTextFile": "the-count-of-monte-cristo.txt",
+      "metadataFile": "meta/the-count-of-monte-cristo-gutenberg-1184.json",
+      "slug": "the-count-of-monte-cristo-gutenberg-1184",
+      "gutenbergId": "1184"
+    },
+    {
+      "rawTextFile": "The Count of Monte Cristo.txt",
+      "metadataFile": "meta/the-count-of-monte-cristo.json",
+      "slug": "the-count-of-monte-cristo",
+      "gutenbergId": "1184"
+    },
+    {
+      "rawTextFile": "The Divine Comedy.txt",
+      "metadataFile": "meta/the-divine-comedy.json",
+      "slug": "the-divine-comedy",
+      "gutenbergId": "8800"
+    },
+    {
+      "rawTextFile": "The Elderbush.txt",
+      "metadataFile": "meta/the-elderbush.json",
+      "slug": "the-elderbush",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "The Elements of Style.txt",
+      "metadataFile": "meta/the-elements-of-style.json",
+      "slug": "the-elements-of-style",
+      "gutenbergId": "37134"
+    },
+    {
+      "rawTextFile": "the-emerald-city-of-oz.txt",
+      "metadataFile": "meta/the-emerald-city-of-oz.json",
+      "slug": "the-emerald-city-of-oz",
+      "gutenbergId": "517"
+    },
+    {
+      "rawTextFile": "THE EMPEROR'S NEW CLOTHES.txt",
+      "metadataFile": "meta/the-emperor-s-new-clothes.json",
+      "slug": "the-emperor-s-new-clothes",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "The Federalist Papers.txt",
+      "metadataFile": "meta/the-federalist-papers.json",
+      "slug": "the-federalist-papers",
+      "gutenbergId": "18"
+    },
+    {
+      "rawTextFile": "The Fir Tree.txt",
+      "metadataFile": "meta/the-fir-tree.json",
+      "slug": "the-fir-tree",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "The Great Gatsby.txt",
+      "metadataFile": "meta/the-great-gatsby.json",
+      "slug": "the-great-gatsby",
+      "gutenbergId": "64317"
+    },
+    {
+      "rawTextFile": "The Happy Family.txt",
+      "metadataFile": "meta/the-happy-family.json",
+      "slug": "the-happy-family",
+      "gutenbergId": null
+    },
+    {
+      "rawTextFile": "the-jungle-book.txt",
+      "metadataFile": "meta/the-jungle-book.json",
+      "slug": "the-jungle-book",
+      "gutenbergId": "236"
+    },
+    {
+      "rawTextFile": "The Leap-Frog.txt",
+      "metadataFile": "meta/the-leap-frog.json",
+      "slug": "the-leap-frog",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "the-legend-of-sleepy-hollow.txt",
+      "metadataFile": "meta/the-legend-of-sleepy-hollow.json",
+      "slug": "the-legend-of-sleepy-hollow",
+      "gutenbergId": "41"
+    },
+    {
+      "rawTextFile": "The Old House.txt",
+      "metadataFile": "meta/the-old-house.json",
+      "slug": "the-old-house",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "The Picture of Dorian Gray.txt",
+      "metadataFile": "meta/the-picture-of-dorian-gray.json",
+      "slug": "the-picture-of-dorian-gray",
+      "gutenbergId": "174"
+    },
+    {
+      "rawTextFile": "the-princess-and-the-goblin.txt",
+      "metadataFile": "meta/the-princess-and-the-goblin.json",
+      "slug": "the-princess-and-the-goblin",
+      "gutenbergId": "708"
+    },
+    {
+      "rawTextFile": "the-railway-children.txt",
+      "metadataFile": "meta/the-railway-children.json",
+      "slug": "the-railway-children",
+      "gutenbergId": "1874"
+    },
+    {
+      "rawTextFile": "The Real Princess.txt",
+      "metadataFile": "meta/the-real-princess.json",
+      "slug": "the-real-princess",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "the sea-wolf.txt",
+      "metadataFile": "meta/the-sea-wolf.json",
+      "slug": "the-sea-wolf",
+      "gutenbergId": "1074"
+    },
+    {
+      "rawTextFile": "the-secret-garden.txt",
+      "metadataFile": "meta/the-secret-garden-gutenberg-113.json",
+      "slug": "the-secret-garden-gutenberg-113",
+      "gutenbergId": "113"
+    },
+    {
+      "rawTextFile": "The Secret Garden.txt",
+      "metadataFile": "meta/the-secret-garden.json",
+      "slug": "the-secret-garden",
+      "gutenbergId": "17396"
+    },
+    {
+      "rawTextFile": "The Shoes of Fortune.txt",
+      "metadataFile": "meta/the-shoes-of-fortune.json",
+      "slug": "the-shoes-of-fortune",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "The Snow Queen.txt",
+      "metadataFile": "meta/the-snow-queen.json",
+      "slug": "the-snow-queen",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "The Swineherd.txt",
+      "metadataFile": "meta/the-swineherd.json",
+      "slug": "the-swineherd",
+      "gutenbergId": "1597"
+    },
+    {
+      "rawTextFile": "the-thirty-nine-steps.txt",
+      "metadataFile": "meta/the-thirty-nine-steps.json",
+      "slug": "the-thirty-nine-steps",
+      "gutenbergId": "558"
+    },
+    {
+      "rawTextFile": "the-three-musketeers.txt",
+      "metadataFile": "meta/the-three-musketeers.json",
+      "slug": "the-three-musketeers",
+      "gutenbergId": "1257"
+    },
+    {
+      "rawTextFile": "the-water-babies.txt",
+      "metadataFile": "meta/the-water-babies.json",
+      "slug": "the-water-babies",
+      "gutenbergId": "25564"
+    },
+    {
+      "rawTextFile": "the-wonderful-wizard-of-oz.txt",
+      "metadataFile": "meta/the-wonderful-wizard-of-oz.json",
+      "slug": "the-wonderful-wizard-of-oz",
+      "gutenbergId": "55"
+    },
+    {
+      "rawTextFile": "through-the-looking-glass.txt",
+      "metadataFile": "meta/through-the-looking-glass.json",
+      "slug": "through-the-looking-glass",
+      "gutenbergId": "12"
+    },
+    {
+      "rawTextFile": "treasure-island.txt",
+      "metadataFile": "meta/treasure-island.json",
+      "slug": "treasure-island",
+      "gutenbergId": "120"
+    },
+    {
+      "rawTextFile": "wind-in-the-willows.txt",
+      "metadataFile": "meta/wind-in-the-willows.json",
+      "slug": "wind-in-the-willows",
+      "gutenbergId": "289"
+    },
+    {
+      "rawTextFile": "Wood folk at school.txt",
+      "metadataFile": "meta/wood-folk-at-school.json",
+      "slug": "wood-folk-at-school",
+      "gutenbergId": "22101"
+    }
+  ]
+}

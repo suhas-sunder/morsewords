@@ -109,12 +109,15 @@ export type BookSectionOverride =
 export type BookMetadata = {
   schemaVersion?: 1;
   slug: string;
+  metadataStatus?: "draft" | "reviewed";
+  manualReviewRequired?: boolean;
   title: string;
   author: string[];
   language: string;
   source: {
     provider: "Project Gutenberg" | string;
     gutenbergId: string | null;
+    sourceUrl?: string | null;
     rawTextFile: string;
     releaseDate: string | null;
     rawTextUrl?: string | null;
@@ -139,6 +142,24 @@ export type BookMetadata = {
   };
   sectionOverrides: BookSectionOverride[];
   cleanupRules: BookCleanupRule[];
+  scaffold?: {
+    extractionConfidence: "gutenberg-header" | "gutenberg-reference" | "filename-only";
+    extracted: {
+      title: string | null;
+      author: string | null;
+      language: string | null;
+      releaseDate: string | null;
+      lastUpdated: string | null;
+      originalPublication: string | null;
+      gutenbergEbookNumber: string | null;
+      credits: string | null;
+      translator: string | null;
+      illustrator: string | null;
+      editor: string | null;
+    };
+    missingFields: string[];
+    warnings: string[];
+  };
 };
 
 export type ApprovedPersonMetadata = {

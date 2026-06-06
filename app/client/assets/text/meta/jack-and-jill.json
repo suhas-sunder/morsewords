@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "jack-and-jill",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Jack and Jill",
+  "author": [
+    "Louisa May Alcott"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "2786",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/2786",
+    "rawTextFile": "../jack-and-jill.txt",
+    "releaseDate": "August 1, 2001",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Jack and Jill"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Jack and Jill",
+      "author": "Louisa May Alcott",
+      "language": "English",
+      "releaseDate": "August 1, 2001",
+      "lastUpdated": "March 10, 2018",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "2786",
+      "credits": "Produced by An Anonymous Volunteer, and David Widger",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

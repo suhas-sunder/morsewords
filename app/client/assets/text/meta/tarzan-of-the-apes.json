@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "tarzan-of-the-apes",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Tarzan of the Apes",
+  "author": [
+    "Edgar Rice Burroughs"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "78",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/78",
+    "rawTextFile": "../tarzan-of-the-apes.txt",
+    "releaseDate": "August 1, 1993",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Tarzan of the Apes"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Tarzan of the Apes",
+      "author": "Edgar Rice Burroughs",
+      "language": "English",
+      "releaseDate": "August 1, 1993",
+      "lastUpdated": "July 30, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "78",
+      "credits": "Judith Boss. HTML version by Al Haines.",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

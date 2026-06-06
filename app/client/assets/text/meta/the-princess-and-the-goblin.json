@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-princess-and-the-goblin",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Princess and the Goblin",
+  "author": [
+    "George MacDonald"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "708",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/708",
+    "rawTextFile": "../the-princess-and-the-goblin.txt",
+    "releaseDate": "November 1, 1996",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Princess and the Goblin"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Princess and the Goblin",
+      "author": "George MacDonald",
+      "language": "English",
+      "releaseDate": "November 1, 1996",
+      "lastUpdated": "May 29, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "708",
+      "credits": "Produced by Jo Churcher. HTML version by Al Haines.",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

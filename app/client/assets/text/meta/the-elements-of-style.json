@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-elements-of-style",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Elements of Style",
+  "author": [
+    "William Strunk"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "37134",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/37134",
+    "rawTextFile": "../The Elements of Style.txt",
+    "releaseDate": "August 18, 2011",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: lastUpdated, originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Elements of Style"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Elements of Style",
+      "author": "William Strunk",
+      "language": "English",
+      "releaseDate": "August 18, 2011",
+      "lastUpdated": null,
+      "originalPublication": null,
+      "gutenbergEbookNumber": "37134",
+      "credits": "Produced by Jana Srna and the Online Distributed Proofreading Team at http://www.pgdp.net (This file was produced from images generously made available by The Internet Archive/American Libraries.)",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "lastUpdated",
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: lastUpdated, originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

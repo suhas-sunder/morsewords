@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-jungle-book",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Jungle Book",
+  "author": [
+    "Rudyard Kipling"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "236",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/236",
+    "rawTextFile": "../the-jungle-book.txt",
+    "releaseDate": "January 16, 2006",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Jungle Book"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Jungle Book",
+      "author": "Rudyard Kipling",
+      "language": "English",
+      "releaseDate": "January 16, 2006",
+      "lastUpdated": "May 1, 2023",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "236",
+      "credits": null,
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "credits",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+    ]
+  }
+}

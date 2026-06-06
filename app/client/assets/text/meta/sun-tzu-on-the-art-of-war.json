@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "slug": "sun-tzu-on-the-art-of-war",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World",
+  "author": [
+    "active 6th century B.C. Sunzi"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "66706",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/66706",
+    "rawTextFile": "../Sun Tzŭ on the Art of War.txt",
+    "releaseDate": "November 11, 2021",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": 1910,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World",
+      "author": "active 6th century B.C. Sunzi",
+      "language": "English",
+      "releaseDate": "November 11, 2021",
+      "lastUpdated": "October 18, 2024",
+      "originalPublication": "United Kingdom: Luzac & Co., 1910",
+      "gutenbergEbookNumber": "66706",
+      "credits": "Ronald Grenier (This file was produced from images generously made available by the Internet Archive/University of Toronto libraries)",
+      "translator": "Lionel Giles",
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: illustrator, editor."
+    ]
+  }
+}

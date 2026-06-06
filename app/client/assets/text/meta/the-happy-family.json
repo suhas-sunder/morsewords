@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-happy-family",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Happy Family",
+  "author": [],
+  "language": "und",
+  "source": {
+    "provider": "Unknown",
+    "gutenbergId": null,
+    "sourceUrl": null,
+    "rawTextFile": "../The Happy Family.txt",
+    "releaseDate": null,
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: title, author, language, releaseDate, lastUpdated, originalPublication, gutenbergEbookNumber, credits, translator, illustrator, editor. No clear Project Gutenberg header evidence found; provider is set to Unknown. Title was missing; the draft title was derived from the file name. Language was missing; the draft language is set to und."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Happy Family"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "filename-only",
+    "extracted": {
+      "title": null,
+      "author": null,
+      "language": null,
+      "releaseDate": null,
+      "lastUpdated": null,
+      "originalPublication": null,
+      "gutenbergEbookNumber": null,
+      "credits": null,
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "title",
+      "author",
+      "language",
+      "releaseDate",
+      "lastUpdated",
+      "originalPublication",
+      "gutenbergEbookNumber",
+      "credits",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: title, author, language, releaseDate, lastUpdated, originalPublication, gutenbergEbookNumber, credits, translator, illustrator, editor.",
+      "No clear Project Gutenberg header evidence found; provider is set to Unknown.",
+      "Title was missing; the draft title was derived from the file name.",
+      "Language was missing; the draft language is set to und."
+    ]
+  }
+}

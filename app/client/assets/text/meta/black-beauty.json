@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "black-beauty",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Black Beauty The autobiography of a horse",
+  "author": [
+    "Anna Sewell"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "271",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/271",
+    "rawTextFile": "../black-beauty.txt",
+    "releaseDate": "January 16, 2006",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Black Beauty The autobiography of a horse"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Black Beauty The autobiography of a horse",
+      "author": "Anna Sewell",
+      "language": "English",
+      "releaseDate": "January 16, 2006",
+      "lastUpdated": "April 1, 2026",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "271",
+      "credits": "Produced by A. Light, Linda Bowser, and David Widger",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

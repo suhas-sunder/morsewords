@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-arabian-nights",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Arabian Nights: Their Best-known Tales",
+  "author": [],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "20916",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/20916",
+    "rawTextFile": "../the-arabian-nights.txt",
+    "releaseDate": "March 27, 2007",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: author, lastUpdated, originalPublication, translator."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Arabian Nights: Their Best-known Tales"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Arabian Nights: Their Best-known Tales",
+      "author": null,
+      "language": "English",
+      "releaseDate": "March 27, 2007",
+      "lastUpdated": null,
+      "originalPublication": null,
+      "gutenbergEbookNumber": "20916",
+      "credits": "Produced by Irma pehar, Graeme Mackreth, and the Online Distributed Proofreading Team at http://www.pgdp.net",
+      "translator": null,
+      "illustrator": "Maxfield Parrish",
+      "editor": "Kate Douglas Smith Wiggin Nora Archibald Smith"
+    },
+    "missingFields": [
+      "author",
+      "lastUpdated",
+      "originalPublication",
+      "translator"
+    ],
+    "warnings": [
+      "Missing extracted header fields: author, lastUpdated, originalPublication, translator."
+    ]
+  }
+}

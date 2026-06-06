@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-thirty-nine-steps",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Thirty-Nine Steps",
+  "author": [
+    "John Buchan"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "558",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/558",
+    "rawTextFile": "../the-thirty-nine-steps.txt",
+    "releaseDate": "June 1, 1996",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Thirty-Nine Steps"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Thirty-Nine Steps",
+      "author": "John Buchan",
+      "language": "English",
+      "releaseDate": "June 1, 1996",
+      "lastUpdated": "April 7, 2021",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "558",
+      "credits": "Jo Churcher. HTML version by Al Haines. Corrections by Menno de Leeuw.",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

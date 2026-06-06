@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "slug": "grimm-s-fairy-tales",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Grimm's Fairy Tales",
+  "author": [
+    "Jacob Grimm Wilhelm Grimm"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "52521",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/52521",
+    "rawTextFile": "../Grimm's Fairy Tales.txt",
+    "releaseDate": "July 7, 2016",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Grimm's Fairy Tales"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Grimm's Fairy Tales",
+      "author": "Jacob Grimm Wilhelm Grimm",
+      "language": "English",
+      "releaseDate": "July 7, 2016",
+      "lastUpdated": "October 23, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "52521",
+      "credits": "Produced by Juliet Sutherland, Charlie Howard, and the Online Distributed Proofreading Team at http://www.pgdp.net",
+      "translator": null,
+      "illustrator": "Rie Cramer",
+      "editor": "Frances Jenkins Olcott"
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator."
+    ]
+  }
+}

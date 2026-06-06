@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "slug": "rinkitink-in-oz",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Rinkitink in Oz",
+  "author": [
+    "L. Frank Baum"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "25581",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/25581",
+    "rawTextFile": "../rinkitink-in-oz.txt",
+    "releaseDate": "May 24, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Rinkitink in Oz"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Rinkitink in Oz",
+      "author": "L. Frank Baum",
+      "language": "English",
+      "releaseDate": "May 24, 2008",
+      "lastUpdated": "June 1, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "25581",
+      "credits": "Produced by Chris Curnow, Joseph Cooper, Greg Bergquist and the Online Distributed Proofreading Team at http://www.pgdp.net",
+      "translator": null,
+      "illustrator": "John R. Neill",
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, editor."
+    ]
+  }
+}

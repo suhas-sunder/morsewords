@@ -11,6 +11,7 @@ import type {
 import { buildBookLibrary, scanBookInventory } from "../../scripts/books/build-book-library.ts";
 import { cleanGutenbergText } from "../../scripts/books/clean-gutenberg.ts";
 import { detectBookSections } from "../../scripts/books/detect-book-sections.ts";
+import { scaffoldBookMetadata } from "../../scripts/books/scaffold-book-metadata.ts";
 
 const ROOT = process.cwd();
 
@@ -64,6 +65,17 @@ function writeFixtureBook(
   fs.mkdirSync(path.dirname(rawPath), { recursive: true });
   fs.writeFileSync(rawPath, rawText, "utf8");
   writeJson(metadataPath, metadata);
+}
+
+function writeRawBook(textRoot: string, fileName: string, rawText: string) {
+  const rawPath = path.join(textRoot, "raw", fileName);
+  fs.mkdirSync(path.dirname(rawPath), { recursive: true });
+  fs.writeFileSync(rawPath, rawText, "utf8");
+  return rawPath;
+}
+
+function readJsonFile<T>(filePath: string): T {
+  return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
 }
 
 function writeApprovedPeople(
@@ -507,6 +519,207 @@ Third chapter.
       quiet: true,
     });
     expect(result.fatalErrors).toEqual([]);
+  });
+
+  test("scaffolds draft metadata for raw Gutenberg files without overwriting or publishing", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("metadata-scaffold-library");
+    const metadataRoot = path.join(textRoot, "meta");
+    const reportPath = testInfo.outputPath("metadata-scaffold-report.json");
+    const existingMetadata = baseMetadata("existing-book", "../raw/existing-book.txt");
+    writeFixtureBook(
+      textRoot,
+      "existing-book",
+      gutenbergFixtureText({
+        title: "Existing Book",
+        gutenbergId: "1001",
+      }),
+      {
+        ...existingMetadata,
+        source: {
+          ...existingMetadata.source,
+          rightsNotes: "Existing metadata must remain untouched.",
+        },
+      },
+    );
+    const existingMetadataPath = path.join(metadataRoot, "existing-book.json");
+    const existingBefore = fs.readFileSync(existingMetadataPath, "utf8");
+
+    writeRawBook(
+      textRoot,
+      "draft-one.txt",
+      gutenbergFixtureText({
+        title: "Draft One",
+        author: "Sample Author",
+        language: "English",
+        gutenbergId: "42",
+        releaseDate: "February 2, 2002",
+        extraHeader: [
+          "Credits: Built by a careful fixture",
+          "Translator: Example Translator",
+          "Illustrator: Example Illustrator",
+          "Editor: Example Editor",
+          "Original publication: 1901",
+        ].join("\n"),
+        body: "CHAPTER I\n\nVERY UNIQUE FULL STORY TEXT SHOULD NOT APPEAR.",
+      }),
+    );
+    writeRawBook(
+      textRoot,
+      "Same Name.txt",
+      gutenbergFixtureText({
+        title: "Same Name Upper",
+        gutenbergId: "77",
+      }),
+    );
+    writeRawBook(
+      textRoot,
+      "same-name.txt",
+      gutenbergFixtureText({
+        title: "Same Name Lower",
+        gutenbergId: "77",
+      }),
+    );
+    writeRawBook(
+      textRoot,
+      "missing-fields.txt",
+      "A tiny fixture without Project Gutenberg header fields.",
+    );
+
+    const beforeInventory = scanBookInventory({ textRoot, metadataRoot });
+    expect(
+      beforeInventory.rawWithoutMetadata.map((filePath) =>
+        path.basename(filePath),
+      ).sort(),
+    ).toEqual([
+      "draft-one.txt",
+      "Same Name.txt",
+      "missing-fields.txt",
+      "same-name.txt",
+    ].sort());
+
+    const first = scaffoldBookMetadata({
+      textRoot,
+      metadataRoot,
+      reportPath,
+      quiet: true,
+    });
+    expect(first.fatalErrors).toEqual([]);
+    expect(first.createdMetadata.map((entry) => entry.slug).sort()).toEqual([
+      "draft-one",
+      "missing-fields",
+      "same-name",
+      "same-name-gutenberg-77",
+    ].sort());
+    expect(fs.readFileSync(existingMetadataPath, "utf8")).toBe(existingBefore);
+
+    const draftOne = readJsonFile<BookMetadata>(
+      path.join(metadataRoot, "draft-one.json"),
+    );
+    expect(draftOne.metadataStatus).toBe("draft");
+    expect(draftOne.manualReviewRequired).toBe(true);
+    expect(draftOne.source.gutenbergId).toBe("42");
+    expect(draftOne.source.sourceUrl).toBe("https://www.gutenberg.org/ebooks/42");
+    expect(draftOne.source.rightsReviewed).toBe(false);
+    expect(draftOne.source.rightsBasis).toBe("unknown");
+    expect(draftOne.source).not.toHaveProperty("publishReady");
+    expect(draftOne.author).toEqual(["Sample Author"]);
+    expect(draftOne.scaffold?.extracted.translator).toBe("Example Translator");
+    expect(JSON.stringify(draftOne)).not.toContain("deathYear");
+
+    const missing = readJsonFile<BookMetadata>(
+      path.join(metadataRoot, "missing-fields.json"),
+    );
+    expect(missing.title).toBe("Missing Fields");
+    expect(missing.author).toEqual([]);
+    expect(missing.language).toBe("und");
+    expect(missing.manualReviewRequired).toBe(true);
+    expect(missing.scaffold?.missingFields).toEqual(
+      expect.arrayContaining(["title", "author", "language", "gutenbergEbookNumber"]),
+    );
+
+    const duplicateOne = readJsonFile<BookMetadata>(
+      path.join(metadataRoot, "same-name.json"),
+    );
+    const duplicateTwo = readJsonFile<BookMetadata>(
+      path.join(metadataRoot, "same-name-gutenberg-77.json"),
+    );
+    expect(duplicateOne.scaffold?.warnings).toContain(
+      "Possible duplicate Gutenberg ID; verify whether this is a duplicate, alternate file, or renamed copy.",
+    );
+    expect(duplicateTwo.scaffold?.warnings).toContain(
+      "Possible duplicate Gutenberg ID; verify whether this is a duplicate, alternate file, or renamed copy.",
+    );
+    expect(duplicateOne.source).not.toHaveProperty("allowDuplicateGutenbergId");
+    expect(duplicateTwo.source).not.toHaveProperty("allowDuplicateGutenbergId");
+
+    const report = readJsonFile<{
+      newMetadataFilesCreated: number;
+      rawFilesStillSkipped: string[];
+      duplicateGutenbergIds: Array<{ gutenbergId: string; rawFiles: string[] }>;
+      manualReviewCount: number;
+    }>(reportPath);
+    expect(report.newMetadataFilesCreated).toBe(4);
+    expect(report.rawFilesStillSkipped).toEqual([]);
+    expect(report.manualReviewCount).toBe(4);
+    expect(report.duplicateGutenbergIds).toEqual([
+      expect.objectContaining({
+        gutenbergId: "77",
+        rawFiles: ["raw/Same Name.txt", "raw/same-name.txt"],
+      }),
+    ]);
+    expect(fs.readFileSync(reportPath, "utf8")).not.toContain(
+      "VERY UNIQUE FULL STORY TEXT SHOULD NOT APPEAR",
+    );
+
+    const afterInventory = scanBookInventory({ textRoot, metadataRoot });
+    expect(afterInventory.rawWithoutMetadata).toEqual([]);
+
+    const metadataBeforeRerun = readGeneratedTree(metadataRoot);
+    const reportBeforeRerun = fs.readFileSync(reportPath, "utf8");
+    const second = scaffoldBookMetadata({
+      textRoot,
+      metadataRoot,
+      reportPath,
+      quiet: true,
+    });
+    expect(second.fatalErrors).toEqual([]);
+    expect(second.createdMetadata).toEqual([]);
+    expect(readGeneratedTree(metadataRoot)).toEqual(metadataBeforeRerun);
+    expect(fs.readFileSync(reportPath, "utf8")).toBe(reportBeforeRerun);
+
+    for (const content of Object.values(readGeneratedTree(metadataRoot))) {
+      expect(content).not.toContain("\"publishReady\": true");
+    }
+  });
+
+  test("books build skips draft metadata when raw text is not present", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("draft-missing-raw-library");
+    const generatedRoot = testInfo.outputPath("draft-missing-raw-generated");
+    const metadata = baseMetadata("draft-missing-raw", "../raw/missing.txt");
+    writeJson(path.join(textRoot, "meta", "draft-missing-raw.json"), {
+      ...metadata,
+      metadataStatus: "draft",
+      manualReviewRequired: true,
+      source: {
+        ...metadata.source,
+        rightsBasis: "unknown",
+      },
+    });
+
+    const result = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      generatedRoot,
+      quiet: true,
+    });
+
+    expect(result.fatalErrors).toEqual([]);
+    expect(result.processedBooks).toEqual([]);
+    expect(result.warnings.join(" ")).toContain(
+      "draft metadata raw text file is missing",
+    );
   });
 
   test("fails duplicate metadata Gutenberg IDs unless both entries explain the duplicate", ({

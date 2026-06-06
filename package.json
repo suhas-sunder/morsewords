@@ -5,6 +5,7 @@
   "scripts": {
     "build": "react-router build",
     "books:build": "node --experimental-strip-types scripts/books/build-book-library.ts",
+    "books:scaffold-metadata": "node --experimental-strip-types scripts/books/scaffold-book-metadata.ts",
     "dev": "cross-env NODE_ENV=development node server.js",
     "start": "node server.js",
     "test": "npm run test:smoke",

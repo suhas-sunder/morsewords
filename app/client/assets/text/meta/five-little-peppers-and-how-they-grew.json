@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "five-little-peppers-and-how-they-grew",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Five Little Peppers and How They Grew",
+  "author": [
+    "Margaret Sidney"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "2770",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/2770",
+    "rawTextFile": "../five-little-peppers-and-how-they-grew.txt",
+    "releaseDate": "August 1, 2001",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Five Little Peppers and How They Grew"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Five Little Peppers and How They Grew",
+      "author": "Margaret Sidney",
+      "language": "English",
+      "releaseDate": "August 1, 2001",
+      "lastUpdated": "February 19, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "2770",
+      "credits": "Produced by David Reed, and David Widger",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

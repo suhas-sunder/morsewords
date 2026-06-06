@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "slug": "heidi",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Heidi",
+  "author": [
+    "Johanna Spyri"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "20781",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/20781",
+    "rawTextFile": "../heidi.txt",
+    "releaseDate": "March 9, 2007",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Heidi"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Heidi",
+      "author": "Johanna Spyri",
+      "language": "English",
+      "releaseDate": "March 9, 2007",
+      "lastUpdated": "January 1, 2021",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "20781",
+      "credits": "Produced by Jason Isbell, Emma Morgan Isbell, Jeannie Howse and the Online Distributed Proofreading Team at https://www.pgdp.net. This file is gratefully uploaded to the PG collection in honor of Distributed Proofreaders having posted over 10,000 ebooks.",
+      "translator": "Elisabeth P. Stork",
+      "illustrator": "Maria Louise Kirk",
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, editor."
+    ]
+  }
+}

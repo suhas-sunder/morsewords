@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "wind-in-the-willows",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Wind in the Willows",
+  "author": [
+    "Kenneth Grahame"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "289",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/289",
+    "rawTextFile": "../wind-in-the-willows.txt",
+    "releaseDate": "July 1, 1995",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Wind in the Willows"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Wind in the Willows",
+      "author": "Kenneth Grahame",
+      "language": "English",
+      "releaseDate": "July 1, 1995",
+      "lastUpdated": "November 30, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "289",
+      "credits": "Mike Lough and David Widger",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

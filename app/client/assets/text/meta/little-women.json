@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "slug": "little-women",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+  "author": [
+    "Louisa May Alcott"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "37106",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/37106",
+    "rawTextFile": "../Little Women.txt",
+    "releaseDate": "August 16, 2011",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Little Women; Or, Meg, Jo, Beth, and Amy"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+      "author": "Louisa May Alcott",
+      "language": "English",
+      "releaseDate": "August 16, 2011",
+      "lastUpdated": "September 24, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "37106",
+      "credits": "David Edwards, Ernest Schaal, Robert Homa, and the Online Distributed Proofreading Team",
+      "translator": null,
+      "illustrator": "Frank T. Merrill",
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, editor."
+    ]
+  }
+}

@@ -399,6 +399,18 @@ function validateMetadataShape(
   if (typeof raw.slug === "string" && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(raw.slug)) {
     errors.push("slug must be lowercase kebab-case.");
   }
+  if (
+    raw.metadataStatus !== undefined &&
+    raw.metadataStatus !== "draft" &&
+    raw.metadataStatus !== "reviewed"
+  ) {
+    errors.push("metadataStatus must be draft or reviewed when present.");
+  }
+  validateOptionalBoolean(
+    raw.manualReviewRequired,
+    "manualReviewRequired",
+    errors,
+  );
   validateString(raw.title, "title", errors);
   validateStringArray(raw.author, "author", errors);
   validateString(raw.language, "language", errors);
@@ -429,6 +441,13 @@ function validateMetadataShape(
       !/^\d+$/.test(String(raw.source.gutenbergId))
     ) {
       errors.push("source.gutenbergId must contain only digits when present.");
+    }
+    if (
+      raw.source.sourceUrl !== undefined &&
+      raw.source.sourceUrl !== null &&
+      typeof raw.source.sourceUrl !== "string"
+    ) {
+      errors.push("source.sourceUrl must be a string or null when present.");
     }
     validateString(raw.source.rawTextFile, "source.rawTextFile", errors);
     if (
@@ -532,6 +551,10 @@ function validateMetadataShape(
   };
 
   return { metadata, errors: [] };
+}
+
+function isDraftMetadata(metadata: BookMetadata): boolean {
+  return metadata.metadataStatus === "draft";
 }
 
 function loadMetadataFiles(
@@ -1219,6 +1242,7 @@ export function buildBookLibrary(
   for (const ref of inventory.metadataFiles.flatMap((filePath) => {
       try {
         const { metadata } = validateMetadataShape(readJson(filePath), filePath);
+        if (!metadata || isDraftMetadata(metadata)) return [];
         return metadata?.source.gutenbergId
           ? [
               {
@@ -1258,6 +1282,17 @@ export function buildBookLibrary(
     }
   }
   for (const metadataPath of inventory.metadataWithoutRaw) {
+    try {
+      const { metadata } = validateMetadataShape(readJson(metadataPath), metadataPath);
+      if (metadata && isDraftMetadata(metadata)) {
+        warnings.push(
+          `${metadata.slug}: draft metadata raw text file is missing; skipped by books:build until manual review is complete.`,
+        );
+        continue;
+      }
+    } catch {
+      // The invalid metadata pass above will report parse or shape errors.
+    }
     fatalErrors.push(`Metadata raw text file is missing: ${metadataPath}.`);
   }
   for (const filePath of inventory.metadataFiles) {
@@ -1296,7 +1331,7 @@ export function buildBookLibrary(
     return result;
   }
 
-  const validMetadata = inventory.metadataFiles
+  const loadedMetadata = inventory.metadataFiles
     .map((filePath) => ({
       filePath,
       metadata: validateMetadataShape(readJson(filePath), filePath).metadata,
@@ -1308,6 +1343,17 @@ export function buildBookLibrary(
         entry.metadata !== null,
     )
     .sort((a, b) => a.metadata.slug.localeCompare(b.metadata.slug));
+  const draftMetadata = loadedMetadata.filter(({ metadata }) =>
+    isDraftMetadata(metadata),
+  );
+  const validMetadata = loadedMetadata.filter(
+    ({ metadata }) => !isDraftMetadata(metadata),
+  );
+  if (draftMetadata.length > 0) {
+    warnings.push(
+      `${draftMetadata.length} draft metadata file(s) skipped by books:build until manual review is complete.`,
+    );
+  }
 
   safeResetGeneratedRoot(generatedRoot, Boolean(options.generatedRoot));
 

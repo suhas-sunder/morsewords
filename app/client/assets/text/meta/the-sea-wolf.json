@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-sea-wolf",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Sea-Wolf",
+  "author": [
+    "Jack London"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1074",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1074",
+    "rawTextFile": "../the sea-wolf.txt",
+    "releaseDate": "October 1, 1997",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Sea-Wolf"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Sea-Wolf",
+      "author": "Jack London",
+      "language": "English",
+      "releaseDate": "October 1, 1997",
+      "lastUpdated": "October 29, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "1074",
+      "credits": "David Price",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}
