@@ -1082,7 +1082,7 @@ export default function MorseBookPage({
               </span>
               <Link
                 to={ROUTES.bookTranslator}
-                className="text-sky-900 underline-offset-4 hover:underline"
+                className="font-semibold text-sky-900 underline decoration-sky-900/45 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
               >
                 Translate your own text
               </Link>
@@ -1556,7 +1556,7 @@ export default function MorseBookPage({
             {book.source.sourceUrl ? (
               <p className="mt-3">
                 <a
-                  className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+                  className="font-semibold text-sky-900 underline decoration-sky-900/45 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   href={book.source.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
