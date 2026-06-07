@@ -6,6 +6,8 @@
 - Metadata status: draft
 - Manual review required: yes
 - Approval status: needs_manual_review
+- Approval source: manual-review
+- Duplicate resolution source: not-needed
 - Processing allowed: no
 - processed_book.json emitted: no
 - Section/story artifacts emitted by rights-only command: no
@@ -25,7 +27,7 @@
 - U.S. reuse language found: yes
 - Non-U.S. warning found: yes
 - Release date: June 10, 2022
-- Last updated: missing
+- Last updated: October 18, 2024
 - Original publication: United States: Popular Fiction Publishing Company, 1928
 - Credits: Greg Weeks, Mary Meehan and the Online Distributed Proofreading Team at http://www.pgdp.net
 - Translator: none found
@@ -54,16 +56,16 @@
 - Rights gate status is needs_manual_review; generated book is not publish-ready.
 - Rights gate did not allow processed public story output.
 - Owner-reviewed website approval is missing.
-- Owner approval does not allow website use.
+- Website publication is not allowed by the active approval path.
 
 ## Manual review reasons
 
+- Transcriber notes remain in cleaned story text.
+- Content brand-safety risk needs manual review.
 - Metadata rightsReviewed is false.
 - Owner-reviewed book approval is missing.
 - Rights basis "unknown" is not publish-ready.
-- Transcriber notes remain in cleaned story text.
-- Content brand-safety risk needs manual review.
-- Draft or manual-review metadata must be reviewed before processing or publishing.
+- Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
 ## Next action
 

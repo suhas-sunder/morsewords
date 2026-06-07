@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-great-gatsby",
+  "sectionId": "part-011",
+  "kind": "unknown",
+  "label": "Part 11",
+  "title": null,
+  "order": 11,
+  "includeByDefault": false,
+  "displayText": "So we beat on, boats against the current, borne back ceaselessly into\nthe past.",
+  "morseSourceText": "So we beat on, boats against the current, borne back ceaselessly into\nthe past.",
+  "paragraphs": [
+    "So we beat on, boats against the current, borne back ceaselessly into the past."
+  ],
+  "wordCount": 14,
+  "characterCount": 79,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 419,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "So we beat on, boats against the current, borne back ceaselessly into the past.",
+  "sourceOffsets": {
+    "start": 270611,
+    "end": 270690
+  }
+}

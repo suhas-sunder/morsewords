@@ -1,0 +1,715 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-07T07:43:12.292Z",
+  "summary": {
+    "totalBooks": 74,
+    "booksNeedingEnrichment": 32,
+    "peopleEnriched": 0,
+    "worksEnriched": 0,
+    "unresolvedBooks": 32,
+    "liveFetchAttempted": true,
+    "liveFetchAvailable": true,
+    "sourceCounts": {
+      "project-gutenberg-rdf": 86,
+      "wikidata": 55
+    }
+  },
+  "output": {
+    "enrichedMetadataPath": "app/client/assets/text/approved-metadata/enriched-metadata.json"
+  },
+  "books": [
+    {
+      "slug": "a-christmas-carol",
+      "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+      "author": "Charles Dickens",
+      "translator": "",
+      "gutenbergId": "46",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/46",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for A Christmas Carol in Prose; Being a Ghost Story of Christmas."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 46",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "anna-karenina",
+      "title": "Anna Karenina",
+      "author": "graf Leo Tolstoy",
+      "translator": "Constance Garnett",
+      "gutenbergId": "1399",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1399",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for Anna Karenina."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1399",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "botchan",
+      "title": "Botchan (Master Darling)",
+      "author": "Soseki Natsume",
+      "translator": "Yasotaro Mori",
+      "gutenbergId": "8868",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/8868",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for Botchan (Master Darling)."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 8868",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "five-little-peppers-and-how-they-grew",
+      "title": "Five Little Peppers and How They Grew",
+      "author": "Margaret Sidney",
+      "translator": "",
+      "gutenbergId": "2770",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/2770",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for Five Little Peppers and How They Grew."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 2770",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "grimm-s-fairy-tales",
+      "title": "Grimm's Fairy Tales",
+      "author": "Jacob Grimm",
+      "translator": "Margaret Hunt, introduction by Andrew Lang, Bohn Library",
+      "gutenbergId": "52521",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/52521",
+      "needs": [
+        "translatorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for Margaret Hunt, introduction by Andrew Lang, Bohn Library.",
+        "No high-confidence Wikidata work publication match for Grimm's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 52521",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "gulliver-s-travels",
+      "title": "Gulliver's Travels into Several Remote Nations of the World",
+      "author": "Jonathan Swift",
+      "translator": "",
+      "gutenbergId": "829",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/829",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for Gulliver's Travels into Several Remote Nations of the World."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 829",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "les-miserables",
+      "title": "Les Misérables",
+      "author": "Victor Hugo",
+      "translator": "Isabel Florence Hapgood",
+      "gutenbergId": "135",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/135",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for Les Misérables."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 135",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "little-women",
+      "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+      "author": "Louisa May Alcott",
+      "translator": "",
+      "gutenbergId": "37106",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/37106",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for Little Women; Or, Meg, Jo, Beth, and Amy."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 37106",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "new-treasure-seekers",
+      "title": "New Treasure Seekers; Or, The Bastable Children in Search of a Fortune",
+      "author": "E. Nesbit",
+      "translator": "",
+      "gutenbergId": "25496",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25496",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for New Treasure Seekers; Or, The Bastable Children in Search of a Fortune."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 25496",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "author": "Joel Chandler Harris",
+      "translator": "",
+      "gutenbergId": "24430",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/24430",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for Nights With Uncle Remus."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 24430",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan",
+      "author": "J. M. Barrie",
+      "translator": "",
+      "gutenbergId": "16",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/16",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for Peter Pan."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 16",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "sun-tzu-on-the-art-of-war",
+      "title": "Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World",
+      "author": "active 6th century B.C. Sunzi",
+      "translator": "Lionel Giles",
+      "gutenbergId": "66706",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/66706",
+      "needs": [
+        "authorDeathYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for active 6th century B.C. Sunzi."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 66706",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-arabian-nights",
+      "title": "The Arabian Nights: Their Best-known Tales",
+      "author": "",
+      "translator": "",
+      "gutenbergId": "20916",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/20916",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for The Arabian Nights: Their Best-known Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 20916",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-art-of-war",
+      "title": "The Art of War",
+      "author": "active 6th century B.C. Sunzi",
+      "translator": "Lionel Giles",
+      "gutenbergId": "132",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/132",
+      "needs": [
+        "authorDeathYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for active 6th century B.C. Sunzi."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 132",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-bell",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-book-of-dragons",
+      "title": "The Book of Dragons",
+      "author": "E. Nesbit",
+      "translator": "",
+      "gutenbergId": "23661",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/23661",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for The Book of Dragons."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 23661",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-count-of-monte-cristo",
+      "title": "The Count of Monte Cristo",
+      "author": "Alexandre Dumas",
+      "translator": "these words,",
+      "gutenbergId": "1184",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
+      "needs": [
+        "translatorDeathYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for these words,."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1184",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-count-of-monte-cristo-gutenberg-1184",
+      "title": "The Count of Monte Cristo",
+      "author": "",
+      "translator": "these words,",
+      "gutenbergId": "1184",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
+      "needs": [
+        "translatorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for these words,.",
+        "No high-confidence Wikidata work publication match for The Count of Monte Cristo."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1184",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-divine-comedy",
+      "title": "The divine comedy",
+      "author": "Dante Alighieri",
+      "translator": "Henry Francis Cary",
+      "gutenbergId": "8800",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/8800",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for The divine comedy."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 8800",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-elderbush",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-emperor-s-new-clothes",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-fir-tree",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-happy-family",
+      "title": "The Happy Family",
+      "author": "",
+      "translator": "",
+      "gutenbergId": null,
+      "sourceUrl": null,
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "Project Gutenberg ID is missing; authority lookup skipped."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-leap-frog",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-legend-of-sleepy-hollow",
+      "title": "The Legend of Sleepy Hollow",
+      "author": "Washington Irving",
+      "translator": "",
+      "gutenbergId": "41",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/41",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for The Legend of Sleepy Hollow."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 41",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-old-house",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-real-princess",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-shoes-of-fortune",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-snow-queen",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-swineherd",
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "translator": "",
+      "gutenbergId": "1597",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "needs": [
+        "authorDeathYear",
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence death-year authority match for H. C. Andersen.",
+        "No high-confidence Wikidata work publication match for Andersen's Fairy Tales."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 1597",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "the-water-babies",
+      "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+      "author": "Charles Kingsley",
+      "translator": "",
+      "gutenbergId": "25564",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25564",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for The Water-Babies: A Fairy Tale for a Land-Baby."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 25564",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "author": "William J. Long",
+      "translator": "",
+      "gutenbergId": "22101",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/22101",
+      "needs": [
+        "originalPublicationYear"
+      ],
+      "enrichedFacts": [],
+      "unresolved": [
+        "No high-confidence Wikidata work publication match for Wood folk at school."
+      ],
+      "ambiguities": [],
+      "sourcesAttempted": [
+        "Project Gutenberg RDF 22101",
+        "Wikidata"
+      ],
+      "nextAction": "Manual review remains required for unresolved or ambiguous metadata."
+    }
+  ]
+}

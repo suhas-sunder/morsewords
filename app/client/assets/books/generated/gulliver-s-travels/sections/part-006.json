@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "gulliver-s-travels",
+  "sectionId": "part-006",
+  "kind": "part",
+  "label": "Part 2",
+  "title": "A VOYAGE TO BROBDINGNAG.",
+  "order": 16,
+  "includeByDefault": false,
+  "displayText": "PART II. A VOYAGE TO BROBDINGNAG.",
+  "morseSourceText": "PART II. A VOYAGE TO BROBDINGNAG.",
+  "paragraphs": [
+    "PART II. A VOYAGE TO BROBDINGNAG."
+  ],
+  "wordCount": 6,
+  "characterCount": 33,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 181,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PART II. A VOYAGE TO BROBDINGNAG.",
+  "sourceOffsets": {
+    "start": 143050,
+    "end": 143086
+  }
+}

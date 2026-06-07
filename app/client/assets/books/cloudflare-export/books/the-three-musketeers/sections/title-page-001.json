@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-three-musketeers",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Front matter",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "The Three Musketeers\n\nBy Alexandre Dumas, Père\n\nFirst Volume of the D’Artagnan Series",
+  "morseSourceText": "The Three Musketeers\n\nBy Alexandre Dumas, Père\n\nFirst Volume of the D’Artagnan Series",
+  "paragraphs": [
+    "The Three Musketeers",
+    "By Alexandre Dumas, Père",
+    "First Volume of the D’Artagnan Series"
+  ],
+  "wordCount": 15,
+  "characterCount": 85,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 431,
+  "unsupportedCharacterSummary": {
+    "È": 1
+  },
+  "textPreview": "The Three Musketeers By Alexandre Dumas, Père First Volume of the D’Artagnan Series",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 88
+  }
+}

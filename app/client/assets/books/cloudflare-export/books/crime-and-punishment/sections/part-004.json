@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "crime-and-punishment",
+  "sectionId": "part-004",
+  "kind": "part",
+  "label": "Part 4",
+  "title": null,
+  "order": 25,
+  "includeByDefault": false,
+  "displayText": "PART IV",
+  "morseSourceText": "PART IV",
+  "paragraphs": [
+    "PART IV"
+  ],
+  "wordCount": 2,
+  "characterCount": 7,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 35,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PART IV",
+  "sourceOffsets": {
+    "start": 583778,
+    "end": 583788
+  }
+}

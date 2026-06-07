@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "the-emerald-city-of-oz",
+  "title": "The Emerald City of Oz",
+  "author": "L. Frank Baum",
+  "content_version": "99be6e3535d4da26",
+  "content_hash": "99be6e3535d4da266ce861f7ff9cbc22ea7b53dbfcf7c3f8b6da7dc0aeadb524",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "517",
+    "source_url": "https://www.gutenberg.org/ebooks/517",
+    "raw_text_url": null,
+    "original_publication": "1910",
+    "release_date": "May 1, 1996",
+    "last_updated": "May 19, 2026"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": true,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [
+      "US",
+      "CA"
+    ],
+    "needs_manual_review": false,
+    "notes": "Project Gutenberg source-file evidence and high-confidence external authority metadata satisfied the conservative website processing gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

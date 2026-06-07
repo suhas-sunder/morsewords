@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "slug": "dr-jekyll-and-mr-hyde",
+  "title": "The strange case of Dr. Jekyll and Mr. Hyde",
+  "author": [
+    "Robert Louis Stevenson"
+  ],
+  "contentVersion": "d30174b13b392e39",
+  "contentHash": "d30174b13b392e39a59ce3463e36c148530141240f481f9844d007e253fec963",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "43",
+    "releaseDate": "June 27, 2008",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/43",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": false,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The strange case of Dr. Jekyll and Mr. Hyde"
+  },
+  "stats": {
+    "originalCharacterCount": 158148,
+    "cleanedCharacterCount": 138804,
+    "wordCount": 25890,
+    "sectionCount": 6,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "unknown",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 29159,
+      "wordCount": 5468,
+      "estimatedTypingMinutes": 137,
+      "estimatedListeningMinutes": 175,
+      "morseCharacterEstimate": 156958,
+      "textPreview": "The Strange Case Of Dr. Jekyll And Mr. Hyde by Robert Louis Stevenson Contents STORY OF THE DOOR SEARCH FOR MR. HYDE DR. JEKYLL WAS QUITE AT EASE THE CAREW MUR..."
+    },
+    {
+      "id": "part-002",
+      "kind": "unknown",
+      "label": "Part 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 29330,
+      "wordCount": 5463,
+      "estimatedTypingMinutes": 137,
+      "estimatedListeningMinutes": 176,
+      "morseCharacterEstimate": 157840,
+      "textPreview": "A fortnight later, by excellent good fortune, the doctor gave one of his pleasant dinners to some five or six old cronies, all intelligent, reputable men and a..."
+    },
+    {
+      "id": "part-003",
+      "kind": "unknown",
+      "label": "Part 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-003.json",
+      "characterCount": 29623,
+      "wordCount": 5563,
+      "estimatedTypingMinutes": 140,
+      "estimatedListeningMinutes": 178,
+      "morseCharacterEstimate": 159846,
+      "textPreview": "It is one thing to mortify curiosity, another to conquer it; and it may be doubted if, from that day forth, Utterson desired the society of his surviving frien..."
+    },
+    {
+      "id": "part-004",
+      "kind": "unknown",
+      "label": "Part 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-004.json",
+      "characterCount": 29014,
+      "wordCount": 5388,
+      "estimatedTypingMinutes": 135,
+      "estimatedListeningMinutes": 173,
+      "morseCharacterEstimate": 155057,
+      "textPreview": "“That is the first part of the service: now for the second. You should be back, if you set out at once on the receipt of this, long before midnight; but I will..."
+    },
+    {
+      "id": "part-005",
+      "kind": "unknown",
+      "label": "Part 5",
+      "title": null,
+      "order": 5,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-005.json",
+      "characterCount": 20208,
+      "wordCount": 3730,
+      "estimatedTypingMinutes": 94,
+      "estimatedListeningMinutes": 121,
+      "morseCharacterEstimate": 108011,
+      "textPreview": "I must have stared upon it for near half a minute, sunk as I was in the mere stupidity of wonder, before terror woke up in my breast as sudden and startling as..."
+    },
+    {
+      "id": "part-006",
+      "kind": "unknown",
+      "label": "Part 6",
+      "title": null,
+      "order": 6,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-006.json",
+      "characterCount": 1460,
+      "wordCount": 278,
+      "estimatedTypingMinutes": 7,
+      "estimatedListeningMinutes": 9,
+      "morseCharacterEstimate": 7814,
+      "textPreview": "About a week has passed, and I am now finishing this statement under the influence of the last of the old powders. This, then, is the last time, short of a mir..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 158148,
+    "cleanedCharacterCount": 138804,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "No chapter headings were detected; generated fallback parts instead."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "the-great-gatsby",
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "content_version": "80eed92242bcbfda",
+  "content_hash": "80eed92242bcbfdadce9e77f31502cbaf3885ceaea9d02ee212117b09ec5e377",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "64317",
+    "source_url": "https://www.gutenberg.org/ebooks/64317",
+    "raw_text_url": null,
+    "original_publication": "1925",
+    "release_date": "January 17, 2021",
+    "last_updated": "January 26, 2025"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": true,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [
+      "US",
+      "CA"
+    ],
+    "needs_manual_review": false,
+    "notes": "Project Gutenberg source-file evidence and high-confidence external authority metadata satisfied the conservative website processing gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

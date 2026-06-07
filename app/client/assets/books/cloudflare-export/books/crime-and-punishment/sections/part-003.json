@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "crime-and-punishment",
+  "sectionId": "part-003",
+  "kind": "part",
+  "label": "Part 3",
+  "title": null,
+  "order": 18,
+  "includeByDefault": false,
+  "displayText": "PART III",
+  "morseSourceText": "PART III",
+  "paragraphs": [
+    "PART III"
+  ],
+  "wordCount": 2,
+  "characterCount": 8,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 38,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PART III",
+  "sourceOffsets": {
+    "start": 413119,
+    "end": 413130
+  }
+}

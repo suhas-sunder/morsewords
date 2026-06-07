@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "candidates": 52,
+    "candidates": 37,
     "authorMetadataMayBeEnough": 0,
-    "translatorOrEditorAmbiguity": 15
+    "translatorOrEditorAmbiguity": 14
   },
   "candidates": [
     {
@@ -16,21 +16,491 @@
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
         "Illustrations or image references need manual handling.",
-        "Edition or editorial status needs manual review."
+        "Edition or editorial status needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::lewis-carroll.deathYear",
         "app/client/assets/text/meta/alices-adventures-in-wonderland.json::owner-reviewed website approval",
         "app/client/assets/text/meta/alices-adventures-in-wonderland.json::source.rightsReviewed",
         "app/client/assets/text/meta/alices-adventures-in-wonderland.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "author": [
+        "Edgar Rice Burroughs"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/a-princess-of-mars.json::manualReviewRequired false",
+        "app/client/assets/text/meta/a-princess-of-mars.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/a-princess-of-mars.json::originalPublicationYear",
+        "app/client/assets/text/meta/a-princess-of-mars.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/a-princess-of-mars.json::source.rightsBasis",
+        "app/client/assets/text/meta/a-princess-of-mars.json::source.rightsReviewed",
+        "app/client/assets/text/meta/a-princess-of-mars.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "around-the-world-in-eighty-days",
+      "title": "Around the World in Eighty Days",
+      "author": [
+        "Jules Verne"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::manualReviewRequired false",
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::originalPublicationYear",
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::source.rightsBasis",
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::source.rightsReviewed",
+        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": true
+    },
+    {
+      "slug": "don-quixote",
+      "title": "Don Quixote",
+      "author": [
+        "Miguel de Cervantes Saavedra"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/approved-metadata/authors.json::the-king-he-took-cervantes-with-him-as-his-camarero",
+        "app/client/assets/text/meta/don-quixote.json::editor identity/death-year review",
+        "app/client/assets/text/meta/don-quixote.json::manualReviewRequired false",
+        "app/client/assets/text/meta/don-quixote.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/don-quixote.json::originalPublicationYear",
+        "app/client/assets/text/meta/don-quixote.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/don-quixote.json::source.rightsBasis",
+        "app/client/assets/text/meta/don-quixote.json::source.rightsReviewed",
+        "app/client/assets/text/meta/don-quixote.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": true
+    },
+    {
+      "slug": "jack-and-jill",
+      "title": "Jack and Jill",
+      "author": [
+        "Louisa May Alcott"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/jack-and-jill.json::manualReviewRequired false",
+        "app/client/assets/text/meta/jack-and-jill.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/jack-and-jill.json::originalPublicationYear",
+        "app/client/assets/text/meta/jack-and-jill.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/jack-and-jill.json::source.rightsBasis",
+        "app/client/assets/text/meta/jack-and-jill.json::source.rightsReviewed",
+        "app/client/assets/text/meta/jack-and-jill.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "jane-eyre",
+      "title": "Jane Eyre: An Autobiography",
+      "author": [
+        "Charlotte Brontë"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/jane-eyre.json::illustrator handling review",
+        "app/client/assets/text/meta/jane-eyre.json::manualReviewRequired false",
+        "app/client/assets/text/meta/jane-eyre.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/jane-eyre.json::originalPublicationYear",
+        "app/client/assets/text/meta/jane-eyre.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/jane-eyre.json::source.rightsBasis",
+        "app/client/assets/text/meta/jane-eyre.json::source.rightsReviewed",
+        "app/client/assets/text/meta/jane-eyre.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "pride-and-prejudice",
+      "title": "Pride and Prejudice",
+      "author": [
+        "Jane Austen"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/pride-and-prejudice.json::manualReviewRequired false",
+        "app/client/assets/text/meta/pride-and-prejudice.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/pride-and-prejudice.json::originalPublicationYear",
+        "app/client/assets/text/meta/pride-and-prejudice.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/pride-and-prejudice.json::source.rightsBasis",
+        "app/client/assets/text/meta/pride-and-prejudice.json::source.rightsReviewed",
+        "app/client/assets/text/meta/pride-and-prejudice.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "rainbow-valley",
+      "title": "Rainbow Valley",
+      "author": [
+        "L. M. Montgomery"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/rainbow-valley.json::manualReviewRequired false",
+        "app/client/assets/text/meta/rainbow-valley.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/rainbow-valley.json::originalPublicationYear",
+        "app/client/assets/text/meta/rainbow-valley.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/rainbow-valley.json::source.rightsBasis",
+        "app/client/assets/text/meta/rainbow-valley.json::source.rightsReviewed",
+        "app/client/assets/text/meta/rainbow-valley.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "rinkitink-in-oz",
+      "title": "Rinkitink in Oz",
+      "author": [
+        "L. Frank Baum"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/rinkitink-in-oz.json::illustrator handling review",
+        "app/client/assets/text/meta/rinkitink-in-oz.json::manualReviewRequired false",
+        "app/client/assets/text/meta/rinkitink-in-oz.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/rinkitink-in-oz.json::originalPublicationYear",
+        "app/client/assets/text/meta/rinkitink-in-oz.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/rinkitink-in-oz.json::source.rightsBasis",
+        "app/client/assets/text/meta/rinkitink-in-oz.json::source.rightsReviewed",
+        "app/client/assets/text/meta/rinkitink-in-oz.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "sense-and-sensibility",
+      "title": "Sense and Sensibility",
+      "author": [
+        "Jane Austen"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/sense-and-sensibility.json::manualReviewRequired false",
+        "app/client/assets/text/meta/sense-and-sensibility.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/sense-and-sensibility.json::originalPublicationYear",
+        "app/client/assets/text/meta/sense-and-sensibility.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/sense-and-sensibility.json::source.rightsBasis",
+        "app/client/assets/text/meta/sense-and-sensibility.json::source.rightsReviewed",
+        "app/client/assets/text/meta/sense-and-sensibility.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "the-elements-of-style",
+      "title": "The Elements of Style",
+      "author": [
+        "William Strunk"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Transcriber notes remain in cleaned story text.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/the-elements-of-style.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-elements-of-style.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-elements-of-style.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-elements-of-style.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-elements-of-style.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-elements-of-style.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-elements-of-style.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "author": [
+        "John Buchan"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-thirty-nine-steps.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "the-water-babies",
+      "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+      "author": [
+        "Charles Kingsley"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Transcriber notes remain in cleaned story text.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/the-water-babies.json::illustrator handling review",
+        "app/client/assets/text/meta/the-water-babies.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-water-babies.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-water-babies.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-water-babies.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-water-babies.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-water-babies.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-water-babies.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "the-wonderful-wizard-of-oz",
+      "title": "The Wonderful Wizard of Oz",
+      "author": [
+        "L. Frank Baum"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "wind-in-the-willows",
+      "title": "The Wind in the Willows",
+      "author": [
+        "Kenneth Grahame"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Illustrations or image references need manual handling.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/wind-in-the-willows.json::manualReviewRequired false",
+        "app/client/assets/text/meta/wind-in-the-willows.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/wind-in-the-willows.json::originalPublicationYear",
+        "app/client/assets/text/meta/wind-in-the-willows.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/wind-in-the-willows.json::source.rightsBasis",
+        "app/client/assets/text/meta/wind-in-the-willows.json::source.rightsReviewed",
+        "app/client/assets/text/meta/wind-in-the-willows.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "a-christmas-carol",
+      "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+      "author": [
+        "Charles Dickens"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected."
+      ],
+      "remainingBlockers": [
+        "Original publication metadata was not found.",
+        "Original publication year is missing or not before 1931.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/meta/a-christmas-carol.json::illustrator handling review",
+        "app/client/assets/text/meta/a-christmas-carol.json::manualReviewRequired false",
+        "app/client/assets/text/meta/a-christmas-carol.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/a-christmas-carol.json::originalPublication",
+        "app/client/assets/text/meta/a-christmas-carol.json::originalPublicationYear",
+        "app/client/assets/text/meta/a-christmas-carol.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/a-christmas-carol.json::source.rightsBasis",
+        "app/client/assets/text/meta/a-christmas-carol.json::source.rightsReviewed",
+        "app/client/assets/text/meta/a-christmas-carol.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -53,7 +523,7 @@
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
         "app/client/assets/text/meta/black-beauty.json::manualReviewRequired false",
@@ -69,109 +539,37 @@
       "translatorOrEditorAmbiguityRemains": false
     },
     {
-      "slug": "the-call-of-cthulhu",
-      "title": "The call of Cthulhu",
+      "slug": "botchan",
+      "title": "Botchan (Master Darling)",
       "author": [
-        "H. P. Lovecraft"
+        "Soseki Natsume"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Content needs education-use review even if rights metadata is completed."
-      ],
-      "remainingBlockers": [
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Content brand-safety risk needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/meta/the-call-of-cthulhu.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-call-of-cthulhu.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-call-of-cthulhu.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-call-of-cthulhu.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-call-of-cthulhu.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-call-of-cthulhu.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "a-christmas-carol",
-      "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
-      "author": [
-        "Charles Dickens"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::charles-dickens.deathYear",
-        "app/client/assets/text/meta/a-christmas-carol.json::illustrator handling review",
-        "app/client/assets/text/meta/a-christmas-carol.json::manualReviewRequired false",
-        "app/client/assets/text/meta/a-christmas-carol.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/a-christmas-carol.json::originalPublication",
-        "app/client/assets/text/meta/a-christmas-carol.json::originalPublicationYear",
-        "app/client/assets/text/meta/a-christmas-carol.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/a-christmas-carol.json::source.rightsBasis",
-        "app/client/assets/text/meta/a-christmas-carol.json::source.rightsReviewed",
-        "app/client/assets/text/meta/a-christmas-carol.json::website approval"
+        "app/client/assets/text/meta/botchan.json::manualReviewRequired false",
+        "app/client/assets/text/meta/botchan.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/botchan.json::originalPublication",
+        "app/client/assets/text/meta/botchan.json::originalPublicationYear",
+        "app/client/assets/text/meta/botchan.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/botchan.json::source.rightsBasis",
+        "app/client/assets/text/meta/botchan.json::source.rightsReviewed",
+        "app/client/assets/text/meta/botchan.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "dr-jekyll-and-mr-hyde",
-      "title": "The strange case of Dr. Jekyll and Mr. Hyde",
-      "author": [
-        "Robert Louis Stevenson"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::robert-louis-stevenson.deathYear",
-        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::manualReviewRequired false",
-        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::originalPublication",
-        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::originalPublicationYear",
-        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::source.rightsBasis",
-        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::source.rightsReviewed",
-        "app/client/assets/text/meta/dr-jekyll-and-mr-hyde.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
+      "translatorOrEditorAmbiguityRemains": true
     },
     {
       "slug": "five-little-peppers-and-how-they-grew",
@@ -183,20 +581,17 @@
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::margaret-sidney.deathYear",
         "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::manualReviewRequired false",
         "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::metadataStatus reviewed",
         "app/client/assets/text/meta/five-little-peppers-and-how-they-grew.json::originalPublication",
@@ -210,73 +605,33 @@
       "translatorOrEditorAmbiguityRemains": false
     },
     {
-      "slug": "frankenstein",
-      "title": "Frankenstein; or, the modern prometheus",
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
       "author": [
-        "Mary Wollstonecraft Shelley"
+        "Lewis Carroll"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Non-U.S.",
+        "rights warning was not detected.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::mary-wollstonecraft-shelley.deathYear",
-        "app/client/assets/text/meta/frankenstein.json::manualReviewRequired false",
-        "app/client/assets/text/meta/frankenstein.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/frankenstein.json::originalPublication",
-        "app/client/assets/text/meta/frankenstein.json::originalPublicationYear",
-        "app/client/assets/text/meta/frankenstein.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/frankenstein.json::source.rightsBasis",
-        "app/client/assets/text/meta/frankenstein.json::source.rightsReviewed",
-        "app/client/assets/text/meta/frankenstein.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "gulliver-s-travels",
-      "title": "Gulliver's Travels into Several Remote Nations of the World",
-      "author": [
-        "Jonathan Swift"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::jonathan-swift.deathYear",
-        "app/client/assets/text/meta/gulliver-s-travels.json::manualReviewRequired false",
-        "app/client/assets/text/meta/gulliver-s-travels.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/gulliver-s-travels.json::originalPublication",
-        "app/client/assets/text/meta/gulliver-s-travels.json::originalPublicationYear",
-        "app/client/assets/text/meta/gulliver-s-travels.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/gulliver-s-travels.json::source.rightsBasis",
-        "app/client/assets/text/meta/gulliver-s-travels.json::source.rightsReviewed",
-        "app/client/assets/text/meta/gulliver-s-travels.json::website approval"
+        "app/client/assets/text/meta/jabberwocky.json::manualReviewRequired false",
+        "app/client/assets/text/meta/jabberwocky.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/jabberwocky.json::originalPublicationYear",
+        "app/client/assets/text/meta/jabberwocky.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/jabberwocky.json::source.rightsBasis",
+        "app/client/assets/text/meta/jabberwocky.json::source.rightsReviewed",
+        "app/client/assets/text/meta/jabberwocky.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -296,16 +651,14 @@
       ],
       "remainingBlockers": [
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Modern introduction, notes, or editorial material may be present.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Modern introduction, notes, or editorial material may be present.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
         "app/client/assets/text/approved-metadata/authors.json::active-6th-century-b-c-sunzi.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::lionel-giles.deathYear",
         "app/client/assets/text/meta/the-art-of-war.json::manualReviewRequired false",
         "app/client/assets/text/meta/the-art-of-war.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-art-of-war.json::owner-reviewed website approval",
@@ -317,148 +670,70 @@
       "translatorOrEditorAmbiguityRemains": true
     },
     {
-      "slug": "the-call-of-the-wild",
-      "title": "The call of the wild",
+      "slug": "the-call-of-cthulhu",
+      "title": "The call of Cthulhu",
       "author": [
-        "Jack London"
+        "H. P. Lovecraft"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
         "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "Content needs education-use review even if rights metadata is completed."
       ],
       "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Content brand-safety risk needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::jack-london.deathYear",
-        "app/client/assets/text/meta/the-call-of-the-wild.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-call-of-the-wild.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-call-of-the-wild.json::originalPublication",
-        "app/client/assets/text/meta/the-call-of-the-wild.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-call-of-the-wild.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-call-of-the-wild.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-call-of-the-wild.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-call-of-the-wild.json::website approval"
+        "app/client/assets/text/meta/the-call-of-cthulhu.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-call-of-cthulhu.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-call-of-cthulhu.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-call-of-cthulhu.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-call-of-cthulhu.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-call-of-cthulhu.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
     },
     {
-      "slug": "the-emerald-city-of-oz",
-      "title": "The Emerald City of Oz",
+      "slug": "the-federalist-papers",
+      "title": "The Federalist Papers",
       "author": [
-        "L. Frank Baum"
+        "Alexander Hamilton John Jay James Madison"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Modern introduction, notes, or editorial material may be present.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::l-frank-baum.deathYear",
-        "app/client/assets/text/meta/the-emerald-city-of-oz.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-emerald-city-of-oz.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-emerald-city-of-oz.json::originalPublication",
-        "app/client/assets/text/meta/the-emerald-city-of-oz.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-emerald-city-of-oz.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-emerald-city-of-oz.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-emerald-city-of-oz.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-emerald-city-of-oz.json::website approval"
+        "app/client/assets/text/approved-metadata/authors.json::a",
+        "app/client/assets/text/meta/the-federalist-papers.json::introduction author identity/death-year review",
+        "app/client/assets/text/meta/the-federalist-papers.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-federalist-papers.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-federalist-papers.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-federalist-papers.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-federalist-papers.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-federalist-papers.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-federalist-papers.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-great-gatsby",
-      "title": "The Great Gatsby",
-      "author": [
-        "F. Scott Fitzgerald"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::f-scott-fitzgerald.deathYear",
-        "app/client/assets/text/meta/the-great-gatsby.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-great-gatsby.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-great-gatsby.json::originalPublication",
-        "app/client/assets/text/meta/the-great-gatsby.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-great-gatsby.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-great-gatsby.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-great-gatsby.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-great-gatsby.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-jungle-book",
-      "title": "The Jungle Book",
-      "author": [
-        "Rudyard Kipling"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::rudyard-kipling.deathYear",
-        "app/client/assets/text/meta/the-jungle-book.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-jungle-book.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-jungle-book.json::originalPublication",
-        "app/client/assets/text/meta/the-jungle-book.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-jungle-book.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-jungle-book.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-jungle-book.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-jungle-book.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
+      "translatorOrEditorAmbiguityRemains": true
     },
     {
       "slug": "the-legend-of-sleepy-hollow",
@@ -470,20 +745,17 @@
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::washington-irving.deathYear",
         "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::manualReviewRequired false",
         "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::metadataStatus reviewed",
         "app/client/assets/text/meta/the-legend-of-sleepy-hollow.json::originalPublication",
@@ -497,445 +769,174 @@
       "translatorOrEditorAmbiguityRemains": false
     },
     {
-      "slug": "the-picture-of-dorian-gray",
-      "title": "The Picture of Dorian Gray",
+      "slug": "through-the-looking-glass",
+      "title": "Through the Looking-Glass",
       "author": [
-        "Oscar Wilde"
+        "Lewis Carroll"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::oscar-wilde.deathYear",
-        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::originalPublication",
-        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-picture-of-dorian-gray.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-princess-and-the-goblin",
-      "title": "The Princess and the Goblin",
-      "author": [
-        "George MacDonald"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::george-macdonald.deathYear",
-        "app/client/assets/text/meta/the-princess-and-the-goblin.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-princess-and-the-goblin.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-princess-and-the-goblin.json::originalPublication",
-        "app/client/assets/text/meta/the-princess-and-the-goblin.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-princess-and-the-goblin.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-princess-and-the-goblin.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-princess-and-the-goblin.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-princess-and-the-goblin.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-railway-children",
-      "title": "The Railway Children",
-      "author": [
-        "E. Nesbit"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::e-nesbit.deathYear",
-        "app/client/assets/text/meta/the-railway-children.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-railway-children.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-railway-children.json::originalPublication",
-        "app/client/assets/text/meta/the-railway-children.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-railway-children.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-railway-children.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-railway-children.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-railway-children.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-sea-wolf",
-      "title": "The Sea-Wolf",
-      "author": [
-        "Jack London"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::jack-london.deathYear",
-        "app/client/assets/text/meta/the-sea-wolf.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-sea-wolf.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-sea-wolf.json::originalPublication",
-        "app/client/assets/text/meta/the-sea-wolf.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-sea-wolf.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-sea-wolf.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-sea-wolf.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-sea-wolf.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-secret-garden-gutenberg-113",
-      "title": "The Secret Garden",
-      "author": [
-        "Frances Hodgson Burnett"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::frances-hodgson-burnett.deathYear",
-        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::originalPublication",
-        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-secret-garden-gutenberg-113.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-three-musketeers",
-      "title": "The three musketeers",
-      "author": [
-        "Alexandre Dumas Auguste Maquet"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::alexandre-dumas-auguste-maquet.deathYear",
-        "app/client/assets/text/meta/the-three-musketeers.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-three-musketeers.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-three-musketeers.json::originalPublication",
-        "app/client/assets/text/meta/the-three-musketeers.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-three-musketeers.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-three-musketeers.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-three-musketeers.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-three-musketeers.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "treasure-island",
-      "title": "Treasure Island",
-      "author": [
-        "Robert Louis Stevenson"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::robert-louis-stevenson.deathYear",
-        "app/client/assets/text/meta/treasure-island.json::illustrator handling review",
-        "app/client/assets/text/meta/treasure-island.json::manualReviewRequired false",
-        "app/client/assets/text/meta/treasure-island.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/treasure-island.json::originalPublication",
-        "app/client/assets/text/meta/treasure-island.json::originalPublicationYear",
-        "app/client/assets/text/meta/treasure-island.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/treasure-island.json::source.rightsBasis",
-        "app/client/assets/text/meta/treasure-island.json::source.rightsReviewed",
-        "app/client/assets/text/meta/treasure-island.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "a-princess-of-mars",
-      "title": "A princess of Mars",
-      "author": [
-        "Edgar Rice Burroughs"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Edition or editorial status needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::edgar-rice-burroughs.deathYear",
-        "app/client/assets/text/meta/a-princess-of-mars.json::manualReviewRequired false",
-        "app/client/assets/text/meta/a-princess-of-mars.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/a-princess-of-mars.json::originalPublication",
-        "app/client/assets/text/meta/a-princess-of-mars.json::originalPublicationYear",
-        "app/client/assets/text/meta/a-princess-of-mars.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/a-princess-of-mars.json::source.rightsBasis",
-        "app/client/assets/text/meta/a-princess-of-mars.json::source.rightsReviewed",
-        "app/client/assets/text/meta/a-princess-of-mars.json::website approval"
+        "app/client/assets/text/meta/through-the-looking-glass.json::manualReviewRequired false",
+        "app/client/assets/text/meta/through-the-looking-glass.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/through-the-looking-glass.json::originalPublicationYear",
+        "app/client/assets/text/meta/through-the-looking-glass.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/through-the-looking-glass.json::source.rightsBasis",
+        "app/client/assets/text/meta/through-the-looking-glass.json::source.rightsReviewed",
+        "app/client/assets/text/meta/through-the-looking-glass.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
     },
     {
-      "slug": "botchan",
-      "title": "Botchan (Master Darling)",
+      "slug": "anna-karenina",
+      "title": "Anna Karenina",
       "author": [
-        "Soseki Natsume"
+        "graf Leo Tolstoy"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::soseki-natsume.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::yasotaro-mori.deathYear",
-        "app/client/assets/text/meta/botchan.json::manualReviewRequired false",
-        "app/client/assets/text/meta/botchan.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/botchan.json::originalPublication",
-        "app/client/assets/text/meta/botchan.json::originalPublicationYear",
-        "app/client/assets/text/meta/botchan.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/botchan.json::source.rightsBasis",
-        "app/client/assets/text/meta/botchan.json::source.rightsReviewed",
-        "app/client/assets/text/meta/botchan.json::website approval"
+        "app/client/assets/text/meta/anna-karenina.json::manualReviewRequired false",
+        "app/client/assets/text/meta/anna-karenina.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/anna-karenina.json::originalPublication",
+        "app/client/assets/text/meta/anna-karenina.json::originalPublicationYear",
+        "app/client/assets/text/meta/anna-karenina.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/anna-karenina.json::source.rightsBasis",
+        "app/client/assets/text/meta/anna-karenina.json::source.rightsReviewed",
+        "app/client/assets/text/meta/anna-karenina.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
     },
     {
-      "slug": "crime-and-punishment",
-      "title": "Crime and Punishment",
+      "slug": "candide",
+      "title": "Candide",
       "author": [
-        "Fyodor Dostoyevsky"
+        "Voltaire"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
         "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "Content needs education-use review even if rights metadata is completed."
       ],
       "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Modern introduction, notes, or editorial material may be present.",
+        "Transcriber notes remain in cleaned story text.",
+        "Content brand-safety risk needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::constance-garnett.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::fyodor-dostoyevsky.deathYear",
-        "app/client/assets/text/meta/crime-and-punishment.json::manualReviewRequired false",
-        "app/client/assets/text/meta/crime-and-punishment.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/crime-and-punishment.json::originalPublication",
-        "app/client/assets/text/meta/crime-and-punishment.json::originalPublicationYear",
-        "app/client/assets/text/meta/crime-and-punishment.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/crime-and-punishment.json::source.rightsBasis",
-        "app/client/assets/text/meta/crime-and-punishment.json::source.rightsReviewed",
-        "app/client/assets/text/meta/crime-and-punishment.json::website approval"
+        "app/client/assets/text/approved-metadata/authors.json::philip-littell",
+        "app/client/assets/text/meta/candide.json::introduction author identity/death-year review",
+        "app/client/assets/text/meta/candide.json::manualReviewRequired false",
+        "app/client/assets/text/meta/candide.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/candide.json::originalPublicationYear",
+        "app/client/assets/text/meta/candide.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/candide.json::source.rightsBasis",
+        "app/client/assets/text/meta/candide.json::source.rightsReviewed",
+        "app/client/assets/text/meta/candide.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
     },
     {
-      "slug": "jack-and-jill",
-      "title": "Jack and Jill",
+      "slug": "heidi",
+      "title": "Heidi",
       "author": [
-        "Louisa May Alcott"
+        "Johanna Spyri"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Modern introduction, notes, or editorial material may be present.",
+        "Transcriber notes remain in cleaned story text.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::louisa-may-alcott.deathYear",
-        "app/client/assets/text/meta/jack-and-jill.json::manualReviewRequired false",
-        "app/client/assets/text/meta/jack-and-jill.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/jack-and-jill.json::originalPublication",
-        "app/client/assets/text/meta/jack-and-jill.json::originalPublicationYear",
-        "app/client/assets/text/meta/jack-and-jill.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/jack-and-jill.json::source.rightsBasis",
-        "app/client/assets/text/meta/jack-and-jill.json::source.rightsReviewed",
-        "app/client/assets/text/meta/jack-and-jill.json::website approval"
+        "app/client/assets/text/meta/heidi.json::illustrator handling review",
+        "app/client/assets/text/meta/heidi.json::manualReviewRequired false",
+        "app/client/assets/text/meta/heidi.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/heidi.json::originalPublicationYear",
+        "app/client/assets/text/meta/heidi.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/heidi.json::source.rightsBasis",
+        "app/client/assets/text/meta/heidi.json::source.rightsReviewed",
+        "app/client/assets/text/meta/heidi.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
+      "translatorOrEditorAmbiguityRemains": true
     },
     {
-      "slug": "jane-eyre",
-      "title": "Jane Eyre: An Autobiography",
+      "slug": "les-miserables",
+      "title": "Les Misérables",
       "author": [
-        "Charlotte Brontë"
+        "Victor Hugo"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::charlotte-bronte.deathYear",
-        "app/client/assets/text/meta/jane-eyre.json::illustrator handling review",
-        "app/client/assets/text/meta/jane-eyre.json::manualReviewRequired false",
-        "app/client/assets/text/meta/jane-eyre.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/jane-eyre.json::originalPublication",
-        "app/client/assets/text/meta/jane-eyre.json::originalPublicationYear",
-        "app/client/assets/text/meta/jane-eyre.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/jane-eyre.json::source.rightsBasis",
-        "app/client/assets/text/meta/jane-eyre.json::source.rightsReviewed",
-        "app/client/assets/text/meta/jane-eyre.json::website approval"
+        "app/client/assets/text/meta/les-miserables.json::manualReviewRequired false",
+        "app/client/assets/text/meta/les-miserables.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/les-miserables.json::originalPublication",
+        "app/client/assets/text/meta/les-miserables.json::originalPublicationYear",
+        "app/client/assets/text/meta/les-miserables.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/les-miserables.json::source.rightsBasis",
+        "app/client/assets/text/meta/les-miserables.json::source.rightsReviewed",
+        "app/client/assets/text/meta/les-miserables.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
+      "translatorOrEditorAmbiguityRemains": true
     },
     {
       "slug": "peter-pan",
@@ -947,21 +948,18 @@
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Edition or editorial status needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Edition or editorial status needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::j-m-barrie.deathYear",
         "app/client/assets/text/meta/peter-pan.json::manualReviewRequired false",
         "app/client/assets/text/meta/peter-pan.json::metadataStatus reviewed",
         "app/client/assets/text/meta/peter-pan.json::originalPublication",
@@ -970,155 +968,6 @@
         "app/client/assets/text/meta/peter-pan.json::source.rightsBasis",
         "app/client/assets/text/meta/peter-pan.json::source.rightsReviewed",
         "app/client/assets/text/meta/peter-pan.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "pride-and-prejudice",
-      "title": "Pride and Prejudice",
-      "author": [
-        "Jane Austen"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::jane-austen.deathYear",
-        "app/client/assets/text/meta/pride-and-prejudice.json::manualReviewRequired false",
-        "app/client/assets/text/meta/pride-and-prejudice.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/pride-and-prejudice.json::originalPublication",
-        "app/client/assets/text/meta/pride-and-prejudice.json::originalPublicationYear",
-        "app/client/assets/text/meta/pride-and-prejudice.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/pride-and-prejudice.json::source.rightsBasis",
-        "app/client/assets/text/meta/pride-and-prejudice.json::source.rightsReviewed",
-        "app/client/assets/text/meta/pride-and-prejudice.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "rainbow-valley",
-      "title": "Rainbow Valley",
-      "author": [
-        "L. M. Montgomery"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::l-m-montgomery.deathYear",
-        "app/client/assets/text/meta/rainbow-valley.json::manualReviewRequired false",
-        "app/client/assets/text/meta/rainbow-valley.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/rainbow-valley.json::originalPublication",
-        "app/client/assets/text/meta/rainbow-valley.json::originalPublicationYear",
-        "app/client/assets/text/meta/rainbow-valley.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/rainbow-valley.json::source.rightsBasis",
-        "app/client/assets/text/meta/rainbow-valley.json::source.rightsReviewed",
-        "app/client/assets/text/meta/rainbow-valley.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "rinkitink-in-oz",
-      "title": "Rinkitink in Oz",
-      "author": [
-        "L. Frank Baum"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::l-frank-baum.deathYear",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::illustrator handling review",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::manualReviewRequired false",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::originalPublication",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::originalPublicationYear",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::source.rightsBasis",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::source.rightsReviewed",
-        "app/client/assets/text/meta/rinkitink-in-oz.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "sense-and-sensibility",
-      "title": "Sense and Sensibility",
-      "author": [
-        "Jane Austen"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::jane-austen.deathYear",
-        "app/client/assets/text/meta/sense-and-sensibility.json::manualReviewRequired false",
-        "app/client/assets/text/meta/sense-and-sensibility.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/sense-and-sensibility.json::originalPublication",
-        "app/client/assets/text/meta/sense-and-sensibility.json::originalPublicationYear",
-        "app/client/assets/text/meta/sense-and-sensibility.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/sense-and-sensibility.json::source.rightsBasis",
-        "app/client/assets/text/meta/sense-and-sensibility.json::source.rightsReviewed",
-        "app/client/assets/text/meta/sense-and-sensibility.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1138,17 +987,15 @@
       ],
       "remainingBlockers": [
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Modern introduction, notes, or editorial material may be present.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Modern introduction, notes, or editorial material may be present.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
         "app/client/assets/text/approved-metadata/authors.json::active-6th-century-b-c-sunzi.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::lionel-giles.deathYear",
         "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::manualReviewRequired false",
         "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::metadataStatus reviewed",
         "app/client/assets/text/meta/sun-tzu-on-the-art-of-war.json::owner-reviewed website approval",
@@ -1169,21 +1016,18 @@
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::e-nesbit.deathYear",
         "app/client/assets/text/meta/the-book-of-dragons.json::illustrator handling review",
         "app/client/assets/text/meta/the-book-of-dragons.json::manualReviewRequired false",
         "app/client/assets/text/meta/the-book-of-dragons.json::metadataStatus reviewed",
@@ -1198,383 +1042,36 @@
       "translatorOrEditorAmbiguityRemains": false
     },
     {
-      "slug": "the-elements-of-style",
-      "title": "The Elements of Style",
+      "slug": "the-divine-comedy",
+      "title": "The divine comedy",
       "author": [
-        "William Strunk"
+        "Dante Alighieri"
       ],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::william-strunk.deathYear",
-        "app/client/assets/text/meta/the-elements-of-style.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-elements-of-style.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-elements-of-style.json::originalPublication",
-        "app/client/assets/text/meta/the-elements-of-style.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-elements-of-style.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-elements-of-style.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-elements-of-style.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-elements-of-style.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-thirty-nine-steps",
-      "title": "The Thirty-Nine Steps",
-      "author": [
-        "John Buchan"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::john-buchan.deathYear",
-        "app/client/assets/text/meta/the-thirty-nine-steps.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-thirty-nine-steps.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-thirty-nine-steps.json::originalPublication",
-        "app/client/assets/text/meta/the-thirty-nine-steps.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-thirty-nine-steps.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-thirty-nine-steps.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-thirty-nine-steps.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-thirty-nine-steps.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-water-babies",
-      "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
-      "author": [
-        "Charles Kingsley"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::charles-kingsley.deathYear",
-        "app/client/assets/text/meta/the-water-babies.json::illustrator handling review",
-        "app/client/assets/text/meta/the-water-babies.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-water-babies.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-water-babies.json::originalPublication",
-        "app/client/assets/text/meta/the-water-babies.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-water-babies.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-water-babies.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-water-babies.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-water-babies.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-wonderful-wizard-of-oz",
-      "title": "The Wonderful Wizard of Oz",
-      "author": [
-        "L. Frank Baum"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::l-frank-baum.deathYear",
-        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::originalPublication",
-        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-wonderful-wizard-of-oz.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "wind-in-the-willows",
-      "title": "The Wind in the Willows",
-      "author": [
-        "Kenneth Grahame"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::kenneth-grahame.deathYear",
-        "app/client/assets/text/meta/wind-in-the-willows.json::manualReviewRequired false",
-        "app/client/assets/text/meta/wind-in-the-willows.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/wind-in-the-willows.json::originalPublication",
-        "app/client/assets/text/meta/wind-in-the-willows.json::originalPublicationYear",
-        "app/client/assets/text/meta/wind-in-the-willows.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/wind-in-the-willows.json::source.rightsBasis",
-        "app/client/assets/text/meta/wind-in-the-willows.json::source.rightsReviewed",
-        "app/client/assets/text/meta/wind-in-the-willows.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "anna-karenina",
-      "title": "Anna Karenina",
-      "author": [
-        "graf Leo Tolstoy"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::constance-garnett.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::graf-leo-tolstoy.deathYear",
-        "app/client/assets/text/meta/anna-karenina.json::manualReviewRequired false",
-        "app/client/assets/text/meta/anna-karenina.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/anna-karenina.json::originalPublication",
-        "app/client/assets/text/meta/anna-karenina.json::originalPublicationYear",
-        "app/client/assets/text/meta/anna-karenina.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/anna-karenina.json::source.rightsBasis",
-        "app/client/assets/text/meta/anna-karenina.json::source.rightsReviewed",
-        "app/client/assets/text/meta/anna-karenina.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": true
-    },
-    {
-      "slug": "around-the-world-in-eighty-days",
-      "title": "Around the World in Eighty Days",
-      "author": [
-        "Jules Verne"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::george-m-towle.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::jules-verne.deathYear",
-        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::manualReviewRequired false",
-        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::originalPublication",
-        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::originalPublicationYear",
-        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::source.rightsBasis",
-        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::source.rightsReviewed",
-        "app/client/assets/text/meta/around-the-world-in-eighty-days.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": true
-    },
-    {
-      "slug": "don-quixote",
-      "title": "Don Quixote",
-      "author": [
-        "Miguel de Cervantes Saavedra"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::john-ormsby.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::miguel-de-cervantes-saavedra.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::the-king-he-took-cervantes-with-him-as-his-camarero",
-        "app/client/assets/text/meta/don-quixote.json::editor identity/death-year review",
-        "app/client/assets/text/meta/don-quixote.json::manualReviewRequired false",
-        "app/client/assets/text/meta/don-quixote.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/don-quixote.json::originalPublication",
-        "app/client/assets/text/meta/don-quixote.json::originalPublicationYear",
-        "app/client/assets/text/meta/don-quixote.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/don-quixote.json::source.rightsBasis",
-        "app/client/assets/text/meta/don-quixote.json::source.rightsReviewed",
-        "app/client/assets/text/meta/don-quixote.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": true
-    },
-    {
-      "slug": "jabberwocky",
-      "title": "Jabberwocky",
-      "author": [
-        "Lewis Carroll"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Non-U.S.",
-        "rights warning was not detected.",
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::lewis-carroll.deathYear",
-        "app/client/assets/text/meta/jabberwocky.json::manualReviewRequired false",
-        "app/client/assets/text/meta/jabberwocky.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/jabberwocky.json::originalPublication",
-        "app/client/assets/text/meta/jabberwocky.json::originalPublicationYear",
-        "app/client/assets/text/meta/jabberwocky.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/jabberwocky.json::source.rightsBasis",
-        "app/client/assets/text/meta/jabberwocky.json::source.rightsReviewed",
-        "app/client/assets/text/meta/jabberwocky.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "les-miserables",
-      "title": "Les Misérables",
-      "author": [
-        "Victor Hugo"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::isabel-florence-hapgood.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::victor-hugo.deathYear",
-        "app/client/assets/text/meta/les-miserables.json::manualReviewRequired false",
-        "app/client/assets/text/meta/les-miserables.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/les-miserables.json::originalPublication",
-        "app/client/assets/text/meta/les-miserables.json::originalPublicationYear",
-        "app/client/assets/text/meta/les-miserables.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/les-miserables.json::source.rightsBasis",
-        "app/client/assets/text/meta/les-miserables.json::source.rightsReviewed",
-        "app/client/assets/text/meta/les-miserables.json::website approval"
+        "app/client/assets/text/meta/the-divine-comedy.json::illustrator handling review",
+        "app/client/assets/text/meta/the-divine-comedy.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-divine-comedy.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-divine-comedy.json::originalPublication",
+        "app/client/assets/text/meta/the-divine-comedy.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-divine-comedy.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-divine-comedy.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-divine-comedy.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-divine-comedy.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true
@@ -1589,23 +1086,20 @@
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
         "app/client/assets/text/approved-metadata/authors.json::ednah-d",
-        "app/client/assets/text/approved-metadata/authors.json::louisa-may-alcott.deathYear",
         "app/client/assets/text/meta/little-women.json::editor identity/death-year review",
         "app/client/assets/text/meta/little-women.json::illustrator handling review",
         "app/client/assets/text/meta/little-women.json::manualReviewRequired false",
@@ -1630,22 +1124,19 @@
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::e-nesbit.deathYear",
         "app/client/assets/text/meta/new-treasure-seekers.json::manualReviewRequired false",
         "app/client/assets/text/meta/new-treasure-seekers.json::metadataStatus reviewed",
         "app/client/assets/text/meta/new-treasure-seekers.json::originalPublication",
@@ -1659,203 +1150,6 @@
       "translatorOrEditorAmbiguityRemains": false
     },
     {
-      "slug": "the-arabian-nights",
-      "title": "The Arabian Nights: Their Best-known Tales",
-      "author": [],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected."
-      ],
-      "remainingBlockers": [
-        "Author was not found.",
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::kate-douglas-smith-wiggin",
-        "app/client/assets/text/meta/the-arabian-nights.json::editor identity/death-year review",
-        "app/client/assets/text/meta/the-arabian-nights.json::illustrator handling review",
-        "app/client/assets/text/meta/the-arabian-nights.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-arabian-nights.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-arabian-nights.json::originalPublication",
-        "app/client/assets/text/meta/the-arabian-nights.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-arabian-nights.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-arabian-nights.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-arabian-nights.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-arabian-nights.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": true
-    },
-    {
-      "slug": "the-divine-comedy",
-      "title": "The divine comedy",
-      "author": [
-        "Dante Alighieri"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::dante-alighieri.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::henry-francis-cary.deathYear",
-        "app/client/assets/text/meta/the-divine-comedy.json::illustrator handling review",
-        "app/client/assets/text/meta/the-divine-comedy.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-divine-comedy.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-divine-comedy.json::originalPublication",
-        "app/client/assets/text/meta/the-divine-comedy.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-divine-comedy.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-divine-comedy.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-divine-comedy.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-divine-comedy.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": true
-    },
-    {
-      "slug": "the-federalist-papers",
-      "title": "The Federalist Papers",
-      "author": [
-        "Alexander Hamilton John Jay James Madison"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Modern introduction, notes, or editorial material may be present.",
-        "Illustrations or image references need manual handling.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::a",
-        "app/client/assets/text/approved-metadata/authors.json::alexander-hamilton-john-jay-james-madison.deathYear",
-        "app/client/assets/text/meta/the-federalist-papers.json::introduction author identity/death-year review",
-        "app/client/assets/text/meta/the-federalist-papers.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-federalist-papers.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-federalist-papers.json::originalPublication",
-        "app/client/assets/text/meta/the-federalist-papers.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-federalist-papers.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-federalist-papers.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-federalist-papers.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-federalist-papers.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": true
-    },
-    {
-      "slug": "through-the-looking-glass",
-      "title": "Through the Looking-Glass",
-      "author": [
-        "Lewis Carroll"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Edition or editorial status needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::lewis-carroll.deathYear",
-        "app/client/assets/text/meta/through-the-looking-glass.json::manualReviewRequired false",
-        "app/client/assets/text/meta/through-the-looking-glass.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/through-the-looking-glass.json::originalPublication",
-        "app/client/assets/text/meta/through-the-looking-glass.json::originalPublicationYear",
-        "app/client/assets/text/meta/through-the-looking-glass.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/through-the-looking-glass.json::source.rightsBasis",
-        "app/client/assets/text/meta/through-the-looking-glass.json::source.rightsReviewed",
-        "app/client/assets/text/meta/through-the-looking-glass.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "candide",
-      "title": "Candide",
-      "author": [
-        "Voltaire"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence.",
-        "Content needs education-use review even if rights metadata is completed."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Modern introduction, notes, or editorial material may be present.",
-        "Transcriber notes remain in cleaned story text.",
-        "Content brand-safety risk needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::philip-littell",
-        "app/client/assets/text/approved-metadata/authors.json::voltaire.deathYear",
-        "app/client/assets/text/meta/candide.json::introduction author identity/death-year review",
-        "app/client/assets/text/meta/candide.json::manualReviewRequired false",
-        "app/client/assets/text/meta/candide.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/candide.json::originalPublication",
-        "app/client/assets/text/meta/candide.json::originalPublicationYear",
-        "app/client/assets/text/meta/candide.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/candide.json::source.rightsBasis",
-        "app/client/assets/text/meta/candide.json::source.rightsReviewed",
-        "app/client/assets/text/meta/candide.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": true
-    },
-    {
       "slug": "grimm-s-fairy-tales",
       "title": "Grimm's Fairy Tales",
       "author": [
@@ -1865,24 +1159,21 @@
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
         "app/client/assets/text/approved-metadata/authors.json::frances-jenkins-olcott",
-        "app/client/assets/text/approved-metadata/authors.json::jacob-grimm-wilhelm-grimm.deathYear",
         "app/client/assets/text/approved-metadata/authors.json::margaret-hunt-introduction-by-andrew-lang-bohn-library.deathYear",
         "app/client/assets/text/approved-metadata/authors.json::the-folk-lorist-andrew-lang",
         "app/client/assets/text/meta/grimm-s-fairy-tales.json::editor identity/death-year review",
@@ -1901,43 +1192,38 @@
       "translatorOrEditorAmbiguityRemains": true
     },
     {
-      "slug": "heidi",
-      "title": "Heidi",
-      "author": [
-        "Johanna Spyri"
-      ],
+      "slug": "the-arabian-nights",
+      "title": "The Arabian Nights: Their Best-known Tales",
+      "author": [],
       "currentStatus": "needs_manual_review",
       "whyClose": [
         "Project Gutenberg source URL is present.",
         "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
+        "No later copyright or permission-language blocker was detected."
       ],
       "remainingBlockers": [
+        "Author was not found.",
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Modern introduction, notes, or editorial material may be present.",
-        "Transcriber notes remain in cleaned story text.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
       ],
       "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::elisabeth-p-stork.deathYear",
-        "app/client/assets/text/approved-metadata/authors.json::johanna-spyri.deathYear",
-        "app/client/assets/text/meta/heidi.json::illustrator handling review",
-        "app/client/assets/text/meta/heidi.json::manualReviewRequired false",
-        "app/client/assets/text/meta/heidi.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/heidi.json::originalPublication",
-        "app/client/assets/text/meta/heidi.json::originalPublicationYear",
-        "app/client/assets/text/meta/heidi.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/heidi.json::source.rightsBasis",
-        "app/client/assets/text/meta/heidi.json::source.rightsReviewed",
-        "app/client/assets/text/meta/heidi.json::website approval"
+        "app/client/assets/text/approved-metadata/authors.json::kate-douglas-smith-wiggin",
+        "app/client/assets/text/meta/the-arabian-nights.json::editor identity/death-year review",
+        "app/client/assets/text/meta/the-arabian-nights.json::illustrator handling review",
+        "app/client/assets/text/meta/the-arabian-nights.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-arabian-nights.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-arabian-nights.json::originalPublication",
+        "app/client/assets/text/meta/the-arabian-nights.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-arabian-nights.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-arabian-nights.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-arabian-nights.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-arabian-nights.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": true

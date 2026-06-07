@@ -1,4 +1,6 @@
 import {
+  BOOK_SECTION_CACHE_KEY_PREFIX,
+  STORAGE_KEYS,
   getStorageKeysForClearBehavior,
   prepareStorageValueForWrite,
   type StorageClearBehavior,
@@ -127,12 +129,26 @@ export function clearMorseWordsStorageByBehavior(
     removedKeys: [],
     failedKeys: [],
   };
+  const dynamicBookSectionCacheKeys =
+    behavior === "clear source data" || behavior === "clear all site data"
+      ? getDynamicBookSectionCacheKeys()
+      : [];
 
   for (const key of getStorageKeysForClearBehavior(behavior)) {
     if (safeRemoveStorage(key)) {
       result.removedKeys.push(key);
     } else {
       result.failedKeys.push(key);
+    }
+  }
+
+  if (behavior === "clear source data" || behavior === "clear all site data") {
+    for (const key of dynamicBookSectionCacheKeys) {
+      if (safeRemoveStorage(key)) {
+        result.removedKeys.push(key);
+      } else {
+        result.failedKeys.push(key);
+      }
     }
   }
 
@@ -153,6 +169,24 @@ export function clearMorseWordsStorageByBehavior(
 
 export function clearMorseWordsSourceData() {
   return clearMorseWordsStorageByBehavior("clear source data");
+}
+
+export function clearMorseWordsBookCacheData(): StorageClearResult {
+  const result: StorageClearResult = {
+    removedKeys: [],
+    failedKeys: [],
+  };
+  for (const key of [
+    STORAGE_KEYS.bookSectionCacheIndex,
+    ...getDynamicBookSectionCacheKeys(),
+  ]) {
+    if (safeRemoveStorage(key)) {
+      result.removedKeys.push(key);
+    } else {
+      result.failedKeys.push(key);
+    }
+  }
+  return result;
 }
 
 export function resetMorseWordsSettings() {
@@ -323,4 +357,46 @@ function isQuotaExceededError(error: unknown) {
     (error.name === "QuotaExceededError" ||
       error.name === "NS_ERROR_DOM_QUOTA_REACHED")
   );
+}
+
+function getDynamicBookSectionCacheKeys() {
+  if (typeof window === "undefined") return [];
+  const keys = new Set<string>();
+  try {
+    const rawIndex = window.localStorage.getItem(
+      STORAGE_KEYS.bookSectionCacheIndex,
+    );
+    const parsed: unknown = rawIndex ? JSON.parse(rawIndex) : null;
+    const entries =
+      parsed && typeof parsed === "object" && "entries" in parsed
+        ? (parsed as { entries?: unknown }).entries
+        : null;
+    if (Array.isArray(entries)) {
+      for (const entry of entries) {
+        if (
+          entry &&
+          typeof entry === "object" &&
+          "key" in entry &&
+          typeof entry.key === "string" &&
+          entry.key.startsWith(BOOK_SECTION_CACHE_KEY_PREFIX)
+        ) {
+          keys.add(entry.key);
+        }
+      }
+    }
+  } catch {
+    // Cache cleanup is best-effort; fall through to storage enumeration.
+  }
+
+  try {
+    for (let index = 0; index < window.localStorage.length; index += 1) {
+      const key = window.localStorage.key(index);
+      if (key?.startsWith(BOOK_SECTION_CACHE_KEY_PREFIX)) {
+        keys.add(key);
+      }
+    }
+  } catch {
+    return Array.from(keys);
+  }
+  return Array.from(keys);
 }

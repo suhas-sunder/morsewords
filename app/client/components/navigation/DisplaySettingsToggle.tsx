@@ -6,6 +6,7 @@ import {
   useDisplaySettings,
 } from "~/client/settings/displaySettings";
 import {
+  clearMorseWordsBookCacheData,
   clearMorseWordsSourceData,
   resetMorseWordsSettings,
 } from "~/client/components/shared/settingsStorage";
@@ -80,6 +81,24 @@ export default function DisplaySettingsToggle({
     );
   }
 
+  function clearCachedBookData() {
+    if (
+      typeof window !== "undefined" &&
+      !window.confirm(
+        "Clear cached approved Morse book sections for MorseWords on this device?",
+      )
+    ) {
+      return;
+    }
+
+    const result = clearMorseWordsBookCacheData();
+    setStatusMessage(
+      result.failedKeys.length > 0
+        ? "Some cached book data could not be cleared in this browser."
+        : "Cached book data cleared.",
+    );
+  }
+
   function resetSettings() {
     if (
       typeof window !== "undefined" &&
@@ -149,6 +168,13 @@ export default function DisplaySettingsToggle({
               onClick={clearSavedSourceData}
             >
               Clear locally saved source data
+            </button>
+            <button
+              type="button"
+              className="mw-display-settings-action flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-3 text-left text-sm font-extrabold"
+              onClick={clearCachedBookData}
+            >
+              Clear cached book data
             </button>
             <button
               type="button"

@@ -10,6 +10,10 @@ import {
   PHRASE_PAGES,
   SYMBOL_PAGES,
 } from "~/client/data/morseContent";
+import {
+  getPublishedMorseBookSummaries,
+  morseBookPath,
+} from "~/client/data/morseBooks";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -39,6 +43,12 @@ const symbolSitemapLinks = Object.values(SYMBOL_PAGES).map((item) => ({
   label: item.displayTitle,
   to: item.path,
   description: item.metaDescription,
+}));
+
+const morseBookSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
+  label: `${book.title} in Morse Code`,
+  to: morseBookPath(book.slug),
+  description: `Read ${book.title} by ${book.author.join(", ")} as cleaned Morse-ready book text with audio and video preview tools.`,
 }));
 
 type SitemapGroup = {
@@ -135,6 +145,16 @@ const GROUPS: SitemapGroup[] = [
       },
     ],
   },
+  ...(morseBookSitemapLinks.length > 0
+    ? [
+        {
+          title: "Morse code books",
+          description:
+            "Approved Project Gutenberg books that passed the MorseWords rights gate.",
+          links: morseBookSitemapLinks,
+        },
+      ]
+    : []),
   {
     title: "Practice and learning",
     description: "Build recognition, accuracy, and speed with practical drills.",

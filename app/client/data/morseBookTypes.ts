@@ -30,6 +30,18 @@ export type MorseBookRightsBasis =
 
 export type MorseBookRightsStatus = "approved" | "needs_manual_review" | "reject";
 
+export type MorseBookApprovalSource =
+  | "file-evidence"
+  | "external-authority"
+  | "owner-reviewed"
+  | "manual-review";
+
+export type MorseBookDuplicateResolutionSource =
+  | "deterministic-file-match"
+  | "owner-reviewed"
+  | "manual-review"
+  | "not-needed";
+
 export type MorseBookCover = {
   src: string | null;
   placeholder: boolean;
@@ -47,8 +59,11 @@ export type MorseBookSourceSummary = {
   publishReady: boolean;
   rightsStatus: MorseBookRightsStatus;
   processingAllowed: boolean;
+  approvalSource?: MorseBookApprovalSource;
+  duplicateResolutionSource?: MorseBookDuplicateResolutionSource;
   rightsReportPath: string;
   processedBookPath?: string;
+  cleanedBookPath?: string;
   rightsNotes: string;
   allowDuplicateGutenbergId?: boolean;
   duplicateReason?: string;
@@ -77,6 +92,8 @@ export type MorseBookSectionSummary = {
   sectionJsonPath: string;
   characterCount: number;
   wordCount: number;
+  estimatedTypingMinutes: number;
+  estimatedListeningMinutes: number;
   morseCharacterEstimate: number;
   textPreview: string;
 };
@@ -85,6 +102,8 @@ export type MorseBookLibrarySummary = {
   slug: string;
   title: string;
   author: string[];
+  contentVersion: string;
+  contentHash: string;
   language: string;
   description: string;
   subjects: string[];
@@ -131,6 +150,8 @@ export type MorseBookSectionJson = {
   paragraphs: string[];
   wordCount: number;
   characterCount: number;
+  estimatedTypingMinutes: number;
+  estimatedListeningMinutes: number;
   morseCharacterEstimate: number;
   unsupportedCharacterSummary: Record<string, number>;
   textPreview: string;

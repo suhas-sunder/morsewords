@@ -7,6 +7,8 @@ import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const ROOT = process.cwd();
 const ALICE_SLUG = "alices-adventures-in-wonderland";
+const APPROVED_BOOK_SLUG = "anne-of-green-gables";
+const APPROVED_BOOK_PATH = `${ROUTES.morseBooks}/${APPROVED_BOOK_SLUG}`;
 const TEST_BOOK_SLUG = "test-published-morse-book";
 const TEST_BOOK_HUB_PATH = `${ROUTES.morseBooks}?preview=test-published`;
 const TEST_COLLECTION_HUB_PATH = `${ROUTES.morseBooks}?preview=test-collection`;
@@ -150,7 +152,7 @@ async function contrastRatio(locator: Locator) {
 }
 
 test.describe("Morse books hub", () => {
-  test("loads the canonical hub with empty state and canonical metadata", async ({
+  test("loads the canonical hub with approved books and canonical metadata", async ({
     page,
     request,
   }, testInfo) => {
@@ -176,59 +178,29 @@ test.describe("Morse books hub", () => {
     );
     await expect(collectionModule).toBeVisible();
     await expect(collectionModule.locator("[data-testid='morse-books-toolbar']")).toBeVisible();
-    const emptyState = page.locator("[data-testid='morse-books-empty-state']");
-    await expect(emptyState.getByRole("heading", {
-      name: "The collection is being prepared",
-    })).toBeVisible();
-    await expect(emptyState).toContainText(
-      "Create Morse audio or video from your own text while the first book pages are added.",
-    );
-    await expect(collectionModule.locator("[data-testid='morse-books-placeholder-grid']")).toBeVisible();
-    await expect(collectionModule.locator("[data-testid='morse-books-placeholder-card']")).toHaveCount(
-      5,
-    );
+    await expect(page.locator("[data-testid='morse-books-empty-state']")).toHaveCount(0);
+    await expect(collectionModule.locator("[data-testid='morse-books-card-grid']")).toBeVisible();
+    await expect(collectionModule.locator("[data-testid='morse-books-placeholder-grid']")).toHaveCount(0);
+    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
+    await expect(page.getByRole("heading", { name: "Anne of Green Gables" })).toBeVisible();
     await expect(
-      collectionModule.locator("[data-testid='morse-books-placeholder-card']").first(),
-    ).toContainText("Book page");
-    await expect(
-      collectionModule.locator("[data-testid='morse-books-placeholder-cover']"),
-    ).toHaveCount(5);
-    await expect(
-      collectionModule.locator("[data-testid='morse-books-placeholder-card'] a"),
-    ).toHaveCount(0);
-    await expect(
-      collectionModule.locator("[data-testid='morse-books-placeholder-output-chip']").filter({
-        hasText: "Audio",
-      }),
-    ).toHaveCount(5);
-    await expect(
-      collectionModule.locator("[data-testid='morse-books-placeholder-output-chip']").filter({
-        hasText: "Video",
-      }),
-    ).toHaveCount(5);
-    await expect(
-      collectionModule.locator("[data-testid='morse-books-placeholder-output-chip']").filter({
-        hasText: "Practice",
-      }),
-    ).toHaveCount(5);
-    await expect(emptyState).not.toContainText(
-      "Reviewed Morse books are coming soon",
-    );
-    await expect(emptyState).not.toContainText("Not a public listing yet");
-    await expect(emptyState).not.toContainText(
-      "checked and prepared",
-    );
+      page.getByRole("link", { name: "Open book for Anne of Green Gables" }),
+    ).toHaveAttribute("href", APPROVED_BOOK_PATH);
     await expect(collectionModule.locator("[data-testid='morse-books-toolbar']")).toBeVisible();
-    await expect(page.getByLabel("Search title, author, or subject")).toBeDisabled();
+    await expect(page.getByLabel("Search title, author, or subject")).toBeEnabled();
     await expect(page.getByLabel("Filter Morse books by subject")).toBeDisabled();
-    await expect(page.getByLabel("Filter Morse books by language")).toBeDisabled();
-    await expect(page.getByLabel("Sort Morse books")).toBeDisabled();
-    await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
-      "0 books available",
+    await expect(page.getByLabel("Filter Morse books by language")).toBeEnabled();
+    await expect(page.getByLabel("Sort Morse books")).toBeEnabled();
+    await page.getByLabel("Search title, author, or subject").fill("Alice");
+    await expect(page.getByLabel("Search title, author, or subject")).toHaveValue(
+      "Alice",
     );
-    await expect(
-      emptyState.getByRole("link", { name: "Convert your own text" }),
-    ).toHaveAttribute("href", ROUTES.bookTranslator);
+    await expect(page.getByRole("button", { name: "Clear filters" })).toBeEnabled();
+    await page.getByRole("button", { name: "Clear filters" }).click();
+    await expect(page.getByLabel("Search title, author, or subject")).toHaveValue("");
+    await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
+      "Showing 1-12 of 16 books",
+    );
 
     const collectionOrder = await page.evaluate(() => {
       const toolbar = document.querySelector("[data-testid='morse-books-toolbar']");
@@ -236,7 +208,7 @@ test.describe("Morse books hub", () => {
         "[data-testid='morse-books-result-count']",
       );
       const shelf = document.querySelector(
-        "[data-testid='morse-books-placeholder-grid']",
+        "[data-testid='morse-books-card-grid']",
       );
       return Boolean(
         toolbar &&
@@ -254,8 +226,8 @@ test.describe("Morse books hub", () => {
 
     const [shellBox, shelfBox, firstPlaceholderBox] = await Promise.all([
       page.locator("[data-testid='morse-books-collection-module']").boundingBox(),
-      page.locator("[data-testid='morse-books-placeholder-grid']").boundingBox(),
-      page.locator("[data-testid='morse-books-placeholder-card']").first().boundingBox(),
+      page.locator("[data-testid='morse-books-card-grid']").boundingBox(),
+      page.locator("[data-testid='morse-book-card']").first().boundingBox(),
     ]);
     expect(shelfBox?.width ?? 0).toBeGreaterThan((shellBox?.width ?? 0) * 0.88);
     expect(firstPlaceholderBox?.height ?? 0).toBeGreaterThan(250);
@@ -306,6 +278,7 @@ test.describe("Morse books hub", () => {
     const schemaText = JSON.stringify(jsonLd);
     expect(schemaText).toContain('"@type":"CollectionPage"');
     expect(schemaText).toContain(absoluteUrl(ROUTES.morseBooks));
+    expect(schemaText).toContain(APPROVED_BOOK_PATH);
     expect(schemaText).not.toContain(ALICE_SLUG);
     expect(schemaText).not.toContain("aggregateRating");
     expect(schemaText).not.toContain("reviewRating");
@@ -339,6 +312,7 @@ test.describe("Morse books hub", () => {
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
     expect(xml).toContain(absoluteUrl(ROUTES.morseBooks));
+    expect(xml).toContain(absoluteUrl(APPROVED_BOOK_PATH));
     expect(xml).not.toContain(absoluteUrl(ROUTES.morseAudiobooksAlias));
     expect(xml).not.toContain(`/morse-code-books/${ALICE_SLUG}`);
 
@@ -347,11 +321,13 @@ test.describe("Morse books hub", () => {
       "utf8",
     );
     expect(staticSitemap).toContain(absoluteUrl(ROUTES.morseBooks));
+    expect(staticSitemap).toContain(absoluteUrl(APPROVED_BOOK_PATH));
     expect(staticSitemap).not.toContain(absoluteUrl(ROUTES.morseAudiobooksAlias));
 
     await gotoHub(page, ROUTES.sitemap);
     const htmlLinks = await pageLinkPaths(page);
     expect(htmlLinks).toContain(ROUTES.morseBooks);
+    expect(htmlLinks).toContain(APPROVED_BOOK_PATH);
     expect(htmlLinks).not.toContain(ROUTES.morseAudiobooksAlias);
   });
 
@@ -636,11 +612,12 @@ test.describe("Morse books hub", () => {
     expect(overflow).toBeLessThanOrEqual(1);
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
     await expect(page.locator("h1")).toBeVisible();
-    await expect(page.locator("[data-testid='morse-books-empty-state']")).toBeVisible();
+    await expect(page.locator("[data-testid='morse-books-card-grid']")).toBeVisible();
+    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
     expect(await contrastRatio(page.locator("h1"))).toBeGreaterThanOrEqual(4.5);
     expect(
       await contrastRatio(
-        page.locator("[data-testid='morse-books-placeholder-title']").first(),
+        page.locator("[data-testid='morse-book-card-title']").first(),
       ),
     ).toBeGreaterThanOrEqual(4.5);
 
