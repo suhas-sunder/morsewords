@@ -57,8 +57,8 @@
       "author": [
         "L. M. Montgomery"
       ],
-      "contentVersion": "367778b4e649ed14",
-      "contentHash": "367778b4e649ed146b3672f778d82d3e5af3f67cca1d6c01889faed7f311a894",
+      "contentVersion": "28db773d29255867",
+      "contentHash": "28db773d29255867505225e06be7aebaa53073bfc946439976ac12d1c0f91047",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -89,7 +89,7 @@
         "originalCharacterCount": 580332,
         "cleanedCharacterCount": 561065,
         "wordCount": 106781,
-        "sectionCount": 40,
+        "sectionCount": 39,
         "includedSectionCount": 38
       },
       "defaults": {
@@ -253,8 +253,8 @@
       "author": [
         "Jonathan Swift"
       ],
-      "contentVersion": "c758461bc01ac79b",
-      "contentHash": "c758461bc01ac79be5ebd276bef3a4ba17b0daefa9dfa49b8352261c24e5c8d8",
+      "contentVersion": "2682733fed99e00c",
+      "contentHash": "2682733fed99e00cddef9bba75fa4d2dee795759d796bb6707e3f5c6febee1db",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -285,7 +285,7 @@
         "originalCharacterCount": 601815,
         "cleanedCharacterCount": 582409,
         "wordCount": 105392,
-        "sectionCount": 50,
+        "sectionCount": 49,
         "includedSectionCount": 39
       },
       "defaults": {
@@ -498,8 +498,8 @@
       "author": [
         "Oscar Wilde"
       ],
-      "contentVersion": "076dc7ddc53ff214",
-      "contentHash": "076dc7ddc53ff2142143719c0cf65576ac89723802a3ca2ca2ab578aa16b365d",
+      "contentVersion": "af2ab9deaa2db2a0",
+      "contentHash": "af2ab9deaa2db2a0bace9a43916984a7cf4881616bc080478b6769cf94bdef39",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -530,7 +530,7 @@
         "originalCharacterCount": 448573,
         "cleanedCharacterCount": 429270,
         "wordCount": 79937,
-        "sectionCount": 24,
+        "sectionCount": 23,
         "includedSectionCount": 21
       },
       "defaults": {
@@ -596,8 +596,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "3e5bd2aea7e6d6df",
-      "contentHash": "3e5bd2aea7e6d6df308de7976ac7fa44049244f5e0614e1eb5da7e18188156d7",
+      "contentVersion": "d9d11d41a68904e2",
+      "contentHash": "d9d11d41a68904e2c6ee526561f48ac624aa02751eae0a44b0b258fabf2d85e1",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -628,7 +628,7 @@
         "originalCharacterCount": 345957,
         "cleanedCharacterCount": 326683,
         "wordCount": 59806,
-        "sectionCount": 16,
+        "sectionCount": 15,
         "includedSectionCount": 14
       },
       "defaults": {
@@ -743,8 +743,8 @@
       "author": [
         "Alexandre Dumas Auguste Maquet"
       ],
-      "contentVersion": "f31154ce58f09bad",
-      "contentHash": "f31154ce58f09bad7f3c9112448fc21d501cd42a77cc5bd8bbfa15e2b063772f",
+      "contentVersion": "dc6789b0d8910e0b",
+      "contentHash": "dc6789b0d8910e0b3c74368ba960608854c2f1334b27f3a3ac4d2bfbb117cfeb",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -775,7 +775,7 @@
         "originalCharacterCount": 1317195,
         "cleanedCharacterCount": 1297823,
         "wordCount": 233801,
-        "sectionCount": 72,
+        "sectionCount": 71,
         "includedSectionCount": 67
       },
       "defaults": {

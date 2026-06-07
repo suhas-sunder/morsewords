@@ -50,6 +50,10 @@ const WORD_NUMBERS: Record<string, number> = {
   TWENTY: 20,
 };
 
+const CHAPTER_ORDINAL_PATTERN =
+  "(?:[ivxlcdm]+|\\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)";
+const DIVISION_ORDINAL_PATTERN = "(?:[ivxlcdm]+|\\d+)";
+
 const SPECIAL_HEADINGS: Array<[RegExp, BookSectionKind, string]> = [
   [/^preface$/i, "preface", "Preface"],
   [/^introduction$/i, "introduction", "Introduction"],
@@ -65,6 +69,13 @@ const SPECIAL_HEADINGS: Array<[RegExp, BookSectionKind, string]> = [
 function parseRomanNumeral(input: string): number | null {
   const roman = input.toUpperCase();
   if (!/^[IVXLCDM]+$/.test(roman)) return null;
+  if (
+    !/^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/.test(
+      roman,
+    )
+  ) {
+    return null;
+  }
 
   const values: Record<string, number> = {
     I: 1,
@@ -106,7 +117,10 @@ function classifyHeading(line: string): Omit<SectionBoundary, "offset"> | null {
   if (!normalized || normalized.length > 96) return null;
 
   const chapterMatch = normalized.match(
-    /^chapter\s+([ivxlcdm]+|\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)\.?\s*(?::|--|-)?\s*(.*)$/i,
+    new RegExp(
+      `^chapter\\s+(${CHAPTER_ORDINAL_PATTERN})(?:\\s*(?::|--|-|\\.)\\s*(.*)|\\s*)$`,
+      "i",
+    ),
   );
   if (chapterMatch) {
     const ordinal = parseOrdinal(chapterMatch[1]) ?? 0;
@@ -120,7 +134,12 @@ function classifyHeading(line: string): Omit<SectionBoundary, "offset"> | null {
     };
   }
 
-  const partMatch = normalized.match(/^part\s+([ivxlcdm]+|\d+)\.?\s*(.*)$/i);
+  const partMatch = normalized.match(
+    new RegExp(
+      `^part\\s+(${DIVISION_ORDINAL_PATTERN})(?:\\s*(?::|--|-|\\.)\\s*(.*)|\\s*)$`,
+      "i",
+    ),
+  );
   if (partMatch) {
     const ordinal = parseOrdinal(partMatch[1]) ?? 0;
     return {
@@ -132,7 +151,12 @@ function classifyHeading(line: string): Omit<SectionBoundary, "offset"> | null {
     };
   }
 
-  const bookMatch = normalized.match(/^book\s+([ivxlcdm]+|\d+)\.?\s*(.*)$/i);
+  const bookMatch = normalized.match(
+    new RegExp(
+      `^book\\s+(${DIVISION_ORDINAL_PATTERN})(?:\\s*(?::|--|-|\\.)\\s*(.*)|\\s*)$`,
+      "i",
+    ),
+  );
   if (bookMatch) {
     const ordinal = parseOrdinal(bookMatch[1]) ?? 0;
     return {
@@ -499,7 +523,7 @@ export function detectBookSections(
     boundaries.unshift({
       offset: 0,
       kind: "title-page",
-      label: "Front matter",
+      label: "Opening section",
       title: null,
       confidence: "medium",
       source: "detected",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "0801ee82e5f7ffdf",
-  "contentHash": "0801ee82e5f7ffdfc7da1c51ccce1a45ca614455452c906c3c46b5b6c5ca2591",
+  "contentVersion": "1e01bdcc4c0445e3",
+  "contentHash": "1e01bdcc4c0445e30a83275deb282f22a8a71ff1078798c298642744ed4d7125",
   "books": [
     {
       "slug": "anne-of-green-gables",
@@ -27,11 +27,11 @@
         "originalCharacterCount": 580332,
         "cleanedCharacterCount": 561065,
         "wordCount": 106781,
-        "sectionCount": 40,
+        "sectionCount": 39,
         "includedSectionCount": 38
       },
-      "contentVersion": "a857625116df3e8e",
-      "contentHash": "a857625116df3e8e1798f75d25d9c9e656a3a7be9edee26848177de60406097f",
+      "contentVersion": "5863b488d078e755",
+      "contentHash": "5863b488d078e755769b8b738c61a8d93fe3220c13d0e8cb88cd4ec191693fe4",
       "bookPath": "books/anne-of-green-gables.json"
     },
     {
@@ -61,8 +61,8 @@
         "sectionCount": 47,
         "includedSectionCount": 39
       },
-      "contentVersion": "15cf878de2ef0ec4",
-      "contentHash": "15cf878de2ef0ec472cd0d0d42ec7890793958169e92858b81074940276d3852",
+      "contentVersion": "aefba01829b6ac7b",
+      "contentHash": "aefba01829b6ac7b10f7ae192bef5caa7b018aec9c51ccd7e53f7baad5a9fa50",
       "bookPath": "books/crime-and-punishment.json"
     },
     {
@@ -92,8 +92,8 @@
         "sectionCount": 26,
         "includedSectionCount": 24
       },
-      "contentVersion": "0afb6535a371c36f",
-      "contentHash": "0afb6535a371c36f953e0b799dc710dfad7a6b0228364e9402d730ed1a03d94d",
+      "contentVersion": "aed1191088a0388d",
+      "contentHash": "aed1191088a0388dedd331421640b0bb75ee1aa7a19a5dbab5d431140ca4c54f",
       "bookPath": "books/frankenstein.json"
     },
     {
@@ -120,11 +120,11 @@
         "originalCharacterCount": 601815,
         "cleanedCharacterCount": 582409,
         "wordCount": 105392,
-        "sectionCount": 50,
+        "sectionCount": 49,
         "includedSectionCount": 39
       },
-      "contentVersion": "cbb116519c332b2a",
-      "contentHash": "cbb116519c332b2a57bd744ab47f1b335412eed71e0c052391e9382d6d6755e4",
+      "contentVersion": "5edceadde7f5a285",
+      "contentHash": "5edceadde7f5a285e1004e73f9320596efebd37b2da3f9b42b684450407bb7a2",
       "bookPath": "books/gulliver-s-travels.json"
     },
     {
@@ -154,8 +154,8 @@
         "sectionCount": 9,
         "includedSectionCount": 7
       },
-      "contentVersion": "7e9b5f5a5765fbfc",
-      "contentHash": "7e9b5f5a5765fbfcb2a53d8db584d216bae0796697658e0491fd918c776f52eb",
+      "contentVersion": "c8b5f22d56669ce0",
+      "contentHash": "c8b5f22d56669ce0c9fcc6504c8610257b71a39cc4634c22d35248d8e84c3305",
       "bookPath": "books/the-call-of-the-wild.json"
     },
     {
@@ -275,11 +275,11 @@
         "originalCharacterCount": 448573,
         "cleanedCharacterCount": 429270,
         "wordCount": 79937,
-        "sectionCount": 24,
+        "sectionCount": 23,
         "includedSectionCount": 21
       },
-      "contentVersion": "5a0860f0988445e0",
-      "contentHash": "5a0860f0988445e0aa2aac0cef3e1e9148009a7fd2ce35775f1badb872f29311",
+      "contentVersion": "b05ac87e5cc7c7aa",
+      "contentHash": "b05ac87e5cc7c7aab911eec04ec6d194f0ddc80ad5fc7ff1374ed2267e662f65",
       "bookPath": "books/the-picture-of-dorian-gray.json"
     },
     {
@@ -309,8 +309,8 @@
         "sectionCount": 34,
         "includedSectionCount": 32
       },
-      "contentVersion": "85b1b5e4ded4c69d",
-      "contentHash": "85b1b5e4ded4c69daaa0ed0f6e24263ff5a3e3b76ceb4a7f5afa698310b1f4ad",
+      "contentVersion": "1870b705f4e11be1",
+      "contentHash": "1870b705f4e11be1a1081e3d0896122541afd275c02b44104e07a31ca17583cd",
       "bookPath": "books/the-princess-and-the-goblin.json"
     },
     {
@@ -337,11 +337,11 @@
         "originalCharacterCount": 345957,
         "cleanedCharacterCount": 326683,
         "wordCount": 59806,
-        "sectionCount": 16,
+        "sectionCount": 15,
         "includedSectionCount": 14
       },
-      "contentVersion": "0c6fa5fe73022d88",
-      "contentHash": "0c6fa5fe73022d88a2e6428bffe3f3560bd45c2c5358cd7a972ef69d3fbf968c",
+      "contentVersion": "4f557be9313b14ca",
+      "contentHash": "4f557be9313b14ca1bc1bbd1451bbd0193b0000674bd63d2ab3bcf723924549c",
       "bookPath": "books/the-railway-children.json"
     },
     {
@@ -371,8 +371,8 @@
         "sectionCount": 40,
         "includedSectionCount": 39
       },
-      "contentVersion": "3b8f19435be16aae",
-      "contentHash": "3b8f19435be16aae8bd714d4d4e5dc65e203702ad3500828775eb79a54ea2732",
+      "contentVersion": "f5b51d9e2538e97f",
+      "contentHash": "f5b51d9e2538e97ff41634f833ea50abd772a7b8feb7cbc06c84854f43995e0d",
       "bookPath": "books/the-sea-wolf.json"
     },
     {
@@ -402,8 +402,8 @@
         "sectionCount": 30,
         "includedSectionCount": 28
       },
-      "contentVersion": "aac27fb0e65e3632",
-      "contentHash": "aac27fb0e65e3632d2bd1ff8e4c99ab1eced986bfd1dd363424b29acea18cf79",
+      "contentVersion": "1530e55f92bf0881",
+      "contentHash": "1530e55f92bf08812761d364e1e76bbafdb69280b882cd86b6bcc36cbbbc2d4d",
       "bookPath": "books/the-secret-garden-gutenberg-113.json"
     },
     {
@@ -461,11 +461,11 @@
         "originalCharacterCount": 1317195,
         "cleanedCharacterCount": 1297823,
         "wordCount": 233801,
-        "sectionCount": 72,
+        "sectionCount": 71,
         "includedSectionCount": 67
       },
-      "contentVersion": "f01cafd73b3fb862",
-      "contentHash": "f01cafd73b3fb862e17f68a7ae75e63daabd246a55c7153444da6f89656e72c7",
+      "contentVersion": "b3173c02f758a771",
+      "contentHash": "b3173c02f758a771ce1b6bac7057fa4a6b43a406caceb360007679de51ec9d8c",
       "bookPath": "books/the-three-musketeers.json"
     },
     {
