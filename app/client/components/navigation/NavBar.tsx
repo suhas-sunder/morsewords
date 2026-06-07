@@ -401,7 +401,17 @@ export default function NavBar(props: {
 
     function onPageScroll(e: Event) {
       const target = e.target;
+      const active = document.activeElement;
+      const trigger = moreWrapRef.current;
       const dialog = moreDialogRef.current;
+
+      if (
+        active instanceof Node &&
+        ((trigger && trigger.contains(active)) ||
+          (dialog && dialog.contains(active)))
+      ) {
+        return;
+      }
 
       if (target instanceof Node && dialog?.contains(target)) {
         return;
@@ -412,9 +422,12 @@ export default function NavBar(props: {
 
     document.addEventListener("mousedown", onDocMouseDown);
     document.addEventListener("keydown", onDocKeyDown);
-    window.addEventListener("scroll", onPageScroll, { passive: true });
+    const scrollCloseTimer = window.setTimeout(() => {
+      window.addEventListener("scroll", onPageScroll, { passive: true });
+    }, 150);
 
     return () => {
+      window.clearTimeout(scrollCloseTimer);
       document.removeEventListener("mousedown", onDocMouseDown);
       document.removeEventListener("keydown", onDocKeyDown);
       window.removeEventListener("scroll", onPageScroll);
