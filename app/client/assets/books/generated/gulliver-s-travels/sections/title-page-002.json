@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "gulliver-s-travels",
+  "sectionId": "title-page-002",
+  "kind": "title-page",
+  "label": "Contents",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "Contents\n\n\n THE PUBLISHER TO THE READER.\n A LETTER FROM CAPTAIN GULLIVER TO HIS COUSIN SYMPSON.",
+  "morseSourceText": "Contents\n\n\n THE PUBLISHER TO THE READER.\n A LETTER FROM CAPTAIN GULLIVER TO HIS COUSIN SYMPSON.",
+  "paragraphs": [
+    "Contents",
+    "THE PUBLISHER TO THE READER. A LETTER FROM CAPTAIN GULLIVER TO HIS COUSIN SYMPSON."
+  ],
+  "wordCount": 15,
+  "characterCount": 95,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 487,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Contents THE PUBLISHER TO THE READER. A LETTER FROM CAPTAIN GULLIVER TO HIS COUSIN SYMPSON.",
+  "sourceOffsets": {
+    "start": 161,
+    "end": 257
+  }
+}

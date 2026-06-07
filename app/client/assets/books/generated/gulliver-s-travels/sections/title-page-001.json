@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "gulliver-s-travels",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Front matter",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "GULLIVER’S TRAVELS\n\ninto several\n\nREMOTE NATIONS OF THE WORLD\n\n\nBY JONATHAN SWIFT, D.D.,\n\ndean of st. patrick’s, dublin.\n\n[_First published in_ 1726–7.]\n\ncover",
+  "morseSourceText": "GULLIVER’S TRAVELS\n\ninto several\n\nREMOTE NATIONS OF THE WORLD\n\n\nBY JONATHAN SWIFT, D.D.,\n\ndean of st. patrick’s, dublin.\n\n[_First published in_ 1726–7.]\n\ncover",
+  "paragraphs": [
+    "GULLIVER’S TRAVELS",
+    "into several",
+    "REMOTE NATIONS OF THE WORLD",
+    "BY JONATHAN SWIFT, D.D.,",
+    "dean of st. patrick’s, dublin.",
+    "[_First published in_ 1726–7.]",
+    "cover"
+  ],
+  "wordCount": 27,
+  "characterCount": 159,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 864,
+  "unsupportedCharacterSummary": {
+    "[": 1,
+    "]": 1
+  },
+  "textPreview": "GULLIVER’S TRAVELS into several REMOTE NATIONS OF THE WORLD BY JONATHAN SWIFT, D.D., dean of st. patrick’s, dublin. [_First published in_ 1726–7.] cover",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 161
+  }
+}

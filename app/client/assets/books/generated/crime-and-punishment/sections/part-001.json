@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "crime-and-punishment",
+  "sectionId": "part-001",
+  "kind": "part",
+  "label": "Part 1",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "PART I",
+  "morseSourceText": "PART I",
+  "paragraphs": [
+    "PART I"
+  ],
+  "wordCount": 2,
+  "characterCount": 6,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 28,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PART I",
+  "sourceOffsets": {
+    "start": 4576,
+    "end": 4585
+  }
+}

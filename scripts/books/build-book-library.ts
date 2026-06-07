@@ -1,13 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import type {
   ApprovedPeopleMetadata,
   BookCleanupRule,
+  CleanedBookJson,
   BookMetadata,
   BookRightsReport,
   BookSectionKind,
+  EnrichedAuthorityMetadata,
   GeneratedBookManifest,
   GeneratedBookSectionJson,
   GeneratedLibraryManifest,
@@ -20,9 +23,14 @@ import {
   SECTION_KINDS,
 } from "./bookManifestTypes.ts";
 import {
+  buildDuplicateSlugResolutionMap,
+  type DuplicateSlugResolution,
+} from "./bookDuplicateResolution.ts";
+import {
   loadOwnerBookApprovals,
   ownerBookApprovalMap,
 } from "./bookApprovalFiles.ts";
+import { loadEnrichedAuthorityMetadata } from "./bookEnrichedMetadata.ts";
 import {
   buildBookRightsReport,
   getProjectGutenbergSourceUrl,
@@ -46,7 +54,9 @@ export type BookBuildOptions = {
   metadataRoot?: string;
   approvedPeoplePath?: string;
   bookApprovalsPath?: string;
+  enrichedMetadataPath?: string;
   generatedRoot?: string;
+  cloudflareExportRoot?: string | null;
   quiet?: boolean;
 };
 
@@ -83,6 +93,8 @@ export type BookBuildResult = {
   fatalErrors: string[];
   generatedArtifacts: string[];
   generatedRoot: string;
+  cloudflareExportRoot: string | null;
+  cloudflareExportArtifacts: string[];
 };
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -99,10 +111,21 @@ const DEFAULT_BOOK_APPROVALS_PATH = path.join(
   "approved-metadata",
   "book-approvals.json",
 );
+const DEFAULT_ENRICHED_METADATA_PATH = path.join(
+  DEFAULT_TEXT_ROOT,
+  "approved-metadata",
+  "enriched-metadata.json",
+);
 const DEFAULT_GENERATED_ROOT = path.join(
   DEFAULT_REPO_ROOT,
   "app/client/assets/books/generated",
 );
+const DEFAULT_CLOUDFLARE_EXPORT_ROOT = path.join(
+  DEFAULT_REPO_ROOT,
+  "app/client/assets/books/cloudflare-export",
+);
+const DRAFT_REVIEW_REASON =
+  "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.";
 
 function toPosixPath(input: string): string {
   return input.split(path.sep).join("/");
@@ -807,10 +830,107 @@ function estimatedTypingMinutes(wordCount: number): number {
   return Math.max(1, Math.ceil(wordCount / 40));
 }
 
+function estimatedListeningMinutes(morseCharacterEstimate: number): number {
+  return Math.max(1, Math.ceil(morseCharacterEstimate / 900));
+}
+
+function sha256Json(value: unknown): string {
+  return crypto
+    .createHash("sha256")
+    .update(JSON.stringify(value))
+    .digest("hex");
+}
+
+function buildContentHash(
+  metadata: BookMetadata,
+  sections: GeneratedBookSectionJson[],
+  rightsReport: BookRightsReport,
+): string {
+  return sha256Json({
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    slug: metadata.slug,
+    gutenbergId: rightsReport.gutenberg_ebook_number || metadata.source.gutenbergId,
+    rightsStatus: rightsReport.canada_us_v1_status,
+    approvalSource: rightsReport.approval_source,
+    sections: sections.map((section) => ({
+      id: section.sectionId,
+      kind: section.kind,
+      title: section.title,
+      includeByDefault: section.includeByDefault,
+      text: section.morseSourceText,
+    })),
+  });
+}
+
+function appendReason(summary: string, reason: string): string {
+  return summary.includes(reason)
+    ? summary
+    : [summary.trim(), reason].filter(Boolean).join(" ");
+}
+
+function forceManualReview(
+  report: BookRightsReport,
+  reason: string,
+  duplicateResolution?: DuplicateSlugResolution,
+): BookRightsReport {
+  return {
+    ...report,
+    approval_source: "manual-review",
+    duplicate_resolution_source:
+      duplicateResolution?.duplicateResolutionSource ??
+      report.duplicate_resolution_source,
+    canada_us_v1_status:
+      report.canada_us_v1_status === "reject"
+        ? "reject"
+        : "needs_manual_review",
+    processing_allowed: false,
+    approved_for_website: false,
+    reasoning_summary: appendReason(report.reasoning_summary, reason),
+  };
+}
+
+function applyBuildReviewLocks(
+  metadata: BookMetadata,
+  report: BookRightsReport,
+  duplicateResolution: DuplicateSlugResolution | null,
+): BookRightsReport {
+  let nextReport = report;
+  const authorityEvidenceApproved =
+    (nextReport.approval_source === "file-evidence" ||
+      nextReport.approval_source === "external-authority") &&
+    nextReport.canada_us_v1_status === "approved" &&
+    nextReport.processing_allowed;
+
+  if (
+    !authorityEvidenceApproved &&
+    (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true)
+  ) {
+    nextReport = forceManualReview(nextReport, DRAFT_REVIEW_REASON);
+  }
+
+  if (!duplicateResolution) return nextReport;
+
+  nextReport = {
+    ...nextReport,
+    duplicate_resolution_source:
+      duplicateResolution.duplicateResolutionSource,
+  };
+  if (!duplicateResolution.isEligible) {
+    return forceManualReview(
+      nextReport,
+      duplicateResolution.reason,
+      duplicateResolution,
+    );
+  }
+  return nextReport;
+}
+
 function buildProcessedBook(
   metadata: BookMetadata,
   sections: GeneratedBookSectionJson[],
   rightsReport: BookRightsReport,
+  contentVersion: string,
+  contentHash: string,
 ): ProcessedBookJson {
   const storySections = sections.filter((section) => section.includeByDefault);
 
@@ -819,9 +939,11 @@ function buildProcessedBook(
     id: metadata.slug,
     title: metadata.title,
     author: metadata.author.join(", "),
+    content_version: contentVersion,
+    content_hash: contentHash,
     source: {
       name: metadata.source.provider,
-      ebook_number: metadata.source.gutenbergId ?? "",
+      ebook_number: rightsReport.gutenberg_ebook_number,
       source_url: rightsReport.source_url,
       raw_text_url: rightsReport.raw_text_url,
       original_publication: rightsReport.original_publication,
@@ -848,10 +970,71 @@ function buildProcessedBook(
             word_count: section.wordCount,
             character_count: section.characterCount,
             estimated_typing_minutes: estimatedTypingMinutes(section.wordCount),
+            estimated_listening_minutes: estimatedListeningMinutes(
+              section.morseCharacterEstimate,
+            ),
           },
         ],
       })),
     },
+  };
+}
+
+function buildCleanedBook(
+  metadata: BookMetadata,
+  sections: GeneratedBookSectionJson[],
+  rightsReport: BookRightsReport,
+  contentVersion: string,
+  contentHash: string,
+): CleanedBookJson {
+  const includedSections = sections.filter((section) => section.includeByDefault);
+
+  return {
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    id: metadata.slug,
+    title: metadata.title,
+    author: metadata.author.join(", "),
+    contentVersion,
+    contentHash,
+    source: {
+      provider: metadata.source.provider,
+      gutenbergId: rightsReport.gutenberg_ebook_number || metadata.source.gutenbergId,
+      sourceUrl: rightsReport.source_url,
+      rawTextUrl: rightsReport.raw_text_url,
+      originalPublication: rightsReport.original_publication,
+      releaseDate: rightsReport.release_date,
+      lastUpdated: rightsReport.last_updated,
+    },
+    stats: {
+      wordCount: includedSections.reduce((sum, section) => sum + section.wordCount, 0),
+      characterCount: includedSections.reduce(
+        (sum, section) => sum + section.characterCount,
+        0,
+      ),
+      sectionCount: sections.length,
+      estimatedTypingMinutes: includedSections.reduce(
+        (sum, section) => sum + section.estimatedTypingMinutes,
+        0,
+      ),
+      estimatedListeningMinutes: includedSections.reduce(
+        (sum, section) => sum + section.estimatedListeningMinutes,
+        0,
+      ),
+    },
+    sections: sections.map((section) => ({
+      id: section.sectionId,
+      kind: section.kind,
+      label: section.label,
+      title: section.title,
+      order: section.order,
+      includeByDefault: section.includeByDefault,
+      text: section.morseSourceText,
+      paragraphs: section.paragraphs,
+      wordCount: section.wordCount,
+      characterCount: section.characterCount,
+      estimatedTypingMinutes: section.estimatedTypingMinutes,
+      estimatedListeningMinutes: section.estimatedListeningMinutes,
+    })),
   };
 }
 
@@ -888,6 +1071,8 @@ function buildProcessingNotes({
     `- Gutenberg ID: ${metadata.source.gutenbergId ?? "missing"}`,
     `- Source URL: ${rightsReport.source_url ?? "missing"}`,
     `- Approval status: ${rightsReport.canada_us_v1_status}`,
+    `- Approval source: ${rightsReport.approval_source}`,
+    `- Duplicate resolution source: ${rightsReport.duplicate_resolution_source}`,
     `- Processing allowed: ${rightsReport.processing_allowed ? "yes" : "no"}`,
     `- processed_book.json emitted: ${processedBook ? "yes" : "no"}`,
     "",
@@ -1021,6 +1206,8 @@ function buildGeneratedManifest(
   rawText: string,
   approvedPeople: ApprovedPeopleMetadata,
   ownerBookApproval: Parameters<typeof buildBookRightsReport>[0]["ownerBookApproval"],
+  enrichedMetadata: EnrichedAuthorityMetadata,
+  duplicateResolution: DuplicateSlugResolution | null,
   warnings: string[],
 ): {
   manifest: GeneratedBookManifest;
@@ -1028,6 +1215,7 @@ function buildGeneratedManifest(
   rightsReport: BookRightsReport;
   processingNotes: string;
   processedBook: ProcessedBookJson | null;
+  cleanedBook: CleanedBookJson | null;
   fatalErrors: string[];
 } {
   const cleaning = cleanGutenbergText(rawText);
@@ -1040,14 +1228,20 @@ function buildGeneratedManifest(
   );
   const sectionsResult = detectBookSections(cleanedText, metadata);
   warnings.push(...cleaning.report.warnings, ...sectionsResult.warnings);
-  const rightsReport = buildBookRightsReport({
+  const baseRightsReport = buildBookRightsReport({
     metadata,
     rawText,
     cleanedText,
     cleaning: cleaning.report,
     approvedPeople,
     ownerBookApproval,
+    enrichedMetadata,
   });
+  const rightsReport = applyBuildReviewLocks(
+    metadata,
+    baseRightsReport,
+    duplicateResolution,
+  );
   const rights = validateBookRights(metadata, rightsReport);
   warnings.push(...rights.warnings);
   const fatalErrors: string[] = [];
@@ -1070,6 +1264,10 @@ function buildGeneratedManifest(
     paragraphs: splitParagraphs(section.text),
     wordCount: section.wordCount,
     characterCount: section.characterCount,
+    estimatedTypingMinutes: estimatedTypingMinutes(section.wordCount),
+    estimatedListeningMinutes: estimatedListeningMinutes(
+      section.morseCharacterEstimate,
+    ),
     morseCharacterEstimate: section.morseCharacterEstimate,
     unsupportedCharacterSummary: summarizeUnsupportedCharacters(section.text),
     textPreview: section.textPreview,
@@ -1097,9 +1295,34 @@ function buildGeneratedManifest(
     sectionPaths.add(sectionPath);
   }
 
-  const sourceUrl = getProjectGutenbergSourceUrl(metadata.source.gutenbergId);
+  const sourceUrl =
+    rightsReport.source_url ||
+    getProjectGutenbergSourceUrl(metadata.source.gutenbergId);
+  const contentHash = buildContentHash(metadata, sectionJson, rightsReport);
+  const contentVersion = contentHash.slice(0, 16);
+  const effectiveRightsBasis =
+    (rightsReport.approval_source === "file-evidence" ||
+      rightsReport.approval_source === "external-authority") &&
+    rightsReport.canada_us_v1_status === "approved"
+      ? "public-domain-us"
+      : metadata.source.rightsBasis;
   const processedBook = rightsReport.processing_allowed
-    ? buildProcessedBook(metadata, sectionJson, rightsReport)
+    ? buildProcessedBook(
+        metadata,
+        sectionJson,
+        rightsReport,
+        contentVersion,
+        contentHash,
+      )
+    : null;
+  const cleanedBook = rightsReport.processing_allowed
+    ? buildCleanedBook(
+        metadata,
+        sectionJson,
+        rightsReport,
+        contentVersion,
+        contentHash,
+      )
     : null;
   const processingNotes = buildProcessingNotes({
     metadata,
@@ -1114,22 +1337,28 @@ function buildGeneratedManifest(
     slug: metadata.slug,
     title: metadata.title,
     author: metadata.author,
+    contentVersion,
+    contentHash,
     language: metadata.language,
     description: metadata.description,
     subjects: metadata.subjects,
     source: {
       provider: metadata.source.provider,
-      gutenbergId: metadata.source.gutenbergId,
-      releaseDate: metadata.source.releaseDate,
+      gutenbergId:
+        rightsReport.gutenberg_ebook_number || metadata.source.gutenbergId,
+      releaseDate: rightsReport.release_date || metadata.source.releaseDate,
       sourceUrl,
       rawTextUrl: metadata.source.rawTextUrl ?? null,
-      rightsBasis: metadata.source.rightsBasis,
+      rightsBasis: effectiveRightsBasis,
       rightsReviewed: metadata.source.rightsReviewed,
       publishReady: rights.publishReady,
       rightsStatus: rightsReport.canada_us_v1_status,
       processingAllowed: rightsReport.processing_allowed,
+      approvalSource: rightsReport.approval_source,
+      duplicateResolutionSource: rightsReport.duplicate_resolution_source,
       rightsReportPath: "rights_report.json",
       ...(processedBook ? { processedBookPath: "processed_book.json" } : {}),
+      ...(cleanedBook ? { cleanedBookPath: "cleaned_book.json" } : {}),
       rightsNotes: metadata.source.rightsNotes,
       allowDuplicateGutenbergId: metadata.source.allowDuplicateGutenbergId,
       duplicateReason: metadata.source.duplicateReason,
@@ -1157,6 +1386,8 @@ function buildGeneratedManifest(
       sectionJsonPath: `sections/${section.sectionId}.json`,
       characterCount: section.characterCount,
       wordCount: section.wordCount,
+      estimatedTypingMinutes: section.estimatedTypingMinutes,
+      estimatedListeningMinutes: section.estimatedListeningMinutes,
       morseCharacterEstimate: section.morseCharacterEstimate,
       textPreview: section.textPreview,
     })),
@@ -1171,7 +1402,15 @@ function buildGeneratedManifest(
     warnings,
   };
 
-  return { manifest, sectionJson, rightsReport, processingNotes, processedBook, fatalErrors };
+  return {
+    manifest,
+    sectionJson,
+    rightsReport,
+    processingNotes,
+    processedBook,
+    cleanedBook,
+    fatalErrors,
+  };
 }
 
 function makeLibraryManifest(
@@ -1183,6 +1422,8 @@ function makeLibraryManifest(
       slug: manifest.slug,
       title: manifest.title,
       author: manifest.author,
+      contentVersion: manifest.contentVersion,
+      contentHash: manifest.contentHash,
       language: manifest.language,
       description: manifest.description,
       subjects: manifest.subjects,
@@ -1193,6 +1434,170 @@ function makeLibraryManifest(
       manifestPath: `${manifest.slug}/manifest.json`,
     })),
   };
+}
+
+type CloudflareExportBook = {
+  manifest: GeneratedBookManifest;
+  sectionJson: GeneratedBookSectionJson[];
+  processedBook: ProcessedBookJson;
+  cleanedBook: CleanedBookJson;
+};
+
+type CloudflareExportBookJson = {
+  schemaVersion: 1;
+  slug: string;
+  title: string;
+  author: string[];
+  language: string;
+  description: string;
+  subjects: string[];
+  source: GeneratedBookManifest["source"];
+  cover: GeneratedBookManifest["cover"];
+  stats: GeneratedBookManifest["stats"];
+  defaults: GeneratedBookManifest["defaults"];
+  contentVersion: string;
+  contentHash: string;
+  manifest: GeneratedBookManifest;
+  cleanedBook: CleanedBookJson;
+  processedBook: ProcessedBookJson;
+  sections: GeneratedBookSectionJson[];
+};
+
+function isPublishReadyManifest(manifest: GeneratedBookManifest): boolean {
+  const approvedBySource =
+    manifest.source.approvalSource === "file-evidence" ||
+    manifest.source.approvalSource === "external-authority" ||
+    (manifest.source.approvalSource === "owner-reviewed" &&
+      manifest.source.rightsReviewed === true);
+  return (
+    approvedBySource &&
+    manifest.source.publishReady === true &&
+    manifest.source.rightsStatus === "approved" &&
+    manifest.source.processingAllowed === true
+  );
+}
+
+function safeResetCloudflareExportRoot(
+  exportRoot: string,
+  allowCustomRoot: boolean,
+): void {
+  const normalized = path.normalize(exportRoot);
+  const parsedRoot = path.parse(normalized).root;
+  if (normalized === parsedRoot || normalized.length < parsedRoot.length + 8) {
+    throw new Error(`Refusing to reset unsafe Cloudflare export root: ${exportRoot}`);
+  }
+  if (
+    !allowCustomRoot &&
+    !normalized.endsWith(path.normalize("app/client/assets/books/cloudflare-export"))
+  ) {
+    throw new Error(`Refusing to reset unexpected Cloudflare export root: ${exportRoot}`);
+  }
+  fs.rmSync(exportRoot, { recursive: true, force: true });
+  fs.mkdirSync(exportRoot, { recursive: true });
+}
+
+function writeCloudflareExport({
+  exportRoot,
+  books,
+  allowCustomRoot,
+}: {
+  exportRoot: string;
+  books: CloudflareExportBook[];
+  allowCustomRoot: boolean;
+}): string[] {
+  safeResetCloudflareExportRoot(exportRoot, allowCustomRoot);
+
+  const publicBooks = books
+    .filter((book) => isPublishReadyManifest(book.manifest))
+    .sort((a, b) => a.manifest.title.localeCompare(b.manifest.title));
+  const exportBooks = publicBooks.map(
+    ({
+      manifest,
+      sectionJson,
+      processedBook,
+      cleanedBook,
+    }): CloudflareExportBookJson => {
+      const bookWithoutExportHash = {
+        schemaVersion: BOOK_SCHEMA_VERSION as 1,
+        slug: manifest.slug,
+        title: manifest.title,
+        author: manifest.author,
+        language: manifest.language,
+        description: manifest.description,
+        subjects: manifest.subjects,
+        source: manifest.source,
+        cover: manifest.cover,
+        stats: manifest.stats,
+        defaults: manifest.defaults,
+        manifest,
+        cleanedBook,
+        processedBook,
+        sections: sectionJson,
+      };
+      const contentHash = sha256Json(bookWithoutExportHash);
+      return {
+        ...bookWithoutExportHash,
+        contentVersion: contentHash.slice(0, 16),
+        contentHash,
+      };
+    },
+  );
+  const manifestBooks = exportBooks.map((book) => ({
+    slug: book.slug,
+    title: book.title,
+    author: book.author,
+    language: book.language,
+    description: book.description,
+    subjects: book.subjects,
+    source: {
+      provider: book.source.provider,
+      gutenbergId: book.source.gutenbergId,
+      sourceUrl: book.source.sourceUrl,
+      rightsBasis: book.source.rightsBasis,
+      rightsStatus: book.source.rightsStatus,
+      publishReady: book.source.publishReady,
+      processingAllowed: book.source.processingAllowed,
+      approvalSource: book.source.approvalSource,
+      duplicateResolutionSource: book.source.duplicateResolutionSource,
+    },
+    stats: book.stats,
+    contentVersion: book.contentVersion,
+    contentHash: book.contentHash,
+    bookPath: `books/${book.slug}.json`,
+  }));
+  const contentHash = sha256Json(manifestBooks);
+  const contentVersion = contentHash.slice(0, 16);
+  const artifacts: string[] = [];
+
+  const writeExportJson = (relativePath: string, value: unknown) => {
+    const filePath = path.join(exportRoot, ...relativePath.split("/"));
+    writeJson(filePath, value);
+    artifacts.push(relativePath);
+  };
+
+  writeExportJson("public-manifest.json", {
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    contentVersion,
+    contentHash,
+    books: manifestBooks,
+  });
+
+  for (const book of exportBooks) {
+    writeExportJson(`books/${book.slug}.json`, book);
+  }
+
+  writeExportJson("upload-manifest.json", {
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    contentVersion,
+    contentHash,
+    approvedBookCount: manifestBooks.length,
+    files: artifacts
+      .filter((artifact) => artifact !== "upload-manifest.json")
+      .sort((a, b) => a.localeCompare(b)),
+    mediaFilesIncluded: false,
+  });
+
+  return artifacts.sort((a, b) => a.localeCompare(b));
 }
 
 function formatList(items: string[], limit = 12): string[] {
@@ -1208,6 +1613,8 @@ function printSummary(result: BookBuildResult): void {
     fatalErrors,
     generatedArtifacts,
     generatedRoot,
+    cloudflareExportRoot,
+    cloudflareExportArtifacts,
   } = result;
   console.log("Morse book inventory");
   console.log(`Raw text files: ${inventory.rawTextFiles.length}`);
@@ -1228,6 +1635,10 @@ function printSummary(result: BookBuildResult): void {
   console.log(`Duplicate slugs: ${inventory.duplicateSlugs.length}`);
   console.log(`Duplicate Gutenberg IDs: ${inventory.duplicateGutenbergIds.length}`);
   console.log(`Generated output: ${generatedRoot}`);
+  if (cloudflareExportRoot) {
+    console.log(`Cloudflare export: ${cloudflareExportRoot}`);
+    console.log(`Cloudflare export files: ${cloudflareExportArtifacts.length}`);
+  }
 
   if (inventory.rawWithoutMetadata.length > 0) {
     console.log("\nRaw files without metadata:");
@@ -1307,10 +1718,24 @@ export function buildBookLibrary(
   const bookApprovalsPath = path.resolve(
     options.bookApprovalsPath ?? DEFAULT_BOOK_APPROVALS_PATH,
   );
+  const enrichedMetadataPath = path.resolve(
+    options.enrichedMetadataPath ?? DEFAULT_ENRICHED_METADATA_PATH,
+  );
   const generatedRoot = path.resolve(options.generatedRoot ?? DEFAULT_GENERATED_ROOT);
+  const cloudflareExportRoot =
+    options.cloudflareExportRoot === null
+      ? null
+      : options.cloudflareExportRoot !== undefined
+        ? path.resolve(options.cloudflareExportRoot)
+        : options.generatedRoot
+          ? null
+          : DEFAULT_CLOUDFLARE_EXPORT_ROOT;
   const inventory = scanBookInventory({ textRoot, metadataRoot });
   const approvedPeopleResult = loadApprovedPeopleMetadata(approvedPeoplePath);
   const bookApprovalsResult = loadOwnerBookApprovals(bookApprovalsPath);
+  const enrichedMetadataResult = loadEnrichedAuthorityMetadata(
+    enrichedMetadataPath,
+  );
   const bookApprovals = ownerBookApprovalMap(bookApprovalsResult.entries);
   const warnings: string[] = [];
   const fatalErrors: string[] = [];
@@ -1318,7 +1743,9 @@ export function buildBookLibrary(
 
   fatalErrors.push(...approvedPeopleResult.errors);
   fatalErrors.push(...bookApprovalsResult.errors);
+  fatalErrors.push(...enrichedMetadataResult.errors);
   warnings.push(...bookApprovalsResult.warnings);
+  warnings.push(...enrichedMetadataResult.warnings);
   for (const invalid of inventory.invalidMetadata) {
     fatalErrors.push(...invalid.errors);
   }
@@ -1413,6 +1840,10 @@ export function buildBookLibrary(
       fatalErrors,
       generatedArtifacts,
       generatedRoot: toPosixPath(generatedRoot),
+      cloudflareExportRoot: cloudflareExportRoot
+        ? toPosixPath(cloudflareExportRoot)
+        : null,
+      cloudflareExportArtifacts: [],
     };
     if (!options.quiet) printSummary(result);
     return result;
@@ -1430,22 +1861,29 @@ export function buildBookLibrary(
         entry.metadata !== null,
     )
     .sort((a, b) => a.metadata.slug.localeCompare(b.metadata.slug));
-  const draftMetadata = loadedMetadata.filter(({ metadata }) =>
-    isDraftMetadata(metadata),
+  const validMetadata = loadedMetadata;
+  const metadataWithoutRawSet = new Set(
+    inventory.metadataWithoutRaw.map((filePath) => path.normalize(filePath)),
   );
-  const validMetadata = loadedMetadata.filter(
-    ({ metadata }) => !isDraftMetadata(metadata),
+  const duplicateResolutions = buildDuplicateSlugResolutionMap(
+    loadedMetadata.map(({ filePath, metadata }) => ({
+      slug: metadata.slug,
+      title: metadata.title,
+      author: metadata.author,
+      gutenbergId: metadata.source.gutenbergId,
+      rawTextFile: metadata.source.rawTextFile,
+      metadataFile: relativeTo(textRoot, filePath),
+      allowDuplicateGutenbergId: metadata.source.allowDuplicateGutenbergId,
+      duplicateReason: metadata.source.duplicateReason ?? null,
+    })),
   );
-  if (draftMetadata.length > 0) {
-    warnings.push(
-      `${draftMetadata.length} draft metadata file(s) skipped by books:build until manual review is complete.`,
-    );
-  }
 
   safeResetGeneratedRoot(generatedRoot, Boolean(options.generatedRoot));
 
   const processedBooks: GeneratedBookManifest[] = [];
+  const cloudflareExportBooks: CloudflareExportBook[] = [];
   for (const { filePath, metadata } of validMetadata) {
+    if (metadataWithoutRawSet.has(path.normalize(filePath))) continue;
     const bookWarnings: string[] = [];
     let rawPath: string;
     try {
@@ -1462,16 +1900,25 @@ export function buildBookLibrary(
       rightsReport,
       processingNotes,
       processedBook,
+      cleanedBook,
       fatalErrors: bookFatalErrors,
     } = buildGeneratedManifest(
       metadata,
       rawText,
       approvedPeopleResult.people,
       bookApprovals.get(metadata.slug) ?? null,
+      enrichedMetadataResult.metadata,
+      duplicateResolutions.get(metadata.slug) ?? null,
       bookWarnings,
     );
-    fatalErrors.push(...bookFatalErrors);
     warnings.push(...bookWarnings.map((warning) => `${metadata.slug}: ${warning}`));
+    if (isDraftMetadata(metadata) && !manifest.source.processingAllowed) {
+      warnings.push(
+        `${metadata.slug}: draft metadata skipped by books:build because the authority evidence gate did not approve it.`,
+      );
+      continue;
+    }
+    fatalErrors.push(...bookFatalErrors);
     if (bookFatalErrors.length > 0) continue;
     processedBooks.push(manifest);
 
@@ -1490,6 +1937,11 @@ export function buildBookLibrary(
       writeJson(processedBookPath, processedBook);
       generatedArtifacts.push(relativeTo(generatedRoot, processedBookPath));
     }
+    if (cleanedBook) {
+      const cleanedBookPath = path.join(bookRoot, "cleaned_book.json");
+      writeJson(cleanedBookPath, cleanedBook);
+      generatedArtifacts.push(relativeTo(generatedRoot, cleanedBookPath));
+    }
     for (const section of sectionJson) {
       const sectionPath = path.join(
         bookRoot,
@@ -1499,12 +1951,27 @@ export function buildBookLibrary(
       writeJson(sectionPath, section);
       generatedArtifacts.push(relativeTo(generatedRoot, sectionPath));
     }
+    if (processedBook && cleanedBook && isPublishReadyManifest(manifest)) {
+      cloudflareExportBooks.push({
+        manifest,
+        sectionJson,
+        processedBook,
+        cleanedBook,
+      });
+    }
   }
 
   const libraryManifest = makeLibraryManifest(processedBooks);
   const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
   writeJson(libraryManifestPath, libraryManifest);
   generatedArtifacts.push(relativeTo(generatedRoot, libraryManifestPath));
+  const cloudflareExportArtifacts = cloudflareExportRoot
+    ? writeCloudflareExport({
+        exportRoot: cloudflareExportRoot,
+        books: cloudflareExportBooks,
+        allowCustomRoot: Boolean(options.cloudflareExportRoot),
+      })
+    : [];
 
   const result: BookBuildResult = {
     inventory,
@@ -1514,6 +1981,10 @@ export function buildBookLibrary(
     fatalErrors,
     generatedArtifacts: generatedArtifacts.sort((a, b) => a.localeCompare(b)),
     generatedRoot: toPosixPath(generatedRoot),
+    cloudflareExportRoot: cloudflareExportRoot
+      ? toPosixPath(cloudflareExportRoot)
+      : null,
+    cloudflareExportArtifacts,
   };
 
   if (!options.quiet) printSummary(result);

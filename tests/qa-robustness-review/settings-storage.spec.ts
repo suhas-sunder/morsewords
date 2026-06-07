@@ -23,10 +23,12 @@ import {
   safeRemoveStorage,
   safeWriteStorage,
   safeWriteStorageResult,
+  clearMorseWordsBookCacheData,
   clearMorseWordsSourceData,
   sourceStorageWriteMessage,
 } from "../../app/client/components/shared/settingsStorage";
 import {
+  BOOK_SECTION_CACHE_KEY_PREFIX,
   STORAGE_KEY_REGISTRY,
   STORAGE_KEYS,
   STORAGE_LIMITS,
@@ -220,6 +222,7 @@ test.describe("storage registry policy", () => {
       "mw_mp3_kbps",
       "mw_word_trainer_custom_words",
       STORAGE_KEYS.bookExportPreferences,
+      STORAGE_KEYS.bookSectionCacheIndex,
       STORAGE_KEYS.videoGeneratorPreferences,
       STORAGE_KEYS.printableChartSettings,
       STORAGE_KEYS.printableChartPresets,
@@ -336,6 +339,7 @@ test.describe("storage registry policy", () => {
   });
 
   test("clear source data and reset settings keep preference and source scopes separate", () => {
+    const cacheKey = `${BOOK_SECTION_CACHE_KEY_PREFIX}approved-book:v1:chapter-001`;
     withMockStorage(
       {
         [STORAGE_KEYS.theme]: "dark",
@@ -343,12 +347,33 @@ test.describe("storage registry policy", () => {
         mw_audio_morse: "... --- ...",
         mw_audio_wpm: "24",
         mw_audio_hz: "700",
+        [STORAGE_KEYS.bookSectionCacheIndex]: JSON.stringify({
+          schemaVersion: 1,
+          nextRank: 2,
+          entries: [
+            {
+              key: cacheKey,
+              slug: "approved-book",
+              contentVersion: "v1",
+              sectionId: "chapter-001",
+              bytes: 58,
+              rank: 1,
+            },
+          ],
+        }),
+        [cacheKey]: JSON.stringify({
+          bookSlug: "approved-book",
+          sectionId: "chapter-001",
+          displayText: "APPROVED CLEANED TEXT",
+        }),
       },
       (store) => {
         const resetResult = resetMorseWordsSettings();
         expect(resetResult.failedKeys).toEqual([]);
         expect(store.get("mw_audio_text")).toBe("PRIVATE SOURCE");
         expect(store.get("mw_audio_morse")).toBe("... --- ...");
+        expect(store.get(STORAGE_KEYS.bookSectionCacheIndex)).toBeTruthy();
+        expect(store.get(cacheKey)).toContain("APPROVED CLEANED TEXT");
         expect(store.has("mw_audio_wpm")).toBe(false);
         expect(store.has(STORAGE_KEYS.theme)).toBe(false);
 
@@ -358,7 +383,46 @@ test.describe("storage registry policy", () => {
         expect(clearResult.failedKeys).toEqual([]);
         expect(store.has("mw_audio_text")).toBe(false);
         expect(store.has("mw_audio_morse")).toBe(false);
+        expect(store.has(STORAGE_KEYS.bookSectionCacheIndex)).toBe(false);
+        expect(store.has(cacheKey)).toBe(false);
         expect(store.get("mw_audio_wpm")).toBe("20");
+        expect(store.get(STORAGE_KEYS.theme)).toBe("dark");
+      },
+    );
+  });
+
+  test("dedicated book cache clear removes cached approved text only", () => {
+    const cacheKey = `${BOOK_SECTION_CACHE_KEY_PREFIX}approved-book:v2:chapter-003`;
+    withMockStorage(
+      {
+        [STORAGE_KEYS.theme]: "dark",
+        mw_audio_text: "PRIVATE SOURCE",
+        [STORAGE_KEYS.bookSectionCacheIndex]: JSON.stringify({
+          schemaVersion: 1,
+          nextRank: 2,
+          entries: [
+            {
+              key: cacheKey,
+              slug: "approved-book",
+              contentVersion: "v2",
+              sectionId: "chapter-003",
+              bytes: 58,
+              rank: 1,
+            },
+          ],
+        }),
+        [cacheKey]: JSON.stringify({
+          bookSlug: "approved-book",
+          sectionId: "chapter-003",
+          displayText: "APPROVED CLEANED TEXT",
+        }),
+      },
+      (store) => {
+        const clearResult = clearMorseWordsBookCacheData();
+        expect(clearResult.failedKeys).toEqual([]);
+        expect(store.has(STORAGE_KEYS.bookSectionCacheIndex)).toBe(false);
+        expect(store.has(cacheKey)).toBe(false);
+        expect(store.get("mw_audio_text")).toBe("PRIVATE SOURCE");
         expect(store.get(STORAGE_KEYS.theme)).toBe("dark");
       },
     );
@@ -477,6 +541,86 @@ test.describe("nav storage controls", () => {
     await expect
       .poll(() => page.evaluate(() => document.documentElement.dataset.theme))
       .toBe("light");
+  });
+
+  test("clear cached book data removes approved section cache without wiping source text", async ({
+    page,
+  }) => {
+    const cacheKey = `${BOOK_SECTION_CACHE_KEY_PREFIX}approved-book:v1:chapter-001`;
+    await page.addInitScript(
+      ({ keys, cachePrefix, cacheEntryKey }) => {
+        window.localStorage.setItem(keys.theme, "dark");
+        window.localStorage.setItem("mw_audio_text", "PRIVATE SOURCE");
+        window.localStorage.setItem(
+          keys.bookSectionCacheIndex,
+          JSON.stringify({
+            schemaVersion: 1,
+            nextRank: 2,
+            entries: [
+              {
+                key: cacheEntryKey,
+                slug: "approved-book",
+                contentVersion: "v1",
+                sectionId: "chapter-001",
+                bytes: 58,
+                rank: 1,
+              },
+            ],
+          }),
+        );
+        window.localStorage.setItem(
+          `${cachePrefix}approved-book:v1:chapter-001`,
+          JSON.stringify({
+            bookSlug: "approved-book",
+            sectionId: "chapter-001",
+            displayText: "APPROVED CLEANED TEXT",
+          }),
+        );
+      },
+      {
+        keys: STORAGE_KEYS,
+        cachePrefix: BOOK_SECTION_CACHE_KEY_PREFIX,
+        cacheEntryKey: cacheKey,
+      },
+    );
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    const dialog = await openDisplaySettingsDialog(page);
+
+    page.once("dialog", async (confirmDialog) => {
+      expect(confirmDialog.message()).toContain(
+        "Clear cached approved Morse book sections",
+      );
+      await confirmDialog.accept();
+    });
+    await dialog.getByRole("button", { name: "Clear cached book data" }).click();
+
+    await expect(dialog.getByText("Cached book data cleared.")).toBeVisible();
+    await expect
+      .poll(() =>
+        page.evaluate(
+          (storageKey) => localStorage.getItem(storageKey),
+          STORAGE_KEYS.bookSectionCacheIndex,
+        ),
+      )
+      .toBeNull();
+    await expect
+      .poll(() =>
+        page.evaluate((storageKey) => localStorage.getItem(storageKey), cacheKey),
+      )
+      .toBeNull();
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem("mw_audio_text")))
+      .toBe("PRIVATE SOURCE");
+    await expect
+      .poll(() =>
+        page.evaluate(
+          (storageKey) => localStorage.getItem(storageKey),
+          STORAGE_KEYS.theme,
+        ),
+      )
+      .toBe("dark");
   });
 
   test("mobile dark-mode settings panel exposes usable storage controls", async ({

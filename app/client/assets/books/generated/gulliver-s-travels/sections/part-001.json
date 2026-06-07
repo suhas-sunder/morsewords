@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "gulliver-s-travels",
+  "sectionId": "part-001",
+  "kind": "part",
+  "label": "Part 1",
+  "title": "A VOYAGE TO LILLIPUT.",
+  "order": 3,
+  "includeByDefault": false,
+  "displayText": "PART I. A VOYAGE TO LILLIPUT.",
+  "morseSourceText": "PART I. A VOYAGE TO LILLIPUT.",
+  "paragraphs": [
+    "PART I. A VOYAGE TO LILLIPUT."
+  ],
+  "wordCount": 6,
+  "characterCount": 29,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 160,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PART I. A VOYAGE TO LILLIPUT.",
+  "sourceOffsets": {
+    "start": 257,
+    "end": 288
+  }
+}

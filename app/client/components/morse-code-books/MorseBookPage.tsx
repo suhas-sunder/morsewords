@@ -405,7 +405,7 @@ export default function MorseBookPage({
     setActiveSectionId(initialSection.sectionId);
     setSelectedSectionIds(new Set([initialSection.sectionId]));
     setSelectionScope("current");
-  }, [book.slug, initialSection]);
+  }, [book.slug, initialSection.sectionId]);
 
   React.useEffect(() => {
     setVideoSupport(detectBookVideoSupport());
@@ -595,6 +595,20 @@ export default function MorseBookPage({
       : selectionScope === "full"
         ? "Full book default sections"
         : `${scopeSectionIds.length} selected sections`;
+
+  const handleSectionSelectionChange = React.useCallback(
+    (sectionId: string, checked: boolean) => {
+      setSelectedSectionIds((current) => {
+        const next = new Set(current);
+        if (checked) next.add(sectionId);
+        else next.delete(sectionId);
+        if (next.size === 0) next.add(activeSectionId);
+        return next;
+      });
+      setSelectionScope("selected");
+    },
+    [activeSectionId],
+  );
 
   const clearAudioPreviewTimers = React.useCallback(() => {
     if (audioPreviewIntervalRef.current !== null) {
@@ -1153,20 +1167,21 @@ export default function MorseBookPage({
                           </span>
                         </span>
                       </button>
-                      <label className="flex cursor-pointer items-center gap-2 px-1 text-sm font-semibold text-slate-700">
+                      <label
+                        className="flex cursor-pointer items-center gap-2 px-1 text-sm font-semibold text-slate-700"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          handleSectionSelectionChange(section.id, !selected);
+                        }}
+                      >
                         <input
                           type="checkbox"
                           checked={selected}
-                          onChange={(event) => {
-                            const checked = event.target.checked;
-                            setSelectedSectionIds((current) => {
-                              const next = new Set(current);
-                              if (checked) next.add(section.id);
-                              else next.delete(section.id);
-                              if (next.size === 0) next.add(activeSectionId);
-                              return next;
-                            });
-                            setSelectionScope("selected");
+                          readOnly
+                          onKeyDown={(event) => {
+                            if (event.key !== " " && event.key !== "Enter") return;
+                            event.preventDefault();
+                            handleSectionSelectionChange(section.id, !selected);
                           }}
                           className="h-4 w-4 accent-sky-500"
                           data-mw-morse-book-section-select={section.id}

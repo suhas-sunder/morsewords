@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "0801ee82e5f7ffdf",
+  "contentHash": "0801ee82e5f7ffdfc7da1c51ccce1a45ca614455452c906c3c46b5b6c5ca2591",
+  "approvedBookCount": 16,
+  "files": [
+    "books/anne-of-green-gables.json",
+    "books/crime-and-punishment.json",
+    "books/dr-jekyll-and-mr-hyde.json",
+    "books/frankenstein.json",
+    "books/gulliver-s-travels.json",
+    "books/the-call-of-the-wild.json",
+    "books/the-emerald-city-of-oz.json",
+    "books/the-great-gatsby.json",
+    "books/the-jungle-book.json",
+    "books/the-picture-of-dorian-gray.json",
+    "books/the-princess-and-the-goblin.json",
+    "books/the-railway-children.json",
+    "books/the-sea-wolf.json",
+    "books/the-secret-garden-gutenberg-113.json",
+    "books/the-three-musketeers.json",
+    "books/treasure-island.json",
+    "public-manifest.json"
+  ],
+  "mediaFilesIncluded": false
+}

@@ -48,6 +48,25 @@ export const CANADA_US_V1_STATUSES = [
 
 export type BookCanadaUsV1Status = (typeof CANADA_US_V1_STATUSES)[number];
 
+export const BOOK_APPROVAL_SOURCES = [
+  "file-evidence",
+  "external-authority",
+  "owner-reviewed",
+  "manual-review",
+] as const;
+
+export type BookApprovalSource = (typeof BOOK_APPROVAL_SOURCES)[number];
+
+export const DUPLICATE_RESOLUTION_SOURCES = [
+  "deterministic-file-match",
+  "owner-reviewed",
+  "manual-review",
+  "not-needed",
+] as const;
+
+export type DuplicateResolutionSource =
+  (typeof DUPLICATE_RESOLUTION_SOURCES)[number];
+
 export const APPROVED_PERSON_ROLES = [
   "author",
   "translator",
@@ -236,6 +255,8 @@ export type BookRightsReport = {
   approved_for_website: boolean;
   approved_for_youtube_narration: boolean;
   approved_regions: string[];
+  approval_source: BookApprovalSource;
+  duplicate_resolution_source: DuplicateResolutionSource;
   canada_us_v1_status: BookCanadaUsV1Status;
   reasoning_summary: string;
   evidence_snippets: string[];
@@ -247,6 +268,8 @@ export type ProcessedBookJson = {
   id: string;
   title: string;
   author: string;
+  content_version: string;
+  content_hash: string;
   source: {
     name: "Project Gutenberg" | string;
     ebook_number: string;
@@ -274,9 +297,111 @@ export type ProcessedBookJson = {
         word_count: number;
         character_count: number;
         estimated_typing_minutes: number;
+        estimated_listening_minutes: number;
       }>;
     }>;
   };
+};
+
+export const AUTHORITY_EVIDENCE_SOURCE_TYPES = [
+  "project-gutenberg-rdf",
+  "wikidata",
+  "library-of-congress",
+  "owner-approved",
+] as const;
+
+export type AuthorityEvidenceSourceType =
+  (typeof AUTHORITY_EVIDENCE_SOURCE_TYPES)[number];
+
+export const AUTHORITY_EVIDENCE_CONFIDENCE_VALUES = [
+  "high",
+  "medium",
+  "low",
+] as const;
+
+export type AuthorityEvidenceConfidence =
+  (typeof AUTHORITY_EVIDENCE_CONFIDENCE_VALUES)[number];
+
+export type AuthorityMetadataEvidence = {
+  field:
+    | "birthYear"
+    | "deathYear"
+    | "originalPublicationYear"
+    | "gutenbergId"
+    | "sourceUrl";
+  value: number | string | null;
+  sourceType: AuthorityEvidenceSourceType;
+  sourceId: string;
+  sourceUrl: string;
+  matchedBy?: string;
+  confidence: AuthorityEvidenceConfidence;
+  notes?: string;
+};
+
+export type EnrichedPersonMetadata = {
+  slug: string;
+  name: string;
+  roles: ApprovedPersonRole[];
+  birthYear?: number | null;
+  deathYear: number | null;
+  canadaLifePlus70Safe: boolean;
+  evidence: AuthorityMetadataEvidence[];
+  approvalSource: Extract<BookApprovalSource, "external-authority">;
+  reviewedByOwner: false;
+};
+
+export type EnrichedWorkMetadata = {
+  bookSlug: string;
+  title: string;
+  originalPublicationYear: number | null;
+  evidence: AuthorityMetadataEvidence[];
+  approvalSource: Extract<BookApprovalSource, "external-authority">;
+};
+
+export type EnrichedAuthorityMetadata = {
+  schemaVersion: 1;
+  generatedAt: string;
+  people: EnrichedPersonMetadata[];
+  works: EnrichedWorkMetadata[];
+};
+
+export type CleanedBookJson = {
+  schemaVersion: 1;
+  id: string;
+  title: string;
+  author: string;
+  contentVersion: string;
+  contentHash: string;
+  source: {
+    provider: string;
+    gutenbergId: string | null;
+    sourceUrl: string | null;
+    rawTextUrl: string | null;
+    originalPublication: string;
+    releaseDate: string;
+    lastUpdated: string;
+  };
+  stats: {
+    wordCount: number;
+    characterCount: number;
+    sectionCount: number;
+    estimatedTypingMinutes: number;
+    estimatedListeningMinutes: number;
+  };
+  sections: Array<{
+    id: string;
+    kind: BookSectionKind;
+    label: string;
+    title: string | null;
+    order: number;
+    includeByDefault: boolean;
+    text: string;
+    paragraphs: string[];
+    wordCount: number;
+    characterCount: number;
+    estimatedTypingMinutes: number;
+    estimatedListeningMinutes: number;
+  }>;
 };
 
 export type GutenbergCleaningReport = {
@@ -311,6 +436,8 @@ export type GeneratedBookSectionSummary = Omit<
   "text" | "sourceStartOffset" | "sourceEndOffset"
 > & {
   sectionJsonPath: string;
+  estimatedTypingMinutes: number;
+  estimatedListeningMinutes: number;
 };
 
 export type GeneratedBookManifest = {
@@ -318,6 +445,8 @@ export type GeneratedBookManifest = {
   slug: string;
   title: string;
   author: string[];
+  contentVersion: string;
+  contentHash: string;
   language: string;
   description: string;
   subjects: string[];
@@ -332,8 +461,11 @@ export type GeneratedBookManifest = {
     publishReady: boolean;
     rightsStatus: BookCanadaUsV1Status;
     processingAllowed: boolean;
+    approvalSource: BookApprovalSource;
+    duplicateResolutionSource?: DuplicateResolutionSource;
     rightsReportPath: string;
     processedBookPath?: string;
+    cleanedBookPath?: string;
     rightsNotes: string;
     allowDuplicateGutenbergId?: boolean;
     duplicateReason?: string;
@@ -369,6 +501,8 @@ export type GeneratedBookSectionJson = {
   paragraphs: string[];
   wordCount: number;
   characterCount: number;
+  estimatedTypingMinutes: number;
+  estimatedListeningMinutes: number;
   morseCharacterEstimate: number;
   unsupportedCharacterSummary: Record<string, number>;
   textPreview: string;
@@ -382,6 +516,8 @@ export type GeneratedLibraryBookSummary = {
   slug: string;
   title: string;
   author: string[];
+  contentVersion: string;
+  contentHash: string;
   language: string;
   description: string;
   subjects: string[];

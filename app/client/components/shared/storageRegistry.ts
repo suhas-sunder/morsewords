@@ -53,6 +53,8 @@ export const STORAGE_LIMITS = {
   filenameMaxLength: 120,
   printableChartJsonMaxLength: 90_000,
   preferenceJsonMaxLength: 24_000,
+  bookSectionCacheItemMaxLength: 160_000,
+  bookSectionCacheIndexMaxLength: 36_000,
 } as const;
 
 export const STORAGE_KEYS = {
@@ -64,7 +66,11 @@ export const STORAGE_KEYS = {
   videoGeneratorPreferences: "morsewords:video-generator:preferences:v1",
   printableChartSettings: "morsewords-printable-chart-settings-v6",
   printableChartPresets: "morsewords-printable-chart-presets-v3",
+  bookSectionCacheIndex: "morsewords:book-section-cache:index:v1",
 } as const;
+
+export const BOOK_SECTION_CACHE_KEY_PREFIX =
+  "morsewords:book-section-cache:item:v1:";
 
 const SOURCE_MODES = ["text", "morse"] as const;
 const TRANSLATOR_PRESETS = [
@@ -665,6 +671,24 @@ export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
     maxLength: STORAGE_LIMITS.preferenceJsonMaxLength,
     notes: "Stores video/audio preferences only. Raw source text and generated WebM blobs are not persisted.",
     normalizeForWrite: normalizeJsonObjectMax(STORAGE_LIMITS.preferenceJsonMaxLength),
+  },
+  {
+    key: STORAGE_KEYS.bookSectionCacheIndex,
+    routeScope: "approved Morse book section cache index",
+    valueType: "json-object",
+    defaultValue: "empty approved section cache index",
+    validatorName: "bookSectionCacheIndexObject",
+    validate: validateJsonObjectMax(STORAGE_LIMITS.bookSectionCacheIndexMaxLength),
+    sensitivity: "cache",
+    clearBehaviors: ["clear source data", "clear all site data"],
+    versionStrategy:
+      "versioned key plus per-section cache keys containing slug, content version, and section id",
+    maxLength: STORAGE_LIMITS.bookSectionCacheIndexMaxLength,
+    notes:
+      "Tracks approved cleaned section JSON only. Raw source text and generated media are not cached.",
+    normalizeForWrite: normalizeJsonObjectMax(
+      STORAGE_LIMITS.bookSectionCacheIndexMaxLength,
+    ),
   },
   {
     key: "morsewords:generated-media:*",

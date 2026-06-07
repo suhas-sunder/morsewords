@@ -266,7 +266,6 @@ export default function MorseCodeBooksHubRoute({
     languageFilter !== "all" ||
     sortMode !== "title";
   const hasMultiplePages = pageCount > 1;
-  const controlsDisabled = books.length === 0;
   const collectionResultText = resultCountText({
     allBooksCount: books.length,
     filteredCount: filteredBooks.length,
@@ -384,7 +383,6 @@ export default function MorseCodeBooksHubRoute({
                   className="mw-input-text mw-input-placeholder min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   placeholder="Title, author, or subject"
                   aria-label="Search title, author, or subject"
-                  disabled={controlsDisabled}
                 />
               </label>
               <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
@@ -395,7 +393,7 @@ export default function MorseCodeBooksHubRoute({
                     setSubjectFilter(event.currentTarget.value)
                   }
                   className="mw-input-text min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                  disabled={controlsDisabled || subjectOptions.length === 0}
+                  disabled={subjectOptions.length === 0}
                   aria-label="Filter Morse books by subject"
                 >
                   <option value="all">All subjects</option>
@@ -414,7 +412,7 @@ export default function MorseCodeBooksHubRoute({
                     setLanguageFilter(event.currentTarget.value)
                   }
                   className="mw-input-text min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                  disabled={controlsDisabled || languageOptions.length === 0}
+                  disabled={languageOptions.length === 0}
                   aria-label="Filter Morse books by language"
                 >
                   <option value="all">All languages</option>
@@ -433,7 +431,6 @@ export default function MorseCodeBooksHubRoute({
                     setSortMode(event.currentTarget.value as SortMode)
                   }
                   className="mw-input-text min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                  disabled={controlsDisabled}
                   aria-label="Sort Morse books"
                 >
                   <option value="title">Title</option>

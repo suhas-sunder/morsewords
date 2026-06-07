@@ -488,6 +488,24 @@ function validateRightsReportShape(
   ) {
     errors.push(`${filePath}: canada_us_v1_status is invalid.`);
   }
+  if (
+    raw.approval_source !== undefined &&
+    raw.approval_source !== "file-evidence" &&
+    raw.approval_source !== "external-authority" &&
+    raw.approval_source !== "owner-reviewed" &&
+    raw.approval_source !== "manual-review"
+  ) {
+    errors.push(`${filePath}: approval_source is invalid.`);
+  }
+  if (
+    raw.duplicate_resolution_source !== undefined &&
+    raw.duplicate_resolution_source !== "deterministic-file-match" &&
+    raw.duplicate_resolution_source !== "owner-reviewed" &&
+    raw.duplicate_resolution_source !== "manual-review" &&
+    raw.duplicate_resolution_source !== "not-needed"
+  ) {
+    errors.push(`${filePath}: duplicate_resolution_source is invalid.`);
+  }
   requireBoolean("processing_allowed");
   requireBoolean("contains_later_copyright_notice");
   requireBoolean("contains_permission_based_language");
@@ -728,6 +746,13 @@ function duplicateLookup(
   return lookup;
 }
 
+function isAuthorityApprovalSource(rightsReport: BookRightsReport): boolean {
+  return (
+    rightsReport.approval_source === "file-evidence" ||
+    rightsReport.approval_source === "external-authority"
+  );
+}
+
 function missingFieldsFor({
   metadata,
   rightsReport,
@@ -741,7 +766,12 @@ function missingFieldsFor({
   if (!metadata.source.gutenbergId) missing.push("source.gutenbergId");
   if (!rightsReport.source_url) missing.push("sourceUrl");
   if (!rightsReport.original_publication) missing.push("originalPublication");
-  if (metadata.originalPublicationYear === null) missing.push("originalPublicationYear");
+  if (
+    !isAuthorityApprovalSource(rightsReport) &&
+    metadata.originalPublicationYear === null
+  ) {
+    missing.push("originalPublicationYear");
+  }
   if (rightsReport.author_death_year === null) {
     missing.push("approved author death year");
   }
@@ -753,14 +783,16 @@ function missingFieldsFor({
     missing.push("introduction author identity/death-year review");
   }
   if (rightsReport.illustrator) missing.push("illustrator handling review");
-  if (!metadata.source.rightsReviewed) missing.push("source.rightsReviewed");
-  if (!rightsReport.owner_reviewed_approval_present) {
-    missing.push("owner-reviewed website approval");
+  if (!isAuthorityApprovalSource(rightsReport)) {
+    if (!metadata.source.rightsReviewed) missing.push("source.rightsReviewed");
+    if (!rightsReport.owner_reviewed_approval_present) {
+      missing.push("owner-reviewed website approval");
+    }
+    if (!rightsReport.approved_for_website) missing.push("website approval");
+    if (metadata.source.rightsBasis === "unknown") missing.push("source.rightsBasis");
+    if (metadata.metadataStatus === "draft") missing.push("metadataStatus reviewed");
+    if (metadata.manualReviewRequired === true) missing.push("manualReviewRequired false");
   }
-  if (!rightsReport.approved_for_website) missing.push("website approval");
-  if (metadata.source.rightsBasis === "unknown") missing.push("source.rightsBasis");
-  if (metadata.metadataStatus === "draft") missing.push("metadataStatus reviewed");
-  if (metadata.manualReviewRequired === true) missing.push("manualReviewRequired false");
   if (duplicateGroup) missing.push("duplicate Gutenberg ID resolution");
   return uniqueSorted(missing);
 }
@@ -801,7 +833,11 @@ function nextActionsForBook({
   if (rightsReport.editor || rightsReport.introduction_author) {
     actions.push("Check editor/introduction author identity and death year.");
   }
-  if (!rightsReport.original_publication || metadata.originalPublicationYear === null) {
+  if (
+    !rightsReport.original_publication ||
+    (!isAuthorityApprovalSource(rightsReport) &&
+      metadata.originalPublicationYear === null)
+  ) {
     actions.push("Add original publication metadata.");
   }
   if (rightsReport.contains_later_copyright_notice) {
@@ -828,13 +864,22 @@ function nextActionsForBook({
   if (rightsReport.is_translation && !rightsReport.translator) {
     actions.push("Confirm translation status.");
   }
-  if (!metadata.source.rightsReviewed || metadata.source.rightsBasis === "unknown") {
+  if (
+    !isAuthorityApprovalSource(rightsReport) &&
+    (!metadata.source.rightsReviewed || metadata.source.rightsBasis === "unknown")
+  ) {
     actions.push("Complete manual rights review metadata.");
   }
-  if (!rightsReport.owner_reviewed_approval_present) {
+  if (
+    !isAuthorityApprovalSource(rightsReport) &&
+    !rightsReport.owner_reviewed_approval_present
+  ) {
     actions.push("Add owner-reviewed book approval before processing.");
   }
-  if (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true) {
+  if (
+    !isAuthorityApprovalSource(rightsReport) &&
+    (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true)
+  ) {
     actions.push("Move draft metadata through manual review before processing.");
   }
   if (actions.length === 0 && missingFields.length === 0) {

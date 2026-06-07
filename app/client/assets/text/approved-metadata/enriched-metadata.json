@@ -1,0 +1,2305 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-07T07:43:12.292Z",
+  "people": [
+    {
+      "slug": "alexander-hamilton",
+      "name": "Alexander Hamilton",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1757,
+      "deathYear": 1804,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1804,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "18",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/18/pg18.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1757,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "18",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/18/pg18.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "alexandre-dumas",
+      "name": "Alexandre Dumas",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1802,
+      "deathYear": 1870,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1870,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1184",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1184/pg1184.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1802,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1184",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1184/pg1184.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "anna-sewell",
+      "name": "Anna Sewell",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1820,
+      "deathYear": 1878,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1878,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "271",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/271/pg271.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1820,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "271",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/271/pg271.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "bram-stoker",
+      "name": "Bram Stoker",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1847,
+      "deathYear": 1912,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1912,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "345",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/345/pg345.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1847,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "345",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/345/pg345.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "charles-dickens",
+      "name": "Charles Dickens",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1812,
+      "deathYear": 1870,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1870,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "46",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/46/pg46.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1812,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "46",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/46/pg46.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "charles-kingsley",
+      "name": "Charles Kingsley",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1819,
+      "deathYear": 1875,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1875,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "25564",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/25564/pg25564.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1819,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "25564",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/25564/pg25564.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "charlotte-bronte",
+      "name": "Charlotte Brontë",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1816,
+      "deathYear": 1855,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1855,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1260",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1260/pg1260.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1816,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1260",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1260/pg1260.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "constance-garnett",
+      "name": "Constance Garnett",
+      "roles": [
+        "translator"
+      ],
+      "birthYear": 1861,
+      "deathYear": 1946,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1946,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1399",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1399/pg1399.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1861,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1399",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1399/pg1399.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "dante-alighieri",
+      "name": "Dante Alighieri",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1265,
+      "deathYear": 1321,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1321,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "8800",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/8800/pg8800.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1265,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "8800",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/8800/pg8800.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "e-nesbit",
+      "name": "E. Nesbit",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1858,
+      "deathYear": 1924,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1924,
+          "sourceType": "wikidata",
+          "sourceId": "Q231708",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q231708",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1858,
+          "sourceType": "wikidata",
+          "sourceId": "Q231708",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q231708",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "edgar-rice-burroughs",
+      "name": "Edgar Rice Burroughs",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1875,
+      "deathYear": 1950,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1950,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "62",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/62/pg62.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1875,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "62",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/62/pg62.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "elisabeth-p-stork",
+      "name": "Elisabeth P. Stork",
+      "roles": [
+        "translator"
+      ],
+      "birthYear": 1888,
+      "deathYear": 1968,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1968,
+          "sourceType": "wikidata",
+          "sourceId": "Q58093237",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q58093237",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1888,
+          "sourceType": "wikidata",
+          "sourceId": "Q58093237",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q58093237",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "f-scott-fitzgerald",
+      "name": "F. Scott Fitzgerald",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1896,
+      "deathYear": 1940,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1940,
+          "sourceType": "wikidata",
+          "sourceId": "Q93354",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q93354",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1896,
+          "sourceType": "wikidata",
+          "sourceId": "Q93354",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q93354",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "frances-hodgson-burnett",
+      "name": "Frances Hodgson Burnett",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1849,
+      "deathYear": 1924,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1924,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "113",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/113/pg113.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1849,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "113",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/113/pg113.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "fyodor-dostoyevsky",
+      "name": "Fyodor Dostoyevsky",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1821,
+      "deathYear": 1881,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1881,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "2554",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/2554/pg2554.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1821,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "2554",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/2554/pg2554.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "george-m-towle",
+      "name": "George M. Towle",
+      "roles": [
+        "translator"
+      ],
+      "birthYear": 1841,
+      "deathYear": 1893,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1893,
+          "sourceType": "wikidata",
+          "sourceId": "Q5542067",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q5542067",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1841,
+          "sourceType": "wikidata",
+          "sourceId": "Q5542067",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q5542067",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "george-macdonald",
+      "name": "George MacDonald",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1824,
+      "deathYear": 1905,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1905,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "708",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/708/pg708.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1824,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "708",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/708/pg708.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "graf-leo-tolstoy",
+      "name": "graf Leo Tolstoy",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1828,
+      "deathYear": 1910,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1910,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1399",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1399/pg1399.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1828,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1399",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1399/pg1399.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "henry-francis-cary",
+      "name": "Henry Francis Cary",
+      "roles": [
+        "translator"
+      ],
+      "birthYear": 1772,
+      "deathYear": 1844,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1844,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "8800",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/8800/pg8800.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1772,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "8800",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/8800/pg8800.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "hugh-lofting",
+      "name": "Hugh Lofting",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1886,
+      "deathYear": 1947,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1947,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "501",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/501/pg501.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1886,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "501",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/501/pg501.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "isabel-florence-hapgood",
+      "name": "Isabel Florence Hapgood",
+      "roles": [
+        "translator"
+      ],
+      "birthYear": 1850,
+      "deathYear": 1928,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1928,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "135",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/135/pg135.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1850,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "135",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/135/pg135.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "j-m-barrie",
+      "name": "J. M. Barrie",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1860,
+      "deathYear": 1937,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1937,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "16",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/16/pg16.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1860,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "16",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/16/pg16.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "jack-london",
+      "name": "Jack London",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1876,
+      "deathYear": 1916,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1916,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "215",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/215/pg215.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1876,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "215",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/215/pg215.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "jacob-grimm",
+      "name": "Jacob Grimm",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1785,
+      "deathYear": 1863,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1863,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "52521",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/52521/pg52521.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1785,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "52521",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/52521/pg52521.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "jane-austen",
+      "name": "Jane Austen",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1775,
+      "deathYear": 1817,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1817,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1342",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1342/pg1342.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1775,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "1342",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/1342/pg1342.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "joel-chandler-harris",
+      "name": "Joel Chandler Harris",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1848,
+      "deathYear": 1908,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1908,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "24430",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/24430/pg24430.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1848,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "24430",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/24430/pg24430.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "johanna-spyri",
+      "name": "Johanna Spyri",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1827,
+      "deathYear": 1901,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1901,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "20781",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/20781/pg20781.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1827,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "20781",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/20781/pg20781.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "john-buchan",
+      "name": "John Buchan",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1875,
+      "deathYear": 1940,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1940,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "558",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/558/pg558.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1875,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "558",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/558/pg558.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "john-ormsby",
+      "name": "John Ormsby",
+      "roles": [
+        "translator"
+      ],
+      "birthYear": 1829,
+      "deathYear": 1895,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1895,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "996",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/996/pg996.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1829,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "996",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/996/pg996.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "jonathan-swift",
+      "name": "Jonathan Swift",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1667,
+      "deathYear": 1745,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1745,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "829",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/829/pg829.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1667,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "829",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/829/pg829.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "jules-verne",
+      "name": "Jules Verne",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1828,
+      "deathYear": 1905,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1905,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "103",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/103/pg103.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1828,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "103",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/103/pg103.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "kenneth-grahame",
+      "name": "Kenneth Grahame",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1859,
+      "deathYear": 1932,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1932,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "289",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/289/pg289.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1859,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "289",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/289/pg289.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "l-frank-baum",
+      "name": "L. Frank Baum",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1856,
+      "deathYear": 1919,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1919,
+          "sourceType": "wikidata",
+          "sourceId": "Q207544",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q207544",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1856,
+          "sourceType": "wikidata",
+          "sourceId": "Q207544",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q207544",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "l-m-montgomery",
+      "name": "L. M. Montgomery",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1874,
+      "deathYear": 1942,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1942,
+          "sourceType": "wikidata",
+          "sourceId": "Q273034",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q273034",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1874,
+          "sourceType": "wikidata",
+          "sourceId": "Q273034",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q273034",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "lewis-carroll",
+      "name": "Lewis Carroll",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1832,
+      "deathYear": 1898,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1898,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "11",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/11/pg11.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1832,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "11",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/11/pg11.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "lionel-giles",
+      "name": "Lionel Giles",
+      "roles": [
+        "translator"
+      ],
+      "birthYear": 1875,
+      "deathYear": 1958,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1958,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "66706",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/66706/pg66706.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1875,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "66706",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/66706/pg66706.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "louisa-may-alcott",
+      "name": "Louisa May Alcott",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1832,
+      "deathYear": 1888,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1888,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "2786",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/2786/pg2786.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1832,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "2786",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/2786/pg2786.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "margaret-sidney",
+      "name": "Margaret Sidney",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1844,
+      "deathYear": 1924,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1924,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "2770",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/2770/pg2770.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1844,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "2770",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/2770/pg2770.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "mary-wollstonecraft-shelley",
+      "name": "Mary Wollstonecraft Shelley",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1797,
+      "deathYear": 1851,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1851,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "84",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/84/pg84.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1797,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "84",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/84/pg84.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "miguel-de-cervantes-saavedra",
+      "name": "Miguel de Cervantes Saavedra",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1547,
+      "deathYear": 1616,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1616,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "996",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/996/pg996.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1547,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "996",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/996/pg996.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "oscar-wilde",
+      "name": "Oscar Wilde",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1854,
+      "deathYear": 1900,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1900,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "174",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/174/pg174.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1854,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "174",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/174/pg174.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "robert-louis-stevenson",
+      "name": "Robert Louis Stevenson",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1850,
+      "deathYear": 1894,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1894,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "25609",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/25609/pg25609.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1850,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "25609",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/25609/pg25609.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "rudyard-kipling",
+      "name": "Rudyard Kipling",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1865,
+      "deathYear": 1936,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1936,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "236",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/236/pg236.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1865,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "236",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/236/pg236.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "soseki-natsume",
+      "name": "Soseki Natsume",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1867,
+      "deathYear": 1916,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1916,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "8868",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/8868/pg8868.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1867,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "8868",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/8868/pg8868.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "victor-hugo",
+      "name": "Victor Hugo",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1802,
+      "deathYear": 1885,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1885,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "135",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/135/pg135.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1802,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "135",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/135/pg135.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "voltaire",
+      "name": "Voltaire",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1694,
+      "deathYear": 1778,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1778,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "19942",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/19942/pg19942.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1694,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "19942",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/19942/pg19942.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "washington-irving",
+      "name": "Washington Irving",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1783,
+      "deathYear": 1859,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1859,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "41",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/41/pg41.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1783,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "41",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/41/pg41.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "william-j-long",
+      "name": "William J. Long",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1867,
+      "deathYear": 1952,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1952,
+          "sourceType": "wikidata",
+          "sourceId": "Q8013274",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8013274",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1867,
+          "sourceType": "wikidata",
+          "sourceId": "Q8013274",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8013274",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "william-strunk",
+      "name": "William Strunk",
+      "roles": [
+        "author"
+      ],
+      "birthYear": 1869,
+      "deathYear": 1946,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1946,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "37134",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/37134/pg37134.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1869,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "37134",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/37134/pg37134.rdf",
+          "matchedBy": "exact-name-and-gutenberg-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    },
+    {
+      "slug": "yasotaro-mori",
+      "name": "Yasotaro Mori",
+      "roles": [
+        "translator"
+      ],
+      "birthYear": 1882,
+      "deathYear": 1959,
+      "canadaLifePlus70Safe": true,
+      "evidence": [
+        {
+          "field": "deathYear",
+          "value": 1959,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "8868",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/8868/pg8868.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        },
+        {
+          "field": "birthYear",
+          "value": 1882,
+          "sourceType": "project-gutenberg-rdf",
+          "sourceId": "8868",
+          "sourceUrl": "https://www.gutenberg.org/cache/epub/8868/pg8868.rdf",
+          "matchedBy": "exact-name-and-gutenberg-translator",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority",
+      "reviewedByOwner": false
+    }
+  ],
+  "works": [
+    {
+      "bookSlug": "a-childs-garden-of-verses",
+      "title": "A Child's Garden of Verses",
+      "originalPublicationYear": 1885,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1885,
+          "sourceType": "wikidata",
+          "sourceId": "Q4655846",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q4655846",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "originalPublicationYear": 1912,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1912,
+          "sourceType": "wikidata",
+          "sourceId": "Q475589",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q475589",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "anne-of-green-gables",
+      "title": "Anne of Green Gables",
+      "originalPublicationYear": 1908,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1908,
+          "sourceType": "wikidata",
+          "sourceId": "Q565911",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q565911",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "anne-of-green-gables-gutenberg-45",
+      "title": "Anne of Green Gables",
+      "originalPublicationYear": 1908,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1908,
+          "sourceType": "wikidata",
+          "sourceId": "Q565911",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q565911",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "around-the-world-in-eighty-days",
+      "title": "Around the World in Eighty Days",
+      "originalPublicationYear": 1872,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1872,
+          "sourceType": "wikidata",
+          "sourceId": "Q1219561",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1219561",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "black-beauty",
+      "title": "Black Beauty",
+      "originalPublicationYear": 1877,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1877,
+          "sourceType": "wikidata",
+          "sourceId": "Q880092",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q880092",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "candide",
+      "title": "Candide",
+      "originalPublicationYear": 1759,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1759,
+          "sourceType": "wikidata",
+          "sourceId": "Q215894",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q215894",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "crime-and-punishment",
+      "title": "Crime and Punishment",
+      "originalPublicationYear": 1866,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1866,
+          "sourceType": "wikidata",
+          "sourceId": "Q165318",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q165318",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "originalPublicationYear": 1920,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1920,
+          "sourceType": "wikidata",
+          "sourceId": "Q251604",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q251604",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "don-quixote",
+      "title": "Don Quixote",
+      "originalPublicationYear": 1605,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1605,
+          "sourceType": "wikidata",
+          "sourceId": "Q480",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q480",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "dr-jekyll-and-mr-hyde",
+      "title": "The strange case of Dr. Jekyll and Mr. Hyde",
+      "originalPublicationYear": 1886,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1886,
+          "sourceType": "wikidata",
+          "sourceId": "Q217352",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q217352",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "dracula",
+      "title": "Dracula",
+      "originalPublicationYear": 1897,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1897,
+          "sourceType": "wikidata",
+          "sourceId": "Q41542",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41542",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "frankenstein",
+      "title": "Frankenstein; or, the modern prometheus",
+      "originalPublicationYear": 1818,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1818,
+          "sourceType": "wikidata",
+          "sourceId": "Q150827",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q150827",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "heidi",
+      "title": "Heidi",
+      "originalPublicationYear": 1880,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1880,
+          "sourceType": "wikidata",
+          "sourceId": "Q271697",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q271697",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "jabberwocky",
+      "title": "Jabberwocky",
+      "originalPublicationYear": 1871,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1871,
+          "sourceType": "wikidata",
+          "sourceId": "Q250371",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q250371",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "jack-and-jill",
+      "title": "Jack and Jill",
+      "originalPublicationYear": 1880,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1880,
+          "sourceType": "wikidata",
+          "sourceId": "Q6115945",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6115945",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "jane-eyre",
+      "title": "Jane Eyre: An Autobiography",
+      "originalPublicationYear": 1847,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1847,
+          "sourceType": "wikidata",
+          "sourceId": "Q182961",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q182961",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "pride-and-prejudice",
+      "title": "Pride and Prejudice",
+      "originalPublicationYear": 1813,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1813,
+          "sourceType": "wikidata",
+          "sourceId": "Q170583",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q170583",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "rainbow-valley",
+      "title": "Rainbow Valley",
+      "originalPublicationYear": 1919,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1919,
+          "sourceType": "wikidata",
+          "sourceId": "Q2394369",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2394369",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "rinkitink-in-oz",
+      "title": "Rinkitink in Oz",
+      "originalPublicationYear": 1916,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1916,
+          "sourceType": "wikidata",
+          "sourceId": "Q7335058",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7335058",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "sense-and-sensibility",
+      "title": "Sense and Sensibility",
+      "originalPublicationYear": 1811,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1811,
+          "sourceType": "wikidata",
+          "sourceId": "Q274744",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q274744",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "originalPublicationYear": 1912,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1912,
+          "sourceType": "wikidata",
+          "sourceId": "Q655296",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q655296",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-call-of-the-wild",
+      "title": "The call of the wild",
+      "originalPublicationYear": 1903,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1903,
+          "sourceType": "wikidata",
+          "sourceId": "Q476871",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q476871",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-count-of-monte-cristo",
+      "title": "The Count of Monte Cristo",
+      "originalPublicationYear": 1844,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1844,
+          "sourceType": "wikidata",
+          "sourceId": "Q191838",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q191838",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-elements-of-style",
+      "title": "The Elements of Style",
+      "originalPublicationYear": 1920,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1920,
+          "sourceType": "wikidata",
+          "sourceId": "Q3010059",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3010059",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-emerald-city-of-oz",
+      "title": "The Emerald City of Oz",
+      "originalPublicationYear": 1910,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1910,
+          "sourceType": "wikidata",
+          "sourceId": "Q1250366",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1250366",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-federalist-papers",
+      "title": "The Federalist Papers",
+      "originalPublicationYear": 1788,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1788,
+          "sourceType": "wikidata",
+          "sourceId": "Q858036",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q858036",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "originalPublicationYear": 1925,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1925,
+          "sourceType": "wikidata",
+          "sourceId": "Q214371",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q214371",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-jungle-book",
+      "title": "The Jungle Book",
+      "originalPublicationYear": 1894,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1894,
+          "sourceType": "wikidata",
+          "sourceId": "Q189509",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q189509",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "originalPublicationYear": 1890,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1890,
+          "sourceType": "wikidata",
+          "sourceId": "Q82464",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q82464",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-princess-and-the-goblin",
+      "title": "The Princess and the Goblin",
+      "originalPublicationYear": 1872,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1872,
+          "sourceType": "wikidata",
+          "sourceId": "Q466505",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q466505",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-railway-children",
+      "title": "The Railway Children",
+      "originalPublicationYear": 1906,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1906,
+          "sourceType": "wikidata",
+          "sourceId": "Q969970",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q969970",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-sea-wolf",
+      "title": "The Sea-Wolf",
+      "originalPublicationYear": 1904,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1904,
+          "sourceType": "wikidata",
+          "sourceId": "Q1196857",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1196857",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-secret-garden",
+      "title": "The Secret Garden",
+      "originalPublicationYear": 1912,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1912,
+          "sourceType": "wikidata",
+          "sourceId": "Q472194",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q472194",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-secret-garden-gutenberg-113",
+      "title": "The Secret Garden",
+      "originalPublicationYear": 1912,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1912,
+          "sourceType": "wikidata",
+          "sourceId": "Q472194",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q472194",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "originalPublicationYear": 1915,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1915,
+          "sourceType": "wikidata",
+          "sourceId": "Q2609365",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2609365",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-three-musketeers",
+      "title": "The three musketeers",
+      "originalPublicationYear": 1844,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1844,
+          "sourceType": "wikidata",
+          "sourceId": "Q140527",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q140527",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "the-wonderful-wizard-of-oz",
+      "title": "The Wonderful Wizard of Oz",
+      "originalPublicationYear": 1900,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1900,
+          "sourceType": "wikidata",
+          "sourceId": "Q130295",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q130295",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "through-the-looking-glass",
+      "title": "Through the Looking-Glass",
+      "originalPublicationYear": 1871,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1871,
+          "sourceType": "wikidata",
+          "sourceId": "Q220331",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q220331",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "treasure-island",
+      "title": "Treasure Island",
+      "originalPublicationYear": 1883,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1883,
+          "sourceType": "wikidata",
+          "sourceId": "Q185118",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185118",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    },
+    {
+      "bookSlug": "wind-in-the-willows",
+      "title": "The Wind in the Willows",
+      "originalPublicationYear": 1908,
+      "evidence": [
+        {
+          "field": "originalPublicationYear",
+          "value": 1908,
+          "sourceType": "wikidata",
+          "sourceId": "Q936276",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q936276",
+          "matchedBy": "exact-title-and-author",
+          "confidence": "high"
+        }
+      ],
+      "approvalSource": "external-authority"
+    }
+  ]
+}
