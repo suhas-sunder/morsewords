@@ -65,7 +65,11 @@ type BatchRightsReport = {
     slug: string;
     sourceUrl: string | null;
     publishReady: boolean;
-    approvalSource?: "file-evidence" | "owner-reviewed" | "manual-review";
+    approvalSource?:
+      | "file-evidence"
+      | "external-authority"
+      | "owner-reviewed"
+      | "manual-review";
     originalPublication: string;
     authorDeathYear: number | null;
     translator: string;
@@ -345,6 +349,9 @@ export function generateFirstPublicationCandidateReport(
     const fileEvidenceApproved =
       rightsBook?.approvalSource === "file-evidence" &&
       rightsBook.publishReady === true;
+    const externalAuthorityApproved =
+      rightsBook?.approvalSource === "external-authority" &&
+      rightsBook.publishReady === true;
 
     return {
       slug: book.slug,
@@ -363,7 +370,8 @@ export function generateFirstPublicationCandidateReport(
         book,
         rightsBook,
       ),
-      ownerApprovalStillRequired: !ownerApproved && !fileEvidenceApproved,
+      ownerApprovalStillRequired:
+        !ownerApproved && !fileEvidenceApproved && !externalAuthorityApproved,
       sourceUrlPresent: Boolean(rightsBook?.sourceUrl),
       processingAllowed: book.processingAllowed,
       publishReady: rightsBook?.publishReady === true,

@@ -491,6 +491,7 @@ function validateRightsReportShape(
   if (
     raw.approval_source !== undefined &&
     raw.approval_source !== "file-evidence" &&
+    raw.approval_source !== "external-authority" &&
     raw.approval_source !== "owner-reviewed" &&
     raw.approval_source !== "manual-review"
   ) {
@@ -745,6 +746,13 @@ function duplicateLookup(
   return lookup;
 }
 
+function isAuthorityApprovalSource(rightsReport: BookRightsReport): boolean {
+  return (
+    rightsReport.approval_source === "file-evidence" ||
+    rightsReport.approval_source === "external-authority"
+  );
+}
+
 function missingFieldsFor({
   metadata,
   rightsReport,
@@ -759,7 +767,7 @@ function missingFieldsFor({
   if (!rightsReport.source_url) missing.push("sourceUrl");
   if (!rightsReport.original_publication) missing.push("originalPublication");
   if (
-    rightsReport.approval_source !== "file-evidence" &&
+    !isAuthorityApprovalSource(rightsReport) &&
     metadata.originalPublicationYear === null
   ) {
     missing.push("originalPublicationYear");
@@ -775,7 +783,7 @@ function missingFieldsFor({
     missing.push("introduction author identity/death-year review");
   }
   if (rightsReport.illustrator) missing.push("illustrator handling review");
-  if (rightsReport.approval_source !== "file-evidence") {
+  if (!isAuthorityApprovalSource(rightsReport)) {
     if (!metadata.source.rightsReviewed) missing.push("source.rightsReviewed");
     if (!rightsReport.owner_reviewed_approval_present) {
       missing.push("owner-reviewed website approval");
@@ -827,7 +835,7 @@ function nextActionsForBook({
   }
   if (
     !rightsReport.original_publication ||
-    (rightsReport.approval_source !== "file-evidence" &&
+    (!isAuthorityApprovalSource(rightsReport) &&
       metadata.originalPublicationYear === null)
   ) {
     actions.push("Add original publication metadata.");
@@ -857,19 +865,19 @@ function nextActionsForBook({
     actions.push("Confirm translation status.");
   }
   if (
-    rightsReport.approval_source !== "file-evidence" &&
+    !isAuthorityApprovalSource(rightsReport) &&
     (!metadata.source.rightsReviewed || metadata.source.rightsBasis === "unknown")
   ) {
     actions.push("Complete manual rights review metadata.");
   }
   if (
-    rightsReport.approval_source !== "file-evidence" &&
+    !isAuthorityApprovalSource(rightsReport) &&
     !rightsReport.owner_reviewed_approval_present
   ) {
     actions.push("Add owner-reviewed book approval before processing.");
   }
   if (
-    rightsReport.approval_source !== "file-evidence" &&
+    !isAuthorityApprovalSource(rightsReport) &&
     (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true)
   ) {
     actions.push("Move draft metadata through manual review before processing.");

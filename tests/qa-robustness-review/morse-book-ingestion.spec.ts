@@ -15,6 +15,10 @@ import { detectBookSections } from "../../scripts/books/detect-book-sections.ts"
 import { generateFirstPublicationCandidateReport } from "../../scripts/books/generate-first-publication-candidate-report.ts";
 import { generateBookReviewQueue } from "../../scripts/books/generate-book-review-queue.ts";
 import { generateBookRightsReports } from "../../scripts/books/generate-book-rights-reports.ts";
+import {
+  enrichBookMetadata,
+  type AuthorityResolverRequest,
+} from "../../scripts/books/enrich-book-metadata.ts";
 import { scaffoldBookMetadata } from "../../scripts/books/scaffold-book-metadata.ts";
 import { applyBookReviewApprovals } from "../../scripts/books/apply-book-review-approvals.ts";
 
@@ -2153,6 +2157,413 @@ Project Gutenberg License
     expect(missingTranslator.translator_death_year).toBeNull();
     expect(missingTranslator.translation_risk).toBe("medium");
     expect(missingTranslator.processing_allowed).toBe(false);
+  });
+
+  test("external authority enrichment can satisfy sourced author death and publication years", async ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("authority-enrichment-library");
+    const generatedRoot = testInfo.outputPath("authority-enrichment-generated");
+    const reviewRoot = testInfo.outputPath("authority-enrichment-review");
+    const enrichedMetadataPath = path.join(
+      textRoot,
+      "approved-metadata",
+      "enriched-metadata.json",
+    );
+    const slug = "authority-approved-safe";
+    writeBookApprovals(textRoot, []);
+    writeFixtureBook(
+      textRoot,
+      slug,
+      gutenbergFixtureText({
+        title: "Authority Approved Safe",
+        author: "Authority Author",
+        gutenbergId: "6401",
+        body: "CHAPTER I\n\nAUTHORITY APPROVED STORY TEXT.",
+      }),
+      {
+        ...baseMetadata(slug),
+        metadataStatus: "draft",
+        manualReviewRequired: true,
+        title: "Authority Approved Safe",
+        author: ["Authority Author"],
+        originalPublicationYear: null,
+        source: {
+          ...baseMetadata(slug).source,
+          gutenbergId: "6401",
+          rightsBasis: "unknown",
+          rightsReviewed: false,
+        },
+      },
+    );
+
+    const enrichment = await enrichBookMetadata({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      bookApprovalsPath: path.join(
+        textRoot,
+        "approved-metadata",
+        "book-approvals.json",
+      ),
+      enrichedMetadataPath,
+      generatedReviewRoot: reviewRoot,
+      fetchLive: false,
+      quiet: true,
+      authorityResolver: async (request: AuthorityResolverRequest) => {
+        expect(request.slug).toBe(slug);
+        expect(request.needs.authorDeathYear).toBe(true);
+        expect(request.needs.originalPublicationYear).toBe(true);
+        return {
+          people: [
+            {
+              slug: "authority-author",
+              name: "Authority Author",
+              roles: ["author"],
+              birthYear: 1850,
+              deathYear: 1910,
+              canadaLifePlus70Safe: true,
+              evidence: [
+                {
+                  field: "deathYear",
+                  value: 1910,
+                  sourceType: "wikidata",
+                  sourceId: "Q640101",
+                  sourceUrl: "https://www.wikidata.org/wiki/Q640101",
+                  matchedBy: "exact-name-and-gutenberg-author",
+                  confidence: "high",
+                },
+              ],
+              approvalSource: "external-authority",
+              reviewedByOwner: false,
+            },
+          ],
+          works: [
+            {
+              bookSlug: slug,
+              title: "Authority Approved Safe",
+              originalPublicationYear: 1900,
+              evidence: [
+                {
+                  field: "originalPublicationYear",
+                  value: 1900,
+                  sourceType: "wikidata",
+                  sourceId: "Q640102",
+                  sourceUrl: "https://www.wikidata.org/wiki/Q640102",
+                  matchedBy: "exact-title-and-author",
+                  confidence: "high",
+                },
+              ],
+              approvalSource: "external-authority",
+            },
+          ],
+          sourcesAttempted: ["test wikidata"],
+          liveFetchAvailable: true,
+        };
+      },
+    });
+
+    expect(enrichment.fatalErrors).toEqual([]);
+    expect(fs.existsSync(enrichedMetadataPath)).toBe(true);
+    expect(fs.existsSync(enrichment.reportJsonPath)).toBe(true);
+    expect(fs.existsSync(enrichment.reportMarkdownPath)).toBe(true);
+    expect(enrichment.enrichedMetadata.people[0]).toMatchObject({
+      deathYear: 1910,
+      approvalSource: "external-authority",
+      reviewedByOwner: false,
+    });
+    expect(enrichment.enrichedMetadata.people[0].evidence[0]).toMatchObject({
+      sourceType: "wikidata",
+      sourceId: "Q640101",
+      sourceUrl: "https://www.wikidata.org/wiki/Q640101",
+      confidence: "high",
+    });
+    expect(enrichment.enrichedMetadata.works[0].originalPublicationYear).toBe(1900);
+    expect(
+      fs.readFileSync(enrichment.reportMarkdownPath, "utf8"),
+    ).toContain("npm run books:rights-report");
+
+    const rights = generateBookRightsReports({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath: path.join(textRoot, "approved-metadata", "authors.json"),
+      bookApprovalsPath: path.join(
+        textRoot,
+        "approved-metadata",
+        "book-approvals.json",
+      ),
+      enrichedMetadataPath,
+      generatedRoot,
+      quiet: true,
+    });
+    expect(rights.fatalErrors).toEqual([]);
+
+    const report = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, slug, "rights_report.json"),
+    );
+    expect(report.approval_source).toBe("external-authority");
+    expect(report.author_death_year).toBe(1910);
+    expect(report.original_publication).toBe("1900");
+    expect(report.processing_allowed).toBe(true);
+    expect(report.evidence_snippets.join("\n")).toContain(
+      "Author death year authority",
+    );
+
+    const build = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath: path.join(textRoot, "approved-metadata", "authors.json"),
+      bookApprovalsPath: path.join(
+        textRoot,
+        "approved-metadata",
+        "book-approvals.json",
+      ),
+      enrichedMetadataPath,
+      generatedRoot: testInfo.outputPath("authority-enrichment-build"),
+      quiet: true,
+    });
+    expect(build.fatalErrors).toEqual([]);
+    expect(build.processedBooks.map((book) => book.slug)).toEqual([slug]);
+    expect(build.processedBooks[0].source).toMatchObject({
+      approvalSource: "external-authority",
+      publishReady: true,
+      processingAllowed: true,
+      sourceUrl: "https://www.gutenberg.org/ebooks/6401",
+    });
+    expect(
+      fs.existsSync(
+        path.join(
+          testInfo.outputPath("authority-enrichment-build"),
+          slug,
+          "processed_book.json",
+        ),
+      ),
+    ).toBe(true);
+  });
+
+  test("external authority ambiguity and missing translator evidence stay blocked", async ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("authority-blocked-library");
+    const generatedRoot = testInfo.outputPath("authority-blocked-generated");
+    const enrichedMetadataPath = path.join(
+      textRoot,
+      "approved-metadata",
+      "enriched-metadata.json",
+    );
+    writeBookApprovals(textRoot, []);
+    writeFixtureBook(
+      textRoot,
+      "authority-ambiguous",
+      gutenbergFixtureText({
+        title: "Authority Ambiguous",
+        author: "Ambiguous Author",
+        gutenbergId: "6501",
+      }),
+      {
+        ...baseMetadata("authority-ambiguous"),
+        metadataStatus: "draft",
+        manualReviewRequired: true,
+        title: "Authority Ambiguous",
+        author: ["Ambiguous Author"],
+        source: {
+          ...baseMetadata("authority-ambiguous").source,
+          gutenbergId: "6501",
+          rightsBasis: "unknown",
+          rightsReviewed: false,
+        },
+      },
+    );
+    writeFixtureBook(
+      textRoot,
+      "authority-translator-blocked",
+      gutenbergFixtureText({
+        title: "Authority Translator Blocked",
+        author: "Translated Authority Author",
+        gutenbergId: "6502",
+        extraHeader: "Translator: Unsourced Translator",
+      }),
+      {
+        ...baseMetadata("authority-translator-blocked"),
+        metadataStatus: "draft",
+        manualReviewRequired: true,
+        title: "Authority Translator Blocked",
+        author: ["Translated Authority Author"],
+        source: {
+          ...baseMetadata("authority-translator-blocked").source,
+          gutenbergId: "6502",
+          rightsBasis: "unknown",
+          rightsReviewed: false,
+        },
+      },
+    );
+
+    const enrichment = await enrichBookMetadata({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      bookApprovalsPath: path.join(
+        textRoot,
+        "approved-metadata",
+        "book-approvals.json",
+      ),
+      enrichedMetadataPath,
+      generatedReviewRoot: testInfo.outputPath("authority-blocked-review"),
+      fetchLive: false,
+      quiet: true,
+      authorityResolver: async (request) => {
+        if (request.slug === "authority-ambiguous") {
+          return {
+            ambiguities: ["Ambiguous Wikidata person match for Ambiguous Author."],
+            sourcesAttempted: ["test wikidata"],
+            liveFetchAvailable: true,
+          };
+        }
+        return {
+          people: [
+            {
+              slug: "translated-authority-author",
+              name: "Translated Authority Author",
+              roles: ["author"],
+              deathYear: 1910,
+              canadaLifePlus70Safe: true,
+              evidence: [
+                {
+                  field: "deathYear",
+                  value: 1910,
+                  sourceType: "wikidata",
+                  sourceId: "Q650201",
+                  sourceUrl: "https://www.wikidata.org/wiki/Q650201",
+                  confidence: "high",
+                },
+              ],
+              approvalSource: "external-authority",
+              reviewedByOwner: false,
+            },
+          ],
+          works: [
+            {
+              bookSlug: "authority-translator-blocked",
+              title: "Authority Translator Blocked",
+              originalPublicationYear: 1900,
+              evidence: [
+                {
+                  field: "originalPublicationYear",
+                  value: 1900,
+                  sourceType: "wikidata",
+                  sourceId: "Q650202",
+                  sourceUrl: "https://www.wikidata.org/wiki/Q650202",
+                  confidence: "high",
+                },
+              ],
+              approvalSource: "external-authority",
+            },
+          ],
+          unresolved: ["No high-confidence death-year authority match for Unsourced Translator."],
+          sourcesAttempted: ["test wikidata"],
+          liveFetchAvailable: true,
+        };
+      },
+    });
+    expect(enrichment.report.summary.unresolvedBooks).toBe(2);
+    expect(enrichment.report.books.some((book) => book.ambiguities.length > 0)).toBe(
+      true,
+    );
+
+    const rights = generateBookRightsReports({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath: path.join(textRoot, "approved-metadata", "authors.json"),
+      bookApprovalsPath: path.join(
+        textRoot,
+        "approved-metadata",
+        "book-approvals.json",
+      ),
+      enrichedMetadataPath,
+      generatedRoot,
+      quiet: true,
+    });
+    expect(rights.fatalErrors).toEqual([]);
+    const ambiguous = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "authority-ambiguous", "rights_report.json"),
+    );
+    const translator = readJsonFile<BookRightsReport>(
+      path.join(
+        generatedRoot,
+        "authority-translator-blocked",
+        "rights_report.json",
+      ),
+    );
+    expect(ambiguous.approval_source).toBe("manual-review");
+    expect(ambiguous.processing_allowed).toBe(false);
+    expect(translator.translator_death_year).toBeNull();
+    expect(translator.translation_risk).toBe("medium");
+    expect(translator.processing_allowed).toBe(false);
+  });
+
+  test("metadata enrichment does not request external data for owner-approved facts", async ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("authority-owner-priority-library");
+    const enrichedMetadataPath = path.join(
+      textRoot,
+      "approved-metadata",
+      "enriched-metadata.json",
+    );
+    writeApprovedPeople(textRoot, {
+      "owner-priority-author": {
+        name: "Owner Priority Author",
+        deathYear: 1910,
+        canadaLifePlus70Safe: true,
+        notes: "Owner-reviewed test metadata.",
+      },
+    });
+    writeBookApprovals(textRoot, [
+      {
+        bookSlug: "owner-priority",
+        approvedForWebsite: true,
+        originalPublicationYear: 1900,
+        ownerReviewed: true,
+      },
+    ]);
+    writeFixtureBook(
+      textRoot,
+      "owner-priority",
+      gutenbergFixtureText({
+        title: "Owner Priority",
+        author: "Owner Priority Author",
+        gutenbergId: "6601",
+      }),
+      {
+        ...baseMetadata("owner-priority"),
+        title: "Owner Priority",
+        author: ["Owner Priority Author"],
+        originalPublicationYear: null,
+        source: {
+          ...baseMetadata("owner-priority").source,
+          gutenbergId: "6601",
+        },
+      },
+    );
+    let resolverCalls = 0;
+    const enrichment = await enrichBookMetadata({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      approvedPeoplePath: path.join(textRoot, "approved-metadata", "authors.json"),
+      bookApprovalsPath: path.join(
+        textRoot,
+        "approved-metadata",
+        "book-approvals.json",
+      ),
+      enrichedMetadataPath,
+      generatedReviewRoot: testInfo.outputPath("authority-owner-priority-review"),
+      fetchLive: false,
+      quiet: true,
+      authorityResolver: async () => {
+        resolverCalls += 1;
+        return {};
+      },
+    });
+
+    expect(enrichment.fatalErrors).toEqual([]);
+    expect(resolverCalls).toBe(0);
+    expect(enrichment.enrichedMetadata.people).toEqual([]);
+    expect(enrichment.enrichedMetadata.works).toEqual([]);
   });
 
   test("deterministic duplicate file match keeps one canonical slug eligible", ({

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-picture-of-dorian-gray",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Front matter",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "The Picture of Dorian Gray\n\nby Oscar Wilde",
+  "morseSourceText": "The Picture of Dorian Gray\n\nby Oscar Wilde",
+  "paragraphs": [
+    "The Picture of Dorian Gray",
+    "by Oscar Wilde"
+  ],
+  "wordCount": 8,
+  "characterCount": 42,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 221,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "The Picture of Dorian Gray by Oscar Wilde",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 45
+  }
+}

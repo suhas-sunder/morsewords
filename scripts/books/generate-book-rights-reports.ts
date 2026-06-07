@@ -19,6 +19,7 @@ import {
   loadOwnerBookApprovals,
   ownerBookApprovalMap,
 } from "./bookApprovalFiles.ts";
+import { loadEnrichedAuthorityMetadata } from "./bookEnrichedMetadata.ts";
 import {
   buildBookRightsReport,
   loadApprovedPeopleMetadata,
@@ -126,6 +127,7 @@ export type GenerateBookRightsReportOptions = {
   metadataRoot?: string;
   approvedPeoplePath?: string;
   bookApprovalsPath?: string;
+  enrichedMetadataPath?: string;
   generatedRoot?: string;
   quiet?: boolean;
 };
@@ -155,13 +157,18 @@ const DEFAULT_BOOK_APPROVALS_PATH = path.join(
   "approved-metadata",
   "book-approvals.json",
 );
+const DEFAULT_ENRICHED_METADATA_PATH = path.join(
+  DEFAULT_TEXT_ROOT,
+  "approved-metadata",
+  "enriched-metadata.json",
+);
 const DEFAULT_GENERATED_ROOT = path.join(
   DEFAULT_REPO_ROOT,
   "app/client/assets/books/generated",
 );
 
 const DRAFT_REVIEW_REASON =
-  "Draft or manual-review metadata must be reviewed before processing or publishing.";
+  "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.";
 const DUPLICATE_REVIEW_REASON =
   "Duplicate Gutenberg ID requires explicit review before processing or publishing.";
 
@@ -558,12 +565,13 @@ function maybeApplyMetadataReviewLocks(
   duplicateResolution: DuplicateSlugResolution | null,
 ): BookRightsReport {
   let nextReport = report;
-  const fileEvidenceApproved =
-    nextReport.approval_source === "file-evidence" &&
+  const authorityEvidenceApproved =
+    (nextReport.approval_source === "file-evidence" ||
+      nextReport.approval_source === "external-authority") &&
     nextReport.canada_us_v1_status === "approved" &&
     nextReport.processing_allowed;
   if (
-    !fileEvidenceApproved &&
+    !authorityEvidenceApproved &&
     (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true)
   ) {
     nextReport = forceManualReview(nextReport, DRAFT_REVIEW_REASON);
@@ -963,6 +971,9 @@ export function generateBookRightsReports(
   const bookApprovalsPath = path.resolve(
     options.bookApprovalsPath ?? DEFAULT_BOOK_APPROVALS_PATH,
   );
+  const enrichedMetadataPath = path.resolve(
+    options.enrichedMetadataPath ?? DEFAULT_ENRICHED_METADATA_PATH,
+  );
   const generatedRoot = path.resolve(options.generatedRoot ?? DEFAULT_GENERATED_ROOT);
   const warnings: string[] = [];
   const fatalErrors: string[] = [];
@@ -971,10 +982,15 @@ export function generateBookRightsReports(
 
   const approvedPeopleResult = loadApprovedPeopleMetadata(approvedPeoplePath);
   const bookApprovalsResult = loadOwnerBookApprovals(bookApprovalsPath);
+  const enrichedMetadataResult = loadEnrichedAuthorityMetadata(
+    enrichedMetadataPath,
+  );
   const bookApprovals = ownerBookApprovalMap(bookApprovalsResult.entries);
   fatalErrors.push(...approvedPeopleResult.errors);
   fatalErrors.push(...bookApprovalsResult.errors);
+  fatalErrors.push(...enrichedMetadataResult.errors);
   warnings.push(...bookApprovalsResult.warnings);
+  warnings.push(...enrichedMetadataResult.warnings);
   const { entries, errors } = loadMetadataEntries(textRoot, metadataRoot);
   fatalErrors.push(...errors);
   const slugCounts = new Map<string, number>();
@@ -1059,6 +1075,7 @@ export function generateBookRightsReports(
       cleaning: cleaning.report,
       approvedPeople: approvedPeopleResult.people as ApprovedPeopleMetadata,
       ownerBookApproval: bookApprovals.get(entry.metadata.slug) ?? null,
+      enrichedMetadata: enrichedMetadataResult.metadata,
     });
     const report = maybeApplyMetadataReviewLocks(
       entry.metadata,

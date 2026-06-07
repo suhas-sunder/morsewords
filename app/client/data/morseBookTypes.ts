@@ -32,6 +32,7 @@ export type MorseBookRightsStatus = "approved" | "needs_manual_review" | "reject
 
 export type MorseBookApprovalSource =
   | "file-evidence"
+  | "external-authority"
   | "owner-reviewed"
   | "manual-review";
 

@@ -14,6 +14,7 @@
 
 ## Rights evidence found
 
+- Translator death year authority: project-gutenberg-rdf 66706 https://www.gutenberg.org/cache/epub/66706/pg66706.rdf
 - Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
 - U.S. reuse language: of War: The Oldest Military Treatise in the World This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Sun Tzŭ on the Art of War: The O
@@ -37,7 +38,7 @@
 
 ## Risks found
 
-- Translation risk: medium
+- Translation risk: low
 - Edition risk: none
 - Trademark or character brand risk: none
 - Content brand-safety risk: none
@@ -63,11 +64,10 @@
 - Author death year is missing from approved metadata or clear source metadata.
 - Modern introduction, notes, or editorial material may be present.
 - Illustrations or image references need manual handling.
-- Translation status or translator death year needs manual review.
 - Metadata rightsReviewed is false.
 - Owner-reviewed book approval is missing.
 - Rights basis "unknown" is not publish-ready.
-- Draft or manual-review metadata must be reviewed before processing or publishing.
+- Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
 ## Next action
 

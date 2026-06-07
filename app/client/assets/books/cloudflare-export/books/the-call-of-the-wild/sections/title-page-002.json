@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-call-of-the-wild",
+  "sectionId": "title-page-002",
+  "kind": "title-page",
+  "label": "Contents",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "Contents\n\n Chapter I. Into the Primitive\n Chapter II. The Law of Club and Fang\n Chapter III. The Dominant Primordial Beast\n Chapter IV. Who Has Won to Mastership\n Chapter V. The Toil of Trace and Trail\n Chapter VI. For the Love of a Man\n Chapter VII. The Sounding of the Call",
+  "morseSourceText": "Contents\n\n Chapter I. Into the Primitive\n Chapter II. The Law of Club and Fang\n Chapter III. The Dominant Primordial Beast\n Chapter IV. Who Has Won to Mastership\n Chapter V. The Toil of Trace and Trail\n Chapter VI. For the Love of a Man\n Chapter VII. The Sounding of the Call",
+  "paragraphs": [
+    "Contents",
+    "Chapter I. Into the Primitive Chapter II. The Law of Club and Fang Chapter III. The Dominant Primordial Beast Chapter IV. Who Has Won to Mastership Chapter V. The Toil of Trace and Trail Chapter VI. For the Love of a Man Chapter VII. The Sounding of the Call"
+  ],
+  "wordCount": 50,
+  "characterCount": 275,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1433,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Contents Chapter I. Into the Primitive Chapter II. The Law of Club and Fang Chapter III. The Dominant Primordial Beast Chapter IV. Who Has Won to Mastership Ch...",
+  "sourceOffsets": {
+    "start": 47,
+    "end": 325
+  }
+}

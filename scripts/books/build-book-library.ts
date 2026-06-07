@@ -10,6 +10,7 @@ import type {
   BookMetadata,
   BookRightsReport,
   BookSectionKind,
+  EnrichedAuthorityMetadata,
   GeneratedBookManifest,
   GeneratedBookSectionJson,
   GeneratedLibraryManifest,
@@ -29,6 +30,7 @@ import {
   loadOwnerBookApprovals,
   ownerBookApprovalMap,
 } from "./bookApprovalFiles.ts";
+import { loadEnrichedAuthorityMetadata } from "./bookEnrichedMetadata.ts";
 import {
   buildBookRightsReport,
   getProjectGutenbergSourceUrl,
@@ -52,6 +54,7 @@ export type BookBuildOptions = {
   metadataRoot?: string;
   approvedPeoplePath?: string;
   bookApprovalsPath?: string;
+  enrichedMetadataPath?: string;
   generatedRoot?: string;
   cloudflareExportRoot?: string | null;
   quiet?: boolean;
@@ -108,6 +111,11 @@ const DEFAULT_BOOK_APPROVALS_PATH = path.join(
   "approved-metadata",
   "book-approvals.json",
 );
+const DEFAULT_ENRICHED_METADATA_PATH = path.join(
+  DEFAULT_TEXT_ROOT,
+  "approved-metadata",
+  "enriched-metadata.json",
+);
 const DEFAULT_GENERATED_ROOT = path.join(
   DEFAULT_REPO_ROOT,
   "app/client/assets/books/generated",
@@ -117,7 +125,7 @@ const DEFAULT_CLOUDFLARE_EXPORT_ROOT = path.join(
   "app/client/assets/books/cloudflare-export",
 );
 const DRAFT_REVIEW_REASON =
-  "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file evidence satisfies the gate.";
+  "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.";
 
 function toPosixPath(input: string): string {
   return input.split(path.sep).join("/");
@@ -887,13 +895,14 @@ function applyBuildReviewLocks(
   duplicateResolution: DuplicateSlugResolution | null,
 ): BookRightsReport {
   let nextReport = report;
-  const fileEvidenceApproved =
-    nextReport.approval_source === "file-evidence" &&
+  const authorityEvidenceApproved =
+    (nextReport.approval_source === "file-evidence" ||
+      nextReport.approval_source === "external-authority") &&
     nextReport.canada_us_v1_status === "approved" &&
     nextReport.processing_allowed;
 
   if (
-    !fileEvidenceApproved &&
+    !authorityEvidenceApproved &&
     (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true)
   ) {
     nextReport = forceManualReview(nextReport, DRAFT_REVIEW_REASON);
@@ -1197,6 +1206,7 @@ function buildGeneratedManifest(
   rawText: string,
   approvedPeople: ApprovedPeopleMetadata,
   ownerBookApproval: Parameters<typeof buildBookRightsReport>[0]["ownerBookApproval"],
+  enrichedMetadata: EnrichedAuthorityMetadata,
   duplicateResolution: DuplicateSlugResolution | null,
   warnings: string[],
 ): {
@@ -1225,6 +1235,7 @@ function buildGeneratedManifest(
     cleaning: cleaning.report,
     approvedPeople,
     ownerBookApproval,
+    enrichedMetadata,
   });
   const rightsReport = applyBuildReviewLocks(
     metadata,
@@ -1290,7 +1301,8 @@ function buildGeneratedManifest(
   const contentHash = buildContentHash(metadata, sectionJson, rightsReport);
   const contentVersion = contentHash.slice(0, 16);
   const effectiveRightsBasis =
-    rightsReport.approval_source === "file-evidence" &&
+    (rightsReport.approval_source === "file-evidence" ||
+      rightsReport.approval_source === "external-authority") &&
     rightsReport.canada_us_v1_status === "approved"
       ? "public-domain-us"
       : metadata.source.rightsBasis;
@@ -1434,6 +1446,7 @@ type CloudflareExportBook = {
 function isPublishReadyManifest(manifest: GeneratedBookManifest): boolean {
   const approvedBySource =
     manifest.source.approvalSource === "file-evidence" ||
+    manifest.source.approvalSource === "external-authority" ||
     (manifest.source.approvalSource === "owner-reviewed" &&
       manifest.source.rightsReviewed === true);
   return (
@@ -1669,6 +1682,9 @@ export function buildBookLibrary(
   const bookApprovalsPath = path.resolve(
     options.bookApprovalsPath ?? DEFAULT_BOOK_APPROVALS_PATH,
   );
+  const enrichedMetadataPath = path.resolve(
+    options.enrichedMetadataPath ?? DEFAULT_ENRICHED_METADATA_PATH,
+  );
   const generatedRoot = path.resolve(options.generatedRoot ?? DEFAULT_GENERATED_ROOT);
   const cloudflareExportRoot =
     options.cloudflareExportRoot === null
@@ -1681,6 +1697,9 @@ export function buildBookLibrary(
   const inventory = scanBookInventory({ textRoot, metadataRoot });
   const approvedPeopleResult = loadApprovedPeopleMetadata(approvedPeoplePath);
   const bookApprovalsResult = loadOwnerBookApprovals(bookApprovalsPath);
+  const enrichedMetadataResult = loadEnrichedAuthorityMetadata(
+    enrichedMetadataPath,
+  );
   const bookApprovals = ownerBookApprovalMap(bookApprovalsResult.entries);
   const warnings: string[] = [];
   const fatalErrors: string[] = [];
@@ -1688,7 +1707,9 @@ export function buildBookLibrary(
 
   fatalErrors.push(...approvedPeopleResult.errors);
   fatalErrors.push(...bookApprovalsResult.errors);
+  fatalErrors.push(...enrichedMetadataResult.errors);
   warnings.push(...bookApprovalsResult.warnings);
+  warnings.push(...enrichedMetadataResult.warnings);
   for (const invalid of inventory.invalidMetadata) {
     fatalErrors.push(...invalid.errors);
   }
@@ -1850,13 +1871,14 @@ export function buildBookLibrary(
       rawText,
       approvedPeopleResult.people,
       bookApprovals.get(metadata.slug) ?? null,
+      enrichedMetadataResult.metadata,
       duplicateResolutions.get(metadata.slug) ?? null,
       bookWarnings,
     );
     warnings.push(...bookWarnings.map((warning) => `${metadata.slug}: ${warning}`));
     if (isDraftMetadata(metadata) && !manifest.source.processingAllowed) {
       warnings.push(
-        `${metadata.slug}: draft metadata skipped by books:build because the source-file evidence gate did not approve it.`,
+        `${metadata.slug}: draft metadata skipped by books:build because the authority evidence gate did not approve it.`,
       );
       continue;
     }

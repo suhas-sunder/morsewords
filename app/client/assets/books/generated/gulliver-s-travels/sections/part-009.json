@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "gulliver-s-travels",
+  "sectionId": "part-009",
+  "kind": "part",
+  "label": "Part 4",
+  "title": "A VOYAGE TO THE COUNTRY OF THE HOUYHNHNMS.",
+  "order": 38,
+  "includeByDefault": false,
+  "displayText": "PART IV. A VOYAGE TO THE COUNTRY OF THE HOUYHNHNMS.",
+  "morseSourceText": "PART IV. A VOYAGE TO THE COUNTRY OF THE HOUYHNHNMS.",
+  "paragraphs": [
+    "PART IV. A VOYAGE TO THE COUNTRY OF THE HOUYHNHNMS."
+  ],
+  "wordCount": 10,
+  "characterCount": 51,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 280,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PART IV. A VOYAGE TO THE COUNTRY OF THE HOUYHNHNMS.",
+  "sourceOffsets": {
+    "start": 421703,
+    "end": 421757
+  }
+}

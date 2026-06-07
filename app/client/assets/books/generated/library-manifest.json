@@ -50,6 +50,790 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "alices-adventures-in-wonderland/manifest.json"
+    },
+    {
+      "slug": "anne-of-green-gables",
+      "title": "Anne of Green Gables",
+      "author": [
+        "L. M. Montgomery"
+      ],
+      "contentVersion": "367778b4e649ed14",
+      "contentHash": "367778b4e649ed146b3672f778d82d3e5af3f67cca1d6c01889faed7f311a894",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "45",
+        "releaseDate": "June 27, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/45",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "deterministic-file-match",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor. Possible duplicate Gutenberg ID; verify whether this is a duplicate, alternate file, or renamed copy."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Anne of Green Gables"
+      },
+      "stats": {
+        "originalCharacterCount": 580332,
+        "cleanedCharacterCount": 561065,
+        "wordCount": 106781,
+        "sectionCount": 40,
+        "includedSectionCount": 38
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "anne-of-green-gables/manifest.json"
+    },
+    {
+      "slug": "crime-and-punishment",
+      "title": "Crime and Punishment",
+      "author": [
+        "Fyodor Dostoyevsky"
+      ],
+      "contentVersion": "d6d0c93538f5f280",
+      "contentHash": "d6d0c93538f5f28038f5d91d82ed44334e32afd0077287378396c137e342f33d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2554",
+        "releaseDate": "March 28, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2554",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Crime and Punishment"
+      },
+      "stats": {
+        "originalCharacterCount": 1154362,
+        "cleanedCharacterCount": 1135049,
+        "wordCount": 208174,
+        "sectionCount": 47,
+        "includedSectionCount": 39
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "crime-and-punishment/manifest.json"
+    },
+    {
+      "slug": "dr-jekyll-and-mr-hyde",
+      "title": "The strange case of Dr. Jekyll and Mr. Hyde",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "contentVersion": "d30174b13b392e39",
+      "contentHash": "d30174b13b392e39a59ce3463e36c148530141240f481f9844d007e253fec963",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "43",
+        "releaseDate": "June 27, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/43",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The strange case of Dr. Jekyll and Mr. Hyde"
+      },
+      "stats": {
+        "originalCharacterCount": 158148,
+        "cleanedCharacterCount": 138804,
+        "wordCount": 25890,
+        "sectionCount": 6,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "dr-jekyll-and-mr-hyde/manifest.json"
+    },
+    {
+      "slug": "frankenstein",
+      "title": "Frankenstein; or, the modern prometheus",
+      "author": [
+        "Mary Wollstonecraft Shelley"
+      ],
+      "contentVersion": "4e29b83aeac2a920",
+      "contentHash": "4e29b83aeac2a920fc3b458e482722a5fb41335792a6f81243dd7b585ba53d55",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "84",
+        "releaseDate": "October 1, 1993",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/84",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Frankenstein; or, the modern prometheus"
+      },
+      "stats": {
+        "originalCharacterCount": 438729,
+        "cleanedCharacterCount": 419264,
+        "wordCount": 75273,
+        "sectionCount": 26,
+        "includedSectionCount": 24
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "frankenstein/manifest.json"
+    },
+    {
+      "slug": "gulliver-s-travels",
+      "title": "Gulliver's Travels into Several Remote Nations of the World",
+      "author": [
+        "Jonathan Swift"
+      ],
+      "contentVersion": "c758461bc01ac79b",
+      "contentHash": "c758461bc01ac79be5ebd276bef3a4ba17b0daefa9dfa49b8352261c24e5c8d8",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "829",
+        "releaseDate": "February 1, 1997",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/829",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Gulliver's Travels into Several Remote Nations of the World"
+      },
+      "stats": {
+        "originalCharacterCount": 601815,
+        "cleanedCharacterCount": 582409,
+        "wordCount": 105392,
+        "sectionCount": 50,
+        "includedSectionCount": 39
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "gulliver-s-travels/manifest.json"
+    },
+    {
+      "slug": "the-call-of-the-wild",
+      "title": "The call of the wild",
+      "author": [
+        "Jack London"
+      ],
+      "contentVersion": "36f513056d2926d0",
+      "contentHash": "36f513056d2926d0e427f7a1b5cba309424992e491ed42d9a492c398b1e8f57c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "215",
+        "releaseDate": "July 2, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/215",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The call of the wild"
+      },
+      "stats": {
+        "originalCharacterCount": 194856,
+        "cleanedCharacterCount": 175571,
+        "wordCount": 32173,
+        "sectionCount": 9,
+        "includedSectionCount": 7
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-call-of-the-wild/manifest.json"
+    },
+    {
+      "slug": "the-emerald-city-of-oz",
+      "title": "The Emerald City of Oz",
+      "author": [
+        "L. Frank Baum"
+      ],
+      "contentVersion": "99be6e3535d4da26",
+      "contentHash": "99be6e3535d4da266ce861f7ff9cbc22ea7b53dbfcf7c3f8b6da7dc0aeadb524",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "517",
+        "releaseDate": "May 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/517",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Emerald City of Oz"
+      },
+      "stats": {
+        "originalCharacterCount": 317474,
+        "cleanedCharacterCount": 298188,
+        "wordCount": 53852,
+        "sectionCount": 11,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-emerald-city-of-oz/manifest.json"
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "author": [
+        "F. Scott Fitzgerald"
+      ],
+      "contentVersion": "80eed92242bcbfda",
+      "contentHash": "80eed92242bcbfdadce9e77f31502cbaf3885ceaea9d02ee212117b09ec5e377",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "64317",
+        "releaseDate": "January 17, 2021",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/64317",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Great Gatsby"
+      },
+      "stats": {
+        "originalCharacterCount": 290074,
+        "cleanedCharacterCount": 270690,
+        "wordCount": 49787,
+        "sectionCount": 11,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-great-gatsby/manifest.json"
+    },
+    {
+      "slug": "the-jungle-book",
+      "title": "The Jungle Book",
+      "author": [
+        "Rudyard Kipling"
+      ],
+      "contentVersion": "02368445733b8f66",
+      "contentHash": "02368445733b8f6660573666d94163511eb063bf4f1cf76bb48a98d38144e40c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "236",
+        "releaseDate": "January 16, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/236",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Jungle Book"
+      },
+      "stats": {
+        "originalCharacterCount": 292207,
+        "cleanedCharacterCount": 273000,
+        "wordCount": 51776,
+        "sectionCount": 11,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-jungle-book/manifest.json"
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "contentVersion": "076dc7ddc53ff214",
+      "contentHash": "076dc7ddc53ff2142143719c0cf65576ac89723802a3ca2ca2ab578aa16b365d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "174",
+        "releaseDate": "October 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/174",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Picture of Dorian Gray"
+      },
+      "stats": {
+        "originalCharacterCount": 448573,
+        "cleanedCharacterCount": 429270,
+        "wordCount": 79937,
+        "sectionCount": 24,
+        "includedSectionCount": 21
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-picture-of-dorian-gray/manifest.json"
+    },
+    {
+      "slug": "the-princess-and-the-goblin",
+      "title": "The Princess and the Goblin",
+      "author": [
+        "George MacDonald"
+      ],
+      "contentVersion": "1b735f6d9414372d",
+      "contentHash": "1b735f6d9414372db3a176dd8accd5ddb172ded859d73f1f7c96d492ea7dd224",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "708",
+        "releaseDate": "November 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/708",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Princess and the Goblin"
+      },
+      "stats": {
+        "originalCharacterCount": 294541,
+        "cleanedCharacterCount": 275221,
+        "wordCount": 51248,
+        "sectionCount": 34,
+        "includedSectionCount": 32
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-princess-and-the-goblin/manifest.json"
+    },
+    {
+      "slug": "the-railway-children",
+      "title": "The Railway Children",
+      "author": [
+        "E. Nesbit"
+      ],
+      "contentVersion": "3e5bd2aea7e6d6df",
+      "contentHash": "3e5bd2aea7e6d6df308de7976ac7fa44049244f5e0614e1eb5da7e18188156d7",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1874",
+        "releaseDate": "August 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1874",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Railway Children"
+      },
+      "stats": {
+        "originalCharacterCount": 345957,
+        "cleanedCharacterCount": 326683,
+        "wordCount": 59806,
+        "sectionCount": 16,
+        "includedSectionCount": 14
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-railway-children/manifest.json"
+    },
+    {
+      "slug": "the-sea-wolf",
+      "title": "The Sea-Wolf",
+      "author": [
+        "Jack London"
+      ],
+      "contentVersion": "1407da1c4cda2335",
+      "contentHash": "1407da1c4cda2335816e02e8d2221b3f8af7b5aef9a9ad17d79ba484a9735276",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1074",
+        "releaseDate": "October 1, 1997",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1074",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Sea-Wolf"
+      },
+      "stats": {
+        "originalCharacterCount": 599319,
+        "cleanedCharacterCount": 580070,
+        "wordCount": 107100,
+        "sectionCount": 40,
+        "includedSectionCount": 39
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-sea-wolf/manifest.json"
+    },
+    {
+      "slug": "the-secret-garden-gutenberg-113",
+      "title": "The Secret Garden",
+      "author": [
+        "Frances Hodgson Burnett"
+      ],
+      "contentVersion": "a7badd9309f75169",
+      "contentHash": "a7badd9309f7516926ca73a11c6bb15200e13aaf9e33808e0e234ef6e22dcea2",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "113",
+        "releaseDate": "March 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/113",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Secret Garden"
+      },
+      "stats": {
+        "originalCharacterCount": 447820,
+        "cleanedCharacterCount": 428596,
+        "wordCount": 82872,
+        "sectionCount": 30,
+        "includedSectionCount": 28
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-secret-garden-gutenberg-113/manifest.json"
+    },
+    {
+      "slug": "the-three-musketeers",
+      "title": "The three musketeers",
+      "author": [
+        "Alexandre Dumas Auguste Maquet"
+      ],
+      "contentVersion": "f31154ce58f09bad",
+      "contentHash": "f31154ce58f09bad7f3c9112448fc21d501cd42a77cc5bd8bbfa15e2b063772f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1257",
+        "releaseDate": "March 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1257",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The three musketeers"
+      },
+      "stats": {
+        "originalCharacterCount": 1317195,
+        "cleanedCharacterCount": 1297823,
+        "wordCount": 233801,
+        "sectionCount": 72,
+        "includedSectionCount": 67
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-three-musketeers/manifest.json"
+    },
+    {
+      "slug": "treasure-island",
+      "title": "Treasure Island",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "contentVersion": "4d7484d9467697dc",
+      "contentHash": "4d7484d9467697dc5116a3f77f16204f2e09a7957fc31c58c24537e951fc69a9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "120",
+        "releaseDate": "February 26, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/120",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": false,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, editor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Treasure Island"
+      },
+      "stats": {
+        "originalCharacterCount": 383675,
+        "cleanedCharacterCount": 364434,
+        "wordCount": 70110,
+        "sectionCount": 14,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "treasure-island/manifest.json"
     }
   ]
 }

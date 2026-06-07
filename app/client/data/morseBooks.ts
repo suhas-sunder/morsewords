@@ -443,6 +443,7 @@ export function isMorseBookPublishReady(
 ) {
   const approvedBySource =
     book.source.approvalSource === "file-evidence" ||
+    book.source.approvalSource === "external-authority" ||
     (book.source.approvalSource === "owner-reviewed" &&
       book.source.rightsReviewed === true) ||
     (book.source.approvalSource === undefined &&
@@ -464,14 +465,14 @@ export function getPublishedMorseBookSummaries(
     includeTestFixture?: boolean;
     includeTestCollectionFixture?: boolean;
   } = {},
-) {
-  const books = getGeneratedMorseBookSummaries().filter(isMorseBookPublishReady);
-  if (options.includeTestFixture && canUseTestPublishedBookFixture()) {
-    books.push(testPublishedBookSummary);
-  }
+): MorseBookLibrarySummary[] {
   if (options.includeTestCollectionFixture && canUseTestPublishedBookFixture()) {
-    books.push(...testCollectionSummaries);
+    return [...testCollectionSummaries].sort((a, b) => a.title.localeCompare(b.title));
   }
+  if (options.includeTestFixture && canUseTestPublishedBookFixture()) {
+    return [testPublishedBookSummary];
+  }
+  const books = getGeneratedMorseBookSummaries().filter(isMorseBookPublishReady);
   return books.sort((a, b) => a.title.localeCompare(b.title));
 }
 

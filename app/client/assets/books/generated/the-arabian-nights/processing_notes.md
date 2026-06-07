@@ -67,7 +67,7 @@
 - Metadata rightsReviewed is false.
 - Owner-reviewed book approval is missing.
 - Rights basis "unknown" is not publish-ready.
-- Draft or manual-review metadata must be reviewed before processing or publishing.
+- Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
 ## Next action
 

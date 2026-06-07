@@ -6,8 +6,10 @@ import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const ROOT = process.cwd();
 const ALICE_SLUG = "alices-adventures-in-wonderland";
+const APPROVED_BOOK_SLUG = "treasure-island";
 const TEST_BOOK_SLUG = "test-published-morse-book";
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
+const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const ALICE_PREVIEW_PATH = `${ALICE_PUBLIC_PATH}?preview=unpublished`;
 const TEST_BOOK_PUBLIC_PATH = `/morse-code-books/${TEST_BOOK_SLUG}`;
 const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`;
@@ -31,6 +33,15 @@ async function openPreview(page: Page) {
 async function openTestBook(page: Page) {
   await blockExternalNetwork(page);
   const response = await page.goto(TEST_BOOK_PREVIEW_PATH, {
+    waitUntil: "domcontentloaded",
+  });
+  await waitForRouteReady(page);
+  expect(response?.ok()).toBe(true);
+}
+
+async function openApprovedBook(page: Page) {
+  await blockExternalNetwork(page);
+  const response = await page.goto(APPROVED_BOOK_PUBLIC_PATH, {
     waitUntil: "domcontentloaded",
   });
   await waitForRouteReady(page);
@@ -125,7 +136,12 @@ test.describe("Morse book page foundation", () => {
     const libraryManifest = readJson<{
       books: Array<{
         slug: string;
-        source: { rightsReviewed: boolean; publishReady: boolean };
+        source: {
+          rightsReviewed: boolean;
+          publishReady: boolean;
+          processingAllowed: boolean;
+          approvalSource?: string;
+        };
       }>;
     }>("app/client/assets/books/generated/library-manifest.json");
     const alice = libraryManifest.books.find((book) => book.slug === ALICE_SLUG);
@@ -138,22 +154,30 @@ test.describe("Morse book page foundation", () => {
 
     const generatedSummaries = libraryManifest.books;
     const publishedSummaries = libraryManifest.books.filter(
-      (book) => book.source.rightsReviewed && book.source.publishReady,
+      (book) =>
+        book.source.publishReady &&
+        book.source.processingAllowed &&
+        (book.source.approvalSource === "external-authority" ||
+          book.source.approvalSource === "file-evidence" ||
+          book.source.rightsReviewed),
     );
     expect(generatedSummaries.map((book) => book.slug)).toContain(ALICE_SLUG);
     expect(publishedSummaries.map((book) => book.slug)).not.toContain(ALICE_SLUG);
+    expect(publishedSummaries.map((book) => book.slug)).toContain(APPROVED_BOOK_SLUG);
     expect(generatedSummaries.map((book) => book.slug)).not.toContain(TEST_BOOK_SLUG);
 
     const publicSitemap = fs.readFileSync(
       path.join(ROOT, "public", "sitemap.xml"),
       "utf8",
     );
+    expect(publicSitemap).toContain(APPROVED_BOOK_PUBLIC_PATH);
     expect(publicSitemap).not.toContain(ALICE_PUBLIC_PATH);
     expect(publicSitemap).not.toContain(TEST_BOOK_PUBLIC_PATH);
 
     const response = await request.get("/sitemap.xml");
     expect(response.ok()).toBe(true);
     const sitemapText = await response.text();
+    expect(sitemapText).toContain(APPROVED_BOOK_PUBLIC_PATH);
     expect(sitemapText).not.toContain(ALICE_PUBLIC_PATH);
     expect(sitemapText).not.toContain(TEST_BOOK_PUBLIC_PATH);
   });
@@ -169,6 +193,30 @@ test.describe("Morse book page foundation", () => {
 
     const unknownResponse = await request.get("/morse-code-books/not-a-real-book");
     expect(unknownResponse.status()).toBe(404);
+  });
+
+  test("renders an approved external-authority Gutenberg book as a public page", async ({
+    page,
+  }) => {
+    await openApprovedBook(page);
+
+    await expect(page.locator('meta[name="robots"]')).not.toHaveAttribute(
+      "content",
+      /noindex/,
+    );
+    await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
+      "data-mw-morse-book-publish-ready",
+      "true",
+    );
+    await expect(page.locator("h1")).toContainText("Treasure Island");
+    await expect(
+      page.getByRole("link", { name: /Project Gutenberg ebook #120/ }),
+    ).toHaveAttribute("href", "https://www.gutenberg.org/ebooks/120");
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toBeVisible();
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
+      "Project Gutenberg License",
+    );
+    await expect(page.locator("[data-mw-morse-book-morse-preview]")).toBeVisible();
   });
 
   test("renders a noindex unpublished preview with ordered sections and cleaned text", async ({

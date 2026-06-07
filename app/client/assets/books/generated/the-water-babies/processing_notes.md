@@ -14,6 +14,7 @@
 
 ## Rights evidence found
 
+- Author death year authority: project-gutenberg-rdf 25564 https://www.gutenberg.org/cache/epub/25564/pg25564.rdf
 - Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
 - U.S. reuse language: of The Water-Babies: A Fairy Tale for a Land-Baby This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Water-Babies: A Fairy Tale f
@@ -59,13 +60,12 @@
 
 ## Manual review reasons
 
-- Author death year is missing from approved metadata or clear source metadata.
 - Transcriber notes remain in cleaned story text.
 - Metadata rightsReviewed is false.
 - Owner-reviewed book approval is missing.
 - Rights basis "unknown" is not publish-ready.
-- Draft or manual-review metadata must be reviewed before processing or publishing.
+- Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
 ## Next action
 
-- Add approved author death-year evidence or keep the book blocked.
+- Manual rights review required before processing or publishing.

@@ -4,13 +4,141 @@
     "ownerPeopleApprovals": 0,
     "ownerBookApprovals": 0,
     "ownerDuplicateResolutions": 0,
-    "processingAllowedAfterApplication": 0,
-    "publishReadyAfterApplication": 0,
-    "stillNeedsManualReview": 67,
+    "processingAllowedAfterApplication": 16,
+    "publishReadyAfterApplication": 16,
+    "stillNeedsManualReview": 51,
     "rejected": 7,
     "invalidOwnerInputWarnings": 0
   },
-  "approvedAfterOwnerInput": [],
+  "approvedAfterOwnerInput": [
+    {
+      "slug": "anne-of-green-gables",
+      "title": "Anne of Green Gables",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Review duplicate Gutenberg ID group."
+    },
+    {
+      "slug": "crime-and-punishment",
+      "title": "Crime and Punishment",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "dr-jekyll-and-mr-hyde",
+      "title": "The strange case of Dr. Jekyll and Mr. Hyde",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "frankenstein",
+      "title": "Frankenstein; or, the modern prometheus",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "gulliver-s-travels",
+      "title": "Gulliver's Travels into Several Remote Nations of the World",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-call-of-the-wild",
+      "title": "The call of the wild",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-emerald-city-of-oz",
+      "title": "The Emerald City of Oz",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-jungle-book",
+      "title": "The Jungle Book",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-princess-and-the-goblin",
+      "title": "The Princess and the Goblin",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-railway-children",
+      "title": "The Railway Children",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-sea-wolf",
+      "title": "The Sea-Wolf",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-secret-garden-gutenberg-113",
+      "title": "The Secret Garden",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "the-three-musketeers",
+      "title": "The three musketeers",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true,
+      "nextAction": "Manual final approval required before any public exposure."
+    },
+    {
+      "slug": "treasure-island",
+      "title": "Treasure Island",
+      "currentStatus": "approved",
+      "processingAllowed": true,
+      "publishReady": true
+    }
+  ],
   "stillNeedsManualReview": [
     {
       "slug": "a-christmas-carol",
@@ -18,7 +146,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "a-princess-of-mars",
@@ -26,7 +154,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "alices-adventures-in-wonderland",
@@ -34,7 +162,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Review illustration/image references."
     },
     {
       "slug": "anna-karenina",
@@ -42,15 +170,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "anne-of-green-gables",
-      "title": "Anne of Green Gables",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Review duplicate Gutenberg ID group."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "anne-of-green-gables-gutenberg-45",
@@ -66,7 +186,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "black-beauty",
@@ -82,7 +202,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "candide",
@@ -90,15 +210,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "crime-and-punishment",
-      "title": "Crime and Punishment",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check editor/introduction author identity and death year."
     },
     {
       "slug": "don-quixote",
@@ -106,15 +218,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "dr-jekyll-and-mr-hyde",
-      "title": "The strange case of Dr. Jekyll and Mr. Hyde",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check editor/introduction author identity and death year."
     },
     {
       "slug": "five-little-peppers-and-how-they-grew",
@@ -122,15 +226,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "frankenstein",
-      "title": "Frankenstein; or, the modern prometheus",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "grimm-s-fairy-tales",
@@ -138,15 +234,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "gulliver-s-travels",
-      "title": "Gulliver's Travels into Several Remote Nations of the World",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check translator identity and death year."
     },
     {
       "slug": "heidi",
@@ -154,7 +242,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "jabberwocky",
@@ -162,7 +250,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "jack-and-jill",
@@ -170,7 +258,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "jane-eyre",
@@ -178,7 +266,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "les-miserables",
@@ -186,7 +274,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "little-women",
@@ -194,7 +282,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check editor/introduction author identity and death year."
     },
     {
       "slug": "new-treasure-seekers",
@@ -202,7 +290,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "peter-pan",
@@ -210,7 +298,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "pride-and-prejudice",
@@ -218,7 +306,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "rainbow-valley",
@@ -226,7 +314,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "rinkitink-in-oz",
@@ -234,7 +322,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "sense-and-sensibility",
@@ -242,7 +330,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "sun-tzu-on-the-art-of-war",
@@ -258,7 +346,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-arabian-nights",
@@ -290,7 +378,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-call-of-cthulhu",
@@ -299,14 +387,6 @@
       "processingAllowed": false,
       "publishReady": false,
       "nextAction": "Review content-brand safety before education use."
-    },
-    {
-      "slug": "the-call-of-the-wild",
-      "title": "The call of the wild",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
     },
     {
       "slug": "the-count-of-monte-cristo",
@@ -330,7 +410,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-elderbush",
@@ -346,15 +426,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-emerald-city-of-oz",
-      "title": "The Emerald City of Oz",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-emperor-s-new-clothes",
@@ -370,7 +442,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check editor/introduction author identity and death year."
     },
     {
       "slug": "the-fir-tree",
@@ -379,22 +451,6 @@
       "processingAllowed": false,
       "publishReady": false,
       "nextAction": "Review duplicate Gutenberg ID group."
-    },
-    {
-      "slug": "the-great-gatsby",
-      "title": "The Great Gatsby",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-jungle-book",
-      "title": "The Jungle Book",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
     },
     {
       "slug": "the-leap-frog",
@@ -410,7 +466,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-old-house",
@@ -421,52 +477,12 @@
       "nextAction": "Review duplicate Gutenberg ID group."
     },
     {
-      "slug": "the-picture-of-dorian-gray",
-      "title": "The Picture of Dorian Gray",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-princess-and-the-goblin",
-      "title": "The Princess and the Goblin",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-railway-children",
-      "title": "The Railway Children",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
       "slug": "the-real-princess",
       "title": "Andersen's Fairy Tales",
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
       "nextAction": "Review duplicate Gutenberg ID group."
-    },
-    {
-      "slug": "the-sea-wolf",
-      "title": "The Sea-Wolf",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-secret-garden-gutenberg-113",
-      "title": "The Secret Garden",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
     },
     {
       "slug": "the-shoes-of-fortune",
@@ -498,15 +514,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-three-musketeers",
-      "title": "The three musketeers",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-water-babies",
@@ -514,7 +522,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-wonderful-wizard-of-oz",
@@ -522,7 +530,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "through-the-looking-glass",
@@ -530,15 +538,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "treasure-island",
-      "title": "Treasure Island",
-      "currentStatus": "needs_manual_review",
-      "processingAllowed": false,
-      "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "wind-in-the-willows",
@@ -546,7 +546,7 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "publishReady": false,
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     }
   ],
   "rejected": [
@@ -609,18 +609,33 @@
   ],
   "peopleApprovalsUsed": [],
   "duplicateResolutionsUsed": [],
-  "booksNewlyEligibleForProcessing": [],
+  "booksNewlyEligibleForProcessing": [
+    "anne-of-green-gables",
+    "crime-and-punishment",
+    "dr-jekyll-and-mr-hyde",
+    "frankenstein",
+    "gulliver-s-travels",
+    "the-call-of-the-wild",
+    "the-emerald-city-of-oz",
+    "the-great-gatsby",
+    "the-jungle-book",
+    "the-picture-of-dorian-gray",
+    "the-princess-and-the-goblin",
+    "the-railway-children",
+    "the-sea-wolf",
+    "the-secret-garden-gutenberg-113",
+    "the-three-musketeers",
+    "treasure-island"
+  ],
   "booksStillBlocked": [
     {
       "slug": "a-childs-garden-of-verses",
       "currentStatus": "reject",
       "missingFields": [
-        "approved author death year",
         "editor identity/death-year review",
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
@@ -633,7 +648,6 @@
       "slug": "a-christmas-carol",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
@@ -644,41 +658,36 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "a-princess-of-mars",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "alices-adventures-in-wonderland",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "owner-reviewed website approval",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Review illustration/image references."
     },
     {
       "slug": "anna-karenina",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
-        "approved translator death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "originalPublication",
@@ -688,39 +697,19 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "anne-of-green-gables",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "duplicate Gutenberg ID resolution",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Review duplicate Gutenberg ID group."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "anne-of-green-gables-gutenberg-45",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "duplicate Gutenberg ID resolution",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
+        "source.rightsReviewed"
       ],
       "nextAction": "Review duplicate Gutenberg ID group."
     },
@@ -728,18 +717,15 @@
       "slug": "around-the-world-in-eighty-days",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
-        "approved translator death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "black-beauty",
@@ -760,8 +746,6 @@
       "slug": "botchan",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
-        "approved translator death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "originalPublication",
@@ -771,41 +755,22 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "candide",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "introduction author identity/death-year review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "crime-and-punishment",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "approved translator death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check editor/introduction author identity and death year."
     },
     {
       "slug": "doctor-dolittle",
@@ -813,7 +778,6 @@
       "missingFields": [
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
@@ -826,44 +790,23 @@
       "slug": "don-quixote",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
-        "approved translator death year",
         "editor identity/death-year review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "dr-jekyll-and-mr-hyde",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check editor/introduction author identity and death year."
     },
     {
       "slug": "dracula",
       "currentStatus": "reject",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
@@ -876,7 +819,6 @@
       "slug": "five-little-peppers-and-how-they-grew",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "originalPublication",
@@ -886,29 +828,12 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "frankenstein",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "grimm-s-fairy-tales",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "approved translator death year",
         "editor identity/death-year review",
         "illustrator handling review",
@@ -922,96 +847,70 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "gulliver-s-travels",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check translator identity and death year."
     },
     {
       "slug": "heidi",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
-        "approved translator death year",
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "jabberwocky",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "jack-and-jill",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "jane-eyre",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "les-miserables",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
-        "approved translator death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "originalPublication",
@@ -1021,13 +920,12 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "little-women",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "editor identity/death-year review",
         "illustrator handling review",
         "manualReviewRequired false",
@@ -1039,13 +937,12 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check editor/introduction author identity and death year."
     },
     {
       "slug": "new-treasure-seekers",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "originalPublication",
@@ -1055,13 +952,12 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "nights-with-uncle-remus",
       "currentStatus": "reject",
       "missingFields": [
-        "approved author death year",
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
@@ -1078,7 +974,6 @@
       "slug": "peter-pan",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "originalPublication",
@@ -1088,79 +983,70 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "pride-and-prejudice",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "rainbow-valley",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "rinkitink-in-oz",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "sense-and-sensibility",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "sun-tzu-on-the-art-of-war",
       "currentStatus": "needs_manual_review",
       "missingFields": [
         "approved author death year",
-        "approved translator death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "owner-reviewed website approval",
@@ -1174,17 +1060,15 @@
       "slug": "tarzan-of-the-apes",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-arabian-nights",
@@ -1209,7 +1093,6 @@
       "currentStatus": "needs_manual_review",
       "missingFields": [
         "approved author death year",
-        "approved translator death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "owner-reviewed website approval",
@@ -1240,7 +1123,6 @@
       "slug": "the-book-of-dragons",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
@@ -1251,7 +1133,7 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-call-of-cthulhu",
@@ -1267,31 +1149,13 @@
       "nextAction": "Review content-brand safety before education use."
     },
     {
-      "slug": "the-call-of-the-wild",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
       "slug": "the-count-of-monte-cristo",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "approved translator death year",
         "duplicate Gutenberg ID resolution",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
@@ -1322,8 +1186,6 @@
       "slug": "the-divine-comedy",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
-        "approved translator death year",
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
@@ -1334,7 +1196,7 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-elderbush",
@@ -1357,33 +1219,15 @@
       "slug": "the-elements-of-style",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-emerald-city-of-oz",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-emperor-s-new-clothes",
@@ -1406,18 +1250,16 @@
       "slug": "the-federalist-papers",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "introduction author identity/death-year review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Check editor/introduction author identity and death year."
     },
     {
       "slug": "the-fir-tree",
@@ -1437,22 +1279,6 @@
       "nextAction": "Review duplicate Gutenberg ID group."
     },
     {
-      "slug": "the-great-gatsby",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
       "slug": "the-happy-family",
       "currentStatus": "reject",
       "missingFields": [
@@ -1469,22 +1295,6 @@
         "website approval"
       ],
       "nextAction": "Keep blocked until the rejection reason is manually resolved."
-    },
-    {
-      "slug": "the-jungle-book",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
     },
     {
       "slug": "the-leap-frog",
@@ -1507,7 +1317,6 @@
       "slug": "the-legend-of-sleepy-hollow",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "originalPublication",
@@ -1517,7 +1326,7 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-old-house",
@@ -1537,54 +1346,6 @@
       "nextAction": "Review duplicate Gutenberg ID group."
     },
     {
-      "slug": "the-picture-of-dorian-gray",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-princess-and-the-goblin",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-railway-children",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
       "slug": "the-real-princess",
       "currentStatus": "needs_manual_review",
       "missingFields": [
@@ -1602,28 +1363,11 @@
       "nextAction": "Review duplicate Gutenberg ID group."
     },
     {
-      "slug": "the-sea-wolf",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
       "slug": "the-secret-garden",
       "currentStatus": "reject",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
@@ -1631,22 +1375,6 @@
         "website approval"
       ],
       "nextAction": "Reject or remove modern/permission-based text."
-    },
-    {
-      "slug": "the-secret-garden-gutenberg-113",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
     },
     {
       "slug": "the-shoes-of-fortune",
@@ -1702,39 +1430,20 @@
       "slug": "the-thirty-nine-steps",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "the-three-musketeers",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-water-babies",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
@@ -1744,78 +1453,54 @@
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "the-wonderful-wizard-of-oz",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "through-the-looking-glass",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
-    },
-    {
-      "slug": "treasure-island",
-      "currentStatus": "needs_manual_review",
-      "missingFields": [
-        "approved author death year",
-        "illustrator handling review",
-        "manualReviewRequired false",
-        "metadataStatus reviewed",
-        "originalPublication",
-        "originalPublicationYear",
-        "owner-reviewed website approval",
-        "source.rightsBasis",
-        "source.rightsReviewed",
-        "website approval"
-      ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "wind-in-the-willows",
       "currentStatus": "needs_manual_review",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
         "source.rightsReviewed",
         "website approval"
       ],
-      "nextAction": "Add approved author death year metadata."
+      "nextAction": "Add original publication metadata."
     },
     {
       "slug": "wood-folk-at-school",
       "currentStatus": "reject",
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "originalPublication",

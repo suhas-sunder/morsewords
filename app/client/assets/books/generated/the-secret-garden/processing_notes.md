@@ -14,6 +14,8 @@
 
 ## Rights evidence found
 
+- Author death year authority: project-gutenberg-rdf 113 https://www.gutenberg.org/cache/epub/113/pg113.rdf
+- Original publication authority: wikidata Q472194 https://www.wikidata.org/wiki/Q472194
 - Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
 - U.S. reuse language: The Project Gutenberg eBook of The Secret Garden This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Secret Garden Author: Fra
@@ -29,7 +31,7 @@
 - Non-U.S. warning found: yes
 - Release date: December 26, 2005
 - Last updated: missing
-- Original publication: missing
+- Original publication: 1912
 - Credits: Produced by Jason Isbell, Emmy and the Online Distributed
 - Translator: none found
 - Illustrator: none found
@@ -62,16 +64,13 @@
 ## Manual review reasons
 
 - Later copyright notice was detected.
-- Original publication metadata was not found.
-- Original publication year is missing or not before 1931.
-- Author death year is missing from approved metadata or clear source metadata.
 - Transcriber notes remain in cleaned story text.
 - Illustrations or image references need manual handling.
 - Translation status or translator death year needs manual review.
 - Metadata rightsReviewed is false.
 - Owner-reviewed book approval is missing.
 - Rights basis "unknown" is not publish-ready.
-- Draft or manual-review metadata must be reviewed before processing or publishing.
+- Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
 ## Next action
 

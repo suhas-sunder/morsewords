@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "the-jungle-book",
+  "title": "The Jungle Book",
+  "author": "Rudyard Kipling",
+  "content_version": "02368445733b8f66",
+  "content_hash": "02368445733b8f6660573666d94163511eb063bf4f1cf76bb48a98d38144e40c",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "236",
+    "source_url": "https://www.gutenberg.org/ebooks/236",
+    "raw_text_url": null,
+    "original_publication": "1894",
+    "release_date": "January 16, 2006",
+    "last_updated": "May 1, 2023"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": true,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [
+      "US",
+      "CA"
+    ],
+    "needs_manual_review": false,
+    "notes": "Project Gutenberg source-file evidence and high-confidence external authority metadata satisfied the conservative website processing gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

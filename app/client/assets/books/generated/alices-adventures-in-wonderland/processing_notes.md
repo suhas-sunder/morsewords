@@ -14,6 +14,7 @@
 
 ## Rights evidence found
 
+- Author death year authority: project-gutenberg-rdf 11 https://www.gutenberg.org/cache/epub/11/pg11.rdf
 - Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
 - U.S. reuse language: utenberg eBook of Alice's Adventures in Wonderland This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Alice's Adventures in Wonderland
@@ -59,7 +60,6 @@
 
 ## Manual review reasons
 
-- Author death year is missing from approved metadata or clear source metadata.
 - Illustrations or image references need manual handling.
 - Edition or editorial status needs manual review.
 - Metadata rightsReviewed is false.
@@ -67,4 +67,4 @@
 
 ## Next action
 
-- Add approved author death-year evidence or keep the book blocked.
+- Manual rights review required before processing or publishing.

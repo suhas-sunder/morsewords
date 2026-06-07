@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "treasure-island",
+  "title": "Treasure Island",
+  "author": "Robert Louis Stevenson",
+  "content_version": "4d7484d9467697dc",
+  "content_hash": "4d7484d9467697dc5116a3f77f16204f2e09a7957fc31c58c24537e951fc69a9",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "120",
+    "source_url": "https://www.gutenberg.org/ebooks/120",
+    "raw_text_url": null,
+    "original_publication": "1883",
+    "release_date": "February 26, 2006",
+    "last_updated": "April 1, 2025"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": true,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [
+      "US",
+      "CA"
+    ],
+    "needs_manual_review": false,
+    "notes": "Project Gutenberg source-file evidence and high-confidence external authority metadata satisfied the conservative website processing gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

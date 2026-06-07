@@ -168,6 +168,13 @@ function routeFileCandidates(routePath: string) {
   const parts = slug.split("/");
   if (parts.length === 1) return [routeFilePath(routePath)];
 
+  if (parts[0] === "morse-code-books") {
+    return [
+      routeFilePath(routePath),
+      path.join(ROOT, "app", "routes", "morse-code-books.$slug.tsx"),
+    ];
+  }
+
   return [
     routeFilePath(routePath),
     path.join(

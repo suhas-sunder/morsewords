@@ -50,6 +50,7 @@ export type BookCanadaUsV1Status = (typeof CANADA_US_V1_STATUSES)[number];
 
 export const BOOK_APPROVAL_SOURCES = [
   "file-evidence",
+  "external-authority",
   "owner-reviewed",
   "manual-review",
 ] as const;
@@ -300,6 +301,68 @@ export type ProcessedBookJson = {
       }>;
     }>;
   };
+};
+
+export const AUTHORITY_EVIDENCE_SOURCE_TYPES = [
+  "project-gutenberg-rdf",
+  "wikidata",
+  "library-of-congress",
+  "owner-approved",
+] as const;
+
+export type AuthorityEvidenceSourceType =
+  (typeof AUTHORITY_EVIDENCE_SOURCE_TYPES)[number];
+
+export const AUTHORITY_EVIDENCE_CONFIDENCE_VALUES = [
+  "high",
+  "medium",
+  "low",
+] as const;
+
+export type AuthorityEvidenceConfidence =
+  (typeof AUTHORITY_EVIDENCE_CONFIDENCE_VALUES)[number];
+
+export type AuthorityMetadataEvidence = {
+  field:
+    | "birthYear"
+    | "deathYear"
+    | "originalPublicationYear"
+    | "gutenbergId"
+    | "sourceUrl";
+  value: number | string | null;
+  sourceType: AuthorityEvidenceSourceType;
+  sourceId: string;
+  sourceUrl: string;
+  matchedBy?: string;
+  confidence: AuthorityEvidenceConfidence;
+  notes?: string;
+};
+
+export type EnrichedPersonMetadata = {
+  slug: string;
+  name: string;
+  roles: ApprovedPersonRole[];
+  birthYear?: number | null;
+  deathYear: number | null;
+  canadaLifePlus70Safe: boolean;
+  evidence: AuthorityMetadataEvidence[];
+  approvalSource: Extract<BookApprovalSource, "external-authority">;
+  reviewedByOwner: false;
+};
+
+export type EnrichedWorkMetadata = {
+  bookSlug: string;
+  title: string;
+  originalPublicationYear: number | null;
+  evidence: AuthorityMetadataEvidence[];
+  approvalSource: Extract<BookApprovalSource, "external-authority">;
+};
+
+export type EnrichedAuthorityMetadata = {
+  schemaVersion: 1;
+  generatedAt: string;
+  people: EnrichedPersonMetadata[];
+  works: EnrichedWorkMetadata[];
 };
 
 export type CleanedBookJson = {
