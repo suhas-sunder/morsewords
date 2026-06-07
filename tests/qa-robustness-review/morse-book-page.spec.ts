@@ -248,13 +248,16 @@ test.describe("Morse book page foundation", () => {
       "chapter-002",
     ]);
 
-    await page.locator("[data-mw-morse-book-section-id='chapter-002']").click();
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
-    ).toHaveAttribute("data-mw-morse-book-translator-source-sections", "chapter-002");
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      /chapter-001,chapter-002/,
+    );
+    await expect(page.locator("[data-mw-morse-book-select-all-default]")).toBeChecked();
 
     const sourcePreview = page.locator("[data-mw-morse-book-source-preview]");
-    await expect(sourcePreview).toContainText("CHAPTER II");
+    await expect(sourcePreview).toContainText("CHAPTER I");
     await expect(sourcePreview).not.toContainText("Project Gutenberg");
     await expect(sourcePreview).not.toContainText("START OF THE PROJECT GUTENBERG");
     await expect(
@@ -298,7 +301,7 @@ test.describe("Morse book page foundation", () => {
     await expect(page.locator("[data-mw-morse-book-split-warning]")).toBeVisible();
   });
 
-  test("renders a noindex publish-ready fixture with real section scope and direct downloads", async ({
+  test("renders a noindex publish-ready fixture with selected chapters and direct downloads", async ({
     page,
   }) => {
     await openTestBook(page);
@@ -314,7 +317,16 @@ test.describe("Morse book page foundation", () => {
     await expect(
       page.getByRole("link", { name: /Project Gutenberg ebook/ }),
     ).toHaveCount(0);
-    await expect(page.getByRole("button", { name: "Current section" })).toBeVisible();
+    await expect(page.locator("[data-mw-morse-book-select-all-default]")).toBeChecked();
+    await expect(page.getByRole("button", { name: "Current section" })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Selected sections" })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Full book" })).toHaveCount(0);
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      "chapter-001,chapter-002",
+    );
     await expect(page.getByRole("button", { name: "No split" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Download MP3" })).toBeEnabled();
     await expect(page.getByText("ZIP is shown because")).toHaveCount(0);
@@ -343,12 +355,11 @@ test.describe("Morse book page foundation", () => {
     expect(storedMedia).toEqual([]);
   });
 
-  test("loads selected sections in stable order and excludes source notes by default", async ({
+  test("loads default full-book sections in stable order and excludes source notes by default", async ({
     page,
   }) => {
     await openTestBook(page);
 
-    await page.locator("[data-mw-morse-book-section-select='chapter-002']").check();
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).toHaveAttribute(
@@ -365,14 +376,23 @@ test.describe("Morse book page foundation", () => {
       "development-only fixture",
     );
 
-    await page.getByRole("button", { name: "Full book" }).click();
+    await expect(
+      page.locator("[data-mw-morse-book-section-select='source-license-001']"),
+    ).not.toBeChecked();
+    await page.locator("[data-mw-morse-book-select-all-default]").uncheck();
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute("data-mw-morse-book-translator-source-sections", "");
+    await page.locator("[data-mw-morse-book-section-select='source-license-001']").check();
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).toHaveAttribute(
       "data-mw-morse-book-translator-source-sections",
-      "chapter-001,chapter-002",
+      "source-license-001",
     );
-    await expect(page.locator("[data-mw-morse-book-full-warning]")).toBeVisible();
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+      "development-only fixture",
+    );
   });
 
   test("supports audio timeline seek and video preview layer toggles", async ({
@@ -442,8 +462,6 @@ test.describe("Morse book page foundation", () => {
   }) => {
     await openTestBook(page);
 
-    await page.getByRole("button", { name: "Selected sections" }).click();
-    await page.locator("[data-mw-morse-book-section-select='chapter-002']").check();
     await page.getByRole("button", { name: "By duration" }).click();
     await page.getByLabel(/Target part length/).fill("1");
     await expect(page.getByRole("button", { name: "Download ZIP bundle" })).toBeVisible();

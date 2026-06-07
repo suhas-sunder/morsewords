@@ -34,10 +34,20 @@ const manifestLoaders = import.meta.glob<MorseBookManifest>(
   { import: "default" },
 );
 
-const publicSectionLoaders = import.meta.glob<MorseBookSectionJson>(
-  "../assets/books/cloudflare-export/books/*/sections/*.json",
+type MorseBookPublicContentJson = {
+  schemaVersion: 1;
+  slug: string;
+  contentVersion: string;
+  contentHash: string;
+  manifest: MorseBookManifest;
+  sections: MorseBookSectionJson[];
+};
+
+const publicBookLoaders = import.meta.glob<MorseBookPublicContentJson>(
+  "../assets/books/cloudflare-export/books/*.json",
   { import: "default" },
 );
+const publicBookSectionCache = new Map<string, Map<string, MorseBookSectionJson>>();
 
 const reviewSectionLoaders = import.meta.env.DEV
   ? import.meta.glob<MorseBookSectionJson>(
@@ -542,27 +552,43 @@ export function getMorseBookSectionSummary(
   return book.sections.find((section) => section.id === sectionId) ?? null;
 }
 
-export async function getMorseBookSection(
+async function loadPublicBookSectionMap(book: MorseBookManifest) {
+  const cacheKey = `${book.slug}:${book.contentVersion}:${book.contentHash}`;
+  const cached = publicBookSectionCache.get(cacheKey);
+  if (cached) return cached;
+
+  const loaderKey = `../assets/books/cloudflare-export/books/${book.slug}.json`;
+  const loadBook = publicBookLoaders[loaderKey];
+  if (!loadBook) return null;
+
+  const content = await loadBook();
+  if (
+    content.slug !== book.slug ||
+    content.contentVersion !== book.contentVersion ||
+    content.contentHash !== book.contentHash
+  ) {
+    return null;
+  }
+
+  const sections = new Map<string, MorseBookSectionJson>();
+  content.sections.forEach((section) => {
+    if (section.bookSlug !== book.slug) return;
+    sections.set(section.sectionId, section);
+    writeCachedBookSection(book, section);
+  });
+  publicBookSectionCache.set(cacheKey, sections);
+  return sections;
+}
+
+async function loadReviewBookSection(
   book: MorseBookManifest,
   sectionId: string,
 ) {
-  if (
-    canUseTestPublishedBookFixture() &&
-    book.slug === TEST_PUBLISHED_BOOK_SLUG
-  ) {
-    return getTestPublishedBookSection(sectionId);
-  }
-
   const summary = getMorseBookSectionSummary(book, sectionId);
   if (!summary) return null;
-  const cached = readCachedBookSection(book, sectionId);
-  if (cached) return cached;
 
   const reviewLoaderKey = `../assets/books/generated/${book.slug}/${summary.sectionJsonPath}`;
-  const publicLoaderKey = `../assets/books/cloudflare-export/books/${book.slug}/${summary.sectionJsonPath}`;
-  const loadSection = isMorseBookPublishReady(book)
-    ? (publicSectionLoaders[publicLoaderKey] ?? reviewSectionLoaders[reviewLoaderKey])
-    : reviewSectionLoaders[reviewLoaderKey];
+  const loadSection = reviewSectionLoaders[reviewLoaderKey];
   if (!loadSection) return null;
 
   const section = await loadSection();
@@ -571,11 +597,69 @@ export async function getMorseBookSection(
   return section;
 }
 
+export async function getMorseBookSections(
+  book: MorseBookManifest,
+  sectionIds: string[],
+) {
+  const uniqueSectionIds = [...new Set(sectionIds)];
+  if (
+    canUseTestPublishedBookFixture() &&
+    book.slug === TEST_PUBLISHED_BOOK_SLUG
+  ) {
+    const fixtureSections: MorseBookSectionJson[] = [];
+    uniqueSectionIds.forEach((sectionId) => {
+      const section = getTestPublishedBookSection(sectionId);
+      if (section) fixtureSections.push(section);
+    });
+    return fixtureSections;
+  }
+
+  const sections = new Map<string, MorseBookSectionJson>();
+  const missingIds: string[] = [];
+  uniqueSectionIds.forEach((sectionId) => {
+    const cached = readCachedBookSection(book, sectionId);
+    if (cached) sections.set(sectionId, cached);
+    else missingIds.push(sectionId);
+  });
+
+  if (missingIds.length > 0 && isMorseBookPublishReady(book)) {
+    const publicSections = await loadPublicBookSectionMap(book);
+    if (publicSections) {
+      missingIds.forEach((sectionId) => {
+        const section = publicSections.get(sectionId);
+        if (section) sections.set(sectionId, section);
+      });
+    }
+  }
+
+  const stillMissingIds = uniqueSectionIds.filter((id) => !sections.has(id));
+  if (stillMissingIds.length > 0) {
+    const reviewSections = await Promise.all(
+      stillMissingIds.map((id) => loadReviewBookSection(book, id)),
+    );
+    reviewSections.forEach((section) => {
+      if (section) sections.set(section.sectionId, section);
+    });
+  }
+
+  return uniqueSectionIds
+    .map((sectionId) => sections.get(sectionId))
+    .filter((section): section is MorseBookSectionJson => Boolean(section));
+}
+
+export async function getMorseBookSection(
+  book: MorseBookManifest,
+  sectionId: string,
+) {
+  const [section] = await getMorseBookSections(book, [sectionId]);
+  return section ?? null;
+}
+
 export function getMorseBookDataLoaderStats() {
   return {
     summaryCount: libraryManifest.books.length,
     manifestLoaderCount: Object.keys(manifestLoaders).length,
-    publicSectionLoaderCount: Object.keys(publicSectionLoaders).length,
+    publicBookLoaderCount: Object.keys(publicBookLoaders).length,
     reviewSectionLoaderCount: Object.keys(reviewSectionLoaders).length,
   };
 }

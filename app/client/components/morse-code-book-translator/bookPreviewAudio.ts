@@ -26,7 +26,9 @@ export function buildBookAudioPreview(
   cleanedText: string,
   settings: BookExportSettings,
 ): BookAudioPreview | null {
-  const normalized = cleanedText.trim().replace(/\s+/g, " ");
+  const trimmedSource = cleanedText.trim();
+  const previewSource = trimmedSource.slice(0, BOOK_PREVIEW_MAX_CHARS * 4);
+  const normalized = previewSource.replace(/\s+/g, " ");
   if (!normalized) return null;
 
   const words = normalized.split(" ").filter(Boolean);
@@ -80,7 +82,9 @@ export function buildBookAudioPreview(
   durationMs = timeline.durationMs;
 
   const truncated =
-    usedWords < words.length || normalized.length > sampleText.length;
+    trimmedSource.length > previewSource.length ||
+    usedWords < words.length ||
+    normalized.length > sampleText.length;
   const cappedAtTarget = durationMs >= BOOK_PREVIEW_MAX_DURATION_MS * 0.92;
   const label = truncated
     ? cappedAtTarget

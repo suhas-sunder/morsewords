@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router";
 
 import {
   DownloadIcon,
@@ -7,7 +8,6 @@ import {
   WarningBadgeIcon,
 } from "~/client/assets/svg/Icons";
 import {
-  copyTextToClipboard,
   downloadBlobFile,
 } from "~/client/components/shared/actionOutputUtils";
 import {
@@ -86,7 +86,7 @@ import {
   type BookVideoSupport,
 } from "~/client/components/morse-code-book-translator/bookVideoSupport";
 import {
-  getMorseBookSection,
+  getMorseBookSections,
   isMorseBookPublishReady,
 } from "~/client/data/morseBooks";
 import type {
@@ -94,6 +94,7 @@ import type {
   MorseBookSectionJson,
   MorseBookSectionSummary,
 } from "~/client/data/morseBookTypes";
+import { ROUTES } from "~/client/data/routes";
 
 import { createBookTranslatorSourceFromSections } from "./bookTranslatorSource";
 
@@ -128,7 +129,6 @@ const intensityLabels: Record<MorseVideoIntensity, string> = {
   high: "High",
 };
 
-type SelectionScope = "current" | "selected" | "full";
 type DownloadStatus =
   | { kind: "idle"; message: string }
   | { kind: "working"; message: string }
@@ -241,29 +241,23 @@ function LayerCheckbox({
   );
 }
 
-function sectionIdsForScope({
-  activeSectionId,
-  book,
-  scope,
-  selectedSectionIds,
-}: {
-  activeSectionId: string;
-  book: MorseBookManifest;
-  scope: SelectionScope;
-  selectedSectionIds: Set<string>;
-}) {
-  if (scope === "current") return [activeSectionId];
-  if (scope === "full") {
-    const included = book.sections
-      .filter((section) => section.includeByDefault)
-      .map((section) => section.id);
-    return included.length > 0 ? included : [activeSectionId];
-  }
+function defaultSectionIdsForBook(
+  book: MorseBookManifest,
+  fallbackSectionId: string,
+) {
+  const included = book.sections
+    .filter((section) => section.includeByDefault)
+    .map((section) => section.id);
+  return included.length > 0 ? included : [fallbackSectionId];
+}
 
-  const selected = book.sections
+function selectedSectionIdsForBook(
+  book: MorseBookManifest,
+  selectedSectionIds: Set<string>,
+) {
+  return book.sections
     .filter((section) => selectedSectionIds.has(section.id))
     .map((section) => section.id);
-  return selected.length > 0 ? selected : [activeSectionId];
 }
 
 function createSourceSectionsForExport(
@@ -349,18 +343,10 @@ export default function MorseBookPage({
   const [loadedSections, setLoadedSections] = React.useState(
     () => new Map<string, MorseBookSectionJson>([[initialSection.sectionId, initialSection]]),
   );
-  const [activeSectionId, setActiveSectionId] = React.useState(
-    initialSection.sectionId,
-  );
-  const [selectionScope, setSelectionScope] =
-    React.useState<SelectionScope>("current");
   const [selectedSectionIds, setSelectedSectionIds] = React.useState(
-    () => new Set<string>([initialSection.sectionId]),
+    () => new Set<string>(defaultSectionIdsForBook(book, initialSection.sectionId)),
   );
   const [sectionStatus, setSectionStatus] = React.useState<"idle" | "loading">(
-    "idle",
-  );
-  const [copyState, setCopyState] = React.useState<"idle" | "copied" | "failed">(
     "idle",
   );
   const [outputType, setOutputType] = React.useState<BookOutputType>("audio");
@@ -395,6 +381,7 @@ export default function MorseBookPage({
   const videoPreviewStartedAtRef = React.useRef(0);
   const videoPreviewSessionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
+  const selectAllDefaultRef = React.useRef<HTMLInputElement | null>(null);
 
   React.useEffect(() => {
     previewAudioPlayerRef.current = previewAudioPlayer;
@@ -402,25 +389,35 @@ export default function MorseBookPage({
 
   React.useEffect(() => {
     setLoadedSections(new Map([[initialSection.sectionId, initialSection]]));
-    setActiveSectionId(initialSection.sectionId);
-    setSelectedSectionIds(new Set([initialSection.sectionId]));
-    setSelectionScope("current");
-  }, [book.slug, initialSection.sectionId]);
+    setSelectedSectionIds(
+      new Set(defaultSectionIdsForBook(book, initialSection.sectionId)),
+    );
+  }, [book, initialSection.sectionId]);
 
   React.useEffect(() => {
     setVideoSupport(detectBookVideoSupport());
   }, []);
 
-  const scopeSectionIds = React.useMemo(
-    () =>
-      sectionIdsForScope({
-        activeSectionId,
-        book,
-        scope: selectionScope,
-        selectedSectionIds,
-      }),
-    [activeSectionId, book, selectionScope, selectedSectionIds],
+  const defaultSectionIds = React.useMemo(
+    () => defaultSectionIdsForBook(book, initialSection.sectionId),
+    [book, initialSection.sectionId],
   );
+  const scopeSectionIds = React.useMemo(
+    () => selectedSectionIdsForBook(book, selectedSectionIds),
+    [book, selectedSectionIds],
+  );
+  const allDefaultSectionsSelected =
+    defaultSectionIds.length > 0 &&
+    defaultSectionIds.every((id) => selectedSectionIds.has(id));
+  const someDefaultSectionsSelected = defaultSectionIds.some((id) =>
+    selectedSectionIds.has(id),
+  );
+
+  React.useEffect(() => {
+    if (!selectAllDefaultRef.current) return;
+    selectAllDefaultRef.current.indeterminate =
+      someDefaultSectionsSelected && !allDefaultSectionsSelected;
+  }, [allDefaultSectionsSelected, someDefaultSectionsSelected]);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -433,7 +430,7 @@ export default function MorseBookPage({
     }
 
     setSectionStatus("loading");
-    Promise.all(missingIds.map((id) => getMorseBookSection(book, id)))
+    getMorseBookSections(book, missingIds)
       .then((sections) => {
         if (cancelled) return;
         setLoadedSections((current) => {
@@ -454,7 +451,6 @@ export default function MorseBookPage({
   }, [book, loadedSections, scopeSectionIds]);
 
   const publishReady = isMorseBookPublishReady(book);
-  const activeSection = loadedSections.get(activeSectionId) ?? initialSection;
   const selectedScopeSections = React.useMemo(
     () =>
       scopeSectionIds
@@ -463,10 +459,15 @@ export default function MorseBookPage({
         .sort((a, b) => a.order - b.order),
     [loadedSections, scopeSectionIds],
   );
-  const scopeReady = selectedScopeSections.length === scopeSectionIds.length;
+  const deferredSelectedScopeSections = React.useDeferredValue(selectedScopeSections);
+  const selectionUpdating = deferredSelectedScopeSections !== selectedScopeSections;
+  const scopeReady =
+    scopeSectionIds.length > 0 &&
+    selectedScopeSections.length === scopeSectionIds.length &&
+    !selectionUpdating;
   const translatorSource = React.useMemo(
-    () => createBookTranslatorSourceFromSections(book, selectedScopeSections),
-    [book, selectedScopeSections],
+    () => createBookTranslatorSourceFromSections(book, deferredSelectedScopeSections),
+    [book, deferredSelectedScopeSections],
   );
   const cleanedExportText = React.useMemo(
     () => applyExportPunctuationMode(translatorSource.sourceText, exportSettings),
@@ -522,11 +523,11 @@ export default function MorseBookPage({
           exportParts.length,
         );
   const displayPreview = clippedText(
-    translatorSource.displayText || activeSection.displayText,
+    translatorSource.displayText,
     DISPLAY_TEXT_PREVIEW_LIMIT,
   );
   const morseSourcePreview = clippedText(
-    translatorSource.sourceText || activeSection.morseSourceText,
+    translatorSource.sourceText,
     MORSE_SOURCE_PREVIEW_LIMIT,
   );
   const morseResult = textToMorse(morseSourcePreview.text, {
@@ -590,11 +591,15 @@ export default function MorseBookPage({
     videoUnavailable;
   const canShowZipCopy = downloadKind === "zip";
   const selectionLabel =
-    selectionScope === "current"
-      ? activeSection.label
-      : selectionScope === "full"
-        ? "Full book default sections"
-        : `${scopeSectionIds.length} selected sections`;
+    scopeSectionIds.length === 0
+      ? "No sections selected"
+      : allDefaultSectionsSelected &&
+          selectedSectionIds.size === defaultSectionIds.length
+        ? "Full book selected"
+        : `${formatNumber(scopeSectionIds.length)} selected chapters`;
+  const loadingSelectedSections =
+    scopeSectionIds.length > 0 &&
+    (!scopeReady || sectionStatus === "loading" || selectionUpdating);
 
   const handleSectionSelectionChange = React.useCallback(
     (sectionId: string, checked: boolean) => {
@@ -602,12 +607,25 @@ export default function MorseBookPage({
         const next = new Set(current);
         if (checked) next.add(sectionId);
         else next.delete(sectionId);
-        if (next.size === 0) next.add(activeSectionId);
         return next;
       });
-      setSelectionScope("selected");
     },
-    [activeSectionId],
+    [],
+  );
+
+  const handleSelectAllDefaultSections = React.useCallback(
+    (checked: boolean) => {
+      setSelectedSectionIds((current) => {
+        const next = new Set(current);
+        if (checked) {
+          defaultSectionIds.forEach((id) => next.add(id));
+        } else {
+          defaultSectionIds.forEach((id) => next.delete(id));
+        }
+        return next;
+      });
+    },
+    [defaultSectionIds],
   );
 
   const clearAudioPreviewTimers = React.useCallback(() => {
@@ -708,12 +726,6 @@ export default function MorseBookPage({
       }
       return next;
     });
-  };
-
-  const handleCopy = async () => {
-    setCopyState("idle");
-    const result = await copyTextToClipboard(translatorSource.displayText);
-    setCopyState(result.ok ? "copied" : "failed");
   };
 
   const startAudioPreviewFrom = React.useCallback(
@@ -1052,9 +1064,8 @@ export default function MorseBookPage({
         title={book.title}
         lead={
           <>
-            Choose a generated section, preview cleaned book text as Morse, and
-            prepare browser-local Morse audio or video without publishing
-            unreviewed source material.
+            Export the full cleaned book by default, choose chapters when you
+            need a smaller file, and preview browser-local Morse audio or video.
           </>
         }
       />
@@ -1066,6 +1077,15 @@ export default function MorseBookPage({
             <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
               {book.source.provider}
               {book.source.gutenbergId ? ` ID ${book.source.gutenbergId}` : ""}
+              <span className="mx-2 text-slate-400" aria-hidden="true">
+                /
+              </span>
+              <Link
+                to={ROUTES.bookTranslator}
+                className="text-sky-900 underline-offset-4 hover:underline"
+              >
+                Translate your own text
+              </Link>
             </p>
             <h2 className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
               {book.author.join(", ")}
@@ -1096,99 +1116,66 @@ export default function MorseBookPage({
         </div>
       </section>
 
-      <section className="mt-10 grid gap-7 lg:grid-cols-[300px_minmax(0,1fr)]">
+      <section className="mt-10 grid gap-7 lg:grid-cols-[minmax(360px,420px)_minmax(0,1fr)] lg:items-start">
         <ToolPanel label="Choose sections" badge="Lazy JSON">
           <div className="space-y-4 px-3 pb-3">
-            <div>
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                Scope
-              </p>
-              <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label="Book scope">
-                {([
-                  ["current", "Current section"],
-                  ["selected", "Selected sections"],
-                  ["full", "Full book"],
-                ] as const).map(([scope, label]) => (
-                  <button
-                    key={scope}
-                    type="button"
-                    className={toolControlButtonClass({
-                      active: selectionScope === scope,
-                      size: "sm",
-                    })}
-                    onClick={() => setSelectionScope(scope)}
-                    data-mw-morse-book-scope={scope}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-              {selectionScope === "full" ? (
-                <p
-                  className="mt-3 text-sm leading-relaxed text-slate-600"
-                  data-mw-morse-book-full-warning="true"
-                >
-                  Full book scope uses default-included sections only. Long
-                  exports can take time and may be easier to split after review.
-                </p>
-              ) : null}
-            </div>
+            <label className="flex cursor-pointer items-start gap-3 rounded-lg bg-[#fffdf8]/82 px-3 py-3 text-sm font-semibold text-slate-700">
+              <input
+                ref={selectAllDefaultRef}
+                type="checkbox"
+                checked={allDefaultSectionsSelected}
+                onChange={(event) =>
+                  handleSelectAllDefaultSections(event.target.checked)
+                }
+                className="mt-0.5 h-4 w-4 accent-sky-500"
+                data-mw-morse-book-select-all-default="true"
+              />
+              <span className="grid min-w-0 gap-1">
+                <span className="text-sky-950">Select all chapters</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-slate-500">
+                  {formatNumber(defaultSectionIds.length)} default chapters
+                </span>
+              </span>
+            </label>
 
-            <div className="max-h-[36rem] overflow-y-auto">
+            <div className="max-h-[42rem] overflow-y-auto pr-1 lg:max-h-[calc(100vh-10rem)]">
               <div className="space-y-2" role="list" aria-label="Book sections">
                 {book.sections.map((section) => {
-                  const active = activeSectionId === section.id;
                   const selected = selectedSectionIds.has(section.id);
                   return (
-                    <div
+                    <label
                       key={section.id}
                       role="listitem"
-                      className="grid gap-2 p-1"
+                      className={[
+                        "flex cursor-pointer items-start gap-3 rounded-lg px-3 py-2 text-sm font-semibold",
+                        selected
+                          ? "bg-slate-950 text-sky-100"
+                          : "bg-[#fffdf8]/78 text-slate-700 hover:bg-[#fffaf2]",
+                      ].join(" ")}
+                      data-mw-morse-book-section-id={section.id}
                     >
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setActiveSectionId(section.id);
-                          setSelectionScope("current");
-                        }}
-                        className={toolControlButtonClass({
-                          active,
-                          full: true,
-                          size: "sm",
-                          hover: "soft",
-                        })}
-                        data-mw-morse-book-section-id={section.id}
-                      >
-                        <span className="flex min-w-0 flex-1 flex-col items-start text-left">
-                          <span className="truncate">{sectionDisplayName(section)}</span>
-                          <span className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] opacity-75">
-                            {section.kind} - {formatNumber(section.wordCount)} words
-                            {section.includeByDefault ? " - included" : " - optional"}
-                          </span>
+                      <input
+                        type="checkbox"
+                        checked={selected}
+                        onChange={(event) =>
+                          handleSectionSelectionChange(
+                            section.id,
+                            event.target.checked,
+                          )
+                        }
+                        className="mt-0.5 h-4 w-4 accent-sky-500"
+                        data-mw-morse-book-section-select={section.id}
+                      />
+                      <span className="grid min-w-0 gap-1">
+                        <span className="break-words">
+                          {sectionDisplayName(section)}
                         </span>
-                      </button>
-                      <label
-                        className="flex cursor-pointer items-center gap-2 px-1 text-sm font-semibold text-slate-700"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          handleSectionSelectionChange(section.id, !selected);
-                        }}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={selected}
-                          readOnly
-                          onKeyDown={(event) => {
-                            if (event.key !== " " && event.key !== "Enter") return;
-                            event.preventDefault();
-                            handleSectionSelectionChange(section.id, !selected);
-                          }}
-                          className="h-4 w-4 accent-sky-500"
-                          data-mw-morse-book-section-select={section.id}
-                        />
-                        <span>Select for multi-section output</span>
-                      </label>
-                    </div>
+                        <span className="font-mono text-[11px] uppercase tracking-[0.12em] opacity-75">
+                          {section.kind} - {formatNumber(section.wordCount)} words
+                          {section.includeByDefault ? " - included" : " - optional"}
+                        </span>
+                      </span>
+                    </label>
                   );
                 })}
               </div>
@@ -1199,28 +1186,25 @@ export default function MorseBookPage({
         <div className="grid gap-7">
           <ToolPanel
             label="Cleaned reading preview"
-            badge={sectionStatus === "loading" ? "Loading" : selectionLabel}
-            footer={
-              <>
-                <ToolButton onClick={handleCopy} className="min-h-10 px-3 py-1.5 text-sm">
-                  Copy selected text
-                </ToolButton>
-                <span className="text-sm text-slate-600">
-                  {copyState === "copied"
-                    ? "Copied."
-                    : copyState === "failed"
-                      ? "Copy unavailable in this browser."
-                      : "Source and rights notes stay separate from Morse text."}
-                </span>
-              </>
-            }
+            badge={loadingSelectedSections ? "Loading" : selectionLabel}
           >
             <div className="px-4 pb-4">
               <div className="mb-3 grid gap-3 text-sm text-slate-700 sm:grid-cols-3">
-                <span>{formatNumber(selectedScopeSections.length)} section(s)</span>
+                <span>
+                  {formatNumber(scopeSectionIds.length)} selected chapter(s)
+                </span>
                 <span>{formatNumber(translatorSource.sourceText.length)} source characters</span>
                 <span>{scopeReady ? "Ready" : "Loading sections"}</span>
               </div>
+              {loadingSelectedSections ? (
+                <div
+                  className="mb-3 rounded-lg bg-[#fffdf8]/82 px-3 py-2 text-sm font-semibold text-slate-700"
+                  role="status"
+                  data-mw-morse-book-loading-sections="true"
+                >
+                  Loading selected book sections...
+                </div>
+              ) : null}
               <pre
                 className="max-h-[24rem] overflow-auto whitespace-pre-wrap rounded-xl bg-white/90 p-4 font-mono text-sm leading-relaxed text-slate-950"
                 data-mw-morse-book-source-preview="true"
@@ -1229,12 +1213,6 @@ export default function MorseBookPage({
               >
                 {displayPreview.text || "Select a section with readable text."}
               </pre>
-              {displayPreview.truncated ? (
-                <p className="mt-3 text-sm text-slate-600">
-                  Preview is capped for page performance. Downloads use lazy
-                  section data for the selected scope.
-                </p>
-              ) : null}
             </div>
           </ToolPanel>
 
@@ -1248,20 +1226,13 @@ export default function MorseBookPage({
               >
                 {morseOutputPreview.text || "Select a section with translatable text."}
               </pre>
-              <p className="mw-output-muted mt-3 text-sm text-slate-300">
-                Morse preview uses the selected scope and is capped to avoid
-                rendering a whole book into the DOM.
-                {morseSourcePreview.truncated || morseOutputPreview.truncated
-                  ? " The export flow uses the full selected section text."
-                  : ""}
-              </p>
             </div>
           </ToolOutputPanel>
         </div>
       </section>
 
       <section
-        className="mt-10 grid gap-7 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]"
+        className="mt-10 grid gap-7"
         data-mw-morse-book-output-foundation="true"
       >
         <ToolPanel label="Preview and download" badge={publishReady ? "Ready" : "Gated"}>
@@ -1303,7 +1274,7 @@ export default function MorseBookPage({
                 data-mw-morse-book-split-warning="true"
               >
                 Split mode is active. Direct files are still used when the
-                selected scope produces one part and no extras.
+                selected chapters produce one part and no extras.
               </p>
             ) : null}
             {canShowZipCopy ? (
@@ -1556,8 +1527,8 @@ export default function MorseBookPage({
               ) : null}
               {exportSettings.splitMode === "source-sections" ? (
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Source-section splitting uses the selected generated section
-                  order. Excluded sections stay out unless you select them.
+                  Source-section splitting follows the generated chapter order.
+                  Excluded items stay out unless you select them.
                 </p>
               ) : null}
             </div>

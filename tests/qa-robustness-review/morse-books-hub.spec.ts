@@ -183,9 +183,13 @@ test.describe("Morse books hub", () => {
     await expect(collectionModule.locator("[data-testid='morse-books-placeholder-grid']")).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
     await expect(page.getByRole("heading", { name: "Anne of Green Gables" })).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: "Open book for Anne of Green Gables" }),
-    ).toHaveAttribute("href", APPROVED_BOOK_PATH);
+    const anneCard = page
+      .locator("[data-testid='morse-book-card']")
+      .filter({ hasText: "Anne of Green Gables" });
+    await expect(anneCard).toHaveAttribute("href", APPROVED_BOOK_PATH);
+    await expect(page.getByRole("link", { name: /^Open book/ })).toHaveCount(0);
+    await expect(page.locator("[data-testid='morse-book-output-badge']")).toHaveCount(0);
+    await expect(page.locator("[data-testid='morse-book-subject-chip']")).toHaveCount(0);
     await expect(collectionModule.locator("[data-testid='morse-books-toolbar']")).toBeVisible();
     await expect(page.getByLabel("Search title, author, or subject")).toBeEnabled();
     await expect(page.getByLabel("Filter Morse books by subject")).toBeDisabled();
@@ -355,21 +359,15 @@ test.describe("Morse books hub", () => {
       page.locator("[data-mw-morse-books-cover-placeholder='true'] img"),
     ).toHaveCount(0);
     const card = page.locator("[data-testid='morse-book-card']");
-    await expect(card.locator("[data-testid='morse-book-output-badge']")).toHaveText([
-      "Audio",
-      "Video",
-      "Practice",
-    ]);
-    await expect(card).toContainText("sections");
-    await expect(card).toContainText("words");
-
-    const bookLink = page.getByRole("link", {
-      name: "Open book for Test Published Morse Book",
-    });
-    await expect(bookLink).toHaveAttribute(
+    await expect(card).toHaveAttribute(
       "href",
       `/morse-code-books/${TEST_BOOK_SLUG}?preview=test-published`,
     );
+    await expect(card.locator("[data-testid='morse-book-card-description']")).toBeVisible();
+    await expect(card.locator("[data-testid='morse-book-output-badge']")).toHaveCount(0);
+    await expect(card.locator("[data-testid='morse-book-subject-chip']")).toHaveCount(0);
+
+    await expect(page.getByRole("link", { name: /^Open book/ })).toHaveCount(0);
 
     const searchInput = page.getByLabel("Search title, author, or subject");
     await searchInput.fill("MorseWords QA");
@@ -421,47 +419,21 @@ test.describe("Morse books hub", () => {
       "Ada Key",
     );
     await expect(
-      page.locator("[data-testid='morse-book-card']").first().getByRole("link", {
-        name: "Open book for Test Collection Morse Book 01",
+      page.getByRole("link", {
+        name: "Test Collection Morse Book 01 by Ada Key",
       }),
     ).toBeVisible();
-    await expect(
-      page.locator("[data-testid='morse-book-subject-chip']").filter({
-        hasText: "fixture",
-      }),
-    ).toHaveCount(0);
-    await expect(
-      page.locator("[data-testid='morse-book-card']").first().locator(
-        "[data-testid='morse-book-subject-chip']",
-      ),
-    ).toHaveCount(2);
-    await expect(
-      page.locator("[data-testid='morse-book-output-badge']").filter({
-        hasText: "Audio",
-      }),
-    ).toHaveCount(12);
-    await expect(
-      page.locator("[data-testid='morse-book-output-badge']").filter({
-        hasText: "Video",
-      }),
-    ).toHaveCount(12);
-    await expect(
-      page.locator("[data-testid='morse-book-output-badge']").filter({
-        hasText: "Practice",
-      }),
-    ).toHaveCount(12);
+    await expect(page.locator("[data-testid='morse-book-subject-chip']")).toHaveCount(0);
+    await expect(page.locator("[data-testid='morse-book-output-badge']")).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-card']").first()).not.toContainText(
       "MorseWords test fixture",
     );
     await expect(page.locator("[data-testid='morse-book-card']").first()).not.toContainText(
       "Development-only",
     );
-    await expect(page.locator("[data-testid='morse-book-card']").first()).toContainText(
-      "sections",
-    );
-    await expect(page.locator("[data-testid='morse-book-card']").first()).toContainText(
-      "words",
-    );
+    await expect(
+      page.locator("[data-testid='morse-book-card-description']").first(),
+    ).toBeVisible();
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 1-12 of 30 books",
     );
@@ -580,10 +552,7 @@ test.describe("Morse books hub", () => {
 
     const firstCardLink = page
       .locator("[data-testid='morse-book-card']")
-      .filter({ hasText: "Test Collection Morse Book 01" })
-      .getByRole("link", {
-        name: "Open book for Test Collection Morse Book 01",
-      });
+      .filter({ hasText: "Test Collection Morse Book 01" });
     await expect(firstCardLink).toHaveAttribute(
       "href",
       "/morse-code-books/test-collection-morse-book-01",

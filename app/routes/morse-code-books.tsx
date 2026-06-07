@@ -60,8 +60,6 @@ const placeholderCards = Array.from({ length: 5 }, (_, index) => ({
   label: `Book page ${index + 1}`,
 }));
 
-const outputBadges = ["Audio", "Video", "Practice"];
-
 type SortMode = "title" | "author" | "wordCount";
 
 function isTestPublishedPreviewRequest(request: Request) {
@@ -150,26 +148,11 @@ function resultCountText({
   )} of ${formatBookCount(filteredCount)}`;
 }
 
-function displaySourceProvider(provider: string) {
-  return provider.toLowerCase().includes("test fixture") ? "MorseWords" : provider;
-}
-
 function displayBookDescription(description: string) {
   if (description.toLowerCase().includes("development-only")) {
     return "Chapter-ready text for Morse audio, video, and practice.";
   }
   return description;
-}
-
-function displaySubject(subject: string) {
-  return subject
-    .replace(/\s+fixture\b/gi, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function visibleSubjectChips(book: MorseBookLibrarySummary) {
-  return uniqueSorted(book.subjects.map(displaySubject)).slice(0, 3);
 }
 
 function publicBookHref(book: MorseBookLibrarySummary, includeTestFixture: boolean) {
@@ -708,17 +691,6 @@ function EmptyCollectionShelf({ variant }: { variant: "empty" | "filtered" }) {
             >
               Book page
             </p>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {outputBadges.map((badge) => (
-                <span
-                  key={badge}
-                  className="mw-muted-label rounded-full bg-[#fffdf8]/80 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-slate-600"
-                  data-testid="morse-books-placeholder-output-chip"
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
           </article>
         ))}
       </div>
@@ -734,105 +706,39 @@ function BookCard({
   href: string;
 }) {
   const description = displayBookDescription(book.description);
-  const sourceProvider = displaySourceProvider(book.source.provider);
-  const subjects = visibleSubjectChips(book);
 
   return (
-    <article
-      className="mw-static-surface flex h-full min-h-[34rem] flex-col rounded-xl bg-[#fffdf8]/90 p-3 sm:p-4"
+    <Link
+      to={href}
+      className="mw-static-surface group flex h-full min-w-0 cursor-pointer flex-col rounded-xl bg-[#fffdf8]/90 p-3 text-left no-underline hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:p-4"
       data-testid="morse-book-card"
       data-mw-morse-book-card-slug={book.slug}
+      aria-label={`${book.title} by ${bookAuthor(book)}`}
     >
       <BookCover book={book} />
-      <div className="mt-3 flex min-h-0 flex-1 flex-col">
+      <div className="mt-4 grid min-w-0 gap-2">
         <h3
-          className="mw-heading max-h-[3.2rem] overflow-hidden text-lg font-extrabold leading-tight text-sky-950"
+          className="mw-heading break-words text-lg font-extrabold leading-tight text-sky-950 underline-offset-4 group-hover:underline"
           data-testid="morse-book-card-title"
         >
           {book.title}
         </h3>
         <p
-          className="mt-1 truncate text-sm font-semibold text-slate-600"
+          className="break-words text-sm font-semibold leading-snug text-slate-600"
           data-testid="morse-book-card-author"
         >
           {bookAuthor(book)}
         </p>
         {description ? (
-          <p className="mw-text-muted mt-2 max-h-[2.7rem] overflow-hidden text-sm leading-snug text-slate-700">
+          <p
+            className="mw-text-muted break-words text-sm leading-relaxed text-slate-700"
+            data-testid="morse-book-card-description"
+          >
             {description}
           </p>
         ) : null}
-        <div
-          className="mt-3 flex flex-wrap gap-1.5"
-          data-testid="morse-book-subject-chips"
-        >
-          {subjects.map((subject) => (
-            <span
-              key={subject}
-              className="mw-muted-label rounded-full bg-[#f2eee6] px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-600"
-              data-testid="morse-book-subject-chip"
-            >
-              {subject}
-            </span>
-          ))}
-        </div>
-        <dl
-          className="mt-3 flex flex-wrap gap-1.5 rounded-lg bg-[#f2eee6]/75 p-2 text-xs text-slate-700"
-          data-testid="morse-book-compact-metadata"
-        >
-          <div>
-            <dt className="sr-only">Sections</dt>
-            <dd className="rounded-full bg-[#fffdf8]/82 px-2 py-1 font-semibold text-slate-700">
-              {formatNumber(book.stats.includedSectionCount)} sections
-            </dd>
-          </div>
-          <div>
-            <dt className="sr-only">Words</dt>
-            <dd className="rounded-full bg-[#fffdf8]/82 px-2 py-1 font-semibold text-slate-700">
-              {formatNumber(book.stats.wordCount)} words
-            </dd>
-          </div>
-          <div>
-            <dt className="sr-only">Source</dt>
-            <dd
-              className="rounded-full bg-[#fffdf8]/82 px-2 py-1 font-semibold text-slate-700"
-              title={sourceProvider}
-            >
-              {sourceProvider}
-            </dd>
-          </div>
-        </dl>
-        <div
-          className="mt-3 flex flex-wrap gap-1.5"
-          aria-label="Available Morse book outputs"
-        >
-          {outputBadges.map((badge) => (
-            <span
-              key={badge}
-              className="mw-muted-label rounded-full bg-[#fffdf8]/85 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-600"
-              data-testid="morse-book-output-badge"
-            >
-              {badge}
-            </span>
-          ))}
-        </div>
-        <Link
-          to={href}
-          className={[
-            toolControlButtonClass({
-              tone: "dark",
-              rounded: "lg",
-              size: "sm",
-              full: true,
-            }),
-            "mt-auto",
-          ].join(" ")}
-        >
-          Open book
-          <span className="sr-only"> for {book.title}</span>
-        </Link>
       </div>
-    </article>
+    </Link>
   );
 }
 
