@@ -72,7 +72,6 @@ import type {
 } from "~/client/components/morse-code-book-translator/bookExportTypes";
 import {
   buildBookAudioPreview,
-  morseFromPreviewOffset,
   type BookAudioPreview,
 } from "~/client/components/morse-code-book-translator/bookPreviewAudio";
 import { segmentBookText } from "~/client/components/morse-code-book-translator/bookSegmentation";
@@ -394,6 +393,7 @@ export default function MorseBookPage({
   const videoPreviewIntervalRef = React.useRef<number | null>(null);
   const videoPreviewBaseElapsedRef = React.useRef(0);
   const videoPreviewStartedAtRef = React.useRef(0);
+  const videoPreviewSessionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
 
   React.useEffect(() => {
@@ -630,7 +630,9 @@ export default function MorseBookPage({
 
   const stopVideoPreview = React.useCallback(
     (reset = false) => {
+      videoPreviewSessionRef.current += 1;
       clearVideoPreviewTimer();
+      previewAudioPlayerRef.current.stop();
       setVideoPreviewPlaying(false);
       if (reset) {
         videoPreviewBaseElapsedRef.current = 0;
@@ -710,8 +712,7 @@ export default function MorseBookPage({
         0,
         Math.min(audioPreview.durationMs, startElapsedMs),
       );
-      const previewMorse = morseFromPreviewOffset(audioPreview, safeStartElapsed);
-      if (!previewMorse.trim()) {
+      if (!audioPreview.sampleMorse.trim()) {
         setAudioPreviewElapsedMs(audioPreview.durationMs);
         setAudioPreviewPlaying(false);
         return;
@@ -720,26 +721,34 @@ export default function MorseBookPage({
       const timerSession = audioPreviewSessionRef.current + 1;
       audioPreviewSessionRef.current = timerSession;
       audioPreviewBaseElapsedRef.current = safeStartElapsed;
-      audioPreviewStartedAtRef.current = performance.now();
       setAudioPreviewElapsedMs(safeStartElapsed);
       setAudioPreviewPlaying(true);
-      audioPreviewIntervalRef.current = window.setInterval(() => {
-        if (audioPreviewSessionRef.current !== timerSession) return;
-        const nextElapsed =
-          audioPreviewBaseElapsedRef.current +
-          Math.max(0, performance.now() - audioPreviewStartedAtRef.current);
-        setAudioPreviewElapsedMs(Math.min(audioPreview.durationMs, nextElapsed));
-      }, 100);
-      audioPreviewTimeoutRef.current = window.setTimeout(() => {
+
+      const startAudioClock = (startedAtMs = performance.now()) => {
         if (audioPreviewSessionRef.current !== timerSession) return;
         clearAudioPreviewTimers();
-        setAudioPreviewElapsedMs(audioPreview.durationMs);
-        setAudioPreviewPlaying(false);
-      }, Math.max(0, audioPreview.durationMs - safeStartElapsed));
+        audioPreviewBaseElapsedRef.current = safeStartElapsed;
+        audioPreviewStartedAtRef.current = startedAtMs;
+        setAudioPreviewElapsedMs(safeStartElapsed);
+        audioPreviewIntervalRef.current = window.setInterval(() => {
+          if (audioPreviewSessionRef.current !== timerSession) return;
+          const nextElapsed =
+            audioPreviewBaseElapsedRef.current +
+            Math.max(0, performance.now() - audioPreviewStartedAtRef.current);
+          setAudioPreviewElapsedMs(Math.min(audioPreview.durationMs, nextElapsed));
+        }, 80);
+        audioPreviewTimeoutRef.current = window.setTimeout(() => {
+          if (audioPreviewSessionRef.current !== timerSession) return;
+          clearAudioPreviewTimers();
+          setAudioPreviewElapsedMs(audioPreview.durationMs);
+          setAudioPreviewPlaying(false);
+        }, Math.max(0, audioPreview.durationMs - safeStartElapsed));
+      };
 
+      startAudioClock();
       void previewAudioPlayerRef.current
         .play({
-          code: previewMorse,
+          code: audioPreview.sampleMorse,
           wpm: exportSettings.charWpm,
           farnsworthWpm: exportSettings.farnsworthWpm,
           hz: exportSettings.pitch,
@@ -748,6 +757,8 @@ export default function MorseBookPage({
           repeat: false,
           flash: false,
           soundEnabled: true,
+          startElapsedMs: safeStartElapsed,
+          onPlaybackStart: startAudioClock,
         })
         .then(() => {
           if (audioPreviewSessionRef.current !== timerSession) return;
@@ -798,43 +809,100 @@ export default function MorseBookPage({
     [audioPreview],
   );
 
-  const startVideoPreview = React.useCallback(() => {
+  const startVideoPreview = React.useCallback((requestedElapsedMs?: number) => {
     if (!videoPreview) return;
     stopAudioPreview();
     clearVideoPreviewTimer();
+    const requestedElapsed =
+      typeof requestedElapsedMs === "number"
+        ? requestedElapsedMs
+        : videoPreviewElapsedMs;
     const currentElapsed = Math.max(
       0,
-      Math.min(videoPreview.durationMs, videoPreviewElapsedMs),
+      Math.min(videoPreview.durationMs, requestedElapsed),
     );
     const startElapsed =
       videoPreview.durationMs - currentElapsed <=
       MIN_PREVIEW_RESTART_REMAINING_MS
         ? 0
         : currentElapsed;
+    const timerSession = videoPreviewSessionRef.current + 1;
+    videoPreviewSessionRef.current = timerSession;
     videoPreviewBaseElapsedRef.current = startElapsed;
-    videoPreviewStartedAtRef.current = performance.now();
     setVideoPreviewElapsedMs(startElapsed);
     setVideoPreviewPlaying(true);
-    videoPreviewIntervalRef.current = window.setInterval(() => {
-      const nextElapsed =
-        videoPreviewBaseElapsedRef.current +
-        Math.max(0, performance.now() - videoPreviewStartedAtRef.current);
-      if (nextElapsed >= videoPreview.durationMs) {
+
+    const startVideoClock = (startedAtMs = performance.now()) => {
+      if (videoPreviewSessionRef.current !== timerSession) return;
+      clearVideoPreviewTimer();
+      videoPreviewBaseElapsedRef.current = startElapsed;
+      videoPreviewStartedAtRef.current = startedAtMs;
+      setVideoPreviewElapsedMs(startElapsed);
+      videoPreviewIntervalRef.current = window.setInterval(() => {
+        if (videoPreviewSessionRef.current !== timerSession) return;
+        const nextElapsed =
+          videoPreviewBaseElapsedRef.current +
+          Math.max(0, performance.now() - videoPreviewStartedAtRef.current);
+        if (nextElapsed >= videoPreview.durationMs) {
+          setVideoPreviewElapsedMs(videoPreview.durationMs);
+          setVideoPreviewPlaying(false);
+          clearVideoPreviewTimer();
+          return;
+        }
+        setVideoPreviewElapsedMs(nextElapsed);
+      }, 40);
+    };
+
+    const playWithAudio =
+      videoSettings.includeAudioTrack &&
+      previewAudioPlayerRef.current.isSupported &&
+      videoPreview.sampleMorse.trim().length > 0;
+
+    if (!playWithAudio) {
+      startVideoClock();
+      return;
+    }
+
+    startVideoClock();
+    void previewAudioPlayerRef.current
+      .play({
+        code: videoPreview.sampleMorse,
+        wpm: exportSettings.charWpm,
+        farnsworthWpm: exportSettings.farnsworthWpm,
+        hz: exportSettings.pitch,
+        volume: exportSettings.volume,
+        preset: exportSettings.tonePreset,
+        repeat: false,
+        flash: false,
+        soundEnabled: true,
+        startElapsedMs: startElapsed,
+        onPlaybackStart: startVideoClock,
+      })
+      .then(() => {
+        if (videoPreviewSessionRef.current !== timerSession) return;
+        clearVideoPreviewTimer();
         setVideoPreviewElapsedMs(videoPreview.durationMs);
         setVideoPreviewPlaying(false);
+      })
+      .catch(() => {
+        if (videoPreviewSessionRef.current !== timerSession) return;
         clearVideoPreviewTimer();
-        return;
-      }
-      setVideoPreviewElapsedMs(nextElapsed);
-    }, 80);
+        setVideoPreviewPlaying(false);
+      });
   }, [
     clearVideoPreviewTimer,
+    exportSettings.charWpm,
+    exportSettings.farnsworthWpm,
+    exportSettings.pitch,
+    exportSettings.tonePreset,
+    exportSettings.volume,
     stopAudioPreview,
     videoPreview,
     videoPreviewElapsedMs,
+    videoSettings.includeAudioTrack,
   ]);
 
-  const handleSeekVideoPreview = React.useCallback(
+  const handleScrubVideoPreview = React.useCallback(
     (elapsedMs: number) => {
       const durationMs = Math.max(1, videoPreview.durationMs);
       const nextElapsed = Math.max(0, Math.min(durationMs, elapsedMs));
@@ -843,6 +911,20 @@ export default function MorseBookPage({
       videoPreviewStartedAtRef.current = performance.now();
     },
     [videoPreview.durationMs],
+  );
+
+  const handleSeekVideoPreview = React.useCallback(
+    (elapsedMs: number) => {
+      const durationMs = Math.max(1, videoPreview.durationMs);
+      const nextElapsed = Math.max(0, Math.min(durationMs, elapsedMs));
+      setVideoPreviewElapsedMs(nextElapsed);
+      videoPreviewBaseElapsedRef.current = nextElapsed;
+      videoPreviewStartedAtRef.current = performance.now();
+      if (videoPreviewPlaying) {
+        startVideoPreview(nextElapsed);
+      }
+    },
+    [startVideoPreview, videoPreview.durationMs, videoPreviewPlaying],
   );
 
   const handleDownload = async () => {
@@ -1293,7 +1375,7 @@ export default function MorseBookPage({
               <VideoPreviewControls
                 elapsedMs={videoPreviewElapsedMs}
                 onPlay={startVideoPreview}
-                onSeek={handleSeekVideoPreview}
+                onSeek={handleScrubVideoPreview}
                 onSeekCommit={handleSeekVideoPreview}
                 onStop={() => stopVideoPreview()}
                 playing={videoPreviewPlaying}

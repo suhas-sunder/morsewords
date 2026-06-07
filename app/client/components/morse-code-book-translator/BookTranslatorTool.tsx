@@ -115,7 +115,6 @@ import {
 } from "./bookVideoPreview";
 import {
   buildBookAudioPreview,
-  morseFromPreviewOffset,
   type BookAudioPreview,
 } from "./bookPreviewAudio";
 import {
@@ -556,6 +555,7 @@ export default function BookTranslatorTool() {
   const visualPreviewTimeoutRef = React.useRef<number | null>(null);
   const visualPreviewStartedAtRef = React.useRef(0);
   const visualPreviewBaseElapsedRef = React.useRef(0);
+  const visualPreviewSessionRef = React.useRef(0);
   const audioPreviewIntervalRef = React.useRef<number | null>(null);
   const audioPreviewTimeoutRef = React.useRef<number | null>(null);
   const audioPreviewStartedAtRef = React.useRef(0);
@@ -636,6 +636,7 @@ export default function BookTranslatorTool() {
 
   const stopVisualPreview = React.useCallback(
     (resetElapsed = true) => {
+      visualPreviewSessionRef.current += 1;
       clearVisualPreviewTimers();
       setVisualPreviewPlaying(false);
       if (resetElapsed) setVisualPreviewElapsedMs(0);
@@ -922,7 +923,7 @@ export default function BookTranslatorTool() {
     ],
   );
   const visualPreviewDurationMs = React.useMemo(
-    () => Math.min(30_000, Math.max(10_000, videoPreview.durationMs)),
+    () => Math.max(1, videoPreview.durationMs),
     [videoPreview.durationMs],
   );
   const previewSettingsSignature = React.useMemo(
@@ -1177,8 +1178,7 @@ export default function BookTranslatorTool() {
       0,
       Math.min(audioPreview.durationMs, startElapsedMs),
     );
-    const previewMorse = morseFromPreviewOffset(audioPreview, safeStartElapsed);
-    if (!previewMorse.trim()) {
+    if (!audioPreview.sampleMorse.trim()) {
       setAudioPreviewElapsedMs(audioPreview.durationMs);
       setPreviewStatus("stopped");
       return;
@@ -1188,27 +1188,36 @@ export default function BookTranslatorTool() {
     const timerSession = audioPreviewSessionRef.current + 1;
     audioPreviewSessionRef.current = timerSession;
     audioPreviewBaseElapsedRef.current = safeStartElapsed;
-    audioPreviewStartedAtRef.current = performance.now();
     setAudioPreviewElapsedMs(safeStartElapsed);
-    audioPreviewIntervalRef.current = window.setInterval(() => {
-      if (audioPreviewSessionRef.current !== timerSession) return;
-      const nextElapsed = Math.max(
-        0,
-        audioPreviewBaseElapsedRef.current +
-          performance.now() -
-          audioPreviewStartedAtRef.current,
-      );
-      setAudioPreviewElapsedMs(Math.min(audioPreview.durationMs, nextElapsed));
-    }, 100);
-    audioPreviewTimeoutRef.current = window.setTimeout(() => {
+
+    const startAudioClock = (startedAtMs = performance.now()) => {
       if (audioPreviewSessionRef.current !== timerSession) return;
       clearAudioPreviewTimers();
-      setAudioPreviewElapsedMs(audioPreview.durationMs);
-      setPreviewStatus("stopped");
-    }, Math.max(0, audioPreview.durationMs - safeStartElapsed));
+      audioPreviewBaseElapsedRef.current = safeStartElapsed;
+      audioPreviewStartedAtRef.current = startedAtMs;
+      setAudioPreviewElapsedMs(safeStartElapsed);
+      audioPreviewIntervalRef.current = window.setInterval(() => {
+        if (audioPreviewSessionRef.current !== timerSession) return;
+        const nextElapsed = Math.max(
+          0,
+          audioPreviewBaseElapsedRef.current +
+            performance.now() -
+            audioPreviewStartedAtRef.current,
+        );
+        setAudioPreviewElapsedMs(Math.min(audioPreview.durationMs, nextElapsed));
+      }, 80);
+      audioPreviewTimeoutRef.current = window.setTimeout(() => {
+        if (audioPreviewSessionRef.current !== timerSession) return;
+        clearAudioPreviewTimers();
+        setAudioPreviewElapsedMs(audioPreview.durationMs);
+        setPreviewStatus("stopped");
+      }, Math.max(0, audioPreview.durationMs - safeStartElapsed));
+    };
+
+    startAudioClock();
     void previewAudioPlayer
       .play({
-        code: previewMorse,
+        code: audioPreview.sampleMorse,
         wpm: exportSettings.charWpm,
         farnsworthWpm: exportSettings.farnsworthWpm,
         hz: exportSettings.pitch,
@@ -1217,6 +1226,8 @@ export default function BookTranslatorTool() {
         repeat: false,
         flash: false,
         soundEnabled: true,
+        startElapsedMs: safeStartElapsed,
+        onPlaybackStart: startAudioClock,
       })
       .then(() => {
         if (
@@ -1299,7 +1310,7 @@ export default function BookTranslatorTool() {
     ],
   );
 
-  const handlePlayVisualPreview = React.useCallback(() => {
+  const handlePlayVisualPreview = React.useCallback((requestedElapsedMs?: number) => {
     if (!audioPreview) {
       setPreviewStatus("unavailable");
       setPreviewErrorMessage("There is no previewable source yet.");
@@ -1311,36 +1322,108 @@ export default function BookTranslatorTool() {
     setPreviewErrorMessage("");
     setPreviewStatus("playing");
     setVisualPreviewPlaying(true);
+    const requestedElapsed =
+      typeof requestedElapsedMs === "number"
+        ? requestedElapsedMs
+        : visualPreviewElapsedMs;
     const currentElapsed = Math.max(
       0,
-      Math.min(visualPreviewDurationMs, visualPreviewElapsedMs),
+      Math.min(visualPreviewDurationMs, requestedElapsed),
     );
     const startElapsed =
       visualPreviewDurationMs - currentElapsed <=
       MIN_PREVIEW_RESTART_REMAINING_MS
         ? 0
         : currentElapsed;
-    visualPreviewStartedAtRef.current = performance.now();
+    const timerSession = visualPreviewSessionRef.current + 1;
+    visualPreviewSessionRef.current = timerSession;
     visualPreviewBaseElapsedRef.current = startElapsed;
     setVisualPreviewElapsedMs(startElapsed);
 
-    visualPreviewIntervalRef.current = window.setInterval(() => {
-      const nextElapsed =
-        visualPreviewBaseElapsedRef.current +
-        Math.max(0, performance.now() - visualPreviewStartedAtRef.current);
-      setVisualPreviewElapsedMs(Math.min(visualPreviewDurationMs, nextElapsed));
-    }, 80);
-    visualPreviewTimeoutRef.current = window.setTimeout(
-      () => {
-        stopVisualPreview();
-        if (mountedRef.current) setPreviewStatus("stopped");
-      },
-      Math.max(0, visualPreviewDurationMs - startElapsed),
-    );
+    const startVisualClock = (startedAtMs = performance.now()) => {
+      if (visualPreviewSessionRef.current !== timerSession) return;
+      clearVisualPreviewTimers();
+      visualPreviewStartedAtRef.current = startedAtMs;
+      visualPreviewBaseElapsedRef.current = startElapsed;
+      setVisualPreviewElapsedMs(startElapsed);
+      visualPreviewIntervalRef.current = window.setInterval(() => {
+        if (visualPreviewSessionRef.current !== timerSession) return;
+        const nextElapsed =
+          visualPreviewBaseElapsedRef.current +
+          Math.max(0, performance.now() - visualPreviewStartedAtRef.current);
+        if (nextElapsed >= visualPreviewDurationMs) {
+          clearVisualPreviewTimers();
+          setVisualPreviewElapsedMs(visualPreviewDurationMs);
+          setVisualPreviewPlaying(false);
+          setPreviewStatus("stopped");
+          return;
+        }
+        setVisualPreviewElapsedMs(nextElapsed);
+      }, 40);
+    };
+
+    const playWithAudio =
+      effectiveVideoSettings.includeAudioTrack &&
+      previewAudioPlayer.isSupported &&
+      videoPreview.sampleMorse.trim().length > 0;
+
+    if (!playWithAudio) {
+      startVisualClock();
+      return;
+    }
+
+    startVisualClock();
+    void previewAudioPlayer
+      .play({
+        code: videoPreview.sampleMorse,
+        wpm: exportSettings.charWpm,
+        farnsworthWpm: exportSettings.farnsworthWpm,
+        hz: exportSettings.pitch,
+        volume: exportSettings.volume,
+        preset: exportSettings.tonePreset,
+        repeat: false,
+        flash: false,
+        soundEnabled: true,
+        startElapsedMs: startElapsed,
+        onPlaybackStart: startVisualClock,
+      })
+      .then(() => {
+        if (
+          !mountedRef.current ||
+          visualPreviewSessionRef.current !== timerSession
+        ) {
+          return;
+        }
+        clearVisualPreviewTimers();
+        setVisualPreviewElapsedMs(visualPreviewDurationMs);
+        setVisualPreviewPlaying(false);
+        setPreviewStatus("stopped");
+      })
+      .catch(() => {
+        if (
+          !mountedRef.current ||
+          visualPreviewSessionRef.current !== timerSession
+        ) {
+          return;
+        }
+        clearVisualPreviewTimers();
+        setVisualPreviewPlaying(false);
+        setPreviewStatus("failed");
+        setPreviewErrorMessage(
+          "Video preview audio failed. Try playing the preview again.",
+        );
+      });
   }, [
     audioPreview,
     clearVisualPreviewTimers,
-    stopVisualPreview,
+    effectiveVideoSettings.includeAudioTrack,
+    exportSettings.charWpm,
+    exportSettings.farnsworthWpm,
+    exportSettings.pitch,
+    exportSettings.tonePreset,
+    exportSettings.volume,
+    previewAudioPlayer,
+    videoPreview.sampleMorse,
     visualPreviewDurationMs,
     visualPreviewElapsedMs,
   ]);
@@ -1360,39 +1443,16 @@ export default function BookTranslatorTool() {
 
   const handleSeekVisualPreview = React.useCallback(
     (elapsedMs: number) => {
-      const nextElapsed = Math.max(
-        0,
-        Math.min(visualPreviewDurationMs, elapsedMs),
-      );
+      const nextElapsed =
+        Math.max(0, Math.min(visualPreviewDurationMs, elapsedMs));
       setVisualPreviewElapsedMs(nextElapsed);
       visualPreviewBaseElapsedRef.current = nextElapsed;
       visualPreviewStartedAtRef.current = performance.now();
-
-      if (!visualPreviewPlaying) return;
-
-      clearVisualPreviewTimers();
-      visualPreviewIntervalRef.current = window.setInterval(() => {
-        const updatedElapsed =
-          visualPreviewBaseElapsedRef.current +
-          Math.max(0, performance.now() - visualPreviewStartedAtRef.current);
-        setVisualPreviewElapsedMs(
-          Math.min(visualPreviewDurationMs, updatedElapsed),
-        );
-      }, 80);
-      visualPreviewTimeoutRef.current = window.setTimeout(
-        () => {
-          stopVisualPreview();
-          if (mountedRef.current) setPreviewStatus("stopped");
-        },
-        Math.max(0, visualPreviewDurationMs - nextElapsed),
-      );
+      if (visualPreviewPlaying) {
+        handlePlayVisualPreview(nextElapsed);
+      }
     },
-    [
-      clearVisualPreviewTimers,
-      stopVisualPreview,
-      visualPreviewDurationMs,
-      visualPreviewPlaying,
-    ],
+    [handlePlayVisualPreview, visualPreviewDurationMs, visualPreviewPlaying],
   );
 
   const updatePastedText = React.useCallback(

@@ -464,6 +464,95 @@ async function installUnsupportedVideoRecorder(page: Page) {
   });
 }
 
+async function installPreviewAudioProbe(page: Page) {
+  await page.addInitScript(() => {
+    const events: string[] = [];
+    Object.defineProperty(window, "__morsePreviewAudioEvents", {
+      configurable: true,
+      value: events,
+    });
+
+    function fakeAudioParam() {
+      return {
+        value: 0,
+        cancelScheduledValues: () => undefined,
+        exponentialRampToValueAtTime: () => undefined,
+        linearRampToValueAtTime: () => undefined,
+        setTargetAtTime: () => undefined,
+        setValueAtTime: () => undefined,
+      };
+    }
+
+    class FakeAudioNode {
+      connect() {
+        return this;
+      }
+
+      addEventListener() {
+        return undefined;
+      }
+    }
+
+    class FakeOscillatorNode extends FakeAudioNode {
+      frequency = fakeAudioParam();
+      type: OscillatorType = "sine";
+      onended: ((event: Event) => void) | null = null;
+
+      start() {
+        events.push("oscillator-start");
+      }
+
+      stop() {
+        events.push("oscillator-stop");
+      }
+    }
+
+    class FakeAudioContext {
+      currentTime = 0;
+      destination = new FakeAudioNode();
+      sampleRate = 44100;
+      state: AudioContextState = "running";
+
+      createGain() {
+        return Object.assign(new FakeAudioNode(), { gain: fakeAudioParam() });
+      }
+
+      createOscillator() {
+        return new FakeOscillatorNode();
+      }
+
+      createMediaStreamDestination() {
+        return Object.assign(new FakeAudioNode(), { stream: new MediaStream() });
+      }
+
+      resume() {
+        events.push("resume");
+        return Promise.resolve();
+      }
+
+      close() {
+        return Promise.resolve();
+      }
+    }
+
+    Object.defineProperty(window, "AudioContext", {
+      configurable: true,
+      value: FakeAudioContext,
+    });
+    Object.defineProperty(window, "webkitAudioContext", {
+      configurable: true,
+      value: FakeAudioContext,
+    });
+  });
+}
+
+async function readPreviewAudioEvents(page: Page) {
+  return page.evaluate(
+    () => (window as typeof window & { __morsePreviewAudioEvents?: string[] })
+      .__morsePreviewAudioEvents ?? [],
+  );
+}
+
 async function expectBookVideoPreviewUsesModuleWidth(page: Page) {
   const sectionBox = await previewSection(page).boundingBox();
   const previewBox = await page.getByTestId("book-video-preview").boundingBox();
@@ -2253,6 +2342,7 @@ test("visual preview visibly animates and stops stale playback", async ({
   page,
 }) => {
   await installFastVideoRecorder(page);
+  await installPreviewAudioProbe(page);
   await openBookTranslator(page);
   await page
     .getByLabel("Paste long-form source text")
@@ -2283,6 +2373,15 @@ test("visual preview visibly animates and stops stale playback", async ({
   await previewSection(page)
     .getByRole("button", { name: "Play visual preview" })
     .click();
+  await expect
+    .poll(async () =>
+      (await readPreviewAudioEvents(page)).includes("oscillator-start"),
+    )
+    .toBe(true);
+  await expect(page.getByLabel("Video preview timeline")).not.toHaveAttribute(
+    "aria-valuenow",
+    "NaN",
+  );
   await expect
     .poll(() =>
       page

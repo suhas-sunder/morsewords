@@ -51,6 +51,7 @@ import {
 import StatusMessage from "~/client/components/shared/ui/StatusMessage";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import TogglePill from "~/client/components/shared/ui/TogglePill";
+import useMorseAudio from "~/client/components/shared/useMorseAudio";
 import {
   copyTextToClipboard,
   downloadBlobFile,
@@ -126,6 +127,7 @@ export default function MorseVideoGeneratorTool() {
   const previewAnimationRef = React.useRef<number | null>(null);
   const previewStartedAtRef = React.useRef(0);
   const previewStartElapsedRef = React.useRef(0);
+  const previewPlaybackSessionRef = React.useRef(0);
 
   const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
   const [text, setText] = React.useState(DEFAULT_TEXT);
@@ -162,6 +164,12 @@ export default function MorseVideoGeneratorTool() {
     durationMs: number;
     sizeBytes: number;
   } | null>(null);
+  const previewAudioPlayer = useMorseAudio();
+  const previewAudioPlayerRef = React.useRef(previewAudioPlayer);
+
+  React.useEffect(() => {
+    previewAudioPlayerRef.current = previewAudioPlayer;
+  }, [previewAudioPlayer]);
 
   React.useEffect(() => {
     const preferences = loadVideoGeneratorPreferences();
@@ -336,6 +344,136 @@ export default function MorseVideoGeneratorTool() {
     videoSettings: effectiveVideoSettings,
   });
 
+  const clearPreviewAnimation = React.useCallback(() => {
+    if (previewAnimationRef.current !== null) {
+      window.cancelAnimationFrame(previewAnimationRef.current);
+      previewAnimationRef.current = null;
+    }
+  }, []);
+
+  const startPreviewClock = React.useCallback(
+    (startElapsedMs: number, startedAtMs = performance.now()) => {
+      clearPreviewAnimation();
+      const safeStartElapsed = Math.max(
+        0,
+        Math.min(previewDurationMs, startElapsedMs),
+      );
+      previewStartedAtRef.current = startedAtMs;
+      previewStartElapsedRef.current = safeStartElapsed;
+      setPreviewElapsedMs(safeStartElapsed);
+
+      const tick = () => {
+        const nextElapsed = Math.min(
+          previewDurationMs,
+          previewStartElapsedRef.current +
+            Math.max(0, performance.now() - previewStartedAtRef.current),
+        );
+        setPreviewElapsedMs(nextElapsed);
+        if (nextElapsed >= previewDurationMs) {
+          setPreviewPlaying(false);
+          previewAnimationRef.current = null;
+          return;
+        }
+        previewAnimationRef.current = window.requestAnimationFrame(tick);
+      };
+
+      previewAnimationRef.current = window.requestAnimationFrame(tick);
+    },
+    [clearPreviewAnimation, previewDurationMs],
+  );
+
+  const stopPreviewPlayback = React.useCallback(
+    (reset = false) => {
+      previewPlaybackSessionRef.current += 1;
+      clearPreviewAnimation();
+      previewAudioPlayerRef.current.stop();
+      setPreviewPlaying(false);
+      if (reset) {
+        previewStartElapsedRef.current = 0;
+        setPreviewElapsedMs(0);
+      }
+    },
+    [clearPreviewAnimation],
+  );
+
+  const startPreviewPlayback = React.useCallback(
+    (elapsedMs = previewElapsedMs) => {
+      const currentElapsed = Math.max(
+        0,
+        Math.min(previewDurationMs, elapsedMs),
+      );
+      const startElapsed =
+        previewDurationMs - currentElapsed <=
+        MIN_PREVIEW_RESTART_REMAINING_MS
+          ? 0
+          : currentElapsed;
+      const session = previewPlaybackSessionRef.current + 1;
+      previewPlaybackSessionRef.current = session;
+
+      clearPreviewAnimation();
+      previewAudioPlayerRef.current.stop();
+      setPreviewPlaying(true);
+      setPreviewElapsedMs(startElapsed);
+
+      const playWithAudio =
+        effectiveVideoSettings.includeAudioTrack &&
+        previewAudioPlayerRef.current.isSupported &&
+        preview.sampleMorse.trim().length > 0;
+
+      if (!playWithAudio) {
+        startPreviewClock(startElapsed);
+        return;
+      }
+
+      startPreviewClock(startElapsed);
+      void previewAudioPlayerRef.current
+        .play({
+          code: preview.sampleMorse,
+          wpm: charWpm,
+          farnsworthWpm,
+          hz: pitch,
+          volume,
+          preset: tonePreset,
+          repeat: false,
+          flash: false,
+          soundEnabled: true,
+          startElapsedMs: startElapsed,
+          onPlaybackStart: (startedAtMs) => {
+            if (previewPlaybackSessionRef.current !== session) return;
+            startPreviewClock(startElapsed, startedAtMs);
+          },
+        })
+        .then(() => {
+          if (previewPlaybackSessionRef.current !== session) return;
+          clearPreviewAnimation();
+          setPreviewElapsedMs(previewDurationMs);
+          setPreviewPlaying(false);
+        })
+        .catch(() => {
+          if (previewPlaybackSessionRef.current !== session) return;
+          clearPreviewAnimation();
+          setPreviewPlaying(false);
+          setDownloadStatus({
+            kind: "error",
+            message: "Video preview audio failed. Try playing the preview again.",
+          });
+        });
+    },
+    [
+      charWpm,
+      clearPreviewAnimation,
+      effectiveVideoSettings.includeAudioTrack,
+      farnsworthWpm,
+      pitch,
+      preview.sampleMorse,
+      previewDurationMs,
+      previewElapsedMs,
+      startPreviewClock,
+      tonePreset,
+      volume,
+    ],
+  );
+
   React.useEffect(() => {
     if (downloadAbortRef.current) {
       downloadAbortRef.current.abort();
@@ -350,41 +488,10 @@ export default function MorseVideoGeneratorTool() {
     }
     setLastDownload(null);
     setDownloadProgress({ elapsedMs: 0, durationMs: 0 });
-    setPreviewPlaying(false);
-    setPreviewElapsedMs(0);
-  }, [settingsSignature]);
+    stopPreviewPlayback(true);
+  }, [settingsSignature, stopPreviewPlayback]);
 
-  React.useEffect(() => {
-    if (!previewPlaying) return undefined;
-
-    previewStartedAtRef.current = performance.now();
-    previewStartElapsedRef.current = Math.min(
-      previewDurationMs,
-      Math.max(0, previewElapsedMs),
-    );
-
-    const tick = () => {
-      const nextElapsed = Math.min(
-        previewDurationMs,
-        previewStartElapsedRef.current +
-          (performance.now() - previewStartedAtRef.current),
-      );
-      setPreviewElapsedMs(nextElapsed);
-      if (nextElapsed >= previewDurationMs) {
-        setPreviewPlaying(false);
-        return;
-      }
-      previewAnimationRef.current = window.requestAnimationFrame(tick);
-    };
-
-    previewAnimationRef.current = window.requestAnimationFrame(tick);
-    return () => {
-      if (previewAnimationRef.current !== null) {
-        window.cancelAnimationFrame(previewAnimationRef.current);
-        previewAnimationRef.current = null;
-      }
-    };
-  }, [previewDurationMs, previewPlaying]);
+  React.useEffect(() => () => stopPreviewPlayback(true), [stopPreviewPlayback]);
 
   const updateVideoSettings = React.useCallback(
     (patch: Partial<MorseVideoSettings>) => {
@@ -456,8 +563,7 @@ export default function MorseVideoGeneratorTool() {
       setMorse("");
     }
     setCopied(false);
-    setPreviewPlaying(false);
-    setPreviewElapsedMs(0);
+    stopPreviewPlayback(true);
   };
 
   const handleCopyMorse = async () => {
@@ -480,26 +586,25 @@ export default function MorseVideoGeneratorTool() {
 
   const handlePreviewToggle = () => {
     if (previewPlaying) {
-      setPreviewPlaying(false);
+      stopPreviewPlayback();
       return;
     }
-    if (
-      previewDurationMs - previewElapsedMs <=
-      MIN_PREVIEW_RESTART_REMAINING_MS
-    ) {
-      setPreviewElapsedMs(0);
-      previewStartElapsedRef.current = 0;
-    }
-    setPreviewPlaying(true);
+    startPreviewPlayback(previewElapsedMs);
+  };
+
+  const handlePreviewScrub = (elapsedMs: number) => {
+    const nextElapsed = Math.max(0, Math.min(previewDurationMs, elapsedMs));
+    setPreviewElapsedMs(nextElapsed);
+    previewStartedAtRef.current = performance.now();
+    previewStartElapsedRef.current = nextElapsed;
   };
 
   const handlePreviewSeek = (elapsedMs: number) => {
     const nextElapsed = Math.max(0, Math.min(previewDurationMs, elapsedMs));
     setPreviewElapsedMs(nextElapsed);
-    if (previewPlaying) {
-      previewStartedAtRef.current = performance.now();
-      previewStartElapsedRef.current = nextElapsed;
-    }
+    previewStartedAtRef.current = performance.now();
+    previewStartElapsedRef.current = nextElapsed;
+    if (previewPlaying) startPreviewPlayback(nextElapsed);
   };
 
   const handleDownloadVideo = async () => {
@@ -800,7 +905,8 @@ export default function MorseVideoGeneratorTool() {
           <MorseVideoPreviewTimeline
             disabled={!canRender}
             elapsedMs={previewElapsedMs}
-            onSeek={handlePreviewSeek}
+            onSeek={handlePreviewScrub}
+            onSeekCommit={handlePreviewSeek}
             preview={preview}
             testIdPrefix="morse-video-preview"
           />

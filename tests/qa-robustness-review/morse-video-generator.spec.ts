@@ -93,6 +93,95 @@ async function installUnsupportedVideoRecorder(page: Page) {
   });
 }
 
+async function installPreviewAudioProbe(page: Page) {
+  await page.addInitScript(() => {
+    const events: string[] = [];
+    Object.defineProperty(window, "__morsePreviewAudioEvents", {
+      configurable: true,
+      value: events,
+    });
+
+    function fakeAudioParam() {
+      return {
+        value: 0,
+        cancelScheduledValues: () => undefined,
+        exponentialRampToValueAtTime: () => undefined,
+        linearRampToValueAtTime: () => undefined,
+        setTargetAtTime: () => undefined,
+        setValueAtTime: () => undefined,
+      };
+    }
+
+    class FakeAudioNode {
+      connect() {
+        return this;
+      }
+
+      addEventListener() {
+        return undefined;
+      }
+    }
+
+    class FakeOscillatorNode extends FakeAudioNode {
+      frequency = fakeAudioParam();
+      type: OscillatorType = "sine";
+      onended: ((event: Event) => void) | null = null;
+
+      start() {
+        events.push("oscillator-start");
+      }
+
+      stop() {
+        events.push("oscillator-stop");
+      }
+    }
+
+    class FakeAudioContext {
+      currentTime = 0;
+      destination = new FakeAudioNode();
+      sampleRate = 44100;
+      state: AudioContextState = "running";
+
+      createGain() {
+        return Object.assign(new FakeAudioNode(), { gain: fakeAudioParam() });
+      }
+
+      createOscillator() {
+        return new FakeOscillatorNode();
+      }
+
+      createMediaStreamDestination() {
+        return Object.assign(new FakeAudioNode(), { stream: new MediaStream() });
+      }
+
+      resume() {
+        events.push("resume");
+        return Promise.resolve();
+      }
+
+      close() {
+        return Promise.resolve();
+      }
+    }
+
+    Object.defineProperty(window, "AudioContext", {
+      configurable: true,
+      value: FakeAudioContext,
+    });
+    Object.defineProperty(window, "webkitAudioContext", {
+      configurable: true,
+      value: FakeAudioContext,
+    });
+  });
+}
+
+async function readPreviewAudioEvents(page: Page) {
+  return page.evaluate(
+    () => (window as typeof window & { __morsePreviewAudioEvents?: string[] })
+      .__morsePreviewAudioEvents ?? [],
+  );
+}
+
 async function downloadVideoFile(
   page: Page,
   testInfo: TestInfo,
@@ -326,6 +415,7 @@ test.describe("Morse code video generator", () => {
     page,
   }) => {
     await installFastVideoRecorder(page);
+    await installPreviewAudioProbe(page);
     await openVideoGenerator(page);
     await page
       .getByLabel("Message to turn into a Morse code video")
@@ -343,6 +433,11 @@ test.describe("Morse code video generator", () => {
       "data-preview-playing",
       "true",
     );
+    await expect
+      .poll(async () =>
+        (await readPreviewAudioEvents(page)).includes("oscillator-start"),
+      )
+      .toBe(true);
     await expect
       .poll(() =>
         page
@@ -386,6 +481,7 @@ test.describe("Morse code video generator", () => {
     await expect
       .poll(() => timeline.getAttribute("aria-valuenow"))
       .not.toBe("0");
+    await expect(timeline).not.toHaveAttribute("aria-valuenow", "NaN");
     await expect
       .poll(() => textLayers.getAttribute("data-active-character"))
       .not.toBe(beforeSeek);
