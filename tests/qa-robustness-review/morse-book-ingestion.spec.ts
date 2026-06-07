@@ -1702,6 +1702,8 @@ Project Gutenberg License
       "review/duplicate-gutenberg-review.json",
       "review/owner-input/books-to-review.csv",
       "review/approval-application-report.json",
+      "build-preserved-approved/rights_report.json",
+      "build-preserved-approved/processing_notes.md",
       "build-preserved-draft/rights_report.json",
       "build-preserved-draft/processing_notes.md",
     ];

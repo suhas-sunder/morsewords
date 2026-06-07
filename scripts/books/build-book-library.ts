@@ -719,6 +719,16 @@ function writeText(filePath: string, value: string): void {
   fs.writeFileSync(filePath, value.endsWith("\n") ? value : `${value}\n`, "utf8");
 }
 
+function writeJsonIfMissing(filePath: string, value: unknown): void {
+  if (fs.existsSync(filePath)) return;
+  writeJson(filePath, value);
+}
+
+function writeTextIfMissing(filePath: string, value: string): void {
+  if (fs.existsSync(filePath)) return;
+  writeText(filePath, value);
+}
+
 type PreservedGeneratedFile = {
   relativePath: string;
   contents: Buffer;
@@ -1470,8 +1480,8 @@ export function buildBookLibrary(
     const rightsReportPath = path.join(bookRoot, "rights_report.json");
     const processingNotesPath = path.join(bookRoot, "processing_notes.md");
     writeJson(manifestPath, manifest);
-    writeJson(rightsReportPath, rightsReport);
-    writeText(processingNotesPath, processingNotes);
+    writeJsonIfMissing(rightsReportPath, rightsReport);
+    writeTextIfMissing(processingNotesPath, processingNotes);
     generatedArtifacts.push(relativeTo(generatedRoot, manifestPath));
     generatedArtifacts.push(relativeTo(generatedRoot, rightsReportPath));
     generatedArtifacts.push(relativeTo(generatedRoot, processingNotesPath));
