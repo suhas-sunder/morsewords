@@ -6,6 +6,7 @@
     "build": "react-router build",
     "books:build": "node --experimental-strip-types scripts/books/build-book-library.ts",
     "books:apply-review": "node --experimental-strip-types scripts/books/apply-book-review-approvals.ts",
+    "books:candidate-report": "node --experimental-strip-types scripts/books/generate-first-publication-candidate-report.ts",
     "books:rights-report": "node --experimental-strip-types scripts/books/generate-book-rights-reports.ts",
     "books:review-queue": "node --experimental-strip-types scripts/books/generate-book-review-queue.ts",
     "books:scaffold-metadata": "node --experimental-strip-types scripts/books/scaffold-book-metadata.ts",

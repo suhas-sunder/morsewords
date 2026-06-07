@@ -49,6 +49,7 @@ export type MorseBookSourceSummary = {
   processingAllowed: boolean;
   rightsReportPath: string;
   processedBookPath?: string;
+  cleanedBookPath?: string;
   rightsNotes: string;
   allowDuplicateGutenbergId?: boolean;
   duplicateReason?: string;
@@ -77,6 +78,8 @@ export type MorseBookSectionSummary = {
   sectionJsonPath: string;
   characterCount: number;
   wordCount: number;
+  estimatedTypingMinutes: number;
+  estimatedListeningMinutes: number;
   morseCharacterEstimate: number;
   textPreview: string;
 };
@@ -85,6 +88,8 @@ export type MorseBookLibrarySummary = {
   slug: string;
   title: string;
   author: string[];
+  contentVersion: string;
+  contentHash: string;
   language: string;
   description: string;
   subjects: string[];
@@ -131,6 +136,8 @@ export type MorseBookSectionJson = {
   paragraphs: string[];
   wordCount: number;
   characterCount: number;
+  estimatedTypingMinutes: number;
+  estimatedListeningMinutes: number;
   morseCharacterEstimate: number;
   unsupportedCharacterSummary: Record<string, number>;
   textPreview: string;

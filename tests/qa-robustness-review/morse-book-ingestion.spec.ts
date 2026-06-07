@@ -6,11 +6,13 @@ import { expect, test, type TestInfo } from "@playwright/test";
 import type {
   BookMetadata,
   BookRightsReport,
+  CleanedBookJson,
   ProcessedBookJson,
 } from "../../scripts/books/bookManifestTypes.ts";
 import { buildBookLibrary, scanBookInventory } from "../../scripts/books/build-book-library.ts";
 import { cleanGutenbergText } from "../../scripts/books/clean-gutenberg.ts";
 import { detectBookSections } from "../../scripts/books/detect-book-sections.ts";
+import { generateFirstPublicationCandidateReport } from "../../scripts/books/generate-first-publication-candidate-report.ts";
 import { generateBookReviewQueue } from "../../scripts/books/generate-book-review-queue.ts";
 import { generateBookRightsReports } from "../../scripts/books/generate-book-rights-reports.ts";
 import { scaffoldBookMetadata } from "../../scripts/books/scaffold-book-metadata.ts";
@@ -1370,6 +1372,140 @@ Third chapter.
     }
   });
 
+  test("first-publication candidate report summarizes blockers without story text", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("first-publication-library");
+    const generatedRoot = testInfo.outputPath("first-publication-generated");
+    const metadataRoot = path.join(textRoot, "meta");
+    const approvedPeoplePath = path.join(
+      textRoot,
+      "approved-metadata",
+      "authors.json",
+    );
+    const approvedMetadataRoot = path.join(textRoot, "approved-metadata");
+
+    writeApprovedPeople(textRoot, {
+      "evidence-author": {
+        name: "Evidence Author",
+        deathYear: 1915,
+        canadaLifePlus70Safe: true,
+        notes: "Test-only approved person metadata.",
+      },
+    });
+    writeBookApprovals(textRoot, []);
+
+    writeFixtureBook(
+      textRoot,
+      "candidate-evidence",
+      gutenbergFixtureText({
+        title: "Candidate Evidence",
+        author: "Evidence Author",
+        gutenbergId: "4101",
+        extraHeader: "Original publication: 1900",
+        body:
+          "CHAPTER I\n\nUNIQUE CANDIDATE STORY TEXT SHOULD NOT APPEAR IN REPORTS.",
+      }),
+      approvedMetadata("candidate-evidence", {
+        title: "Candidate Evidence",
+        author: ["Evidence Author"],
+        originalPublicationYear: 1900,
+        source: {
+          ...approvedMetadata("candidate-evidence").source,
+          gutenbergId: "4101",
+          rightsBasis: "public-domain-us",
+          rightsReviewed: true,
+        },
+      }),
+    );
+    writeFixtureBook(
+      textRoot,
+      "missing-person-evidence",
+      gutenbergFixtureText({
+        title: "Missing Person Evidence",
+        author: "Missing Person",
+        gutenbergId: "4102",
+        extraHeader: "Original publication: 1901",
+      }),
+      approvedMetadata("missing-person-evidence", {
+        title: "Missing Person Evidence",
+        author: ["Missing Person"],
+        originalPublicationYear: 1901,
+        source: {
+          ...approvedMetadata("missing-person-evidence").source,
+          gutenbergId: "4102",
+          rightsBasis: "public-domain-us",
+          rightsReviewed: true,
+        },
+      }),
+    );
+
+    const rights = generateBookRightsReports({
+      textRoot,
+      metadataRoot,
+      approvedPeoplePath,
+      bookApprovalsPath: path.join(approvedMetadataRoot, "book-approvals.json"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(rights.fatalErrors).toEqual([]);
+
+    const queue = generateBookReviewQueue({
+      textRoot,
+      metadataRoot,
+      approvedPeoplePath,
+      generatedRoot,
+      quiet: true,
+    });
+    expect(queue.fatalErrors).toEqual([]);
+
+    const result = generateFirstPublicationCandidateReport({
+      generatedRoot,
+      approvedMetadataRoot,
+      quiet: true,
+    });
+
+    expect(fs.existsSync(result.paths.json)).toBe(true);
+    expect(fs.existsSync(result.paths.markdown)).toBe(true);
+    expect(result.report.summary.totalBooks).toBe(2);
+    expect(result.report.summary.processingAllowed).toBe(0);
+    expect(result.report.summary.publishReady).toBe(0);
+    expect(result.report.summary.existingFileEvidenceMayBeEnough).toBe(1);
+    expect(result.report.summary.ownerApprovalStillRequired).toBe(2);
+    expect(result.report.summary.missingAuthorDeathYear).toBe(1);
+
+    const evidence = result.report.candidates.find(
+      (candidate) => candidate.slug === "candidate-evidence",
+    );
+    expect(evidence).toMatchObject({
+      currentStatus: "needs_manual_review",
+      duplicateGutenbergIssue: false,
+      existingFileEvidenceMayBeEnough: true,
+      missingAuthorDeathYear: false,
+      originalPublicationIssue: false,
+      ownerApprovalStillRequired: true,
+      processingAllowed: false,
+      publishReady: false,
+      sourceUrlPresent: true,
+    });
+    const missingPerson = result.report.candidates.find(
+      (candidate) => candidate.slug === "missing-person-evidence",
+    );
+    expect(missingPerson).toMatchObject({
+      existingFileEvidenceMayBeEnough: false,
+      missingAuthorDeathYear: true,
+      ownerApprovalStillRequired: true,
+    });
+
+    const reportJson = fs.readFileSync(result.paths.json, "utf8");
+    const reportMarkdown = fs.readFileSync(result.paths.markdown, "utf8");
+    expect(reportJson).not.toContain(
+      "UNIQUE CANDIDATE STORY TEXT SHOULD NOT APPEAR IN REPORTS",
+    );
+    expect(reportMarkdown).not.toContain(
+      "UNIQUE CANDIDATE STORY TEXT SHOULD NOT APPEAR IN REPORTS",
+    );
+  });
+
   test("review queue fails helpfully when a generated rights report is missing", ({
   }, testInfo) => {
     const textRoot = testInfo.outputPath("missing-rights-review-library");
@@ -1821,16 +1957,202 @@ Project Gutenberg License
         "utf8",
       ),
     ) as ProcessedBookJson;
+    const cleaned = JSON.parse(
+      fs.readFileSync(
+        path.join(generatedRoot, "approved-sample", "cleaned_book.json"),
+        "utf8",
+      ),
+    ) as CleanedBookJson;
+    const manifest = readJsonFile<{
+      contentVersion: string;
+      contentHash: string;
+      source: { cleanedBookPath?: string; processedBookPath?: string };
+      sections: Array<{
+        estimatedTypingMinutes: number;
+        estimatedListeningMinutes: number;
+      }>;
+    }>(path.join(generatedRoot, "approved-sample", "manifest.json"));
 
     expect(report.author_death_year).toBe(1920);
     expect(report.canada_us_v1_status).toBe("approved");
     expect(report.processing_allowed).toBe(true);
     expect(report.contains_transcriber_notes).toBe(true);
+    expect(manifest.source.cleanedBookPath).toBe("cleaned_book.json");
+    expect(manifest.source.processedBookPath).toBe("processed_book.json");
+    expect(manifest.contentVersion).toHaveLength(16);
+    expect(manifest.contentHash).toHaveLength(64);
+    expect(manifest.sections.every((section) => section.estimatedTypingMinutes > 0)).toBe(
+      true,
+    );
+    expect(
+      manifest.sections.every((section) => section.estimatedListeningMinutes > 0),
+    ).toBe(true);
     expect(processed.rights.approved_regions).toEqual(["US", "CA"]);
+    expect(processed.content_version).toBe(manifest.contentVersion);
+    expect(processed.content_hash).toBe(manifest.contentHash);
     expect(processed.source.source_url).toBe("https://www.gutenberg.org/ebooks/1001");
     expect(JSON.stringify(processed.content)).toContain("The approved chapter");
     expect(JSON.stringify(processed.content)).not.toMatch(
       /Project Gutenberg License|Transcriber/i,
+    );
+    expect(cleaned.contentVersion).toBe(manifest.contentVersion);
+    expect(cleaned.contentHash).toBe(manifest.contentHash);
+    expect(cleaned.source.sourceUrl).toBe("https://www.gutenberg.org/ebooks/1001");
+    expect(cleaned.stats.estimatedTypingMinutes).toBeGreaterThan(0);
+    expect(cleaned.stats.estimatedListeningMinutes).toBeGreaterThan(0);
+    expect(JSON.stringify(cleaned.sections)).toContain("The approved chapter");
+    expect(JSON.stringify(cleaned.sections)).not.toMatch(
+      /Project Gutenberg License|Transcriber/i,
+    );
+  });
+
+  test("Cloudflare export contains approved cleaned content only and no media", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("cloudflare-export-library");
+    const generatedRoot = testInfo.outputPath("cloudflare-export-generated");
+    const cloudflareExportRoot = testInfo.outputPath("cloudflare-export-output");
+    const metadataRoot = path.join(textRoot, "meta");
+    const approvedPeoplePath = path.join(
+      textRoot,
+      "approved-metadata",
+      "authors.json",
+    );
+    const bookApprovalsPath = path.join(
+      textRoot,
+      "approved-metadata",
+      "book-approvals.json",
+    );
+
+    writeApprovedPeople(textRoot, {
+      "example-author": {
+        name: "Example Author",
+        deathYear: 1920,
+        canadaLifePlus70Safe: true,
+        notes: "Test-only approved person metadata.",
+      },
+    });
+    writeBookApprovals(textRoot, [
+      {
+        bookSlug: "approved-cloudflare",
+        approvedForWebsite: true,
+        approvedForYoutubeNarration: true,
+        approvedRegions: ["US", "CA"],
+        originalPublicationYear: 1900,
+        ownerReviewed: true,
+      },
+    ]);
+
+    writeFixtureBook(
+      textRoot,
+      "approved-cloudflare",
+      gutenbergFixtureText({
+        title: "Approved Cloudflare",
+        gutenbergId: "5201",
+        extraHeader: "Original publication: 1900",
+        body:
+          "CHAPTER I\n\nApproved export chapter.\n\nCHAPTER II\n\nApproved export second chapter.",
+      }),
+      approvedMetadata("approved-cloudflare", {
+        title: "Approved Cloudflare",
+        originalPublicationYear: 1900,
+        source: {
+          ...approvedMetadata("approved-cloudflare").source,
+          gutenbergId: "5201",
+          rightsBasis: "public-domain-us",
+          rightsReviewed: true,
+        },
+      }),
+    );
+    writeFixtureBook(
+      textRoot,
+      "manual-cloudflare",
+      gutenbergFixtureText({
+        title: "Manual Cloudflare",
+        gutenbergId: "5202",
+        extraHeader: "Original publication: 1900",
+        body: "CHAPTER I\n\nMANUAL REVIEW RAW TEXT MUST NOT LEAK.",
+      }),
+      approvedMetadata("manual-cloudflare", {
+        title: "Manual Cloudflare",
+        originalPublicationYear: 1900,
+        source: {
+          ...approvedMetadata("manual-cloudflare").source,
+          gutenbergId: "5202",
+          rightsReviewed: false,
+          rightsBasis: "unknown",
+        },
+      }),
+    );
+
+    const result = buildBookLibrary({
+      textRoot,
+      metadataRoot,
+      approvedPeoplePath,
+      bookApprovalsPath,
+      generatedRoot,
+      cloudflareExportRoot,
+      quiet: true,
+    });
+
+    expect(result.fatalErrors).toEqual([]);
+    expect(result.cloudflareExportRoot).toBe(
+      cloudflareExportRoot.split(path.sep).join("/"),
+    );
+    expect(result.cloudflareExportArtifacts).toEqual(
+      expect.arrayContaining([
+        "public-manifest.json",
+        "content-version.json",
+        "upload-manifest.json",
+        "books/approved-cloudflare/metadata.json",
+        "books/approved-cloudflare/cleaned_book.json",
+        "books/approved-cloudflare/processed_book.json",
+        "books/approved-cloudflare/sections/chapter-001.json",
+      ]),
+    );
+    expect(
+      result.cloudflareExportArtifacts.some((artifact) =>
+        artifact.includes("manual-cloudflare"),
+      ),
+    ).toBe(false);
+
+    const exportTree = readGeneratedTree(cloudflareExportRoot);
+    const exportContents = JSON.stringify(exportTree);
+    expect(exportContents).toContain("approved-cloudflare");
+    expect(exportContents).toContain("Approved export chapter");
+    expect(exportContents).not.toContain("manual-cloudflare");
+    expect(exportContents).not.toContain("MANUAL REVIEW RAW TEXT MUST NOT LEAK");
+    expect(exportContents).not.toMatch(/Project Gutenberg License/i);
+    expect(Object.keys(exportTree).some((filePath) => /\.(mp3|wav|webm|mp4|zip)$/i.test(filePath))).toBe(
+      false,
+    );
+
+    const publicManifest = readJsonFile<{
+      books: Array<{
+        slug: string;
+        source: { sourceUrl: string | null; publishReady: boolean };
+        cleanedBookPath: string;
+      }>;
+    }>(path.join(cloudflareExportRoot, "public-manifest.json"));
+    expect(publicManifest.books).toEqual([
+      expect.objectContaining({
+        slug: "approved-cloudflare",
+        cleanedBookPath: "books/approved-cloudflare/cleaned_book.json",
+        source: expect.objectContaining({
+          publishReady: true,
+          sourceUrl: "https://www.gutenberg.org/ebooks/5201",
+        }),
+      }),
+    ]);
+
+    const uploadManifest = readJsonFile<{
+      approvedBookCount: number;
+      mediaFilesIncluded: boolean;
+      files: string[];
+    }>(path.join(cloudflareExportRoot, "upload-manifest.json"));
+    expect(uploadManifest.approvedBookCount).toBe(1);
+    expect(uploadManifest.mediaFilesIncluded).toBe(false);
+    expect(uploadManifest.files.some((filePath) => filePath.includes("manual-cloudflare"))).toBe(
+      false,
     );
   });
 

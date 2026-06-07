@@ -1,10 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import type {
   ApprovedPeopleMetadata,
   BookCleanupRule,
+  CleanedBookJson,
   BookMetadata,
   BookRightsReport,
   BookSectionKind,
@@ -47,6 +49,7 @@ export type BookBuildOptions = {
   approvedPeoplePath?: string;
   bookApprovalsPath?: string;
   generatedRoot?: string;
+  cloudflareExportRoot?: string | null;
   quiet?: boolean;
 };
 
@@ -83,6 +86,8 @@ export type BookBuildResult = {
   fatalErrors: string[];
   generatedArtifacts: string[];
   generatedRoot: string;
+  cloudflareExportRoot: string | null;
+  cloudflareExportArtifacts: string[];
 };
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -102,6 +107,10 @@ const DEFAULT_BOOK_APPROVALS_PATH = path.join(
 const DEFAULT_GENERATED_ROOT = path.join(
   DEFAULT_REPO_ROOT,
   "app/client/assets/books/generated",
+);
+const DEFAULT_CLOUDFLARE_EXPORT_ROOT = path.join(
+  DEFAULT_REPO_ROOT,
+  "app/client/assets/books/cloudflare-export",
 );
 
 function toPosixPath(input: string): string {
@@ -807,10 +816,43 @@ function estimatedTypingMinutes(wordCount: number): number {
   return Math.max(1, Math.ceil(wordCount / 40));
 }
 
+function estimatedListeningMinutes(morseCharacterEstimate: number): number {
+  return Math.max(1, Math.ceil(morseCharacterEstimate / 900));
+}
+
+function sha256Json(value: unknown): string {
+  return crypto
+    .createHash("sha256")
+    .update(JSON.stringify(value))
+    .digest("hex");
+}
+
+function buildContentHash(
+  metadata: BookMetadata,
+  sections: GeneratedBookSectionJson[],
+  rightsReport: BookRightsReport,
+): string {
+  return sha256Json({
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    slug: metadata.slug,
+    gutenbergId: metadata.source.gutenbergId,
+    rightsStatus: rightsReport.canada_us_v1_status,
+    sections: sections.map((section) => ({
+      id: section.sectionId,
+      kind: section.kind,
+      title: section.title,
+      includeByDefault: section.includeByDefault,
+      text: section.morseSourceText,
+    })),
+  });
+}
+
 function buildProcessedBook(
   metadata: BookMetadata,
   sections: GeneratedBookSectionJson[],
   rightsReport: BookRightsReport,
+  contentVersion: string,
+  contentHash: string,
 ): ProcessedBookJson {
   const storySections = sections.filter((section) => section.includeByDefault);
 
@@ -819,6 +861,8 @@ function buildProcessedBook(
     id: metadata.slug,
     title: metadata.title,
     author: metadata.author.join(", "),
+    content_version: contentVersion,
+    content_hash: contentHash,
     source: {
       name: metadata.source.provider,
       ebook_number: metadata.source.gutenbergId ?? "",
@@ -848,10 +892,71 @@ function buildProcessedBook(
             word_count: section.wordCount,
             character_count: section.characterCount,
             estimated_typing_minutes: estimatedTypingMinutes(section.wordCount),
+            estimated_listening_minutes: estimatedListeningMinutes(
+              section.morseCharacterEstimate,
+            ),
           },
         ],
       })),
     },
+  };
+}
+
+function buildCleanedBook(
+  metadata: BookMetadata,
+  sections: GeneratedBookSectionJson[],
+  rightsReport: BookRightsReport,
+  contentVersion: string,
+  contentHash: string,
+): CleanedBookJson {
+  const includedSections = sections.filter((section) => section.includeByDefault);
+
+  return {
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    id: metadata.slug,
+    title: metadata.title,
+    author: metadata.author.join(", "),
+    contentVersion,
+    contentHash,
+    source: {
+      provider: metadata.source.provider,
+      gutenbergId: metadata.source.gutenbergId,
+      sourceUrl: rightsReport.source_url,
+      rawTextUrl: rightsReport.raw_text_url,
+      originalPublication: rightsReport.original_publication,
+      releaseDate: rightsReport.release_date,
+      lastUpdated: rightsReport.last_updated,
+    },
+    stats: {
+      wordCount: includedSections.reduce((sum, section) => sum + section.wordCount, 0),
+      characterCount: includedSections.reduce(
+        (sum, section) => sum + section.characterCount,
+        0,
+      ),
+      sectionCount: sections.length,
+      estimatedTypingMinutes: includedSections.reduce(
+        (sum, section) => sum + section.estimatedTypingMinutes,
+        0,
+      ),
+      estimatedListeningMinutes: includedSections.reduce(
+        (sum, section) => sum + section.estimatedListeningMinutes,
+        0,
+      ),
+    },
+    sections: sections.map((section) => ({
+      id: section.sectionId,
+      kind: section.kind,
+      label: section.label,
+      title: section.title,
+      order: section.order,
+      includeByDefault: section.includeByDefault,
+      text: section.morseSourceText,
+      paragraphs: section.paragraphs,
+      wordCount: section.wordCount,
+      characterCount: section.characterCount,
+      estimatedTypingMinutes: section.estimatedTypingMinutes,
+      estimatedListeningMinutes: section.estimatedListeningMinutes,
+    })),
   };
 }
 
@@ -1028,6 +1133,7 @@ function buildGeneratedManifest(
   rightsReport: BookRightsReport;
   processingNotes: string;
   processedBook: ProcessedBookJson | null;
+  cleanedBook: CleanedBookJson | null;
   fatalErrors: string[];
 } {
   const cleaning = cleanGutenbergText(rawText);
@@ -1070,6 +1176,10 @@ function buildGeneratedManifest(
     paragraphs: splitParagraphs(section.text),
     wordCount: section.wordCount,
     characterCount: section.characterCount,
+    estimatedTypingMinutes: estimatedTypingMinutes(section.wordCount),
+    estimatedListeningMinutes: estimatedListeningMinutes(
+      section.morseCharacterEstimate,
+    ),
     morseCharacterEstimate: section.morseCharacterEstimate,
     unsupportedCharacterSummary: summarizeUnsupportedCharacters(section.text),
     textPreview: section.textPreview,
@@ -1098,8 +1208,25 @@ function buildGeneratedManifest(
   }
 
   const sourceUrl = getProjectGutenbergSourceUrl(metadata.source.gutenbergId);
+  const contentHash = buildContentHash(metadata, sectionJson, rightsReport);
+  const contentVersion = contentHash.slice(0, 16);
   const processedBook = rightsReport.processing_allowed
-    ? buildProcessedBook(metadata, sectionJson, rightsReport)
+    ? buildProcessedBook(
+        metadata,
+        sectionJson,
+        rightsReport,
+        contentVersion,
+        contentHash,
+      )
+    : null;
+  const cleanedBook = rightsReport.processing_allowed
+    ? buildCleanedBook(
+        metadata,
+        sectionJson,
+        rightsReport,
+        contentVersion,
+        contentHash,
+      )
     : null;
   const processingNotes = buildProcessingNotes({
     metadata,
@@ -1114,6 +1241,8 @@ function buildGeneratedManifest(
     slug: metadata.slug,
     title: metadata.title,
     author: metadata.author,
+    contentVersion,
+    contentHash,
     language: metadata.language,
     description: metadata.description,
     subjects: metadata.subjects,
@@ -1130,6 +1259,7 @@ function buildGeneratedManifest(
       processingAllowed: rightsReport.processing_allowed,
       rightsReportPath: "rights_report.json",
       ...(processedBook ? { processedBookPath: "processed_book.json" } : {}),
+      ...(cleanedBook ? { cleanedBookPath: "cleaned_book.json" } : {}),
       rightsNotes: metadata.source.rightsNotes,
       allowDuplicateGutenbergId: metadata.source.allowDuplicateGutenbergId,
       duplicateReason: metadata.source.duplicateReason,
@@ -1157,6 +1287,8 @@ function buildGeneratedManifest(
       sectionJsonPath: `sections/${section.sectionId}.json`,
       characterCount: section.characterCount,
       wordCount: section.wordCount,
+      estimatedTypingMinutes: section.estimatedTypingMinutes,
+      estimatedListeningMinutes: section.estimatedListeningMinutes,
       morseCharacterEstimate: section.morseCharacterEstimate,
       textPreview: section.textPreview,
     })),
@@ -1171,7 +1303,15 @@ function buildGeneratedManifest(
     warnings,
   };
 
-  return { manifest, sectionJson, rightsReport, processingNotes, processedBook, fatalErrors };
+  return {
+    manifest,
+    sectionJson,
+    rightsReport,
+    processingNotes,
+    processedBook,
+    cleanedBook,
+    fatalErrors,
+  };
 }
 
 function makeLibraryManifest(
@@ -1183,6 +1323,8 @@ function makeLibraryManifest(
       slug: manifest.slug,
       title: manifest.title,
       author: manifest.author,
+      contentVersion: manifest.contentVersion,
+      contentHash: manifest.contentHash,
       language: manifest.language,
       description: manifest.description,
       subjects: manifest.subjects,
@@ -1193,6 +1335,127 @@ function makeLibraryManifest(
       manifestPath: `${manifest.slug}/manifest.json`,
     })),
   };
+}
+
+type CloudflareExportBook = {
+  manifest: GeneratedBookManifest;
+  sectionJson: GeneratedBookSectionJson[];
+  processedBook: ProcessedBookJson;
+  cleanedBook: CleanedBookJson;
+};
+
+function isPublishReadyManifest(manifest: GeneratedBookManifest): boolean {
+  return (
+    manifest.source.rightsReviewed === true &&
+    manifest.source.publishReady === true &&
+    manifest.source.rightsStatus === "approved" &&
+    manifest.source.processingAllowed === true
+  );
+}
+
+function safeResetCloudflareExportRoot(
+  exportRoot: string,
+  allowCustomRoot: boolean,
+): void {
+  const normalized = path.normalize(exportRoot);
+  const parsedRoot = path.parse(normalized).root;
+  if (normalized === parsedRoot || normalized.length < parsedRoot.length + 8) {
+    throw new Error(`Refusing to reset unsafe Cloudflare export root: ${exportRoot}`);
+  }
+  if (
+    !allowCustomRoot &&
+    !normalized.endsWith(path.normalize("app/client/assets/books/cloudflare-export"))
+  ) {
+    throw new Error(`Refusing to reset unexpected Cloudflare export root: ${exportRoot}`);
+  }
+  fs.rmSync(exportRoot, { recursive: true, force: true });
+  fs.mkdirSync(exportRoot, { recursive: true });
+}
+
+function writeCloudflareExport({
+  exportRoot,
+  books,
+  allowCustomRoot,
+}: {
+  exportRoot: string;
+  books: CloudflareExportBook[];
+  allowCustomRoot: boolean;
+}): string[] {
+  safeResetCloudflareExportRoot(exportRoot, allowCustomRoot);
+
+  const publicBooks = books
+    .filter((book) => isPublishReadyManifest(book.manifest))
+    .sort((a, b) => a.manifest.title.localeCompare(b.manifest.title));
+  const manifestBooks = publicBooks.map(({ manifest }) => ({
+    slug: manifest.slug,
+    title: manifest.title,
+    author: manifest.author,
+    language: manifest.language,
+    description: manifest.description,
+    subjects: manifest.subjects,
+    source: {
+      provider: manifest.source.provider,
+      gutenbergId: manifest.source.gutenbergId,
+      sourceUrl: manifest.source.sourceUrl,
+      rightsBasis: manifest.source.rightsBasis,
+      rightsStatus: manifest.source.rightsStatus,
+      publishReady: manifest.source.publishReady,
+      processingAllowed: manifest.source.processingAllowed,
+    },
+    stats: manifest.stats,
+    contentVersion: manifest.contentVersion,
+    contentHash: manifest.contentHash,
+    metadataPath: `books/${manifest.slug}/metadata.json`,
+    cleanedBookPath: `books/${manifest.slug}/cleaned_book.json`,
+    processedBookPath: `books/${manifest.slug}/processed_book.json`,
+  }));
+  const contentHash = sha256Json(manifestBooks);
+  const contentVersion = contentHash.slice(0, 16);
+  const artifacts: string[] = [];
+
+  const writeExportJson = (relativePath: string, value: unknown) => {
+    const filePath = path.join(exportRoot, ...relativePath.split("/"));
+    writeJson(filePath, value);
+    artifacts.push(relativePath);
+  };
+
+  writeExportJson("public-manifest.json", {
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    contentVersion,
+    contentHash,
+    books: manifestBooks,
+  });
+  writeExportJson("content-version.json", {
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    contentVersion,
+    contentHash,
+    approvedBookCount: manifestBooks.length,
+  });
+
+  for (const { manifest, sectionJson, processedBook, cleanedBook } of publicBooks) {
+    writeExportJson(`books/${manifest.slug}/metadata.json`, manifest);
+    writeExportJson(`books/${manifest.slug}/cleaned_book.json`, cleanedBook);
+    writeExportJson(`books/${manifest.slug}/processed_book.json`, processedBook);
+    for (const section of sectionJson) {
+      writeExportJson(
+        `books/${manifest.slug}/sections/${section.sectionId}.json`,
+        section,
+      );
+    }
+  }
+
+  writeExportJson("upload-manifest.json", {
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    contentVersion,
+    contentHash,
+    approvedBookCount: manifestBooks.length,
+    files: artifacts
+      .filter((artifact) => artifact !== "upload-manifest.json")
+      .sort((a, b) => a.localeCompare(b)),
+    mediaFilesIncluded: false,
+  });
+
+  return artifacts.sort((a, b) => a.localeCompare(b));
 }
 
 function formatList(items: string[], limit = 12): string[] {
@@ -1208,6 +1471,8 @@ function printSummary(result: BookBuildResult): void {
     fatalErrors,
     generatedArtifacts,
     generatedRoot,
+    cloudflareExportRoot,
+    cloudflareExportArtifacts,
   } = result;
   console.log("Morse book inventory");
   console.log(`Raw text files: ${inventory.rawTextFiles.length}`);
@@ -1228,6 +1493,10 @@ function printSummary(result: BookBuildResult): void {
   console.log(`Duplicate slugs: ${inventory.duplicateSlugs.length}`);
   console.log(`Duplicate Gutenberg IDs: ${inventory.duplicateGutenbergIds.length}`);
   console.log(`Generated output: ${generatedRoot}`);
+  if (cloudflareExportRoot) {
+    console.log(`Cloudflare export: ${cloudflareExportRoot}`);
+    console.log(`Cloudflare export files: ${cloudflareExportArtifacts.length}`);
+  }
 
   if (inventory.rawWithoutMetadata.length > 0) {
     console.log("\nRaw files without metadata:");
@@ -1308,6 +1577,14 @@ export function buildBookLibrary(
     options.bookApprovalsPath ?? DEFAULT_BOOK_APPROVALS_PATH,
   );
   const generatedRoot = path.resolve(options.generatedRoot ?? DEFAULT_GENERATED_ROOT);
+  const cloudflareExportRoot =
+    options.cloudflareExportRoot === null
+      ? null
+      : options.cloudflareExportRoot !== undefined
+        ? path.resolve(options.cloudflareExportRoot)
+        : options.generatedRoot
+          ? null
+          : DEFAULT_CLOUDFLARE_EXPORT_ROOT;
   const inventory = scanBookInventory({ textRoot, metadataRoot });
   const approvedPeopleResult = loadApprovedPeopleMetadata(approvedPeoplePath);
   const bookApprovalsResult = loadOwnerBookApprovals(bookApprovalsPath);
@@ -1413,6 +1690,10 @@ export function buildBookLibrary(
       fatalErrors,
       generatedArtifacts,
       generatedRoot: toPosixPath(generatedRoot),
+      cloudflareExportRoot: cloudflareExportRoot
+        ? toPosixPath(cloudflareExportRoot)
+        : null,
+      cloudflareExportArtifacts: [],
     };
     if (!options.quiet) printSummary(result);
     return result;
@@ -1445,6 +1726,7 @@ export function buildBookLibrary(
   safeResetGeneratedRoot(generatedRoot, Boolean(options.generatedRoot));
 
   const processedBooks: GeneratedBookManifest[] = [];
+  const cloudflareExportBooks: CloudflareExportBook[] = [];
   for (const { filePath, metadata } of validMetadata) {
     const bookWarnings: string[] = [];
     let rawPath: string;
@@ -1462,6 +1744,7 @@ export function buildBookLibrary(
       rightsReport,
       processingNotes,
       processedBook,
+      cleanedBook,
       fatalErrors: bookFatalErrors,
     } = buildGeneratedManifest(
       metadata,
@@ -1490,6 +1773,11 @@ export function buildBookLibrary(
       writeJson(processedBookPath, processedBook);
       generatedArtifacts.push(relativeTo(generatedRoot, processedBookPath));
     }
+    if (cleanedBook) {
+      const cleanedBookPath = path.join(bookRoot, "cleaned_book.json");
+      writeJson(cleanedBookPath, cleanedBook);
+      generatedArtifacts.push(relativeTo(generatedRoot, cleanedBookPath));
+    }
     for (const section of sectionJson) {
       const sectionPath = path.join(
         bookRoot,
@@ -1499,12 +1787,27 @@ export function buildBookLibrary(
       writeJson(sectionPath, section);
       generatedArtifacts.push(relativeTo(generatedRoot, sectionPath));
     }
+    if (processedBook && cleanedBook && isPublishReadyManifest(manifest)) {
+      cloudflareExportBooks.push({
+        manifest,
+        sectionJson,
+        processedBook,
+        cleanedBook,
+      });
+    }
   }
 
   const libraryManifest = makeLibraryManifest(processedBooks);
   const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
   writeJson(libraryManifestPath, libraryManifest);
   generatedArtifacts.push(relativeTo(generatedRoot, libraryManifestPath));
+  const cloudflareExportArtifacts = cloudflareExportRoot
+    ? writeCloudflareExport({
+        exportRoot: cloudflareExportRoot,
+        books: cloudflareExportBooks,
+        allowCustomRoot: Boolean(options.cloudflareExportRoot),
+      })
+    : [];
 
   const result: BookBuildResult = {
     inventory,
@@ -1514,6 +1817,10 @@ export function buildBookLibrary(
     fatalErrors,
     generatedArtifacts: generatedArtifacts.sort((a, b) => a.localeCompare(b)),
     generatedRoot: toPosixPath(generatedRoot),
+    cloudflareExportRoot: cloudflareExportRoot
+      ? toPosixPath(cloudflareExportRoot)
+      : null,
+    cloudflareExportArtifacts,
   };
 
   if (!options.quiet) printSummary(result);

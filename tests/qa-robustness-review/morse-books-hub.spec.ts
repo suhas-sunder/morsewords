@@ -219,10 +219,17 @@ test.describe("Morse books hub", () => {
       "checked and prepared",
     );
     await expect(collectionModule.locator("[data-testid='morse-books-toolbar']")).toBeVisible();
-    await expect(page.getByLabel("Search title, author, or subject")).toBeDisabled();
+    await expect(page.getByLabel("Search title, author, or subject")).toBeEnabled();
     await expect(page.getByLabel("Filter Morse books by subject")).toBeDisabled();
     await expect(page.getByLabel("Filter Morse books by language")).toBeDisabled();
-    await expect(page.getByLabel("Sort Morse books")).toBeDisabled();
+    await expect(page.getByLabel("Sort Morse books")).toBeEnabled();
+    await page.getByLabel("Search title, author, or subject").fill("Alice");
+    await expect(page.getByLabel("Search title, author, or subject")).toHaveValue(
+      "Alice",
+    );
+    await expect(page.getByRole("button", { name: "Clear filters" })).toBeEnabled();
+    await page.getByRole("button", { name: "Clear filters" }).click();
+    await expect(page.getByLabel("Search title, author, or subject")).toHaveValue("");
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "0 books available",
     );

@@ -247,6 +247,8 @@ export type ProcessedBookJson = {
   id: string;
   title: string;
   author: string;
+  content_version: string;
+  content_hash: string;
   source: {
     name: "Project Gutenberg" | string;
     ebook_number: string;
@@ -274,9 +276,49 @@ export type ProcessedBookJson = {
         word_count: number;
         character_count: number;
         estimated_typing_minutes: number;
+        estimated_listening_minutes: number;
       }>;
     }>;
   };
+};
+
+export type CleanedBookJson = {
+  schemaVersion: 1;
+  id: string;
+  title: string;
+  author: string;
+  contentVersion: string;
+  contentHash: string;
+  source: {
+    provider: string;
+    gutenbergId: string | null;
+    sourceUrl: string | null;
+    rawTextUrl: string | null;
+    originalPublication: string;
+    releaseDate: string;
+    lastUpdated: string;
+  };
+  stats: {
+    wordCount: number;
+    characterCount: number;
+    sectionCount: number;
+    estimatedTypingMinutes: number;
+    estimatedListeningMinutes: number;
+  };
+  sections: Array<{
+    id: string;
+    kind: BookSectionKind;
+    label: string;
+    title: string | null;
+    order: number;
+    includeByDefault: boolean;
+    text: string;
+    paragraphs: string[];
+    wordCount: number;
+    characterCount: number;
+    estimatedTypingMinutes: number;
+    estimatedListeningMinutes: number;
+  }>;
 };
 
 export type GutenbergCleaningReport = {
@@ -311,6 +353,8 @@ export type GeneratedBookSectionSummary = Omit<
   "text" | "sourceStartOffset" | "sourceEndOffset"
 > & {
   sectionJsonPath: string;
+  estimatedTypingMinutes: number;
+  estimatedListeningMinutes: number;
 };
 
 export type GeneratedBookManifest = {
@@ -318,6 +362,8 @@ export type GeneratedBookManifest = {
   slug: string;
   title: string;
   author: string[];
+  contentVersion: string;
+  contentHash: string;
   language: string;
   description: string;
   subjects: string[];
@@ -334,6 +380,7 @@ export type GeneratedBookManifest = {
     processingAllowed: boolean;
     rightsReportPath: string;
     processedBookPath?: string;
+    cleanedBookPath?: string;
     rightsNotes: string;
     allowDuplicateGutenbergId?: boolean;
     duplicateReason?: string;
@@ -369,6 +416,8 @@ export type GeneratedBookSectionJson = {
   paragraphs: string[];
   wordCount: number;
   characterCount: number;
+  estimatedTypingMinutes: number;
+  estimatedListeningMinutes: number;
   morseCharacterEstimate: number;
   unsupportedCharacterSummary: Record<string, number>;
   textPreview: string;
@@ -382,6 +431,8 @@ export type GeneratedLibraryBookSummary = {
   slug: string;
   title: string;
   author: string[];
+  contentVersion: string;
+  contentHash: string;
   language: string;
   description: string;
   subjects: string[];

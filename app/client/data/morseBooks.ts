@@ -1,4 +1,14 @@
 import libraryManifestJson from "~/client/assets/books/generated/library-manifest.json";
+import {
+  safeReadStorage,
+  safeRemoveStorage,
+  safeWriteStorageResult,
+} from "~/client/components/shared/settingsStorage";
+import {
+  BOOK_SECTION_CACHE_KEY_PREFIX,
+  STORAGE_KEYS,
+  STORAGE_LIMITS,
+} from "~/client/components/shared/storageRegistry";
 
 import type {
   MorseBookLibraryManifest,
@@ -16,16 +26,25 @@ export const TEST_COLLECTION_BOOK_PREVIEW_VALUE = "test-collection";
 export const TEST_PUBLISHED_BOOK_SLUG = "test-published-morse-book";
 
 const libraryManifest = libraryManifestJson as MorseBookLibraryManifest;
+const BOOK_SECTION_CACHE_TOTAL_MAX = 900_000;
+const BOOK_SECTION_CACHE_ENTRY_MAX = 32;
 
 const manifestLoaders = import.meta.glob<MorseBookManifest>(
   "../assets/books/generated/*/manifest.json",
   { import: "default" },
 );
 
-const sectionLoaders = import.meta.glob<MorseBookSectionJson>(
-  "../assets/books/generated/*/sections/*.json",
+const publicSectionLoaders = import.meta.glob<MorseBookSectionJson>(
+  "../assets/books/cloudflare-export/books/*/sections/*.json",
   { import: "default" },
 );
+
+const reviewSectionLoaders = import.meta.env.DEV
+  ? import.meta.glob<MorseBookSectionJson>(
+      "../assets/books/generated/*/sections/*.json",
+      { import: "default" },
+    )
+  : {};
 
 const testPublishedBookSections = [
   {
@@ -47,6 +66,8 @@ const testPublishedBookSections = [
     ],
     wordCount: 25,
     characterCount: 151,
+    estimatedTypingMinutes: 1,
+    estimatedListeningMinutes: 1,
     morseCharacterEstimate: 620,
     unsupportedCharacterSummary: {},
     textPreview:
@@ -72,6 +93,8 @@ const testPublishedBookSections = [
     ],
     wordCount: 22,
     characterCount: 135,
+    estimatedTypingMinutes: 1,
+    estimatedListeningMinutes: 1,
     morseCharacterEstimate: 570,
     unsupportedCharacterSummary: {},
     textPreview:
@@ -96,6 +119,8 @@ const testPublishedBookSections = [
     ],
     wordCount: 14,
     characterCount: 101,
+    estimatedTypingMinutes: 1,
+    estimatedListeningMinutes: 1,
     morseCharacterEstimate: 430,
     unsupportedCharacterSummary: {},
     textPreview: "Source note for a development-only fixture...",
@@ -108,6 +133,9 @@ const testPublishedBookManifest = {
   slug: TEST_PUBLISHED_BOOK_SLUG,
   title: "Test Published Morse Book",
   author: ["MorseWords QA"],
+  contentVersion: "test-published-v1",
+  contentHash:
+    "test-published-morse-book-content-hash-development-fixture-v1",
   language: "en",
   description:
     "Development-only publish-ready fixture for exercising Morse book page previews and downloads.",
@@ -125,6 +153,7 @@ const testPublishedBookManifest = {
     processingAllowed: true,
     rightsReportPath: "test-fixture-rights-report.json",
     processedBookPath: "test-fixture-processed-book.json",
+    cleanedBookPath: "test-fixture-cleaned-book.json",
     rightsNotes:
       "Development-only fixture. It is not included in generated production manifests, navigation, or sitemaps.",
   },
@@ -154,6 +183,8 @@ const testPublishedBookManifest = {
     sectionJsonPath: `sections/${section.sectionId}.json`,
     characterCount: section.characterCount,
     wordCount: section.wordCount,
+    estimatedTypingMinutes: section.estimatedTypingMinutes,
+    estimatedListeningMinutes: section.estimatedListeningMinutes,
     morseCharacterEstimate: section.morseCharacterEstimate,
     textPreview: section.textPreview,
   })),
@@ -172,6 +203,8 @@ const testPublishedBookSummary = {
   slug: testPublishedBookManifest.slug,
   title: testPublishedBookManifest.title,
   author: testPublishedBookManifest.author,
+  contentVersion: testPublishedBookManifest.contentVersion,
+  contentHash: testPublishedBookManifest.contentHash,
   language: testPublishedBookManifest.language,
   description: testPublishedBookManifest.description,
   subjects: testPublishedBookManifest.subjects,
@@ -209,6 +242,8 @@ const testCollectionSummaries = Array.from({ length: 30 }, (_, index) => {
     slug,
     title: `Test Collection Morse Book ${number.toString().padStart(2, "0")}`,
     author: [author],
+    contentVersion: `test-collection-v1-${number}`,
+    contentHash: `test-collection-morse-book-${number}-content-hash-development-fixture-v1`,
     language,
     description:
       "Development-only collection fixture for testing Morse book browsing controls.",
@@ -246,6 +281,157 @@ function getTestPublishedBookSection(sectionId: string) {
     testPublishedBookSections.find((section) => section.sectionId === sectionId) ??
     null
   );
+}
+
+type BookSectionCacheIndexEntry = {
+  key: string;
+  slug: string;
+  contentVersion: string;
+  sectionId: string;
+  bytes: number;
+  rank: number;
+};
+
+type BookSectionCacheIndex = {
+  schemaVersion: 1;
+  nextRank: number;
+  entries: BookSectionCacheIndexEntry[];
+};
+
+function emptyBookSectionCacheIndex(): BookSectionCacheIndex {
+  return { schemaVersion: 1, nextRank: 1, entries: [] };
+}
+
+function parseBookSectionCacheIndex(): BookSectionCacheIndex {
+  const raw = safeReadStorage(STORAGE_KEYS.bookSectionCacheIndex);
+  if (!raw) return emptyBookSectionCacheIndex();
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (
+      !parsed ||
+      typeof parsed !== "object" ||
+      !Array.isArray((parsed as BookSectionCacheIndex).entries)
+    ) {
+      return emptyBookSectionCacheIndex();
+    }
+    const candidate = parsed as BookSectionCacheIndex;
+    return {
+      schemaVersion: 1,
+      nextRank:
+        typeof candidate.nextRank === "number" && Number.isFinite(candidate.nextRank)
+          ? Math.max(1, Math.floor(candidate.nextRank))
+          : 1,
+      entries: candidate.entries.filter(
+        (entry) =>
+          entry &&
+          typeof entry.key === "string" &&
+          typeof entry.slug === "string" &&
+          typeof entry.contentVersion === "string" &&
+          typeof entry.sectionId === "string" &&
+          typeof entry.bytes === "number" &&
+          typeof entry.rank === "number",
+      ),
+    };
+  } catch {
+    return emptyBookSectionCacheIndex();
+  }
+}
+
+function writeBookSectionCacheIndex(index: BookSectionCacheIndex) {
+  safeWriteStorageResult(STORAGE_KEYS.bookSectionCacheIndex, JSON.stringify(index));
+}
+
+function bookSectionCacheKey(book: MorseBookManifest, sectionId: string) {
+  return `${BOOK_SECTION_CACHE_KEY_PREFIX}${book.slug}:${book.contentVersion}:${sectionId}`;
+}
+
+function isCacheableBookSection(book: MorseBookManifest, sectionId: string) {
+  return (
+    isMorseBookPublishReady(book) &&
+    typeof book.contentVersion === "string" &&
+    book.contentVersion.trim() !== "" &&
+    book.sections.some((section) => section.id === sectionId)
+  );
+}
+
+function readCachedBookSection(
+  book: MorseBookManifest,
+  sectionId: string,
+): MorseBookSectionJson | null {
+  if (!isCacheableBookSection(book, sectionId)) return null;
+  const key = bookSectionCacheKey(book, sectionId);
+  const raw = safeReadStorage(key);
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as MorseBookSectionJson;
+    if (parsed.bookSlug !== book.slug || parsed.sectionId !== sectionId) {
+      safeRemoveStorage(key);
+      return null;
+    }
+    const index = parseBookSectionCacheIndex();
+    const nextRank = index.nextRank + 1;
+    writeBookSectionCacheIndex({
+      schemaVersion: 1,
+      nextRank,
+      entries: index.entries.map((entry) =>
+        entry.key === key ? { ...entry, rank: index.nextRank } : entry,
+      ),
+    });
+    return parsed;
+  } catch {
+    safeRemoveStorage(key);
+    return null;
+  }
+}
+
+function writeCachedBookSection(
+  book: MorseBookManifest,
+  section: MorseBookSectionJson,
+) {
+  if (!isCacheableBookSection(book, section.sectionId)) return;
+  const key = bookSectionCacheKey(book, section.sectionId);
+  const value = JSON.stringify(section);
+  if (value.length > STORAGE_LIMITS.bookSectionCacheItemMaxLength) return;
+  const writeResult = safeWriteStorageResult(key, value);
+  if (!writeResult.ok) return;
+
+  const current = parseBookSectionCacheIndex();
+  const nextRank = current.nextRank + 1;
+  const entries = [
+    ...current.entries.filter(
+      (entry) =>
+        entry.key !== key &&
+        entry.key.startsWith(BOOK_SECTION_CACHE_KEY_PREFIX),
+    ),
+    {
+      key,
+      slug: book.slug,
+      contentVersion: book.contentVersion,
+      sectionId: section.sectionId,
+      bytes: value.length,
+      rank: current.nextRank,
+    },
+  ].sort((a, b) => b.rank - a.rank);
+
+  let keptBytes = 0;
+  const kept: BookSectionCacheIndexEntry[] = [];
+  for (const entry of entries) {
+    if (
+      kept.length >= BOOK_SECTION_CACHE_ENTRY_MAX ||
+      keptBytes + entry.bytes > BOOK_SECTION_CACHE_TOTAL_MAX
+    ) {
+      safeRemoveStorage(entry.key);
+      continue;
+    }
+    keptBytes += entry.bytes;
+    kept.push(entry);
+  }
+
+  writeBookSectionCacheIndex({
+    schemaVersion: 1,
+    nextRank,
+    entries: kept.sort((a, b) => a.key.localeCompare(b.key)),
+  });
 }
 
 export function morseBookPath(slug: string) {
@@ -362,13 +548,19 @@ export async function getMorseBookSection(
 
   const summary = getMorseBookSectionSummary(book, sectionId);
   if (!summary) return null;
+  const cached = readCachedBookSection(book, sectionId);
+  if (cached) return cached;
 
-  const loaderKey = `../assets/books/generated/${book.slug}/${summary.sectionJsonPath}`;
-  const loadSection = sectionLoaders[loaderKey];
+  const reviewLoaderKey = `../assets/books/generated/${book.slug}/${summary.sectionJsonPath}`;
+  const publicLoaderKey = `../assets/books/cloudflare-export/books/${book.slug}/${summary.sectionJsonPath}`;
+  const loadSection = isMorseBookPublishReady(book)
+    ? (publicSectionLoaders[publicLoaderKey] ?? reviewSectionLoaders[reviewLoaderKey])
+    : reviewSectionLoaders[reviewLoaderKey];
   if (!loadSection) return null;
 
   const section = await loadSection();
   if (section.bookSlug !== book.slug || section.sectionId !== sectionId) return null;
+  writeCachedBookSection(book, section);
   return section;
 }
 
@@ -376,6 +568,7 @@ export function getMorseBookDataLoaderStats() {
   return {
     summaryCount: libraryManifest.books.length,
     manifestLoaderCount: Object.keys(manifestLoaders).length,
-    sectionLoaderCount: Object.keys(sectionLoaders).length,
+    publicSectionLoaderCount: Object.keys(publicSectionLoaders).length,
+    reviewSectionLoaderCount: Object.keys(reviewSectionLoaders).length,
   };
 }
