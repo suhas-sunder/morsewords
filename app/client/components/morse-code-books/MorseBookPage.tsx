@@ -91,6 +91,7 @@ import {
 } from "~/client/data/morseBooks";
 import type {
   MorseBookManifest,
+  MorseBookSectionKind,
   MorseBookSectionJson,
   MorseBookSectionSummary,
 } from "~/client/data/morseBookTypes";
@@ -152,6 +153,38 @@ function clippedText(text: string, limit: number) {
 
 function sectionDisplayName(section: MorseBookSectionSummary) {
   return section.title ? `${section.label}: ${section.title}` : section.label;
+}
+
+const sectionKindLabels: Record<MorseBookSectionKind, string> = {
+  "title-page": "Opening",
+  dedication: "Dedication",
+  epigraph: "Epigraph",
+  preface: "Preface",
+  introduction: "Introduction",
+  prologue: "Prologue",
+  epilogue: "Epilogue",
+  part: "Part",
+  book: "Book",
+  chapter: "Chapter",
+  scene: "Scene",
+  poem: "Poem",
+  letter: "Letter",
+  appendix: "Appendix",
+  notes: "Notes",
+  glossary: "Glossary",
+  index: "Index",
+  "transcriber-note": "Transcriber note",
+  "source-license": "Source notes",
+  advertisement: "Advertisement",
+  unknown: "Part",
+};
+
+function sectionStateLabel(
+  section: MorseBookSectionSummary,
+  selected: boolean,
+) {
+  if (selected) return "Included";
+  return section.includeByDefault ? "Not selected" : "Available section";
 }
 
 function useAppliedThemeMode() {
@@ -1147,12 +1180,17 @@ export default function MorseBookPage({
                       key={section.id}
                       role="listitem"
                       className={[
-                        "flex cursor-pointer items-start gap-3 rounded-lg px-3 py-2 text-sm font-semibold",
+                        "flex cursor-pointer items-start gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold",
                         selected
                           ? "bg-slate-950 text-sky-100"
                           : "bg-[#fffdf8]/78 text-slate-700 hover:bg-[#fffaf2]",
                       ].join(" ")}
                       data-mw-morse-book-section-id={section.id}
+                      data-mw-morse-book-section-row="true"
+                      data-mw-morse-book-section-state={sectionStateLabel(
+                        section,
+                        selected,
+                      )}
                     >
                       <input
                         type="checkbox"
@@ -1166,13 +1204,21 @@ export default function MorseBookPage({
                         className="mt-0.5 h-4 w-4 accent-sky-500"
                         data-mw-morse-book-section-select={section.id}
                       />
-                      <span className="grid min-w-0 gap-1">
-                        <span className="break-words">
+                      <span className="grid min-w-0 gap-1.5">
+                        <span
+                          className="break-words text-base leading-snug"
+                          data-mw-morse-book-section-label="true"
+                        >
                           {sectionDisplayName(section)}
                         </span>
-                        <span className="font-mono text-[11px] uppercase tracking-[0.12em] opacity-75">
-                          {section.kind} - {formatNumber(section.wordCount)} words
-                          {section.includeByDefault ? " - included" : " - optional"}
+                        <span className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.12em] opacity-75">
+                          <span data-mw-morse-book-section-kind="true">
+                            {sectionKindLabels[section.kind]}
+                          </span>
+                          <span>{formatNumber(section.wordCount)} words</span>
+                          <span data-mw-morse-book-section-selection-state="true">
+                            {sectionStateLabel(section, selected)}
+                          </span>
                         </span>
                       </span>
                     </label>

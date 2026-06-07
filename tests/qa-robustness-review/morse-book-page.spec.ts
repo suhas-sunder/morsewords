@@ -48,6 +48,15 @@ async function openApprovedBook(page: Page) {
   expect(response?.ok()).toBe(true);
 }
 
+async function openAnneBook(page: Page) {
+  await blockExternalNetwork(page);
+  const response = await page.goto("/morse-code-books/anne-of-green-gables", {
+    waitUntil: "domcontentloaded",
+  });
+  await waitForRouteReady(page);
+  expect(response?.ok()).toBe(true);
+}
+
 async function saveScreenshot(page: Page, testInfo: TestInfo, name: string) {
   const screenshotPath = testInfo.outputPath(name);
   await page.screenshot({ path: screenshotPath, fullPage: true });
@@ -217,6 +226,41 @@ test.describe("Morse book page foundation", () => {
       "Project Gutenberg License",
     );
     await expect(page.locator("[data-mw-morse-book-morse-preview]")).toBeVisible();
+
+    const selectorRows = page.locator("[data-mw-morse-book-section-row]");
+    await expect(selectorRows.first()).toBeVisible();
+    await expect(
+      selectorRows.first().locator("[data-mw-morse-book-section-label]"),
+    ).toBeVisible();
+    await expect(
+      selectorRows.first().locator("[data-mw-morse-book-section-kind]"),
+    ).toContainText(/Chapter|Opening|Part|Section|Source notes/);
+    await expect(
+      selectorRows.first().locator("[data-mw-morse-book-section-selection-state]"),
+    ).toContainText(/Included|Not selected|Available section/);
+  });
+
+  test("renders approved book selector labels without detector artifacts", async ({
+    page,
+  }) => {
+    await openAnneBook(page);
+
+    const labels = await page
+      .locator("[data-mw-morse-book-section-label]")
+      .evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim() ?? ""));
+    const labelText = labels.join("\n");
+
+    expect(labels).toContain("Chapter 13: The Delights of Anticipation");
+    expect(labelText).not.toMatch(/Book\s+501|Book\s+5\s+01/i);
+    expect(labelText).not.toMatch(
+      /Diana lent me|That was a thrilling book|The heroine had/i,
+    );
+
+    const states = await page
+      .locator("[data-mw-morse-book-section-selection-state]")
+      .evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim() ?? ""));
+    expect(states).toContain("Included");
+    expect(states).toContain("Available section");
   });
 
   test("renders a noindex unpublished preview with ordered sections and cleaned text", async ({

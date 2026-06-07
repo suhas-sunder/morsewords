@@ -96,7 +96,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -266,7 +266,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -879,7 +879,7 @@
       "bookSlug": "the-call-of-the-wild",
       "sectionId": "title-page-001",
       "kind": "title-page",
-      "label": "Front matter",
+      "label": "Opening section",
       "title": null,
       "order": 1,
       "includeByDefault": false,
@@ -1458,6 +1458,6 @@
       }
     }
   ],
-  "contentVersion": "7e9b5f5a5765fbfc",
-  "contentHash": "7e9b5f5a5765fbfcb2a53d8db584d216bae0796697658e0491fd918c776f52eb"
+  "contentVersion": "c8b5f22d56669ce0",
+  "contentHash": "c8b5f22d56669ce0c9fcc6504c8610257b71a39cc4634c22d35248d8e84c3305"
 }

@@ -25,7 +25,7 @@
     {
       "id": "title-page-001",
       "kind": "title-page",
-      "label": "Front matter",
+      "label": "Opening section",
       "title": null,
       "order": 1,
       "includeByDefault": false,
@@ -2171,7 +2171,7 @@
     {
       "id": "chapter-024",
       "kind": "chapter",
-      "label": "Chapter 999",
+      "label": "did.",
       "title": null,
       "order": 26,
       "includeByDefault": true,

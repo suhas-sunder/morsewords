@@ -96,7 +96,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -731,7 +731,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -4121,7 +4121,7 @@
       "bookSlug": "the-sea-wolf",
       "sectionId": "title-page-001",
       "kind": "title-page",
-      "label": "Front matter",
+      "label": "Opening section",
       "title": null,
       "order": 1,
       "includeByDefault": false,
@@ -7363,6 +7363,6 @@
       }
     }
   ],
-  "contentVersion": "3b8f19435be16aae",
-  "contentHash": "3b8f19435be16aae8bd714d4d4e5dc65e203702ad3500828775eb79a54ea2732"
+  "contentVersion": "f5b51d9e2538e97f",
+  "contentHash": "f5b51d9e2538e97ff41634f833ea50abd772a7b8feb7cbc06c84854f43995e0d"
 }

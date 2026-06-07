@@ -96,7 +96,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -641,7 +641,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -2915,7 +2915,7 @@
       "bookSlug": "the-princess-and-the-goblin",
       "sectionId": "title-page-001",
       "kind": "title-page",
-      "label": "Front matter",
+      "label": "Opening section",
       "title": null,
       "order": 1,
       "includeByDefault": false,
@@ -5040,6 +5040,6 @@
       }
     }
   ],
-  "contentVersion": "85b1b5e4ded4c69d",
-  "contentHash": "85b1b5e4ded4c69daaa0ed0f6e24263ff5a3e3b76ceb4a7f5afa698310b1f4ad"
+  "contentVersion": "1870b705f4e11be1",
+  "contentHash": "1870b705f4e11be1a1081e3d0896122541afd275c02b44104e07a31ca17583cd"
 }

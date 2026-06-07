@@ -96,7 +96,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -836,7 +836,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -6092,7 +6092,7 @@
       "bookSlug": "crime-and-punishment",
       "sectionId": "title-page-001",
       "kind": "title-page",
-      "label": "Front matter",
+      "label": "Opening section",
       "title": null,
       "order": 1,
       "includeByDefault": false,
@@ -11322,6 +11322,6 @@
       }
     }
   ],
-  "contentVersion": "15cf878de2ef0ec4",
-  "contentHash": "15cf878de2ef0ec472cd0d0d42ec7890793958169e92858b81074940276d3852"
+  "contentVersion": "aefba01829b6ac7b",
+  "contentHash": "aefba01829b6ac7b10f7ae192bef5caa7b018aec9c51ccd7e53f7baad5a9fa50"
 }

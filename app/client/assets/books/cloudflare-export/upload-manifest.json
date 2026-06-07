@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "0801ee82e5f7ffdf",
-  "contentHash": "0801ee82e5f7ffdfc7da1c51ccce1a45ca614455452c906c3c46b5b6c5ca2591",
+  "contentVersion": "1e01bdcc4c0445e3",
+  "contentHash": "1e01bdcc4c0445e30a83275deb282f22a8a71ff1078798c298642744ed4d7125",
   "approvedBookCount": 16,
   "files": [
     "books/anne-of-green-gables.json",

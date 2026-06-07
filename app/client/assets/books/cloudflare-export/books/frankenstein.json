@@ -96,7 +96,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -521,7 +521,7 @@
       {
         "id": "title-page-001",
         "kind": "title-page",
-        "label": "Front matter",
+        "label": "Opening section",
         "title": null,
         "order": 1,
         "includeByDefault": false,
@@ -2081,7 +2081,7 @@
       "bookSlug": "frankenstein",
       "sectionId": "title-page-001",
       "kind": "title-page",
-      "label": "Front matter",
+      "label": "Opening section",
       "title": null,
       "order": 1,
       "includeByDefault": false,
@@ -3562,6 +3562,6 @@
       }
     }
   ],
-  "contentVersion": "0afb6535a371c36f",
-  "contentHash": "0afb6535a371c36f953e0b799dc710dfad7a6b0228364e9402d730ed1a03d94d"
+  "contentVersion": "aed1191088a0388d",
+  "contentHash": "aed1191088a0388dedd331421640b0bb75ee1aa7a19a5dbab5d431140ca4c54f"
 }

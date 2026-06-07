@@ -427,6 +427,39 @@ Roman heading text.
     expect(result.sections.every((section) => section.characterCount > 0)).toBe(true);
   });
 
+  test("does not treat wrapped body text beginning with book words as a heading", () => {
+    const metadata = baseMetadata("wrapped-body-book-word");
+    const result = detectBookSections(
+      `
+CHAPTER XIII. The Delights of Anticipation
+
+Diana is going to lend me a
+book Diana lent me. That was a thrilling book, Marilla. The heroine
+had five lovers.
+
+CHAPTER XIV. Anne's Confession
+
+The next chapter begins here.
+`,
+      metadata,
+    );
+
+    expect(result.sections.map((section) => section.id)).toEqual([
+      "chapter-001",
+      "chapter-002",
+    ]);
+    expect(result.sections.map((section) => section.kind)).not.toContain("book");
+    expect(result.sections.map((section) => section.label)).toEqual([
+      "Chapter 13",
+      "Chapter 14",
+    ]);
+    expect(result.sections[0].title).toBe("The Delights of Anticipation");
+    expect(result.sections[0].text).toContain("book Diana lent me");
+    expect(
+      result.sections.map((section) => `${section.label}: ${section.title ?? ""}`).join("\n"),
+    ).not.toMatch(/Book\s+501|Book\s+5\s+01|thrilling book/i);
+  });
+
   test("detects transcriber and source-license sections as excluded support matter", () => {
     const metadata = baseMetadata("support-matter");
     const result = detectBookSections(
@@ -533,6 +566,8 @@ Third chapter.
     expect(result.warnings.join(" ")).toContain("No chapter headings");
     expect(result.sections.length).toBeGreaterThan(1);
     expect(result.sections[0].id).toBe("part-001");
+    expect(result.sections[0].label).toBe("Part 1");
+    expect(result.sections.every((section) => /^Part \d+$/.test(section.label))).toBe(true);
     expect(result.sections.every((section) => section.characterCount > 0)).toBe(true);
   });
 
@@ -3427,6 +3462,102 @@ Project Gutenberg License
         ),
       ),
     ).toBe(false);
+  });
+
+  test("committed approved book section labels stay clear and deterministic", () => {
+    const libraryManifest = readJsonFile<{
+      books: Array<{
+        slug: string;
+        source: {
+          publishReady: boolean;
+          processingAllowed: boolean;
+          approvalSource?: string;
+          rightsReviewed: boolean;
+        };
+      }>;
+    }>(
+      path.join(ROOT, "app/client/assets/books/generated/library-manifest.json"),
+    );
+    const approvedBooks = libraryManifest.books.filter(
+      (book) =>
+        book.source.publishReady &&
+        book.source.processingAllowed &&
+        (book.source.approvalSource === "external-authority" ||
+          book.source.approvalSource === "file-evidence" ||
+          book.source.rightsReviewed),
+    );
+
+    expect(approvedBooks).toHaveLength(16);
+
+    for (const book of approvedBooks) {
+      const manifest = readJsonFile<{
+        sections: Array<{
+          id: string;
+          kind: string;
+          label: string;
+          title: string | null;
+          textPreview: string;
+          characterCount: number;
+        }>;
+      }>(
+        path.join(
+          ROOT,
+          "app/client/assets/books/generated",
+          book.slug,
+          "manifest.json",
+        ),
+      );
+
+      expect(manifest.sections.every((section) => section.characterCount > 0)).toBe(
+        true,
+      );
+      for (const section of manifest.sections) {
+        const displayLabel = `${section.label}${
+          section.title ? `: ${section.title}` : ""
+        }`;
+        expect(displayLabel).not.toMatch(/^(?:Book|Part|Chapter|Section)\s+\d+\s+\d{2}\s*:/i);
+        expect(displayLabel).not.toMatch(/\bBook\s+501\b/i);
+        expect(displayLabel).not.toMatch(
+          /Diana lent me|That was a thrilling book|The heroine had/i,
+        );
+        expect(section.label.trim()).not.toBe("");
+      }
+    }
+
+    const anneManifest = readJsonFile<{
+      sections: Array<{
+        id: string;
+        label: string;
+        title: string | null;
+        textPreview: string;
+      }>;
+    }>(
+      path.join(
+        ROOT,
+        "app/client/assets/books/generated/anne-of-green-gables/manifest.json",
+      ),
+    );
+    expect(anneManifest.sections.map((section) => section.id)).not.toContain(
+      "book-001",
+    );
+    const anneChapterThirteen = anneManifest.sections.find(
+      (section) => section.id === "chapter-013",
+    );
+    const anneChapterThirteenSection = readJsonFile<{
+      morseSourceText: string;
+    }>(
+      path.join(
+        ROOT,
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-013.json",
+      ),
+    );
+    expect(anneChapterThirteen).toMatchObject({
+      label: "Chapter 13",
+      title: "The Delights of Anticipation",
+    });
+    expect(anneChapterThirteenSection.morseSourceText).toContain(
+      "book Diana lent me",
+    );
   });
 
   test("committed Alice pilot artifact has publish flags and chapter sections", () => {
