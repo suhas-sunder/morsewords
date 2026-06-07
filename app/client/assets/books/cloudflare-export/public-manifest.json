@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "1279d3052d2c7aae",
-  "contentHash": "1279d3052d2c7aae91daf3ea5b3c686c0e78abf9ecf4b9f0de26a6988af00fad",
+  "contentVersion": "0801ee82e5f7ffdf",
+  "contentHash": "0801ee82e5f7ffdfc7da1c51ccce1a45ca614455452c906c3c46b5b6c5ca2591",
   "books": [
     {
       "slug": "anne-of-green-gables",
@@ -30,11 +30,9 @@
         "sectionCount": 40,
         "includedSectionCount": 38
       },
-      "contentVersion": "367778b4e649ed14",
-      "contentHash": "367778b4e649ed146b3672f778d82d3e5af3f67cca1d6c01889faed7f311a894",
-      "metadataPath": "books/anne-of-green-gables/metadata.json",
-      "cleanedBookPath": "books/anne-of-green-gables/cleaned_book.json",
-      "processedBookPath": "books/anne-of-green-gables/processed_book.json"
+      "contentVersion": "a857625116df3e8e",
+      "contentHash": "a857625116df3e8e1798f75d25d9c9e656a3a7be9edee26848177de60406097f",
+      "bookPath": "books/anne-of-green-gables.json"
     },
     {
       "slug": "crime-and-punishment",
@@ -63,11 +61,9 @@
         "sectionCount": 47,
         "includedSectionCount": 39
       },
-      "contentVersion": "d6d0c93538f5f280",
-      "contentHash": "d6d0c93538f5f28038f5d91d82ed44334e32afd0077287378396c137e342f33d",
-      "metadataPath": "books/crime-and-punishment/metadata.json",
-      "cleanedBookPath": "books/crime-and-punishment/cleaned_book.json",
-      "processedBookPath": "books/crime-and-punishment/processed_book.json"
+      "contentVersion": "15cf878de2ef0ec4",
+      "contentHash": "15cf878de2ef0ec472cd0d0d42ec7890793958169e92858b81074940276d3852",
+      "bookPath": "books/crime-and-punishment.json"
     },
     {
       "slug": "frankenstein",
@@ -96,11 +92,9 @@
         "sectionCount": 26,
         "includedSectionCount": 24
       },
-      "contentVersion": "4e29b83aeac2a920",
-      "contentHash": "4e29b83aeac2a920fc3b458e482722a5fb41335792a6f81243dd7b585ba53d55",
-      "metadataPath": "books/frankenstein/metadata.json",
-      "cleanedBookPath": "books/frankenstein/cleaned_book.json",
-      "processedBookPath": "books/frankenstein/processed_book.json"
+      "contentVersion": "0afb6535a371c36f",
+      "contentHash": "0afb6535a371c36f953e0b799dc710dfad7a6b0228364e9402d730ed1a03d94d",
+      "bookPath": "books/frankenstein.json"
     },
     {
       "slug": "gulliver-s-travels",
@@ -129,11 +123,9 @@
         "sectionCount": 50,
         "includedSectionCount": 39
       },
-      "contentVersion": "c758461bc01ac79b",
-      "contentHash": "c758461bc01ac79be5ebd276bef3a4ba17b0daefa9dfa49b8352261c24e5c8d8",
-      "metadataPath": "books/gulliver-s-travels/metadata.json",
-      "cleanedBookPath": "books/gulliver-s-travels/cleaned_book.json",
-      "processedBookPath": "books/gulliver-s-travels/processed_book.json"
+      "contentVersion": "cbb116519c332b2a",
+      "contentHash": "cbb116519c332b2a57bd744ab47f1b335412eed71e0c052391e9382d6d6755e4",
+      "bookPath": "books/gulliver-s-travels.json"
     },
     {
       "slug": "the-call-of-the-wild",
@@ -162,11 +154,9 @@
         "sectionCount": 9,
         "includedSectionCount": 7
       },
-      "contentVersion": "36f513056d2926d0",
-      "contentHash": "36f513056d2926d0e427f7a1b5cba309424992e491ed42d9a492c398b1e8f57c",
-      "metadataPath": "books/the-call-of-the-wild/metadata.json",
-      "cleanedBookPath": "books/the-call-of-the-wild/cleaned_book.json",
-      "processedBookPath": "books/the-call-of-the-wild/processed_book.json"
+      "contentVersion": "7e9b5f5a5765fbfc",
+      "contentHash": "7e9b5f5a5765fbfcb2a53d8db584d216bae0796697658e0491fd918c776f52eb",
+      "bookPath": "books/the-call-of-the-wild.json"
     },
     {
       "slug": "the-emerald-city-of-oz",
@@ -195,11 +185,9 @@
         "sectionCount": 11,
         "includedSectionCount": 0
       },
-      "contentVersion": "99be6e3535d4da26",
-      "contentHash": "99be6e3535d4da266ce861f7ff9cbc22ea7b53dbfcf7c3f8b6da7dc0aeadb524",
-      "metadataPath": "books/the-emerald-city-of-oz/metadata.json",
-      "cleanedBookPath": "books/the-emerald-city-of-oz/cleaned_book.json",
-      "processedBookPath": "books/the-emerald-city-of-oz/processed_book.json"
+      "contentVersion": "d546efa9ad32d315",
+      "contentHash": "d546efa9ad32d315fcf8a92e8fbbeb315e63cc2f6d42861b733e103efe3028c8",
+      "bookPath": "books/the-emerald-city-of-oz.json"
     },
     {
       "slug": "the-great-gatsby",
@@ -228,11 +216,9 @@
         "sectionCount": 11,
         "includedSectionCount": 0
       },
-      "contentVersion": "80eed92242bcbfda",
-      "contentHash": "80eed92242bcbfdadce9e77f31502cbaf3885ceaea9d02ee212117b09ec5e377",
-      "metadataPath": "books/the-great-gatsby/metadata.json",
-      "cleanedBookPath": "books/the-great-gatsby/cleaned_book.json",
-      "processedBookPath": "books/the-great-gatsby/processed_book.json"
+      "contentVersion": "06ba121a3bd3876e",
+      "contentHash": "06ba121a3bd3876e63ac4bc285c4a60d6ba8cfcbb7ed139926f7aef9887fb5ff",
+      "bookPath": "books/the-great-gatsby.json"
     },
     {
       "slug": "the-jungle-book",
@@ -261,11 +247,9 @@
         "sectionCount": 11,
         "includedSectionCount": 0
       },
-      "contentVersion": "02368445733b8f66",
-      "contentHash": "02368445733b8f6660573666d94163511eb063bf4f1cf76bb48a98d38144e40c",
-      "metadataPath": "books/the-jungle-book/metadata.json",
-      "cleanedBookPath": "books/the-jungle-book/cleaned_book.json",
-      "processedBookPath": "books/the-jungle-book/processed_book.json"
+      "contentVersion": "70617453538c5878",
+      "contentHash": "70617453538c58787c1ada1fe540af28f68ce9521eba376a081fee4aaf5907b3",
+      "bookPath": "books/the-jungle-book.json"
     },
     {
       "slug": "the-picture-of-dorian-gray",
@@ -294,11 +278,9 @@
         "sectionCount": 24,
         "includedSectionCount": 21
       },
-      "contentVersion": "076dc7ddc53ff214",
-      "contentHash": "076dc7ddc53ff2142143719c0cf65576ac89723802a3ca2ca2ab578aa16b365d",
-      "metadataPath": "books/the-picture-of-dorian-gray/metadata.json",
-      "cleanedBookPath": "books/the-picture-of-dorian-gray/cleaned_book.json",
-      "processedBookPath": "books/the-picture-of-dorian-gray/processed_book.json"
+      "contentVersion": "5a0860f0988445e0",
+      "contentHash": "5a0860f0988445e0aa2aac0cef3e1e9148009a7fd2ce35775f1badb872f29311",
+      "bookPath": "books/the-picture-of-dorian-gray.json"
     },
     {
       "slug": "the-princess-and-the-goblin",
@@ -327,11 +309,9 @@
         "sectionCount": 34,
         "includedSectionCount": 32
       },
-      "contentVersion": "1b735f6d9414372d",
-      "contentHash": "1b735f6d9414372db3a176dd8accd5ddb172ded859d73f1f7c96d492ea7dd224",
-      "metadataPath": "books/the-princess-and-the-goblin/metadata.json",
-      "cleanedBookPath": "books/the-princess-and-the-goblin/cleaned_book.json",
-      "processedBookPath": "books/the-princess-and-the-goblin/processed_book.json"
+      "contentVersion": "85b1b5e4ded4c69d",
+      "contentHash": "85b1b5e4ded4c69daaa0ed0f6e24263ff5a3e3b76ceb4a7f5afa698310b1f4ad",
+      "bookPath": "books/the-princess-and-the-goblin.json"
     },
     {
       "slug": "the-railway-children",
@@ -360,11 +340,9 @@
         "sectionCount": 16,
         "includedSectionCount": 14
       },
-      "contentVersion": "3e5bd2aea7e6d6df",
-      "contentHash": "3e5bd2aea7e6d6df308de7976ac7fa44049244f5e0614e1eb5da7e18188156d7",
-      "metadataPath": "books/the-railway-children/metadata.json",
-      "cleanedBookPath": "books/the-railway-children/cleaned_book.json",
-      "processedBookPath": "books/the-railway-children/processed_book.json"
+      "contentVersion": "0c6fa5fe73022d88",
+      "contentHash": "0c6fa5fe73022d88a2e6428bffe3f3560bd45c2c5358cd7a972ef69d3fbf968c",
+      "bookPath": "books/the-railway-children.json"
     },
     {
       "slug": "the-sea-wolf",
@@ -393,11 +371,9 @@
         "sectionCount": 40,
         "includedSectionCount": 39
       },
-      "contentVersion": "1407da1c4cda2335",
-      "contentHash": "1407da1c4cda2335816e02e8d2221b3f8af7b5aef9a9ad17d79ba484a9735276",
-      "metadataPath": "books/the-sea-wolf/metadata.json",
-      "cleanedBookPath": "books/the-sea-wolf/cleaned_book.json",
-      "processedBookPath": "books/the-sea-wolf/processed_book.json"
+      "contentVersion": "3b8f19435be16aae",
+      "contentHash": "3b8f19435be16aae8bd714d4d4e5dc65e203702ad3500828775eb79a54ea2732",
+      "bookPath": "books/the-sea-wolf.json"
     },
     {
       "slug": "the-secret-garden-gutenberg-113",
@@ -426,11 +402,9 @@
         "sectionCount": 30,
         "includedSectionCount": 28
       },
-      "contentVersion": "a7badd9309f75169",
-      "contentHash": "a7badd9309f7516926ca73a11c6bb15200e13aaf9e33808e0e234ef6e22dcea2",
-      "metadataPath": "books/the-secret-garden-gutenberg-113/metadata.json",
-      "cleanedBookPath": "books/the-secret-garden-gutenberg-113/cleaned_book.json",
-      "processedBookPath": "books/the-secret-garden-gutenberg-113/processed_book.json"
+      "contentVersion": "aac27fb0e65e3632",
+      "contentHash": "aac27fb0e65e3632d2bd1ff8e4c99ab1eced986bfd1dd363424b29acea18cf79",
+      "bookPath": "books/the-secret-garden-gutenberg-113.json"
     },
     {
       "slug": "dr-jekyll-and-mr-hyde",
@@ -459,11 +433,9 @@
         "sectionCount": 6,
         "includedSectionCount": 0
       },
-      "contentVersion": "d30174b13b392e39",
-      "contentHash": "d30174b13b392e39a59ce3463e36c148530141240f481f9844d007e253fec963",
-      "metadataPath": "books/dr-jekyll-and-mr-hyde/metadata.json",
-      "cleanedBookPath": "books/dr-jekyll-and-mr-hyde/cleaned_book.json",
-      "processedBookPath": "books/dr-jekyll-and-mr-hyde/processed_book.json"
+      "contentVersion": "9575f38b53a39b11",
+      "contentHash": "9575f38b53a39b11a9cd003e790c4bfd494a0392373df5b3c83607b99001a2b0",
+      "bookPath": "books/dr-jekyll-and-mr-hyde.json"
     },
     {
       "slug": "the-three-musketeers",
@@ -492,11 +464,9 @@
         "sectionCount": 72,
         "includedSectionCount": 67
       },
-      "contentVersion": "f31154ce58f09bad",
-      "contentHash": "f31154ce58f09bad7f3c9112448fc21d501cd42a77cc5bd8bbfa15e2b063772f",
-      "metadataPath": "books/the-three-musketeers/metadata.json",
-      "cleanedBookPath": "books/the-three-musketeers/cleaned_book.json",
-      "processedBookPath": "books/the-three-musketeers/processed_book.json"
+      "contentVersion": "f01cafd73b3fb862",
+      "contentHash": "f01cafd73b3fb862e17f68a7ae75e63daabd246a55c7153444da6f89656e72c7",
+      "bookPath": "books/the-three-musketeers.json"
     },
     {
       "slug": "treasure-island",
@@ -525,11 +495,9 @@
         "sectionCount": 14,
         "includedSectionCount": 0
       },
-      "contentVersion": "4d7484d9467697dc",
-      "contentHash": "4d7484d9467697dc5116a3f77f16204f2e09a7957fc31c58c24537e951fc69a9",
-      "metadataPath": "books/treasure-island/metadata.json",
-      "cleanedBookPath": "books/treasure-island/cleaned_book.json",
-      "processedBookPath": "books/treasure-island/processed_book.json"
+      "contentVersion": "e2e5718478356c04",
+      "contentHash": "e2e5718478356c045e7995eb6874d7c19a32b94ee226e2092b0e729e38b5ea39",
+      "bookPath": "books/treasure-island.json"
     }
   ]
 }

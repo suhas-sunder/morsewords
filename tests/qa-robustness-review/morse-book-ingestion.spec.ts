@@ -2742,14 +2742,21 @@ Project Gutenberg License
     expect(result.cloudflareExportArtifacts).toEqual(
       expect.arrayContaining([
         "public-manifest.json",
-        "content-version.json",
         "upload-manifest.json",
-        "books/approved-cloudflare/metadata.json",
-        "books/approved-cloudflare/cleaned_book.json",
-        "books/approved-cloudflare/processed_book.json",
-        "books/approved-cloudflare/sections/chapter-001.json",
+        "books/approved-cloudflare.json",
       ]),
     );
+    expect(result.cloudflareExportArtifacts).not.toContain("content-version.json");
+    expect(
+      result.cloudflareExportArtifacts.some((artifact) =>
+        /books\/approved-cloudflare\/.+\.json$/.test(artifact),
+      ),
+    ).toBe(false);
+    expect(
+      result.cloudflareExportArtifacts.some((artifact) =>
+        /\/sections\/.+\.json$/.test(artifact),
+      ),
+    ).toBe(false);
     expect(
       result.cloudflareExportArtifacts.some((artifact) =>
         artifact.includes("manual-cloudflare"),
@@ -2766,24 +2773,46 @@ Project Gutenberg License
     expect(Object.keys(exportTree).some((filePath) => /\.(mp3|wav|webm|mp4|zip)$/i.test(filePath))).toBe(
       false,
     );
+    const cloudflareBookFiles = fs
+      .readdirSync(path.join(cloudflareExportRoot, "books"), { withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name);
+    expect(cloudflareBookFiles).toEqual(["approved-cloudflare.json"]);
 
     const publicManifest = readJsonFile<{
       books: Array<{
         slug: string;
         source: { sourceUrl: string | null; publishReady: boolean };
-        cleanedBookPath: string;
+        bookPath: string;
       }>;
     }>(path.join(cloudflareExportRoot, "public-manifest.json"));
+    expect(JSON.stringify(publicManifest)).not.toContain("Approved export chapter");
     expect(publicManifest.books).toEqual([
       expect.objectContaining({
         slug: "approved-cloudflare",
-        cleanedBookPath: "books/approved-cloudflare/cleaned_book.json",
+        bookPath: "books/approved-cloudflare.json",
         source: expect.objectContaining({
           publishReady: true,
           sourceUrl: "https://www.gutenberg.org/ebooks/5201",
         }),
       }),
     ]);
+    const exportedBook = readJsonFile<{
+      slug: string;
+      contentVersion: string;
+      contentHash: string;
+      cleanedBook: { sections: unknown[] };
+      processedBook: { sections: unknown[] };
+      sections: Array<{ sectionId: string; displayText: string }>;
+    }>(path.join(cloudflareExportRoot, "books", "approved-cloudflare.json"));
+    expect(exportedBook.slug).toBe("approved-cloudflare");
+    expect(exportedBook.contentVersion).toHaveLength(16);
+    expect(exportedBook.contentHash).toHaveLength(64);
+    expect(exportedBook.sections.map((section) => section.sectionId)).toEqual([
+      "chapter-001",
+      "chapter-002",
+    ]);
+    expect(JSON.stringify(exportedBook)).toContain("Approved export second chapter");
 
     const uploadManifest = readJsonFile<{
       approvedBookCount: number;
@@ -2792,6 +2821,10 @@ Project Gutenberg License
     }>(path.join(cloudflareExportRoot, "upload-manifest.json"));
     expect(uploadManifest.approvedBookCount).toBe(1);
     expect(uploadManifest.mediaFilesIncluded).toBe(false);
+    expect(uploadManifest.files).toContain("books/approved-cloudflare.json");
+    expect(
+      uploadManifest.files.some((filePath) => /\/sections\//.test(filePath)),
+    ).toBe(false);
     expect(uploadManifest.files.some((filePath) => filePath.includes("manual-cloudflare"))).toBe(
       false,
     );

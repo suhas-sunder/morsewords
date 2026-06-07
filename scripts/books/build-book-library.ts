@@ -1443,6 +1443,26 @@ type CloudflareExportBook = {
   cleanedBook: CleanedBookJson;
 };
 
+type CloudflareExportBookJson = {
+  schemaVersion: 1;
+  slug: string;
+  title: string;
+  author: string[];
+  language: string;
+  description: string;
+  subjects: string[];
+  source: GeneratedBookManifest["source"];
+  cover: GeneratedBookManifest["cover"];
+  stats: GeneratedBookManifest["stats"];
+  defaults: GeneratedBookManifest["defaults"];
+  contentVersion: string;
+  contentHash: string;
+  manifest: GeneratedBookManifest;
+  cleanedBook: CleanedBookJson;
+  processedBook: ProcessedBookJson;
+  sections: GeneratedBookSectionJson[];
+};
+
 function isPublishReadyManifest(manifest: GeneratedBookManifest): boolean {
   const approvedBySource =
     manifest.source.approvalSource === "file-evidence" ||
@@ -1490,30 +1510,60 @@ function writeCloudflareExport({
   const publicBooks = books
     .filter((book) => isPublishReadyManifest(book.manifest))
     .sort((a, b) => a.manifest.title.localeCompare(b.manifest.title));
-  const manifestBooks = publicBooks.map(({ manifest }) => ({
-    slug: manifest.slug,
-    title: manifest.title,
-    author: manifest.author,
-    language: manifest.language,
-    description: manifest.description,
-    subjects: manifest.subjects,
-    source: {
-      provider: manifest.source.provider,
-      gutenbergId: manifest.source.gutenbergId,
-      sourceUrl: manifest.source.sourceUrl,
-      rightsBasis: manifest.source.rightsBasis,
-      rightsStatus: manifest.source.rightsStatus,
-      publishReady: manifest.source.publishReady,
-      processingAllowed: manifest.source.processingAllowed,
-      approvalSource: manifest.source.approvalSource,
-      duplicateResolutionSource: manifest.source.duplicateResolutionSource,
+  const exportBooks = publicBooks.map(
+    ({
+      manifest,
+      sectionJson,
+      processedBook,
+      cleanedBook,
+    }): CloudflareExportBookJson => {
+      const bookWithoutExportHash = {
+        schemaVersion: BOOK_SCHEMA_VERSION as 1,
+        slug: manifest.slug,
+        title: manifest.title,
+        author: manifest.author,
+        language: manifest.language,
+        description: manifest.description,
+        subjects: manifest.subjects,
+        source: manifest.source,
+        cover: manifest.cover,
+        stats: manifest.stats,
+        defaults: manifest.defaults,
+        manifest,
+        cleanedBook,
+        processedBook,
+        sections: sectionJson,
+      };
+      const contentHash = sha256Json(bookWithoutExportHash);
+      return {
+        ...bookWithoutExportHash,
+        contentVersion: contentHash.slice(0, 16),
+        contentHash,
+      };
     },
-    stats: manifest.stats,
-    contentVersion: manifest.contentVersion,
-    contentHash: manifest.contentHash,
-    metadataPath: `books/${manifest.slug}/metadata.json`,
-    cleanedBookPath: `books/${manifest.slug}/cleaned_book.json`,
-    processedBookPath: `books/${manifest.slug}/processed_book.json`,
+  );
+  const manifestBooks = exportBooks.map((book) => ({
+    slug: book.slug,
+    title: book.title,
+    author: book.author,
+    language: book.language,
+    description: book.description,
+    subjects: book.subjects,
+    source: {
+      provider: book.source.provider,
+      gutenbergId: book.source.gutenbergId,
+      sourceUrl: book.source.sourceUrl,
+      rightsBasis: book.source.rightsBasis,
+      rightsStatus: book.source.rightsStatus,
+      publishReady: book.source.publishReady,
+      processingAllowed: book.source.processingAllowed,
+      approvalSource: book.source.approvalSource,
+      duplicateResolutionSource: book.source.duplicateResolutionSource,
+    },
+    stats: book.stats,
+    contentVersion: book.contentVersion,
+    contentHash: book.contentHash,
+    bookPath: `books/${book.slug}.json`,
   }));
   const contentHash = sha256Json(manifestBooks);
   const contentVersion = contentHash.slice(0, 16);
@@ -1531,23 +1581,9 @@ function writeCloudflareExport({
     contentHash,
     books: manifestBooks,
   });
-  writeExportJson("content-version.json", {
-    schemaVersion: BOOK_SCHEMA_VERSION,
-    contentVersion,
-    contentHash,
-    approvedBookCount: manifestBooks.length,
-  });
 
-  for (const { manifest, sectionJson, processedBook, cleanedBook } of publicBooks) {
-    writeExportJson(`books/${manifest.slug}/metadata.json`, manifest);
-    writeExportJson(`books/${manifest.slug}/cleaned_book.json`, cleanedBook);
-    writeExportJson(`books/${manifest.slug}/processed_book.json`, processedBook);
-    for (const section of sectionJson) {
-      writeExportJson(
-        `books/${manifest.slug}/sections/${section.sectionId}.json`,
-        section,
-      );
-    }
+  for (const book of exportBooks) {
+    writeExportJson(`books/${book.slug}.json`, book);
   }
 
   writeExportJson("upload-manifest.json", {
