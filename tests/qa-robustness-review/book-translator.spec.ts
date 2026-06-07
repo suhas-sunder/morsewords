@@ -872,6 +872,47 @@ test("expanded SEO guide covers long-form workflows and dark-mode copy", async (
   await expect(page.getByText("MP4 is not guaranteed").first()).toBeVisible();
 });
 
+test("source entry appears before preview and source details stay below settings", async ({
+  page,
+}) => {
+  await openBookTranslator(page);
+
+  const sourceEntry = page.getByTestId("book-source-entry");
+  const uploadDropzone = page.getByTestId("book-source-upload-dropzone");
+  const sourceInput = page.getByLabel("Paste long-form source text");
+  const preview = previewSection(page);
+  const settingsToggle = downloadSettingsToggle(page);
+  const sourceDetails = page.getByTestId("book-source-details");
+
+  await expect(sourceEntry).toBeVisible();
+  await expect(uploadDropzone).toBeVisible();
+  await expect(sourceInput).toBeVisible();
+  await expect(preview).toBeVisible();
+  await expect(settingsToggle).toBeVisible();
+  await expect(sourceDetails).toBeVisible();
+  await expect(sourceDetails.getByText("Active chars")).toBeVisible();
+  await expect(sourceDetails.getByText("Copy extracted text")).toBeVisible();
+  await expect(sourceDetails.getByText("Copy cleaned text")).toBeVisible();
+  await expect(sourceDetails.getByRole("button", { name: "Clear source" }))
+    .toBeVisible();
+
+  const uploadBox = await uploadDropzone.boundingBox();
+  const inputBox = await sourceInput.boundingBox();
+  const previewBox = await preview.boundingBox();
+  const settingsBox = await settingsToggle.boundingBox();
+  const sourceDetailsBox = await sourceDetails.boundingBox();
+
+  expect(uploadBox).not.toBeNull();
+  expect(inputBox).not.toBeNull();
+  expect(previewBox).not.toBeNull();
+  expect(settingsBox).not.toBeNull();
+  expect(sourceDetailsBox).not.toBeNull();
+  expect(uploadBox!.y).toBeLessThan(previewBox!.y);
+  expect(inputBox!.y).toBeLessThan(previewBox!.y);
+  expect(previewBox!.y).toBeLessThan(settingsBox!.y);
+  expect(settingsBox!.y).toBeLessThan(sourceDetailsBox!.y);
+});
+
 test("pasted text review reports unsupported characters and avoids localStorage", async ({
   page,
 }) => {

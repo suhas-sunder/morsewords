@@ -420,6 +420,7 @@ function SourceUploadDropzone({
         aria-describedby="book-source-file-help"
       />
       <div
+        data-testid="book-source-upload-dropzone"
         role="button"
         tabIndex={0}
         aria-label={
@@ -2148,7 +2149,24 @@ export default function BookTranslatorTool() {
         </div>
 
         <div className="flex flex-col gap-5">
-          <div className="order-2">
+          <div
+            className="grid gap-5 lg:grid-cols-[minmax(280px,0.85fr)_minmax(0,1.15fr)] lg:items-stretch"
+            data-testid="book-source-entry"
+          >
+            <SourceUploadDropzone
+              dragActive={dragActive}
+              fileInputRef={fileInputRef}
+              filename={parsedSource.filename}
+              hasSource={hasSource}
+              onDrop={handleDrop}
+              onFileInputChange={handleFileInputChange}
+              onUploadKeyDown={handleUploadKeyDown}
+              setDragActive={setDragActive}
+              uploadHelpText={uploadHelpText}
+              uploadRightsText={uploadRightsText}
+              uploadTitle={uploadTitle}
+            />
+
             <ToolPanel
               label="Source text"
               badge={
@@ -2169,7 +2187,7 @@ export default function BookTranslatorTool() {
                       : updatePastedText(event.target.value)
                   }
                   placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
-                  className="min-h-[7rem] sm:min-h-[8rem]"
+                  className="min-h-[10rem] sm:min-h-[12rem]"
                   spellCheck={false}
                 />
               </>
@@ -2203,36 +2221,21 @@ export default function BookTranslatorTool() {
             ) : (
               <div
                 className="px-4 pb-4"
-                aria-labelledby="book-source-preview-heading"
+                aria-labelledby="book-source-large-note-heading"
               >
                 {hasSource ? (
                   <>
                     <h3
-                      id="book-source-preview-heading"
+                      id="book-source-large-note-heading"
                       className="text-base font-extrabold text-sky-950"
                     >
-                      Extracted source preview
+                      Extracted source loaded
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                      Previewing the first{" "}
-                      {Math.min(
-                        parsedSource.rawText.length,
-                        EXTRACTED_SOURCE_PREVIEW_LIMIT,
-                      ).toLocaleString()}{" "}
-                      characters from the uploaded source.
+                      This source is too large to keep in the top textarea.
+                      Preview, copy, edit, or clear it in Source details below
+                      Download settings.
                     </p>
-                    <pre
-                      data-testid="book-source-preview"
-                      className="mt-4 max-h-80 overflow-auto whitespace-pre-wrap font-mono text-sm leading-relaxed text-slate-900"
-                    >
-                      {extractedPreview}
-                    </pre>
-                    {extractedPreviewTruncated ? (
-                      <p className="mt-3 text-sm font-semibold text-slate-600">
-                        Preview is truncated. Copy or edit the extracted text to
-                        use the full source held in this browser session.
-                      </p>
-                    ) : null}
                   </>
                 ) : (
                   <EmptyPreview>
@@ -2243,209 +2246,12 @@ export default function BookTranslatorTool() {
                 )}
               </div>
             )}
-
-            {showSourceState ? (
-              <section
-                className="px-4 py-4"
-                aria-labelledby="book-source-state-heading"
-                role={status === "error" ? "alert" : undefined}
-              >
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <h3
-                      id="book-source-state-heading"
-                      className="text-base font-extrabold text-sky-950"
-                    >
-                      {status === "parsing"
-                        ? "Reading source file"
-                        : status === "error"
-                          ? "Source upload failed"
-                          : hasSource
-                            ? "Source ready"
-                            : "Source status"}
-                    </h3>
-                    <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                      {status === "parsing"
-                        ? `Extracting text from ${pendingFilename || "the selected file"}.`
-                        : status === "error"
-                          ? errorMessage
-                          : !hasSource
-                            ? "Extraction finished, but no source text was found."
-                            : sourceDraftActive
-                              ? "Draft edits are open. Copy, clear, and download still use the last applied source until edits are applied."
-                              : isUploadedPreviewMode
-                                ? "The full extracted source is ready for review and download without rendering the entire file into the page."
-                                : isUploaded
-                                  ? "This upload is small enough to edit directly in the source field."
-                                  : "This text is editable and ready for review and download."}
-                    </p>
-                  </div>
-                  {isUploaded && parsedSource.filename ? (
-                    <span className="max-w-full break-words font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
-                      {parsedSource.filename}
-                    </span>
-                  ) : null}
-                </div>
-
-                {status === "ready" ? (
-                  <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    <Metric
-                      label="Source type"
-                      value={sourceTypeLabel(parsedSource.sourceType)}
-                    />
-                    {parsedSource.filename ? (
-                      <Metric label="Filename" value={parsedSource.filename} />
-                    ) : null}
-                    {parsedSource.title ? (
-                      <Metric label="Title" value={parsedSource.title} />
-                    ) : null}
-                    {parsedSource.author ? (
-                      <Metric label="Author" value={parsedSource.author} />
-                    ) : null}
-                    <Metric
-                      label="Active chars"
-                      value={formatNumber(parsedSource.rawText.length)}
-                    />
-                    <Metric
-                      label="Active words"
-                      value={formatNumber(extractedWordCount)}
-                    />
-                    <Metric
-                      label="Preview status"
-                      value={sourcePreviewStatus}
-                    />
-                    <Metric
-                      label="Cleaned output"
-                      value={`${formatNumber(preflight.characterCount)} chars`}
-                    />
-                  </dl>
-                ) : null}
-
-                {sourceEntryMode === "uploaded-textarea" && hasSource ? (
-                  <p className="mt-4 text-sm leading-relaxed text-slate-700">
-                    The extracted TXT/MD content is loaded into the editable
-                    source field above.
-                  </p>
-                ) : null}
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      void copySourceValue(
-                        "Extracted text",
-                        parsedSource.rawText,
-                      )
-                    }
-                    disabled={!parsedSource.rawText.trim()}
-                    className={toolControlButtonClass({
-                      size: "sm",
-                      disabled: !parsedSource.rawText.trim(),
-                    })}
-                  >
-                    <CopyIcon size={16} title={undefined} aria-hidden="true" />
-                    Copy extracted text
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      void copySourceValue(
-                        "Cleaned text",
-                        preflight.cleanedText,
-                      )
-                    }
-                    disabled={!preflight.cleanedText.trim()}
-                    className={toolControlButtonClass({
-                      size: "sm",
-                      disabled: !preflight.cleanedText.trim(),
-                    })}
-                  >
-                    <CopyIcon size={16} title={undefined} aria-hidden="true" />
-                    Copy cleaned text
-                  </button>
-                  {sourceDraftActive ? (
-                    <>
-                      <button
-                        type="button"
-                        onClick={applyExtractedTextDraft}
-                        className={toolControlButtonClass({
-                          size: "sm",
-                          tone: "dark",
-                        })}
-                      >
-                        Apply edits
-                      </button>
-                      <button
-                        type="button"
-                        onClick={cancelExtractedTextDraft}
-                        className={toolControlButtonClass({
-                          size: "sm",
-                          tone: "light",
-                          hover: "dark",
-                        })}
-                      >
-                        Cancel edits
-                      </button>
-                    </>
-                  ) : isUploadedPreviewMode ? (
-                    <button
-                      type="button"
-                      onClick={editExtractedText}
-                      disabled={!parsedSource.rawText.trim()}
-                      className={toolControlButtonClass({
-                        size: "sm",
-                        disabled: !parsedSource.rawText.trim(),
-                      })}
-                    >
-                      Edit extracted text
-                    </button>
-                  ) : null}
-                  <button
-                    type="button"
-                    onClick={clearSource}
-                    disabled={!canClearSource}
-                    className={toolControlButtonClass({
-                      size: "sm",
-                      disabled: !canClearSource,
-                    })}
-                  >
-                    <TrashIcon size={16} title={undefined} aria-hidden="true" />
-                    Clear source
-                  </button>
-                </div>
-
-                {sourceActionStatus ? (
-                  <StatusMessage
-                    kind={sourceActionStatus.kind}
-                    className="mt-3"
-                  >
-                    {sourceActionStatus.message}
-                  </StatusMessage>
-                ) : null}
-              </section>
-            ) : null}
             </ToolPanel>
-          </div>
-
-          <div className="order-3">
-            <SourceUploadDropzone
-              dragActive={dragActive}
-              fileInputRef={fileInputRef}
-              filename={parsedSource.filename}
-              hasSource={hasSource}
-              onDrop={handleDrop}
-              onFileInputChange={handleFileInputChange}
-              onUploadKeyDown={handleUploadKeyDown}
-              setDragActive={setDragActive}
-              uploadHelpText={uploadHelpText}
-              uploadRightsText={uploadRightsText}
-              uploadTitle={uploadTitle}
-            />
           </div>
 
           <section
             id="book-download-controls"
-            className="order-1 space-y-4 pt-1"
+            className="space-y-4 pt-1"
             aria-labelledby="book-download-controls-heading"
           >
             <h3
@@ -3091,6 +2897,246 @@ export default function BookTranslatorTool() {
               </div>
             </details>
           </section>
+
+          {showSourceState ? (
+            <section
+              data-testid="book-source-details"
+              aria-label="Source details"
+            >
+              <ToolPanel
+                label="Source details"
+                badge={sourcePreviewStatus}
+              >
+                {isUploadedPreviewMode && hasSource && !sourceDraftActive ? (
+                  <section
+                    className="px-4 pb-4"
+                    aria-labelledby="book-source-preview-heading"
+                  >
+                    <h3
+                      id="book-source-preview-heading"
+                      className="text-base font-extrabold text-sky-950"
+                    >
+                      Extracted source preview
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                      Previewing the first{" "}
+                      {Math.min(
+                        parsedSource.rawText.length,
+                        EXTRACTED_SOURCE_PREVIEW_LIMIT,
+                      ).toLocaleString()}{" "}
+                      characters from the uploaded source.
+                    </p>
+                    <pre
+                      data-testid="book-source-preview"
+                      className="mt-4 max-h-80 overflow-auto whitespace-pre-wrap font-mono text-sm leading-relaxed text-slate-900"
+                    >
+                      {extractedPreview}
+                    </pre>
+                    {extractedPreviewTruncated ? (
+                      <p className="mt-3 text-sm font-semibold text-slate-600">
+                        Preview is truncated. Copy or edit the extracted text to
+                        use the full source held in this browser session.
+                      </p>
+                    ) : null}
+                  </section>
+                ) : null}
+
+                <section
+                  className="px-4 py-4"
+                  aria-labelledby="book-source-state-heading"
+                  role={status === "error" ? "alert" : undefined}
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h3
+                        id="book-source-state-heading"
+                        className="text-base font-extrabold text-sky-950"
+                      >
+                        {status === "parsing"
+                          ? "Reading source file"
+                          : status === "error"
+                            ? "Source upload failed"
+                            : hasSource
+                              ? "Source ready"
+                              : "Source status"}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                        {status === "parsing"
+                          ? `Extracting text from ${pendingFilename || "the selected file"}.`
+                          : status === "error"
+                            ? errorMessage
+                            : !hasSource
+                              ? "Extraction finished, but no source text was found."
+                              : sourceDraftActive
+                                ? "Draft edits are open. Copy, clear, and download still use the last applied source until edits are applied."
+                                : isUploadedPreviewMode
+                                  ? "The full extracted source is ready for review and download without rendering the entire file into the page."
+                                  : isUploaded
+                                    ? "This upload is small enough to edit directly in the source field."
+                                    : "This text is editable and ready for review and download."}
+                      </p>
+                    </div>
+                    {isUploaded && parsedSource.filename ? (
+                      <span className="max-w-full break-words font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                        {parsedSource.filename}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  {status === "ready" ? (
+                    <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                      <Metric
+                        label="Source type"
+                        value={sourceTypeLabel(parsedSource.sourceType)}
+                      />
+                      {parsedSource.filename ? (
+                        <Metric
+                          label="Filename"
+                          value={parsedSource.filename}
+                        />
+                      ) : null}
+                      {parsedSource.title ? (
+                        <Metric label="Title" value={parsedSource.title} />
+                      ) : null}
+                      {parsedSource.author ? (
+                        <Metric label="Author" value={parsedSource.author} />
+                      ) : null}
+                      <Metric
+                        label="Active chars"
+                        value={formatNumber(parsedSource.rawText.length)}
+                      />
+                      <Metric
+                        label="Active words"
+                        value={formatNumber(extractedWordCount)}
+                      />
+                      <Metric
+                        label="Preview status"
+                        value={sourcePreviewStatus}
+                      />
+                      <Metric
+                        label="Cleaned output"
+                        value={`${formatNumber(preflight.characterCount)} chars`}
+                      />
+                    </dl>
+                  ) : null}
+
+                  {sourceEntryMode === "uploaded-textarea" && hasSource ? (
+                    <p className="mt-4 text-sm leading-relaxed text-slate-700">
+                      The extracted TXT/MD content is loaded into the editable
+                      source field above.
+                    </p>
+                  ) : null}
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        void copySourceValue(
+                          "Extracted text",
+                          parsedSource.rawText,
+                        )
+                      }
+                      disabled={!parsedSource.rawText.trim()}
+                      className={toolControlButtonClass({
+                        size: "sm",
+                        disabled: !parsedSource.rawText.trim(),
+                      })}
+                    >
+                      <CopyIcon
+                        size={16}
+                        title={undefined}
+                        aria-hidden="true"
+                      />
+                      Copy extracted text
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        void copySourceValue(
+                          "Cleaned text",
+                          preflight.cleanedText,
+                        )
+                      }
+                      disabled={!preflight.cleanedText.trim()}
+                      className={toolControlButtonClass({
+                        size: "sm",
+                        disabled: !preflight.cleanedText.trim(),
+                      })}
+                    >
+                      <CopyIcon
+                        size={16}
+                        title={undefined}
+                        aria-hidden="true"
+                      />
+                      Copy cleaned text
+                    </button>
+                    {sourceDraftActive ? (
+                      <>
+                        <button
+                          type="button"
+                          onClick={applyExtractedTextDraft}
+                          className={toolControlButtonClass({
+                            size: "sm",
+                            tone: "dark",
+                          })}
+                        >
+                          Apply edits
+                        </button>
+                        <button
+                          type="button"
+                          onClick={cancelExtractedTextDraft}
+                          className={toolControlButtonClass({
+                            size: "sm",
+                            tone: "light",
+                            hover: "dark",
+                          })}
+                        >
+                          Cancel edits
+                        </button>
+                      </>
+                    ) : isUploadedPreviewMode ? (
+                      <button
+                        type="button"
+                        onClick={editExtractedText}
+                        disabled={!parsedSource.rawText.trim()}
+                        className={toolControlButtonClass({
+                          size: "sm",
+                          disabled: !parsedSource.rawText.trim(),
+                        })}
+                      >
+                        Edit extracted text
+                      </button>
+                    ) : null}
+                    <button
+                      type="button"
+                      onClick={clearSource}
+                      disabled={!canClearSource}
+                      className={toolControlButtonClass({
+                        size: "sm",
+                        disabled: !canClearSource,
+                      })}
+                    >
+                      <TrashIcon
+                        size={16}
+                        title={undefined}
+                        aria-hidden="true"
+                      />
+                      Clear source
+                    </button>
+                  </div>
+
+                  {sourceActionStatus ? (
+                    <StatusMessage
+                      kind={sourceActionStatus.kind}
+                      className="mt-3"
+                    >
+                      {sourceActionStatus.message}
+                    </StatusMessage>
+                  ) : null}
+                </section>
+              </ToolPanel>
+            </section>
+          ) : null}
         </div>
 
         {status === "parsing" ? (
