@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-divine-comedy",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The divine comedy",
+  "author": [
+    "Dante Alighieri"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "8800",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/8800",
+    "rawTextFile": "../The Divine Comedy.txt",
+    "releaseDate": "September 1, 2005",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The divine comedy"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The divine comedy",
+      "author": "Dante Alighieri",
+      "language": "English",
+      "releaseDate": "September 1, 2005",
+      "lastUpdated": "April 8, 2026",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "8800",
+      "credits": "David Widger",
+      "translator": "Henry Francis Cary",
+      "illustrator": "Gustave Doré",
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, editor."
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-book-of-dragons",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Book of Dragons",
+  "author": [
+    "E. Nesbit"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "23661",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/23661",
+    "rawTextFile": "../the-book-of-dragons.txt",
+    "releaseDate": "November 29, 2007",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: lastUpdated, originalPublication, translator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Book of Dragons"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Book of Dragons",
+      "author": "E. Nesbit",
+      "language": "English",
+      "releaseDate": "November 29, 2007",
+      "lastUpdated": null,
+      "originalPublication": null,
+      "gutenbergEbookNumber": "23661",
+      "credits": "Produced by Suzanne Shell and the Online Distributed Proofreading Team at http://www.pgdp.net",
+      "translator": null,
+      "illustrator": "Herbert Granville Fell H. R. Millar",
+      "editor": null
+    },
+    "missingFields": [
+      "lastUpdated",
+      "originalPublication",
+      "translator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: lastUpdated, originalPublication, translator, editor."
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "around-the-world-in-eighty-days",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Around the World in Eighty Days",
+  "author": [
+    "Jules Verne"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "103",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/103",
+    "rawTextFile": "../around-the-world-in-eighty-days.txt",
+    "releaseDate": "January 1, 1994",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Around the World in Eighty Days"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Around the World in Eighty Days",
+      "author": "Jules Verne",
+      "language": "English",
+      "releaseDate": "January 1, 1994",
+      "lastUpdated": "October 29, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "103",
+      "credits": null,
+      "translator": "George M. Towle",
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "credits",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, credits, illustrator, editor."
+    ]
+  }
+}

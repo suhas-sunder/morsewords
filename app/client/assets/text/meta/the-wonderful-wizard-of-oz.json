@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-wonderful-wizard-of-oz",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Wonderful Wizard of Oz",
+  "author": [
+    "L. Frank Baum"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "55",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/55",
+    "rawTextFile": "../the-wonderful-wizard-of-oz.txt",
+    "releaseDate": "February 1, 1993",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Wonderful Wizard of Oz"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Wonderful Wizard of Oz",
+      "author": "L. Frank Baum",
+      "language": "English",
+      "releaseDate": "February 1, 1993",
+      "lastUpdated": "December 29, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "55",
+      "credits": null,
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "credits",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+    ]
+  }
+}

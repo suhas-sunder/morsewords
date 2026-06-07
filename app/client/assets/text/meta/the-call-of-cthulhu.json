@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-call-of-cthulhu",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The call of Cthulhu",
+  "author": [
+    "H. P. Lovecraft"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "68283",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/68283",
+    "rawTextFile": "../The call of Cthulhu.txt",
+    "releaseDate": "June 10, 2022",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The call of Cthulhu"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": 1928,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The call of Cthulhu",
+      "author": "H. P. Lovecraft",
+      "language": "English",
+      "releaseDate": "June 10, 2022",
+      "lastUpdated": "October 18, 2024",
+      "originalPublication": "United States: Popular Fiction Publishing Company, 1928",
+      "gutenbergEbookNumber": "68283",
+      "credits": "Greg Weeks, Mary Meehan and the Online Distributed Proofreading Team at http://www.pgdp.net",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: translator, illustrator, editor."
+    ]
+  }
+}

@@ -5,6 +5,10 @@
   "scripts": {
     "build": "react-router build",
     "books:build": "node --experimental-strip-types scripts/books/build-book-library.ts",
+    "books:apply-review": "node --experimental-strip-types scripts/books/apply-book-review-approvals.ts",
+    "books:rights-report": "node --experimental-strip-types scripts/books/generate-book-rights-reports.ts",
+    "books:review-queue": "node --experimental-strip-types scripts/books/generate-book-review-queue.ts",
+    "books:scaffold-metadata": "node --experimental-strip-types scripts/books/scaffold-book-metadata.ts",
     "dev": "cross-env NODE_ENV=development node server.js",
     "start": "node server.js",
     "test": "npm run test:smoke",

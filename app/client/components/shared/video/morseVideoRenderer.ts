@@ -73,6 +73,16 @@ export type MorseVideoFrameTextState = {
   activeCharacterMorse: string;
 };
 
+export type MorseVideoFrameWordWindowItem = {
+  wordIndex: number;
+  text: string;
+  morse: string;
+  active: boolean;
+  activeCharacter: string;
+  activeCharacterMorse: string;
+  activeCharIndex: number;
+};
+
 type RenderFrameOptions = {
   audioSettings: MorseVideoAudioSettings;
   ctx: CanvasRenderingContext2D;
@@ -181,6 +191,67 @@ export function getMorseVideoFrameTextState(
     activeCharacter: token.text,
     activeCharacterMorse: token.morse,
   };
+}
+
+export function getMorseVideoFrameWordWindow(
+  timeline: MorseVideoTimeline,
+  elapsedMs: number,
+  limit = 168,
+): MorseVideoFrameWordWindowItem[] {
+  const activeToken = getMorseVideoActiveToken(timeline, elapsedMs);
+  const groups = buildTimelineWordGroups(timeline);
+  if (groups.length === 0) return [];
+
+  const activeOffset = Math.max(
+    0,
+    groups.findIndex((group) => group.wordIndex === activeToken?.wordIndex),
+  );
+  const startOffset = Math.max(0, activeOffset - 5);
+  const words: MorseVideoFrameWordWindowItem[] = [];
+  let textLength = 0;
+  let morseLength = 0;
+
+  for (let offset = startOffset; offset < groups.length; offset += 1) {
+    const group = groups[offset];
+    const nextTextLength = textLength + group.text.length + (words.length ? 1 : 0);
+    const nextMorseLength =
+      morseLength + group.morse.length + (words.length ? 3 : 0);
+    const active = group.wordIndex === activeToken?.wordIndex;
+    if (
+      words.length > 0 &&
+      !active &&
+      (nextTextLength > limit || nextMorseLength > limit * 1.35)
+    ) {
+      break;
+    }
+
+    words.push({
+      ...group,
+      active,
+      activeCharacter: active ? activeToken?.text ?? "" : "",
+      activeCharacterMorse: active ? activeToken?.morse ?? "" : "",
+      activeCharIndex: active ? activeToken?.charIndex ?? -1 : -1,
+    });
+    textLength = nextTextLength;
+    morseLength = nextMorseLength;
+  }
+
+  return words;
+}
+
+function buildTimelineWordGroups(timeline: MorseVideoTimeline) {
+  const groups: Array<{ wordIndex: number; text: string; morse: string }> = [];
+  for (const token of timeline.tokens) {
+    if (!token.word || !token.wordMorse) continue;
+    const previous = groups.at(-1);
+    if (previous?.wordIndex === token.wordIndex) continue;
+    groups.push({
+      wordIndex: token.wordIndex,
+      text: token.word,
+      morse: token.wordMorse,
+    });
+  }
+  return groups;
 }
 
 export function buildMorseVideoTimelineTokens({
@@ -377,23 +448,6 @@ export function renderMorseVideoFrame({
   ctx.fillStyle = background;
   ctx.fillRect(0, 0, frame.width, frame.height);
 
-  ctx.fillStyle = muted;
-  ctx.font = `${Math.round(frame.width * 0.018)}px "Space Mono", monospace`;
-  ctx.textBaseline = "top";
-  ctx.fillText(
-    `${audioSettings.charWpm}/${audioSettings.farnsworthWpm} WPM`,
-    padding,
-    padding,
-  );
-
-  if (settings.showBranding) {
-    ctx.textAlign = "right";
-    ctx.fillStyle = muted;
-    ctx.font = `${Math.round(frame.width * 0.018)}px "Space Mono", monospace`;
-    ctx.fillText("www.morsewords.com", frame.width - padding, padding);
-    ctx.textAlign = "left";
-  }
-
   if (settings.showVisualSignal) {
     if (settings.visualStyle === "dot") {
       drawDot(ctx, frame, active, accent, muted, settings.intensity);
@@ -417,6 +471,10 @@ export function renderMorseVideoFrame({
 
   if (settings.visualStyle !== "morse-text" || !settings.showVisualSignal) {
     drawTextDisplay(ctx, frame, timeline, elapsedMs, settings, text, muted, padding);
+  }
+
+  if (settings.showBranding) {
+    drawFrameBranding(ctx, frame, muted, padding);
   }
 
   ctx.textAlign = "left";
@@ -656,27 +714,64 @@ function drawAnimatedMorseText(
   settings: MorseVideoSettings,
 ) {
   const textState = getMorseVideoFrameTextState(timeline, elapsedMs);
-  const symbols = textState.morseText || recentMorseSymbols(timeline, elapsedMs, 44);
+  const wordWindow = getMorseVideoFrameWordWindow(timeline, elapsedMs, 168);
+  const symbols =
+    wordWindow.map((word) => word.morse).join("   ") ||
+    textState.morseText ||
+    recentMorseSymbols(timeline, elapsedMs, 44);
+  const maxWidth = frame.width * 0.84;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillStyle = symbols ? text : muted;
   ctx.font = `${Math.round(frame.width * 0.05)}px "Space Mono", monospace`;
-  ctx.fillText(symbols || "...", frame.width / 2, frame.height / 2);
-  ctx.fillStyle = accent;
-  ctx.font = `${Math.round(frame.width * 0.024)}px "Space Grotesk", sans-serif`;
-  ctx.fillText(
-    "Morse signal",
-    frame.width / 2,
-    frame.height / 2 - frame.height * 0.16,
-  );
+  if (wordWindow.length > 0) {
+    drawCenteredWordWindow(
+      ctx,
+      wordWindow,
+      "morse",
+      frame.width / 2,
+      settings.showPlainText ? frame.height * 0.42 : frame.height * 0.5,
+      maxWidth,
+      frame.height * 0.062,
+      settings.showPlainText ? 2 : 3,
+      text,
+      accent,
+    );
+  } else {
+    ctx.fillText(
+      symbols || "...",
+      frame.width / 2,
+      settings.showPlainText ? frame.height * 0.42 : frame.height * 0.5,
+      maxWidth,
+    );
+  }
   if (settings.showPlainText) {
     ctx.fillStyle = muted;
-    ctx.font = `${Math.round(frame.width * 0.024)}px "Space Grotesk", sans-serif`;
-    ctx.fillText(
-      textState.plainText,
-      frame.width / 2,
-      frame.height / 2 + frame.height * 0.16,
-    );
+    ctx.font = `${Math.round(frame.width * 0.028)}px "Space Grotesk", sans-serif`;
+    if (wordWindow.length > 0) {
+      drawCenteredWordWindow(
+        ctx,
+        wordWindow,
+        "plain",
+        frame.width / 2,
+        frame.height * 0.63,
+        maxWidth,
+        frame.height * 0.052,
+        3,
+        muted,
+        accent,
+      );
+    } else {
+      drawCenteredWrappedText(
+        ctx,
+        currentTextExcerpt(timeline, elapsedMs, 132) || textState.plainText,
+        frame.width / 2,
+        frame.height * 0.63,
+        maxWidth,
+        frame.height * 0.052,
+        3,
+      );
+    }
   }
   ctx.textAlign = "left";
 }
@@ -720,25 +815,33 @@ function drawTextDisplay(
   muted: string,
   padding: number,
 ) {
+  const signalVisible =
+    settings.showVisualSignal && settings.visualStyle !== "morse-text";
+  const wordWindow = getMorseVideoFrameWordWindow(
+    timeline,
+    elapsedMs,
+    signalVisible ? 168 : 220,
+  );
   const rows: Array<{ text: string; kind: "morse" | "plain" }> = [];
   const textState = getMorseVideoFrameTextState(timeline, elapsedMs);
   if (settings.showMorseSymbols) {
     rows.push({
       kind: "morse",
-      text: textState.morseText,
+      text: wordWindow.map((word) => word.morse).join("   ") || textState.morseText,
     });
   }
   if (settings.showPlainText) {
     rows.push({
       kind: "plain",
-      text: textState.plainText,
+      text:
+        wordWindow.map((word) => word.text).join(" ") ||
+        currentTextExcerpt(timeline, elapsedMs, signalVisible ? 168 : 220) ||
+        textState.plainText,
     });
   }
   const visibleRows = rows.filter((row) => row.text);
   if (visibleRows.length === 0) return;
 
-  const signalVisible =
-    settings.showVisualSignal && settings.visualStyle !== "morse-text";
   const firstLineY =
     signalVisible
       ? visibleRows.length === 1
@@ -769,15 +872,153 @@ function drawTextDisplay(
     ctx.font = `${Math.round(frame.width * scale)}px "${
       isMorseRow ? "Space Mono" : "Space Grotesk"
     }", ${isMorseRow ? "monospace" : "sans-serif"}`;
-    ctx.fillText(
-      row.text,
-      frame.width / 2,
-      firstLineY + index * lineGap,
-      maxWidth,
-    );
+    if (wordWindow.length > 0) {
+      drawCenteredWordWindow(
+        ctx,
+        wordWindow,
+        isMorseRow ? "morse" : "plain",
+        frame.width / 2,
+        firstLineY + index * lineGap,
+        maxWidth,
+        frame.height * (signalVisible ? 0.046 : 0.062),
+        signalVisible ? 2 : isMorseRow ? 3 : 4,
+        muted,
+        text,
+      );
+    } else if (isMorseRow) {
+      ctx.fillText(
+        row.text,
+        frame.width / 2,
+        firstLineY + index * lineGap,
+        maxWidth,
+      );
+    } else {
+      drawCenteredWrappedText(
+        ctx,
+        row.text,
+        frame.width / 2,
+        firstLineY + index * lineGap,
+        maxWidth,
+        frame.height * (signalVisible ? 0.046 : 0.062),
+        signalVisible ? 2 : 4,
+      );
+    }
   });
   ctx.fillStyle = text;
   ctx.textAlign = "left";
+}
+
+function drawCenteredWordWindow(
+  ctx: CanvasRenderingContext2D,
+  words: MorseVideoFrameWordWindowItem[],
+  kind: "morse" | "plain",
+  centerX: number,
+  centerY: number,
+  maxWidth: number,
+  lineHeight: number,
+  maxLines: number,
+  normalFill: string,
+  activeFill: string,
+) {
+  const separator = kind === "morse" ? "   " : " ";
+  const parts = words.map((word) => ({
+    active: word.active,
+    text: kind === "morse" ? word.morse : word.text,
+  }));
+  const lines: Array<typeof parts> = [];
+  let currentLine: typeof parts = [];
+  let currentText = "";
+
+  for (const part of parts) {
+    const candidate = currentText
+      ? `${currentText}${separator}${part.text}`
+      : part.text;
+    if (currentLine.length > 0 && measureCanvasTextWidth(ctx, candidate) > maxWidth) {
+      lines.push(currentLine);
+      if (lines.length >= maxLines) break;
+      currentLine = [part];
+      currentText = part.text;
+    } else {
+      currentLine.push(part);
+      currentText = candidate;
+    }
+  }
+  if (lines.length < maxLines && currentLine.length > 0) {
+    lines.push(currentLine);
+  }
+
+  const offset = ((lines.length - 1) * lineHeight) / 2;
+  lines.forEach((line, lineIndex) => {
+    const lineText = line.map((part) => part.text).join(separator);
+    const separatorWidth = measureCanvasTextWidth(ctx, separator);
+    const totalWidth = measureCanvasTextWidth(ctx, lineText);
+    let x = centerX - totalWidth / 2;
+    const y = centerY - offset + lineIndex * lineHeight;
+
+    line.forEach((part) => {
+      ctx.fillStyle = part.active ? activeFill : normalFill;
+      ctx.fillText(part.text, x, y, maxWidth);
+      x += measureCanvasTextWidth(ctx, part.text) + separatorWidth;
+    });
+  });
+}
+
+function drawFrameBranding(
+  ctx: CanvasRenderingContext2D,
+  frame: MorseVideoFrameSize,
+  muted: string,
+  padding: number,
+) {
+  ctx.fillStyle = muted;
+  ctx.font = `${Math.round(frame.width * 0.016)}px "Space Mono", monospace`;
+  ctx.textAlign = "left";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("www.morsewords.com", padding, frame.height - padding * 0.72);
+}
+
+function drawCenteredWrappedText(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  centerX: number,
+  centerY: number,
+  maxWidth: number,
+  lineHeight: number,
+  maxLines: number,
+) {
+  const words = normalizeFrameText(text).split(" ").filter(Boolean);
+  if (words.length === 0) return;
+  const lines: string[] = [];
+  let line = "";
+  for (const word of words) {
+    const candidate = line ? `${line} ${word}` : word;
+    if (measureCanvasTextWidth(ctx, candidate) > maxWidth && line) {
+      lines.push(line);
+      line = word;
+      if (lines.length >= maxLines) break;
+    } else {
+      line = candidate;
+    }
+  }
+  if (lines.length < maxLines && line) {
+    lines.push(line);
+  }
+  const renderedText = lines.join(" ");
+  if (renderedText.length < normalizeFrameText(text).length && lines.length > 0) {
+    const lastIndex = lines.length - 1;
+    lines[lastIndex] = `${lines[lastIndex].replace(/\.*$/, "").trimEnd()}...`;
+  }
+  const offset = ((lines.length - 1) * lineHeight) / 2;
+  lines.forEach((wrappedLine, index) => {
+    ctx.fillText(wrappedLine, centerX, centerY - offset + index * lineHeight, maxWidth);
+  });
+}
+
+function measureCanvasTextWidth(ctx: CanvasRenderingContext2D, text: string) {
+  if (typeof ctx.measureText === "function") {
+    return ctx.measureText(text).width;
+  }
+  const fontSize = Number.parseFloat(ctx.font) || 16;
+  return text.length * fontSize * 0.58;
 }
 
 function recentMorseSymbols(
@@ -813,11 +1054,8 @@ function currentTextExcerpt(
   if (!text) return "";
   const words = text.split(" ").filter(Boolean);
   if (words.length === 0) return "";
-  const progress = Math.max(
-    0,
-    Math.min(1, elapsedMs / Math.max(1, timeline.durationMs - timeline.tailPaddingMs)),
-  );
-  const start = Math.max(0, Math.floor(progress * words.length) - 5);
+  const token = getMorseVideoActiveToken(timeline, elapsedMs);
+  const start = Math.max(0, (token?.wordIndex ?? 0) - 4);
   let excerpt = "";
   for (let index = start; index < words.length; index += 1) {
     const candidate = excerpt ? `${excerpt} ${words[index]}` : words[index];

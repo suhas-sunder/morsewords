@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-call-of-the-wild",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The call of the wild",
+  "author": [
+    "Jack London"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "215",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/215",
+    "rawTextFile": "../The call of the wild.txt",
+    "releaseDate": "July 2, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The call of the wild"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The call of the wild",
+      "author": "Jack London",
+      "language": "English",
+      "releaseDate": "July 2, 2008",
+      "lastUpdated": "August 4, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "215",
+      "credits": "Ryan, Kirstin, Linda and Rick Trapp and David Widger",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

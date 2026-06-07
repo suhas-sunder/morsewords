@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "through-the-looking-glass",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Through the Looking-Glass",
+  "author": [
+    "Lewis Carroll"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "12",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/12",
+    "rawTextFile": "../through-the-looking-glass.txt",
+    "releaseDate": "June 25, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Through the Looking-Glass"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Through the Looking-Glass",
+      "author": "Lewis Carroll",
+      "language": "English",
+      "releaseDate": "June 25, 2008",
+      "lastUpdated": "November 21, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "12",
+      "credits": "David Widger",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

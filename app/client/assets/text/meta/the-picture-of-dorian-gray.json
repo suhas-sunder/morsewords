@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-picture-of-dorian-gray",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Picture of Dorian Gray",
+  "author": [
+    "Oscar Wilde"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "174",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/174",
+    "rawTextFile": "../The Picture of Dorian Gray.txt",
+    "releaseDate": "October 1, 1994",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Picture of Dorian Gray"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Picture of Dorian Gray",
+      "author": "Oscar Wilde",
+      "language": "English",
+      "releaseDate": "October 1, 1994",
+      "lastUpdated": "September 17, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "174",
+      "credits": "Judith Boss. HTML version by Al Haines.",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

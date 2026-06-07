@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "duplicates": [
+    {
+      "gutenbergId": "1184",
+      "affectedBooks": "the-count-of-monte-cristo: The Count of Monte Cristo; the-count-of-monte-cristo-gutenberg-1184: The Count of Monte Cristo",
+      "currentStatus": "needs owner duplicate resolution",
+      "nextAction": "Keep one canonical metadata entry only after manual comparison. Mark intentional duplicate metadata with allowDuplicateGutenbergId and duplicateReason. Remove duplicate raw files from tracked processing lists only after confirming they are redundant. Manually compare source files before resolving the group.",
+      "ownerReviewed": false,
+      "resolution": "ignore-until-reviewed",
+      "keepSlug": "",
+      "duplicateSlugs": "the-count-of-monte-cristo; the-count-of-monte-cristo-gutenberg-1184",
+      "reason": ""
+    },
+    {
+      "gutenbergId": "1597",
+      "affectedBooks": "the-bell: Andersen's Fairy Tales; the-elderbush: Andersen's Fairy Tales; the-emperor-s-new-clothes: Andersen's Fairy Tales; the-fir-tree: Andersen's Fairy Tales; the-leap-frog: Andersen's Fairy Tales; the-old-house: Andersen's Fairy Tales; the-real-princess: Andersen's Fairy Tales; the-shoes-of-fortune: Andersen's Fairy Tales; the-snow-queen: Andersen's Fairy Tales; the-swineherd: Andersen's Fairy Tales",
+      "currentStatus": "needs owner duplicate resolution",
+      "nextAction": "Keep one canonical metadata entry only after manual comparison. Mark intentional duplicate metadata with allowDuplicateGutenbergId and duplicateReason. Remove duplicate raw files from tracked processing lists only after confirming they are redundant. Manually compare source files before resolving the group.",
+      "ownerReviewed": false,
+      "resolution": "ignore-until-reviewed",
+      "keepSlug": "",
+      "duplicateSlugs": "the-bell; the-elderbush; the-emperor-s-new-clothes; the-fir-tree; the-leap-frog; the-old-house; the-real-princess; the-shoes-of-fortune; the-snow-queen; the-swineherd",
+      "reason": ""
+    },
+    {
+      "gutenbergId": "45",
+      "affectedBooks": "anne-of-green-gables: Anne of Green Gables; anne-of-green-gables-gutenberg-45: Anne of Green Gables",
+      "currentStatus": "needs owner duplicate resolution",
+      "nextAction": "Keep one canonical metadata entry only after manual comparison. Mark intentional duplicate metadata with allowDuplicateGutenbergId and duplicateReason. Remove duplicate raw files from tracked processing lists only after confirming they are redundant. Manually compare source files before resolving the group.",
+      "ownerReviewed": false,
+      "resolution": "ignore-until-reviewed",
+      "keepSlug": "",
+      "duplicateSlugs": "anne-of-green-gables; anne-of-green-gables-gutenberg-45",
+      "reason": ""
+    }
+  ]
+}

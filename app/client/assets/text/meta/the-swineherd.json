@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-swineherd",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Andersen's Fairy Tales",
+  "author": [
+    "H. C. Andersen"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1597",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+    "rawTextFile": "../The Swineherd.txt",
+    "releaseDate": "January 1, 1999",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor. Possible duplicate Gutenberg ID; verify whether this is a duplicate, alternate file, or renamed copy."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Andersen's Fairy Tales"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Andersen's Fairy Tales",
+      "author": "H. C. Andersen",
+      "language": "English",
+      "releaseDate": "January 1, 1999",
+      "lastUpdated": "March 14, 2018",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "1597",
+      "credits": "Produced by Dianne Bean, and David Widger",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor.",
+      "Possible duplicate Gutenberg ID; verify whether this is a duplicate, alternate file, or renamed copy."
+    ]
+  }
+}

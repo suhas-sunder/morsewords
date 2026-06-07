@@ -5,7 +5,6 @@ import {
   CopyIcon,
   DownloadIcon,
   EqualizerIcon,
-  LightBulbIcon,
   PlayIcon,
   StopIcon,
   TrashIcon,
@@ -52,6 +51,7 @@ import {
 import StatusMessage from "~/client/components/shared/ui/StatusMessage";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import TogglePill from "~/client/components/shared/ui/TogglePill";
+import useMorseAudio from "~/client/components/shared/useMorseAudio";
 import {
   copyTextToClipboard,
   downloadBlobFile,
@@ -69,12 +69,18 @@ import {
   type MorseVideoPreview,
 } from "~/client/components/shared/video/morseVideoPreview";
 import {
+  MorseVideoPreviewPanel,
+  MorseVideoPreviewTimeline,
+} from "~/client/components/shared/video/MorseVideoPreviewControls";
+import {
   createMorseVideoBlob,
 } from "~/client/components/shared/video/morseVideoExport";
 import type { MorseVideoAudioSettings } from "~/client/components/shared/video/morseVideoRenderer";
 import {
-  describeMorseVideoFormat,
   detectMorseVideoSupport,
+  getMorseVideoFormatSupport,
+  MORSE_VIDEO_FORMATS,
+  type MorseVideoFormat,
   type MorseVideoSupport,
 } from "~/client/components/shared/video/morseVideoSupport";
 import {
@@ -104,6 +110,7 @@ const EXAMPLES = ["SOS", "HELLO WORLD", "HELP ME", "CQ CQ", "TEST 123"];
 const DEFAULT_TEXT = "sos help";
 const DEFAULT_MORSE = "... --- ...";
 const MAX_SHORT_VIDEO_MS = 180_000;
+const MIN_PREVIEW_RESTART_REMAINING_MS = 750;
 const DEFAULT_AUDIO = getAudioPresetDefaults("cw_radio");
 const DEFAULT_VIDEO_SETTINGS: MorseVideoSettings =
   DEFAULT_STANDALONE_VIDEO_SETTINGS;
@@ -117,6 +124,10 @@ export default function MorseVideoGeneratorTool() {
   const sampleRateId = React.useId();
   const downloadAbortRef = React.useRef<AbortController | null>(null);
   const downloadVersionRef = React.useRef(0);
+  const previewAnimationRef = React.useRef<number | null>(null);
+  const previewStartedAtRef = React.useRef(0);
+  const previewStartElapsedRef = React.useRef(0);
+  const previewPlaybackSessionRef = React.useRef(0);
 
   const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
   const [text, setText] = React.useState(DEFAULT_TEXT);
@@ -139,7 +150,9 @@ export default function MorseVideoGeneratorTool() {
   const [preferencesLoaded, setPreferencesLoaded] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
   const [previewPlaying, setPreviewPlaying] = React.useState(false);
-  const [visualStep, setVisualStep] = React.useState(0);
+  const [previewElapsedMs, setPreviewElapsedMs] = React.useState(0);
+  const [selectedVideoFormat, setSelectedVideoFormat] =
+    React.useState<MorseVideoFormat>("webm");
   const [downloadStatus, setDownloadStatus] =
     React.useState<DownloadStatus | null>(null);
   const [downloadProgress, setDownloadProgress] = React.useState({
@@ -151,6 +164,12 @@ export default function MorseVideoGeneratorTool() {
     durationMs: number;
     sizeBytes: number;
   } | null>(null);
+  const previewAudioPlayer = useMorseAudio();
+  const previewAudioPlayerRef = React.useRef(previewAudioPlayer);
+
+  React.useEffect(() => {
+    previewAudioPlayerRef.current = previewAudioPlayer;
+  }, [previewAudioPlayer]);
 
   React.useEffect(() => {
     const preferences = loadVideoGeneratorPreferences();
@@ -208,14 +227,6 @@ export default function MorseVideoGeneratorTool() {
     videoSettings,
     volume,
   ]);
-
-  React.useEffect(() => {
-    if (!previewPlaying) return undefined;
-    const timer = window.setInterval(() => {
-      setVisualStep((step) => step + 1);
-    }, 320);
-    return () => window.clearInterval(timer);
-  }, [previewPlaying]);
 
   const textResult = React.useMemo(
     () =>
@@ -288,21 +299,28 @@ export default function MorseVideoGeneratorTool() {
     [charWpm, farnsworthWpm, pitch, sampleRate, tonePreset, volume],
   );
   const preview = React.useMemo(
-    () => buildMorseVideoPreview(effectiveVideoSettings, activeText),
-    [activeText, effectiveVideoSettings],
+    () => buildMorseVideoPreview(effectiveVideoSettings, activeText, audioSettings),
+    [activeText, audioSettings, effectiveVideoSettings],
   );
+  const previewDurationMs = Math.max(1, preview.durationMs);
   const resolvedBackgroundStyle =
     effectiveVideoSettings.backgroundStyle === "dark-morsewords"
       ? "dark-morsewords"
       : "warm-morsewords";
-  const videoFormatLabel = describeMorseVideoFormat(videoSupport);
-  const downloadDisabledReason = getDownloadDisabledReason({
+  const selectedFormatSupport = getMorseVideoFormatSupport(
+    videoSupport,
+    selectedVideoFormat,
+  );
+  const baseDownloadDisabledReason = getDownloadDisabledReason({
     canRender,
     hasSourceCode,
     support: videoSupport,
     supportReady,
     tooLong,
   });
+  const downloadDisabledReason =
+    baseDownloadDisabledReason ||
+    (!selectedFormatSupport.supported ? selectedFormatSupport.reason : "");
   const canDownload =
     !downloadDisabledReason && !downloadAbortRef.current && canRender;
   const progressPercent =
@@ -326,6 +344,136 @@ export default function MorseVideoGeneratorTool() {
     videoSettings: effectiveVideoSettings,
   });
 
+  const clearPreviewAnimation = React.useCallback(() => {
+    if (previewAnimationRef.current !== null) {
+      window.cancelAnimationFrame(previewAnimationRef.current);
+      previewAnimationRef.current = null;
+    }
+  }, []);
+
+  const startPreviewClock = React.useCallback(
+    (startElapsedMs: number, startedAtMs = performance.now()) => {
+      clearPreviewAnimation();
+      const safeStartElapsed = Math.max(
+        0,
+        Math.min(previewDurationMs, startElapsedMs),
+      );
+      previewStartedAtRef.current = startedAtMs;
+      previewStartElapsedRef.current = safeStartElapsed;
+      setPreviewElapsedMs(safeStartElapsed);
+
+      const tick = () => {
+        const nextElapsed = Math.min(
+          previewDurationMs,
+          previewStartElapsedRef.current +
+            Math.max(0, performance.now() - previewStartedAtRef.current),
+        );
+        setPreviewElapsedMs(nextElapsed);
+        if (nextElapsed >= previewDurationMs) {
+          setPreviewPlaying(false);
+          previewAnimationRef.current = null;
+          return;
+        }
+        previewAnimationRef.current = window.requestAnimationFrame(tick);
+      };
+
+      previewAnimationRef.current = window.requestAnimationFrame(tick);
+    },
+    [clearPreviewAnimation, previewDurationMs],
+  );
+
+  const stopPreviewPlayback = React.useCallback(
+    (reset = false) => {
+      previewPlaybackSessionRef.current += 1;
+      clearPreviewAnimation();
+      previewAudioPlayerRef.current.stop();
+      setPreviewPlaying(false);
+      if (reset) {
+        previewStartElapsedRef.current = 0;
+        setPreviewElapsedMs(0);
+      }
+    },
+    [clearPreviewAnimation],
+  );
+
+  const startPreviewPlayback = React.useCallback(
+    (elapsedMs = previewElapsedMs) => {
+      const currentElapsed = Math.max(
+        0,
+        Math.min(previewDurationMs, elapsedMs),
+      );
+      const startElapsed =
+        previewDurationMs - currentElapsed <=
+        MIN_PREVIEW_RESTART_REMAINING_MS
+          ? 0
+          : currentElapsed;
+      const session = previewPlaybackSessionRef.current + 1;
+      previewPlaybackSessionRef.current = session;
+
+      clearPreviewAnimation();
+      previewAudioPlayerRef.current.stop();
+      setPreviewPlaying(true);
+      setPreviewElapsedMs(startElapsed);
+
+      const playWithAudio =
+        effectiveVideoSettings.includeAudioTrack &&
+        previewAudioPlayerRef.current.isSupported &&
+        preview.sampleMorse.trim().length > 0;
+
+      if (!playWithAudio) {
+        startPreviewClock(startElapsed);
+        return;
+      }
+
+      startPreviewClock(startElapsed);
+      void previewAudioPlayerRef.current
+        .play({
+          code: preview.sampleMorse,
+          wpm: charWpm,
+          farnsworthWpm,
+          hz: pitch,
+          volume,
+          preset: tonePreset,
+          repeat: false,
+          flash: false,
+          soundEnabled: true,
+          startElapsedMs: startElapsed,
+          onPlaybackStart: (startedAtMs) => {
+            if (previewPlaybackSessionRef.current !== session) return;
+            startPreviewClock(startElapsed, startedAtMs);
+          },
+        })
+        .then(() => {
+          if (previewPlaybackSessionRef.current !== session) return;
+          clearPreviewAnimation();
+          setPreviewElapsedMs(previewDurationMs);
+          setPreviewPlaying(false);
+        })
+        .catch(() => {
+          if (previewPlaybackSessionRef.current !== session) return;
+          clearPreviewAnimation();
+          setPreviewPlaying(false);
+          setDownloadStatus({
+            kind: "error",
+            message: "Video preview audio failed. Try playing the preview again.",
+          });
+        });
+    },
+    [
+      charWpm,
+      clearPreviewAnimation,
+      effectiveVideoSettings.includeAudioTrack,
+      farnsworthWpm,
+      pitch,
+      preview.sampleMorse,
+      previewDurationMs,
+      previewElapsedMs,
+      startPreviewClock,
+      tonePreset,
+      volume,
+    ],
+  );
+
   React.useEffect(() => {
     if (downloadAbortRef.current) {
       downloadAbortRef.current.abort();
@@ -340,7 +488,10 @@ export default function MorseVideoGeneratorTool() {
     }
     setLastDownload(null);
     setDownloadProgress({ elapsedMs: 0, durationMs: 0 });
-  }, [settingsSignature]);
+    stopPreviewPlayback(true);
+  }, [settingsSignature, stopPreviewPlayback]);
+
+  React.useEffect(() => () => stopPreviewPlayback(true), [stopPreviewPlayback]);
 
   const updateVideoSettings = React.useCallback(
     (patch: Partial<MorseVideoSettings>) => {
@@ -412,7 +563,7 @@ export default function MorseVideoGeneratorTool() {
       setMorse("");
     }
     setCopied(false);
-    setPreviewPlaying(false);
+    stopPreviewPlayback(true);
   };
 
   const handleCopyMorse = async () => {
@@ -433,8 +584,32 @@ export default function MorseVideoGeneratorTool() {
     downloadAbortRef.current.abort();
   };
 
-  const handleDownloadWebm = async () => {
-    if (!canDownload || !videoSupport) return;
+  const handlePreviewToggle = () => {
+    if (previewPlaying) {
+      stopPreviewPlayback();
+      return;
+    }
+    startPreviewPlayback(previewElapsedMs);
+  };
+
+  const handlePreviewScrub = (elapsedMs: number) => {
+    const nextElapsed = Math.max(0, Math.min(previewDurationMs, elapsedMs));
+    setPreviewElapsedMs(nextElapsed);
+    previewStartedAtRef.current = performance.now();
+    previewStartElapsedRef.current = nextElapsed;
+  };
+
+  const handlePreviewSeek = (elapsedMs: number) => {
+    const nextElapsed = Math.max(0, Math.min(previewDurationMs, elapsedMs));
+    setPreviewElapsedMs(nextElapsed);
+    previewStartedAtRef.current = performance.now();
+    previewStartElapsedRef.current = nextElapsed;
+    if (previewPlaying) startPreviewPlayback(nextElapsed);
+  };
+
+  const handleDownloadVideo = async () => {
+    if (!canDownload || !selectedFormatSupport.supported) return;
+    const formatLabel = selectedFormatSupport.label;
     const version = downloadVersionRef.current + 1;
     downloadVersionRef.current = version;
     const controller = new AbortController();
@@ -442,7 +617,7 @@ export default function MorseVideoGeneratorTool() {
     setDownloadProgress({ elapsedMs: 0, durationMs });
     setDownloadStatus({
       kind: "working",
-      message: "Starting WebM video download...",
+      message: `Starting ${formatLabel} video download...`,
     });
 
     try {
@@ -453,13 +628,13 @@ export default function MorseVideoGeneratorTool() {
         resolvedBackgroundStyle,
         settings: effectiveVideoSettings,
         signal: controller.signal,
-        support: videoSupport,
+        support: selectedFormatSupport,
         onProgress: (elapsedMs, nextDurationMs) => {
           if (downloadVersionRef.current !== version) return;
           setDownloadProgress({ elapsedMs, durationMs: nextDurationMs });
           setDownloadStatus({
             kind: "working",
-            message: `Recording WebM video (${formatDuration(elapsedMs)} of ${formatDuration(
+            message: `Recording ${formatLabel} video (${formatDuration(elapsedMs)} of ${formatDuration(
               nextDurationMs,
             )})...`,
           });
@@ -474,8 +649,8 @@ export default function MorseVideoGeneratorTool() {
       }
 
       const filename = sanitizeDownloadFilename(
-        `${sanitizeFileBase(fileName || "morse-code-video")}.webm`,
-        "morse-code-video.webm",
+        `${sanitizeFileBase(fileName || "morse-code-video")}.${selectedFormatSupport.extension}`,
+        `morse-code-video.${selectedFormatSupport.extension}`,
       );
       const download = downloadBlobFile({
         blob: result.blob,
@@ -492,7 +667,7 @@ export default function MorseVideoGeneratorTool() {
       });
       setDownloadStatus({
         kind: "success",
-        message: "WebM download started.",
+        message: `${formatLabel} download started.`,
       });
       setDownloadProgress({
         elapsedMs: result.durationMs,
@@ -510,7 +685,7 @@ export default function MorseVideoGeneratorTool() {
         setDownloadStatus({
           kind: "error",
           message:
-            "WebM export failed. Try 720p, a shorter message, or silent video.",
+            `${formatLabel} export failed. Try 720p, a shorter message, or silent video.`,
         });
       }
     } finally {
@@ -567,7 +742,9 @@ export default function MorseVideoGeneratorTool() {
           footer={
             <div className="flex flex-wrap items-center gap-2 text-sm leading-relaxed text-slate-600">
               <span>Est. video: {formatDuration(durationMs)}</span>
-              <span aria-hidden="true">Format: {videoFormatLabel}</span>
+              <span aria-hidden="true">
+                Format: {selectedFormatSupport.label}
+              </span>
             </div>
           }
         >
@@ -664,22 +841,29 @@ export default function MorseVideoGeneratorTool() {
         </ToolOutputPanel>
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,0.58fr)_minmax(0,0.42fr)] lg:items-start">
+      <div className="mt-6 space-y-4">
         <MorseVideoPreviewPanel
+          headingId="morse-video-preview-heading"
           isPlaying={previewPlaying}
           preview={preview}
           resolvedBackgroundStyle={resolvedBackgroundStyle}
           settings={effectiveVideoSettings}
-          visualStep={visualStep}
+          testIdPrefix="morse-video-preview"
+          visualElapsedMs={previewElapsedMs}
         />
 
         <div className="space-y-4">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+            <VideoFormatSelect
+              selectedFormat={selectedVideoFormat}
+              support={videoSupport}
+              onChange={setSelectedVideoFormat}
+            />
             <ToolButton
               type="button"
               tone={previewPlaying ? "light" : "dark"}
               active={!previewPlaying && canRender}
-              onClick={() => setPreviewPlaying((value) => !value)}
+              onClick={handlePreviewToggle}
               disabled={!canRender}
               className="rounded-xl"
             >
@@ -694,7 +878,7 @@ export default function MorseVideoGeneratorTool() {
               type="button"
               tone="light"
               hover="dark"
-              onClick={handleDownloadWebm}
+              onClick={handleDownloadVideo}
               disabled={!canDownload}
               aria-describedby={
                 downloadDisabledReason ? "video-download-disabled-reason" : undefined
@@ -702,7 +886,7 @@ export default function MorseVideoGeneratorTool() {
               className="rounded-xl"
             >
               <DownloadIcon size={20} title={undefined} aria-hidden="true" />
-              Download WebM
+              Download {selectedFormatSupport.label}
             </ToolButton>
             {downloadAbortRef.current ? (
               <ToolButton
@@ -717,6 +901,15 @@ export default function MorseVideoGeneratorTool() {
               </ToolButton>
             ) : null}
           </div>
+
+          <MorseVideoPreviewTimeline
+            disabled={!canRender}
+            elapsedMs={previewElapsedMs}
+            onSeek={handlePreviewScrub}
+            onSeekCommit={handlePreviewSeek}
+            preview={preview}
+            testIdPrefix="morse-video-preview"
+          />
 
           {downloadDisabledReason ? (
             <p
@@ -735,7 +928,7 @@ export default function MorseVideoGeneratorTool() {
             </p>
           ) : (
             <p className="text-sm leading-relaxed text-slate-600">
-              WebM export starts only when you click download.
+              {selectedFormatSupport.label} export starts only when you click download.
             </p>
           )}
 
@@ -1138,158 +1331,40 @@ function FullFrameFlashWarning({ className = "" }: { className?: string }) {
   );
 }
 
-function MorseVideoPreviewPanel({
-  isPlaying,
-  preview,
-  resolvedBackgroundStyle,
-  settings,
-  visualStep,
+function VideoFormatSelect({
+  onChange,
+  selectedFormat,
+  support,
 }: {
-  isPlaying: boolean;
-  preview: MorseVideoPreview;
-  resolvedBackgroundStyle: "warm-morsewords" | "dark-morsewords";
-  settings: MorseVideoSettings;
-  visualStep: number;
+  onChange: (format: MorseVideoFormat) => void;
+  selectedFormat: MorseVideoFormat;
+  support: MorseVideoSupport | null;
 }) {
-  const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
-  const frameStyle = darkFrame
-    ? { backgroundColor: "#020617", color: "#e0f2fe" }
-    : { backgroundColor: "#fffdf8", color: "#08324f" };
-
   return (
-    <section
-      data-testid="morse-video-preview"
-      data-preview-playing={isPlaying ? "true" : "false"}
-      aria-labelledby="morse-video-preview-heading"
-      className="space-y-3"
-    >
-      <div
-        className="flex aspect-video min-h-[12rem] w-full flex-col justify-between rounded-xl p-4 sm:p-5"
-        style={frameStyle}
+    <label className="min-w-[12rem] text-sm font-semibold text-slate-700">
+      Video format
+      <select
+        value={selectedFormat}
+        onChange={(event) => onChange(event.target.value as MorseVideoFormat)}
+        className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+        aria-label="Video format"
       >
-        <div className="flex items-center justify-between gap-3">
-          <h3
-            id="morse-video-preview-heading"
-            className="text-sm font-extrabold"
-          >
-            Video preview
-          </h3>
-          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80">
-            {settings.visualStyle === "full-frame"
-              ? "Subdued preview"
-              : "Short clip"}
-          </span>
-        </div>
-        <div className="flex min-h-[5rem] items-center justify-center">
-          <MorseVideoPreviewVisual
-            isPlaying={isPlaying}
-            preview={preview}
-            settings={settings}
-            visualStep={visualStep}
-          />
-        </div>
-        {settings.showMorseOverlay ? (
-          <p
-            data-testid="morse-video-preview-morse-overlay"
-            className="mt-3 break-words font-mono text-xs font-bold"
-          >
-            {preview.sampleMorse}
-          </p>
-        ) : null}
-        {settings.showBranding ? (
-          <p
-            data-testid="morse-video-preview-branding"
-            className="mt-3 text-right font-mono text-[11px] font-bold uppercase tracking-[0.14em] opacity-80"
-          >
-            {preview.brandLabel}
-          </p>
-        ) : null}
-      </div>
-    </section>
-  );
-}
-
-function MorseVideoPreviewVisual({
-  isPlaying,
-  preview,
-  settings,
-  visualStep,
-}: {
-  isPlaying: boolean;
-  preview: MorseVideoPreview;
-  settings: MorseVideoSettings;
-  visualStep: number;
-}) {
-  const markActive =
-    settings.visualStyle !== "full-frame" && isPlaying && visualStep % 2 === 1;
-  const intensityClass =
-    settings.intensity === "high"
-      ? "opacity-100"
-      : settings.intensity === "low"
-        ? "opacity-60"
-        : "opacity-80";
-
-  if (settings.visualStyle === "dot") {
-    return (
-      <span
-        data-testid="morse-video-preview-dot"
-        aria-label="Dot preview"
-        role="img"
-        className={[
-          "block h-12 w-12 rounded-full bg-sky-200",
-          intensityClass,
-          markActive ? "ring-4 ring-sky-200/50" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      />
-    );
-  }
-
-  if (settings.visualStyle === "full-frame") {
-    return (
-      <div
-        data-testid="morse-video-preview-full-frame"
-        aria-label="Subdued full-frame flash preview"
-        role="img"
-        className={["h-16 w-16 rounded-full bg-sky-200/80", intensityClass]
-          .filter(Boolean)
-          .join(" ")}
-      />
-    );
-  }
-
-  if (settings.visualStyle === "morse-text") {
-    return (
-      <div
-        data-testid="morse-video-preview-morse-text"
-        className={[
-          "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-lg font-bold tracking-normal",
-          markActive ? "text-sky-200" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      >
-        {preview.sampleMorse}
-      </div>
-    );
-  }
-
-  return (
-    <div
-      data-testid="morse-video-preview-lightbulb"
-      aria-label="Lightbulb preview"
-      role="img"
-      className={[
-        "text-sky-200",
-        intensityClass,
-        markActive ? "text-sky-100" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <LightBulbIcon size={54} title={undefined} aria-hidden="true" />
-    </div>
+        {MORSE_VIDEO_FORMATS.map((format) => {
+          const formatSupport = getMorseVideoFormatSupport(support, format);
+          return (
+            <option
+              key={format}
+              value={format}
+              disabled={!formatSupport.supported}
+            >
+              {formatSupport.supported
+                ? formatSupport.label
+                : formatSupport.reason}
+            </option>
+          );
+        })}
+      </select>
+    </label>
   );
 }
 

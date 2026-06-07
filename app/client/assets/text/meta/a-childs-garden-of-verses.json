@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "a-childs-garden-of-verses",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "A Child's Garden of Verses",
+  "author": [
+    "Robert Louis Stevenson"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "25609",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/25609",
+    "rawTextFile": "../a-childs-garden-of-verses.txt",
+    "releaseDate": "May 26, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: lastUpdated, originalPublication, translator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for A Child's Garden of Verses"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "A Child's Garden of Verses",
+      "author": "Robert Louis Stevenson",
+      "language": "English",
+      "releaseDate": "May 26, 2008",
+      "lastUpdated": null,
+      "originalPublication": null,
+      "gutenbergEbookNumber": "25609",
+      "credits": "Produced by Juliet Sutherland Christine D. and the Online Distributed Proofreading Team at http://www.pgdp.net",
+      "translator": null,
+      "illustrator": "Jessie Willcox Smith",
+      "editor": null
+    },
+    "missingFields": [
+      "lastUpdated",
+      "originalPublication",
+      "translator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: lastUpdated, originalPublication, translator, editor."
+    ]
+  }
+}

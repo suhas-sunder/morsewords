@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "candide",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Candide",
+  "author": [
+    "Voltaire"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "19942",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/19942",
+    "rawTextFile": "../Candide.txt",
+    "releaseDate": "November 27, 2006",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: lastUpdated, originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Candide"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Candide",
+      "author": "Voltaire",
+      "language": "English",
+      "releaseDate": "November 27, 2006",
+      "lastUpdated": null,
+      "originalPublication": null,
+      "gutenbergEbookNumber": "19942",
+      "credits": "Produced by Chuck Greif, Fox in the Stars and the Online Distributed Proofreading Team at http://www.pgdp.net",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "lastUpdated",
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: lastUpdated, originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

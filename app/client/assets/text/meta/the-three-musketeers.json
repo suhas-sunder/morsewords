@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-three-musketeers",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The three musketeers",
+  "author": [
+    "Alexandre Dumas Auguste Maquet"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1257",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1257",
+    "rawTextFile": "../the-three-musketeers.txt",
+    "releaseDate": "March 1, 1998",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The three musketeers"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The three musketeers",
+      "author": "Alexandre Dumas Auguste Maquet",
+      "language": "English",
+      "releaseDate": "March 1, 1998",
+      "lastUpdated": "October 29, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "1257",
+      "credits": "John P. Roberts III, Roger Labbe, Scott David Gray, Sue Asscher, Anita Martin, David Muller and David Widger",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

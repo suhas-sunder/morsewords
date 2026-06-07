@@ -48,6 +48,16 @@ export const CANADA_US_V1_STATUSES = [
 
 export type BookCanadaUsV1Status = (typeof CANADA_US_V1_STATUSES)[number];
 
+export const APPROVED_PERSON_ROLES = [
+  "author",
+  "translator",
+  "editor",
+  "illustrator",
+  "introduction_author",
+] as const;
+
+export type ApprovedPersonRole = (typeof APPROVED_PERSON_ROLES)[number];
+
 export const CLEANING_CONFIDENCE_VALUES = ["high", "medium", "low"] as const;
 
 export type GutenbergCleaningConfidence =
@@ -109,12 +119,15 @@ export type BookSectionOverride =
 export type BookMetadata = {
   schemaVersion?: 1;
   slug: string;
+  metadataStatus?: "draft" | "reviewed";
+  manualReviewRequired?: boolean;
   title: string;
   author: string[];
   language: string;
   source: {
     provider: "Project Gutenberg" | string;
     gutenbergId: string | null;
+    sourceUrl?: string | null;
     rawTextFile: string;
     releaseDate: string | null;
     rawTextUrl?: string | null;
@@ -139,16 +152,51 @@ export type BookMetadata = {
   };
   sectionOverrides: BookSectionOverride[];
   cleanupRules: BookCleanupRule[];
+  scaffold?: {
+    extractionConfidence: "gutenberg-header" | "gutenberg-reference" | "filename-only";
+    extracted: {
+      title: string | null;
+      author: string | null;
+      language: string | null;
+      releaseDate: string | null;
+      lastUpdated: string | null;
+      originalPublication: string | null;
+      gutenbergEbookNumber: string | null;
+      credits: string | null;
+      translator: string | null;
+      illustrator: string | null;
+      editor: string | null;
+    };
+    missingFields: string[];
+    warnings: string[];
+  };
 };
 
 export type ApprovedPersonMetadata = {
   name: string;
   deathYear: number | null;
   canadaLifePlus70Safe?: boolean;
+  roles?: ApprovedPersonRole[];
+  sources?: string[];
   notes: string;
 };
 
 export type ApprovedPeopleMetadata = Record<string, ApprovedPersonMetadata>;
+
+export type OwnerApprovedRegion = "US" | "CA";
+
+export type OwnerBookApproval = {
+  bookSlug: string;
+  approvedForWebsite: boolean;
+  approvedForYoutubeNarration: boolean;
+  approvedRegions: OwnerApprovedRegion[];
+  originalPublicationYear: number | null;
+  editionNotes: string;
+  translationNotes: string;
+  excludeModernAdditions: boolean;
+  ownerReviewed: boolean;
+  notes: string;
+};
 
 export type BookRightsReport = {
   schemaVersion: 1;
@@ -184,6 +232,10 @@ export type BookRightsReport = {
   edition_risk: BookRightsRiskLevel;
   trademark_or_character_brand_risk: BookRightsRiskLevel;
   content_brand_safety_risk: BookRightsRiskLevel;
+  owner_reviewed_approval_present: boolean;
+  approved_for_website: boolean;
+  approved_for_youtube_narration: boolean;
+  approved_regions: string[];
   canada_us_v1_status: BookCanadaUsV1Status;
   reasoning_summary: string;
   evidence_snippets: string[];

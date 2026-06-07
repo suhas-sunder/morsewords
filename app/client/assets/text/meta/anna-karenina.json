@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "slug": "anna-karenina",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Anna Karenina",
+  "author": [
+    "graf Leo Tolstoy"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1399",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1399",
+    "rawTextFile": "../Anna Karenina.txt",
+    "releaseDate": "July 1, 1998",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Anna Karenina"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Anna Karenina",
+      "author": "graf Leo Tolstoy",
+      "language": "English",
+      "releaseDate": "July 1, 1998",
+      "lastUpdated": "March 24, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "1399",
+      "credits": "David Brannan, Andrew Sly and David Widger",
+      "translator": "Constance Garnett",
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, illustrator, editor."
+    ]
+  }
+}

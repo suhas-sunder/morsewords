@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "gulliver-s-travels",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Gulliver's Travels into Several Remote Nations of the World",
+  "author": [
+    "Jonathan Swift"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "829",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/829",
+    "rawTextFile": "../Gulliver's Travels.txt",
+    "releaseDate": "February 1, 1997",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Gulliver's Travels into Several Remote Nations of the World"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Gulliver's Travels into Several Remote Nations of the World",
+      "author": "Jonathan Swift",
+      "language": "English",
+      "releaseDate": "February 1, 1997",
+      "lastUpdated": "April 6, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "829",
+      "credits": "David Price",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

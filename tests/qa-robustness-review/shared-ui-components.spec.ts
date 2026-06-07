@@ -505,7 +505,9 @@ test.describe("shared route controls", () => {
     });
     await waitForRouteReady(page);
     await expectCleanControlFocus(
-      page.getByRole("button", { name: "Upload a book source file" }),
+      page.getByRole("button", {
+        name: /^(Upload a book source file|Replace book source file)$/,
+      }),
     );
 
     await page.goto("/audio", { waitUntil: "domcontentloaded" });

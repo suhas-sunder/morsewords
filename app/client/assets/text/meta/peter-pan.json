@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "peter-pan",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Peter Pan [Peter and Wendy]",
+  "author": [
+    "J. M. Barrie"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "16",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/16",
+    "rawTextFile": "../peter-pan.txt",
+    "releaseDate": "June 25, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Peter Pan [Peter and Wendy]"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Peter Pan [Peter and Wendy]",
+      "author": "J. M. Barrie",
+      "language": "English",
+      "releaseDate": "June 25, 2008",
+      "lastUpdated": "October 11, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "16",
+      "credits": "Duncan Research",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

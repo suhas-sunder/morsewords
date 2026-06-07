@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "rainbow-valley",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Rainbow Valley",
+  "author": [
+    "L. M. Montgomery"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "5343",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/5343",
+    "rawTextFile": "../rainbow-valley.txt",
+    "releaseDate": "March 1, 2004",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Rainbow Valley"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Rainbow Valley",
+      "author": "L. M. Montgomery",
+      "language": "English",
+      "releaseDate": "March 1, 2004",
+      "lastUpdated": "October 24, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "5343",
+      "credits": "Bernard J. Farber, Carmen Baxter, Dona Rucci, Elizabeth Morton, Rebekah Neely, Joe Johnson, Joan Chovan, Judith Fetterolf, Mary Nuzzo, Sally Drake, Sally Starks, Steve Callis, Virginia Mohlere-Dellinger, Mary Mark Ockerbloom, Ben Crowder and David Widger",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

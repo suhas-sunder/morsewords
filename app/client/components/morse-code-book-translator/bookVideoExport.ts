@@ -40,7 +40,7 @@ export type BookVideoDownloadPackage = {
   filename: string;
   downloadKind: BookDownloadKind;
   contents: string[];
-  outputFormat: "webm";
+  outputFormat: "webm" | "mp4";
 };
 
 const MAX_FILENAME_BASE_LENGTH = 72;
@@ -58,10 +58,12 @@ export function describeBookVideoDownloadContents(
   parts: BookExportPart[],
   settings: BookExportSettings,
   downloadKind = getBookVideoDownloadKind(parts, settings),
+  extension: "webm" | "mp4" = "webm",
 ) {
-  if (downloadKind === "video") return ["WebM video file"];
+  const formatLabel = videoFormatLabel(extension);
+  if (downloadKind === "video") return [`${formatLabel} video file`];
   return [
-    `WebM video ${parts.length === 1 ? "file" : "parts"}`,
+    `${formatLabel} video ${parts.length === 1 ? "file" : "parts"}`,
     "playlist.m3u",
     settings.includeCleanedText ? "cleaned-text.txt" : "",
     settings.includeMorseTranscript ? "morse-transcript.txt" : "",
@@ -85,10 +87,13 @@ export function buildBookVideoWarnings({
   videoSettings: BookVideoSettings;
 }) {
   const warnings: string[] = [];
+  const formatLabel = support?.extension
+    ? videoFormatLabel(support.extension)
+    : "WebM";
   if (support && !support.supported) {
     warnings.push(support.reason);
   } else {
-    warnings.push("Browser video export support varies; WebM is used when available.");
+    warnings.push("Browser video export support varies; WebM is the reliable default.");
   }
   if (totalRuntimeMs > 90_000 || partCount > 1) {
     if (partCount > 1) {
@@ -97,11 +102,11 @@ export function buildBookVideoWarnings({
       );
     } else if (downloadKind === "zip") {
       warnings.push(
-        "Long videos may take time to render. Selected extras are packaged with the WebM in a ZIP download.",
+        `Long videos may take time to render. Selected extras are packaged with the ${formatLabel} in a ZIP download.`,
       );
     } else {
       warnings.push(
-        "Long videos may take time to render. Keep this tab open until the WebM is ready.",
+        `Long videos may take time to render. Keep this tab open until the ${formatLabel} is ready.`,
       );
     }
   }
@@ -114,7 +119,7 @@ export function buildBookVideoWarnings({
   if (videoSettings.showVisualSignal && videoSettings.visualStyle === "full-frame") {
     warnings.push("Full-frame flash mode can create strobe-like video output.");
   }
-  warnings.push("MP4 is not guaranteed in-browser; WebM is the default format.");
+  warnings.push("MP4 appears only when this browser reports real MediaRecorder support.");
   return [...new Set(warnings)];
 }
 
@@ -142,6 +147,7 @@ export async function createBookVideoDownloadPackage({
       videoSettings.includeAudioTrack && support.audioTrackSupported,
   };
   const downloadKind = getBookVideoDownloadKind(parts, exportSettings);
+  const formatLabel = videoFormatLabel(support.extension);
 
   if (downloadKind === "zip") {
     const zip = await createBookVideoZip({
@@ -157,11 +163,12 @@ export async function createBookVideoDownloadPackage({
     return {
       ...zip,
       downloadKind,
-      outputFormat: "webm",
+      outputFormat: support.extension,
       contents: describeBookVideoDownloadContents(
         parts,
         exportSettings,
         downloadKind,
+        support.extension,
       ),
     };
   }
@@ -169,7 +176,7 @@ export async function createBookVideoDownloadPackage({
   const [part] = parts;
   onProgress?.({
     phase: "encoding",
-    message: "Recording WebM video...",
+    message: `Recording ${formatLabel} video...`,
     currentPart: 0,
     totalParts: 1,
   });
@@ -177,8 +184,8 @@ export async function createBookVideoDownloadPackage({
     exportSettings,
     onProgress: (elapsedMs, durationMs) => {
       onProgress?.({
-        phase: "encoding",
-        message: `Recording WebM video (${formatDuration(elapsedMs)} of ${formatDuration(
+            phase: "encoding",
+        message: `Recording ${formatLabel} video (${formatDuration(elapsedMs)} of ${formatDuration(
           durationMs,
         )})...`,
         currentPart: Math.max(0, Math.round(elapsedMs)),
@@ -193,7 +200,7 @@ export async function createBookVideoDownloadPackage({
   });
   onProgress?.({
     phase: "complete",
-    message: "WebM video ready.",
+    message: `${formatLabel} video ready.`,
     currentPart: 1,
     totalParts: 1,
   });
@@ -201,10 +208,16 @@ export async function createBookVideoDownloadPackage({
     blob,
     filename: buildSingleVideoFilename({
       sourceTitle: metadata.title || metadata.filename,
+      extension: support.extension,
     }),
     downloadKind,
-    outputFormat: "webm",
-    contents: describeBookVideoDownloadContents(parts, exportSettings, downloadKind),
+    outputFormat: support.extension,
+    contents: describeBookVideoDownloadContents(
+      parts,
+      exportSettings,
+      downloadKind,
+      support.extension,
+    ),
   };
 }
 
@@ -275,6 +288,7 @@ async function createBookVideoZip({
     const filename = buildPartVideoFilename({
       sourceTitle: metadata.title || metadata.filename,
       partIndex: part.index,
+      extension: support.extension,
     });
     onProgress?.({
       phase: "encoding",
@@ -411,7 +425,7 @@ function buildVideoManifest({
   return {
     generatedAt,
     outputType: "video",
-    outputFormat: "webm",
+    outputFormat: support.extension,
     mimeType: support.mimeType,
     sourceKind: metadata.sourceType,
     title: metadata.title,
@@ -467,7 +481,7 @@ function buildVideoSettingsFile({
   return {
     generatedAt,
     outputType: "video",
-    outputFormat: "webm",
+    outputFormat: support.extension,
     mimeType: support.mimeType,
     frameRate: getBookVideoFrameRate(),
     ...buildVideoSettingsSummary(exportSettings, videoSettings),
@@ -532,7 +546,7 @@ function buildVideoReadme({
     metadata.author ? `Author: ${metadata.author}` : "",
     `Source type: ${metadata.sourceType}`,
     `Generated: ${generatedAt}`,
-    `Output: WebM video`,
+    `Output: ${videoFormatLabel(support.extension)} video`,
     `MIME type: ${support.mimeType}`,
     `Estimated runtime: ${formatDuration(runtimeMs)}`,
     `Part count: ${parts.length}`,
@@ -547,8 +561,8 @@ function buildVideoReadme({
     exportSettings.includeSettings ? "- settings.json" : "",
     "",
     "Notes",
-    "- WebM is the browser-native video format used by this export.",
-    "- MP4 is not guaranteed in browser-only export.",
+    "- WebM is the reliable browser-native default.",
+    "- MP4 is used only when this browser reports MediaRecorder MP4 support.",
     "- Video parts are sorted by filename and listed in playlist.m3u.",
     "- Source files are processed in your browser. Use source text you have the right to convert and use.",
   ]
@@ -561,28 +575,40 @@ function buildPlaylist(files: string[]) {
 }
 
 function buildPartVideoFilename({
+  extension = "webm",
   sourceTitle,
   partIndex,
 }: {
+  extension?: "webm" | "mp4";
   sourceTitle?: string;
   partIndex: number;
 }) {
   const base = filenameBase(sourceTitle);
-  return `${base}-part-${String(partIndex).padStart(3, "0")}.webm`;
+  return `${base}-part-${String(partIndex).padStart(3, "0")}.${extension}`;
 }
 
-function buildSingleVideoFilename({ sourceTitle }: { sourceTitle?: string }) {
-  return `${filenameBase(sourceTitle)}-morse-video.webm`;
+function buildSingleVideoFilename({
+  extension = "webm",
+  sourceTitle,
+}: {
+  extension?: "webm" | "mp4";
+  sourceTitle?: string;
+}) {
+  return `${filenameBase(sourceTitle)}-morse-video.${extension}`;
 }
 
 function buildVideoBundleFilename(sourceTitle?: string) {
   return `${filenameBase(sourceTitle)}-morse-video-bundle.zip`;
 }
 
+function videoFormatLabel(extension: "webm" | "mp4") {
+  return extension === "mp4" ? "MP4" : "WebM";
+}
+
 function filenameBase(sourceTitle?: string) {
   return (
     sanitizeDownloadFilename(sourceTitle || "morse-book", "morse-book")
-      .replace(/\.(mp3|wav|webm|zip|txt|json|m3u)$/i, "")
+      .replace(/\.(mp3|wav|webm|mp4|zip|txt|json|m3u)$/i, "")
       .slice(0, MAX_FILENAME_BASE_LENGTH) || "morse-book"
   );
 }

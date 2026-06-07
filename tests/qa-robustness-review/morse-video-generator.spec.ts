@@ -23,11 +23,17 @@ async function openVideoGenerator(page: Page) {
   ).toBeVisible();
 }
 
-async function installFastVideoRecorder(page: Page) {
-  await page.addInitScript(() => {
+async function installFastVideoRecorder(
+  page: Page,
+  options: { mp4?: boolean } = {},
+) {
+  await page.addInitScript((supportsMp4) => {
     class FakeMediaRecorder {
       static isTypeSupported(type: string) {
-        return type.startsWith("video/webm");
+        return (
+          type.startsWith("video/webm") ||
+          (supportsMp4 && type.startsWith("video/mp4"))
+        );
       }
 
       state = "inactive";
@@ -47,9 +53,16 @@ async function installFastVideoRecorder(page: Page) {
       stop() {
         if (this.state === "inactive") return;
         this.state = "inactive";
-        const blob = new Blob(["WEBM-MORSE-VIDEO"], {
-          type: this.mimeType,
-        });
+        const blob = new Blob(
+          [
+            this.mimeType.startsWith("video/mp4")
+              ? "MP4-MORSE-VIDEO"
+              : "WEBM-MORSE-VIDEO",
+          ],
+          {
+            type: this.mimeType,
+          },
+        );
         window.setTimeout(() => {
           this.ondataavailable?.({ data: blob } as BlobEvent);
           this.onstop?.();
@@ -64,7 +77,7 @@ async function installFastVideoRecorder(page: Page) {
     HTMLCanvasElement.prototype.captureStream = function captureStream() {
       return new MediaStream();
     };
-  });
+  }, Boolean(options.mp4));
 }
 
 async function installUnsupportedVideoRecorder(page: Page) {
@@ -80,9 +93,102 @@ async function installUnsupportedVideoRecorder(page: Page) {
   });
 }
 
-async function downloadVideoFile(page: Page, testInfo: TestInfo) {
+async function installPreviewAudioProbe(page: Page) {
+  await page.addInitScript(() => {
+    const events: string[] = [];
+    Object.defineProperty(window, "__morsePreviewAudioEvents", {
+      configurable: true,
+      value: events,
+    });
+
+    function fakeAudioParam() {
+      return {
+        value: 0,
+        cancelScheduledValues: () => undefined,
+        exponentialRampToValueAtTime: () => undefined,
+        linearRampToValueAtTime: () => undefined,
+        setTargetAtTime: () => undefined,
+        setValueAtTime: () => undefined,
+      };
+    }
+
+    class FakeAudioNode {
+      connect() {
+        return this;
+      }
+
+      addEventListener() {
+        return undefined;
+      }
+    }
+
+    class FakeOscillatorNode extends FakeAudioNode {
+      frequency = fakeAudioParam();
+      type: OscillatorType = "sine";
+      onended: ((event: Event) => void) | null = null;
+
+      start() {
+        events.push("oscillator-start");
+      }
+
+      stop() {
+        events.push("oscillator-stop");
+      }
+    }
+
+    class FakeAudioContext {
+      currentTime = 0;
+      destination = new FakeAudioNode();
+      sampleRate = 44100;
+      state: AudioContextState = "running";
+
+      createGain() {
+        return Object.assign(new FakeAudioNode(), { gain: fakeAudioParam() });
+      }
+
+      createOscillator() {
+        return new FakeOscillatorNode();
+      }
+
+      createMediaStreamDestination() {
+        return Object.assign(new FakeAudioNode(), { stream: new MediaStream() });
+      }
+
+      resume() {
+        events.push("resume");
+        return Promise.resolve();
+      }
+
+      close() {
+        return Promise.resolve();
+      }
+    }
+
+    Object.defineProperty(window, "AudioContext", {
+      configurable: true,
+      value: FakeAudioContext,
+    });
+    Object.defineProperty(window, "webkitAudioContext", {
+      configurable: true,
+      value: FakeAudioContext,
+    });
+  });
+}
+
+async function readPreviewAudioEvents(page: Page) {
+  return page.evaluate(
+    () => (window as typeof window & { __morsePreviewAudioEvents?: string[] })
+      .__morsePreviewAudioEvents ?? [],
+  );
+}
+
+async function downloadVideoFile(
+  page: Page,
+  testInfo: TestInfo,
+  buttonName: string | RegExp = "Download WebM",
+) {
   const downloadPromise = page.waitForEvent("download", { timeout: 30_000 });
-  await page.getByRole("button", { name: "Download WebM" }).click();
+  await page.getByRole("button", { name: buttonName }).click();
   const download = await downloadPromise;
   const filePath = testInfo.outputPath(download.suggestedFilename());
   await download.saveAs(filePath);
@@ -90,6 +196,21 @@ async function downloadVideoFile(page: Page, testInfo: TestInfo) {
     filename: download.suggestedFilename(),
     bytes: fs.readFileSync(filePath),
   };
+}
+
+async function expectVideoPreviewUsesModuleWidth(page: Page) {
+  const previewBox = await page.getByTestId("morse-video-preview").boundingBox();
+  const frameBox = await page
+    .getByTestId("morse-video-preview-frame")
+    .boundingBox();
+  const timelineBox = await page
+    .getByTestId("morse-video-preview-timeline")
+    .boundingBox();
+  expect(previewBox).not.toBeNull();
+  expect(frameBox).not.toBeNull();
+  expect(timelineBox).not.toBeNull();
+  expect(frameBox!.width).toBeGreaterThan(previewBox!.width * 0.96);
+  expect(timelineBox!.width).toBeGreaterThan(previewBox!.width * 0.96);
 }
 
 async function expectNoRawInputInStorage(page: Page, rawText: string) {
@@ -135,6 +256,33 @@ test.describe("Morse code video generator", () => {
       page.getByLabel("Message to turn into a Morse code video"),
     ).toBeVisible();
     await expect(page.getByTestId("morse-video-preview")).toBeVisible();
+    await expectVideoPreviewUsesModuleWidth(page);
+    await expect(page.getByTestId("morse-video-preview-morse-overlay")).toBeVisible();
+    await expect(
+      page.getByTestId("morse-video-preview-active-morse-word"),
+    ).toBeVisible();
+    await expect(page.getByTestId("morse-video-preview-active-token")).toHaveCount(0);
+    const formatOptions = await page
+      .getByLabel("Video format")
+      .locator("option")
+      .evaluateAll((options) =>
+        options.map((element) => {
+          const option = element as HTMLOptionElement;
+          return {
+            disabled: option.disabled,
+            label: option.textContent ?? "",
+            value: option.value,
+          };
+        }),
+      );
+    expect(formatOptions).toEqual([
+      expect.objectContaining({ disabled: false, label: "WebM", value: "webm" }),
+      expect.objectContaining({
+        disabled: true,
+        label: "MP4 not supported in this browser.",
+        value: "mp4",
+      }),
+    ]);
     await expect(page.getByRole("button", { name: "Download WebM" })).toBeEnabled();
     await expect(page.getByText("WebM export starts only when")).toBeVisible();
     await expect(
@@ -263,6 +411,101 @@ test.describe("Morse code video generator", () => {
     await expect(page.getByLabel("Tone preset")).toBeVisible();
   });
 
+  test("preview syncs visual signal, readable text, and timeline markers", async ({
+    page,
+  }) => {
+    await installFastVideoRecorder(page);
+    await installPreviewAudioProbe(page);
+    await openVideoGenerator(page);
+    await page
+      .getByLabel("Message to turn into a Morse code video")
+      .fill("ABCDE FGHIJ KLMNO PQRST visual preview");
+    await expectVideoPreviewUsesModuleWidth(page);
+
+    const textLayers = page.getByTestId("morse-video-preview-text-layers");
+    const timelineMarker = page.getByTestId("morse-video-preview-timeline");
+    await expect(textLayers).toHaveAttribute("data-active-character", /./);
+    await expect(timelineMarker).toHaveAttribute("data-active-character", /./);
+    const beforeSeek = (await textLayers.getAttribute("data-active-character")) ?? "";
+
+    await page.getByRole("button", { name: "Play visual preview" }).click();
+    await expect(page.getByTestId("morse-video-preview")).toHaveAttribute(
+      "data-preview-playing",
+      "true",
+    );
+    await expect
+      .poll(async () =>
+        (await readPreviewAudioEvents(page)).includes("oscillator-start"),
+      )
+      .toBe(true);
+    await expect
+      .poll(() =>
+        page
+          .getByTestId("morse-video-preview-lightbulb")
+          .getAttribute("data-preview-active"),
+      )
+      .toBe("true");
+    await page.getByRole("button", { name: "Stop visual preview" }).click();
+
+    await page.getByRole("radio", { name: /Dot/ }).click();
+    await page.getByRole("button", { name: "Play visual preview" }).click();
+    await expect
+      .poll(() =>
+        page
+          .getByTestId("morse-video-preview-dot")
+          .getAttribute("data-preview-active"),
+      )
+      .toBe("true");
+    await page.getByRole("button", { name: "Stop visual preview" }).click();
+
+    await page.getByRole("radio", { name: /Full-frame flash/ }).click();
+    await page.getByRole("button", { name: "Play visual preview" }).click();
+    await expect(page.getByTestId("morse-video-preview-frame")).toHaveAttribute(
+      "data-full-frame-active",
+      "true",
+    );
+    await expect(
+      page.getByTestId("morse-video-preview-full-frame"),
+    ).toHaveAttribute("data-preview-active", "true");
+    await page.getByRole("button", { name: "Stop visual preview" }).click();
+
+    const timeline = page.getByLabel("Video preview timeline");
+    const timelineBox = await timeline.boundingBox();
+    expect(timelineBox).not.toBeNull();
+    await timeline.click({
+      position: {
+        x: timelineBox!.width * 0.72,
+        y: timelineBox!.height / 2,
+      },
+    });
+    await expect
+      .poll(() => timeline.getAttribute("aria-valuenow"))
+      .not.toBe("0");
+    await expect(timeline).not.toHaveAttribute("aria-valuenow", "NaN");
+    await expect
+      .poll(() => textLayers.getAttribute("data-active-character"))
+      .not.toBe(beforeSeek);
+    expect(await textLayers.getAttribute("data-active-morse")).toBe(
+      await timelineMarker.getAttribute("data-active-morse"),
+    );
+    await expect(
+      page.getByTestId("morse-video-preview-active-morse-word"),
+    ).toBeVisible();
+
+    await page.getByRole("button", { name: "Play visual preview" }).click();
+    await expect(page.getByTestId("morse-video-preview")).toHaveAttribute(
+      "data-preview-playing",
+      "true",
+    );
+    await page
+      .getByLabel("Message to turn into a Morse code video")
+      .fill("Replacement source stops preview");
+    await expect(page.getByTestId("morse-video-preview")).toHaveAttribute(
+      "data-preview-playing",
+      "false",
+    );
+  });
+
   test("unsupported browser video APIs disable WebM export with a clear message", async ({
     page,
   }) => {
@@ -307,6 +550,25 @@ test.describe("Morse code video generator", () => {
       page.getByText("Input or settings changed; video download cancelled."),
     ).toBeVisible();
     await expect(page.getByText("WebM download started.")).toHaveCount(0);
+  });
+
+  test("enables MP4 only when MediaRecorder reports real MP4 support", async ({
+    page,
+  }, testInfo) => {
+    await installFastVideoRecorder(page, { mp4: true });
+    await openVideoGenerator(page);
+    await page.getByLabel("Message to turn into a Morse code video").fill("SOS");
+    await page.getByLabel("File name").fill("short-sos-mp4");
+
+    await expect(page.getByLabel("Video format")).toHaveValue("webm");
+    await page.getByLabel("Video format").selectOption("mp4");
+    await expect(page.getByRole("button", { name: "Download MP4" })).toBeEnabled();
+    await expect(page.getByText("MP4 export starts only when")).toBeVisible();
+
+    const video = await downloadVideoFile(page, testInfo, /Download MP4/);
+    expect(video.filename).toBe("short-sos-mp4.mp4");
+    expect(video.bytes.toString("utf8")).toContain("MP4-MORSE-VIDEO");
+    await expect(page.getByText("MP4 download started.")).toBeVisible();
   });
 
   test("long guard, mobile layout, and console stay clean", async ({

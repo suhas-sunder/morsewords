@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "slug": "botchan",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Botchan (Master Darling)",
+  "author": [
+    "Soseki Natsume"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "8868",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/8868",
+    "rawTextFile": "../Botchan.txt",
+    "releaseDate": "September 1, 2005",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Botchan (Master Darling)"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Botchan (Master Darling)",
+      "author": "Soseki Natsume",
+      "language": "English",
+      "releaseDate": "September 1, 2005",
+      "lastUpdated": "March 21, 2022",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "8868",
+      "credits": "David Starner and the Online Distributed Proofreading Team",
+      "translator": "Yasotaro Mori",
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, illustrator, editor."
+    ]
+  }
+}

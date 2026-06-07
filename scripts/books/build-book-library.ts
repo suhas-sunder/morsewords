@@ -20,6 +20,10 @@ import {
   SECTION_KINDS,
 } from "./bookManifestTypes.ts";
 import {
+  loadOwnerBookApprovals,
+  ownerBookApprovalMap,
+} from "./bookApprovalFiles.ts";
+import {
   buildBookRightsReport,
   getProjectGutenbergSourceUrl,
   loadApprovedPeopleMetadata,
@@ -41,6 +45,7 @@ export type BookBuildOptions = {
   textRoot?: string;
   metadataRoot?: string;
   approvedPeoplePath?: string;
+  bookApprovalsPath?: string;
   generatedRoot?: string;
   quiet?: boolean;
 };
@@ -88,6 +93,11 @@ const DEFAULT_APPROVED_PEOPLE_PATH = path.join(
   DEFAULT_TEXT_ROOT,
   "approved-metadata",
   "authors.json",
+);
+const DEFAULT_BOOK_APPROVALS_PATH = path.join(
+  DEFAULT_TEXT_ROOT,
+  "approved-metadata",
+  "book-approvals.json",
 );
 const DEFAULT_GENERATED_ROOT = path.join(
   DEFAULT_REPO_ROOT,
@@ -399,6 +409,18 @@ function validateMetadataShape(
   if (typeof raw.slug === "string" && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(raw.slug)) {
     errors.push("slug must be lowercase kebab-case.");
   }
+  if (
+    raw.metadataStatus !== undefined &&
+    raw.metadataStatus !== "draft" &&
+    raw.metadataStatus !== "reviewed"
+  ) {
+    errors.push("metadataStatus must be draft or reviewed when present.");
+  }
+  validateOptionalBoolean(
+    raw.manualReviewRequired,
+    "manualReviewRequired",
+    errors,
+  );
   validateString(raw.title, "title", errors);
   validateStringArray(raw.author, "author", errors);
   validateString(raw.language, "language", errors);
@@ -429,6 +451,13 @@ function validateMetadataShape(
       !/^\d+$/.test(String(raw.source.gutenbergId))
     ) {
       errors.push("source.gutenbergId must contain only digits when present.");
+    }
+    if (
+      raw.source.sourceUrl !== undefined &&
+      raw.source.sourceUrl !== null &&
+      typeof raw.source.sourceUrl !== "string"
+    ) {
+      errors.push("source.sourceUrl must be a string or null when present.");
     }
     validateString(raw.source.rawTextFile, "source.rawTextFile", errors);
     if (
@@ -532,6 +561,10 @@ function validateMetadataShape(
   };
 
   return { metadata, errors: [] };
+}
+
+function isDraftMetadata(metadata: BookMetadata): boolean {
+  return metadata.metadataStatus === "draft";
 }
 
 function loadMetadataFiles(
@@ -686,6 +719,61 @@ function writeText(filePath: string, value: string): void {
   fs.writeFileSync(filePath, value.endsWith("\n") ? value : `${value}\n`, "utf8");
 }
 
+type PreservedGeneratedFile = {
+  relativePath: string;
+  contents: Buffer;
+};
+
+function shouldPreserveGeneratedFile(generatedRoot: string, filePath: string): boolean {
+  const relativePath = relativeTo(generatedRoot, filePath);
+  if (relativePath === "review-report.json" || relativePath === "review-report.md") {
+    return true;
+  }
+  if (relativePath.startsWith("review/")) {
+    return true;
+  }
+
+  const parts = relativePath.split("/");
+  return (
+    parts.length === 2 &&
+    (parts[1] === "rights_report.json" || parts[1] === "processing_notes.md")
+  );
+}
+
+function snapshotPreservedGeneratedFiles(generatedRoot: string): PreservedGeneratedFile[] {
+  if (!fs.existsSync(generatedRoot)) return [];
+
+  const preservedFiles: PreservedGeneratedFile[] = [];
+  const walk = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const entryPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(entryPath);
+        continue;
+      }
+      if (entry.isFile() && shouldPreserveGeneratedFile(generatedRoot, entryPath)) {
+        preservedFiles.push({
+          relativePath: relativeTo(generatedRoot, entryPath),
+          contents: fs.readFileSync(entryPath),
+        });
+      }
+    }
+  };
+  walk(generatedRoot);
+  return preservedFiles;
+}
+
+function restorePreservedGeneratedFiles(
+  generatedRoot: string,
+  preservedFiles: PreservedGeneratedFile[],
+): void {
+  for (const file of preservedFiles) {
+    const targetPath = path.join(generatedRoot, ...file.relativePath.split("/"));
+    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+    fs.writeFileSync(targetPath, file.contents);
+  }
+}
+
 function safeResetGeneratedRoot(generatedRoot: string, allowCustomRoot: boolean): void {
   const normalized = path.normalize(generatedRoot);
   const parsedRoot = path.parse(normalized).root;
@@ -699,8 +787,10 @@ function safeResetGeneratedRoot(generatedRoot: string, allowCustomRoot: boolean)
   ) {
     throw new Error(`Refusing to reset unexpected generated root: ${generatedRoot}`);
   }
+  const preservedFiles = snapshotPreservedGeneratedFiles(generatedRoot);
   fs.rmSync(generatedRoot, { recursive: true, force: true });
   fs.mkdirSync(generatedRoot, { recursive: true });
+  restorePreservedGeneratedFiles(generatedRoot, preservedFiles);
 }
 
 function estimatedTypingMinutes(wordCount: number): number {
@@ -730,9 +820,10 @@ function buildProcessedBook(
     },
     rights: {
       status: "approved",
-      approved_for_website: true,
-      approved_for_youtube_narration: true,
-      approved_regions: ["US", "CA"],
+      approved_for_website: rightsReport.approved_for_website,
+      approved_for_youtube_narration:
+        rightsReport.approved_for_youtube_narration,
+      approved_regions: rightsReport.approved_regions,
       needs_manual_review: false,
       notes: rightsReport.reasoning_summary,
     },
@@ -919,6 +1010,7 @@ function buildGeneratedManifest(
   metadata: BookMetadata,
   rawText: string,
   approvedPeople: ApprovedPeopleMetadata,
+  ownerBookApproval: Parameters<typeof buildBookRightsReport>[0]["ownerBookApproval"],
   warnings: string[],
 ): {
   manifest: GeneratedBookManifest;
@@ -944,6 +1036,7 @@ function buildGeneratedManifest(
     cleanedText,
     cleaning: cleaning.report,
     approvedPeople,
+    ownerBookApproval,
   });
   const rights = validateBookRights(metadata, rightsReport);
   warnings.push(...rights.warnings);
@@ -1201,14 +1294,21 @@ export function buildBookLibrary(
   const approvedPeoplePath = path.resolve(
     options.approvedPeoplePath ?? DEFAULT_APPROVED_PEOPLE_PATH,
   );
+  const bookApprovalsPath = path.resolve(
+    options.bookApprovalsPath ?? DEFAULT_BOOK_APPROVALS_PATH,
+  );
   const generatedRoot = path.resolve(options.generatedRoot ?? DEFAULT_GENERATED_ROOT);
   const inventory = scanBookInventory({ textRoot, metadataRoot });
   const approvedPeopleResult = loadApprovedPeopleMetadata(approvedPeoplePath);
+  const bookApprovalsResult = loadOwnerBookApprovals(bookApprovalsPath);
+  const bookApprovals = ownerBookApprovalMap(bookApprovalsResult.entries);
   const warnings: string[] = [];
   const fatalErrors: string[] = [];
   const generatedArtifacts: string[] = [];
 
   fatalErrors.push(...approvedPeopleResult.errors);
+  fatalErrors.push(...bookApprovalsResult.errors);
+  warnings.push(...bookApprovalsResult.warnings);
   for (const invalid of inventory.invalidMetadata) {
     fatalErrors.push(...invalid.errors);
   }
@@ -1219,6 +1319,7 @@ export function buildBookLibrary(
   for (const ref of inventory.metadataFiles.flatMap((filePath) => {
       try {
         const { metadata } = validateMetadataShape(readJson(filePath), filePath);
+        if (!metadata || isDraftMetadata(metadata)) return [];
         return metadata?.source.gutenbergId
           ? [
               {
@@ -1258,6 +1359,17 @@ export function buildBookLibrary(
     }
   }
   for (const metadataPath of inventory.metadataWithoutRaw) {
+    try {
+      const { metadata } = validateMetadataShape(readJson(metadataPath), metadataPath);
+      if (metadata && isDraftMetadata(metadata)) {
+        warnings.push(
+          `${metadata.slug}: draft metadata raw text file is missing; skipped by books:build until manual review is complete.`,
+        );
+        continue;
+      }
+    } catch {
+      // The invalid metadata pass above will report parse or shape errors.
+    }
     fatalErrors.push(`Metadata raw text file is missing: ${metadataPath}.`);
   }
   for (const filePath of inventory.metadataFiles) {
@@ -1296,7 +1408,7 @@ export function buildBookLibrary(
     return result;
   }
 
-  const validMetadata = inventory.metadataFiles
+  const loadedMetadata = inventory.metadataFiles
     .map((filePath) => ({
       filePath,
       metadata: validateMetadataShape(readJson(filePath), filePath).metadata,
@@ -1308,6 +1420,17 @@ export function buildBookLibrary(
         entry.metadata !== null,
     )
     .sort((a, b) => a.metadata.slug.localeCompare(b.metadata.slug));
+  const draftMetadata = loadedMetadata.filter(({ metadata }) =>
+    isDraftMetadata(metadata),
+  );
+  const validMetadata = loadedMetadata.filter(
+    ({ metadata }) => !isDraftMetadata(metadata),
+  );
+  if (draftMetadata.length > 0) {
+    warnings.push(
+      `${draftMetadata.length} draft metadata file(s) skipped by books:build until manual review is complete.`,
+    );
+  }
 
   safeResetGeneratedRoot(generatedRoot, Boolean(options.generatedRoot));
 
@@ -1334,6 +1457,7 @@ export function buildBookLibrary(
       metadata,
       rawText,
       approvedPeopleResult.people,
+      bookApprovals.get(metadata.slug) ?? null,
       bookWarnings,
     );
     fatalErrors.push(...bookFatalErrors);

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "wood-folk-at-school",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Wood folk at school",
+  "author": [
+    "William J. Long"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "22101",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/22101",
+    "rawTextFile": "../Wood folk at school.txt",
+    "releaseDate": "July 19, 2007",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: lastUpdated, originalPublication, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Wood folk at school"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Wood folk at school",
+      "author": "William J. Long",
+      "language": "English",
+      "releaseDate": "July 19, 2007",
+      "lastUpdated": null,
+      "originalPublication": null,
+      "gutenbergEbookNumber": "22101",
+      "credits": "Produced by Marilynda Fraser-Cunliffe, LN Yaddanapudi and the Online Distributed Proofreading Team at http://www.pgdp.net",
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "lastUpdated",
+      "originalPublication",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: lastUpdated, originalPublication, translator, illustrator, editor."
+    ]
+  }
+}

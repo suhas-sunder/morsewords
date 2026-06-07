@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "slug": "les-miserables",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Les Misérables",
+  "author": [
+    "Victor Hugo"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "135",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/135",
+    "rawTextFile": "../Les Misérables.txt",
+    "releaseDate": "June 22, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Les Misérables"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Les Misérables",
+      "author": "Victor Hugo",
+      "language": "English",
+      "releaseDate": "June 22, 2008",
+      "lastUpdated": "October 29, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "135",
+      "credits": "Judith Boss and David Widger",
+      "translator": "Isabel Florence Hapgood",
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, illustrator, editor."
+    ]
+  }
+}

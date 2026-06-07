@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-federalist-papers",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Federalist Papers",
+  "author": [
+    "Alexander Hamilton John Jay James Madison"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "18",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/18",
+    "rawTextFile": "../The Federalist Papers.txt",
+    "releaseDate": "August 1, 1991",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Federalist Papers"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Federalist Papers",
+      "author": "Alexander Hamilton John Jay James Madison",
+      "language": "English",
+      "releaseDate": "August 1, 1991",
+      "lastUpdated": "October 11, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "18",
+      "credits": null,
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "credits",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+    ]
+  }
+}

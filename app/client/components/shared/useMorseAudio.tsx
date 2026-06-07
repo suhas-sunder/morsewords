@@ -61,6 +61,19 @@ export type PlayOptions = {
    * Defaults to true.
    */
   soundEnabled?: boolean;
+
+  /**
+   * Starts playback from an elapsed offset into the generated Morse event list.
+   * Used by preview timelines so audio and visual seeking share one clock.
+   */
+  startElapsedMs?: number;
+
+  /**
+   * Fired after the AudioContext is resumed and immediately before event timing
+   * begins. The timestamp uses performance.now() so visual previews can sync
+   * their clock to the audible tone scheduler.
+   */
+  onPlaybackStart?: (startedAtMs: number) => void;
 };
 
 export type RenderAudioOptions = Omit<
@@ -77,6 +90,7 @@ export type RenderWavOptions = RenderAudioOptions;
 
 type InternalPosition = {
   eventIndex: number;
+  eventOffsetMs: number;
 };
 
 function clamp(n: number, min: number, max: number) {
@@ -144,6 +158,7 @@ export default function useMorseAudio() {
 
   const posRef = React.useRef<InternalPosition>({
     eventIndex: 0,
+    eventOffsetMs: 0,
   });
 
   const liveOptsRef = React.useRef<PlayOptions | null>(null);
@@ -279,6 +294,31 @@ export default function useMorseAudio() {
 
   function getLiveOpts(fallback: PlayOptions) {
     return sanitizeOpts(liveOptsRef.current ?? fallback);
+  }
+
+  function startPositionFromElapsed(
+    events: MorseTimingEvent[],
+    elapsedMs: number,
+  ): InternalPosition {
+    const safeElapsed = Math.max(0, Number.isFinite(elapsedMs) ? elapsedMs : 0);
+    let cursorMs = 0;
+
+    for (let index = 0; index < events.length; index += 1) {
+      const eventDurationMs = Math.max(0, events[index].ms);
+      const eventEndMs = cursorMs + eventDurationMs;
+      if (safeElapsed < eventEndMs) {
+        return {
+          eventIndex: index,
+          eventOffsetMs: Math.max(0, safeElapsed - cursorMs),
+        };
+      }
+      cursorMs = eventEndMs;
+    }
+
+    return {
+      eventIndex: events.length,
+      eventOffsetMs: 0,
+    };
   }
 
   async function waitWhilePaused(sessionId: number) {
@@ -474,19 +514,22 @@ export default function useMorseAudio() {
 
       const event = events[i];
       posRef.current.eventIndex = i;
+      const eventOffsetMs = Math.max(0, posRef.current.eventOffsetMs);
+      posRef.current.eventOffsetMs = 0;
 
       if (event.type === "gap") {
         const live = getLiveOpts(baseOpts);
-        await sleep(playbackEventMs(event, live));
+        const dur = Math.max(0, playbackEventMs(event, live) - eventOffsetMs);
+        await sleep(dur);
         if (!isActiveSession(sessionId)) break;
-        posRef.current.eventIndex = i + 1;
+        posRef.current = { eventIndex: i + 1, eventOffsetMs: 0 };
         continue;
       }
 
       const live = getLiveOpts(baseOpts);
       applyMasterFromLive(live);
 
-      const dur = playbackEventMs(event, live);
+      const dur = Math.max(0, playbackEventMs(event, live) - eventOffsetMs);
       if (live.flash && isActiveSession(sessionId)) triggerFlash(dur);
 
       const audible = hasAudibleOutput(live);
@@ -513,7 +556,7 @@ export default function useMorseAudio() {
       }
 
       if (!isActiveSession(sessionId)) break;
-      posRef.current.eventIndex = i + 1;
+      posRef.current = { eventIndex: i + 1, eventOffsetMs: 0 };
     }
   }
 
@@ -528,16 +571,24 @@ export default function useMorseAudio() {
     pausedRef.current = false;
     playingRef.current = true;
     repeatRef.current = !!safeOpts.repeat;
-    posRef.current = { eventIndex: 0 };
+    posRef.current = startPositionFromElapsed(
+      buildMorseEvents(safeOpts.code, {
+        charWpm: safeOpts.wpm,
+        farnsworthWpm: safeOpts.farnsworthWpm,
+      }),
+      safeOpts.startElapsedMs ?? 0,
+    );
 
     setPlayerState("playing");
 
+    await ensureRunning();
     applyMasterFromLive(safeOpts);
+    safeOpts.onPlaybackStart?.(performance.now());
 
     do {
       await runOnce(sessionId, safeOpts);
       if (!isActiveSession(sessionId)) break;
-      posRef.current = { eventIndex: 0 };
+      posRef.current = { eventIndex: 0, eventOffsetMs: 0 };
       if (repeatRef.current) await sleep(160);
     } while (repeatRef.current && isActiveSession(sessionId));
 

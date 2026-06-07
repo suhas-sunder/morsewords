@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-water-babies",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+  "author": [
+    "Charles Kingsley"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "25564",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/25564",
+    "rawTextFile": "../the-water-babies.txt",
+    "releaseDate": "May 23, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Water-Babies: A Fairy Tale for a Land-Baby"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+      "author": "Charles Kingsley",
+      "language": "English",
+      "releaseDate": "May 23, 2008",
+      "lastUpdated": "November 27, 2024",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "25564",
+      "credits": "Produced by Juliet Sutherland, Emmy and the Online Distributed Proofreading Team at https://www.pgdp.net",
+      "translator": null,
+      "illustrator": "Warwick Goble",
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "translator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, translator, editor."
+    ]
+  }
+}

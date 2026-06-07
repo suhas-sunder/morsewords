@@ -98,7 +98,7 @@ export type BookExportProgress = {
 export type BookExportResultSummary = {
   filename: string;
   downloadKind: BookDownloadKind;
-  outputFormat: BookExportFormat | "webm";
+  outputFormat: BookExportFormat | "webm" | "mp4";
   partCount: number;
   runtimeLabel: string;
   sizeLabel: string;

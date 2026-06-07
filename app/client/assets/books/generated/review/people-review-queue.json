@@ -1,0 +1,2318 @@
+{
+  "schemaVersion": 1,
+  "summary": {
+    "people": 76,
+    "missingDeathYearEntries": 74,
+    "roles": {
+      "author": 45,
+      "translator": 10,
+      "editor": 5,
+      "illustrator": 13,
+      "introduction_author": 3
+    }
+  },
+  "people": [
+    {
+      "suggestedKey": "h-c-andersen",
+      "displayName": "H. C. Andersen",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-bell",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-elderbush",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-emperor-s-new-clothes",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-fir-tree",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-leap-frog",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-old-house",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-real-princess",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-shoes-of-fortune",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-snow-queen",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-swineherd",
+          "title": "Andersen's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 10,
+      "suggestedMetadataEntry": {
+        "name": "H. C. Andersen",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "e-nesbit",
+      "displayName": "E. Nesbit",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "new-treasure-seekers",
+          "title": "New Treasure Seekers; Or, The Bastable Children in Search of a Fortune",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-book-of-dragons",
+          "title": "The Book of Dragons",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-railway-children",
+          "title": "The Railway Children",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 3,
+      "suggestedMetadataEntry": {
+        "name": "E. Nesbit",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "l-frank-baum",
+      "displayName": "L. Frank Baum",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "rinkitink-in-oz",
+          "title": "Rinkitink in Oz",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-emerald-city-of-oz",
+          "title": "The Emerald City of Oz",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-wonderful-wizard-of-oz",
+          "title": "The Wonderful Wizard of Oz",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 3,
+      "suggestedMetadataEntry": {
+        "name": "L. Frank Baum",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "l-m-montgomery",
+      "displayName": "L. M. Montgomery",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "anne-of-green-gables",
+          "title": "Anne of Green Gables",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "anne-of-green-gables-gutenberg-45",
+          "title": "Anne of Green Gables",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "rainbow-valley",
+          "title": "Rainbow Valley",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 3,
+      "suggestedMetadataEntry": {
+        "name": "L. M. Montgomery",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "lewis-carroll",
+      "displayName": "Lewis Carroll",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "alices-adventures-in-wonderland",
+          "title": "Alice's Adventures in Wonderland",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "jabberwocky",
+          "title": "Jabberwocky",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "through-the-looking-glass",
+          "title": "Through the Looking-Glass",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 3,
+      "suggestedMetadataEntry": {
+        "name": "Lewis Carroll",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "robert-louis-stevenson",
+      "displayName": "Robert Louis Stevenson",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "a-childs-garden-of-verses",
+          "title": "A Child's Garden of Verses",
+          "role": "author",
+          "rightsStatus": "reject"
+        },
+        {
+          "slug": "dr-jekyll-and-mr-hyde",
+          "title": "The strange case of Dr. Jekyll and Mr. Hyde",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "treasure-island",
+          "title": "Treasure Island",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 3,
+      "suggestedMetadataEntry": {
+        "name": "Robert Louis Stevenson",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "active-6th-century-b-c-sunzi",
+      "displayName": "active 6th century B.C. Sunzi",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "sun-tzu-on-the-art-of-war",
+          "title": "Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-art-of-war",
+          "title": "The Art of War",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "active 6th century B.C. Sunzi",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "alexandre-dumas-auguste-maquet",
+      "displayName": "Alexandre Dumas Auguste Maquet",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-count-of-monte-cristo",
+          "title": "The Count of Monte Cristo",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-three-musketeers",
+          "title": "The three musketeers",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "Alexandre Dumas Auguste Maquet",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "constance-garnett",
+      "displayName": "Constance Garnett",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "anna-karenina",
+          "title": "Anna Karenina",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "crime-and-punishment",
+          "title": "Crime and Punishment",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "Constance Garnett",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "edgar-rice-burroughs",
+      "displayName": "Edgar Rice Burroughs",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "a-princess-of-mars",
+          "title": "A princess of Mars",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "tarzan-of-the-apes",
+          "title": "Tarzan of the Apes",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "Edgar Rice Burroughs",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "frances-hodgson-burnett",
+      "displayName": "Frances Hodgson Burnett",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-secret-garden",
+          "title": "The Secret Garden",
+          "role": "author",
+          "rightsStatus": "reject"
+        },
+        {
+          "slug": "the-secret-garden-gutenberg-113",
+          "title": "The Secret Garden",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "Frances Hodgson Burnett",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "jack-london",
+      "displayName": "Jack London",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-call-of-the-wild",
+          "title": "The call of the wild",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-sea-wolf",
+          "title": "The Sea-Wolf",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "Jack London",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "jane-austen",
+      "displayName": "Jane Austen",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "pride-and-prejudice",
+          "title": "Pride and Prejudice",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "sense-and-sensibility",
+          "title": "Sense and Sensibility",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "Jane Austen",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "lionel-giles",
+      "displayName": "Lionel Giles",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "sun-tzu-on-the-art-of-war",
+          "title": "Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-art-of-war",
+          "title": "The Art of War",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "Lionel Giles",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "louisa-may-alcott",
+      "displayName": "Louisa May Alcott",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "jack-and-jill",
+          "title": "Jack and Jill",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "little-women",
+          "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "Louisa May Alcott",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "these-words",
+      "displayName": "these words,",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-count-of-monte-cristo",
+          "title": "The Count of Monte Cristo",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        },
+        {
+          "slug": "the-count-of-monte-cristo-gutenberg-1184",
+          "title": "The Count of Monte Cristo",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 2,
+      "suggestedMetadataEntry": {
+        "name": "these words,",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "a",
+      "displayName": "a",
+      "rolesFound": [
+        "introduction_author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-federalist-papers",
+          "title": "The Federalist Papers",
+          "role": "introduction_author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "a",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "introduction_author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "alexander-hamilton-john-jay-james-madison",
+      "displayName": "Alexander Hamilton John Jay James Madison",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-federalist-papers",
+          "title": "The Federalist Papers",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Alexander Hamilton John Jay James Madison",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "bram-stoker",
+      "displayName": "Bram Stoker",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "dracula",
+          "title": "Dracula",
+          "role": "author",
+          "rightsStatus": "reject"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Bram Stoker",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "charles-dickens",
+      "displayName": "Charles Dickens",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "a-christmas-carol",
+          "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Charles Dickens",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "charles-kingsley",
+      "displayName": "Charles Kingsley",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-water-babies",
+          "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Charles Kingsley",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "charlotte-bronte",
+      "displayName": "Charlotte Brontë",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "jane-eyre",
+          "title": "Jane Eyre: An Autobiography",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Charlotte Brontë",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "dante-alighieri",
+      "displayName": "Dante Alighieri",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-divine-comedy",
+          "title": "The divine comedy",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Dante Alighieri",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "ednah-d",
+      "displayName": "Ednah D",
+      "rolesFound": [
+        "editor"
+      ],
+      "booksAffected": [
+        {
+          "slug": "little-women",
+          "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+          "role": "editor",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Ednah D",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "editor"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "elisabeth-p-stork",
+      "displayName": "Elisabeth P. Stork",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "heidi",
+          "title": "Heidi",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Elisabeth P. Stork",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "f-h-townsend",
+      "displayName": "F. H. Townsend",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "jane-eyre",
+          "title": "Jane Eyre: An Autobiography",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "F. H. Townsend",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "f-scott-fitzgerald",
+      "displayName": "F. Scott Fitzgerald",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-great-gatsby",
+          "title": "The Great Gatsby",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "F. Scott Fitzgerald",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "frances-jenkins-olcott",
+      "displayName": "Frances Jenkins Olcott",
+      "rolesFound": [
+        "editor"
+      ],
+      "booksAffected": [
+        {
+          "slug": "grimm-s-fairy-tales",
+          "title": "Grimm's Fairy Tales",
+          "role": "editor",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Frances Jenkins Olcott",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "editor"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "frank-t-merrill",
+      "displayName": "Frank T. Merrill",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "little-women",
+          "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Frank T. Merrill",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "fyodor-dostoyevsky",
+      "displayName": "Fyodor Dostoyevsky",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "crime-and-punishment",
+          "title": "Crime and Punishment",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Fyodor Dostoyevsky",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "george-m-towle",
+      "displayName": "George M. Towle",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "around-the-world-in-eighty-days",
+          "title": "Around the World in Eighty Days",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "George M. Towle",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "george-macdonald",
+      "displayName": "George MacDonald",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-princess-and-the-goblin",
+          "title": "The Princess and the Goblin",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "George MacDonald",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "graf-leo-tolstoy",
+      "displayName": "graf Leo Tolstoy",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "anna-karenina",
+          "title": "Anna Karenina",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "graf Leo Tolstoy",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "gustave-dore",
+      "displayName": "Gustave Doré",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-divine-comedy",
+          "title": "The divine comedy",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Gustave Doré",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "henry-francis-cary",
+      "displayName": "Henry Francis Cary",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-divine-comedy",
+          "title": "The divine comedy",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Henry Francis Cary",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "herbert-granville-fell",
+      "displayName": "Herbert Granville Fell",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-book-of-dragons",
+          "title": "The Book of Dragons",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Herbert Granville Fell",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "hugh-lofting",
+      "displayName": "Hugh Lofting",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "doctor-dolittle",
+          "title": "The Story of Doctor Dolittle",
+          "role": "author",
+          "rightsStatus": "reject"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Hugh Lofting",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "isabel-florence-hapgood",
+      "displayName": "Isabel Florence Hapgood",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "les-miserables",
+          "title": "Les Misérables",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Isabel Florence Hapgood",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "j-m-barrie",
+      "displayName": "J. M. Barrie",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "peter-pan",
+          "title": "Peter Pan [Peter and Wendy]",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "J. M. Barrie",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "jacob-grimm-wilhelm-grimm",
+      "displayName": "Jacob Grimm Wilhelm Grimm",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "grimm-s-fairy-tales",
+          "title": "Grimm's Fairy Tales",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Jacob Grimm Wilhelm Grimm",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "jessie-willcox-smith",
+      "displayName": "Jessie Willcox Smith",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "a-childs-garden-of-verses",
+          "title": "A Child's Garden of Verses",
+          "role": "illustrator",
+          "rightsStatus": "reject"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Jessie Willcox Smith",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "joel-chandler-harris",
+      "displayName": "Joel Chandler Harris",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "nights-with-uncle-remus",
+          "title": "Nights With Uncle Remus",
+          "role": "author",
+          "rightsStatus": "reject"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Joel Chandler Harris",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "johanna-spyri",
+      "displayName": "Johanna Spyri",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "heidi",
+          "title": "Heidi",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Johanna Spyri",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "john-buchan",
+      "displayName": "John Buchan",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-thirty-nine-steps",
+          "title": "The Thirty-Nine Steps",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "John Buchan",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "john-leech",
+      "displayName": "John Leech",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "a-christmas-carol",
+          "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "John Leech",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "john-ormsby",
+      "displayName": "John Ormsby",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "don-quixote",
+          "title": "Don Quixote",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "John Ormsby",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "john-r-neill",
+      "displayName": "John R. Neill",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "rinkitink-in-oz",
+          "title": "Rinkitink in Oz",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "John R. Neill",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "jonathan-swift",
+      "displayName": "Jonathan Swift",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "gulliver-s-travels",
+          "title": "Gulliver's Travels into Several Remote Nations of the World",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Jonathan Swift",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "jules-verne",
+      "displayName": "Jules Verne",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "around-the-world-in-eighty-days",
+          "title": "Around the World in Eighty Days",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Jules Verne",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "kate-douglas-smith-wiggin",
+      "displayName": "Kate Douglas Smith Wiggin",
+      "rolesFound": [
+        "editor"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-arabian-nights",
+          "title": "The Arabian Nights: Their Best-known Tales",
+          "role": "editor",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Kate Douglas Smith Wiggin",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "editor"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "kate-douglas-wiggin",
+      "displayName": "KATE DOUGLAS WIGGIN",
+      "rolesFound": [
+        "editor"
+      ],
+      "booksAffected": [
+        {
+          "slug": "a-childs-garden-of-verses",
+          "title": "A Child's Garden of Verses",
+          "role": "editor",
+          "rightsStatus": "reject"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "KATE DOUGLAS WIGGIN",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "editor"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "kenneth-grahame",
+      "displayName": "Kenneth Grahame",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "wind-in-the-willows",
+          "title": "The Wind in the Willows",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Kenneth Grahame",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "louis-rhead",
+      "displayName": "Louis Rhead",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "treasure-island",
+          "title": "Treasure Island",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Louis Rhead",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "margaret-hunt-introduction-by-andrew-lang-bohn-library",
+      "displayName": "Margaret Hunt, introduction by Andrew Lang, Bohn Library",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "grimm-s-fairy-tales",
+          "title": "Grimm's Fairy Tales",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Margaret Hunt, introduction by Andrew Lang, Bohn Library",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "margaret-sidney",
+      "displayName": "Margaret Sidney",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "five-little-peppers-and-how-they-grew",
+          "title": "Five Little Peppers and How They Grew",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Margaret Sidney",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "maria-louise-kirk",
+      "displayName": "Maria Louise Kirk",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "heidi",
+          "title": "Heidi",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Maria Louise Kirk",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "mary-wollstonecraft-shelley",
+      "displayName": "Mary Wollstonecraft Shelley",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "frankenstein",
+          "title": "Frankenstein; or, the modern prometheus",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Mary Wollstonecraft Shelley",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "maxfield-parrish",
+      "displayName": "Maxfield Parrish",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-arabian-nights",
+          "title": "The Arabian Nights: Their Best-known Tales",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Maxfield Parrish",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "miguel-de-cervantes-saavedra",
+      "displayName": "Miguel de Cervantes Saavedra",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "don-quixote",
+          "title": "Don Quixote",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Miguel de Cervantes Saavedra",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "milo-winter",
+      "displayName": "Milo Winter",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "nights-with-uncle-remus",
+          "title": "Nights With Uncle Remus",
+          "role": "illustrator",
+          "rightsStatus": "reject"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Milo Winter",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "oscar-wilde",
+      "displayName": "Oscar Wilde",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-picture-of-dorian-gray",
+          "title": "The Picture of Dorian Gray",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Oscar Wilde",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "philip-littell",
+      "displayName": "PHILIP LITTELL",
+      "rolesFound": [
+        "introduction_author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "candide",
+          "title": "Candide",
+          "role": "introduction_author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "PHILIP LITTELL",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "introduction_author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "rie-cramer",
+      "displayName": "Rie Cramer",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "grimm-s-fairy-tales",
+          "title": "Grimm's Fairy Tales",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Rie Cramer",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "rudyard-kipling",
+      "displayName": "Rudyard Kipling",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-jungle-book",
+          "title": "The Jungle Book",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Rudyard Kipling",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "soseki-natsume",
+      "displayName": "Soseki Natsume",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "botchan",
+          "title": "Botchan (Master Darling)",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Soseki Natsume",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "the-folk-lorist-andrew-lang",
+      "displayName": "the folk-lorist, Andrew Lang",
+      "rolesFound": [
+        "introduction_author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "grimm-s-fairy-tales",
+          "title": "Grimm's Fairy Tales",
+          "role": "introduction_author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "the folk-lorist, Andrew Lang",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "introduction_author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "the-king-he-took-cervantes-with-him-as-his-camarero",
+      "displayName": "the King, he took Cervantes with him as his camarero",
+      "rolesFound": [
+        "editor"
+      ],
+      "booksAffected": [
+        {
+          "slug": "don-quixote",
+          "title": "Don Quixote",
+          "role": "editor",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "the King, he took Cervantes with him as his camarero",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "editor"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "victor-hugo",
+      "displayName": "Victor Hugo",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "les-miserables",
+          "title": "Les Misérables",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Victor Hugo",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "voltaire",
+      "displayName": "Voltaire",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "candide",
+          "title": "Candide",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Voltaire",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "warwick-goble",
+      "displayName": "Warwick Goble",
+      "rolesFound": [
+        "illustrator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-water-babies",
+          "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+          "role": "illustrator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Warwick Goble",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "illustrator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "washington-irving",
+      "displayName": "Washington Irving",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-legend-of-sleepy-hollow",
+          "title": "The Legend of Sleepy Hollow",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Washington Irving",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "william-j-long",
+      "displayName": "William J. Long",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "wood-folk-at-school",
+          "title": "Wood folk at school",
+          "role": "author",
+          "rightsStatus": "reject"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "William J. Long",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "william-strunk",
+      "displayName": "William Strunk",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-elements-of-style",
+          "title": "The Elements of Style",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "William Strunk",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "yasotaro-mori",
+      "displayName": "Yasotaro Mori",
+      "rolesFound": [
+        "translator"
+      ],
+      "booksAffected": [
+        {
+          "slug": "botchan",
+          "title": "Botchan (Master Darling)",
+          "role": "translator",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 1,
+      "suggestedMetadataEntry": {
+        "name": "Yasotaro Mori",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "translator"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "anna-sewell",
+      "displayName": "Anna Sewell",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "black-beauty",
+          "title": "Black Beauty The autobiography of a horse",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 0,
+      "suggestedMetadataEntry": {
+        "name": "Anna Sewell",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
+      }
+    },
+    {
+      "suggestedKey": "h-p-lovecraft",
+      "displayName": "H. P. Lovecraft",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "the-call-of-cthulhu",
+          "title": "The call of Cthulhu",
+          "role": "author",
+          "rightsStatus": "needs_manual_review"
+        }
+      ],
+      "approvedMetadataFound": true,
+      "knownDeathYear": 1937,
+      "missingDeathYearCount": 0,
+      "suggestedMetadataEntry": {
+        "name": "H. P. Lovecraft",
+        "deathYear": 1937,
+        "canadaLifePlus70Safe": true,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Use original Lovecraft-authored texts only. Avoid later Cthulhu Mythos material."
+      }
+    }
+  ]
+}

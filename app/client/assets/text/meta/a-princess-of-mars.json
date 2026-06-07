@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "a-princess-of-mars",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "A princess of Mars",
+  "author": [
+    "Edgar Rice Burroughs"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "62",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/62",
+    "rawTextFile": "../a-princess-of-mars.txt",
+    "releaseDate": "April 1, 1993",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for A princess of Mars"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "A princess of Mars",
+      "author": "Edgar Rice Burroughs",
+      "language": "English",
+      "releaseDate": "April 1, 1993",
+      "lastUpdated": "January 12, 2025",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "62",
+      "credits": null,
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "credits",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+    ]
+  }
+}

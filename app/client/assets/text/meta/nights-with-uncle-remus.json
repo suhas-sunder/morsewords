@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "nights-with-uncle-remus",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Nights With Uncle Remus",
+  "author": [
+    "Joel Chandler Harris"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "24430",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/24430",
+    "rawTextFile": "../nights-with-uncle-remus.txt",
+    "releaseDate": "January 26, 2008",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: lastUpdated, originalPublication, translator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Nights With Uncle Remus"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Nights With Uncle Remus",
+      "author": "Joel Chandler Harris",
+      "language": "English",
+      "releaseDate": "January 26, 2008",
+      "lastUpdated": null,
+      "originalPublication": null,
+      "gutenbergEbookNumber": "24430",
+      "credits": "Produced by Juliet Sutherland, Jacqueline Jeremy and the Online Distributed Proofreading Team at http://www.pgdp.net",
+      "translator": null,
+      "illustrator": "Milo Winter",
+      "editor": null
+    },
+    "missingFields": [
+      "lastUpdated",
+      "originalPublication",
+      "translator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: lastUpdated, originalPublication, translator, editor."
+    ]
+  }
+}

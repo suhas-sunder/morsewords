@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "sense-and-sensibility",
+  "metadataStatus": "draft",
+  "manualReviewRequired": true,
+  "title": "Sense and Sensibility",
+  "author": [
+    "Jane Austen"
+  ],
+  "language": "en",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "161",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/161",
+    "rawTextFile": "../Sense and Sensibility.txt",
+    "releaseDate": "September 1, 1994",
+    "rawTextUrl": null,
+    "rightsBasis": "unknown",
+    "rightsReviewed": false,
+    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Sense and Sensibility"
+  },
+  "description": "",
+  "subjects": [],
+  "originalPublicationYear": null,
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sectionOverrides": [],
+  "cleanupRules": [],
+  "scaffold": {
+    "extractionConfidence": "gutenberg-header",
+    "extracted": {
+      "title": "Sense and Sensibility",
+      "author": "Jane Austen",
+      "language": "English",
+      "releaseDate": "September 1, 1994",
+      "lastUpdated": "March 16, 2021",
+      "originalPublication": null,
+      "gutenbergEbookNumber": "161",
+      "credits": null,
+      "translator": null,
+      "illustrator": null,
+      "editor": null
+    },
+    "missingFields": [
+      "originalPublication",
+      "credits",
+      "translator",
+      "illustrator",
+      "editor"
+    ],
+    "warnings": [
+      "Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+    ]
+  }
+}
