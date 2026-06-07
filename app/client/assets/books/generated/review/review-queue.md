@@ -8,7 +8,7 @@
 - Rejected: 7
 - Processing allowed: 0
 - Processing blocked: 74
-- Missing author death year: 69
+- Missing author death year: 67
 - Translator/editor/intro review: 18
 - Duplicate Gutenberg group books: 14
 - Approval candidates: 52

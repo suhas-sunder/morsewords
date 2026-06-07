@@ -20,7 +20,7 @@
     "rejected": 7,
     "processingAllowed": 0,
     "processingBlocked": 74,
-    "booksWithMissingAuthorDeathYear": 69,
+    "booksWithMissingAuthorDeathYear": 67,
     "booksWithTranslatorEditorOrIntroReview": 18,
     "booksInDuplicateGutenbergGroups": 14,
     "approvalCandidates": 52,
@@ -46,11 +46,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -250,10 +250,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -347,10 +347,10 @@
       "processingAllowed": false,
       "rejectionOrManualReviewReasons": [
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
         "Illustrations or image references need manual handling.",
-        "Edition or editorial status needs manual review."
+        "Edition or editorial status needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing."
       ],
       "missingFields": [
         "approved author death year",
@@ -438,11 +438,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -543,8 +543,7 @@
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing.",
-        "Duplicate Gutenberg ID requires explicit review before processing or publishing."
+        "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
         "approved author death year",
@@ -647,7 +646,7 @@
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
-        "Duplicate Gutenberg ID requires explicit review before processing or publishing."
+        "Duplicate Gutenberg ID alternate blocked; deterministic file match selected the normalized title slug."
       ],
       "missingFields": [
         "approved author death year",
@@ -746,11 +745,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -942,10 +941,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -1042,12 +1041,12 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Transcriber notes remain in cleaned story text.",
         "Content brand-safety risk needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -1146,10 +1145,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -1246,16 +1245,14 @@
         "Later copyright notice was detected.",
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
-        "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
         "originalPublication",
@@ -1269,9 +1266,9 @@
         "authors": [
           {
             "name": "Hugh Lofting",
-            "deathYear": null,
+            "deathYear": 1920,
             "approvedMetadataFound": false,
-            "status": "death_year_missing"
+            "status": "manual_review_required"
           }
         ]
       },
@@ -1322,7 +1319,6 @@
       "nextAction": "Reject or remove modern/permission-based text.",
       "nextActions": [
         "Reject or remove modern/permission-based text.",
-        "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Review later copyright notice.",
         "Review illustration/image references.",
@@ -1350,11 +1346,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -1845,12 +1841,12 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -1949,8 +1945,6 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "rejectionOrManualReviewReasons": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
@@ -1961,7 +1955,6 @@
         "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
@@ -2049,13 +2042,13 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -2254,10 +2247,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -2353,10 +2346,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -2453,11 +2446,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -2555,11 +2548,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -2659,11 +2652,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -2761,12 +2754,12 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
         "Content brand-safety risk needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -2867,10 +2860,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Edition or editorial status needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Edition or editorial status needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -2965,10 +2958,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -3064,10 +3057,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -3163,10 +3156,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -3263,10 +3256,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -3360,12 +3353,12 @@
       "processingAllowed": false,
       "rejectionOrManualReviewReasons": [
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -3460,12 +3453,12 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Illustrations or image references need manual handling.",
         "Trademark or character brand risk needs manual review.",
         "Content brand-safety risk needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -3562,10 +3555,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -3655,11 +3648,11 @@
       "processingAllowed": false,
       "rejectionOrManualReviewReasons": [
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Modern introduction, notes, or editorial material may be present.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Modern introduction, notes, or editorial material may be present.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -3864,10 +3857,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -3961,11 +3954,11 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "rejectionOrManualReviewReasons": [
+        "Transcriber notes remain in cleaned story text.",
+        "Content brand-safety risk needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Content brand-safety risk needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -4154,10 +4147,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
       ],
@@ -4260,10 +4253,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing.",
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
       ],
@@ -4359,11 +4352,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -4573,10 +4566,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -4880,11 +4873,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Modern introduction, notes, or editorial material may be present.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Modern introduction, notes, or editorial material may be present.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -5186,7 +5179,7 @@
       "processingAllowed": false,
       "rejectionOrManualReviewReasons": [
         "Source provider is not Project Gutenberg.",
-        "Missing metadata Gutenberg ID.",
+        "Missing Project Gutenberg ID in metadata or source file.",
         "Project Gutenberg start marker was not found.",
         "Project Gutenberg license/reuse language was not detected.",
         "U.S.",
@@ -5198,10 +5191,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -6109,8 +6102,6 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "rejectionOrManualReviewReasons": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
@@ -6121,7 +6112,6 @@
         "approved author death year",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
@@ -6210,12 +6200,12 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -6411,7 +6401,6 @@
       "rejectionOrManualReviewReasons": [
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
@@ -6419,7 +6408,6 @@
         "Duplicate Gutenberg ID requires explicit review before processing or publishing."
       ],
       "missingFields": [
-        "approved author death year",
         "duplicate Gutenberg ID resolution",
         "manualReviewRequired false",
         "metadataStatus reviewed",
@@ -6434,9 +6422,9 @@
         "authors": [
           {
             "name": "H. C. Andersen",
-            "deathYear": null,
+            "deathYear": 1482,
             "approvedMetadataFound": false,
-            "status": "death_year_missing"
+            "status": "manual_review_required"
           }
         ]
       },
@@ -6498,7 +6486,6 @@
       "nextAction": "Review duplicate Gutenberg ID group.",
       "nextActions": [
         "Review duplicate Gutenberg ID group.",
-        "Add approved author death year metadata.",
         "Add original publication metadata.",
         "Complete manual rights review metadata.",
         "Add owner-reviewed book approval before processing.",
@@ -6745,10 +6732,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -6938,13 +6925,11 @@
       "currentStatus": "needs_manual_review",
       "processingAllowed": false,
       "rejectionOrManualReviewReasons": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -6952,7 +6937,6 @@
         "illustrator handling review",
         "manualReviewRequired false",
         "metadataStatus reviewed",
-        "originalPublication",
         "originalPublicationYear",
         "owner-reviewed website approval",
         "source.rightsBasis",
@@ -7041,10 +7025,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -7140,11 +7124,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Edition or editorial status needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Edition or editorial status needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -7338,10 +7322,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [
@@ -7438,11 +7422,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "missingFields": [

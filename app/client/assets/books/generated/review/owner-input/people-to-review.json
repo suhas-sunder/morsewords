@@ -542,21 +542,6 @@
       "notes": ""
     },
     {
-      "suggestedSlug": "hugh-lofting",
-      "displayName": "Hugh Lofting",
-      "roles": "author",
-      "affectedBooks": "doctor-dolittle (author)",
-      "currentStatus": "needs owner review",
-      "missingFields": "deathYear; canadaLifePlus70Safe; reviewedByOwner",
-      "nextAction": "Fill verified deathYear/sourceNotes and set reviewedByOwner true.",
-      "reviewedByOwner": false,
-      "deathYear": "",
-      "canadaLifePlus70Safe": "",
-      "reviewDate": "",
-      "sourceNotes": "",
-      "notes": ""
-    },
-    {
       "suggestedSlug": "isabel-florence-hapgood",
       "displayName": "Isabel Florence Hapgood",
       "roles": "translator",
@@ -1132,6 +1117,21 @@
       "roles": "author",
       "affectedBooks": "the-call-of-cthulhu (author)",
       "currentStatus": "approved metadata found",
+      "missingFields": "reviewedByOwner",
+      "nextAction": "Fill verified deathYear/sourceNotes and set reviewedByOwner true.",
+      "reviewedByOwner": false,
+      "deathYear": "",
+      "canadaLifePlus70Safe": "",
+      "reviewDate": "",
+      "sourceNotes": "",
+      "notes": ""
+    },
+    {
+      "suggestedSlug": "hugh-lofting",
+      "displayName": "Hugh Lofting",
+      "roles": "author",
+      "affectedBooks": "doctor-dolittle (author)",
+      "currentStatus": "needs owner review",
       "missingFields": "reviewedByOwner",
       "nextAction": "Fill verified deathYear/sourceNotes and set reviewedByOwner true.",
       "reviewedByOwner": false,

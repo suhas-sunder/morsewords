@@ -1000,8 +1000,9 @@ Third chapter.
     const draftReport = readJsonFile<BookRightsReport>(
       path.join(generatedRoot, "draft-rights", "rights_report.json"),
     );
-    expect(draftReport.canada_us_v1_status).toBe("needs_manual_review");
-    expect(draftReport.processing_allowed).toBe(false);
+    expect(draftReport.canada_us_v1_status).toBe("approved");
+    expect(draftReport.approval_source).toBe("file-evidence");
+    expect(draftReport.processing_allowed).toBe(true);
     expect(
       fs.existsSync(path.join(generatedRoot, "draft-rights", "processed_book.json")),
     ).toBe(false);
@@ -1076,10 +1077,10 @@ Third chapter.
       };
     }>(path.join(generatedRoot, "review-report.json"));
     expect(reviewReport.totalMetadataBooks).toBe(9);
-    expect(reviewReport.statusCounts.approved).toBe(1);
-    expect(reviewReport.statusCounts.needsManualReview).toBe(5);
+    expect(reviewReport.statusCounts.approved).toBe(2);
+    expect(reviewReport.statusCounts.needsManualReview).toBe(4);
     expect(reviewReport.statusCounts.rejected).toBe(3);
-    expect(reviewReport.processingAllowed).toBe(1);
+    expect(reviewReport.processingAllowed).toBe(2);
     expect(reviewReport.duplicateGutenbergIds).toEqual([
       expect.objectContaining({
         gutenbergId: "2077",
@@ -1467,24 +1468,24 @@ Third chapter.
     expect(fs.existsSync(result.paths.json)).toBe(true);
     expect(fs.existsSync(result.paths.markdown)).toBe(true);
     expect(result.report.summary.totalBooks).toBe(2);
-    expect(result.report.summary.processingAllowed).toBe(0);
-    expect(result.report.summary.publishReady).toBe(0);
+    expect(result.report.summary.processingAllowed).toBe(1);
+    expect(result.report.summary.publishReady).toBe(1);
     expect(result.report.summary.existingFileEvidenceMayBeEnough).toBe(1);
-    expect(result.report.summary.ownerApprovalStillRequired).toBe(2);
+    expect(result.report.summary.ownerApprovalStillRequired).toBe(1);
     expect(result.report.summary.missingAuthorDeathYear).toBe(1);
 
     const evidence = result.report.candidates.find(
       (candidate) => candidate.slug === "candidate-evidence",
     );
     expect(evidence).toMatchObject({
-      currentStatus: "needs_manual_review",
+      currentStatus: "approved",
       duplicateGutenbergIssue: false,
       existingFileEvidenceMayBeEnough: true,
       missingAuthorDeathYear: false,
       originalPublicationIssue: false,
-      ownerApprovalStillRequired: true,
-      processingAllowed: false,
-      publishReady: false,
+      ownerApprovalStillRequired: false,
+      processingAllowed: true,
+      publishReady: true,
       sourceUrlPresent: true,
     });
     const missingPerson = result.report.candidates.find(
@@ -2006,6 +2007,233 @@ Project Gutenberg License
     );
   });
 
+  test("file evidence approval extracts explicit author lifespan and original publication", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("file-evidence-library");
+    const generatedRoot = testInfo.outputPath("file-evidence-generated");
+    const slug = "file-evidence-safe";
+    writeBookApprovals(textRoot, []);
+    writeFixtureBook(
+      textRoot,
+      slug,
+      gutenbergFixtureText({
+        title: "File Evidence Safe",
+        author: "File Evidence Author (1850-1910)",
+        gutenbergId: "6101",
+        extraHeader: "Original publication: United States: Example Publisher, 1900",
+        body: "CHAPTER I\n\nFILE EVIDENCE STORY TEXT.",
+      }),
+      {
+        ...baseMetadata(slug),
+        metadataStatus: "draft",
+        manualReviewRequired: true,
+        title: "File Evidence Safe",
+        author: ["File Evidence Author"],
+        originalPublicationYear: null,
+        source: {
+          ...baseMetadata(slug).source,
+          gutenbergId: null,
+          rightsBasis: "unknown",
+          rightsReviewed: false,
+        },
+      },
+    );
+
+    const result = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      bookApprovalsPath: path.join(textRoot, "approved-metadata", "book-approvals.json"),
+      generatedRoot,
+      quiet: true,
+    });
+
+    expect(result.fatalErrors).toEqual([]);
+    expect(result.processedBooks.map((book) => book.slug)).toEqual([slug]);
+    expect(result.processedBooks[0].source).toMatchObject({
+      gutenbergId: "6101",
+      sourceUrl: "https://www.gutenberg.org/ebooks/6101",
+      rightsReviewed: false,
+      rightsBasis: "public-domain-us",
+      publishReady: true,
+      processingAllowed: true,
+      approvalSource: "file-evidence",
+    });
+
+    const report = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, slug, "rights_report.json"),
+    );
+    expect(report.author).toBe("File Evidence Author");
+    expect(report.author_death_year).toBe(1910);
+    expect(report.original_publication).toContain("1900");
+    expect(report.owner_reviewed_approval_present).toBe(false);
+    expect(report.approval_source).toBe("file-evidence");
+    expect(report.approved_for_website).toBe(true);
+    expect(fs.existsSync(path.join(generatedRoot, slug, "processed_book.json"))).toBe(
+      true,
+    );
+  });
+
+  test("file evidence approval keeps missing death year and translator death year blocked", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("file-evidence-blocked-library");
+    const generatedRoot = testInfo.outputPath("file-evidence-blocked-generated");
+    writeBookApprovals(textRoot, []);
+    writeFixtureBook(
+      textRoot,
+      "missing-file-death",
+      gutenbergFixtureText({
+        title: "Missing File Death",
+        author: "Missing Death Author",
+        gutenbergId: "6201",
+        extraHeader: "Original publication: United States: Example Publisher, 1900",
+      }),
+      {
+        ...baseMetadata("missing-file-death"),
+        metadataStatus: "draft",
+        manualReviewRequired: true,
+        title: "Missing File Death",
+        author: ["Missing Death Author"],
+        originalPublicationYear: null,
+        source: {
+          ...baseMetadata("missing-file-death").source,
+          gutenbergId: "6201",
+          rightsBasis: "unknown",
+          rightsReviewed: false,
+        },
+      },
+    );
+    writeFixtureBook(
+      textRoot,
+      "missing-translator-death",
+      gutenbergFixtureText({
+        title: "Missing Translator Death",
+        author: "Translated Author (1850-1910)",
+        gutenbergId: "6202",
+        extraHeader:
+          "Original publication: United States: Example Publisher, 1900\nTranslator: Unverified Translator",
+      }),
+      {
+        ...baseMetadata("missing-translator-death"),
+        metadataStatus: "draft",
+        manualReviewRequired: true,
+        title: "Missing Translator Death",
+        author: ["Translated Author"],
+        originalPublicationYear: null,
+        source: {
+          ...baseMetadata("missing-translator-death").source,
+          gutenbergId: "6202",
+          rightsBasis: "unknown",
+          rightsReviewed: false,
+        },
+      },
+    );
+
+    const rights = generateBookRightsReports({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      bookApprovalsPath: path.join(textRoot, "approved-metadata", "book-approvals.json"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(rights.fatalErrors).toEqual([]);
+
+    const missingDeath = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "missing-file-death", "rights_report.json"),
+    );
+    expect(missingDeath.author_death_year).toBeNull();
+    expect(missingDeath.canada_us_v1_status).toBe("needs_manual_review");
+    expect(missingDeath.approval_source).toBe("manual-review");
+    expect(missingDeath.processing_allowed).toBe(false);
+
+    const missingTranslator = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "missing-translator-death", "rights_report.json"),
+    );
+    expect(missingTranslator.author_death_year).toBe(1910);
+    expect(missingTranslator.translator).toBe("Unverified Translator");
+    expect(missingTranslator.translator_death_year).toBeNull();
+    expect(missingTranslator.translation_risk).toBe("medium");
+    expect(missingTranslator.processing_allowed).toBe(false);
+  });
+
+  test("deterministic duplicate file match keeps one canonical slug eligible", ({
+  }, testInfo) => {
+    const textRoot = testInfo.outputPath("file-evidence-duplicates-library");
+    const generatedRoot = testInfo.outputPath("file-evidence-duplicates-generated");
+    writeBookApprovals(textRoot, []);
+    const rawText = gutenbergFixtureText({
+      title: "Canonical Duplicate",
+      author: "Duplicate File Author (1850-1910)",
+      gutenbergId: "6301",
+      extraHeader: "Original publication: United States: Example Publisher, 1900",
+      body: "CHAPTER I\n\nCANONICAL DUPLICATE STORY TEXT.",
+    });
+    const metadata = {
+      ...baseMetadata("canonical-duplicate"),
+      metadataStatus: "draft",
+      manualReviewRequired: true,
+      title: "Canonical Duplicate",
+      author: ["Duplicate File Author"],
+      originalPublicationYear: null,
+      source: {
+        ...baseMetadata("canonical-duplicate").source,
+        gutenbergId: "6301",
+        rightsBasis: "unknown",
+        rightsReviewed: false,
+      },
+    } satisfies BookMetadata;
+    writeFixtureBook(textRoot, "canonical-duplicate", rawText, metadata);
+    writeFixtureBook(textRoot, "canonical-duplicate-gutenberg-6301", rawText, {
+      ...metadata,
+      slug: "canonical-duplicate-gutenberg-6301",
+      source: {
+        ...metadata.source,
+        rawTextFile: "../raw/canonical-duplicate-gutenberg-6301.txt",
+      },
+    });
+
+    const rights = generateBookRightsReports({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      bookApprovalsPath: path.join(textRoot, "approved-metadata", "book-approvals.json"),
+      generatedRoot,
+      quiet: true,
+    });
+    expect(rights.fatalErrors).toEqual([]);
+
+    const canonicalReport = readJsonFile<BookRightsReport>(
+      path.join(generatedRoot, "canonical-duplicate", "rights_report.json"),
+    );
+    const alternateReport = readJsonFile<BookRightsReport>(
+      path.join(
+        generatedRoot,
+        "canonical-duplicate-gutenberg-6301",
+        "rights_report.json",
+      ),
+    );
+    expect(canonicalReport.approval_source).toBe("file-evidence");
+    expect(canonicalReport.duplicate_resolution_source).toBe(
+      "deterministic-file-match",
+    );
+    expect(canonicalReport.processing_allowed).toBe(true);
+    expect(alternateReport.approval_source).toBe("manual-review");
+    expect(alternateReport.duplicate_resolution_source).toBe(
+      "deterministic-file-match",
+    );
+    expect(alternateReport.processing_allowed).toBe(false);
+
+    const build = buildBookLibrary({
+      textRoot,
+      metadataRoot: path.join(textRoot, "meta"),
+      bookApprovalsPath: path.join(textRoot, "approved-metadata", "book-approvals.json"),
+      generatedRoot: testInfo.outputPath("file-evidence-duplicates-build-generated"),
+      quiet: true,
+    });
+    expect(build.fatalErrors).toEqual([]);
+    expect(build.processedBooks.map((book) => book.slug)).toEqual([
+      "canonical-duplicate",
+    ]);
+  });
+
   test("Cloudflare export contains approved cleaned content only and no media", ({
   }, testInfo) => {
     const textRoot = testInfo.outputPath("cloudflare-export-library");
@@ -2068,12 +2296,14 @@ Project Gutenberg License
       "manual-cloudflare",
       gutenbergFixtureText({
         title: "Manual Cloudflare",
+        author: "Manual Cloudflare Author",
         gutenbergId: "5202",
         extraHeader: "Original publication: 1900",
         body: "CHAPTER I\n\nMANUAL REVIEW RAW TEXT MUST NOT LEAK.",
       }),
       approvedMetadata("manual-cloudflare", {
         title: "Manual Cloudflare",
+        author: ["Manual Cloudflare Author"],
         originalPublicationYear: 1900,
         source: {
           ...approvedMetadata("manual-cloudflare").source,
@@ -2156,7 +2386,7 @@ Project Gutenberg License
     );
   });
 
-  test("rights gate keeps missing source IDs and missing death-year evidence out of publish-ready state", ({
+  test("rights gate extracts source IDs from files and keeps missing death-year evidence blocked", ({
   }, testInfo) => {
     const missingId = buildSingleFixture({
       testInfo,
@@ -2176,9 +2406,10 @@ Project Gutenberg License
         "utf8",
       ),
     ) as BookRightsReport;
-    expect(missingIdReport.source_url).toBeNull();
-    expect(missingIdReport.canada_us_v1_status).toBe("needs_manual_review");
-    expect(missingId.result.processedBooks[0].source.publishReady).toBe(false);
+    expect(missingIdReport.gutenberg_ebook_number).toBe("1001");
+    expect(missingIdReport.source_url).toBe("https://www.gutenberg.org/ebooks/1001");
+    expect(missingIdReport.canada_us_v1_status).toBe("approved");
+    expect(missingId.result.processedBooks[0].source.publishReady).toBe(true);
 
     const missingDeathYear = buildSingleFixture({
       testInfo,

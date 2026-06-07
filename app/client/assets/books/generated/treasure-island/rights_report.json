@@ -6,7 +6,7 @@
   "language": "English",
   "original_publication": "",
   "release_date": "February 26, 2006",
-  "last_updated": "",
+  "last_updated": "April 1, 2025",
   "source": "Project Gutenberg",
   "gutenberg_ebook_number": "120",
   "source_url": "https://www.gutenberg.org/ebooks/120",
@@ -36,6 +36,8 @@
   "approved_for_website": false,
   "approved_for_youtube_narration": false,
   "approved_regions": [],
+  "approval_source": "manual-review",
+  "duplicate_resolution_source": "not-needed",
   "canada_us_v1_status": "needs_manual_review",
   "reasoning_summary": "Original publication metadata was not found. Original publication year is missing or not before 1931. Author death year is missing from approved metadata or clear source metadata. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing.",
   "evidence_snippets": [

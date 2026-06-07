@@ -30,6 +30,17 @@ export type MorseBookRightsBasis =
 
 export type MorseBookRightsStatus = "approved" | "needs_manual_review" | "reject";
 
+export type MorseBookApprovalSource =
+  | "file-evidence"
+  | "owner-reviewed"
+  | "manual-review";
+
+export type MorseBookDuplicateResolutionSource =
+  | "deterministic-file-match"
+  | "owner-reviewed"
+  | "manual-review"
+  | "not-needed";
+
 export type MorseBookCover = {
   src: string | null;
   placeholder: boolean;
@@ -47,6 +58,8 @@ export type MorseBookSourceSummary = {
   publishReady: boolean;
   rightsStatus: MorseBookRightsStatus;
   processingAllowed: boolean;
+  approvalSource?: MorseBookApprovalSource;
+  duplicateResolutionSource?: MorseBookDuplicateResolutionSource;
   rightsReportPath: string;
   processedBookPath?: string;
   cleanedBookPath?: string;

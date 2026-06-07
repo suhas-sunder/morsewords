@@ -4,9 +4,11 @@ import type {
   ApprovedPeopleMetadata,
   ApprovedPersonMetadata,
   ApprovedPersonRole,
+  BookApprovalSource,
   BookMetadata,
   BookRightsReport,
   BookRightsRiskLevel,
+  DuplicateResolutionSource,
   GutenbergCleaningReport,
   OwnerBookApproval,
 } from "./bookManifestTypes.ts";
@@ -60,7 +62,8 @@ function slugifyName(input: string): string {
 }
 
 function firstLineField(text: string, label: string): string {
-  const pattern = new RegExp(`^${label}:\\s*(.+?)\\s*$`, "im");
+  const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(`^\\s*${escapedLabel}:\\s*(.+?)\\s*$`, "im");
   const match = text.match(pattern);
   return match?.[1]?.trim() ?? "";
 }
@@ -103,6 +106,47 @@ function parseYear(input: string): number | null {
   return match ? Number.parseInt(match[1], 10) : null;
 }
 
+function cleanMetadataLine(input: string): string {
+  return input
+    .replace(/^\s*[\[_]+/, "")
+    .replace(/[\]_]+\s*$/g, "")
+    .replace(/_/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function parseDeathYearFromLifespan(input: string): number | null {
+  const normalized = input.replace(/[\u2013\u2014]/g, "-");
+  const patterns = [
+    /\b(?:1[4-9]\d{2}|20\d{2})\s*(?:--|-|\u2013|\u2014|to)\s*((?:1[4-9]\d{2}|20\d{2}))\b/i,
+    /\b(?:died|death year|d\.)\s*:?\s*((?:1[4-9]\d{2}|20\d{2}))\b/i,
+  ];
+  for (const pattern of patterns) {
+    const match = normalized.match(pattern);
+    if (match?.[1]) return Number.parseInt(match[1], 10);
+  }
+  return null;
+}
+
+function cleanPersonNameFromField(input: string): string {
+  return input
+    .replace(/\s*(?:\(|\[)[^)\]]*\b(?:1[4-9]\d{2}|20\d{2})\s*(?:--|-|\u2013|\u2014|to)\s*(?:1[4-9]\d{2}|20\d{2})[^)\]]*(?:\)|\])\.?\s*$/i, "")
+    .replace(/\s*\[[^\]]*\b(?:died|death year|d\.)\s*:?\s*(?:1[4-9]\d{2}|20\d{2})[^\]]*\]\s*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function parsePersonField(rawValue: string): {
+  name: string;
+  deathYear: number | null;
+} {
+  const value = cleanMetadataLine(rawValue);
+  return {
+    name: cleanPersonNameFromField(value),
+    deathYear: parseDeathYearFromLifespan(value),
+  };
+}
+
 function approvedPersonFor(
   name: string,
   approvedPeople: ApprovedPeopleMetadata,
@@ -120,9 +164,25 @@ function approvedPersonFor(
 function deathYearFromSource(text: string, name: string): number | null {
   const normalizedName = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const explicitPatterns = [
+    new RegExp(
+      `(?:death year|died|d\\.)\\s*:?\\s*((?:1[4-9]\\d{2}|20\\d{2}))`,
+      "i",
+    ),
+    new RegExp(
+      `${normalizedName}[^\\n]{0,120}\\((?:[^\\d)]*)(?:1[4-9]\\d{2}|20\\d{2})\\s*(?:--|-|\\u2013|\\u2014|to)\\s*((?:1[4-9]\\d{2}|20\\d{2}))\\)`,
+      "i",
+    ),
+    new RegExp(
+      `${normalizedName}[^\\n]{0,120}\\[(?:[^\\d\\]]*)(?:1[4-9]\\d{2}|20\\d{2})\\s*(?:--|-|\\u2013|\\u2014|to)\\s*((?:1[4-9]\\d{2}|20\\d{2}))[^\\]]*\\]`,
+      "i",
+    ),
+    new RegExp(
+      `${normalizedName}[^\\n]{0,120}\\b(?:1[4-9]\\d{2}|20\\d{2})\\s*(?:--|-|\\u2013|\\u2014|to)\\s*((?:1[4-9]\\d{2}|20\\d{2}))`,
+      "i",
+    ),
     new RegExp(`(?:death year|died)\\s*:?\\s*(\\d{4})`, "i"),
     new RegExp(`${normalizedName}[^\\n]{0,80}\\((?:[^\\d)]*)-(\\d{4})\\)`, "i"),
-    new RegExp(`${normalizedName}[^\\n]{0,80}\\b\\d{4}\\s*[-–]\\s*(\\d{4})`, "i"),
+    new RegExp(`${normalizedName}[^\\n]{0,80}\\b\\d{4}\\s*[-\\u2013]\\s*(\\d{4})`, "i"),
   ];
   for (const pattern of explicitPatterns) {
     const match = text.match(pattern);
@@ -135,9 +195,12 @@ function resolveDeathYear(
   name: string,
   rawText: string,
   approvedPeople: ApprovedPeopleMetadata,
+  sourceFieldValue = "",
 ): number | null {
   const approved = approvedPersonFor(name, approvedPeople);
   if (typeof approved?.deathYear === "number") return approved.deathYear;
+  const fieldDeathYear = parseDeathYearFromLifespan(sourceFieldValue);
+  if (fieldDeathYear !== null) return fieldDeathYear;
   return deathYearFromSource(rawText.slice(0, 12_000), name);
 }
 
@@ -153,6 +216,27 @@ function isCanadaLifePlus70Safe(
 
 function sourceUrlFromGutenbergId(gutenbergId: string | null | undefined) {
   return gutenbergId ? `https://www.gutenberg.org/ebooks/${gutenbergId}` : null;
+}
+
+function getGutenbergId(rawText: string, metadata: BookMetadata): string {
+  if (metadata.source.gutenbergId) return metadata.source.gutenbergId;
+  return firstPattern(rawText, [
+    /\[(?:eBook|EBook)\s+#(\d+)\]/i,
+    /Project Gutenberg (?:eBook|EBook).*?#(\d+)/i,
+    /(?:www\.)?gutenberg\.org\/ebooks\/(\d+)/i,
+  ]);
+}
+
+function sourceProviderIsProjectGutenberg(
+  rawText: string,
+  metadata: BookMetadata,
+): boolean {
+  return (
+    metadata.source.provider === "Project Gutenberg" ||
+    /Project Gutenberg eBook|Project Gutenberg EBook|gutenberg\.org\/ebooks\//i.test(
+      rawText.slice(0, 20_000),
+    )
+  );
 }
 
 export function getProjectGutenbergSourceUrl(
@@ -269,29 +353,45 @@ function riskAtLeastMedium(risk: BookRightsRiskLevel): boolean {
 function getReleaseDate(rawText: string, metadata: BookMetadata): string {
   return (
     metadata.source.releaseDate ??
+    metadata.scaffold?.extracted.releaseDate ??
     firstPattern(rawText, [
-      /^Release date:\s*(.+?)(?:\s*\[(?:eBook|EBook)\s+#\d+\])?\s*$/im,
-      /^Release Date:\s*(.+?)(?:\s*\[(?:eBook|EBook)\s+#\d+\])?\s*$/im,
+      /^\s*Release date:\s*(.+?)(?:\s*\[(?:eBook|EBook)\s+#\d+\])?\s*$/im,
+      /^\s*Release Date:\s*(.+?)(?:\s*\[(?:eBook|EBook)\s+#\d+\])?\s*$/im,
     ])
   );
 }
 
 function getLastUpdated(rawText: string): string {
   return firstPattern(rawText, [
-    /^Most recently updated:\s*(.+?)\s*$/im,
-    /^Last updated:\s*(.+?)\s*$/im,
-    /^Updated:\s*(.+?)\s*$/im,
+    /^\s*Most recently updated:\s*(.+?)\s*$/im,
+    /^\s*Last updated:\s*(.+?)\s*$/im,
+    /^\s*Updated:\s*(.+?)\s*$/im,
   ]);
 }
 
-function getOriginalPublication(rawText: string, metadata: BookMetadata): string {
-  return (
+function getOriginalPublicationEvidence(
+  rawText: string,
+  metadata: BookMetadata,
+): { value: string; source: "file" | "metadata" | "missing" } {
+  const explicitLine =
     firstPattern(rawText, [
-      /^Original publication:\s*(.+?)\s*$/im,
-      /^First published:\s*(.+?)\s*$/im,
-      /^Published:\s*(.+?)\s*$/im,
-    ]) || (metadata.originalPublicationYear ? String(metadata.originalPublicationYear) : "")
-  );
+      /^\s*Original publication:\s*(.+?)\s*$/im,
+      /^\s*First published:\s*(.+?)\s*$/im,
+      /^\s*Published:\s*(.+?)\s*$/im,
+      /^\s*\[?_*First published(?:\s+in)?_*\s*[,.:]?\s*(.+?)\]?\s*$/im,
+    ]);
+  const fileValue =
+    cleanMetadataLine(explicitLine) ||
+    metadata.scaffold?.extracted.originalPublication ||
+    "";
+  if (fileValue) return { value: fileValue, source: "file" };
+  if (metadata.originalPublicationYear) {
+    return {
+      value: String(metadata.originalPublicationYear),
+      source: "metadata",
+    };
+  }
+  return { value: "", source: "missing" };
 }
 
 function originalPublicationYear(reportValue: string): number | null {
@@ -319,30 +419,59 @@ export function buildBookRightsReport({
   ownerBookApproval = null,
 }: RightsReportInput): BookRightsReport {
   const evidence: string[] = [];
-  const title = firstLineField(rawText, "Title") || metadata.title;
-  const author = firstLineField(rawText, "Author") || metadata.author.join(", ");
-  const language = firstLineField(rawText, "Language") || metadata.language;
+  const title = cleanMetadataLine(
+    firstLineField(rawText, "Title") ||
+      metadata.scaffold?.extracted.title ||
+      metadata.title,
+  );
+  const authorField =
+    firstLineField(rawText, "Author") ||
+    metadata.scaffold?.extracted.author ||
+    metadata.author.join(", ");
+  const parsedAuthor = parsePersonField(authorField);
+  const author = parsedAuthor.name || metadata.author.join(", ");
+  const language = cleanMetadataLine(
+    firstLineField(rawText, "Language") ||
+      metadata.scaffold?.extracted.language ||
+      metadata.language,
+  );
   const releaseDate = getReleaseDate(rawText, metadata);
-  const lastUpdated = getLastUpdated(rawText);
-  const originalPublication = getOriginalPublication(rawText, metadata);
-  const gutenbergId = metadata.source.gutenbergId ?? "";
-  const sourceUrl = sourceUrlFromGutenbergId(metadata.source.gutenbergId);
+  const lastUpdated =
+    getLastUpdated(rawText) || metadata.scaffold?.extracted.lastUpdated || "";
+  const originalPublicationEvidence = getOriginalPublicationEvidence(rawText, metadata);
+  const originalPublication = originalPublicationEvidence.value;
+  const gutenbergId = getGutenbergId(rawText, metadata);
+  const sourceUrl = sourceUrlFromGutenbergId(gutenbergId);
   const rawTextUrl = metadata.source.rawTextUrl ?? null;
   const credits = firstLineField(rawText, "Credits");
-  const translator =
+  const translatorField =
     firstLineField(rawText, "Translator") ||
+    metadata.scaffold?.extracted.translator ||
     firstPattern(rawText, [/Translated by\s+([^\n.]+)/i]);
-  const illustrator = firstLineField(rawText, "Illustrator");
-  const editor =
+  const parsedTranslator = translatorField
+    ? parsePersonField(translatorField)
+    : { name: "", deathYear: null };
+  const translator = parsedTranslator.name;
+  const illustrator = cleanMetadataLine(
+    firstLineField(rawText, "Illustrator") ||
+      metadata.scaffold?.extracted.illustrator ||
+      "",
+  );
+  const editorField =
     firstLineField(rawText, "Editor") ||
+    metadata.scaffold?.extracted.editor ||
     firstPattern(rawText, [/Edited by\s+([^\n.]+)/i]);
+  const editor = editorField ? parsePersonField(editorField).name : "";
   const introductionAuthor = firstPattern(rawText, [
     /Introduction by\s+([^\n.]+)/i,
     /Introductory note by\s+([^\n.]+)/i,
   ]);
-  const authorDeathYear = resolveDeathYear(author, rawText, approvedPeople);
+  const authorDeathYear =
+    parsedAuthor.deathYear ??
+    resolveDeathYear(author, rawText, approvedPeople, authorField);
   const translatorDeathYear = translator
-    ? resolveDeathYear(translator, rawText, approvedPeople)
+    ? parsedTranslator.deathYear ??
+      resolveDeathYear(translator, rawText, approvedPeople, translatorField)
     : null;
 
   const gutenbergHeaderPresent = cleaning.headerStripped;
@@ -381,7 +510,7 @@ export function buildBookRightsReport({
   const containsLaterCopyrightNotice = addEvidence(
     evidence,
     rawText,
-    /copyright(?:ed)?\s*(?:©|\(c\))?\s*(?:19[3-9]\d|20\d{2})|all rights reserved/i,
+    /copyright(?:ed)?\s*(?:\u00a9|\(c\))?\s*(?:19[3-9]\d|20\d{2})|all rights reserved/i,
     "Later copyright notice",
   );
   const containsCreativeCommonsLicense = addEvidence(
@@ -447,9 +576,11 @@ export function buildBookRightsReport({
     evidence.push("Content brand-safety risk: title, subjects, or source text matched a review term.");
   }
 
-  const reasons: string[] = [];
+  const evidenceReasons: string[] = [];
+  const manualReviewReasons: string[] = [];
+  const ownerPathReasons: string[] = [];
   const blockers: string[] = [];
-  const sourceIsGutenberg = metadata.source.provider === "Project Gutenberg";
+  const sourceIsGutenberg = sourceProviderIsProjectGutenberg(rawText, metadata);
   const authorCanadaSafe = isCanadaLifePlus70Safe(
     author,
     authorDeathYear,
@@ -459,44 +590,47 @@ export function buildBookRightsReport({
   const usPublicationSafe =
     typeof publicationYear === "number" &&
     publicationYear <= US_PUBLIC_DOMAIN_PUBLICATION_YEAR;
+  const ownerReviewedApprovalPresent =
+    ownerBookApproval?.ownerReviewed === true &&
+    ownerBookApproval.approvedForWebsite === true;
+  const ownerRegionsSafe =
+    ownerBookApproval?.approvedRegions.includes("US") === true &&
+    ownerBookApproval.approvedRegions.includes("CA") === true;
 
   if (!sourceIsGutenberg) blockers.push("Source provider is not Project Gutenberg.");
-  if (!metadata.source.gutenbergId) reasons.push("Missing metadata Gutenberg ID.");
-  if (!gutenbergHeaderPresent) reasons.push("Project Gutenberg start marker was not found.");
+  if (!gutenbergId) evidenceReasons.push("Missing Project Gutenberg ID in metadata or source file.");
+  if (!gutenbergHeaderPresent) evidenceReasons.push("Project Gutenberg start marker was not found.");
   if (!projectGutenbergLicensePresent) {
-    reasons.push("Project Gutenberg license/reuse language was not detected.");
+    evidenceReasons.push("Project Gutenberg license/reuse language was not detected.");
   }
-  if (!usReuseLanguageFound) reasons.push("U.S. reuse language was not detected.");
-  if (!nonUsWarningFound) reasons.push("Non-U.S. rights warning was not detected.");
-  if (!title) reasons.push("Title was not found.");
-  if (!author) reasons.push("Author was not found.");
-  if (!language) reasons.push("Language was not found.");
-  if (!releaseDate) reasons.push("Release date was not found.");
-  if (!originalPublication) reasons.push("Original publication metadata was not found.");
+  if (!usReuseLanguageFound) evidenceReasons.push("U.S. reuse language was not detected.");
+  if (!nonUsWarningFound) evidenceReasons.push("Non-U.S. rights warning was not detected.");
+  if (!title) evidenceReasons.push("Title was not found.");
+  if (!author) evidenceReasons.push("Author was not found.");
+  if (!language) evidenceReasons.push("Language was not found.");
+  if (!releaseDate) evidenceReasons.push("Release date was not found.");
+  if (!originalPublication) evidenceReasons.push("Original publication metadata was not found.");
   if (!usPublicationSafe) {
-    reasons.push("Original publication year is missing or not before 1931.");
+    evidenceReasons.push("Original publication year is missing or not before 1931.");
   }
   if (authorDeathYear === null) {
-    reasons.push("Author death year is missing from approved metadata or clear source metadata.");
+    evidenceReasons.push("Author death year is missing from approved metadata or clear source metadata.");
   } else if (!authorCanadaSafe) {
-    reasons.push("Author death year is not Canada life-plus-70 safe under the project rule.");
+    evidenceReasons.push("Author death year is not Canada life-plus-70 safe under the project rule.");
   }
-  if (!metadata.source.rightsReviewed) reasons.push("Metadata rightsReviewed is false.");
+  if (!metadata.source.rightsReviewed) ownerPathReasons.push("Metadata rightsReviewed is false.");
   if (!ownerBookApproval || ownerBookApproval.ownerReviewed !== true) {
-    reasons.push("Owner-reviewed book approval is missing.");
+    ownerPathReasons.push("Owner-reviewed book approval is missing.");
   } else {
     if (!ownerBookApproval.approvedForWebsite) {
-      reasons.push("Owner-reviewed book approval does not allow website use.");
+      ownerPathReasons.push("Owner-reviewed book approval does not allow website use.");
     }
-    if (
-      !ownerBookApproval.approvedRegions.includes("US") ||
-      !ownerBookApproval.approvedRegions.includes("CA")
-    ) {
-      reasons.push("Owner-reviewed book approval must include US and CA regions.");
+    if (!ownerRegionsSafe) {
+      ownerPathReasons.push("Owner-reviewed book approval must include US and CA regions.");
     }
   }
   if (!PUBLISH_READY_RIGHTS.has(metadata.source.rightsBasis)) {
-    reasons.push(`Rights basis "${metadata.source.rightsBasis}" is not publish-ready.`);
+    ownerPathReasons.push(`Rights basis "${metadata.source.rightsBasis}" is not publish-ready.`);
   }
   if (containsLaterCopyrightNotice) blockers.push("Later copyright notice was detected.");
   if (containsCreativeCommonsLicense) blockers.push("Creative Commons notice was detected.");
@@ -504,38 +638,71 @@ export function buildBookRightsReport({
     blockers.push("Permission-based reuse language was detected.");
   }
   if (containsModernIntroOrNotes) {
-    reasons.push("Modern introduction, notes, or editorial material may be present.");
+    manualReviewReasons.push("Modern introduction, notes, or editorial material may be present.");
   }
   if (transcriberNotesInCleanedText) {
-    reasons.push("Transcriber notes remain in cleaned story text.");
+    manualReviewReasons.push("Transcriber notes remain in cleaned story text.");
   }
   if (containsIllustrationsOrImageReferences) {
-    reasons.push("Illustrations or image references need manual handling.");
+    manualReviewReasons.push("Illustrations or image references need manual handling.");
   }
   if (riskAtLeastMedium(translationRisk)) {
-    reasons.push("Translation status or translator death year needs manual review.");
+    manualReviewReasons.push("Translation status or translator death year needs manual review.");
   }
   if (riskAtLeastMedium(editionRisk)) {
-    reasons.push("Edition or editorial status needs manual review.");
+    manualReviewReasons.push("Edition or editorial status needs manual review.");
   }
   if (riskAtLeastMedium(trademarkRisk)) {
-    reasons.push("Trademark or character brand risk needs manual review.");
+    manualReviewReasons.push("Trademark or character brand risk needs manual review.");
   }
   if (riskAtLeastMedium(contentRisk)) {
-    reasons.push("Content brand-safety risk needs manual review.");
+    manualReviewReasons.push("Content brand-safety risk needs manual review.");
   }
 
+  const commonEvidencePassed =
+    blockers.length === 0 &&
+    sourceIsGutenberg &&
+    evidenceReasons.length === 0 &&
+    manualReviewReasons.length === 0;
+  const ownerReviewedPathApproved =
+    commonEvidencePassed &&
+    metadata.source.rightsReviewed &&
+    PUBLISH_READY_RIGHTS.has(metadata.source.rightsBasis) &&
+    ownerReviewedApprovalPresent &&
+    ownerRegionsSafe;
+  const fileEvidencePathApproved =
+    commonEvidencePassed && originalPublicationEvidence.source === "file";
+  const approvalSource: BookApprovalSource = ownerReviewedPathApproved
+    ? "owner-reviewed"
+    : fileEvidencePathApproved
+      ? "file-evidence"
+      : "manual-review";
   const status =
     blockers.length > 0 || !sourceIsGutenberg
       ? "reject"
-      : reasons.length > 0
-        ? "needs_manual_review"
-        : "approved";
+      : ownerReviewedPathApproved || fileEvidencePathApproved
+        ? "approved"
+        : "needs_manual_review";
+  const approvedForWebsite =
+    status === "approved" &&
+    (approvalSource === "file-evidence" || ownerReviewedApprovalPresent);
+  const approvedRegions =
+    approvalSource === "file-evidence"
+      ? ["US", "CA"]
+      : ownerBookApproval?.approvedRegions ?? [];
+  const duplicateResolutionSource: DuplicateResolutionSource = "not-needed";
 
   const reasoningSummary =
     status === "approved"
-      ? "Project Gutenberg source, approved metadata, and conservative rights checks passed."
-      : [...blockers, ...reasons].join(" ");
+      ? approvalSource === "file-evidence"
+        ? "Project Gutenberg source-file evidence satisfied the conservative website processing gate."
+        : "Project Gutenberg source, owner-reviewed metadata, and conservative rights checks passed."
+      : [
+          ...blockers,
+          ...evidenceReasons,
+          ...manualReviewReasons,
+          ...ownerPathReasons,
+        ].join(" ");
 
   return {
     schemaVersion: 1,
@@ -571,13 +738,13 @@ export function buildBookRightsReport({
     edition_risk: editionRisk,
     trademark_or_character_brand_risk: trademarkRisk,
     content_brand_safety_risk: contentRisk,
-    owner_reviewed_approval_present:
-      ownerBookApproval?.ownerReviewed === true &&
-      ownerBookApproval.approvedForWebsite === true,
-    approved_for_website: ownerBookApproval?.approvedForWebsite === true,
+    owner_reviewed_approval_present: ownerReviewedApprovalPresent,
+    approved_for_website: approvedForWebsite,
     approved_for_youtube_narration:
       ownerBookApproval?.approvedForYoutubeNarration === true,
-    approved_regions: ownerBookApproval?.approvedRegions ?? [],
+    approved_regions: approvedRegions,
+    approval_source: approvalSource,
+    duplicate_resolution_source: duplicateResolutionSource,
     canada_us_v1_status: status,
     reasoning_summary: reasoningSummary,
     evidence_snippets: evidence.slice(0, 20),
@@ -590,16 +757,19 @@ export function validateBookRights(
   rightsReport: BookRightsReport,
 ): RightsValidationResult {
   const warnings: string[] = [];
+  const approvalSource = rightsReport.approval_source ?? "manual-review";
+  const fileEvidenceApproval = approvalSource === "file-evidence";
+  const ownerReviewedApproval = approvalSource === "owner-reviewed";
 
-  if (!metadata.source.gutenbergId) {
+  if (!metadata.source.gutenbergId && !rightsReport.gutenberg_ebook_number) {
     warnings.push("Missing Project Gutenberg ID.");
   }
 
-  if (!metadata.source.rightsReviewed) {
+  if (!fileEvidenceApproval && !metadata.source.rightsReviewed) {
     warnings.push("Rights have not been reviewed; generated book is not publish-ready.");
   }
 
-  if (!PUBLISH_READY_RIGHTS.has(metadata.source.rightsBasis)) {
+  if (!fileEvidenceApproval && !PUBLISH_READY_RIGHTS.has(metadata.source.rightsBasis)) {
     warnings.push(`Rights basis "${metadata.source.rightsBasis}" is not publish-ready.`);
   }
 
@@ -613,22 +783,27 @@ export function validateBookRights(
     warnings.push("Rights gate did not allow processed public story output.");
   }
 
-  if (!rightsReport.owner_reviewed_approval_present) {
+  if (!fileEvidenceApproval && !rightsReport.owner_reviewed_approval_present) {
     warnings.push("Owner-reviewed website approval is missing.");
   }
 
   if (!rightsReport.approved_for_website) {
-    warnings.push("Owner approval does not allow website use.");
+    warnings.push("Website publication is not allowed by the active approval path.");
   }
 
+  const sharedGateReady =
+    rightsReport.canada_us_v1_status === "approved" &&
+    rightsReport.processing_allowed &&
+    rightsReport.approved_for_website;
+  const ownerPathReady =
+    ownerReviewedApproval &&
+    metadata.source.rightsReviewed &&
+    PUBLISH_READY_RIGHTS.has(metadata.source.rightsBasis) &&
+    rightsReport.owner_reviewed_approval_present;
+  const fileEvidencePathReady = fileEvidenceApproval;
+
   return {
-    publishReady:
-      metadata.source.rightsReviewed &&
-      PUBLISH_READY_RIGHTS.has(metadata.source.rightsBasis) &&
-      rightsReport.canada_us_v1_status === "approved" &&
-      rightsReport.processing_allowed &&
-      rightsReport.owner_reviewed_approval_present &&
-      rightsReport.approved_for_website,
+    publishReady: sharedGateReady && (ownerPathReady || fileEvidencePathReady),
     warnings,
   };
 }

@@ -65,6 +65,7 @@ type BatchRightsReport = {
     slug: string;
     sourceUrl: string | null;
     publishReady: boolean;
+    approvalSource?: "file-evidence" | "owner-reviewed" | "manual-review";
     originalPublication: string;
     authorDeathYear: number | null;
     translator: string;
@@ -270,7 +271,7 @@ function buildMarkdown(report: FirstPublicationCandidateReport): string {
     `- Rejected: ${report.summary.rejected}`,
     `- Processing allowed: ${report.summary.processingAllowed}`,
     `- Publish-ready: ${report.summary.publishReady}`,
-    `- Existing file evidence may be enough after owner review: ${report.summary.existingFileEvidenceMayBeEnough}`,
+    `- Existing file evidence may be enough: ${report.summary.existingFileEvidenceMayBeEnough}`,
     `- Owner approval still required: ${report.summary.ownerApprovalStillRequired}`,
     `- Missing author death year: ${report.summary.missingAuthorDeathYear}`,
     `- Missing translator death year: ${report.summary.missingTranslatorDeathYear}`,
@@ -341,6 +342,9 @@ export function generateFirstPublicationCandidateReport(
       isMediumOrHigh(book.risks.contentBrandSafety) ||
       isMediumOrHigh(book.risks.trademarkOrCharacterBrand);
     const ownerApproved = ownerApprovals.get(book.slug) === true;
+    const fileEvidenceApproved =
+      rightsBook?.approvalSource === "file-evidence" &&
+      rightsBook.publishReady === true;
 
     return {
       slug: book.slug,
@@ -359,7 +363,7 @@ export function generateFirstPublicationCandidateReport(
         book,
         rightsBook,
       ),
-      ownerApprovalStillRequired: !ownerApproved,
+      ownerApprovalStillRequired: !ownerApproved && !fileEvidenceApproved,
       sourceUrlPresent: Boolean(rightsBook?.sourceUrl),
       processingAllowed: book.processingAllowed,
       publishReady: rightsBook?.publishReady === true,

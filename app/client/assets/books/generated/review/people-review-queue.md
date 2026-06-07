@@ -1,7 +1,7 @@
 # Morse book people review queue
 
 - People: 76
-- People missing death-year metadata: 74
+- People missing death-year metadata: 73
 
 ## Suggested Approved Metadata Shape
 
@@ -22,7 +22,7 @@
 
 ## People
 
-- h-c-andersen: H. C. Andersen; roles: author; missing death-year uses: 10; books: the-bell (author), the-elderbush (author), the-emperor-s-new-clothes (author), the-fir-tree (author), the-leap-frog (author), the-old-house (author), the-real-princess (author), the-shoes-of-fortune (author), the-snow-queen (author), the-swineherd (author)
+- h-c-andersen: H. C. Andersen; roles: author; missing death-year uses: 9; books: the-bell (author), the-elderbush (author), the-emperor-s-new-clothes (author), the-fir-tree (author), the-leap-frog (author), the-old-house (author), the-real-princess (author), the-shoes-of-fortune (author), the-snow-queen (author), the-swineherd (author)
 - e-nesbit: E. Nesbit; roles: author; missing death-year uses: 3; books: new-treasure-seekers (author), the-book-of-dragons (author), the-railway-children (author)
 - l-frank-baum: L. Frank Baum; roles: author; missing death-year uses: 3; books: rinkitink-in-oz (author), the-emerald-city-of-oz (author), the-wonderful-wizard-of-oz (author)
 - l-m-montgomery: L. M. Montgomery; roles: author; missing death-year uses: 3; books: anne-of-green-gables (author), anne-of-green-gables-gutenberg-45 (author), rainbow-valley (author)
@@ -58,7 +58,6 @@
 - gustave-dore: Gustave Doré; roles: illustrator; missing death-year uses: 1; books: the-divine-comedy (illustrator)
 - henry-francis-cary: Henry Francis Cary; roles: translator; missing death-year uses: 1; books: the-divine-comedy (translator)
 - herbert-granville-fell: Herbert Granville Fell; roles: illustrator; missing death-year uses: 1; books: the-book-of-dragons (illustrator)
-- hugh-lofting: Hugh Lofting; roles: author; missing death-year uses: 1; books: doctor-dolittle (author)
 - isabel-florence-hapgood: Isabel Florence Hapgood; roles: translator; missing death-year uses: 1; books: les-miserables (translator)
 - j-m-barrie: J. M. Barrie; roles: author; missing death-year uses: 1; books: peter-pan (author)
 - jacob-grimm-wilhelm-grimm: Jacob Grimm Wilhelm Grimm; roles: author; missing death-year uses: 1; books: grimm-s-fairy-tales (author)
@@ -98,3 +97,4 @@
 - yasotaro-mori: Yasotaro Mori; roles: translator; missing death-year uses: 1; books: botchan (translator)
 - anna-sewell: Anna Sewell; roles: author; missing death-year uses: 0; books: black-beauty (author)
 - h-p-lovecraft: H. P. Lovecraft; roles: author; missing death-year uses: 0; books: the-call-of-cthulhu (author)
+- hugh-lofting: Hugh Lofting; roles: author; missing death-year uses: 0; books: doctor-dolittle (author)

@@ -7,8 +7,8 @@
       "author": [
         "Lewis Carroll"
       ],
-      "contentVersion": "3a0597025f014f1d",
-      "contentHash": "3a0597025f014f1d58d9a109182a16b4584012342c367cb7bf1c41e0e922e1c1",
+      "contentVersion": "71defc6cd599c22c",
+      "contentHash": "71defc6cd599c22c6a6afa2bc0a5e7d9a64cf912905f64800031eddbcf7ddb6f",
       "language": "en",
       "description": "A pilot Project Gutenberg source for chapter-level Morse book ingestion and future Morse audiobook workflows.",
       "subjects": [
@@ -18,7 +18,7 @@
       "source": {
         "provider": "Project Gutenberg",
         "gutenbergId": "11",
-        "releaseDate": null,
+        "releaseDate": "June 27, 2008",
         "sourceUrl": "https://www.gutenberg.org/ebooks/11",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
@@ -26,6 +26,8 @@
         "publishReady": false,
         "rightsStatus": "needs_manual_review",
         "processingAllowed": false,
+        "approvalSource": "manual-review",
+        "duplicateResolutionSource": "not-needed",
         "rightsReportPath": "rights_report.json",
         "rightsNotes": "Initial pilot metadata for local generated artifacts. Rights review has not been completed."
       },

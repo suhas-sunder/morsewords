@@ -6,6 +6,8 @@
 - Metadata status: draft
 - Manual review required: yes
 - Approval status: needs_manual_review
+- Approval source: manual-review
+- Duplicate resolution source: not-needed
 - Processing allowed: no
 - processed_book.json emitted: no
 - Section/story artifacts emitted by rights-only command: no
@@ -23,7 +25,7 @@
 - U.S. reuse language found: yes
 - Non-U.S. warning found: yes
 - Release date: October 1, 1994
-- Last updated: missing
+- Last updated: September 17, 2025
 - Original publication: missing
 - Credits: Judith Boss. HTML version by Al Haines.
 - Translator: none found
@@ -52,7 +54,7 @@
 - Rights gate status is needs_manual_review; generated book is not publish-ready.
 - Rights gate did not allow processed public story output.
 - Owner-reviewed website approval is missing.
-- Owner approval does not allow website use.
+- Website publication is not allowed by the active approval path.
 
 ## Manual review reasons
 

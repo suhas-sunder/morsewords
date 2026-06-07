@@ -6,6 +6,8 @@
 - Metadata status: draft
 - Manual review required: yes
 - Approval status: needs_manual_review
+- Approval source: manual-review
+- Duplicate resolution source: deterministic-file-match
 - Processing allowed: no
 - processed_book.json emitted: no
 - Section/story artifacts emitted by rights-only command: no
@@ -23,7 +25,7 @@
 - U.S. reuse language found: yes
 - Non-U.S. warning found: yes
 - Release date: June 27, 2008
-- Last updated: missing
+- Last updated: April 29, 2025
 - Original publication: missing
 - Credits: David Widger and Charles Keller
 - Translator: none found
@@ -43,7 +45,7 @@
 - Modern intro or notes: no
 - Transcriber notes: no
 - Illustration or image references: no
-- Duplicate Gutenberg ID: 45
+- Duplicate Gutenberg ID: no unresolved duplicate found
 
 ## Command warnings
 
@@ -52,7 +54,7 @@
 - Rights gate status is needs_manual_review; generated book is not publish-ready.
 - Rights gate did not allow processed public story output.
 - Owner-reviewed website approval is missing.
-- Owner approval does not allow website use.
+- Website publication is not allowed by the active approval path.
 
 ## Manual review reasons
 
@@ -63,8 +65,8 @@
 - Owner-reviewed book approval is missing.
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing.
-- Duplicate Gutenberg ID requires explicit review before processing or publishing.
+- Duplicate Gutenberg ID alternate blocked; deterministic file match selected the normalized title slug.
 
 ## Next action
 
-- Review duplicate Gutenberg ID participants and add an explicit duplicate reason only if intentional.
+- Keep this duplicate alternate blocked; the deterministic file match selected the canonical normalized-title slug.

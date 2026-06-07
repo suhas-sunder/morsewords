@@ -48,6 +48,24 @@ export const CANADA_US_V1_STATUSES = [
 
 export type BookCanadaUsV1Status = (typeof CANADA_US_V1_STATUSES)[number];
 
+export const BOOK_APPROVAL_SOURCES = [
+  "file-evidence",
+  "owner-reviewed",
+  "manual-review",
+] as const;
+
+export type BookApprovalSource = (typeof BOOK_APPROVAL_SOURCES)[number];
+
+export const DUPLICATE_RESOLUTION_SOURCES = [
+  "deterministic-file-match",
+  "owner-reviewed",
+  "manual-review",
+  "not-needed",
+] as const;
+
+export type DuplicateResolutionSource =
+  (typeof DUPLICATE_RESOLUTION_SOURCES)[number];
+
 export const APPROVED_PERSON_ROLES = [
   "author",
   "translator",
@@ -236,6 +254,8 @@ export type BookRightsReport = {
   approved_for_website: boolean;
   approved_for_youtube_narration: boolean;
   approved_regions: string[];
+  approval_source: BookApprovalSource;
+  duplicate_resolution_source: DuplicateResolutionSource;
   canada_us_v1_status: BookCanadaUsV1Status;
   reasoning_summary: string;
   evidence_snippets: string[];
@@ -378,6 +398,8 @@ export type GeneratedBookManifest = {
     publishReady: boolean;
     rightsStatus: BookCanadaUsV1Status;
     processingAllowed: boolean;
+    approvalSource: BookApprovalSource;
+    duplicateResolutionSource?: DuplicateResolutionSource;
     rightsReportPath: string;
     processedBookPath?: string;
     cleanedBookPath?: string;

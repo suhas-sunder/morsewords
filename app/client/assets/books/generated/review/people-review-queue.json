@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "summary": {
     "people": 76,
-    "missingDeathYearEntries": 74,
+    "missingDeathYearEntries": 73,
     "roles": {
       "author": 45,
       "translator": 10,
@@ -82,7 +82,7 @@
       ],
       "approvedMetadataFound": false,
       "knownDeathYear": null,
-      "missingDeathYearCount": 10,
+      "missingDeathYearCount": 9,
       "suggestedMetadataEntry": {
         "name": "H. C. Andersen",
         "deathYear": null,
@@ -1195,34 +1195,6 @@
       }
     },
     {
-      "suggestedKey": "hugh-lofting",
-      "displayName": "Hugh Lofting",
-      "rolesFound": [
-        "author"
-      ],
-      "booksAffected": [
-        {
-          "slug": "doctor-dolittle",
-          "title": "The Story of Doctor Dolittle",
-          "role": "author",
-          "rightsStatus": "reject"
-        }
-      ],
-      "approvedMetadataFound": false,
-      "knownDeathYear": null,
-      "missingDeathYearCount": 1,
-      "suggestedMetadataEntry": {
-        "name": "Hugh Lofting",
-        "deathYear": null,
-        "canadaLifePlus70Safe": false,
-        "roles": [
-          "author"
-        ],
-        "sources": [],
-        "notes": "Fill after manual verification."
-      }
-    },
-    {
       "suggestedKey": "isabel-florence-hapgood",
       "displayName": "Isabel Florence Hapgood",
       "rolesFound": [
@@ -2312,6 +2284,34 @@
         ],
         "sources": [],
         "notes": "Use original Lovecraft-authored texts only. Avoid later Cthulhu Mythos material."
+      }
+    },
+    {
+      "suggestedKey": "hugh-lofting",
+      "displayName": "Hugh Lofting",
+      "rolesFound": [
+        "author"
+      ],
+      "booksAffected": [
+        {
+          "slug": "doctor-dolittle",
+          "title": "The Story of Doctor Dolittle",
+          "role": "author",
+          "rightsStatus": "reject"
+        }
+      ],
+      "approvedMetadataFound": false,
+      "knownDeathYear": null,
+      "missingDeathYearCount": 0,
+      "suggestedMetadataEntry": {
+        "name": "Hugh Lofting",
+        "deathYear": null,
+        "canadaLifePlus70Safe": false,
+        "roles": [
+          "author"
+        ],
+        "sources": [],
+        "notes": "Fill after manual verification."
       }
     }
   ]

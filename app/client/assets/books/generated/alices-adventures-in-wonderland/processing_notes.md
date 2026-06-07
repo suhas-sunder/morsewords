@@ -6,6 +6,8 @@
 - Metadata status: unspecified
 - Manual review required: no
 - Approval status: needs_manual_review
+- Approval source: manual-review
+- Duplicate resolution source: not-needed
 - Processing allowed: no
 - processed_book.json emitted: no
 - Section/story artifacts emitted by rights-only command: no
@@ -25,7 +27,7 @@
 - U.S. reuse language found: yes
 - Non-U.S. warning found: yes
 - Release date: June 27, 2008
-- Last updated: missing
+- Last updated: June 26, 2025
 - Original publication: 1865
 - Credits: Arthur DiBianca and David Widger
 - Translator: none found
@@ -53,15 +55,15 @@
 - Rights gate status is needs_manual_review; generated book is not publish-ready.
 - Rights gate did not allow processed public story output.
 - Owner-reviewed website approval is missing.
-- Owner approval does not allow website use.
+- Website publication is not allowed by the active approval path.
 
 ## Manual review reasons
 
 - Author death year is missing from approved metadata or clear source metadata.
-- Metadata rightsReviewed is false.
-- Owner-reviewed book approval is missing.
 - Illustrations or image references need manual handling.
 - Edition or editorial status needs manual review.
+- Metadata rightsReviewed is false.
+- Owner-reviewed book approval is missing.
 
 ## Next action
 

@@ -6,6 +6,8 @@
 - Metadata status: draft
 - Manual review required: yes
 - Approval status: needs_manual_review
+- Approval source: manual-review
+- Duplicate resolution source: not-needed
 - Processing allowed: no
 - processed_book.json emitted: no
 - Section/story artifacts emitted by rights-only command: no
@@ -23,8 +25,8 @@
 - U.S. reuse language found: yes
 - Non-U.S. warning found: yes
 - Release date: October 1, 1997
-- Last updated: missing
-- Original publication: missing
+- Last updated: October 29, 2024
+- Original publication: November 1904.
 - Credits: David Price
 - Translator: none found
 - Illustrator: none found
@@ -52,12 +54,10 @@
 - Rights gate status is needs_manual_review; generated book is not publish-ready.
 - Rights gate did not allow processed public story output.
 - Owner-reviewed website approval is missing.
-- Owner approval does not allow website use.
+- Website publication is not allowed by the active approval path.
 
 ## Manual review reasons
 
-- Original publication metadata was not found.
-- Original publication year is missing or not before 1931.
 - Author death year is missing from approved metadata or clear source metadata.
 - Metadata rightsReviewed is false.
 - Owner-reviewed book approval is missing.

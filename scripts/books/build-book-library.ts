@@ -22,6 +22,10 @@ import {
   SECTION_KINDS,
 } from "./bookManifestTypes.ts";
 import {
+  buildDuplicateSlugResolutionMap,
+  type DuplicateSlugResolution,
+} from "./bookDuplicateResolution.ts";
+import {
   loadOwnerBookApprovals,
   ownerBookApprovalMap,
 } from "./bookApprovalFiles.ts";
@@ -112,6 +116,8 @@ const DEFAULT_CLOUDFLARE_EXPORT_ROOT = path.join(
   DEFAULT_REPO_ROOT,
   "app/client/assets/books/cloudflare-export",
 );
+const DRAFT_REVIEW_REASON =
+  "Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file evidence satisfies the gate.";
 
 function toPosixPath(input: string): string {
   return input.split(path.sep).join("/");
@@ -835,8 +841,9 @@ function buildContentHash(
   return sha256Json({
     schemaVersion: BOOK_SCHEMA_VERSION,
     slug: metadata.slug,
-    gutenbergId: metadata.source.gutenbergId,
+    gutenbergId: rightsReport.gutenberg_ebook_number || metadata.source.gutenbergId,
     rightsStatus: rightsReport.canada_us_v1_status,
+    approvalSource: rightsReport.approval_source,
     sections: sections.map((section) => ({
       id: section.sectionId,
       kind: section.kind,
@@ -845,6 +852,68 @@ function buildContentHash(
       text: section.morseSourceText,
     })),
   });
+}
+
+function appendReason(summary: string, reason: string): string {
+  return summary.includes(reason)
+    ? summary
+    : [summary.trim(), reason].filter(Boolean).join(" ");
+}
+
+function forceManualReview(
+  report: BookRightsReport,
+  reason: string,
+  duplicateResolution?: DuplicateSlugResolution,
+): BookRightsReport {
+  return {
+    ...report,
+    approval_source: "manual-review",
+    duplicate_resolution_source:
+      duplicateResolution?.duplicateResolutionSource ??
+      report.duplicate_resolution_source,
+    canada_us_v1_status:
+      report.canada_us_v1_status === "reject"
+        ? "reject"
+        : "needs_manual_review",
+    processing_allowed: false,
+    approved_for_website: false,
+    reasoning_summary: appendReason(report.reasoning_summary, reason),
+  };
+}
+
+function applyBuildReviewLocks(
+  metadata: BookMetadata,
+  report: BookRightsReport,
+  duplicateResolution: DuplicateSlugResolution | null,
+): BookRightsReport {
+  let nextReport = report;
+  const fileEvidenceApproved =
+    nextReport.approval_source === "file-evidence" &&
+    nextReport.canada_us_v1_status === "approved" &&
+    nextReport.processing_allowed;
+
+  if (
+    !fileEvidenceApproved &&
+    (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true)
+  ) {
+    nextReport = forceManualReview(nextReport, DRAFT_REVIEW_REASON);
+  }
+
+  if (!duplicateResolution) return nextReport;
+
+  nextReport = {
+    ...nextReport,
+    duplicate_resolution_source:
+      duplicateResolution.duplicateResolutionSource,
+  };
+  if (!duplicateResolution.isEligible) {
+    return forceManualReview(
+      nextReport,
+      duplicateResolution.reason,
+      duplicateResolution,
+    );
+  }
+  return nextReport;
 }
 
 function buildProcessedBook(
@@ -865,7 +934,7 @@ function buildProcessedBook(
     content_hash: contentHash,
     source: {
       name: metadata.source.provider,
-      ebook_number: metadata.source.gutenbergId ?? "",
+      ebook_number: rightsReport.gutenberg_ebook_number,
       source_url: rightsReport.source_url,
       raw_text_url: rightsReport.raw_text_url,
       original_publication: rightsReport.original_publication,
@@ -920,7 +989,7 @@ function buildCleanedBook(
     contentHash,
     source: {
       provider: metadata.source.provider,
-      gutenbergId: metadata.source.gutenbergId,
+      gutenbergId: rightsReport.gutenberg_ebook_number || metadata.source.gutenbergId,
       sourceUrl: rightsReport.source_url,
       rawTextUrl: rightsReport.raw_text_url,
       originalPublication: rightsReport.original_publication,
@@ -993,6 +1062,8 @@ function buildProcessingNotes({
     `- Gutenberg ID: ${metadata.source.gutenbergId ?? "missing"}`,
     `- Source URL: ${rightsReport.source_url ?? "missing"}`,
     `- Approval status: ${rightsReport.canada_us_v1_status}`,
+    `- Approval source: ${rightsReport.approval_source}`,
+    `- Duplicate resolution source: ${rightsReport.duplicate_resolution_source}`,
     `- Processing allowed: ${rightsReport.processing_allowed ? "yes" : "no"}`,
     `- processed_book.json emitted: ${processedBook ? "yes" : "no"}`,
     "",
@@ -1126,6 +1197,7 @@ function buildGeneratedManifest(
   rawText: string,
   approvedPeople: ApprovedPeopleMetadata,
   ownerBookApproval: Parameters<typeof buildBookRightsReport>[0]["ownerBookApproval"],
+  duplicateResolution: DuplicateSlugResolution | null,
   warnings: string[],
 ): {
   manifest: GeneratedBookManifest;
@@ -1146,7 +1218,7 @@ function buildGeneratedManifest(
   );
   const sectionsResult = detectBookSections(cleanedText, metadata);
   warnings.push(...cleaning.report.warnings, ...sectionsResult.warnings);
-  const rightsReport = buildBookRightsReport({
+  const baseRightsReport = buildBookRightsReport({
     metadata,
     rawText,
     cleanedText,
@@ -1154,6 +1226,11 @@ function buildGeneratedManifest(
     approvedPeople,
     ownerBookApproval,
   });
+  const rightsReport = applyBuildReviewLocks(
+    metadata,
+    baseRightsReport,
+    duplicateResolution,
+  );
   const rights = validateBookRights(metadata, rightsReport);
   warnings.push(...rights.warnings);
   const fatalErrors: string[] = [];
@@ -1207,9 +1284,16 @@ function buildGeneratedManifest(
     sectionPaths.add(sectionPath);
   }
 
-  const sourceUrl = getProjectGutenbergSourceUrl(metadata.source.gutenbergId);
+  const sourceUrl =
+    rightsReport.source_url ||
+    getProjectGutenbergSourceUrl(metadata.source.gutenbergId);
   const contentHash = buildContentHash(metadata, sectionJson, rightsReport);
   const contentVersion = contentHash.slice(0, 16);
+  const effectiveRightsBasis =
+    rightsReport.approval_source === "file-evidence" &&
+    rightsReport.canada_us_v1_status === "approved"
+      ? "public-domain-us"
+      : metadata.source.rightsBasis;
   const processedBook = rightsReport.processing_allowed
     ? buildProcessedBook(
         metadata,
@@ -1248,15 +1332,18 @@ function buildGeneratedManifest(
     subjects: metadata.subjects,
     source: {
       provider: metadata.source.provider,
-      gutenbergId: metadata.source.gutenbergId,
-      releaseDate: metadata.source.releaseDate,
+      gutenbergId:
+        rightsReport.gutenberg_ebook_number || metadata.source.gutenbergId,
+      releaseDate: rightsReport.release_date || metadata.source.releaseDate,
       sourceUrl,
       rawTextUrl: metadata.source.rawTextUrl ?? null,
-      rightsBasis: metadata.source.rightsBasis,
+      rightsBasis: effectiveRightsBasis,
       rightsReviewed: metadata.source.rightsReviewed,
       publishReady: rights.publishReady,
       rightsStatus: rightsReport.canada_us_v1_status,
       processingAllowed: rightsReport.processing_allowed,
+      approvalSource: rightsReport.approval_source,
+      duplicateResolutionSource: rightsReport.duplicate_resolution_source,
       rightsReportPath: "rights_report.json",
       ...(processedBook ? { processedBookPath: "processed_book.json" } : {}),
       ...(cleanedBook ? { cleanedBookPath: "cleaned_book.json" } : {}),
@@ -1345,8 +1432,12 @@ type CloudflareExportBook = {
 };
 
 function isPublishReadyManifest(manifest: GeneratedBookManifest): boolean {
+  const approvedBySource =
+    manifest.source.approvalSource === "file-evidence" ||
+    (manifest.source.approvalSource === "owner-reviewed" &&
+      manifest.source.rightsReviewed === true);
   return (
-    manifest.source.rightsReviewed === true &&
+    approvedBySource &&
     manifest.source.publishReady === true &&
     manifest.source.rightsStatus === "approved" &&
     manifest.source.processingAllowed === true
@@ -1401,6 +1492,8 @@ function writeCloudflareExport({
       rightsStatus: manifest.source.rightsStatus,
       publishReady: manifest.source.publishReady,
       processingAllowed: manifest.source.processingAllowed,
+      approvalSource: manifest.source.approvalSource,
+      duplicateResolutionSource: manifest.source.duplicateResolutionSource,
     },
     stats: manifest.stats,
     contentVersion: manifest.contentVersion,
@@ -1711,23 +1804,29 @@ export function buildBookLibrary(
         entry.metadata !== null,
     )
     .sort((a, b) => a.metadata.slug.localeCompare(b.metadata.slug));
-  const draftMetadata = loadedMetadata.filter(({ metadata }) =>
-    isDraftMetadata(metadata),
+  const validMetadata = loadedMetadata;
+  const metadataWithoutRawSet = new Set(
+    inventory.metadataWithoutRaw.map((filePath) => path.normalize(filePath)),
   );
-  const validMetadata = loadedMetadata.filter(
-    ({ metadata }) => !isDraftMetadata(metadata),
+  const duplicateResolutions = buildDuplicateSlugResolutionMap(
+    loadedMetadata.map(({ filePath, metadata }) => ({
+      slug: metadata.slug,
+      title: metadata.title,
+      author: metadata.author,
+      gutenbergId: metadata.source.gutenbergId,
+      rawTextFile: metadata.source.rawTextFile,
+      metadataFile: relativeTo(textRoot, filePath),
+      allowDuplicateGutenbergId: metadata.source.allowDuplicateGutenbergId,
+      duplicateReason: metadata.source.duplicateReason ?? null,
+    })),
   );
-  if (draftMetadata.length > 0) {
-    warnings.push(
-      `${draftMetadata.length} draft metadata file(s) skipped by books:build until manual review is complete.`,
-    );
-  }
 
   safeResetGeneratedRoot(generatedRoot, Boolean(options.generatedRoot));
 
   const processedBooks: GeneratedBookManifest[] = [];
   const cloudflareExportBooks: CloudflareExportBook[] = [];
   for (const { filePath, metadata } of validMetadata) {
+    if (metadataWithoutRawSet.has(path.normalize(filePath))) continue;
     const bookWarnings: string[] = [];
     let rawPath: string;
     try {
@@ -1751,10 +1850,17 @@ export function buildBookLibrary(
       rawText,
       approvedPeopleResult.people,
       bookApprovals.get(metadata.slug) ?? null,
+      duplicateResolutions.get(metadata.slug) ?? null,
       bookWarnings,
     );
-    fatalErrors.push(...bookFatalErrors);
     warnings.push(...bookWarnings.map((warning) => `${metadata.slug}: ${warning}`));
+    if (isDraftMetadata(metadata) && !manifest.source.processingAllowed) {
+      warnings.push(
+        `${metadata.slug}: draft metadata skipped by books:build because the source-file evidence gate did not approve it.`,
+      );
+      continue;
+    }
+    fatalErrors.push(...bookFatalErrors);
     if (bookFatalErrors.length > 0) continue;
     processedBooks.push(manifest);
 

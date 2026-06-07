@@ -441,8 +441,14 @@ export function morseBookPath(slug: string) {
 export function isMorseBookPublishReady(
   book: Pick<MorseBookLibrarySummary, "source"> | MorseBookManifest,
 ) {
+  const approvedBySource =
+    book.source.approvalSource === "file-evidence" ||
+    (book.source.approvalSource === "owner-reviewed" &&
+      book.source.rightsReviewed === true) ||
+    (book.source.approvalSource === undefined &&
+      book.source.rightsReviewed === true);
   return (
-    book.source.rightsReviewed === true &&
+    approvedBySource &&
     book.source.publishReady === true &&
     book.source.rightsStatus === "approved" &&
     book.source.processingAllowed === true

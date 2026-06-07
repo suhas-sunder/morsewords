@@ -21,16 +21,82 @@
       ],
       "remainingBlockers": [
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
         "Illustrations or image references need manual handling.",
-        "Edition or editorial status needs manual review."
+        "Edition or editorial status needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing."
       ],
       "exactMetadataFieldsNeeded": [
         "app/client/assets/text/approved-metadata/authors.json::lewis-carroll.deathYear",
         "app/client/assets/text/meta/alices-adventures-in-wonderland.json::owner-reviewed website approval",
         "app/client/assets/text/meta/alices-adventures-in-wonderland.json::source.rightsReviewed",
         "app/client/assets/text/meta/alices-adventures-in-wonderland.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "gulliver-s-travels",
+      "title": "Gulliver's Travels into Several Remote Nations of the World",
+      "author": [
+        "Jonathan Swift"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected.",
+        "Main remaining person blocker is author death-year evidence."
+      ],
+      "remainingBlockers": [
+        "Author death year is missing from approved metadata or clear source metadata.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/approved-metadata/authors.json::jonathan-swift.deathYear",
+        "app/client/assets/text/meta/gulliver-s-travels.json::manualReviewRequired false",
+        "app/client/assets/text/meta/gulliver-s-travels.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/gulliver-s-travels.json::originalPublicationYear",
+        "app/client/assets/text/meta/gulliver-s-travels.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/gulliver-s-travels.json::source.rightsBasis",
+        "app/client/assets/text/meta/gulliver-s-travels.json::source.rightsReviewed",
+        "app/client/assets/text/meta/gulliver-s-travels.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "the-sea-wolf",
+      "title": "The Sea-Wolf",
+      "author": [
+        "Jack London"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected.",
+        "Main remaining person blocker is author death-year evidence."
+      ],
+      "remainingBlockers": [
+        "Author death year is missing from approved metadata or clear source metadata.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/approved-metadata/authors.json::jack-london.deathYear",
+        "app/client/assets/text/meta/the-sea-wolf.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-sea-wolf.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-sea-wolf.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-sea-wolf.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-sea-wolf.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-sea-wolf.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-sea-wolf.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -82,11 +148,11 @@
         "Content needs education-use review even if rights metadata is completed."
       ],
       "remainingBlockers": [
+        "Transcriber notes remain in cleaned story text.",
+        "Content brand-safety risk needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Content brand-safety risk needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -96,6 +162,41 @@
         "app/client/assets/text/meta/the-call-of-cthulhu.json::source.rightsBasis",
         "app/client/assets/text/meta/the-call-of-cthulhu.json::source.rightsReviewed",
         "app/client/assets/text/meta/the-call-of-cthulhu.json::website approval"
+      ],
+      "addingApprovedAuthorMetadataMightBeEnough": false,
+      "translatorOrEditorAmbiguityRemains": false
+    },
+    {
+      "slug": "the-water-babies",
+      "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+      "author": [
+        "Charles Kingsley"
+      ],
+      "currentStatus": "needs_manual_review",
+      "whyClose": [
+        "Project Gutenberg source URL is present.",
+        "No duplicate Gutenberg ID blocker is attached.",
+        "No later copyright or permission-language blocker was detected.",
+        "Main remaining person blocker is author death-year evidence."
+      ],
+      "remainingBlockers": [
+        "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
+        "Draft or manual-review metadata must be reviewed before processing or publishing."
+      ],
+      "exactMetadataFieldsNeeded": [
+        "app/client/assets/text/approved-metadata/authors.json::charles-kingsley.deathYear",
+        "app/client/assets/text/meta/the-water-babies.json::illustrator handling review",
+        "app/client/assets/text/meta/the-water-babies.json::manualReviewRequired false",
+        "app/client/assets/text/meta/the-water-babies.json::metadataStatus reviewed",
+        "app/client/assets/text/meta/the-water-babies.json::originalPublicationYear",
+        "app/client/assets/text/meta/the-water-babies.json::owner-reviewed website approval",
+        "app/client/assets/text/meta/the-water-babies.json::source.rightsBasis",
+        "app/client/assets/text/meta/the-water-babies.json::source.rightsReviewed",
+        "app/client/assets/text/meta/the-water-babies.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -246,42 +347,6 @@
       "translatorOrEditorAmbiguityRemains": false
     },
     {
-      "slug": "gulliver-s-travels",
-      "title": "Gulliver's Travels into Several Remote Nations of the World",
-      "author": [
-        "Jonathan Swift"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::jonathan-swift.deathYear",
-        "app/client/assets/text/meta/gulliver-s-travels.json::manualReviewRequired false",
-        "app/client/assets/text/meta/gulliver-s-travels.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/gulliver-s-travels.json::originalPublication",
-        "app/client/assets/text/meta/gulliver-s-travels.json::originalPublicationYear",
-        "app/client/assets/text/meta/gulliver-s-travels.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/gulliver-s-travels.json::source.rightsBasis",
-        "app/client/assets/text/meta/gulliver-s-travels.json::source.rightsReviewed",
-        "app/client/assets/text/meta/gulliver-s-travels.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
       "slug": "the-art-of-war",
       "title": "The Art of War",
       "author": [
@@ -296,11 +361,11 @@
       ],
       "remainingBlockers": [
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Modern introduction, notes, or editorial material may be present.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Modern introduction, notes, or editorial material may be present.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -605,42 +670,6 @@
       "translatorOrEditorAmbiguityRemains": false
     },
     {
-      "slug": "the-sea-wolf",
-      "title": "The Sea-Wolf",
-      "author": [
-        "Jack London"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::jack-london.deathYear",
-        "app/client/assets/text/meta/the-sea-wolf.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-sea-wolf.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-sea-wolf.json::originalPublication",
-        "app/client/assets/text/meta/the-sea-wolf.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-sea-wolf.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-sea-wolf.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-sea-wolf.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-sea-wolf.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
       "slug": "the-secret-garden-gutenberg-113",
       "title": "The Secret Garden",
       "author": [
@@ -766,10 +795,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -803,10 +832,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -841,10 +870,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -879,10 +908,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -916,10 +945,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -954,10 +983,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Edition or editorial status needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Edition or editorial status needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -991,10 +1020,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1028,10 +1057,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1065,10 +1094,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1103,10 +1132,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1138,12 +1167,12 @@
       ],
       "remainingBlockers": [
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1176,10 +1205,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1214,10 +1243,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1251,10 +1280,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1267,44 +1296,6 @@
         "app/client/assets/text/meta/the-thirty-nine-steps.json::source.rightsBasis",
         "app/client/assets/text/meta/the-thirty-nine-steps.json::source.rightsReviewed",
         "app/client/assets/text/meta/the-thirty-nine-steps.json::website approval"
-      ],
-      "addingApprovedAuthorMetadataMightBeEnough": false,
-      "translatorOrEditorAmbiguityRemains": false
-    },
-    {
-      "slug": "the-water-babies",
-      "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
-      "author": [
-        "Charles Kingsley"
-      ],
-      "currentStatus": "needs_manual_review",
-      "whyClose": [
-        "Project Gutenberg source URL is present.",
-        "No duplicate Gutenberg ID blocker is attached.",
-        "No later copyright or permission-language blocker was detected.",
-        "Main remaining person blocker is author death-year evidence."
-      ],
-      "remainingBlockers": [
-        "Original publication metadata was not found.",
-        "Original publication year is missing or not before 1931.",
-        "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Draft or manual-review metadata must be reviewed before processing or publishing."
-      ],
-      "exactMetadataFieldsNeeded": [
-        "app/client/assets/text/approved-metadata/authors.json::charles-kingsley.deathYear",
-        "app/client/assets/text/meta/the-water-babies.json::illustrator handling review",
-        "app/client/assets/text/meta/the-water-babies.json::manualReviewRequired false",
-        "app/client/assets/text/meta/the-water-babies.json::metadataStatus reviewed",
-        "app/client/assets/text/meta/the-water-babies.json::originalPublication",
-        "app/client/assets/text/meta/the-water-babies.json::originalPublicationYear",
-        "app/client/assets/text/meta/the-water-babies.json::owner-reviewed website approval",
-        "app/client/assets/text/meta/the-water-babies.json::source.rightsBasis",
-        "app/client/assets/text/meta/the-water-babies.json::source.rightsReviewed",
-        "app/client/assets/text/meta/the-water-babies.json::website approval"
       ],
       "addingApprovedAuthorMetadataMightBeEnough": false,
       "translatorOrEditorAmbiguityRemains": false
@@ -1326,10 +1317,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1363,10 +1354,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1400,11 +1391,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1439,11 +1430,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1478,11 +1469,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1557,11 +1548,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1596,11 +1587,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1637,11 +1628,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Transcriber notes remain in cleaned story text.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Transcriber notes remain in cleaned story text.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1673,10 +1664,10 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1712,11 +1703,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Translation status or translator death year needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Translation status or translator death year needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1752,11 +1743,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Modern introduction, notes, or editorial material may be present.",
+        "Illustrations or image references need manual handling.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Modern introduction, notes, or editorial material may be present.",
-        "Illustrations or image references need manual handling.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1792,11 +1783,11 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
+        "Illustrations or image references need manual handling.",
+        "Edition or editorial status needs manual review.",
         "Metadata rightsReviewed is false.",
         "Owner-reviewed book approval is missing.",
         "Rights basis \"unknown\" is not publish-ready.",
-        "Illustrations or image references need manual handling.",
-        "Edition or editorial status needs manual review.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1831,12 +1822,12 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Transcriber notes remain in cleaned story text.",
         "Content brand-safety risk needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1872,12 +1863,12 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [
@@ -1917,13 +1908,13 @@
         "Original publication metadata was not found.",
         "Original publication year is missing or not before 1931.",
         "Author death year is missing from approved metadata or clear source metadata.",
-        "Metadata rightsReviewed is false.",
-        "Owner-reviewed book approval is missing.",
-        "Rights basis \"unknown\" is not publish-ready.",
         "Modern introduction, notes, or editorial material may be present.",
         "Transcriber notes remain in cleaned story text.",
         "Illustrations or image references need manual handling.",
         "Translation status or translator death year needs manual review.",
+        "Metadata rightsReviewed is false.",
+        "Owner-reviewed book approval is missing.",
+        "Rights basis \"unknown\" is not publish-ready.",
         "Draft or manual-review metadata must be reviewed before processing or publishing."
       ],
       "exactMetadataFieldsNeeded": [

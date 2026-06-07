@@ -12,6 +12,10 @@ import type {
 } from "./bookManifestTypes.ts";
 import { BOOK_SCHEMA_VERSION } from "./bookManifestTypes.ts";
 import {
+  buildDuplicateSlugResolutionMap,
+  type DuplicateSlugResolution,
+} from "./bookDuplicateResolution.ts";
+import {
   loadOwnerBookApprovals,
   ownerBookApprovalMap,
 } from "./bookApprovalFiles.ts";
@@ -33,6 +37,8 @@ type MetadataEntry = {
 
 type DuplicateParticipant = {
   slug: string;
+  title: string;
+  author: string[];
   metadataFile: string;
   rawTextFile: string;
   allowDuplicateGutenbergId: boolean;
@@ -59,6 +65,8 @@ type BookRightsReviewEntry = {
   canadaUsV1Status: BookCanadaUsV1Status;
   processingAllowed: boolean;
   publishReady: boolean;
+  approvalSource: BookRightsReport["approval_source"];
+  duplicateResolutionSource: BookRightsReport["duplicate_resolution_source"];
   authorDeathYear: number | null;
   translator: string;
   translatorDeathYear: number | null;
@@ -467,6 +475,8 @@ function duplicateGroups(entries: MetadataEntry[]): DuplicateGutenbergReview[] {
     const participants = groups.get(id) ?? [];
     participants.push({
       slug: entry.metadata.slug,
+      title: entry.metadata.title,
+      author: entry.metadata.author,
       metadataFile: entry.relativePath,
       rawTextFile: entry.rawRelativePath,
       allowDuplicateGutenbergId:
@@ -489,16 +499,18 @@ function duplicateGroups(entries: MetadataEntry[]): DuplicateGutenbergReview[] {
 
 function duplicateIdsNeedingReview(
   duplicates: DuplicateGutenbergReview[],
+  duplicateResolutions: Map<string, DuplicateSlugResolution> = new Map(),
 ): Set<string> {
   return new Set(
     duplicates
       .filter((group) =>
-        group.participants.some(
-          (participant) =>
-            participant.allowDuplicateGutenbergId !== true ||
-            participant.duplicateReason === null ||
-            participant.duplicateReason.trim() === "",
-        ),
+        group.participants.some((participant) => {
+          const resolution = duplicateResolutions.get(participant.slug);
+          return (
+            !resolution ||
+            resolution.duplicateResolutionSource === "manual-review"
+          );
+        }),
       )
       .map((group) => group.gutenbergId),
   );
@@ -513,10 +525,15 @@ function appendReason(summary: string, reason: string): string {
 function forceManualReview(
   report: BookRightsReport,
   reason: string,
+  duplicateResolution?: DuplicateSlugResolution,
 ): BookRightsReport {
   if (report.canada_us_v1_status === "reject") {
     return {
       ...report,
+      approval_source: "manual-review",
+      duplicate_resolution_source:
+        duplicateResolution?.duplicateResolutionSource ??
+        report.duplicate_resolution_source,
       processing_allowed: false,
       reasoning_summary: appendReason(report.reasoning_summary, reason),
     };
@@ -524,6 +541,10 @@ function forceManualReview(
 
   return {
     ...report,
+    approval_source: "manual-review",
+    duplicate_resolution_source:
+      duplicateResolution?.duplicateResolutionSource ??
+      report.duplicate_resolution_source,
     canada_us_v1_status: "needs_manual_review",
     processing_allowed: false,
     reasoning_summary: appendReason(report.reasoning_summary, reason),
@@ -534,10 +555,28 @@ function maybeApplyMetadataReviewLocks(
   metadata: BookMetadata,
   report: BookRightsReport,
   duplicateReviewIds: Set<string>,
+  duplicateResolution: DuplicateSlugResolution | null,
 ): BookRightsReport {
   let nextReport = report;
-  if (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true) {
+  const fileEvidenceApproved =
+    nextReport.approval_source === "file-evidence" &&
+    nextReport.canada_us_v1_status === "approved" &&
+    nextReport.processing_allowed;
+  if (
+    !fileEvidenceApproved &&
+    (metadata.metadataStatus === "draft" || metadata.manualReviewRequired === true)
+  ) {
     nextReport = forceManualReview(nextReport, DRAFT_REVIEW_REASON);
+  }
+  if (duplicateResolution) {
+    nextReport = {
+      ...nextReport,
+      duplicate_resolution_source:
+        duplicateResolution.duplicateResolutionSource,
+    };
+    if (!duplicateResolution.isEligible) {
+      return forceManualReview(nextReport, duplicateResolution.reason, duplicateResolution);
+    }
   }
   if (
     metadata.source.gutenbergId &&
@@ -562,6 +601,12 @@ function nextActionFor(
   }
   if (report.canada_us_v1_status === "reject") {
     return "Do not process for public use. Resolve copyright, permission, source, or license blockers first.";
+  }
+  if (
+    report.duplicate_resolution_source === "deterministic-file-match" &&
+    !report.processing_allowed
+  ) {
+    return "Keep this duplicate alternate blocked; the deterministic file match selected the canonical normalized-title slug.";
   }
   if (
     metadata.source.gutenbergId &&
@@ -616,6 +661,8 @@ function buildProcessingNotes({
     `- Metadata status: ${metadata.metadataStatus ?? "unspecified"}`,
     `- Manual review required: ${metadata.manualReviewRequired ? "yes" : "no"}`,
     `- Approval status: ${report.canada_us_v1_status}`,
+    `- Approval source: ${report.approval_source}`,
+    `- Duplicate resolution source: ${report.duplicate_resolution_source}`,
     `- Processing allowed: ${report.processing_allowed ? "yes" : "no"}`,
     "- processed_book.json emitted: no",
     "- Section/story artifacts emitted by rights-only command: no",
@@ -711,6 +758,8 @@ function reviewEntryFor({
     canadaUsV1Status: report.canada_us_v1_status,
     processingAllowed: report.processing_allowed,
     publishReady: rights.publishReady,
+    approvalSource: report.approval_source,
+    duplicateResolutionSource: report.duplicate_resolution_source,
     authorDeathYear: report.author_death_year,
     translator: report.translator,
     translatorDeathYear: report.translator_death_year,
@@ -820,7 +869,7 @@ function buildBatchMarkdown(report: BookRightsBatchReviewReport): string {
       (book) =>
         `- ${book.slug}: ${book.canadaUsV1Status}; processing ${
           book.processingAllowed ? "allowed" : "blocked"
-        }; next: ${book.nextAction}`,
+        }; approval source ${book.approvalSource}; next: ${book.nextAction}`,
     )
     .join("\n");
 
@@ -974,7 +1023,22 @@ export function generateBookRightsReports(
   }
 
   const duplicates = duplicateGroups(entries);
-  const duplicateReviewIds = duplicateIdsNeedingReview(duplicates);
+  const duplicateResolutions = buildDuplicateSlugResolutionMap(
+    entries.map((entry) => ({
+      slug: entry.metadata.slug,
+      title: entry.metadata.title,
+      author: entry.metadata.author,
+      gutenbergId: entry.metadata.source.gutenbergId,
+      rawTextFile: entry.rawRelativePath,
+      metadataFile: entry.relativePath,
+      allowDuplicateGutenbergId: entry.metadata.source.allowDuplicateGutenbergId,
+      duplicateReason: entry.metadata.source.duplicateReason ?? null,
+    })),
+  );
+  const duplicateReviewIds = duplicateIdsNeedingReview(
+    duplicates,
+    duplicateResolutions,
+  );
   const bookReviews: BookRightsReviewEntry[] = [];
 
   for (const entry of entries) {
@@ -1000,6 +1064,7 @@ export function generateBookRightsReports(
       entry.metadata,
       baseReport,
       duplicateReviewIds,
+      duplicateResolutions.get(entry.metadata.slug) ?? null,
     );
     const rights = validateBookRights(entry.metadata, report);
     const bookRoot = path.join(generatedRoot, entry.metadata.slug);
