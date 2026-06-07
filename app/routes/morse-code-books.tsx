@@ -31,6 +31,7 @@ const META_TITLE = "Morse Code Books and Audiobooks | MorseWords";
 const DESCRIPTION =
   "Browse Morse book pages and turn chapters into browser-local Morse audio, video, and practice material.";
 const PAGE_SIZE = 12;
+const DEFAULT_SORT_MODE: SortMode = "title-az";
 
 const processSteps = [
   {
@@ -60,7 +61,108 @@ const placeholderCards = Array.from({ length: 5 }, (_, index) => ({
   label: `Book page ${index + 1}`,
 }));
 
-type SortMode = "title" | "author" | "wordCount";
+type SortMode =
+  | "title-az"
+  | "title-za"
+  | "author-az"
+  | "author-za"
+  | "word-count-asc"
+  | "word-count-desc";
+
+type HubBook = MorseBookLibrarySummary & {
+  hubDescription: string;
+  hubSearchText: string;
+  hubSortIndex: number;
+  hubSubjects: string[];
+};
+
+type PublicBookPresentation = {
+  description: string;
+  subjects: string[];
+};
+
+const APPROVED_BOOK_PRESENTATION: Record<string, PublicBookPresentation> = {
+  "anne-of-green-gables": {
+    description:
+      "A warm coming-of-age classic about Anne Shirley, Avonlea, friendship, and finding a home.",
+    subjects: ["Children", "Classics", "Young Adult"],
+  },
+  "crime-and-punishment": {
+    description:
+      "A psychological classic following Raskolnikov through guilt, consequence, and moral reckoning.",
+    subjects: ["Classics", "Crime", "Fiction"],
+  },
+  "dr-jekyll-and-mr-hyde": {
+    description:
+      "A compact Gothic horror story about identity, secrecy, and a dangerous experiment.",
+    subjects: ["Classics", "Gothic", "Horror"],
+  },
+  frankenstein: {
+    description:
+      "Mary Shelley's Gothic science-fiction novel about creation, responsibility, and isolation.",
+    subjects: ["Classics", "Gothic", "Horror", "Science Fiction"],
+  },
+  "gulliver-s-travels": {
+    description:
+      "A satirical voyage through strange lands, remote nations, and sharply observed human habits.",
+    subjects: ["Adventure", "Classics", "Fantasy"],
+  },
+  "the-call-of-the-wild": {
+    description:
+      "A wilderness adventure following Buck through hardship, instinct, and the pull of the North.",
+    subjects: ["Adventure", "Classics", "Fiction"],
+  },
+  "the-emerald-city-of-oz": {
+    description:
+      "An Oz fantasy adventure with Dorothy, magical lands, and a journey toward the Emerald City.",
+    subjects: ["Adventure", "Children", "Fantasy"],
+  },
+  "the-great-gatsby": {
+    description:
+      "A Jazz Age classic about longing, wealth, reinvention, and the cost of illusion.",
+    subjects: ["Classics", "Fiction"],
+  },
+  "the-jungle-book": {
+    description:
+      "Linked animal tales and adventure stories with Mowgli, the jungle, and memorable voices.",
+    subjects: ["Adventure", "Children", "Classics"],
+  },
+  "the-picture-of-dorian-gray": {
+    description:
+      "A Gothic classic about beauty, vanity, influence, and the hidden cost of corruption.",
+    subjects: ["Classics", "Fiction", "Gothic"],
+  },
+  "the-princess-and-the-goblin": {
+    description:
+      "A children's fantasy about Princess Irene, Curdie, underground danger, and quiet courage.",
+    subjects: ["Children", "Fantasy"],
+  },
+  "the-railway-children": {
+    description:
+      "A children's classic about family, kindness, and three children drawn to the railway.",
+    subjects: ["Children", "Classics"],
+  },
+  "the-sea-wolf": {
+    description:
+      "A sea adventure and character study aboard a sealing schooner under Wolf Larsen.",
+    subjects: ["Adventure", "Classics", "Fiction"],
+  },
+  "the-secret-garden-gutenberg-113": {
+    description:
+      "A children's classic about loneliness, friendship, renewal, and a hidden garden.",
+    subjects: ["Children", "Classics"],
+  },
+  "the-three-musketeers": {
+    description:
+      "A swashbuckling adventure of friendship, intrigue, swordplay, and court politics.",
+    subjects: ["Adventure", "Classics", "Historical Fiction"],
+  },
+  "treasure-island": {
+    description:
+      "A pirate adventure with Jim Hawkins, buried treasure, sea danger, and Long John Silver.",
+    subjects: ["Adventure", "Classics", "Young Adult"],
+  },
+};
 
 function isTestPublishedPreviewRequest(request: Request) {
   const url = new URL(request.url);
@@ -88,30 +190,38 @@ function bookAuthor(book: MorseBookLibrarySummary) {
   return book.author.join(", ");
 }
 
-function searchableBookText(book: MorseBookLibrarySummary) {
+function searchableBookText(book: HubBook) {
   return [
     book.title,
     bookAuthor(book),
-    book.description,
+    book.hubDescription,
     book.source.provider,
     book.language,
-    ...book.subjects,
+    ...book.hubSubjects,
   ]
     .join(" ")
     .toLowerCase();
 }
 
-function sortBooks(books: MorseBookLibrarySummary[], sortMode: SortMode) {
+function sortBooks(books: HubBook[], sortMode: SortMode) {
   return [...books].sort((a, b) => {
-    if (sortMode === "author") {
-      const authorCompare = bookAuthor(a).localeCompare(bookAuthor(b));
-      if (authorCompare !== 0) return authorCompare;
+    let result = 0;
+    if (sortMode === "author-az" || sortMode === "author-za") {
+      result = bookAuthor(a).localeCompare(bookAuthor(b));
+      if (sortMode === "author-za") result *= -1;
     }
-    if (sortMode === "wordCount") {
-      const wordCompare = a.stats.wordCount - b.stats.wordCount;
-      if (wordCompare !== 0) return wordCompare;
+    if (sortMode === "title-az" || sortMode === "title-za") {
+      result = a.title.localeCompare(b.title);
+      if (sortMode === "title-za") result *= -1;
     }
-    return a.title.localeCompare(b.title);
+    if (sortMode === "word-count-asc" || sortMode === "word-count-desc") {
+      result = a.stats.wordCount - b.stats.wordCount;
+      if (sortMode === "word-count-desc") result *= -1;
+    }
+    if (result !== 0) return result;
+    const titleResult = a.title.localeCompare(b.title);
+    if (titleResult !== 0) return titleResult;
+    return a.hubSortIndex - b.hubSortIndex;
   });
 }
 
@@ -119,10 +229,6 @@ function uniqueSorted(values: string[]) {
   return [...new Set(values.filter(Boolean))].sort((a, b) =>
     a.localeCompare(b),
   );
-}
-
-function formatLanguage(language: string) {
-  return language.toUpperCase();
 }
 
 function formatBookCount(count: number) {
@@ -153,6 +259,66 @@ function displayBookDescription(description: string) {
     return "Chapter-ready text for Morse audio, video, and practice.";
   }
   return description;
+}
+
+function displayBookProvider(provider: string) {
+  return provider.toLowerCase().includes("test fixture") ? "" : provider;
+}
+
+function displaySubjectLabel(subject: string) {
+  return subject.trim().replace(/\s+/g, " ");
+}
+
+function hubSubjectsForBook(book: MorseBookLibrarySummary) {
+  const curatedSubjects = APPROVED_BOOK_PRESENTATION[book.slug]?.subjects ?? [];
+  const sourceSubjects = book.subjects.map(displaySubjectLabel).filter(Boolean);
+  const subjects = uniqueSorted([...curatedSubjects, ...sourceSubjects]);
+  return subjects.length > 0 ? subjects : ["Classics"];
+}
+
+function hubDescriptionForBook(book: MorseBookLibrarySummary) {
+  const curatedDescription = APPROVED_BOOK_PRESENTATION[book.slug]?.description;
+  const sourceDescription = displayBookDescription(book.description).trim();
+  return (
+    curatedDescription ||
+    sourceDescription ||
+    "A reviewed Project Gutenberg book prepared for browser-local Morse reading, audio, and video."
+  );
+}
+
+function enrichBookForHub(
+  book: MorseBookLibrarySummary,
+  hubSortIndex: number,
+): HubBook {
+  const hubSubjects = hubSubjectsForBook(book);
+  const hubDescription = hubDescriptionForBook(book);
+  const hubBook = {
+    ...book,
+    hubDescription,
+    hubSearchText: "",
+    hubSortIndex,
+    hubSubjects,
+  };
+  return {
+    ...hubBook,
+    hubSearchText: searchableBookText(hubBook),
+  };
+}
+
+function subjectOptionsForBooks(books: HubBook[]) {
+  const counts = new Map<string, number>();
+  books.forEach((book) => {
+    book.hubSubjects.forEach((subject) => {
+      counts.set(subject, (counts.get(subject) ?? 0) + 1);
+    });
+  });
+  return [...counts.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([subject, count]) => ({
+      count,
+      label: `${subject} (${formatNumber(count)})`,
+      value: subject,
+    }));
 }
 
 function publicBookHref(book: MorseBookLibrarySummary, includeTestFixture: boolean) {
@@ -195,45 +361,55 @@ export default function MorseCodeBooksHubRoute({
   const { books, includeTestFixture } = loaderData;
   const [query, setQuery] = React.useState("");
   const [subjectFilter, setSubjectFilter] = React.useState("all");
-  const [languageFilter, setLanguageFilter] = React.useState("all");
-  const [sortMode, setSortMode] = React.useState<SortMode>("title");
+  const [sortMode, setSortMode] = React.useState<SortMode>(DEFAULT_SORT_MODE);
   const [currentPage, setCurrentPage] = React.useState(1);
+  const collectionHeadingRef = React.useRef<HTMLHeadingElement | null>(null);
+  const collectionModuleRef = React.useRef<HTMLDivElement | null>(null);
 
-  const subjectOptions = React.useMemo(
-    () => uniqueSorted(books.flatMap((book) => book.subjects)),
+  const hubBooks = React.useMemo(
+    () => books.map((book, index) => enrichBookForHub(book, index)),
     [books],
   );
-  const languageOptions = React.useMemo(
-    () => uniqueSorted(books.map((book) => book.language)),
-    [books],
+  const subjectOptions = React.useMemo(
+    () => subjectOptionsForBooks(hubBooks),
+    [hubBooks],
   );
 
   const filteredBooks = React.useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
-    const candidates = books.filter((book) => {
+    const candidates = hubBooks.filter((book) => {
       if (
         normalizedQuery &&
-        !searchableBookText(book).includes(normalizedQuery)
+        !book.hubSearchText.includes(normalizedQuery)
       ) {
         return false;
       }
       if (
         subjectFilter !== "all" &&
-        !book.subjects.includes(subjectFilter)
+        !book.hubSubjects.includes(subjectFilter)
       ) {
-        return false;
-      }
-      if (languageFilter !== "all" && book.language !== languageFilter) {
         return false;
       }
       return true;
     });
     return sortBooks(candidates, sortMode);
-  }, [books, languageFilter, query, sortMode, subjectFilter]);
+  }, [hubBooks, query, sortMode, subjectFilter]);
 
-  React.useEffect(() => {
+  function returnToCollectionTop(options: { focusHeading?: boolean } = {}) {
+    if (typeof window === "undefined") return;
+    window.requestAnimationFrame(() => {
+      const target = collectionModuleRef.current ?? collectionHeadingRef.current;
+      target?.scrollIntoView({ block: "start" });
+      if (options.focusHeading) {
+        collectionHeadingRef.current?.focus({ preventScroll: true });
+      }
+    });
+  }
+
+  function resetToFirstPageAndReturn() {
     setCurrentPage(1);
-  }, [languageFilter, query, sortMode, subjectFilter]);
+    returnToCollectionTop();
+  }
 
   const pageCount = Math.max(1, Math.ceil(filteredBooks.length / PAGE_SIZE));
   const activePage = Math.min(currentPage, pageCount);
@@ -246,8 +422,7 @@ export default function MorseCodeBooksHubRoute({
   const hasActiveFilters =
     query.trim().length > 0 ||
     subjectFilter !== "all" ||
-    languageFilter !== "all" ||
-    sortMode !== "title";
+    sortMode !== DEFAULT_SORT_MODE;
   const hasMultiplePages = pageCount > 1;
   const collectionResultText = resultCountText({
     allBooksCount: books.length,
@@ -259,8 +434,28 @@ export default function MorseCodeBooksHubRoute({
   function clearFilters() {
     setQuery("");
     setSubjectFilter("all");
-    setLanguageFilter("all");
-    setSortMode("title");
+    setSortMode(DEFAULT_SORT_MODE);
+    resetToFirstPageAndReturn();
+  }
+
+  function handleQueryChange(value: string) {
+    setQuery(value);
+    resetToFirstPageAndReturn();
+  }
+
+  function handleSubjectChange(value: string) {
+    setSubjectFilter(value);
+    resetToFirstPageAndReturn();
+  }
+
+  function handleSortChange(value: SortMode) {
+    setSortMode(value);
+    resetToFirstPageAndReturn();
+  }
+
+  function handlePageChange(page: number) {
+    setCurrentPage(page);
+    returnToCollectionTop({ focusHeading: true });
   }
 
   const collectionJsonLd = {
@@ -335,6 +530,8 @@ export default function MorseCodeBooksHubRoute({
           <Eyebrow>Library browser</Eyebrow>
           <h2
             id="morse-books-library"
+            ref={collectionHeadingRef}
+            tabIndex={-1}
             className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
           >
             Browse the Morse book library
@@ -346,6 +543,7 @@ export default function MorseCodeBooksHubRoute({
         </div>
 
         <div
+          ref={collectionModuleRef}
           className="mw-static-surface mt-5 rounded-xl bg-[#fffdf8]/76 p-3 sm:p-4 lg:p-5"
           data-testid="morse-books-collection-module"
         >
@@ -356,24 +554,24 @@ export default function MorseCodeBooksHubRoute({
             data-testid="morse-books-toolbar"
             onSubmit={(event) => event.preventDefault()}
           >
-            <div className="grid gap-2.5 md:grid-cols-2 lg:grid-cols-[minmax(240px,1.25fr)_minmax(150px,0.72fr)_minmax(130px,0.55fr)_minmax(130px,0.55fr)_minmax(120px,0.46fr)] lg:items-end">
+            <div className="grid gap-2.5 md:grid-cols-2 lg:grid-cols-[minmax(280px,1.25fr)_minmax(190px,0.78fr)_minmax(190px,0.72fr)] lg:items-end">
               <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
                 Search
                 <input
                   type="search"
                   value={query}
-                  onChange={(event) => setQuery(event.currentTarget.value)}
+                  onChange={(event) => handleQueryChange(event.currentTarget.value)}
                   className="mw-input-text mw-input-placeholder min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                  placeholder="Title, author, or subject"
-                  aria-label="Search title, author, or subject"
+                  placeholder="Title, author, description, or subject"
+                  aria-label="Search title, author, description, or subject"
                 />
               </label>
               <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
-                Subject
+                Subject / genre
                 <select
                   value={subjectFilter}
                   onChange={(event) =>
-                    setSubjectFilter(event.currentTarget.value)
+                    handleSubjectChange(event.currentTarget.value)
                   }
                   className="mw-input-text min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   disabled={subjectOptions.length === 0}
@@ -381,27 +579,8 @@ export default function MorseCodeBooksHubRoute({
                 >
                   <option value="all">All subjects</option>
                   {subjectOptions.map((subject) => (
-                    <option key={subject} value={subject}>
-                      {subject}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
-                Language
-                <select
-                  value={languageFilter}
-                  onChange={(event) =>
-                    setLanguageFilter(event.currentTarget.value)
-                  }
-                  className="mw-input-text min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                  disabled={languageOptions.length === 0}
-                  aria-label="Filter Morse books by language"
-                >
-                  <option value="all">All languages</option>
-                  {languageOptions.map((language) => (
-                    <option key={language} value={language}>
-                      {formatLanguage(language)}
+                    <option key={subject.value} value={subject.value}>
+                      {subject.label}
                     </option>
                   ))}
                 </select>
@@ -411,29 +590,19 @@ export default function MorseCodeBooksHubRoute({
                 <select
                   value={sortMode}
                   onChange={(event) =>
-                    setSortMode(event.currentTarget.value as SortMode)
+                    handleSortChange(event.currentTarget.value as SortMode)
                   }
                   className="mw-input-text min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   aria-label="Sort Morse books"
                 >
-                  <option value="title">Title</option>
-                  <option value="author">Author</option>
-                  <option value="wordCount">Word count</option>
+                  <option value="title-az">Title A-Z</option>
+                  <option value="title-za">Title Z-A</option>
+                  <option value="author-az">Author A-Z</option>
+                  <option value="author-za">Author Z-A</option>
+                  <option value="word-count-asc">Word count low to high</option>
+                  <option value="word-count-desc">Word count high to low</option>
                 </select>
               </label>
-              <button
-                type="button"
-                onClick={clearFilters}
-                disabled={!hasActiveFilters}
-                className={toolControlButtonClass({
-                  rounded: "lg",
-                  size: "sm",
-                  full: true,
-                  disabled: !hasActiveFilters,
-                })}
-              >
-                Clear filters
-              </button>
             </div>
           </form>
 
@@ -445,6 +614,16 @@ export default function MorseCodeBooksHubRoute({
             >
               {collectionResultText}
             </p>
+            {hasActiveFilters ? (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="cursor-pointer text-sm font-semibold text-sky-900 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                data-testid="morse-books-reset-view"
+              >
+                Reset view
+              </button>
+            ) : null}
           </div>
 
           <div className="mt-4">
@@ -468,7 +647,7 @@ export default function MorseCodeBooksHubRoute({
                   <PaginationControls
                     currentPage={activePage}
                     pageCount={pageCount}
-                    onPageChange={setCurrentPage}
+                    onPageChange={handlePageChange}
                   />
                 ) : null}
               </>
@@ -628,7 +807,7 @@ function EmptyCollectionShelf({ variant }: { variant: "empty" | "filtered" }) {
             No books match your current view
           </h3>
           <p className="mw-text-muted mt-1 text-sm leading-relaxed text-slate-700">
-            Clear filters or try another title, author, or subject.
+            Reset the view or try another title, author, description, or subject.
           </p>
         </div>
       ) : (
@@ -702,10 +881,17 @@ function BookCard({
   book,
   href,
 }: {
-  book: MorseBookLibrarySummary;
+  book: HubBook;
   href: string;
 }) {
-  const description = displayBookDescription(book.description);
+  const description = book.hubDescription;
+  const metadata = [
+    book.stats.sectionCount > 0
+      ? `${formatNumber(book.stats.sectionCount)} sections`
+      : "",
+    `${formatNumber(book.stats.wordCount)} words`,
+    displayBookProvider(book.source.provider),
+  ].filter(Boolean);
 
   return (
     <Link
@@ -737,6 +923,18 @@ function BookCard({
             {description}
           </p>
         ) : null}
+        <p
+          className="break-words font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500"
+          data-testid="morse-book-card-subjects"
+        >
+          {book.hubSubjects.join(" / ")}
+        </p>
+        <p
+          className="break-words text-xs font-semibold leading-relaxed text-slate-600"
+          data-testid="morse-book-card-meta"
+        >
+          {metadata.join(" / ")}
+        </p>
       </div>
     </Link>
   );

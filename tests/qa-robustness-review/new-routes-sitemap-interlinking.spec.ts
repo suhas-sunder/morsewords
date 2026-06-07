@@ -1,4 +1,6 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
+import fs from "node:fs";
+import path from "node:path";
 
 import {
   CANONICAL_ROUTE_PATHS,
@@ -8,7 +10,45 @@ import {
 } from "../../app/client/data/routes";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
+const ROOT = process.cwd();
 const THEME_STORAGE_KEY = "morsewords-theme";
+const ALICE_SLUG = "alices-adventures-in-wonderland";
+
+type LibraryManifestBook = {
+  slug: string;
+  source?: {
+    processingAllowed?: boolean;
+    publishReady?: boolean;
+    rightsStatus?: string;
+  };
+};
+
+function approvedBookPathsFromManifest() {
+  const manifest = JSON.parse(
+    fs.readFileSync(
+      path.join(
+        ROOT,
+        "app",
+        "client",
+        "assets",
+        "books",
+        "generated",
+        "library-manifest.json",
+      ),
+      "utf8",
+    ),
+  ) as { books: LibraryManifestBook[] };
+
+  return manifest.books
+    .filter(
+      (book) =>
+        book.source?.publishReady === true &&
+        book.source.processingAllowed === true &&
+        book.source.rightsStatus === "approved",
+    )
+    .map((book) => `${ROUTES.morseBooks}/${book.slug}`)
+    .sort((first, second) => first.localeCompare(second));
+}
 
 const NEW_CANONICAL_ROUTES = [
   ROUTES.bookTranslator,
@@ -275,6 +315,49 @@ test.describe("book and video route sitemap and interlinking", () => {
         aliasPath,
       );
     }
+
+    const approvedBookPaths = approvedBookPathsFromManifest();
+    expect(approvedBookPaths, "approved book menu paths").toHaveLength(16);
+    await expect(dialog.getByText("Books and audiobooks")).toBeVisible();
+    expect(
+      moreMenuLinks
+        .filter((linkPath) => linkPath.startsWith(`${ROUTES.morseBooks}/`))
+        .sort((first, second) => first.localeCompare(second)),
+      "desktop More menu lists approved books only",
+    ).toEqual(approvedBookPaths);
+    expect(moreMenuLinks, "More menu hides unpublished Alice").not.toContain(
+      `${ROUTES.morseBooks}/${ALICE_SLUG}`,
+    );
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await page.getByRole("button", { name: "Open navigation" }).click();
+    const mobileDialog = page.getByRole("dialog", { name: "Mobile navigation" });
+    await expect(mobileDialog).toBeVisible();
+    await expect(mobileDialog.getByText("Books and audiobooks")).toBeVisible();
+    const mobileLinks = await mobileDialog
+      .locator("a[href]")
+      .evaluateAll((anchors) =>
+        anchors.map((anchor) =>
+          new URL(
+            (anchor as HTMLAnchorElement).getAttribute("href") ?? "",
+            window.location.origin,
+          ).pathname,
+        ),
+      );
+    expect(
+      mobileLinks
+        .filter((linkPath) => linkPath.startsWith(`${ROUTES.morseBooks}/`))
+        .sort((first, second) => first.localeCompare(second)),
+      "mobile navigation lists approved books only",
+    ).toEqual(approvedBookPaths);
+    expect(mobileLinks, "mobile navigation hides audiobook alias").not.toContain(
+      ROUTES.morseAudiobooksAlias,
+    );
+    expect(mobileLinks, "mobile navigation hides unpublished Alice").not.toContain(
+      `${ROUTES.morseBooks}/${ALICE_SLUG}`,
+    );
   });
 
   test("contextual pages link to canonical export routes without alias leakage", async ({

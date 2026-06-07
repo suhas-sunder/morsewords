@@ -79,6 +79,31 @@ async function parseJsonLd(page: Page) {
     );
 }
 
+async function selectOptionLabels(locator: Locator) {
+  return locator.locator("option").evaluateAll((options) =>
+    options.map((option) => (option.textContent ?? "").trim()),
+  );
+}
+
+async function cardTitles(page: Page) {
+  return page.locator("[data-testid='morse-book-card-title']").evaluateAll((titles) =>
+    titles.map((title) => (title.textContent ?? "").trim()),
+  );
+}
+
+async function expectCollectionTopReturned(page: Page) {
+  await expect
+    .poll(async () =>
+      page.evaluate(() => {
+        const collection = document.querySelector(
+          "[data-testid='morse-books-collection-module']",
+        );
+        return collection ? Math.round(collection.getBoundingClientRect().top) : 9999;
+      }),
+    )
+    .toBeLessThan(120);
+}
+
 async function contrastRatio(locator: Locator) {
   return locator.evaluate((element) => {
     type Channels = { r: number; g: number; b: number; a: number };
@@ -190,21 +215,67 @@ test.describe("Morse books hub", () => {
     await expect(page.getByRole("link", { name: /^Open book/ })).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-output-badge']")).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-subject-chip']")).toHaveCount(0);
-    await expect(collectionModule.locator("[data-testid='morse-books-toolbar']")).toBeVisible();
-    await expect(page.getByLabel("Search title, author, or subject")).toBeEnabled();
-    await expect(page.getByLabel("Filter Morse books by subject")).toBeDisabled();
-    await expect(page.getByLabel("Filter Morse books by language")).toBeEnabled();
-    await expect(page.getByLabel("Sort Morse books")).toBeEnabled();
-    await page.getByLabel("Search title, author, or subject").fill("Alice");
-    await expect(page.getByLabel("Search title, author, or subject")).toHaveValue(
-      "Alice",
+    await expect(anneCard.locator("[data-testid='morse-book-card-description']")).toBeVisible();
+    await expect(anneCard.locator("[data-testid='morse-book-card-subjects']")).toContainText(
+      "Children",
     );
-    await expect(page.getByRole("button", { name: "Clear filters" })).toBeEnabled();
-    await page.getByRole("button", { name: "Clear filters" }).click();
-    await expect(page.getByLabel("Search title, author, or subject")).toHaveValue("");
+    await expect(anneCard.locator("[data-testid='morse-book-card-meta']")).toContainText(
+      "Project Gutenberg",
+    );
+    await expect(collectionModule.locator("[data-testid='morse-books-toolbar']")).toBeVisible();
+    const searchInput = page.getByLabel(
+      "Search title, author, description, or subject",
+    );
+    const subjectFilter = page.getByLabel("Filter Morse books by subject");
+    const sortSelect = page.getByLabel("Sort Morse books");
+    await expect(searchInput).toBeEnabled();
+    await expect(subjectFilter).toBeEnabled();
+    await expect(page.getByLabel("Filter Morse books by language")).toHaveCount(0);
+    await expect(sortSelect).toBeEnabled();
+    await expect(sortSelect).toHaveValue("title-az");
+    await expect(page.getByRole("button", { name: "Clear filters" })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Reset view" })).toHaveCount(0);
+    const publicSubjectLabels = await selectOptionLabels(subjectFilter);
+    expect(publicSubjectLabels).toContain("Adventure (7)");
+    expect(publicSubjectLabels).toContain("Children (6)");
+    expect(publicSubjectLabels).toContain("Gothic (3)");
+    expect(publicSubjectLabels.join(" ")).not.toContain("Alice");
+    const sortLabels = await selectOptionLabels(sortSelect);
+    expect(sortLabels).toEqual([
+      "Title A-Z",
+      "Title Z-A",
+      "Author A-Z",
+      "Author Z-A",
+      "Word count low to high",
+      "Word count high to low",
+    ]);
+
+    await searchInput.fill("finding a home");
+    await expect(searchInput).toHaveValue("finding a home");
+    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(1);
+    await expect(page.getByRole("heading", { name: "Anne of Green Gables" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Reset view" })).toBeVisible();
+    await page.getByRole("button", { name: "Reset view" }).click();
+    await expect(searchInput).toHaveValue("");
+    await expect(subjectFilter).toHaveValue("all");
+    await expect(sortSelect).toHaveValue("title-az");
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 1-12 of 16 books",
     );
+
+    await searchInput.fill("Stevenson");
+    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(2);
+    await expect(page.getByRole("heading", { name: "Treasure Island" })).toBeVisible();
+    await searchInput.fill("Gothic");
+    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(3);
+    await expect(page.getByRole("heading", { name: "Frankenstein; or, the modern prometheus" })).toBeVisible();
+    await searchInput.fill("");
+    await subjectFilter.selectOption("Adventure");
+    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(7);
+    await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
+      "Showing 1-7 of 7 books",
+    );
+    await page.getByRole("button", { name: "Reset view" }).click();
 
     const collectionOrder = await page.evaluate(() => {
       const toolbar = document.querySelector("[data-testid='morse-books-toolbar']");
@@ -299,7 +370,7 @@ test.describe("Morse books hub", () => {
     const alicePreviewHtml = await alicePreviewResponse.text();
     expect(alicePreviewHtml).toContain("noindex,nofollow");
 
-    await saveScreenshot(page, testInfo, "morse-books-hub-empty-desktop.png");
+    await saveScreenshot(page, testInfo, "morse-books-hub-desktop.png");
   });
 
   test("redirects audiobook alias and keeps sitemap canonical", async ({
@@ -364,12 +435,20 @@ test.describe("Morse books hub", () => {
       `/morse-code-books/${TEST_BOOK_SLUG}?preview=test-published`,
     );
     await expect(card.locator("[data-testid='morse-book-card-description']")).toBeVisible();
+    await expect(card.locator("[data-testid='morse-book-card-subjects']")).toBeVisible();
+    await expect(card.locator("[data-testid='morse-book-card-meta']")).toContainText(
+      "61 words",
+    );
     await expect(card.locator("[data-testid='morse-book-output-badge']")).toHaveCount(0);
     await expect(card.locator("[data-testid='morse-book-subject-chip']")).toHaveCount(0);
 
     await expect(page.getByRole("link", { name: /^Open book/ })).toHaveCount(0);
 
-    const searchInput = page.getByLabel("Search title, author, or subject");
+    await expect(page.getByLabel("Filter Morse books by language")).toHaveCount(0);
+    await expect(page.getByLabel("Filter Morse books by subject")).toBeEnabled();
+    const searchInput = page.getByLabel(
+      "Search title, author, description, or subject",
+    );
     await searchInput.fill("MorseWords QA");
     await expect(searchInput).toHaveValue("MorseWords QA");
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(1);
@@ -378,7 +457,7 @@ test.describe("Morse books hub", () => {
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(0);
     await expect(page.getByText("No books match your current view")).toBeVisible();
     await expect(page.locator("[data-testid='morse-books-no-matches']")).toContainText(
-      "Clear filters or try another title, author, or subject.",
+      "Reset the view or try another title, author, description, or subject.",
     );
     await expect(page.locator("[data-testid='morse-books-no-matches'] a")).toHaveCount(
       0,
@@ -395,7 +474,7 @@ test.describe("Morse books hub", () => {
     await saveScreenshot(page, testInfo, "morse-books-hub-test-card.png");
   });
 
-  test("filters, sorts, clears, and paginates development fixture cards", async ({
+  test("filters, sorts, resets, and paginates development fixture cards", async ({
     page,
   }, testInfo) => {
     await gotoHub(page, TEST_COLLECTION_HUB_PATH);
@@ -457,7 +536,35 @@ test.describe("Morse books hub", () => {
       ).not.toContain(term);
     }
 
+    const searchInput = page.getByLabel(
+      "Search title, author, description, or subject",
+    );
+    const subjectFilter = page.getByLabel("Filter Morse books by subject");
+    const sortSelect = page.getByLabel("Sort Morse books");
+    await expect(page.getByLabel("Filter Morse books by language")).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Clear filters" })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Reset view" })).toHaveCount(0);
+    expect(await selectOptionLabels(subjectFilter)).toEqual([
+      "All subjects",
+      "Adventure practice (8)",
+      "Beginner listening (8)",
+      "Chapter drills (7)",
+      "Morse audiobook fixture (30)",
+      "Public-domain classics (7)",
+    ]);
+    expect(await selectOptionLabels(sortSelect)).toEqual([
+      "Title A-Z",
+      "Title Z-A",
+      "Author A-Z",
+      "Author Z-A",
+      "Word count low to high",
+      "Word count high to low",
+    ]);
+
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await pagination.getByRole("button", { name: "Next" }).click();
+    await expectCollectionTopReturned(page);
+    await expect(page.locator("#morse-books-library")).toBeFocused();
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 13-24 of 30 books",
@@ -472,14 +579,14 @@ test.describe("Morse books hub", () => {
       "Showing 25-30 of 30 books",
     );
 
-    await page.getByLabel("Search title, author, or subject").fill("Book 25");
+    await searchInput.fill("Book 25");
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(1);
     await expect(page.getByRole("heading", { name: "Test Collection Morse Book 25" })).toBeVisible();
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 1 of 1 book",
     );
 
-    await page.getByLabel("Search title, author, or subject").fill("Ada Key");
+    await searchInput.fill("Ada Key");
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(8);
     await expect(
       page.getByRole("heading", { name: "Test Collection Morse Book 01" }),
@@ -488,7 +595,7 @@ test.describe("Morse books hub", () => {
       "Showing 1-8 of 8 books",
     );
 
-    await page.getByLabel("Search title, author, or subject").fill("Chapter drills");
+    await searchInput.fill("Chapter drills");
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(7);
     await expect(
       page.getByRole("heading", { name: "Test Collection Morse Book 03" }),
@@ -497,58 +604,73 @@ test.describe("Morse books hub", () => {
       "Showing 1-7 of 7 books",
     );
 
-    await page.getByLabel("Search title, author, or subject").fill("");
-    await page.getByLabel("Filter Morse books by subject").selectOption(
-      "Adventure practice",
-    );
+    await searchInput.fill("");
+    await subjectFilter.selectOption("Adventure practice");
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(8);
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 1-8 of 8 books",
     );
 
-    await page.getByLabel("Filter Morse books by language").selectOption("fr");
-    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(2);
-    await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
-      "Showing 1-2 of 2 books",
+    await subjectFilter.selectOption("all");
+    await sortSelect.selectOption("title-za");
+    expect(await cardTitles(page)).toEqual(
+      Array.from({ length: 12 }, (_, index) =>
+        `Test Collection Morse Book ${(30 - index).toString().padStart(2, "0")}`,
+      ),
     );
 
-    await page.getByLabel("Filter Morse books by subject").selectOption("all");
-    await page.getByLabel("Sort Morse books").selectOption("author");
-    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(5);
+    await sortSelect.selectOption("author-az");
+    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
-      "Showing 1-5 of 5 books",
+      "Showing 1-12 of 30 books",
     );
     await expect(
       page.locator("[data-testid='morse-book-card'] h3").first(),
     ).toHaveText("Test Collection Morse Book 01");
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").nth(1),
+    ).toHaveText("Test Collection Morse Book 05");
+
+    await sortSelect.selectOption("author-za");
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").first(),
+    ).toHaveText("Test Collection Morse Book 02");
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").nth(1),
+    ).toHaveText("Test Collection Morse Book 06");
+
+    await sortSelect.selectOption("word-count-asc");
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").first(),
+    ).toHaveText("Test Collection Morse Book 01");
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").nth(1),
+    ).toHaveText("Test Collection Morse Book 02");
+
+    await sortSelect.selectOption("word-count-desc");
+    await expect(
+      page.locator("[data-testid='morse-book-card'] h3").first(),
+    ).toHaveText("Test Collection Morse Book 30");
     await expect(
       page.locator("[data-testid='morse-book-card'] h3").nth(1),
     ).toHaveText("Test Collection Morse Book 29");
 
-    await page.getByLabel("Sort Morse books").selectOption("wordCount");
-    await expect(
-      page.locator("[data-testid='morse-book-card'] h3").first(),
-    ).toHaveText("Test Collection Morse Book 01");
-    await expect(
-      page.locator("[data-testid='morse-book-card'] h3").nth(1),
-    ).toHaveText("Test Collection Morse Book 08");
-
-    await page.getByLabel("Search title, author, or subject").fill("not a book");
+    await searchInput.fill("not a book");
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(0);
     await expect(page.getByText("No books match your current view")).toBeVisible();
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 0 of 0 books",
     );
 
-    await page.getByRole("button", { name: "Clear filters" }).click();
+    await page.getByRole("button", { name: "Reset view" }).click();
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 1-12 of 30 books",
     );
-    await expect(page.getByLabel("Search title, author, or subject")).toHaveValue("");
-    await expect(page.getByLabel("Filter Morse books by subject")).toHaveValue("all");
-    await expect(page.getByLabel("Filter Morse books by language")).toHaveValue("all");
-    await expect(page.getByLabel("Sort Morse books")).toHaveValue("title");
+    await expect(searchInput).toHaveValue("");
+    await expect(subjectFilter).toHaveValue("all");
+    await expect(page.getByLabel("Filter Morse books by language")).toHaveCount(0);
+    await expect(sortSelect).toHaveValue("title-az");
 
     const firstCardLink = page
       .locator("[data-testid='morse-book-card']")
@@ -583,6 +705,8 @@ test.describe("Morse books hub", () => {
     await expect(page.locator("h1")).toBeVisible();
     await expect(page.locator("[data-testid='morse-books-card-grid']")).toBeVisible();
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
+    await expect(page.getByLabel("Filter Morse books by language")).toHaveCount(0);
+    await expect(page.getByLabel("Filter Morse books by subject")).toBeEnabled();
     expect(await contrastRatio(page.locator("h1"))).toBeGreaterThanOrEqual(4.5);
     expect(
       await contrastRatio(

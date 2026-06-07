@@ -3,6 +3,10 @@ import { createPortal } from "react-dom";
 import { useLocation } from "react-router";
 
 import logoUrl from "~/client/assets/images/logo.png";
+import {
+  getPublishedMorseBookSummaries,
+  morseBookPath,
+} from "~/client/data/morseBooks";
 import { ROUTES } from "~/client/data/routes";
 import type { ThemeMode } from "~/client/theme/themeStorage";
 import DisplaySettingsToggle from "./DisplaySettingsToggle";
@@ -27,6 +31,12 @@ const MAIN_ITEMS: NavItem[] = [
   { label: "Typing", href: ROUTES.typing },
   { label: "How to use", href: ROUTES.howToUse },
 ];
+
+const PUBLIC_BOOK_ITEMS: NavItem[] = getPublishedMorseBookSummaries().map((book) => ({
+  label: book.title,
+  href: morseBookPath(book.slug),
+  description: book.author.join(", "),
+}));
 
 const MORE_GROUPS: NavGroup[] = [
   {
@@ -223,6 +233,10 @@ const MORE_GROUPS: NavGroup[] = [
         description: "Build printable Morse learning puzzles.",
       },
     ],
+  },
+  {
+    title: "Books and audiobooks",
+    items: PUBLIC_BOOK_ITEMS,
   },
   {
     title: "About and trust",
