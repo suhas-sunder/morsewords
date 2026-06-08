@@ -450,9 +450,18 @@ test.describe("book and video route sitemap and interlinking", () => {
     await waitForRouteReady(page);
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
-    await page.getByRole("button", { name: /^More$/ }).click();
-    const dialog = page.getByRole("dialog", { name: "More MorseWords tools" });
-    const audiobookNavLink = dialog.locator(`a[href="${ROUTES.morseAudiobooks}"]`).first();
+    const moreButton = page.getByRole("button", { name: /^More$/ });
+    const navDialog = (await moreButton.isVisible().catch(() => false))
+      ? page.getByRole("dialog", { name: "More MorseWords tools" })
+      : page.getByRole("dialog", { name: "Mobile navigation" });
+    if (await moreButton.isVisible().catch(() => false)) {
+      await moreButton.click();
+    } else {
+      await page.getByRole("button", { name: "Open navigation" }).click();
+    }
+    const audiobookNavLink = navDialog
+      .locator(`a[href="${ROUTES.morseAudiobooks}"]`)
+      .first();
     await expect(audiobookNavLink).toBeVisible();
     await audiobookNavLink.hover();
     await readableColors(audiobookNavLink);
