@@ -91,6 +91,8 @@ import {
   getMorseBookPublicContent,
   getMorseBookSections,
   isMorseBookPublishReady,
+  morseAudiobookPath,
+  morseBookPath,
 } from "~/client/data/morseBooks";
 import type {
   MorseBookLibrarySummary,
@@ -144,6 +146,7 @@ type MorseBookPageProps = {
   book: MorseBookManifest | null;
   bookSummary: MorseBookLibrarySummary | null;
   initialSection: MorseBookSectionJson | null;
+  mode?: "book" | "audiobook";
   previewMode: "unpublished" | "test-published" | null;
 };
 
@@ -386,6 +389,7 @@ export default function MorseBookPage({
   book,
   bookSummary,
   initialSection,
+  mode = "book",
   previewMode,
 }: MorseBookPageProps) {
   const initialRuntimeState = React.useMemo<MorseBookRuntimeState>(() => {
@@ -443,7 +447,10 @@ export default function MorseBookPage({
             book: null,
             initialSection: null,
             status: "error",
-            message: "This Morse book is not available right now.",
+            message:
+              mode === "audiobook"
+                ? "This Morse audiobook is not available right now."
+                : "This Morse book is not available right now.",
           });
           return;
         }
@@ -457,7 +464,10 @@ export default function MorseBookPage({
             book: null,
             initialSection: null,
             status: "error",
-            message: "This Morse book is missing readable sections.",
+            message:
+              mode === "audiobook"
+                ? "This Morse audiobook is missing readable sections."
+                : "This Morse book is missing readable sections.",
           });
           return;
         }
@@ -475,19 +485,22 @@ export default function MorseBookPage({
           initialSection: null,
           status: "error",
           message:
-            "We could not load this Morse book. Check your connection and try again.",
+            mode === "audiobook"
+              ? "We could not load this Morse audiobook. Check your connection and try again."
+              : "We could not load this Morse book. Check your connection and try again.",
         });
       });
 
     return () => {
       cancelled = true;
     };
-  }, [book, bookSummary, initialSection, retryKey]);
+  }, [book, bookSummary, initialSection, mode, retryKey]);
 
   if (runtimeState.status !== "ready") {
     return (
       <MorseBookRuntimeState
         message={runtimeState.message}
+        mode={mode}
         status={runtimeState.status}
         summary={bookSummary}
         onRetry={() => setRetryKey((value) => value + 1)}
@@ -499,6 +512,7 @@ export default function MorseBookPage({
     <MorseBookWorkspace
       book={runtimeState.book}
       initialSection={runtimeState.initialSection}
+      mode={mode}
       previewMode={previewMode}
     />
   );
@@ -506,24 +520,29 @@ export default function MorseBookPage({
 
 function MorseBookRuntimeState({
   message,
+  mode,
   onRetry,
   status,
   summary,
 }: {
   message: string;
+  mode: "book" | "audiobook";
   onRetry: () => void;
   status: "loading" | "error";
   summary: MorseBookLibrarySummary | null;
 }) {
-  const title = summary?.title ?? "Morse book";
+  const isAudiobook = mode === "audiobook";
+  const title = summary?.title ?? (isAudiobook ? "Morse audiobook" : "Morse book");
   return (
     <main className="mx-auto w-full max-w-[1120px] px-4 pb-12 pt-6 sm:px-6 lg:px-8">
       <ToolHero
-        eyebrow="Morse book"
+        eyebrow={isAudiobook ? "Morse audiobook" : "Morse book"}
         title={title}
         lead={
           status === "loading"
-            ? "Loading the cleaned book text for this Morse practice page."
+            ? isAudiobook
+              ? "Loading the approved book data for this Morse audiobook page."
+              : "Loading the cleaned book text for this Morse practice page."
             : message
         }
       />
@@ -535,11 +554,19 @@ function MorseBookRuntimeState({
         }
       >
         <h2 className="mw-heading text-2xl font-extrabold text-sky-950">
-          {status === "loading" ? "Loading book text" : "Book text unavailable"}
+          {status === "loading"
+            ? isAudiobook
+              ? "Loading audiobook data"
+              : "Loading book text"
+            : isAudiobook
+              ? "Audiobook unavailable"
+              : "Book text unavailable"}
         </h2>
         <p className="mt-3 max-w-[58ch] text-base leading-relaxed text-slate-700">
           {status === "loading"
-            ? "The book page will open as soon as the approved text file is ready."
+            ? isAudiobook
+              ? "The audiobook page will open as soon as the approved book JSON is ready."
+              : "The book page will open as soon as the approved text file is ready."
             : message}
         </p>
         {status === "error" ? (
@@ -553,10 +580,10 @@ function MorseBookRuntimeState({
               Try again
             </ToolButton>
             <Link
-              to={ROUTES.morseBooks}
+              to={isAudiobook ? ROUTES.morseAudiobooks : ROUTES.morseBooks}
               className={toolControlButtonClass({ rounded: "xl" })}
             >
-              Back to books
+              {isAudiobook ? "Back to audiobooks" : "Back to books"}
             </Link>
           </div>
         ) : null}
@@ -568,12 +595,15 @@ function MorseBookRuntimeState({
 function MorseBookWorkspace({
   book,
   initialSection,
+  mode,
   previewMode,
 }: {
   book: MorseBookManifest;
   initialSection: MorseBookSectionJson;
+  mode: "book" | "audiobook";
   previewMode: "unpublished" | "test-published" | null;
 }) {
+  const isAudiobook = mode === "audiobook";
   const themeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(themeMode);
@@ -1306,17 +1336,25 @@ function MorseBookWorkspace({
     <main
       className="mx-auto w-full max-w-[1120px] px-4 pb-14 pt-2 sm:px-6 sm:pt-4 lg:px-8"
       data-mw-morse-book-page="true"
+      data-mw-morse-book-page-mode={mode}
       data-mw-morse-book-publish-ready={publishReady ? "true" : "false"}
       data-mw-morse-book-preview-mode={previewMode ?? "public"}
     >
       <ToolHero
-        eyebrow="Morse book foundation"
+        eyebrow={isAudiobook ? "Morse audiobook" : "Morse book foundation"}
         title={book.title}
         lead={
-          <>
-            Export the full cleaned book by default, choose chapters when you
-            need a smaller file, and preview browser-local Morse audio or video.
-          </>
+          isAudiobook ? (
+            <>
+              Choose the full book or selected chapters, preview browser-local
+              Morse audio, and download MP3 or WAV from your current settings.
+            </>
+          ) : (
+            <>
+              Export the full cleaned book by default, choose chapters when you
+              need a smaller file, and preview browser-local Morse audio or video.
+            </>
+          )
         }
       />
 
@@ -1336,6 +1374,23 @@ function MorseBookWorkspace({
               >
                 Translate your own text
               </Link>
+              {publishReady ? (
+                <>
+                  <span className="mx-2 text-slate-400" aria-hidden="true">
+                    /
+                  </span>
+                  <Link
+                    to={
+                      isAudiobook
+                        ? morseBookPath(book.slug)
+                        : morseAudiobookPath(book.slug)
+                    }
+                    className="font-semibold text-sky-900 underline decoration-sky-900/45 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  >
+                    {isAudiobook ? "Read book page" : "Open audiobook page"}
+                  </Link>
+                </>
+              ) : null}
             </p>
             <h2 className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
               {book.author.join(", ")}
@@ -1346,6 +1401,22 @@ function MorseBookWorkspace({
               </p>
             ) : null}
           </div>
+
+          {isAudiobook ? (
+            <div
+              className="mw-static-panel rounded-xl p-4"
+              data-testid="morse-audiobook-audio-first-panel"
+            >
+              <h2 className="mw-heading text-xl font-extrabold text-sky-950">
+                Audio-first Morse practice
+              </h2>
+              <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+                Audio is generated in this browser from the approved cleaned
+                book text and your speed, tone, Farnsworth, split, MP3, and WAV
+                settings. No pre-made audiobook file is hosted here.
+              </p>
+            </div>
+          ) : null}
 
           <div className="grid gap-4 text-sm text-slate-700 sm:grid-cols-3">
             <Metric label="Sections" value={formatNumber(book.stats.sectionCount)} />
@@ -1367,7 +1438,10 @@ function MorseBookWorkspace({
       </section>
 
       <section className="mt-10 grid gap-7 lg:grid-cols-[minmax(360px,420px)_minmax(0,1fr)] lg:items-start">
-        <ToolPanel label="Choose sections" badge="Lazy JSON">
+        <ToolPanel
+          label={isAudiobook ? "Choose audiobook scope" : "Choose sections"}
+          badge="Lazy JSON"
+        >
           <div className="space-y-4 px-3 pb-3">
             <label className="flex cursor-pointer items-start gap-3 rounded-lg bg-[#fffdf8]/82 px-3 py-3 text-sm font-semibold text-slate-700">
               <input
@@ -1381,7 +1455,9 @@ function MorseBookWorkspace({
                 data-mw-morse-book-select-all-default="true"
               />
               <span className="grid min-w-0 gap-1">
-                <span className="text-sky-950">Select all chapters</span>
+                <span className="text-sky-950">
+                  {isAudiobook ? "Use full book" : "Select all chapters"}
+                </span>
                 <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-slate-500">
                   {formatNumber(defaultSectionIds.length)} default chapters
                 </span>
@@ -1448,7 +1524,7 @@ function MorseBookWorkspace({
 
         <div className="grid gap-7">
           <ToolPanel
-            label="Cleaned reading preview"
+            label={isAudiobook ? "Text preview" : "Cleaned reading preview"}
             badge={loadingSelectedSections ? "Loading" : selectionLabel}
           >
             <div className="px-4 pb-4">
@@ -1479,7 +1555,10 @@ function MorseBookWorkspace({
             </div>
           </ToolPanel>
 
-          <ToolOutputPanel label="Morse preview" badge="Capped">
+          <ToolOutputPanel
+            label={isAudiobook ? "Morse transcript preview" : "Morse preview"}
+            badge="Capped"
+          >
             <div className="px-4 pb-4">
               <pre
                 className="mw-output-soft max-h-[18rem] overflow-auto whitespace-pre-wrap font-mono text-sm leading-relaxed text-sky-100"
@@ -1498,7 +1577,10 @@ function MorseBookWorkspace({
         className="mt-10 grid gap-7"
         data-mw-morse-book-output-foundation="true"
       >
-        <ToolPanel label="Preview and download" badge={publishReady ? "Ready" : "Gated"}>
+        <ToolPanel
+          label={isAudiobook ? "Audiobook preview and download" : "Preview and download"}
+          badge={publishReady ? "Ready" : "Gated"}
+        >
           <div className="space-y-5 px-4 pb-4">
             <div className="flex flex-wrap gap-2" role="group" aria-label="Output type">
               {(["audio", "video"] as const).map((value) => (

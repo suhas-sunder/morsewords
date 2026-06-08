@@ -50,15 +50,21 @@ function approvedBookPathsFromManifest() {
     .sort((first, second) => first.localeCompare(second));
 }
 
+function approvedAudiobookPathsFromManifest() {
+  return approvedBookPathsFromManifest().map((bookPath) =>
+    bookPath.replace(ROUTES.morseBooks, ROUTES.morseAudiobooks),
+  );
+}
+
 const NEW_CANONICAL_ROUTES = [
   ROUTES.bookTranslator,
   ROUTES.morseBooks,
+  ROUTES.morseAudiobooks,
   ROUTES.videoGenerator,
 ] as const;
 
 const NEW_ALIAS_ROUTES = [
   ROUTES.ebookTranslatorAlias,
-  ROUTES.morseAudiobooksAlias,
   ROUTES.textToMorseVideoAlias,
 ] as const;
 
@@ -237,6 +243,14 @@ test.describe("book and video route sitemap and interlinking", () => {
         absoluteUrl(aliasPath),
       );
     }
+    for (const audiobookPath of approvedAudiobookPathsFromManifest()) {
+      expect(xml, `${audiobookPath} XML sitemap entry`).toContain(
+        absoluteUrl(audiobookPath),
+      );
+    }
+    expect(xml, "unpublished audiobook absent from XML sitemap").not.toContain(
+      `${ROUTES.morseAudiobooks}/${ALICE_SLUG}`,
+    );
 
     await page.goto(ROUTES.sitemap, { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
@@ -252,6 +266,14 @@ test.describe("book and video route sitemap and interlinking", () => {
         aliasPath,
       );
     }
+    for (const audiobookPath of approvedAudiobookPathsFromManifest()) {
+      expect(htmlLinks, `${audiobookPath} HTML sitemap link`).toContain(
+        audiobookPath,
+      );
+    }
+    expect(htmlLinks, "unpublished audiobook absent from HTML sitemap").not.toContain(
+      `${ROUTES.morseAudiobooks}/${ALICE_SLUG}`,
+    );
 
     const sitemapSchema = await jsonLdText(page);
     for (const routePath of NEW_CANONICAL_ROUTES) {
@@ -279,6 +301,7 @@ test.describe("book and video route sitemap and interlinking", () => {
       ROUTES.mp3Generator,
       ROUTES.bookTranslator,
       ROUTES.morseBooks,
+      ROUTES.morseAudiobooks,
       ROUTES.videoGenerator,
     ]) {
       expect(homeLinks, `${routePath} linked from home toolkit`).toContain(
@@ -306,6 +329,7 @@ test.describe("book and video route sitemap and interlinking", () => {
       ROUTES.mp3Generator,
       ROUTES.bookTranslator,
       ROUTES.morseBooks,
+      ROUTES.morseAudiobooks,
       ROUTES.videoGenerator,
     ]) {
       expect(moreMenuLinks, `${routePath} More menu link`).toContain(routePath);
@@ -327,6 +351,9 @@ test.describe("book and video route sitemap and interlinking", () => {
     ).toEqual(approvedBookPaths);
     expect(moreMenuLinks, "More menu hides unpublished Alice").not.toContain(
       `${ROUTES.morseBooks}/${ALICE_SLUG}`,
+    );
+    expect(moreMenuLinks, "More menu links audiobook collection").toContain(
+      ROUTES.morseAudiobooks,
     );
 
     await page.setViewportSize({ width: 390, height: 844 });
@@ -352,8 +379,14 @@ test.describe("book and video route sitemap and interlinking", () => {
         .sort((first, second) => first.localeCompare(second)),
       "mobile navigation lists approved books only",
     ).toEqual(approvedBookPaths);
-    expect(mobileLinks, "mobile navigation hides audiobook alias").not.toContain(
-      ROUTES.morseAudiobooksAlias,
+    expect(mobileLinks, "mobile navigation links audiobook collection").toContain(
+      ROUTES.morseAudiobooks,
+    );
+    expect(
+      mobileLinks,
+      "mobile navigation hides unpublished audiobook",
+    ).not.toContain(
+      `${ROUTES.morseAudiobooks}/${ALICE_SLUG}`,
     );
     expect(mobileLinks, "mobile navigation hides unpublished Alice").not.toContain(
       `${ROUTES.morseBooks}/${ALICE_SLUG}`,
@@ -418,10 +451,10 @@ test.describe("book and video route sitemap and interlinking", () => {
 
     await page.getByRole("button", { name: /^More$/ }).click();
     const dialog = page.getByRole("dialog", { name: "More MorseWords tools" });
-    const videoNavLink = dialog.locator(`a[href="${ROUTES.videoGenerator}"]`);
-    await expect(videoNavLink).toBeVisible();
-    await videoNavLink.hover();
-    await readableColors(videoNavLink);
+    const audiobookNavLink = dialog.locator(`a[href="${ROUTES.morseAudiobooks}"]`).first();
+    await expect(audiobookNavLink).toBeVisible();
+    await audiobookNavLink.hover();
+    await readableColors(audiobookNavLink);
 
     await page.goto(ROUTES.mp3Generator, { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);

@@ -18,6 +18,9 @@ const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
 const STALE_CACHE_BOOK_PUBLIC_PATH = `/morse-code-books/${STALE_CACHE_BOOK_SLUG}`;
 const ERROR_BOOK_PUBLIC_PATH = `/morse-code-books/${ERROR_BOOK_SLUG}`;
+const ALICE_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${ALICE_SLUG}`;
+const APPROVED_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${APPROVED_BOOK_SLUG}`;
+const NETWORK_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${NETWORK_BOOK_SLUG}`;
 const ALICE_PREVIEW_PATH = `${ALICE_PUBLIC_PATH}?preview=unpublished`;
 const TEST_BOOK_PUBLIC_PATH = `/morse-code-books/${TEST_BOOK_SLUG}`;
 const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`;
@@ -246,12 +249,22 @@ test.describe("Morse book page foundation", () => {
   }) => {
     const aliceResponse = await request.get(ALICE_PUBLIC_PATH);
     expect(aliceResponse.status()).toBe(404);
+    const aliceAudiobookResponse = await request.get(ALICE_AUDIOBOOK_PUBLIC_PATH);
+    expect(aliceAudiobookResponse.status()).toBe(404);
 
     const testFixtureResponse = await request.get(TEST_BOOK_PUBLIC_PATH);
     expect(testFixtureResponse.status()).toBe(404);
+    const testFixtureAudiobookResponse = await request.get(
+      `/morse-code-audiobooks/${TEST_BOOK_SLUG}`,
+    );
+    expect(testFixtureAudiobookResponse.status()).toBe(404);
 
     const unknownResponse = await request.get("/morse-code-books/not-a-real-book");
     expect(unknownResponse.status()).toBe(404);
+    const unknownAudiobookResponse = await request.get(
+      "/morse-code-audiobooks/not-a-real-book",
+    );
+    expect(unknownAudiobookResponse.status()).toBe(404);
   });
 
   test("renders an approved external-authority Gutenberg book as a public page", async ({
@@ -276,6 +289,9 @@ test.describe("Morse book page foundation", () => {
       "Project Gutenberg License",
     );
     await expect(page.locator("[data-mw-morse-book-morse-preview]")).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Open audiobook page" }),
+    ).toHaveAttribute("href", APPROVED_AUDIOBOOK_PUBLIC_PATH);
 
     const selectorRows = page.locator("[data-mw-morse-book-section-row]");
     await expect(selectorRows.first()).toBeVisible();
@@ -314,6 +330,55 @@ test.describe("Morse book page foundation", () => {
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).not.toHaveAttribute("data-mw-morse-book-translator-source-sections", "");
     expect(bookJsonRequests).toHaveLength(1);
+  });
+
+  test("loads an approved audiobook page with one whole-book JSON and audio-first controls", async ({
+    page,
+  }) => {
+    const bookJsonRequests: string[] = [];
+    await blockExternalNetwork(page);
+    await page.route(bookJsonPattern(NETWORK_BOOK_SLUG), async (route) => {
+      bookJsonRequests.push(route.request().url());
+      await route.continue();
+    });
+
+    await gotoPublicBookPage(page, NETWORK_AUDIOBOOK_PUBLIC_PATH);
+    await waitForApprovedBookWorkspace(page);
+    await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
+      "data-mw-morse-book-page-mode",
+      "audiobook",
+    );
+    await expect(page.locator("h1")).toContainText(/Jekyll|Hyde/);
+    await expect(page.locator("[data-testid='morse-audiobook-audio-first-panel']")).toBeVisible();
+    await expect(page.getByText("Audiobook preview and download")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Audio" })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Download MP3|Download WAV/ })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Read book page" })).toHaveAttribute(
+      "href",
+      NETWORK_BOOK_PUBLIC_PATH,
+    );
+    await expect(
+      page.getByRole("link", { name: /Project Gutenberg ebook #43/ }),
+    ).toHaveAttribute("href", "https://www.gutenberg.org/ebooks/43");
+    expect(bookJsonRequests).toHaveLength(1);
+
+    const sectionCheckbox = page
+      .locator("[data-mw-morse-book-section-row]")
+      .filter({ hasText: /Chapter|Part|Opening|Source notes/ })
+      .locator("input[type='checkbox']")
+      .last();
+    await sectionCheckbox.setChecked(true);
+    expect(bookJsonRequests).toHaveLength(1);
+
+    const schemaText = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll((nodes) => nodes.map((node) => node.textContent ?? "").join("\n"));
+    expect(schemaText).toContain("Morse audiobook");
+    expect(schemaText).toContain(NETWORK_AUDIOBOOK_PUBLIC_PATH);
+    expect(schemaText).not.toContain("AudioObject");
+    expect(schemaText).not.toContain("aggregateRating");
+    expect(schemaText).not.toContain("reviewRating");
+    expect(schemaText).not.toContain('"price"');
   });
 
   test("caches opened approved book JSON and serves a valid cache hit offline", async ({
