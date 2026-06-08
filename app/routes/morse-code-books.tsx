@@ -26,10 +26,10 @@ import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
 const CANONICAL_PATH = ROUTES.morseBooks;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
-const TITLE = "Morse code books and audiobooks";
-const META_TITLE = "Morse Code Books and Audiobooks | MorseWords";
+const TITLE = "Morse code books";
+const META_TITLE = "Morse Code Books | MorseWords";
 const DESCRIPTION =
-  "Browse Morse book pages and turn chapters into browser-local Morse audio, video, and practice material.";
+  "Browse approved Morse book pages with cleaned text, chapter selection, and browser-local practice tools.";
 const PAGE_SIZE = 12;
 const DEFAULT_SORT_MODE: SortMode = "title-az";
 
@@ -352,7 +352,7 @@ export const meta: Route.MetaFunction = ({ data }) =>
     path: CANONICAL_PATH,
     robots: data?.includeTestFixture ? "noindex,nofollow" : "index,follow",
     keywords:
-      "Morse code books, Morse code audiobooks, book to Morse code, public domain Morse audio, Project Gutenberg Morse code, long text to Morse audio",
+      "Morse code books, book to Morse code, public domain Morse text, Project Gutenberg Morse code, long text to Morse audio",
   });
 
 export default function MorseCodeBooksHubRoute({
@@ -467,7 +467,6 @@ export default function MorseCodeBooksHubRoute({
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
     about: [
       "Morse code books",
-      "Morse code audiobooks",
       "Book to Morse code",
       "Long text to Morse audio",
     ],
@@ -506,7 +505,7 @@ export default function MorseCodeBooksHubRoute({
       <PageHero
         eyebrow="Morse books"
         title={TITLE}
-        description="Browse book pages and turn chapters into Morse audio, video, and practice material."
+        description="Browse approved book pages, preview cleaned text and Morse, then open audio or video practice controls when you need them."
       >
         <ActionLinks
           links={[
@@ -515,6 +514,7 @@ export default function MorseCodeBooksHubRoute({
               label: "Convert your own text",
               primary: true,
             },
+            { href: ROUTES.morseAudiobooks, label: "Browse audiobooks" },
             { href: ROUTES.videoGenerator, label: "Create Morse video" },
             { href: ROUTES.mp3Generator, label: "Create MP3 audio" },
           ]}
@@ -537,8 +537,8 @@ export default function MorseCodeBooksHubRoute({
             Browse the Morse book library
           </h2>
           <p className="mw-text-muted mt-3 max-w-[64ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-            Search, filter, sort, and open chapter-ready book pages from the
-            collection.
+            Search, filter, sort, and open approved text-first book pages from
+            the collection.
           </p>
         </div>
 

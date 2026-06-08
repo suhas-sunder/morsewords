@@ -12,6 +12,7 @@ import {
 } from "~/client/data/morseContent";
 import {
   getPublishedMorseBookSummaries,
+  morseAudiobookPath,
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { ROUTES } from "~/client/data/routes";
@@ -49,6 +50,12 @@ const morseBookSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
   label: `${book.title} in Morse Code`,
   to: morseBookPath(book.slug),
   description: `Read ${book.title} by ${book.author.join(", ")} as cleaned Morse-ready book text with audio and video preview tools.`,
+}));
+
+const morseAudiobookSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
+  label: `${book.title} Morse Audiobook`,
+  to: morseAudiobookPath(book.slug),
+  description: `Open ${book.title} by ${book.author.join(", ")} as a browser-generated Morse audiobook with chapter scope and MP3/WAV controls.`,
 }));
 
 type SitemapGroup = {
@@ -107,7 +114,13 @@ const GROUPS: SitemapGroup[] = [
         label: "Morse Code Books",
         to: ROUTES.morseBooks,
         description:
-          "Browse reviewed Morse book and Morse audiobook-style pages as curated sources become publish-ready.",
+          "Browse reviewed Morse book pages from approved public-domain sources.",
+      },
+      {
+        label: "Morse Code Audiobooks",
+        to: ROUTES.morseAudiobooks,
+        description:
+          "Browse approved books with browser-generated Morse audiobook preview and download controls.",
       },
       {
         label: "Morse Code Video Generator",
@@ -152,6 +165,16 @@ const GROUPS: SitemapGroup[] = [
           description:
             "Approved Project Gutenberg books that passed the MorseWords rights gate.",
           links: morseBookSitemapLinks,
+        },
+      ]
+    : []),
+  ...(morseAudiobookSitemapLinks.length > 0
+    ? [
+        {
+          title: "Morse code audiobooks",
+          description:
+            "Approved Project Gutenberg books available as browser-generated Morse audiobook pages.",
+          links: morseAudiobookSitemapLinks,
         },
       ]
     : []),

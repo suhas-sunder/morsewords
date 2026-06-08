@@ -24,6 +24,7 @@ const KEY_CANONICAL_ROUTES = [
   ROUTES.mp3Generator,
   ROUTES.bookTranslator,
   ROUTES.morseBooks,
+  ROUTES.morseAudiobooks,
   ROUTES.videoGenerator,
   ROUTES.wordSeparator,
   ROUTES.timing,
@@ -32,7 +33,6 @@ const KEY_CANONICAL_ROUTES = [
 
 const KEY_ALIAS_EXPECTATIONS = [
   [ROUTES.ebookTranslatorAlias, ROUTES.bookTranslator],
-  [ROUTES.morseAudiobooksAlias, ROUTES.morseBooks],
   [ROUTES.textToMorseVideoAlias, ROUTES.videoGenerator],
 ] as const;
 
@@ -172,6 +172,13 @@ function routeFileCandidates(routePath: string) {
     return [
       routeFilePath(routePath),
       path.join(ROOT, "app", "routes", "morse-code-books.$slug.tsx"),
+    ];
+  }
+
+  if (parts[0] === "morse-code-audiobooks") {
+    return [
+      routeFilePath(routePath),
+      path.join(ROOT, "app", "routes", "morse-code-audiobooks.$slug.tsx"),
     ];
   }
 

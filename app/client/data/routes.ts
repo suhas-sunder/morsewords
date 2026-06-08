@@ -51,6 +51,7 @@ export const CANONICAL_ROUTES = {
   mp3Generator: "/morse-code-mp3-generator",
   bookTranslator: "/morse-code-book-translator",
   morseBooks: "/morse-code-books",
+  morseAudiobooks: "/morse-code-audiobooks",
   videoGenerator: "/morse-code-video-generator",
 
   howToRead: "/how-to-read-morse-code",
@@ -137,7 +138,6 @@ export const REDIRECT_ROUTE_ALIASES = {
   textToMorseVideoAlias: "/text-to-morse-code-video",
   visualQuizTypoAlias: "/morse-code-vidual-quiz",
   ebookTranslatorAlias: "/morse-code-ebook-translator",
-  morseAudiobooksAlias: "/morse-code-audiobooks",
 } as const;
 
 export const ROUTES = {
@@ -193,7 +193,6 @@ export const REDIRECT_ALIASES = {
   [ROUTES.textToMorseVideoAlias]: ROUTES.videoGenerator,
   [ROUTES.visualQuizTypoAlias]: ROUTES.visualQuiz,
   [ROUTES.ebookTranslatorAlias]: ROUTES.bookTranslator,
-  [ROUTES.morseAudiobooksAlias]: ROUTES.morseBooks,
 } as const;
 
 export type RedirectAliasPath = keyof typeof REDIRECT_ALIASES;

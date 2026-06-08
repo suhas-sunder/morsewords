@@ -9,6 +9,7 @@ const ROOT = process.cwd();
 const ALICE_SLUG = "alices-adventures-in-wonderland";
 const APPROVED_BOOK_SLUG = "anne-of-green-gables";
 const APPROVED_BOOK_PATH = `${ROUTES.morseBooks}/${APPROVED_BOOK_SLUG}`;
+const APPROVED_AUDIOBOOK_PATH = `${ROUTES.morseAudiobooks}/${APPROVED_BOOK_SLUG}`;
 const TEST_BOOK_SLUG = "test-published-morse-book";
 const TEST_BOOK_HUB_PATH = `${ROUTES.morseBooks}?preview=test-published`;
 const TEST_COLLECTION_HUB_PATH = `${ROUTES.morseBooks}?preview=test-collection`;
@@ -189,8 +190,8 @@ test.describe("Morse books hub", () => {
     await gotoHub(page);
 
     await expect(page).toHaveURL(new RegExp(`${ROUTES.morseBooks}$`));
-    await expect(page).toHaveTitle(/Morse Code Books and Audiobooks/);
-    await expect(page.locator("h1")).toHaveText("Morse code books and audiobooks");
+    await expect(page).toHaveTitle(/Morse Code Books/);
+    await expect(page.locator("h1")).toHaveText("Morse code books");
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
       absoluteUrl(ROUTES.morseBooks),
@@ -351,8 +352,8 @@ test.describe("Morse books hub", () => {
     expect(links, "hub links use canonical destinations").toContain(
       ROUTES.bookTranslator,
     );
-    expect(links, "hub does not link audiobook alias").not.toContain(
-      ROUTES.morseAudiobooksAlias,
+    expect(links, "hub links to audiobook collection").toContain(
+      ROUTES.morseAudiobooks,
     );
 
     const jsonLd = await parseJsonLd(page);
@@ -379,23 +380,77 @@ test.describe("Morse books hub", () => {
     await saveScreenshot(page, testInfo, "morse-books-hub-desktop.png");
   });
 
-  test("redirects audiobook alias and keeps sitemap canonical", async ({
+  test("loads audiobook hub as canonical page and keeps sitemap approved-only", async ({
     page,
     request,
-  }) => {
-    const aliasResponse = await request.get(ROUTES.morseAudiobooksAlias, {
-      maxRedirects: 0,
+  }, testInfo) => {
+    const bookJsonRequests: string[] = [];
+    await page.route(/\/morse-book-content\/books\/(?:anne-of-green-gables|treasure-island|frankenstein)\.json(?:\?|$)/, async (route) => {
+      bookJsonRequests.push(route.request().url());
+      await route.continue();
     });
-    expect(aliasResponse.status()).toBe(301);
-    expect(aliasResponse.headers().location).toBe(ROUTES.morseBooks);
+    await gotoHub(page, ROUTES.morseAudiobooks);
+
+    await expect(page).toHaveURL(new RegExp(`${ROUTES.morseAudiobooks}$`));
+    await expect(page).toHaveTitle(/Morse Code Audiobooks/);
+    await expect(page.locator("h1")).toHaveText("Morse code audiobooks");
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      absoluteUrl(ROUTES.morseAudiobooks),
+    );
+    await expect(page.locator("[data-testid='morse-audiobooks-browser']")).toBeVisible();
+    await expect(page.locator("[data-testid='morse-audiobook-card']")).toHaveCount(12);
+    await expect(page.locator("[data-testid='morse-audiobooks-result-count']")).toHaveText(
+      "Showing 1-12 of 16 audiobooks",
+    );
+    const anneAudiobookCard = page
+      .locator("[data-testid='morse-audiobook-card']")
+      .filter({ hasText: "Anne of Green Gables" });
+    await expect(anneAudiobookCard).toHaveAttribute("href", APPROVED_AUDIOBOOK_PATH);
+    await expect(anneAudiobookCard.locator("[data-testid='morse-audiobook-card-meta']")).toContainText(
+      "Morse audiobook",
+    );
+    const searchInput = page.getByLabel(
+      "Search Morse audiobooks by title, author, source, or subject",
+    );
+    const subjectFilter = page.getByLabel("Filter Morse audiobooks by subject");
+    const sortSelect = page.getByLabel("Sort Morse audiobooks");
+    await expect(searchInput).toBeEnabled();
+    await expect(subjectFilter).toBeEnabled();
+    await expect(sortSelect).toHaveValue("title-az");
+    await searchInput.fill("Stevenson");
+    await expect(page.locator("[data-testid='morse-audiobook-card']")).toHaveCount(2);
+    await searchInput.fill("");
+    const firstSubjectValue = await subjectFilter.locator("option").nth(1).getAttribute("value");
+    expect(firstSubjectValue).toBeTruthy();
+    await subjectFilter.selectOption(firstSubjectValue!);
+    const filteredAudiobookCount = await page.locator("[data-testid='morse-audiobook-card']").count();
+    expect(filteredAudiobookCount).toBeGreaterThan(0);
+    expect(filteredAudiobookCount).toBeLessThan(16);
+    await page.getByRole("button", { name: "Reset view" }).click();
+    await sortSelect.selectOption("word-count-desc");
+    await expect(sortSelect).toHaveValue("word-count-desc");
+    expect(bookJsonRequests).toEqual([]);
+
+    const audiobookJsonLd = await parseJsonLd(page);
+    const audiobookSchemaText = JSON.stringify(audiobookJsonLd);
+    expect(audiobookSchemaText).toContain('"@type":"CollectionPage"');
+    expect(audiobookSchemaText).toContain(absoluteUrl(ROUTES.morseAudiobooks));
+    expect(audiobookSchemaText).toContain(absoluteUrl(APPROVED_AUDIOBOOK_PATH));
+    expect(audiobookSchemaText).not.toContain(ALICE_SLUG);
+    expect(audiobookSchemaText).not.toContain("aggregateRating");
+    expect(audiobookSchemaText).not.toContain("reviewRating");
+    expect(audiobookSchemaText).not.toContain('"price"');
 
     const xmlResponse = await request.get("/sitemap.xml");
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
     expect(xml).toContain(absoluteUrl(ROUTES.morseBooks));
     expect(xml).toContain(absoluteUrl(APPROVED_BOOK_PATH));
-    expect(xml).not.toContain(absoluteUrl(ROUTES.morseAudiobooksAlias));
+    expect(xml).toContain(absoluteUrl(ROUTES.morseAudiobooks));
+    expect(xml).toContain(absoluteUrl(APPROVED_AUDIOBOOK_PATH));
     expect(xml).not.toContain(`/morse-code-books/${ALICE_SLUG}`);
+    expect(xml).not.toContain(`/morse-code-audiobooks/${ALICE_SLUG}`);
 
     const staticSitemap = fs.readFileSync(
       path.join(ROOT, "public", "sitemap.xml"),
@@ -403,13 +458,17 @@ test.describe("Morse books hub", () => {
     );
     expect(staticSitemap).toContain(absoluteUrl(ROUTES.morseBooks));
     expect(staticSitemap).toContain(absoluteUrl(APPROVED_BOOK_PATH));
-    expect(staticSitemap).not.toContain(absoluteUrl(ROUTES.morseAudiobooksAlias));
+    expect(staticSitemap).toContain(absoluteUrl(ROUTES.morseAudiobooks));
+    expect(staticSitemap).toContain(absoluteUrl(APPROVED_AUDIOBOOK_PATH));
 
     await gotoHub(page, ROUTES.sitemap);
     const htmlLinks = await pageLinkPaths(page);
     expect(htmlLinks).toContain(ROUTES.morseBooks);
     expect(htmlLinks).toContain(APPROVED_BOOK_PATH);
-    expect(htmlLinks).not.toContain(ROUTES.morseAudiobooksAlias);
+    expect(htmlLinks).toContain(ROUTES.morseAudiobooks);
+    expect(htmlLinks).toContain(APPROVED_AUDIOBOOK_PATH);
+
+    await saveScreenshot(page, testInfo, "morse-audiobooks-hub-desktop.png");
   });
 
   test("shows only publish-ready books when a development fixture is enabled", async ({

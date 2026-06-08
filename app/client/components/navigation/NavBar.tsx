@@ -185,7 +185,12 @@ const MORE_GROUPS: NavGroup[] = [
       {
         label: "Morse books",
         href: ROUTES.morseBooks,
-        description: "Browse reviewed Morse book and audiobook-style pages.",
+        description: "Browse reviewed Morse book pages.",
+      },
+      {
+        label: "Morse audiobooks",
+        href: ROUTES.morseAudiobooks,
+        description: "Open approved books as browser-generated Morse audio.",
       },
       {
         label: "Video generator",
@@ -236,7 +241,19 @@ const MORE_GROUPS: NavGroup[] = [
   },
   {
     title: "Books and audiobooks",
-    items: PUBLIC_BOOK_ITEMS,
+    items: [
+      {
+        label: "Morse book library",
+        href: ROUTES.morseBooks,
+        description: "Browse approved text-first Morse book pages.",
+      },
+      {
+        label: "Morse audiobook library",
+        href: ROUTES.morseAudiobooks,
+        description: "Browse approved audio-first Morse book pages.",
+      },
+      ...PUBLIC_BOOK_ITEMS,
+    ],
   },
   {
     title: "About and trust",

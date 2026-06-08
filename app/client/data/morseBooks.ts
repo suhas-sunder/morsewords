@@ -28,6 +28,7 @@ import {
 } from "./morseBookContentConfig";
 
 export const MORSE_BOOKS_BASE_PATH = "/morse-code-books";
+export const MORSE_AUDIOBOOKS_BASE_PATH = "/morse-code-audiobooks";
 export const UNPUBLISHED_BOOK_PREVIEW_PARAM = "preview";
 export const UNPUBLISHED_BOOK_PREVIEW_VALUE = "unpublished";
 export const TEST_PUBLISHED_BOOK_PREVIEW_VALUE = "test-published";
@@ -448,6 +449,10 @@ function writeCachedPublicBook(content: MorseBookPublicContentJson) {
 
 export function morseBookPath(slug: string) {
   return `${MORSE_BOOKS_BASE_PATH}/${slug}`;
+}
+
+export function morseAudiobookPath(slug: string) {
+  return `${MORSE_AUDIOBOOKS_BASE_PATH}/${slug}`;
 }
 
 export function isMorseBookPublishReady(

@@ -101,6 +101,8 @@ export default [
   route("morse-code-book-translator", "routes/morse-code-book-translator.tsx"),
   route("morse-code-books", "routes/morse-code-books.tsx"),
   route("morse-code-books/:slug", "routes/morse-code-books.$slug.tsx"),
+  route("morse-code-audiobooks", "routes/morse-code-audiobooks.tsx"),
+  route("morse-code-audiobooks/:slug", "routes/morse-code-audiobooks.$slug.tsx"),
   route(
     "morse-book-content/books/:slug",
     "routes/morse-book-content.books.$slug.tsx",
@@ -193,7 +195,6 @@ export default [
   ),
   route(routeSlug(ROUTES.textToMorseVideoAlias), "routes/text-to-morse-code-video.tsx"),
   route(routeSlug(ROUTES.ebookTranslatorAlias), "routes/morse-code-ebook-translator.tsx"),
-  route(routeSlug(ROUTES.morseAudiobooksAlias), "routes/morse-code-audiobooks.tsx"),
 
   // Misc / legal
   route("misc", "routes/misc/misc.tsx", [
