@@ -451,6 +451,10 @@ export function morseBookPath(slug: string) {
   return `${MORSE_BOOKS_BASE_PATH}/${slug}`;
 }
 
+export function morseBookPrintPath(slug: string) {
+  return `${morseBookPath(slug)}/print`;
+}
+
 export function morseAudiobookPath(slug: string) {
   return `${MORSE_AUDIOBOOKS_BASE_PATH}/${slug}`;
 }

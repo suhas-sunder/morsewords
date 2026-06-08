@@ -58,6 +58,7 @@ function approvedAudiobookPathsFromManifest() {
 
 const NEW_CANONICAL_ROUTES = [
   ROUTES.bookTranslator,
+  ROUTES.printablePages,
   ROUTES.morseBooks,
   ROUTES.morseAudiobooks,
   ROUTES.videoGenerator,
@@ -75,7 +76,7 @@ const CONTEXTUAL_LINK_EXPECTATIONS = [
   },
   {
     source: ROUTES.soundGenerator,
-    expected: [ROUTES.bookTranslator, ROUTES.videoGenerator, ROUTES.audio],
+    expected: [ROUTES.bookTranslator, ROUTES.printablePages, ROUTES.videoGenerator, ROUTES.audio],
   },
   {
     source: ROUTES.mp3Generator,

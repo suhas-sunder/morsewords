@@ -93,6 +93,7 @@ import {
   isMorseBookPublishReady,
   morseAudiobookPath,
   morseBookPath,
+  morseBookPrintPath,
 } from "~/client/data/morseBooks";
 import type {
   MorseBookLibrarySummary,
@@ -1388,6 +1389,16 @@ function MorseBookWorkspace({
                     className="font-semibold text-sky-900 underline decoration-sky-900/45 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   >
                     {isAudiobook ? "Read book page" : "Open audiobook page"}
+                  </Link>
+                  <span className="mx-2 text-slate-400" aria-hidden="true">
+                    /
+                  </span>
+                  <Link
+                    to={morseBookPrintPath(book.slug)}
+                    className="font-semibold text-sky-900 underline decoration-sky-900/45 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    data-testid="morse-book-print-link"
+                  >
+                    Print Morse pages
                   </Link>
                 </>
               ) : null}

@@ -62,6 +62,7 @@ export const PRIMARY_TOOL_ROUTES = [
   ROUTES.soundGenerator,
   ROUTES.mp3Generator,
   ROUTES.bookTranslator,
+  ROUTES.printablePages,
   ROUTES.morseBooks,
   ROUTES.videoGenerator,
   ROUTES.wordSearchBuilder,
@@ -94,6 +95,7 @@ const AUDIO_EXPORT_ROUTES = [
   ROUTES.soundGenerator,
   ROUTES.mp3Generator,
   ROUTES.bookTranslator,
+  ROUTES.printablePages,
   ROUTES.morseBooks,
   ROUTES.videoGenerator,
 ] as const;
