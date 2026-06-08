@@ -1,5 +1,5 @@
 export {
-  buildMorseVideoPreview as buildBookVideoPreview,
+  buildLongMorseVideoPreview as buildBookVideoPreview,
   getMorseVideoPreviewFrame,
 } from "~/client/components/shared/video/morseVideoPreview";
 

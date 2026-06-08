@@ -93,7 +93,9 @@ export function buildBookVideoWarnings({
   if (support && !support.supported) {
     warnings.push(support.reason);
   } else {
-    warnings.push("Browser video export support varies; WebM is the reliable default.");
+    warnings.push(
+      "Browser video export support varies; WebM is broadly supported, and MP4 appears only when this browser reports real support.",
+    );
   }
   if (totalRuntimeMs > 90_000 || partCount > 1) {
     if (partCount > 1) {
@@ -119,7 +121,6 @@ export function buildBookVideoWarnings({
   if (videoSettings.showVisualSignal && videoSettings.visualStyle === "full-frame") {
     warnings.push("Full-frame flash mode can create strobe-like video output.");
   }
-  warnings.push("MP4 appears only when this browser reports real MediaRecorder support.");
   return [...new Set(warnings)];
 }
 
@@ -561,7 +562,7 @@ function buildVideoReadme({
     exportSettings.includeSettings ? "- settings.json" : "",
     "",
     "Notes",
-    "- WebM is the reliable browser-native default.",
+    "- WebM is broadly supported by browser recording.",
     "- MP4 is used only when this browser reports MediaRecorder MP4 support.",
     "- Video parts are sorted by filename and listed in playlist.m3u.",
     "- Source files are processed in your browser. Use source text you have the right to convert and use.",

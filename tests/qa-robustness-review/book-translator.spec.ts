@@ -371,6 +371,17 @@ function expectWebmLike(bytes: Uint8Array) {
   expect(strFromU8(bytes)).toContain("WEBM");
 }
 
+async function readRecordedBookVideoMimeTypes(page: Page) {
+  return page.evaluate(
+    () =>
+      (
+        window as typeof window & {
+          __bookVideoRecorderStreams?: Array<{ mimeType: string }>;
+        }
+      ).__bookVideoRecorderStreams?.map((entry) => entry.mimeType) ?? [],
+  );
+}
+
 async function installFastVideoRecorder(
   page: Page,
   options: { mp4?: boolean } = {},
@@ -1943,7 +1954,7 @@ test("audio preview plays current cleaned source and updates with audio settings
   await expect(preview.getByText("68%")).toBeVisible();
   await expectPreviewReady(page);
   await expect(preview.getByTestId("book-audio-preview-time")).toContainText(
-    /^Preview time 0s \/ \d+s$/,
+    /^Preview time 0s \/ (?:\d+s|\d+m \d+s)$/,
   );
   const audioTimeline = preview.getByRole("slider", {
     name: "Audio preview timeline",
@@ -1962,7 +1973,7 @@ test("audio preview plays current cleaned source and updates with audio settings
     },
   });
   await expect(preview.getByTestId("book-audio-preview-time")).toContainText(
-    /^Preview time (?!0s \/)\d+s \/ \d+s$/,
+    /^Preview time (?!0s \/).+ \/ .+$/,
   );
 
   const playButton = preview.getByRole("button", { name: "Play preview" });
@@ -1976,7 +1987,7 @@ test("audio preview plays current cleaned source and updates with audio settings
         (await preview.getByTestId("book-audio-preview-time").textContent()) ??
         "",
     )
-    .toMatch(/^Preview time [1-9]\d*s \/ \d+s$/);
+    .toMatch(/^Preview time (?!0s \/).+ \/ .+$/);
   await audioTimeline.click({
     position: {
       x: timelineBox!.width * 0.75,
@@ -2032,6 +2043,41 @@ test("audio preview plays current cleaned source and updates with audio settings
   await expect(
     page.getByRole("button", { name: "Download sample" }),
   ).toHaveCount(0);
+});
+
+test("long and short audio previews report the actual capped duration", async ({
+  page,
+}) => {
+  await openBookTranslator(page);
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("PARIS ".repeat(900));
+  await expectPreviewReady(page);
+
+  const preview = previewSection(page);
+  const audioTimeline = preview.getByRole("slider", {
+    name: "Audio preview timeline",
+  });
+  await expect(audioTimeline).toBeVisible();
+  const longDurationMs = Number(await audioTimeline.getAttribute("aria-valuemax"));
+  expect(longDurationMs).toBeGreaterThanOrEqual(270_000);
+  expect(longDurationMs).toBeLessThanOrEqual(300_000);
+  await expect(preview.getByTestId("book-audio-preview-time")).toContainText(
+    /\/ 4m \d+s|\/ 5m 0s/,
+  );
+  expect(
+    ((await preview.getByTestId("book-preview-sample").textContent()) ?? "")
+      .length,
+  ).toBeLessThanOrEqual(430);
+
+  await page.getByLabel("Paste long-form source text").fill("Short SOS");
+  await expectPreviewReady(page);
+  const shortDurationMs = Number(
+    await preview
+      .getByRole("slider", { name: "Audio preview timeline" })
+      .getAttribute("aria-valuemax"),
+  );
+  expect(shortDurationMs).toBeLessThan(60_000);
 });
 
 test("output type selector gates audio and video settings without clearing source", async ({
@@ -2130,6 +2176,7 @@ test("output type selector gates audio and video settings without clearing sourc
   await expect(page.getByLabel("Show visual signal")).toBeChecked();
   await expect(page.getByLabel("Show Morse symbols")).toBeChecked();
   await expect(page.getByLabel("Show plain text")).toBeChecked();
+  await expect(page.getByLabel("Video format")).toHaveValue("webm");
   await expect(previewSection(page).getByText("Visual signal: Lightbulb signal on")).toBeVisible();
   await expect(previewSection(page).getByText("Morse symbols: on")).toBeVisible();
   await expect(previewSection(page).getByText("Plain text: on")).toBeVisible();
@@ -2575,12 +2622,22 @@ test("video format selector downloads MP4 only when the browser supports it", as
   await chooseOutputType(page, "video");
   await openDownloadSettings(page);
 
-  await expect(page.getByLabel("Video format")).toHaveValue("webm");
-  await page.getByLabel("Video format").selectOption("mp4");
+  await expect(page.getByLabel("Video format")).toHaveValue("mp4");
+  const formatValues = await page
+    .getByLabel("Video format")
+    .locator("option")
+    .evaluateAll((options) =>
+      options.map((option) => (option as HTMLOptionElement).value),
+    );
+  expect(formatValues).toEqual(["webm", "mp4"]);
+  expect(formatValues).not.toContain("wmv");
   await expect(page.getByRole("button", { name: "Download MP4" })).toBeEnabled();
   const video = await downloadVideoFile(page, testInfo, /Download MP4/);
   expect(video.filename).toMatch(/morse-video\.mp4$/);
   expect(strFromU8(video.bytes)).toContain("MP4-BOOK-VIDEO");
+  expect(await readRecordedBookVideoMimeTypes(page)).toContainEqual(
+    expect.stringMatching(/^video\/mp4/),
+  );
   await expect(page.getByText("MP4 download started.")).toBeVisible();
   await expect(
     page.getByText("Download contents: MP4 video file", { exact: false }),
@@ -2682,7 +2739,7 @@ test("video sidecar downloads use a ZIP with WebM parts and video metadata", asy
   expect(settings.showBranding).toBe(true);
   expectPlaylistOrder(zipText(zip.entries, "playlist.m3u"), partFiles);
   const readme = zipText(zip.entries, "README.txt");
-  expect(readme).toContain("WebM is the reliable browser-native default");
+  expect(readme).toContain("WebM is broadly supported by browser recording.");
   expect(readme).toContain(
     "MP4 is used only when this browser reports MediaRecorder MP4 support",
   );
@@ -3001,11 +3058,11 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
     tool.locator('[class*="border-t"][class*="border-slate-200/70"]'),
   ).toHaveCount(0);
   await expect(
-    sourceStep(page).getByRole("button", { name: "Download WebM" }),
+    sourceStep(page).getByRole("button", { name: /Download (WebM|MP4)/ }),
   ).toBeVisible();
   await expect(
     tool.getByText(
-      "Long videos may take time to render. Keep this tab open until the WebM is ready.",
+      /Long videos may take time to render\. Keep this tab open until the (WebM|MP4) is ready\./,
     ),
   ).toBeVisible();
   await expect(tool.getByText(/split into ZIP parts/i)).toHaveCount(0);
@@ -3014,7 +3071,7 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
   ).toHaveCount(0);
   await expect(
     tool.getByText(
-      "Selected extras are packaged with the WebM in a ZIP download.",
+      /Selected extras are packaged with the (WebM|MP4) in a ZIP download\./,
     ),
   ).toHaveCount(0);
 

@@ -79,6 +79,7 @@ import type { MorseVideoAudioSettings } from "~/client/components/shared/video/m
 import {
   detectMorseVideoSupport,
   getMorseVideoFormatSupport,
+  getPreferredMorseVideoFormat,
   MORSE_VIDEO_FORMATS,
   type MorseVideoFormat,
   type MorseVideoSupport,
@@ -199,6 +200,17 @@ export default function MorseVideoGeneratorTool() {
           })
         : current,
     );
+  }, [videoSupport]);
+
+  React.useEffect(() => {
+    if (!videoSupport?.supported) return;
+    setSelectedVideoFormat((current) => {
+      const currentSupport = getMorseVideoFormatSupport(videoSupport, current);
+      if (!currentSupport.supported) {
+        return getPreferredMorseVideoFormat(videoSupport);
+      }
+      return current === "webm" ? getPreferredMorseVideoFormat(videoSupport) : current;
+    });
   }, [videoSupport]);
 
   React.useEffect(() => {

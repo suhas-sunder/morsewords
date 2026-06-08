@@ -4,14 +4,14 @@ import {
   getMorseVideoActiveToken,
   type MorseVideoTimeline,
 } from "~/client/components/shared/video/morseVideoRenderer";
+import { LONG_MORSE_VIDEO_PREVIEW_MAX_DURATION_MS } from "~/client/components/shared/video/morseVideoPreview";
 
 import { buildMorseTranscript, formatDuration } from "./bookDurationEstimate";
 import type { BookExportSettings } from "./bookExportTypes";
 
-const BOOK_PREVIEW_MIN_DURATION_MS = 15_000;
-const BOOK_PREVIEW_MAX_DURATION_MS = 30_000;
-const BOOK_PREVIEW_MAX_WORDS = 90;
-const BOOK_PREVIEW_MAX_CHARS = 900;
+const BOOK_PREVIEW_MAX_DURATION_MS = LONG_MORSE_VIDEO_PREVIEW_MAX_DURATION_MS;
+const BOOK_PREVIEW_MAX_WORDS = 1_200;
+const BOOK_PREVIEW_MAX_CHARS = 12_000;
 
 export type BookAudioPreview = {
   sampleText: string;
@@ -27,46 +27,14 @@ export function buildBookAudioPreview(
   settings: BookExportSettings,
 ): BookAudioPreview | null {
   const trimmedSource = cleanedText.trim();
-  const previewSource = trimmedSource.slice(0, BOOK_PREVIEW_MAX_CHARS * 4);
+  const previewSource = trimmedSource.slice(0, BOOK_PREVIEW_MAX_CHARS * 2);
   const normalized = previewSource.replace(/\s+/g, " ");
   if (!normalized) return null;
 
-  const words = normalized.split(" ").filter(Boolean);
-  let sampleText = "";
-  let sampleMorse = "";
-  let durationMs = 0;
-  let usedWords = 0;
-
-  for (
-    let index = 0;
-    index < words.length && index < BOOK_PREVIEW_MAX_WORDS;
-    index += 1
-  ) {
-    const candidate = sampleText
-      ? `${sampleText} ${words[index]}`
-      : words[index];
-    if (candidate.length > BOOK_PREVIEW_MAX_CHARS && sampleText) break;
-
-    const candidateMorse = buildMorseTranscript(candidate);
-    const candidateDurationMs = estimateMorseDurationMs(candidateMorse, {
-      charWpm: settings.charWpm,
-      farnsworthWpm: settings.farnsworthWpm,
-    });
-
-    if (
-      candidateDurationMs > BOOK_PREVIEW_MAX_DURATION_MS &&
-      durationMs >= BOOK_PREVIEW_MIN_DURATION_MS
-    ) {
-      break;
-    }
-
-    sampleText = candidate;
-    sampleMorse = candidateMorse;
-    durationMs = candidateDurationMs;
-    usedWords = index + 1;
-
-    if (durationMs >= BOOK_PREVIEW_MAX_DURATION_MS) break;
-  }
+  const words = collectPreviewWords(normalized);
+  const selection = choosePreviewSelection(words, settings);
+  const { sampleText, sampleMorse } = selection;
+  let durationMs = selection.durationMs;
 
   if (!sampleMorse.trim()) return null;
 
@@ -83,12 +51,12 @@ export function buildBookAudioPreview(
 
   const truncated =
     trimmedSource.length > previewSource.length ||
-    usedWords < words.length ||
+    selection.usedWords < words.length ||
     normalized.length > sampleText.length;
   const cappedAtTarget = durationMs >= BOOK_PREVIEW_MAX_DURATION_MS * 0.92;
   const label = truncated
     ? cappedAtTarget
-      ? "Previewing the first 30 seconds"
+      ? "Previewing the first 5 minutes"
       : `Previewing about ${formatDuration(durationMs)} from the start`
     : `Previewing the full ${formatDuration(durationMs)} source`;
 
@@ -100,6 +68,67 @@ export function buildBookAudioPreview(
     label,
     truncated,
   };
+}
+
+function collectPreviewWords(normalized: string) {
+  const words: string[] = [];
+  let characterCount = 0;
+  for (const word of normalized.split(" ").filter(Boolean)) {
+    const nextCharacterCount = characterCount + word.length + (words.length ? 1 : 0);
+    if (
+      words.length >= BOOK_PREVIEW_MAX_WORDS ||
+      (nextCharacterCount > BOOK_PREVIEW_MAX_CHARS && words.length > 0)
+    ) {
+      break;
+    }
+    words.push(word);
+    characterCount = nextCharacterCount;
+  }
+  return words;
+}
+
+function choosePreviewSelection(
+  words: string[],
+  settings: BookExportSettings,
+) {
+  const buildCandidate = (wordCount: number) => {
+    const sampleText = words.slice(0, wordCount).join(" ");
+    const sampleMorse = buildMorseTranscript(sampleText);
+    const durationMs = estimateMorseDurationMs(sampleMorse, {
+      charWpm: settings.charWpm,
+      farnsworthWpm: settings.farnsworthWpm,
+    });
+    return {
+      durationMs,
+      sampleMorse,
+      sampleText,
+      usedWords: wordCount,
+    };
+  };
+
+  if (words.length === 0) return buildCandidate(0);
+
+  const fullCandidate = buildCandidate(words.length);
+  if (fullCandidate.durationMs <= BOOK_PREVIEW_MAX_DURATION_MS) {
+    return fullCandidate;
+  }
+
+  let low = 1;
+  let high = words.length;
+  let best = buildCandidate(1);
+
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    const candidate = buildCandidate(mid);
+    if (candidate.durationMs <= BOOK_PREVIEW_MAX_DURATION_MS) {
+      best = candidate;
+      low = mid + 1;
+    } else {
+      high = mid - 1;
+    }
+  }
+
+  return best;
 }
 
 export function morseFromPreviewOffset(

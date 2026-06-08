@@ -459,7 +459,8 @@ export function MorseAudioTimingStrip({
           })}
           <span
             aria-hidden="true"
-            className="absolute top-1/2 h-10 w-1 -translate-y-1/2 rounded-full bg-white"
+            data-testid={`${testIdPrefix}-playhead`}
+            className="absolute top-1/2 h-10 w-1.5 -translate-y-1/2 rounded-full bg-sky-300 shadow-[0_0_0_2px_rgba(248,250,252,0.85)]"
             style={{ left: `calc(${playheadPercent}% - 2px)` }}
           />
         </div>
@@ -652,12 +653,12 @@ function activePreviewWordClass(
   fullFrameActive: boolean,
 ) {
   if (fullFrameActive) {
-    return "mx-1 inline-flex flex-wrap justify-center gap-1 rounded-lg bg-sky-950/15 px-1.5 py-0.5 text-current";
+    return "mx-1 inline-flex flex-wrap justify-center gap-1 rounded-lg bg-sky-950/20 px-1.5 py-0.5 text-sky-950 ring-1 ring-sky-950/20";
   }
   if (darkFrame) {
-    return "mx-1 inline-flex flex-wrap justify-center gap-1 rounded-lg bg-sky-300/15 px-1.5 py-0.5 text-sky-50";
+    return "mx-1 inline-flex flex-wrap justify-center gap-1 rounded-lg bg-sky-300 px-1.5 py-0.5 text-slate-950 ring-1 ring-sky-100/80";
   }
-  return "mx-1 inline-flex flex-wrap justify-center gap-1 rounded-lg bg-sky-100 px-1.5 py-0.5 text-sky-950";
+  return "mx-1 inline-flex flex-wrap justify-center gap-1 rounded-lg bg-sky-100 px-1.5 py-0.5 text-sky-950 ring-1 ring-sky-300/70";
 }
 
 function activePreviewCharacterClass(
@@ -665,10 +666,10 @@ function activePreviewCharacterClass(
   fullFrameActive: boolean,
 ) {
   if (fullFrameActive) {
-    return "rounded bg-white/20 px-1 text-current";
+    return "rounded bg-white/90 px-1 text-sky-950";
   }
   if (darkFrame) {
-    return "rounded bg-sky-200 px-1 text-slate-950";
+    return "rounded bg-white px-1 text-slate-950";
   }
   return "rounded bg-sky-300 px-1 text-slate-950";
 }

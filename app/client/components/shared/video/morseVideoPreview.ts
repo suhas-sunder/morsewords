@@ -15,6 +15,9 @@ import type { MorseVideoSettings } from "./morseVideoTypes";
 
 const MIN_READABLE_MORSE_SYMBOLS = 6;
 const PREVIEW_WORD_WINDOW_LIMIT = 168;
+export const LONG_MORSE_VIDEO_PREVIEW_MAX_DURATION_MS = 5 * 60 * 1000;
+const LONG_PREVIEW_MAX_WORDS = 1_200;
+const LONG_PREVIEW_MAX_CHARS = 12_000;
 
 export type MorseVideoPreview = {
   sampleText: string;
@@ -23,6 +26,12 @@ export type MorseVideoPreview = {
   durationMs: number;
   events: MorseVideoTimedEvent[];
   timeline: MorseVideoTimeline;
+};
+
+export type MorseVideoPreviewOptions = {
+  maxCharacters?: number;
+  maxDurationMs?: number;
+  maxWords?: number;
 };
 
 export type MorseVideoPreviewFrame = {
@@ -40,17 +49,18 @@ export function buildMorseVideoPreview(
     charWpm: 18,
     farnsworthWpm: 12,
   },
+  options: MorseVideoPreviewOptions = {},
 ): MorseVideoPreview {
-  const sampleText = buildPreviewSampleText(text);
-  const morse = textToMorse(sampleText, {
-    unsupportedText: "omit",
-    wordSeparator: "spaces",
-  });
-  const sampleMorse =
-    typeof morse === "string" && morse.trim()
-      ? morse
-      : textToMorse("SOS HELP", { wordSeparator: "spaces" });
-  const timeline = buildMorseVideoTimelineFromMorse(sampleMorse, audioSettings, sampleText);
+  const { sampleText, sampleMorse } = buildPreviewSample(
+    text,
+    audioSettings,
+    options,
+  );
+  const timeline = buildMorseVideoTimelineFromMorse(
+    sampleMorse,
+    audioSettings,
+    sampleText,
+  );
   const durationMs = Math.max(1_200, timeline.durationMs);
 
   return {
@@ -61,6 +71,21 @@ export function buildMorseVideoPreview(
     events: timeline.events,
     timeline,
   };
+}
+
+export function buildLongMorseVideoPreview(
+  settings: MorseVideoSettings,
+  text: string,
+  audioSettings: Pick<MorseVideoAudioSettings, "charWpm" | "farnsworthWpm"> = {
+    charWpm: 18,
+    farnsworthWpm: 12,
+  },
+): MorseVideoPreview {
+  return buildMorseVideoPreview(settings, text, audioSettings, {
+    maxDurationMs: LONG_MORSE_VIDEO_PREVIEW_MAX_DURATION_MS,
+    maxWords: LONG_PREVIEW_MAX_WORDS,
+    maxCharacters: LONG_PREVIEW_MAX_CHARS,
+  });
 }
 
 export function getMorseVideoPreviewFrame(
@@ -104,11 +129,101 @@ export function getMorseVideoPreviewFrame(
   };
 }
 
-function buildPreviewSampleText(text: string) {
+function buildPreviewSample(
+  text: string,
+  audioSettings: Pick<MorseVideoAudioSettings, "charWpm" | "farnsworthWpm">,
+  options: MorseVideoPreviewOptions,
+) {
   const normalized = text.trim().replace(/\s+/g, " ");
-  if (!normalized) return "SOS HELP";
+  if (!normalized) return morseSampleFromText("SOS HELP");
+  if (options.maxDurationMs) {
+    return buildTimedPreviewSample(normalized, audioSettings, options);
+  }
   const sample = normalized.split(" ").slice(0, 20).join(" ");
-  return sample.length > 180 ? `${sample.slice(0, 177).trimEnd()}...` : sample;
+  return morseSampleFromText(
+    sample.length > 180 ? `${sample.slice(0, 177).trimEnd()}...` : sample,
+  );
+}
+
+function buildTimedPreviewSample(
+  normalized: string,
+  audioSettings: Pick<MorseVideoAudioSettings, "charWpm" | "farnsworthWpm">,
+  options: MorseVideoPreviewOptions,
+) {
+  const maxDurationMs = Math.max(1_200, options.maxDurationMs ?? 0);
+  const maxWords = Math.max(1, options.maxWords ?? LONG_PREVIEW_MAX_WORDS);
+  const maxCharacters = Math.max(
+    1,
+    options.maxCharacters ?? LONG_PREVIEW_MAX_CHARS,
+  );
+  const candidateWords: string[] = [];
+  let candidateLength = 0;
+
+  for (const word of normalized.split(" ").filter(Boolean)) {
+    const nextLength = candidateLength + word.length + (candidateWords.length ? 1 : 0);
+    if (
+      candidateWords.length >= maxWords ||
+      (nextLength > maxCharacters && candidateWords.length > 0)
+    ) {
+      break;
+    }
+    candidateWords.push(word);
+    candidateLength = nextLength;
+  }
+
+  if (candidateWords.length === 0) return morseSampleFromText("SOS HELP");
+
+  const buildCandidate = (wordCount: number) => {
+    const sampleText = candidateWords.slice(0, wordCount).join(" ");
+    const sampleMorse = morseTextFromSample(sampleText);
+    const timeline = buildMorseVideoTimelineFromMorse(
+      sampleMorse,
+      audioSettings,
+      sampleText,
+    );
+    return {
+      sampleText,
+      sampleMorse,
+      durationMs: timeline.durationMs,
+    };
+  };
+
+  const fullCandidate = buildCandidate(candidateWords.length);
+  if (fullCandidate.durationMs <= maxDurationMs) return fullCandidate;
+
+  let low = 1;
+  let high = candidateWords.length;
+  let best = buildCandidate(1);
+
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    const candidate = buildCandidate(mid);
+    if (candidate.durationMs <= maxDurationMs) {
+      best = candidate;
+      low = mid + 1;
+    } else {
+      high = mid - 1;
+    }
+  }
+
+  return best;
+}
+
+function morseSampleFromText(sampleText: string) {
+  return {
+    sampleText,
+    sampleMorse: morseTextFromSample(sampleText),
+  };
+}
+
+function morseTextFromSample(sampleText: string) {
+  const morse = textToMorse(sampleText, {
+    unsupportedText: "omit",
+    wordSeparator: "spaces",
+  });
+  return typeof morse === "string" && morse.trim()
+    ? morse
+    : textToMorse("SOS HELP", { wordSeparator: "spaces" });
 }
 
 function readableTextExcerpt(

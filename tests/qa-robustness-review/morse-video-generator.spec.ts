@@ -28,6 +28,12 @@ async function installFastVideoRecorder(
   options: { mp4?: boolean } = {},
 ) {
   await page.addInitScript((supportsMp4) => {
+    Object.defineProperty(window, "__morseVideoRecorderMimeTypes", {
+      configurable: true,
+      value: [] as string[],
+      writable: true,
+    });
+
     class FakeMediaRecorder {
       static isTypeSupported(type: string) {
         return (
@@ -44,6 +50,9 @@ async function installFastVideoRecorder(
 
       constructor(_stream: MediaStream, options?: MediaRecorderOptions) {
         this.mimeType = options?.mimeType || "video/webm";
+        (
+          window as typeof window & { __morseVideoRecorderMimeTypes: string[] }
+        ).__morseVideoRecorderMimeTypes.push(this.mimeType);
       }
 
       start() {
@@ -182,6 +191,14 @@ async function readPreviewAudioEvents(page: Page) {
   );
 }
 
+async function readRecordedVideoMimeTypes(page: Page) {
+  return page.evaluate(
+    () =>
+      (window as typeof window & { __morseVideoRecorderMimeTypes?: string[] })
+        .__morseVideoRecorderMimeTypes ?? [],
+  );
+}
+
 async function downloadVideoFile(
   page: Page,
   testInfo: TestInfo,
@@ -225,6 +242,84 @@ async function expectNoRawInputInStorage(page: Page, rawText: string) {
     ].join("\n"),
   );
   expect(storageSnapshot).not.toContain(rawText);
+}
+
+async function contrastAgainstRenderedBackground(
+  page: Page,
+  selector: string,
+) {
+  return page.locator(selector).first().evaluate((element) => {
+    type Channels = { r: number; g: number; b: number; a: number };
+
+    function parseColor(value: string): Channels | null {
+      const rgb = value.match(/^rgba?\(([^)]+)\)$/);
+      if (!rgb) return null;
+      const parts = rgb[1].split(",").map((part) => Number.parseFloat(part));
+      return {
+        r: parts[0],
+        g: parts[1],
+        b: parts[2],
+        a: parts.length > 3 ? parts[3] : 1,
+      };
+    }
+
+    function blend(foreground: Channels, background: Channels): Channels {
+      const alpha = foreground.a + background.a * (1 - foreground.a);
+      if (alpha <= 0) return { r: 0, g: 0, b: 0, a: 0 };
+      return {
+        r:
+          (foreground.r * foreground.a +
+            background.r * background.a * (1 - foreground.a)) /
+          alpha,
+        g:
+          (foreground.g * foreground.a +
+            background.g * background.a * (1 - foreground.a)) /
+          alpha,
+        b:
+          (foreground.b * foreground.a +
+            background.b * background.a * (1 - foreground.a)) /
+          alpha,
+        a: alpha,
+      };
+    }
+
+    function luminance(color: Channels) {
+      const channels = [color.r, color.g, color.b].map((value) => {
+        const channel = value / 255;
+        return channel <= 0.03928
+          ? channel / 12.92
+          : Math.pow((channel + 0.055) / 1.055, 2.4);
+      });
+      return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+    }
+
+    function contrast(first: Channels, second: Channels) {
+      const light = Math.max(luminance(first), luminance(second));
+      const dark = Math.min(luminance(first), luminance(second));
+      return (light + 0.05) / (dark + 0.05);
+    }
+
+    const style = window.getComputedStyle(element);
+    const foreground = parseColor(style.color);
+    const elementBackground = parseColor(style.backgroundColor);
+    let background = elementBackground;
+    for (
+      let current = element.parentElement;
+      (!background || background.a < 0.98) && current;
+      current = current.parentElement
+    ) {
+      const parentBackground = parseColor(
+        window.getComputedStyle(current).backgroundColor,
+      );
+      if (parentBackground) {
+        background = background
+          ? blend(background, parentBackground)
+          : parentBackground;
+      }
+    }
+    if (!foreground || !background) return 0;
+    return contrast(foreground, background);
+  });
 }
 
 test.describe("Morse code video generator", () => {
@@ -283,6 +378,7 @@ test.describe("Morse code video generator", () => {
         value: "mp4",
       }),
     ]);
+    expect(formatOptions.map((option) => option.value)).not.toContain("wmv");
     await expect(page.getByRole("button", { name: "Download WebM" })).toBeEnabled();
     await expect(page.getByText("WebM export starts only when")).toBeVisible();
     await expect(
@@ -560,15 +656,49 @@ test.describe("Morse code video generator", () => {
     await page.getByLabel("Message to turn into a Morse code video").fill("SOS");
     await page.getByLabel("File name").fill("short-sos-mp4");
 
-    await expect(page.getByLabel("Video format")).toHaveValue("webm");
-    await page.getByLabel("Video format").selectOption("mp4");
+    await expect(page.getByLabel("Video format")).toHaveValue("mp4");
     await expect(page.getByRole("button", { name: "Download MP4" })).toBeEnabled();
     await expect(page.getByText("MP4 export starts only when")).toBeVisible();
 
     const video = await downloadVideoFile(page, testInfo, /Download MP4/);
     expect(video.filename).toBe("short-sos-mp4.mp4");
     expect(video.bytes.toString("utf8")).toContain("MP4-MORSE-VIDEO");
+    expect(await readRecordedVideoMimeTypes(page)).toContainEqual(
+      expect.stringMatching(/^video\/mp4/),
+    );
+    expect(video.filename).not.toMatch(/\.webm$/i);
     await expect(page.getByText("MP4 download started.")).toBeVisible();
+  });
+
+  test("dark preview Morse highlight and timeline marker stay readable", async ({
+    page,
+  }) => {
+    await installFastVideoRecorder(page);
+    await page.addInitScript(() => {
+      window.localStorage.setItem("morsewords-theme", "dark");
+      document.documentElement.dataset.theme = "dark";
+    });
+    await openVideoGenerator(page);
+    await page
+      .getByLabel("Message to turn into a Morse code video")
+      .fill("Dark mode highlight contrast SOS HELP");
+    await page.getByRole("radio", { name: "Dark MorseWords" }).click();
+
+    await expect(
+      page.getByTestId("morse-video-preview-active-morse-word"),
+    ).toBeVisible();
+    await expect(
+      page.getByTestId("morse-video-preview-timing-strip-playhead"),
+    ).toBeVisible();
+    expect(
+      await contrastAgainstRenderedBackground(
+        page,
+        '[data-testid="morse-video-preview-active-morse-word"]',
+      ),
+    ).toBeGreaterThanOrEqual(4.5);
+    await expect(
+      page.getByTestId("morse-video-preview-timing-strip-playhead"),
+    ).toHaveClass(/bg-sky-300/);
   });
 
   test("long guard, mobile layout, and console stay clean", async ({
