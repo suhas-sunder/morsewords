@@ -537,7 +537,12 @@ test.describe("Morse book page foundation", () => {
   }) => {
     await openTestBook(page);
 
-    await page.getByRole("button", { name: "By duration" }).click();
+    await expect(async () => {
+      await page.getByRole("button", { name: "By duration" }).click();
+      await expect(page.getByLabel(/Target part length/)).toBeVisible({
+        timeout: 1_000,
+      });
+    }).toPass({ timeout: 10_000 });
     await page.getByLabel(/Target part length/).fill("1");
     await expect(page.getByRole("button", { name: "Download ZIP bundle" })).toBeVisible();
     await expect(page.locator("[data-mw-morse-book-zip-warning]")).toBeVisible();
