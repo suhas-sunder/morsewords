@@ -29,6 +29,7 @@ export const CANONICAL_ROUTES = {
   alphabet: "/morse-code-alphabet",
   numbers: "/morse-code-numbers",
   printableChart: "/morse-code-printable-chart",
+  printablePages: "/morse-code-printable-pages",
   internationalTranslator: "/morse-code-international-translator",
   sos: "/morse-code-sos",
   sentencePractice: "/morse-code-sentence-practice",

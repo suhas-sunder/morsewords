@@ -14,6 +14,7 @@ import {
   getPublishedMorseBookSummaries,
   morseAudiobookPath,
   morseBookPath,
+  morseBookPrintPath,
 } from "~/client/data/morseBooks";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -56,6 +57,12 @@ const morseAudiobookSitemapLinks = getPublishedMorseBookSummaries().map((book) =
   label: `${book.title} Morse Audiobook`,
   to: morseAudiobookPath(book.slug),
   description: `Open ${book.title} by ${book.author.join(", ")} as a browser-generated Morse audiobook with chapter scope and MP3/WAV controls.`,
+}));
+
+const morseBookPrintSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
+  label: `${book.title} Printable Morse Pages`,
+  to: morseBookPrintPath(book.slug),
+  description: `Print ${book.title} by ${book.author.join(", ")} as text and Morse study pages with QR and source notes.`,
 }));
 
 type SitemapGroup = {
@@ -109,6 +116,12 @@ const GROUPS: SitemapGroup[] = [
         to: ROUTES.bookTranslator,
         description:
           "Convert long text, TXT, EPUB, or PDF into Morse audio or video downloads.",
+      },
+      {
+        label: "Printable Morse Pages",
+        to: ROUTES.printablePages,
+        description:
+          "Create printable Morse pages from custom text or approved book sections.",
       },
       {
         label: "Morse Code Books",
@@ -175,6 +188,16 @@ const GROUPS: SitemapGroup[] = [
           description:
             "Approved Project Gutenberg books available as browser-generated Morse audiobook pages.",
           links: morseAudiobookSitemapLinks,
+        },
+      ]
+    : []),
+  ...(morseBookPrintSitemapLinks.length > 0
+    ? [
+        {
+          title: "Printable Morse book pages",
+          description:
+            "Approved Project Gutenberg books prepared as print-friendly Morse study pages.",
+          links: morseBookPrintSitemapLinks,
         },
       ]
     : []),
