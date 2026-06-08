@@ -85,7 +85,7 @@ export default function DisplaySettingsToggle({
     if (
       typeof window !== "undefined" &&
       !window.confirm(
-        "Clear cached approved Morse book sections for MorseWords on this device?",
+        "Clear cached approved Morse book data for MorseWords on this device?",
       )
     ) {
       return;

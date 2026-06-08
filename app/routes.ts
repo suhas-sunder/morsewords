@@ -101,6 +101,10 @@ export default [
   route("morse-code-book-translator", "routes/morse-code-book-translator.tsx"),
   route("morse-code-books", "routes/morse-code-books.tsx"),
   route("morse-code-books/:slug", "routes/morse-code-books.$slug.tsx"),
+  route(
+    "morse-book-content/books/:slug",
+    "routes/morse-book-content.books.$slug.tsx",
+  ),
   route("morse-code-video-generator", "routes/morse-code-video-generator.tsx"),
   route("how-to-read-morse-code", "routes/how-to-read-morse-code.tsx"),
   route("how-to-write-in-morse-code", "routes/how-to-write-in-morse-code.tsx"),
