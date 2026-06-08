@@ -16,6 +16,7 @@ import {
   morseBookPath,
   morseBookPrintPath,
 } from "~/client/data/morseBooks";
+import { MORSE_LANGUAGE_PAGES } from "~/client/data/morseLanguages";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -64,6 +65,20 @@ const morseBookPrintSitemapLinks = getPublishedMorseBookSummaries().map((book) =
   to: morseBookPrintPath(book.slug),
   description: `Print ${book.title} by ${book.author.join(", ")} as text and Morse study pages with QR and source notes.`,
 }));
+
+const morseLanguageSitemapLinks = [
+  {
+    label: "Morse Code by Language",
+    to: ROUTES.morseCodeByLanguage,
+    description:
+      "Browse language-specific Morse adaptations including Japanese Wabun code, Russian Cyrillic Morse, and Greek Morse.",
+  },
+  ...MORSE_LANGUAGE_PAGES.map((page) => ({
+    label: `${page.languageName} Morse Code`,
+    to: page.path,
+    description: `${page.shortDescription} Includes interactive cards and a printable side-by-side sheet.`,
+  })),
+];
 
 type SitemapGroup = {
   title: string;
@@ -201,6 +216,12 @@ const GROUPS: SitemapGroup[] = [
         },
       ]
     : []),
+  {
+    title: "Morse code by language",
+    description:
+      "Language-specific Morse reference pages with native-script cards, audio, and printable sheets.",
+    links: morseLanguageSitemapLinks,
+  },
   {
     title: "Practice and learning",
     description: "Build recognition, accuracy, and speed with practical drills.",

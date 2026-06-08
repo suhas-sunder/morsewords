@@ -152,6 +152,13 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Alphabet",
       },
       {
+        title: "Morse Code by Language",
+        description:
+          "Compare Wabun code, Cyrillic Morse, and Greek Morse with cards and printable sheets.",
+        href: ROUTES.morseCodeByLanguage,
+        badge: "Languages",
+      },
+      {
         title: "Printable Morse Worksheets",
         description:
           "Build printable charts, learner templates, and teacher-ready handouts.",

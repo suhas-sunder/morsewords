@@ -133,6 +133,11 @@ const MORE_GROUPS: NavGroup[] = [
         description: "Check International Morse code reference patterns.",
       },
       {
+        label: "Morse by language",
+        href: ROUTES.morseCodeByLanguage,
+        description: "Compare Wabun, Cyrillic, and Greek Morse adaptations.",
+      },
+      {
         label: "Punctuation",
         href: ROUTES.punctuation,
         description: "Find supported punctuation and spacing notes.",

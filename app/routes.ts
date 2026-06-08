@@ -105,6 +105,19 @@ export default [
   route("morse-code-books/:slug", "routes/morse-code-books.$slug.tsx"),
   route("morse-code-audiobooks", "routes/morse-code-audiobooks.tsx"),
   route("morse-code-audiobooks/:slug", "routes/morse-code-audiobooks.$slug.tsx"),
+  route("morse-code-by-language", "routes/morse-code-by-language.tsx"),
+  route(
+    "morse-code-by-language/japanese",
+    "routes/morse-code-by-language/japanese.tsx",
+  ),
+  route(
+    "morse-code-by-language/russian",
+    "routes/morse-code-by-language/russian.tsx",
+  ),
+  route(
+    "morse-code-by-language/greek",
+    "routes/morse-code-by-language/greek.tsx",
+  ),
   route(
     "morse-book-content/books/:slug",
     "routes/morse-book-content.books.$slug.tsx",
