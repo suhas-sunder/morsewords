@@ -275,7 +275,7 @@ test.describe("new book and video route SEO FAQ schema", () => {
       .fill("SOS VIDEO");
     await expect(page.getByLabel("Generated Morse output")).toHaveValue(/\.{3}/);
     await expect(page.getByTestId("morse-video-preview")).toBeVisible();
-    await expect(page.getByRole("button", { name: "Download WebM" })).toBeEnabled();
+    await expect(page.getByRole("button", { name: /Download (WebM|MP4)/ })).toBeEnabled();
     await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
 
     await page.setViewportSize({ width: 390, height: 844 });

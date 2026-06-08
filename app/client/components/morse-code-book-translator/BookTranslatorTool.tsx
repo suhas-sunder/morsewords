@@ -59,6 +59,7 @@ import {
 } from "~/client/components/shared/video/MorseVideoPreviewControls";
 import {
   getMorseVideoFormatSupport,
+  getPreferredMorseVideoFormat,
   MORSE_VIDEO_FORMATS,
   type MorseVideoFormat,
 } from "~/client/components/shared/video/morseVideoSupport";
@@ -695,6 +696,17 @@ export default function BookTranslatorTool() {
         ? sanitizeBookVideoSettings({ ...current, includeAudioTrack: false })
         : current,
     );
+  }, [videoSupport]);
+
+  React.useEffect(() => {
+    if (!videoSupport?.supported) return;
+    setSelectedVideoFormat((current) => {
+      const currentSupport = getMorseVideoFormatSupport(videoSupport, current);
+      if (!currentSupport.supported) {
+        return getPreferredMorseVideoFormat(videoSupport);
+      }
+      return current === "webm" ? getPreferredMorseVideoFormat(videoSupport) : current;
+    });
   }, [videoSupport]);
 
   React.useEffect(() => {
@@ -3723,7 +3735,7 @@ function BookPreviewSection({
           data-testid="book-preview-sample"
           className="mt-3 max-w-[68ch] break-words font-mono text-sm leading-relaxed text-slate-700"
         >
-          {audioPreview.sampleText}
+          {previewSampleForDisplay(audioPreview.sampleText)}
         </p>
       ) : null}
 
@@ -3875,6 +3887,11 @@ function previewStatusText({
   if (previewStatus === "stopped") return "Stopped";
   if (previewStatus === "failed") return "Failed";
   return "Ready";
+}
+
+function previewSampleForDisplay(sampleText: string) {
+  if (sampleText.length <= 420) return sampleText;
+  return `${sampleText.slice(0, 417).trimEnd()}...`;
 }
 
 function BookVideoSettingsEditor({

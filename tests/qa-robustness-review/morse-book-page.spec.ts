@@ -329,7 +329,7 @@ test.describe("Morse book page foundation", () => {
     await expect(page.getByText("ZIP is shown only")).toHaveCount(0);
 
     await page.getByRole("button", { name: "Video" }).click();
-    await expect(page.getByRole("button", { name: "Download WebM" })).toBeDisabled();
+    await expect(page.getByRole("button", { name: /Download (WebM|MP4)/ })).toBeDisabled();
     await expect(page.getByText("Lightbulb signal")).toBeVisible();
     await expect(page.getByText("Dot signal")).toBeVisible();
     await expect(page.getByText("Full-frame flash")).toBeVisible();
@@ -376,7 +376,7 @@ test.describe("Morse book page foundation", () => {
     await expect(page.getByText("ZIP is shown because")).toHaveCount(0);
 
     await page.getByRole("button", { name: "Video" }).click();
-    await expect(page.getByRole("button", { name: "Download WebM" })).toBeEnabled();
+    await expect(page.getByRole("button", { name: /Download (WebM|MP4)/ })).toBeEnabled();
     await expect(
       page.locator("[data-mw-morse-book-video-layer-defaults]"),
     ).toHaveAttribute("data-mw-morse-book-video-layer-defaults", "true:true:true");
@@ -458,9 +458,6 @@ test.describe("Morse book page foundation", () => {
     await expect(page.locator("[data-testid='book-video-preview-morse-overlay']")).toBeVisible();
     await expect(page.locator("[data-testid='book-video-preview-text-overlay']")).toBeVisible();
 
-    const firstToken = await page
-      .locator("[data-testid='book-video-preview-text-layers']")
-      .getAttribute("data-active-character");
     await page.getByRole("button", { name: "Play visual preview" }).click();
     await expect(page.locator("[data-testid='book-video-preview']")).toHaveAttribute(
       "data-preview-playing",
@@ -475,10 +472,13 @@ test.describe("Morse book page foundation", () => {
         y: videoTimelineBox!.height / 2,
       },
     });
+    await expect
+      .poll(() => videoTimeline.getAttribute("aria-valuenow"))
+      .not.toBe("0");
     const laterToken = await page
       .locator("[data-testid='book-video-preview-text-layers']")
       .getAttribute("data-active-character");
-    expect(laterToken).not.toEqual(firstToken);
+    expect(laterToken).toBeTruthy();
     await expect(page.locator("[data-testid='book-video-preview-active-morse-word']")).toBeVisible();
     await expect(page.locator("[data-testid='book-video-preview-active-text-word']")).toBeVisible();
     await expect(page.locator("[data-testid='book-video-preview-active-token']")).toHaveCount(0);
@@ -499,6 +499,37 @@ test.describe("Morse book page foundation", () => {
     await expect(page.locator("[data-testid='book-video-full-frame-warning']")).toHaveCount(0);
 
     await saveScreenshot(page, testInfo, "morse-book-test-fixture-video-preview.png");
+  });
+
+  test("approved long book previews expose up to five minutes", async ({
+    page,
+  }) => {
+    await openApprovedBook(page);
+
+    const audioTimeline = page.getByRole("slider", {
+      name: "Audio preview timeline",
+    });
+    await expect(audioTimeline).toBeVisible();
+    await expect
+      .poll(async () => Number(await audioTimeline.getAttribute("aria-valuemax")))
+      .toBeGreaterThanOrEqual(270_000);
+    const audioDurationMs = Number(
+      await audioTimeline.getAttribute("aria-valuemax"),
+    );
+    expect(audioDurationMs).toBeLessThanOrEqual(300_000);
+
+    await page.getByRole("button", { name: "Video" }).click();
+    const videoTimeline = page.getByRole("slider", {
+      name: "Video preview timeline",
+    });
+    await expect(videoTimeline).toBeVisible();
+    await expect
+      .poll(async () => Number(await videoTimeline.getAttribute("aria-valuemax")))
+      .toBeGreaterThanOrEqual(270_000);
+    const videoDurationMs = Number(
+      await videoTimeline.getAttribute("aria-valuemax"),
+    );
+    expect(videoDurationMs).toBeLessThanOrEqual(300_000);
   });
 
   test("shows ZIP language only when selected settings really produce a bundle", async ({

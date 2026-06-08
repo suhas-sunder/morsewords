@@ -43,6 +43,7 @@ import type {
 } from "~/client/components/shared/video/morseVideoTypes";
 import {
   getMorseVideoFormatSupport,
+  getPreferredMorseVideoFormat,
   MORSE_VIDEO_FORMATS,
   type MorseVideoFormat,
 } from "~/client/components/shared/video/morseVideoSupport";
@@ -430,6 +431,17 @@ export default function MorseBookPage({
   React.useEffect(() => {
     setVideoSupport(detectBookVideoSupport());
   }, []);
+
+  React.useEffect(() => {
+    if (!videoSupport?.supported) return;
+    setSelectedVideoFormat((current) => {
+      const currentSupport = getMorseVideoFormatSupport(videoSupport, current);
+      if (!currentSupport.supported) {
+        return getPreferredMorseVideoFormat(videoSupport);
+      }
+      return current === "webm" ? getPreferredMorseVideoFormat(videoSupport) : current;
+    });
+  }, [videoSupport]);
 
   const defaultSectionIds = React.useMemo(
     () => defaultSectionIdsForBook(book, initialSection.sectionId),
