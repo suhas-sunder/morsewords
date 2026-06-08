@@ -53,6 +53,10 @@ export const CANONICAL_ROUTES = {
   bookTranslator: "/morse-code-book-translator",
   morseBooks: "/morse-code-books",
   morseAudiobooks: "/morse-code-audiobooks",
+  morseCodeByLanguage: "/morse-code-by-language",
+  morseCodeJapanese: "/morse-code-by-language/japanese",
+  morseCodeRussian: "/morse-code-by-language/russian",
+  morseCodeGreek: "/morse-code-by-language/greek",
   videoGenerator: "/morse-code-video-generator",
 
   howToRead: "/how-to-read-morse-code",
