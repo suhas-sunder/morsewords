@@ -7,21 +7,20 @@
   "title": null,
   "order": 3,
   "includeByDefault": false,
-  "displayText": "A thousand miles we galloped fast,\n    And down the witches' lane we passed,\n    And rode amain, with brandished sword,\n    Up to the middle, through the ford.\n\n    Last we drew rein--a weary three--\n    Upon the lawn, in time for tea,\n    And from our steeds alighted down\n    Before the gates of Babylon.",
-  "morseSourceText": "A thousand miles we galloped fast,\n    And down the witches' lane we passed,\n    And rode amain, with brandished sword,\n    Up to the middle, through the ford.\n\n    Last we drew rein--a weary three--\n    Upon the lawn, in time for tea,\n    And from our steeds alighted down\n    Before the gates of Babylon.",
+  "displayText": "TWENTY THOUSAND LEAGUES UNDER THE SEA\n    by JULES VERNE\n    _Illustrated by W. J. Aylward_",
+  "morseSourceText": "TWENTY THOUSAND LEAGUES UNDER THE SEA\n    by JULES VERNE\n    _Illustrated by W. J. Aylward_",
   "paragraphs": [
-    "A thousand miles we galloped fast, And down the witches' lane we passed, And rode amain, with brandished sword, Up to the middle, through the ford.",
-    "Last we drew rein--a weary three-- Upon the lawn, in time for tea, And from our steeds alighted down Before the gates of Babylon."
+    "TWENTY THOUSAND LEAGUES UNDER THE SEA by JULES VERNE _Illustrated by W. J. Aylward_"
   ],
-  "wordCount": 51,
-  "characterCount": 306,
-  "estimatedTypingMinutes": 2,
-  "estimatedListeningMinutes": 2,
-  "morseCharacterEstimate": 1499,
+  "wordCount": 14,
+  "characterCount": 91,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 454,
   "unsupportedCharacterSummary": {},
-  "textPreview": "A thousand miles we galloped fast, And down the witches' lane we passed, And rode amain, with brandished sword, Up to the middle, through the ford. Last we dre...",
+  "textPreview": "TWENTY THOUSAND LEAGUES UNDER THE SEA by JULES VERNE _Illustrated by W. J. Aylward_",
   "sourceOffsets": {
-    "start": 59506,
-    "end": 59816
+    "start": 58643,
+    "end": 58736
   }
 }

@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "50616c104c55e6d9",
-  "contentHash": "50616c104c55e6d939283ccdadcded3fd5d5fa39fb5579f81198eccd3bd7117c",
+  "contentVersion": "746dfe7ca9ddc8d9",
+  "contentHash": "746dfe7ca9ddc8d9ea4d6e432a0010c06734490bf0e6d2d0b318887bb67c2fdf",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 31621,
-    "cleanedCharacterCount": 10636,
-    "wordCount": 1896,
+    "cleanedCharacterCount": 10530,
+    "wordCount": 1881,
     "sectionCount": 2,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 10556,
-      "wordCount": 1885,
-      "estimatedTypingMinutes": 48,
-      "estimatedListeningMinutes": 63,
-      "morseCharacterEstimate": 56592,
-      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessivel..."
+      "characterCount": 10212,
+      "wordCount": 1820,
+      "estimatedTypingMinutes": 46,
+      "estimatedListeningMinutes": 61,
+      "morseCharacterEstimate": 54761,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, t..."
     },
     {
       "id": "part-002",
@@ -70,17 +70,17 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 77,
-      "wordCount": 11,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 418,
-      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      "characterCount": 316,
+      "wordCount": 61,
+      "estimatedTypingMinutes": 2,
+      "estimatedListeningMinutes": 2,
+      "morseCharacterEstimate": 1695,
+      "textPreview": "“But he has nothing at all on!” at last cried out all the people. The Emperor was vexed, for he knew that the people were right; but he thought the procession..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 31621,
-    "cleanedCharacterCount": 10636,
+    "cleanedCharacterCount": 10530,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

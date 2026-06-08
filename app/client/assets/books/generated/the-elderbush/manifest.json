@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "3157980e3ed91989",
-  "contentHash": "3157980e3ed919893342ae1d970732aebaba2c8186be71c44eb48a96bf0409bc",
+  "contentVersion": "6bdac4121a3dc227",
+  "contentHash": "6bdac4121a3dc227f1649db8ef471d662733041ee0d3c9522164964a5d7e3c34",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 35525,
-    "cleanedCharacterCount": 16235,
-    "wordCount": 3029,
+    "cleanedCharacterCount": 16129,
+    "wordCount": 3014,
     "sectionCount": 2,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 16155,
-      "wordCount": 3018,
+      "characterCount": 16065,
+      "wordCount": 3003,
       "estimatedTypingMinutes": 76,
-      "estimatedListeningMinutes": 97,
-      "morseCharacterEstimate": 86609,
-      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone..."
+      "estimatedListeningMinutes": 96,
+      "morseCharacterEstimate": 86132,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet we..."
     },
     {
       "id": "part-002",
@@ -70,17 +70,17 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 77,
+      "characterCount": 62,
       "wordCount": 11,
       "estimatedTypingMinutes": 1,
       "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 418,
-      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      "morseCharacterEstimate": 341,
+      "textPreview": "“In the tea-pot,” said his mother; “and there she may remain.”"
     }
   ],
   "cleaning": {
     "originalCharacterCount": 35525,
-    "cleanedCharacterCount": 16235,
+    "cleanedCharacterCount": 16129,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

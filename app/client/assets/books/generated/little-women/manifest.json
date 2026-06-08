@@ -5,8 +5,8 @@
   "author": [
     "Louisa May Alcott"
   ],
-  "contentVersion": "6b5698ce34e99db5",
-  "contentHash": "6b5698ce34e99db5f744536b59879134426681436b493b1540fa63dad957b8f3",
+  "contentVersion": "e0a87f69cf9223dc",
+  "contentHash": "e0a87f69cf9223dc351528cb111f9814aaf6509317c7c00900737e5486000768",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 1090255,
-    "cleanedCharacterCount": 1070785,
-    "wordCount": 193010,
+    "cleanedCharacterCount": 1058709,
+    "wordCount": 190813,
     "sectionCount": 37,
     "includedSectionCount": 0
   },
@@ -580,11 +580,11 @@
       "order": 36,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-036.json",
-      "characterCount": 27899,
-      "wordCount": 4771,
-      "estimatedTypingMinutes": 120,
-      "estimatedListeningMinutes": 166,
-      "morseCharacterEstimate": 148763,
+      "characterCount": 16072,
+      "wordCount": 2613,
+      "estimatedTypingMinutes": 66,
+      "estimatedListeningMinutes": 94,
+      "morseCharacterEstimate": 83799,
       "textPreview": "That was given with a will, as you may well believe; and the cheering once begun, it was hard to stop it. Everybody's health was proposed, from Mr. Laurence, w..."
     },
     {
@@ -595,17 +595,17 @@
       "order": 37,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-037.json",
-      "characterCount": 282,
-      "wordCount": 44,
-      "estimatedTypingMinutes": 2,
-      "estimatedListeningMinutes": 2,
-      "morseCharacterEstimate": 1575,
-      "textPreview": "The final page is a listing of eleven stories originally published in other volumes, such as Jo's Scrap-Bag, Lulu's Library, and A Garland for Girls. These wor..."
+      "characterCount": 33,
+      "wordCount": 5,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 1,
+      "morseCharacterEstimate": 194,
+      "textPreview": "254 Washington St., Boston, Mass."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 1090255,
-    "cleanedCharacterCount": 1070785,
+    "cleanedCharacterCount": 1058709,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

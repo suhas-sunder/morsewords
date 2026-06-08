@@ -3,8 +3,8 @@
   "id": "the-secret-garden",
   "title": "The Secret Garden",
   "author": "Frances Hodgson Burnett",
-  "content_version": "53bc00ef05d1608b",
-  "content_hash": "53bc00ef05d1608b9663ddbc4ba8ca5f738d6d0eb1fa8e637d1ceb449e29858c",
+  "content_version": "3822285cf35bf6f2",
+  "content_hash": "3822285cf35bf6f2ec0edbaf3e93f9552a9b371d4dc3ab31de55ad203ec56870",
   "source": {
     "name": "Project Gutenberg",
     "ebook_number": "17396",
@@ -20,7 +20,7 @@
     "approved_for_youtube_narration": false,
     "approved_regions": [],
     "needs_manual_review": false,
-    "notes": "Later copyright notice was detected. Transcriber notes remain in cleaned story text. Illustrations or image references need manual handling. Translation status or translator death year needs manual review. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+    "notes": "Later copyright notice was detected. Illustrations or image references need manual handling. Translation status or translator death year needs manual review. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
   },
   "content": {
     "chapters": [

@@ -1128,7 +1128,11 @@ body
 }
 
 .mw-page-content #morse-code-navigation .mw-toolkit-card-light:not([aria-disabled="true"]):hover,
-.mw-page-content #morse-code-navigation .mw-toolkit-card-light:not([aria-disabled="true"]):focus-visible,
+.mw-page-content #morse-code-navigation .mw-toolkit-card-light:not([aria-disabled="true"]):focus-visible {
+  background-color: var(--mw-button-secondary-hover) !important;
+  color: var(--mw-link-hover) !important;
+}
+
 .mw-page-content #morse-code-navigation .mw-toolkit-summary:not([aria-disabled="true"]):hover,
 .mw-page-content #morse-code-navigation .mw-toolkit-summary:not([aria-disabled="true"]):focus-visible {
   background-color: var(--mw-button-global-hover-bg) !important;

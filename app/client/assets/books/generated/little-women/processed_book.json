@@ -3,8 +3,8 @@
   "id": "little-women",
   "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
   "author": "Louisa May Alcott",
-  "content_version": "6b5698ce34e99db5",
-  "content_hash": "6b5698ce34e99db5f744536b59879134426681436b493b1540fa63dad957b8f3",
+  "content_version": "e0a87f69cf9223dc",
+  "content_hash": "e0a87f69cf9223dc351528cb111f9814aaf6509317c7c00900737e5486000768",
   "source": {
     "name": "Project Gutenberg",
     "ebook_number": "37106",
@@ -20,7 +20,7 @@
     "approved_for_youtube_narration": false,
     "approved_regions": [],
     "needs_manual_review": false,
-    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Transcriber notes remain in cleaned story text. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
   },
   "content": {
     "chapters": []

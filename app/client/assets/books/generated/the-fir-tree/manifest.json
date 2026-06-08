@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "85583e5664a9384d",
-  "contentHash": "85583e5664a9384d7927d5e8b146489888008903956c36db71b2c49f6b9b8d5f",
+  "contentVersion": "d05fb6270fdc899f",
+  "contentHash": "d05fb6270fdc899f868027b2f3b41ced2ae9fd9e9a7c2577a0d305c9798d5ec9",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 36671,
-    "cleanedCharacterCount": 17381,
-    "wordCount": 3247,
+    "cleanedCharacterCount": 17275,
+    "wordCount": 3232,
     "sectionCount": 2,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 17301,
-      "wordCount": 3236,
-      "estimatedTypingMinutes": 81,
-      "estimatedListeningMinutes": 103,
-      "morseCharacterEstimate": 92696,
-      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a ve..."
+      "characterCount": 17016,
+      "wordCount": 3180,
+      "estimatedTypingMinutes": 80,
+      "estimatedListeningMinutes": 102,
+      "morseCharacterEstimate": 91186,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun sho..."
     },
     {
       "id": "part-002",
@@ -70,17 +70,17 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 77,
-      "wordCount": 11,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 418,
-      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      "characterCount": 257,
+      "wordCount": 52,
+      "estimatedTypingMinutes": 2,
+      "estimatedListeningMinutes": 2,
+      "morseCharacterEstimate": 1374,
+      "textPreview": "The boys played about in the court, and the youngest wore the gold star on his breast which the Tree had had on the happiest evening of his life. However, that..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 36671,
-    "cleanedCharacterCount": 17381,
+    "cleanedCharacterCount": 17275,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

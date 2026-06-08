@@ -603,7 +603,11 @@ function renderMorsePreviewWords(
             </span>
           ))}
         </span>
-        {wordOffset < words.length - 1 ? "   " : null}
+        {wordOffset < words.length - 1 ? (
+          <span className="mx-1 select-none opacity-70" aria-hidden="true">
+            /
+          </span>
+        ) : null}
       </React.Fragment>
     );
   });

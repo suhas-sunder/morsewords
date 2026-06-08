@@ -5,8 +5,8 @@
   "author": [
     "E. Nesbit"
   ],
-  "contentVersion": "52770460ad4d4684",
-  "contentHash": "52770460ad4d46840556c79393d14fc6305f78f32d4f9b021b12ed9f79c5a483",
+  "contentVersion": "943d40f17c69635b",
+  "contentHash": "943d40f17c69635b6425918eedbbbbd7dd060416fe7a2f62266637e83aec84a4",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 386912,
-    "cleanedCharacterCount": 367374,
-    "wordCount": 68916,
+    "cleanedCharacterCount": 366425,
+    "wordCount": 68779,
     "sectionCount": 14,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29863,
-      "wordCount": 5403,
-      "estimatedTypingMinutes": 136,
+      "characterCount": 29790,
+      "wordCount": 5392,
+      "estimatedTypingMinutes": 135,
       "estimatedListeningMinutes": 170,
-      "morseCharacterEstimate": 152795,
-      "textPreview": "E-text prepared by Suzanne Shell, Emmy, and the Project Gutenberg Online Distributed Proofreading Team (https://www.pgdp.net) Note: Project Gutenberg also has..."
+      "morseCharacterEstimate": 152400,
+      "textPreview": "Distributed Proofreading Team (https://www.pgdp.net) Note: Project Gutenberg also has an HTML version of this file which includes the original illustrations. S..."
     },
     {
       "id": "part-002",
@@ -235,11 +235,11 @@
       "order": 13,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-013.json",
-      "characterCount": 9390,
-      "wordCount": 1736,
-      "estimatedTypingMinutes": 44,
-      "estimatedListeningMinutes": 57,
-      "morseCharacterEstimate": 50463,
+      "characterCount": 8542,
+      "wordCount": 1622,
+      "estimatedTypingMinutes": 41,
+      "estimatedListeningMinutes": 51,
+      "morseCharacterEstimate": 45883,
       "textPreview": "\"Nor it ain't father's neither,\" the boy said; \"he broke his arm a-falling off of a rick, and he hadn't paid up his club money along of mother's new baby costi..."
     },
     {
@@ -250,17 +250,17 @@
       "order": 14,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-014.json",
-      "characterCount": 69,
-      "wordCount": 12,
+      "characterCount": 33,
+      "wordCount": 0,
       "estimatedTypingMinutes": 1,
       "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 358,
-      "textPreview": "Both Krikey and crikey and handkie and hankie were used and retained."
+      "morseCharacterEstimate": 0,
+      "textPreview": "* * * * *"
     }
   ],
   "cleaning": {
     "originalCharacterCount": 386912,
-    "cleanedCharacterCount": 367374,
+    "cleanedCharacterCount": 366425,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

@@ -5,8 +5,8 @@
   "author": [
     "Frances Hodgson Burnett"
   ],
-  "contentVersion": "53bc00ef05d1608b",
-  "contentHash": "53bc00ef05d1608b9663ddbc4ba8ca5f738d6d0eb1fa8e637d1ceb449e29858c",
+  "contentVersion": "3822285cf35bf6f2",
+  "contentHash": "3822285cf35bf6f2ec0edbaf3e93f9552a9b371d4dc3ab31de55ad203ec56870",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,9 +35,9 @@
   },
   "stats": {
     "originalCharacterCount": 451877,
-    "cleanedCharacterCount": 432583,
-    "wordCount": 81478,
-    "sectionCount": 30,
+    "cleanedCharacterCount": 431726,
+    "wordCount": 81348,
+    "sectionCount": 29,
     "includedSectionCount": 27
   },
   "defaults": {
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/title-page-001.json",
-      "characterCount": 787,
-      "wordCount": 100,
+      "characterCount": 729,
+      "wordCount": 91,
       "estimatedTypingMinutes": 3,
       "estimatedListeningMinutes": 5,
-      "morseCharacterEstimate": 4203,
-      "textPreview": "Produced by Jason Isbell, Emmy and the Online Distributed Proofreading Team at http://www.pgdp.net [Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH DE..."
+      "morseCharacterEstimate": 3888,
+      "textPreview": "Proofreading Team at http://www.pgdp.net [Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH DELIGHTFULNESS\"--_Page 231_] THE SECRET GARDEN BY FRANCES HO..."
     },
     {
       "id": "title-page-002",
@@ -481,26 +481,11 @@
       "estimatedListeningMinutes": 163,
       "morseCharacterEstimate": 146564,
       "textPreview": "CHAPTER XXVII IN THE GARDEN In each century since the beginning of the world wonderful things have been discovered. In the last century more amazing things wer..."
-    },
-    {
-      "id": "transcriber-note-001",
-      "kind": "transcriber-note",
-      "label": "Transcriber's Note",
-      "title": null,
-      "order": 30,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/transcriber-note-001.json",
-      "characterCount": 797,
-      "wordCount": 121,
-      "estimatedTypingMinutes": 4,
-      "estimatedListeningMinutes": 5,
-      "morseCharacterEstimate": 4473,
-      "textPreview": "Transcriber's notes: Table of Contents, an exclamation point was added to Chapter VI's title to match the text. (there was!\") Page 34, quotation mark added. (I..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 451877,
-    "cleanedCharacterCount": 432583,
+    "cleanedCharacterCount": 431726,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

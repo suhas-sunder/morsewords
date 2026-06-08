@@ -7,8 +7,8 @@
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "2b14d93304c4d8d0",
-      "contentHash": "2b14d93304c4d8d063ded1050b462e1d685e105ed19f782609af25322bba89ca",
+      "contentVersion": "c260b6b569b067c6",
+      "contentHash": "c260b6b569b067c618f7aaddeefc0e7e5398c1a90438d072885d7183ac392182",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -37,8 +37,8 @@
       },
       "stats": {
         "originalCharacterCount": 79187,
-        "cleanedCharacterCount": 59816,
-        "wordCount": 9065,
+        "cleanedCharacterCount": 58736,
+        "wordCount": 8890,
         "sectionCount": 3,
         "includedSectionCount": 0
       },
@@ -500,8 +500,8 @@
       "author": [
         "Voltaire"
       ],
-      "contentVersion": "5440813db5b21401",
-      "contentHash": "5440813db5b21401e84594bbd38d6d7a5e2ee00edf4def1093ea724363dab7bd",
+      "contentVersion": "7e16293d9d2e0e2f",
+      "contentHash": "7e16293d9d2e0e2fdecf888f873fc3eda92bd4675d761767065a4ef1921c6f81",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -530,8 +530,8 @@
       },
       "stats": {
         "originalCharacterCount": 224766,
-        "cleanedCharacterCount": 205516,
-        "wordCount": 35911,
+        "cleanedCharacterCount": 205459,
+        "wordCount": 35900,
         "sectionCount": 8,
         "includedSectionCount": 0
       },
@@ -990,8 +990,8 @@
       "author": [
         "Johanna Spyri"
       ],
-      "contentVersion": "72877049c0bd58d0",
-      "contentHash": "72877049c0bd58d0684ca261b27ab6e3c27c8a6aa45ef7ec55937ed84c5c5b0f",
+      "contentVersion": "e9e6b4950c7ea02d",
+      "contentHash": "e9e6b4950c7ea02d97233c120ee08245132bc1f9dded5807407c9fc4f816f36f",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1020,8 +1020,8 @@
       },
       "stats": {
         "originalCharacterCount": 304113,
-        "cleanedCharacterCount": 284582,
-        "wordCount": 51641,
+        "cleanedCharacterCount": 284522,
+        "wordCount": 51632,
         "sectionCount": 11,
         "includedSectionCount": 0
       },
@@ -1088,8 +1088,8 @@
       "author": [
         "Louisa May Alcott"
       ],
-      "contentVersion": "a9f6f3def093f4ab",
-      "contentHash": "a9f6f3def093f4abad5d5942ea6f0476e4e187f08d215aef055d0fa820544759",
+      "contentVersion": "269cb4e53d1a5322",
+      "contentHash": "269cb4e53d1a532207b3627f9930a0323bbb3006de9b783650106cbdbf439783",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1118,8 +1118,8 @@
       },
       "stats": {
         "originalCharacterCount": 517085,
-        "cleanedCharacterCount": 497818,
-        "wordCount": 93064,
+        "cleanedCharacterCount": 497781,
+        "wordCount": 93059,
         "sectionCount": 26,
         "includedSectionCount": 24
       },
@@ -1235,8 +1235,8 @@
       "author": [
         "Louisa May Alcott"
       ],
-      "contentVersion": "6b5698ce34e99db5",
-      "contentHash": "6b5698ce34e99db5f744536b59879134426681436b493b1540fa63dad957b8f3",
+      "contentVersion": "e0a87f69cf9223dc",
+      "contentHash": "e0a87f69cf9223dc351528cb111f9814aaf6509317c7c00900737e5486000768",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1265,8 +1265,8 @@
       },
       "stats": {
         "originalCharacterCount": 1090255,
-        "cleanedCharacterCount": 1070785,
-        "wordCount": 193010,
+        "cleanedCharacterCount": 1058709,
+        "wordCount": 190813,
         "sectionCount": 37,
         "includedSectionCount": 0
       },
@@ -1284,8 +1284,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "52770460ad4d4684",
-      "contentHash": "52770460ad4d46840556c79393d14fc6305f78f32d4f9b021b12ed9f79c5a483",
+      "contentVersion": "943d40f17c69635b",
+      "contentHash": "943d40f17c69635b6425918eedbbbbd7dd060416fe7a2f62266637e83aec84a4",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1314,8 +1314,8 @@
       },
       "stats": {
         "originalCharacterCount": 386912,
-        "cleanedCharacterCount": 367374,
-        "wordCount": 68916,
+        "cleanedCharacterCount": 366425,
+        "wordCount": 68779,
         "sectionCount": 14,
         "includedSectionCount": 0
       },
@@ -1333,8 +1333,8 @@
       "author": [
         "Joel Chandler Harris"
       ],
-      "contentVersion": "a481bfe14c44d2e5",
-      "contentHash": "a481bfe14c44d2e56b9470f6f4b0e1850d7f481fc680035a8e00aaf43edad109",
+      "contentVersion": "54954c1ec72e61ef",
+      "contentHash": "54954c1ec72e61ef8fdd46e6a430fd5dafe31ef522cb14cd0572cb549aa94d44",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1363,8 +1363,8 @@
       },
       "stats": {
         "originalCharacterCount": 591263,
-        "cleanedCharacterCount": 571905,
-        "wordCount": 111548,
+        "cleanedCharacterCount": 571770,
+        "wordCount": 111528,
         "sectionCount": 21,
         "includedSectionCount": 0
       },
@@ -1723,8 +1723,8 @@
       "slug": "the-arabian-nights",
       "title": "The Arabian Nights: Their Best-known Tales",
       "author": [],
-      "contentVersion": "13e595548c02e73a",
-      "contentHash": "13e595548c02e73a2d9934dc3feb808ecf3268fa568194c8648e2e07e4e1078c",
+      "contentVersion": "2931316c3abb6bcd",
+      "contentHash": "2931316c3abb6bcdae53a50a79111240037d1acaa366a27429f5bc5ea0702529",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1753,8 +1753,8 @@
       },
       "stats": {
         "originalCharacterCount": 645574,
-        "cleanedCharacterCount": 626110,
-        "wordCount": 114917,
+        "cleanedCharacterCount": 626053,
+        "wordCount": 114908,
         "sectionCount": 23,
         "includedSectionCount": 0
       },
@@ -1821,8 +1821,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "32f3451a55f80625",
-      "contentHash": "32f3451a55f80625f4b0e2f9d0bb8a914027ac77d94e83e2cf59de75218dcb9a",
+      "contentVersion": "26e487e055059310",
+      "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1851,8 +1851,8 @@
       },
       "stats": {
         "originalCharacterCount": 46266,
-        "cleanedCharacterCount": 26976,
-        "wordCount": 5054,
+        "cleanedCharacterCount": 26870,
+        "wordCount": 5039,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
@@ -1870,8 +1870,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "e56a424037e70346",
-      "contentHash": "e56a424037e7034623103a1e459ca24add91b63a2ab3ef3464ec8b88e7ece6c7",
+      "contentVersion": "837f1e2e43abb5df",
+      "contentHash": "837f1e2e43abb5dfc68f36aa4b3bf9f44f0581fe645c65dc7cd5706f2d2892f3",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1900,8 +1900,8 @@
       },
       "stats": {
         "originalCharacterCount": 247086,
-        "cleanedCharacterCount": 227745,
-        "wordCount": 42635,
+        "cleanedCharacterCount": 227459,
+        "wordCount": 42593,
         "sectionCount": 9,
         "includedSectionCount": 0
       },
@@ -2162,8 +2162,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "3157980e3ed91989",
-      "contentHash": "3157980e3ed919893342ae1d970732aebaba2c8186be71c44eb48a96bf0409bc",
+      "contentVersion": "6bdac4121a3dc227",
+      "contentHash": "6bdac4121a3dc227f1649db8ef471d662733041ee0d3c9522164964a5d7e3c34",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2192,8 +2192,8 @@
       },
       "stats": {
         "originalCharacterCount": 35525,
-        "cleanedCharacterCount": 16235,
-        "wordCount": 3029,
+        "cleanedCharacterCount": 16129,
+        "wordCount": 3014,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
@@ -2211,8 +2211,8 @@
       "author": [
         "William Strunk"
       ],
-      "contentVersion": "b67929be0423830f",
-      "contentHash": "b67929be0423830f3d7bc3d70049845fa8f562fcbd9a76b29616c24b1c4bc051",
+      "contentVersion": "5f836c9f3a90c6dc",
+      "contentHash": "5f836c9f3a90c6dc9188396824e1ad9e3e8f6aaf25241051b5709d779d8c9364",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2241,8 +2241,8 @@
       },
       "stats": {
         "originalCharacterCount": 105502,
-        "cleanedCharacterCount": 86089,
-        "wordCount": 13918,
+        "cleanedCharacterCount": 86040,
+        "wordCount": 13910,
         "sectionCount": 4,
         "includedSectionCount": 0
       },
@@ -2309,8 +2309,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "50616c104c55e6d9",
-      "contentHash": "50616c104c55e6d939283ccdadcded3fd5d5fa39fb5579f81198eccd3bd7117c",
+      "contentVersion": "746dfe7ca9ddc8d9",
+      "contentHash": "746dfe7ca9ddc8d9ea4d6e432a0010c06734490bf0e6d2d0b318887bb67c2fdf",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2339,8 +2339,8 @@
       },
       "stats": {
         "originalCharacterCount": 31621,
-        "cleanedCharacterCount": 10636,
-        "wordCount": 1896,
+        "cleanedCharacterCount": 10530,
+        "wordCount": 1881,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
@@ -2407,8 +2407,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "85583e5664a9384d",
-      "contentHash": "85583e5664a9384d7927d5e8b146489888008903956c36db71b2c49f6b9b8d5f",
+      "contentVersion": "d05fb6270fdc899f",
+      "contentHash": "d05fb6270fdc899f868027b2f3b41ced2ae9fd9e9a7c2577a0d305c9798d5ec9",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2437,8 +2437,8 @@
       },
       "stats": {
         "originalCharacterCount": 36671,
-        "cleanedCharacterCount": 17381,
-        "wordCount": 3247,
+        "cleanedCharacterCount": 17275,
+        "wordCount": 3232,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
@@ -2601,8 +2601,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "80a593d4628501e3",
-      "contentHash": "80a593d4628501e346f36bb907fa3b2b54eccc2bceffda2601faacc57fa2c6a2",
+      "contentVersion": "40ef802bc05a7172",
+      "contentHash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2631,8 +2631,8 @@
       },
       "stats": {
         "originalCharacterCount": 23080,
-        "cleanedCharacterCount": 3790,
-        "wordCount": 693,
+        "cleanedCharacterCount": 3684,
+        "wordCount": 678,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
@@ -2699,8 +2699,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "9f056f666b8618a3",
-      "contentHash": "9f056f666b8618a347f1a70fbeb128737496ac5bf3a3b5c106b86746ca0e1037",
+      "contentVersion": "cb84871b55f9b084",
+      "contentHash": "cb84871b55f9b0847226aa42f80f3819e1baef3818e1e7ea46794830045d289a",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2729,8 +2729,8 @@
       },
       "stats": {
         "originalCharacterCount": 115289,
-        "cleanedCharacterCount": 95999,
-        "wordCount": 18265,
+        "cleanedCharacterCount": 95893,
+        "wordCount": 18250,
         "sectionCount": 5,
         "includedSectionCount": 0
       },
@@ -2846,8 +2846,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "d9d11d41a68904e2",
-      "contentHash": "d9d11d41a68904e2c6ee526561f48ac624aa02751eae0a44b0b258fabf2d85e1",
+      "contentVersion": "2e8fd14f73610186",
+      "contentHash": "2e8fd14f73610186ff5937435d349246561d374111bd004cac2cc03eae76bd57",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2876,8 +2876,8 @@
       },
       "stats": {
         "originalCharacterCount": 345957,
-        "cleanedCharacterCount": 326683,
-        "wordCount": 59806,
+        "cleanedCharacterCount": 326658,
+        "wordCount": 59802,
         "sectionCount": 15,
         "includedSectionCount": 14
       },
@@ -2895,8 +2895,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "68a2fbee7996f6f0",
-      "contentHash": "68a2fbee7996f6f01dd215d03d0230008715125fba3e4812bac4b5b1b24558a0",
+      "contentVersion": "74623d7ca6769121",
+      "contentHash": "74623d7ca6769121902ef1cbb13d5746a9e7cb452c62ac83e326d1aa9df58ac1",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2925,8 +2925,8 @@
       },
       "stats": {
         "originalCharacterCount": 21645,
-        "cleanedCharacterCount": 2355,
-        "wordCount": 436,
+        "cleanedCharacterCount": 2249,
+        "wordCount": 421,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
@@ -2993,8 +2993,8 @@
       "author": [
         "Frances Hodgson Burnett"
       ],
-      "contentVersion": "53bc00ef05d1608b",
-      "contentHash": "53bc00ef05d1608b9663ddbc4ba8ca5f738d6d0eb1fa8e637d1ceb449e29858c",
+      "contentVersion": "3822285cf35bf6f2",
+      "contentHash": "3822285cf35bf6f2ec0edbaf3e93f9552a9b371d4dc3ab31de55ad203ec56870",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3023,9 +3023,9 @@
       },
       "stats": {
         "originalCharacterCount": 451877,
-        "cleanedCharacterCount": 432583,
-        "wordCount": 81478,
-        "sectionCount": 30,
+        "cleanedCharacterCount": 431726,
+        "wordCount": 81348,
+        "sectionCount": 29,
         "includedSectionCount": 27
       },
       "defaults": {
@@ -3091,8 +3091,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "956f05eaf5425b15",
-      "contentHash": "956f05eaf5425b159d58ff39a2d733c7a75e3e8cb358b40ad7fbe12b394461bb",
+      "contentVersion": "e6807307fe30d680",
+      "contentHash": "e6807307fe30d6806c09bffcf90ee1152576e9115656171f9d5798f291943e7c",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3121,8 +3121,8 @@
       },
       "stats": {
         "originalCharacterCount": 90171,
-        "cleanedCharacterCount": 70881,
-        "wordCount": 12724,
+        "cleanedCharacterCount": 70775,
+        "wordCount": 12709,
         "sectionCount": 4,
         "includedSectionCount": 0
       },
@@ -3140,8 +3140,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "bb763c8d0ed042e3",
-      "contentHash": "bb763c8d0ed042e3e7c0ff872f3cba9323cc5d1262298f2a76fef681f5b3ecdf",
+      "contentVersion": "4d3de7b45653d97f",
+      "contentHash": "4d3de7b45653d97ff7cc79d4bb274a989d223447ef95ce7316facd94cb57688f",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3170,8 +3170,8 @@
       },
       "stats": {
         "originalCharacterCount": 83165,
-        "cleanedCharacterCount": 63875,
-        "wordCount": 11996,
+        "cleanedCharacterCount": 63769,
+        "wordCount": 11981,
         "sectionCount": 4,
         "includedSectionCount": 0
       },
@@ -3189,8 +3189,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "42399664efc849a9",
-      "contentHash": "42399664efc849a9ca473a2d7c7acd7d1bde8daf7d0a56d18bfc77a0a83b317f",
+      "contentVersion": "bba920ce5e7f63db",
+      "contentHash": "bba920ce5e7f63dbfd0467efc7aa51a3366e8072aa10c4171e7a58029047f932",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3219,8 +3219,8 @@
       },
       "stats": {
         "originalCharacterCount": 27624,
-        "cleanedCharacterCount": 8334,
-        "wordCount": 1510,
+        "cleanedCharacterCount": 8228,
+        "wordCount": 1495,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
@@ -3336,8 +3336,8 @@
       "author": [
         "Charles Kingsley"
       ],
-      "contentVersion": "112154ea2b7e2527",
-      "contentHash": "112154ea2b7e2527d2183832b0ad47fc60f800c9c0d75da7fa4a5dadb5d8a90f",
+      "contentVersion": "ab71066d5d14fff5",
+      "contentHash": "ab71066d5d14fff502c8c2b1195e28ebd679c4e2c6e2a527529076c1ba1f7150",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3366,9 +3366,9 @@
       },
       "stats": {
         "originalCharacterCount": 388846,
-        "cleanedCharacterCount": 369358,
-        "wordCount": 68944,
-        "sectionCount": 11,
+        "cleanedCharacterCount": 369242,
+        "wordCount": 68928,
+        "sectionCount": 10,
         "includedSectionCount": 9
       },
       "defaults": {
@@ -3581,8 +3581,8 @@
       "author": [
         "William J. Long"
       ],
-      "contentVersion": "2102d56897e00e56",
-      "contentHash": "2102d56897e00e5623f5761423c592a90f2c45b7243c18b29be31f9e33a63d20",
+      "contentVersion": "53459056320606b5",
+      "contentHash": "53459056320606b53faa47715e9dc78f224f944a3377a2919f8697b257fdf123",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3611,8 +3611,8 @@
       },
       "stats": {
         "originalCharacterCount": 269688,
-        "cleanedCharacterCount": 250367,
-        "wordCount": 45347,
+        "cleanedCharacterCount": 250309,
+        "wordCount": 45340,
         "sectionCount": 10,
         "includedSectionCount": 0
       },

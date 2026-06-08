@@ -5,8 +5,8 @@
   "author": [
     "E. Nesbit"
   ],
-  "contentVersion": "d9d11d41a68904e2",
-  "contentHash": "d9d11d41a68904e2c6ee526561f48ac624aa02751eae0a44b0b258fabf2d85e1",
+  "contentVersion": "2e8fd14f73610186",
+  "contentHash": "2e8fd14f73610186ff5937435d349246561d374111bd004cac2cc03eae76bd57",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 345957,
-    "cleanedCharacterCount": 326683,
-    "wordCount": 59806,
+    "cleanedCharacterCount": 326658,
+    "wordCount": 59802,
     "sectionCount": 15,
     "includedSectionCount": 14
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/title-page-001.json",
-      "characterCount": 663,
-      "wordCount": 85,
+      "characterCount": 638,
+      "wordCount": 81,
       "estimatedTypingMinutes": 3,
       "estimatedListeningMinutes": 4,
-      "morseCharacterEstimate": 2873,
-      "textPreview": "Produced by Les Bowler THE RAILWAY CHILDREN By E. Nesbit To my dear son Paul Bland, behind whose knowledge of railways my ignorance confidently shelters. Conte..."
+      "morseCharacterEstimate": 2742,
+      "textPreview": "THE RAILWAY CHILDREN By E. Nesbit To my dear son Paul Bland, behind whose knowledge of railways my ignorance confidently shelters. Contents. I. The beginning o..."
     },
     {
       "id": "chapter-001",
@@ -275,7 +275,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 345957,
-    "cleanedCharacterCount": 326683,
+    "cleanedCharacterCount": 326658,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

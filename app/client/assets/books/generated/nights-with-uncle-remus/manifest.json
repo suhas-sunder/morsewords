@@ -5,8 +5,8 @@
   "author": [
     "Joel Chandler Harris"
   ],
-  "contentVersion": "a481bfe14c44d2e5",
-  "contentHash": "a481bfe14c44d2e56b9470f6f4b0e1850d7f481fc680035a8e00aaf43edad109",
+  "contentVersion": "54954c1ec72e61ef",
+  "contentHash": "54954c1ec72e61ef8fdd46e6a430fd5dafe31ef522cb14cd0572cb549aa94d44",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 591263,
-    "cleanedCharacterCount": 571905,
-    "wordCount": 111548,
+    "cleanedCharacterCount": 571770,
+    "wordCount": 111528,
     "sectionCount": 21,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29529,
-      "wordCount": 5295,
+      "characterCount": 29472,
+      "wordCount": 5287,
       "estimatedTypingMinutes": 133,
-      "estimatedListeningMinutes": 166,
-      "morseCharacterEstimate": 148663,
-      "textPreview": "Produced by Juliet Sutherland, Jacqueline Jeremy and the Online Distributed Proofreading Team at http://www.pgdp.net NIGHTS WITH UNCLE REMUS BY JOEL CHANDLER H..."
+      "estimatedListeningMinutes": 165,
+      "morseCharacterEstimate": 148350,
+      "textPreview": "Online Distributed Proofreading Team at http://www.pgdp.net NIGHTS WITH UNCLE REMUS BY JOEL CHANDLER HARRIS WITH ILLUSTRATIONS BY MILO WINTER [Illustration] BO..."
     },
     {
       "id": "part-002",
@@ -340,11 +340,11 @@
       "order": 20,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-020.json",
-      "characterCount": 5101,
-      "wordCount": 815,
-      "estimatedTypingMinutes": 21,
-      "estimatedListeningMinutes": 28,
-      "morseCharacterEstimate": 24369,
+      "characterCount": 4749,
+      "wordCount": 798,
+      "estimatedTypingMinutes": 20,
+      "estimatedListeningMinutes": 26,
+      "morseCharacterEstimate": 22903,
       "textPreview": "\"Dat's so,\" said the man with the fiddle, and the irritating instrument was laid aside. \"Now, den,\" Uncle Remus went on, \"dey's a little chap yer dat you'll al..."
     },
     {
@@ -355,17 +355,17 @@
       "order": 21,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-021.json",
-      "characterCount": 75,
-      "wordCount": 12,
+      "characterCount": 345,
+      "wordCount": 17,
       "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 413,
-      "textPreview": "End of Project Gutenberg's Nights With Uncle Remus, by Joel Chandler Harris"
+      "estimatedListeningMinutes": 2,
+      "morseCharacterEstimate": 1459,
+      "textPreview": "+-------------------------------------------+ |Transcriber's Note: | | | |Punctuation and inconsistencies in language| |and dialect found in the original book..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 591263,
-    "cleanedCharacterCount": 571905,
+    "cleanedCharacterCount": 571770,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

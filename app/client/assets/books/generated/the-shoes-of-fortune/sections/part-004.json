@@ -7,20 +7,20 @@
   "title": null,
   "order": 4,
   "includeByDefault": false,
-  "displayText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
-  "morseSourceText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "displayText": "And she took the Galoshes from his feet; his sleep of death was ended;\nand he who had been thus called back again to life arose from his\ndread couch in all the vigor of youth. Care vanished, and with her the\nGaloshes. She has no doubt taken them for herself, to keep them to all\neternity.",
+  "morseSourceText": "And she took the Galoshes from his feet; his sleep of death was ended;\nand he who had been thus called back again to life arose from his\ndread couch in all the vigor of youth. Care vanished, and with her the\nGaloshes. She has no doubt taken them for herself, to keep them to all\neternity.",
   "paragraphs": [
-    "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+    "And she took the Galoshes from his feet; his sleep of death was ended; and he who had been thus called back again to life arose from his dread couch in all the vigor of youth. Care vanished, and with her the Galoshes. She has no doubt taken them for herself, to keep them to all eternity."
   ],
-  "wordCount": 11,
-  "characterCount": 77,
-  "estimatedTypingMinutes": 1,
-  "estimatedListeningMinutes": 1,
-  "morseCharacterEstimate": 418,
+  "wordCount": 57,
+  "characterCount": 288,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1544,
   "unsupportedCharacterSummary": {},
-  "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "textPreview": "And she took the Galoshes from his feet; his sleep of death was ended; and he who had been thus called back again to life arose from his dread couch in all the...",
   "sourceOffsets": {
-    "start": 70804,
-    "end": 70881
+    "start": 70487,
+    "end": 70775
   }
 }

@@ -33,9 +33,9 @@
   },
   "stats": {
     "originalCharacterCount": 388846,
-    "cleanedCharacterCount": 369358,
-    "wordCount": 68944,
-    "sectionCount": 11,
+    "cleanedCharacterCount": 369242,
+    "wordCount": 68928,
+    "sectionCount": 10,
     "includedSectionCount": 9
   },
   "defaults": {
@@ -51,8 +51,8 @@
     "author": [
       "Charles Kingsley"
     ],
-    "contentVersion": "112154ea2b7e2527",
-    "contentHash": "112154ea2b7e2527d2183832b0ad47fc60f800c9c0d75da7fa4a5dadb5d8a90f",
+    "contentVersion": "ab71066d5d14fff5",
+    "contentHash": "ab71066d5d14fff502c8c2b1195e28ebd679c4e2c6e2a527529076c1ba1f7150",
     "language": "en",
     "description": "",
     "subjects": [],
@@ -81,9 +81,9 @@
     },
     "stats": {
       "originalCharacterCount": 388846,
-      "cleanedCharacterCount": 369358,
-      "wordCount": 68944,
-      "sectionCount": 11,
+      "cleanedCharacterCount": 369242,
+      "wordCount": 68928,
+      "sectionCount": 10,
       "includedSectionCount": 9
     },
     "defaults": {
@@ -242,39 +242,17 @@
         "estimatedListeningMinutes": 605,
         "morseCharacterEstimate": 543769,
         "textPreview": "II. \"_Deep deep Love, within thine own abyss abiding, Pour Thyself abroad, O Lord, on earth and air and sea; Worn weary hearts within Thy holy temple hiding, S..."
-      },
-      {
-        "id": "transcriber-note-001",
-        "kind": "transcriber-note",
-        "label": "Transcriber's Note",
-        "title": null,
-        "order": 11,
-        "includeByDefault": false,
-        "sectionJsonPath": "sections/transcriber-note-001.json",
-        "characterCount": 114,
-        "wordCount": 16,
-        "estimatedTypingMinutes": 1,
-        "estimatedListeningMinutes": 1,
-        "morseCharacterEstimate": 625,
-        "textPreview": "Transcriber's Notes: Obvious punctuation errors repaired. Page 6, \"piert\" was retained as a spelling for \"pert\"."
       }
     ],
     "cleaning": {
       "originalCharacterCount": 388846,
-      "cleanedCharacterCount": 369358,
+      "cleanedCharacterCount": 369242,
       "headerStripped": true,
       "footerStripped": true,
       "confidence": "high",
       "warnings": []
     },
-    "warnings": [
-      "Rights have not been reviewed; generated book is not publish-ready.",
-      "Rights basis \"unknown\" is not publish-ready.",
-      "Rights gate status is needs_manual_review; generated book is not publish-ready.",
-      "Rights gate did not allow processed public story output.",
-      "Owner-reviewed website approval is missing.",
-      "Website publication is not allowed by the active approval path."
-    ]
+    "warnings": []
   },
   "sections": [
     {
@@ -1896,38 +1874,10 @@
       "textPreview": "II. \"_Deep deep Love, within thine own abyss abiding, Pour Thyself abroad, O Lord, on earth and air and sea; Worn weary hearts within Thy holy temple hiding, S...",
       "sourceOffsets": {
         "start": 267397,
-        "end": 369244
-      }
-    },
-    {
-      "schemaVersion": 1,
-      "bookSlug": "the-water-babies",
-      "sectionId": "transcriber-note-001",
-      "kind": "transcriber-note",
-      "label": "Transcriber's Note",
-      "title": null,
-      "order": 11,
-      "includeByDefault": false,
-      "displayText": "Transcriber's Notes:\n\nObvious punctuation errors repaired.\n\nPage 6, \"piert\" was retained as a spelling for \"pert\".",
-      "morseSourceText": "Transcriber's Notes:\n\nObvious punctuation errors repaired.\n\nPage 6, \"piert\" was retained as a spelling for \"pert\".",
-      "paragraphs": [
-        "Transcriber's Notes:",
-        "Obvious punctuation errors repaired.",
-        "Page 6, \"piert\" was retained as a spelling for \"pert\"."
-      ],
-      "wordCount": 16,
-      "characterCount": 114,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 625,
-      "unsupportedCharacterSummary": {},
-      "textPreview": "Transcriber's Notes: Obvious punctuation errors repaired. Page 6, \"piert\" was retained as a spelling for \"pert\".",
-      "sourceOffsets": {
-        "start": 369244,
-        "end": 369358
+        "end": 369242
       }
     }
   ],
-  "contentVersion": "75196d41fb4ef10f",
-  "contentHash": "75196d41fb4ef10ffd625efafe5f30d88dc8f0beb120ae6b018b02cb98bd56c8"
+  "contentVersion": "d224877b737d31d1",
+  "contentHash": "d224877b737d31d18d3c175e3eaf3ba22b879fea55e58b70048fac37fb698892"
 }

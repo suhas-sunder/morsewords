@@ -5,8 +5,8 @@
   "author": [
     "Johanna Spyri"
   ],
-  "contentVersion": "72877049c0bd58d0",
-  "contentHash": "72877049c0bd58d0684ca261b27ab6e3c27c8a6aa45ef7ec55937ed84c5c5b0f",
+  "contentVersion": "e9e6b4950c7ea02d",
+  "contentHash": "e9e6b4950c7ea02d97233c120ee08245132bc1f9dded5807407c9fc4f816f36f",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 304113,
-    "cleanedCharacterCount": 284582,
-    "wordCount": 51641,
+    "cleanedCharacterCount": 284522,
+    "wordCount": 51632,
     "sectionCount": 11,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29647,
-      "wordCount": 4959,
+      "characterCount": 29587,
+      "wordCount": 4950,
       "estimatedTypingMinutes": 124,
-      "estimatedListeningMinutes": 163,
-      "morseCharacterEstimate": 145976,
-      "textPreview": "Produced by Jason Isbell, Emma Morgan Isbell, Jeannie Howse and the Online Distributed Proofreading Team at https://www.pgdp.net. This file is gratefully uploa..."
+      "estimatedListeningMinutes": 162,
+      "morseCharacterEstimate": 145643,
+      "textPreview": "and the Online Distributed Proofreading Team at https://www.pgdp.net. This file is gratefully uploaded to the PG collection in honor of Distributed Proofreader..."
     },
     {
       "id": "part-002",
@@ -215,7 +215,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 304113,
-    "cleanedCharacterCount": 284582,
+    "cleanedCharacterCount": 284522,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

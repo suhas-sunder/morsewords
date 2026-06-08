@@ -3,8 +3,8 @@
   "slug": "the-arabian-nights",
   "title": "The Arabian Nights: Their Best-known Tales",
   "author": [],
-  "contentVersion": "13e595548c02e73a",
-  "contentHash": "13e595548c02e73a2d9934dc3feb808ecf3268fa568194c8648e2e07e4e1078c",
+  "contentVersion": "2931316c3abb6bcd",
+  "contentHash": "2931316c3abb6bcdae53a50a79111240037d1acaa366a27429f5bc5ea0702529",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -33,8 +33,8 @@
   },
   "stats": {
     "originalCharacterCount": 645574,
-    "cleanedCharacterCount": 626110,
-    "wordCount": 114917,
+    "cleanedCharacterCount": 626053,
+    "wordCount": 114908,
     "sectionCount": 23,
     "includedSectionCount": 0
   },
@@ -53,12 +53,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29762,
-      "wordCount": 5081,
-      "estimatedTypingMinutes": 128,
-      "estimatedListeningMinutes": 171,
-      "morseCharacterEstimate": 153252,
-      "textPreview": "Produced by Irma pehar, Graeme Mackreth, and the Online Distributed Proofreading Team at http://www.pgdp.net THE ARABIAN NIGHTS THE ARABIAN NIGHTS THEIR BEST-..."
+      "characterCount": 29705,
+      "wordCount": 5072,
+      "estimatedTypingMinutes": 127,
+      "estimatedListeningMinutes": 170,
+      "morseCharacterEstimate": 152949,
+      "textPreview": "Distributed Proofreading Team at http://www.pgdp.net THE ARABIAN NIGHTS THE ARABIAN NIGHTS THEIR BEST-KNOWN TALES EDITED BY KATE DOUGLAS WIGGIN AND NORA A. SMI..."
     },
     {
       "id": "part-002",
@@ -393,7 +393,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 645574,
-    "cleanedCharacterCount": 626110,
+    "cleanedCharacterCount": 626053,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

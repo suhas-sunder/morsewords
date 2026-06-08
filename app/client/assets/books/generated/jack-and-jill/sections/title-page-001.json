@@ -7,24 +7,23 @@
   "title": null,
   "order": 1,
   "includeByDefault": false,
-  "displayText": "Produced by An Anonymous Volunteer\n\n\nJACK AND JILL\n\nBy Louisa May Alcott\n\n\n   To the schoolmates of ELLSWORTH DEVENS,\n   Whose lovely character will not soon be forgotten,\n   This Village Story is affectionately inscribed by their friend,\n\n   L.M.A.\n   1880",
-  "morseSourceText": "Produced by An Anonymous Volunteer\n\n\nJACK AND JILL\n\nBy Louisa May Alcott\n\n\n   To the schoolmates of ELLSWORTH DEVENS,\n   Whose lovely character will not soon be forgotten,\n   This Village Story is affectionately inscribed by their friend,\n\n   L.M.A.\n   1880",
+  "displayText": "JACK AND JILL\n\nBy Louisa May Alcott\n\n\n   To the schoolmates of ELLSWORTH DEVENS,\n   Whose lovely character will not soon be forgotten,\n   This Village Story is affectionately inscribed by their friend,\n\n   L.M.A.\n   1880",
+  "morseSourceText": "JACK AND JILL\n\nBy Louisa May Alcott\n\n\n   To the schoolmates of ELLSWORTH DEVENS,\n   Whose lovely character will not soon be forgotten,\n   This Village Story is affectionately inscribed by their friend,\n\n   L.M.A.\n   1880",
   "paragraphs": [
-    "Produced by An Anonymous Volunteer",
     "JACK AND JILL",
     "By Louisa May Alcott",
     "To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten, This Village Story is affectionately inscribed by their friend,",
     "L.M.A. 1880"
   ],
-  "wordCount": 39,
-  "characterCount": 257,
+  "wordCount": 34,
+  "characterCount": 220,
   "estimatedTypingMinutes": 1,
   "estimatedListeningMinutes": 2,
-  "morseCharacterEstimate": 1312,
+  "morseCharacterEstimate": 1120,
   "unsupportedCharacterSummary": {},
-  "textPreview": "Produced by An Anonymous Volunteer JACK AND JILL By Louisa May Alcott To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten...",
+  "textPreview": "JACK AND JILL By Louisa May Alcott To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten, This Village Story is affectionat...",
   "sourceOffsets": {
     "start": 0,
-    "end": 260
+    "end": 223
   }
 }

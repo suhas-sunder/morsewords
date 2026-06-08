@@ -7,20 +7,22 @@
   "title": null,
   "order": 14,
   "includeByDefault": false,
-  "displayText": "Both Krikey and crikey and handkie and hankie were used and retained.",
-  "morseSourceText": "Both Krikey and crikey and handkie and hankie were used and retained.",
+  "displayText": "*       *       *       *       *",
+  "morseSourceText": "*       *       *       *       *",
   "paragraphs": [
-    "Both Krikey and crikey and handkie and hankie were used and retained."
+    "*       *       *       *       *"
   ],
-  "wordCount": 12,
-  "characterCount": 69,
+  "wordCount": 0,
+  "characterCount": 33,
   "estimatedTypingMinutes": 1,
   "estimatedListeningMinutes": 1,
-  "morseCharacterEstimate": 358,
-  "unsupportedCharacterSummary": {},
-  "textPreview": "Both Krikey and crikey and handkie and hankie were used and retained.",
+  "morseCharacterEstimate": 0,
+  "unsupportedCharacterSummary": {
+    "*": 5
+  },
+  "textPreview": "* * * * *",
   "sourceOffsets": {
-    "start": 367305,
-    "end": 367374
+    "start": 366385,
+    "end": 366425
   }
 }

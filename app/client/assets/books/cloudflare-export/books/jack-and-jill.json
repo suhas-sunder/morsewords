@@ -33,8 +33,8 @@
   },
   "stats": {
     "originalCharacterCount": 517085,
-    "cleanedCharacterCount": 497818,
-    "wordCount": 93064,
+    "cleanedCharacterCount": 497781,
+    "wordCount": 93059,
     "sectionCount": 26,
     "includedSectionCount": 24
   },
@@ -51,8 +51,8 @@
     "author": [
       "Louisa May Alcott"
     ],
-    "contentVersion": "a9f6f3def093f4ab",
-    "contentHash": "a9f6f3def093f4abad5d5942ea6f0476e4e187f08d215aef055d0fa820544759",
+    "contentVersion": "269cb4e53d1a5322",
+    "contentHash": "269cb4e53d1a532207b3627f9930a0323bbb3006de9b783650106cbdbf439783",
     "language": "en",
     "description": "",
     "subjects": [],
@@ -81,8 +81,8 @@
     },
     "stats": {
       "originalCharacterCount": 517085,
-      "cleanedCharacterCount": 497818,
-      "wordCount": 93064,
+      "cleanedCharacterCount": 497781,
+      "wordCount": 93059,
       "sectionCount": 26,
       "includedSectionCount": 24
     },
@@ -101,12 +101,12 @@
         "order": 1,
         "includeByDefault": false,
         "sectionJsonPath": "sections/title-page-001.json",
-        "characterCount": 257,
-        "wordCount": 39,
+        "characterCount": 220,
+        "wordCount": 34,
         "estimatedTypingMinutes": 1,
         "estimatedListeningMinutes": 2,
-        "morseCharacterEstimate": 1312,
-        "textPreview": "Produced by An Anonymous Volunteer JACK AND JILL By Louisa May Alcott To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten..."
+        "morseCharacterEstimate": 1120,
+        "textPreview": "JACK AND JILL By Louisa May Alcott To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten, This Village Story is affectionat..."
       },
       {
         "id": "title-page-002",
@@ -486,7 +486,7 @@
     ],
     "cleaning": {
       "originalCharacterCount": 517085,
-      "cleanedCharacterCount": 497818,
+      "cleanedCharacterCount": 497781,
       "headerStripped": true,
       "footerStripped": true,
       "confidence": "high",
@@ -511,25 +511,24 @@
       "title": null,
       "order": 1,
       "includeByDefault": false,
-      "displayText": "Produced by An Anonymous Volunteer\n\n\nJACK AND JILL\n\nBy Louisa May Alcott\n\n\n   To the schoolmates of ELLSWORTH DEVENS,\n   Whose lovely character will not soon be forgotten,\n   This Village Story is affectionately inscribed by their friend,\n\n   L.M.A.\n   1880",
-      "morseSourceText": "Produced by An Anonymous Volunteer\n\n\nJACK AND JILL\n\nBy Louisa May Alcott\n\n\n   To the schoolmates of ELLSWORTH DEVENS,\n   Whose lovely character will not soon be forgotten,\n   This Village Story is affectionately inscribed by their friend,\n\n   L.M.A.\n   1880",
+      "displayText": "JACK AND JILL\n\nBy Louisa May Alcott\n\n\n   To the schoolmates of ELLSWORTH DEVENS,\n   Whose lovely character will not soon be forgotten,\n   This Village Story is affectionately inscribed by their friend,\n\n   L.M.A.\n   1880",
+      "morseSourceText": "JACK AND JILL\n\nBy Louisa May Alcott\n\n\n   To the schoolmates of ELLSWORTH DEVENS,\n   Whose lovely character will not soon be forgotten,\n   This Village Story is affectionately inscribed by their friend,\n\n   L.M.A.\n   1880",
       "paragraphs": [
-        "Produced by An Anonymous Volunteer",
         "JACK AND JILL",
         "By Louisa May Alcott",
         "To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten, This Village Story is affectionately inscribed by their friend,",
         "L.M.A. 1880"
       ],
-      "wordCount": 39,
-      "characterCount": 257,
+      "wordCount": 34,
+      "characterCount": 220,
       "estimatedTypingMinutes": 1,
       "estimatedListeningMinutes": 2,
-      "morseCharacterEstimate": 1312,
+      "morseCharacterEstimate": 1120,
       "unsupportedCharacterSummary": {},
-      "textPreview": "Produced by An Anonymous Volunteer JACK AND JILL By Louisa May Alcott To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten...",
+      "textPreview": "JACK AND JILL By Louisa May Alcott To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten, This Village Story is affectionat...",
       "sourceOffsets": {
         "start": 0,
-        "end": 260
+        "end": 223
       }
     },
     {
@@ -557,8 +556,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Contents Chapter I The Catastrophe Chapter II Two Penitents Chapter III Ward No. I Chapter IV Ward No. 2 Chapter V Secrets Chapter VI Surprises Chapter VII Jil...",
       "sourceOffsets": {
-        "start": 260,
-        "end": 1272
+        "start": 223,
+        "end": 1235
       }
     },
     {
@@ -656,8 +655,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter I. The Catastrophe “Clear the lulla!” was the general cry on a bright December afternoon, when all the boys and girls of Harmony Village were out enjoy...",
       "sourceOffsets": {
-        "start": 1272,
-        "end": 16820
+        "start": 1235,
+        "end": 16783
       }
     },
     {
@@ -722,8 +721,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter II. Two Penitents Jack and Jill never cared to say much about the night which followed the first coasting party of the season, for it was the saddest a...",
       "sourceOffsets": {
-        "start": 16820,
-        "end": 27795
+        "start": 16783,
+        "end": 27758
       }
     },
     {
@@ -839,8 +838,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter III. Ward No. 1 For some days, nothing was seen and little was heard of the “dear sufferers,” as the old ladies called them. But they were not forgotte...",
       "sourceOffsets": {
-        "start": 27795,
-        "end": 49016
+        "start": 27758,
+        "end": 48979
       }
     },
     {
@@ -917,8 +916,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter IV. Ward No. 2. Things were not so gay in Ward No. 2, for Mrs. Pecq was very busy, and Jill had nothing to amuse her but flying visits from the girls,...",
       "sourceOffsets": {
-        "start": 49016,
-        "end": 65835
+        "start": 48979,
+        "end": 65798
       }
     },
     {
@@ -965,8 +964,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter V. Secrets There were a great many clubs in Harmony Village, but as we intend to interest ourselves with the affairs of the young folks only, we need n...",
       "sourceOffsets": {
-        "start": 65835,
-        "end": 75205
+        "start": 65798,
+        "end": 75168
       }
     },
     {
@@ -1099,8 +1098,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter VI. Surprises “Is it pleasant?” was the question Jill asked before she was fairly awake on Christmas morning. “Yes, dear; as bright as heart could wish...",
       "sourceOffsets": {
-        "start": 75205,
-        "end": 101788
+        "start": 75168,
+        "end": 101751
       }
     },
     {
@@ -1199,8 +1198,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter VII. Jill's Mission The good times began immediately, and very little studying was done that week in spite of the virtuous resolutions made by certain...",
       "sourceOffsets": {
-        "start": 101788,
-        "end": 125343
+        "start": 101751,
+        "end": 125306
       }
     },
     {
@@ -1294,8 +1293,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter VIII. Merry and Molly Now let us see how the other missionaries got on with their tasks. Farmer Grant was a thrifty, well-to-do man, anxious to give hi...",
       "sourceOffsets": {
-        "start": 125343,
-        "end": 149273
+        "start": 125306,
+        "end": 149236
       }
     },
     {
@@ -1413,8 +1412,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter IX. The Debating Club “Look here, old man, we ought to have a meeting. Holidays are over, and we must brace up and attend to business,” said Frank to G...",
       "sourceOffsets": {
-        "start": 149273,
-        "end": 173208
+        "start": 149236,
+        "end": 173171
       }
     },
     {
@@ -1518,8 +1517,8 @@
       },
       "textPreview": "Chapter X. The Dramatic Club While Jack was hopping gayly about on his crutches, poor Jill was feeling the effects of her second fall, and instead of sitting u...",
       "sourceOffsets": {
-        "start": 173208,
-        "end": 193238
+        "start": 173171,
+        "end": 193201
       }
     },
     {
@@ -1610,8 +1609,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XI. “Down Brakes” The greatest people have their weak points, and the best-behaved boys now and then yield to temptation and get into trouble, as every...",
       "sourceOffsets": {
-        "start": 193238,
-        "end": 209566
+        "start": 193201,
+        "end": 209529
       }
     },
     {
@@ -1690,8 +1689,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XII. The Twenty-Second of February Of course, the young ladies and gentlemen had a ball on the evening of that day, but the boys and girls were full of...",
       "sourceOffsets": {
-        "start": 209566,
-        "end": 234411
+        "start": 209529,
+        "end": 234374
       }
     },
     {
@@ -1842,8 +1841,8 @@
       },
       "textPreview": "Chapter XIII. Jack Has a Mystery “What is the matter? Does your head ache?” asked Jill, one evening in March, observing that Jack sat with his head in his hand...",
       "sourceOffsets": {
-        "start": 234411,
-        "end": 256855
+        "start": 234374,
+        "end": 256818
       }
     },
     {
@@ -1955,8 +1954,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XIV. And Jill Finds It Out Jill worried about it more than he did, for she was a faithful little friend, and it was a great trial to have Jack even sus...",
       "sourceOffsets": {
-        "start": 256855,
-        "end": 275074
+        "start": 256818,
+        "end": 275037
       }
     },
     {
@@ -2066,8 +2065,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XV. Saint Lucy Saturday was a busy and a happy time to Jack, for in the morning Mr. Acton came to see him, having heard the story overnight, and promis...",
       "sourceOffsets": {
-        "start": 275074,
-        "end": 296451
+        "start": 275037,
+        "end": 296414
       }
     },
     {
@@ -2160,8 +2159,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XVI. Up at Merry's “Now fly round, child, and get your sweeping done up smart and early.” “Yes, mother.” “I shall want you to help me about the baking,...",
       "sourceOffsets": {
-        "start": 296451,
-        "end": 317969
+        "start": 296414,
+        "end": 317932
       }
     },
     {
@@ -2258,8 +2257,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XVII. Down at Molly's “Now, my dears, I've something very curious to tell you, so listen quietly and then I'll give you your dinners,” said Molly, addr...",
       "sourceOffsets": {
-        "start": 317969,
-        "end": 341123
+        "start": 317932,
+        "end": 341086
       }
     },
     {
@@ -2369,8 +2368,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XVIII. May Baskets Spring was late that year, but to Jill it seemed the loveliest she had ever known, for hope was growing green and strong in her own...",
       "sourceOffsets": {
-        "start": 341123,
-        "end": 361853
+        "start": 341086,
+        "end": 361816
       }
     },
     {
@@ -2474,8 +2473,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XIX. Good Templars “Hi there! Bell's rung! Get up, lazy-bones!” called Frank from his room as the clock struck six one bright morning, and a great crea...",
       "sourceOffsets": {
-        "start": 361853,
-        "end": 382901
+        "start": 361816,
+        "end": 382864
       }
     },
     {
@@ -2567,8 +2566,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XX. A Sweet Memory Now the lovely June days had come, everything began to look really summer-like; school would soon be over, and the young people were...",
       "sourceOffsets": {
-        "start": 382901,
-        "end": 402618
+        "start": 382864,
+        "end": 402581
       }
     },
     {
@@ -2662,8 +2661,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XXI. Pebbly Beach “Now, Mr. Jack, it is a moral impossibility to get all those things into one trunk, and you mustn't ask it of me,” said Mrs. Pecq, in...",
       "sourceOffsets": {
-        "start": 402618,
-        "end": 432910
+        "start": 402581,
+        "end": 432873
       }
     },
     {
@@ -2728,8 +2727,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XXII. A Happy Day “Oh dear! Only a week more, and then we must go back. Don't you hate the thoughts of it?” said Jack, as he was giving Jill her early...",
       "sourceOffsets": {
-        "start": 432910,
-        "end": 449396
+        "start": 432873,
+        "end": 449359
       }
     },
     {
@@ -2817,8 +2816,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XXIII. Cattle Show The children were not the only ones who had learned something at Pebbly Beach. Mrs. Minot had talked a good deal with some very supe...",
       "sourceOffsets": {
-        "start": 449396,
-        "end": 474278
+        "start": 449359,
+        "end": 474241
       }
     },
     {
@@ -2917,11 +2916,11 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XXIV. Down the River A fortnight later, the boys were picking apples one golden October afternoon, and the girls were hurrying to finish their work, th...",
       "sourceOffsets": {
-        "start": 474278,
-        "end": 497818
+        "start": 474241,
+        "end": 497781
       }
     }
   ],
-  "contentVersion": "27232d07b1f591c6",
-  "contentHash": "27232d07b1f591c62f7d7ea78ff336f3f85971f421a331eb681197484aaad10b"
+  "contentVersion": "503dac44013c98e6",
+  "contentHash": "503dac44013c98e69c5533bf926449661ab65b75c2dcef452bd19f9598ad3fc6"
 }

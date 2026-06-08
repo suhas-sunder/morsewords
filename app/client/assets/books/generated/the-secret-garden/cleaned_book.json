@@ -3,8 +3,8 @@
   "id": "the-secret-garden",
   "title": "The Secret Garden",
   "author": "Frances Hodgson Burnett",
-  "contentVersion": "53bc00ef05d1608b",
-  "contentHash": "53bc00ef05d1608b9663ddbc4ba8ca5f738d6d0eb1fa8e637d1ceb449e29858c",
+  "contentVersion": "3822285cf35bf6f2",
+  "contentHash": "3822285cf35bf6f2ec0edbaf3e93f9552a9b371d4dc3ab31de55ad203ec56870",
   "source": {
     "provider": "Project Gutenberg",
     "gutenbergId": "17396",
@@ -17,7 +17,7 @@
   "stats": {
     "wordCount": 81091,
     "characterCount": 429287,
-    "sectionCount": 30,
+    "sectionCount": 29,
     "estimatedTypingMinutes": 2036,
     "estimatedListeningMinutes": 2572
   },
@@ -29,9 +29,9 @@
       "title": null,
       "order": 1,
       "includeByDefault": false,
-      "text": "Produced by Jason Isbell, Emmy and the Online Distributed\nProofreading Team at http://www.pgdp.net\n\n\n[Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH\nDELIGHTFULNESS\"--_Page 231_]\n\n\n           THE\n       SECRET GARDEN\n\n           BY\n  FRANCES HODGSON BURNETT\n\n_Author of_\n\n\"_The Shuttle_,\" \"_The Making of a Marchioness_,\" \"_The Methods of Lady\nWalderhurst_,\" \"_That Lass o' Lowries_,\" \"_Through One Administration_,\"\n\"_Little Lord Fauntleroy_\" \"_A Lady of Quality_,\" etc.\n\n[Illustration]\n\n  NEW YORK\n  FREDERICK A. STOKES COMPANY\n  PUBLISHERS\n\n  _Copyright, 1911, by_\n  FRANCES HODGSON BURNETT\n\n  _Copyright, 1910, 1911, by_\n  THE PHILLIPS PUBLISHING CO.\n\n\n_All rights reserved, including that of translation into foreign\nlanguages, including the Scandinavian._\n\n_August, 1911._",
+      "text": "Proofreading Team at http://www.pgdp.net\n\n\n[Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH\nDELIGHTFULNESS\"--_Page 231_]\n\n\n           THE\n       SECRET GARDEN\n\n           BY\n  FRANCES HODGSON BURNETT\n\n_Author of_\n\n\"_The Shuttle_,\" \"_The Making of a Marchioness_,\" \"_The Methods of Lady\nWalderhurst_,\" \"_That Lass o' Lowries_,\" \"_Through One Administration_,\"\n\"_Little Lord Fauntleroy_\" \"_A Lady of Quality_,\" etc.\n\n[Illustration]\n\n  NEW YORK\n  FREDERICK A. STOKES COMPANY\n  PUBLISHERS\n\n  _Copyright, 1911, by_\n  FRANCES HODGSON BURNETT\n\n  _Copyright, 1910, 1911, by_\n  THE PHILLIPS PUBLISHING CO.\n\n\n_All rights reserved, including that of translation into foreign\nlanguages, including the Scandinavian._\n\n_August, 1911._",
       "paragraphs": [
-        "Produced by Jason Isbell, Emmy and the Online Distributed Proofreading Team at http://www.pgdp.net",
+        "Proofreading Team at http://www.pgdp.net",
         "[Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH DELIGHTFULNESS\"--_Page 231_]",
         "THE SECRET GARDEN",
         "BY FRANCES HODGSON BURNETT",
@@ -44,8 +44,8 @@
         "_All rights reserved, including that of translation into foreign languages, including the Scandinavian._",
         "_August, 1911._"
       ],
-      "wordCount": 100,
-      "characterCount": 787,
+      "wordCount": 91,
+      "characterCount": 729,
       "estimatedTypingMinutes": 3,
       "estimatedListeningMinutes": 5
     },
@@ -2670,35 +2670,6 @@
       "characterCount": 27743,
       "estimatedTypingMinutes": 130,
       "estimatedListeningMinutes": 163
-    },
-    {
-      "id": "transcriber-note-001",
-      "kind": "transcriber-note",
-      "label": "Transcriber's Note",
-      "title": null,
-      "order": 30,
-      "includeByDefault": false,
-      "text": "Transcriber's notes:\n\nTable of Contents, an exclamation point was added to Chapter VI's title to\nmatch the text. (there was!\")\n\nPage 34, quotation mark added. (India,\" said)\n\nPage 62, apostrophe added to \"an'\". (readin' an')\n\nPage 101, quotation mark added. (come to-morrow.\")\n\nPage 117, comma changed to period. (she ventured.)\n\nPage 163, extraneous quotation mark removed. (the gardeners?)\n\nPage 216, \"it\" changed to \"if\". (wondering if he)\n\nPage 262, Illustration: Closing punctuation added. (WIDE SMILE.\")\n\nPage 272, period added. (he said.)\n\nPage 284, apostrophe added. (Dickon. \"An')\n\nPage 318, \"every\" changed to \"very\". (very easily)\n\nPage 330, \"eggs\" changed to \"Eggs\" to fit rest of text. (injurious to the Eggs)\n\n\nEnd of Project Gutenberg's The Secret Garden, by Frances Hodgson Burnett",
-      "paragraphs": [
-        "Transcriber's notes:",
-        "Table of Contents, an exclamation point was added to Chapter VI's title to match the text. (there was!\")",
-        "Page 34, quotation mark added. (India,\" said)",
-        "Page 62, apostrophe added to \"an'\". (readin' an')",
-        "Page 101, quotation mark added. (come to-morrow.\")",
-        "Page 117, comma changed to period. (she ventured.)",
-        "Page 163, extraneous quotation mark removed. (the gardeners?)",
-        "Page 216, \"it\" changed to \"if\". (wondering if he)",
-        "Page 262, Illustration: Closing punctuation added. (WIDE SMILE.\")",
-        "Page 272, period added. (he said.)",
-        "Page 284, apostrophe added. (Dickon. \"An')",
-        "Page 318, \"every\" changed to \"very\". (very easily)",
-        "Page 330, \"eggs\" changed to \"Eggs\" to fit rest of text. (injurious to the Eggs)",
-        "End of Project Gutenberg's The Secret Garden, by Frances Hodgson Burnett"
-      ],
-      "wordCount": 121,
-      "characterCount": 797,
-      "estimatedTypingMinutes": 4,
-      "estimatedListeningMinutes": 5
     }
   ]
 }

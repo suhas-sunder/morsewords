@@ -3,8 +3,8 @@
   "id": "the-book-of-dragons",
   "title": "The Book of Dragons",
   "author": "E. Nesbit",
-  "content_version": "e56a424037e70346",
-  "content_hash": "e56a424037e7034623103a1e459ca24add91b63a2ab3ef3464ec8b88e7ece6c7",
+  "content_version": "837f1e2e43abb5df",
+  "content_hash": "837f1e2e43abb5dfc68f36aa4b3bf9f44f0581fe645c65dc7cd5706f2d2892f3",
   "source": {
     "name": "Project Gutenberg",
     "ebook_number": "23661",
@@ -20,7 +20,7 @@
     "approved_for_youtube_narration": false,
     "approved_regions": [],
     "needs_manual_review": false,
-    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Transcriber notes remain in cleaned story text. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
   },
   "content": {
     "chapters": []

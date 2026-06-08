@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "9f056f666b8618a3",
-  "contentHash": "9f056f666b8618a347f1a70fbeb128737496ac5bf3a3b5c106b86746ca0e1037",
+  "contentVersion": "cb84871b55f9b084",
+  "contentHash": "cb84871b55f9b0847226aa42f80f3819e1baef3818e1e7ea46794830045d289a",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 115289,
-    "cleanedCharacterCount": 95999,
-    "wordCount": 18265,
+    "cleanedCharacterCount": 95893,
+    "wordCount": 18250,
     "sectionCount": 5,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29848,
-      "wordCount": 5699,
+      "characterCount": 29822,
+      "wordCount": 5695,
       "estimatedTypingMinutes": 143,
       "estimatedListeningMinutes": 178,
-      "morseCharacterEstimate": 160132,
-      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost th..."
+      "morseCharacterEstimate": 160003,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, f..."
     },
     {
       "id": "part-002",
@@ -100,11 +100,11 @@
       "order": 4,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-004.json",
-      "characterCount": 6485,
-      "wordCount": 1234,
-      "estimatedTypingMinutes": 31,
-      "estimatedListeningMinutes": 39,
-      "morseCharacterEstimate": 34762,
+      "characterCount": 6161,
+      "wordCount": 1173,
+      "estimatedTypingMinutes": 30,
+      "estimatedListeningMinutes": 37,
+      "morseCharacterEstimate": 33039,
       "textPreview": "Now the old lady was sick, and it was said she could not recover. She must be nursed and waited upon, and there was no one whose duty it was so much as Karen's..."
     },
     {
@@ -115,17 +115,17 @@
       "order": 5,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-005.json",
-      "characterCount": 77,
-      "wordCount": 11,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 418,
-      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      "characterCount": 322,
+      "wordCount": 61,
+      "estimatedTypingMinutes": 2,
+      "estimatedListeningMinutes": 2,
+      "morseCharacterEstimate": 1716,
+      "textPreview": "And the organ pealed, and the children's voices in the choir sounded so sweet and soft! The clear sunshine streamed so warmly through the window into the pew w..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 115289,
-    "cleanedCharacterCount": 95999,
+    "cleanedCharacterCount": 95893,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

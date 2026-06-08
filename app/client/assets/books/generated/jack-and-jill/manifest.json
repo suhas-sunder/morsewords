@@ -5,8 +5,8 @@
   "author": [
     "Louisa May Alcott"
   ],
-  "contentVersion": "a9f6f3def093f4ab",
-  "contentHash": "a9f6f3def093f4abad5d5942ea6f0476e4e187f08d215aef055d0fa820544759",
+  "contentVersion": "269cb4e53d1a5322",
+  "contentHash": "269cb4e53d1a532207b3627f9930a0323bbb3006de9b783650106cbdbf439783",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 517085,
-    "cleanedCharacterCount": 497818,
-    "wordCount": 93064,
+    "cleanedCharacterCount": 497781,
+    "wordCount": 93059,
     "sectionCount": 26,
     "includedSectionCount": 24
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/title-page-001.json",
-      "characterCount": 257,
-      "wordCount": 39,
+      "characterCount": 220,
+      "wordCount": 34,
       "estimatedTypingMinutes": 1,
       "estimatedListeningMinutes": 2,
-      "morseCharacterEstimate": 1312,
-      "textPreview": "Produced by An Anonymous Volunteer JACK AND JILL By Louisa May Alcott To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten..."
+      "morseCharacterEstimate": 1120,
+      "textPreview": "JACK AND JILL By Louisa May Alcott To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten, This Village Story is affectionat..."
     },
     {
       "id": "title-page-002",
@@ -440,7 +440,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 517085,
-    "cleanedCharacterCount": 497818,
+    "cleanedCharacterCount": 497781,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

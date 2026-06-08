@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "80a593d4628501e3",
-  "contentHash": "80a593d4628501e346f36bb907fa3b2b54eccc2bceffda2601faacc57fa2c6a2",
+  "contentVersion": "40ef802bc05a7172",
+  "contentHash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 23080,
-    "cleanedCharacterCount": 3790,
-    "wordCount": 693,
+    "cleanedCharacterCount": 3684,
+    "wordCount": 678,
     "sectionCount": 2,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 3710,
-      "wordCount": 682,
-      "estimatedTypingMinutes": 18,
-      "estimatedListeningMinutes": 23,
-      "morseCharacterEstimate": 19960,
-      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could j..."
+      "characterCount": 3310,
+      "wordCount": 613,
+      "estimatedTypingMinutes": 16,
+      "estimatedListeningMinutes": 20,
+      "morseCharacterEstimate": 17792,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they in..."
     },
     {
       "id": "part-002",
@@ -70,17 +70,17 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 77,
-      "wordCount": 11,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 418,
-      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      "characterCount": 372,
+      "wordCount": 65,
+      "estimatedTypingMinutes": 2,
+      "estimatedListeningMinutes": 3,
+      "morseCharacterEstimate": 2032,
+      "textPreview": "The Grasshopper sat without on a green bank, and reflected on worldly things; and he said too, “Yes, a fine exterior is everything--a fine exterior is what peo..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 23080,
-    "cleanedCharacterCount": 3790,
+    "cleanedCharacterCount": 3684,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

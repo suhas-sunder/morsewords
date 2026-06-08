@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "8db8fc38dbe0a981",
-  "contentHash": "8db8fc38dbe0a981e1ff5d956b24d463e62e44fa7ffd50c4660f579b8367df90",
+  "contentVersion": "782f7b5ea879f686",
+  "contentHash": "782f7b5ea879f68635463927a0e9aa0ce25be3889c681a546e6be298aff76469",
   "books": [
     {
       "slug": "a-childs-garden-of-verses",
@@ -25,13 +25,13 @@
       },
       "stats": {
         "originalCharacterCount": 79187,
-        "cleanedCharacterCount": 59816,
-        "wordCount": 9065,
+        "cleanedCharacterCount": 58736,
+        "wordCount": 8890,
         "sectionCount": 3,
         "includedSectionCount": 0
       },
-      "contentVersion": "12b454201f23928b",
-      "contentHash": "12b454201f23928b1e9d2d802409322c2da1524079284a458afba083ca615fea",
+      "contentVersion": "14787bb164356670",
+      "contentHash": "14787bb1643566701473d309fa4bd0ab9c6beee85c6df97233e039e585570294",
       "bookPath": "books/a-childs-garden-of-verses.json"
     },
     {
@@ -152,13 +152,13 @@
       },
       "stats": {
         "originalCharacterCount": 46266,
-        "cleanedCharacterCount": 26976,
-        "wordCount": 5054,
+        "cleanedCharacterCount": 26870,
+        "wordCount": 5039,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
-      "contentVersion": "a318bf7c527a5cae",
-      "contentHash": "a318bf7c527a5cae9e5bebddb4a489680eed7273ac89bef929850b9904b9338d",
+      "contentVersion": "2dd0d49ad2df5c7e",
+      "contentHash": "2dd0d49ad2df5c7e571fe04d96f50664a069d1d48f8b4e513240a6324c8d5124",
       "bookPath": "books/the-bell.json"
     },
     {
@@ -183,13 +183,13 @@
       },
       "stats": {
         "originalCharacterCount": 35525,
-        "cleanedCharacterCount": 16235,
-        "wordCount": 3029,
+        "cleanedCharacterCount": 16129,
+        "wordCount": 3014,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
-      "contentVersion": "e8097f6c7d129635",
-      "contentHash": "e8097f6c7d1296358e78aabb8d0651e7dddd0f2adf7df2b6e7a3a85aaf327648",
+      "contentVersion": "94a80e93a9a72cae",
+      "contentHash": "94a80e93a9a72cae612392a793021e9effe09aea7a4d395f5ed7fe44b733c566",
       "bookPath": "books/the-elderbush.json"
     },
     {
@@ -214,13 +214,13 @@
       },
       "stats": {
         "originalCharacterCount": 31621,
-        "cleanedCharacterCount": 10636,
-        "wordCount": 1896,
+        "cleanedCharacterCount": 10530,
+        "wordCount": 1881,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
-      "contentVersion": "971949ebc2e364d0",
-      "contentHash": "971949ebc2e364d08ea4e8e39073bf256b0fde663c294b87b4915af626a243ad",
+      "contentVersion": "26290561c2f467be",
+      "contentHash": "26290561c2f467be12652fab9e5d911dd09344901bfda9241aad6bda54ee12f9",
       "bookPath": "books/the-emperor-s-new-clothes.json"
     },
     {
@@ -245,13 +245,13 @@
       },
       "stats": {
         "originalCharacterCount": 36671,
-        "cleanedCharacterCount": 17381,
-        "wordCount": 3247,
+        "cleanedCharacterCount": 17275,
+        "wordCount": 3232,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
-      "contentVersion": "3dfb62b4beff6148",
-      "contentHash": "3dfb62b4beff61480df0af46869a6ffc044b64c73ad1cb81ec0f2ab7dfbae36b",
+      "contentVersion": "865ee76b2c216bed",
+      "contentHash": "865ee76b2c216bedae3c40a51eb83658342d30681b8a20224f2a057d0dd708ec",
       "bookPath": "books/the-fir-tree.json"
     },
     {
@@ -276,13 +276,13 @@
       },
       "stats": {
         "originalCharacterCount": 23080,
-        "cleanedCharacterCount": 3790,
-        "wordCount": 693,
+        "cleanedCharacterCount": 3684,
+        "wordCount": 678,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
-      "contentVersion": "61770350edc3d2a1",
-      "contentHash": "61770350edc3d2a1e960bd5f8e615c8ba68bcc5bc3692abf57836dfc513b3f76",
+      "contentVersion": "4f5036aca59aa253",
+      "contentHash": "4f5036aca59aa25395496a4ad67515f9416b862f1e9fd1029fd7b7e5112b4924",
       "bookPath": "books/the-leap-frog.json"
     },
     {
@@ -307,13 +307,13 @@
       },
       "stats": {
         "originalCharacterCount": 115289,
-        "cleanedCharacterCount": 95999,
-        "wordCount": 18265,
+        "cleanedCharacterCount": 95893,
+        "wordCount": 18250,
         "sectionCount": 5,
         "includedSectionCount": 0
       },
-      "contentVersion": "df2bc54e18569e08",
-      "contentHash": "df2bc54e18569e0875166aadd6cfb338cfc6e50a830ba6d48d78dff1de0d4cc4",
+      "contentVersion": "1a6992017bfb2a93",
+      "contentHash": "1a6992017bfb2a9346169b1f77e8b14eae35429f1a2b0d7885803e3be32ab29a",
       "bookPath": "books/the-old-house.json"
     },
     {
@@ -338,13 +338,13 @@
       },
       "stats": {
         "originalCharacterCount": 21645,
-        "cleanedCharacterCount": 2355,
-        "wordCount": 436,
+        "cleanedCharacterCount": 2249,
+        "wordCount": 421,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
-      "contentVersion": "c4b66ea721a28bab",
-      "contentHash": "c4b66ea721a28bab1da46286330c8432d12a59e7a7f90774130ec6807c33c95c",
+      "contentVersion": "4ae95def5f95ffe7",
+      "contentHash": "4ae95def5f95ffe744e3c4b343512d2318eea2971927c6f0d81d09da6fea7571",
       "bookPath": "books/the-real-princess.json"
     },
     {
@@ -369,13 +369,13 @@
       },
       "stats": {
         "originalCharacterCount": 90171,
-        "cleanedCharacterCount": 70881,
-        "wordCount": 12724,
+        "cleanedCharacterCount": 70775,
+        "wordCount": 12709,
         "sectionCount": 4,
         "includedSectionCount": 0
       },
-      "contentVersion": "2a913d9e325f9c09",
-      "contentHash": "2a913d9e325f9c09bf51e94c206cc75fc5c60a5842354f6a93c865523e9cecb8",
+      "contentVersion": "4bc8dec5a6ebc06b",
+      "contentHash": "4bc8dec5a6ebc06bf9533d6ee8764a487ab2e4cbfd3f77a59a5eb7996d0d7fb3",
       "bookPath": "books/the-shoes-of-fortune.json"
     },
     {
@@ -400,13 +400,13 @@
       },
       "stats": {
         "originalCharacterCount": 83165,
-        "cleanedCharacterCount": 63875,
-        "wordCount": 11996,
+        "cleanedCharacterCount": 63769,
+        "wordCount": 11981,
         "sectionCount": 4,
         "includedSectionCount": 0
       },
-      "contentVersion": "e06f1f6ee12e3112",
-      "contentHash": "e06f1f6ee12e3112896b2c7bf10559f25c1c267d87fa170127901086fc281dfd",
+      "contentVersion": "123e05a4cb103ca1",
+      "contentHash": "123e05a4cb103ca12994d5aed1f23bb533a8be57354a5f109e45941c55dea633",
       "bookPath": "books/the-snow-queen.json"
     },
     {
@@ -431,13 +431,13 @@
       },
       "stats": {
         "originalCharacterCount": 27624,
-        "cleanedCharacterCount": 8334,
-        "wordCount": 1510,
+        "cleanedCharacterCount": 8228,
+        "wordCount": 1495,
         "sectionCount": 2,
         "includedSectionCount": 0
       },
-      "contentVersion": "bd29fbc55949100c",
-      "contentHash": "bd29fbc55949100cf43d6378ed1cd902a2cc8215093622c2ab79faf69bb4ed61",
+      "contentVersion": "2e24a6ed8799acba",
+      "contentHash": "2e24a6ed8799acbaf8c8328329da43cbaf59d08b75f00ff04de06f66d7f358df",
       "bookPath": "books/the-swineherd.json"
     },
     {
@@ -648,13 +648,13 @@
       },
       "stats": {
         "originalCharacterCount": 224766,
-        "cleanedCharacterCount": 205516,
-        "wordCount": 35911,
+        "cleanedCharacterCount": 205459,
+        "wordCount": 35900,
         "sectionCount": 8,
         "includedSectionCount": 0
       },
-      "contentVersion": "e7ec9f454adb93c8",
-      "contentHash": "e7ec9f454adb93c8a6955fbb687f38a27edfce1a9a2b7020da51fa676a08cedd",
+      "contentVersion": "0383fb6794a00bba",
+      "contentHash": "0383fb6794a00bbabf847a8e5b0c066f4f35f6c00ceecfd158e0d9eaa358c394",
       "bookPath": "books/candide.json"
     },
     {
@@ -896,13 +896,13 @@
       },
       "stats": {
         "originalCharacterCount": 304113,
-        "cleanedCharacterCount": 284582,
-        "wordCount": 51641,
+        "cleanedCharacterCount": 284522,
+        "wordCount": 51632,
         "sectionCount": 11,
         "includedSectionCount": 0
       },
-      "contentVersion": "d5d2e368702760a7",
-      "contentHash": "d5d2e368702760a7c2d17d0b5854899b5e40f7f1b4a7d2cfaed612af66183f61",
+      "contentVersion": "8abdfb9966c33452",
+      "contentHash": "8abdfb9966c334526f55edf6a7524786e3a4de262793216913549c24cc6fc610",
       "bookPath": "books/heidi.json"
     },
     {
@@ -958,13 +958,13 @@
       },
       "stats": {
         "originalCharacterCount": 517085,
-        "cleanedCharacterCount": 497818,
-        "wordCount": 93064,
+        "cleanedCharacterCount": 497781,
+        "wordCount": 93059,
         "sectionCount": 26,
         "includedSectionCount": 24
       },
-      "contentVersion": "27232d07b1f591c6",
-      "contentHash": "27232d07b1f591c62f7d7ea78ff336f3f85971f421a331eb681197484aaad10b",
+      "contentVersion": "503dac44013c98e6",
+      "contentHash": "503dac44013c98e69c5533bf926449661ab65b75c2dcef452bd19f9598ad3fc6",
       "bookPath": "books/jack-and-jill.json"
     },
     {
@@ -1051,13 +1051,13 @@
       },
       "stats": {
         "originalCharacterCount": 1090255,
-        "cleanedCharacterCount": 1070785,
-        "wordCount": 193010,
+        "cleanedCharacterCount": 1058709,
+        "wordCount": 190813,
         "sectionCount": 37,
         "includedSectionCount": 0
       },
-      "contentVersion": "ee90eae9ad624652",
-      "contentHash": "ee90eae9ad624652381b3c0573dfb5c66a7c0dda357f096232bd8b73236c17da",
+      "contentVersion": "9bd1683a2771041a",
+      "contentHash": "9bd1683a2771041aa74ddcd90ce46df78292fd16eb54be485582131765aea992",
       "bookPath": "books/little-women.json"
     },
     {
@@ -1082,13 +1082,13 @@
       },
       "stats": {
         "originalCharacterCount": 386912,
-        "cleanedCharacterCount": 367374,
-        "wordCount": 68916,
+        "cleanedCharacterCount": 366425,
+        "wordCount": 68779,
         "sectionCount": 14,
         "includedSectionCount": 0
       },
-      "contentVersion": "28e40c3f77321a04",
-      "contentHash": "28e40c3f77321a04ed2515a253f3115317d69df3088a5e0d215297b7f55972d8",
+      "contentVersion": "4973c2d0064f43b2",
+      "contentHash": "4973c2d0064f43b29f597e2edeec059d66fc16df3e1a09bd81a119af05cae35b",
       "bookPath": "books/new-treasure-seekers.json"
     },
     {
@@ -1113,13 +1113,13 @@
       },
       "stats": {
         "originalCharacterCount": 591263,
-        "cleanedCharacterCount": 571905,
-        "wordCount": 111548,
+        "cleanedCharacterCount": 571770,
+        "wordCount": 111528,
         "sectionCount": 21,
         "includedSectionCount": 0
       },
-      "contentVersion": "320cf7cc77bfaa8c",
-      "contentHash": "320cf7cc77bfaa8cbfca81cf8b722b1bde8f5a04d32c69aae119edf40c820612",
+      "contentVersion": "6cb72b9ded16bf53",
+      "contentHash": "6cb72b9ded16bf53e07764d57cfd840fc8e765a6cf0a9f82087376a941556543",
       "bookPath": "books/nights-with-uncle-remus.json"
     },
     {
@@ -1359,13 +1359,13 @@
       },
       "stats": {
         "originalCharacterCount": 645574,
-        "cleanedCharacterCount": 626110,
-        "wordCount": 114917,
+        "cleanedCharacterCount": 626053,
+        "wordCount": 114908,
         "sectionCount": 23,
         "includedSectionCount": 0
       },
-      "contentVersion": "cca3f1d413a7a630",
-      "contentHash": "cca3f1d413a7a630b25258a9888b3ed19b9679bb299ff20dbdafd7b71c81105e",
+      "contentVersion": "c83996d709f0d087",
+      "contentHash": "c83996d709f0d087f39f4027e39cef006f19c285328ca2b7aa96528bcb367290",
       "bookPath": "books/the-arabian-nights.json"
     },
     {
@@ -1421,13 +1421,13 @@
       },
       "stats": {
         "originalCharacterCount": 247086,
-        "cleanedCharacterCount": 227745,
-        "wordCount": 42635,
+        "cleanedCharacterCount": 227459,
+        "wordCount": 42593,
         "sectionCount": 9,
         "includedSectionCount": 0
       },
-      "contentVersion": "1fe20aa307313dd4",
-      "contentHash": "1fe20aa307313dd4c35efffea81850ebaafe1f5c6399560527eeb182dabb139b",
+      "contentVersion": "791aeed25d509a5e",
+      "contentHash": "791aeed25d509a5e7fc74a7367f44fd71d4702bee47f47e890c9ab0de5429836",
       "bookPath": "books/the-book-of-dragons.json"
     },
     {
@@ -1605,13 +1605,13 @@
       },
       "stats": {
         "originalCharacterCount": 105502,
-        "cleanedCharacterCount": 86089,
-        "wordCount": 13918,
+        "cleanedCharacterCount": 86040,
+        "wordCount": 13910,
         "sectionCount": 4,
         "includedSectionCount": 0
       },
-      "contentVersion": "c6aad8dc3b3e1041",
-      "contentHash": "c6aad8dc3b3e10418abd9f52d2da38c125b7ce2816a09eae999e58e273cbd985",
+      "contentVersion": "6ac979330ed7535a",
+      "contentHash": "6ac979330ed7535a620493b5fc16b8ee95abd4c2147da9ca549c265ede2a2629",
       "bookPath": "books/the-elements-of-style.json"
     },
     {
@@ -1882,13 +1882,13 @@
       },
       "stats": {
         "originalCharacterCount": 345957,
-        "cleanedCharacterCount": 326683,
-        "wordCount": 59806,
+        "cleanedCharacterCount": 326658,
+        "wordCount": 59802,
         "sectionCount": 15,
         "includedSectionCount": 14
       },
-      "contentVersion": "26b027c565b82546",
-      "contentHash": "26b027c565b8254664ce30fee7954e256ab8233c811c5e284a50022071a333fc",
+      "contentVersion": "ffe3041f859c8a3d",
+      "contentHash": "ffe3041f859c8a3d697f7fdadb219e6886d94481ae03cf5bc97c2c3daecc3394",
       "bookPath": "books/the-railway-children.json"
     },
     {
@@ -1944,13 +1944,13 @@
       },
       "stats": {
         "originalCharacterCount": 451877,
-        "cleanedCharacterCount": 432583,
-        "wordCount": 81478,
-        "sectionCount": 30,
+        "cleanedCharacterCount": 431726,
+        "wordCount": 81348,
+        "sectionCount": 29,
         "includedSectionCount": 27
       },
-      "contentVersion": "bb2f2afb06343534",
-      "contentHash": "bb2f2afb063435345abf7e1f98777600c6cbe12b9910ba6f67472aef66dab896",
+      "contentVersion": "9391e9e2d4021820",
+      "contentHash": "9391e9e2d402182052cce2a16e4eda4285cfa798645aeb835216072fbba16c33",
       "bookPath": "books/the-secret-garden.json"
     },
     {
@@ -2130,13 +2130,13 @@
       },
       "stats": {
         "originalCharacterCount": 388846,
-        "cleanedCharacterCount": 369358,
-        "wordCount": 68944,
-        "sectionCount": 11,
+        "cleanedCharacterCount": 369242,
+        "wordCount": 68928,
+        "sectionCount": 10,
         "includedSectionCount": 9
       },
-      "contentVersion": "75196d41fb4ef10f",
-      "contentHash": "75196d41fb4ef10ffd625efafe5f30d88dc8f0beb120ae6b018b02cb98bd56c8",
+      "contentVersion": "d224877b737d31d1",
+      "contentHash": "d224877b737d31d18d3c175e3eaf3ba22b879fea55e58b70048fac37fb698892",
       "bookPath": "books/the-water-babies.json"
     },
     {
@@ -2285,13 +2285,13 @@
       },
       "stats": {
         "originalCharacterCount": 269688,
-        "cleanedCharacterCount": 250367,
-        "wordCount": 45347,
+        "cleanedCharacterCount": 250309,
+        "wordCount": 45340,
         "sectionCount": 10,
         "includedSectionCount": 0
       },
-      "contentVersion": "9af0d15d6459bb21",
-      "contentHash": "9af0d15d6459bb21e10e218264dfc28b5b60ef765ee37c1c81836d0df198ab4c",
+      "contentVersion": "552b596caf7385ee",
+      "contentHash": "552b596caf7385eec2e4cf257086d01b4675be6b6cfb0144b0da9c1eeda131c0",
       "bookPath": "books/wood-folk-at-school.json"
     }
   ]

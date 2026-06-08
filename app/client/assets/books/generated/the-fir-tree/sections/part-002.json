@@ -7,20 +7,20 @@
   "title": null,
   "order": 2,
   "includeByDefault": false,
-  "displayText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
-  "morseSourceText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "displayText": "The boys played about in the court, and the youngest wore the gold star\non his breast which the Tree had had on the happiest evening of his\nlife. However, that was over now--the Tree gone, the story at an end.\nAll, all was over--every tale must end at last.",
+  "morseSourceText": "The boys played about in the court, and the youngest wore the gold star\non his breast which the Tree had had on the happiest evening of his\nlife. However, that was over now--the Tree gone, the story at an end.\nAll, all was over--every tale must end at last.",
   "paragraphs": [
-    "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+    "The boys played about in the court, and the youngest wore the gold star on his breast which the Tree had had on the happiest evening of his life. However, that was over now--the Tree gone, the story at an end. All, all was over--every tale must end at last."
   ],
-  "wordCount": 11,
-  "characterCount": 77,
-  "estimatedTypingMinutes": 1,
-  "estimatedListeningMinutes": 1,
-  "morseCharacterEstimate": 418,
+  "wordCount": 52,
+  "characterCount": 257,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1374,
   "unsupportedCharacterSummary": {},
-  "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "textPreview": "The boys played about in the court, and the youngest wore the gold star on his breast which the Tree had had on the happiest evening of his life. However, that...",
   "sourceOffsets": {
-    "start": 17304,
-    "end": 17381
+    "start": 17018,
+    "end": 17275
   }
 }

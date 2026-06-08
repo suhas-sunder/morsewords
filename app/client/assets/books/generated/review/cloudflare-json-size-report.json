@@ -3,9 +3,9 @@
   "generatedAt": "books:build",
   "bookCount": 74,
   "totalOriginalTextBytes": 40117384,
-  "totalCleanedTextBytes": 37865375,
-  "totalCloudflareBookJsonBytes": 119491141,
-  "averageJsonToOriginalRatio": 2.979,
+  "totalCleanedTextBytes": 37848461,
+  "totalCloudflareBookJsonBytes": 119434849,
+  "averageJsonToOriginalRatio": 2.977,
   "largestJsonFiles": [
     {
       "slug": "les-miserables",
@@ -1180,9 +1180,9 @@
       "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
       "rawTextFile": "app/client/assets/temp-books/Little Women.txt",
       "originalTextBytes": 1113432,
-      "cleanedTextBytes": 1070759,
-      "cloudflareBookJsonBytes": 3364453,
-      "jsonToOriginalRatio": 3.022,
+      "cleanedTextBytes": 1058683,
+      "cloudflareBookJsonBytes": 3326136,
+      "jsonToOriginalRatio": 2.987,
       "largestFields": [
         {
           "path": "$.sections[11]",
@@ -2480,192 +2480,6 @@
       ]
     },
     {
-      "slug": "the-secret-garden",
-      "title": "The Secret Garden",
-      "rawTextFile": "app/client/assets/temp-books/The Secret Garden.txt",
-      "originalTextBytes": 462010,
-      "cleanedTextBytes": 432499,
-      "cloudflareBookJsonBytes": 1397967,
-      "jsonToOriginalRatio": 3.026,
-      "largestFields": [
-        {
-          "path": "$.sections[5]",
-          "bytes": 87778
-        },
-        {
-          "path": "$.sections[28]",
-          "bytes": 85322
-        },
-        {
-          "path": "$.sections[14]",
-          "bytes": 67968
-        },
-        {
-          "path": "$.sections[24]",
-          "bytes": 66504
-        },
-        {
-          "path": "$.sections[25]",
-          "bytes": 66105
-        },
-        {
-          "path": "$.sections[16]",
-          "bytes": 64087
-        },
-        {
-          "path": "$.sections[11]",
-          "bytes": 61551
-        },
-        {
-          "path": "$.sections[15]",
-          "bytes": 60686
-        },
-        {
-          "path": "$.sections[20]",
-          "bytes": 58846
-        },
-        {
-          "path": "$.sections[22]",
-          "bytes": 55274
-        },
-        {
-          "path": "$.sections[10]",
-          "bytes": 52135
-        },
-        {
-          "path": "$.sections[27]",
-          "bytes": 51411
-        }
-      ],
-      "duplicatedTextFields": [
-        {
-          "path": "$.sections[1].morseSourceText",
-          "duplicateOf": "$.sections[1].displayText",
-          "bytes": 1679
-        },
-        {
-          "path": "$.sections[10].morseSourceText",
-          "duplicateOf": "$.sections[10].displayText",
-          "bytes": 17332
-        },
-        {
-          "path": "$.sections[11].morseSourceText",
-          "duplicateOf": "$.sections[11].displayText",
-          "bytes": 20426
-        },
-        {
-          "path": "$.sections[12].morseSourceText",
-          "duplicateOf": "$.sections[12].displayText",
-          "bytes": 13686
-        },
-        {
-          "path": "$.sections[13].morseSourceText",
-          "duplicateOf": "$.sections[13].displayText",
-          "bytes": 14186
-        },
-        {
-          "path": "$.sections[14].morseSourceText",
-          "duplicateOf": "$.sections[14].displayText",
-          "bytes": 22577
-        },
-        {
-          "path": "$.sections[15].morseSourceText",
-          "duplicateOf": "$.sections[15].displayText",
-          "bytes": 20139
-        },
-        {
-          "path": "$.sections[16].morseSourceText",
-          "duplicateOf": "$.sections[16].displayText",
-          "bytes": 21274
-        },
-        {
-          "path": "$.sections[17].morseSourceText",
-          "duplicateOf": "$.sections[17].displayText",
-          "bytes": 12863
-        },
-        {
-          "path": "$.sections[18].morseSourceText",
-          "duplicateOf": "$.sections[18].displayText",
-          "bytes": 12532
-        },
-        {
-          "path": "$.sections[19].morseSourceText",
-          "duplicateOf": "$.sections[19].displayText",
-          "bytes": 12033
-        },
-        {
-          "path": "$.sections[2].morseSourceText",
-          "duplicateOf": "$.sections[2].displayText",
-          "bytes": 10353
-        },
-        {
-          "path": "$.sections[20].morseSourceText",
-          "duplicateOf": "$.sections[20].displayText",
-          "bytes": 19515
-        },
-        {
-          "path": "$.sections[21].morseSourceText",
-          "duplicateOf": "$.sections[21].displayText",
-          "bytes": 14315
-        },
-        {
-          "path": "$.sections[22].morseSourceText",
-          "duplicateOf": "$.sections[22].displayText",
-          "bytes": 18322
-        },
-        {
-          "path": "$.sections[23].morseSourceText",
-          "duplicateOf": "$.sections[23].displayText",
-          "bytes": 8986
-        },
-        {
-          "path": "$.sections[24].morseSourceText",
-          "duplicateOf": "$.sections[24].displayText",
-          "bytes": 22084
-        },
-        {
-          "path": "$.sections[25].morseSourceText",
-          "duplicateOf": "$.sections[25].displayText",
-          "bytes": 21948
-        },
-        {
-          "path": "$.sections[26].morseSourceText",
-          "duplicateOf": "$.sections[26].displayText",
-          "bytes": 12966
-        },
-        {
-          "path": "$.sections[27].morseSourceText",
-          "duplicateOf": "$.sections[27].displayText",
-          "bytes": 17052
-        },
-        {
-          "path": "$.sections[28].morseSourceText",
-          "duplicateOf": "$.sections[28].displayText",
-          "bytes": 28453
-        },
-        {
-          "path": "$.sections[3].morseSourceText",
-          "duplicateOf": "$.sections[3].displayText",
-          "bytes": 14935
-        },
-        {
-          "path": "$.sections[4].morseSourceText",
-          "duplicateOf": "$.sections[4].displayText",
-          "bytes": 8044
-        },
-        {
-          "path": "$.sections[5].morseSourceText",
-          "duplicateOf": "$.sections[5].displayText",
-          "bytes": 29218
-        }
-      ],
-      "notes": [
-        "Cloudflare export keeps one JSON file per book with manifest and section content.",
-        "No duplicated cleanedBook or processedBook whole-book payload is embedded.",
-        "Section displayText and morseSourceText may duplicate text for runtime compatibility."
-      ]
-    },
-    {
       "slug": "crime-and-punishment",
       "title": "Crime and Punishment",
       "rawTextFile": "app/client/assets/temp-books/Crime and Punishment.txt",
@@ -2843,192 +2657,6 @@
           "path": "$.sections[33].morseSourceText",
           "duplicateOf": "$.sections[33].displayText",
           "bytes": 29505
-        }
-      ],
-      "notes": [
-        "Cloudflare export keeps one JSON file per book with manifest and section content.",
-        "No duplicated cleanedBook or processedBook whole-book payload is embedded.",
-        "Section displayText and morseSourceText may duplicate text for runtime compatibility."
-      ]
-    },
-    {
-      "slug": "little-women",
-      "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
-      "rawTextFile": "app/client/assets/temp-books/Little Women.txt",
-      "originalTextBytes": 1113432,
-      "cleanedTextBytes": 1070759,
-      "cloudflareBookJsonBytes": 3364453,
-      "jsonToOriginalRatio": 3.022,
-      "largestFields": [
-        {
-          "path": "$.sections[11]",
-          "bytes": 92705
-        },
-        {
-          "path": "$.sections[6]",
-          "bytes": 92574
-        },
-        {
-          "path": "$.sections[10]",
-          "bytes": 92553
-        },
-        {
-          "path": "$.sections[20]",
-          "bytes": 92278
-        },
-        {
-          "path": "$.sections[21]",
-          "bytes": 92257
-        },
-        {
-          "path": "$.sections[9]",
-          "bytes": 92239
-        },
-        {
-          "path": "$.sections[16]",
-          "bytes": 92204
-        },
-        {
-          "path": "$.sections[3]",
-          "bytes": 92147
-        },
-        {
-          "path": "$.sections[33]",
-          "bytes": 92138
-        },
-        {
-          "path": "$.sections[31]",
-          "bytes": 92091
-        },
-        {
-          "path": "$.sections[8]",
-          "bytes": 92071
-        },
-        {
-          "path": "$.sections[29]",
-          "bytes": 91987
-        }
-      ],
-      "duplicatedTextFields": [
-        {
-          "path": "$.sections[0].morseSourceText",
-          "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30921
-        },
-        {
-          "path": "$.sections[1].morseSourceText",
-          "duplicateOf": "$.sections[1].displayText",
-          "bytes": 30679
-        },
-        {
-          "path": "$.sections[10].morseSourceText",
-          "duplicateOf": "$.sections[10].displayText",
-          "bytes": 30905
-        },
-        {
-          "path": "$.sections[11].morseSourceText",
-          "duplicateOf": "$.sections[11].displayText",
-          "bytes": 30938
-        },
-        {
-          "path": "$.sections[12].morseSourceText",
-          "duplicateOf": "$.sections[12].displayText",
-          "bytes": 30780
-        },
-        {
-          "path": "$.sections[13].morseSourceText",
-          "duplicateOf": "$.sections[13].displayText",
-          "bytes": 30322
-        },
-        {
-          "path": "$.sections[14].morseSourceText",
-          "duplicateOf": "$.sections[14].displayText",
-          "bytes": 30752
-        },
-        {
-          "path": "$.sections[15].morseSourceText",
-          "duplicateOf": "$.sections[15].displayText",
-          "bytes": 30692
-        },
-        {
-          "path": "$.sections[16].morseSourceText",
-          "duplicateOf": "$.sections[16].displayText",
-          "bytes": 30830
-        },
-        {
-          "path": "$.sections[17].morseSourceText",
-          "duplicateOf": "$.sections[17].displayText",
-          "bytes": 30656
-        },
-        {
-          "path": "$.sections[18].morseSourceText",
-          "duplicateOf": "$.sections[18].displayText",
-          "bytes": 30488
-        },
-        {
-          "path": "$.sections[19].morseSourceText",
-          "duplicateOf": "$.sections[19].displayText",
-          "bytes": 30174
-        },
-        {
-          "path": "$.sections[2].morseSourceText",
-          "duplicateOf": "$.sections[2].displayText",
-          "bytes": 29845
-        },
-        {
-          "path": "$.sections[20].morseSourceText",
-          "duplicateOf": "$.sections[20].displayText",
-          "bytes": 30766
-        },
-        {
-          "path": "$.sections[21].morseSourceText",
-          "duplicateOf": "$.sections[21].displayText",
-          "bytes": 30766
-        },
-        {
-          "path": "$.sections[22].morseSourceText",
-          "duplicateOf": "$.sections[22].displayText",
-          "bytes": 30234
-        },
-        {
-          "path": "$.sections[23].morseSourceText",
-          "duplicateOf": "$.sections[23].displayText",
-          "bytes": 30673
-        },
-        {
-          "path": "$.sections[24].morseSourceText",
-          "duplicateOf": "$.sections[24].displayText",
-          "bytes": 30569
-        },
-        {
-          "path": "$.sections[25].morseSourceText",
-          "duplicateOf": "$.sections[25].displayText",
-          "bytes": 30578
-        },
-        {
-          "path": "$.sections[26].morseSourceText",
-          "duplicateOf": "$.sections[26].displayText",
-          "bytes": 30610
-        },
-        {
-          "path": "$.sections[27].morseSourceText",
-          "duplicateOf": "$.sections[27].displayText",
-          "bytes": 29803
-        },
-        {
-          "path": "$.sections[28].morseSourceText",
-          "duplicateOf": "$.sections[28].displayText",
-          "bytes": 30545
-        },
-        {
-          "path": "$.sections[29].morseSourceText",
-          "duplicateOf": "$.sections[29].displayText",
-          "bytes": 30820
-        },
-        {
-          "path": "$.sections[3].morseSourceText",
-          "duplicateOf": "$.sections[3].displayText",
-          "bytes": 30730
         }
       ],
       "notes": [
@@ -3408,6 +3036,378 @@
         "No duplicated cleanedBook or processedBook whole-book payload is embedded.",
         "Section displayText and morseSourceText may duplicate text for runtime compatibility."
       ]
+    },
+    {
+      "slug": "the-secret-garden",
+      "title": "The Secret Garden",
+      "rawTextFile": "app/client/assets/temp-books/The Secret Garden.txt",
+      "originalTextBytes": 462010,
+      "cleanedTextBytes": 431644,
+      "cloudflareBookJsonBytes": 1393687,
+      "jsonToOriginalRatio": 3.017,
+      "largestFields": [
+        {
+          "path": "$.sections[5]",
+          "bytes": 87778
+        },
+        {
+          "path": "$.sections[28]",
+          "bytes": 85322
+        },
+        {
+          "path": "$.sections[14]",
+          "bytes": 67968
+        },
+        {
+          "path": "$.sections[24]",
+          "bytes": 66504
+        },
+        {
+          "path": "$.sections[25]",
+          "bytes": 66105
+        },
+        {
+          "path": "$.sections[16]",
+          "bytes": 64087
+        },
+        {
+          "path": "$.sections[11]",
+          "bytes": 61551
+        },
+        {
+          "path": "$.sections[15]",
+          "bytes": 60686
+        },
+        {
+          "path": "$.sections[20]",
+          "bytes": 58846
+        },
+        {
+          "path": "$.sections[22]",
+          "bytes": 55274
+        },
+        {
+          "path": "$.sections[10]",
+          "bytes": 52135
+        },
+        {
+          "path": "$.sections[27]",
+          "bytes": 51411
+        }
+      ],
+      "duplicatedTextFields": [
+        {
+          "path": "$.sections[1].morseSourceText",
+          "duplicateOf": "$.sections[1].displayText",
+          "bytes": 1679
+        },
+        {
+          "path": "$.sections[10].morseSourceText",
+          "duplicateOf": "$.sections[10].displayText",
+          "bytes": 17332
+        },
+        {
+          "path": "$.sections[11].morseSourceText",
+          "duplicateOf": "$.sections[11].displayText",
+          "bytes": 20426
+        },
+        {
+          "path": "$.sections[12].morseSourceText",
+          "duplicateOf": "$.sections[12].displayText",
+          "bytes": 13686
+        },
+        {
+          "path": "$.sections[13].morseSourceText",
+          "duplicateOf": "$.sections[13].displayText",
+          "bytes": 14186
+        },
+        {
+          "path": "$.sections[14].morseSourceText",
+          "duplicateOf": "$.sections[14].displayText",
+          "bytes": 22577
+        },
+        {
+          "path": "$.sections[15].morseSourceText",
+          "duplicateOf": "$.sections[15].displayText",
+          "bytes": 20139
+        },
+        {
+          "path": "$.sections[16].morseSourceText",
+          "duplicateOf": "$.sections[16].displayText",
+          "bytes": 21274
+        },
+        {
+          "path": "$.sections[17].morseSourceText",
+          "duplicateOf": "$.sections[17].displayText",
+          "bytes": 12863
+        },
+        {
+          "path": "$.sections[18].morseSourceText",
+          "duplicateOf": "$.sections[18].displayText",
+          "bytes": 12532
+        },
+        {
+          "path": "$.sections[19].morseSourceText",
+          "duplicateOf": "$.sections[19].displayText",
+          "bytes": 12033
+        },
+        {
+          "path": "$.sections[2].morseSourceText",
+          "duplicateOf": "$.sections[2].displayText",
+          "bytes": 10353
+        },
+        {
+          "path": "$.sections[20].morseSourceText",
+          "duplicateOf": "$.sections[20].displayText",
+          "bytes": 19515
+        },
+        {
+          "path": "$.sections[21].morseSourceText",
+          "duplicateOf": "$.sections[21].displayText",
+          "bytes": 14315
+        },
+        {
+          "path": "$.sections[22].morseSourceText",
+          "duplicateOf": "$.sections[22].displayText",
+          "bytes": 18322
+        },
+        {
+          "path": "$.sections[23].morseSourceText",
+          "duplicateOf": "$.sections[23].displayText",
+          "bytes": 8986
+        },
+        {
+          "path": "$.sections[24].morseSourceText",
+          "duplicateOf": "$.sections[24].displayText",
+          "bytes": 22084
+        },
+        {
+          "path": "$.sections[25].morseSourceText",
+          "duplicateOf": "$.sections[25].displayText",
+          "bytes": 21948
+        },
+        {
+          "path": "$.sections[26].morseSourceText",
+          "duplicateOf": "$.sections[26].displayText",
+          "bytes": 12966
+        },
+        {
+          "path": "$.sections[27].morseSourceText",
+          "duplicateOf": "$.sections[27].displayText",
+          "bytes": 17052
+        },
+        {
+          "path": "$.sections[28].morseSourceText",
+          "duplicateOf": "$.sections[28].displayText",
+          "bytes": 28453
+        },
+        {
+          "path": "$.sections[3].morseSourceText",
+          "duplicateOf": "$.sections[3].displayText",
+          "bytes": 14935
+        },
+        {
+          "path": "$.sections[4].morseSourceText",
+          "duplicateOf": "$.sections[4].displayText",
+          "bytes": 8044
+        },
+        {
+          "path": "$.sections[5].morseSourceText",
+          "duplicateOf": "$.sections[5].displayText",
+          "bytes": 29218
+        }
+      ],
+      "notes": [
+        "Cloudflare export keeps one JSON file per book with manifest and section content.",
+        "No duplicated cleanedBook or processedBook whole-book payload is embedded.",
+        "Section displayText and morseSourceText may duplicate text for runtime compatibility."
+      ]
+    },
+    {
+      "slug": "the-sea-wolf",
+      "title": "The Sea-Wolf",
+      "rawTextFile": "app/client/assets/temp-books/the sea-wolf.txt",
+      "originalTextBytes": 622268,
+      "cleanedTextBytes": 590804,
+      "cloudflareBookJsonBytes": 1876220,
+      "jsonToOriginalRatio": 3.015,
+      "largestFields": [
+        {
+          "path": "$.sections[17]",
+          "bytes": 89158
+        },
+        {
+          "path": "$.sections[6]",
+          "bytes": 88624
+        },
+        {
+          "path": "$.sections[25]",
+          "bytes": 83197
+        },
+        {
+          "path": "$.sections[26]",
+          "bytes": 81178
+        },
+        {
+          "path": "$.sections[3]",
+          "bytes": 70199
+        },
+        {
+          "path": "$.sections[12]",
+          "bytes": 62104
+        },
+        {
+          "path": "$.sections[36]",
+          "bytes": 58597
+        },
+        {
+          "path": "$.sections[9]",
+          "bytes": 55014
+        },
+        {
+          "path": "$.sections[37]",
+          "bytes": 54613
+        },
+        {
+          "path": "$.sections[1]",
+          "bytes": 53327
+        },
+        {
+          "path": "$.sections[2]",
+          "bytes": 50347
+        },
+        {
+          "path": "$.sections[14]",
+          "bytes": 50177
+        }
+      ],
+      "duplicatedTextFields": [
+        {
+          "path": "$.sections[1].morseSourceText",
+          "duplicateOf": "$.sections[1].displayText",
+          "bytes": 17664
+        },
+        {
+          "path": "$.sections[10].morseSourceText",
+          "duplicateOf": "$.sections[10].displayText",
+          "bytes": 13302
+        },
+        {
+          "path": "$.sections[11].morseSourceText",
+          "duplicateOf": "$.sections[11].displayText",
+          "bytes": 12403
+        },
+        {
+          "path": "$.sections[12].morseSourceText",
+          "duplicateOf": "$.sections[12].displayText",
+          "bytes": 20603
+        },
+        {
+          "path": "$.sections[13].morseSourceText",
+          "duplicateOf": "$.sections[13].displayText",
+          "bytes": 9191
+        },
+        {
+          "path": "$.sections[14].morseSourceText",
+          "duplicateOf": "$.sections[14].displayText",
+          "bytes": 16612
+        },
+        {
+          "path": "$.sections[15].morseSourceText",
+          "duplicateOf": "$.sections[15].displayText",
+          "bytes": 12350
+        },
+        {
+          "path": "$.sections[16].morseSourceText",
+          "duplicateOf": "$.sections[16].displayText",
+          "bytes": 15238
+        },
+        {
+          "path": "$.sections[17].morseSourceText",
+          "duplicateOf": "$.sections[17].displayText",
+          "bytes": 29661
+        },
+        {
+          "path": "$.sections[18].morseSourceText",
+          "duplicateOf": "$.sections[18].displayText",
+          "bytes": 14434
+        },
+        {
+          "path": "$.sections[19].morseSourceText",
+          "duplicateOf": "$.sections[19].displayText",
+          "bytes": 13693
+        },
+        {
+          "path": "$.sections[2].morseSourceText",
+          "duplicateOf": "$.sections[2].displayText",
+          "bytes": 16667
+        },
+        {
+          "path": "$.sections[20].morseSourceText",
+          "duplicateOf": "$.sections[20].displayText",
+          "bytes": 16379
+        },
+        {
+          "path": "$.sections[21].morseSourceText",
+          "duplicateOf": "$.sections[21].displayText",
+          "bytes": 9751
+        },
+        {
+          "path": "$.sections[22].morseSourceText",
+          "duplicateOf": "$.sections[22].displayText",
+          "bytes": 7360
+        },
+        {
+          "path": "$.sections[23].morseSourceText",
+          "duplicateOf": "$.sections[23].displayText",
+          "bytes": 10444
+        },
+        {
+          "path": "$.sections[24].morseSourceText",
+          "duplicateOf": "$.sections[24].displayText",
+          "bytes": 14282
+        },
+        {
+          "path": "$.sections[25].morseSourceText",
+          "duplicateOf": "$.sections[25].displayText",
+          "bytes": 27666
+        },
+        {
+          "path": "$.sections[26].morseSourceText",
+          "duplicateOf": "$.sections[26].displayText",
+          "bytes": 27021
+        },
+        {
+          "path": "$.sections[27].morseSourceText",
+          "duplicateOf": "$.sections[27].displayText",
+          "bytes": 15914
+        },
+        {
+          "path": "$.sections[28].morseSourceText",
+          "duplicateOf": "$.sections[28].displayText",
+          "bytes": 14173
+        },
+        {
+          "path": "$.sections[29].morseSourceText",
+          "duplicateOf": "$.sections[29].displayText",
+          "bytes": 11385
+        },
+        {
+          "path": "$.sections[3].morseSourceText",
+          "duplicateOf": "$.sections[3].displayText",
+          "bytes": 23325
+        },
+        {
+          "path": "$.sections[30].morseSourceText",
+          "duplicateOf": "$.sections[30].displayText",
+          "bytes": 15549
+        }
+      ],
+      "notes": [
+        "Cloudflare export keeps one JSON file per book with manifest and section content.",
+        "No duplicated cleanedBook or processedBook whole-book payload is embedded.",
+        "Section displayText and morseSourceText may duplicate text for runtime compatibility."
+      ]
     }
   ],
   "books": [
@@ -3416,41 +3416,37 @@
       "title": "A Child's Garden of Verses",
       "rawTextFile": "app/client/assets/temp-books/a-childs-garden-of-verses.txt",
       "originalTextBytes": 82337,
-      "cleanedTextBytes": 59803,
-      "cloudflareBookJsonBytes": 191689,
-      "jsonToOriginalRatio": 2.328,
+      "cleanedTextBytes": 58725,
+      "cloudflareBookJsonBytes": 188244,
+      "jsonToOriginalRatio": 2.286,
       "largestFields": [
         {
-          "path": "$.sections[1]",
-          "bytes": 89810
-        },
-        {
           "path": "$.sections[0]",
-          "bytes": 88964
+          "bytes": 88788
         },
         {
-          "path": "$.sections[1].displayText",
-          "bytes": 31154
-        },
-        {
-          "path": "$.sections[1].morseSourceText",
-          "bytes": 31154
+          "path": "$.sections[1]",
+          "bytes": 87404
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 30647
+          "bytes": 30588
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 30647
+          "bytes": 30588
+        },
+        {
+          "path": "$.sections[1].displayText",
+          "bytes": 30323
+        },
+        {
+          "path": "$.sections[1].morseSourceText",
+          "bytes": 30323
         },
         {
           "path": "$.manifest",
-          "bytes": 3239
-        },
-        {
-          "path": "$.sections[2]",
-          "bytes": 1502
+          "bytes": 3158
         },
         {
           "path": "$.sections[1].paragraphs[191]",
@@ -3459,6 +3455,10 @@
         {
           "path": "$.sections[0].paragraphs[172]",
           "bytes": 856
+        },
+        {
+          "path": "$.sections[2]",
+          "bytes": 783
         },
         {
           "path": "$.sections[1].paragraphs[193]",
@@ -3473,12 +3473,12 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30647
+          "bytes": 30588
         },
         {
           "path": "$.sections[1].morseSourceText",
           "duplicateOf": "$.sections[1].displayText",
-          "bytes": 31154
+          "bytes": 30323
         }
       ],
       "notes": [
@@ -4891,9 +4891,9 @@
       "title": "Candide",
       "rawTextFile": "app/client/assets/temp-books/Candide.txt",
       "originalTextBytes": 229796,
-      "cleanedTextBytes": 205581,
-      "cloudflareBookJsonBytes": 652887,
-      "jsonToOriginalRatio": 2.841,
+      "cleanedTextBytes": 205524,
+      "cloudflareBookJsonBytes": 652714,
+      "jsonToOriginalRatio": 2.84,
       "largestFields": [
         {
           "path": "$.sections[5]",
@@ -4909,7 +4909,7 @@
         },
         {
           "path": "$.sections[0]",
-          "bytes": 91371
+          "bytes": 91198
         },
         {
           "path": "$.sections[6]",
@@ -4933,11 +4933,11 @@
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 30581
+          "bytes": 30523
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 30581
+          "bytes": 30523
         },
         {
           "path": "$.sections[4].displayText",
@@ -4948,7 +4948,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30581
+          "bytes": 30523
         },
         {
           "path": "$.sections[1].morseSourceText",
@@ -6391,9 +6391,9 @@
       "title": "Heidi",
       "rawTextFile": "app/client/assets/temp-books/heidi.txt",
       "originalTextBytes": 311139,
-      "cleanedTextBytes": 284590,
-      "cloudflareBookJsonBytes": 905350,
-      "jsonToOriginalRatio": 2.91,
+      "cleanedTextBytes": 284530,
+      "cloudflareBookJsonBytes": 905168,
+      "jsonToOriginalRatio": 2.909,
       "largestFields": [
         {
           "path": "$.sections[3]",
@@ -6425,7 +6425,7 @@
         },
         {
           "path": "$.sections[0]",
-          "bytes": 90638
+          "bytes": 90456
         },
         {
           "path": "$.sections[1]",
@@ -6448,7 +6448,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30466
+          "bytes": 30405
         },
         {
           "path": "$.sections[1].morseSourceText",
@@ -6578,8 +6578,8 @@
       "title": "Jack and Jill",
       "rawTextFile": "app/client/assets/temp-books/jack-and-jill.txt",
       "originalTextBytes": 533423,
-      "cleanedTextBytes": 503684,
-      "cloudflareBookJsonBytes": 1588634,
+      "cleanedTextBytes": 503647,
+      "cloudflareBookJsonBytes": 1588508,
       "jsonToOriginalRatio": 2.978,
       "largestFields": [
         {
@@ -7036,9 +7036,9 @@
       "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
       "rawTextFile": "app/client/assets/temp-books/Little Women.txt",
       "originalTextBytes": 1113432,
-      "cleanedTextBytes": 1070759,
-      "cloudflareBookJsonBytes": 3364453,
-      "jsonToOriginalRatio": 3.022,
+      "cleanedTextBytes": 1058683,
+      "cloudflareBookJsonBytes": 3326136,
+      "jsonToOriginalRatio": 2.987,
       "largestFields": [
         {
           "path": "$.sections[11]",
@@ -7222,9 +7222,9 @@
       "title": "New Treasure Seekers; Or, The Bastable Children in Search of a Fortune",
       "rawTextFile": "app/client/assets/temp-books/new-treasure-seekers.txt",
       "originalTextBytes": 395774,
-      "cleanedTextBytes": 367522,
-      "cloudflareBookJsonBytes": 1168819,
-      "jsonToOriginalRatio": 2.953,
+      "cleanedTextBytes": 366563,
+      "cloudflareBookJsonBytes": 1165554,
+      "jsonToOriginalRatio": 2.945,
       "largestFields": [
         {
           "path": "$.sections[11]",
@@ -7264,7 +7264,7 @@
         },
         {
           "path": "$.sections[0]",
-          "bytes": 91963
+          "bytes": 91743
         },
         {
           "path": "$.sections[2]",
@@ -7279,7 +7279,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30776
+          "bytes": 30702
         },
         {
           "path": "$.sections[1].morseSourceText",
@@ -7299,7 +7299,7 @@
         {
           "path": "$.sections[12].morseSourceText",
           "duplicateOf": "$.sections[12].displayText",
-          "bytes": 9745
+          "bytes": 8833
         },
         {
           "path": "$.sections[2].morseSourceText",
@@ -7353,8 +7353,8 @@
       "title": "Nights With Uncle Remus",
       "rawTextFile": "app/client/assets/temp-books/nights-with-uncle-remus.txt",
       "originalTextBytes": 605034,
-      "cleanedTextBytes": 571917,
-      "cloudflareBookJsonBytes": 1817207,
+      "cleanedTextBytes": 571778,
+      "cloudflareBookJsonBytes": 1816959,
       "jsonToOriginalRatio": 3.003,
       "largestFields": [
         {
@@ -7410,7 +7410,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30394
+          "bytes": 30336
         },
         {
           "path": "$.sections[1].morseSourceText",
@@ -7465,7 +7465,7 @@
         {
           "path": "$.sections[19].morseSourceText",
           "duplicateOf": "$.sections[19].displayText",
-          "bytes": 5230
+          "bytes": 4869
         },
         {
           "path": "$.sections[2].morseSourceText",
@@ -8701,8 +8701,8 @@
       "title": "The Arabian Nights: Their Best-known Tales",
       "rawTextFile": "app/client/assets/temp-books/the-arabian-nights.txt",
       "originalTextBytes": 656556,
-      "cleanedTextBytes": 626095,
-      "cloudflareBookJsonBytes": 1952814,
+      "cleanedTextBytes": 626037,
+      "cloudflareBookJsonBytes": 1952619,
       "jsonToOriginalRatio": 2.974,
       "largestFields": [
         {
@@ -8726,16 +8726,16 @@
           "bytes": 91380
         },
         {
-          "path": "$.sections[0]",
-          "bytes": 91193
-        },
-        {
           "path": "$.sections[9]",
           "bytes": 91163
         },
         {
           "path": "$.sections[16]",
           "bytes": 91022
+        },
+        {
+          "path": "$.sections[0]",
+          "bytes": 91009
         },
         {
           "path": "$.sections[17]",
@@ -8758,7 +8758,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30422
+          "bytes": 30363
         },
         {
           "path": "$.sections[1].morseSourceText",
@@ -9023,64 +9023,69 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/The Bell.txt",
       "originalTextBytes": 47596,
-      "cleanedTextBytes": 27263,
-      "cloudflareBookJsonBytes": 90017,
-      "jsonToOriginalRatio": 1.891,
+      "cleanedTextBytes": 27158,
+      "cloudflareBookJsonBytes": 89851,
+      "jsonToOriginalRatio": 1.888,
       "largestFields": [
         {
           "path": "$.sections[0]",
-          "bytes": 83207
+          "bytes": 78752
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 27682
+          "bytes": 26189
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 27682
+          "bytes": 26189
+        },
+        {
+          "path": "$.sections[1]",
+          "bytes": 4940
         },
         {
           "path": "$.manifest",
-          "bytes": 2684
+          "bytes": 2773
         },
         {
-          "path": "$.sections[0].paragraphs[58]",
+          "path": "$.sections[1].displayText",
+          "bytes": 1462
+        },
+        {
+          "path": "$.sections[1].morseSourceText",
+          "bytes": 1462
+        },
+        {
+          "path": "$.sections[0].paragraphs[57]",
           "bytes": 1455
         },
         {
-          "path": "$.sections[0].paragraphs[74]",
+          "path": "$.sections[1].paragraphs[0]",
           "bytes": 1442
         },
         {
-          "path": "$.sections[0].paragraphs[60]",
+          "path": "$.sections[0].paragraphs[59]",
           "bytes": 1187
         },
         {
-          "path": "$.sections[0].paragraphs[40]",
+          "path": "$.sections[0].paragraphs[39]",
           "bytes": 1137
         },
         {
-          "path": "$.sections[0].paragraphs[47]",
-          "bytes": 1013
-        },
-        {
-          "path": "$.sections[0].paragraphs[67]",
-          "bytes": 1004
-        },
-        {
           "path": "$.sections[0].paragraphs[46]",
-          "bytes": 1000
-        },
-        {
-          "path": "$.sections[0].paragraphs[33]",
-          "bytes": 967
+          "bytes": 1013
         }
       ],
       "duplicatedTextFields": [
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 27682
+          "bytes": 26189
+        },
+        {
+          "path": "$.sections[1].morseSourceText",
+          "duplicateOf": "$.sections[1].displayText",
+          "bytes": 1462
         }
       ],
       "notes": [
@@ -9094,9 +9099,9 @@
       "title": "The Book of Dragons",
       "rawTextFile": "app/client/assets/temp-books/the-book-of-dragons.txt",
       "originalTextBytes": 252482,
-      "cleanedTextBytes": 227729,
-      "cloudflareBookJsonBytes": 724936,
-      "jsonToOriginalRatio": 2.871,
+      "cleanedTextBytes": 227436,
+      "cloudflareBookJsonBytes": 723868,
+      "jsonToOriginalRatio": 2.867,
       "largestFields": [
         {
           "path": "$.sections[3]",
@@ -9124,11 +9129,11 @@
         },
         {
           "path": "$.sections[0]",
-          "bytes": 90916
+          "bytes": 90755
         },
         {
           "path": "$.sections[7]",
-          "bytes": 59405
+          "bytes": 58688
         },
         {
           "path": "$.sections[3].displayText",
@@ -9151,7 +9156,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30422
+          "bytes": 30368
         },
         {
           "path": "$.sections[1].morseSourceText",
@@ -9186,7 +9191,7 @@
         {
           "path": "$.sections[7].morseSourceText",
           "duplicateOf": "$.sections[7].displayText",
-          "bytes": 19705
+          "bytes": 19464
         }
       ],
       "notes": [
@@ -9705,53 +9710,53 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/The Elderbush.txt",
       "originalTextBytes": 36599,
-      "cleanedTextBytes": 16458,
-      "cloudflareBookJsonBytes": 57050,
-      "jsonToOriginalRatio": 1.559,
+      "cleanedTextBytes": 16353,
+      "cloudflareBookJsonBytes": 56692,
+      "jsonToOriginalRatio": 1.549,
       "largestFields": [
         {
           "path": "$.sections[0]",
-          "bytes": 50408
+          "bytes": 50103
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 16693
+          "bytes": 16590
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 16693
+          "bytes": 16590
         },
         {
           "path": "$.manifest",
-          "bytes": 2686
+          "bytes": 2679
         },
         {
-          "path": "$.sections[0].paragraphs[40]",
+          "path": "$.sections[0].paragraphs[39]",
           "bytes": 1137
         },
         {
-          "path": "$.sections[0].paragraphs[47]",
+          "path": "$.sections[0].paragraphs[46]",
           "bytes": 1013
         },
         {
-          "path": "$.sections[0].paragraphs[46]",
+          "path": "$.sections[0].paragraphs[45]",
           "bytes": 1000
         },
         {
-          "path": "$.sections[0].paragraphs[33]",
+          "path": "$.sections[0].paragraphs[32]",
           "bytes": 967
         },
         {
-          "path": "$.sections[0].paragraphs[27]",
+          "path": "$.sections[0].paragraphs[26]",
           "bytes": 925
         },
         {
-          "path": "$.sections[0].paragraphs[36]",
+          "path": "$.sections[0].paragraphs[35]",
           "bytes": 885
         },
         {
           "path": "$.sections[1]",
-          "bytes": 727
+          "bytes": 699
         },
         {
           "path": "$.source",
@@ -9762,7 +9767,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 16693
+          "bytes": 16590
         }
       ],
       "notes": [
@@ -9776,17 +9781,17 @@
       "title": "The Elements of Style",
       "rawTextFile": "app/client/assets/temp-books/The Elements of Style.txt",
       "originalTextBytes": 108435,
-      "cleanedTextBytes": 86079,
-      "cloudflareBookJsonBytes": 277439,
-      "jsonToOriginalRatio": 2.559,
+      "cleanedTextBytes": 86028,
+      "cloudflareBookJsonBytes": 277288,
+      "jsonToOriginalRatio": 2.557,
       "largestFields": [
         {
           "path": "$.sections[1]",
-          "bytes": 91906
+          "bytes": 91704
         },
         {
           "path": "$.sections[0]",
-          "bytes": 91597
+          "bytes": 91647
         },
         {
           "path": "$.sections[2]",
@@ -9794,19 +9799,19 @@
         },
         {
           "path": "$.sections[1].displayText",
-          "bytes": 30847
+          "bytes": 30778
         },
         {
           "path": "$.sections[1].morseSourceText",
-          "bytes": 30847
+          "bytes": 30778
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 30751
+          "bytes": 30768
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 30751
+          "bytes": 30768
         },
         {
           "path": "$.sections[2].displayText",
@@ -9818,7 +9823,7 @@
         },
         {
           "path": "$.manifest",
-          "bytes": 3520
+          "bytes": 3521
         },
         {
           "path": "$.sections[0].paragraphs[181]",
@@ -9833,12 +9838,12 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30751
+          "bytes": 30768
         },
         {
           "path": "$.sections[1].morseSourceText",
           "duplicateOf": "$.sections[1].displayText",
-          "bytes": 30847
+          "bytes": 30778
         },
         {
           "path": "$.sections[2].morseSourceText",
@@ -9973,36 +9978,36 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/THE EMPEROR'S NEW CLOTHES.txt",
       "originalTextBytes": 32570,
-      "cleanedTextBytes": 10805,
-      "cloudflareBookJsonBytes": 39672,
-      "jsonToOriginalRatio": 1.218,
+      "cleanedTextBytes": 10700,
+      "cloudflareBookJsonBytes": 39508,
+      "jsonToOriginalRatio": 1.213,
       "largestFields": [
         {
           "path": "$.sections[0]",
-          "bytes": 33211
+          "bytes": 32148
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 10930
+          "bytes": 10573
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 10930
+          "bytes": 10573
         },
         {
           "path": "$.manifest",
-          "bytes": 2698
-        },
-        {
-          "path": "$.sections[0].paragraphs[21]",
-          "bytes": 1064
+          "bytes": 2788
         },
         {
           "path": "$.sections[1]",
-          "bytes": 739
+          "bytes": 1566
         },
         {
-          "path": "$.sections[0].paragraphs[8]",
+          "path": "$.sections[0].paragraphs[20]",
+          "bytes": 1064
+        },
+        {
+          "path": "$.sections[0].paragraphs[7]",
           "bytes": 688
         },
         {
@@ -10014,15 +10019,15 @@
           "bytes": 686
         },
         {
-          "path": "$.sections[0].paragraphs[11]",
+          "path": "$.sections[0].paragraphs[10]",
           "bytes": 652
         },
         {
-          "path": "$.sections[0].paragraphs[31]",
+          "path": "$.sections[0].paragraphs[30]",
           "bytes": 613
         },
         {
-          "path": "$.sections[0].paragraphs[4]",
+          "path": "$.sections[0].paragraphs[3]",
           "bytes": 536
         }
       ],
@@ -10030,7 +10035,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 10930
+          "bytes": 10573
         }
       ],
       "notes": [
@@ -10230,37 +10235,37 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/The Fir Tree.txt",
       "originalTextBytes": 37868,
-      "cleanedTextBytes": 17694,
-      "cloudflareBookJsonBytes": 60902,
-      "jsonToOriginalRatio": 1.608,
+      "cleanedTextBytes": 17589,
+      "cloudflareBookJsonBytes": 60732,
+      "jsonToOriginalRatio": 1.604,
       "largestFields": [
         {
           "path": "$.sections[0]",
-          "bytes": 54182
+          "bytes": 53310
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 17960
+          "bytes": 17667
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 17960
+          "bytes": 17667
         },
         {
           "path": "$.manifest",
-          "bytes": 2686
+          "bytes": 2773
         },
         {
-          "path": "$.sections[0].paragraphs[26]",
+          "path": "$.sections[0].paragraphs[25]",
           "bytes": 1373
         },
         {
-          "path": "$.sections[0].paragraphs[37]",
-          "bytes": 842
+          "path": "$.sections[1]",
+          "bytes": 1359
         },
         {
-          "path": "$.sections[1]",
-          "bytes": 726
+          "path": "$.sections[0].paragraphs[36]",
+          "bytes": 842
         },
         {
           "path": "$.source",
@@ -10271,15 +10276,15 @@
           "bytes": 686
         },
         {
-          "path": "$.sections[0].paragraphs[40]",
+          "path": "$.sections[0].paragraphs[39]",
           "bytes": 650
         },
         {
-          "path": "$.sections[0].paragraphs[23]",
+          "path": "$.sections[0].paragraphs[22]",
           "bytes": 645
         },
         {
-          "path": "$.sections[0].paragraphs[25]",
+          "path": "$.sections[0].paragraphs[24]",
           "bytes": 633
         }
       ],
@@ -10287,7 +10292,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 17960
+          "bytes": 17667
         }
       ],
       "notes": [
@@ -10597,33 +10602,33 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/The Leap-Frog.txt",
       "originalTextBytes": 23746,
-      "cleanedTextBytes": 3831,
-      "cloudflareBookJsonBytes": 18311,
-      "jsonToOriginalRatio": 0.771,
+      "cleanedTextBytes": 3726,
+      "cloudflareBookJsonBytes": 18145,
+      "jsonToOriginalRatio": 0.764,
       "largestFields": [
         {
           "path": "$.sections[0]",
-          "bytes": 12030
+          "bytes": 10797
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 3840
+          "bytes": 3426
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 3840
+          "bytes": 3426
         },
         {
           "path": "$.manifest",
-          "bytes": 2681
-        },
-        {
-          "path": "$.sections[0].paragraphs[7]",
-          "bytes": 731
+          "bytes": 2770
         },
         {
           "path": "$.sections[1]",
-          "bytes": 725
+          "bytes": 1721
+        },
+        {
+          "path": "$.sections[0].paragraphs[6]",
+          "bytes": 731
         },
         {
           "path": "$.source",
@@ -10634,7 +10639,7 @@
           "bytes": 686
         },
         {
-          "path": "$.sections[0].paragraphs[9]",
+          "path": "$.sections[0].paragraphs[8]",
           "bytes": 495
         },
         {
@@ -10642,19 +10647,19 @@
           "bytes": 446
         },
         {
-          "path": "$.sections[0].paragraphs[19]",
-          "bytes": 378
+          "path": "$.manifest.sections[1]",
+          "bytes": 443
         },
         {
-          "path": "$.manifest.sections[1]",
-          "bytes": 354
+          "path": "$.sections[1].displayText",
+          "bytes": 383
         }
       ],
       "duplicatedTextFields": [
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 3840
+          "bytes": 3426
         }
       ],
       "notes": [
@@ -10749,9 +10754,9 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/The Old House.txt",
       "originalTextBytes": 119155,
-      "cleanedTextBytes": 97398,
-      "cloudflareBookJsonBytes": 310001,
-      "jsonToOriginalRatio": 2.602,
+      "cleanedTextBytes": 97293,
+      "cloudflareBookJsonBytes": 309831,
+      "jsonToOriginalRatio": 2.6,
       "largestFields": [
         {
           "path": "$.sections[1]",
@@ -10759,7 +10764,7 @@
         },
         {
           "path": "$.sections[0]",
-          "bytes": 92667
+          "bytes": 92583
         },
         {
           "path": "$.sections[2]",
@@ -10775,11 +10780,11 @@
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 30860
+          "bytes": 30831
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 30860
+          "bytes": 30831
         },
         {
           "path": "$.sections[2].displayText",
@@ -10791,22 +10796,22 @@
         },
         {
           "path": "$.sections[3]",
-          "bytes": 20467
+          "bytes": 19482
         },
         {
           "path": "$.sections[3].displayText",
-          "bytes": 6661
+          "bytes": 6331
         },
         {
           "path": "$.sections[3].morseSourceText",
-          "bytes": 6661
+          "bytes": 6331
         }
       ],
       "duplicatedTextFields": [
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30860
+          "bytes": 30831
         },
         {
           "path": "$.sections[1].morseSourceText",
@@ -10821,7 +10826,7 @@
         {
           "path": "$.sections[3].morseSourceText",
           "duplicateOf": "$.sections[3].displayText",
-          "bytes": 6661
+          "bytes": 6331
         }
       ],
       "notes": [
@@ -11197,8 +11202,8 @@
       "title": "The Railway Children",
       "rawTextFile": "app/client/assets/temp-books/the-railway-children.txt",
       "originalTextBytes": 363342,
-      "cleanedTextBytes": 335593,
-      "cloudflareBookJsonBytes": 1068231,
+      "cleanedTextBytes": 335568,
+      "cloudflareBookJsonBytes": 1068141,
       "jsonToOriginalRatio": 2.94,
       "largestFields": [
         {
@@ -11333,29 +11338,25 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/The Real Princess.txt",
       "originalTextBytes": 22248,
-      "cleanedTextBytes": 2364,
-      "cloudflareBookJsonBytes": 13791,
-      "jsonToOriginalRatio": 0.62,
+      "cleanedTextBytes": 2259,
+      "cloudflareBookJsonBytes": 13363,
+      "jsonToOriginalRatio": 0.601,
       "largestFields": [
         {
           "path": "$.sections[0]",
-          "bytes": 7561
+          "bytes": 7358
         },
         {
           "path": "$.manifest",
-          "bytes": 2685
+          "bytes": 2643
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 2340
+          "bytes": 2271
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 2340
-        },
-        {
-          "path": "$.sections[1]",
-          "bytes": 729
+          "bytes": 2271
         },
         {
           "path": "$.source",
@@ -11366,7 +11367,11 @@
           "bytes": 686
         },
         {
-          "path": "$.sections[0].paragraphs[4]",
+          "path": "$.sections[1]",
+          "bytes": 564
+        },
+        {
+          "path": "$.sections[0].paragraphs[3]",
           "bytes": 499
         },
         {
@@ -11374,15 +11379,15 @@
           "bytes": 446
         },
         {
-          "path": "$.sections[0].paragraphs[7]",
+          "path": "$.sections[0].paragraphs[6]",
           "bytes": 358
         },
         {
           "path": "$.manifest.sections[1]",
-          "bytes": 354
+          "bytes": 312
         },
         {
-          "path": "$.sections[0].paragraphs[9]",
+          "path": "$.sections[0].paragraphs[8]",
           "bytes": 280
         }
       ],
@@ -11390,7 +11395,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 2340
+          "bytes": 2271
         }
       ],
       "notes": [
@@ -11590,9 +11595,9 @@
       "title": "The Secret Garden",
       "rawTextFile": "app/client/assets/temp-books/The Secret Garden.txt",
       "originalTextBytes": 462010,
-      "cleanedTextBytes": 432499,
-      "cloudflareBookJsonBytes": 1397967,
-      "jsonToOriginalRatio": 3.026,
+      "cleanedTextBytes": 431644,
+      "cloudflareBookJsonBytes": 1393687,
+      "jsonToOriginalRatio": 3.017,
       "largestFields": [
         {
           "path": "$.sections[5]",
@@ -11962,9 +11967,9 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/The Shoes of Fortune.txt",
       "originalTextBytes": 92803,
-      "cleanedTextBytes": 71645,
-      "cloudflareBookJsonBytes": 228698,
-      "jsonToOriginalRatio": 2.464,
+      "cleanedTextBytes": 71540,
+      "cloudflareBookJsonBytes": 228526,
+      "jsonToOriginalRatio": 2.462,
       "largestFields": [
         {
           "path": "$.sections[1]",
@@ -11972,11 +11977,11 @@
         },
         {
           "path": "$.sections[0]",
-          "bytes": 91351
+          "bytes": 91266
         },
         {
           "path": "$.sections[2]",
-          "bytes": 35209
+          "bytes": 34326
         },
         {
           "path": "$.sections[1].displayText",
@@ -11988,23 +11993,23 @@
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 30481
+          "bytes": 30452
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 30481
+          "bytes": 30452
         },
         {
           "path": "$.sections[2].displayText",
-          "bytes": 11612
+          "bytes": 11316
         },
         {
           "path": "$.sections[2].morseSourceText",
-          "bytes": 11612
+          "bytes": 11316
         },
         {
           "path": "$.manifest",
-          "bytes": 3608
+          "bytes": 3694
         },
         {
           "path": "$.sections[1].paragraphs[15]",
@@ -12019,7 +12024,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30481
+          "bytes": 30452
         },
         {
           "path": "$.sections[1].morseSourceText",
@@ -12029,7 +12034,7 @@
         {
           "path": "$.sections[2].morseSourceText",
           "duplicateOf": "$.sections[2].displayText",
-          "bytes": 11612
+          "bytes": 11316
         }
       ],
       "notes": [
@@ -12043,9 +12048,9 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/The Snow Queen.txt",
       "originalTextBytes": 85755,
-      "cleanedTextBytes": 64710,
-      "cloudflareBookJsonBytes": 207816,
-      "jsonToOriginalRatio": 2.423,
+      "cleanedTextBytes": 64605,
+      "cloudflareBookJsonBytes": 207600,
+      "jsonToOriginalRatio": 2.421,
       "largestFields": [
         {
           "path": "$.sections[1]",
@@ -12053,7 +12058,7 @@
         },
         {
           "path": "$.sections[0]",
-          "bytes": 90683
+          "bytes": 90599
         },
         {
           "path": "$.sections[1].displayText",
@@ -12065,34 +12070,34 @@
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 30194
+          "bytes": 30165
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 30194
+          "bytes": 30165
         },
         {
           "path": "$.sections[2]",
-          "bytes": 14745
+          "bytes": 14312
         },
         {
           "path": "$.sections[2].displayText",
-          "bytes": 4743
+          "bytes": 4598
         },
         {
           "path": "$.sections[2].morseSourceText",
-          "bytes": 4743
+          "bytes": 4598
         },
         {
           "path": "$.manifest",
-          "bytes": 3596
+          "bytes": 3660
         },
         {
-          "path": "$.sections[0].paragraphs[7]",
+          "path": "$.sections[0].paragraphs[6]",
           "bytes": 1875
         },
         {
-          "path": "$.sections[0].paragraphs[34]",
+          "path": "$.sections[0].paragraphs[33]",
           "bytes": 1494
         }
       ],
@@ -12100,7 +12105,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30194
+          "bytes": 30165
         },
         {
           "path": "$.sections[1].morseSourceText",
@@ -12110,7 +12115,7 @@
         {
           "path": "$.sections[2].morseSourceText",
           "duplicateOf": "$.sections[2].displayText",
-          "bytes": 4743
+          "bytes": 4598
         }
       ],
       "notes": [
@@ -12124,29 +12129,25 @@
       "title": "Andersen's Fairy Tales",
       "rawTextFile": "app/client/assets/temp-books/The Swineherd.txt",
       "originalTextBytes": 28627,
-      "cleanedTextBytes": 8583,
-      "cloudflareBookJsonBytes": 33224,
-      "jsonToOriginalRatio": 1.161,
+      "cleanedTextBytes": 8474,
+      "cloudflareBookJsonBytes": 32826,
+      "jsonToOriginalRatio": 1.147,
       "largestFields": [
         {
           "path": "$.sections[0]",
-          "bytes": 26554
+          "bytes": 26276
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 8719
+          "bytes": 8622
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 8719
+          "bytes": 8622
         },
         {
           "path": "$.manifest",
-          "bytes": 2683
-        },
-        {
-          "path": "$.sections[1]",
-          "bytes": 725
+          "bytes": 2660
         },
         {
           "path": "$.source",
@@ -12157,23 +12158,27 @@
           "bytes": 686
         },
         {
+          "path": "$.sections[1]",
+          "bytes": 646
+        },
+        {
           "path": "$.manifest.sections[0]",
           "bytes": 447
         },
         {
-          "path": "$.manifest.sections[1]",
-          "bytes": 354
-        },
-        {
-          "path": "$.sections[0].paragraphs[24]",
+          "path": "$.sections[0].paragraphs[23]",
           "bytes": 346
         },
         {
-          "path": "$.sections[0].paragraphs[51]",
+          "path": "$.sections[0].paragraphs[50]",
           "bytes": 340
         },
         {
-          "path": "$.sections[0].paragraphs[47]",
+          "path": "$.manifest.sections[1]",
+          "bytes": 331
+        },
+        {
+          "path": "$.sections[0].paragraphs[46]",
           "bytes": 323
         }
       ],
@@ -12181,7 +12186,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 8719
+          "bytes": 8622
         }
       ],
       "notes": [
@@ -12502,9 +12507,9 @@
       "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
       "rawTextFile": "app/client/assets/temp-books/the-water-babies.txt",
       "originalTextBytes": 396809,
-      "cleanedTextBytes": 369352,
-      "cloudflareBookJsonBytes": 1156605,
-      "jsonToOriginalRatio": 2.915,
+      "cleanedTextBytes": 369238,
+      "cloudflareBookJsonBytes": 1154433,
+      "jsonToOriginalRatio": 2.909,
       "largestFields": [
         {
           "path": "$.sections[9]",
@@ -13177,13 +13182,13 @@
       "title": "Wood folk at school",
       "rawTextFile": "app/client/assets/temp-books/Wood folk at school.txt",
       "originalTextBytes": 274702,
-      "cleanedTextBytes": 250346,
-      "cloudflareBookJsonBytes": 783297,
+      "cleanedTextBytes": 250288,
+      "cloudflareBookJsonBytes": 783125,
       "jsonToOriginalRatio": 2.851,
       "largestFields": [
         {
           "path": "$.sections[0]",
-          "bytes": 91852
+          "bytes": 91678
         },
         {
           "path": "$.sections[4]",
@@ -13219,11 +13224,11 @@
         },
         {
           "path": "$.sections[0].displayText",
-          "bytes": 30617
+          "bytes": 30558
         },
         {
           "path": "$.sections[0].morseSourceText",
-          "bytes": 30617
+          "bytes": 30558
         },
         {
           "path": "$.sections[4].displayText",
@@ -13234,7 +13239,7 @@
         {
           "path": "$.sections[0].morseSourceText",
           "duplicateOf": "$.sections[0].displayText",
-          "bytes": 30617
+          "bytes": 30558
         },
         {
           "path": "$.sections[1].morseSourceText",

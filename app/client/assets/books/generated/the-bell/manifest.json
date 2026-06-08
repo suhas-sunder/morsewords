@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "32f3451a55f80625",
-  "contentHash": "32f3451a55f80625f4b0e2f9d0bb8a914027ac77d94e83e2cf59de75218dcb9a",
+  "contentVersion": "26e487e055059310",
+  "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 46266,
-    "cleanedCharacterCount": 26976,
-    "wordCount": 5054,
+    "cleanedCharacterCount": 26870,
+    "wordCount": 5039,
     "sectionCount": 2,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 26896,
-      "wordCount": 5043,
-      "estimatedTypingMinutes": 127,
-      "estimatedListeningMinutes": 160,
-      "morseCharacterEstimate": 143923,
-      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone..."
+      "characterCount": 25428,
+      "wordCount": 4775,
+      "estimatedTypingMinutes": 120,
+      "estimatedListeningMinutes": 152,
+      "morseCharacterEstimate": 136059,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet we..."
     },
     {
       "id": "part-002",
@@ -70,17 +70,17 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 77,
-      "wordCount": 11,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 418,
-      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      "characterCount": 1440,
+      "wordCount": 264,
+      "estimatedTypingMinutes": 7,
+      "estimatedListeningMinutes": 9,
+      "morseCharacterEstimate": 7728,
+      "textPreview": "And he seized hold of the creeping-plants, and the roots of trees--climbed up the moist stones where the water-snakes were writhing and the toads were croaking..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 46266,
-    "cleanedCharacterCount": 26976,
+    "cleanedCharacterCount": 26870,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

@@ -7,20 +7,20 @@
   "title": null,
   "order": 2,
   "includeByDefault": false,
-  "displayText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
-  "morseSourceText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "displayText": "The Grasshopper sat without on a green bank, and reflected on worldly\nthings; and he said too, “Yes, a fine exterior is everything--a fine\nexterior is what people care about.” And then he began chirping his\npeculiar melancholy song, from which we have taken this history; and\nwhich may, very possibly, be all untrue, although it does stand here\nprinted in black and white.",
+  "morseSourceText": "The Grasshopper sat without on a green bank, and reflected on worldly\nthings; and he said too, “Yes, a fine exterior is everything--a fine\nexterior is what people care about.” And then he began chirping his\npeculiar melancholy song, from which we have taken this history; and\nwhich may, very possibly, be all untrue, although it does stand here\nprinted in black and white.",
   "paragraphs": [
-    "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+    "The Grasshopper sat without on a green bank, and reflected on worldly things; and he said too, “Yes, a fine exterior is everything--a fine exterior is what people care about.” And then he began chirping his peculiar melancholy song, from which we have taken this history; and which may, very possibly, be all untrue, although it does stand here printed in black and white."
   ],
-  "wordCount": 11,
-  "characterCount": 77,
-  "estimatedTypingMinutes": 1,
-  "estimatedListeningMinutes": 1,
-  "morseCharacterEstimate": 418,
+  "wordCount": 65,
+  "characterCount": 372,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2032,
   "unsupportedCharacterSummary": {},
-  "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "textPreview": "The Grasshopper sat without on a green bank, and reflected on worldly things; and he said too, “Yes, a fine exterior is everything--a fine exterior is what peo...",
   "sourceOffsets": {
-    "start": 3713,
-    "end": 3790
+    "start": 3312,
+    "end": 3684
   }
 }

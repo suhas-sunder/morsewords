@@ -5,8 +5,8 @@
   "author": [
     "William J. Long"
   ],
-  "contentVersion": "2102d56897e00e56",
-  "contentHash": "2102d56897e00e5623f5761423c592a90f2c45b7243c18b29be31f9e33a63d20",
+  "contentVersion": "53459056320606b5",
+  "contentHash": "53459056320606b53faa47715e9dc78f224f944a3377a2919f8697b257fdf123",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 269688,
-    "cleanedCharacterCount": 250367,
-    "wordCount": 45347,
+    "cleanedCharacterCount": 250309,
+    "wordCount": 45340,
     "sectionCount": 10,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29991,
-      "wordCount": 5423,
+      "characterCount": 29933,
+      "wordCount": 5416,
       "estimatedTypingMinutes": 136,
-      "estimatedListeningMinutes": 176,
-      "morseCharacterEstimate": 157791,
-      "textPreview": "Produced by Marilynda Fraser-Cunliffe, LN Yaddanapudi and the Online Distributed Proofreading Team at http://www.pgdp.net _Wood Folk at School_ [Illustration]..."
+      "estimatedListeningMinutes": 175,
+      "morseCharacterEstimate": 157459,
+      "textPreview": "the Online Distributed Proofreading Team at http://www.pgdp.net _Wood Folk at School_ [Illustration] [Illustration: \"THERE AT A TURN IN THE PATH, NOT TEN YARDS..."
     },
     {
       "id": "part-002",
@@ -200,7 +200,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 269688,
-    "cleanedCharacterCount": 250367,
+    "cleanedCharacterCount": 250309,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

@@ -33,8 +33,8 @@
   },
   "stats": {
     "originalCharacterCount": 345957,
-    "cleanedCharacterCount": 326683,
-    "wordCount": 59806,
+    "cleanedCharacterCount": 326658,
+    "wordCount": 59802,
     "sectionCount": 15,
     "includedSectionCount": 14
   },
@@ -51,8 +51,8 @@
     "author": [
       "E. Nesbit"
     ],
-    "contentVersion": "d9d11d41a68904e2",
-    "contentHash": "d9d11d41a68904e2c6ee526561f48ac624aa02751eae0a44b0b258fabf2d85e1",
+    "contentVersion": "2e8fd14f73610186",
+    "contentHash": "2e8fd14f73610186ff5937435d349246561d374111bd004cac2cc03eae76bd57",
     "language": "en",
     "description": "",
     "subjects": [],
@@ -81,8 +81,8 @@
     },
     "stats": {
       "originalCharacterCount": 345957,
-      "cleanedCharacterCount": 326683,
-      "wordCount": 59806,
+      "cleanedCharacterCount": 326658,
+      "wordCount": 59802,
       "sectionCount": 15,
       "includedSectionCount": 14
     },
@@ -101,12 +101,12 @@
         "order": 1,
         "includeByDefault": false,
         "sectionJsonPath": "sections/title-page-001.json",
-        "characterCount": 663,
-        "wordCount": 85,
+        "characterCount": 638,
+        "wordCount": 81,
         "estimatedTypingMinutes": 3,
         "estimatedListeningMinutes": 4,
-        "morseCharacterEstimate": 2873,
-        "textPreview": "Produced by Les Bowler THE RAILWAY CHILDREN By E. Nesbit To my dear son Paul Bland, behind whose knowledge of railways my ignorance confidently shelters. Conte..."
+        "morseCharacterEstimate": 2742,
+        "textPreview": "THE RAILWAY CHILDREN By E. Nesbit To my dear son Paul Bland, behind whose knowledge of railways my ignorance confidently shelters. Contents. I. The beginning o..."
       },
       {
         "id": "chapter-001",
@@ -321,7 +321,7 @@
     ],
     "cleaning": {
       "originalCharacterCount": 345957,
-      "cleanedCharacterCount": 326683,
+      "cleanedCharacterCount": 326658,
       "headerStripped": true,
       "footerStripped": true,
       "confidence": "high",
@@ -339,26 +339,25 @@
       "title": null,
       "order": 1,
       "includeByDefault": false,
-      "displayText": "Produced by Les Bowler\n\n\nTHE RAILWAY CHILDREN\n\nBy E. Nesbit\n\n\n               To my dear son Paul Bland,\n               behind whose knowledge of railways\n               my ignorance confidently shelters.\n\n\nContents.\n\n     I.    The beginning of things.\n     II.   Peter's coal-mine.\n     III.  The old gentleman.\n     IV.   The engine-burglar.\n     V.    Prisoners and captives.\n     VI.   Saviours of the train.\n     VII.  For valour.\n     VIII. The amateur fireman.\n     IX.   The pride of Perks.\n     X.    The terrible secret.\n     XI.   The hound in the red jersey.\n     XII.  What Bobbie brought home.\n     XIII. The hound's grandfather.\n     XIV.  The End.",
-      "morseSourceText": "Produced by Les Bowler\n\n\nTHE RAILWAY CHILDREN\n\nBy E. Nesbit\n\n\n               To my dear son Paul Bland,\n               behind whose knowledge of railways\n               my ignorance confidently shelters.\n\n\nContents.\n\n     I.    The beginning of things.\n     II.   Peter's coal-mine.\n     III.  The old gentleman.\n     IV.   The engine-burglar.\n     V.    Prisoners and captives.\n     VI.   Saviours of the train.\n     VII.  For valour.\n     VIII. The amateur fireman.\n     IX.   The pride of Perks.\n     X.    The terrible secret.\n     XI.   The hound in the red jersey.\n     XII.  What Bobbie brought home.\n     XIII. The hound's grandfather.\n     XIV.  The End.",
+      "displayText": "THE RAILWAY CHILDREN\n\nBy E. Nesbit\n\n\n               To my dear son Paul Bland,\n               behind whose knowledge of railways\n               my ignorance confidently shelters.\n\n\nContents.\n\n     I.    The beginning of things.\n     II.   Peter's coal-mine.\n     III.  The old gentleman.\n     IV.   The engine-burglar.\n     V.    Prisoners and captives.\n     VI.   Saviours of the train.\n     VII.  For valour.\n     VIII. The amateur fireman.\n     IX.   The pride of Perks.\n     X.    The terrible secret.\n     XI.   The hound in the red jersey.\n     XII.  What Bobbie brought home.\n     XIII. The hound's grandfather.\n     XIV.  The End.",
+      "morseSourceText": "THE RAILWAY CHILDREN\n\nBy E. Nesbit\n\n\n               To my dear son Paul Bland,\n               behind whose knowledge of railways\n               my ignorance confidently shelters.\n\n\nContents.\n\n     I.    The beginning of things.\n     II.   Peter's coal-mine.\n     III.  The old gentleman.\n     IV.   The engine-burglar.\n     V.    Prisoners and captives.\n     VI.   Saviours of the train.\n     VII.  For valour.\n     VIII. The amateur fireman.\n     IX.   The pride of Perks.\n     X.    The terrible secret.\n     XI.   The hound in the red jersey.\n     XII.  What Bobbie brought home.\n     XIII. The hound's grandfather.\n     XIV.  The End.",
       "paragraphs": [
-        "Produced by Les Bowler",
         "THE RAILWAY CHILDREN",
         "By E. Nesbit",
         "To my dear son Paul Bland, behind whose knowledge of railways my ignorance confidently shelters.",
         "Contents.",
         "I.    The beginning of things. II.   Peter's coal-mine. III.  The old gentleman. IV.   The engine-burglar. V.    Prisoners and captives. VI.   Saviours of the train. VII.  For valour. VIII. The amateur fireman. IX.   The pride of Perks. X.    The terrible secret. XI.   The hound in the red jersey. XII.  What Bobbie brought home. XIII. The hound's grandfather. XIV.  The End."
       ],
-      "wordCount": 85,
-      "characterCount": 663,
+      "wordCount": 81,
+      "characterCount": 638,
       "estimatedTypingMinutes": 3,
       "estimatedListeningMinutes": 4,
-      "morseCharacterEstimate": 2873,
+      "morseCharacterEstimate": 2742,
       "unsupportedCharacterSummary": {},
-      "textPreview": "Produced by Les Bowler THE RAILWAY CHILDREN By E. Nesbit To my dear son Paul Bland, behind whose knowledge of railways my ignorance confidently shelters. Conte...",
+      "textPreview": "THE RAILWAY CHILDREN By E. Nesbit To my dear son Paul Bland, behind whose knowledge of railways my ignorance confidently shelters. Contents. I. The beginning o...",
       "sourceOffsets": {
         "start": 0,
-        "end": 666
+        "end": 641
       }
     },
     {
@@ -538,8 +537,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter I. The beginning of things. They were not railway children to begin with. I don't suppose they had ever thought about railways except as a means of get...",
       "sourceOffsets": {
-        "start": 666,
-        "end": 23428
+        "start": 641,
+        "end": 23403
       }
     },
     {
@@ -755,8 +754,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter II. Peter's coal-mine. “What fun!” said Mother, in the dark, feeling for the matches on the table. “How frightened the poor mice were--I don't believe...",
       "sourceOffsets": {
-        "start": 23428,
-        "end": 51563
+        "start": 23403,
+        "end": 51538
       }
     },
     {
@@ -937,8 +936,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter III. The old gentleman. After the adventure of Peter's Coal-mine, it seemed well to the children to keep away from the station--but they did not, they...",
       "sourceOffsets": {
-        "start": 51563,
-        "end": 76445
+        "start": 51538,
+        "end": 76420
       }
     },
     {
@@ -1119,8 +1118,8 @@
       },
       "textPreview": "Chapter IV. The engine-burglar. What was left of the second sheet and the Brunswick black came in very nicely to make a banner bearing the legend SHE IS NEARLY...",
       "sourceOffsets": {
-        "start": 76445,
-        "end": 104389
+        "start": 76420,
+        "end": 104364
       }
     },
     {
@@ -1261,8 +1260,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter V. Prisoners and captives. It was one day when Mother had gone to Maidbridge. She had gone alone, but the children were to go to the station to meet he...",
       "sourceOffsets": {
-        "start": 104389,
-        "end": 124354
+        "start": 104364,
+        "end": 124329
       }
     },
     {
@@ -1427,8 +1426,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter VI. Saviours of the train. The Russian gentleman was better the next day, and the day after that better still, and on the third day he was well enough...",
       "sourceOffsets": {
-        "start": 124354,
-        "end": 145313
+        "start": 124329,
+        "end": 145288
       }
     },
     {
@@ -1610,8 +1609,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter VII. For valour. I hope you don't mind my telling you a good deal about Roberta. The fact is I am growing very fond of her. The more I observe her the...",
       "sourceOffsets": {
-        "start": 145313,
-        "end": 170109
+        "start": 145288,
+        "end": 170084
       }
     },
     {
@@ -1787,8 +1786,8 @@
       },
       "textPreview": "Chapter VIII. The amateur firemen. “That's a likely little brooch you've got on, Miss,” said Perks the Porter; “I don't know as ever I see a thing more like a...",
       "sourceOffsets": {
-        "start": 170109,
-        "end": 191818
+        "start": 170084,
+        "end": 191793
       }
     },
     {
@@ -1968,8 +1967,8 @@
       },
       "textPreview": "Chapter IX. The pride of Perks. It was breakfast-time. Mother's face was very bright as she poured the milk and ladled out the porridge. “I've sold another sto...",
       "sourceOffsets": {
-        "start": 191818,
-        "end": 215728
+        "start": 191793,
+        "end": 215703
       }
     },
     {
@@ -2142,8 +2141,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter X. The terrible secret. When they first went to live at Three Chimneys, the children had talked a great deal about their Father, and had asked a great...",
       "sourceOffsets": {
-        "start": 215728,
-        "end": 236162
+        "start": 215703,
+        "end": 236137
       }
     },
     {
@@ -2347,8 +2346,8 @@
       "unsupportedCharacterSummary": {},
       "textPreview": "Chapter XI. The hound in the red jersey. Bobbie knew the secret now. A sheet of old newspaper wrapped round a parcel--just a little chance like that--had given...",
       "sourceOffsets": {
-        "start": 236162,
-        "end": 262820
+        "start": 236137,
+        "end": 262795
       }
     },
     {
@@ -2536,8 +2535,8 @@
       },
       "textPreview": "Chapter XII. What Bobbie brought home. “Oh, look up! Speak to me! For MY sake, speak!” The children said the words over and over again to the unconscious hound...",
       "sourceOffsets": {
-        "start": 262820,
-        "end": 283044
+        "start": 262795,
+        "end": 283019
       }
     },
     {
@@ -2739,8 +2738,8 @@
       },
       "textPreview": "Chapter XIII. The hound's grandfather. Mother did not get back to her writing all that day, for the red-jerseyed hound whom the children had brought to Three C...",
       "sourceOffsets": {
-        "start": 283044,
-        "end": 306002
+        "start": 283019,
+        "end": 305977
       }
     },
     {
@@ -2875,11 +2874,11 @@
       },
       "textPreview": "Chapter XIV. The End. Life at the Three Chimneys was never quite the same again after the old gentleman came to see his grandson. Although they now knew his na...",
       "sourceOffsets": {
-        "start": 306002,
-        "end": 326683
+        "start": 305977,
+        "end": 326658
       }
     }
   ],
-  "contentVersion": "26b027c565b82546",
-  "contentHash": "26b027c565b8254664ce30fee7954e256ab8233c811c5e284a50022071a333fc"
+  "contentVersion": "ffe3041f859c8a3d",
+  "contentHash": "ffe3041f859c8a3d697f7fdadb219e6886d94481ae03cf5bc97c2c3daecc3394"
 }

@@ -5,8 +5,8 @@
   "author": [
     "E. Nesbit"
   ],
-  "contentVersion": "e56a424037e70346",
-  "contentHash": "e56a424037e7034623103a1e459ca24add91b63a2ab3ef3464ec8b88e7ece6c7",
+  "contentVersion": "837f1e2e43abb5df",
+  "contentHash": "837f1e2e43abb5dfc68f36aa4b3bf9f44f0581fe645c65dc7cd5706f2d2892f3",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 247086,
-    "cleanedCharacterCount": 227745,
-    "wordCount": 42635,
+    "cleanedCharacterCount": 227459,
+    "wordCount": 42593,
     "sectionCount": 9,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29500,
-      "wordCount": 5273,
+      "characterCount": 29447,
+      "wordCount": 5265,
       "estimatedTypingMinutes": 132,
-      "estimatedListeningMinutes": 169,
-      "morseCharacterEstimate": 151211,
-      "textPreview": "Produced by Suzanne Shell and the Online Distributed Proofreading Team at http://www.pgdp.net [Illustration: THE BOOK OF DRAGONS] The Book of DRAGONS E. Nesbit..."
+      "estimatedListeningMinutes": 168,
+      "morseCharacterEstimate": 150926,
+      "textPreview": "Proofreading Team at http://www.pgdp.net [Illustration: THE BOOK OF DRAGONS] The Book of DRAGONS E. Nesbit With illustrations by H. R. Millar Decorations by H...."
     },
     {
       "id": "part-002",
@@ -160,11 +160,11 @@
       "order": 8,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-008.json",
-      "characterCount": 19144,
-      "wordCount": 3583,
-      "estimatedTypingMinutes": 90,
-      "estimatedListeningMinutes": 114,
-      "morseCharacterEstimate": 102468,
+      "characterCount": 18921,
+      "wordCount": 3558,
+      "estimatedTypingMinutes": 89,
+      "estimatedListeningMinutes": 113,
+      "morseCharacterEstimate": 101440,
       "textPreview": "So the cockatrice began, and he told him about mines and treasures and geological formations, and about gnomes and fairies and dragons, and about glaciers and..."
     },
     {
@@ -175,17 +175,17 @@
       "order": 9,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-009.json",
-      "characterCount": 50,
-      "wordCount": 9,
+      "characterCount": 33,
+      "wordCount": 0,
       "estimatedTypingMinutes": 1,
       "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 294,
-      "textPreview": "Page 154, \"he\" changed to \"she\" (that she coughed)"
+      "morseCharacterEstimate": 0,
+      "textPreview": "* * * * *"
     }
   ],
   "cleaning": {
     "originalCharacterCount": 247086,
-    "cleanedCharacterCount": 227745,
+    "cleanedCharacterCount": 227459,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

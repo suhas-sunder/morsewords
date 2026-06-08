@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "68a2fbee7996f6f0",
-  "contentHash": "68a2fbee7996f6f01dd215d03d0230008715125fba3e4812bac4b5b1b24558a0",
+  "contentVersion": "74623d7ca6769121",
+  "contentHash": "74623d7ca6769121902ef1cbb13d5746a9e7cb452c62ac83e326d1aa9df58ac1",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 21645,
-    "cleanedCharacterCount": 2355,
-    "wordCount": 436,
+    "cleanedCharacterCount": 2249,
+    "wordCount": 421,
     "sectionCount": 2,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 2275,
-      "wordCount": 425,
+      "characterCount": 2211,
+      "wordCount": 414,
       "estimatedTypingMinutes": 11,
       "estimatedListeningMinutes": 14,
-      "morseCharacterEstimate": 12070,
-      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then sh..."
+      "morseCharacterEstimate": 11734,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princes..."
     },
     {
       "id": "part-002",
@@ -70,17 +70,17 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 77,
-      "wordCount": 11,
+      "characterCount": 36,
+      "wordCount": 7,
       "estimatedTypingMinutes": 1,
       "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 418,
-      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      "morseCharacterEstimate": 200,
+      "textPreview": "Wasn't this a lady of real delicacy?"
     }
   ],
   "cleaning": {
     "originalCharacterCount": 21645,
-    "cleanedCharacterCount": 2355,
+    "cleanedCharacterCount": 2249,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

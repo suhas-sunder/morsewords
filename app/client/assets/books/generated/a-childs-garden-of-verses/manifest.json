@@ -5,8 +5,8 @@
   "author": [
     "Robert Louis Stevenson"
   ],
-  "contentVersion": "2b14d93304c4d8d0",
-  "contentHash": "2b14d93304c4d8d063ded1050b462e1d685e105ed19f782609af25322bba89ca",
+  "contentVersion": "c260b6b569b067c6",
+  "contentHash": "c260b6b569b067c618f7aaddeefc0e7e5398c1a90438d072885d7183ac392182",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 79187,
-    "cleanedCharacterCount": 59816,
-    "wordCount": 9065,
+    "cleanedCharacterCount": 58736,
+    "wordCount": 8890,
     "sectionCount": 3,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29508,
-      "wordCount": 4173,
+      "characterCount": 29450,
+      "wordCount": 4164,
       "estimatedTypingMinutes": 105,
       "estimatedListeningMinutes": 132,
-      "morseCharacterEstimate": 118388,
-      "textPreview": "Produced by Juliet Sutherland Christine D. and the Online Distributed Proofreading Team at http://www.pgdp.net _A Child's Garden of Verses_ ROBERT LOUIS STEVEN..."
+      "morseCharacterEstimate": 118074,
+      "textPreview": "Distributed Proofreading Team at http://www.pgdp.net _A Child's Garden of Verses_ ROBERT LOUIS STEVENSON _Illustrated by Jessie Willcox Smith_ CHARLES SCRIBNER..."
     },
     {
       "id": "part-002",
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 29989,
-      "wordCount": 4841,
-      "estimatedTypingMinutes": 122,
-      "estimatedListeningMinutes": 159,
-      "morseCharacterEstimate": 142482,
+      "characterCount": 29184,
+      "wordCount": 4712,
+      "estimatedTypingMinutes": 118,
+      "estimatedListeningMinutes": 154,
+      "morseCharacterEstimate": 138560,
       "textPreview": "Faster than fairies, faster than witches, Bridges and houses, hedges and ditches; And charging along like troops in a battle All through the meadows the horses..."
     },
     {
@@ -85,17 +85,17 @@
       "order": 3,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-003.json",
-      "characterCount": 306,
-      "wordCount": 51,
-      "estimatedTypingMinutes": 2,
-      "estimatedListeningMinutes": 2,
-      "morseCharacterEstimate": 1499,
-      "textPreview": "A thousand miles we galloped fast, And down the witches' lane we passed, And rode amain, with brandished sword, Up to the middle, through the ford. Last we dre..."
+      "characterCount": 91,
+      "wordCount": 14,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 1,
+      "morseCharacterEstimate": 454,
+      "textPreview": "TWENTY THOUSAND LEAGUES UNDER THE SEA by JULES VERNE _Illustrated by W. J. Aylward_"
     }
   ],
   "cleaning": {
     "originalCharacterCount": 79187,
-    "cleanedCharacterCount": 59816,
+    "cleanedCharacterCount": 58736,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

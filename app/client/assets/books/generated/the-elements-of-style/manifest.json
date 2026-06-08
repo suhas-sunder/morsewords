@@ -5,8 +5,8 @@
   "author": [
     "William Strunk"
   ],
-  "contentVersion": "b67929be0423830f",
-  "contentHash": "b67929be0423830f3d7bc3d70049845fa8f562fcbd9a76b29616c24b1c4bc051",
+  "contentVersion": "5f836c9f3a90c6dc",
+  "contentHash": "5f836c9f3a90c6dc9188396824e1ad9e3e8f6aaf25241051b5709d779d8c9364",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 105502,
-    "cleanedCharacterCount": 86089,
-    "wordCount": 13918,
+    "cleanedCharacterCount": 86040,
+    "wordCount": 13910,
     "sectionCount": 4,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29969,
-      "wordCount": 4842,
+      "characterCount": 29985,
+      "wordCount": 4846,
       "estimatedTypingMinutes": 122,
       "estimatedListeningMinutes": 170,
-      "morseCharacterEstimate": 152410,
-      "textPreview": "Produced by Jana Srna and the Online Distributed Proofreading Team at http://www.pgdp.net (This file was produced from images generously made available by The..."
+      "morseCharacterEstimate": 152473,
+      "textPreview": "Proofreading Team at http://www.pgdp.net (This file was produced from images generously made available by The Internet Archive/American Libraries.) [ Transcrib..."
     },
     {
       "id": "part-002",
@@ -70,12 +70,12 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 29993,
-      "wordCount": 4901,
+      "characterCount": 29926,
+      "wordCount": 4889,
       "estimatedTypingMinutes": 123,
       "estimatedListeningMinutes": 175,
-      "morseCharacterEstimate": 157103,
-      "textPreview": "There were a great number of dead leaves lying on the ground. Dead leaves covered the ground. The sound of a guitar somewhere in the house could be heard. Some..."
+      "morseCharacterEstimate": 156780,
+      "textPreview": "Dead leaves covered the ground. The sound of a guitar somewhere in the house could be heard. Somewhere in the house a guitar hummed sleepily. The reason that h..."
     },
     {
       "id": "part-003",
@@ -110,7 +110,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 105502,
-    "cleanedCharacterCount": 86089,
+    "cleanedCharacterCount": 86040,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

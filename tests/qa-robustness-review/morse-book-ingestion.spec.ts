@@ -344,6 +344,44 @@ Footer license
     expect(oldMarker.cleanedText).toContain("Real front matter.");
     expect(oldMarker.cleanedText).not.toContain("Footer license");
 
+    const apostropheMarker = cleanGutenbergText(`
+Header
+*** START OF THIS PROJECT GUTENBERG EBOOK OLDER SAMPLE ***
+
+CHAPTER I
+
+Real story text.
+
+End of Project Gutenberg's Older Sample, by Example Author
+Footer license
+`);
+
+    expect(apostropheMarker.report.headerStripped).toBe(true);
+    expect(apostropheMarker.report.footerStripped).toBe(true);
+    expect(apostropheMarker.cleanedText).toContain("Real story text.");
+    expect(apostropheMarker.cleanedText).not.toContain("End of Project Gutenberg");
+    expect(apostropheMarker.cleanedText).not.toContain("Footer license");
+
+    const dualEndMarker = cleanGutenbergText(`
+Header
+*** START OF THIS PROJECT GUTENBERG EBOOK DUAL SAMPLE ***
+
+CHAPTER I
+
+The story ends before the marker.
+
+End of Project Gutenberg's Dual Sample, by Example Author
+
+*** END OF THE PROJECT GUTENBERG EBOOK DUAL SAMPLE ***
+Footer license
+`);
+
+    expect(dualEndMarker.report.headerStripped).toBe(true);
+    expect(dualEndMarker.report.footerStripped).toBe(true);
+    expect(dualEndMarker.cleanedText).toContain("The story ends before the marker.");
+    expect(dualEndMarker.cleanedText).not.toContain("End of Project Gutenberg");
+    expect(dualEndMarker.cleanedText).not.toContain("Footer license");
+
     const malformed = cleanGutenbergText(`
 *** END OF THE PROJECT GUTENBERG EBOOK BAD SAMPLE ***
 Header-ish text should stay because markers are reversed.
@@ -353,6 +391,59 @@ Header-ish text should stay because markers are reversed.
     expect(malformed.report.confidence).toBe("low");
     expect(malformed.report.warnings.join(" ")).toContain("out of order");
     expect(malformed.cleanedText).toContain("Header-ish text should stay");
+  });
+
+  test("strips trailing transcriber notes from cleaned book content", () => {
+    const result = cleanGutenbergText(`
+Header
+*** START OF THE PROJECT GUTENBERG EBOOK SAMPLE BOOK ***
+
+CHAPTER I
+
+The real chapter belongs in the book.
+
+CHAPTER II
+
+The second chapter belongs in the book too.
+
+Transcriber's notes:
+
+Page 12, punctuation was adjusted.
+
+*** END OF THE PROJECT GUTENBERG EBOOK SAMPLE BOOK ***
+Project Gutenberg license footer
+`);
+
+    expect(result.report.headerStripped).toBe(true);
+    expect(result.report.footerStripped).toBe(true);
+    expect(result.cleanedText).toContain("The real chapter belongs");
+    expect(result.cleanedText).toContain("The second chapter belongs");
+    expect(result.cleanedText).not.toContain("Transcriber's notes");
+    expect(result.cleanedText).not.toContain("punctuation was adjusted");
+  });
+
+  test("strips leading production credits from Morse source text", () => {
+    const result = cleanGutenbergText(`
+Header
+*** START OF THE PROJECT GUTENBERG EBOOK SAMPLE BOOK ***
+
+Produced by Example Volunteer
+
+SAMPLE BOOK
+
+CHAPTER I
+
+The actual story starts here.
+
+*** END OF THE PROJECT GUTENBERG EBOOK SAMPLE BOOK ***
+Project Gutenberg license footer
+`);
+
+    expect(result.report.headerStripped).toBe(true);
+    expect(result.report.footerStripped).toBe(true);
+    expect(result.cleanedText).toContain("SAMPLE BOOK");
+    expect(result.cleanedText).toContain("The actual story starts here.");
+    expect(result.cleanedText).not.toContain("Produced by");
   });
 
   test("preserves preface and table of contents without creating bogus chapter stubs", () => {

@@ -250,22 +250,6 @@ const MORE_GROUPS: NavGroup[] = [
     ],
   },
   {
-    title: "Books and audiobooks",
-    items: [
-      {
-        label: "Morse book library",
-        href: ROUTES.morseBooks,
-        description: "Browse processed text-first Morse book pages.",
-      },
-      {
-        label: "Morse audiobook library",
-        href: ROUTES.morseAudiobooks,
-        description: "Browse processed audio-first Morse book pages.",
-      },
-      ...PUBLIC_BOOK_ITEMS,
-    ],
-  },
-  {
     title: "About and trust",
     items: [
       {
@@ -283,6 +267,22 @@ const MORE_GROUPS: NavGroup[] = [
         href: ROUTES.sitemap,
         description: "See the public page index.",
       },
+    ],
+  },
+  {
+    title: "Books and audiobooks",
+    items: [
+      {
+        label: "Morse book library",
+        href: ROUTES.morseBooks,
+        description: "Browse processed text-first Morse book pages.",
+      },
+      {
+        label: "Morse audiobook library",
+        href: ROUTES.morseAudiobooks,
+        description: "Browse processed audio-first Morse book pages.",
+      },
+      ...PUBLIC_BOOK_ITEMS,
     ],
   },
 ];
@@ -598,59 +598,72 @@ export default function NavBar(props: {
                   <div className="mw-nav-menu-scroll max-h-[70vh] overflow-y-auto px-5 pb-5 pt-2">
                     {filteredMoreGroups.length > 0 ? (
                       <div className="grid gap-x-8 gap-y-6 lg:grid-cols-3 xl:grid-cols-5">
-                        {filteredMoreGroups.map((group) => (
-                          <section key={group.title}>
-                            <h2 className="mw-nav-muted font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-sky-200/70">
-                              {group.title}
-                            </h2>
-                            <div className="mt-2 grid gap-1.5">
-                              {group.items.map((item) => {
-                                const active = isActive(pathname, item.href);
+                        {filteredMoreGroups.map((group) => {
+                          const isBookGroup = group.title === "Books and audiobooks";
 
-                                return (
-                                  <a
-                                    key={item.href}
-                                    href={item.href}
-                                    className={
-                                      "group block cursor-pointer rounded-xl px-3 py-2.5 text-sm font-semibold transition " +
-                                      (active
-                                        ? "mw-nav-item-active bg-sky-100 text-slate-950"
-                                        : "mw-nav-item text-sky-100 hover:bg-neutral-800 hover:text-white")
-                                    }
-                                    aria-current={active ? "page" : undefined}
-                                    onClick={() => setMoreOpen(false)}
-                                  >
-                                    <span className="flex items-center justify-between gap-3">
-                                      <span>{item.label}</span>
-                                      <span
-                                        aria-hidden="true"
-                                        className={
-                                          active
-                                            ? "mw-nav-item-arrow text-slate-700"
-                                            : "mw-nav-item-arrow text-sky-200 opacity-0 group-hover:opacity-100"
-                                        }
-                                      >
-                                        -&gt;
+                          return (
+                            <section
+                              key={group.title}
+                              className={isBookGroup ? "xl:col-span-5" : undefined}
+                            >
+                              <h2 className="mw-nav-muted font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-sky-200/70">
+                                {group.title}
+                              </h2>
+                              <div
+                                className={
+                                  isBookGroup
+                                    ? "mt-2 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+                                    : "mt-2 grid gap-1.5"
+                                }
+                              >
+                                {group.items.map((item) => {
+                                  const active = isActive(pathname, item.href);
+
+                                  return (
+                                    <a
+                                      key={item.href}
+                                      href={item.href}
+                                      className={
+                                        "group block cursor-pointer rounded-xl px-3 py-2.5 text-sm font-semibold transition " +
+                                        (active
+                                          ? "mw-nav-item-active bg-sky-100 text-slate-950"
+                                          : "mw-nav-item text-sky-100 hover:bg-neutral-800 hover:text-white")
+                                      }
+                                      aria-current={active ? "page" : undefined}
+                                      onClick={() => setMoreOpen(false)}
+                                    >
+                                      <span className="flex items-center justify-between gap-3">
+                                        <span>{item.label}</span>
+                                        <span
+                                          aria-hidden="true"
+                                          className={
+                                            active
+                                              ? "mw-nav-item-arrow text-slate-700"
+                                              : "mw-nav-item-arrow text-sky-200 opacity-0 group-hover:opacity-100"
+                                          }
+                                        >
+                                          -&gt;
+                                        </span>
                                       </span>
-                                    </span>
-                                    {item.description ? (
-                                      <span
-                                        className={
-                                          "mt-1 block max-w-[34ch] text-xs leading-snug " +
-                                          (active
-                                            ? "mw-nav-item-description text-slate-700"
-                                            : "mw-nav-item-description text-sky-100/65")
-                                        }
-                                      >
-                                        {item.description}
-                                      </span>
-                                    ) : null}
-                                  </a>
-                                );
-                              })}
-                            </div>
-                          </section>
-                        ))}
+                                      {item.description ? (
+                                        <span
+                                          className={
+                                            "mt-1 block max-w-[34ch] text-xs leading-snug " +
+                                            (active
+                                              ? "mw-nav-item-description text-slate-700"
+                                              : "mw-nav-item-description text-sky-100/65")
+                                          }
+                                        >
+                                          {item.description}
+                                        </span>
+                                      ) : null}
+                                    </a>
+                                  );
+                                })}
+                              </div>
+                            </section>
+                          );
+                        })}
                       </div>
                     ) : (
                       <p className="mw-nav-item-description py-6 text-sm font-semibold text-sky-100/70">

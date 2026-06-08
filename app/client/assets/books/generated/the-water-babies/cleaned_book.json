@@ -3,8 +3,8 @@
   "id": "the-water-babies",
   "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
   "author": "Charles Kingsley",
-  "contentVersion": "112154ea2b7e2527",
-  "contentHash": "112154ea2b7e2527d2183832b0ad47fc60f800c9c0d75da7fa4a5dadb5d8a90f",
+  "contentVersion": "ab71066d5d14fff5",
+  "contentHash": "ab71066d5d14fff502c8c2b1195e28ebd679c4e2c6e2a527529076c1ba1f7150",
   "source": {
     "provider": "Project Gutenberg",
     "gutenbergId": "25564",
@@ -17,7 +17,7 @@
   "stats": {
     "wordCount": 68556,
     "characterCount": 366267,
-    "sectionCount": 11,
+    "sectionCount": 10,
     "estimatedTypingMinutes": 1718,
     "estimatedListeningMinutes": 2174
   },
@@ -1508,24 +1508,6 @@
       "characterCount": 101845,
       "estimatedTypingMinutes": 471,
       "estimatedListeningMinutes": 605
-    },
-    {
-      "id": "transcriber-note-001",
-      "kind": "transcriber-note",
-      "label": "Transcriber's Note",
-      "title": null,
-      "order": 11,
-      "includeByDefault": false,
-      "text": "Transcriber's Notes:\n\nObvious punctuation errors repaired.\n\nPage 6, \"piert\" was retained as a spelling for \"pert\".",
-      "paragraphs": [
-        "Transcriber's Notes:",
-        "Obvious punctuation errors repaired.",
-        "Page 6, \"piert\" was retained as a spelling for \"pert\"."
-      ],
-      "wordCount": 16,
-      "characterCount": 114,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1
     }
   ]
 }

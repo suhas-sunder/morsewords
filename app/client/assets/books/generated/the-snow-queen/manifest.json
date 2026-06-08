@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "bb763c8d0ed042e3",
-  "contentHash": "bb763c8d0ed042e3e7c0ff872f3cba9323cc5d1262298f2a76fef681f5b3ecdf",
+  "contentVersion": "4d3de7b45653d97f",
+  "contentHash": "4d3de7b45653d97ff7cc79d4bb274a989d223447ef95ce7316facd94cb57688f",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 83165,
-    "cleanedCharacterCount": 63875,
-    "wordCount": 11996,
+    "cleanedCharacterCount": 63769,
+    "wordCount": 11981,
     "sectionCount": 4,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29264,
-      "wordCount": 5517,
+      "characterCount": 29238,
+      "wordCount": 5513,
       "estimatedTypingMinutes": 138,
-      "estimatedListeningMinutes": 175,
-      "morseCharacterEstimate": 156676,
-      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, l..."
+      "estimatedListeningMinutes": 174,
+      "morseCharacterEstimate": 156547,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, let us begin. When we are..."
     },
     {
       "id": "part-002",
@@ -85,11 +85,11 @@
       "order": 3,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-003.json",
-      "characterCount": 4596,
-      "wordCount": 835,
+      "characterCount": 4454,
+      "wordCount": 813,
       "estimatedTypingMinutes": 21,
-      "estimatedListeningMinutes": 28,
-      "morseCharacterEstimate": 24661,
+      "estimatedListeningMinutes": 27,
+      "morseCharacterEstimate": 23888,
       "textPreview": "“The rose in the valley is blooming so sweet, And angels descend there the children to greet.” Hereupon Kay burst into tears; he wept so much that the splinter..."
     },
     {
@@ -100,17 +100,17 @@
       "order": 4,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-004.json",
-      "characterCount": 77,
-      "wordCount": 11,
+      "characterCount": 140,
+      "wordCount": 22,
       "estimatedTypingMinutes": 1,
       "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 418,
-      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      "morseCharacterEstimate": 766,
+      "textPreview": "There sat the two grown-up persons; grown-up, and yet children; children at least in heart; and it was summer-time; summer, glorious summer!"
     }
   ],
   "cleaning": {
     "originalCharacterCount": 83165,
-    "cleanedCharacterCount": 63875,
+    "cleanedCharacterCount": 63769,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

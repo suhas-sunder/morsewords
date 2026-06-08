@@ -7,20 +7,22 @@
   "title": null,
   "order": 9,
   "includeByDefault": false,
-  "displayText": "Page 154, \"he\" changed to \"she\" (that she coughed)",
-  "morseSourceText": "Page 154, \"he\" changed to \"she\" (that she coughed)",
+  "displayText": "*       *       *       *       *",
+  "morseSourceText": "*       *       *       *       *",
   "paragraphs": [
-    "Page 154, \"he\" changed to \"she\" (that she coughed)"
+    "*       *       *       *       *"
   ],
-  "wordCount": 9,
-  "characterCount": 50,
+  "wordCount": 0,
+  "characterCount": 33,
   "estimatedTypingMinutes": 1,
   "estimatedListeningMinutes": 1,
-  "morseCharacterEstimate": 294,
-  "unsupportedCharacterSummary": {},
-  "textPreview": "Page 154, \"he\" changed to \"she\" (that she coughed)",
+  "morseCharacterEstimate": 0,
+  "unsupportedCharacterSummary": {
+    "*": 5
+  },
+  "textPreview": "* * * * *",
   "sourceOffsets": {
-    "start": 227695,
-    "end": 227745
+    "start": 227419,
+    "end": 227459
   }
 }

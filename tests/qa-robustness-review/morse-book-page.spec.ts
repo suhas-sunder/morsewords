@@ -715,7 +715,9 @@ test.describe("Morse book page foundation", () => {
 
     await page.getByRole("button", { name: "Video" }).click();
     await expect(page.locator("[data-testid='book-video-preview-lightbulb']")).toBeVisible();
-    await expect(page.locator("[data-testid='book-video-preview-morse-overlay']")).toBeVisible();
+    const morseOverlay = page.locator("[data-testid='book-video-preview-morse-overlay']");
+    await expect(morseOverlay).toBeVisible();
+    await expect(morseOverlay).toContainText("/");
     await expect(page.locator("[data-testid='book-video-preview-text-overlay']")).toBeVisible();
 
     await page.getByRole("button", { name: "Play visual preview" }).click();

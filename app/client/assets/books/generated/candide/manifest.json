@@ -5,8 +5,8 @@
   "author": [
     "Voltaire"
   ],
-  "contentVersion": "5440813db5b21401",
-  "contentHash": "5440813db5b21401e84594bbd38d6d7a5e2ee00edf4def1093ea724363dab7bd",
+  "contentVersion": "7e16293d9d2e0e2f",
+  "contentHash": "7e16293d9d2e0e2fdecf888f873fc3eda92bd4675d761767065a4ef1921c6f81",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 224766,
-    "cleanedCharacterCount": 205516,
-    "wordCount": 35911,
+    "cleanedCharacterCount": 205459,
+    "wordCount": 35900,
     "sectionCount": 8,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29800,
-      "wordCount": 4848,
-      "estimatedTypingMinutes": 122,
-      "estimatedListeningMinutes": 168,
-      "morseCharacterEstimate": 150526,
-      "textPreview": "Produced by Chuck Greif, Fox in the Stars and the Online Distributed Proofreading Team at http://www.pgdp.net * * * * * +--------------------------------------..."
+      "characterCount": 29743,
+      "wordCount": 4837,
+      "estimatedTypingMinutes": 121,
+      "estimatedListeningMinutes": 167,
+      "morseCharacterEstimate": 150215,
+      "textPreview": "Distributed Proofreading Team at http://www.pgdp.net * * * * * +------------------------------------------------------------+ | Transcriber's Note: | | | | Obv..."
     },
     {
       "id": "part-002",
@@ -170,7 +170,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 224766,
-    "cleanedCharacterCount": 205516,
+    "cleanedCharacterCount": 205459,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

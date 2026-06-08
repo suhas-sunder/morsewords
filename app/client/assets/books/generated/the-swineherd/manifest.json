@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "42399664efc849a9",
-  "contentHash": "42399664efc849a9ca473a2d7c7acd7d1bde8daf7d0a56d18bfc77a0a83b317f",
+  "contentVersion": "bba920ce5e7f63db",
+  "contentHash": "bba920ce5e7f63dbfd0467efc7aa51a3366e8072aa10c4171e7a58029047f932",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 27624,
-    "cleanedCharacterCount": 8334,
-    "wordCount": 1510,
+    "cleanedCharacterCount": 8228,
+    "wordCount": 1495,
     "sectionCount": 2,
     "includedSectionCount": 0
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 8254,
-      "wordCount": 1499,
+      "characterCount": 8167,
+      "wordCount": 1486,
       "estimatedTypingMinutes": 38,
-      "estimatedListeningMinutes": 50,
-      "morseCharacterEstimate": 44376,
-      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very s..."
+      "estimatedListeningMinutes": 49,
+      "morseCharacterEstimate": 43949,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite la..."
     },
     {
       "id": "part-002",
@@ -70,17 +70,17 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 77,
-      "wordCount": 11,
+      "characterCount": 55,
+      "wordCount": 9,
       "estimatedTypingMinutes": 1,
       "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 418,
-      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      "morseCharacterEstimate": 291,
+      "textPreview": "“Ach! du lieber Augustin, Alles ist weg, weg, weg!”"
     }
   ],
   "cleaning": {
     "originalCharacterCount": 27624,
-    "cleanedCharacterCount": 8334,
+    "cleanedCharacterCount": 8228,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

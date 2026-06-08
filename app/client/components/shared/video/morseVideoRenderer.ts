@@ -18,6 +18,8 @@ import type {
   MorseVideoSettings,
 } from "./morseVideoTypes";
 
+const MORSE_DISPLAY_WORD_SEPARATOR = " / ";
+
 export type ResolvedMorseVideoBackgroundStyle =
   | "warm-morsewords"
   | "dark-morsewords";
@@ -716,7 +718,7 @@ function drawAnimatedMorseText(
   const textState = getMorseVideoFrameTextState(timeline, elapsedMs);
   const wordWindow = getMorseVideoFrameWordWindow(timeline, elapsedMs, 168);
   const symbols =
-    wordWindow.map((word) => word.morse).join("   ") ||
+    wordWindow.map((word) => word.morse).join(MORSE_DISPLAY_WORD_SEPARATOR) ||
     textState.morseText ||
     recentMorseSymbols(timeline, elapsedMs, 44);
   const maxWidth = frame.width * 0.84;
@@ -827,7 +829,9 @@ function drawTextDisplay(
   if (settings.showMorseSymbols) {
     rows.push({
       kind: "morse",
-      text: wordWindow.map((word) => word.morse).join("   ") || textState.morseText,
+      text:
+        wordWindow.map((word) => word.morse).join(MORSE_DISPLAY_WORD_SEPARATOR) ||
+        textState.morseText,
     });
   }
   if (settings.showPlainText) {
@@ -920,7 +924,7 @@ function drawCenteredWordWindow(
   normalFill: string,
   activeFill: string,
 ) {
-  const separator = kind === "morse" ? "   " : " ";
+  const separator = kind === "morse" ? MORSE_DISPLAY_WORD_SEPARATOR : " ";
   const parts = words.map((word) => ({
     active: word.active,
     text: kind === "morse" ? word.morse : word.text,

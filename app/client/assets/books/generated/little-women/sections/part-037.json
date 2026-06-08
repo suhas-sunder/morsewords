@@ -7,20 +7,20 @@
   "title": null,
   "order": 37,
   "includeByDefault": false,
-  "displayText": "The final page is a listing of eleven stories originally published in\nother volumes, such as Jo's Scrap-Bag, Lulu's Library, and A Garland for\nGirls. These works were subsequently published separately in small\nvolumes, generally less than 100 pages, in The Children's Friend Series.",
-  "morseSourceText": "The final page is a listing of eleven stories originally published in\nother volumes, such as Jo's Scrap-Bag, Lulu's Library, and A Garland for\nGirls. These works were subsequently published separately in small\nvolumes, generally less than 100 pages, in The Children's Friend Series.",
+  "displayText": "254 Washington St., Boston, Mass.",
+  "morseSourceText": "254 Washington St., Boston, Mass.",
   "paragraphs": [
-    "The final page is a listing of eleven stories originally published in other volumes, such as Jo's Scrap-Bag, Lulu's Library, and A Garland for Girls. These works were subsequently published separately in small volumes, generally less than 100 pages, in The Children's Friend Series."
+    "254 Washington St., Boston, Mass."
   ],
-  "wordCount": 44,
-  "characterCount": 282,
-  "estimatedTypingMinutes": 2,
-  "estimatedListeningMinutes": 2,
-  "morseCharacterEstimate": 1575,
+  "wordCount": 5,
+  "characterCount": 33,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 194,
   "unsupportedCharacterSummary": {},
-  "textPreview": "The final page is a listing of eleven stories originally published in other volumes, such as Jo's Scrap-Bag, Lulu's Library, and A Garland for Girls. These wor...",
+  "textPreview": "254 Washington St., Boston, Mass.",
   "sourceOffsets": {
-    "start": 1070503,
-    "end": 1070785
+    "start": 1058676,
+    "end": 1058709
   }
 }

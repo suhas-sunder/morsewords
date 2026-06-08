@@ -7,20 +7,20 @@
   "title": null,
   "order": 5,
   "includeByDefault": false,
-  "displayText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
-  "morseSourceText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "displayText": "And the organ pealed, and the children's voices in the choir sounded so\nsweet and soft! The clear sunshine streamed so warmly through the window\ninto the pew where Karen sat! Her heart was so full of sunshine, peace,\nand joy, that it broke. Her soul flew on the sunshine to God, and there\nno one asked after the RED SHOES.",
+  "morseSourceText": "And the organ pealed, and the children's voices in the choir sounded so\nsweet and soft! The clear sunshine streamed so warmly through the window\ninto the pew where Karen sat! Her heart was so full of sunshine, peace,\nand joy, that it broke. Her soul flew on the sunshine to God, and there\nno one asked after the RED SHOES.",
   "paragraphs": [
-    "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+    "And the organ pealed, and the children's voices in the choir sounded so sweet and soft! The clear sunshine streamed so warmly through the window into the pew where Karen sat! Her heart was so full of sunshine, peace, and joy, that it broke. Her soul flew on the sunshine to God, and there no one asked after the RED SHOES."
   ],
-  "wordCount": 11,
-  "characterCount": 77,
-  "estimatedTypingMinutes": 1,
-  "estimatedListeningMinutes": 1,
-  "morseCharacterEstimate": 418,
+  "wordCount": 61,
+  "characterCount": 322,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1716,
   "unsupportedCharacterSummary": {},
-  "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "textPreview": "And the organ pealed, and the children's voices in the choir sounded so sweet and soft! The clear sunshine streamed so warmly through the window into the pew w...",
   "sourceOffsets": {
-    "start": 95922,
-    "end": 95999
+    "start": 95571,
+    "end": 95893
   }
 }

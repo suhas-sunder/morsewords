@@ -42,62 +42,74 @@ const homeRelatedToolsStyles = `
   }
 `;
 
-const ecosystemLinks = [
-  {
-    title: "Translate text and Morse",
-    description:
-      "Convert plain text to Morse or decode pasted dots and dashes in the hero workspace.",
-    href: ROUTES.home,
-  },
-  {
-    title: "Listen to Morse audio",
-    description:
-      "Play Morse in the browser with tone, speed, and Farnsworth controls.",
-    href: ROUTES.audio,
-  },
-  {
-    title: "Generate MP3 audio",
-    description:
-      "Turn short messages or longer source text into downloadable Morse MP3 files.",
-    href: ROUTES.mp3Generator,
-  },
-  {
-    title: "Create Morse videos",
-    description:
-      "Build simple text-to-Morse video clips with visual and audio timing controls.",
-    href: ROUTES.videoGenerator,
-  },
-  {
-    title: "Practice Morse code",
-    description:
-      "Use listening, typing, word, visual, and speed drills for short study sessions.",
-    href: ROUTES.practice,
-  },
-  {
-    title: "Browse Morse books",
-    description:
-      "Read processed public book texts as Morse-ready chapter sources.",
-    href: ROUTES.morseBooks,
-  },
-  {
-    title: "Listen to Morse audiobooks",
-    description:
-      "Open processed books in an audio-first Morse workflow with chapter selection.",
-    href: ROUTES.morseAudiobooks,
-  },
-  {
-    title: "Print Morse pages",
-    description:
-      "Create printable study sheets from custom text or processed book chapters.",
-    href: ROUTES.printablePages,
-  },
-] as const;
-
 const trustPoints = [
   "Core translator, audio, video, practice, and printable tools run in the browser where those workflows apply.",
   "User-entered messages, worksheet text, and custom study text are not needed for public page rendering.",
   "Processed book pages use cleaned public reference material; Project Gutenberg links appear where relevant.",
   "The same Morse utilities support translation, listening, printing, and study flows across the site.",
+] as const;
+
+const offeringSections = [
+  {
+    title: "Translator and conversion tools",
+    description:
+      "Use the main translator for quick text and Morse conversion, then move into encoder, decoder, separator, and copy-ready formatting tools when you need more control.",
+    links: [
+      { href: ROUTES.encoder, label: "Encoder" },
+      { href: ROUTES.decoder, label: "Decoder" },
+      { href: ROUTES.wordSeparator, label: "Word separator" },
+    ],
+  },
+  {
+    title: "Audio and MP3",
+    description:
+      "Listen to Morse with tone, speed, and Farnsworth settings, or generate downloadable MP3/WAV audio from messages and longer source text.",
+    links: [
+      { href: ROUTES.audio, label: "Audio tool" },
+      { href: ROUTES.mp3Generator, label: "MP3 generator" },
+      { href: ROUTES.soundGenerator, label: "Sound generator" },
+    ],
+  },
+  {
+    title: "Practice and drills",
+    description:
+      "Build recall with listening, visual, word, sentence, typing, and timed practice flows designed for short repeatable study sessions.",
+    links: [
+      { href: ROUTES.practice, label: "Practice hub" },
+      { href: ROUTES.wordTrainer, label: "Word trainer" },
+      { href: ROUTES.audioPractice, label: "Audio practice" },
+    ],
+  },
+  {
+    title: "Reference and lookup",
+    description:
+      "Check alphabets, numbers, punctuation, prosigns, Q-codes, dictionary entries, and language-specific Morse adaptations when you need a reliable pattern.",
+    links: [
+      { href: ROUTES.alphabet, label: "Alphabet" },
+      { href: ROUTES.dictionary, label: "Dictionary" },
+      { href: ROUTES.morseCodeByLanguage, label: "By language" },
+    ],
+  },
+  {
+    title: "Books and audiobooks",
+    description:
+      "Open processed public books as text-first Morse sources, audio-first audiobook workflows, or chapter-based study material.",
+    links: [
+      { href: ROUTES.morseBooks, label: "Books" },
+      { href: ROUTES.morseAudiobooks, label: "Audiobooks" },
+      { href: ROUTES.bookTranslator, label: "Book translator" },
+    ],
+  },
+  {
+    title: "Printables and word search",
+    description:
+      "Create printable Morse pages, printable reference charts, and word-search style learning materials for paper practice or saved PDFs.",
+    links: [
+      { href: ROUTES.printablePages, label: "Printable pages" },
+      { href: ROUTES.printableChart, label: "Printable chart" },
+      { href: ROUTES.wordSearchBuilder, label: "Word search" },
+    ],
+  },
 ] as const;
 
 function formatAuthor(author: string[]) {
@@ -119,45 +131,53 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-function EcosystemSection() {
+function OfferingsSection() {
   return (
     <section
-      className="mx-auto mt-8 w-full max-w-[1120px] px-4 sm:px-6 lg:px-8"
-      aria-labelledby="morsewords-ecosystem-title"
+      className="mx-auto mt-10 w-full max-w-[1120px] px-4 sm:px-6 lg:px-8"
+      aria-labelledby="morsewords-offerings-title"
     >
-      <div className="grid gap-7 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-start">
+      <div className="grid gap-7 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-start">
         <div>
-          <SectionEyebrow>Start anywhere</SectionEyebrow>
+          <SectionEyebrow>Site toolkit</SectionEyebrow>
           <h2
-            id="morsewords-ecosystem-title"
+            id="morsewords-offerings-title"
             className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
           >
-            What you can do on MorseWords
+            One Morse workspace for reading, listening, practice, and study
           </h2>
           <p className="mw-text-muted mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-            Translate a phrase, hear its rhythm, turn it into audio or video,
-            practice recall, read public-domain books in Morse, and print clean
-            study pages from the same toolkit.
+            MorseWords is built around the flow learners actually use: translate
+            a message, hear the rhythm, check the reference, practice weak
+            spots, and turn useful material into audio, video, or printable
+            pages.
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          {ecosystemLinks.map((item) => (
-            <Link
-              key={item.href}
-              to={item.href}
-              className="mw-related-tool-link mw-button-secondary-dark-hover group block rounded-xl bg-[#fffdf8] p-4 text-slate-900 hover:bg-slate-950 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {offeringSections.map((section) => (
+            <article
+              key={section.title}
+              className="mw-surface-card rounded-xl bg-[#fffdf8]/86 p-4"
             >
-              <span className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 group-hover:text-sky-200">
-                Open tool
-              </span>
-              <span className="mw-heading mt-2 block text-base font-extrabold text-sky-950 group-hover:text-sky-100">
-                {item.title}
-              </span>
-              <span className="mw-text-muted mt-2 block text-sm leading-relaxed text-slate-700 group-hover:text-slate-200">
-                {item.description}
-              </span>
-            </Link>
+              <h3 className="mw-heading text-base font-extrabold leading-snug text-sky-950">
+                {section.title}
+              </h3>
+              <p className="mw-text-muted mt-2 text-sm leading-relaxed text-slate-700">
+                {section.description}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm font-semibold">
+                {section.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="text-sky-900 underline-offset-4 hover:underline"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -433,7 +453,7 @@ export default function Home() {
         />
       </div>
 
-      <EcosystemSection />
+      <OfferingsSection />
       <FeaturedBooksSection />
       <PrintableAndTrustSection />
       <HowItWorks />

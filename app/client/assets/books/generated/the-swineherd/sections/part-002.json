@@ -7,20 +7,20 @@
   "title": null,
   "order": 2,
   "includeByDefault": false,
-  "displayText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
-  "morseSourceText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "displayText": "“Ach! du lieber Augustin,\n    Alles ist weg, weg, weg!”",
+  "morseSourceText": "“Ach! du lieber Augustin,\n    Alles ist weg, weg, weg!”",
   "paragraphs": [
-    "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+    "“Ach! du lieber Augustin, Alles ist weg, weg, weg!”"
   ],
-  "wordCount": 11,
-  "characterCount": 77,
+  "wordCount": 9,
+  "characterCount": 55,
   "estimatedTypingMinutes": 1,
   "estimatedListeningMinutes": 1,
-  "morseCharacterEstimate": 418,
+  "morseCharacterEstimate": 291,
   "unsupportedCharacterSummary": {},
-  "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+  "textPreview": "“Ach! du lieber Augustin, Alles ist weg, weg, weg!”",
   "sourceOffsets": {
-    "start": 8257,
-    "end": 8334
+    "start": 8169,
+    "end": 8228
   }
 }
