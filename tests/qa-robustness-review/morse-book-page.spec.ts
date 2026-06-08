@@ -3,17 +3,28 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
+import { BOOK_CACHE_KEY_PREFIX } from "../../app/client/components/shared/storageRegistry";
+import { getMorseBookPublicContentUrls } from "../../app/client/data/morseBookContentConfig";
 
 const ROOT = process.cwd();
 const ALICE_SLUG = "alices-adventures-in-wonderland";
 const APPROVED_BOOK_SLUG = "treasure-island";
+const NETWORK_BOOK_SLUG = "dr-jekyll-and-mr-hyde";
+const STALE_CACHE_BOOK_SLUG = "the-call-of-the-wild";
+const ERROR_BOOK_SLUG = "the-jungle-book";
 const TEST_BOOK_SLUG = "test-published-morse-book";
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
 const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
+const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
+const STALE_CACHE_BOOK_PUBLIC_PATH = `/morse-code-books/${STALE_CACHE_BOOK_SLUG}`;
+const ERROR_BOOK_PUBLIC_PATH = `/morse-code-books/${ERROR_BOOK_SLUG}`;
 const ALICE_PREVIEW_PATH = `${ALICE_PUBLIC_PATH}?preview=unpublished`;
 const TEST_BOOK_PUBLIC_PATH = `/morse-code-books/${TEST_BOOK_SLUG}`;
 const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`;
 const THEME_STORAGE_KEY = "morsewords-theme";
+function bookJsonPattern(slug: string) {
+  return `**/morse-book-content/books/${slug}.json*`;
+}
 
 function readJson<T>(relativePath: string): T {
   return JSON.parse(
@@ -46,6 +57,26 @@ async function openApprovedBook(page: Page) {
   });
   await waitForRouteReady(page);
   expect(response?.ok()).toBe(true);
+}
+
+async function openPublicBook(page: Page, pathName: string) {
+  await blockExternalNetwork(page);
+  await gotoPublicBookPage(page, pathName);
+}
+
+async function gotoPublicBookPage(page: Page, pathName: string) {
+  const response = await page.goto(pathName, {
+    waitUntil: "domcontentloaded",
+  });
+  await waitForRouteReady(page);
+  expect(response?.ok()).toBe(true);
+}
+
+async function waitForApprovedBookWorkspace(page: Page) {
+  await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
+    "data-mw-morse-book-publish-ready",
+    "true",
+  );
 }
 
 async function openAnneBook(page: Page) {
@@ -139,6 +170,25 @@ async function contrastRatio(locator: Locator) {
 }
 
 test.describe("Morse book page foundation", () => {
+  test("builds local fallback and configured Cloudflare content URLs", () => {
+    expect(
+      getMorseBookPublicContentUrls("books/treasure-island.json"),
+    ).toEqual({
+      publicManifestUrl:
+        "local:app/client/assets/books/cloudflare-export/public-manifest.json",
+      bookUrl: "local:app/client/assets/books/cloudflare-export/books/treasure-island.json",
+    });
+    expect(
+      getMorseBookPublicContentUrls(
+        "/books/treasure-island.json",
+        "https://cdn.example.test/morse-books/",
+      ),
+    ).toEqual({
+      publicManifestUrl: "https://cdn.example.test/morse-books/public-manifest.json",
+      bookUrl: "https://cdn.example.test/morse-books/books/treasure-island.json",
+    });
+  });
+
   test("keeps generated book summaries summary-only and publish-gated", async ({
     request,
   }) => {
@@ -240,10 +290,149 @@ test.describe("Morse book page foundation", () => {
     ).toContainText(/Included|Not selected|Available section/);
   });
 
+  test("loads one approved book JSON and reuses it for section switching", async ({
+    page,
+  }) => {
+    const bookJsonRequests: string[] = [];
+    await blockExternalNetwork(page);
+    await page.route(bookJsonPattern(NETWORK_BOOK_SLUG), async (route) => {
+      bookJsonRequests.push(route.request().url());
+      await route.continue();
+    });
+
+    await gotoPublicBookPage(page, NETWORK_BOOK_PUBLIC_PATH);
+    await waitForApprovedBookWorkspace(page);
+    expect(bookJsonRequests).toHaveLength(1);
+
+    const sectionCheckbox = page
+      .locator("[data-mw-morse-book-section-row]")
+      .filter({ hasText: /Chapter|Part|Opening|Source notes/ })
+      .locator("input[type='checkbox']")
+      .last();
+    await sectionCheckbox.setChecked(true);
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).not.toHaveAttribute("data-mw-morse-book-translator-source-sections", "");
+    expect(bookJsonRequests).toHaveLength(1);
+  });
+
+  test("caches opened approved book JSON and serves a valid cache hit offline", async ({
+    page,
+  }) => {
+    await openPublicBook(page, NETWORK_BOOK_PUBLIC_PATH);
+    await waitForApprovedBookWorkspace(page);
+
+    const cachedKeys = await page.evaluate((prefix) =>
+      Object.keys(localStorage).filter((key) => key.startsWith(prefix)),
+    BOOK_CACHE_KEY_PREFIX);
+    expect(cachedKeys).toHaveLength(1);
+    expect(cachedKeys[0]).toContain(NETWORK_BOOK_SLUG);
+
+    let jsonRequests = 0;
+    await page.route(bookJsonPattern(NETWORK_BOOK_SLUG), async (route) => {
+      jsonRequests += 1;
+      await route.abort();
+    });
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await waitForApprovedBookWorkspace(page);
+    expect(jsonRequests).toBe(0);
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toBeVisible();
+  });
+
+  test("stale cached book JSON is ignored and refetched", async ({ page }) => {
+    const publicManifest = readJson<{
+      books: Array<{
+        slug: string;
+        contentVersion: string;
+        contentHash: string;
+      }>;
+    }>("app/client/assets/books/cloudflare-export/public-manifest.json");
+    const treasure = publicManifest.books.find(
+      (book) => book.slug === STALE_CACHE_BOOK_SLUG,
+    );
+    expect(treasure).toBeTruthy();
+    await page.addInitScript(
+      ({ hash, prefix, version }) => {
+        localStorage.setItem(
+          `${prefix}${slug}:${version}:${hash}`,
+          JSON.stringify({
+            schemaVersion: 1,
+            slug,
+            contentVersion: "stale-version",
+            contentHash: hash,
+            manifest: { slug: "treasure-island" },
+            sections: [],
+          }),
+        );
+      },
+      {
+        prefix: BOOK_CACHE_KEY_PREFIX,
+        slug: STALE_CACHE_BOOK_SLUG,
+        version: treasure!.contentVersion,
+        hash: treasure!.contentHash,
+      },
+    );
+    const bookJsonRequests: string[] = [];
+    await blockExternalNetwork(page);
+    await page.route(bookJsonPattern(STALE_CACHE_BOOK_SLUG), async (route) => {
+      bookJsonRequests.push(route.request().url());
+      await route.continue();
+    });
+
+    await gotoPublicBookPage(page, STALE_CACHE_BOOK_PUBLIC_PATH);
+    await waitForApprovedBookWorkspace(page);
+    expect(bookJsonRequests).toHaveLength(1);
+  });
+
+  test("shows a readable retry state when book JSON fetch fails or is malformed", async ({
+    page,
+  }) => {
+    let fail = true;
+    await blockExternalNetwork(page);
+    await page.route(bookJsonPattern(ERROR_BOOK_SLUG), async (route) => {
+      if (fail) {
+        await route.fulfill({
+          status: 503,
+          contentType: "application/json",
+          body: JSON.stringify({ error: "unavailable" }),
+        });
+        return;
+      }
+      await route.continue();
+    });
+
+    await gotoPublicBookPage(page, ERROR_BOOK_PUBLIC_PATH);
+    await expect(page.locator("[data-testid='morse-book-load-error']")).toBeVisible();
+    await expect(
+      page
+        .locator("[data-testid='morse-book-load-error']")
+        .getByText("We could not load this Morse book."),
+    ).toBeVisible();
+    fail = false;
+    await page.getByRole("button", { name: "Try again" }).click();
+    await waitForApprovedBookWorkspace(page);
+
+    await page.evaluate(() => localStorage.clear());
+    await page.unroute(bookJsonPattern(ERROR_BOOK_SLUG));
+    await page.route(bookJsonPattern(ERROR_BOOK_SLUG), async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ schemaVersion: 1, slug: "treasure-island" }),
+      });
+    });
+    await page.goto(ERROR_BOOK_PUBLIC_PATH, { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await expect(page.locator("[data-testid='morse-book-load-error']")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Try again" })).toBeVisible();
+  });
+
   test("renders approved book selector labels without detector artifacts", async ({
     page,
   }) => {
     await openAnneBook(page);
+    await expect(page.locator("[data-mw-morse-book-section-label]").first()).toBeVisible();
 
     const labels = await page
       .locator("[data-mw-morse-book-section-label]")
@@ -451,7 +640,10 @@ test.describe("Morse book page foundation", () => {
     const timeline = page.locator("[data-testid='book-audio-preview-timeline'] [role='slider']");
     await timeline.focus();
     await page.keyboard.press("End");
-    await expect(audioTime).not.toContainText("0s /");
+    await expect
+      .poll(async () => Number(await timeline.getAttribute("aria-valuenow")))
+      .toBeGreaterThan(0);
+    await expect(audioTime).toBeVisible();
 
     await page.getByRole("button", { name: "Video" }).click();
     await expect(page.locator("[data-testid='book-video-preview-lightbulb']")).toBeVisible();

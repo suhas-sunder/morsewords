@@ -3560,6 +3560,57 @@ Project Gutenberg License
     );
   });
 
+  test("committed Cloudflare export is approved-only and one JSON per book", () => {
+    const publicManifest = readJsonFile<{
+      books: Array<{
+        slug: string;
+        bookPath: string;
+        source: {
+          publishReady: boolean;
+          processingAllowed: boolean;
+          rightsStatus: string;
+        };
+      }>;
+    }>(
+      path.join(
+        ROOT,
+        "app/client/assets/books/cloudflare-export/public-manifest.json",
+      ),
+    );
+    const bookDir = path.join(
+      ROOT,
+      "app/client/assets/books/cloudflare-export/books",
+    );
+    const bookFiles = fs
+      .readdirSync(bookDir, { withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name)
+      .sort();
+
+    expect(publicManifest.books).toHaveLength(16);
+    expect(
+      publicManifest.books.every(
+        (book) =>
+          book.source.publishReady &&
+          book.source.processingAllowed &&
+          book.source.rightsStatus === "approved",
+      ),
+    ).toBe(true);
+    expect(bookFiles).toEqual(
+      publicManifest.books
+        .map((book) => book.bookPath.replace(/^books\//, ""))
+        .sort(),
+    );
+    expect(
+      fs
+        .readdirSync(bookDir, { withFileTypes: true })
+        .some((entry) => entry.isDirectory()),
+    ).toBe(false);
+    expect(JSON.stringify(publicManifest)).not.toContain(
+      "alices-adventures-in-wonderland",
+    );
+  });
+
   test("committed Alice pilot artifact has publish flags and chapter sections", () => {
     const libraryManifestPath = path.join(
       ROOT,

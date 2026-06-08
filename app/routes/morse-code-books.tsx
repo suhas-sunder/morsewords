@@ -17,7 +17,7 @@ import {
   TEST_PUBLISHED_BOOK_PREVIEW_VALUE,
   TEST_PUBLISHED_BOOK_SLUG,
   UNPUBLISHED_BOOK_PREVIEW_PARAM,
-  getPublishedMorseBookSummaries,
+  getPublishedMorseBookSummariesRuntime,
   morseBookPath,
 } from "~/client/data/morseBooks";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
@@ -329,11 +329,11 @@ function publicBookHref(book: MorseBookLibrarySummary, includeTestFixture: boole
   return path;
 }
 
-export function loader({ request }: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const includeTestFixture = isTestPublishedPreviewRequest(request);
   const includeTestCollectionFixture = isTestCollectionPreviewRequest(request);
   return {
-    books: getPublishedMorseBookSummaries({
+    books: await getPublishedMorseBookSummariesRuntime({
       includeTestFixture,
       includeTestCollectionFixture,
     }),

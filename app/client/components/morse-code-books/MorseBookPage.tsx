@@ -87,10 +87,13 @@ import {
   type BookVideoSupport,
 } from "~/client/components/morse-code-book-translator/bookVideoSupport";
 import {
+  getDefaultMorseBookSectionId,
+  getMorseBookPublicContent,
   getMorseBookSections,
   isMorseBookPublishReady,
 } from "~/client/data/morseBooks";
 import type {
+  MorseBookLibrarySummary,
   MorseBookManifest,
   MorseBookSectionKind,
   MorseBookSectionJson,
@@ -138,10 +141,25 @@ type DownloadStatus =
   | { kind: "error"; message: string };
 
 type MorseBookPageProps = {
-  book: MorseBookManifest;
-  initialSection: MorseBookSectionJson;
+  book: MorseBookManifest | null;
+  bookSummary: MorseBookLibrarySummary | null;
+  initialSection: MorseBookSectionJson | null;
   previewMode: "unpublished" | "test-published" | null;
 };
+
+type MorseBookRuntimeState =
+  | {
+      book: MorseBookManifest;
+      initialSection: MorseBookSectionJson;
+      status: "ready";
+      message: "";
+    }
+  | {
+      book: null;
+      initialSection: null;
+      status: "loading" | "error";
+      message: string;
+    };
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("en-US").format(value);
@@ -366,9 +384,196 @@ function getSelectedPartSummary(parts: BookExportPart[]) {
 
 export default function MorseBookPage({
   book,
+  bookSummary,
   initialSection,
   previewMode,
 }: MorseBookPageProps) {
+  const initialRuntimeState = React.useMemo<MorseBookRuntimeState>(() => {
+    if (book && initialSection) {
+      return {
+        book,
+        initialSection,
+        status: "ready",
+        message: "",
+      };
+    }
+    return {
+      book: null,
+      initialSection: null,
+      status: "loading",
+      message: "",
+    };
+  }, [book, initialSection]);
+  const [runtimeState, setRuntimeState] =
+    React.useState<MorseBookRuntimeState>(initialRuntimeState);
+  const [retryKey, setRetryKey] = React.useState(0);
+
+  React.useEffect(() => {
+    if (book && initialSection) {
+      setRuntimeState({
+        book,
+        initialSection,
+        status: "ready",
+        message: "",
+      });
+      return;
+    }
+    if (!bookSummary) {
+      setRuntimeState({
+        book: null,
+        initialSection: null,
+        status: "error",
+        message: "This Morse book could not be found.",
+      });
+      return;
+    }
+
+    let cancelled = false;
+    setRuntimeState({
+      book: null,
+      initialSection: null,
+      status: "loading",
+      message: "",
+    });
+    getMorseBookPublicContent(bookSummary.slug)
+      .then((content) => {
+        if (cancelled) return;
+        if (!content) {
+          setRuntimeState({
+            book: null,
+            initialSection: null,
+            status: "error",
+            message: "This Morse book is not available right now.",
+          });
+          return;
+        }
+        const sectionId = getDefaultMorseBookSectionId(content.manifest);
+        const firstSection =
+          content.sections.find((section) => section.sectionId === sectionId) ??
+          content.sections[0] ??
+          null;
+        if (!sectionId || !firstSection) {
+          setRuntimeState({
+            book: null,
+            initialSection: null,
+            status: "error",
+            message: "This Morse book is missing readable sections.",
+          });
+          return;
+        }
+        setRuntimeState({
+          book: content.manifest,
+          initialSection: firstSection,
+          status: "ready",
+          message: "",
+        });
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setRuntimeState({
+          book: null,
+          initialSection: null,
+          status: "error",
+          message:
+            "We could not load this Morse book. Check your connection and try again.",
+        });
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [book, bookSummary, initialSection, retryKey]);
+
+  if (runtimeState.status !== "ready") {
+    return (
+      <MorseBookRuntimeState
+        message={runtimeState.message}
+        status={runtimeState.status}
+        summary={bookSummary}
+        onRetry={() => setRetryKey((value) => value + 1)}
+      />
+    );
+  }
+
+  return (
+    <MorseBookWorkspace
+      book={runtimeState.book}
+      initialSection={runtimeState.initialSection}
+      previewMode={previewMode}
+    />
+  );
+}
+
+function MorseBookRuntimeState({
+  message,
+  onRetry,
+  status,
+  summary,
+}: {
+  message: string;
+  onRetry: () => void;
+  status: "loading" | "error";
+  summary: MorseBookLibrarySummary | null;
+}) {
+  const title = summary?.title ?? "Morse book";
+  return (
+    <main className="mx-auto w-full max-w-[1120px] px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+      <ToolHero
+        eyebrow="Morse book"
+        title={title}
+        lead={
+          status === "loading"
+            ? "Loading the cleaned book text for this Morse practice page."
+            : message
+        }
+      />
+      <section
+        className="mw-static-surface mt-6 rounded-xl p-5"
+        aria-live="polite"
+        data-testid={
+          status === "loading" ? "morse-book-loading" : "morse-book-load-error"
+        }
+      >
+        <h2 className="mw-heading text-2xl font-extrabold text-sky-950">
+          {status === "loading" ? "Loading book text" : "Book text unavailable"}
+        </h2>
+        <p className="mt-3 max-w-[58ch] text-base leading-relaxed text-slate-700">
+          {status === "loading"
+            ? "The book page will open as soon as the approved text file is ready."
+            : message}
+        </p>
+        {status === "error" ? (
+          <div className="mt-4 flex flex-wrap gap-2">
+            <ToolButton
+              type="button"
+              tone="dark"
+              className="rounded-xl"
+              onClick={onRetry}
+            >
+              Try again
+            </ToolButton>
+            <Link
+              to={ROUTES.morseBooks}
+              className={toolControlButtonClass({ rounded: "xl" })}
+            >
+              Back to books
+            </Link>
+          </div>
+        ) : null}
+      </section>
+    </main>
+  );
+}
+
+function MorseBookWorkspace({
+  book,
+  initialSection,
+  previewMode,
+}: {
+  book: MorseBookManifest;
+  initialSection: MorseBookSectionJson;
+  previewMode: "unpublished" | "test-published" | null;
+}) {
   const themeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(themeMode);

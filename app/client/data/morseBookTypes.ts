@@ -119,6 +119,40 @@ export type MorseBookLibraryManifest = {
   books: MorseBookLibrarySummary[];
 };
 
+export type MorseBookPublicSummary = Pick<
+  MorseBookLibrarySummary,
+  | "slug"
+  | "title"
+  | "author"
+  | "language"
+  | "description"
+  | "subjects"
+  | "stats"
+  | "contentVersion"
+  | "contentHash"
+> & {
+  source: Pick<
+    MorseBookSourceSummary,
+    | "provider"
+    | "gutenbergId"
+    | "sourceUrl"
+    | "rightsBasis"
+    | "rightsStatus"
+    | "publishReady"
+    | "processingAllowed"
+    | "approvalSource"
+    | "duplicateResolutionSource"
+  >;
+  bookPath: string;
+};
+
+export type MorseBookPublicManifest = {
+  schemaVersion: 1;
+  contentVersion: string;
+  contentHash: string;
+  books: MorseBookPublicSummary[];
+};
+
 export type MorseBookManifest = Omit<
   MorseBookLibrarySummary,
   "manifestPath"
@@ -159,4 +193,13 @@ export type MorseBookSectionJson = {
     start: number;
     end: number;
   };
+};
+
+export type MorseBookPublicContentJson = {
+  schemaVersion: 1;
+  slug: string;
+  contentVersion: string;
+  contentHash: string;
+  manifest: MorseBookManifest;
+  sections: MorseBookSectionJson[];
 };

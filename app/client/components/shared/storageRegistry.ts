@@ -53,6 +53,8 @@ export const STORAGE_LIMITS = {
   filenameMaxLength: 120,
   printableChartJsonMaxLength: 90_000,
   preferenceJsonMaxLength: 24_000,
+  bookCacheItemMaxLength: 2_200_000,
+  bookCacheIndexMaxLength: 24_000,
   bookSectionCacheItemMaxLength: 160_000,
   bookSectionCacheIndexMaxLength: 36_000,
 } as const;
@@ -66,9 +68,11 @@ export const STORAGE_KEYS = {
   videoGeneratorPreferences: "morsewords:video-generator:preferences:v1",
   printableChartSettings: "morsewords-printable-chart-settings-v6",
   printableChartPresets: "morsewords-printable-chart-presets-v3",
+  bookCacheIndex: "morsewords:book-cache:index:v1",
   bookSectionCacheIndex: "morsewords:book-section-cache:index:v1",
 } as const;
 
+export const BOOK_CACHE_KEY_PREFIX = "morsewords:book-cache:item:v1:";
 export const BOOK_SECTION_CACHE_KEY_PREFIX =
   "morsewords:book-section-cache:item:v1:";
 
@@ -671,6 +675,22 @@ export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
     maxLength: STORAGE_LIMITS.preferenceJsonMaxLength,
     notes: "Stores video/audio preferences only. Raw source text and generated WebM blobs are not persisted.",
     normalizeForWrite: normalizeJsonObjectMax(STORAGE_LIMITS.preferenceJsonMaxLength),
+  },
+  {
+    key: STORAGE_KEYS.bookCacheIndex,
+    routeScope: "approved Morse book JSON cache index",
+    valueType: "json-object",
+    defaultValue: "empty approved book cache index",
+    validatorName: "bookCacheIndexObject",
+    validate: validateJsonObjectMax(STORAGE_LIMITS.bookCacheIndexMaxLength),
+    sensitivity: "cache",
+    clearBehaviors: ["clear source data", "clear all site data"],
+    versionStrategy:
+      "versioned key plus whole-book cache keys containing slug, content version, and content hash",
+    maxLength: STORAGE_LIMITS.bookCacheIndexMaxLength,
+    notes:
+      "Tracks approved cleaned whole-book JSON only. Raw source text and generated media are not cached.",
+    normalizeForWrite: normalizeJsonObjectMax(STORAGE_LIMITS.bookCacheIndexMaxLength),
   },
   {
     key: STORAGE_KEYS.bookSectionCacheIndex,

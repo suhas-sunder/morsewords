@@ -1,4 +1,5 @@
 import {
+  BOOK_CACHE_KEY_PREFIX,
   BOOK_SECTION_CACHE_KEY_PREFIX,
   STORAGE_KEYS,
   getStorageKeysForClearBehavior,
@@ -133,6 +134,10 @@ export function clearMorseWordsStorageByBehavior(
     behavior === "clear source data" || behavior === "clear all site data"
       ? getDynamicBookSectionCacheKeys()
       : [];
+  const dynamicBookCacheKeys =
+    behavior === "clear source data" || behavior === "clear all site data"
+      ? getDynamicBookCacheKeys()
+      : [];
 
   for (const key of getStorageKeysForClearBehavior(behavior)) {
     if (safeRemoveStorage(key)) {
@@ -143,6 +148,13 @@ export function clearMorseWordsStorageByBehavior(
   }
 
   if (behavior === "clear source data" || behavior === "clear all site data") {
+    for (const key of dynamicBookCacheKeys) {
+      if (safeRemoveStorage(key)) {
+        result.removedKeys.push(key);
+      } else {
+        result.failedKeys.push(key);
+      }
+    }
     for (const key of dynamicBookSectionCacheKeys) {
       if (safeRemoveStorage(key)) {
         result.removedKeys.push(key);
@@ -177,7 +189,9 @@ export function clearMorseWordsBookCacheData(): StorageClearResult {
     failedKeys: [],
   };
   for (const key of [
+    STORAGE_KEYS.bookCacheIndex,
     STORAGE_KEYS.bookSectionCacheIndex,
+    ...getDynamicBookCacheKeys(),
     ...getDynamicBookSectionCacheKeys(),
   ]) {
     if (safeRemoveStorage(key)) {
@@ -360,12 +374,21 @@ function isQuotaExceededError(error: unknown) {
 }
 
 function getDynamicBookSectionCacheKeys() {
+  return getDynamicCacheKeys(
+    STORAGE_KEYS.bookSectionCacheIndex,
+    BOOK_SECTION_CACHE_KEY_PREFIX,
+  );
+}
+
+function getDynamicBookCacheKeys() {
+  return getDynamicCacheKeys(STORAGE_KEYS.bookCacheIndex, BOOK_CACHE_KEY_PREFIX);
+}
+
+function getDynamicCacheKeys(indexKey: string, keyPrefix: string) {
   if (typeof window === "undefined") return [];
   const keys = new Set<string>();
   try {
-    const rawIndex = window.localStorage.getItem(
-      STORAGE_KEYS.bookSectionCacheIndex,
-    );
+    const rawIndex = window.localStorage.getItem(indexKey);
     const parsed: unknown = rawIndex ? JSON.parse(rawIndex) : null;
     const entries =
       parsed && typeof parsed === "object" && "entries" in parsed
@@ -378,7 +401,7 @@ function getDynamicBookSectionCacheKeys() {
           typeof entry === "object" &&
           "key" in entry &&
           typeof entry.key === "string" &&
-          entry.key.startsWith(BOOK_SECTION_CACHE_KEY_PREFIX)
+          entry.key.startsWith(keyPrefix)
         ) {
           keys.add(entry.key);
         }
@@ -391,7 +414,7 @@ function getDynamicBookSectionCacheKeys() {
   try {
     for (let index = 0; index < window.localStorage.length; index += 1) {
       const key = window.localStorage.key(index);
-      if (key?.startsWith(BOOK_SECTION_CACHE_KEY_PREFIX)) {
+      if (key?.startsWith(keyPrefix)) {
         keys.add(key);
       }
     }

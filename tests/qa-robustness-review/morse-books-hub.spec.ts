@@ -181,6 +181,11 @@ test.describe("Morse books hub", () => {
     page,
     request,
   }, testInfo) => {
+    const bookJsonRequests: string[] = [];
+    await page.route(/\/morse-book-content\/books\/(?:anne-of-green-gables|treasure-island|frankenstein)\.json(?:\?|$)/, async (route) => {
+      bookJsonRequests.push(route.request().url());
+      await route.continue();
+    });
     await gotoHub(page);
 
     await expect(page).toHaveURL(new RegExp(`${ROUTES.morseBooks}$`));
@@ -276,6 +281,7 @@ test.describe("Morse books hub", () => {
       "Showing 1-7 of 7 books",
     );
     await page.getByRole("button", { name: "Reset view" }).click();
+    expect(bookJsonRequests).toEqual([]);
 
     const collectionOrder = await page.evaluate(() => {
       const toolbar = document.querySelector("[data-testid='morse-books-toolbar']");

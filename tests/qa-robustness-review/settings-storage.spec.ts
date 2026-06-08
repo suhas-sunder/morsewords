@@ -28,6 +28,7 @@ import {
   sourceStorageWriteMessage,
 } from "../../app/client/components/shared/settingsStorage";
 import {
+  BOOK_CACHE_KEY_PREFIX,
   BOOK_SECTION_CACHE_KEY_PREFIX,
   STORAGE_KEY_REGISTRY,
   STORAGE_KEYS,
@@ -222,6 +223,7 @@ test.describe("storage registry policy", () => {
       "mw_mp3_kbps",
       "mw_word_trainer_custom_words",
       STORAGE_KEYS.bookExportPreferences,
+      STORAGE_KEYS.bookCacheIndex,
       STORAGE_KEYS.bookSectionCacheIndex,
       STORAGE_KEYS.videoGeneratorPreferences,
       STORAGE_KEYS.printableChartSettings,
@@ -339,6 +341,7 @@ test.describe("storage registry policy", () => {
   });
 
   test("clear source data and reset settings keep preference and source scopes separate", () => {
+    const bookCacheKey = `${BOOK_CACHE_KEY_PREFIX}approved-book:v1:hash-v1`;
     const cacheKey = `${BOOK_SECTION_CACHE_KEY_PREFIX}approved-book:v1:chapter-001`;
     withMockStorage(
       {
@@ -347,6 +350,26 @@ test.describe("storage registry policy", () => {
         mw_audio_morse: "... --- ...",
         mw_audio_wpm: "24",
         mw_audio_hz: "700",
+        [STORAGE_KEYS.bookCacheIndex]: JSON.stringify({
+          schemaVersion: 1,
+          nextRank: 2,
+          entries: [
+            {
+              key: bookCacheKey,
+              slug: "approved-book",
+              contentVersion: "v1",
+              contentHash: "hash-v1",
+              bytes: 150,
+              rank: 1,
+            },
+          ],
+        }),
+        [bookCacheKey]: JSON.stringify({
+          slug: "approved-book",
+          contentVersion: "v1",
+          contentHash: "hash-v1",
+          sections: [{ displayText: "APPROVED CLEANED BOOK TEXT" }],
+        }),
         [STORAGE_KEYS.bookSectionCacheIndex]: JSON.stringify({
           schemaVersion: 1,
           nextRank: 2,
@@ -372,6 +395,8 @@ test.describe("storage registry policy", () => {
         expect(resetResult.failedKeys).toEqual([]);
         expect(store.get("mw_audio_text")).toBe("PRIVATE SOURCE");
         expect(store.get("mw_audio_morse")).toBe("... --- ...");
+        expect(store.get(STORAGE_KEYS.bookCacheIndex)).toBeTruthy();
+        expect(store.get(bookCacheKey)).toContain("APPROVED CLEANED BOOK TEXT");
         expect(store.get(STORAGE_KEYS.bookSectionCacheIndex)).toBeTruthy();
         expect(store.get(cacheKey)).toContain("APPROVED CLEANED TEXT");
         expect(store.has("mw_audio_wpm")).toBe(false);
@@ -383,6 +408,8 @@ test.describe("storage registry policy", () => {
         expect(clearResult.failedKeys).toEqual([]);
         expect(store.has("mw_audio_text")).toBe(false);
         expect(store.has("mw_audio_morse")).toBe(false);
+        expect(store.has(STORAGE_KEYS.bookCacheIndex)).toBe(false);
+        expect(store.has(bookCacheKey)).toBe(false);
         expect(store.has(STORAGE_KEYS.bookSectionCacheIndex)).toBe(false);
         expect(store.has(cacheKey)).toBe(false);
         expect(store.get("mw_audio_wpm")).toBe("20");
@@ -392,11 +419,32 @@ test.describe("storage registry policy", () => {
   });
 
   test("dedicated book cache clear removes cached approved text only", () => {
+    const bookCacheKey = `${BOOK_CACHE_KEY_PREFIX}approved-book:v2:hash-v2`;
     const cacheKey = `${BOOK_SECTION_CACHE_KEY_PREFIX}approved-book:v2:chapter-003`;
     withMockStorage(
       {
         [STORAGE_KEYS.theme]: "dark",
         mw_audio_text: "PRIVATE SOURCE",
+        [STORAGE_KEYS.bookCacheIndex]: JSON.stringify({
+          schemaVersion: 1,
+          nextRank: 2,
+          entries: [
+            {
+              key: bookCacheKey,
+              slug: "approved-book",
+              contentVersion: "v2",
+              contentHash: "hash-v2",
+              bytes: 150,
+              rank: 1,
+            },
+          ],
+        }),
+        [bookCacheKey]: JSON.stringify({
+          slug: "approved-book",
+          contentVersion: "v2",
+          contentHash: "hash-v2",
+          sections: [{ displayText: "APPROVED CLEANED BOOK TEXT" }],
+        }),
         [STORAGE_KEYS.bookSectionCacheIndex]: JSON.stringify({
           schemaVersion: 1,
           nextRank: 2,
@@ -420,6 +468,8 @@ test.describe("storage registry policy", () => {
       (store) => {
         const clearResult = clearMorseWordsBookCacheData();
         expect(clearResult.failedKeys).toEqual([]);
+        expect(store.has(STORAGE_KEYS.bookCacheIndex)).toBe(false);
+        expect(store.has(bookCacheKey)).toBe(false);
         expect(store.has(STORAGE_KEYS.bookSectionCacheIndex)).toBe(false);
         expect(store.has(cacheKey)).toBe(false);
         expect(store.get("mw_audio_text")).toBe("PRIVATE SOURCE");
@@ -543,14 +593,41 @@ test.describe("nav storage controls", () => {
       .toBe("light");
   });
 
-  test("clear cached book data removes approved section cache without wiping source text", async ({
+  test("clear cached book data removes approved book cache without wiping source text", async ({
     page,
   }) => {
+    const bookCacheKey = `${BOOK_CACHE_KEY_PREFIX}approved-book:v1:hash-v1`;
     const cacheKey = `${BOOK_SECTION_CACHE_KEY_PREFIX}approved-book:v1:chapter-001`;
     await page.addInitScript(
-      ({ keys, cachePrefix, cacheEntryKey }) => {
+      ({ bookCacheEntryKey, bookCachePrefix, keys, sectionCachePrefix, sectionCacheEntryKey }) => {
         window.localStorage.setItem(keys.theme, "dark");
         window.localStorage.setItem("mw_audio_text", "PRIVATE SOURCE");
+        window.localStorage.setItem(
+          keys.bookCacheIndex,
+          JSON.stringify({
+            schemaVersion: 1,
+            nextRank: 2,
+            entries: [
+              {
+                key: bookCacheEntryKey,
+                slug: "approved-book",
+                contentVersion: "v1",
+                contentHash: "hash-v1",
+                bytes: 150,
+                rank: 1,
+              },
+            ],
+          }),
+        );
+        window.localStorage.setItem(
+          `${bookCachePrefix}approved-book:v1:hash-v1`,
+          JSON.stringify({
+            slug: "approved-book",
+            contentVersion: "v1",
+            contentHash: "hash-v1",
+            sections: [{ displayText: "APPROVED CLEANED BOOK TEXT" }],
+          }),
+        );
         window.localStorage.setItem(
           keys.bookSectionCacheIndex,
           JSON.stringify({
@@ -558,7 +635,7 @@ test.describe("nav storage controls", () => {
             nextRank: 2,
             entries: [
               {
-                key: cacheEntryKey,
+                key: sectionCacheEntryKey,
                 slug: "approved-book",
                 contentVersion: "v1",
                 sectionId: "chapter-001",
@@ -569,7 +646,7 @@ test.describe("nav storage controls", () => {
           }),
         );
         window.localStorage.setItem(
-          `${cachePrefix}approved-book:v1:chapter-001`,
+          `${sectionCachePrefix}approved-book:v1:chapter-001`,
           JSON.stringify({
             bookSlug: "approved-book",
             sectionId: "chapter-001",
@@ -578,9 +655,11 @@ test.describe("nav storage controls", () => {
         );
       },
       {
+        bookCachePrefix: BOOK_CACHE_KEY_PREFIX,
+        bookCacheEntryKey: bookCacheKey,
         keys: STORAGE_KEYS,
-        cachePrefix: BOOK_SECTION_CACHE_KEY_PREFIX,
-        cacheEntryKey: cacheKey,
+        sectionCachePrefix: BOOK_SECTION_CACHE_KEY_PREFIX,
+        sectionCacheEntryKey: cacheKey,
       },
     );
 
@@ -590,13 +669,26 @@ test.describe("nav storage controls", () => {
 
     page.once("dialog", async (confirmDialog) => {
       expect(confirmDialog.message()).toContain(
-        "Clear cached approved Morse book sections",
+        "Clear cached approved Morse book data",
       );
       await confirmDialog.accept();
     });
     await dialog.getByRole("button", { name: "Clear cached book data" }).click();
 
     await expect(dialog.getByText("Cached book data cleared.")).toBeVisible();
+    await expect
+      .poll(() =>
+        page.evaluate(
+          (storageKey) => localStorage.getItem(storageKey),
+          STORAGE_KEYS.bookCacheIndex,
+        ),
+      )
+      .toBeNull();
+    await expect
+      .poll(() =>
+        page.evaluate((storageKey) => localStorage.getItem(storageKey), bookCacheKey),
+      )
+      .toBeNull();
     await expect
       .poll(() =>
         page.evaluate(

@@ -9,6 +9,7 @@ import {
   getDefaultMorseBookSectionId,
   getMorseBookManifest,
   getMorseBookSection,
+  getPublishedMorseBookSummariesRuntime,
   isMorseBookPublishReady,
   morseBookPath,
 } from "~/client/data/morseBooks";
@@ -41,6 +42,24 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
   const previewMode = isUnpublishedPreviewRequest(request);
   const testPreviewMode = isTestPublishedPreviewRequest(request, slug);
+
+  if (!previewMode && !testPreviewMode) {
+    const summary =
+      (await getPublishedMorseBookSummariesRuntime()).find(
+        (book) => book.slug === slug,
+      ) ?? null;
+    if (!summary || !isMorseBookPublishReady(summary)) {
+      throw new Response("Morse book not found", { status: 404 });
+    }
+
+    return {
+      bookSummary: summary,
+      book: null,
+      initialSection: null,
+      previewMode: null,
+    };
+  }
+
   const book = await getMorseBookManifest(slug, {
     includeUnpublished: previewMode,
     includeTestFixture: testPreviewMode,
@@ -70,6 +89,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
       : null;
 
   return {
+    bookSummary: null,
     book,
     initialSection,
     previewMode: previewState,
@@ -102,13 +122,21 @@ export const meta: Route.MetaFunction = ({ data }) => {
     ];
   }
 
-  const path = morseBookPath(data.book.slug);
+  const book = data.book ?? data.bookSummary;
+  if (!book) {
+    return [
+      { title: "Morse book not found | MorseWords" },
+      { name: "robots", content: "noindex,nofollow" },
+    ];
+  }
+
+  const path = morseBookPath(book.slug);
   const canonical = absoluteUrl(path);
   return [
-    { title: `${data.book.title} in Morse Code | MorseWords` },
+    { title: `${book.title} in Morse Code | MorseWords` },
     {
       name: "description",
-      content: `Read ${data.book.title} as cleaned book text, preview Morse code, and prepare browser-local Morse audio or video settings.`,
+      content: `Read ${book.title} as cleaned book text, preview Morse code, and prepare browser-local Morse audio or video settings.`,
     },
     { tagName: "link", rel: "canonical", href: canonical },
     { property: "og:url", content: canonical },
@@ -120,6 +148,7 @@ export default function MorseBookRoute({ loaderData }: Route.ComponentProps) {
   return (
     <MorseBookPage
       book={loaderData.book}
+      bookSummary={loaderData.bookSummary}
       initialSection={loaderData.initialSection}
       previewMode={loaderData.previewMode}
     />
