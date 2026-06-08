@@ -577,7 +577,15 @@ function normalizePublicBookContent(
 }
 
 async function fetchJson<T>(url: string, validate: (value: unknown) => value is T) {
-  const response = await fetch(url);
+  const fetchUrl =
+    import.meta.env.SSR && url.startsWith("/")
+      ? new URL(
+          url,
+          process.env.MORSEWORDS_INTERNAL_ORIGIN ??
+            `http://localhost:${process.env.PORT ?? "3101"}`,
+        ).href
+      : url;
+  const response = await fetch(fetchUrl);
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`);
   }
@@ -824,13 +832,24 @@ export async function getMorseBookSections(
   const sections = new Map<string, MorseBookSectionJson>();
   const missingIds = [...uniqueSectionIds];
 
+  if (missingIds.length > 0 && import.meta.env.DEV) {
+    const reviewSections = await Promise.all(
+      missingIds.map((id) => loadReviewBookSection(book, id)),
+    );
+    reviewSections.forEach((section) => {
+      if (section) sections.set(section.sectionId, section);
+    });
+  }
+
   if (missingIds.length > 0 && isMorseBookPublishReady(book)) {
     const publicSections = await loadPublicBookSectionMap(book);
     if (publicSections) {
-      missingIds.forEach((sectionId) => {
-        const section = publicSections.get(sectionId);
-        if (section) sections.set(sectionId, section);
-      });
+      missingIds
+        .filter((sectionId) => !sections.has(sectionId))
+        .forEach((sectionId) => {
+          const section = publicSections.get(sectionId);
+          if (section) sections.set(sectionId, section);
+        });
     }
   }
 

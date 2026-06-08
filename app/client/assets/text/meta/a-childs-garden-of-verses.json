@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "25609",
     "sourceUrl": "https://www.gutenberg.org/ebooks/25609",
-    "rawTextFile": "../a-childs-garden-of-verses.txt",
+    "rawTextFile": "../../temp-books/a-childs-garden-of-verses.txt",
     "releaseDate": "May 26, 2008",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

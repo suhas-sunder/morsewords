@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "23717",
     "sourceUrl": "https://www.gutenberg.org/ebooks/23717",
-    "rawTextFile": "../jabberwocky.txt",
+    "rawTextFile": "../../temp-books/jabberwocky.txt",
     "releaseDate": "December 2007",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

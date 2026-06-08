@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "dracula",
+  "sectionId": "title-page-002",
+  "kind": "title-page",
+  "label": "Contents",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "Contents\n\nCHAPTER I. Jonathan Harker’s Journal\nCHAPTER II. Jonathan Harker’s Journal\nCHAPTER III. Jonathan Harker’s Journal\nCHAPTER IV. Jonathan Harker’s Journal\nCHAPTER V. Letters—Lucy and Mina\nCHAPTER VI. Mina Murray’s Journal\nCHAPTER VII. Cutting from “The Dailygraph,” 8 August\nCHAPTER VIII. Mina Murray’s Journal\nCHAPTER IX. Mina Murray’s Journal\nCHAPTER X. Mina Murray’s Journal\nCHAPTER XI. Lucy Westenra’s Diary\nCHAPTER XII. Dr. Seward’s Diary\nCHAPTER XIII. Dr. Seward’s Diary\nCHAPTER XIV. Mina Harker’s Journal\nCHAPTER XV. Dr. Seward’s Diary\nCHAPTER XVI. Dr. Seward’s Diary\nCHAPTER XVII. Dr. Seward’s Diary\nCHAPTER XVIII. Dr. Seward’s Diary\nCHAPTER XIX. Jonathan Harker’s Journal\nCHAPTER XX. Jonathan Harker’s Journal\nCHAPTER XXI. Dr. Seward’s Diary\nCHAPTER XXII. Jonathan Harker’s Journal\nCHAPTER XXIII. Dr. Seward’s Diary\nCHAPTER XXIV. Dr. Seward’s Phonograph Diary, spoken by Van Helsing\nCHAPTER XXV. Dr. Seward’s Diary\nCHAPTER XXVI. Dr. Seward’s Diary\nCHAPTER XXVII. Mina Harker’s Journal\n\n\nHow these papers have been placed in sequence will be made manifest in\nthe reading of them. All needless matters have been eliminated, so that\na history almost at variance with the possibilities of later-day belief\nmay stand forth as simple fact. There is throughout no statement of\npast things wherein memory may err, for all the records chosen are\nexactly contemporary, given from the standpoints and within the range\nof knowledge of those who made them.\n\n\nDRACULA",
+  "morseSourceText": "Contents\n\nCHAPTER I. Jonathan Harker’s Journal\nCHAPTER II. Jonathan Harker’s Journal\nCHAPTER III. Jonathan Harker’s Journal\nCHAPTER IV. Jonathan Harker’s Journal\nCHAPTER V. Letters—Lucy and Mina\nCHAPTER VI. Mina Murray’s Journal\nCHAPTER VII. Cutting from “The Dailygraph,” 8 August\nCHAPTER VIII. Mina Murray’s Journal\nCHAPTER IX. Mina Murray’s Journal\nCHAPTER X. Mina Murray’s Journal\nCHAPTER XI. Lucy Westenra’s Diary\nCHAPTER XII. Dr. Seward’s Diary\nCHAPTER XIII. Dr. Seward’s Diary\nCHAPTER XIV. Mina Harker’s Journal\nCHAPTER XV. Dr. Seward’s Diary\nCHAPTER XVI. Dr. Seward’s Diary\nCHAPTER XVII. Dr. Seward’s Diary\nCHAPTER XVIII. Dr. Seward’s Diary\nCHAPTER XIX. Jonathan Harker’s Journal\nCHAPTER XX. Jonathan Harker’s Journal\nCHAPTER XXI. Dr. Seward’s Diary\nCHAPTER XXII. Jonathan Harker’s Journal\nCHAPTER XXIII. Dr. Seward’s Diary\nCHAPTER XXIV. Dr. Seward’s Phonograph Diary, spoken by Van Helsing\nCHAPTER XXV. Dr. Seward’s Diary\nCHAPTER XXVI. Dr. Seward’s Diary\nCHAPTER XXVII. Mina Harker’s Journal\n\n\nHow these papers have been placed in sequence will be made manifest in\nthe reading of them. All needless matters have been eliminated, so that\na history almost at variance with the possibilities of later-day belief\nmay stand forth as simple fact. There is throughout no statement of\npast things wherein memory may err, for all the records chosen are\nexactly contemporary, given from the standpoints and within the range\nof knowledge of those who made them.\n\n\nDRACULA",
+  "paragraphs": [
+    "Contents",
+    "CHAPTER I. Jonathan Harker’s Journal CHAPTER II. Jonathan Harker’s Journal CHAPTER III. Jonathan Harker’s Journal CHAPTER IV. Jonathan Harker’s Journal CHAPTER V. Letters—Lucy and Mina CHAPTER VI. Mina Murray’s Journal CHAPTER VII. Cutting from “The Dailygraph,” 8 August CHAPTER VIII. Mina Murray’s Journal CHAPTER IX. Mina Murray’s Journal CHAPTER X. Mina Murray’s Journal CHAPTER XI. Lucy Westenra’s Diary CHAPTER XII. Dr. Seward’s Diary CHAPTER XIII. Dr. Seward’s Diary CHAPTER XIV. Mina Harker’s Journal CHAPTER XV. Dr. Seward’s Diary CHAPTER XVI. Dr. Seward’s Diary CHAPTER XVII. Dr. Seward’s Diary CHAPTER XVIII. Dr. Seward’s Diary CHAPTER XIX. Jonathan Harker’s Journal CHAPTER XX. Jonathan Harker’s Journal CHAPTER XXI. Dr. Seward’s Diary CHAPTER XXII. Jonathan Harker’s Journal CHAPTER XXIII. Dr. Seward’s Diary CHAPTER XXIV. Dr. Seward’s Phonograph Diary, spoken by Van Helsing CHAPTER XXV. Dr. Seward’s Diary CHAPTER XXVI. Dr. Seward’s Diary CHAPTER XXVII. Mina Harker’s Journal",
+    "How these papers have been placed in sequence will be made manifest in the reading of them. All needless matters have been eliminated, so that a history almost at variance with the possibilities of later-day belief may stand forth as simple fact. There is throughout no statement of past things wherein memory may err, for all the records chosen are exactly contemporary, given from the standpoints and within the range of knowledge of those who made them.",
+    "DRACULA"
+  ],
+  "wordCount": 248,
+  "characterCount": 1469,
+  "estimatedTypingMinutes": 7,
+  "estimatedListeningMinutes": 10,
+  "morseCharacterEstimate": 8169,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Contents CHAPTER I. Jonathan Harker’s Journal CHAPTER II. Jonathan Harker’s Journal CHAPTER III. Jonathan Harker’s Journal CHAPTER IV. Jonathan Harker’s Journa...",
+  "sourceOffsets": {
+    "start": 720,
+    "end": 2192
+  }
+}

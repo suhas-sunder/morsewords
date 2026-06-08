@@ -1,16 +1,13 @@
-# Rainbow Valley rights review notes
+# Rainbow Valley processing notes
 
-- Source file: ../rainbow-valley.txt
+- Source file: ../../temp-books/rainbow-valley.txt
 - Gutenberg ID: 5343
 - Source URL: https://www.gutenberg.org/ebooks/5343
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Rainbow Valley Author: L. M.
 - Illustration or image reference: avid Widger *** START OF THE PROJECT GUTENBERG EBOOK RAINBOW VALLEY *** [Illustration] Rainbow Valley by Lucy Maud Montgomery Author of “Anne of Green Gables,” “Anne of the Island,” “Anne’s House of Dreams,”
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: March 1, 2004
-- Last updated: October 24, 2025
-- Original publication: 1919
-- Credits: Bernard J. Farber, Carmen Baxter, Dona Rucci, Elizabeth Morton, Rebekah Neely, Joe Johnson, Joan Chovan, Judith Fetterolf, Mary Nuzzo, Sally Drake, Sally Starks, Steve Callis, Virginia Mohlere-Dellinger, Mary Mark Ockerbloom, Ben Crowder and David Widger
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: none
@@ -45,19 +27,24 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 463071
+- Cleaned characters: 443599
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+- title-page-002: title-page (Contents)
+
+## Section detection summary
+
+- Generated sections: 37
+- Included by default: 35
 
 ## Manual review reasons
 
@@ -67,6 +54,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

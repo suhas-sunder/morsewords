@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "part-003",
+  "kind": "part",
+  "label": "Part 3",
+  "title": null,
+  "order": 3,
+  "includeByDefault": false,
+  "displayText": "A thousand miles we galloped fast,\n    And down the witches' lane we passed,\n    And rode amain, with brandished sword,\n    Up to the middle, through the ford.\n\n    Last we drew rein--a weary three--\n    Upon the lawn, in time for tea,\n    And from our steeds alighted down\n    Before the gates of Babylon.",
+  "morseSourceText": "A thousand miles we galloped fast,\n    And down the witches' lane we passed,\n    And rode amain, with brandished sword,\n    Up to the middle, through the ford.\n\n    Last we drew rein--a weary three--\n    Upon the lawn, in time for tea,\n    And from our steeds alighted down\n    Before the gates of Babylon.",
+  "paragraphs": [
+    "A thousand miles we galloped fast, And down the witches' lane we passed, And rode amain, with brandished sword, Up to the middle, through the ford.",
+    "Last we drew rein--a weary three-- Upon the lawn, in time for tea, And from our steeds alighted down Before the gates of Babylon."
+  ],
+  "wordCount": 51,
+  "characterCount": 306,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1499,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "A thousand miles we galloped fast, And down the witches' lane we passed, And rode amain, with brandished sword, Up to the middle, through the ford. Last we dre...",
+  "sourceOffsets": {
+    "start": 59506,
+    "end": 59816
+  }
+}

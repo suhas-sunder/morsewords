@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "the-happy-family",
+  "title": "The Happy Family",
+  "author": "",
+  "contentVersion": "c459a0209f5d7490",
+  "contentHash": "c459a0209f5d7490ae3a70395a95fd9fc1ad7dd68ae4666f9a67eb721d727393",
+  "source": {
+    "provider": "Unknown",
+    "gutenbergId": null,
+    "sourceUrl": null,
+    "rawTextUrl": null,
+    "originalPublication": "",
+    "releaseDate": "",
+    "lastUpdated": ""
+  },
+  "stats": {
+    "wordCount": 0,
+    "characterCount": 0,
+    "sectionCount": 1,
+    "estimatedTypingMinutes": 0,
+    "estimatedListeningMinutes": 0
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "text": "The Happy Family\n\nThis MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing source content for follow-up.",
+      "paragraphs": [
+        "The Happy Family",
+        "This MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing source content for follow-up."
+      ],
+      "wordCount": 29,
+      "characterCount": 186,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 2
+    }
+  ]
+}

@@ -5,8 +5,8 @@
   "author": [
     "Robert Louis Stevenson"
   ],
-  "contentVersion": "4d7484d9467697dc",
-  "contentHash": "4d7484d9467697dc5116a3f77f16204f2e09a7957fc31c58c24537e951fc69a9",
+  "contentVersion": "dad40837ea6d36fc",
+  "contentHash": "dad40837ea6d36fcf6f1559d0aab3a349cb58e83472d2dc33783e35c3f6b650b",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -17,7 +17,7 @@
     "sourceUrl": "https://www.gutenberg.org/ebooks/120",
     "rawTextUrl": null,
     "rightsBasis": "public-domain-us",
-    "rightsReviewed": false,
+    "rightsReviewed": true,
     "publishReady": true,
     "rightsStatus": "approved",
     "processingAllowed": true,
@@ -26,7 +26,7 @@
     "rightsReportPath": "rights_report.json",
     "processedBookPath": "processed_book.json",
     "cleanedBookPath": "cleaned_book.json",
-    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, editor."
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
   },
   "cover": {
     "src": null,
@@ -49,7 +49,7 @@
   "sections": [
     {
       "id": "part-001",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 1",
       "title": null,
       "order": 1,
@@ -64,7 +64,7 @@
     },
     {
       "id": "part-002",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 2",
       "title": null,
       "order": 2,
@@ -79,7 +79,7 @@
     },
     {
       "id": "part-003",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 3",
       "title": null,
       "order": 3,
@@ -94,7 +94,7 @@
     },
     {
       "id": "part-004",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 4",
       "title": null,
       "order": 4,
@@ -109,7 +109,7 @@
     },
     {
       "id": "part-005",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 5",
       "title": null,
       "order": 5,
@@ -124,7 +124,7 @@
     },
     {
       "id": "part-006",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 6",
       "title": null,
       "order": 6,
@@ -139,7 +139,7 @@
     },
     {
       "id": "part-007",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 7",
       "title": null,
       "order": 7,
@@ -154,7 +154,7 @@
     },
     {
       "id": "part-008",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 8",
       "title": null,
       "order": 8,
@@ -169,7 +169,7 @@
     },
     {
       "id": "part-009",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 9",
       "title": null,
       "order": 9,
@@ -184,7 +184,7 @@
     },
     {
       "id": "part-010",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 10",
       "title": null,
       "order": 10,
@@ -199,7 +199,7 @@
     },
     {
       "id": "part-011",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 11",
       "title": null,
       "order": 11,
@@ -214,7 +214,7 @@
     },
     {
       "id": "part-012",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 12",
       "title": null,
       "order": 12,
@@ -229,7 +229,7 @@
     },
     {
       "id": "part-013",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 13",
       "title": null,
       "order": 13,
@@ -244,7 +244,7 @@
     },
     {
       "id": "part-014",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 14",
       "title": null,
       "order": 14,

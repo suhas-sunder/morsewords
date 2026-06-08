@@ -1,16 +1,13 @@
-# Dracula rights review notes
+# Dracula processing notes
 
-- Source file: ../Dracula.txt
+- Source file: ../../temp-books/Dracula.txt
 - Gutenberg ID: 345
 - Source URL: https://www.gutenberg.org/ebooks/345
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: reject
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Dracula Author: Bram Stoker
 - Later copyright notice: to Act of Congress, by Bram Stoker [_All rights reserved._] PRINTED IN THE UNITED STATES AT THE COUNTRY LIFE PRESS, GAR
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: October 1, 1995
-- Last updated: September 24, 2025
-- Original publication: 1897
-- Credits: Chuck Greif and the Online Distributed Proofreading Team
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: none
@@ -45,19 +27,25 @@
 - Later copyright notice: yes
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is reject; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 865100
+- Cleaned characters: 845824
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+- title-page-002: title-page (Contents)
+- notes-001: notes (Notes)
+
+## Section detection summary
+
+- Generated sections: 30
+- Included by default: 27
 
 ## Manual review reasons
 
@@ -67,6 +55,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Do not process for public use. Resolve copyright, permission, source, or license blockers first.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

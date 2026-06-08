@@ -1,16 +1,13 @@
-# Little Women; Or, Meg, Jo, Beth, and Amy rights review notes
+# Little Women; Or, Meg, Jo, Beth, and Amy processing notes
 
-- Source file: ../Little Women.txt
+- Source file: ../../temp-books/Little Women.txt
 - Gutenberg ID: 37106
 - Source URL: https://www.gutenberg.org/ebooks/37106
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Transcriber note: lishers 254 Washington St., Boston, Mass. Transcriber's Notes: Project Gutenberg has two versions of Little Women by Louisa May Alcott. Original Edition Illustrated Edition Welcome to
 - Illustration or image reference: "These bits of lace are fastened under the chin with a rosebud, so;" and Meg illustrated by putting on the bonnet, and regarding him with an air of calm satisfaction that was irresistible. "It's a love of a bonnet, but I prefer
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: August 16, 2011
-- Last updated: September 24, 2025
-- Original publication: missing
-- Credits: David Edwards, Ernest Schaal, Robert Homa, and the Online Distributed Proofreading Team
-- Translator: none found
-- Illustrator: Frank T. Merrill
-- Editor: Ednah D
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: none
@@ -45,19 +27,59 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: yes
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 1090255
+- Cleaned characters: 1070785
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- part-001: part (Part 1)
+- part-002: part (Part 2)
+- part-003: part (Part 3)
+- part-004: part (Part 4)
+- part-005: part (Part 5)
+- part-006: part (Part 6)
+- part-007: part (Part 7)
+- part-008: part (Part 8)
+- part-009: part (Part 9)
+- part-010: part (Part 10)
+- part-011: part (Part 11)
+- part-012: part (Part 12)
+- part-013: part (Part 13)
+- part-014: part (Part 14)
+- part-015: part (Part 15)
+- part-016: part (Part 16)
+- part-017: part (Part 17)
+- part-018: part (Part 18)
+- part-019: part (Part 19)
+- part-020: part (Part 20)
+- part-021: part (Part 21)
+- part-022: part (Part 22)
+- part-023: part (Part 23)
+- part-024: part (Part 24)
+- part-025: part (Part 25)
+- part-026: part (Part 26)
+- part-027: part (Part 27)
+- part-028: part (Part 28)
+- part-029: part (Part 29)
+- part-030: part (Part 30)
+- part-031: part (Part 31)
+- part-032: part (Part 32)
+- part-033: part (Part 33)
+- part-034: part (Part 34)
+- part-035: part (Part 35)
+- part-036: part (Part 36)
+- part-037: part (Part 37)
+
+## Section detection summary
+
+- Generated sections: 37
+- Included by default: 0
 
 ## Manual review reasons
 
@@ -70,6 +92,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Add original publication evidence before approval.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

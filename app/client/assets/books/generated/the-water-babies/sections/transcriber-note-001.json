@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-water-babies",
+  "sectionId": "transcriber-note-001",
+  "kind": "transcriber-note",
+  "label": "Transcriber's Note",
+  "title": null,
+  "order": 11,
+  "includeByDefault": false,
+  "displayText": "Transcriber's Notes:\n\nObvious punctuation errors repaired.\n\nPage 6, \"piert\" was retained as a spelling for \"pert\".",
+  "morseSourceText": "Transcriber's Notes:\n\nObvious punctuation errors repaired.\n\nPage 6, \"piert\" was retained as a spelling for \"pert\".",
+  "paragraphs": [
+    "Transcriber's Notes:",
+    "Obvious punctuation errors repaired.",
+    "Page 6, \"piert\" was retained as a spelling for \"pert\"."
+  ],
+  "wordCount": 16,
+  "characterCount": 114,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 625,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Transcriber's Notes: Obvious punctuation errors repaired. Page 6, \"piert\" was retained as a spelling for \"pert\".",
+  "sourceOffsets": {
+    "start": 369244,
+    "end": 369358
+  }
+}

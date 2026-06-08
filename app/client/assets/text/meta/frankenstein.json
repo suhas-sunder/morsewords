@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "84",
     "sourceUrl": "https://www.gutenberg.org/ebooks/84",
-    "rawTextFile": "../Frankenstein.txt",
+    "rawTextFile": "../../temp-books/Frankenstein.txt",
     "releaseDate": "October 1, 1993",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

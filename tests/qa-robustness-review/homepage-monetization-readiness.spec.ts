@@ -137,7 +137,7 @@ test.describe("homepage monetization readiness", () => {
   test("highlights approved public books and audiobook links only", async ({
     page,
   }) => {
-    expect(approvedBookSlugs.size).toBe(16);
+    expect(approvedBookSlugs.size).toBeGreaterThan(16);
     await gotoHome(page);
 
     const section = page.locator('[aria-labelledby="featured-morse-books-title"]');

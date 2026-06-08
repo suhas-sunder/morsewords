@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "rainbow-valley",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "[Illustration]\n\n\nRainbow Valley\n\nby Lucy Maud Montgomery\n\nAuthor of “Anne of Green Gables,” “Anne of the\nIsland,”\n\n“Anne’s House of Dreams,” “The Story Girl,”\n“The Watchman,” etc.\n\n“The thoughts of youth are long, long thoughts.”\n—LONGFELLOW\n\nTO THE MEMORY OF\n\nGOLDWIN LAPP, ROBERT BROOKES AND MORLEY SHIER\n\nWHO MADE THE SUPREME SACRIFICE THAT THE HAPPY VALLEYS OF THEIR HOME\nLAND MIGHT BE KEPT SACRED FROM THE RAVAGE OF THE INVADER",
+  "morseSourceText": "[Illustration]\n\n\nRainbow Valley\n\nby Lucy Maud Montgomery\n\nAuthor of “Anne of Green Gables,” “Anne of the\nIsland,”\n\n“Anne’s House of Dreams,” “The Story Girl,”\n“The Watchman,” etc.\n\n“The thoughts of youth are long, long thoughts.”\n—LONGFELLOW\n\nTO THE MEMORY OF\n\nGOLDWIN LAPP, ROBERT BROOKES AND MORLEY SHIER\n\nWHO MADE THE SUPREME SACRIFICE THAT THE HAPPY VALLEYS OF THEIR HOME\nLAND MIGHT BE KEPT SACRED FROM THE RAVAGE OF THE INVADER",
+  "paragraphs": [
+    "[Illustration]",
+    "Rainbow Valley",
+    "by Lucy Maud Montgomery",
+    "Author of “Anne of Green Gables,” “Anne of the Island,”",
+    "“Anne’s House of Dreams,” “The Story Girl,” “The Watchman,” etc.",
+    "“The thoughts of youth are long, long thoughts.” —LONGFELLOW",
+    "TO THE MEMORY OF",
+    "GOLDWIN LAPP, ROBERT BROOKES AND MORLEY SHIER",
+    "WHO MADE THE SUPREME SACRIFICE THAT THE HAPPY VALLEYS OF THEIR HOME LAND MIGHT BE KEPT SACRED FROM THE RAVAGE OF THE INVADER"
+  ],
+  "wordCount": 71,
+  "characterCount": 432,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2336,
+  "unsupportedCharacterSummary": {
+    "[": 1,
+    "]": 1
+  },
+  "textPreview": "[Illustration] Rainbow Valley by Lucy Maud Montgomery Author of “Anne of Green Gables,” “Anne of the Island,” “Anne’s House of Dreams,” “The Story Girl,” “The...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 435
+  }
+}

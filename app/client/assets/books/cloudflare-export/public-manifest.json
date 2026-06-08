@@ -1,8 +1,476 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "1e01bdcc4c0445e3",
-  "contentHash": "1e01bdcc4c0445e30a83275deb282f22a8a71ff1078798c298642744ed4d7125",
+  "contentVersion": "8db8fc38dbe0a981",
+  "contentHash": "8db8fc38dbe0a981e1ff5d956b24d463e62e44fa7ffd50c4660f579b8367df90",
   "books": [
+    {
+      "slug": "a-childs-garden-of-verses",
+      "title": "A Child's Garden of Verses",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25609",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25609",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 79187,
+        "cleanedCharacterCount": 59816,
+        "wordCount": 9065,
+        "sectionCount": 3,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "12b454201f23928b",
+      "contentHash": "12b454201f23928b1e9d2d802409322c2da1524079284a458afba083ca615fea",
+      "bookPath": "books/a-childs-garden-of-verses.json"
+    },
+    {
+      "slug": "a-christmas-carol",
+      "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+      "author": [
+        "Charles Dickens"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "46",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/46",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 177866,
+        "cleanedCharacterCount": 158411,
+        "wordCount": 28642,
+        "sectionCount": 7,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "027569a73e9db823",
+      "contentHash": "027569a73e9db823952df34ee60352f786948f36ea6aae350e252768d3bbc91f",
+      "bookPath": "books/a-christmas-carol.json"
+    },
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "author": [
+        "Edgar Rice Burroughs"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "62",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/62",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 390215,
+        "cleanedCharacterCount": 370992,
+        "wordCount": 67570,
+        "sectionCount": 30,
+        "includedSectionCount": 28
+      },
+      "contentVersion": "0052422aab126b0b",
+      "contentHash": "0052422aab126b0b8e28c5fc012e042a3917032b6a6a7d97cce225692342df6d",
+      "bookPath": "books/a-princess-of-mars.json"
+    },
+    {
+      "slug": "alices-adventures-in-wonderland",
+      "title": "Alice's Adventures in Wonderland",
+      "author": [
+        "Lewis Carroll"
+      ],
+      "language": "en",
+      "description": "A pilot Project Gutenberg source for chapter-level Morse book ingestion and future Morse audiobook workflows.",
+      "subjects": [
+        "Fantasy fiction",
+        "Children's literature"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "11",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/11",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 163885,
+        "cleanedCharacterCount": 144573,
+        "wordCount": 27295,
+        "sectionCount": 14,
+        "includedSectionCount": 12
+      },
+      "contentVersion": "be03ec72f91b6191",
+      "contentHash": "be03ec72f91b619190da1a2e71da97d543d6eee2d78537d96ccee3990c58087f",
+      "bookPath": "books/alices-adventures-in-wonderland.json"
+    },
+    {
+      "slug": "the-bell",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 46266,
+        "cleanedCharacterCount": 26976,
+        "wordCount": 5054,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "a318bf7c527a5cae",
+      "contentHash": "a318bf7c527a5cae9e5bebddb4a489680eed7273ac89bef929850b9904b9338d",
+      "bookPath": "books/the-bell.json"
+    },
+    {
+      "slug": "the-elderbush",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 35525,
+        "cleanedCharacterCount": 16235,
+        "wordCount": 3029,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "e8097f6c7d129635",
+      "contentHash": "e8097f6c7d1296358e78aabb8d0651e7dddd0f2adf7df2b6e7a3a85aaf327648",
+      "bookPath": "books/the-elderbush.json"
+    },
+    {
+      "slug": "the-emperor-s-new-clothes",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 31621,
+        "cleanedCharacterCount": 10636,
+        "wordCount": 1896,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "971949ebc2e364d0",
+      "contentHash": "971949ebc2e364d08ea4e8e39073bf256b0fde663c294b87b4915af626a243ad",
+      "bookPath": "books/the-emperor-s-new-clothes.json"
+    },
+    {
+      "slug": "the-fir-tree",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 36671,
+        "cleanedCharacterCount": 17381,
+        "wordCount": 3247,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "3dfb62b4beff6148",
+      "contentHash": "3dfb62b4beff61480df0af46869a6ffc044b64c73ad1cb81ec0f2ab7dfbae36b",
+      "bookPath": "books/the-fir-tree.json"
+    },
+    {
+      "slug": "the-leap-frog",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 23080,
+        "cleanedCharacterCount": 3790,
+        "wordCount": 693,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "61770350edc3d2a1",
+      "contentHash": "61770350edc3d2a1e960bd5f8e615c8ba68bcc5bc3692abf57836dfc513b3f76",
+      "bookPath": "books/the-leap-frog.json"
+    },
+    {
+      "slug": "the-old-house",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 115289,
+        "cleanedCharacterCount": 95999,
+        "wordCount": 18265,
+        "sectionCount": 5,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "df2bc54e18569e08",
+      "contentHash": "df2bc54e18569e0875166aadd6cfb338cfc6e50a830ba6d48d78dff1de0d4cc4",
+      "bookPath": "books/the-old-house.json"
+    },
+    {
+      "slug": "the-real-princess",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 21645,
+        "cleanedCharacterCount": 2355,
+        "wordCount": 436,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "c4b66ea721a28bab",
+      "contentHash": "c4b66ea721a28bab1da46286330c8432d12a59e7a7f90774130ec6807c33c95c",
+      "bookPath": "books/the-real-princess.json"
+    },
+    {
+      "slug": "the-shoes-of-fortune",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 90171,
+        "cleanedCharacterCount": 70881,
+        "wordCount": 12724,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "2a913d9e325f9c09",
+      "contentHash": "2a913d9e325f9c09bf51e94c206cc75fc5c60a5842354f6a93c865523e9cecb8",
+      "bookPath": "books/the-shoes-of-fortune.json"
+    },
+    {
+      "slug": "the-snow-queen",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 83165,
+        "cleanedCharacterCount": 63875,
+        "wordCount": 11996,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "e06f1f6ee12e3112",
+      "contentHash": "e06f1f6ee12e3112896b2c7bf10559f25c1c267d87fa170127901086fc281dfd",
+      "bookPath": "books/the-snow-queen.json"
+    },
+    {
+      "slug": "the-swineherd",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 27624,
+        "cleanedCharacterCount": 8334,
+        "wordCount": 1510,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "bd29fbc55949100c",
+      "contentHash": "bd29fbc55949100cf43d6378ed1cd902a2cc8215093622c2ab79faf69bb4ed61",
+      "bookPath": "books/the-swineherd.json"
+    },
+    {
+      "slug": "anna-karenina",
+      "title": "Anna Karenina",
+      "author": [
+        "graf Leo Tolstoy"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1399",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1399",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 1984009,
+        "cleanedCharacterCount": 1964725,
+        "wordCount": 357188,
+        "sectionCount": 241,
+        "includedSectionCount": 239
+      },
+      "contentVersion": "6230857ff4722307",
+      "contentHash": "6230857ff47223076365ec7440883eefeb1be5b8349415f8423e76e8e437f1d5",
+      "bookPath": "books/anna-karenina.json"
+    },
     {
       "slug": "anne-of-green-gables",
       "title": "Anne of Green Gables",
@@ -30,9 +498,164 @@
         "sectionCount": 39,
         "includedSectionCount": 38
       },
-      "contentVersion": "5863b488d078e755",
-      "contentHash": "5863b488d078e755769b8b738c61a8d93fe3220c13d0e8cb88cd4ec191693fe4",
+      "contentVersion": "26a1eea0f758baf6",
+      "contentHash": "26a1eea0f758baf6a76de2b2b8b17d019df31c8c02af448a5ddc68d75a818324",
       "bookPath": "books/anne-of-green-gables.json"
+    },
+    {
+      "slug": "anne-of-green-gables-gutenberg-45",
+      "title": "Anne of Green Gables",
+      "author": [
+        "L. M. Montgomery"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "45",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/45",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "deterministic-file-match"
+      },
+      "stats": {
+        "originalCharacterCount": 580332,
+        "cleanedCharacterCount": 561065,
+        "wordCount": 106781,
+        "sectionCount": 39,
+        "includedSectionCount": 38
+      },
+      "contentVersion": "a8c654456996720f",
+      "contentHash": "a8c654456996720f2d21ce69c83d285a2431e7eacc541761760503880973158a",
+      "bookPath": "books/anne-of-green-gables-gutenberg-45.json"
+    },
+    {
+      "slug": "around-the-world-in-eighty-days",
+      "title": "Around the World in Eighty Days",
+      "author": [
+        "Jules Verne"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "103",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/103",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 388411,
+        "cleanedCharacterCount": 369112,
+        "wordCount": 63925,
+        "sectionCount": 39,
+        "includedSectionCount": 37
+      },
+      "contentVersion": "b56202c947c57329",
+      "contentHash": "b56202c947c57329f7203c493743b9904b09db10922b95e3be9b8f92ad4d2bc9",
+      "bookPath": "books/around-the-world-in-eighty-days.json"
+    },
+    {
+      "slug": "black-beauty",
+      "title": "Black Beauty The autobiography of a horse",
+      "author": [
+        "Anna Sewell"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "271",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/271",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 323156,
+        "cleanedCharacterCount": 303863,
+        "wordCount": 60050,
+        "sectionCount": 12,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "4b4cb41dc1e8443c",
+      "contentHash": "4b4cb41dc1e8443c29b577c2a8f7c87840b3163a50058c043ba7260aa3132688",
+      "bookPath": "books/black-beauty.json"
+    },
+    {
+      "slug": "botchan",
+      "title": "Botchan (Master Darling)",
+      "author": [
+        "Soseki Natsume"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "8868",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/8868",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 275055,
+        "cleanedCharacterCount": 255711,
+        "wordCount": 48340,
+        "sectionCount": 13,
+        "includedSectionCount": 11
+      },
+      "contentVersion": "4854dd5def4973a3",
+      "contentHash": "4854dd5def4973a3afe9dce4cfc1a5d1b0beed8b0e0f53034c94567d20873786",
+      "bookPath": "books/botchan.json"
+    },
+    {
+      "slug": "candide",
+      "title": "Candide",
+      "author": [
+        "Voltaire"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "19942",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/19942",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 224766,
+        "cleanedCharacterCount": 205516,
+        "wordCount": 35911,
+        "sectionCount": 8,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "e7ec9f454adb93c8",
+      "contentHash": "e7ec9f454adb93c8a6955fbb687f38a27edfce1a9a2b7020da51fa676a08cedd",
+      "bookPath": "books/candide.json"
     },
     {
       "slug": "crime-and-punishment",
@@ -61,9 +684,102 @@
         "sectionCount": 47,
         "includedSectionCount": 39
       },
-      "contentVersion": "aefba01829b6ac7b",
-      "contentHash": "aefba01829b6ac7b10f7ae192bef5caa7b018aec9c51ccd7e53f7baad5a9fa50",
+      "contentVersion": "b74888c667438eba",
+      "contentHash": "b74888c667438eba8f835f248ee6acb23ff6365c0fb0d95abd0d91833349deea",
       "bookPath": "books/crime-and-punishment.json"
+    },
+    {
+      "slug": "don-quixote",
+      "title": "Don Quixote",
+      "author": [
+        "Miguel de Cervantes Saavedra"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/996",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 2317419,
+        "cleanedCharacterCount": 2298167,
+        "wordCount": 431303,
+        "sectionCount": 149,
+        "includedSectionCount": 146
+      },
+      "contentVersion": "eefc3841c29c1a92",
+      "contentHash": "eefc3841c29c1a92da66e52f54091e8ef1c292b2519e89f8782411229071024b",
+      "bookPath": "books/don-quixote.json"
+    },
+    {
+      "slug": "dracula",
+      "title": "Dracula",
+      "author": [
+        "Bram Stoker"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "345",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/345",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 865100,
+        "cleanedCharacterCount": 845824,
+        "wordCount": 162773,
+        "sectionCount": 30,
+        "includedSectionCount": 27
+      },
+      "contentVersion": "cfb7fa5337ae3897",
+      "contentHash": "cfb7fa5337ae38970561813cbb980e3cc6a24bbd4148cc89071711fc0039d02b",
+      "bookPath": "books/dracula.json"
+    },
+    {
+      "slug": "five-little-peppers-and-how-they-grew",
+      "title": "Five Little Peppers and How They Grew",
+      "author": [
+        "Margaret Sidney"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2770",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2770",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 408112,
+        "cleanedCharacterCount": 388760,
+        "wordCount": 69654,
+        "sectionCount": 14,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "ddad5b5794a7cfec",
+      "contentHash": "ddad5b5794a7cfec0e3cfa86044362376bf80bfd62624b351034e54fbb4fb0c0",
+      "bookPath": "books/five-little-peppers-and-how-they-grew.json"
     },
     {
       "slug": "frankenstein",
@@ -92,9 +808,40 @@
         "sectionCount": 26,
         "includedSectionCount": 24
       },
-      "contentVersion": "aed1191088a0388d",
-      "contentHash": "aed1191088a0388dedd331421640b0bb75ee1aa7a19a5dbab5d431140ca4c54f",
+      "contentVersion": "a9f1bad6d04f04c8",
+      "contentHash": "a9f1bad6d04f04c8789989e9973023bb61cab52d1eba2e06e5f72ebc7a4264e8",
       "bookPath": "books/frankenstein.json"
+    },
+    {
+      "slug": "grimm-s-fairy-tales",
+      "title": "Grimm's Fairy Tales",
+      "author": [
+        "Jacob Grimm Wilhelm Grimm"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "52521",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/52521",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 501798,
+        "cleanedCharacterCount": 482363,
+        "wordCount": 91224,
+        "sectionCount": 18,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "1d11e1e0e8b39501",
+      "contentHash": "1d11e1e0e8b395015d6bf2e015b59a5b0e434c95547a57308255f47e57390aba",
+      "bookPath": "books/grimm-s-fairy-tales.json"
     },
     {
       "slug": "gulliver-s-travels",
@@ -123,9 +870,596 @@
         "sectionCount": 49,
         "includedSectionCount": 39
       },
-      "contentVersion": "5edceadde7f5a285",
-      "contentHash": "5edceadde7f5a285e1004e73f9320596efebd37b2da3f9b42b684450407bb7a2",
+      "contentVersion": "b75ec41e01955a20",
+      "contentHash": "b75ec41e01955a2099a60492ca96291f3820ea6d099d506ed163910f23d8f8d8",
       "bookPath": "books/gulliver-s-travels.json"
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "author": [
+        "Johanna Spyri"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "20781",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/20781",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 304113,
+        "cleanedCharacterCount": 284582,
+        "wordCount": 51641,
+        "sectionCount": 11,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "d5d2e368702760a7",
+      "contentHash": "d5d2e368702760a7c2d17d0b5854899b5e40f7f1b4a7d2cfaed612af66183f61",
+      "bookPath": "books/heidi.json"
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "author": [
+        "Lewis Carroll"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "23717",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/23717",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 24933,
+        "cleanedCharacterCount": 3923,
+        "wordCount": 651,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "f68375dd6513cb04",
+      "contentHash": "f68375dd6513cb0453b20dcc099a68dd149fda985363ea85e84a58c5bb689e54",
+      "bookPath": "books/jabberwocky.json"
+    },
+    {
+      "slug": "jack-and-jill",
+      "title": "Jack and Jill",
+      "author": [
+        "Louisa May Alcott"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2786",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2786",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 517085,
+        "cleanedCharacterCount": 497818,
+        "wordCount": 93064,
+        "sectionCount": 26,
+        "includedSectionCount": 24
+      },
+      "contentVersion": "27232d07b1f591c6",
+      "contentHash": "27232d07b1f591c62f7d7ea78ff336f3f85971f421a331eb681197484aaad10b",
+      "bookPath": "books/jack-and-jill.json"
+    },
+    {
+      "slug": "jane-eyre",
+      "title": "Jane Eyre: An Autobiography",
+      "author": [
+        "Charlotte Brontë"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1260",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1260",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 1041611,
+        "cleanedCharacterCount": 1022299,
+        "wordCount": 188438,
+        "sectionCount": 39,
+        "includedSectionCount": 37
+      },
+      "contentVersion": "0aa33da4364fa283",
+      "contentHash": "0aa33da4364fa2830a1a45417516954f3fa06f3c68ac64c822f74c7166b7d28e",
+      "bookPath": "books/jane-eyre.json"
+    },
+    {
+      "slug": "les-miserables",
+      "title": "Les Misérables",
+      "author": [
+        "Victor Hugo"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "135",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/135",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 3249711,
+        "cleanedCharacterCount": 3230435,
+        "wordCount": 572069,
+        "sectionCount": 6,
+        "includedSectionCount": 2
+      },
+      "contentVersion": "94ca9ab2f6bd7121",
+      "contentHash": "94ca9ab2f6bd71219eb5c830825e8f5f87a56c89f7f062931bad23bbf9aafc6a",
+      "bookPath": "books/les-miserables.json"
+    },
+    {
+      "slug": "little-women",
+      "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+      "author": [
+        "Louisa May Alcott"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "37106",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/37106",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 1090255,
+        "cleanedCharacterCount": 1070785,
+        "wordCount": 193010,
+        "sectionCount": 37,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "ee90eae9ad624652",
+      "contentHash": "ee90eae9ad624652381b3c0573dfb5c66a7c0dda357f096232bd8b73236c17da",
+      "bookPath": "books/little-women.json"
+    },
+    {
+      "slug": "new-treasure-seekers",
+      "title": "New Treasure Seekers; Or, The Bastable Children in Search of a Fortune",
+      "author": [
+        "E. Nesbit"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25496",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25496",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 386912,
+        "cleanedCharacterCount": 367374,
+        "wordCount": 68916,
+        "sectionCount": 14,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "28e40c3f77321a04",
+      "contentHash": "28e40c3f77321a04ed2515a253f3115317d69df3088a5e0d215297b7f55972d8",
+      "bookPath": "books/new-treasure-seekers.json"
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "author": [
+        "Joel Chandler Harris"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "24430",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/24430",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 591263,
+        "cleanedCharacterCount": 571905,
+        "wordCount": 111548,
+        "sectionCount": 21,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "320cf7cc77bfaa8c",
+      "contentHash": "320cf7cc77bfaa8cbfca81cf8b722b1bde8f5a04d32c69aae119edf40c820612",
+      "bookPath": "books/nights-with-uncle-remus.json"
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "author": [
+        "J. M. Barrie"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "16",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/16",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 274781,
+        "cleanedCharacterCount": 255549,
+        "wordCount": 47862,
+        "sectionCount": 20,
+        "includedSectionCount": 18
+      },
+      "contentVersion": "a14744414244f10d",
+      "contentHash": "a14744414244f10d8f29f3cb87faaefda2dca748740426efa80927f378f77b2a",
+      "bookPath": "books/peter-pan.json"
+    },
+    {
+      "slug": "pride-and-prejudice",
+      "title": "Pride and Prejudice",
+      "author": [
+        "Jane Austen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1342",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1342",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 747869,
+        "cleanedCharacterCount": 728457,
+        "wordCount": 128378,
+        "sectionCount": 62,
+        "includedSectionCount": 61
+      },
+      "contentVersion": "7001340970d6bb1d",
+      "contentHash": "7001340970d6bb1dfc738319215e058e0b4c8515523fdd5cec609ab74452f355",
+      "bookPath": "books/pride-and-prejudice.json"
+    },
+    {
+      "slug": "rainbow-valley",
+      "title": "Rainbow Valley",
+      "author": [
+        "L. M. Montgomery"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "5343",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/5343",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 463071,
+        "cleanedCharacterCount": 443599,
+        "wordCount": 83983,
+        "sectionCount": 37,
+        "includedSectionCount": 35
+      },
+      "contentVersion": "81102d58988c2029",
+      "contentHash": "81102d58988c2029f426328f27f9e5d390cf85143221625462bfa2a446e9d65b",
+      "bookPath": "books/rainbow-valley.json"
+    },
+    {
+      "slug": "rinkitink-in-oz",
+      "title": "Rinkitink in Oz",
+      "author": [
+        "L. Frank Baum"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25581",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25581",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 290436,
+        "cleanedCharacterCount": 271052,
+        "wordCount": 49500,
+        "sectionCount": 25,
+        "includedSectionCount": 24
+      },
+      "contentVersion": "6330872a0762ddf0",
+      "contentHash": "6330872a0762ddf065d95382871afa930c94974c2078e6e620bca2753f9b2c1f",
+      "bookPath": "books/rinkitink-in-oz.json"
+    },
+    {
+      "slug": "sense-and-sensibility",
+      "title": "Sense and Sensibility",
+      "author": [
+        "Jane Austen"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "161",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/161",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 689802,
+        "cleanedCharacterCount": 670572,
+        "wordCount": 120545,
+        "sectionCount": 52,
+        "includedSectionCount": 50
+      },
+      "contentVersion": "9bbc6c83e0dfb849",
+      "contentHash": "9bbc6c83e0dfb849734048f0bdce5135f4df2b15e20f0c2cba2400a9caa1788b",
+      "bookPath": "books/sense-and-sensibility.json"
+    },
+    {
+      "slug": "sun-tzu-on-the-art-of-war",
+      "title": "Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World",
+      "author": [
+        "active 6th century B.C. Sunzi"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "66706",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/66706",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 507131,
+        "cleanedCharacterCount": 487438,
+        "wordCount": 83135,
+        "sectionCount": 7,
+        "includedSectionCount": 1
+      },
+      "contentVersion": "7e6fb99c5297bfb1",
+      "contentHash": "7e6fb99c5297bfb1dc66a9d9b46881361f6957c89683be2f9be1c02e3c124704",
+      "bookPath": "books/sun-tzu-on-the-art-of-war.json"
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "author": [
+        "Edgar Rice Burroughs"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "78",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/78",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 499663,
+        "cleanedCharacterCount": 480392,
+        "wordCount": 86814,
+        "sectionCount": 30,
+        "includedSectionCount": 28
+      },
+      "contentVersion": "a236afa437368e90",
+      "contentHash": "a236afa437368e907cefcc61b100e8ba06e08d6686169ec9b5abdbeff2a5c955",
+      "bookPath": "books/tarzan-of-the-apes.json"
+    },
+    {
+      "slug": "the-arabian-nights",
+      "title": "The Arabian Nights: Their Best-known Tales",
+      "author": [],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "20916",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/20916",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 645574,
+        "cleanedCharacterCount": 626110,
+        "wordCount": 114917,
+        "sectionCount": 23,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "cca3f1d413a7a630",
+      "contentHash": "cca3f1d413a7a630b25258a9888b3ed19b9679bb299ff20dbdafd7b71c81105e",
+      "bookPath": "books/the-arabian-nights.json"
+    },
+    {
+      "slug": "the-art-of-war",
+      "title": "The Art of War",
+      "author": [
+        "active 6th century B.C. Sunzi"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "132",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/132",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 332084,
+        "cleanedCharacterCount": 312813,
+        "wordCount": 56196,
+        "sectionCount": 17,
+        "includedSectionCount": 13
+      },
+      "contentVersion": "554059fe92208962",
+      "contentHash": "554059fe9220896210f263fd720affffd849e41f47956820b573dd68c69352dc",
+      "bookPath": "books/the-art-of-war.json"
+    },
+    {
+      "slug": "the-book-of-dragons",
+      "title": "The Book of Dragons",
+      "author": [
+        "E. Nesbit"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "23661",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/23661",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 247086,
+        "cleanedCharacterCount": 227745,
+        "wordCount": 42635,
+        "sectionCount": 9,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "1fe20aa307313dd4",
+      "contentHash": "1fe20aa307313dd4c35efffea81850ebaafe1f5c6399560527eeb182dabb139b",
+      "bookPath": "books/the-book-of-dragons.json"
+    },
+    {
+      "slug": "the-call-of-cthulhu",
+      "title": "The call of Cthulhu",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "68283",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/68283",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 90607,
+        "cleanedCharacterCount": 71199,
+        "wordCount": 11959,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "8012524bade135bc",
+      "contentHash": "8012524bade135bcff21083fc9fee2b13a7a8bf56aad8a0ac51561814979dfdd",
+      "bookPath": "books/the-call-of-cthulhu.json"
     },
     {
       "slug": "the-call-of-the-wild",
@@ -154,9 +1488,131 @@
         "sectionCount": 9,
         "includedSectionCount": 7
       },
-      "contentVersion": "c8b5f22d56669ce0",
-      "contentHash": "c8b5f22d56669ce0c9fcc6504c8610257b71a39cc4634c22d35248d8e84c3305",
+      "contentVersion": "b403812b215ac3e2",
+      "contentHash": "b403812b215ac3e2e2ea5d1db59b11a3b43aeb11554aab506740a960882ed081",
       "bookPath": "books/the-call-of-the-wild.json"
+    },
+    {
+      "slug": "the-count-of-monte-cristo",
+      "title": "The Count of Monte Cristo",
+      "author": [
+        "Alexandre Dumas Auguste Maquet"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1184",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 2646037,
+        "cleanedCharacterCount": 2626685,
+        "wordCount": 468238,
+        "sectionCount": 4,
+        "includedSectionCount": 2
+      },
+      "contentVersion": "cdf772750fb5974d",
+      "contentHash": "cdf772750fb5974d85415260c84edd3ba9c0e875a52b79854d761a9821bab94c",
+      "bookPath": "books/the-count-of-monte-cristo.json"
+    },
+    {
+      "slug": "the-count-of-monte-cristo-gutenberg-1184",
+      "title": "The Count of Monte Cristo",
+      "author": [],
+      "language": "und",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1184",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review"
+      },
+      "stats": {
+        "originalCharacterCount": 2641090,
+        "cleanedCharacterCount": 2621774,
+        "wordCount": 468237,
+        "sectionCount": 4,
+        "includedSectionCount": 2
+      },
+      "contentVersion": "9d2314be804f2a77",
+      "contentHash": "9d2314be804f2a775b62c5f4f61a90496c4406d489a99bd72f4692cdef92c492",
+      "bookPath": "books/the-count-of-monte-cristo-gutenberg-1184.json"
+    },
+    {
+      "slug": "the-divine-comedy",
+      "title": "The divine comedy",
+      "author": [
+        "Dante Alighieri"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "8800",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/8800",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 623762,
+        "cleanedCharacterCount": 604460,
+        "wordCount": 113949,
+        "sectionCount": 22,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "584c7e8229a1da5c",
+      "contentHash": "584c7e8229a1da5c958423b0c27246a4fb5c662d62b47f4b6cb2b080f69cb7de",
+      "bookPath": "books/the-divine-comedy.json"
+    },
+    {
+      "slug": "the-elements-of-style",
+      "title": "The Elements of Style",
+      "author": [
+        "William Strunk"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "37134",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/37134",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 105502,
+        "cleanedCharacterCount": 86089,
+        "wordCount": 13918,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "c6aad8dc3b3e1041",
+      "contentHash": "c6aad8dc3b3e10418abd9f52d2da38c125b7ce2816a09eae999e58e273cbd985",
+      "bookPath": "books/the-elements-of-style.json"
     },
     {
       "slug": "the-emerald-city-of-oz",
@@ -185,9 +1641,40 @@
         "sectionCount": 11,
         "includedSectionCount": 0
       },
-      "contentVersion": "d546efa9ad32d315",
-      "contentHash": "d546efa9ad32d315fcf8a92e8fbbeb315e63cc2f6d42861b733e103efe3028c8",
+      "contentVersion": "f1041c68dc7cc6a6",
+      "contentHash": "f1041c68dc7cc6a6a2f6967b3c71f24f1120a95bcb868946aa82e2b89cb2cbba",
       "bookPath": "books/the-emerald-city-of-oz.json"
+    },
+    {
+      "slug": "the-federalist-papers",
+      "title": "The Federalist Papers",
+      "author": [
+        "Alexander Hamilton John Jay James Madison"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "18",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/18",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 1191859,
+        "cleanedCharacterCount": 1172586,
+        "wordCount": 196582,
+        "sectionCount": 42,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "1cf75cb346a1d230",
+      "contentHash": "1cf75cb346a1d230a040c29db69117fd3a2affa635ae3e89873326fc5aaf5b0c",
+      "bookPath": "books/the-federalist-papers.json"
     },
     {
       "slug": "the-great-gatsby",
@@ -216,9 +1703,38 @@
         "sectionCount": 11,
         "includedSectionCount": 0
       },
-      "contentVersion": "06ba121a3bd3876e",
-      "contentHash": "06ba121a3bd3876e63ac4bc285c4a60d6ba8cfcbb7ed139926f7aef9887fb5ff",
+      "contentVersion": "b901ff967a2e58eb",
+      "contentHash": "b901ff967a2e58eb6e266f5355b860c42d45dd7d89b5216fe4581f41b3a96d24",
       "bookPath": "books/the-great-gatsby.json"
+    },
+    {
+      "slug": "the-happy-family",
+      "title": "The Happy Family",
+      "author": [],
+      "language": "und",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Unknown",
+        "gutenbergId": null,
+        "sourceUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 0,
+        "cleanedCharacterCount": 186,
+        "wordCount": 29,
+        "sectionCount": 1,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "d248625a57495d71",
+      "contentHash": "d248625a57495d710db65b555d3186171c9c8818eb324e50470d226215350f27",
+      "bookPath": "books/the-happy-family.json"
     },
     {
       "slug": "the-jungle-book",
@@ -247,9 +1763,40 @@
         "sectionCount": 11,
         "includedSectionCount": 0
       },
-      "contentVersion": "70617453538c5878",
-      "contentHash": "70617453538c58787c1ada1fe540af28f68ce9521eba376a081fee4aaf5907b3",
+      "contentVersion": "9c48bff1cde84478",
+      "contentHash": "9c48bff1cde84478fc346c867c343be4d6bdca5dfa1451b23e35d0acdae26192",
       "bookPath": "books/the-jungle-book.json"
+    },
+    {
+      "slug": "the-legend-of-sleepy-hollow",
+      "title": "The Legend of Sleepy Hollow",
+      "author": [
+        "Washington Irving"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "41",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/41",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 89064,
+        "cleanedCharacterCount": 69755,
+        "wordCount": 12277,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "764eb33a384af0af",
+      "contentHash": "764eb33a384af0afafe2fc16b1792fba081c26229fe79b3245c4087dd3d6b9d8",
+      "bookPath": "books/the-legend-of-sleepy-hollow.json"
     },
     {
       "slug": "the-picture-of-dorian-gray",
@@ -278,8 +1825,8 @@
         "sectionCount": 23,
         "includedSectionCount": 21
       },
-      "contentVersion": "b05ac87e5cc7c7aa",
-      "contentHash": "b05ac87e5cc7c7aab911eec04ec6d194f0ddc80ad5fc7ff1374ed2267e662f65",
+      "contentVersion": "99ace8b590a6a3d6",
+      "contentHash": "99ace8b590a6a3d6c94564e6b869083c6d732e2943727ce172277e4c1906a558",
       "bookPath": "books/the-picture-of-dorian-gray.json"
     },
     {
@@ -309,8 +1856,8 @@
         "sectionCount": 34,
         "includedSectionCount": 32
       },
-      "contentVersion": "1870b705f4e11be1",
-      "contentHash": "1870b705f4e11be1a1081e3d0896122541afd275c02b44104e07a31ca17583cd",
+      "contentVersion": "66242e42e4019730",
+      "contentHash": "66242e42e4019730a268ae22ec5339505b4c374882b39a42b78b63ecde616ede",
       "bookPath": "books/the-princess-and-the-goblin.json"
     },
     {
@@ -340,8 +1887,8 @@
         "sectionCount": 15,
         "includedSectionCount": 14
       },
-      "contentVersion": "4f557be9313b14ca",
-      "contentHash": "4f557be9313b14ca1bc1bbd1451bbd0193b0000674bd63d2ab3bcf723924549c",
+      "contentVersion": "26b027c565b82546",
+      "contentHash": "26b027c565b8254664ce30fee7954e256ab8233c811c5e284a50022071a333fc",
       "bookPath": "books/the-railway-children.json"
     },
     {
@@ -371,9 +1918,40 @@
         "sectionCount": 40,
         "includedSectionCount": 39
       },
-      "contentVersion": "f5b51d9e2538e97f",
-      "contentHash": "f5b51d9e2538e97ff41634f833ea50abd772a7b8feb7cbc06c84854f43995e0d",
+      "contentVersion": "576b60ddd7a36b3a",
+      "contentHash": "576b60ddd7a36b3a2829c359fca0e59563c09b60b38c5b5529641c4c8ad71f37",
       "bookPath": "books/the-sea-wolf.json"
+    },
+    {
+      "slug": "the-secret-garden",
+      "title": "The Secret Garden",
+      "author": [
+        "Frances Hodgson Burnett"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "17396",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/17396",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 451877,
+        "cleanedCharacterCount": 432583,
+        "wordCount": 81478,
+        "sectionCount": 30,
+        "includedSectionCount": 27
+      },
+      "contentVersion": "bb2f2afb06343534",
+      "contentHash": "bb2f2afb063435345abf7e1f98777600c6cbe12b9910ba6f67472aef66dab896",
+      "bookPath": "books/the-secret-garden.json"
     },
     {
       "slug": "the-secret-garden-gutenberg-113",
@@ -402,9 +1980,40 @@
         "sectionCount": 30,
         "includedSectionCount": 28
       },
-      "contentVersion": "1530e55f92bf0881",
-      "contentHash": "1530e55f92bf08812761d364e1e76bbafdb69280b882cd86b6bcc36cbbbc2d4d",
+      "contentVersion": "64ee1639a2fcec5a",
+      "contentHash": "64ee1639a2fcec5a22150fad917a1698ef8470258285729f9c66d500ca04e37c",
       "bookPath": "books/the-secret-garden-gutenberg-113.json"
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "author": [
+        "Hugh Lofting"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "501",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/501",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 164957,
+        "cleanedCharacterCount": 145445,
+        "wordCount": 27561,
+        "sectionCount": 6,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "09654dd2812faed4",
+      "contentHash": "09654dd2812faed4df891176554d1a84cf5e4b2c3d438bc039b76d99900fb35e",
+      "bookPath": "books/doctor-dolittle.json"
     },
     {
       "slug": "dr-jekyll-and-mr-hyde",
@@ -433,9 +2042,40 @@
         "sectionCount": 6,
         "includedSectionCount": 0
       },
-      "contentVersion": "9575f38b53a39b11",
-      "contentHash": "9575f38b53a39b11a9cd003e790c4bfd494a0392373df5b3c83607b99001a2b0",
+      "contentVersion": "24f3ec82ff50291d",
+      "contentHash": "24f3ec82ff50291d79faac623ad5c49bd6b14dd493261ef01a898ce2511c1b46",
       "bookPath": "books/dr-jekyll-and-mr-hyde.json"
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "author": [
+        "John Buchan"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "558",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/558",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 233965,
+        "cleanedCharacterCount": 214660,
+        "wordCount": 41704,
+        "sectionCount": 12,
+        "includedSectionCount": 10
+      },
+      "contentVersion": "77c8a895bc68a388",
+      "contentHash": "77c8a895bc68a388d98c2354f1d5d130efcdf7a76d232d111859a170d5f843a0",
+      "bookPath": "books/the-thirty-nine-steps.json"
     },
     {
       "slug": "the-three-musketeers",
@@ -464,9 +2104,133 @@
         "sectionCount": 71,
         "includedSectionCount": 67
       },
-      "contentVersion": "b3173c02f758a771",
-      "contentHash": "b3173c02f758a771ce1b6bac7057fa4a6b43a406caceb360007679de51ec9d8c",
+      "contentVersion": "8b38a7d0f2701d02",
+      "contentHash": "8b38a7d0f2701d02867dfbe7841eccf2a4b3e24fb0f503271a2cfa5b90496e17",
       "bookPath": "books/the-three-musketeers.json"
+    },
+    {
+      "slug": "the-water-babies",
+      "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+      "author": [
+        "Charles Kingsley"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25564",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25564",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 388846,
+        "cleanedCharacterCount": 369358,
+        "wordCount": 68944,
+        "sectionCount": 11,
+        "includedSectionCount": 9
+      },
+      "contentVersion": "75196d41fb4ef10f",
+      "contentHash": "75196d41fb4ef10ffd625efafe5f30d88dc8f0beb120ae6b018b02cb98bd56c8",
+      "bookPath": "books/the-water-babies.json"
+    },
+    {
+      "slug": "wind-in-the-willows",
+      "title": "The Wind in the Willows",
+      "author": [
+        "Kenneth Grahame"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "289",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/289",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 344043,
+        "cleanedCharacterCount": 324765,
+        "wordCount": 59990,
+        "sectionCount": 14,
+        "includedSectionCount": 12
+      },
+      "contentVersion": "7ce6e7150d5e2e24",
+      "contentHash": "7ce6e7150d5e2e2452f4293accd91b2e4fd725b1626024772507e44d53513c5a",
+      "bookPath": "books/wind-in-the-willows.json"
+    },
+    {
+      "slug": "the-wonderful-wizard-of-oz",
+      "title": "The Wonderful Wizard of Oz",
+      "author": [
+        "L. Frank Baum"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "55",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/55",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 227016,
+        "cleanedCharacterCount": 207764,
+        "wordCount": 39915,
+        "sectionCount": 28,
+        "includedSectionCount": 24
+      },
+      "contentVersion": "4a9b0990c6c9b9d8",
+      "contentHash": "4a9b0990c6c9b9d839bee1c0cd0f5232a202ca62ac66e4f5c51579e3ab09c351",
+      "bookPath": "books/the-wonderful-wizard-of-oz.json"
+    },
+    {
+      "slug": "through-the-looking-glass",
+      "title": "Through the Looking-Glass",
+      "author": [
+        "Lewis Carroll"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 183483,
+        "cleanedCharacterCount": 164215,
+        "wordCount": 30904,
+        "sectionCount": 14,
+        "includedSectionCount": 12
+      },
+      "contentVersion": "c0732664dbd884a3",
+      "contentHash": "c0732664dbd884a3ed6d362e919b9db69e767a9841b3b054a3e498eb26096e67",
+      "bookPath": "books/through-the-looking-glass.json"
     },
     {
       "slug": "treasure-island",
@@ -495,9 +2259,40 @@
         "sectionCount": 14,
         "includedSectionCount": 0
       },
-      "contentVersion": "e2e5718478356c04",
-      "contentHash": "e2e5718478356c045e7995eb6874d7c19a32b94ee226e2092b0e729e38b5ea39",
+      "contentVersion": "ca51c58ec8abfee1",
+      "contentHash": "ca51c58ec8abfee1b6cd7dbcada05f00fec856cf32400f8229f52cdc9bb54e56",
       "bookPath": "books/treasure-island.json"
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "author": [
+        "William J. Long"
+      ],
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "22101",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/22101",
+        "rightsBasis": "public-domain-us",
+        "rightsStatus": "approved",
+        "publishReady": true,
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed"
+      },
+      "stats": {
+        "originalCharacterCount": 269688,
+        "cleanedCharacterCount": 250367,
+        "wordCount": 45347,
+        "sectionCount": 10,
+        "includedSectionCount": 0
+      },
+      "contentVersion": "9af0d15d6459bb21",
+      "contentHash": "9af0d15d6459bb21e10e218264dfc28b5b60ef765ee37c1c81836d0df198ab4c",
+      "bookPath": "books/wood-folk-at-school.json"
     }
   ]
 }

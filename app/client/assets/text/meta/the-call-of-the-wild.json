@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "215",
     "sourceUrl": "https://www.gutenberg.org/ebooks/215",
-    "rawTextFile": "../The call of the wild.txt",
+    "rawTextFile": "../../temp-books/The call of the wild.txt",
     "releaseDate": "July 2, 2008",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "62",
     "sourceUrl": "https://www.gutenberg.org/ebooks/62",
-    "rawTextFile": "../a-princess-of-mars.txt",
+    "rawTextFile": "../../temp-books/a-princess-of-mars.txt",
     "releaseDate": "April 1, 1993",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

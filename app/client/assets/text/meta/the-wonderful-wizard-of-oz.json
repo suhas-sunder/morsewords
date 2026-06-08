@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "55",
     "sourceUrl": "https://www.gutenberg.org/ebooks/55",
-    "rawTextFile": "../the-wonderful-wizard-of-oz.txt",
+    "rawTextFile": "../../temp-books/the-wonderful-wizard-of-oz.txt",
     "releaseDate": "February 1, 1993",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

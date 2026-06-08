@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "les-miserables",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "LES MISÉRABLES\n\nBy Victor Hugo\n\n\nTranslated by Isabel F. Hapgood\n\n\nThomas Y. Crowell & Co.\n No. 13, Astor Place\n\nNew York\nCopyright 1887\n\n\n[Illustration: Bookshelf  spines]\n\n[Illustration: Bookcover]\n\n[Illustration: Frontpapers]\n\n[Illustration: Frontispiece]\n\n[Illustration: Titlepage Volume One]\n\n[Illustration: Titlepage Verso]",
+  "morseSourceText": "LES MISÉRABLES\n\nBy Victor Hugo\n\n\nTranslated by Isabel F. Hapgood\n\n\nThomas Y. Crowell & Co.\n No. 13, Astor Place\n\nNew York\nCopyright 1887\n\n\n[Illustration: Bookshelf  spines]\n\n[Illustration: Bookcover]\n\n[Illustration: Frontpapers]\n\n[Illustration: Frontispiece]\n\n[Illustration: Titlepage Volume One]\n\n[Illustration: Titlepage Verso]",
+  "paragraphs": [
+    "LES MISÉRABLES",
+    "By Victor Hugo",
+    "Translated by Isabel F. Hapgood",
+    "Thomas Y. Crowell & Co. No. 13, Astor Place",
+    "New York Copyright 1887",
+    "[Illustration: Bookshelf  spines]",
+    "[Illustration: Bookcover]",
+    "[Illustration: Frontpapers]",
+    "[Illustration: Frontispiece]",
+    "[Illustration: Titlepage Volume One]",
+    "[Illustration: Titlepage Verso]"
+  ],
+  "wordCount": 39,
+  "characterCount": 329,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1695,
+  "unsupportedCharacterSummary": {
+    "É": 1,
+    "[": 6,
+    "]": 6
+  },
+  "textPreview": "LES MISÉRABLES By Victor Hugo Translated by Isabel F. Hapgood Thomas Y. Crowell & Co. No. 13, Astor Place New York Copyright 1887 [Illustration: Bookshelf spin...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 332
+  }
+}

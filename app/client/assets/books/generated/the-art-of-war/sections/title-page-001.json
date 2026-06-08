@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-art-of-war",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "Sun Tzŭ\non\nThe Art of War\n\nTHE OLDEST MILITARY TREATISE IN THE WORLD\nTranslated from the Chinese with Introduction and Critical Notes\n\nBY\nLIONEL GILES, M.A.\n\nAssistant in the Department of Oriental Printed Books and MSS.\nin the British Museum\n\n\n1910\n\n\nTo my brother\nCaptain Valentine Giles, R.G.\nin the hope that\na work 2400 years old\nmay yet contain lessons worth consideration\nby the soldier of today\nthis translation\nis affectionately dedicated.",
+  "morseSourceText": "Sun Tzŭ\non\nThe Art of War\n\nTHE OLDEST MILITARY TREATISE IN THE WORLD\nTranslated from the Chinese with Introduction and Critical Notes\n\nBY\nLIONEL GILES, M.A.\n\nAssistant in the Department of Oriental Printed Books and MSS.\nin the British Museum\n\n\n1910\n\n\nTo my brother\nCaptain Valentine Giles, R.G.\nin the hope that\na work 2400 years old\nmay yet contain lessons worth consideration\nby the soldier of today\nthis translation\nis affectionately dedicated.",
+  "paragraphs": [
+    "Sun Tzŭ on The Art of War",
+    "THE OLDEST MILITARY TREATISE IN THE WORLD Translated from the Chinese with Introduction and Critical Notes",
+    "BY LIONEL GILES, M.A.",
+    "Assistant in the Department of Oriental Printed Books and MSS. in the British Museum",
+    "1910",
+    "To my brother Captain Valentine Giles, R.G. in the hope that a work 2400 years old may yet contain lessons worth consideration by the soldier of today this translation is affectionately dedicated."
+  ],
+  "wordCount": 76,
+  "characterCount": 448,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2337,
+  "unsupportedCharacterSummary": {
+    "Ŭ": 1
+  },
+  "textPreview": "Sun Tzŭ on The Art of War THE OLDEST MILITARY TREATISE IN THE WORLD Translated from the Chinese with Introduction and Critical Notes BY LIONEL GILES, M.A. Assi...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 451
+  }
+}

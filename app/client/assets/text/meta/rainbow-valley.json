@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "5343",
     "sourceUrl": "https://www.gutenberg.org/ebooks/5343",
-    "rawTextFile": "../rainbow-valley.txt",
+    "rawTextFile": "../../temp-books/rainbow-valley.txt",
     "releaseDate": "March 1, 2004",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-water-babies",
+  "sectionId": "chapter-008",
+  "kind": "chapter",
+  "label": "Chapter 1",
+  "title": null,
+  "order": 9,
+  "includeByDefault": true,
+  "displayText": "I.\n\n           \"_Soft soft wind, from out the sweet south sliding,\n          Waft thy silver cloud-webs athwart the summer sea;\n             Thin thin threads of mist on dewy fingers twining\n          Weave a veil of dappled gauze to shade my babe and me._",
+  "morseSourceText": "I.\n\n           \"_Soft soft wind, from out the sweet south sliding,\n          Waft thy silver cloud-webs athwart the summer sea;\n             Thin thin threads of mist on dewy fingers twining\n          Weave a veil of dappled gauze to shade my babe and me._",
+  "paragraphs": [
+    "I.",
+    "\"_Soft soft wind, from out the sweet south sliding, Waft thy silver cloud-webs athwart the summer sea; Thin thin threads of mist on dewy fingers twining Weave a veil of dappled gauze to shade my babe and me._"
+  ],
+  "wordCount": 39,
+  "characterCount": 256,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1137,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "I. \"_Soft soft wind, from out the sweet south sliding, Waft thy silver cloud-webs athwart the summer sea; Thin thin threads of mist on dewy fingers twining Wea...",
+  "sourceOffsets": {
+    "start": 267138,
+    "end": 267397
+  }
+}

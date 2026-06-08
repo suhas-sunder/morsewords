@@ -1,16 +1,13 @@
-# Les Misérables rights review notes
+# Les Misérables processing notes
 
-- Source file: ../Les Misérables.txt
+- Source file: ../../temp-books/Les Misérables.txt
 - Gutenberg ID: 135
 - Source URL: https://www.gutenberg.org/ebooks/135
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Les Misérables Author: Victor
 - Illustration or image reference: , because of the historical interest attaching to these strange documents:— [Illustration] +——————————————————————————————————————————————————————————————————————+ | Q | C | D | E | Learn this list by heart. After so doing
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: June 22, 2008
-- Last updated: October 29, 2024
-- Original publication: missing
-- Credits: Judith Boss and David Widger
-- Translator: Isabel Florence Hapgood
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: low
@@ -45,19 +27,26 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 3249711
+- Cleaned characters: 3230435
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+- title-page-002: title-page (Contents)
+- preface-001: preface (Preface)
+- preface-002: preface (Preface)
+
+## Section detection summary
+
+- Generated sections: 6
+- Included by default: 2
 
 ## Manual review reasons
 
@@ -69,6 +58,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Add original publication evidence before approval.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

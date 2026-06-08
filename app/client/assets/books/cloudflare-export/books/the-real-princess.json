@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-real-princess",
+  "title": "Andersen's Fairy Tales",
+  "author": [
+    "H. C. Andersen"
+  ],
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1597",
+    "releaseDate": "January 1, 1999",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "manual-review",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Andersen's Fairy Tales"
+  },
+  "stats": {
+    "originalCharacterCount": 21645,
+    "cleanedCharacterCount": 2355,
+    "wordCount": 436,
+    "sectionCount": 2,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "slug": "the-real-princess",
+    "title": "Andersen's Fairy Tales",
+    "author": [
+      "H. C. Andersen"
+    ],
+    "contentVersion": "68a2fbee7996f6f0",
+    "contentHash": "68a2fbee7996f6f01dd215d03d0230008715125fba3e4812bac4b5b1b24558a0",
+    "language": "en",
+    "description": "",
+    "subjects": [],
+    "source": {
+      "provider": "Project Gutenberg",
+      "gutenbergId": "1597",
+      "releaseDate": "January 1, 1999",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+      "rawTextUrl": null,
+      "rightsBasis": "public-domain-us",
+      "rightsReviewed": true,
+      "publishReady": true,
+      "rightsStatus": "approved",
+      "processingAllowed": true,
+      "approvalSource": "external-authority",
+      "duplicateResolutionSource": "manual-review",
+      "rightsReportPath": "rights_report.json",
+      "processedBookPath": "processed_book.json",
+      "cleanedBookPath": "cleaned_book.json",
+      "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+    },
+    "cover": {
+      "src": null,
+      "placeholder": true,
+      "alt": "Placeholder cover for Andersen's Fairy Tales"
+    },
+    "stats": {
+      "originalCharacterCount": 21645,
+      "cleanedCharacterCount": 2355,
+      "wordCount": 436,
+      "sectionCount": 2,
+      "includedSectionCount": 0
+    },
+    "defaults": {
+      "includeKinds": [
+        "chapter"
+      ],
+      "preferredPreset": "main-narrative"
+    },
+    "sections": [
+      {
+        "id": "part-001",
+        "kind": "part",
+        "label": "Part 1",
+        "title": null,
+        "order": 1,
+        "includeByDefault": false,
+        "sectionJsonPath": "sections/part-001.json",
+        "characterCount": 2275,
+        "wordCount": 425,
+        "estimatedTypingMinutes": 11,
+        "estimatedListeningMinutes": 14,
+        "morseCharacterEstimate": 12070,
+        "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then sh..."
+      },
+      {
+        "id": "part-002",
+        "kind": "part",
+        "label": "Part 2",
+        "title": null,
+        "order": 2,
+        "includeByDefault": false,
+        "sectionJsonPath": "sections/part-002.json",
+        "characterCount": 77,
+        "wordCount": 11,
+        "estimatedTypingMinutes": 1,
+        "estimatedListeningMinutes": 1,
+        "morseCharacterEstimate": 418,
+        "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      }
+    ],
+    "cleaning": {
+      "originalCharacterCount": 21645,
+      "cleanedCharacterCount": 2355,
+      "headerStripped": true,
+      "footerStripped": true,
+      "confidence": "high",
+      "warnings": []
+    },
+    "warnings": [
+      "No chapter headings were detected; generated fallback parts instead.",
+      "Rights have not been reviewed; generated book is not publish-ready.",
+      "Rights basis \"unknown\" is not publish-ready.",
+      "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+      "Rights gate did not allow processed public story output.",
+      "Owner-reviewed website approval is missing.",
+      "Website publication is not allowed by the active approval path."
+    ]
+  },
+  "sections": [
+    {
+      "schemaVersion": 1,
+      "bookSlug": "the-real-princess",
+      "sectionId": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "displayText": "Produced by Dianne Bean\n\n\nANDERSEN'S FAIRY TALES\n\nBy Hans Christian Andersen\n\nTHE REAL PRINCESS\n\nThere was once a Prince who wished to marry a Princess; but then she\nmust be a real Princess. He travelled all over the world in hopes of\nfinding such a lady; but there was always something wrong. Princesses he\nfound in plenty; but whether they were real Princesses it was impossible\nfor him to decide, for now one thing, now another, seemed to him not\nquite right about the ladies. At last he returned to his palace quite\ncast down, because he wished so much to have a real Princess for his\nwife.\n\nOne evening a fearful tempest arose, it thundered and lightened, and the\nrain poured down from the sky in torrents: besides, it was as dark as\npitch. All at once there was heard a violent knocking at the door, and\nthe old King, the Prince's father, went out himself to open it.\n\nIt was a Princess who was standing outside the door. What with the rain\nand the wind, she was in a sad condition; the water trickled down from\nher hair, and her clothes clung to her body. She said she was a real\nPrincess.\n\n“Ah! we shall soon see that!” thought the old Queen-mother; however, she\nsaid not a word of what she was going to do; but went quietly into the\nbedroom, took all the bed-clothes off the bed, and put three little peas\non the bedstead. She then laid twenty mattresses one upon another over\nthe three peas, and put twenty feather beds over the mattresses.\n\nUpon this bed the Princess was to pass the night.\n\nThe next morning she was asked how she had slept. “Oh, very badly\nindeed!” she replied. “I have scarcely closed my eyes the whole night\nthrough. I do not know what was in my bed, but I had something hard\nunder me, and am all over black and blue. It has hurt me so much!”\n\nNow it was plain that the lady must be a real Princess, since she had\nbeen able to feel the three little peas through the twenty mattresses\nand twenty feather beds. None but a real Princess could have had such a\ndelicate sense of feeling.\n\nThe Prince accordingly made her his wife; being now convinced that he\nhad found a real Princess. The three peas were however put into the\ncabinet of curiosities, where they are still to be seen, provided they\nare not lost.\n\nWasn't this a lady of real delicacy?",
+      "morseSourceText": "Produced by Dianne Bean\n\n\nANDERSEN'S FAIRY TALES\n\nBy Hans Christian Andersen\n\nTHE REAL PRINCESS\n\nThere was once a Prince who wished to marry a Princess; but then she\nmust be a real Princess. He travelled all over the world in hopes of\nfinding such a lady; but there was always something wrong. Princesses he\nfound in plenty; but whether they were real Princesses it was impossible\nfor him to decide, for now one thing, now another, seemed to him not\nquite right about the ladies. At last he returned to his palace quite\ncast down, because he wished so much to have a real Princess for his\nwife.\n\nOne evening a fearful tempest arose, it thundered and lightened, and the\nrain poured down from the sky in torrents: besides, it was as dark as\npitch. All at once there was heard a violent knocking at the door, and\nthe old King, the Prince's father, went out himself to open it.\n\nIt was a Princess who was standing outside the door. What with the rain\nand the wind, she was in a sad condition; the water trickled down from\nher hair, and her clothes clung to her body. She said she was a real\nPrincess.\n\n“Ah! we shall soon see that!” thought the old Queen-mother; however, she\nsaid not a word of what she was going to do; but went quietly into the\nbedroom, took all the bed-clothes off the bed, and put three little peas\non the bedstead. She then laid twenty mattresses one upon another over\nthe three peas, and put twenty feather beds over the mattresses.\n\nUpon this bed the Princess was to pass the night.\n\nThe next morning she was asked how she had slept. “Oh, very badly\nindeed!” she replied. “I have scarcely closed my eyes the whole night\nthrough. I do not know what was in my bed, but I had something hard\nunder me, and am all over black and blue. It has hurt me so much!”\n\nNow it was plain that the lady must be a real Princess, since she had\nbeen able to feel the three little peas through the twenty mattresses\nand twenty feather beds. None but a real Princess could have had such a\ndelicate sense of feeling.\n\nThe Prince accordingly made her his wife; being now convinced that he\nhad found a real Princess. The three peas were however put into the\ncabinet of curiosities, where they are still to be seen, provided they\nare not lost.\n\nWasn't this a lady of real delicacy?",
+      "paragraphs": [
+        "Produced by Dianne Bean",
+        "ANDERSEN'S FAIRY TALES",
+        "By Hans Christian Andersen",
+        "THE REAL PRINCESS",
+        "There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something wrong. Princesses he found in plenty; but whether they were real Princesses it was impossible for him to decide, for now one thing, now another, seemed to him not quite right about the ladies. At last he returned to his palace quite cast down, because he wished so much to have a real Princess for his wife.",
+        "One evening a fearful tempest arose, it thundered and lightened, and the rain poured down from the sky in torrents: besides, it was as dark as pitch. All at once there was heard a violent knocking at the door, and the old King, the Prince's father, went out himself to open it.",
+        "It was a Princess who was standing outside the door. What with the rain and the wind, she was in a sad condition; the water trickled down from her hair, and her clothes clung to her body. She said she was a real Princess.",
+        "“Ah! we shall soon see that!” thought the old Queen-mother; however, she said not a word of what she was going to do; but went quietly into the bedroom, took all the bed-clothes off the bed, and put three little peas on the bedstead. She then laid twenty mattresses one upon another over the three peas, and put twenty feather beds over the mattresses.",
+        "Upon this bed the Princess was to pass the night.",
+        "The next morning she was asked how she had slept. “Oh, very badly indeed!” she replied. “I have scarcely closed my eyes the whole night through. I do not know what was in my bed, but I had something hard under me, and am all over black and blue. It has hurt me so much!”",
+        "Now it was plain that the lady must be a real Princess, since she had been able to feel the three little peas through the twenty mattresses and twenty feather beds. None but a real Princess could have had such a delicate sense of feeling.",
+        "The Prince accordingly made her his wife; being now convinced that he had found a real Princess. The three peas were however put into the cabinet of curiosities, where they are still to be seen, provided they are not lost.",
+        "Wasn't this a lady of real delicacy?"
+      ],
+      "wordCount": 425,
+      "characterCount": 2275,
+      "estimatedTypingMinutes": 11,
+      "estimatedListeningMinutes": 14,
+      "morseCharacterEstimate": 12070,
+      "unsupportedCharacterSummary": {},
+      "textPreview": "Produced by Dianne Bean ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then sh...",
+      "sourceOffsets": {
+        "start": 0,
+        "end": 2276
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "bookSlug": "the-real-princess",
+      "sectionId": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "displayText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+      "morseSourceText": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+      "paragraphs": [
+        "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      ],
+      "wordCount": 11,
+      "characterCount": 77,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 1,
+      "morseCharacterEstimate": 418,
+      "unsupportedCharacterSummary": {},
+      "textPreview": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+      "sourceOffsets": {
+        "start": 2278,
+        "end": 2355
+      }
+    }
+  ],
+  "contentVersion": "c4b66ea721a28bab",
+  "contentHash": "c4b66ea721a28bab1da46286330c8432d12a59e7a7f90774130ec6807c33c95c"
+}

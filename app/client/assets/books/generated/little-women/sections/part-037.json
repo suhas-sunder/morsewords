@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "little-women",
+  "sectionId": "part-037",
+  "kind": "part",
+  "label": "Part 37",
+  "title": null,
+  "order": 37,
+  "includeByDefault": false,
+  "displayText": "The final page is a listing of eleven stories originally published in\nother volumes, such as Jo's Scrap-Bag, Lulu's Library, and A Garland for\nGirls. These works were subsequently published separately in small\nvolumes, generally less than 100 pages, in The Children's Friend Series.",
+  "morseSourceText": "The final page is a listing of eleven stories originally published in\nother volumes, such as Jo's Scrap-Bag, Lulu's Library, and A Garland for\nGirls. These works were subsequently published separately in small\nvolumes, generally less than 100 pages, in The Children's Friend Series.",
+  "paragraphs": [
+    "The final page is a listing of eleven stories originally published in other volumes, such as Jo's Scrap-Bag, Lulu's Library, and A Garland for Girls. These works were subsequently published separately in small volumes, generally less than 100 pages, in The Children's Friend Series."
+  ],
+  "wordCount": 44,
+  "characterCount": 282,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1575,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "The final page is a listing of eleven stories originally published in other volumes, such as Jo's Scrap-Bag, Lulu's Library, and A Garland for Girls. These wor...",
+  "sourceOffsets": {
+    "start": 1070503,
+    "end": 1070785
+  }
+}

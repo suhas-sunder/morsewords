@@ -10,7 +10,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "1184",
     "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
-    "rawTextFile": "../the-count-of-monte-cristo.txt",
+    "rawTextFile": "../../temp-books/the-count-of-monte-cristo.txt",
     "releaseDate": null,
     "rawTextUrl": null,
     "rightsBasis": "unknown",

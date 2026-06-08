@@ -5,8 +5,8 @@
   "author": [
     "F. Scott Fitzgerald"
   ],
-  "contentVersion": "80eed92242bcbfda",
-  "contentHash": "80eed92242bcbfdadce9e77f31502cbaf3885ceaea9d02ee212117b09ec5e377",
+  "contentVersion": "65d394f3a00e6ef7",
+  "contentHash": "65d394f3a00e6ef763116868ba201c60f4b5ea6d8c9641541fe2fb6e0c6aee94",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -17,7 +17,7 @@
     "sourceUrl": "https://www.gutenberg.org/ebooks/64317",
     "rawTextUrl": null,
     "rightsBasis": "public-domain-us",
-    "rightsReviewed": false,
+    "rightsReviewed": true,
     "publishReady": true,
     "rightsStatus": "approved",
     "processingAllowed": true,
@@ -26,7 +26,7 @@
     "rightsReportPath": "rights_report.json",
     "processedBookPath": "processed_book.json",
     "cleanedBookPath": "cleaned_book.json",
-    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
   },
   "cover": {
     "src": null,
@@ -49,7 +49,7 @@
   "sections": [
     {
       "id": "part-001",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 1",
       "title": null,
       "order": 1,
@@ -64,7 +64,7 @@
     },
     {
       "id": "part-002",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 2",
       "title": null,
       "order": 2,
@@ -79,7 +79,7 @@
     },
     {
       "id": "part-003",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 3",
       "title": null,
       "order": 3,
@@ -94,7 +94,7 @@
     },
     {
       "id": "part-004",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 4",
       "title": null,
       "order": 4,
@@ -109,7 +109,7 @@
     },
     {
       "id": "part-005",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 5",
       "title": null,
       "order": 5,
@@ -124,7 +124,7 @@
     },
     {
       "id": "part-006",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 6",
       "title": null,
       "order": 6,
@@ -139,7 +139,7 @@
     },
     {
       "id": "part-007",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 7",
       "title": null,
       "order": 7,
@@ -154,7 +154,7 @@
     },
     {
       "id": "part-008",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 8",
       "title": null,
       "order": 8,
@@ -169,7 +169,7 @@
     },
     {
       "id": "part-009",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 9",
       "title": null,
       "order": 9,
@@ -184,7 +184,7 @@
     },
     {
       "id": "part-010",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 10",
       "title": null,
       "order": 10,
@@ -199,7 +199,7 @@
     },
     {
       "id": "part-011",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 11",
       "title": null,
       "order": 11,

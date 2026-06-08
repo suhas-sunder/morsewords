@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-christmas-carol",
+  "sectionId": "part-007",
+  "kind": "part",
+  "label": "Part 7",
+  "title": null,
+  "order": 7,
+  "includeByDefault": false,
+  "displayText": "He had no further intercourse with Spirits, but lived upon\nthe Total Abstinence Principle, ever afterwards; and it was\nalways said of him, that he knew how to keep Christmas\nwell, if any man alive possessed the knowledge. May that\nbe truly said of us, and all of us! And so, as Tiny Tim\nobserved, God bless Us, Every One!",
+  "morseSourceText": "He had no further intercourse with Spirits, but lived upon\nthe Total Abstinence Principle, ever afterwards; and it was\nalways said of him, that he knew how to keep Christmas\nwell, if any man alive possessed the knowledge. May that\nbe truly said of us, and all of us! And so, as Tiny Tim\nobserved, God bless Us, Every One!",
+  "paragraphs": [
+    "He had no further intercourse with Spirits, but lived upon the Total Abstinence Principle, ever afterwards; and it was always said of him, that he knew how to keep Christmas well, if any man alive possessed the knowledge. May that be truly said of us, and all of us! And so, as Tiny Tim observed, God bless Us, Every One!"
+  ],
+  "wordCount": 60,
+  "characterCount": 321,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1736,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "He had no further intercourse with Spirits, but lived upon the Total Abstinence Principle, ever afterwards; and it was always said of him, that he knew how to...",
+  "sourceOffsets": {
+    "start": 158090,
+    "end": 158411
+  }
+}

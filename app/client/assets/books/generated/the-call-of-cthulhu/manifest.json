@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-call-of-cthulhu",
+  "title": "The call of Cthulhu",
+  "author": [
+    "H. P. Lovecraft"
+  ],
+  "contentVersion": "92ed56343936c95c",
+  "contentHash": "92ed56343936c95cf8c37fadf4f90c36eff1257be05c15f0d93fd7b56a99bbb5",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "68283",
+    "releaseDate": "June 10, 2022",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/68283",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The call of Cthulhu"
+  },
+  "stats": {
+    "originalCharacterCount": 90607,
+    "cleanedCharacterCount": 71199,
+    "wordCount": 11959,
+    "sectionCount": 4,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 29394,
+      "wordCount": 4812,
+      "estimatedTypingMinutes": 121,
+      "estimatedListeningMinutes": 175,
+      "morseCharacterEstimate": 156881,
+      "textPreview": "The CALL of CTHULHU By H.P. LOVECRAFT [Transcriber's Note: This etext was produced from Weird Tales, February 1928. Extensive research did not uncover any evid..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 29753,
+      "wordCount": 5075,
+      "estimatedTypingMinutes": 127,
+      "estimatedListeningMinutes": 174,
+      "morseCharacterEstimate": 155987,
+      "textPreview": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled t..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-003.json",
+      "characterCount": 11228,
+      "wordCount": 1921,
+      "estimatedTypingMinutes": 49,
+      "estimatedListeningMinutes": 67,
+      "morseCharacterEstimate": 60081,
+      "textPreview": "Johansen's voyage had begun just as he told it to the vice-admiralty. The _Emma_, in ballast, had cleared Auckland on February 20th, and had felt the full forc..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-004.json",
+      "characterCount": 818,
+      "wordCount": 151,
+      "estimatedTypingMinutes": 4,
+      "estimatedListeningMinutes": 5,
+      "morseCharacterEstimate": 4391,
+      "textPreview": "Cthulhu still lives, too, I suppose, again in that chasm of stone which has shielded him since the sun was young. His accursed city is sunken once more, for th..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 90607,
+    "cleanedCharacterCount": 71199,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "No chapter headings were detected; generated fallback parts instead.",
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

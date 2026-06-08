@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "botchan",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "BOTCHAN\n(MASTER DARLING)\n\nby The Late Mr. Kin-nosuke Natsume\n\nTRANSLATED By Yasotaro Morri\n\nRevised by J. R. KENNEDY\n\n1919",
+  "morseSourceText": "BOTCHAN\n(MASTER DARLING)\n\nby The Late Mr. Kin-nosuke Natsume\n\nTRANSLATED By Yasotaro Morri\n\nRevised by J. R. KENNEDY\n\n1919",
+  "paragraphs": [
+    "BOTCHAN (MASTER DARLING)",
+    "by The Late Mr. Kin-nosuke Natsume",
+    "TRANSLATED By Yasotaro Morri",
+    "Revised by J. R. KENNEDY",
+    "1919"
+  ],
+  "wordCount": 19,
+  "characterCount": 122,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 650,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "BOTCHAN (MASTER DARLING) by The Late Mr. Kin-nosuke Natsume TRANSLATED By Yasotaro Morri Revised by J. R. KENNEDY 1919",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 125
+  }
+}

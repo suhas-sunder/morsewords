@@ -76,19 +76,19 @@ const ecosystemLinks = [
   {
     title: "Browse Morse books",
     description:
-      "Read approved public-domain books as Morse-ready chapter sources.",
+      "Read processed public book texts as Morse-ready chapter sources.",
     href: ROUTES.morseBooks,
   },
   {
     title: "Listen to Morse audiobooks",
     description:
-      "Open approved books in an audio-first Morse workflow with chapter selection.",
+      "Open processed books in an audio-first Morse workflow with chapter selection.",
     href: ROUTES.morseAudiobooks,
   },
   {
     title: "Print Morse pages",
     description:
-      "Create printable study sheets from custom text or approved book chapters.",
+      "Create printable study sheets from custom text or processed book chapters.",
     href: ROUTES.printablePages,
   },
 ] as const;
@@ -96,7 +96,7 @@ const ecosystemLinks = [
 const trustPoints = [
   "Core translator, audio, video, practice, and printable tools run in the browser where those workflows apply.",
   "User-entered messages, worksheet text, and custom study text are not needed for public page rendering.",
-  "Approved book pages use cleaned public-domain source material; Project Gutenberg links appear where relevant.",
+  "Processed book pages use cleaned public reference material; Project Gutenberg links appear where relevant.",
   "The same Morse utilities support translation, listening, printing, and study flows across the site.",
 ] as const;
 
@@ -183,10 +183,10 @@ function FeaturedBooksSection() {
               id="featured-morse-books-title"
               className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
             >
-              Read and listen with approved public-domain books
+              Read and listen with processed public books
             </h2>
             <p className="mw-text-muted mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-              MorseWords includes approved book content as cleaned chapter
+              MorseWords includes processed book content as cleaned chapter
               sources. Open a book for text-first study, or open the audiobook
               page when you want Morse audio controls first.
             </p>
@@ -296,7 +296,7 @@ function PrintableAndTrustSection() {
           Printable Morse pages for custom text and books
         </h2>
         <p className="mw-text-muted mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-          Paste custom text to make a study sheet, or open an approved book
+          Paste custom text to make a study sheet, or open a processed book
           print page for chapter-based Morse practice. Use the browser print
           dialog when you want paper copies or a saved PDF.
         </p>
@@ -382,7 +382,7 @@ export default function Home() {
         url: canonicalUrl(CANONICAL_PATH),
         isPartOf: { "@id": `${canonicalUrl(CANONICAL_PATH)}#website` },
         description:
-          "MorseWords is a browser-based Morse code toolkit for translating, listening, practicing, reading approved public-domain books, and printing study pages.",
+          "MorseWords is a browser-based Morse code toolkit for translating, listening, practicing, reading processed public books, and printing study pages.",
       },
     ],
   };

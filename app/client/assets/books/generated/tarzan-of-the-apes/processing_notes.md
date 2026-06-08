@@ -1,16 +1,13 @@
-# Tarzan of the Apes rights review notes
+# Tarzan of the Apes processing notes
 
-- Source file: ../tarzan-of-the-apes.txt
+- Source file: ../../temp-books/tarzan-of-the-apes.txt
 - Gutenberg ID: 78
 - Source URL: https://www.gutenberg.org/ebooks/78
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -23,21 +20,6 @@
 - Trademark/character brand risk: title or source metadata matched a known brand-risk term.
 - Content brand-safety risk: title, subjects, or source text matched a review term.
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: August 1, 1993
-- Last updated: July 30, 2025
-- Original publication: 1912
-- Credits: Judith Boss. HTML version by Al Haines.
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: none
@@ -47,19 +29,24 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 499663
+- Cleaned characters: 480392
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+- title-page-002: title-page (Contents)
+
+## Section detection summary
+
+- Generated sections: 30
+- Included by default: 28
 
 ## Manual review reasons
 
@@ -71,6 +58,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

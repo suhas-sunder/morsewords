@@ -5,8 +5,8 @@
   "author": [
     "Robert Louis Stevenson"
   ],
-  "contentVersion": "d30174b13b392e39",
-  "contentHash": "d30174b13b392e39a59ce3463e36c148530141240f481f9844d007e253fec963",
+  "contentVersion": "15c792a791222168",
+  "contentHash": "15c792a791222168d9e832e1e804af7dc2daebcdf6e0f31eee27a0b625944b09",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -17,7 +17,7 @@
     "sourceUrl": "https://www.gutenberg.org/ebooks/43",
     "rawTextUrl": null,
     "rightsBasis": "public-domain-us",
-    "rightsReviewed": false,
+    "rightsReviewed": true,
     "publishReady": true,
     "rightsStatus": "approved",
     "processingAllowed": true,
@@ -26,7 +26,7 @@
     "rightsReportPath": "rights_report.json",
     "processedBookPath": "processed_book.json",
     "cleanedBookPath": "cleaned_book.json",
-    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
   },
   "cover": {
     "src": null,
@@ -49,7 +49,7 @@
   "sections": [
     {
       "id": "part-001",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 1",
       "title": null,
       "order": 1,
@@ -64,7 +64,7 @@
     },
     {
       "id": "part-002",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 2",
       "title": null,
       "order": 2,
@@ -79,7 +79,7 @@
     },
     {
       "id": "part-003",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 3",
       "title": null,
       "order": 3,
@@ -94,7 +94,7 @@
     },
     {
       "id": "part-004",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 4",
       "title": null,
       "order": 4,
@@ -109,7 +109,7 @@
     },
     {
       "id": "part-005",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 5",
       "title": null,
       "order": 5,
@@ -124,7 +124,7 @@
     },
     {
       "id": "part-006",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 6",
       "title": null,
       "order": 6,

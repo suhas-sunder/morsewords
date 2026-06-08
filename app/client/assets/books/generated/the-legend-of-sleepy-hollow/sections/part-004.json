@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-legend-of-sleepy-hollow",
+  "sectionId": "part-004",
+  "kind": "part",
+  "label": "Part 4",
+  "title": null,
+  "order": 4,
+  "includeByDefault": false,
+  "displayText": "THE END.",
+  "morseSourceText": "THE END.",
+  "paragraphs": [
+    "THE END."
+  ],
+  "wordCount": 2,
+  "characterCount": 8,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 40,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE END.",
+  "sourceOffsets": {
+    "start": 69747,
+    "end": 69755
+  }
+}

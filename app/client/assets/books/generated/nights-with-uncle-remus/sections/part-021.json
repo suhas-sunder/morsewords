@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "nights-with-uncle-remus",
+  "sectionId": "part-021",
+  "kind": "part",
+  "label": "Part 21",
+  "title": null,
+  "order": 21,
+  "includeByDefault": false,
+  "displayText": "End of Project Gutenberg's Nights With Uncle Remus, by Joel Chandler Harris",
+  "morseSourceText": "End of Project Gutenberg's Nights With Uncle Remus, by Joel Chandler Harris",
+  "paragraphs": [
+    "End of Project Gutenberg's Nights With Uncle Remus, by Joel Chandler Harris"
+  ],
+  "wordCount": 12,
+  "characterCount": 75,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 413,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "End of Project Gutenberg's Nights With Uncle Remus, by Joel Chandler Harris",
+  "sourceOffsets": {
+    "start": 571830,
+    "end": 571905
+  }
+}

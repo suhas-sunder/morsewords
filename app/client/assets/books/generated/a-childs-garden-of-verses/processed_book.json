@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "a-childs-garden-of-verses",
+  "title": "A Child's Garden of Verses",
+  "author": "Robert Louis Stevenson",
+  "content_version": "2b14d93304c4d8d0",
+  "content_hash": "2b14d93304c4d8d063ded1050b462e1d685e105ed19f782609af25322bba89ca",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "25609",
+    "source_url": "https://www.gutenberg.org/ebooks/25609",
+    "raw_text_url": null,
+    "original_publication": "1885",
+    "release_date": "May 26, 2008",
+    "last_updated": ""
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Later copyright notice was detected. Transcriber notes remain in cleaned story text. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-count-of-monte-cristo-gutenberg-1184",
+  "title": "The Count of Monte Cristo",
+  "author": [],
+  "contentVersion": "5f3b79c137aefd6a",
+  "contentHash": "5f3b79c137aefd6a500e6e7e452dabead94ed002cc4aef6601cee2c99a741662",
+  "language": "und",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1184",
+    "releaseDate": null,
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "manual-review",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Count of Monte Cristo"
+  },
+  "stats": {
+    "originalCharacterCount": 2641090,
+    "cleanedCharacterCount": 2621774,
+    "wordCount": 468237,
+    "sectionCount": 4,
+    "includedSectionCount": 2
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-001.json",
+      "characterCount": 52,
+      "wordCount": 10,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 1,
+      "morseCharacterEstimate": 251,
+      "textPreview": "THE COUNT OF MONTE CRISTO by Alexandre Dumas [père]"
+    },
+    {
+      "id": "title-page-002",
+      "kind": "title-page",
+      "label": "Contents",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-002.json",
+      "characterCount": 3438,
+      "wordCount": 578,
+      "estimatedTypingMinutes": 15,
+      "estimatedListeningMinutes": 22,
+      "morseCharacterEstimate": 19190,
+      "textPreview": "Contents VOLUME ONE Chapter 1. Marseilles—The Arrival Chapter 2. Father and Son Chapter 3. The Catalans Chapter 4. Conspiracy Chapter 5. The Marriage Feast Cha..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 116",
+      "title": "The Pardon",
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 23,
+      "wordCount": 4,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 1,
+      "morseCharacterEstimate": 132,
+      "textPreview": "Chapter 116. The Pardon"
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 117",
+      "title": "The Fifth of October",
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 2618256,
+      "wordCount": 467645,
+      "estimatedTypingMinutes": 11692,
+      "estimatedListeningMinutes": 15654,
+      "morseCharacterEstimate": 14088535,
+      "textPreview": "Chapter 117. The Fifth of October VOLUME ONE Chapter 1. Marseilles—The Arrival On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signalled..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 2641090,
+    "cleanedCharacterCount": 2621774,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

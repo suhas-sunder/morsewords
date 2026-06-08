@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-happy-family",
+  "title": "The Happy Family",
+  "author": [],
+  "contentVersion": "c459a0209f5d7490",
+  "contentHash": "c459a0209f5d7490ae3a70395a95fd9fc1ad7dd68ae4666f9a67eb721d727393",
+  "language": "und",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Unknown",
+    "gutenbergId": null,
+    "releaseDate": null,
+    "sourceUrl": null,
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Happy Family"
+  },
+  "stats": {
+    "originalCharacterCount": 0,
+    "cleanedCharacterCount": 186,
+    "wordCount": 29,
+    "sectionCount": 1,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 186,
+      "wordCount": 29,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 2,
+      "morseCharacterEstimate": 995,
+      "textPreview": "The Happy Family This MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing sou..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 0,
+    "cleanedCharacterCount": 186,
+    "headerStripped": false,
+    "footerStripped": false,
+    "confidence": "low",
+    "warnings": [
+      "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+      "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+      "Project Gutenberg markers were out of order; using the full normalized text."
+    ]
+  },
+  "warnings": [
+    "Reference source file produced no body text; generated a minimal source-note section so the public route remains available.",
+    "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+    "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+    "Project Gutenberg markers were out of order; using the full normalized text.",
+    "No chapter headings were detected; generated fallback parts instead.",
+    "Missing Project Gutenberg ID.",
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is reject; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

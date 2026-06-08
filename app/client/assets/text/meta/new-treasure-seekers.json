@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "25496",
     "sourceUrl": "https://www.gutenberg.org/ebooks/25496",
-    "rawTextFile": "../new-treasure-seekers.txt",
+    "rawTextFile": "../../temp-books/new-treasure-seekers.txt",
     "releaseDate": "May 16, 2008",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

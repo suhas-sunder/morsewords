@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "five-little-peppers-and-how-they-grew",
+  "title": "Five Little Peppers and How They Grew",
+  "author": "Margaret Sidney",
+  "content_version": "fa7cc7f9298dec60",
+  "content_hash": "fa7cc7f9298dec609bf854491b137d15588dc77fa615a26c7ebdaf7ef666ab83",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "2770",
+    "source_url": "https://www.gutenberg.org/ebooks/2770",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "August 1, 2001",
+    "last_updated": "February 19, 2025"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

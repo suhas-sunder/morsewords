@@ -1,16 +1,13 @@
-# Grimm's Fairy Tales rights review notes
+# Grimm's Fairy Tales processing notes
 
-- Source file: ../Grimm's Fairy Tales.txt
+- Source file: ../../temp-books/Grimm's Fairy Tales.txt
 - Gutenberg ID: 52521
 - Source URL: https://www.gutenberg.org/ebooks/52521
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Illustration or image reference: GRIMM’S FAIRY TALES EDITED BY FRANCES JENKINS OLCOTT [Illustration] _Illustrated By Rie Cramer_ THE PENN PUBLISHING COMPANY PHILADELPHIA 1927 COPYRIGHT 1922 BY
 - Modern introduction or notes: retelling of the stories. This edition is based on the Hunt version, with an introduction by the folk-lorist, Andrew Lang. The Hunt version is considered a most accurate English translation. From the full collection, fifty-one
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: July 7, 2016
-- Last updated: October 23, 2024
-- Original publication: missing
-- Credits: Produced by Juliet Sutherland, Charlie Howard, and the
-- Translator: Margaret Hunt, introduction by Andrew Lang, Bohn Library
-- Illustrator: Rie Cramer
-- Editor: Frances Jenkins Olcott
-- Introduction author: the folk-lorist, Andrew Lang
-
 ## Risks found
 
 - Translation risk: medium
@@ -45,19 +27,40 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: yes
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 501798
+- Cleaned characters: 482363
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- part-001: part (Part 1)
+- part-002: part (Part 2)
+- part-003: part (Part 3)
+- part-004: part (Part 4)
+- part-005: part (Part 5)
+- part-006: part (Part 6)
+- part-007: part (Part 7)
+- part-008: part (Part 8)
+- part-009: part (Part 9)
+- part-010: part (Part 10)
+- part-011: part (Part 11)
+- part-012: part (Part 12)
+- part-013: part (Part 13)
+- part-014: part (Part 14)
+- part-015: part (Part 15)
+- part-016: part (Part 16)
+- part-017: part (Part 17)
+- part-018: part (Part 18)
+
+## Section detection summary
+
+- Generated sections: 18
+- Included by default: 0
 
 ## Manual review reasons
 
@@ -71,6 +74,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Identify translator status and approved death-year evidence before any processing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

@@ -29,7 +29,7 @@ const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 const TITLE = "Morse code books";
 const META_TITLE = "Morse Code Books | MorseWords";
 const DESCRIPTION =
-  "Browse approved Morse book pages with cleaned text, chapter selection, and browser-local practice tools.";
+  "Browse processed Morse book pages with cleaned text, chapter selection, and browser-local practice tools.";
 const PAGE_SIZE = 12;
 const DEFAULT_SORT_MODE: SortMode = "title-az";
 
@@ -282,7 +282,7 @@ function hubDescriptionForBook(book: MorseBookLibrarySummary) {
   return (
     curatedDescription ||
     sourceDescription ||
-    "A reviewed Project Gutenberg book prepared for browser-local Morse reading, audio, and video."
+    "A processed Project Gutenberg reference text prepared for browser-local Morse reading, audio, and video."
   );
 }
 
@@ -505,7 +505,7 @@ export default function MorseCodeBooksHubRoute({
       <PageHero
         eyebrow="Morse books"
         title={TITLE}
-        description="Browse approved book pages, preview cleaned text and Morse, then open audio or video practice controls when you need them."
+        description="Browse processed book pages, preview cleaned text and Morse, then open audio or video practice controls when you need them."
       >
         <ActionLinks
           links={[
@@ -537,7 +537,7 @@ export default function MorseCodeBooksHubRoute({
             Browse the Morse book library
           </h2>
           <p className="mw-text-muted mt-3 max-w-[64ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-            Search, filter, sort, and open approved text-first book pages from
+            Search, filter, sort, and open processed text-first book pages from
             the collection.
           </p>
         </div>

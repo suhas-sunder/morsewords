@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "1257",
     "sourceUrl": "https://www.gutenberg.org/ebooks/1257",
-    "rawTextFile": "../the-three-musketeers.txt",
+    "rawTextFile": "../../temp-books/the-three-musketeers.txt",
     "releaseDate": "March 1, 1998",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

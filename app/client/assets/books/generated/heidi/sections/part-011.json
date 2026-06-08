@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "heidi",
+  "sectionId": "part-011",
+  "kind": "part",
+  "label": "Part 11",
+  "title": null,
+  "order": 11,
+  "includeByDefault": false,
+  "displayText": "*       *       *       *       *",
+  "morseSourceText": "*       *       *       *       *",
+  "paragraphs": [
+    "*       *       *       *       *"
+  ],
+  "wordCount": 0,
+  "characterCount": 33,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 0,
+  "unsupportedCharacterSummary": {
+    "*": 5
+  },
+  "textPreview": "* * * * *",
+  "sourceOffsets": {
+    "start": 284542,
+    "end": 284582
+  }
+}

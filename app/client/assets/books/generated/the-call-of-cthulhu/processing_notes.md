@@ -1,16 +1,13 @@
-# The call of Cthulhu rights review notes
+# The call of Cthulhu processing notes
 
-- Source file: ../The call of Cthulhu.txt
+- Source file: ../../temp-books/The call of Cthulhu.txt
 - Gutenberg ID: 68283
 - Source URL: https://www.gutenberg.org/ebooks/68283
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -19,21 +16,6 @@
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The call of Cthulhu Author: H
 - Transcriber note: ERG EBOOK THE CALL OF CTHULHU *** The CALL of CTHULHU By H.P. LOVECRAFT [Transcriber's Note: This etext was produced from Weird Tales, February 1928. Extensive research did not uncover any evidence that the U.S. copyright on thi
 - Content brand-safety risk: title, subjects, or source text matched a review term.
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: June 10, 2022
-- Last updated: October 18, 2024
-- Original publication: United States: Popular Fiction Publishing Company, 1928
-- Credits: Greg Weeks, Mary Meehan and the Online Distributed Proofreading Team at http://www.pgdp.net
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
 
 ## Risks found
 
@@ -44,19 +26,26 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: yes
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 90607
+- Cleaned characters: 71199
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- part-001: part (Part 1)
+- part-002: part (Part 2)
+- part-003: part (Part 3)
+- part-004: part (Part 4)
+
+## Section detection summary
+
+- Generated sections: 4
+- Included by default: 0
 
 ## Manual review reasons
 
@@ -67,6 +56,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

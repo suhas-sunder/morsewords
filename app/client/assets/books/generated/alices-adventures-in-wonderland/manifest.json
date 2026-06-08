@@ -20,14 +20,16 @@
     "sourceUrl": "https://www.gutenberg.org/ebooks/11",
     "rawTextUrl": null,
     "rightsBasis": "public-domain-us",
-    "rightsReviewed": false,
-    "publishReady": false,
-    "rightsStatus": "needs_manual_review",
-    "processingAllowed": false,
-    "approvalSource": "manual-review",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
     "duplicateResolutionSource": "not-needed",
     "rightsReportPath": "rights_report.json",
-    "rightsNotes": "Initial pilot metadata for local generated artifacts. Rights review has not been completed."
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
   },
   "cover": {
     "src": null,

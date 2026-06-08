@@ -1,16 +1,13 @@
-# Heidi rights review notes
+# Heidi processing notes
 
-- Source file: ../heidi.txt
+- Source file: ../../temp-books/heidi.txt
 - Gutenberg ID: 20781
 - Source URL: https://www.gutenberg.org/ebooks/20781
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -24,21 +21,6 @@
 - Illustration or image reference: lish at the University of Pennsylvania [Illustration] CONTENTS PART I HEIDI'S YEARS OF LEARNING AND TRAVEL CHAPTER PAGE
 - Modern introduction or notes: ATED BY ELISABETH P. STORK _WITH AN INTRODUCTION BY_ CHARLES WHARTON STORK, A.M., PH.D. _14 ILLUSTRATIONS IN COLOR BY_ MARIA L. KIRK
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: March 9, 2007
-- Last updated: January 1, 2021
-- Original publication: 1880
-- Credits: Produced by Jason Isbell, Emma Morgan Isbell, Jeannie Howse
-- Translator: Elisabeth P. Stork
-- Illustrator: Maria Louise Kirk
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: low
@@ -48,19 +30,33 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: yes
-- Transcriber notes: yes
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 304113
+- Cleaned characters: 284582
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- part-001: part (Part 1)
+- part-002: part (Part 2)
+- part-003: part (Part 3)
+- part-004: part (Part 4)
+- part-005: part (Part 5)
+- part-006: part (Part 6)
+- part-007: part (Part 7)
+- part-008: part (Part 8)
+- part-009: part (Part 9)
+- part-010: part (Part 10)
+- part-011: part (Part 11)
+
+## Section detection summary
+
+- Generated sections: 11
+- Included by default: 0
 
 ## Manual review reasons
 
@@ -72,6 +68,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

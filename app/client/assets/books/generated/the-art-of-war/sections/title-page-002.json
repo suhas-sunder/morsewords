@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-art-of-war",
+  "sectionId": "title-page-002",
+  "kind": "title-page",
+  "label": "Contents",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "Contents\n\n\n Preface to the Project Gutenberg Etext\n Preface by Lionel Giles",
+  "morseSourceText": "Contents\n\n\n Preface to the Project Gutenberg Etext\n Preface by Lionel Giles",
+  "paragraphs": [
+    "Contents",
+    "Preface to the Project Gutenberg Etext Preface by Lionel Giles"
+  ],
+  "wordCount": 11,
+  "characterCount": 75,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 371,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Contents Preface to the Project Gutenberg Etext Preface by Lionel Giles",
+  "sourceOffsets": {
+    "start": 451,
+    "end": 527
+  }
+}

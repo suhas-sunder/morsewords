@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "jack-and-jill",
+  "sectionId": "title-page-002",
+  "kind": "title-page",
+  "label": "Contents",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "Contents\n\n     Chapter I      The Catastrophe\n     Chapter II     Two Penitents\n     Chapter III    Ward No. I\n     Chapter IV     Ward No. 2\n     Chapter V      Secrets\n     Chapter VI     Surprises\n     Chapter VII    Jill's Mission\n     Chapter VIII   Merry and Molly\n     Chapter IX     The Debating Club\n     Chapter X      The Dramatic Club\n     Chapter XI     “Down Brakes”\n      Chapter XII    The Twenty-second of February\n     Chapter XIII   Jack Has a Mystery\n     Chapter XIV    And Jill Finds it out\n     Chapter XV     Saint Lucy\n     Chapter XVI    Up at Merry's\n     Chapter XVII   Down at Molly's\n     Chapter XVIII  May Baskets\n     Chapter XIX    Good Templars\n     Chapter XX     A Sweet Memory\n     Chapter XXI    Pebbly Beach\n     Chapter XXII   A Happy Day\n     Chapter XXIII  Cattle Show\n     Chapter XXIV   Down the River\n\n\nJACK AND JILL\n\n\n    Jack and Jill went up the hill\n    To coast with fun and laughter;\n    Jack fell down and broke his crown,\n    And Jill came tumbling after.",
+  "morseSourceText": "Contents\n\n     Chapter I      The Catastrophe\n     Chapter II     Two Penitents\n     Chapter III    Ward No. I\n     Chapter IV     Ward No. 2\n     Chapter V      Secrets\n     Chapter VI     Surprises\n     Chapter VII    Jill's Mission\n     Chapter VIII   Merry and Molly\n     Chapter IX     The Debating Club\n     Chapter X      The Dramatic Club\n     Chapter XI     “Down Brakes”\n      Chapter XII    The Twenty-second of February\n     Chapter XIII   Jack Has a Mystery\n     Chapter XIV    And Jill Finds it out\n     Chapter XV     Saint Lucy\n     Chapter XVI    Up at Merry's\n     Chapter XVII   Down at Molly's\n     Chapter XVIII  May Baskets\n     Chapter XIX    Good Templars\n     Chapter XX     A Sweet Memory\n     Chapter XXI    Pebbly Beach\n     Chapter XXII   A Happy Day\n     Chapter XXIII  Cattle Show\n     Chapter XXIV   Down the River\n\n\nJACK AND JILL\n\n\n    Jack and Jill went up the hill\n    To coast with fun and laughter;\n    Jack fell down and broke his crown,\n    And Jill came tumbling after.",
+  "paragraphs": [
+    "Contents",
+    "Chapter I      The Catastrophe Chapter II     Two Penitents Chapter III    Ward No. I Chapter IV     Ward No. 2 Chapter V      Secrets Chapter VI     Surprises Chapter VII    Jill's Mission Chapter VIII   Merry and Molly Chapter IX     The Debating Club Chapter X      The Dramatic Club Chapter XI     “Down Brakes” Chapter XII    The Twenty-second of February Chapter XIII   Jack Has a Mystery Chapter XIV    And Jill Finds it out Chapter XV     Saint Lucy Chapter XVI    Up at Merry's Chapter XVII   Down at Molly's Chapter XVIII  May Baskets Chapter XIX    Good Templars Chapter XX     A Sweet Memory Chapter XXI    Pebbly Beach Chapter XXII   A Happy Day Chapter XXIII  Cattle Show Chapter XXIV   Down the River",
+    "JACK AND JILL",
+    "Jack and Jill went up the hill To coast with fun and laughter; Jack fell down and broke his crown, And Jill came tumbling after."
+  ],
+  "wordCount": 140,
+  "characterCount": 1009,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4316,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Contents Chapter I The Catastrophe Chapter II Two Penitents Chapter III Ward No. I Chapter IV Ward No. 2 Chapter V Secrets Chapter VI Surprises Chapter VII Jil...",
+  "sourceOffsets": {
+    "start": 260,
+    "end": 1272
+  }
+}

@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "517",
     "sourceUrl": "https://www.gutenberg.org/ebooks/517",
-    "rawTextFile": "../the-emerald-city-of-oz.txt",
+    "rawTextFile": "../../temp-books/the-emerald-city-of-oz.txt",
     "releaseDate": "May 1, 1996",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

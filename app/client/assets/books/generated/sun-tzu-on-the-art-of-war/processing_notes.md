@@ -1,16 +1,13 @@
-# Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World rights review notes
+# Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World processing notes
 
-- Source file: ../Sun Tzŭ on the Art of War.txt
+- Source file: ../../temp-books/Sun Tzŭ on the Art of War.txt
 - Gutenberg ID: 66706
 - Source URL: https://www.gutenberg.org/ebooks/66706
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Illustration or image reference: ive or defensive tactics; The use of 屈伸 “contraction and expansion” may be illustrated by the saying 屈以求伸, which almost exactly corresponds to the French “il faut reculer pour mieux sauter.”[182] Capt. Calthrop, _more su
 - Modern introduction or notes: REATISE IN THE WORLD Translated from the Chinese with introduction and critical notes BY LIONEL GILES, M.A. Assistant in the Department of Oriental Printed
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: November 11, 2021
-- Last updated: October 18, 2024
-- Original publication: United Kingdom: Luzac & Co., 1910
-- Credits: Ronald Grenier (This file was produced from images generously made available by the Internet Archive/University of Toronto libraries)
-- Translator: Lionel Giles
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: low
@@ -45,19 +27,28 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: yes
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 507131
+- Cleaned characters: 487438
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- transcriber-note-001: transcriber-note (Transcriber's Note)
+- title-page-001: title-page (Contents)
+- introduction-001: introduction (Introduction)
+- preface-001: preface (Preface)
+- introduction-002: introduction (Introduction)
+- transcriber-note-002: transcriber-note (Transcriber's Note)
+
+## Section detection summary
+
+- Generated sections: 7
+- Included by default: 1
 
 ## Manual review reasons
 
@@ -69,6 +60,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Add approved author death-year evidence or keep the book blocked.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

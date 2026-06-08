@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "the-real-princess",
+  "title": "Andersen's Fairy Tales",
+  "author": "H. C. Andersen",
+  "content_version": "68a2fbee7996f6f0",
+  "content_hash": "68a2fbee7996f6f01dd215d03d0230008715125fba3e4812bac4b5b1b24558a0",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "1597",
+    "source_url": "https://www.gutenberg.org/ebooks/1597",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "January 1, 1999",
+    "last_updated": "March 14, 2018"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Author death year is missing from approved metadata or clear source metadata. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate. Duplicate Gutenberg ID requires explicit review before processing or publishing."
+  },
+  "content": {
+    "chapters": []
+  }
+}

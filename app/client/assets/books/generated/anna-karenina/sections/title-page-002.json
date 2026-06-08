@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "anna-karenina",
+  "sectionId": "title-page-002",
+  "kind": "title-page",
+  "label": "Contents",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "Contents\n\n\n PART ONE\n PART TWO\n PART THREE\n PART FOUR\n PART FIVE\n PART SIX\n PART SEVEN\n PART EIGHT\n\n\nPART ONE",
+  "morseSourceText": "Contents\n\n\n PART ONE\n PART TWO\n PART THREE\n PART FOUR\n PART FIVE\n PART SIX\n PART SEVEN\n PART EIGHT\n\n\nPART ONE",
+  "paragraphs": [
+    "Contents",
+    "PART ONE PART TWO PART THREE PART FOUR PART FIVE PART SIX PART SEVEN PART EIGHT",
+    "PART ONE"
+  ],
+  "wordCount": 19,
+  "characterCount": 109,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 497,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Contents PART ONE PART TWO PART THREE PART FOUR PART FIVE PART SIX PART SEVEN PART EIGHT PART ONE",
+  "sourceOffsets": {
+    "start": 84,
+    "end": 195
+  }
+}

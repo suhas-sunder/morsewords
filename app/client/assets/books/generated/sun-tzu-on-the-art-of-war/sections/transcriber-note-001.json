@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "sun-tzu-on-the-art-of-war",
+  "sectionId": "transcriber-note-001",
+  "kind": "transcriber-note",
+  "label": "Transcriber's Note",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "Transcriber’s Note:\n\nThis is a complete unabridged transcription of Lionel Gile’s translation\nof The Art of War. See additional notes at the end of the book.\n\n\n                              孫子兵法\n\n                              Sun Tzŭ\n                              on the\n                             Art of War\n\n             THE OLDEST MILITARY TREATISE IN THE WORLD\n\n\n    Translated from the Chinese with introduction and critical notes\n\n                                 BY\n                        LIONEL GILES, M.A.\n\n     Assistant in the Department of Oriental Printed Books and MSS.\n                       in the British Museum\n\n\n                               London\n                             LUZAC & C^o.\n                                1910\n\n               Printed by E. J. Bbill, Leyden (Holland).\n\n\n                           To my brother\n                     Captain Valentine Giles, R.G.\n                          in the hope that\n                        a work 2400 years old\n               may yet contain lessons worth consideration\n                       by the soldier of to-day\n                          this translation\n                     is affectionately dedicated",
+  "morseSourceText": "Transcriber’s Note:\n\nThis is a complete unabridged transcription of Lionel Gile’s translation\nof The Art of War. See additional notes at the end of the book.\n\n\n                              孫子兵法\n\n                              Sun Tzŭ\n                              on the\n                             Art of War\n\n             THE OLDEST MILITARY TREATISE IN THE WORLD\n\n\n    Translated from the Chinese with introduction and critical notes\n\n                                 BY\n                        LIONEL GILES, M.A.\n\n     Assistant in the Department of Oriental Printed Books and MSS.\n                       in the British Museum\n\n\n                               London\n                             LUZAC & C^o.\n                                1910\n\n               Printed by E. J. Bbill, Leyden (Holland).\n\n\n                           To my brother\n                     Captain Valentine Giles, R.G.\n                          in the hope that\n                        a work 2400 years old\n               may yet contain lessons worth consideration\n                       by the soldier of to-day\n                          this translation\n                     is affectionately dedicated",
+  "paragraphs": [
+    "Transcriber’s Note:",
+    "This is a complete unabridged transcription of Lionel Gile’s translation of The Art of War. See additional notes at the end of the book.",
+    "孫子兵法",
+    "Sun Tzŭ on the Art of War",
+    "THE OLDEST MILITARY TREATISE IN THE WORLD",
+    "Translated from the Chinese with introduction and critical notes",
+    "BY LIONEL GILES, M.A.",
+    "Assistant in the Department of Oriental Printed Books and MSS. in the British Museum",
+    "London LUZAC & C^o. 1910",
+    "Printed by E. J. Bbill, Leyden (Holland).",
+    "To my brother Captain Valentine Giles, R.G. in the hope that a work 2400 years old may yet contain lessons worth consideration by the soldier of to-day this translation is affectionately dedicated"
+  ],
+  "wordCount": 115,
+  "characterCount": 1190,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3537,
+  "unsupportedCharacterSummary": {
+    "孫": 1,
+    "子": 1,
+    "兵": 1,
+    "法": 1,
+    "Ŭ": 1,
+    "^": 1
+  },
+  "textPreview": "Transcriber’s Note: This is a complete unabridged transcription of Lionel Gile’s translation of The Art of War. See additional notes at the end of the book. 孫子...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 1193
+  }
+}

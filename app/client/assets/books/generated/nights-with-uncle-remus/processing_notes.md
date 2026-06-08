@@ -1,16 +1,13 @@
-# Nights With Uncle Remus rights review notes
+# Nights With Uncle Remus processing notes
 
-- Source file: ../nights-with-uncle-remus.txt
+- Source file: ../../temp-books/nights-with-uncle-remus.txt
 - Gutenberg ID: 24430
 - Source URL: https://www.gutenberg.org/ebooks/24430
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: reject
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -23,21 +20,6 @@
 - Later copyright notice: ESTHER LA ROSE HARRIS COPYRIGHT, 1917, BY HOUGHTON MIFFLIN COMPANY ALL RIGHTS RESERVED _Published October 1917_ PUBLISHERS' NOTE Nights With Uncle Remus is a story-book dearly loved by children. Besides t
 - Content brand-safety risk: title, subjects, or source text matched a review term.
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: January 26, 2008
-- Last updated: missing
-- Original publication: missing
-- Credits: Produced by Juliet Sutherland, Jacqueline Jeremy and the
-- Translator: none found
-- Illustrator: Milo Winter
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: none
@@ -47,19 +29,43 @@
 - Later copyright notice: yes
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: yes
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is reject; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 591263
+- Cleaned characters: 571905
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- part-001: part (Part 1)
+- part-002: part (Part 2)
+- part-003: part (Part 3)
+- part-004: part (Part 4)
+- part-005: part (Part 5)
+- part-006: part (Part 6)
+- part-007: part (Part 7)
+- part-008: part (Part 8)
+- part-009: part (Part 9)
+- part-010: part (Part 10)
+- part-011: part (Part 11)
+- part-012: part (Part 12)
+- part-013: part (Part 13)
+- part-014: part (Part 14)
+- part-015: part (Part 15)
+- part-016: part (Part 16)
+- part-017: part (Part 17)
+- part-018: part (Part 18)
+- part-019: part (Part 19)
+- part-020: part (Part 20)
+- part-021: part (Part 21)
+
+## Section detection summary
+
+- Generated sections: 21
+- Included by default: 0
 
 ## Manual review reasons
 
@@ -74,6 +80,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Do not process for public use. Resolve copyright, permission, source, or license blockers first.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

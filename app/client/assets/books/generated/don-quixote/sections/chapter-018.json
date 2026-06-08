@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "don-quixote",
+  "sectionId": "chapter-018",
+  "kind": "chapter",
+  "label": "Chapter 64",
+  "title": null,
+  "order": 20,
+  "includeByDefault": true,
+  "displayText": "CHAPTER LXIV\nTREATING OF THE ADVENTURE WHICH GAVE DON QUIXOTE MORE UNHAPPINESS THAN ALL\nTHAT HAD HITHERTO BEFALLEN HIM",
+  "morseSourceText": "CHAPTER LXIV\nTREATING OF THE ADVENTURE WHICH GAVE DON QUIXOTE MORE UNHAPPINESS THAN ALL\nTHAT HAD HITHERTO BEFALLEN HIM",
+  "paragraphs": [
+    "CHAPTER LXIV TREATING OF THE ADVENTURE WHICH GAVE DON QUIXOTE MORE UNHAPPINESS THAN ALL THAT HAD HITHERTO BEFALLEN HIM"
+  ],
+  "wordCount": 19,
+  "characterCount": 118,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 627,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "CHAPTER LXIV TREATING OF THE ADVENTURE WHICH GAVE DON QUIXOTE MORE UNHAPPINESS THAN ALL THAT HAD HITHERTO BEFALLEN HIM",
+  "sourceOffsets": {
+    "start": 14942,
+    "end": 15062
+  }
+}

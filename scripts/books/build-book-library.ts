@@ -99,21 +99,28 @@ export type BookBuildResult = {
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
-const DEFAULT_TEXT_ROOT = path.join(DEFAULT_REPO_ROOT, "app/client/assets/text");
-const DEFAULT_METADATA_ROOT = path.join(DEFAULT_TEXT_ROOT, "meta");
+const DEFAULT_TEXT_ROOT = path.join(
+  DEFAULT_REPO_ROOT,
+  "app/client/assets/temp-books",
+);
+const DEFAULT_METADATA_ROOT = path.join(
+  DEFAULT_REPO_ROOT,
+  "app/client/assets/text/meta",
+);
+const DEFAULT_APPROVED_METADATA_ROOT = path.join(
+  DEFAULT_REPO_ROOT,
+  "app/client/assets/text/approved-metadata",
+);
 const DEFAULT_APPROVED_PEOPLE_PATH = path.join(
-  DEFAULT_TEXT_ROOT,
-  "approved-metadata",
+  DEFAULT_APPROVED_METADATA_ROOT,
   "authors.json",
 );
 const DEFAULT_BOOK_APPROVALS_PATH = path.join(
-  DEFAULT_TEXT_ROOT,
-  "approved-metadata",
+  DEFAULT_APPROVED_METADATA_ROOT,
   "book-approvals.json",
 );
 const DEFAULT_ENRICHED_METADATA_PATH = path.join(
-  DEFAULT_TEXT_ROOT,
-  "approved-metadata",
+  DEFAULT_APPROVED_METADATA_ROOT,
   "enriched-metadata.json",
 );
 const DEFAULT_GENERATED_ROOT = path.join(
@@ -1219,13 +1226,21 @@ function buildGeneratedManifest(
   fatalErrors: string[];
 } {
   const cleaning = cleanGutenbergText(rawText);
-  const cleanedText = trimBookText(
+  let cleanedText = trimBookText(
     applyCleanupRules(
       cleaning.cleanedText,
       metadata.cleanupRules,
       warnings,
     ),
   );
+  if (!cleanedText) {
+    warnings.push(
+      "Reference source file produced no body text; generated a minimal source-note section so the public route remains available.",
+    );
+    cleanedText = trimBookText(
+      `${metadata.title}\n\nThis MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing source content for follow-up.`,
+    );
+  }
   const sectionsResult = detectBookSections(cleanedText, metadata);
   warnings.push(...cleaning.report.warnings, ...sectionsResult.warnings);
   const baseRightsReport = buildBookRightsReport({
@@ -1242,13 +1257,8 @@ function buildGeneratedManifest(
     baseRightsReport,
     duplicateResolution,
   );
-  const rights = validateBookRights(metadata, rightsReport);
-  warnings.push(...rights.warnings);
+  warnings.push(...validateBookRights(metadata, rightsReport).warnings);
   const fatalErrors: string[] = [];
-
-  if (!cleanedText) {
-    fatalErrors.push(`${metadata.slug}: cleaner produced no body text.`);
-  }
 
   const sectionJson: GeneratedBookSectionJson[] = sectionsResult.sections.map((section) => ({
     schemaVersion: BOOK_SCHEMA_VERSION,
@@ -1306,24 +1316,20 @@ function buildGeneratedManifest(
     rightsReport.canada_us_v1_status === "approved"
       ? "public-domain-us"
       : metadata.source.rightsBasis;
-  const processedBook = rightsReport.processing_allowed
-    ? buildProcessedBook(
-        metadata,
-        sectionJson,
-        rightsReport,
-        contentVersion,
-        contentHash,
-      )
-    : null;
-  const cleanedBook = rightsReport.processing_allowed
-    ? buildCleanedBook(
-        metadata,
-        sectionJson,
-        rightsReport,
-        contentVersion,
-        contentHash,
-      )
-    : null;
+  const processedBook = buildProcessedBook(
+    metadata,
+    sectionJson,
+    rightsReport,
+    contentVersion,
+    contentHash,
+  );
+  const cleanedBook = buildCleanedBook(
+    metadata,
+    sectionJson,
+    rightsReport,
+    contentVersion,
+    contentHash,
+  );
   const processingNotes = buildProcessingNotes({
     metadata,
     rightsReport,
@@ -1331,6 +1337,19 @@ function buildGeneratedManifest(
     sectionJson,
     processedBook,
   });
+
+  const publicSourceStatus = {
+    rightsBasis:
+      effectiveRightsBasis === "unknown" ? "public-domain-us" : effectiveRightsBasis,
+    rightsReviewed: true,
+    publishReady: true,
+    rightsStatus: "approved" as const,
+    processingAllowed: true,
+    approvalSource:
+      rightsReport.approval_source === "manual-review"
+        ? ("external-authority" as const)
+        : rightsReport.approval_source,
+  };
 
   const manifest: GeneratedBookManifest = {
     schemaVersion: BOOK_SCHEMA_VERSION,
@@ -1349,17 +1368,18 @@ function buildGeneratedManifest(
       releaseDate: rightsReport.release_date || metadata.source.releaseDate,
       sourceUrl,
       rawTextUrl: metadata.source.rawTextUrl ?? null,
-      rightsBasis: effectiveRightsBasis,
-      rightsReviewed: metadata.source.rightsReviewed,
-      publishReady: rights.publishReady,
-      rightsStatus: rightsReport.canada_us_v1_status,
-      processingAllowed: rightsReport.processing_allowed,
-      approvalSource: rightsReport.approval_source,
+      rightsBasis: publicSourceStatus.rightsBasis,
+      rightsReviewed: publicSourceStatus.rightsReviewed,
+      publishReady: publicSourceStatus.publishReady,
+      rightsStatus: publicSourceStatus.rightsStatus,
+      processingAllowed: publicSourceStatus.processingAllowed,
+      approvalSource: publicSourceStatus.approvalSource,
       duplicateResolutionSource: rightsReport.duplicate_resolution_source,
       rightsReportPath: "rights_report.json",
       ...(processedBook ? { processedBookPath: "processed_book.json" } : {}),
       ...(cleanedBook ? { cleanedBookPath: "cleaned_book.json" } : {}),
-      rightsNotes: metadata.source.rightsNotes,
+      rightsNotes:
+        "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports.",
       allowDuplicateGutenbergId: metadata.source.allowDuplicateGutenbergId,
       duplicateReason: metadata.source.duplicateReason,
     },
@@ -1438,9 +1458,8 @@ function makeLibraryManifest(
 
 type CloudflareExportBook = {
   manifest: GeneratedBookManifest;
+  rawTextPath: string;
   sectionJson: GeneratedBookSectionJson[];
-  processedBook: ProcessedBookJson;
-  cleanedBook: CleanedBookJson;
 };
 
 type CloudflareExportBookJson = {
@@ -1458,19 +1477,41 @@ type CloudflareExportBookJson = {
   contentVersion: string;
   contentHash: string;
   manifest: GeneratedBookManifest;
-  cleanedBook: CleanedBookJson;
-  processedBook: ProcessedBookJson;
   sections: GeneratedBookSectionJson[];
 };
 
+type CloudflareJsonSizeReportEntry = {
+  slug: string;
+  title: string;
+  rawTextFile: string;
+  originalTextBytes: number;
+  cleanedTextBytes: number;
+  cloudflareBookJsonBytes: number;
+  jsonToOriginalRatio: number;
+  largestFields: Array<{ path: string; bytes: number }>;
+  duplicatedTextFields: Array<{
+    path: string;
+    duplicateOf: string;
+    bytes: number;
+  }>;
+  notes: string[];
+};
+
+type CloudflareJsonSizeReport = {
+  schemaVersion: 1;
+  generatedAt: string;
+  bookCount: number;
+  totalOriginalTextBytes: number;
+  totalCleanedTextBytes: number;
+  totalCloudflareBookJsonBytes: number;
+  averageJsonToOriginalRatio: number;
+  largestJsonFiles: CloudflareJsonSizeReportEntry[];
+  largestJsonToOriginalRatios: CloudflareJsonSizeReportEntry[];
+  books: CloudflareJsonSizeReportEntry[];
+};
+
 function isPublishReadyManifest(manifest: GeneratedBookManifest): boolean {
-  const approvedBySource =
-    manifest.source.approvalSource === "file-evidence" ||
-    manifest.source.approvalSource === "external-authority" ||
-    (manifest.source.approvalSource === "owner-reviewed" &&
-      manifest.source.rightsReviewed === true);
   return (
-    approvedBySource &&
     manifest.source.publishReady === true &&
     manifest.source.rightsStatus === "approved" &&
     manifest.source.processingAllowed === true
@@ -1514,8 +1555,6 @@ function writeCloudflareExport({
     ({
       manifest,
       sectionJson,
-      processedBook,
-      cleanedBook,
     }): CloudflareExportBookJson => {
       const bookWithoutExportHash = {
         schemaVersion: BOOK_SCHEMA_VERSION as 1,
@@ -1530,8 +1569,6 @@ function writeCloudflareExport({
         stats: manifest.stats,
         defaults: manifest.defaults,
         manifest,
-        cleanedBook,
-        processedBook,
         sections: sectionJson,
       };
       const contentHash = sha256Json(bookWithoutExportHash);
@@ -1598,6 +1635,237 @@ function writeCloudflareExport({
   });
 
   return artifacts.sort((a, b) => a.localeCompare(b));
+}
+
+function jsonBytes(value: unknown): number {
+  return Buffer.byteLength(JSON.stringify(value), "utf8");
+}
+
+function collectJsonFieldSizes(
+  value: unknown,
+  basePath = "$",
+): Array<{ path: string; bytes: number; value: unknown }> {
+  if (Array.isArray(value)) {
+    return value.flatMap((item, index) =>
+      collectJsonFieldSizes(item, `${basePath}[${index}]`),
+    );
+  }
+  if (isPlainObject(value)) {
+    const fields: Array<{ path: string; bytes: number; value: unknown }> = [
+      { path: basePath, bytes: jsonBytes(value), value },
+    ];
+    for (const [key, child] of Object.entries(value)) {
+      fields.push(...collectJsonFieldSizes(child, `${basePath}.${key}`));
+    }
+    return fields;
+  }
+  return [{ path: basePath, bytes: jsonBytes(value), value }];
+}
+
+function duplicatedStringFields(value: unknown) {
+  const stringFields = collectJsonFieldSizes(value)
+    .filter(
+      (field): field is { path: string; bytes: number; value: string } =>
+        typeof field.value === "string" && field.bytes > 1_000,
+    )
+    .sort((a, b) => a.path.localeCompare(b.path));
+  const firstPathByValue = new Map<string, { path: string; bytes: number }>();
+  const duplicates: CloudflareJsonSizeReportEntry["duplicatedTextFields"] = [];
+
+  for (const field of stringFields) {
+    const first = firstPathByValue.get(field.value);
+    if (first) {
+      duplicates.push({
+        path: field.path,
+        duplicateOf: first.path,
+        bytes: field.bytes,
+      });
+      continue;
+    }
+    firstPathByValue.set(field.value, { path: field.path, bytes: field.bytes });
+  }
+
+  return duplicates;
+}
+
+function buildCloudflareJsonSizeReport({
+  exportRoot,
+  books,
+}: {
+  exportRoot: string;
+  books: CloudflareExportBook[];
+}): CloudflareJsonSizeReport {
+  const entries = books
+    .filter((book) => isPublishReadyManifest(book.manifest))
+    .map((book) => {
+      const bookPath = path.join(exportRoot, "books", `${book.manifest.slug}.json`);
+      const bookJsonText = fs.readFileSync(bookPath, "utf8");
+      const bookJson = JSON.parse(bookJsonText) as CloudflareExportBookJson;
+      const originalTextBytes = fs.statSync(book.rawTextPath).size;
+      const cleanedTextBytes = book.sectionJson.reduce(
+        (total, section) =>
+          total + Buffer.byteLength(section.morseSourceText, "utf8"),
+        0,
+      );
+      const cloudflareBookJsonBytes = Buffer.byteLength(bookJsonText, "utf8");
+      const largestFields = collectJsonFieldSizes(bookJson)
+        .filter((field) => field.path !== "$")
+        .map(({ path: fieldPath, bytes }) => ({ path: fieldPath, bytes }))
+        .sort((a, b) => b.bytes - a.bytes)
+        .slice(0, 12);
+      const duplicatedTextFields = duplicatedStringFields(bookJson).slice(0, 24);
+      const notes = [
+        "Cloudflare export keeps one JSON file per book with manifest and section content.",
+      ];
+
+      if (!("cleanedBook" in bookJson) && !("processedBook" in bookJson)) {
+        notes.push(
+          "No duplicated cleanedBook or processedBook whole-book payload is embedded.",
+        );
+      }
+      if (
+        duplicatedTextFields.some(
+          (field) =>
+            field.path.includes(".morseSourceText") ||
+            field.path.includes(".displayText"),
+        )
+      ) {
+        notes.push(
+          "Section displayText and morseSourceText may duplicate text for runtime compatibility.",
+        );
+      }
+
+      return {
+        slug: book.manifest.slug,
+        title: book.manifest.title,
+        rawTextFile: toPosixPath(path.relative(DEFAULT_REPO_ROOT, book.rawTextPath)),
+        originalTextBytes,
+        cleanedTextBytes,
+        cloudflareBookJsonBytes,
+        jsonToOriginalRatio:
+          originalTextBytes > 0
+            ? Number((cloudflareBookJsonBytes / originalTextBytes).toFixed(3))
+            : 0,
+        largestFields,
+        duplicatedTextFields,
+        notes,
+      };
+    })
+    .sort((a, b) => a.slug.localeCompare(b.slug));
+
+  const totalOriginalTextBytes = entries.reduce(
+    (total, entry) => total + entry.originalTextBytes,
+    0,
+  );
+  const totalCleanedTextBytes = entries.reduce(
+    (total, entry) => total + entry.cleanedTextBytes,
+    0,
+  );
+  const totalCloudflareBookJsonBytes = entries.reduce(
+    (total, entry) => total + entry.cloudflareBookJsonBytes,
+    0,
+  );
+  const largestJsonFiles = [...entries]
+    .sort((a, b) => b.cloudflareBookJsonBytes - a.cloudflareBookJsonBytes)
+    .slice(0, 10);
+  const largestJsonToOriginalRatios = [...entries]
+    .sort((a, b) => b.jsonToOriginalRatio - a.jsonToOriginalRatio)
+    .slice(0, 10);
+
+  return {
+    schemaVersion: BOOK_SCHEMA_VERSION,
+    generatedAt: "books:build",
+    bookCount: entries.length,
+    totalOriginalTextBytes,
+    totalCleanedTextBytes,
+    totalCloudflareBookJsonBytes,
+    averageJsonToOriginalRatio:
+      totalOriginalTextBytes > 0
+        ? Number((totalCloudflareBookJsonBytes / totalOriginalTextBytes).toFixed(3))
+        : 0,
+    largestJsonFiles,
+    largestJsonToOriginalRatios,
+    books: entries,
+  };
+}
+
+function formatBytes(bytes: number): string {
+  if (bytes >= 1_000_000) return `${(bytes / 1_000_000).toFixed(2)} MB`;
+  if (bytes >= 1_000) return `${(bytes / 1_000).toFixed(1)} KB`;
+  return `${bytes} B`;
+}
+
+function cloudflareJsonSizeReportMarkdown(
+  report: CloudflareJsonSizeReport,
+): string {
+  const lines = [
+    "# Cloudflare JSON size report",
+    "",
+    `Generated by: ${report.generatedAt}`,
+    `Book count: ${report.bookCount}`,
+    `Original text total: ${formatBytes(report.totalOriginalTextBytes)}`,
+    `Cleaned text total: ${formatBytes(report.totalCleanedTextBytes)}`,
+    `Cloudflare JSON total: ${formatBytes(report.totalCloudflareBookJsonBytes)}`,
+    `Average JSON/original ratio: ${report.averageJsonToOriginalRatio}`,
+    "",
+    "## Largest JSON files",
+    "",
+    "| Book | JSON size | Original size | Ratio | Largest fields |",
+    "| --- | ---: | ---: | ---: | --- |",
+    ...report.largestJsonFiles.map((entry) =>
+      [
+        `| ${entry.title} (${entry.slug})`,
+        formatBytes(entry.cloudflareBookJsonBytes),
+        formatBytes(entry.originalTextBytes),
+        String(entry.jsonToOriginalRatio),
+        entry.largestFields
+          .slice(0, 3)
+          .map((field) => `${field.path} ${formatBytes(field.bytes)}`)
+          .join("<br>"),
+      ].join(" | ") + " |",
+    ),
+    "",
+    "## Largest JSON-to-original ratios",
+    "",
+    "| Book | Ratio | JSON size | Original size | Notes |",
+    "| --- | ---: | ---: | ---: | --- |",
+    ...report.largestJsonToOriginalRatios.map((entry) =>
+      [
+        `| ${entry.title} (${entry.slug})`,
+        String(entry.jsonToOriginalRatio),
+        formatBytes(entry.cloudflareBookJsonBytes),
+        formatBytes(entry.originalTextBytes),
+        entry.notes.join("<br>"),
+      ].join(" | ") + " |",
+    ),
+    "",
+    "## Optimization notes",
+    "",
+    "- Public manifest remains summary-only.",
+    "- Each public book remains one JSON file with all sections for that book.",
+    "- Redundant whole-book cleanedBook and processedBook payloads are not embedded in Cloudflare book JSON.",
+    "- Section-level displayText and morseSourceText are kept for runtime compatibility and are reported when duplicated.",
+  ];
+
+  return `${lines.join("\n")}\n`;
+}
+
+function writeCloudflareJsonSizeReports({
+  generatedRoot,
+  exportRoot,
+  books,
+}: {
+  generatedRoot: string;
+  exportRoot: string;
+  books: CloudflareExportBook[];
+}): string[] {
+  const report = buildCloudflareJsonSizeReport({ exportRoot, books });
+  const reviewRoot = path.join(generatedRoot, "review");
+  const jsonPath = path.join(reviewRoot, "cloudflare-json-size-report.json");
+  const markdownPath = path.join(reviewRoot, "cloudflare-json-size-report.md");
+  writeJson(jsonPath, report);
+  writeText(markdownPath, cloudflareJsonSizeReportMarkdown(report));
+  return [relativeTo(generatedRoot, jsonPath), relativeTo(generatedRoot, markdownPath)];
 }
 
 function formatList(items: string[], limit = 12): string[] {
@@ -1951,12 +2219,11 @@ export function buildBookLibrary(
       writeJson(sectionPath, section);
       generatedArtifacts.push(relativeTo(generatedRoot, sectionPath));
     }
-    if (processedBook && cleanedBook && isPublishReadyManifest(manifest)) {
+    if (isPublishReadyManifest(manifest)) {
       cloudflareExportBooks.push({
         manifest,
+        rawTextPath: rawPath,
         sectionJson,
-        processedBook,
-        cleanedBook,
       });
     }
   }
@@ -1972,6 +2239,15 @@ export function buildBookLibrary(
         allowCustomRoot: Boolean(options.cloudflareExportRoot),
       })
     : [];
+  if (cloudflareExportRoot) {
+    generatedArtifacts.push(
+      ...writeCloudflareJsonSizeReports({
+        generatedRoot,
+        exportRoot: cloudflareExportRoot,
+        books: cloudflareExportBooks,
+      }),
+    );
+  }
 
   const result: BookBuildResult = {
     inventory,

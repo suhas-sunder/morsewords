@@ -25,7 +25,7 @@ const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 const TITLE = "Morse code audiobooks";
 const META_TITLE = "Morse Code Audiobooks | MorseWords";
 const DESCRIPTION =
-  "Browse approved books prepared for browser-generated Morse audiobook preview and MP3 or WAV download.";
+  "Browse processed books prepared for browser-generated Morse audiobook preview and MP3 or WAV download.";
 const PAGE_SIZE = 12;
 const DEFAULT_SORT_MODE: SortMode = "title-az";
 
@@ -70,7 +70,7 @@ function audiobookDescription(book: MorseBookLibrarySummary) {
   if (description && !description.toLowerCase().includes("development-only")) {
     return description;
   }
-  return "An approved public-domain book prepared for browser-generated Morse audiobook practice.";
+  return "A processed Project Gutenberg reference text prepared for browser-generated Morse audiobook practice.";
 }
 
 function enrichAudiobook(
@@ -301,7 +301,7 @@ export default function MorseCodeAudiobooksRoute({
       <PageHero
         eyebrow="Morse audiobooks"
         title={TITLE}
-        description="Open approved books as audio-first Morse listening pages. Audio is generated in your browser from your speed, tone, Farnsworth, split, MP3, and WAV settings."
+        description="Open processed books as audio-first Morse listening pages. Audio is generated in your browser from your speed, tone, Farnsworth, split, MP3, and WAV settings."
       >
         <ActionLinks
           links={[
@@ -332,7 +332,7 @@ export default function MorseCodeAudiobooksRoute({
             Browse Morse audiobook pages
           </h2>
           <p className="mw-text-muted mt-3 max-w-[64ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-            Search approved public books by title, author, source, and subject.
+            Search processed public books by title, author, source, and subject.
             Opening a result loads that one whole-book JSON file, then chapter
             switching works from the loaded book data.
           </p>

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "nights-with-uncle-remus",
+  "title": "Nights With Uncle Remus",
+  "author": "Joel Chandler Harris",
+  "content_version": "a481bfe14c44d2e5",
+  "content_hash": "a481bfe14c44d2e56b9470f6f4b0e1850d7f481fc680035a8e00aaf43edad109",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "24430",
+    "source_url": "https://www.gutenberg.org/ebooks/24430",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "January 26, 2008",
+    "last_updated": ""
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Later copyright notice was detected. Original publication metadata was not found. Original publication year is missing or not before 1931. Transcriber notes remain in cleaned story text. Illustrations or image references need manual handling. Content brand-safety risk needs manual review. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

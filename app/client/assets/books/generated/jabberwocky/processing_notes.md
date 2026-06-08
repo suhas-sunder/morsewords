@@ -1,16 +1,13 @@
-# Jabberwocky rights review notes
+# Jabberwocky processing notes
 
-- Source file: ../jabberwocky.txt
+- Source file: ../../temp-books/jabberwocky.txt
 - Gutenberg ID: 23717
 - Source URL: https://www.gutenberg.org/ebooks/23717
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -18,21 +15,6 @@
 - Original publication authority: wikidata Q250371 https://www.wikidata.org/wiki/Q250371
 - Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at http://www.gutenberg.org/license Title: Jabberwocky Subtitle: Reading by sir_darwen, Alan
 - U.S. reuse language: anyone anywhere at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at http://www.gutenberg.org/license Title: Jab
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: no
-- Release date: December 2007
-- Last updated: missing
-- Original publication: 1871
-- Credits: missing
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
 
 ## Risks found
 
@@ -43,19 +25,24 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 24933
+- Cleaned characters: 3923
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- part-001: part (Part 1)
+- part-002: part (Part 2)
+
+## Section detection summary
+
+- Generated sections: 2
+- Included by default: 0
 
 ## Manual review reasons
 
@@ -66,6 +53,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

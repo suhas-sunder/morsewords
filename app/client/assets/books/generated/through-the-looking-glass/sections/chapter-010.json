@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "through-the-looking-glass",
+  "sectionId": "chapter-010",
+  "kind": "chapter",
+  "label": "Chapter 10",
+  "title": null,
+  "order": 12,
+  "includeByDefault": true,
+  "displayText": "CHAPTER X.\nShaking\n\n\nShe took her off the table as she spoke, and shook her backwards and\nforwards with all her might.\n\nThe Red Queen made no resistance whatever; only her face grew very\nsmall, and her eyes got large and green: and still, as Alice went on\nshaking her, she kept on growing shorter—and fatter—and softer—and\nrounder—and—",
+  "morseSourceText": "CHAPTER X.\nShaking\n\n\nShe took her off the table as she spoke, and shook her backwards and\nforwards with all her might.\n\nThe Red Queen made no resistance whatever; only her face grew very\nsmall, and her eyes got large and green: and still, as Alice went on\nshaking her, she kept on growing shorter—and fatter—and softer—and\nrounder—and—",
+  "paragraphs": [
+    "CHAPTER X. Shaking",
+    "She took her off the table as she spoke, and shook her backwards and forwards with all her might.",
+    "The Red Queen made no resistance whatever; only her face grew very small, and her eyes got large and green: and still, as Alice went on shaking her, she kept on growing shorter—and fatter—and softer—and rounder—and—"
+  ],
+  "wordCount": 62,
+  "characterCount": 335,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1799,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "CHAPTER X. Shaking She took her off the table as she spoke, and shook her backwards and forwards with all her might. The Red Queen made no resistance whatever;...",
+  "sourceOffsets": {
+    "start": 160014,
+    "end": 160352
+  }
+}

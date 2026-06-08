@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "grimm-s-fairy-tales",
+  "title": "Grimm's Fairy Tales",
+  "author": "Jacob Grimm Wilhelm Grimm",
+  "content_version": "b5dfddb48cd0ec6d",
+  "content_hash": "b5dfddb48cd0ec6ded7a01c75be83ca851b45c02a714c89531788b47c499574d",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "52521",
+    "source_url": "https://www.gutenberg.org/ebooks/52521",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "July 7, 2016",
+    "last_updated": "October 23, 2024"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Modern introduction, notes, or editorial material may be present. Illustrations or image references need manual handling. Translation status or translator death year needs manual review. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}
