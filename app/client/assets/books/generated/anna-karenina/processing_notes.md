@@ -1,16 +1,13 @@
-# Anna Karenina rights review notes
+# Anna Karenina processing notes
 
-- Source file: ../Anna Karenina.txt
+- Source file: ../../temp-books/Anna Karenina.txt
 - Gutenberg ID: 1399
 - Source URL: https://www.gutenberg.org/ebooks/1399
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Anna Karenina Author: graf Le
 - Illustration or image reference: David Widger *** START OF THE PROJECT GUTENBERG EBOOK ANNA KARENINA *** [Illustration] ANNA KARENINA by Leo Tolstoy Translated by Constance Garnett Contents PART ONE PART TWO PART THREE PART
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: July 1, 1998
-- Last updated: March 24, 2025
-- Original publication: missing
-- Credits: David Brannan, Andrew Sly and David Widger
-- Translator: Constance Garnett
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: low
@@ -45,19 +27,24 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 1984009
+- Cleaned characters: 1964725
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+- title-page-002: title-page (Contents)
+
+## Section detection summary
+
+- Generated sections: 241
+- Included by default: 239
 
 ## Manual review reasons
 
@@ -69,6 +56,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Add original publication evidence before approval.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

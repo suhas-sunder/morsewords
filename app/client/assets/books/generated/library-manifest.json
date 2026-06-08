@@ -2,6 +2,153 @@
   "schemaVersion": 1,
   "books": [
     {
+      "slug": "a-childs-garden-of-verses",
+      "title": "A Child's Garden of Verses",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "contentVersion": "c260b6b569b067c6",
+      "contentHash": "c260b6b569b067c618f7aaddeefc0e7e5398c1a90438d072885d7183ac392182",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25609",
+        "releaseDate": "May 26, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25609",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Child's Garden of Verses"
+      },
+      "stats": {
+        "originalCharacterCount": 79187,
+        "cleanedCharacterCount": 58736,
+        "wordCount": 8890,
+        "sectionCount": 3,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-childs-garden-of-verses/manifest.json"
+    },
+    {
+      "slug": "a-christmas-carol",
+      "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+      "author": [
+        "Charles Dickens"
+      ],
+      "contentVersion": "7aa2c3f3504d04dd",
+      "contentHash": "7aa2c3f3504d04dd1ff2a221be80ef81c40929ce8c7e4faaa8f768047f36fd33",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "46",
+        "releaseDate": "August 11, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/46",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Christmas Carol in Prose; Being a Ghost Story of Christmas"
+      },
+      "stats": {
+        "originalCharacterCount": 177866,
+        "cleanedCharacterCount": 158411,
+        "wordCount": 28642,
+        "sectionCount": 7,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-christmas-carol/manifest.json"
+    },
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "author": [
+        "Edgar Rice Burroughs"
+      ],
+      "contentVersion": "964d8b5d525d0873",
+      "contentHash": "964d8b5d525d0873bd8de3498ade7ca6508238a3dac5168f3672045154fc3ec1",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "62",
+        "releaseDate": "April 1, 1993",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/62",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A princess of Mars"
+      },
+      "stats": {
+        "originalCharacterCount": 390215,
+        "cleanedCharacterCount": 370992,
+        "wordCount": 67570,
+        "sectionCount": 30,
+        "includedSectionCount": 28
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-princess-of-mars/manifest.json"
+    },
+    {
       "slug": "alices-adventures-in-wonderland",
       "title": "Alice's Adventures in Wonderland",
       "author": [
@@ -22,14 +169,16 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/11",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
-        "publishReady": false,
-        "rightsStatus": "needs_manual_review",
-        "processingAllowed": false,
-        "approvalSource": "manual-review",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
         "duplicateResolutionSource": "not-needed",
         "rightsReportPath": "rights_report.json",
-        "rightsNotes": "Initial pilot metadata for local generated artifacts. Rights review has not been completed."
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -52,6 +201,55 @@
       "manifestPath": "alices-adventures-in-wonderland/manifest.json"
     },
     {
+      "slug": "anna-karenina",
+      "title": "Anna Karenina",
+      "author": [
+        "graf Leo Tolstoy"
+      ],
+      "contentVersion": "984e381c5bbe3bfc",
+      "contentHash": "984e381c5bbe3bfcd6f3afd7cc628706c16b8f97845dcc66b0c5bec12e6e8b3b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1399",
+        "releaseDate": "July 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1399",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Anna Karenina"
+      },
+      "stats": {
+        "originalCharacterCount": 1984009,
+        "cleanedCharacterCount": 1964725,
+        "wordCount": 357188,
+        "sectionCount": 241,
+        "includedSectionCount": 239
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "anna-karenina/manifest.json"
+    },
+    {
       "slug": "anne-of-green-gables",
       "title": "Anne of Green Gables",
       "author": [
@@ -69,7 +267,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/45",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -78,7 +276,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor. Possible duplicate Gutenberg ID; verify whether this is a duplicate, alternate file, or renamed copy."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -101,6 +299,251 @@
       "manifestPath": "anne-of-green-gables/manifest.json"
     },
     {
+      "slug": "anne-of-green-gables-gutenberg-45",
+      "title": "Anne of Green Gables",
+      "author": [
+        "L. M. Montgomery"
+      ],
+      "contentVersion": "4621719fbbaa2ff8",
+      "contentHash": "4621719fbbaa2ff8357fe37f52ebb537f579424c64a0bf9f8223834dff5cedb3",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "45",
+        "releaseDate": "June 27, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/45",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "deterministic-file-match",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Anne of Green Gables"
+      },
+      "stats": {
+        "originalCharacterCount": 580332,
+        "cleanedCharacterCount": 561065,
+        "wordCount": 106781,
+        "sectionCount": 39,
+        "includedSectionCount": 38
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "anne-of-green-gables-gutenberg-45/manifest.json"
+    },
+    {
+      "slug": "around-the-world-in-eighty-days",
+      "title": "Around the World in Eighty Days",
+      "author": [
+        "Jules Verne"
+      ],
+      "contentVersion": "21a075d24924c49c",
+      "contentHash": "21a075d24924c49c5ef151502fd3adece895e7353ed0cbbac405aade1d041e08",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "103",
+        "releaseDate": "January 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/103",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Around the World in Eighty Days"
+      },
+      "stats": {
+        "originalCharacterCount": 388411,
+        "cleanedCharacterCount": 369112,
+        "wordCount": 63925,
+        "sectionCount": 39,
+        "includedSectionCount": 37
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "around-the-world-in-eighty-days/manifest.json"
+    },
+    {
+      "slug": "black-beauty",
+      "title": "Black Beauty The autobiography of a horse",
+      "author": [
+        "Anna Sewell"
+      ],
+      "contentVersion": "0969f5659df97ffd",
+      "contentHash": "0969f5659df97ffd53c108d098c1f639d1b60e6f1f0fd09016b876e5d8450800",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "271",
+        "releaseDate": "January 16, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/271",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Black Beauty The autobiography of a horse"
+      },
+      "stats": {
+        "originalCharacterCount": 323156,
+        "cleanedCharacterCount": 303863,
+        "wordCount": 60050,
+        "sectionCount": 12,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "black-beauty/manifest.json"
+    },
+    {
+      "slug": "botchan",
+      "title": "Botchan (Master Darling)",
+      "author": [
+        "Soseki Natsume"
+      ],
+      "contentVersion": "ae263983bcc94d6c",
+      "contentHash": "ae263983bcc94d6c1e63cf538e8e15e6f9a85a0f18e913466db7d49d13a01ce7",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "8868",
+        "releaseDate": "September 1, 2005",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/8868",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Botchan (Master Darling)"
+      },
+      "stats": {
+        "originalCharacterCount": 275055,
+        "cleanedCharacterCount": 255711,
+        "wordCount": 48340,
+        "sectionCount": 13,
+        "includedSectionCount": 11
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "botchan/manifest.json"
+    },
+    {
+      "slug": "candide",
+      "title": "Candide",
+      "author": [
+        "Voltaire"
+      ],
+      "contentVersion": "7e16293d9d2e0e2f",
+      "contentHash": "7e16293d9d2e0e2fdecf888f873fc3eda92bd4675d761767065a4ef1921c6f81",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "19942",
+        "releaseDate": "November 27, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/19942",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Candide"
+      },
+      "stats": {
+        "originalCharacterCount": 224766,
+        "cleanedCharacterCount": 205459,
+        "wordCount": 35900,
+        "sectionCount": 8,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "candide/manifest.json"
+    },
+    {
       "slug": "crime-and-punishment",
       "title": "Crime and Punishment",
       "author": [
@@ -118,7 +561,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/2554",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -127,7 +570,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -150,13 +593,111 @@
       "manifestPath": "crime-and-punishment/manifest.json"
     },
     {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "author": [
+        "Hugh Lofting"
+      ],
+      "contentVersion": "ebcbd1bd1fe0b138",
+      "contentHash": "ebcbd1bd1fe0b138e47e2e60315069cc260594499c1003f75e80a2cbc37898bd",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "501",
+        "releaseDate": "April 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/501",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of Doctor Dolittle"
+      },
+      "stats": {
+        "originalCharacterCount": 164957,
+        "cleanedCharacterCount": 145445,
+        "wordCount": 27561,
+        "sectionCount": 6,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "doctor-dolittle/manifest.json"
+    },
+    {
+      "slug": "don-quixote",
+      "title": "Don Quixote",
+      "author": [
+        "Miguel de Cervantes Saavedra"
+      ],
+      "contentVersion": "1522f8693ddd4f6e",
+      "contentHash": "1522f8693ddd4f6ef13a2416073a8889b11736224023b2464e34573aad1665f6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "996",
+        "releaseDate": "July 27, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/996",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Don Quixote"
+      },
+      "stats": {
+        "originalCharacterCount": 2317419,
+        "cleanedCharacterCount": 2298167,
+        "wordCount": 431303,
+        "sectionCount": 149,
+        "includedSectionCount": 146
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "don-quixote/manifest.json"
+    },
+    {
       "slug": "dr-jekyll-and-mr-hyde",
       "title": "The strange case of Dr. Jekyll and Mr. Hyde",
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "d30174b13b392e39",
-      "contentHash": "d30174b13b392e39a59ce3463e36c148530141240f481f9844d007e253fec963",
+      "contentVersion": "15c792a791222168",
+      "contentHash": "15c792a791222168d9e832e1e804af7dc2daebcdf6e0f31eee27a0b625944b09",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -167,7 +708,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/43",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -176,7 +717,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -199,6 +740,104 @@
       "manifestPath": "dr-jekyll-and-mr-hyde/manifest.json"
     },
     {
+      "slug": "dracula",
+      "title": "Dracula",
+      "author": [
+        "Bram Stoker"
+      ],
+      "contentVersion": "2d5328b1fadb30bb",
+      "contentHash": "2d5328b1fadb30bb2a9f666e5a444e7c97932c4613fd622925e63cdef7fe299a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "345",
+        "releaseDate": "October 1, 1995",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/345",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Dracula"
+      },
+      "stats": {
+        "originalCharacterCount": 865100,
+        "cleanedCharacterCount": 845824,
+        "wordCount": 162773,
+        "sectionCount": 30,
+        "includedSectionCount": 27
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "dracula/manifest.json"
+    },
+    {
+      "slug": "five-little-peppers-and-how-they-grew",
+      "title": "Five Little Peppers and How They Grew",
+      "author": [
+        "Margaret Sidney"
+      ],
+      "contentVersion": "fa7cc7f9298dec60",
+      "contentHash": "fa7cc7f9298dec609bf854491b137d15588dc77fa615a26c7ebdaf7ef666ab83",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2770",
+        "releaseDate": "August 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2770",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Five Little Peppers and How They Grew"
+      },
+      "stats": {
+        "originalCharacterCount": 408112,
+        "cleanedCharacterCount": 388760,
+        "wordCount": 69654,
+        "sectionCount": 14,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "five-little-peppers-and-how-they-grew/manifest.json"
+    },
+    {
       "slug": "frankenstein",
       "title": "Frankenstein; or, the modern prometheus",
       "author": [
@@ -216,7 +855,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/84",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -225,7 +864,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -248,6 +887,55 @@
       "manifestPath": "frankenstein/manifest.json"
     },
     {
+      "slug": "grimm-s-fairy-tales",
+      "title": "Grimm's Fairy Tales",
+      "author": [
+        "Jacob Grimm Wilhelm Grimm"
+      ],
+      "contentVersion": "b5dfddb48cd0ec6d",
+      "contentHash": "b5dfddb48cd0ec6ded7a01c75be83ca851b45c02a714c89531788b47c499574d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "52521",
+        "releaseDate": "July 7, 2016",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/52521",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Grimm's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 501798,
+        "cleanedCharacterCount": 482363,
+        "wordCount": 91224,
+        "sectionCount": 18,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "grimm-s-fairy-tales/manifest.json"
+    },
+    {
       "slug": "gulliver-s-travels",
       "title": "Gulliver's Travels into Several Remote Nations of the World",
       "author": [
@@ -265,7 +953,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/829",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -274,7 +962,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -297,6 +985,984 @@
       "manifestPath": "gulliver-s-travels/manifest.json"
     },
     {
+      "slug": "heidi",
+      "title": "Heidi",
+      "author": [
+        "Johanna Spyri"
+      ],
+      "contentVersion": "e9e6b4950c7ea02d",
+      "contentHash": "e9e6b4950c7ea02d97233c120ee08245132bc1f9dded5807407c9fc4f816f36f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "20781",
+        "releaseDate": "March 9, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/20781",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Heidi"
+      },
+      "stats": {
+        "originalCharacterCount": 304113,
+        "cleanedCharacterCount": 284522,
+        "wordCount": 51632,
+        "sectionCount": 11,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "heidi/manifest.json"
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "author": [
+        "Lewis Carroll"
+      ],
+      "contentVersion": "007d258656e8e2c7",
+      "contentHash": "007d258656e8e2c7c9682c28a522611bf0302a5245ecc5cb9f42db4223e24715",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "23717",
+        "releaseDate": "December 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/23717",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Jabberwocky"
+      },
+      "stats": {
+        "originalCharacterCount": 24933,
+        "cleanedCharacterCount": 3923,
+        "wordCount": 651,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "jabberwocky/manifest.json"
+    },
+    {
+      "slug": "jack-and-jill",
+      "title": "Jack and Jill",
+      "author": [
+        "Louisa May Alcott"
+      ],
+      "contentVersion": "269cb4e53d1a5322",
+      "contentHash": "269cb4e53d1a532207b3627f9930a0323bbb3006de9b783650106cbdbf439783",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2786",
+        "releaseDate": "August 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2786",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Jack and Jill"
+      },
+      "stats": {
+        "originalCharacterCount": 517085,
+        "cleanedCharacterCount": 497781,
+        "wordCount": 93059,
+        "sectionCount": 26,
+        "includedSectionCount": 24
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "jack-and-jill/manifest.json"
+    },
+    {
+      "slug": "jane-eyre",
+      "title": "Jane Eyre: An Autobiography",
+      "author": [
+        "Charlotte Brontë"
+      ],
+      "contentVersion": "d75e8788ee033b98",
+      "contentHash": "d75e8788ee033b98d011a5667f88ffceee065b7af3acaa18b52268dc5b03abb0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1260",
+        "releaseDate": "March 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1260",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Jane Eyre: An Autobiography"
+      },
+      "stats": {
+        "originalCharacterCount": 1041611,
+        "cleanedCharacterCount": 1022299,
+        "wordCount": 188438,
+        "sectionCount": 39,
+        "includedSectionCount": 37
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "jane-eyre/manifest.json"
+    },
+    {
+      "slug": "les-miserables",
+      "title": "Les Misérables",
+      "author": [
+        "Victor Hugo"
+      ],
+      "contentVersion": "5ac36723ec803bb1",
+      "contentHash": "5ac36723ec803bb1c9cbe937d5e4ea45063843a261343713320d0d0eb74d5deb",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "135",
+        "releaseDate": "June 22, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/135",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Les Misérables"
+      },
+      "stats": {
+        "originalCharacterCount": 3249711,
+        "cleanedCharacterCount": 3230435,
+        "wordCount": 572069,
+        "sectionCount": 6,
+        "includedSectionCount": 2
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "les-miserables/manifest.json"
+    },
+    {
+      "slug": "little-women",
+      "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+      "author": [
+        "Louisa May Alcott"
+      ],
+      "contentVersion": "e0a87f69cf9223dc",
+      "contentHash": "e0a87f69cf9223dc351528cb111f9814aaf6509317c7c00900737e5486000768",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "37106",
+        "releaseDate": "August 16, 2011",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/37106",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Little Women; Or, Meg, Jo, Beth, and Amy"
+      },
+      "stats": {
+        "originalCharacterCount": 1090255,
+        "cleanedCharacterCount": 1058709,
+        "wordCount": 190813,
+        "sectionCount": 37,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "little-women/manifest.json"
+    },
+    {
+      "slug": "new-treasure-seekers",
+      "title": "New Treasure Seekers; Or, The Bastable Children in Search of a Fortune",
+      "author": [
+        "E. Nesbit"
+      ],
+      "contentVersion": "943d40f17c69635b",
+      "contentHash": "943d40f17c69635b6425918eedbbbbd7dd060416fe7a2f62266637e83aec84a4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25496",
+        "releaseDate": "May 16, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25496",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for New Treasure Seekers; Or, The Bastable Children in Search of a Fortune"
+      },
+      "stats": {
+        "originalCharacterCount": 386912,
+        "cleanedCharacterCount": 366425,
+        "wordCount": 68779,
+        "sectionCount": 14,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "new-treasure-seekers/manifest.json"
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "author": [
+        "Joel Chandler Harris"
+      ],
+      "contentVersion": "54954c1ec72e61ef",
+      "contentHash": "54954c1ec72e61ef8fdd46e6a430fd5dafe31ef522cb14cd0572cb549aa94d44",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "24430",
+        "releaseDate": "January 26, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/24430",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Nights With Uncle Remus"
+      },
+      "stats": {
+        "originalCharacterCount": 591263,
+        "cleanedCharacterCount": 571770,
+        "wordCount": 111528,
+        "sectionCount": 21,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "nights-with-uncle-remus/manifest.json"
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "author": [
+        "J. M. Barrie"
+      ],
+      "contentVersion": "73d23529dcdeea00",
+      "contentHash": "73d23529dcdeea008c40e601540e52d11e1aaa8b57a17fbaad651145388ec86d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "16",
+        "releaseDate": "June 25, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/16",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Peter Pan [Peter and Wendy]"
+      },
+      "stats": {
+        "originalCharacterCount": 274781,
+        "cleanedCharacterCount": 255549,
+        "wordCount": 47862,
+        "sectionCount": 20,
+        "includedSectionCount": 18
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "peter-pan/manifest.json"
+    },
+    {
+      "slug": "pride-and-prejudice",
+      "title": "Pride and Prejudice",
+      "author": [
+        "Jane Austen"
+      ],
+      "contentVersion": "3e405b4190ca10d6",
+      "contentHash": "3e405b4190ca10d6628633dd9d2ca6f7f123f16a8f884f2789989f2c279c9a9d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1342",
+        "releaseDate": "June 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1342",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Pride and Prejudice"
+      },
+      "stats": {
+        "originalCharacterCount": 747869,
+        "cleanedCharacterCount": 728457,
+        "wordCount": 128378,
+        "sectionCount": 62,
+        "includedSectionCount": 61
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "pride-and-prejudice/manifest.json"
+    },
+    {
+      "slug": "rainbow-valley",
+      "title": "Rainbow Valley",
+      "author": [
+        "L. M. Montgomery"
+      ],
+      "contentVersion": "e7fafa229524c955",
+      "contentHash": "e7fafa229524c95540da4188c4a94b01151545e7445a2b25b9c1f352fc22a92f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "5343",
+        "releaseDate": "March 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/5343",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Rainbow Valley"
+      },
+      "stats": {
+        "originalCharacterCount": 463071,
+        "cleanedCharacterCount": 443599,
+        "wordCount": 83983,
+        "sectionCount": 37,
+        "includedSectionCount": 35
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "rainbow-valley/manifest.json"
+    },
+    {
+      "slug": "rinkitink-in-oz",
+      "title": "Rinkitink in Oz",
+      "author": [
+        "L. Frank Baum"
+      ],
+      "contentVersion": "ca883df3a4910700",
+      "contentHash": "ca883df3a491070049bb334e45cb9581bed40bdf6cd2130a2aad1f1be5786958",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25581",
+        "releaseDate": "May 24, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25581",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Rinkitink in Oz"
+      },
+      "stats": {
+        "originalCharacterCount": 290436,
+        "cleanedCharacterCount": 271052,
+        "wordCount": 49500,
+        "sectionCount": 25,
+        "includedSectionCount": 24
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "rinkitink-in-oz/manifest.json"
+    },
+    {
+      "slug": "sense-and-sensibility",
+      "title": "Sense and Sensibility",
+      "author": [
+        "Jane Austen"
+      ],
+      "contentVersion": "918315d84639b3e1",
+      "contentHash": "918315d84639b3e125f038dc8f5acc0178ec794125d0f86aa145eb6decde1af5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "161",
+        "releaseDate": "September 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/161",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Sense and Sensibility"
+      },
+      "stats": {
+        "originalCharacterCount": 689802,
+        "cleanedCharacterCount": 670572,
+        "wordCount": 120545,
+        "sectionCount": 52,
+        "includedSectionCount": 50
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "sense-and-sensibility/manifest.json"
+    },
+    {
+      "slug": "sun-tzu-on-the-art-of-war",
+      "title": "Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World",
+      "author": [
+        "active 6th century B.C. Sunzi"
+      ],
+      "contentVersion": "ddee4d7d68f62ef8",
+      "contentHash": "ddee4d7d68f62ef8c757b49f5ef8ccb97f4b610ae6f638361590cfa1fade4b4b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "66706",
+        "releaseDate": "November 11, 2021",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/66706",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World"
+      },
+      "stats": {
+        "originalCharacterCount": 507131,
+        "cleanedCharacterCount": 487438,
+        "wordCount": 83135,
+        "sectionCount": 7,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "sun-tzu-on-the-art-of-war/manifest.json"
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "author": [
+        "Edgar Rice Burroughs"
+      ],
+      "contentVersion": "742f0b77b1fb5f62",
+      "contentHash": "742f0b77b1fb5f625a57999bc4c496e1b82950a1f47bf72631c7f16983602271",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "78",
+        "releaseDate": "August 1, 1993",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/78",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Tarzan of the Apes"
+      },
+      "stats": {
+        "originalCharacterCount": 499663,
+        "cleanedCharacterCount": 480392,
+        "wordCount": 86814,
+        "sectionCount": 30,
+        "includedSectionCount": 28
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "tarzan-of-the-apes/manifest.json"
+    },
+    {
+      "slug": "the-arabian-nights",
+      "title": "The Arabian Nights: Their Best-known Tales",
+      "author": [],
+      "contentVersion": "2931316c3abb6bcd",
+      "contentHash": "2931316c3abb6bcdae53a50a79111240037d1acaa366a27429f5bc5ea0702529",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "20916",
+        "releaseDate": "March 27, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/20916",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Arabian Nights: Their Best-known Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 645574,
+        "cleanedCharacterCount": 626053,
+        "wordCount": 114908,
+        "sectionCount": 23,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-arabian-nights/manifest.json"
+    },
+    {
+      "slug": "the-art-of-war",
+      "title": "The Art of War",
+      "author": [
+        "active 6th century B.C. Sunzi"
+      ],
+      "contentVersion": "9c312e02cb67e374",
+      "contentHash": "9c312e02cb67e3745ffb99cb568348986d82fbea818cf60799e653c6d724597d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "132",
+        "releaseDate": "May 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/132",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Art of War"
+      },
+      "stats": {
+        "originalCharacterCount": 332084,
+        "cleanedCharacterCount": 312813,
+        "wordCount": 56196,
+        "sectionCount": 17,
+        "includedSectionCount": 13
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-art-of-war/manifest.json"
+    },
+    {
+      "slug": "the-bell",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "26e487e055059310",
+      "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 46266,
+        "cleanedCharacterCount": 26870,
+        "wordCount": 5039,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-bell/manifest.json"
+    },
+    {
+      "slug": "the-book-of-dragons",
+      "title": "The Book of Dragons",
+      "author": [
+        "E. Nesbit"
+      ],
+      "contentVersion": "837f1e2e43abb5df",
+      "contentHash": "837f1e2e43abb5dfc68f36aa4b3bf9f44f0581fe645c65dc7cd5706f2d2892f3",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "23661",
+        "releaseDate": "November 29, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/23661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Book of Dragons"
+      },
+      "stats": {
+        "originalCharacterCount": 247086,
+        "cleanedCharacterCount": 227459,
+        "wordCount": 42593,
+        "sectionCount": 9,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-book-of-dragons/manifest.json"
+    },
+    {
+      "slug": "the-call-of-cthulhu",
+      "title": "The call of Cthulhu",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "92ed56343936c95c",
+      "contentHash": "92ed56343936c95cf8c37fadf4f90c36eff1257be05c15f0d93fd7b56a99bbb5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "68283",
+        "releaseDate": "June 10, 2022",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/68283",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The call of Cthulhu"
+      },
+      "stats": {
+        "originalCharacterCount": 90607,
+        "cleanedCharacterCount": 71199,
+        "wordCount": 11959,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-call-of-cthulhu/manifest.json"
+    },
+    {
       "slug": "the-call-of-the-wild",
       "title": "The call of the wild",
       "author": [
@@ -314,7 +1980,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/215",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -323,7 +1989,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -346,13 +2012,256 @@
       "manifestPath": "the-call-of-the-wild/manifest.json"
     },
     {
+      "slug": "the-count-of-monte-cristo",
+      "title": "The Count of Monte Cristo",
+      "author": [
+        "Alexandre Dumas Auguste Maquet"
+      ],
+      "contentVersion": "c371050e1b388f8e",
+      "contentHash": "c371050e1b388f8e6bf1e44f1da1d329fed4c955ec0bbfa8762d57054927bd50",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1184",
+        "releaseDate": "January 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Count of Monte Cristo"
+      },
+      "stats": {
+        "originalCharacterCount": 2646037,
+        "cleanedCharacterCount": 2626685,
+        "wordCount": 468238,
+        "sectionCount": 4,
+        "includedSectionCount": 2
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-count-of-monte-cristo/manifest.json"
+    },
+    {
+      "slug": "the-count-of-monte-cristo-gutenberg-1184",
+      "title": "The Count of Monte Cristo",
+      "author": [],
+      "contentVersion": "5f3b79c137aefd6a",
+      "contentHash": "5f3b79c137aefd6a500e6e7e452dabead94ed002cc4aef6601cee2c99a741662",
+      "language": "und",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1184",
+        "releaseDate": null,
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Count of Monte Cristo"
+      },
+      "stats": {
+        "originalCharacterCount": 2641090,
+        "cleanedCharacterCount": 2621774,
+        "wordCount": 468237,
+        "sectionCount": 4,
+        "includedSectionCount": 2
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-count-of-monte-cristo-gutenberg-1184/manifest.json"
+    },
+    {
+      "slug": "the-divine-comedy",
+      "title": "The divine comedy",
+      "author": [
+        "Dante Alighieri"
+      ],
+      "contentVersion": "0c9eb264fb463cce",
+      "contentHash": "0c9eb264fb463cce4bcb6300ee590ccd7d03ac2ebb22faa8965475f3fc1025c5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "8800",
+        "releaseDate": "September 1, 2005",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/8800",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The divine comedy"
+      },
+      "stats": {
+        "originalCharacterCount": 623762,
+        "cleanedCharacterCount": 604460,
+        "wordCount": 113949,
+        "sectionCount": 22,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-divine-comedy/manifest.json"
+    },
+    {
+      "slug": "the-elderbush",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "6bdac4121a3dc227",
+      "contentHash": "6bdac4121a3dc227f1649db8ef471d662733041ee0d3c9522164964a5d7e3c34",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 35525,
+        "cleanedCharacterCount": 16129,
+        "wordCount": 3014,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-elderbush/manifest.json"
+    },
+    {
+      "slug": "the-elements-of-style",
+      "title": "The Elements of Style",
+      "author": [
+        "William Strunk"
+      ],
+      "contentVersion": "5f836c9f3a90c6dc",
+      "contentHash": "5f836c9f3a90c6dc9188396824e1ad9e3e8f6aaf25241051b5709d779d8c9364",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "37134",
+        "releaseDate": "August 18, 2011",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/37134",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Elements of Style"
+      },
+      "stats": {
+        "originalCharacterCount": 105502,
+        "cleanedCharacterCount": 86040,
+        "wordCount": 13910,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-elements-of-style/manifest.json"
+    },
+    {
       "slug": "the-emerald-city-of-oz",
       "title": "The Emerald City of Oz",
       "author": [
         "L. Frank Baum"
       ],
-      "contentVersion": "99be6e3535d4da26",
-      "contentHash": "99be6e3535d4da266ce861f7ff9cbc22ea7b53dbfcf7c3f8b6da7dc0aeadb524",
+      "contentVersion": "8d21d1d1f204a77d",
+      "contentHash": "8d21d1d1f204a77d0b6b0f7512fa8a35eba49b09d4b7da1307bbfac4db67aec3",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -363,7 +2272,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/517",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -372,7 +2281,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -395,13 +2304,160 @@
       "manifestPath": "the-emerald-city-of-oz/manifest.json"
     },
     {
+      "slug": "the-emperor-s-new-clothes",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "746dfe7ca9ddc8d9",
+      "contentHash": "746dfe7ca9ddc8d9ea4d6e432a0010c06734490bf0e6d2d0b318887bb67c2fdf",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 31621,
+        "cleanedCharacterCount": 10530,
+        "wordCount": 1881,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-emperor-s-new-clothes/manifest.json"
+    },
+    {
+      "slug": "the-federalist-papers",
+      "title": "The Federalist Papers",
+      "author": [
+        "Alexander Hamilton John Jay James Madison"
+      ],
+      "contentVersion": "ff3de53fd6e88fdf",
+      "contentHash": "ff3de53fd6e88fdf94678df84358642755931ee7d4a717b79f944624331256b0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "18",
+        "releaseDate": "August 1, 1991",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/18",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Federalist Papers"
+      },
+      "stats": {
+        "originalCharacterCount": 1191859,
+        "cleanedCharacterCount": 1172586,
+        "wordCount": 196582,
+        "sectionCount": 42,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-federalist-papers/manifest.json"
+    },
+    {
+      "slug": "the-fir-tree",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "d05fb6270fdc899f",
+      "contentHash": "d05fb6270fdc899f868027b2f3b41ced2ae9fd9e9a7c2577a0d305c9798d5ec9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 36671,
+        "cleanedCharacterCount": 17275,
+        "wordCount": 3232,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-fir-tree/manifest.json"
+    },
+    {
       "slug": "the-great-gatsby",
       "title": "The Great Gatsby",
       "author": [
         "F. Scott Fitzgerald"
       ],
-      "contentVersion": "80eed92242bcbfda",
-      "contentHash": "80eed92242bcbfdadce9e77f31502cbaf3885ceaea9d02ee212117b09ec5e377",
+      "contentVersion": "65d394f3a00e6ef7",
+      "contentHash": "65d394f3a00e6ef763116868ba201c60f4b5ea6d8c9641541fe2fb6e0c6aee94",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -412,7 +2468,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/64317",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -421,7 +2477,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -444,13 +2500,60 @@
       "manifestPath": "the-great-gatsby/manifest.json"
     },
     {
+      "slug": "the-happy-family",
+      "title": "The Happy Family",
+      "author": [],
+      "contentVersion": "c459a0209f5d7490",
+      "contentHash": "c459a0209f5d7490ae3a70395a95fd9fc1ad7dd68ae4666f9a67eb721d727393",
+      "language": "und",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Unknown",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Happy Family"
+      },
+      "stats": {
+        "originalCharacterCount": 0,
+        "cleanedCharacterCount": 186,
+        "wordCount": 29,
+        "sectionCount": 1,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-happy-family/manifest.json"
+    },
+    {
       "slug": "the-jungle-book",
       "title": "The Jungle Book",
       "author": [
         "Rudyard Kipling"
       ],
-      "contentVersion": "02368445733b8f66",
-      "contentHash": "02368445733b8f6660573666d94163511eb063bf4f1cf76bb48a98d38144e40c",
+      "contentVersion": "acd72a9766510567",
+      "contentHash": "acd72a97665105677829b7f686b529b3bf7b1fb12e8f2005277714a6700b8237",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -461,7 +2564,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/236",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -470,7 +2573,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -493,6 +2596,153 @@
       "manifestPath": "the-jungle-book/manifest.json"
     },
     {
+      "slug": "the-leap-frog",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "40ef802bc05a7172",
+      "contentHash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 23080,
+        "cleanedCharacterCount": 3684,
+        "wordCount": 678,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-leap-frog/manifest.json"
+    },
+    {
+      "slug": "the-legend-of-sleepy-hollow",
+      "title": "The Legend of Sleepy Hollow",
+      "author": [
+        "Washington Irving"
+      ],
+      "contentVersion": "fc5816acb081aa8a",
+      "contentHash": "fc5816acb081aa8a374e7beabcf671f22d693dd798679155fdb10a2ba3d37768",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "41",
+        "releaseDate": "June 27, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/41",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Legend of Sleepy Hollow"
+      },
+      "stats": {
+        "originalCharacterCount": 89064,
+        "cleanedCharacterCount": 69755,
+        "wordCount": 12277,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-legend-of-sleepy-hollow/manifest.json"
+    },
+    {
+      "slug": "the-old-house",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "cb84871b55f9b084",
+      "contentHash": "cb84871b55f9b0847226aa42f80f3819e1baef3818e1e7ea46794830045d289a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 115289,
+        "cleanedCharacterCount": 95893,
+        "wordCount": 18250,
+        "sectionCount": 5,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-old-house/manifest.json"
+    },
+    {
       "slug": "the-picture-of-dorian-gray",
       "title": "The Picture of Dorian Gray",
       "author": [
@@ -510,7 +2760,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/174",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -519,7 +2769,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -559,7 +2809,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/708",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -568,7 +2818,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -596,8 +2846,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "d9d11d41a68904e2",
-      "contentHash": "d9d11d41a68904e2c6ee526561f48ac624aa02751eae0a44b0b258fabf2d85e1",
+      "contentVersion": "2e8fd14f73610186",
+      "contentHash": "2e8fd14f73610186ff5937435d349246561d374111bd004cac2cc03eae76bd57",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -608,7 +2858,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/1874",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -617,7 +2867,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -626,8 +2876,8 @@
       },
       "stats": {
         "originalCharacterCount": 345957,
-        "cleanedCharacterCount": 326683,
-        "wordCount": 59806,
+        "cleanedCharacterCount": 326658,
+        "wordCount": 59802,
         "sectionCount": 15,
         "includedSectionCount": 14
       },
@@ -638,6 +2888,55 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-railway-children/manifest.json"
+    },
+    {
+      "slug": "the-real-princess",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "74623d7ca6769121",
+      "contentHash": "74623d7ca6769121902ef1cbb13d5746a9e7cb452c62ac83e326d1aa9df58ac1",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 21645,
+        "cleanedCharacterCount": 2249,
+        "wordCount": 421,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-real-princess/manifest.json"
     },
     {
       "slug": "the-sea-wolf",
@@ -657,7 +2956,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/1074",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -666,7 +2965,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -689,6 +2988,55 @@
       "manifestPath": "the-sea-wolf/manifest.json"
     },
     {
+      "slug": "the-secret-garden",
+      "title": "The Secret Garden",
+      "author": [
+        "Frances Hodgson Burnett"
+      ],
+      "contentVersion": "3822285cf35bf6f2",
+      "contentHash": "3822285cf35bf6f2ec0edbaf3e93f9552a9b371d4dc3ab31de55ad203ec56870",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "17396",
+        "releaseDate": "December 26, 2005",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/17396",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Secret Garden"
+      },
+      "stats": {
+        "originalCharacterCount": 451877,
+        "cleanedCharacterCount": 431726,
+        "wordCount": 81348,
+        "sectionCount": 29,
+        "includedSectionCount": 27
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-secret-garden/manifest.json"
+    },
+    {
       "slug": "the-secret-garden-gutenberg-113",
       "title": "The Secret Garden",
       "author": [
@@ -706,7 +3054,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/113",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -715,7 +3063,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -738,6 +3086,202 @@
       "manifestPath": "the-secret-garden-gutenberg-113/manifest.json"
     },
     {
+      "slug": "the-shoes-of-fortune",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "e6807307fe30d680",
+      "contentHash": "e6807307fe30d6806c09bffcf90ee1152576e9115656171f9d5798f291943e7c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 90171,
+        "cleanedCharacterCount": 70775,
+        "wordCount": 12709,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-shoes-of-fortune/manifest.json"
+    },
+    {
+      "slug": "the-snow-queen",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "4d3de7b45653d97f",
+      "contentHash": "4d3de7b45653d97ff7cc79d4bb274a989d223447ef95ce7316facd94cb57688f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 83165,
+        "cleanedCharacterCount": 63769,
+        "wordCount": 11981,
+        "sectionCount": 4,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-snow-queen/manifest.json"
+    },
+    {
+      "slug": "the-swineherd",
+      "title": "Andersen's Fairy Tales",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "bba920ce5e7f63db",
+      "contentHash": "bba920ce5e7f63dbfd0467efc7aa51a3366e8072aa10c4171e7a58029047f932",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "manual-review",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Andersen's Fairy Tales"
+      },
+      "stats": {
+        "originalCharacterCount": 27624,
+        "cleanedCharacterCount": 8228,
+        "wordCount": 1495,
+        "sectionCount": 2,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-swineherd/manifest.json"
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "author": [
+        "John Buchan"
+      ],
+      "contentVersion": "60e530443a945b25",
+      "contentHash": "60e530443a945b2581abf391d373629a5be64a4b3bae5028666d933bd37eb7a2",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "558",
+        "releaseDate": "June 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/558",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Thirty-Nine Steps"
+      },
+      "stats": {
+        "originalCharacterCount": 233965,
+        "cleanedCharacterCount": 214660,
+        "wordCount": 41704,
+        "sectionCount": 12,
+        "includedSectionCount": 10
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-thirty-nine-steps/manifest.json"
+    },
+    {
       "slug": "the-three-musketeers",
       "title": "The three musketeers",
       "author": [
@@ -755,7 +3299,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/1257",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -764,7 +3308,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, translator, illustrator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -787,13 +3331,160 @@
       "manifestPath": "the-three-musketeers/manifest.json"
     },
     {
+      "slug": "the-water-babies",
+      "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+      "author": [
+        "Charles Kingsley"
+      ],
+      "contentVersion": "ab71066d5d14fff5",
+      "contentHash": "ab71066d5d14fff502c8c2b1195e28ebd679c4e2c6e2a527529076c1ba1f7150",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25564",
+        "releaseDate": "May 23, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25564",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Water-Babies: A Fairy Tale for a Land-Baby"
+      },
+      "stats": {
+        "originalCharacterCount": 388846,
+        "cleanedCharacterCount": 369242,
+        "wordCount": 68928,
+        "sectionCount": 10,
+        "includedSectionCount": 9
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-water-babies/manifest.json"
+    },
+    {
+      "slug": "the-wonderful-wizard-of-oz",
+      "title": "The Wonderful Wizard of Oz",
+      "author": [
+        "L. Frank Baum"
+      ],
+      "contentVersion": "809e6c15b8f5c8ca",
+      "contentHash": "809e6c15b8f5c8ca7b30310de83c0f8a93b67f6e150d1c2b87d337270d8a33de",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "55",
+        "releaseDate": "February 1, 1993",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/55",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Wonderful Wizard of Oz"
+      },
+      "stats": {
+        "originalCharacterCount": 227016,
+        "cleanedCharacterCount": 207764,
+        "wordCount": 39915,
+        "sectionCount": 28,
+        "includedSectionCount": 24
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-wonderful-wizard-of-oz/manifest.json"
+    },
+    {
+      "slug": "through-the-looking-glass",
+      "title": "Through the Looking-Glass",
+      "author": [
+        "Lewis Carroll"
+      ],
+      "contentVersion": "d8a013c20c2b2c27",
+      "contentHash": "d8a013c20c2b2c27a60b774883390ea8037953d1d06b0f2d2878e36678319d95",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12",
+        "releaseDate": "June 25, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Through the Looking-Glass"
+      },
+      "stats": {
+        "originalCharacterCount": 183483,
+        "cleanedCharacterCount": 164215,
+        "wordCount": 30904,
+        "sectionCount": 14,
+        "includedSectionCount": 12
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "through-the-looking-glass/manifest.json"
+    },
+    {
       "slug": "treasure-island",
       "title": "Treasure Island",
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "4d7484d9467697dc",
-      "contentHash": "4d7484d9467697dc5116a3f77f16204f2e09a7957fc31c58c24537e951fc69a9",
+      "contentVersion": "dad40837ea6d36fc",
+      "contentHash": "dad40837ea6d36fcf6f1559d0aab3a349cb58e83472d2dc33783e35c3f6b650b",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -804,7 +3495,7 @@
         "sourceUrl": "https://www.gutenberg.org/ebooks/120",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
-        "rightsReviewed": false,
+        "rightsReviewed": true,
         "publishReady": true,
         "rightsStatus": "approved",
         "processingAllowed": true,
@@ -813,7 +3504,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, editor."
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
       },
       "cover": {
         "src": null,
@@ -834,6 +3525,104 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "treasure-island/manifest.json"
+    },
+    {
+      "slug": "wind-in-the-willows",
+      "title": "The Wind in the Willows",
+      "author": [
+        "Kenneth Grahame"
+      ],
+      "contentVersion": "58b7901269e06036",
+      "contentHash": "58b7901269e0603618ff4d686217ad3c71450b45560b0f5849fb0cfad03f941b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "289",
+        "releaseDate": "July 1, 1995",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/289",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Wind in the Willows"
+      },
+      "stats": {
+        "originalCharacterCount": 344043,
+        "cleanedCharacterCount": 324765,
+        "wordCount": 59990,
+        "sectionCount": 14,
+        "includedSectionCount": 12
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "wind-in-the-willows/manifest.json"
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "author": [
+        "William J. Long"
+      ],
+      "contentVersion": "53459056320606b5",
+      "contentHash": "53459056320606b53faa47715e9dc78f224f944a3377a2919f8697b257fdf123",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "22101",
+        "releaseDate": "July 19, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/22101",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Wood folk at school"
+      },
+      "stats": {
+        "originalCharacterCount": 269688,
+        "cleanedCharacterCount": 250309,
+        "wordCount": 45340,
+        "sectionCount": 10,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "wood-folk-at-school/manifest.json"
     }
   ]
 }

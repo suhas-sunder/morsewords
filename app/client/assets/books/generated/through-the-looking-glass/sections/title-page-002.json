@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "through-the-looking-glass",
+  "sectionId": "title-page-002",
+  "kind": "title-page",
+  "label": "Contents",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "Contents\n\n  CHAPTER I. Looking-Glass house\n  CHAPTER II. The Garden of Live Flowers\n  CHAPTER III. Looking-Glass Insects\n  CHAPTER IV. Tweedledum And Tweedledee\n  CHAPTER V. Wool and Water\n  CHAPTER VI. Humpty Dumpty\n  CHAPTER VII. The Lion and the Unicorn\n  CHAPTER VIII. “It’s my own Invention”\n  CHAPTER IX. Queen Alice\n  CHAPTER X. Shaking\n  CHAPTER XI. Waking\n  CHAPTER XII. Which Dreamed it?",
+  "morseSourceText": "Contents\n\n  CHAPTER I. Looking-Glass house\n  CHAPTER II. The Garden of Live Flowers\n  CHAPTER III. Looking-Glass Insects\n  CHAPTER IV. Tweedledum And Tweedledee\n  CHAPTER V. Wool and Water\n  CHAPTER VI. Humpty Dumpty\n  CHAPTER VII. The Lion and the Unicorn\n  CHAPTER VIII. “It’s my own Invention”\n  CHAPTER IX. Queen Alice\n  CHAPTER X. Shaking\n  CHAPTER XI. Waking\n  CHAPTER XII. Which Dreamed it?",
+  "paragraphs": [
+    "Contents",
+    "CHAPTER I. Looking-Glass house CHAPTER II. The Garden of Live Flowers CHAPTER III. Looking-Glass Insects CHAPTER IV. Tweedledum And Tweedledee CHAPTER V. Wool and Water CHAPTER VI. Humpty Dumpty CHAPTER VII. The Lion and the Unicorn CHAPTER VIII. “It’s my own Invention” CHAPTER IX. Queen Alice CHAPTER X. Shaking CHAPTER XI. Waking CHAPTER XII. Which Dreamed it?"
+  ],
+  "wordCount": 59,
+  "characterCount": 397,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2046,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Contents CHAPTER I. Looking-Glass house CHAPTER II. The Garden of Live Flowers CHAPTER III. Looking-Glass Insects CHAPTER IV. Tweedledum And Tweedledee CHAPTER...",
+  "sourceOffsets": {
+    "start": 2854,
+    "end": 3254
+  }
+}

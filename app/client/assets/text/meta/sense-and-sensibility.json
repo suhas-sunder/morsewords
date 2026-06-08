@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "161",
     "sourceUrl": "https://www.gutenberg.org/ebooks/161",
-    "rawTextFile": "../Sense and Sensibility.txt",
+    "rawTextFile": "../../temp-books/Sense and Sensibility.txt",
     "releaseDate": "September 1, 1994",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

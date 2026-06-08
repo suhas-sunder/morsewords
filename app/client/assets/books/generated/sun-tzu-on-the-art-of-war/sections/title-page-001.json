@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "sun-tzu-on-the-art-of-war",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Contents",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "CONTENTS\n\n\n                                                               Page\n  Preface                                                         vii",
+  "morseSourceText": "CONTENTS\n\n\n                                                               Page\n  Preface                                                         vii",
+  "paragraphs": [
+    "CONTENTS",
+    "Page Preface                                                         vii"
+  ],
+  "wordCount": 4,
+  "characterCount": 148,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 129,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "CONTENTS Page Preface vii",
+  "sourceOffsets": {
+    "start": 1193,
+    "end": 1372
+  }
+}

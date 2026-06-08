@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "sense-and-sensibility",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "[Illustration]\n\n\nSense and Sensibility\n\nby Jane Austen\n\n(1811)",
+  "morseSourceText": "[Illustration]\n\n\nSense and Sensibility\n\nby Jane Austen\n\n(1811)",
+  "paragraphs": [
+    "[Illustration]",
+    "Sense and Sensibility",
+    "by Jane Austen",
+    "(1811)"
+  ],
+  "wordCount": 8,
+  "characterCount": 62,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 307,
+  "unsupportedCharacterSummary": {
+    "[": 1,
+    "]": 1
+  },
+  "textPreview": "[Illustration] Sense and Sensibility by Jane Austen (1811)",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 65
+  }
+}

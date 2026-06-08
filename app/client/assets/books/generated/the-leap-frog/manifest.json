@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-leap-frog",
+  "title": "Andersen's Fairy Tales",
+  "author": [
+    "H. C. Andersen"
+  ],
+  "contentVersion": "40ef802bc05a7172",
+  "contentHash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1597",
+    "releaseDate": "January 1, 1999",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "manual-review",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Andersen's Fairy Tales"
+  },
+  "stats": {
+    "originalCharacterCount": 23080,
+    "cleanedCharacterCount": 3684,
+    "wordCount": 678,
+    "sectionCount": 2,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 3310,
+      "wordCount": 613,
+      "estimatedTypingMinutes": 16,
+      "estimatedListeningMinutes": 20,
+      "morseCharacterEstimate": 17792,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they in..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 372,
+      "wordCount": 65,
+      "estimatedTypingMinutes": 2,
+      "estimatedListeningMinutes": 3,
+      "morseCharacterEstimate": 2032,
+      "textPreview": "The Grasshopper sat without on a green bank, and reflected on worldly things; and he said too, “Yes, a fine exterior is everything--a fine exterior is what peo..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 23080,
+    "cleanedCharacterCount": 3684,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "No chapter headings were detected; generated fallback parts instead.",
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

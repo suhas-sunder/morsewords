@@ -450,7 +450,7 @@ const TOOLKIT_CONFIG: Record<ToolkitVariant, ToolkitConfig> = {
       "Start with the core translator, then move into practice, audio, worksheets, and reference pages as needed.",
     classNames: {
       primaryCard:
-        "mw-button-outline mw-toolkit-card mw-toolkit-card-light mw-surface-card group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 hover:bg-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
+        "mw-button-outline mw-toolkit-card mw-toolkit-card-light mw-surface-card group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 hover:bg-[#fffaf2] hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
       primaryBadge:
         "mw-toolkit-badge mw-muted-label shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500",
       quickLink:

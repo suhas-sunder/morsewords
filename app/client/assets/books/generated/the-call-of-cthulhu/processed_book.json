@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "the-call-of-cthulhu",
+  "title": "The call of Cthulhu",
+  "author": "H. P. Lovecraft",
+  "content_version": "92ed56343936c95c",
+  "content_hash": "92ed56343936c95cf8c37fadf4f90c36eff1257be05c15f0d93fd7b56a99bbb5",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "68283",
+    "source_url": "https://www.gutenberg.org/ebooks/68283",
+    "raw_text_url": null,
+    "original_publication": "United States: Popular Fiction Publishing Company, 1928",
+    "release_date": "June 10, 2022",
+    "last_updated": "October 18, 2024"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Transcriber notes remain in cleaned story text. Content brand-safety risk needs manual review. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

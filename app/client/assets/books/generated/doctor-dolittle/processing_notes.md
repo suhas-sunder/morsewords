@@ -1,16 +1,13 @@
-# The Story of Doctor Dolittle rights review notes
+# The Story of Doctor Dolittle processing notes
 
-- Source file: ../doctor-dolittle.txt
+- Source file: ../../temp-books/doctor-dolittle.txt
 - Gutenberg ID: 501
 - Source URL: https://www.gutenberg.org/ebooks/501
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: reject
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Illustration or image reference: IN FOREIGN PARTS. NEVER BEFORE PRINTED._ _TOLD BY HUGH LOFTING_ _ILLUSTRATED BY THE AUTHOR_ [Illustration] _Published by FREDERICK A. STOKES COMPANY at 443 FOURTH AVENUE, NEW YORK._ _A.D. 1920_
 - Later copyright notice: OLE _Copyright, 1920, by_ FREDERICK A. STOKES COMPANY _All rights reserved, including that of translation into foreign languages_ First Printing, Aug. 24, 1920 Second Printing, Dec. 17,
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: April 1, 1996
-- Last updated: August 19, 2024
-- Original publication: 1920
-- Credits: Produced by Emmy, MWS and the Online Distributed
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: medium
@@ -45,19 +27,28 @@
 - Later copyright notice: yes
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is reject; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 164957
+- Cleaned characters: 145445
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- part-001: part (Part 1)
+- part-002: part (Part 2)
+- part-003: part (Part 3)
+- part-004: part (Part 4)
+- part-005: part (Part 5)
+- part-006: part (Part 6)
+
+## Section detection summary
+
+- Generated sections: 6
+- Included by default: 0
 
 ## Manual review reasons
 
@@ -69,6 +60,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Do not process for public use. Resolve copyright, permission, source, or license blockers first.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "18",
     "sourceUrl": "https://www.gutenberg.org/ebooks/18",
-    "rawTextFile": "../The Federalist Papers.txt",
+    "rawTextFile": "../../temp-books/The Federalist Papers.txt",
     "releaseDate": "August 1, 1991",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

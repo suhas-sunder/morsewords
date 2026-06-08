@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "345",
     "sourceUrl": "https://www.gutenberg.org/ebooks/345",
-    "rawTextFile": "../Dracula.txt",
+    "rawTextFile": "../../temp-books/Dracula.txt",
     "releaseDate": "October 1, 1995",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

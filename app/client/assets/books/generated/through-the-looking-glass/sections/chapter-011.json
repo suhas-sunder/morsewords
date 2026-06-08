@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "through-the-looking-glass",
+  "sectionId": "chapter-011",
+  "kind": "chapter",
+  "label": "Chapter 11",
+  "title": null,
+  "order": 13,
+  "includeByDefault": true,
+  "displayText": "CHAPTER XI.\nWaking\n\n\n—and it really _was_ a kitten, after all.",
+  "morseSourceText": "CHAPTER XI.\nWaking\n\n\n—and it really _was_ a kitten, after all.",
+  "paragraphs": [
+    "CHAPTER XI. Waking",
+    "—and it really _was_ a kitten, after all."
+  ],
+  "wordCount": 11,
+  "characterCount": 62,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 332,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "CHAPTER XI. Waking —and it really _was_ a kitten, after all.",
+  "sourceOffsets": {
+    "start": 160352,
+    "end": 160417
+  }
+}

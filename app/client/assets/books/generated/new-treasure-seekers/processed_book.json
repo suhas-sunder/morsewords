@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "new-treasure-seekers",
+  "title": "New Treasure Seekers; Or, The Bastable Children in Search of a Fortune",
+  "author": "E. Nesbit",
+  "content_version": "943d40f17c69635b",
+  "content_hash": "943d40f17c69635b6425918eedbbbbd7dd060416fe7a2f62266637e83aec84a4",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "25496",
+    "source_url": "https://www.gutenberg.org/ebooks/25496",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "May 16, 2008",
+    "last_updated": "January 3, 2021"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

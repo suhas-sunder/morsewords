@@ -2,12 +2,14 @@
   "schemaVersion": 1,
   "slug": "alices-adventures-in-wonderland",
   "title": "Alice's Adventures in Wonderland",
-  "author": ["Lewis Carroll"],
+  "author": [
+    "Lewis Carroll"
+  ],
   "language": "en",
   "source": {
     "provider": "Project Gutenberg",
     "gutenbergId": "11",
-    "rawTextFile": "../alices-adventures-in-wonderland.txt",
+    "rawTextFile": "../../temp-books/alices-adventures-in-wonderland.txt",
     "releaseDate": null,
     "rightsBasis": "public-domain-us",
     "rightsReviewed": false,
@@ -19,11 +21,20 @@
     "alt": "Placeholder cover for Alice's Adventures in Wonderland"
   },
   "description": "A pilot Project Gutenberg source for chapter-level Morse book ingestion and future Morse audiobook workflows.",
-  "subjects": ["Fantasy fiction", "Children's literature"],
+  "subjects": [
+    "Fantasy fiction",
+    "Children's literature"
+  ],
   "originalPublicationYear": 1865,
   "defaults": {
-    "includeKinds": ["chapter"],
-    "excludeKinds": ["source-license", "transcriber-note", "advertisement"],
+    "includeKinds": [
+      "chapter"
+    ],
+    "excludeKinds": [
+      "source-license",
+      "transcriber-note",
+      "advertisement"
+    ],
     "preferredPreset": "main-narrative"
   },
   "sectionOverrides": [],

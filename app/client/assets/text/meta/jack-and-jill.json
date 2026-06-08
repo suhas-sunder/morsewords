@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "2786",
     "sourceUrl": "https://www.gutenberg.org/ebooks/2786",
-    "rawTextFile": "../jack-and-jill.txt",
+    "rawTextFile": "../../temp-books/jack-and-jill.txt",
     "releaseDate": "August 1, 2001",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

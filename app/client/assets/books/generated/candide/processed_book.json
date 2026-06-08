@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "candide",
+  "title": "Candide",
+  "author": "Voltaire",
+  "content_version": "7e16293d9d2e0e2f",
+  "content_hash": "7e16293d9d2e0e2fdecf888f873fc3eda92bd4675d761767065a4ef1921c6f81",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "19942",
+    "source_url": "https://www.gutenberg.org/ebooks/19942",
+    "raw_text_url": null,
+    "original_publication": "1759",
+    "release_date": "November 27, 2006",
+    "last_updated": ""
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Modern introduction, notes, or editorial material may be present. Transcriber notes remain in cleaned story text. Content brand-safety risk needs manual review. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

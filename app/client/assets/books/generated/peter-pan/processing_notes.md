@@ -1,16 +1,13 @@
-# Peter Pan [Peter and Wendy] rights review notes
+# Peter Pan [Peter and Wendy] processing notes
 
-- Source file: ../peter-pan.txt
+- Source file: ../../temp-books/peter-pan.txt
 - Gutenberg ID: 16
 - Source URL: https://www.gutenberg.org/ebooks/16
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -19,21 +16,6 @@
 - U.S. reuse language: The Project Gutenberg eBook of Peter Pan This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Peter Pan [Peter and We
 - Edition risk: Peter Pan [PETER AND WENDY] by J. M. Barrie [James Matthew Barrie] A Millennium Fulcrum Edition produced in 1991 by Duncan Research. Note that while a copyright was initially claimed for the labor involved in digitization, that copyr
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: June 25, 2008
-- Last updated: October 11, 2025
-- Original publication: missing
-- Credits: Duncan Research
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
 
 ## Risks found
 
@@ -44,19 +26,24 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 274781
+- Cleaned characters: 255549
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+- title-page-002: title-page (Contents)
+
+## Section detection summary
+
+- Generated sections: 20
+- Included by default: 18
 
 ## Manual review reasons
 
@@ -68,6 +55,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Add original publication evidence before approval.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

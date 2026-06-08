@@ -136,19 +136,19 @@ const GROUPS: SitemapGroup[] = [
         label: "Printable Morse Pages",
         to: ROUTES.printablePages,
         description:
-          "Create printable Morse pages from custom text or approved book sections.",
+          "Create printable Morse pages from custom text or processed book sections.",
       },
       {
         label: "Morse Code Books",
         to: ROUTES.morseBooks,
         description:
-          "Browse reviewed Morse book pages from approved public-domain sources.",
+          "Browse processed Morse book pages from public reference texts.",
       },
       {
         label: "Morse Code Audiobooks",
         to: ROUTES.morseAudiobooks,
         description:
-          "Browse approved books with browser-generated Morse audiobook preview and download controls.",
+          "Browse processed books with browser-generated Morse audiobook preview and download controls.",
       },
       {
         label: "Morse Code Video Generator",
@@ -191,7 +191,7 @@ const GROUPS: SitemapGroup[] = [
         {
           title: "Morse code books",
           description:
-            "Approved Project Gutenberg books that passed the MorseWords rights gate.",
+            "Processed Project Gutenberg reference texts prepared as Morse book pages.",
           links: morseBookSitemapLinks,
         },
       ]
@@ -201,7 +201,7 @@ const GROUPS: SitemapGroup[] = [
         {
           title: "Morse code audiobooks",
           description:
-            "Approved Project Gutenberg books available as browser-generated Morse audiobook pages.",
+            "Processed Project Gutenberg reference texts available as browser-generated Morse audiobook pages.",
           links: morseAudiobookSitemapLinks,
         },
       ]
@@ -211,7 +211,7 @@ const GROUPS: SitemapGroup[] = [
         {
           title: "Printable Morse book pages",
           description:
-            "Approved Project Gutenberg books prepared as print-friendly Morse study pages.",
+            "Processed Project Gutenberg reference texts prepared as print-friendly Morse study pages.",
           links: morseBookPrintSitemapLinks,
         },
       ]

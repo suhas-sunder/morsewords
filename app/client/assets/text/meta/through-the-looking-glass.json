@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "12",
     "sourceUrl": "https://www.gutenberg.org/ebooks/12",
-    "rawTextFile": "../through-the-looking-glass.txt",
+    "rawTextFile": "../../temp-books/through-the-looking-glass.txt",
     "releaseDate": "June 25, 2008",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

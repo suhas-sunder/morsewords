@@ -3,8 +3,8 @@
   "id": "the-railway-children",
   "title": "The Railway Children",
   "author": "E. Nesbit",
-  "contentVersion": "d9d11d41a68904e2",
-  "contentHash": "d9d11d41a68904e2c6ee526561f48ac624aa02751eae0a44b0b258fabf2d85e1",
+  "contentVersion": "2e8fd14f73610186",
+  "contentHash": "2e8fd14f73610186ff5937435d349246561d374111bd004cac2cc03eae76bd57",
   "source": {
     "provider": "Project Gutenberg",
     "gutenbergId": "1874",
@@ -29,17 +29,16 @@
       "title": null,
       "order": 1,
       "includeByDefault": false,
-      "text": "Produced by Les Bowler\n\n\nTHE RAILWAY CHILDREN\n\nBy E. Nesbit\n\n\n               To my dear son Paul Bland,\n               behind whose knowledge of railways\n               my ignorance confidently shelters.\n\n\nContents.\n\n     I.    The beginning of things.\n     II.   Peter's coal-mine.\n     III.  The old gentleman.\n     IV.   The engine-burglar.\n     V.    Prisoners and captives.\n     VI.   Saviours of the train.\n     VII.  For valour.\n     VIII. The amateur fireman.\n     IX.   The pride of Perks.\n     X.    The terrible secret.\n     XI.   The hound in the red jersey.\n     XII.  What Bobbie brought home.\n     XIII. The hound's grandfather.\n     XIV.  The End.",
+      "text": "THE RAILWAY CHILDREN\n\nBy E. Nesbit\n\n\n               To my dear son Paul Bland,\n               behind whose knowledge of railways\n               my ignorance confidently shelters.\n\n\nContents.\n\n     I.    The beginning of things.\n     II.   Peter's coal-mine.\n     III.  The old gentleman.\n     IV.   The engine-burglar.\n     V.    Prisoners and captives.\n     VI.   Saviours of the train.\n     VII.  For valour.\n     VIII. The amateur fireman.\n     IX.   The pride of Perks.\n     X.    The terrible secret.\n     XI.   The hound in the red jersey.\n     XII.  What Bobbie brought home.\n     XIII. The hound's grandfather.\n     XIV.  The End.",
       "paragraphs": [
-        "Produced by Les Bowler",
         "THE RAILWAY CHILDREN",
         "By E. Nesbit",
         "To my dear son Paul Bland, behind whose knowledge of railways my ignorance confidently shelters.",
         "Contents.",
         "I.    The beginning of things. II.   Peter's coal-mine. III.  The old gentleman. IV.   The engine-burglar. V.    Prisoners and captives. VI.   Saviours of the train. VII.  For valour. VIII. The amateur fireman. IX.   The pride of Perks. X.    The terrible secret. XI.   The hound in the red jersey. XII.  What Bobbie brought home. XIII. The hound's grandfather. XIV.  The End."
       ],
-      "wordCount": 85,
-      "characterCount": 663,
+      "wordCount": 81,
+      "characterCount": 638,
       "estimatedTypingMinutes": 3,
       "estimatedListeningMinutes": 4
     },

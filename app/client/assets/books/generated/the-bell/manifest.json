@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-bell",
+  "title": "Andersen's Fairy Tales",
+  "author": [
+    "H. C. Andersen"
+  ],
+  "contentVersion": "26e487e055059310",
+  "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1597",
+    "releaseDate": "January 1, 1999",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "manual-review",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Andersen's Fairy Tales"
+  },
+  "stats": {
+    "originalCharacterCount": 46266,
+    "cleanedCharacterCount": 26870,
+    "wordCount": 5039,
+    "sectionCount": 2,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 25428,
+      "wordCount": 4775,
+      "estimatedTypingMinutes": 120,
+      "estimatedListeningMinutes": 152,
+      "morseCharacterEstimate": 136059,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet we..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 1440,
+      "wordCount": 264,
+      "estimatedTypingMinutes": 7,
+      "estimatedListeningMinutes": 9,
+      "morseCharacterEstimate": 7728,
+      "textPreview": "And he seized hold of the creeping-plants, and the roots of trees--climbed up the moist stones where the water-snakes were writhing and the toads were croaking..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 46266,
+    "cleanedCharacterCount": 26870,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "No chapter headings were detected; generated fallback parts instead.",
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

@@ -1,16 +1,13 @@
-# Rinkitink in Oz rights review notes
+# Rinkitink in Oz processing notes
 
-- Source file: ../rinkitink-in-oz.txt
+- Source file: ../../temp-books/rinkitink-in-oz.txt
 - Gutenberg ID: 25581
 - Source URL: https://www.gutenberg.org/ebooks/25581
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Rinkitink in Oz Author: L. Fr
 - Illustration or image reference: [Illustration: THIS BOOK BELONGS TO] [Illustration: RINKITINK IN OZ] [Illustration] [Illustration] RINKITINK IN OZ BY L. FRANK BAUM AUTHOR OF The Road to Oz, Dorothy and the Wizard in Oz, T
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: May 24, 2008
-- Last updated: June 1, 2025
-- Original publication: 1916
-- Credits: Produced by Chris Curnow, Joseph Cooper, Greg Bergquist
-- Translator: none found
-- Illustrator: John R. Neill
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: none
@@ -45,19 +27,23 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 290436
+- Cleaned characters: 271052
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+
+## Section detection summary
+
+- Generated sections: 25
+- Included by default: 24
 
 ## Manual review reasons
 
@@ -67,6 +53,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

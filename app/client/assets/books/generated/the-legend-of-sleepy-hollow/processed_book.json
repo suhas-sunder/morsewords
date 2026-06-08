@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "the-legend-of-sleepy-hollow",
+  "title": "The Legend of Sleepy Hollow",
+  "author": "Washington Irving",
+  "content_version": "fc5816acb081aa8a",
+  "content_hash": "fc5816acb081aa8a374e7beabcf671f22d693dd798679155fdb10a2ba3d37768",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "41",
+    "source_url": "https://www.gutenberg.org/ebooks/41",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "June 27, 2008",
+    "last_updated": "February 10, 2026"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

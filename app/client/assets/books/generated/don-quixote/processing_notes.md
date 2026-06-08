@@ -1,16 +1,13 @@
-# Don Quixote rights review notes
+# Don Quixote processing notes
 
-- Source file: ../Don Quixote.txt
+- Source file: ../../temp-books/Don Quixote.txt
 - Gutenberg ID: 996
 - Source URL: https://www.gutenberg.org/ebooks/996
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -22,21 +19,6 @@
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Don Quixote Author: Miguel de
 - Illustration or image reference: *** START OF THE PROJECT GUTENBERG EBOOK DON QUIXOTE *** bookcover.jpg Full Size spine.jpg (152K) Full Size Don Quixote by Miguel de Cervantes Transl
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: July 27, 2004
-- Last updated: March 30, 2023
-- Original publication: 1605
-- Credits: David Widger
-- Translator: John Ormsby
-- Illustrator: none found
-- Editor: the King, he took Cervantes with him as his camarero
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: low
@@ -46,19 +28,25 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 2317419
+- Cleaned characters: 2298167
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+- introduction-001: introduction (Introduction)
+- introduction-002: introduction (Introduction)
+
+## Section detection summary
+
+- Generated sections: 149
+- Included by default: 146
 
 ## Manual review reasons
 
@@ -68,6 +56,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

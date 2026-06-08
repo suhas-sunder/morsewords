@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "the-federalist-papers",
+  "title": "The Federalist Papers",
+  "author": "Alexander Hamilton John Jay James Madison",
+  "content_version": "ff3de53fd6e88fdf",
+  "content_hash": "ff3de53fd6e88fdf94678df84358642755931ee7d4a717b79f944624331256b0",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "18",
+    "source_url": "https://www.gutenberg.org/ebooks/18",
+    "raw_text_url": null,
+    "original_publication": "1788",
+    "release_date": "August 1, 1991",
+    "last_updated": "October 11, 2025"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Modern introduction, notes, or editorial material may be present. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

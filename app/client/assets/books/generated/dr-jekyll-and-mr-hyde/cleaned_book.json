@@ -3,8 +3,8 @@
   "id": "dr-jekyll-and-mr-hyde",
   "title": "The strange case of Dr. Jekyll and Mr. Hyde",
   "author": "Robert Louis Stevenson",
-  "contentVersion": "d30174b13b392e39",
-  "contentHash": "d30174b13b392e39a59ce3463e36c148530141240f481f9844d007e253fec963",
+  "contentVersion": "15c792a791222168",
+  "contentHash": "15c792a791222168d9e832e1e804af7dc2daebcdf6e0f31eee27a0b625944b09",
   "source": {
     "provider": "Project Gutenberg",
     "gutenbergId": "43",
@@ -24,7 +24,7 @@
   "sections": [
     {
       "id": "part-001",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 1",
       "title": null,
       "order": 1,
@@ -133,7 +133,7 @@
     },
     {
       "id": "part-002",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 2",
       "title": null,
       "order": 2,
@@ -236,7 +236,7 @@
     },
     {
       "id": "part-003",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 3",
       "title": null,
       "order": 3,
@@ -372,7 +372,7 @@
     },
     {
       "id": "part-004",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 4",
       "title": null,
       "order": 4,
@@ -431,7 +431,7 @@
     },
     {
       "id": "part-005",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 5",
       "title": null,
       "order": 5,
@@ -460,7 +460,7 @@
     },
     {
       "id": "part-006",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 6",
       "title": null,
       "order": 6,

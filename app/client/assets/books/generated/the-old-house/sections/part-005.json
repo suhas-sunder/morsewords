@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-old-house",
+  "sectionId": "part-005",
+  "kind": "part",
+  "label": "Part 5",
+  "title": null,
+  "order": 5,
+  "includeByDefault": false,
+  "displayText": "And the organ pealed, and the children's voices in the choir sounded so\nsweet and soft! The clear sunshine streamed so warmly through the window\ninto the pew where Karen sat! Her heart was so full of sunshine, peace,\nand joy, that it broke. Her soul flew on the sunshine to God, and there\nno one asked after the RED SHOES.",
+  "morseSourceText": "And the organ pealed, and the children's voices in the choir sounded so\nsweet and soft! The clear sunshine streamed so warmly through the window\ninto the pew where Karen sat! Her heart was so full of sunshine, peace,\nand joy, that it broke. Her soul flew on the sunshine to God, and there\nno one asked after the RED SHOES.",
+  "paragraphs": [
+    "And the organ pealed, and the children's voices in the choir sounded so sweet and soft! The clear sunshine streamed so warmly through the window into the pew where Karen sat! Her heart was so full of sunshine, peace, and joy, that it broke. Her soul flew on the sunshine to God, and there no one asked after the RED SHOES."
+  ],
+  "wordCount": 61,
+  "characterCount": 322,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1716,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "And the organ pealed, and the children's voices in the choir sounded so sweet and soft! The clear sunshine streamed so warmly through the window into the pew w...",
+  "sourceOffsets": {
+    "start": 95571,
+    "end": 95893
+  }
+}

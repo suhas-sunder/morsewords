@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "slug": "a-christmas-carol",
+  "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+  "author": [
+    "Charles Dickens"
+  ],
+  "contentVersion": "7aa2c3f3504d04dd",
+  "contentHash": "7aa2c3f3504d04dd1ff2a221be80ef81c40929ce8c7e4faaa8f768047f36fd33",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "46",
+    "releaseDate": "August 11, 2004",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/46",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for A Christmas Carol in Prose; Being a Ghost Story of Christmas"
+  },
+  "stats": {
+    "originalCharacterCount": 177866,
+    "cleanedCharacterCount": 158411,
+    "wordCount": 28642,
+    "sectionCount": 7,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 29853,
+      "wordCount": 5327,
+      "estimatedTypingMinutes": 134,
+      "estimatedListeningMinutes": 180,
+      "morseCharacterEstimate": 161514,
+      "textPreview": "A CHRISTMAS CAROL IN PROSE BEING A Ghost Story of Christmas by Charles Dickens PREFACE I HAVE endeavoured in this Ghostly little book, to raise the Ghost of an..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 29948,
+      "wordCount": 5383,
+      "estimatedTypingMinutes": 135,
+      "estimatedListeningMinutes": 180,
+      "morseCharacterEstimate": 161966,
+      "textPreview": "Scrooge glanced about him on the floor, in the expectation of finding himself surrounded by some fifty or sixty fathoms of iron cable: but he could see nothing..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-003.json",
+      "characterCount": 28988,
+      "wordCount": 5184,
+      "estimatedTypingMinutes": 130,
+      "estimatedListeningMinutes": 174,
+      "morseCharacterEstimate": 156495,
+      "textPreview": "During the whole of this time, Scrooge had acted like a man out of his wits. His heart and soul were in the scene, and with his former self. He corroborated ev..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-004.json",
+      "characterCount": 29835,
+      "wordCount": 5389,
+      "estimatedTypingMinutes": 135,
+      "estimatedListeningMinutes": 180,
+      "morseCharacterEstimate": 161222,
+      "textPreview": "Such a bustle ensued that you might have thought a goose the rarest of all birds; a feathered phenomenon, to which a black swan was a matter of course--and in..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Part 5",
+      "title": null,
+      "order": 5,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-005.json",
+      "characterCount": 29781,
+      "wordCount": 5513,
+      "estimatedTypingMinutes": 138,
+      "estimatedListeningMinutes": 180,
+      "morseCharacterEstimate": 161179,
+      "textPreview": "\"Ghost of the Future!\" he exclaimed, \"I fear you more than any spectre I have seen. But as I know your purpose is to do me good, and as I hope to live to be an..."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Part 6",
+      "title": null,
+      "order": 6,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-006.json",
+      "characterCount": 9673,
+      "wordCount": 1786,
+      "estimatedTypingMinutes": 45,
+      "estimatedListeningMinutes": 59,
+      "morseCharacterEstimate": 52815,
+      "textPreview": "Running to the window, he opened it, and put out his head. No fog, no mist; clear, bright, jovial, stirring, cold; cold, piping for the blood to dance to; Gold..."
+    },
+    {
+      "id": "part-007",
+      "kind": "part",
+      "label": "Part 7",
+      "title": null,
+      "order": 7,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-007.json",
+      "characterCount": 321,
+      "wordCount": 60,
+      "estimatedTypingMinutes": 2,
+      "estimatedListeningMinutes": 2,
+      "morseCharacterEstimate": 1736,
+      "textPreview": "He had no further intercourse with Spirits, but lived upon the Total Abstinence Principle, ever afterwards; and it was always said of him, that he knew how to..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 177866,
+    "cleanedCharacterCount": 158411,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "No chapter headings were detected; generated fallback parts instead.",
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

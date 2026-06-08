@@ -1,16 +1,13 @@
-# Pride and Prejudice rights review notes
+# Pride and Prejudice processing notes
 
-- Source file: ../Pride and Prejudice.txt
+- Source file: ../../temp-books/Pride and Prejudice.txt
 - Gutenberg ID: 1342
 - Source URL: https://www.gutenberg.org/ebooks/1342
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -21,21 +18,6 @@
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Pride and Prejudice Author: J
 - Illustration or image reference: _Hugh Thomson_ ] PREFACE. [Illustration] _Walt Whitman has somewhere a fine and just distinction between “loving by allowance” and “loving with personal love.” This distincti
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: June 1, 1998
-- Last updated: February 10, 2026
-- Original publication: 1813
-- Credits: Chuck Greif and the Online Distributed Proofreading Team at http://www.pgdp.net (This file was produced from images available at The Internet Archive)
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: none
@@ -45,19 +27,23 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 747869
+- Cleaned characters: 728457
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+
+## Section detection summary
+
+- Generated sections: 62
+- Included by default: 61
 
 ## Manual review reasons
 
@@ -67,6 +53,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "174",
     "sourceUrl": "https://www.gutenberg.org/ebooks/174",
-    "rawTextFile": "../The Picture of Dorian Gray.txt",
+    "rawTextFile": "../../temp-books/The Picture of Dorian Gray.txt",
     "releaseDate": "October 1, 1994",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

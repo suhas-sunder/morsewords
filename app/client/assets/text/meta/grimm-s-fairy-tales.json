@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "52521",
     "sourceUrl": "https://www.gutenberg.org/ebooks/52521",
-    "rawTextFile": "../Grimm's Fairy Tales.txt",
+    "rawTextFile": "../../temp-books/Grimm's Fairy Tales.txt",
     "releaseDate": "July 7, 2016",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

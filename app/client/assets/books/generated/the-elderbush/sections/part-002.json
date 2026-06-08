@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-elderbush",
+  "sectionId": "part-002",
+  "kind": "part",
+  "label": "Part 2",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "“In the tea-pot,” said his mother; “and there she may remain.”",
+  "morseSourceText": "“In the tea-pot,” said his mother; “and there she may remain.”",
+  "paragraphs": [
+    "“In the tea-pot,” said his mother; “and there she may remain.”"
+  ],
+  "wordCount": 11,
+  "characterCount": 62,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 341,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "“In the tea-pot,” said his mother; “and there she may remain.”",
+  "sourceOffsets": {
+    "start": 16067,
+    "end": 16129
+  }
+}

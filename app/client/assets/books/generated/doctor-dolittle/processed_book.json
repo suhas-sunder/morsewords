@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "doctor-dolittle",
+  "title": "The Story of Doctor Dolittle",
+  "author": "Hugh Lofting",
+  "content_version": "ebcbd1bd1fe0b138",
+  "content_hash": "ebcbd1bd1fe0b138e47e2e60315069cc260594499c1003f75e80a2cbc37898bd",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "501",
+    "source_url": "https://www.gutenberg.org/ebooks/501",
+    "raw_text_url": null,
+    "original_publication": "1920",
+    "release_date": "April 1, 1996",
+    "last_updated": "August 19, 2024"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Later copyright notice was detected. Illustrations or image references need manual handling. Translation status or translator death year needs manual review. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

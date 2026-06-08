@@ -3,8 +3,8 @@
   "id": "the-emerald-city-of-oz",
   "title": "The Emerald City of Oz",
   "author": "L. Frank Baum",
-  "contentVersion": "99be6e3535d4da26",
-  "contentHash": "99be6e3535d4da266ce861f7ff9cbc22ea7b53dbfcf7c3f8b6da7dc0aeadb524",
+  "contentVersion": "8d21d1d1f204a77d",
+  "contentHash": "8d21d1d1f204a77d0b6b0f7512fa8a35eba49b09d4b7da1307bbfac4db67aec3",
   "source": {
     "provider": "Project Gutenberg",
     "gutenbergId": "517",
@@ -24,7 +24,7 @@
   "sections": [
     {
       "id": "part-001",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 1",
       "title": null,
       "order": 1,
@@ -192,7 +192,7 @@
     },
     {
       "id": "part-002",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 2",
       "title": null,
       "order": 2,
@@ -355,7 +355,7 @@
     },
     {
       "id": "part-003",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 3",
       "title": null,
       "order": 3,
@@ -529,7 +529,7 @@
     },
     {
       "id": "part-004",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 4",
       "title": null,
       "order": 4,
@@ -715,7 +715,7 @@
     },
     {
       "id": "part-005",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 5",
       "title": null,
       "order": 5,
@@ -922,7 +922,7 @@
     },
     {
       "id": "part-006",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 6",
       "title": null,
       "order": 6,
@@ -1150,7 +1150,7 @@
     },
     {
       "id": "part-007",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 7",
       "title": null,
       "order": 7,
@@ -1348,7 +1348,7 @@
     },
     {
       "id": "part-008",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 8",
       "title": null,
       "order": 8,
@@ -1544,7 +1544,7 @@
     },
     {
       "id": "part-009",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 9",
       "title": null,
       "order": 9,
@@ -1758,7 +1758,7 @@
     },
     {
       "id": "part-010",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 10",
       "title": null,
       "order": 10,
@@ -1945,7 +1945,7 @@
     },
     {
       "id": "part-011",
-      "kind": "unknown",
+      "kind": "part",
       "label": "Part 11",
       "title": null,
       "order": 11,

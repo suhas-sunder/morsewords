@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "candide",
+  "sectionId": "part-008",
+  "kind": "part",
+  "label": "Part 8",
+  "title": null,
+  "order": 8,
+  "includeByDefault": false,
+  "displayText": "*       *       *       *       *",
+  "morseSourceText": "*       *       *       *       *",
+  "paragraphs": [
+    "*       *       *       *       *"
+  ],
+  "wordCount": 0,
+  "characterCount": 33,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 0,
+  "unsupportedCharacterSummary": {
+    "*": 5
+  },
+  "textPreview": "* * * * *",
+  "sourceOffsets": {
+    "start": 205419,
+    "end": 205459
+  }
+}

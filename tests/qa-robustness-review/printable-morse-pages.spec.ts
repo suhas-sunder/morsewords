@@ -7,11 +7,13 @@ import { ROUTES, absoluteUrl } from "../../app/client/data/routes";
 
 const ROOT = process.cwd();
 const APPROVED_BOOK_SLUG = "treasure-island";
-const UNAPPROVED_BOOK_SLUG = "alices-adventures-in-wonderland";
+const PUBLIC_TEMP_BOOK_SLUG = "alices-adventures-in-wonderland";
+const MISSING_BOOK_SLUG = "missing-temp-book";
 const PRINTABLE_PATH = ROUTES.printablePages;
 const APPROVED_BOOK_PATH = `${ROUTES.morseBooks}/${APPROVED_BOOK_SLUG}`;
 const APPROVED_PRINT_PATH = `${APPROVED_BOOK_PATH}/print`;
-const UNAPPROVED_PRINT_PATH = `${ROUTES.morseBooks}/${UNAPPROVED_BOOK_SLUG}/print`;
+const PUBLIC_TEMP_PRINT_PATH = `${ROUTES.morseBooks}/${PUBLIC_TEMP_BOOK_SLUG}/print`;
+const MISSING_PRINT_PATH = `${ROUTES.morseBooks}/${MISSING_BOOK_SLUG}/print`;
 
 async function gotoPrintable(page: Page, route: string) {
   await blockExternalNetwork(page);
@@ -52,7 +54,9 @@ test.describe("printable Morse pages foundation", () => {
 
     const customInput = page.getByLabel("Paste custom text for printable Morse pages");
     await expect(customInput).toBeVisible();
+    await customInput.click();
     await customInput.fill("SOS TEST");
+    await expect(customInput).toHaveValue("SOS TEST");
     const preview = page.getByTestId("printable-preview");
     await expect(preview).toContainText("SOS TEST");
     await expect(preview).toContainText("... --- ... / - . ... -");
@@ -156,11 +160,11 @@ test.describe("printable Morse pages foundation", () => {
     await saveScreenshot(page, testInfo, "printable-morse-pages-book.png");
   });
 
-  test("public safety, sitemap entries, and book cross-links stay approved-only", async ({
+  test("public safety, sitemap entries, and book cross-links cover processed temp books", async ({
     page,
     request,
   }) => {
-    const notFound = await gotoPrintable(page, UNAPPROVED_PRINT_PATH);
+    const notFound = await gotoPrintable(page, MISSING_PRINT_PATH);
     expect(notFound?.status()).toBe(404);
 
     const bookResponse = await gotoPrintable(page, APPROVED_BOOK_PATH);
@@ -173,7 +177,8 @@ test.describe("printable Morse pages foundation", () => {
     const xml = await (await request.get("/sitemap.xml")).text();
     expect(xml).toContain(absoluteUrl(PRINTABLE_PATH));
     expect(xml).toContain(absoluteUrl(APPROVED_PRINT_PATH));
-    expect(xml).not.toContain(absoluteUrl(UNAPPROVED_PRINT_PATH));
+    expect(xml).toContain(absoluteUrl(PUBLIC_TEMP_PRINT_PATH));
+    expect(xml).not.toContain(absoluteUrl(MISSING_PRINT_PATH));
 
     const staticSitemap = fs.readFileSync(
       path.join(ROOT, "public", "sitemap.xml"),
@@ -181,7 +186,8 @@ test.describe("printable Morse pages foundation", () => {
     );
     expect(staticSitemap).toContain(absoluteUrl(PRINTABLE_PATH));
     expect(staticSitemap).toContain(absoluteUrl(APPROVED_PRINT_PATH));
-    expect(staticSitemap).not.toContain(absoluteUrl(UNAPPROVED_PRINT_PATH));
+    expect(staticSitemap).toContain(absoluteUrl(PUBLIC_TEMP_PRINT_PATH));
+    expect(staticSitemap).not.toContain(absoluteUrl(MISSING_PRINT_PATH));
 
     await gotoPrintable(page, ROUTES.sitemap);
     const htmlLinks = await page.locator("a[href]").evaluateAll((anchors) =>
@@ -194,6 +200,7 @@ test.describe("printable Morse pages foundation", () => {
     );
     expect(htmlLinks).toContain(PRINTABLE_PATH);
     expect(htmlLinks).toContain(APPROVED_PRINT_PATH);
-    expect(htmlLinks).not.toContain(UNAPPROVED_PRINT_PATH);
+    expect(htmlLinks).toContain(PUBLIC_TEMP_PRINT_PATH);
+    expect(htmlLinks).not.toContain(MISSING_PRINT_PATH);
   });
 });

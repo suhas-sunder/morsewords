@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "2770",
     "sourceUrl": "https://www.gutenberg.org/ebooks/2770",
-    "rawTextFile": "../five-little-peppers-and-how-they-grew.txt",
+    "rawTextFile": "../../temp-books/five-little-peppers-and-how-they-grew.txt",
     "releaseDate": "August 1, 2001",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

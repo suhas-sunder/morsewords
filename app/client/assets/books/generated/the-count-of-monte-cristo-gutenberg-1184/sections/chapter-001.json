@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-count-of-monte-cristo-gutenberg-1184",
+  "sectionId": "chapter-001",
+  "kind": "chapter",
+  "label": "Chapter 116",
+  "title": "The Pardon",
+  "order": 3,
+  "includeByDefault": true,
+  "displayText": "Chapter 116. The Pardon",
+  "morseSourceText": "Chapter 116. The Pardon",
+  "paragraphs": [
+    "Chapter 116. The Pardon"
+  ],
+  "wordCount": 4,
+  "characterCount": 23,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 132,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Chapter 116. The Pardon",
+  "sourceOffsets": {
+    "start": 3494,
+    "end": 3518
+  }
+}

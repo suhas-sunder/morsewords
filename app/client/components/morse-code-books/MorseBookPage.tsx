@@ -301,6 +301,15 @@ function defaultSectionIdsForBook(
   book: MorseBookManifest,
   fallbackSectionId: string,
 ) {
+  const excludedKinds = new Set<MorseBookSectionKind>([
+    "source-license",
+    "transcriber-note",
+  ]);
+  const readable = book.sections
+    .filter((section) => !excludedKinds.has(section.kind))
+    .map((section) => section.id);
+  if (readable.length > 0) return readable;
+
   const included = book.sections
     .filter((section) => section.includeByDefault)
     .map((section) => section.id);
@@ -814,6 +823,7 @@ function MorseBookWorkspace({
   const morseResult = textToMorse(morseSourcePreview.text, {
     returnResult: true,
     unsupportedText: "omit",
+    wordSeparator: "slash",
   });
   const morseOutputPreview = clippedText(
     morseResult.value,

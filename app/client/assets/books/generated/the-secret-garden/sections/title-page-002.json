@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-secret-garden",
+  "sectionId": "title-page-002",
+  "kind": "title-page",
+  "label": "Contents",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "CONTENTS\n\n\n  CHAPTER                                           PAGE\n      I THERE IS NO ONE LEFT                           1\n     II MISTRESS MARY QUITE CONTRARY                  10\n    III ACROSS THE MOOR                               23\n     IV MARTHA                                        30\n      V THE CRY IN THE CORRIDOR                       55\n     VI \"THERE WAS SOME ONE CRYING--THERE WAS!\"       65\n    VII THE KEY OF THE GARDEN                         75\n   VIII THE ROBIN WHO SHOWED THE WAY                  85\n     IX THE STRANGEST HOUSE ANY ONE EVER LIVED IN     97\n      X DICKON                                       111\n     XI THE NEST OF THE MISSEL THRUSH                128\n    XII \"MIGHT I HAVE A BIT OF EARTH?\"               140\n   XIII \"I AM COLIN\"                                 153\n    XIV A YOUNG RAJAH                                172\n     XV NEST BUILDING                                189\n    XVI \"I WON'T!\" SAID MARY                         207\n   XVII A TANTRUM                                    218\n  XVIII \"THA' MUNNOT WASTE NO TIME\"                  229\n    XIX \"IT HAS COME!\"                               239\n     XX \"I SHALL LIVE FOREVER--AND EVER--AND EVER!\"  255\n    XXI BEN WEATHERSTAFF                             268\n   XXII WHEN THE SUN WENT DOWN                       284\n  XXIII MAGIC                                        292\n   XXIV \"LET THEM LAUGH\"                             310\n    XXV THE CURTAIN                                  328\n   XXVI \"IT'S MOTHER!\"                               339\n  XXVII IN THE GARDEN                                353\n\n\nTHE SECRET GARDEN",
+  "morseSourceText": "CONTENTS\n\n\n  CHAPTER                                           PAGE\n      I THERE IS NO ONE LEFT                           1\n     II MISTRESS MARY QUITE CONTRARY                  10\n    III ACROSS THE MOOR                               23\n     IV MARTHA                                        30\n      V THE CRY IN THE CORRIDOR                       55\n     VI \"THERE WAS SOME ONE CRYING--THERE WAS!\"       65\n    VII THE KEY OF THE GARDEN                         75\n   VIII THE ROBIN WHO SHOWED THE WAY                  85\n     IX THE STRANGEST HOUSE ANY ONE EVER LIVED IN     97\n      X DICKON                                       111\n     XI THE NEST OF THE MISSEL THRUSH                128\n    XII \"MIGHT I HAVE A BIT OF EARTH?\"               140\n   XIII \"I AM COLIN\"                                 153\n    XIV A YOUNG RAJAH                                172\n     XV NEST BUILDING                                189\n    XVI \"I WON'T!\" SAID MARY                         207\n   XVII A TANTRUM                                    218\n  XVIII \"THA' MUNNOT WASTE NO TIME\"                  229\n    XIX \"IT HAS COME!\"                               239\n     XX \"I SHALL LIVE FOREVER--AND EVER--AND EVER!\"  255\n    XXI BEN WEATHERSTAFF                             268\n   XXII WHEN THE SUN WENT DOWN                       284\n  XXIII MAGIC                                        292\n   XXIV \"LET THEM LAUGH\"                             310\n    XXV THE CURTAIN                                  328\n   XXVI \"IT'S MOTHER!\"                               339\n  XXVII IN THE GARDEN                                353\n\n\nTHE SECRET GARDEN",
+  "paragraphs": [
+    "CONTENTS",
+    "CHAPTER                                           PAGE I THERE IS NO ONE LEFT                           1 II MISTRESS MARY QUITE CONTRARY                  10 III ACROSS THE MOOR                               23 IV MARTHA                                        30 V THE CRY IN THE CORRIDOR                       55 VI \"THERE WAS SOME ONE CRYING--THERE WAS!\"       65 VII THE KEY OF THE GARDEN                         75 VIII THE ROBIN WHO SHOWED THE WAY                  85 IX THE STRANGEST HOUSE ANY ONE EVER LIVED IN     97 X DICKON                                       111 XI THE NEST OF THE MISSEL THRUSH                128 XII \"MIGHT I HAVE A BIT OF EARTH?\"               140 XIII \"I AM COLIN\"                                 153 XIV A YOUNG RAJAH                                172 XV NEST BUILDING                                189 XVI \"I WON'T!\" SAID MARY                         207 XVII A TANTRUM                                    218 XVIII \"THA' MUNNOT WASTE NO TIME\"                  229 XIX \"IT HAS COME!\"                               239 XX \"I SHALL LIVE FOREVER--AND EVER--AND EVER!\"  255 XXI BEN WEATHERSTAFF                             268 XXII WHEN THE SUN WENT DOWN                       284 XXIII MAGIC                                        292 XXIV \"LET THEM LAUGH\"                             310 XXV THE CURTAIN                                  328 XXVI \"IT'S MOTHER!\"                               339 XXVII IN THE GARDEN                                353",
+    "THE SECRET GARDEN"
+  ],
+  "wordCount": 166,
+  "characterCount": 1626,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4491,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "CONTENTS CHAPTER PAGE I THERE IS NO ONE LEFT 1 II MISTRESS MARY QUITE CONTRARY 10 III ACROSS THE MOOR 23 IV MARTHA 30 V THE CRY IN THE CORRIDOR 55 VI \"THERE WA...",
+  "sourceOffsets": {
+    "start": 732,
+    "end": 2361
+  }
+}

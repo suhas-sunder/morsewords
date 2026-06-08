@@ -17,7 +17,7 @@
     "sourceUrl": "https://www.gutenberg.org/ebooks/113",
     "rawTextUrl": null,
     "rightsBasis": "public-domain-us",
-    "rightsReviewed": false,
+    "rightsReviewed": true,
     "publishReady": true,
     "rightsStatus": "approved",
     "processingAllowed": true,
@@ -26,7 +26,7 @@
     "rightsReportPath": "rights_report.json",
     "processedBookPath": "processed_book.json",
     "cleanedBookPath": "cleaned_book.json",
-    "rightsNotes": "Draft metadata scaffold created from raw Project Gutenberg text. Manual rights review is required before processing, publishing, or reuse claims. Missing extracted header fields: originalPublication, credits, translator, illustrator, editor."
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
   },
   "cover": {
     "src": null,

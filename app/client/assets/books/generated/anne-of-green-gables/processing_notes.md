@@ -1,16 +1,13 @@
-# Anne of Green Gables rights review notes
+# Anne of Green Gables processing notes
 
-- Source file: ../Anne of Green Gables.txt
+- Source file: ../../temp-books/Anne of Green Gables.txt
 - Gutenberg ID: 45
 - Source URL: https://www.gutenberg.org/ebooks/45
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: approved
 - Approval source: external-authority
 - Duplicate resolution source: deterministic-file-match
 - Processing allowed: yes
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -19,21 +16,6 @@
 - Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
 - U.S. reuse language: he Project Gutenberg eBook of Anne of Green Gables This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Anne of Green Gables Author:
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: June 27, 2008
-- Last updated: April 29, 2025
-- Original publication: 1908
-- Credits: David Widger and Charles Keller
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
 
 ## Risks found
 
@@ -44,19 +26,28 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- No command warnings.
+- Original characters: 580332
+- Cleaned characters: 561065
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+
+## Section detection summary
+
+- Generated sections: 39
+- Included by default: 38
 
 ## Manual review reasons
 
 - No manual review blockers from the current rights gate.
 
-## Next action
+## Next metadata needed
 
-- Keep rights evidence attached; only publish after an explicit product approval step.
+- Keep the metadata and rights report together when publishing the page.

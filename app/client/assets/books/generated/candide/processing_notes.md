@@ -1,16 +1,13 @@
-# Candide rights review notes
+# Candide processing notes
 
-- Source file: ../Candide.txt
+- Source file: ../../temp-books/Candide.txt
 - Gutenberg ID: 19942
 - Source URL: https://www.gutenberg.org/ebooks/19942
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -23,21 +20,6 @@
 - Modern introduction or notes: ractive form. [Illustration: Voltaire.] CANDIDE BY VOLTAIRE INTRODUCTION BY PHILIP LITTELL BONI AND LIVERIGHT, INC. PUBLISHERS NEW YORK Copyright, 1918, by BONI & LIVERIGHT, INC. Printed in the United S
 - Content brand-safety risk: title, subjects, or source text matched a review term.
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: November 27, 2006
-- Last updated: missing
-- Original publication: 1759
-- Credits: Produced by Chuck Greif, Fox in the Stars and the Online
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: PHILIP LITTELL
-
 ## Risks found
 
 - Translation risk: none
@@ -47,19 +29,30 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: yes
-- Transcriber notes: yes
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 224766
+- Cleaned characters: 205516
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- part-001: part (Part 1)
+- part-002: part (Part 2)
+- part-003: part (Part 3)
+- part-004: part (Part 4)
+- part-005: part (Part 5)
+- part-006: part (Part 6)
+- part-007: part (Part 7)
+- part-008: part (Part 8)
+
+## Section detection summary
+
+- Generated sections: 8
+- Included by default: 0
 
 ## Manual review reasons
 
@@ -71,6 +64,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

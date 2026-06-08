@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "2554",
     "sourceUrl": "https://www.gutenberg.org/ebooks/2554",
-    "rawTextFile": "../Crime and Punishment.txt",
+    "rawTextFile": "../../temp-books/Crime and Punishment.txt",
     "releaseDate": "March 28, 2006",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "1260",
     "sourceUrl": "https://www.gutenberg.org/ebooks/1260",
-    "rawTextFile": "../Jane Eyre.txt",
+    "rawTextFile": "../../temp-books/Jane Eyre.txt",
     "releaseDate": "March 1, 1998",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

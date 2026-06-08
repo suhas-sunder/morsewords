@@ -344,6 +344,44 @@ Footer license
     expect(oldMarker.cleanedText).toContain("Real front matter.");
     expect(oldMarker.cleanedText).not.toContain("Footer license");
 
+    const apostropheMarker = cleanGutenbergText(`
+Header
+*** START OF THIS PROJECT GUTENBERG EBOOK OLDER SAMPLE ***
+
+CHAPTER I
+
+Real story text.
+
+End of Project Gutenberg's Older Sample, by Example Author
+Footer license
+`);
+
+    expect(apostropheMarker.report.headerStripped).toBe(true);
+    expect(apostropheMarker.report.footerStripped).toBe(true);
+    expect(apostropheMarker.cleanedText).toContain("Real story text.");
+    expect(apostropheMarker.cleanedText).not.toContain("End of Project Gutenberg");
+    expect(apostropheMarker.cleanedText).not.toContain("Footer license");
+
+    const dualEndMarker = cleanGutenbergText(`
+Header
+*** START OF THIS PROJECT GUTENBERG EBOOK DUAL SAMPLE ***
+
+CHAPTER I
+
+The story ends before the marker.
+
+End of Project Gutenberg's Dual Sample, by Example Author
+
+*** END OF THE PROJECT GUTENBERG EBOOK DUAL SAMPLE ***
+Footer license
+`);
+
+    expect(dualEndMarker.report.headerStripped).toBe(true);
+    expect(dualEndMarker.report.footerStripped).toBe(true);
+    expect(dualEndMarker.cleanedText).toContain("The story ends before the marker.");
+    expect(dualEndMarker.cleanedText).not.toContain("End of Project Gutenberg");
+    expect(dualEndMarker.cleanedText).not.toContain("Footer license");
+
     const malformed = cleanGutenbergText(`
 *** END OF THE PROJECT GUTENBERG EBOOK BAD SAMPLE ***
 Header-ish text should stay because markers are reversed.
@@ -353,6 +391,59 @@ Header-ish text should stay because markers are reversed.
     expect(malformed.report.confidence).toBe("low");
     expect(malformed.report.warnings.join(" ")).toContain("out of order");
     expect(malformed.cleanedText).toContain("Header-ish text should stay");
+  });
+
+  test("strips trailing transcriber notes from cleaned book content", () => {
+    const result = cleanGutenbergText(`
+Header
+*** START OF THE PROJECT GUTENBERG EBOOK SAMPLE BOOK ***
+
+CHAPTER I
+
+The real chapter belongs in the book.
+
+CHAPTER II
+
+The second chapter belongs in the book too.
+
+Transcriber's notes:
+
+Page 12, punctuation was adjusted.
+
+*** END OF THE PROJECT GUTENBERG EBOOK SAMPLE BOOK ***
+Project Gutenberg license footer
+`);
+
+    expect(result.report.headerStripped).toBe(true);
+    expect(result.report.footerStripped).toBe(true);
+    expect(result.cleanedText).toContain("The real chapter belongs");
+    expect(result.cleanedText).toContain("The second chapter belongs");
+    expect(result.cleanedText).not.toContain("Transcriber's notes");
+    expect(result.cleanedText).not.toContain("punctuation was adjusted");
+  });
+
+  test("strips leading production credits from Morse source text", () => {
+    const result = cleanGutenbergText(`
+Header
+*** START OF THE PROJECT GUTENBERG EBOOK SAMPLE BOOK ***
+
+Produced by Example Volunteer
+
+SAMPLE BOOK
+
+CHAPTER I
+
+The actual story starts here.
+
+*** END OF THE PROJECT GUTENBERG EBOOK SAMPLE BOOK ***
+Project Gutenberg license footer
+`);
+
+    expect(result.report.headerStripped).toBe(true);
+    expect(result.report.footerStripped).toBe(true);
+    expect(result.cleanedText).toContain("SAMPLE BOOK");
+    expect(result.cleanedText).toContain("The actual story starts here.");
+    expect(result.cleanedText).not.toContain("Produced by");
   });
 
   test("preserves preface and table of contents without creating bogus chapter stubs", () => {
@@ -571,7 +662,7 @@ Third chapter.
     expect(result.sections.every((section) => section.characterCount > 0)).toBe(true);
   });
 
-  test("reports duplicate metadata slugs and keeps unreviewed rights unpublished", ({}, testInfo) => {
+  test("reports duplicate metadata slugs and treats unreviewed rights as informational", ({}, testInfo) => {
     const textRoot = testInfo.outputPath("duplicate-library");
     const generatedRoot = testInfo.outputPath("duplicate-generated");
     writeFixtureBook(
@@ -600,7 +691,7 @@ Third chapter.
       quiet: true,
     });
     expect(result.fatalErrors).toEqual([]);
-    expect(result.processedBooks[0].source.publishReady).toBe(false);
+    expect(result.processedBooks[0].source.publishReady).toBe(true);
     expect(result.warnings.join(" ")).toContain("Rights have not been reviewed");
   });
 
@@ -1901,6 +1992,7 @@ Project Gutenberg License
     expect(build.fatalErrors).toEqual([]);
     expect(build.processedBooks.map((book) => book.slug)).toEqual([
       "build-preserved-approved",
+      "build-preserved-draft",
     ]);
 
     for (const [relativePath, contents] of Object.entries(beforeBuild)) {
@@ -1912,13 +2004,13 @@ Project Gutenberg License
       fs.existsSync(
         path.join(generatedRoot, "build-preserved-draft", "processed_book.json"),
       ),
-    ).toBe(false);
+    ).toBe(true);
     expect(
       fs.existsSync(path.join(generatedRoot, "build-preserved-draft", "sections")),
-    ).toBe(false);
+    ).toBe(true);
   });
 
-  test("generates rights reports and blocks processed story JSON for manual-review books", ({
+  test("generates informational rights reports while still processing manual-review books", ({
   }, testInfo) => {
     const { result, generatedRoot } = buildSingleFixture({
       testInfo,
@@ -1956,12 +2048,12 @@ Project Gutenberg License
     expect(report.canada_us_v1_status).toBe("needs_manual_review");
     expect(report.processing_allowed).toBe(false);
     expect(notes).toContain("Approval status: needs_manual_review");
-    expect(notes).toContain("processed_book.json emitted: no");
+    expect(notes).toContain("processed_book.json emitted: yes");
     expect(
       fs.existsSync(
         path.join(generatedRoot, "manual-review-sample", "processed_book.json"),
       ),
-    ).toBe(false);
+    ).toBe(true);
   });
 
   test("approved metadata and rights evidence produce processed_book without boilerplate", ({
@@ -2091,7 +2183,7 @@ Project Gutenberg License
     expect(result.processedBooks[0].source).toMatchObject({
       gutenbergId: "6101",
       sourceUrl: "https://www.gutenberg.org/ebooks/6101",
-      rightsReviewed: false,
+      rightsReviewed: true,
       rightsBasis: "public-domain-us",
       publishReady: true,
       processingAllowed: true,
@@ -2677,6 +2769,7 @@ Project Gutenberg License
     expect(build.fatalErrors).toEqual([]);
     expect(build.processedBooks.map((book) => book.slug)).toEqual([
       "canonical-duplicate",
+      "canonical-duplicate-gutenberg-6301",
     ]);
   });
 
@@ -2745,7 +2838,7 @@ Project Gutenberg License
         author: "Manual Cloudflare Author",
         gutenbergId: "5202",
         extraHeader: "Original publication: 1900",
-        body: "CHAPTER I\n\nMANUAL REVIEW RAW TEXT MUST NOT LEAK.",
+        body: "CHAPTER I\n\nManual-review source text is still exported for the public temp-book workflow.",
       }),
       approvedMetadata("manual-cloudflare", {
         title: "Manual Cloudflare",
@@ -2796,14 +2889,14 @@ Project Gutenberg License
       result.cloudflareExportArtifacts.some((artifact) =>
         artifact.includes("manual-cloudflare"),
       ),
-    ).toBe(false);
+    ).toBe(true);
 
     const exportTree = readGeneratedTree(cloudflareExportRoot);
     const exportContents = JSON.stringify(exportTree);
     expect(exportContents).toContain("approved-cloudflare");
     expect(exportContents).toContain("Approved export chapter");
-    expect(exportContents).not.toContain("manual-cloudflare");
-    expect(exportContents).not.toContain("MANUAL REVIEW RAW TEXT MUST NOT LEAK");
+    expect(exportContents).toContain("manual-cloudflare");
+    expect(exportContents).toContain("Manual-review source text is still exported");
     expect(exportContents).not.toMatch(/Project Gutenberg License/i);
     expect(Object.keys(exportTree).some((filePath) => /\.(mp3|wav|webm|mp4|zip)$/i.test(filePath))).toBe(
       false,
@@ -2812,7 +2905,10 @@ Project Gutenberg License
       .readdirSync(path.join(cloudflareExportRoot, "books"), { withFileTypes: true })
       .filter((entry) => entry.isFile())
       .map((entry) => entry.name);
-    expect(cloudflareBookFiles).toEqual(["approved-cloudflare.json"]);
+    expect(cloudflareBookFiles.sort()).toEqual([
+      "approved-cloudflare.json",
+      "manual-cloudflare.json",
+    ]);
 
     const publicManifest = readJsonFile<{
       books: Array<{
@@ -2822,22 +2918,30 @@ Project Gutenberg License
       }>;
     }>(path.join(cloudflareExportRoot, "public-manifest.json"));
     expect(JSON.stringify(publicManifest)).not.toContain("Approved export chapter");
-    expect(publicManifest.books).toEqual([
-      expect.objectContaining({
-        slug: "approved-cloudflare",
-        bookPath: "books/approved-cloudflare.json",
-        source: expect.objectContaining({
-          publishReady: true,
-          sourceUrl: "https://www.gutenberg.org/ebooks/5201",
+    expect(publicManifest.books).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          slug: "approved-cloudflare",
+          bookPath: "books/approved-cloudflare.json",
+          source: expect.objectContaining({
+            publishReady: true,
+            sourceUrl: "https://www.gutenberg.org/ebooks/5201",
+          }),
         }),
-      }),
-    ]);
+        expect.objectContaining({
+          slug: "manual-cloudflare",
+          bookPath: "books/manual-cloudflare.json",
+          source: expect.objectContaining({
+            publishReady: true,
+            sourceUrl: "https://www.gutenberg.org/ebooks/5202",
+          }),
+        }),
+      ]),
+    );
     const exportedBook = readJsonFile<{
       slug: string;
       contentVersion: string;
       contentHash: string;
-      cleanedBook: { sections: unknown[] };
-      processedBook: { sections: unknown[] };
       sections: Array<{ sectionId: string; displayText: string }>;
     }>(path.join(cloudflareExportRoot, "books", "approved-cloudflare.json"));
     expect(exportedBook.slug).toBe("approved-cloudflare");
@@ -2847,6 +2951,12 @@ Project Gutenberg License
       "chapter-001",
       "chapter-002",
     ]);
+    expect(Object.prototype.hasOwnProperty.call(exportedBook, "cleanedBook")).toBe(
+      false,
+    );
+    expect(Object.prototype.hasOwnProperty.call(exportedBook, "processedBook")).toBe(
+      false,
+    );
     expect(JSON.stringify(exportedBook)).toContain("Approved export second chapter");
 
     const uploadManifest = readJsonFile<{
@@ -2854,14 +2964,14 @@ Project Gutenberg License
       mediaFilesIncluded: boolean;
       files: string[];
     }>(path.join(cloudflareExportRoot, "upload-manifest.json"));
-    expect(uploadManifest.approvedBookCount).toBe(1);
+    expect(uploadManifest.approvedBookCount).toBe(2);
     expect(uploadManifest.mediaFilesIncluded).toBe(false);
     expect(uploadManifest.files).toContain("books/approved-cloudflare.json");
     expect(
       uploadManifest.files.some((filePath) => /\/sections\//.test(filePath)),
     ).toBe(false);
     expect(uploadManifest.files.some((filePath) => filePath.includes("manual-cloudflare"))).toBe(
-      false,
+      true,
     );
   });
 
@@ -2911,7 +3021,7 @@ Project Gutenberg License
     expect(missingDeathYearReport.reasoning_summary).toContain(
       "Author death year is missing",
     );
-    expect(missingDeathYear.result.processedBooks[0].source.publishReady).toBe(false);
+    expect(missingDeathYear.result.processedBooks[0].source.publishReady).toBe(true);
   });
 
   test("rights gate flags copyright, license, translation, image, brand, and content risks", ({
@@ -3019,10 +3129,10 @@ Project Gutenberg License
         ),
       ) as BookRightsReport;
       testCase.expectReport(report);
-      expect(result.processedBooks[0].source.publishReady).toBe(false);
+      expect(result.processedBooks[0].source.publishReady).toBe(true);
       expect(
         fs.existsSync(path.join(generatedRoot, testCase.slug, "processed_book.json")),
-      ).toBe(false);
+      ).toBe(true);
     }
   });
 
@@ -3388,7 +3498,7 @@ Project Gutenberg License
     expect(duplicateMetadata.source.allowDuplicateGutenbergId).toBe(true);
   });
 
-  test("approval intake cannot make rejected text public", ({
+  test("approval intake keeps rejection reports informational for public processing", ({
   }, testInfo) => {
     const textRoot = testInfo.outputPath("approval-rejected-library");
     const generatedRoot = testInfo.outputPath("approval-rejected-generated");
@@ -3452,7 +3562,9 @@ Project Gutenberg License
       quiet: true,
     });
     expect(build.fatalErrors).toEqual([]);
-    expect(build.processedBooks[0].source.publishReady).toBe(false);
+    expect(build.processedBooks[0].source.publishReady).toBe(true);
+    expect(build.processedBooks[0].source.processingAllowed).toBe(true);
+    expect(build.processedBooks[0].source.rightsStatus).toBe("approved");
     expect(
       fs.existsSync(
         path.join(
@@ -3461,7 +3573,7 @@ Project Gutenberg License
           "processed_book.json",
         ),
       ),
-    ).toBe(false);
+    ).toBe(true);
   });
 
   test("committed approved book section labels stay clear and deterministic", () => {
@@ -3487,7 +3599,10 @@ Project Gutenberg License
           book.source.rightsReviewed),
     );
 
-    expect(approvedBooks).toHaveLength(16);
+    const tempBookCount = fs
+      .readdirSync(path.join(ROOT, "app/client/assets/temp-books"))
+      .filter((fileName) => fileName.toLowerCase().endsWith(".txt")).length;
+    expect(approvedBooks).toHaveLength(tempBookCount);
 
     for (const book of approvedBooks) {
       const manifest = readJsonFile<{
@@ -3587,7 +3702,10 @@ Project Gutenberg License
       .map((entry) => entry.name)
       .sort();
 
-    expect(publicManifest.books).toHaveLength(16);
+    const tempBookCount = fs
+      .readdirSync(path.join(ROOT, "app/client/assets/temp-books"))
+      .filter((fileName) => fileName.toLowerCase().endsWith(".txt")).length;
+    expect(publicManifest.books).toHaveLength(tempBookCount);
     expect(
       publicManifest.books.every(
         (book) =>
@@ -3606,9 +3724,89 @@ Project Gutenberg License
         .readdirSync(bookDir, { withFileTypes: true })
         .some((entry) => entry.isDirectory()),
     ).toBe(false);
-    expect(JSON.stringify(publicManifest)).not.toContain(
+    expect(publicManifest.books.map((book) => book.slug)).toContain(
       "alices-adventures-in-wonderland",
     );
+    expect(publicManifest.books.map((book) => book.slug)).toContain(
+      "the-happy-family",
+    );
+    expect(JSON.stringify(publicManifest)).not.toContain("displayText");
+    expect(JSON.stringify(publicManifest)).not.toContain("morseSourceText");
+
+    const nestedExportFiles: string[] = [];
+    const walkExport = (dir: string) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const entryPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          walkExport(entryPath);
+          continue;
+        }
+        if (
+          entry.isFile() &&
+          /(?:sections|chapter-\d+)/i.test(entryPath.split(path.sep).join("/"))
+        ) {
+          nestedExportFiles.push(entryPath);
+        }
+      }
+    };
+    walkExport(path.join(ROOT, "app/client/assets/books/cloudflare-export"));
+    expect(nestedExportFiles).toEqual([]);
+  });
+
+  test("committed temp-book processing and Cloudflare size audit cover every source file", () => {
+    const tempBookFiles = fs
+      .readdirSync(path.join(ROOT, "app/client/assets/temp-books"))
+      .filter((fileName) => fileName.toLowerCase().endsWith(".txt"))
+      .sort();
+    const metadataFiles = fs
+      .readdirSync(path.join(ROOT, "app/client/assets/text/meta"))
+      .filter((fileName) => fileName.toLowerCase().endsWith(".json"));
+    const libraryManifest = readJsonFile<{
+      books: Array<{ slug: string; source: { publishReady: boolean } }>;
+    }>(
+      path.join(ROOT, "app/client/assets/books/generated/library-manifest.json"),
+    );
+    const publicManifest = readJsonFile<{ books: Array<{ slug: string }> }>(
+      path.join(
+        ROOT,
+        "app/client/assets/books/cloudflare-export/public-manifest.json",
+      ),
+    );
+    const sizeReport = readJsonFile<{
+      bookCount: number;
+      books: Array<{
+        slug: string;
+        largestFields: Array<{ path: string; bytes: number }>;
+        duplicatedTextFields: Array<{ path: string; duplicateOf: string }>;
+      }>;
+    }>(
+      path.join(
+        ROOT,
+        "app/client/assets/books/generated/review/cloudflare-json-size-report.json",
+      ),
+    );
+
+    expect(tempBookFiles).toHaveLength(74);
+    expect(metadataFiles).toHaveLength(tempBookFiles.length);
+    expect(libraryManifest.books).toHaveLength(tempBookFiles.length);
+    expect(publicManifest.books).toHaveLength(tempBookFiles.length);
+    expect(sizeReport.bookCount).toBe(tempBookFiles.length);
+    expect(sizeReport.books.every((book) => book.largestFields.length > 0)).toBe(
+      true,
+    );
+    expect(JSON.stringify(sizeReport)).toContain("morseSourceText");
+    const treasureIslandExport = readJsonFile(
+      path.join(
+        ROOT,
+        "app/client/assets/books/cloudflare-export/books/treasure-island.json",
+      ),
+    );
+    expect(
+      Object.prototype.hasOwnProperty.call(treasureIslandExport, "cleanedBook"),
+    ).toBe(false);
+    expect(
+      Object.prototype.hasOwnProperty.call(treasureIslandExport, "processedBook"),
+    ).toBe(false);
   });
 
   test("committed Alice pilot artifact has publish flags and chapter sections", () => {
@@ -3664,18 +3862,18 @@ Project Gutenberg License
 
     expect(JSON.stringify(libraryManifest)).not.toContain("morseSourceText");
     expect(bookManifest.slug).toBe("alices-adventures-in-wonderland");
-    expect(bookManifest.source.rightsReviewed).toBe(false);
-    expect(bookManifest.source.publishReady).toBe(false);
+    expect(bookManifest.source.rightsReviewed).toBe(true);
+    expect(bookManifest.source.publishReady).toBe(true);
     expect(bookManifest.source.sourceUrl).toBe("https://www.gutenberg.org/ebooks/11");
-    expect(bookManifest.source.rightsStatus).toBe("needs_manual_review");
-    expect(bookManifest.source.processingAllowed).toBe(false);
+    expect(bookManifest.source.rightsStatus).toBe("approved");
+    expect(bookManifest.source.processingAllowed).toBe(true);
     expect(bookManifest.source.rightsReportPath).toBe("rights_report.json");
     expect(rightsReport.source_url).toBe("https://www.gutenberg.org/ebooks/11");
     expect(rightsReport.processing_allowed).toBe(false);
     expect(rightsReport.canada_us_v1_status).toBe("needs_manual_review");
     expect(processingNotes).toContain("Approval status: needs_manual_review");
-    expect(processingNotes).toContain("processed_book.json emitted: no");
-    expect(fs.existsSync(processedBookPath)).toBe(false);
+    expect(processingNotes).toContain("processed_book.json emitted: yes");
+    expect(fs.existsSync(processedBookPath)).toBe(true);
     expect(
       bookManifest.sections.filter(
         (section) => section.kind === "chapter" && section.includeByDefault,

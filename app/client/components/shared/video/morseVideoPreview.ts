@@ -111,14 +111,14 @@ export function getMorseVideoPreviewFrame(
     loopedElapsedMs,
     PREVIEW_WORD_WINDOW_LIMIT,
   );
-  const morseExcerpt = words.map((word) => word.morse).join("   ");
+  const morseExcerpt = words.map((word) => word.morse).join(" / ");
   const textExcerpt = words.map((word) => word.text).join(" ");
   return {
     active,
     symbols: readableMorseExcerpt(completedSymbols, sampleMorse, 44),
     morseExcerpt:
       morseExcerpt ||
-      textState.morseText ||
+      formatMorseForReadableDisplay(textState.morseText) ||
       readableMorseExcerpt(completedSymbols, sampleMorse, 92),
     textExcerpt:
       textExcerpt ||
@@ -127,6 +127,10 @@ export function getMorseVideoPreviewFrame(
       preview.sampleText,
     words,
   };
+}
+
+function formatMorseForReadableDisplay(morse: string) {
+  return morse.trim().replace(/\s{3,}/g, " / ").replace(/\s+/g, " ");
 }
 
 function buildPreviewSample(
@@ -260,9 +264,9 @@ function readableMorseExcerpt(
     normalizedCompleted.replace(/\s+/g, "").length <
     MIN_READABLE_MORSE_SYMBOLS
   ) {
-    return normalizedFallback.slice(0, limit);
+    return formatMorseForReadableDisplay(normalizedFallback).slice(0, limit);
   }
-  return normalizedCompleted.slice(
+  return formatMorseForReadableDisplay(normalizedCompleted).slice(
     Math.max(0, normalizedCompleted.length - limit),
   );
 }

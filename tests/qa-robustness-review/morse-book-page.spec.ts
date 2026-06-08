@@ -192,7 +192,7 @@ test.describe("Morse book page foundation", () => {
     });
   });
 
-  test("keeps generated book summaries summary-only and publish-gated", async ({
+  test("keeps generated book summaries summary-only and publishes processed temp books", async ({
     request,
   }) => {
     const libraryManifest = readJson<{
@@ -209,8 +209,8 @@ test.describe("Morse book page foundation", () => {
     const alice = libraryManifest.books.find((book) => book.slug === ALICE_SLUG);
 
     expect(alice, "Alice pilot summary exists").toBeTruthy();
-    expect(alice?.source.rightsReviewed).toBe(false);
-    expect(alice?.source.publishReady).toBe(false);
+    expect(alice?.source.rightsReviewed).toBe(true);
+    expect(alice?.source.publishReady).toBe(true);
     expect(JSON.stringify(libraryManifest)).not.toContain("morseSourceText");
     expect(JSON.stringify(libraryManifest)).not.toContain("displayText");
 
@@ -224,7 +224,7 @@ test.describe("Morse book page foundation", () => {
           book.source.rightsReviewed),
     );
     expect(generatedSummaries.map((book) => book.slug)).toContain(ALICE_SLUG);
-    expect(publishedSummaries.map((book) => book.slug)).not.toContain(ALICE_SLUG);
+    expect(publishedSummaries.map((book) => book.slug)).toContain(ALICE_SLUG);
     expect(publishedSummaries.map((book) => book.slug)).toContain(APPROVED_BOOK_SLUG);
     expect(generatedSummaries.map((book) => book.slug)).not.toContain(TEST_BOOK_SLUG);
 
@@ -233,24 +233,24 @@ test.describe("Morse book page foundation", () => {
       "utf8",
     );
     expect(publicSitemap).toContain(APPROVED_BOOK_PUBLIC_PATH);
-    expect(publicSitemap).not.toContain(ALICE_PUBLIC_PATH);
+    expect(publicSitemap).toContain(ALICE_PUBLIC_PATH);
     expect(publicSitemap).not.toContain(TEST_BOOK_PUBLIC_PATH);
 
     const response = await request.get("/sitemap.xml");
     expect(response.ok()).toBe(true);
     const sitemapText = await response.text();
     expect(sitemapText).toContain(APPROVED_BOOK_PUBLIC_PATH);
-    expect(sitemapText).not.toContain(ALICE_PUBLIC_PATH);
+    expect(sitemapText).toContain(ALICE_PUBLIC_PATH);
     expect(sitemapText).not.toContain(TEST_BOOK_PUBLIC_PATH);
   });
 
-  test("does not expose unpublished or unknown book slugs as public pages", async ({
+  test("exposes processed temp books and rejects unknown public slugs", async ({
     request,
   }) => {
     const aliceResponse = await request.get(ALICE_PUBLIC_PATH);
-    expect(aliceResponse.status()).toBe(404);
+    expect(aliceResponse.ok()).toBe(true);
     const aliceAudiobookResponse = await request.get(ALICE_AUDIOBOOK_PUBLIC_PATH);
-    expect(aliceAudiobookResponse.status()).toBe(404);
+    expect(aliceAudiobookResponse.ok()).toBe(true);
 
     const testFixtureResponse = await request.get(TEST_BOOK_PUBLIC_PATH);
     expect(testFixtureResponse.status()).toBe(404);
@@ -517,16 +517,19 @@ test.describe("Morse book page foundation", () => {
     expect(states).toContain("Available section");
   });
 
-  test("renders a noindex unpublished preview with ordered sections and cleaned text", async ({
+  test("renders a public processed preview with ordered sections and cleaned text", async ({
     page,
   }, testInfo) => {
     await openPreview(page);
 
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
       "content",
-      /noindex/,
+      "index,follow",
     );
-    await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      "https://www.morsewords.com/morse-code-books/alices-adventures-in-wonderland",
+    );
     await expect(
       page.locator("[data-mw-morse-book-cover-placeholder='true']"),
     ).toBeVisible();
@@ -563,8 +566,8 @@ test.describe("Morse book page foundation", () => {
         name: "Original source: Project Gutenberg ebook #11",
       }),
     ).toHaveAttribute("href", "https://www.gutenberg.org/ebooks/11");
-    await expect(page.getByText("Downloads are disabled until this book is publish-ready.")).toBeVisible();
-    await expect(page.getByRole("button", { name: "Download MP3" })).toBeDisabled();
+    await expect(page.getByText("Downloads are disabled until this book is publish-ready.")).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Download MP3" })).toBeEnabled();
 
     const morsePreview = page.locator("[data-mw-morse-book-morse-preview]");
     const morseText = (await morsePreview.textContent()) ?? "";
@@ -579,11 +582,11 @@ test.describe("Morse book page foundation", () => {
     await openPreview(page);
 
     await expect(page.getByRole("button", { name: "No split" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Download MP3" })).toBeDisabled();
+    await expect(page.getByRole("button", { name: "Download MP3" })).toBeEnabled();
     await expect(page.getByText("ZIP is shown only")).toHaveCount(0);
 
     await page.getByRole("button", { name: "Video" }).click();
-    await expect(page.getByRole("button", { name: /Download (WebM|MP4)/ })).toBeDisabled();
+    await expect(page.getByRole("button", { name: /Download (WebM|MP4)/ })).toBeEnabled();
     await expect(page.getByText("Lightbulb signal")).toBeVisible();
     await expect(page.getByText("Dot signal")).toBeVisible();
     await expect(page.getByText("Full-frame flash")).toBeVisible();
@@ -712,7 +715,9 @@ test.describe("Morse book page foundation", () => {
 
     await page.getByRole("button", { name: "Video" }).click();
     await expect(page.locator("[data-testid='book-video-preview-lightbulb']")).toBeVisible();
-    await expect(page.locator("[data-testid='book-video-preview-morse-overlay']")).toBeVisible();
+    const morseOverlay = page.locator("[data-testid='book-video-preview-morse-overlay']");
+    await expect(morseOverlay).toBeVisible();
+    await expect(morseOverlay).toContainText("/");
     await expect(page.locator("[data-testid='book-video-preview-text-overlay']")).toBeVisible();
 
     await page.getByRole("button", { name: "Play visual preview" }).click();

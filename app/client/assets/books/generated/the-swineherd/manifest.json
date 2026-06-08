@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-swineherd",
+  "title": "Andersen's Fairy Tales",
+  "author": [
+    "H. C. Andersen"
+  ],
+  "contentVersion": "bba920ce5e7f63db",
+  "contentHash": "bba920ce5e7f63dbfd0467efc7aa51a3366e8072aa10c4171e7a58029047f932",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1597",
+    "releaseDate": "January 1, 1999",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "manual-review",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Andersen's Fairy Tales"
+  },
+  "stats": {
+    "originalCharacterCount": 27624,
+    "cleanedCharacterCount": 8228,
+    "wordCount": 1495,
+    "sectionCount": 2,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 8167,
+      "wordCount": 1486,
+      "estimatedTypingMinutes": 38,
+      "estimatedListeningMinutes": 49,
+      "morseCharacterEstimate": 43949,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite la..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 55,
+      "wordCount": 9,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 1,
+      "morseCharacterEstimate": 291,
+      "textPreview": "“Ach! du lieber Augustin, Alles ist weg, weg, weg!”"
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 27624,
+    "cleanedCharacterCount": 8228,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "No chapter headings were detected; generated fallback parts instead.",
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

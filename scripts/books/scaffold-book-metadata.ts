@@ -83,11 +83,17 @@ export type MetadataScaffoldResult = {
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
-const DEFAULT_TEXT_ROOT = path.join(DEFAULT_REPO_ROOT, "app/client/assets/text");
-const DEFAULT_METADATA_ROOT = path.join(DEFAULT_TEXT_ROOT, "meta");
+const DEFAULT_TEXT_ROOT = path.join(
+  DEFAULT_REPO_ROOT,
+  "app/client/assets/temp-books",
+);
+const DEFAULT_METADATA_ROOT = path.join(
+  DEFAULT_REPO_ROOT,
+  "app/client/assets/text/meta",
+);
 const DEFAULT_REPORT_PATH = path.join(
-  DEFAULT_TEXT_ROOT,
-  "metadata-scaffold-report.json",
+  DEFAULT_REPO_ROOT,
+  "app/client/assets/books/generated/review/temp-books-metadata-scaffold-report.json",
 );
 
 const DUPLICATE_GUTENBERG_WARNING =

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "jabberwocky",
+  "sectionId": "part-002",
+  "kind": "part",
+  "label": "Part 2",
+  "title": null,
+  "order": 2,
+  "includeByDefault": false,
+  "displayText": "128kbit MP3 - MP3 subfolder\n64kbit Ogg Vorbis (variable bit rate) - OGG subfolder\nApple AAC audiobook (16kbit mono) - M4B subfolder\nSpeex - SPX subfolder",
+  "morseSourceText": "128kbit MP3 - MP3 subfolder\n64kbit Ogg Vorbis (variable bit rate) - OGG subfolder\nApple AAC audiobook (16kbit mono) - M4B subfolder\nSpeex - SPX subfolder",
+  "paragraphs": [
+    "128kbit MP3 - MP3 subfolder 64kbit Ogg Vorbis (variable bit rate) - OGG subfolder Apple AAC audiobook (16kbit mono) - M4B subfolder Speex - SPX subfolder"
+  ],
+  "wordCount": 22,
+  "characterCount": 153,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 893,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "128kbit MP3 - MP3 subfolder 64kbit Ogg Vorbis (variable bit rate) - OGG subfolder Apple AAC audiobook (16kbit mono) - M4B subfolder Speex - SPX subfolder",
+  "sourceOffsets": {
+    "start": 3770,
+    "end": 3923
+  }
+}

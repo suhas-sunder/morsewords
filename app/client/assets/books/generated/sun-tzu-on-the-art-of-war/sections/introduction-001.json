@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "sun-tzu-on-the-art-of-war",
+  "sectionId": "introduction-001",
+  "kind": "introduction",
+  "label": "Introduction",
+  "title": null,
+  "order": 3,
+  "includeByDefault": false,
+  "displayText": "Introduction\n    Sun Wu and his Book                                            xi\n    The Text of Sun Tzŭ                                           xxx\n    The Commentators                                            xxxiv\n    Appreciations of Sun Tzŭ                                     xlii\n    Apologies for War                                           xliii\n    Bibliography                                                    l\n  Chap.      I. Laying plans                                        1\n    „       II. Waging War                                          9\n    „      III. Attack by Stratagem                                17\n    „       IV. Tactical Dispositions                              26\n    „        V. Energy                                             33\n    „       VI. Weak Points and Strong                             42\n    „      VII. Manœuvring                                         55\n    „     VIII. Variation of Tactics                               71\n    „       IX. The Army on the March                              80\n    „        X. Terrain                                           100\n    „       XI. The Nine Situations                               114\n    „      XII. The Attack by Fire                                150\n    „     XIII. The Use of Spies                                  160\n  Chinese Concordance                                             176\n  Index                                                           192",
+  "morseSourceText": "Introduction\n    Sun Wu and his Book                                            xi\n    The Text of Sun Tzŭ                                           xxx\n    The Commentators                                            xxxiv\n    Appreciations of Sun Tzŭ                                     xlii\n    Apologies for War                                           xliii\n    Bibliography                                                    l\n  Chap.      I. Laying plans                                        1\n    „       II. Waging War                                          9\n    „      III. Attack by Stratagem                                17\n    „       IV. Tactical Dispositions                              26\n    „        V. Energy                                             33\n    „       VI. Weak Points and Strong                             42\n    „      VII. Manœuvring                                         55\n    „     VIII. Variation of Tactics                               71\n    „       IX. The Army on the March                              80\n    „        X. Terrain                                           100\n    „       XI. The Nine Situations                               114\n    „      XII. The Attack by Fire                                150\n    „     XIII. The Use of Spies                                  160\n  Chinese Concordance                                             176\n  Index                                                           192",
+  "paragraphs": [
+    "Introduction Sun Wu and his Book                                            xi The Text of Sun Tzŭ                                           xxx The Commentators                                            xxxiv Appreciations of Sun Tzŭ                                     xlii Apologies for War                                           xliii Bibliography                                                    l Chap.      I. Laying plans                                        1 „       II. Waging War                                          9 „      III. Attack by Stratagem                                17 „       IV. Tactical Dispositions                              26 „        V. Energy                                             33 „       VI. Weak Points and Strong                             42 „      VII. Manœuvring                                         55 „     VIII. Variation of Tactics                               71 „       IX. The Army on the March                              80 „        X. Terrain                                           100 „       XI. The Nine Situations                               114 „      XII. The Attack by Fire                                150 „     XIII. The Use of Spies                                  160 Chinese Concordance                                             176 Index                                                           192"
+  ],
+  "wordCount": 95,
+  "characterCount": 1482,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2769,
+  "unsupportedCharacterSummary": {
+    "Ŭ": 2,
+    "„": 12,
+    "Œ": 1
+  },
+  "textPreview": "Introduction Sun Wu and his Book xi The Text of Sun Tzŭ xxx The Commentators xxxiv Appreciations of Sun Tzŭ xlii Apologies for War xliii Bibliography l Chap. I...",
+  "sourceOffsets": {
+    "start": 1372,
+    "end": 2859
+  }
+}

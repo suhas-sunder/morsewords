@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "37134",
     "sourceUrl": "https://www.gutenberg.org/ebooks/37134",
-    "rawTextFile": "../The Elements of Style.txt",
+    "rawTextFile": "../../temp-books/The Elements of Style.txt",
     "releaseDate": "August 18, 2011",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

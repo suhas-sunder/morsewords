@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "1184",
     "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
-    "rawTextFile": "../The Count of Monte Cristo.txt",
+    "rawTextFile": "../../temp-books/The Count of Monte Cristo.txt",
     "releaseDate": "January 1, 1998",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

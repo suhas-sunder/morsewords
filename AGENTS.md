@@ -216,6 +216,10 @@ Approved button treatment is centralized by `app/app.css` and
 - Hover should be instant or very restrained.
 - No dark hover flip on light cards unless the current approved home/toolkit
   pattern already does it.
+- Static discovery/content cards with nested heading, badge, or description
+  text must not use dark hover flips unless every descendant color is explicitly
+  tested on that dark hover state. Prefer the safe light-card hover
+  `hover:bg-[#fffaf2] hover:text-sky-950` for these cards.
 - Metadata labels/badges should not look like buttons unless interactive.
 
 ## 7. Input/output/tool profile

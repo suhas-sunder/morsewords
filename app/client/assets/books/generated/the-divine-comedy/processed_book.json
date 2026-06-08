@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "the-divine-comedy",
+  "title": "The divine comedy",
+  "author": "Dante Alighieri",
+  "content_version": "0c9eb264fb463cce",
+  "content_hash": "0c9eb264fb463cce4bcb6300ee590ccd7d03ac2ebb22faa8965475f3fc1025c5",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "8800",
+    "source_url": "https://www.gutenberg.org/ebooks/8800",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "September 1, 2005",
+    "last_updated": "April 8, 2026"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

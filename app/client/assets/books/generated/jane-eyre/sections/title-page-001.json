@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "jane-eyre",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "JANE EYRE\nAN AUTOBIOGRAPHY\n\nby Charlotte Brontë\n\n_ILLUSTRATED BY F. H. TOWNSEND_\n\nLondon\nSERVICE & PATON\n5 HENRIETTA STREET\n1897\n\n_The Illustrations_\n_in this Volume are the copyright of_\nSERVICE & PATON, _London_\n\nTO\nW. M. THACKERAY, ESQ.,\n\nThis Work\nIS RESPECTFULLY INSCRIBED\n\nBY\nTHE AUTHOR",
+  "morseSourceText": "JANE EYRE\nAN AUTOBIOGRAPHY\n\nby Charlotte Brontë\n\n_ILLUSTRATED BY F. H. TOWNSEND_\n\nLondon\nSERVICE & PATON\n5 HENRIETTA STREET\n1897\n\n_The Illustrations_\n_in this Volume are the copyright of_\nSERVICE & PATON, _London_\n\nTO\nW. M. THACKERAY, ESQ.,\n\nThis Work\nIS RESPECTFULLY INSCRIBED\n\nBY\nTHE AUTHOR",
+  "paragraphs": [
+    "JANE EYRE AN AUTOBIOGRAPHY",
+    "by Charlotte Brontë",
+    "_ILLUSTRATED BY F. H. TOWNSEND_",
+    "London SERVICE & PATON 5 HENRIETTA STREET 1897",
+    "_The Illustrations_ _in this Volume are the copyright of_ SERVICE & PATON, _London_",
+    "TO W. M. THACKERAY, ESQ.,",
+    "This Work IS RESPECTFULLY INSCRIBED",
+    "BY THE AUTHOR"
+  ],
+  "wordCount": 44,
+  "characterCount": 292,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1586,
+  "unsupportedCharacterSummary": {
+    "Ë": 1
+  },
+  "textPreview": "JANE EYRE AN AUTOBIOGRAPHY by Charlotte Brontë _ILLUSTRATED BY F. H. TOWNSEND_ London SERVICE & PATON 5 HENRIETTA STREET 1897 _The Illustrations_ _in this Volu...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 295
+  }
+}

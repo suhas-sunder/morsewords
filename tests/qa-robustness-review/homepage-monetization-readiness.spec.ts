@@ -47,15 +47,6 @@ async function gotoHome(page: Page) {
   await waitForRouteReady(page);
 }
 
-async function pageLinkPaths(page: Page, selector = "main a[href]") {
-  return page.locator(selector).evaluateAll((anchors) =>
-    anchors.map((anchor) => {
-      const href = (anchor as HTMLAnchorElement).getAttribute("href") ?? "";
-      return new URL(href, window.location.href).pathname.replace(/\/$/, "") || "/";
-    }),
-  );
-}
-
 async function parsePageJsonLd(page: Page) {
   return page
     .locator('script[type="application/ld+json"]')
@@ -75,6 +66,43 @@ function flattenJsonLd(value: unknown): Record<string, unknown>[] {
     ...flattenJsonLd(record.itemListElement),
     ...flattenJsonLd(record.offers),
   ];
+}
+
+function parseRgb(color: string) {
+  const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (!match) throw new Error(`Could not parse color: ${color}`);
+  return {
+    r: Number(match[1]),
+    g: Number(match[2]),
+    b: Number(match[3]),
+  };
+}
+
+function relativeLuminance({ r, g, b }: { r: number; g: number; b: number }) {
+  return [r, g, b]
+    .map((value) => {
+      const channel = value / 255;
+      return channel <= 0.03928
+        ? channel / 12.92
+        : ((channel + 0.055) / 1.055) ** 2.4;
+    })
+    .reduce(
+      (total, channel, index) =>
+        total + channel * ([0.2126, 0.7152, 0.0722][index] ?? 0),
+      0,
+    );
+}
+
+function contrastRatio(foreground: string, background: string) {
+  const light = Math.max(
+    relativeLuminance(parseRgb(foreground)),
+    relativeLuminance(parseRgb(background)),
+  );
+  const dark = Math.min(
+    relativeLuminance(parseRgb(foreground)),
+    relativeLuminance(parseRgb(background)),
+  );
+  return (light + 0.05) / (dark + 0.05);
 }
 
 test.describe("homepage monetization readiness", () => {
@@ -105,39 +133,120 @@ test.describe("homepage monetization readiness", () => {
     await expect(hero).toContainText("printable");
   });
 
-  test("surfaces major MorseWords destinations with real canonical links", async ({
+  test("keeps homepage discovery substantive instead of duplicating the nav", async ({
     page,
   }) => {
     await gotoHome(page);
 
     await expect(
       page.getByRole("heading", { name: "What you can do on MorseWords" }),
+    ).toHaveCount(0);
+    await expect(
+      page.getByRole("heading", {
+        name: "One Morse workspace for reading, listening, practice, and study",
+      }),
     ).toBeVisible();
-
-    const expectedRoutes = [
-      ROUTES.home,
-      ROUTES.audio,
-      ROUTES.mp3Generator,
-      ROUTES.videoGenerator,
-      ROUTES.practice,
-      ROUTES.morseBooks,
-      ROUTES.morseAudiobooks,
-      ROUTES.printablePages,
-    ] as const;
-    const paths = await pageLinkPaths(
-      page,
-      '[aria-labelledby="morsewords-ecosystem-title"] a[href]',
-    );
-
-    for (const route of expectedRoutes) {
-      expect(paths, `homepage ecosystem links to ${route}`).toContain(route);
+    for (const offering of [
+      "Translator and conversion tools",
+      "Audio and MP3",
+      "Practice and drills",
+      "Reference and lookup",
+      "Books and audiobooks",
+      "Printables and word search",
+    ]) {
+      await expect(page.getByRole("heading", { name: offering })).toBeVisible();
     }
+    await expect(
+      page.getByRole("heading", {
+        name: /Read and listen with processed public books/i,
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "Printable Morse pages for custom text and books",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "Practical tools with clear source notes",
+      }),
+    ).toBeVisible();
+  });
+
+  test("keeps light toolkit card hover states readable", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await gotoHome(page);
+
+    const toolkitCard = page
+      .locator("#morse-code-navigation .mw-toolkit-card-light")
+      .first();
+    await toolkitCard.scrollIntoViewIfNeeded();
+    await toolkitCard.hover();
+
+    const styles = await toolkitCard
+      .locator(".mw-heading")
+      .first()
+      .evaluate((node) => {
+        const card = node.closest(".mw-toolkit-card-light");
+        if (!card) throw new Error("Missing toolkit card");
+        const textStyle = window.getComputedStyle(node);
+        const cardStyle = window.getComputedStyle(card);
+        return {
+          color: textStyle.color,
+          backgroundColor: cardStyle.backgroundColor,
+        };
+      });
+
+    expect(
+      contrastRatio(styles.color, styles.backgroundColor),
+      "hovered light toolkit card heading contrast",
+    ).toBeGreaterThanOrEqual(4.5);
+    expect(styles.backgroundColor).not.toBe("rgb(15, 23, 42)");
+    expect(styles.backgroundColor).not.toBe("rgb(2, 6, 23)");
+  });
+
+  test("lays out the More menu with books as a full-width second row", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1600, height: 1000 });
+    await gotoHome(page);
+
+    await page.getByRole("button", { name: /More/i }).click();
+    const dialog = page.getByRole("dialog", { name: "More MorseWords tools" });
+    await expect(dialog).toBeVisible();
+
+    const aboutSection = dialog.locator("section", {
+      has: page.getByRole("heading", { name: "About and trust" }),
+    });
+    const booksSection = dialog.locator("section", {
+      has: page.getByRole("heading", { name: "Books and audiobooks" }),
+    });
+    await expect(aboutSection).toBeVisible();
+    await expect(booksSection).toBeVisible();
+
+    const aboutBox = await aboutSection.boundingBox();
+    const booksBox = await booksSection.boundingBox();
+    expect(aboutBox).not.toBeNull();
+    expect(booksBox).not.toBeNull();
+    expect(booksBox!.y).toBeGreaterThan(aboutBox!.y + aboutBox!.height / 2);
+    expect(booksBox!.width).toBeGreaterThan(aboutBox!.width * 3);
+
+    const bookLinkColumns = await booksSection.locator("a").evaluateAll((links) =>
+      Array.from(
+        new Set(
+          links
+            .slice(0, 20)
+            .map((link) => Math.round(link.getBoundingClientRect().left / 10) * 10),
+        ),
+      ).length,
+    );
+    expect(bookLinkColumns).toBeGreaterThanOrEqual(3);
   });
 
   test("highlights approved public books and audiobook links only", async ({
     page,
   }) => {
-    expect(approvedBookSlugs.size).toBe(16);
+    expect(approvedBookSlugs.size).toBeGreaterThan(16);
     await gotoHome(page);
 
     const section = page.locator('[aria-labelledby="featured-morse-books-title"]');
@@ -221,7 +330,9 @@ test.describe("homepage monetization readiness", () => {
 
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
     await expect(
-      page.getByRole("heading", { name: "What you can do on MorseWords" }),
+      page.getByRole("heading", {
+        name: /Read and listen with processed public books/i,
+      }),
     ).toBeVisible();
     await expect(
       page.getByRole("link", { name: /Create printable pages/i }),

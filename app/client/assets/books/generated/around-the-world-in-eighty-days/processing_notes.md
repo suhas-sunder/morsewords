@@ -1,16 +1,13 @@
-# Around the World in Eighty Days rights review notes
+# Around the World in Eighty Days processing notes
 
-- Source file: ../around-the-world-in-eighty-days.txt
+- Source file: ../../temp-books/around-the-world-in-eighty-days.txt
 - Gutenberg ID: 103
 - Source URL: https://www.gutenberg.org/ebooks/103
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: needs_manual_review
 - Approval source: manual-review
 - Duplicate resolution source: not-needed
 - Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -22,21 +19,6 @@
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Around the World in Eighty Days
 - Illustration or image reference: *** START OF THE PROJECT GUTENBERG EBOOK AROUND THE WORLD IN EIGHTY DAYS *** [Illustration] Around the World in Eighty Days by Jules Verne Contents CHAPTER I. IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH
 
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: January 1, 1994
-- Last updated: October 29, 2024
-- Original publication: 1872
-- Credits: missing
-- Translator: George M. Towle
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
 ## Risks found
 
 - Translation risk: low
@@ -46,19 +28,24 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
+- Original characters: 388411
+- Cleaned characters: 369112
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+- title-page-002: title-page (Contents)
+
+## Section detection summary
+
+- Generated sections: 39
+- Included by default: 37
 
 ## Manual review reasons
 
@@ -68,6 +55,6 @@
 - Rights basis "unknown" is not publish-ready.
 - Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
 
-## Next action
+## Next metadata needed
 
-- Manual rights review required before processing or publishing.
+- Add reviewed rights metadata, approved author/translator death-year evidence, and manual notes before publishing.

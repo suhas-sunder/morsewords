@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-fir-tree",
+  "title": "Andersen's Fairy Tales",
+  "author": [
+    "H. C. Andersen"
+  ],
+  "contentVersion": "d05fb6270fdc899f",
+  "contentHash": "d05fb6270fdc899f868027b2f3b41ced2ae9fd9e9a7c2577a0d305c9798d5ec9",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1597",
+    "releaseDate": "January 1, 1999",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "manual-review",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Andersen's Fairy Tales"
+  },
+  "stats": {
+    "originalCharacterCount": 36671,
+    "cleanedCharacterCount": 17275,
+    "wordCount": 3232,
+    "sectionCount": 2,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 17016,
+      "wordCount": 3180,
+      "estimatedTypingMinutes": 80,
+      "estimatedListeningMinutes": 102,
+      "morseCharacterEstimate": 91186,
+      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun sho..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 257,
+      "wordCount": 52,
+      "estimatedTypingMinutes": 2,
+      "estimatedListeningMinutes": 2,
+      "morseCharacterEstimate": 1374,
+      "textPreview": "The boys played about in the court, and the youngest wore the gold star on his breast which the Tree had had on the happiest evening of his life. However, that..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 36671,
+    "cleanedCharacterCount": 17275,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "No chapter headings were detected; generated fallback parts instead.",
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

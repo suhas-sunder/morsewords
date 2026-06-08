@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "a-christmas-carol",
+  "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+  "author": "Charles Dickens",
+  "content_version": "7aa2c3f3504d04dd",
+  "content_hash": "7aa2c3f3504d04dd1ff2a221be80ef81c40929ce8c7e4faaa8f768047f36fd33",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "46",
+    "source_url": "https://www.gutenberg.org/ebooks/46",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "August 11, 2004",
+    "last_updated": "October 17, 2021"
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

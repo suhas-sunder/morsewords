@@ -348,7 +348,7 @@ function chunkFallbackSections(
       text,
       {
         offset: start,
-        kind: "unknown",
+        kind: "part",
         label: `Part ${order}`,
         title: null,
         confidence: "low",
@@ -359,7 +359,9 @@ function chunkFallbackSections(
       counters,
       metadata,
     );
-    if (section) sections.push({ ...section, id: `part-${String(order).padStart(3, "0")}` });
+    if (section) {
+      sections.push({ ...section, id: `part-${String(order).padStart(3, "0")}` });
+    }
 
     start = end;
     while (text[start] === "\n") start += 1;

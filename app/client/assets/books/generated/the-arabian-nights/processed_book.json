@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "the-arabian-nights",
+  "title": "The Arabian Nights: Their Best-known Tales",
+  "author": "",
+  "content_version": "2931316c3abb6bcd",
+  "content_hash": "2931316c3abb6bcdae53a50a79111240037d1acaa366a27429f5bc5ea0702529",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "20916",
+    "source_url": "https://www.gutenberg.org/ebooks/20916",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "March 27, 2007",
+    "last_updated": ""
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": false,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [],
+    "needs_manual_review": false,
+    "notes": "Author was not found. Original publication metadata was not found. Original publication year is missing or not before 1931. Author death year is missing from approved metadata or clear source metadata. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate."
+  },
+  "content": {
+    "chapters": []
+  }
+}

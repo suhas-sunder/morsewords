@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "slug": "les-miserables",
+  "title": "Les Misérables",
+  "author": [
+    "Victor Hugo"
+  ],
+  "contentVersion": "5ac36723ec803bb1",
+  "contentHash": "5ac36723ec803bb1c9cbe937d5e4ea45063843a261343713320d0d0eb74d5deb",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "135",
+    "releaseDate": "June 22, 2008",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/135",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Les Misérables"
+  },
+  "stats": {
+    "originalCharacterCount": 3249711,
+    "cleanedCharacterCount": 3230435,
+    "wordCount": 572069,
+    "sectionCount": 6,
+    "includedSectionCount": 2
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-001.json",
+      "characterCount": 329,
+      "wordCount": 39,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 2,
+      "morseCharacterEstimate": 1695,
+      "textPreview": "LES MISÉRABLES By Victor Hugo Translated by Isabel F. Hapgood Thomas Y. Crowell & Co. No. 13, Astor Place New York Copyright 1887 [Illustration: Bookshelf spin..."
+    },
+    {
+      "id": "title-page-002",
+      "kind": "title-page",
+      "label": "Contents",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-002.json",
+      "characterCount": 25,
+      "wordCount": 4,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 1,
+      "morseCharacterEstimate": 114,
+      "textPreview": "Contents LES MISÉRABLES"
+    },
+    {
+      "id": "preface-001",
+      "kind": "preface",
+      "label": "Preface",
+      "title": null,
+      "order": 3,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/preface-001.json",
+      "characterCount": 19432,
+      "wordCount": 3179,
+      "estimatedTypingMinutes": 80,
+      "estimatedListeningMinutes": 112,
+      "morseCharacterEstimate": 100380,
+      "textPreview": "PREFACE VOLUME I—FANTINE BOOK FIRST—A JUST MAN CHAPTER I—M. MYRIEL CHAPTER II—M. MYRIEL BECOMES M. WELCOME CHAPTER III—A HARD BISHOPRIC FOR A GOOD BISHOP CHAPT..."
+    },
+    {
+      "id": "preface-002",
+      "kind": "preface",
+      "label": "Preface",
+      "title": null,
+      "order": 4,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/preface-002.json",
+      "characterCount": 2761020,
+      "wordCount": 488671,
+      "estimatedTypingMinutes": 12217,
+      "estimatedListeningMinutes": 16438,
+      "morseCharacterEstimate": 14793936,
+      "textPreview": "PREFACE So long as there shall exist, by virtue of law and custom, decrees of damnation pronounced by society, artificially creating hells amid the civilizatio..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 118004,
+      "wordCount": 20954,
+      "estimatedTypingMinutes": 524,
+      "estimatedListeningMinutes": 701,
+      "morseCharacterEstimate": 630674,
+      "textPreview": "CHAPTER IV The visit took place. It was a formidable campaign; a nocturnal battle against pestilence and suffocation. It was, at the same time, a voyage of dis..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 331610,
+      "wordCount": 59222,
+      "estimatedTypingMinutes": 1481,
+      "estimatedListeningMinutes": 1975,
+      "morseCharacterEstimate": 1776949,
+      "textPreview": "CHAPTER I Javert passed slowly down the Rue de l’Homme Armé. He walked with drooping head for the first time in his life, and likewise, for the first time in h..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 3249711,
+    "cleanedCharacterCount": 3230435,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

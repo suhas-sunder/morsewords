@@ -10,7 +10,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "20916",
     "sourceUrl": "https://www.gutenberg.org/ebooks/20916",
-    "rawTextFile": "../the-arabian-nights.txt",
+    "rawTextFile": "../../temp-books/the-arabian-nights.txt",
     "releaseDate": "March 27, 2007",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

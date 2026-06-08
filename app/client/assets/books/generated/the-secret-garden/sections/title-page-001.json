@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-secret-garden",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "Proofreading Team at http://www.pgdp.net\n\n\n[Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH\nDELIGHTFULNESS\"--_Page 231_]\n\n\n           THE\n       SECRET GARDEN\n\n           BY\n  FRANCES HODGSON BURNETT\n\n_Author of_\n\n\"_The Shuttle_,\" \"_The Making of a Marchioness_,\" \"_The Methods of Lady\nWalderhurst_,\" \"_That Lass o' Lowries_,\" \"_Through One Administration_,\"\n\"_Little Lord Fauntleroy_\" \"_A Lady of Quality_,\" etc.\n\n[Illustration]\n\n  NEW YORK\n  FREDERICK A. STOKES COMPANY\n  PUBLISHERS\n\n  _Copyright, 1911, by_\n  FRANCES HODGSON BURNETT\n\n  _Copyright, 1910, 1911, by_\n  THE PHILLIPS PUBLISHING CO.\n\n\n_All rights reserved, including that of translation into foreign\nlanguages, including the Scandinavian._\n\n_August, 1911._",
+  "morseSourceText": "Proofreading Team at http://www.pgdp.net\n\n\n[Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH\nDELIGHTFULNESS\"--_Page 231_]\n\n\n           THE\n       SECRET GARDEN\n\n           BY\n  FRANCES HODGSON BURNETT\n\n_Author of_\n\n\"_The Shuttle_,\" \"_The Making of a Marchioness_,\" \"_The Methods of Lady\nWalderhurst_,\" \"_That Lass o' Lowries_,\" \"_Through One Administration_,\"\n\"_Little Lord Fauntleroy_\" \"_A Lady of Quality_,\" etc.\n\n[Illustration]\n\n  NEW YORK\n  FREDERICK A. STOKES COMPANY\n  PUBLISHERS\n\n  _Copyright, 1911, by_\n  FRANCES HODGSON BURNETT\n\n  _Copyright, 1910, 1911, by_\n  THE PHILLIPS PUBLISHING CO.\n\n\n_All rights reserved, including that of translation into foreign\nlanguages, including the Scandinavian._\n\n_August, 1911._",
+  "paragraphs": [
+    "Proofreading Team at http://www.pgdp.net",
+    "[Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH DELIGHTFULNESS\"--_Page 231_]",
+    "THE SECRET GARDEN",
+    "BY FRANCES HODGSON BURNETT",
+    "_Author of_",
+    "\"_The Shuttle_,\" \"_The Making of a Marchioness_,\" \"_The Methods of Lady Walderhurst_,\" \"_That Lass o' Lowries_,\" \"_Through One Administration_,\" \"_Little Lord Fauntleroy_\" \"_A Lady of Quality_,\" etc.",
+    "[Illustration]",
+    "NEW YORK FREDERICK A. STOKES COMPANY PUBLISHERS",
+    "_Copyright, 1911, by_ FRANCES HODGSON BURNETT",
+    "_Copyright, 1910, 1911, by_ THE PHILLIPS PUBLISHING CO.",
+    "_All rights reserved, including that of translation into foreign languages, including the Scandinavian._",
+    "_August, 1911._"
+  ],
+  "wordCount": 91,
+  "characterCount": 729,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3888,
+  "unsupportedCharacterSummary": {
+    "[": 2,
+    "]": 2
+  },
+  "textPreview": "Proofreading Team at http://www.pgdp.net [Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH DELIGHTFULNESS\"--_Page 231_] THE SECRET GARDEN BY FRANCES HO...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 732
+  }
+}

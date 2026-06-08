@@ -12,7 +12,7 @@
     "provider": "Project Gutenberg",
     "gutenbergId": "1597",
     "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
-    "rawTextFile": "../The Swineherd.txt",
+    "rawTextFile": "../../temp-books/The Swineherd.txt",
     "releaseDate": "January 1, 1999",
     "rawTextUrl": null,
     "rightsBasis": "unknown",

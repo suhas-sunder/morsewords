@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "slug": "candide",
+  "title": "Candide",
+  "author": [
+    "Voltaire"
+  ],
+  "contentVersion": "7e16293d9d2e0e2f",
+  "contentHash": "7e16293d9d2e0e2fdecf888f873fc3eda92bd4675d761767065a4ef1921c6f81",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "19942",
+    "releaseDate": "November 27, 2006",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/19942",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Candide"
+  },
+  "stats": {
+    "originalCharacterCount": 224766,
+    "cleanedCharacterCount": 205459,
+    "wordCount": 35900,
+    "sectionCount": 8,
+    "includedSectionCount": 0
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 29743,
+      "wordCount": 4837,
+      "estimatedTypingMinutes": 121,
+      "estimatedListeningMinutes": 167,
+      "morseCharacterEstimate": 150215,
+      "textPreview": "Distributed Proofreading Team at http://www.pgdp.net * * * * * +------------------------------------------------------------+ | Transcriber's Note: | | | | Obv..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 28751,
+      "wordCount": 5090,
+      "estimatedTypingMinutes": 128,
+      "estimatedListeningMinutes": 172,
+      "morseCharacterEstimate": 154766,
+      "textPreview": "\"It is more likely,\" said he, \"mankind have a little corrupted nature, for they were not born wolves, and they have become wolves; God has given them neither c..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-003.json",
+      "characterCount": 28803,
+      "wordCount": 5168,
+      "estimatedTypingMinutes": 130,
+      "estimatedListeningMinutes": 172,
+      "morseCharacterEstimate": 154421,
+      "textPreview": "\"No sooner were we landed, than the blacks of a contrary faction to that of my captain attempted to rob him of his booty. Next to jewels and gold we were the m..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-004.json",
+      "characterCount": 29652,
+      "wordCount": 5243,
+      "estimatedTypingMinutes": 132,
+      "estimatedListeningMinutes": 177,
+      "morseCharacterEstimate": 158892,
+      "textPreview": "\"Gentlemen,\" said Cacambo, \"you reckon you are to-day going to feast upon a Jesuit. It is all very well, nothing is more unjust than thus to treat your enemies..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Part 5",
+      "title": null,
+      "order": 5,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-005.json",
+      "characterCount": 29506,
+      "wordCount": 5270,
+      "estimatedTypingMinutes": 132,
+      "estimatedListeningMinutes": 177,
+      "morseCharacterEstimate": 158411,
+      "textPreview": "Candide, however, had one great advantage over Martin, in that he always hoped to see Miss Cunegonde; whereas Martin had nothing at all to hope. Besides, Candi..."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Part 6",
+      "title": null,
+      "order": 6,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-006.json",
+      "characterCount": 29846,
+      "wordCount": 5415,
+      "estimatedTypingMinutes": 136,
+      "estimatedListeningMinutes": 178,
+      "morseCharacterEstimate": 159614,
+      "textPreview": "\"What!\" said he to Martin, \"I have had time to voyage from Surinam to Bordeaux, to go from Bordeaux to Paris, from Paris to Dieppe, from Dieppe to Portsmouth,..."
+    },
+    {
+      "id": "part-007",
+      "kind": "part",
+      "label": "Part 7",
+      "title": null,
+      "order": 7,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-007.json",
+      "characterCount": 29104,
+      "wordCount": 4877,
+      "estimatedTypingMinutes": 122,
+      "estimatedListeningMinutes": 169,
+      "morseCharacterEstimate": 151637,
+      "textPreview": "\"Ah! captain,\" said Candide, \"what ransom will you take for Monsieur de Thunder-ten-Tronckh, one of the first barons of the empire, and for Monsieur Pangloss,..."
+    },
+    {
+      "id": "part-008",
+      "kind": "part",
+      "label": "Part 8",
+      "title": null,
+      "order": 8,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/part-008.json",
+      "characterCount": 33,
+      "wordCount": 0,
+      "estimatedTypingMinutes": 1,
+      "estimatedListeningMinutes": 1,
+      "morseCharacterEstimate": 0,
+      "textPreview": "* * * * *"
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 224766,
+    "cleanedCharacterCount": 205459,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
+  },
+  "warnings": [
+    "No chapter headings were detected; generated fallback parts instead.",
+    "Rights have not been reviewed; generated book is not publish-ready.",
+    "Rights basis \"unknown\" is not publish-ready.",
+    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
+    "Rights gate did not allow processed public story output.",
+    "Owner-reviewed website approval is missing.",
+    "Website publication is not allowed by the active approval path."
+  ]
+}

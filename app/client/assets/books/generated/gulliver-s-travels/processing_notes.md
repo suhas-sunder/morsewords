@@ -1,16 +1,13 @@
-# Gulliver's Travels into Several Remote Nations of the World rights review notes
+# Gulliver's Travels into Several Remote Nations of the World processing notes
 
-- Source file: ../Gulliver's Travels.txt
+- Source file: ../../temp-books/Gulliver's Travels.txt
 - Gutenberg ID: 829
 - Source URL: https://www.gutenberg.org/ebooks/829
-- Metadata status: draft
-- Manual review required: yes
 - Approval status: approved
 - Approval source: external-authority
 - Duplicate resolution source: not-needed
 - Processing allowed: yes
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+- processed_book.json emitted: yes
 
 ## Rights evidence found
 
@@ -18,21 +15,6 @@
 - Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
 - U.S. reuse language: s Travels into Several Remote Nations of the World This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
 - Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Gulliver's Travels into Several
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: February 1, 1997
-- Last updated: April 6, 2025
-- Original publication: 1726–7.
-- Credits: David Price
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
 
 ## Risks found
 
@@ -43,19 +25,37 @@
 - Later copyright notice: no
 - Permission-based language: no
 - Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
 
-## Command warnings
+## Cleaning actions
 
-- No command warnings.
+- Original characters: 601815
+- Cleaned characters: 582409
+- Header stripped: yes
+- Footer stripped: yes
+- Cleaning confidence: high
+
+## Skipped or excluded material
+
+- title-page-001: title-page (Opening section)
+- title-page-002: title-page (Contents)
+- part-001: part (Part 1)
+- part-002: part (Part 2)
+- part-003: part (Part 3)
+- part-004: part (Part 4)
+- part-005: part (Part 1)
+- part-006: part (Part 2)
+- part-007: part (Part 3)
+- part-008: part (Part 4)
+
+## Section detection summary
+
+- Generated sections: 49
+- Included by default: 39
 
 ## Manual review reasons
 
 - No manual review blockers from the current rights gate.
 
-## Next action
+## Next metadata needed
 
-- Keep rights evidence attached; only publish after an explicit product approval step.
+- Keep the metadata and rights report together when publishing the page.
