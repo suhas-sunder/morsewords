@@ -21,6 +21,12 @@ const sectionLinks = [
   ["Japanese Wabun code", ROUTES.morseCodeJapanese],
   ["Russian Cyrillic Morse", ROUTES.morseCodeRussian],
   ["Greek Morse", ROUTES.morseCodeGreek],
+  ["German Morse", ROUTES.morseCodeGerman],
+  ["French Morse", ROUTES.morseCodeFrench],
+  ["Spanish Morse", ROUTES.morseCodeSpanish],
+  ["Korean romanized Morse practice", ROUTES.morseCodeKorean],
+  ["Italian Morse", ROUTES.morseCodeItalian],
+  ["Portuguese Morse", ROUTES.morseCodePortuguese],
   ["International Morse reference", ROUTES.internationalReference],
   ["Morse code alphabet", ROUTES.alphabet],
   ["Morse code chart", ROUTES.chart],
@@ -66,7 +72,7 @@ Use ${absoluteUrl(ROUTES.morseBooks)} and ${absoluteUrl(ROUTES.morseAudiobooks)}
 Printable pages let users paste custom text or open approved book print pages, choose a study layout, include site URL or QR support, and print or save as PDF through the browser print dialog. MorseWords does not publish generated PDF files as static downloads.
 
 ## Morse Code by Language
-The language hub introduces Morse adaptations for supported scripts. Current public pages cover Japanese kana/Wabun code, Russian Cyrillic Morse, and Greek Morse. These pages explain the system shown, provide character cards with playback, and include a printable side-by-side sheet.
+The language hub introduces Morse adaptations and transliteration practice for supported scripts and languages. Current public pages cover Japanese kana/Wabun code, Russian Cyrillic Morse, Greek Morse, German, French, Spanish, Korean romanized practice, Italian, and Portuguese. These pages explain the system shown, provide character cards with playback, and include a printable side-by-side sheet.
 
 ## Source and trust notes
 - Project Gutenberg source links appear on book pages where relevant.

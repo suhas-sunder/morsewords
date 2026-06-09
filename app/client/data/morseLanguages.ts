@@ -16,12 +16,22 @@ export type InternationalMorseLetter = {
 };
 
 export type MorseLanguagePage = {
-  slug: "japanese" | "russian" | "greek";
+  slug:
+    | "japanese"
+    | "russian"
+    | "greek"
+    | "german"
+    | "french"
+    | "spanish"
+    | "korean"
+    | "italian"
+    | "portuguese";
   path: string;
   languageName: string;
   nativeName: string;
   script: string;
   morseSystemName: string;
+  standardClassification: string;
   description: string;
   shortDescription: string;
   methodologyNote: string;
@@ -228,6 +238,97 @@ const GREEK_ALPHABET: MorseLanguageCharacter[] = ([
   label: `Greek ${name}`,
 }));
 
+function latinMorseCharacters(prefix: string, targetNote = "Latin alphabet") {
+  return INTERNATIONAL_MORSE_A_TO_Z.map((item) => ({
+    id: `${prefix}-${item.letter.toLowerCase()}`,
+    reference: `English ${item.letter}`,
+    target: item.letter,
+    reading: item.letter.toLowerCase(),
+    morse: item.morse,
+    label: `${targetNote} ${item.letter}`,
+  }));
+}
+
+const GERMAN_CHARACTERS: MorseLanguageCharacter[] = [
+  ...latinMorseCharacters("de", "German Latin letter"),
+  {
+    id: "de-ae",
+    reference: "German Ä",
+    target: "Ä",
+    reading: "ae",
+    morse: ".-.-",
+    label: "German letter Ä",
+    notes:
+      "Shown as a common German/International extension; plain-text practice may also use AE.",
+  },
+  {
+    id: "de-oe",
+    reference: "German Ö",
+    target: "Ö",
+    reading: "oe",
+    morse: "---.",
+    label: "German letter Ö",
+    notes:
+      "Shown as a common German/International extension; plain-text practice may also use OE.",
+  },
+  {
+    id: "de-ue",
+    reference: "German Ü",
+    target: "Ü",
+    reading: "ue",
+    morse: "..--",
+    label: "German letter Ü",
+    notes:
+      "Shown as a common German/International extension; plain-text practice may also use UE.",
+  },
+  {
+    id: "de-ss",
+    reference: "German ß",
+    target: "ß",
+    reading: "ss",
+    morse: "...--..",
+    label: "German sharp S",
+    notes:
+      "Shown as a German-specific extension; many modern plain-text workflows write SS.",
+  },
+];
+
+const FRENCH_CHARACTERS: MorseLanguageCharacter[] = latinMorseCharacters(
+  "fr",
+  "French Latin letter",
+);
+
+const SPANISH_CHARACTERS: MorseLanguageCharacter[] = [
+  ...latinMorseCharacters("es", "Spanish Latin letter"),
+  {
+    id: "es-enye",
+    reference: "Spanish Ñ",
+    target: "Ñ",
+    reading: "enye",
+    morse: "--.--",
+    label: "Spanish letter Ñ",
+    notes:
+      "Shown as a commonly listed International extension; accented vowels are usually sent by context or transliteration in many modern practice workflows.",
+  },
+];
+
+const KOREAN_ROMANIZATION_CHARACTERS: MorseLanguageCharacter[] =
+  latinMorseCharacters("ko", "Romanized Korean Latin letter").map((item) => ({
+    ...item,
+    notes:
+      "Korean practice on this page uses romanized text with International Morse; this is not a Hangul Morse alphabet.",
+  }));
+
+const ITALIAN_CHARACTERS: MorseLanguageCharacter[] = latinMorseCharacters(
+  "it",
+  "Italian Latin letter",
+);
+
+const PORTUGUESE_CHARACTERS: MorseLanguageCharacter[] = latinMorseCharacters(
+  "pt",
+  "Portuguese Latin letter",
+);
+
 export const MORSE_LANGUAGE_PAGES: MorseLanguagePage[] = [
   {
     slug: "japanese",
@@ -236,6 +337,7 @@ export const MORSE_LANGUAGE_PAGES: MorseLanguagePage[] = [
     nativeName: "日本語 kana",
     script: "Kana",
     morseSystemName: "Wabun code",
+    standardClassification: "Established native-script Morse adaptation",
     description:
       "Study a starter set of Japanese kana in Wabun code, the Japanese Morse adaptation used for kana rather than Latin letters.",
     shortDescription:
@@ -258,6 +360,7 @@ export const MORSE_LANGUAGE_PAGES: MorseLanguagePage[] = [
     nativeName: "Русский",
     script: "Cyrillic",
     morseSystemName: "Cyrillic Morse",
+    standardClassification: "Native-script Morse adaptation",
     description:
       "Browse Russian Cyrillic Morse mappings with native characters, readings, sound buttons, and a print-friendly reference sheet.",
     shortDescription:
@@ -280,6 +383,7 @@ export const MORSE_LANGUAGE_PAGES: MorseLanguagePage[] = [
     nativeName: "Ελληνικά",
     script: "Greek alphabet",
     morseSystemName: "Greek Morse",
+    standardClassification: "Native-script Morse adaptation",
     description:
       "Compare Greek alphabet characters with their Morse patterns, readings, audio playback, and a printable study sheet.",
     shortDescription:
@@ -294,6 +398,165 @@ export const MORSE_LANGUAGE_PAGES: MorseLanguagePage[] = [
       { label: "Σ", text: "Sigma", morse: "..." },
     ],
     characters: GREEK_ALPHABET,
+  },
+  {
+    slug: "german",
+    path: ROUTES.morseCodeGerman,
+    languageName: "German",
+    nativeName: "Deutsch",
+    script: "Latin alphabet",
+    morseSystemName: "International Morse with German extensions",
+    standardClassification:
+      "International Morse plus sourceable national extensions",
+    description:
+      "Study German Morse practice with the International A-Z alphabet plus common German letters Ä, Ö, Ü, and ß where extension patterns are used.",
+    shortDescription:
+      "German A-Z Morse cards with careful notes for Ä, Ö, Ü, ß and transliteration fallbacks.",
+    methodologyNote:
+      "German Morse practice is mostly International Morse for A-Z. This page includes common German extension patterns for Ä, Ö, Ü, and ß, while noting that plain-text workflows often use AE, OE, UE, and SS instead.",
+    coverageNote:
+      "Includes the complete International Morse A-Z set plus German-specific extension notes. It does not claim German uses a completely separate Morse alphabet.",
+    examples: [
+      {
+        label: "HALLO",
+        text: "German hello with A-Z letters",
+        morse: ".... .- .-.. .-.. ---",
+      },
+      { label: "Ä", text: "A umlaut / ae", morse: ".-.-" },
+      { label: "Ü", text: "U umlaut / ue", morse: "..--" },
+    ],
+    characters: GERMAN_CHARACTERS,
+  },
+  {
+    slug: "french",
+    path: ROUTES.morseCodeFrench,
+    languageName: "French",
+    nativeName: "Français",
+    script: "Latin alphabet",
+    morseSystemName: "International Morse with French transliteration notes",
+    standardClassification:
+      "International Morse with accent transliteration guidance",
+    description:
+      "Practice French words in Morse using the International A-Z alphabet, with clear notes about accent handling and transliteration.",
+    shortDescription:
+      "French A-Z Morse cards for readable practice with careful accent-handling notes.",
+    methodologyNote:
+      "This first French page uses International Morse for A-Z and explains accent handling through context or transliteration. It does not present accented-letter patterns unless they are intentionally added and verified later.",
+    coverageNote:
+      "Includes the complete International Morse A-Z set. Accented French letters are discussed as limitations rather than treated as a separate unsupported alphabet.",
+    examples: [
+      { label: "SALUT", text: "French greeting in A-Z letters", morse: "... .- .-.. ..- -" },
+      { label: "MERCI", text: "French thank-you in A-Z letters", morse: "-- . .-. -.-. .." },
+      {
+        label: "ETE",
+        text: "ÉTÉ commonly transliterated without accents",
+        morse: ". - .",
+      },
+    ],
+    characters: FRENCH_CHARACTERS,
+  },
+  {
+    slug: "spanish",
+    path: ROUTES.morseCodeSpanish,
+    languageName: "Spanish",
+    nativeName: "Español",
+    script: "Latin alphabet",
+    morseSystemName: "International Morse with Ñ",
+    standardClassification: "International Morse plus sourceable Ñ extension",
+    description:
+      "Practice Spanish Morse with International A-Z letters, Ñ, audio playback, and a printable side-by-side sheet.",
+    shortDescription:
+      "Spanish A-Z Morse cards with Ñ and clear notes for accented vowels.",
+    methodologyNote:
+      "Spanish Morse practice uses International Morse for A-Z. This page includes Ñ as a commonly listed extension and treats accented vowels as context/transliteration notes, not as invented new patterns.",
+    coverageNote:
+      "Includes the complete International Morse A-Z set plus Ñ. Accented vowels are explained as a practical limitation for this first page.",
+    examples: [
+      { label: "HOLA", text: "Spanish hello", morse: ".... --- .-.. .-" },
+      { label: "SEÑAL", text: "Spanish word using Ñ", morse: "... . --.-- .- .-.." },
+      { label: "SI", text: "Spanish yes without accent", morse: "... .." },
+    ],
+    characters: SPANISH_CHARACTERS,
+  },
+  {
+    slug: "korean",
+    path: ROUTES.morseCodeKorean,
+    languageName: "Korean",
+    nativeName: "한국어 romanization",
+    script: "Romanized Korean",
+    morseSystemName: "International Morse for romanized Korean",
+    standardClassification:
+      "Transliteration practice guide, not a Hangul Morse standard",
+    description:
+      "Practice Korean words in Morse by romanizing Hangul first, then sending the Latin letters with International Morse.",
+    shortDescription:
+      "Romanized Korean A-Z Morse cards with explicit notes that this is not a Hangul Morse alphabet.",
+    methodologyNote:
+      "This page intentionally avoids inventing Hangul Morse patterns. It uses romanized Korean text with International Morse so learners can practice readable Korean examples without claiming an unsupported official Hangul mapping.",
+    coverageNote:
+      "Includes the complete International Morse A-Z set for romanized Korean practice. Hangul characters are not assigned Morse patterns on this page.",
+    examples: [
+      {
+        label: "HANGUK",
+        text: "한국 romanized for practice",
+        morse: ".... .- -. --. ..- -.-",
+      },
+      {
+        label: "SEOUL",
+        text: "서울 romanized for practice",
+        morse: "... . --- ..- .-..",
+      },
+      { label: "KIM", text: "Common romanized name", morse: "-.- .. --" },
+    ],
+    characters: KOREAN_ROMANIZATION_CHARACTERS,
+  },
+  {
+    slug: "italian",
+    path: ROUTES.morseCodeItalian,
+    languageName: "Italian",
+    nativeName: "Italiano",
+    script: "Latin alphabet",
+    morseSystemName: "International Morse for Italian",
+    standardClassification:
+      "International Morse with accent transliteration guidance",
+    description:
+      "Practice Italian words with International Morse A-Z cards, browser audio, and a printable study sheet.",
+    shortDescription:
+      "Italian A-Z Morse cards with notes for accented vowels and practice examples.",
+    methodologyNote:
+      "Italian Morse practice generally uses the Latin alphabet with International Morse. Accented vowels are usually handled through context or transliteration in simple practice workflows.",
+    coverageNote:
+      "Includes the complete International Morse A-Z set. Accented vowels are explained as text-handling notes rather than a separate Italian Morse alphabet.",
+    examples: [
+      { label: "CIAO", text: "Italian greeting", morse: "-.-. .. .- ---" },
+      { label: "ROMA", text: "Italian place name", morse: ".-. --- -- .-" },
+      { label: "SI", text: "Sì commonly transliterated without accent", morse: "... .." },
+    ],
+    characters: ITALIAN_CHARACTERS,
+  },
+  {
+    slug: "portuguese",
+    path: ROUTES.morseCodePortuguese,
+    languageName: "Portuguese",
+    nativeName: "Português",
+    script: "Latin alphabet",
+    morseSystemName: "International Morse with Portuguese transliteration notes",
+    standardClassification:
+      "International Morse with accent transliteration guidance",
+    description:
+      "Practice Portuguese words using International Morse A-Z cards, careful accent notes, audio playback, and a printable sheet.",
+    shortDescription:
+      "Portuguese A-Z Morse cards with practical notes for accents and ç handling.",
+    methodologyNote:
+      "This first Portuguese page uses International Morse for A-Z and explains that accented vowels and ç are commonly handled through context or transliteration in simple Morse practice.",
+    coverageNote:
+      "Includes the complete International Morse A-Z set. Portuguese diacritics are discussed as limitations instead of being presented as unsupported new Morse patterns.",
+    examples: [
+      { label: "OLA", text: "Olá commonly transliterated without accent", morse: "--- .-.. .-" },
+      { label: "BRASIL", text: "Portuguese country name", morse: "-... .-. .- ... .. .-.." },
+      { label: "CAO", text: "Cão commonly transliterated without accent", morse: "-.-. .- ---" },
+    ],
+    characters: PORTUGUESE_CHARACTERS,
   },
 ];
 

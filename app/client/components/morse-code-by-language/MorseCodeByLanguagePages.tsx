@@ -110,7 +110,7 @@ export function MorseCodeByLanguageHub() {
       name: "Morse Code by Language",
       url: canonical,
       description:
-        "A MorseWords hub for language-specific Morse code adaptations, including Wabun code, Cyrillic Morse, and Greek Morse.",
+        "A MorseWords hub for language-specific Morse code adaptations and transliteration practice pages, including Wabun code, Cyrillic Morse, Greek Morse, and Latin-alphabet language guides.",
       isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
       mainEntity: {
         "@type": "ItemList",
@@ -149,16 +149,17 @@ export function MorseCodeByLanguageHub() {
             id="language-list"
             className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
           >
-            Start with three clear Morse adaptations
+            Start with accurate language-focused Morse pages
           </h2>
           <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
-            This foundation keeps the list intentionally small so each page can
-            be accurate, interactive, and printable. The copy is in English,
-            with the target-language characters shown directly in the cards.
+            Each page is written in English, shows the target script or
+            romanization where useful, and keeps the system label honest:
+            native-script adaptation, International Morse with language notes,
+            or transliteration practice.
           </p>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {MORSE_LANGUAGE_PAGES.map((page) => (
             <Link
               key={page.slug}
@@ -173,6 +174,9 @@ export function MorseCodeByLanguageHub() {
               </span>
               <span className="mt-1 block text-lg font-bold text-slate-700">
                 {page.nativeName}
+              </span>
+              <span className="mw-muted-label mt-3 block font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                {page.standardClassification}
               </span>
               <span className="mw-text-muted mt-3 block text-sm leading-relaxed text-slate-700">
                 {page.shortDescription}
@@ -194,9 +198,11 @@ export function MorseCodeByLanguageHub() {
           <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
             Morse can be used with different writing systems in more than one
             way. Japanese Wabun code maps kana to Morse patterns. Russian and
-            Greek pages here show native-script Morse tables. For other
-            languages, a sender may transliterate into Latin letters before
-            using International Morse.
+            Greek pages here show native-script Morse tables. German, French,
+            Spanish, Italian, and Portuguese primarily use International Morse
+            for Latin letters, with careful notes for diacritics and extensions.
+            Korean is presented as romanization practice instead of an invented
+            Hangul Morse system.
           </p>
         </StaticPanel>
         <StaticPanel as="section">
@@ -290,6 +296,9 @@ export function MorseLanguageDetailPage({
           </h2>
           <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
             {language.methodologyNote}
+          </p>
+          <p className="mw-muted-label mt-4 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+            {language.standardClassification}
           </p>
           <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
             {language.coverageNote}

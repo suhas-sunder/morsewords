@@ -57,6 +57,12 @@ export const CANONICAL_ROUTES = {
   morseCodeJapanese: "/morse-code-by-language/japanese",
   morseCodeRussian: "/morse-code-by-language/russian",
   morseCodeGreek: "/morse-code-by-language/greek",
+  morseCodeGerman: "/morse-code-by-language/german",
+  morseCodeFrench: "/morse-code-by-language/french",
+  morseCodeSpanish: "/morse-code-by-language/spanish",
+  morseCodeKorean: "/morse-code-by-language/korean",
+  morseCodeItalian: "/morse-code-by-language/italian",
+  morseCodePortuguese: "/morse-code-by-language/portuguese",
   videoGenerator: "/morse-code-video-generator",
 
   howToRead: "/how-to-read-morse-code",

@@ -13,12 +13,12 @@ export function links() {
 
 export const meta: Route.MetaFunction = () =>
   seoMeta({
-    title: "Morse Code by Language | Wabun, Cyrillic, Greek | MorseWords",
+    title: "Morse Code by Language | Japanese, Russian, Greek, More | MorseWords",
     description:
-      "Explore Morse code by language with starter Japanese Wabun kana, Russian Cyrillic Morse, Greek Morse, audio cards, and printable reference sheets.",
+      "Explore Morse code by language with Japanese Wabun kana, Russian Cyrillic, Greek, German, French, Spanish, Korean, Italian, and Portuguese pages.",
     path: CANONICAL_PATH,
     keywords:
-      "Morse code by language, Wabun code, Japanese Morse code, Russian Morse code, Greek Morse code, Cyrillic Morse",
+      "Morse code by language, Japanese Morse code, German Morse code, French Morse code, Spanish Morse code, Korean Morse code",
   });
 
 export default function MorseCodeByLanguageRoute() {

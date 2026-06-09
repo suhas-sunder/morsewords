@@ -7,11 +7,7 @@ import {
 import { ROUTES, absoluteUrl } from "../../app/client/data/routes";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
-const LANGUAGE_PATHS = [
-  ROUTES.morseCodeJapanese,
-  ROUTES.morseCodeRussian,
-  ROUTES.morseCodeGreek,
-] as const;
+const LANGUAGE_PATHS = MORSE_LANGUAGE_PAGES.map((page) => page.path);
 
 async function gotoReady(page: Page, path: string) {
   await page.goto(path, { waitUntil: "domcontentloaded" });
@@ -29,13 +25,13 @@ test.describe("Morse code by language", () => {
     await blockExternalNetwork(page);
   });
 
-  test("hub loads and links to Japanese, Russian, and Greek pages", async ({
+  test("hub loads and links to all supported language pages", async ({
     page,
   }) => {
     await gotoReady(page, ROUTES.morseCodeByLanguage);
 
     await expect(page.getByRole("heading", { name: "Morse Code by Language" })).toBeVisible();
-    await expect(page.getByText(/established Morse adaptations/i)).toBeVisible();
+    await expect(page.getByText(/native-script adaptation/i)).toBeVisible();
 
     for (const path of LANGUAGE_PATHS) {
       await expect(page.locator(`main a[href="${path}"]`).first()).toBeVisible();
@@ -139,6 +135,18 @@ test.describe("Morse code by language", () => {
     expect(bodyText).toContain("Katakana ア");
     expect(bodyText).not.toMatch(/Japanese letter A/i);
     expect(bodyText).not.toMatch(/covers every Japanese kana/i);
+  });
+
+  test("Korean page is explicit romanization practice, not invented Hangul Morse", async ({
+    page,
+  }) => {
+    await gotoReady(page, ROUTES.morseCodeKorean);
+
+    const bodyText = await page.locator("main").innerText();
+    expect(bodyText).toContain("romanized Korean");
+    expect(bodyText).toContain("not a Hangul Morse");
+    expect(bodyText).not.toMatch(/official Hangul Morse alphabet/i);
+    expect(bodyText).not.toMatch(/Hangul characters are assigned Morse patterns/i);
   });
 
   test("schema and sitemap stay canonical without fake commercial claims", async ({

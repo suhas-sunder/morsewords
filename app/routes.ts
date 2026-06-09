@@ -121,6 +121,30 @@ export default [
     "routes/morse-code-by-language/greek.tsx",
   ),
   route(
+    "morse-code-by-language/german",
+    "routes/morse-code-by-language/german.tsx",
+  ),
+  route(
+    "morse-code-by-language/french",
+    "routes/morse-code-by-language/french.tsx",
+  ),
+  route(
+    "morse-code-by-language/spanish",
+    "routes/morse-code-by-language/spanish.tsx",
+  ),
+  route(
+    "morse-code-by-language/korean",
+    "routes/morse-code-by-language/korean.tsx",
+  ),
+  route(
+    "morse-code-by-language/italian",
+    "routes/morse-code-by-language/italian.tsx",
+  ),
+  route(
+    "morse-code-by-language/portuguese",
+    "routes/morse-code-by-language/portuguese.tsx",
+  ),
+  route(
     "morse-book-content/books/:slug",
     "routes/morse-book-content.books.$slug.tsx",
   ),

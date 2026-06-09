@@ -62,6 +62,16 @@ const NEW_CANONICAL_ROUTES = [
   ROUTES.morseBooks,
   ROUTES.morseAudiobooks,
   ROUTES.videoGenerator,
+  ROUTES.morseCodeByLanguage,
+  ROUTES.morseCodeJapanese,
+  ROUTES.morseCodeRussian,
+  ROUTES.morseCodeGreek,
+  ROUTES.morseCodeGerman,
+  ROUTES.morseCodeFrench,
+  ROUTES.morseCodeSpanish,
+  ROUTES.morseCodeKorean,
+  ROUTES.morseCodeItalian,
+  ROUTES.morseCodePortuguese,
 ] as const;
 
 const NEW_ALIAS_ROUTES = [

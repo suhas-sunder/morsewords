@@ -102,6 +102,12 @@ test.describe("llms discovery files", () => {
       absoluteUrl(ROUTES.morseCodeJapanese),
       absoluteUrl(ROUTES.morseCodeRussian),
       absoluteUrl(ROUTES.morseCodeGreek),
+      absoluteUrl(ROUTES.morseCodeGerman),
+      absoluteUrl(ROUTES.morseCodeFrench),
+      absoluteUrl(ROUTES.morseCodeSpanish),
+      absoluteUrl(ROUTES.morseCodeKorean),
+      absoluteUrl(ROUTES.morseCodeItalian),
+      absoluteUrl(ROUTES.morseCodePortuguese),
       absoluteUrl(ROUTES.wordSearchBuilder),
       absoluteUrl("/sitemap.xml"),
     ]) {
