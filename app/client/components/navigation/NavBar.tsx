@@ -7,6 +7,7 @@ import {
   getPublishedMorseBookSummaries,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import { ROUTES } from "~/client/data/routes";
 import type { ThemeMode } from "~/client/theme/themeStorage";
 import DisplaySettingsToggle from "./DisplaySettingsToggle";
@@ -35,7 +36,7 @@ const MAIN_ITEMS: NavItem[] = [
 const PUBLIC_BOOK_ITEMS: NavItem[] = getPublishedMorseBookSummaries().map((book) => ({
   label: book.title,
   href: morseBookPath(book.slug),
-  description: book.author.join(", "),
+  description: formatMorseBookAuthors(book.author),
 }));
 
 const MORE_GROUPS: NavGroup[] = [

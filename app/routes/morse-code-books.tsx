@@ -20,6 +20,7 @@ import {
   getPublishedMorseBookSummariesRuntime,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -187,7 +188,7 @@ function formatNumber(value: number) {
 }
 
 function bookAuthor(book: MorseBookLibrarySummary) {
-  return book.author.join(", ");
+  return formatMorseBookAuthors(book.author);
 }
 
 function searchableBookText(book: HubBook) {

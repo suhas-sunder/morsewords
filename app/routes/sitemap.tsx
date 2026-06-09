@@ -16,6 +16,7 @@ import {
   morseBookPath,
   morseBookPrintPath,
 } from "~/client/data/morseBooks";
+import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import { MORSE_LANGUAGE_PAGES } from "~/client/data/morseLanguages";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -51,19 +52,19 @@ const symbolSitemapLinks = Object.values(SYMBOL_PAGES).map((item) => ({
 const morseBookSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
   label: `${book.title} in Morse Code`,
   to: morseBookPath(book.slug),
-  description: `Read ${book.title} by ${book.author.join(", ")} as cleaned Morse-ready book text with audio and video preview tools.`,
+  description: `Read ${book.title} by ${formatMorseBookAuthors(book.author)} as cleaned Morse-ready book text with audio and video preview tools.`,
 }));
 
 const morseAudiobookSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
   label: `${book.title} Morse Audiobook`,
   to: morseAudiobookPath(book.slug),
-  description: `Open ${book.title} by ${book.author.join(", ")} as a browser-generated Morse audiobook with chapter scope and MP3/WAV controls.`,
+  description: `Open ${book.title} by ${formatMorseBookAuthors(book.author)} as a browser-generated Morse audiobook with chapter scope and MP3/WAV controls.`,
 }));
 
 const morseBookPrintSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
   label: `${book.title} Printable Morse Pages`,
   to: morseBookPrintPath(book.slug),
-  description: `Print ${book.title} by ${book.author.join(", ")} as text and Morse study pages with QR and source notes.`,
+  description: `Print ${book.title} by ${formatMorseBookAuthors(book.author)} as text and Morse study pages with QR and source notes.`,
 }));
 
 const morseLanguageSitemapLinks = [

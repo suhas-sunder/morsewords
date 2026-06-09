@@ -16,6 +16,10 @@ import {
   toolControlButtonClass,
 } from "~/client/components/shared/ToolWorkspace";
 import { textToMorse } from "~/client/components/shared/morseUtils";
+import {
+  formatMorseBookAuthors,
+  getMorseBookAuthorDisplay,
+} from "~/client/data/morseBookDisplay";
 import type {
   MorseBookManifest,
   MorseBookSectionJson,
@@ -76,7 +80,7 @@ function formatNumber(value: number) {
 }
 
 function authorText(book: MorseBookManifest) {
-  return book.author.join(", ");
+  return formatMorseBookAuthors(book.author);
 }
 
 function sectionDisplayName(section: MorseBookSectionJson) {
@@ -598,7 +602,8 @@ function PrintablePagePreview({
   qrTargetUrl: string;
 }) {
   const title = book ? book.title : "Custom Morse practice";
-  const author = book ? authorText(book) : "MorseWords printable page";
+  const authorDisplay = book ? getMorseBookAuthorDisplay(book.author) : null;
+  const author = authorDisplay?.text ?? "MorseWords printable page";
   const sourceUrl = book?.source.sourceUrl ?? "";
   return (
     <article
@@ -616,6 +621,11 @@ function PrintablePagePreview({
           <p className="mt-1 break-words text-sm font-semibold text-slate-700">
             {author}
           </p>
+          {authorDisplay?.contextText ? (
+            <p className="mt-1 break-words text-xs font-semibold text-slate-600">
+              {authorDisplay.contextText}
+            </p>
+          ) : null}
         </div>
         <QrBlock
           qrCodeUrl={qrCodeUrl}

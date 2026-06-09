@@ -55,7 +55,101 @@ type MorseAudioTimingStripProps = {
   testIdPrefix?: string;
 };
 
-const TIMELINE_EDGE_PADDING_PX = 16;
+const TIMELINE_EDGE_PADDING_PX = 20;
+const TIMELINE_DENSE_EVENT_LIMIT = 260;
+const TIMELINE_DENSE_BUCKET_COUNT = 180;
+
+type TimelineDisplayEvent = MorseVideoTimeline["events"][number] & {
+  compressed?: boolean;
+};
+
+function buildTimingStripDisplayEvents(
+  events: MorseVideoTimeline["events"],
+  durationMs: number,
+) {
+  if (events.length <= TIMELINE_DENSE_EVENT_LIMIT) {
+    return {
+      compressed: false,
+      events: events as TimelineDisplayEvent[],
+    };
+  }
+
+  const markEvents = events.filter((event) => event.type === "mark");
+  if (markEvents.length <= TIMELINE_DENSE_EVENT_LIMIT) {
+    return {
+      compressed: false,
+      events: events as TimelineDisplayEvent[],
+    };
+  }
+
+  const bucketCount = Math.min(
+    TIMELINE_DENSE_BUCKET_COUNT,
+    Math.max(1, Math.ceil(durationMs / 1_200)),
+  );
+  const bucketMs = durationMs / bucketCount;
+  const displayEvents: TimelineDisplayEvent[] = [];
+  let firstCandidateIndex = 0;
+
+  for (let bucketIndex = 0; bucketIndex < bucketCount; bucketIndex += 1) {
+    const bucketStartMs = bucketIndex * bucketMs;
+    const bucketEndMs =
+      bucketIndex === bucketCount - 1 ? durationMs : bucketStartMs + bucketMs;
+
+    while (
+      firstCandidateIndex < events.length &&
+      events[firstCandidateIndex].endMs <= bucketStartMs
+    ) {
+      firstCandidateIndex += 1;
+    }
+
+    let cursor = firstCandidateIndex;
+    let ditOverlapMs = 0;
+    let dashOverlapMs = 0;
+    let gapOverlapMs = 0;
+
+    while (cursor < events.length && events[cursor].startMs < bucketEndMs) {
+      const event = events[cursor];
+      const overlapMs = Math.max(
+        0,
+        Math.min(event.endMs, bucketEndMs) -
+          Math.max(event.startMs, bucketStartMs),
+      );
+      if (overlapMs > 0) {
+        if (event.type === "gap") gapOverlapMs += overlapMs;
+        else if (event.symbol === "-") dashOverlapMs += overlapMs;
+        else ditOverlapMs += overlapMs;
+      }
+      cursor += 1;
+    }
+
+    const markOverlapMs = ditOverlapMs + dashOverlapMs;
+    if (
+      gapOverlapMs > 0 &&
+      (markOverlapMs <= 0 || gapOverlapMs >= bucketMs * 0.14)
+    ) {
+      displayEvents.push({
+        compressed: true,
+        endMs: bucketEndMs,
+        startMs: bucketStartMs,
+        type: "gap",
+      });
+    }
+    if (markOverlapMs > 0) {
+      displayEvents.push({
+        compressed: true,
+        endMs: bucketEndMs,
+        startMs: bucketStartMs,
+        symbol: dashOverlapMs >= ditOverlapMs ? "-" : ".",
+        type: "mark",
+      });
+    }
+  }
+
+  return {
+    compressed: true,
+    events: displayEvents,
+  };
+}
 
 export function MorseVideoPreviewPanel({
   className = "",
@@ -251,6 +345,13 @@ export function MorseAudioTimingStrip({
   const durationMs = Math.max(1, preview.durationMs);
   const safeElapsed = Math.max(0, Math.min(durationMs, elapsedMs));
   const playheadPercent = (safeElapsed / durationMs) * 100;
+  const timingStripDisplay = React.useMemo(
+    () => buildTimingStripDisplayEvents(preview.timeline.events, durationMs),
+    [durationMs, preview.timeline.events],
+  );
+  const instruction = timingStripDisplay.compressed
+    ? "Condensed long preview - click or drag to seek"
+    : instructionText;
 
   const seekFromClientX = React.useCallback(
     (clientX: number) => {
@@ -394,7 +495,7 @@ export function MorseAudioTimingStrip({
           {headingText}
         </span>
         <span className="text-xs font-semibold text-slate-600">
-          {instructionText}
+          {instruction}
         </span>
       </div>
       <div
@@ -417,6 +518,9 @@ export function MorseAudioTimingStrip({
           setDraggingState(false);
         }}
         onKeyDown={handleKeyDown}
+        data-mw-timeline-density={
+          timingStripDisplay.compressed ? "condensed" : "full"
+        }
         className={[
           "relative mt-2 h-14 w-full touch-none select-none overflow-hidden rounded-xl bg-slate-950/90",
           disabled
@@ -424,12 +528,13 @@ export function MorseAudioTimingStrip({
             : "cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
         ].join(" ")}
       >
-        <div className="absolute inset-x-4 inset-y-0">
-          {preview.timeline.events.map((event, index) => {
-            const left = (event.startMs / durationMs) * 100;
+        <div className="absolute inset-x-5 inset-y-0">
+          {timingStripDisplay.events.map((event, index) => {
+            const left = Math.max(0, Math.min(100, (event.startMs / durationMs) * 100));
+            const rawWidth = ((event.endMs - event.startMs) / durationMs) * 100;
             const width = Math.max(
-              0.18,
-              ((event.endMs - event.startMs) / durationMs) * 100,
+              event.compressed ? 0.32 : 0.18,
+              Math.min(100 - left, rawWidth),
             );
             const isMark = event.type === "mark";
             const isDash = event.symbol === "-";
@@ -446,8 +551,12 @@ export function MorseAudioTimingStrip({
                   "absolute top-1/2 block -translate-y-1/2 rounded-full",
                   isMark
                     ? isDash
-                      ? "h-7 bg-sky-300"
-                      : "h-4 bg-sky-200"
+                      ? event.compressed
+                        ? "h-6 bg-sky-300/90"
+                        : "h-7 bg-sky-300"
+                      : event.compressed
+                        ? "h-3.5 bg-sky-200/90"
+                        : "h-4 bg-sky-200"
                     : "h-1.5 bg-slate-500/55",
                 ].join(" ")}
                 style={{
@@ -647,7 +756,11 @@ function renderTextPreviewWords(
           </span>
         ))}
       </span>
-      {wordOffset < words.length - 1 ? " " : null}
+      {wordOffset < words.length - 1 ? (
+        <span className="mx-1 select-none opacity-55" aria-hidden="true">
+          /
+        </span>
+      ) : null}
     </React.Fragment>
   ));
 }
