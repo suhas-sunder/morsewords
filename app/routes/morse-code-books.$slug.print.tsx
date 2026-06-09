@@ -8,6 +8,10 @@ import {
   morseBookPath,
   morseBookPrintPath,
 } from "~/client/data/morseBooks";
+import {
+  formatMorseBookAuthors,
+  morseBookAuthorSchemaPeople,
+} from "~/client/data/morseBookDisplay";
 import type { MorseBookPublicContentJson } from "~/client/data/morseBookTypes";
 import { absoluteUrl } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -76,13 +80,12 @@ export const meta: Route.MetaFunction = ({ data }) => {
   }
 
   const book = data.content.manifest;
+  const author = formatMorseBookAuthors(book.author);
   const path = morseBookPrintPath(book.slug);
   return [
     ...seoMeta({
     title: `${book.title} Printable Morse Pages | MorseWords`,
-    description: `Print ${book.title} by ${book.author.join(
-      ", ",
-    )} as Morse code study pages with original text, Morse code, site URL, QR code, and browser PDF support.`,
+    description: `Print ${book.title} by ${author} as Morse code study pages with original text, Morse code, site URL, QR code, and browser PDF support.`,
     path,
     keywords: `${book.title} Morse code print, printable Morse book pages, Morse code study sheet`,
     }),
@@ -98,19 +101,19 @@ export default function MorseBookPrintRoute({
   const canonicalPath = morseBookPrintPath(book.slug);
   const canonical = canonicalUrl(canonicalPath);
   const bookUrl = absoluteUrl(morseBookPath(book.slug));
+  const author = formatMorseBookAuthors(book.author);
+  const schemaAuthors = morseBookAuthorSchemaPeople(book.author);
   const webpageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: `${book.title} Printable Morse Pages`,
     url: canonical,
-    description: `Printable Morse code pages for ${book.title} by ${book.author.join(
-      ", ",
-    )}.`,
+    description: `Printable Morse code pages for ${book.title} by ${author}.`,
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
     about: {
       "@type": "Book",
       name: book.title,
-      author: book.author.map((name) => ({ "@type": "Person", name })),
+      ...(schemaAuthors.length > 0 ? { author: schemaAuthors } : {}),
       url: bookUrl,
       isAccessibleForFree: true,
       inLanguage: book.language,

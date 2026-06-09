@@ -14,6 +14,7 @@ import {
   morseAudiobookPath,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import { canonicalUrl, seoMeta } from "~/client/seo";
 
 const CANONICAL_PATH = ROUTES.home;
@@ -111,10 +112,6 @@ const offeringSections = [
     ],
   },
 ] as const;
-
-function formatAuthor(author: string[]) {
-  return author.length > 0 ? author.join(", ") : "Unknown author";
-}
 
 function formatCount(value: number, label: string) {
   return `${value.toLocaleString("en-US")} ${label}`;
@@ -246,7 +243,7 @@ function FeaturedBooksSection() {
                     {book.title}
                   </h3>
                   <p className="mw-text-soft mt-1 text-sm leading-relaxed text-slate-600">
-                    {formatAuthor(book.author)}
+                    {formatMorseBookAuthors(book.author)}
                   </p>
                 </div>
               </div>

@@ -95,6 +95,10 @@ import {
   morseBookPath,
   morseBookPrintPath,
 } from "~/client/data/morseBooks";
+import {
+  formatMorseBookAuthors,
+  getMorseBookAuthorDisplay,
+} from "~/client/data/morseBookDisplay";
 import type {
   MorseBookLibrarySummary,
   MorseBookManifest,
@@ -260,7 +264,7 @@ function BookCover({ book }: { book: MorseBookManifest }) {
           {book.title}
         </p>
         <p className="mt-3 text-sm font-semibold text-slate-600">
-          {book.author.join(", ")}
+          {formatMorseBookAuthors(book.author)}
         </p>
       </div>
     </div>
@@ -351,7 +355,7 @@ function createSourceSectionsForExport(
 function buildBookMetadata(book: MorseBookManifest): BookBundleMetadata {
   return {
     title: book.title,
-    author: book.author.join(", "),
+    author: formatMorseBookAuthors(book.author),
     filename: `${book.slug}.txt`,
     sourceType: "txt",
   };
@@ -368,7 +372,11 @@ function buildDownloadLabel({
   formatLabel?: string;
   outputType: BookOutputType;
 }) {
-  if (downloadKind === "zip") return "Download ZIP bundle";
+  if (downloadKind === "zip") {
+    return outputType === "video"
+      ? `Download ${formatLabel} ZIP`
+      : `Download ${exportSettings.outputFormat.toUpperCase()} ZIP`;
+  }
   if (outputType === "video") return `Download ${formatLabel}`;
   return `Download ${exportSettings.outputFormat.toUpperCase()}`;
 }
@@ -614,6 +622,10 @@ function MorseBookWorkspace({
   previewMode: "unpublished" | "test-published" | null;
 }) {
   const isAudiobook = mode === "audiobook";
+  const authorDisplay = React.useMemo(
+    () => getMorseBookAuthorDisplay(book.author),
+    [book.author],
+  );
   const themeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(themeMode);
@@ -861,7 +873,11 @@ function MorseBookWorkspace({
     : downloadLabel;
   const downloadBlockedMessage = publishReady
     ? ""
-    : "Downloads are disabled until this book is publish-ready.";
+    : "Downloads are unavailable for this book.";
+  const selectedVideoFormatLabel = selectedVideoFormatSupport.label;
+  const videoEstimateLabel = selectedVideoFormatSupport.supported
+    ? "Available after export"
+    : "Unavailable in this browser";
   const videoUnavailable =
     outputType === "video" &&
     (!videoSupport ||
@@ -1348,11 +1364,11 @@ function MorseBookWorkspace({
       className="mx-auto w-full max-w-[1120px] px-4 pb-14 pt-2 sm:px-6 sm:pt-4 lg:px-8"
       data-mw-morse-book-page="true"
       data-mw-morse-book-page-mode={mode}
-      data-mw-morse-book-publish-ready={publishReady ? "true" : "false"}
+      data-mw-morse-book-available={publishReady ? "true" : "false"}
       data-mw-morse-book-preview-mode={previewMode ?? "public"}
     >
       <ToolHero
-        eyebrow={isAudiobook ? "Morse audiobook" : "Morse book foundation"}
+        eyebrow={isAudiobook ? "Morse audiobook" : "Morse book"}
         title={book.title}
         lead={
           isAudiobook ? (
@@ -1414,8 +1430,16 @@ function MorseBookWorkspace({
               ) : null}
             </p>
             <h2 className="mw-heading mt-2 text-2xl font-extrabold text-sky-950">
-              {book.author.join(", ")}
+              {authorDisplay.text}
             </h2>
+            {authorDisplay.contextText ? (
+              <p
+                className="mt-1 text-sm font-semibold text-slate-600"
+                data-testid="morse-book-author-context"
+              >
+                {authorDisplay.contextText}
+              </p>
+            ) : null}
             {book.description ? (
               <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700">
                 {book.description}
@@ -1443,16 +1467,14 @@ function MorseBookWorkspace({
             <Metric label="Sections" value={formatNumber(book.stats.sectionCount)} />
             <Metric label="Words" value={formatNumber(book.stats.wordCount)} />
             <Metric
-              label="Status"
-              value={publishReady ? "Publish-ready" : "Not public yet"}
+              label="Availability"
+              value={publishReady ? "Available" : "Unavailable"}
             />
           </div>
 
           {!publishReady ? (
             <p className="max-w-[68ch] text-sm leading-relaxed text-slate-600">
-              Rights review is not complete for this generated artifact. This
-              preview is noindex in development/test mode, is not added to
-              public navigation or the sitemap, and cannot generate downloads.
+              This book is not available for public downloads.
             </p>
           ) : null}
         </div>
@@ -1461,7 +1483,7 @@ function MorseBookWorkspace({
       <section className="mt-10 grid gap-7 lg:grid-cols-[minmax(360px,420px)_minmax(0,1fr)] lg:items-start">
         <ToolPanel
           label={isAudiobook ? "Choose audiobook scope" : "Choose sections"}
-          badge="Lazy JSON"
+          badge={isAudiobook ? "Chapter audio" : "Book sections"}
         >
           <div className="space-y-4 px-3 pb-3">
             <label className="flex cursor-pointer items-start gap-3 rounded-lg bg-[#fffdf8]/82 px-3 py-3 text-sm font-semibold text-slate-700">
@@ -1600,7 +1622,7 @@ function MorseBookWorkspace({
       >
         <ToolPanel
           label={isAudiobook ? "Audiobook preview and download" : "Preview and download"}
-          badge={publishReady ? "Ready" : "Gated"}
+          badge={publishReady ? "Ready" : "Unavailable"}
         >
           <div className="space-y-5 px-4 pb-4">
             <div className="flex flex-wrap gap-2" role="group" aria-label="Output type">
@@ -1619,19 +1641,36 @@ function MorseBookWorkspace({
               ))}
             </div>
 
-            <div className="grid gap-3 text-sm text-slate-700 sm:grid-cols-3">
+            <div
+              className={[
+                "grid gap-3 text-sm text-slate-700",
+                outputType === "video"
+                  ? "sm:grid-cols-2 lg:grid-cols-4"
+                  : "sm:grid-cols-3",
+              ].join(" ")}
+            >
               <Metric label="Parts" value={formatNumber(exportParts.length)} />
               <Metric label="Runtime" value={formatDuration(partSummary.totalRuntimeMs)} />
-              <Metric
-                label="Estimate"
-                value={
-                  outputType === "video"
-                    ? downloadKind === "zip"
-                      ? `${selectedVideoFormatSupport.label} ZIP`
-                      : selectedVideoFormatSupport.label
-                    : formatBytes(estimatedBytes)
-                }
-              />
+              {outputType === "video" ? (
+                <>
+                  <Metric
+                    label="Format"
+                    value={selectedVideoFormatLabel}
+                    testId="morse-book-output-format"
+                  />
+                  <Metric
+                    label="Estimate"
+                    value={videoEstimateLabel}
+                    testId="morse-book-output-estimate"
+                  />
+                </>
+              ) : (
+                <Metric
+                  label="Estimate"
+                  value={formatBytes(estimatedBytes)}
+                  testId="morse-book-output-estimate"
+                />
+              )}
             </div>
 
             {exportSettings.splitMode !== "none" ? (
@@ -1910,14 +1949,14 @@ function MorseBookWorkspace({
 
       <section className="mt-10 mw-static-surface rounded-xl p-5">
         <h2 className="mw-heading text-2xl font-extrabold text-sky-950">
-          Source and rights notes
+          Source notes
         </h2>
         <div className="mt-3 grid gap-4 text-sm leading-relaxed text-slate-700 lg:grid-cols-2">
           <div>
             <p>
-              Source material is generated from curated local artifacts, not user
+              Source material is prepared from public reference text, not user
               uploads. Project Gutenberg boilerplate is kept out of the Morse
-              source text and rights/source notes are shown separately here.
+              source text so the preview focuses on readable book content.
             </p>
             {book.source.sourceUrl ? (
               <p className="mt-3">
@@ -1935,8 +1974,9 @@ function MorseBookWorkspace({
             ) : null}
           </div>
           <p>
-            {book.source.rightsNotes ||
-              "No additional rights notes are recorded for this generated book."}
+            Use the book page for text-first study, the audiobook page for
+            listening, or the printable page when you want a browser printout or
+            saved PDF.
           </p>
         </div>
       </section>
@@ -1992,9 +2032,17 @@ function BookVideoFormatSelect({
   );
 }
 
-function Metric({ label, value }: { label: string; value: string }) {
+function Metric({
+  label,
+  testId,
+  value,
+}: {
+  label: string;
+  testId?: string;
+  value: string;
+}) {
   return (
-    <div>
+    <div data-testid={testId}>
       <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
         {label}
       </p>

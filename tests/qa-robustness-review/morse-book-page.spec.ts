@@ -13,11 +13,13 @@ const NETWORK_BOOK_SLUG = "dr-jekyll-and-mr-hyde";
 const STALE_CACHE_BOOK_SLUG = "the-call-of-the-wild";
 const ERROR_BOOK_SLUG = "the-jungle-book";
 const TEST_BOOK_SLUG = "test-published-morse-book";
+const ART_OF_WAR_SLUG = "the-art-of-war";
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
 const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
 const STALE_CACHE_BOOK_PUBLIC_PATH = `/morse-code-books/${STALE_CACHE_BOOK_SLUG}`;
 const ERROR_BOOK_PUBLIC_PATH = `/morse-code-books/${ERROR_BOOK_SLUG}`;
+const ART_OF_WAR_PUBLIC_PATH = `/morse-code-books/${ART_OF_WAR_SLUG}`;
 const ALICE_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${ALICE_SLUG}`;
 const APPROVED_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${APPROVED_BOOK_SLUG}`;
 const NETWORK_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${NETWORK_BOOK_SLUG}`;
@@ -77,7 +79,7 @@ async function gotoPublicBookPage(page: Page, pathName: string) {
 
 async function waitForApprovedBookWorkspace(page: Page) {
   await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
-    "data-mw-morse-book-publish-ready",
+    "data-mw-morse-book-available",
     "true",
   );
 }
@@ -286,7 +288,7 @@ test.describe("Morse book page foundation", () => {
       /noindex/,
     );
     await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
-      "data-mw-morse-book-publish-ready",
+      "data-mw-morse-book-available",
       "true",
     );
     await expect(page.locator("h1")).toContainText("Treasure Island");
@@ -575,7 +577,7 @@ test.describe("Morse book page foundation", () => {
         name: "Original source: Project Gutenberg ebook #11",
       }),
     ).toHaveAttribute("href", "https://www.gutenberg.org/ebooks/11");
-    await expect(page.getByText("Downloads are disabled until this book is publish-ready.")).toHaveCount(0);
+    await expect(page.getByText("Downloads are unavailable for this book.")).toHaveCount(0);
     await expect(page.getByRole("button", { name: "Download MP3" })).toBeEnabled();
 
     const morsePreview = page.locator("[data-mw-morse-book-morse-preview]");
@@ -611,6 +613,56 @@ test.describe("Morse book page foundation", () => {
     await expect(page.locator("[data-mw-morse-book-split-warning]")).toBeVisible();
   });
 
+  test("separates video format from estimate and keeps audio size estimates", async ({
+    page,
+  }) => {
+    await openPreview(page);
+
+    await expect(page.getByTestId("morse-book-output-estimate")).toContainText(
+      /\d+(?:\.\d+)?\s*(?:B|KB|MB|GB)/,
+    );
+    await expect(page.getByTestId("morse-book-output-format")).toHaveCount(0);
+
+    await page.getByRole("button", { name: "Video" }).click();
+    await expect(page.getByTestId("morse-book-output-format")).toContainText(
+      /WebM|MP4/,
+    );
+    await expect(page.getByTestId("morse-book-output-estimate")).toContainText(
+      /Available after export|Unavailable in this browser/,
+    );
+    await expect(page.getByTestId("morse-book-output-estimate")).not.toContainText(
+      /WebM|MP4/,
+    );
+    await expect(page.getByText(/Estimate\s+MP4|Estimate\s+WebM/i)).toHaveCount(0);
+    await expect(page.getByRole("button", { name: /Download (WebM|MP4)/ })).toBeEnabled();
+  });
+
+  test("displays Art of War author and context separately", async ({ page }) => {
+    await openPublicBook(page, ART_OF_WAR_PUBLIC_PATH);
+
+    await expect(page.locator("h1")).toContainText("The Art of War");
+    await expect(
+      page.getByRole("heading", { name: "Sunzi", exact: true }),
+    ).toBeVisible();
+    await expect(page.getByTestId("morse-book-author-context")).toContainText(
+      "Active 6th century B.C.",
+    );
+    await expect(page.getByText("active 6th century B.C. Sunzi")).toHaveCount(0);
+  });
+
+  test("does not show internal review or processing labels publicly", async ({
+    page,
+  }) => {
+    await openApprovedBook(page);
+
+    await expect(
+      page.getByText(
+        /manual-review|rights gate|review queue|publish-ready|Lazy JSON|Rights review|generated reports/i,
+      ),
+    ).toHaveCount(0);
+    await expect(page.getByText("Available", { exact: true })).toBeVisible();
+  });
+
   test("renders a noindex publish-ready fixture with selected chapters and direct downloads", async ({
     page,
   }) => {
@@ -621,7 +673,7 @@ test.describe("Morse book page foundation", () => {
       /noindex/,
     );
     await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
-      "data-mw-morse-book-publish-ready",
+      "data-mw-morse-book-available",
       "true",
     );
     await expect(
@@ -727,7 +779,9 @@ test.describe("Morse book page foundation", () => {
     const morseOverlay = page.locator("[data-testid='book-video-preview-morse-overlay']");
     await expect(morseOverlay).toBeVisible();
     await expect(morseOverlay).toContainText("/");
-    await expect(page.locator("[data-testid='book-video-preview-text-overlay']")).toBeVisible();
+    const textOverlay = page.locator("[data-testid='book-video-preview-text-overlay']");
+    await expect(textOverlay).toBeVisible();
+    await expect(textOverlay).toContainText("/");
 
     await page.getByRole("button", { name: "Play visual preview" }).click();
     await expect(page.locator("[data-testid='book-video-preview']")).toHaveAttribute(
@@ -801,6 +855,25 @@ test.describe("Morse book page foundation", () => {
       await videoTimeline.getAttribute("aria-valuemax"),
     );
     expect(videoDurationMs).toBeLessThanOrEqual(300_000);
+    await expect(videoTimeline).toHaveAttribute(
+      "data-mw-timeline-density",
+      "condensed",
+    );
+
+    const timelineBox = await videoTimeline.boundingBox();
+    expect(timelineBox).not.toBeNull();
+    const markers = page.locator(
+      "[data-testid='book-video-preview-timing-strip-dit'], [data-testid='book-video-preview-timing-strip-dash']",
+    );
+    await expect(markers.first()).toBeVisible();
+    const firstMarkerBox = await markers.first().boundingBox();
+    const lastMarkerBox = await markers.last().boundingBox();
+    expect(firstMarkerBox).not.toBeNull();
+    expect(lastMarkerBox).not.toBeNull();
+    expect(firstMarkerBox!.x).toBeGreaterThanOrEqual(timelineBox!.x);
+    expect(
+      lastMarkerBox!.x + lastMarkerBox!.width,
+    ).toBeLessThanOrEqual(timelineBox!.x + timelineBox!.width);
   });
 
   test("shows ZIP language only when selected settings really produce a bundle", async ({
@@ -815,7 +888,7 @@ test.describe("Morse book page foundation", () => {
       });
     }).toPass({ timeout: 10_000 });
     await page.getByLabel(/Target part length/).fill("1");
-    await expect(page.getByRole("button", { name: "Download ZIP bundle" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Download MP3 ZIP" })).toBeVisible();
     await expect(page.locator("[data-mw-morse-book-zip-warning]")).toBeVisible();
     await expect(page.locator("[data-mw-morse-book-split-warning]")).toBeVisible();
 

@@ -8,6 +8,7 @@ import {
   morseAudiobookPath,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import { morseBookAuthorSchemaPeople } from "~/client/data/morseBookDisplay";
 import { absoluteUrl } from "~/client/data/routes";
 import { SITE_URL } from "~/client/seo";
 
@@ -63,10 +64,7 @@ export default function MorseAudiobookRoute({
   const book = loaderData.bookSummary;
   const audiobookUrl = absoluteUrl(morseAudiobookPath(book.slug));
   const bookUrl = absoluteUrl(morseBookPath(book.slug));
-  const author =
-    book.author.length === 1
-      ? { "@type": "Person", name: book.author[0] }
-      : book.author.map((name) => ({ "@type": "Person", name }));
+  const author = morseBookAuthorSchemaPeople(book.author);
   const detailJsonLd = [
     {
       "@context": "https://schema.org",
@@ -78,7 +76,7 @@ export default function MorseAudiobookRoute({
       about: {
         "@type": "Book",
         name: book.title,
-        author,
+        ...(author.length > 0 ? { author } : {}),
         url: bookUrl,
         inLanguage: book.language,
         isAccessibleForFree: true,
@@ -87,7 +85,7 @@ export default function MorseAudiobookRoute({
       mainEntity: {
         "@type": "Book",
         name: book.title,
-        author,
+        ...(author.length > 0 ? { author } : {}),
         url: bookUrl,
         inLanguage: book.language,
         isAccessibleForFree: true,
