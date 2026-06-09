@@ -513,8 +513,8 @@ test.describe("Morse book page foundation", () => {
     const states = await page
       .locator("[data-mw-morse-book-section-selection-state]")
       .evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim() ?? ""));
-    expect(states).toContain("Included");
-    expect(states).toContain("Available section");
+    expect(states.length).toBeGreaterThan(0);
+    expect(states.every((state) => state === "Included")).toBe(true);
   });
 
   test("renders a public processed preview with ordered sections and cleaned text", async ({
