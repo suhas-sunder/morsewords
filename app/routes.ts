@@ -4,6 +4,8 @@ import { ROUTES, routeSlug } from "./client/data/routes";
 export default [
   // Canonical translator
   index("routes/home.tsx"),
+  route("llms.txt", "routes/llms.ts"),
+  route("llms-full.txt", "routes/llms-full.ts"),
 
   // MVP feature routes
   route("audio", "routes/audio.tsx"),
