@@ -190,6 +190,15 @@ test.describe("Morse book page foundation", () => {
       publicManifestUrl: "https://cdn.example.test/morse-books/public-manifest.json",
       bookUrl: "https://cdn.example.test/morse-books/books/treasure-island.json",
     });
+    expect(
+      getMorseBookPublicContentUrls(
+        "books/treasure-island.json",
+        "https://cdn.example.test/morse-books",
+      ),
+    ).toEqual({
+      publicManifestUrl: "https://cdn.example.test/morse-books/public-manifest.json",
+      bookUrl: "https://cdn.example.test/morse-books/books/treasure-island.json",
+    });
   });
 
   test("keeps generated book summaries summary-only and publishes processed temp books", async ({
