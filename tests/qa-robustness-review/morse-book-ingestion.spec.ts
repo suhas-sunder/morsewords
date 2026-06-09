@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 
 import { expect, test, type TestInfo } from "@playwright/test";
 
@@ -85,6 +86,27 @@ function writeRawBook(textRoot: string, fileName: string, rawText: string) {
 
 function readJsonFile<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
+}
+
+function gitLines(args: string[]) {
+  const output = execFileSync("git", args, {
+    cwd: ROOT,
+    encoding: "utf8",
+  }).trim();
+  return output ? output.split(/\r?\n/) : [];
+}
+
+function isIgnoredByGit(relativePath: string) {
+  try {
+    execFileSync("git", ["check-ignore", "--no-index", relativePath], {
+      cwd: ROOT,
+      encoding: "utf8",
+      stdio: "pipe",
+    });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function writeApprovedPeople(
@@ -3733,6 +3755,73 @@ Project Gutenberg License
     expect(JSON.stringify(publicManifest)).not.toContain("displayText");
     expect(JSON.stringify(publicManifest)).not.toContain("morseSourceText");
 
+    const uploadManifest = readJsonFile<{
+      approvedBookCount: number;
+      sourceFolder: string;
+      requiredFiles: Array<{ sourcePath: string; destinationPath: string }>;
+      bookFiles: string[];
+      files: string[];
+      destinationObjectPaths: string[];
+      runtimeBaseUrlEnvVars: string[];
+      exampleUrls: { publicManifest: string; bookJson: string };
+      doNotUpload: string[];
+      mediaFilesIncluded: boolean;
+    }>(
+      path.join(
+        ROOT,
+        "app/client/assets/books/cloudflare-export/upload-manifest.json",
+      ),
+    );
+    const expectedBookFiles = publicManifest.books
+      .map((book) => book.bookPath)
+      .sort();
+    expect(uploadManifest.approvedBookCount).toBe(publicManifest.books.length);
+    expect(uploadManifest.sourceFolder).toBe(
+      "app/client/assets/books/cloudflare-export/",
+    );
+    expect(uploadManifest.bookFiles).toEqual(expectedBookFiles);
+    expect(uploadManifest.bookFiles).toHaveLength(74);
+    expect(uploadManifest.files).toEqual(
+      [
+        "public-manifest.json",
+        "upload-manifest.json",
+        ...expectedBookFiles,
+      ].sort(),
+    );
+    expect(uploadManifest.destinationObjectPaths).toEqual(uploadManifest.files);
+    expect(uploadManifest.requiredFiles).toEqual([
+      {
+        sourcePath: "public-manifest.json",
+        destinationPath: "public-manifest.json",
+      },
+      {
+        sourcePath: "upload-manifest.json",
+        destinationPath: "upload-manifest.json",
+      },
+      {
+        sourcePath: "books/*.json",
+        destinationPath: "books/*.json",
+      },
+    ]);
+    expect(uploadManifest.runtimeBaseUrlEnvVars).toEqual([
+      "VITE_MORSE_BOOK_CONTENT_BASE_URL",
+      "PUBLIC_MORSE_BOOK_CONTENT_BASE_URL",
+    ]);
+    expect(uploadManifest.exampleUrls).toEqual({
+      publicManifest: "<CLOUDFLARE_BOOKS_BASE_URL>/public-manifest.json",
+      bookJson: "<CLOUDFLARE_BOOKS_BASE_URL>/books/<slug>.json",
+    });
+    expect(uploadManifest.mediaFilesIncluded).toBe(false);
+    expect(uploadManifest.files.join("\n")).not.toMatch(
+      /temp-books|assets\/asdf|assets\/text|generated\/review/i,
+    );
+    expect(uploadManifest.doNotUpload.join("\n")).toContain(
+      "app/client/assets/temp-books/",
+    );
+    expect(uploadManifest.doNotUpload.join("\n")).toContain(
+      "app/client/assets/asdf/",
+    );
+
     const nestedExportFiles: string[] = [];
     const walkExport = (dir: string) => {
       for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -3751,6 +3840,32 @@ Project Gutenberg License
     };
     walkExport(path.join(ROOT, "app/client/assets/books/cloudflare-export"));
     expect(nestedExportFiles).toEqual([]);
+  });
+
+  test("raw reference folders are ignored while tracked book fallback artifacts stay visible", () => {
+    expect(gitLines(["ls-files", "app/client/assets/temp-books"])).toEqual([]);
+    expect(gitLines(["ls-files", "app/client/assets/asdf"])).toEqual([]);
+    expect(
+      gitLines(["ls-files", "app/client/assets/text"]).filter((filePath) =>
+        filePath.toLowerCase().endsWith(".txt"),
+      ),
+    ).toEqual([]);
+
+    expect(isIgnoredByGit("app/client/assets/temp-books/example.txt")).toBe(true);
+    expect(isIgnoredByGit("app/client/assets/asdf/example.txt")).toBe(true);
+    expect(isIgnoredByGit("app/client/assets/text/example-raw.txt")).toBe(true);
+    expect(isIgnoredByGit("app/client/assets/books/generated-audio.mp3")).toBe(
+      true,
+    );
+    expect(isIgnoredByGit("app/client/assets/books/generated-video.mp4")).toBe(
+      true,
+    );
+    expect(
+      isIgnoredByGit("app/client/assets/books/cloudflare-export/public-manifest.json"),
+    ).toBe(false);
+    expect(
+      isIgnoredByGit("app/client/assets/books/generated/library-manifest.json"),
+    ).toBe(false);
   });
 
   test("committed temp-book processing and Cloudflare size audit cover every source file", () => {

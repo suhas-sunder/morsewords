@@ -10,3 +10,22 @@
 /output/
 /tmp/
 /test-artifacts/
+
+# Local-only Morse book reference/source folders. The processed public book
+# runtime uses committed generated manifests/JSON plus optional Cloudflare
+# uploads; do not commit raw reference drops from these folders.
+app/client/assets/temp-books/
+app/client/assets/asdf/
+app/client/assets/text/*.txt
+
+# Keep committed Morse book JSON/metadata for local fallback builds, but ignore
+# accidental binary/media exports or scratch folders under the book asset tree.
+app/client/assets/books/**/*.mp3
+app/client/assets/books/**/*.wav
+app/client/assets/books/**/*.webm
+app/client/assets/books/**/*.mp4
+app/client/assets/books/**/*.pdf
+app/client/assets/books/**/*.zip
+app/client/assets/books/**/tmp/
+app/client/assets/books/**/scratch/
+app/client/assets/books/**/.DS_Store

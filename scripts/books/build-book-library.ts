@@ -1623,15 +1623,57 @@ function writeCloudflareExport({
     writeExportJson(`books/${book.slug}.json`, book);
   }
 
+  const bookFiles = manifestBooks
+    .map((book) => book.bookPath)
+    .sort((a, b) => a.localeCompare(b));
+  const uploadFiles = [...artifacts, "upload-manifest.json"].sort((a, b) =>
+    a.localeCompare(b),
+  );
+
   writeExportJson("upload-manifest.json", {
     schemaVersion: BOOK_SCHEMA_VERSION,
     contentVersion,
     contentHash,
     approvedBookCount: manifestBooks.length,
-    files: artifacts
-      .filter((artifact) => artifact !== "upload-manifest.json")
-      .sort((a, b) => a.localeCompare(b)),
+    sourceFolder: "app/client/assets/books/cloudflare-export/",
+    requiredFiles: [
+      {
+        sourcePath: "public-manifest.json",
+        destinationPath: "public-manifest.json",
+      },
+      {
+        sourcePath: "upload-manifest.json",
+        destinationPath: "upload-manifest.json",
+      },
+      {
+        sourcePath: "books/*.json",
+        destinationPath: "books/*.json",
+      },
+    ],
+    bookFiles,
+    files: uploadFiles,
+    destinationObjectPaths: uploadFiles,
+    runtimeBaseUrlEnvVars: [
+      "VITE_MORSE_BOOK_CONTENT_BASE_URL",
+      "PUBLIC_MORSE_BOOK_CONTENT_BASE_URL",
+    ],
+    exampleUrls: {
+      publicManifest: "<CLOUDFLARE_BOOKS_BASE_URL>/public-manifest.json",
+      bookJson: "<CLOUDFLARE_BOOKS_BASE_URL>/books/<slug>.json",
+    },
+    doNotUpload: [
+      "app/client/assets/temp-books/",
+      "app/client/assets/asdf/",
+      "app/client/assets/text/*.txt",
+      "app/client/assets/books/generated/review/",
+      "generated MP3/WAV/WebM/MP4/PDF/ZIP files",
+    ],
     mediaFilesIncluded: false,
+    notes: [
+      "Upload the contents of sourceFolder with these relative object paths preserved.",
+      "The runtime trims a trailing slash from the configured base URL.",
+      "If no base URL is configured, the app uses the committed local fallback route.",
+    ],
   });
 
   return artifacts.sort((a, b) => a.localeCompare(b));
