@@ -103,6 +103,10 @@ const DEFAULT_TEXT_ROOT = path.join(
   DEFAULT_REPO_ROOT,
   "app/client/assets/temp-books",
 );
+const DEFAULT_LEGACY_RAW_TEXT_ROOT = path.join(
+  DEFAULT_REPO_ROOT,
+  "app/client/assets/text",
+);
 const DEFAULT_METADATA_ROOT = path.join(
   DEFAULT_REPO_ROOT,
   "app/client/assets/text/meta",
@@ -146,6 +150,11 @@ function relativeTo(root: string, filePath: string): string {
   return toPosixPath(path.relative(root, filePath));
 }
 
+function pathKey(filePath: string): string {
+  const resolved = path.resolve(filePath);
+  return process.platform === "win32" ? resolved.toLowerCase() : resolved;
+}
+
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return (
     typeof value === "object" &&
@@ -182,6 +191,46 @@ function findFiles(root: string, extension: string): string[] {
 function isInside(parent: string, child: string): boolean {
   const relative = path.relative(parent, child);
   return Boolean(relative) && !relative.startsWith("..") && !path.isAbsolute(relative);
+}
+
+function fileExists(filePath: string): boolean {
+  return fs.existsSync(filePath) && fs.statSync(filePath).isFile();
+}
+
+function matchesFileName(filePath: string, fileName: string): boolean {
+  return path.basename(filePath).toLowerCase() === fileName.toLowerCase();
+}
+
+function resolveFallbackRawTextPath({
+  textRoot,
+  declaredRawPath,
+  rawTextFiles,
+}: {
+  textRoot: string;
+  declaredRawPath: string;
+  rawTextFiles?: string[];
+}): string | null {
+  const declaredFileName = path.basename(declaredRawPath);
+  const usesDefaultTextRoot = pathKey(textRoot) === pathKey(DEFAULT_TEXT_ROOT);
+
+  if (usesDefaultTextRoot) {
+    const legacyRawPath = path.join(
+      DEFAULT_LEGACY_RAW_TEXT_ROOT,
+      declaredFileName,
+    );
+    if (fileExists(legacyRawPath)) {
+      return legacyRawPath;
+    }
+  }
+
+  const candidates = (rawTextFiles ?? findFiles(textRoot, ".txt")).filter(
+    (filePath) => matchesFileName(filePath, declaredFileName),
+  );
+  if (candidates.length === 1) {
+    return candidates[0];
+  }
+
+  return null;
 }
 
 function readGutenbergIdFromRaw(filePath: string): string | null {
@@ -699,6 +748,7 @@ function resolveRawTextPath(
   textRoot: string,
   metadataPath: string,
   metadata: BookMetadata,
+  rawTextFiles?: string[],
 ): string {
   const rawPath = path.resolve(
     path.dirname(metadataPath),
@@ -709,7 +759,16 @@ function resolveRawTextPath(
       `${metadata.slug}: source.rawTextFile must resolve inside ${textRoot}.`,
     );
   }
-  return rawPath;
+  if (fileExists(rawPath)) {
+    return rawPath;
+  }
+  return (
+    resolveFallbackRawTextPath({
+      textRoot,
+      declaredRawPath: rawPath,
+      rawTextFiles,
+    }) ?? rawPath
+  );
 }
 
 function applyCleanupRules(
@@ -1150,22 +1209,29 @@ export function scanBookInventory(
       return [];
     }
   });
+  const rawPathForInventory = (filePath: string, metadata: BookMetadata) => {
+    try {
+      return resolveRawTextPath(textRoot, filePath, metadata, rawTextFiles);
+    } catch {
+      return path.resolve(path.dirname(filePath), metadata.source.rawTextFile);
+    }
+  };
 
   const rawPathsFromMetadata = new Set(
     validMetadata.map(({ filePath, metadata }) =>
-      path.resolve(path.dirname(filePath), metadata.source.rawTextFile),
+      pathKey(rawPathForInventory(filePath, metadata)),
     ),
   );
   const rawWithoutMetadata = rawTextFiles.filter(
-    (filePath) => !rawPathsFromMetadata.has(filePath),
+    (filePath) => !rawPathsFromMetadata.has(pathKey(filePath)),
   );
   const metadataWithoutRaw = validMetadata
     .map(({ filePath, metadata }) => ({
       filePath,
-      rawPath: path.resolve(path.dirname(filePath), metadata.source.rawTextFile),
+      rawPath: rawPathForInventory(filePath, metadata),
     }))
     .filter(
-      ({ rawPath }) => !fs.existsSync(rawPath) || !fs.statSync(rawPath).isFile(),
+      ({ rawPath }) => !fileExists(rawPath),
     )
     .map(({ filePath }) => filePath);
 
@@ -1459,6 +1525,7 @@ function makeLibraryManifest(
 type CloudflareExportBook = {
   manifest: GeneratedBookManifest;
   rawTextPath: string;
+  rawTextReportPath: string;
   sectionJson: GeneratedBookSectionJson[];
 };
 
@@ -1780,7 +1847,7 @@ function buildCloudflareJsonSizeReport({
       return {
         slug: book.manifest.slug,
         title: book.manifest.title,
-        rawTextFile: toPosixPath(path.relative(DEFAULT_REPO_ROOT, book.rawTextPath)),
+        rawTextFile: book.rawTextReportPath,
         originalTextBytes,
         cleanedTextBytes,
         cloudflareBookJsonBytes,
@@ -2122,7 +2189,9 @@ export function buildBookLibrary(
   for (const filePath of inventory.metadataFiles) {
     try {
       const { metadata } = validateMetadataShape(readJson(filePath), filePath);
-      if (metadata) resolveRawTextPath(textRoot, filePath, metadata);
+      if (metadata) {
+        resolveRawTextPath(textRoot, filePath, metadata, inventory.rawTextFiles);
+      }
     } catch (error) {
       fatalErrors.push(error instanceof Error ? error.message : String(error));
     }
@@ -2197,7 +2266,12 @@ export function buildBookLibrary(
     const bookWarnings: string[] = [];
     let rawPath: string;
     try {
-      rawPath = resolveRawTextPath(textRoot, filePath, metadata);
+      rawPath = resolveRawTextPath(
+        textRoot,
+        filePath,
+        metadata,
+        inventory.rawTextFiles,
+      );
     } catch (error) {
       fatalErrors.push(error instanceof Error ? error.message : String(error));
       continue;
@@ -2262,9 +2336,16 @@ export function buildBookLibrary(
       generatedArtifacts.push(relativeTo(generatedRoot, sectionPath));
     }
     if (isPublishReadyManifest(manifest)) {
+      const declaredRawTextPath = path.resolve(
+        path.dirname(filePath),
+        metadata.source.rawTextFile,
+      );
       cloudflareExportBooks.push({
         manifest,
         rawTextPath: rawPath,
+        rawTextReportPath: toPosixPath(
+          path.relative(DEFAULT_REPO_ROOT, declaredRawTextPath),
+        ),
         sectionJson,
       });
     }
