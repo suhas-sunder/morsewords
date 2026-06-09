@@ -5,7 +5,7 @@
 
 
 [build]
-  command = "react-router build"
+  command = "npm run build:netlify"
   publish = "build/client"
 
 [dev]

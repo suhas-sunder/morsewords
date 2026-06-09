@@ -40,19 +40,7 @@ const publicManifest = publicManifestJson as unknown as MorseBookPublicManifest;
 const BOOK_CACHE_TOTAL_MAX = 4_800_000;
 const BOOK_CACHE_ENTRY_MAX = 3;
 
-const manifestLoaders = import.meta.glob<MorseBookManifest>(
-  "../assets/books/generated/*/manifest.json",
-  { import: "default" },
-);
-
 const publicBookContentCache = new Map<string, MorseBookPublicContentJson>();
-
-const reviewSectionLoaders = import.meta.env.DEV
-  ? import.meta.glob<MorseBookSectionJson>(
-      "../assets/books/generated/*/sections/*.json",
-      { import: "default" },
-    )
-  : {};
 
 const testPublishedBookSections = [
   {
@@ -289,6 +277,11 @@ function getTestPublishedBookSection(sectionId: string) {
     testPublishedBookSections.find((section) => section.sectionId === sectionId) ??
     null
   );
+}
+
+async function loadGeneratedReviewContent() {
+  if (!import.meta.env.DEV) return null;
+  return import("./morseBookReviewContent");
 }
 
 type BookCacheIndexEntry = {
@@ -698,11 +691,11 @@ export async function getMorseBookManifest(
   const summary = getMorseBookSummary(slug, { includeUnpublished: true });
   if (!summary) return null;
 
-  const loaderKey = `../assets/books/generated/${summary.manifestPath}`;
-  const loadManifest = manifestLoaders[loaderKey];
-  if (!loadManifest) return null;
-
-  const manifest = await loadManifest();
+  const reviewContent = await loadGeneratedReviewContent();
+  const manifest = await reviewContent?.loadGeneratedMorseBookManifest(
+    summary.manifestPath,
+  );
+  if (!manifest) return null;
   if (manifest.slug !== slug) return null;
   if (!options.includeUnpublished && !isMorseBookPublishReady(manifest)) {
     return null;
@@ -803,11 +796,12 @@ async function loadReviewBookSection(
   const summary = getMorseBookSectionSummary(book, sectionId);
   if (!summary) return null;
 
-  const reviewLoaderKey = `../assets/books/generated/${book.slug}/${summary.sectionJsonPath}`;
-  const loadSection = reviewSectionLoaders[reviewLoaderKey];
-  if (!loadSection) return null;
-
-  const section = await loadSection();
+  const reviewContent = await loadGeneratedReviewContent();
+  const section = await reviewContent?.loadGeneratedMorseBookSection(
+    book.slug,
+    summary.sectionJsonPath,
+  );
+  if (!section) return null;
   if (section.bookSlug !== book.slug || section.sectionId !== sectionId) return null;
   return section;
 }
@@ -879,8 +873,8 @@ export async function getMorseBookSection(
 export function getMorseBookDataLoaderStats() {
   return {
     summaryCount: libraryManifest.books.length,
-    manifestLoaderCount: Object.keys(manifestLoaders).length,
+    manifestLoaderCount: import.meta.env.DEV ? "dev-only" : 0,
     publicBookLoaderCount: publicManifest.books.length,
-    reviewSectionLoaderCount: Object.keys(reviewSectionLoaders).length,
+    reviewSectionLoaderCount: import.meta.env.DEV ? "dev-only" : 0,
   };
 }
