@@ -477,17 +477,13 @@ export default function MorseCodeChartRoute() {
                 label: "Print/download chart",
                 icon: <PrintIcon size={16} title={undefined} aria-hidden="true" />,
               },
-              {
-                href: "/morse-code-printable-chart",
-                label: "View printable chart",
-              },
             ]}
           />
         </PageHero>
 
         <nav
           aria-label="Morse chart sections"
-          className="mt-5"
+          className="mt-3"
         >
           <ActionLinks
             layout="grid"
@@ -497,7 +493,7 @@ export default function MorseCodeChartRoute() {
               { href: "#numbers", label: "Numbers 0-9" },
               { href: "#punctuation", label: "Punctuation" },
               { href: "#reference-signals", label: "Prosigns / reference signals" },
-              { href: "/morse-code-printable-chart", label: "Printable chart" },
+              { href: "/morse-code-audio-practice", label: "Audio practice" },
             ]}
           />
         </nav>
@@ -603,6 +599,7 @@ export default function MorseCodeChartRoute() {
                 { href: "/morse-code-alphabet", label: "Alphabet hub", primary: true },
                 { href: "/morse-code-numbers", label: "Number hub" },
                 { href: "/morse-code-punctuation", label: "Punctuation hub" },
+                { href: "/morse-code-by-language", label: "Morse by language" },
                 { href: "/morse-code-decoder", label: "Decoder" },
                 { href: "/typing", label: "Typing practice" },
               ]}

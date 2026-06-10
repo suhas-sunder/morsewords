@@ -110,8 +110,11 @@ export default function InternationalMorseCodeReference() {
             links={[
               { href: "/dictionary", label: "Dictionary", primary: true },
               { href: "/morse-code-alphabet", label: "Alphabet chart" },
+              { href: "/morse-code-numbers", label: "Number chart" },
+              { href: "/morse-code-punctuation", label: "Punctuation" },
+              { href: "/morse-code-prosigns", label: "Prosigns" },
               { href: "/morse-code-timing", label: "Timing guide" },
-              { href: "/sources", label: "Sources" },
+              { href: "/practice", label: "Practice" },
             ]}
           />
         </PageHero>

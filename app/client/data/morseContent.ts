@@ -6444,6 +6444,7 @@ export const GUIDE_PAGES: Record<string, GuidePageContent> = {
       "Create clean Morse, preserve the word gaps, then verify the result by decoding or listening.",
     relatedLinks: [
       { href: "/morse-code-word-separator", label: "Word separator", primary: true },
+      { href: "/morse-code-timing", label: "Timing guide" },
       { href: "/space-in-morse-code", label: "Space guide" },
       { href: "/slash-in-morse-code", label: "Slash guide" },
       { href: "/copy-and-paste-morse-code", label: "Copy-paste guide" },
