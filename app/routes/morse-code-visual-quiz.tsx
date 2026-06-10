@@ -168,7 +168,7 @@ function createVisualQuizSeed() {
 }
 
 export default function MorseCodeVisualQuiz() {
-  const { disableFlashEffects, flashAllowed, fullPageFlash } = useFlashSafety();
+  const { disableFlashEffects, flashAllowed } = useFlashSafety();
   const didHydratePromptOrder = React.useRef(false);
   const [roundSeed, setRoundSeed] = React.useState(INITIAL_VISUAL_QUIZ_SEED);
   const [index, setIndex] = React.useState(0);
@@ -194,12 +194,13 @@ export default function MorseCodeVisualQuiz() {
     promptDeck[Math.min(index, Math.max(0, promptDeck.length - 1))] ??
     VISUAL_QUIZ_FALLBACK_PROMPTS[0];
   const morse = textToMorse(prompt);
-  const { active, playing, play, stop } = useFlash(morse, wpm, farnsworthWpm);
-  const showStrobeWarning = fullPageFlash && playing;
+  const { active, play, stop } = useFlash(morse, wpm, farnsworthWpm);
+  const showStrobeWarning = flashAllowed;
   const normalizedAnswer = normalizePlainAnswer(answer);
   const isCorrect = comparePlainAnswers(answer, prompt);
   const gameOver = completed >= TOTAL_QUESTIONS;
   const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
+  const hasShareableProgress = attempts > 0 || completed > 0;
 
   const handleWpmChange = React.useCallback((value: number) => {
     stop();
@@ -333,16 +334,23 @@ export default function MorseCodeVisualQuiz() {
           <ActionLinks
             links={[
               {
+                href: "#visual-quiz",
+                label: "Start quiz",
+                primary: true,
+              },
+              {
                 href: "/morse-code-visual-practice",
                 label: "Visual practice",
-                primary: true,
               },
               { href: "/morse-code-audio-quiz", label: "Audio quiz" },
             ]}
           />
         </PageHero>
 
-        <section className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
+        <section
+          id="visual-quiz"
+          className="mw-static-surface-soft mt-8 scroll-mt-28 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7"
+        >
           <div className="pb-4">
             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
               <span>
@@ -360,19 +368,21 @@ export default function MorseCodeVisualQuiz() {
               <span>
                 Streak <strong className="text-sky-950">{streak}</strong>
               </span>
-              <ShareResultsButton
-                title="Morse Code Visual Quiz"
-                subtitle="Flashing-light quiz results"
-                stats={{
-                  attempts,
-                  correct,
-                  progress: completed,
-                  streak,
-                  bestStreak,
-                  totalQuestions: TOTAL_QUESTIONS,
-                }}
-                runStartedAt={runStartedAt}
-              />
+              {hasShareableProgress ? (
+                <ShareResultsButton
+                  title="Morse Code Visual Quiz"
+                  subtitle="Flashing-light quiz results"
+                  stats={{
+                    attempts,
+                    correct,
+                    progress: completed,
+                    streak,
+                    bestStreak,
+                    totalQuestions: TOTAL_QUESTIONS,
+                  }}
+                  runStartedAt={runStartedAt}
+                />
+              ) : null}
             </div>
           </div>
 

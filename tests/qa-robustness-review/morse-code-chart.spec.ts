@@ -109,7 +109,7 @@ test.describe("Morse code chart route", () => {
       "Letters A-Z",
       "Numbers 0-9",
       "Punctuation",
-      "Printable chart",
+      "Audio practice",
     ]) {
       await expect(page.getByRole("link", { name }).first()).toBeVisible();
     }
@@ -118,7 +118,7 @@ test.describe("Morse code chart route", () => {
       "Open translator",
       "Open audio tool",
       "Print/download chart",
-      "View printable chart",
+      "Morse by language",
     ]) {
       await expect(page.getByRole("link", { name }).first()).toBeVisible();
     }
@@ -257,7 +257,6 @@ test.describe("Morse code chart route", () => {
       "/morse-code-numbers",
       "/morse-code-punctuation",
       "/morse-code-printable-chart",
-      "/audio",
       "/morse-code-encoder",
     ]) {
       await page.goto(routePath, { waitUntil: "domcontentloaded" });

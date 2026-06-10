@@ -224,14 +224,21 @@ function MobileCards({ items }: { items: Entry[] }) {
  );
 }
 
+function emptyCategoryLabel(title: string) {
+ if (title === "Q-codes") return "Q-code";
+ return title.replace(/s$/, "").toLowerCase();
+}
+
 function Section({
  id,
  title,
  items,
+ query,
 }: {
  id: string;
  title: string;
  items: Entry[];
+ query: string;
 }) {
  return (
  <section id={id} className="mb-12 scroll-mt-28">
@@ -243,8 +250,21 @@ function Section({
  </a>
  </div>
 
+ {items.length > 0 ? (
+ <>
  <DesktopTable items={items} />
  <MobileCards items={items} />
+ </>
+ ) : (
+ <div className="mw-static-panel rounded-xl bg-[#fffdf8] p-5">
+ <p className="text-base leading-relaxed text-slate-700">
+ No {emptyCategoryLabel(title)} matches for{" "}
+ <span className="font-mono font-bold text-sky-950">{query}</span>.
+ Try a character, a Morse pattern like <span className="font-mono">.-</span>,
+ or a meaning such as <span className="font-mono">wait</span>.
+ </p>
+ </div>
+ )}
 
  <div className="pt-3 md:hidden">
  <a
@@ -320,6 +340,10 @@ export default function DictionaryRoute() {
  return { ...s, filteredItems };
  });
  }, [q]);
+ const totalMatches = filtered.reduce(
+ (sum, section) => sum + section.filteredItems.length,
+ 0,
+ );
 
  return (
       <main id="top" className="mw-non-home-page mx-auto w-full max-w-[1120px] px-4 pt-2 sm:px-6 sm:pt-4 lg:px-8">
@@ -339,17 +363,35 @@ export default function DictionaryRoute() {
  </PageHero>
 
  <div className="mw-static-panel mb-4 mt-3 rounded-xl bg-[#fffdf8]/80 p-4">
+ <div className="mb-2 flex flex-wrap items-center justify-between gap-3">
  <label
  htmlFor="dictionary-filter"
- className="mb-2 block text-sm font-extrabold text-sky-950"
+ className="block text-sm font-extrabold text-sky-950"
  >
  Filter dictionary
  </label>
+ {q ? (
+ <SharedActionButton
+ unstyled
+ type="button"
+ onClick={() => setQuery("")}
+ className="mw-button-outline inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#fffaf2] hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+ >
+ Clear filter
+ </SharedActionButton>
+ ) : null}
+ </div>
  <input
  id="dictionary-filter"
  value={query}
  onChange={(e) => setQuery(e.target.value)}
  placeholder="Type to filter by label, Morse, or meaning…" className="w-full rounded-xl bg-[#fffdf8] px-4 py-3 text-slate-950 transition focus:outline-none focus:ring-0 focus-visible:outline-none"/>
+ {q ? (
+ <p className="mt-3 text-sm font-semibold text-slate-600" aria-live="polite">
+ {totalMatches === 1 ? "1 match" : `${totalMatches} matches`} for{" "}
+ <span className="font-mono text-sky-950">{query.trim()}</span>
+ </p>
+ ) : null}
  </div>
 
  <nav className="mb-8 rounded-xl bg-[#fffdf8]/70 px-3 py-3">
@@ -366,7 +408,13 @@ export default function DictionaryRoute() {
  </nav>
 
  {filtered.map((s) => (
- <Section key={s.id} id={s.id} title={s.title} items={s.filteredItems} />
+ <Section
+ key={s.id}
+ id={s.id}
+ title={s.title}
+ items={s.filteredItems}
+ query={query.trim()}
+ />
  ))}
 
  <ReferenceSupportSections
