@@ -14,6 +14,10 @@ import type {
   BookExportSettings,
 } from "./bookExportTypes";
 import {
+  assertBookVideoPartsWithinBrowserLimit,
+  assertVideoRenderWithinBrowserLimit,
+} from "./bookExportSafety";
+import {
   buildBookVideoTimeline,
   getBookVideoFrameRate,
   getBookVideoFrameSize,
@@ -147,6 +151,7 @@ export async function createBookVideoDownloadPackage({
     includeAudioTrack:
       videoSettings.includeAudioTrack && support.audioTrackSupported,
   };
+  assertBookVideoPartsWithinBrowserLimit(parts, effectiveVideoSettings);
   const downloadKind = getBookVideoDownloadKind(parts, exportSettings);
   const formatLabel = videoFormatLabel(support.extension);
 
@@ -248,6 +253,7 @@ export async function renderBookPartVideo({
   canvas.width = frame.width;
   canvas.height = frame.height;
   const timeline = buildBookVideoTimeline(part.cleanedText, exportSettings);
+  assertVideoRenderWithinBrowserLimit(timeline.durationMs, videoSettings);
   return recordBookVideoCanvas({
     canvas,
     exportSettings,

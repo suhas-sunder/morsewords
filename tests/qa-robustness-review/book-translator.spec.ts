@@ -19,6 +19,15 @@ import {
   getBookVideoDownloadKind,
 } from "../../app/client/components/morse-code-book-translator/bookVideoExport";
 import {
+  BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS,
+  BOOK_OVERSIZED_EXPORT_MESSAGE,
+  BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS,
+  estimateBookVideoExport,
+  findOversizedAudioExportPart,
+  findOversizedVideoExportPart,
+  friendlyBookExportErrorMessage,
+} from "../../app/client/components/morse-code-book-translator/bookExportSafety";
+import {
   buildBookVideoTimeline,
   renderBookVideoFrame,
 } from "../../app/client/components/morse-code-book-translator/bookVideoRenderer";
@@ -34,6 +43,10 @@ import {
 import { segmentBookText } from "../../app/client/components/morse-code-book-translator/bookSegmentation";
 import { applyCleanupOptions } from "../../app/client/components/morse-code-book-translator/textNormalization";
 import { estimateMorseDurationMs } from "../../app/client/components/shared/morseTiming";
+import {
+  buildMorseVideoPreview,
+  getMorseVideoPreviewFrame,
+} from "../../app/client/components/shared/video/morseVideoPreview";
 import {
   blockExternalNetwork,
   collectConsoleErrors,
@@ -1407,6 +1420,60 @@ test("video timeline and package kind use shared timing and direct-vs-ZIP rules"
   ).toContain(
     "Long videos may take time to render. Split video downloads are packaged in ZIP files.",
   );
+
+  const preview = buildMorseVideoPreview(DEFAULT_BOOK_VIDEO_SETTINGS, text, {
+    charWpm: settings.charWpm,
+    farnsworthWpm: settings.farnsworthWpm,
+  });
+  const firstMark = preview.events.find((event) => event.type === "mark");
+  expect(firstMark).toBeTruthy();
+  expect(getMorseVideoPreviewFrame(preview, firstMark!.startMs + 1).active).toBe(
+    true,
+  );
+  expect(getMorseVideoPreviewFrame(preview, preview.durationMs).active).toBe(
+    false,
+  );
+});
+
+test("oversized export guards block before allocation and estimates video size", () => {
+  const settings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
+  const normalPart = makeVideoPart(1, "SOS HELP");
+  const oversizedAudioPart = {
+    ...normalPart,
+    morseDurationMs: BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS + 1_000,
+  };
+  const oversizedVideoPart = {
+    ...normalPart,
+    morseDurationMs:
+      BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS[DEFAULT_BOOK_VIDEO_SETTINGS.resolution] +
+      1_000,
+  };
+
+  expect(findOversizedAudioExportPart([normalPart], settings)).toBeNull();
+  expect(findOversizedVideoExportPart([normalPart], DEFAULT_BOOK_VIDEO_SETTINGS)).toBeNull();
+  expect(findOversizedAudioExportPart([oversizedAudioPart], settings)).toMatchObject({
+    part: expect.objectContaining({ title: normalPart.title }),
+  });
+  expect(
+    findOversizedVideoExportPart([oversizedVideoPart], DEFAULT_BOOK_VIDEO_SETTINGS),
+  ).toMatchObject({
+    part: expect.objectContaining({ title: normalPart.title }),
+  });
+  expect(
+    friendlyBookExportErrorMessage(
+      new RangeError("Invalid typed array length: 13520144345"),
+      "audio",
+    ),
+  ).toBe(BOOK_OVERSIZED_EXPORT_MESSAGE);
+
+  const estimate = estimateBookVideoExport(
+    12 * 60 * 1000,
+    "webm",
+    DEFAULT_BOOK_VIDEO_SETTINGS,
+  );
+  expect(estimate.sizeLabel).toMatch(/^~\d+(?:\.\d+)? (?:KB|MB|GB)$/);
+  expect(estimate.renderTimeLabel).toMatch(/^~/);
+  expect(estimate.sizeLabel).not.toContain("Available after export");
 });
 
 test("video renderer keeps exported text overlays readable and away from branding", () => {
@@ -2868,10 +2935,22 @@ test("video cancellation and source changes prevent stale completed state", asyn
   await expect(
     page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();
+  await expect(
+    page.getByRole("progressbar", { name: "Book download progress" }),
+  ).toBeVisible();
+  await expect(page.getByTestId("book-download-progress-detail")).toContainText(
+    /Elapsed/,
+  );
+  await expect(
+    page.getByRole("button", {
+      name: /Preparing export|Rendering video|Finalizing download/,
+    }),
+  ).toBeDisabled();
   await page.getByRole("button", { name: "Cancel download" }).click();
   await expect(page.getByText("Download cancelled.")).toBeVisible({
     timeout: 30_000,
   });
+  await expect(page.getByRole("button", { name: "Download WebM" })).toBeEnabled();
   await expect(page.getByText("Last download")).toHaveCount(0);
 
   await page.getByRole("button", { name: "Download WebM" }).click();

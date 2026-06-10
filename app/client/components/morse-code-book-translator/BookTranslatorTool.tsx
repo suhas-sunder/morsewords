@@ -53,6 +53,14 @@ import {
   formatDuration,
 } from "./bookDurationEstimate";
 import {
+  BOOK_OVERSIZED_EXPORT_MESSAGE,
+  estimateBookVideoExport,
+  findOversizedAudioExportPart,
+  findOversizedVideoExportPart,
+  friendlyBookExportErrorMessage,
+  oversizedExportDetailsLabel,
+} from "./bookExportSafety";
+import {
   MorseAudioTimingStrip,
   MorseVideoPreviewPanel,
   MorseVideoPreviewTimeline,
@@ -536,6 +544,10 @@ export default function BookTranslatorTool() {
   const [dragActive, setDragActive] = React.useState(false);
   const [exportProgress, setExportProgress] =
     React.useState<BookExportProgress>(IDLE_EXPORT_PROGRESS);
+  const [exportStartedAtMs, setExportStartedAtMs] = React.useState<number | null>(
+    null,
+  );
+  const [exportElapsedMs, setExportElapsedMs] = React.useState(0);
   const [exportStatus, setExportStatus] = React.useState<{
     kind: ExportStatusKind;
     message: string;
@@ -593,6 +605,8 @@ export default function BookTranslatorTool() {
       };
       exportProgressRef.current = nextProgress;
       setExportProgress(nextProgress);
+      setExportStartedAtMs(null);
+      setExportElapsedMs(0);
       setExportStatus({ kind: "info", message });
     },
     [],
@@ -939,6 +953,15 @@ export default function BookTranslatorTool() {
     () => Math.max(1, videoPreview.durationMs),
     [videoPreview.durationMs],
   );
+  const videoExportEstimate = React.useMemo(
+    () =>
+      estimateBookVideoExport(
+        exportAnalysis.totalRuntimeMs,
+        selectedVideoFormat,
+        effectiveVideoSettings,
+      ),
+    [effectiveVideoSettings, exportAnalysis.totalRuntimeMs, selectedVideoFormat],
+  );
   const previewSettingsSignature = React.useMemo(
     () =>
       [
@@ -984,7 +1007,27 @@ export default function BookTranslatorTool() {
       effectiveVideoSettings.visualStyle,
     ],
   );
-  const canAudioExport = hasSource && exportParts.length > 0 && !exportRunning;
+  const oversizedAudioExportPart = React.useMemo(
+    () => findOversizedAudioExportPart(exportParts, exportSettings),
+    [exportParts, exportSettings],
+  );
+  const oversizedVideoExportPart = React.useMemo(
+    () => findOversizedVideoExportPart(exportParts, effectiveVideoSettings),
+    [effectiveVideoSettings, exportParts],
+  );
+  const activeOversizedExportPart = isVideoOutput
+    ? oversizedVideoExportPart
+    : oversizedAudioExportPart;
+  const oversizedExportMessage = activeOversizedExportPart
+    ? `${BOOK_OVERSIZED_EXPORT_MESSAGE} ${oversizedExportDetailsLabel(
+        activeOversizedExportPart,
+      )}`
+    : "";
+  const canAudioExport =
+    hasSource &&
+    exportParts.length > 0 &&
+    !exportRunning &&
+    !oversizedAudioExportPart;
   const selectedVideoFormatSupport = React.useMemo(
     () => getMorseVideoFormatSupport(videoSupport, selectedVideoFormat),
     [selectedVideoFormat, videoSupport],
@@ -1006,6 +1049,7 @@ export default function BookTranslatorTool() {
     hasCleanedSource &&
     exportParts.length > 0 &&
     !exportRunning &&
+    !oversizedVideoExportPart &&
     Boolean(selectedBookVideoSupport?.supported) &&
     selectedVideoFormatSupport.supported;
   const canExport = isAudioOutput ? canAudioExport : canVideoExport;
@@ -1016,6 +1060,8 @@ export default function BookTranslatorTool() {
         ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
         : exportParts.length === 0
           ? "Review the source text before downloading."
+          : oversizedVideoExportPart
+            ? oversizedExportMessage
           : !videoSupport
             ? "Checking browser video export support."
             : !videoSupport.supported
@@ -1031,6 +1077,8 @@ export default function BookTranslatorTool() {
         ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
         : exportParts.length === 0
           ? "Review the source text before downloading."
+          : oversizedAudioExportPart
+            ? oversizedExportMessage
           : exportRunning
             ? "Download is currently running."
             : "";
@@ -1122,15 +1170,29 @@ export default function BookTranslatorTool() {
   const showExportProgress = exportRunning;
   const showExportStatus = Boolean(exportStatus) && !exportRunning;
   const runningDownloadLabel = isVideoOutput
-    ? exportProgress.phase === "bundling" || downloadKind === "zip"
-      ? "Building ZIP..."
+    ? exportProgress.phase === "analyzing" || exportProgress.phase === "splitting"
+      ? "Preparing export..."
+      : exportProgress.phase === "bundling"
+        ? "Finalizing download..."
       : "Rendering video..."
-    : exportProgress.phase === "bundling" || downloadKind === "zip"
-      ? "Building ZIP..."
-      : "Preparing...";
+    : exportProgress.phase === "analyzing" || exportProgress.phase === "splitting"
+      ? "Preparing export..."
+      : exportProgress.phase === "bundling"
+        ? "Finalizing download..."
+        : "Rendering audio...";
   const downloadButtonLabel = exportRunning
     ? runningDownloadLabel
     : primaryDownloadLabel;
+
+  React.useEffect(() => {
+    if (!exportRunning || exportStartedAtMs === null) return undefined;
+    const updateElapsed = () => {
+      setExportElapsedMs(Math.max(0, performance.now() - exportStartedAtMs));
+    };
+    updateElapsed();
+    const timer = window.setInterval(updateElapsed, 500);
+    return () => window.clearInterval(timer);
+  }, [exportRunning, exportStartedAtMs]);
 
   React.useEffect(() => {
     stopPreviewAudioRef.current?.();
@@ -1972,17 +2034,32 @@ export default function BookTranslatorTool() {
       return;
     }
 
+    if (activeOversizedExportPart) {
+      setExportStatus({
+        kind: "error",
+        message: oversizedExportMessage || BOOK_OVERSIZED_EXPORT_MESSAGE,
+      });
+      setExportProgress({
+        phase: "failed",
+        message: oversizedExportMessage || BOOK_OVERSIZED_EXPORT_MESSAGE,
+        currentPart: 0,
+        totalParts: exportParts.length,
+      });
+      return;
+    }
+
     exportAbortRef.current?.abort();
     const controller = new AbortController();
     exportAbortRef.current = controller;
     const version = exportVersionRef.current + 1;
     exportVersionRef.current = version;
+    const startedAtMs = performance.now();
+    setExportStartedAtMs(startedAtMs);
+    setExportElapsedMs(0);
     setCompletedExport(null);
     setExportStatus({
       kind: "working",
-      message: isVideoOutput
-        ? "Starting book video download..."
-        : "Starting book download...",
+      message: "Preparing export...",
     });
     const initialProgress: BookExportProgress = {
       phase: "analyzing",
@@ -2090,8 +2167,8 @@ export default function BookTranslatorTool() {
         return;
       }
       const failedMessage = isVideoOutput
-        ? "Video export failed. Try 720p, a shorter part duration, or silent video."
-        : "Book download failed. Try a shorter part duration or MP3 output.";
+        ? friendlyBookExportErrorMessage(error, "video")
+        : friendlyBookExportErrorMessage(error, "audio");
       setExportProgress({
         phase: "failed",
         message: failedMessage,
@@ -2105,10 +2182,12 @@ export default function BookTranslatorTool() {
     } finally {
       if (exportVersionRef.current === version) {
         exportAbortRef.current = null;
+        setExportStartedAtMs(null);
       }
     }
   }, [
     activeSegmentationSettings,
+    activeOversizedExportPart,
     effectiveVideoSettings,
     exportAnalysis.estimatedSizeLabel,
     exportAnalysis.totalRuntimeMs,
@@ -2122,6 +2201,7 @@ export default function BookTranslatorTool() {
     selectedBookVideoSupport,
     selectedVideoFormatSupport,
     downloadFormatLabel,
+    oversizedExportMessage,
   ]);
 
   const uploadHelpText = hasSource
@@ -2348,15 +2428,19 @@ export default function BookTranslatorTool() {
                 }
               />
               <Metric
-                label={isVideoOutput ? "Resolution" : "Output size"}
+                label={isVideoOutput ? "Estimated size" : "Output size"}
                 value={
                   isVideoOutput
-                    ? BOOK_VIDEO_RESOLUTION_LABELS[
-                        effectiveVideoSettings.resolution
-                      ]
+                    ? videoExportEstimate.sizeLabel
                     : `~${exportAnalysis.estimatedSizeLabel}`
                 }
               />
+              {isVideoOutput ? (
+                <Metric
+                  label="Render time"
+                  value={videoExportEstimate.renderTimeLabel}
+                />
+              ) : null}
             </dl>
 
             {sourceDraftActive ? (
@@ -2440,7 +2524,14 @@ export default function BookTranslatorTool() {
                 }
                 className="rounded-xl"
               >
-                <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                {exportRunning ? (
+                  <span
+                    className="h-2.5 w-2.5 animate-pulse rounded-full bg-current"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                )}
                 {downloadButtonLabel}
               </ToolButton>
               {exportRunning ? (
@@ -2477,8 +2568,15 @@ export default function BookTranslatorTool() {
                   live
                   className="mt-3"
                 >
-                  {exportStatus?.message ?? exportProgress.message}
+                  {exportProgress.message || exportStatus?.message}
                 </StatusMessage>
+                <p
+                  className="mt-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+                  data-testid="book-download-progress-detail"
+                >
+                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} / Elapsed{" "}
+                  {formatDuration(exportElapsedMs)}
+                </p>
               </div>
             ) : null}
             {showExportStatus && exportStatus ? (
@@ -3433,13 +3531,19 @@ export default function BookTranslatorTool() {
                 }
               />
               <Metric
-                label={isVideoOutput ? "Output type" : "Output size"}
+                label={isVideoOutput ? "Estimated size" : "Output size"}
                 value={
                   isVideoOutput
-                    ? "Video"
+                    ? videoExportEstimate.sizeLabel
                     : `~${exportAnalysis.estimatedSizeLabel}`
                 }
               />
+              {isVideoOutput ? (
+                <Metric
+                  label="Render time"
+                  value={videoExportEstimate.renderTimeLabel}
+                />
+              ) : null}
               <Metric
                 label={isVideoOutput ? "Video style" : "Format"}
                 value={

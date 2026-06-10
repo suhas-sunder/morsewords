@@ -92,23 +92,25 @@ export function getMorseVideoPreviewFrame(
   preview: MorseVideoPreview,
   elapsedMs: number,
 ): MorseVideoPreviewFrame {
-  const loopedElapsedMs =
-    preview.durationMs > 0 ? elapsedMs % preview.durationMs : elapsedMs;
+  const timelineElapsedMs =
+    preview.durationMs > 0
+      ? Math.max(0, Math.min(preview.durationMs, elapsedMs))
+      : Math.max(0, elapsedMs);
   const active = preview.events.some(
     (event) =>
       event.type === "mark" &&
-      loopedElapsedMs >= event.startMs &&
-      loopedElapsedMs < event.endMs,
+      timelineElapsedMs >= event.startMs &&
+      timelineElapsedMs < event.endMs,
   );
   const completedSymbols = preview.events
-    .filter((event) => event.type === "mark" && event.startMs <= loopedElapsedMs)
+    .filter((event) => event.type === "mark" && event.startMs <= timelineElapsedMs)
     .map((event) => event.symbol ?? "")
     .join("");
   const sampleMorse = preview.sampleMorse.replace(/\s+/g, " ");
-  const textState = getMorseVideoFrameTextState(preview.timeline, loopedElapsedMs);
+  const textState = getMorseVideoFrameTextState(preview.timeline, timelineElapsedMs);
   const words = getMorseVideoFrameWordWindow(
     preview.timeline,
-    loopedElapsedMs,
+    timelineElapsedMs,
     PREVIEW_WORD_WINDOW_LIMIT,
   );
   const morseExcerpt = words.map((word) => word.morse).join(" / ");
@@ -122,7 +124,7 @@ export function getMorseVideoPreviewFrame(
       readableMorseExcerpt(completedSymbols, sampleMorse, 92),
     textExcerpt:
       textExcerpt ||
-      readableTextExcerpt(preview.timeline, loopedElapsedMs, PREVIEW_WORD_WINDOW_LIMIT) ||
+      readableTextExcerpt(preview.timeline, timelineElapsedMs, PREVIEW_WORD_WINDOW_LIMIT) ||
       textState.plainText ||
       preview.sampleText,
     words,

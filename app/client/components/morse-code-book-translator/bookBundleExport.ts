@@ -19,6 +19,10 @@ import type {
   BookExportProgress,
   BookExportSettings,
 } from "./bookExportTypes";
+import {
+  assertAudioRenderWithinBrowserLimit,
+  assertBookAudioPartsWithinBrowserLimit,
+} from "./bookExportSafety";
 import { buildBundleFilename, buildSingleAudioFilename } from "./bookSegmentation";
 
 type LameModule = typeof import("@breezystack/lamejs");
@@ -93,6 +97,7 @@ export async function createBookDownloadPackage({
   if (parts.length === 0) {
     throw new Error("No book parts are available for download.");
   }
+  assertBookAudioPartsWithinBrowserLimit(parts, settings);
 
   const downloadKind = getBookDownloadKind(parts, settings);
   if (downloadKind === "zip") {
@@ -278,6 +283,7 @@ export async function renderBookPartPcm(
   const totalMs =
     events.reduce((sum, event) => sum + event.ms, 0) +
     (settings.tailPaddingMs ?? DEFAULT_TAIL_PADDING_MS);
+  assertAudioRenderWithinBrowserLimit(totalMs, sampleRate);
   const totalSamples = Math.max(1, Math.ceil((totalMs / 1000) * sampleRate));
   const output = new Float32Array(totalSamples);
   const amplitude = clamp(settings.volume, 0, 1) * 0.38;
