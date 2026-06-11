@@ -26,10 +26,9 @@ export const BOOK_EXPORT_PRESET_NAMES = [
   "Long Listen",
   "Practice Copy",
   "Faithful Source",
-  "Archive Export",
 ] as const satisfies readonly BookExportPresetName[];
 
-export const BOOK_EXPORT_FORMATS = ["mp3", "wav"] as const;
+export const BOOK_EXPORT_FORMATS = ["mp3"] as const;
 export const BOOK_PUNCTUATION_MODES = ["preserve", "simplify"] as const;
 export const BOOK_SPLIT_MODES = [
   "none",
@@ -63,8 +62,8 @@ export const BOOK_EXPORT_PRESET_DETAILS: Record<
   },
   "Archive Export": {
     description:
-      "Uncompressed WAV output with metadata options. Useful for short archival downloads, but large.",
-    bestFor: "Short uncompressed bundles",
+      "Legacy internal preset retained for compatibility with older saved settings. Public book downloads now use MP3 only.",
+    bestFor: "Legacy saved settings",
   },
 };
 
@@ -200,7 +199,10 @@ export const DEFAULT_BOOK_EXPORT_SETTINGS =
 export function isBookExportPresetName(
   value: unknown,
 ): value is BookExportPresetName {
-  return BOOK_EXPORT_PRESET_NAMES.includes(value as BookExportPresetName);
+  return (
+    typeof value === "string" &&
+    (BOOK_EXPORT_PRESET_NAMES as readonly string[]).includes(value)
+  );
 }
 
 export function isBookSplitMode(
@@ -230,10 +232,7 @@ export function sanitizeBookExportSettings(
       charWpm,
     ),
   );
-  const outputFormat: BookExportFormat =
-    settings.outputFormat === "wav" || settings.outputFormat === "mp3"
-      ? settings.outputFormat
-      : fallback.outputFormat;
+  const outputFormat: BookExportFormat = "mp3";
   const punctuationMode: BookPunctuationMode =
     settings.punctuationMode === "preserve" ||
     settings.punctuationMode === "simplify"

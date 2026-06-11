@@ -49,11 +49,11 @@ const processSteps = [
   },
   {
     title: "Adjust settings",
-    text: "Adjust speed, tone, spacing, audio settings, or video settings.",
+    text: "Adjust speed, tone, spacing, MP3 download settings, or live player settings.",
   },
   {
-    title: "Download Morse audio or video",
-    text: "Save Morse audio or video from the browser when the result fits your session.",
+    title: "Download MP3 or open the live player",
+    text: "Save Morse MP3 audio from the browser or continue in the live visual player.",
   },
 ];
 
@@ -257,7 +257,7 @@ function resultCountText({
 
 function displayBookDescription(description: string) {
   if (description.toLowerCase().includes("development-only")) {
-    return "Chapter-ready text for Morse audio, video, and practice.";
+    return "Chapter-ready text for Morse audio, live playback, and practice.";
   }
   return description;
 }
@@ -283,7 +283,7 @@ function hubDescriptionForBook(book: MorseBookLibrarySummary) {
   return (
     curatedDescription ||
     sourceDescription ||
-    "A processed Project Gutenberg reference text prepared for browser-local Morse reading, audio, and video."
+    "A processed Project Gutenberg reference text prepared for browser-local Morse reading, MP3 audio, and live playback."
   );
 }
 
@@ -506,7 +506,7 @@ export default function MorseCodeBooksHubRoute({
       <PageHero
         eyebrow="Morse books"
         title={TITLE}
-        description="Browse processed book pages, preview cleaned text and Morse, then open audio or video practice controls when you need them."
+        description="Browse processed book pages, preview cleaned text and Morse, download MP3 audio, or open the live Morse player."
       >
         <ActionLinks
           links={[
@@ -516,7 +516,6 @@ export default function MorseCodeBooksHubRoute({
               primary: true,
             },
             { href: ROUTES.morseAudiobooks, label: "Browse audiobooks" },
-            { href: ROUTES.videoGenerator, label: "Create Morse video" },
             { href: ROUTES.mp3Generator, label: "Create MP3 audio" },
           ]}
         />
@@ -821,8 +820,8 @@ function EmptyCollectionShelf({ variant }: { variant: "empty" | "filtered" }) {
               The collection is being prepared
             </h3>
             <p className="mw-text-muted mt-1 max-w-[58ch] text-sm leading-relaxed text-slate-700">
-              Create Morse audio or video from your own text while the first
-              book pages are added.
+              Create Morse MP3 audio or live player sessions from your own text
+              while the first book pages are added.
             </p>
           </div>
           <Link

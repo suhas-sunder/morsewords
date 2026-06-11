@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 import { strFromU8, unzipSync } from "fflate";
 
 import { ROUTES } from "../../app/client/data/routes";
@@ -6,9 +6,7 @@ import {
   buildBookExportBatches,
   buildBookExportPlan,
 } from "../../app/client/components/morse-code-book-translator/bookExportPlan";
-import {
-  createBookDownloadPackage,
-} from "../../app/client/components/morse-code-book-translator/bookBundleExport";
+import { createBookDownloadPackage } from "../../app/client/components/morse-code-book-translator/bookBundleExport";
 import {
   BOOK_DEFAULT_PART_TARGET_MS,
   BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
@@ -24,14 +22,7 @@ import {
   bookExportProgressPercent,
 } from "../../app/client/components/morse-code-book-translator/bookExportProgressCopy";
 import type { BookExportPart } from "../../app/client/components/morse-code-book-translator/bookExportTypes";
-import {
-  buildBookVideoTimeline,
-  renderBookVideoFrame,
-} from "../../app/client/components/morse-code-book-translator/bookVideoRenderer";
-import {
-  DEFAULT_BOOK_VIDEO_SETTINGS,
-  sanitizeBookVideoSettings,
-} from "../../app/client/components/morse-code-book-translator/bookVideoTypes";
+import { DEFAULT_BOOK_VIDEO_SETTINGS } from "../../app/client/components/morse-code-book-translator/bookVideoTypes";
 import {
   buildMorseVideoPreview,
   getMorseVideoPreviewFrame,
@@ -40,6 +31,10 @@ import { getMorseVideoCanonicalFrameState } from "../../app/client/components/sh
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const BOOK_TOOL_LABEL = "Book source review and download tool";
+const TEST_BOOK_PATH =
+  "/morse-code-books/test-published-morse-book?preview=test-published";
+const PUBLIC_BOOK_PATH = "/morse-code-books/treasure-island";
+const PUBLIC_AUDIOBOOK_PATH = "/morse-code-audiobooks/treasure-island";
 
 function part(index: number, minutes: number): BookExportPart {
   return {
@@ -58,65 +53,15 @@ function longText(repetitions: number) {
   return "SOS HELP ".repeat(repetitions).trim();
 }
 
-async function installMp4RecorderSupport(page: Page) {
-  await page.addInitScript(() => {
-    class FakeMediaRecorder {
-      static isTypeSupported(type: string) {
-        return type.startsWith("video/mp4");
-      }
-    }
-    Object.defineProperty(window, "MediaRecorder", {
-      configurable: true,
-      value: FakeMediaRecorder,
-    });
-    HTMLCanvasElement.prototype.captureStream = function captureStream() {
-      return new MediaStream();
-    };
-  });
-}
-
-async function installFailingMp4Recorder(page: Page) {
-  await page.addInitScript(() => {
-    class FailingMediaRecorder {
-      mimeType: string;
-      ondataavailable: ((event: BlobEvent) => void) | null = null;
-      onerror: ((event: Event) => void) | null = null;
-      onstop: ((event: Event) => void) | null = null;
-      state = "inactive";
-
-      static isTypeSupported(type: string) {
-        return type.startsWith("video/mp4");
-      }
-
-      constructor(_stream: MediaStream, options?: MediaRecorderOptions) {
-        this.mimeType = options?.mimeType || "video/mp4";
-      }
-
-      start() {
-        throw new Error("Invalid typed array length");
-      }
-
-      stop() {
-        this.state = "inactive";
-        this.onstop?.(new Event("stop"));
-      }
-    }
-
-    Object.defineProperty(window, "MediaRecorder", {
-      configurable: true,
-      value: FailingMediaRecorder,
-    });
-    HTMLCanvasElement.prototype.captureStream = function captureStream() {
-      return new MediaStream();
-    };
-  });
+async function openRoute(page: Page, path: string) {
+  await blockExternalNetwork(page);
+  const response = await page.goto(path, { waitUntil: "domcontentloaded" });
+  await waitForRouteReady(page);
+  expect(response?.ok()).toBe(true);
 }
 
 async function openBookTranslator(page: Page) {
-  await installMp4RecorderSupport(page);
-  await blockExternalNetwork(page);
-  await page.goto(ROUTES.bookTranslator, { waitUntil: "domcontentloaded" });
-  await waitForRouteReady(page);
+  await openRoute(page, ROUTES.bookTranslator);
   await expect(page.locator("[data-mw-book-export-ready='true']")).toBeVisible();
 }
 
@@ -124,53 +69,84 @@ function bookTool(page: Page) {
   return page.locator(`section[aria-label="${BOOK_TOOL_LABEL}"]`);
 }
 
-test.describe("export pipeline correction planning", () => {
-  test("short audio and video exports plan as one direct file", () => {
+async function expectNoVideoExportControls(scope: Page | Locator) {
+  await expect(scope.getByText("Download MP4")).toHaveCount(0);
+  await expect(scope.getByText("Download WebM")).toHaveCount(0);
+  await expect(scope.getByText("Download video")).toHaveCount(0);
+  await expect(scope.getByText("Rendering video")).toHaveCount(0);
+  await expect(scope.getByText("Video format")).toHaveCount(0);
+  await expect(scope.getByText("Available after export")).toHaveCount(0);
+  await expect(scope.getByText("browser-safe file")).toHaveCount(0);
+  await expect(scope.getByText("choose fewer chapters")).toHaveCount(0);
+}
+
+async function clickTimelineAt(page: Page, ratio: number, minValueMs = 1) {
+  const timeline = page.getByRole("slider", { name: "Live player timeline" });
+  await expect(timeline).toBeVisible();
+  const box = await timeline.boundingBox();
+  expect(box).not.toBeNull();
+  await timeline.click({
+    position: {
+      x: Math.max(4, Math.min(box!.width - 4, box!.width * ratio)),
+      y: box!.height / 2,
+    },
+  });
+  await expect
+    .poll(async () => Number(await timeline.getAttribute("aria-valuenow")))
+    .toBeGreaterThan(minValueMs - 1);
+  return timeline;
+}
+
+test.describe("MP3 export planning", () => {
+  test("short MP3 exports plan as one direct file", () => {
     const settings = sanitizeBookExportSettings({
       ...DEFAULT_BOOK_EXPORT_SETTINGS,
+      outputFormat: "mp3",
       splitMode: "none",
     });
+    const plan = buildBookExportPlan({
+      cleanedText: "SOS HELP",
+      outputType: "audio",
+      settings,
+    });
 
-    for (const outputType of ["audio", "video"] as const) {
-      const plan = buildBookExportPlan({
-        cleanedText: "SOS HELP",
-        outputType,
-        settings,
-        videoSettings: DEFAULT_BOOK_VIDEO_SETTINGS,
-      });
-      expect(plan.directFileRuntimeLimitMs).toBe(BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS);
-      expect(plan.parts).toHaveLength(1);
-      expect(plan.zipWorkflow).toBe(false);
-      expect(plan.automaticSplit).toBe(false);
-    }
+    expect(plan.directFileRuntimeLimitMs).toBe(BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS);
+    expect(plan.parts).toHaveLength(1);
+    expect(plan.zipWorkflow).toBe(false);
+    expect(plan.automaticSplit).toBe(false);
   });
 
-  test("long audio and video exports use 30 minute parts and two hour ZIP batches", () => {
+  test("long MP3 exports use 30 minute parts and two hour ZIP batches", () => {
     const settings = sanitizeBookExportSettings({
       ...DEFAULT_BOOK_EXPORT_SETTINGS,
+      outputFormat: "mp3",
       splitMode: "none",
       targetPartMinutes: 30,
     });
+    const plan = buildBookExportPlan({
+      cleanedText: longText(1_200),
+      outputType: "audio",
+      settings,
+    });
 
-    for (const outputType of ["audio", "video"] as const) {
-      const plan = buildBookExportPlan({
-        cleanedText: longText(1_200),
-        outputType,
-        settings,
-        videoSettings: DEFAULT_BOOK_VIDEO_SETTINGS,
-      });
-      expect(plan.automaticSplit).toBe(true);
-      expect(plan.zipWorkflow).toBe(true);
-      expect(plan.targetPartMs).toBe(BOOK_DEFAULT_PART_TARGET_MS);
-      expect(plan.batchTargetMs).toBe(BOOK_ZIP_BATCH_TARGET_MS);
-      expect(plan.parts.length).toBeGreaterThan(1);
-      expect(plan.parts.every((item) => item.morseDurationMs <= 60 * 60_000)).toBe(true);
-    }
+    expect(plan.automaticSplit).toBe(true);
+    expect(plan.zipWorkflow).toBe(true);
+    expect(plan.targetPartMs).toBe(BOOK_DEFAULT_PART_TARGET_MS);
+    expect(plan.batchTargetMs).toBe(BOOK_ZIP_BATCH_TARGET_MS);
+    expect(plan.parts.length).toBeGreaterThan(1);
+    expect(plan.parts.every((item) => item.morseDurationMs <= 45 * 60_000)).toBe(
+      true,
+    );
   });
 
-  test("example durations produce batch counts without tiny video parts", () => {
+  test("example durations produce the expected ZIP batch counts", () => {
     expect(buildBookExportBatches([part(1, 59)])).toHaveLength(1);
-    const oneHourOne = buildBookExportBatches([part(1, 30), part(2, 30), part(3, 1)]);
+
+    const oneHourOne = buildBookExportBatches([
+      part(1, 30),
+      part(2, 30),
+      part(3, 1),
+    ]);
     expect(oneHourOne).toHaveLength(1);
     expect(oneHourOne[0].parts).toHaveLength(3);
 
@@ -190,13 +166,13 @@ test.describe("export pipeline correction planning", () => {
     );
     const elevenThirtyEight = buildBookExportBatches(elevenThirtyEightParts);
     expect(elevenThirtyEight).toHaveLength(6);
-    expect(elevenThirtyEightParts).toHaveLength(24);
     expect(elevenThirtyEightParts.length).toBeLessThan(119);
   });
 
-  test("ZIP batches contain ordered media and manifest metadata", async () => {
+  test("ZIP batches contain ordered MP3 parts and manifest metadata", async () => {
     const settings = sanitizeBookExportSettings({
       ...DEFAULT_BOOK_EXPORT_SETTINGS,
+      outputFormat: "mp3",
       splitMode: "duration",
       includeManifest: false,
       includeSettings: false,
@@ -217,6 +193,7 @@ test.describe("export pipeline correction planning", () => {
       signal: new AbortController().signal,
       totalSelectedRuntimeMs: 1_000,
     });
+
     expect(result.downloadKind).toBe("zip");
     const entries = unzipSync(new Uint8Array(await result.blob.arrayBuffer()));
     const names = Object.keys(entries).sort();
@@ -271,152 +248,212 @@ test.describe("export pipeline correction planning", () => {
   });
 });
 
-test.describe("export pipeline correction UI", () => {
-  test("book translator defaults to video, hides source-section split, and exposes ZIP batches", async ({
+test.describe("MP3-only book and translator UI", () => {
+  test("short book page offers direct MP3 and links to the live player", async ({
+    page,
+  }) => {
+    await openRoute(page, TEST_BOOK_PATH);
+    await expect(page.locator("[data-mw-morse-book-output-foundation]")).toBeVisible();
+    await expect(page.getByTestId("morse-book-output-format")).toContainText("MP3");
+    await expect(page.locator("[data-mw-morse-book-download-label]")).toHaveAttribute(
+      "data-mw-morse-book-download-label",
+      "Download MP3",
+    );
+    await expect(page.getByTestId("morse-book-live-player-cta")).toBeVisible();
+    await expect(
+      page
+        .getByTestId("morse-book-live-player-cta")
+        .getByRole("link", { name: "Open live Morse player" }),
+    ).toHaveAttribute("href", /\/morse-code-audiobooks\/test-published-morse-book/);
+    await expectNoVideoExportControls(page);
+  });
+
+  test("long public book page uses ZIP batch MP3 workflow", async ({ page }) => {
+    await openRoute(page, PUBLIC_BOOK_PATH);
+    await expect(page.locator("[data-mw-morse-book-output-foundation]")).toBeVisible();
+    await expect(page.locator("[data-mw-morse-book-download-label]")).toHaveAttribute(
+      "data-mw-morse-book-download-label",
+      /Download ZIP batch 1|Download MP3 ZIP/,
+    );
+    await expect(page.getByLabel("ZIP batch")).toBeVisible();
+    await expect(page.getByText(BOOK_LONG_EXPORT_MESSAGE)).toBeVisible();
+    await expect(page.getByTestId("morse-book-live-player-cta")).toContainText(
+      "Watch or listen live",
+    );
+    await expectNoVideoExportControls(page);
+  });
+
+  test("book translator exposes MP3 download and live player, not video export", async ({
     page,
   }) => {
     await openBookTranslator(page);
-    await expect(bookTool(page).getByRole("radio", { name: "Video", exact: true })).toHaveAttribute(
-      "aria-checked",
-      "true",
-    );
-    await expect(bookTool(page).getByRole("radio", { name: "Audio", exact: true })).toHaveAttribute(
-      "aria-checked",
-      "false",
-    );
+    const tool = bookTool(page);
+    await expect(tool.getByRole("heading", { name: "MP3 download" })).toBeVisible();
+    await expect(tool.getByTestId("book-live-player-workflow")).toBeVisible();
+    await expect(tool.getByRole("radio", { name: "Video", exact: true })).toHaveCount(0);
+    await expect(tool.getByRole("radio", { name: "Audio", exact: true })).toHaveCount(0);
+    await expectNoVideoExportControls(tool);
 
     await page.getByLabel("Paste long-form source text").fill(longText(2_500));
-    await bookTool(page).locator("summary").filter({ hasText: "Download settings" }).click();
-    await expect(bookTool(page).getByRole("radio", { name: "By source sections" })).toHaveCount(0);
-    await bookTool(page).getByRole("radio", { name: "By duration" }).click();
-    await expect(bookTool(page).getByLabel("Target part length")).toHaveValue("30");
-    await expect(bookTool(page).getByLabel("ZIP batch")).toBeVisible();
-    await expect(bookTool(page).getByRole("button", { name: "Download ZIP batch 1" })).toBeEnabled();
-    await expect(bookTool(page).getByText(BOOK_LONG_EXPORT_MESSAGE)).toBeVisible();
-    await expect(bookTool(page).getByText("browser-safe file")).toHaveCount(0);
-    await expect(bookTool(page).getByText("choose fewer chapters")).toHaveCount(0);
-    await bookTool(page).getByLabel("ZIP batch").selectOption("2");
-    await expect(bookTool(page).getByRole("button", { name: "Download ZIP batch 2" })).toBeEnabled();
-  });
+    await tool.locator("summary").filter({ hasText: "Download settings" }).click();
+    await expect(tool.getByRole("radio", { name: "By source sections" })).toHaveCount(0);
+    await tool.getByRole("radio", { name: "By duration" }).click();
+    await expect(tool.getByLabel("Target part length")).toHaveValue("30");
+    await expect(tool.getByLabel("ZIP batch")).toBeVisible();
+    await expect(tool.getByRole("button", { name: "Download ZIP batch 1" })).toBeEnabled();
+    await tool.getByLabel("ZIP batch").selectOption("2");
+    await expect(tool.getByRole("button", { name: "Download ZIP batch 2" })).toBeEnabled();
 
-  test("book pages default to video and keep audio persistence available", async ({
-    page,
-  }) => {
-    await installMp4RecorderSupport(page);
-    await blockExternalNetwork(page);
-    await page.goto("/morse-code-books/test-published-morse-book?preview=test-published", {
-      waitUntil: "domcontentloaded",
-    });
-    await waitForRouteReady(page);
-    await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
-      "data-mw-morse-book-settings-restored",
-      "true",
-    );
-    await expect(page.locator("[data-mw-morse-book-output-type='video']")).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
-    await expect(page.getByRole("button", { name: "Download MP4" })).toBeEnabled();
-    await page.locator("[data-mw-morse-book-output-type='audio']").click();
-    await expect(page.locator("[data-mw-morse-book-output-type='audio']")).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
-    const stored = await page.evaluate(() =>
-      Object.values(localStorage).join("\n"),
-    );
-    expect(stored).toContain('"outputType":"audio"');
-    expect(stored).not.toContain("SOS HELP carried");
-  });
-
-  test("failed video export shows a readable retryable error and recovers controls", async ({
-    page,
-  }) => {
-    await installFailingMp4Recorder(page);
-    await blockExternalNetwork(page);
-    await page.goto(ROUTES.bookTranslator, { waitUntil: "domcontentloaded" });
-    await waitForRouteReady(page);
-    await page.getByLabel("Paste long-form source text").fill("SOS HELP");
-    const downloadButton = bookTool(page).getByRole("button", { name: "Download MP4" });
-    await expect(downloadButton).toBeEnabled();
-    await downloadButton.click();
-    await expect(
-      bookTool(page).getByText(
-        "Video export failed while rendering a part. Retry the download, or lower video resolution if it fails again.",
-      ),
-    ).toBeVisible();
-    await expect(bookTool(page).getByText("Invalid typed array length")).toHaveCount(0);
-    await expect(downloadButton).toBeEnabled();
+    const stored = await page.evaluate(() => Object.values(localStorage).join("\n"));
+    expect(stored).not.toContain("SOS HELP SOS HELP");
   });
 });
 
-test.describe("video preview/export canonical state", () => {
+test.describe("dedicated live player", () => {
+  test("audiobook route plays, seeks, navigates sections, saves, and resets progress", async ({
+    page,
+  }) => {
+    await openRoute(page, PUBLIC_AUDIOBOOK_PATH);
+    await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
+    await expect(page.getByTestId("morse-book-live-section-select")).toBeVisible();
+    await expect(page.getByTestId("morse-book-live-download-link")).toHaveAttribute(
+      "href",
+      /\/morse-code-books\/treasure-island/,
+    );
+    await expectNoVideoExportControls(page);
+
+    const player = page.getByTestId("morse-book-live-player");
+    await player.getByRole("button", { name: "Play live player" }).click();
+    await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
+      "data-preview-playing",
+      "true",
+    );
+    await player.getByRole("button", { name: "Pause live player" }).click();
+
+    const sectionSelect = page.getByTestId("morse-book-live-section-select");
+    const originalSection = await sectionSelect.inputValue();
+    const nextSectionButton = player.getByRole("button", { name: "Next section" });
+    await expect(nextSectionButton).toBeEnabled();
+    await nextSectionButton.click();
+    await expect
+      .poll(() => sectionSelect.inputValue())
+      .not.toBe(originalSection);
+    await player.getByRole("button", { name: "Previous section" }).click();
+    await expect(sectionSelect).toHaveValue(originalSection);
+
+    const chapterValue = await sectionSelect.evaluate((element) => {
+      const select = element as HTMLSelectElement;
+      const options = Array.from(select.options);
+      return (
+        options.find((option) => /chapter/i.test(option.textContent ?? "")) ??
+        options[Math.min(1, Math.max(0, options.length - 1))] ??
+        options[0]
+      ).value;
+    });
+    await sectionSelect.selectOption(chapterValue);
+    await expect(sectionSelect).toHaveValue(chapterValue);
+
+    await clickTimelineAt(page, 0.8, 5_000);
+    await expect
+      .poll(async () =>
+        page.evaluate(() => {
+          const elapsedValues = Object.entries(localStorage)
+            .filter(([key]) =>
+              key.startsWith("morsewords:book-runtime:settings:v1:"),
+            )
+            .map(([, value]) => {
+              try {
+                return JSON.parse(value)?.livePlayer?.elapsedMs ?? 0;
+              } catch {
+                return 0;
+              }
+            })
+            .filter((value) => typeof value === "number");
+          return Math.max(0, ...elapsedValues);
+        }),
+      )
+      .toBeGreaterThan(0);
+    const savedText = await page.evaluate(() =>
+      Object.entries(localStorage)
+        .filter(([key]) => key.startsWith("morsewords:book-runtime:settings:v1:"))
+        .map(([, value]) => value)
+        .join("\n"),
+    );
+    expect(savedText).toContain('"livePlayer"');
+    expect(savedText).not.toContain("TREASURE ISLAND");
+
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
+    const restoredTimeline = page.getByRole("slider", { name: "Live player timeline" });
+    await expect
+      .poll(async () => Number(await restoredTimeline.getAttribute("aria-valuenow")))
+      .toBeGreaterThan(0);
+
+    await page.getByTestId("morse-book-live-reset-progress").click();
+    await expect(page.getByText("Saved player progress reset.")).toBeVisible();
+    await expect
+      .poll(async () => Number(await restoredTimeline.getAttribute("aria-valuenow")))
+      .toBe(0);
+  });
+});
+
+test.describe("canonical live visual state", () => {
   for (const sample of [
     "SOS HELP",
     "THE QUICK BROWN FOX",
+    "HELLO WORLD",
+    "BOOK ONE CHAPTER ONE",
+    "EEE TTT SSS OOO",
+    "WAIT, STOP. GO!",
     "Signals at dawn moved across the ridge.",
-    "SOS HELP PART ONE\n\nPART TWO BEGINS",
   ]) {
-    test(`preview and export state match at fixed timestamps for ${sample.slice(0, 14)}`, () => {
+    test(`live player state is deterministic for ${sample}`, () => {
       const settings = sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS);
-      const videoSettings = sanitizeBookVideoSettings(DEFAULT_BOOK_VIDEO_SETTINGS);
-      const timeline = buildBookVideoTimeline(sample, settings);
-      const preview = buildMorseVideoPreview(videoSettings, sample, settings, {
-        maxCharacters: 10_000,
-        maxDurationMs: 10 * 60_000,
-        maxWords: 1_000,
-      });
-      const timestamps = [
-        0,
-        Math.min(500, timeline.durationMs / 4),
-        Math.min(1_500, timeline.durationMs / 2),
-        Math.max(0, timeline.durationMs - 120),
-      ];
+      const preview = buildMorseVideoPreview(
+        DEFAULT_BOOK_VIDEO_SETTINGS,
+        sample,
+        settings,
+        {
+          maxCharacters: 10_000,
+          maxDurationMs: 10 * 60_000,
+          maxWords: 1_000,
+        },
+      );
+      const mark = preview.timeline.events.find((event) => event.type === "mark");
+      const gap = preview.timeline.events.find((event) => event.type === "gap");
+      expect(mark).toBeTruthy();
+      expect(gap).toBeTruthy();
 
-      for (const elapsedMs of timestamps) {
-        const exportState = getMorseVideoCanonicalFrameState(timeline, elapsedMs);
-        const previewState = getMorseVideoCanonicalFrameState(preview.timeline, elapsedMs);
-        const previewFrame = getMorseVideoPreviewFrame(preview, elapsedMs);
-        expect(exportState.bulbActive).toBe(previewState.bulbActive);
-        expect(exportState.toneState).toBe(previewState.toneState);
-        expect(exportState.activeCharacter).toBe(previewState.activeCharacter);
-        expect(exportState.activeCharacterMorse).toBe(previewState.activeCharacterMorse);
-        expect(previewFrame.textExcerpt).toContain(previewState.plainTextWindow.split(" ")[0] ?? "");
-        expect(exportState.plainTextWindow).not.toMatch(/S O HHELP/i);
+      const toneState = getMorseVideoCanonicalFrameState(
+        preview.timeline,
+        mark!.startMs + 1,
+      );
+      expect(toneState.bulbActive).toBe(true);
+      expect(toneState.toneState).toBe("tone");
+      expect(toneState.activeMorseToken).not.toBeNull();
+      expect(toneState.activeCharacter).not.toBe("");
+      expect(toneState.morseWindow).toContain(toneState.activeCharacterMorse);
+
+      const gapState = getMorseVideoCanonicalFrameState(
+        preview.timeline,
+        gap!.startMs + 1,
+      );
+      expect(gapState.bulbActive).toBe(false);
+      expect(gapState.toneState).toBe("gap");
+
+      for (const elapsedMs of [
+        0,
+        mark!.startMs + 1,
+        Math.min(preview.durationMs, preview.durationMs / 2),
+        Math.max(0, preview.durationMs - 120),
+      ]) {
+        const frame = getMorseVideoPreviewFrame(preview, elapsedMs);
+        const state = getMorseVideoCanonicalFrameState(preview.timeline, elapsedMs);
+        expect(frame.active).toBe(state.bulbActive);
+        expect(frame.textExcerpt).not.toMatch(/S O HHELP/i);
+        expect(frame.textExcerpt).not.toMatch(/\b(\w+)\s+\1\s+\1\b/i);
       }
     });
   }
-
-  test("canvas export clears and repaints each frame before drawing overlays", () => {
-    const settings = sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS);
-    const timeline = buildBookVideoTimeline("SOS HELP", settings);
-    const calls: string[] = [];
-    const ctx = {
-      arc: () => calls.push("arc"),
-      beginPath: () => calls.push("beginPath"),
-      clearRect: () => calls.push("clearRect"),
-      fill: () => calls.push("fill"),
-      fillStyle: "",
-      fillRect: () => calls.push("fillRect"),
-      fillText: (text: string) => calls.push(`fillText:${text}`),
-      font: "",
-      measureText: (text: string) => ({ width: text.length * 18 }),
-      textAlign: "left",
-      textBaseline: "alphabetic",
-    } as unknown as CanvasRenderingContext2D;
-
-    renderBookVideoFrame({
-      ctx,
-      elapsedMs: 250,
-      exportSettings: settings,
-      frame: { width: 1280, height: 720 },
-      settings: DEFAULT_BOOK_VIDEO_SETTINGS,
-      timeline,
-      resolvedBackgroundStyle: "warm-morsewords",
-    });
-
-    expect(calls[0]).toBe("clearRect");
-    expect(calls[1]).toBe("fillRect");
-    expect(calls.some((call) => call.startsWith("fillText:"))).toBe(true);
-  });
 });

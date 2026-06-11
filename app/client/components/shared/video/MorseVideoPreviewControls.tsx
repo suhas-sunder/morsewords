@@ -30,6 +30,7 @@ type MorseVideoPreviewPanelProps = {
 };
 
 type MorseVideoPreviewTimelineProps = {
+  ariaLabel?: string;
   disabled?: boolean;
   elapsedMs: number;
   onSeek: (elapsedMs: number) => void;
@@ -284,6 +285,7 @@ export function MorseVideoPreviewPanel({
 }
 
 export function MorseVideoPreviewTimeline({
+  ariaLabel = "Video preview timeline",
   disabled = false,
   elapsedMs,
   onSeek,
@@ -304,7 +306,7 @@ export function MorseVideoPreviewTimeline({
       data-active-word={textState.plainText}
     >
       <MorseAudioTimingStrip
-        ariaLabel="Video preview timeline"
+        ariaLabel={ariaLabel}
         disabled={disabled}
         elapsedMs={safeElapsed}
         headingText="Morse timing strip"

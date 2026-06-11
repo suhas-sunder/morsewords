@@ -96,15 +96,23 @@ test.describe("dark mode interactive states", () => {
     await expectReadable(downloadSettings, "book download settings summary");
     await expectCleanFocus(downloadSettings, "book download settings summary");
 
-    await clickIfVisible(page.getByRole("radio", { name: /Video/i }).first());
-    const bookFullFrame = page.getByRole("radio", { name: /Full-frame/i }).first();
-    await expect(bookFullFrame).toBeVisible();
-    await bookFullFrame.click();
-    await expect(bookFullFrame).toBeChecked();
+    const bookLivePlayer = page.getByTestId("book-live-player-workflow");
+    await expect(bookLivePlayer).toBeVisible();
     await expectReadable(
-      page.getByTestId("book-video-full-frame-warning"),
-      "book full-frame warning",
+      bookLivePlayer.getByRole("button", { name: /Play live player/i }),
+      "book translator live player action",
     );
+    await expectReadable(
+      bookLivePlayer.getByText(/Visual signal:/i),
+      "book translator live player status",
+      3,
+    );
+    await expectReadable(
+      page.getByRole("button", { name: /Download MP3|Download ZIP batch/i }).first(),
+      "book translator MP3 download action",
+    );
+    await expect(page.getByText("Download MP4")).toHaveCount(0);
+    await expect(page.getByText("Download WebM")).toHaveCount(0);
 
     await gotoDarkRoute(page, "/morse-code-video-generator");
     await page.locator("textarea").first().fill("SOS");

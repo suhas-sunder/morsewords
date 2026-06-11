@@ -30,7 +30,7 @@ export type BookExportPreferences = {
 };
 
 const DEFAULT_BOOK_EXPORT_PREFERENCES: BookExportPreferences = {
-  outputType: "video",
+  outputType: "audio",
   exportSettings: DEFAULT_BOOK_EXPORT_SETTINGS,
   videoSettings: DEFAULT_BOOK_VIDEO_SETTINGS,
   advancedOpen: false,
@@ -45,10 +45,7 @@ export function loadBookExportPreferences(): BookExportPreferences {
   const exportSettings = sanitizeBookExportSettings(
     isPlainObject(parsed.exportSettings) ? parsed.exportSettings : {},
   );
-  const outputType =
-    parsed.outputType === "video" || parsed.outputType === "audio"
-      ? parsed.outputType
-      : DEFAULT_BOOK_EXPORT_PREFERENCES.outputType;
+  const outputType: BookOutputType = "audio";
   const videoSettings = sanitizeBookVideoSettings(
     isPlainObject(parsed.videoSettings) ? parsed.videoSettings : {},
   );
@@ -68,10 +65,7 @@ export function saveBookExportPreferences(
   preferences: BookExportPreferences,
 ): boolean {
   const payload: BookExportPreferences = {
-    outputType:
-      preferences.outputType === "video" || preferences.outputType === "audio"
-        ? preferences.outputType
-        : DEFAULT_BOOK_EXPORT_PREFERENCES.outputType,
+    outputType: "audio",
     exportSettings: sanitizeBookExportSettings(preferences.exportSettings),
     videoSettings: sanitizeBookVideoSettings(preferences.videoSettings),
     advancedOpen: Boolean(preferences.advancedOpen),

@@ -46,10 +46,10 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const path = morseAudiobookPath(book.slug);
   const canonical = absoluteUrl(path);
   return [
-    { title: `${book.title} Morse Audiobook | MorseWords` },
+    { title: `${book.title} Live Morse Player | MorseWords` },
     {
       name: "description",
-      content: `Listen to ${book.title} as browser-generated Morse audio, choose full-book or chapter scope, and download MP3 or WAV from your settings.`,
+      content: `Watch and listen to ${book.title} as live browser-generated Morse code with chapter selection, scrubbing, and saved progress.`,
     },
     { tagName: "link", rel: "canonical", href: canonical },
     { property: "og:url", content: canonical },
@@ -69,9 +69,9 @@ export default function MorseAudiobookRoute({
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      name: `${book.title} Morse audiobook`,
+      name: `${book.title} live Morse player`,
       url: audiobookUrl,
-      description: `Browser-generated Morse audiobook controls for ${book.title}.`,
+      description: `Live browser-generated Morse player controls for ${book.title}.`,
       isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
       about: {
         "@type": "Book",

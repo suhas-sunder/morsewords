@@ -52,13 +52,13 @@ const symbolSitemapLinks = Object.values(SYMBOL_PAGES).map((item) => ({
 const morseBookSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
   label: `${book.title} in Morse Code`,
   to: morseBookPath(book.slug),
-  description: `Read ${book.title} by ${formatMorseBookAuthors(book.author)} as cleaned Morse-ready book text with audio and video preview tools.`,
+  description: `Read ${book.title} by ${formatMorseBookAuthors(book.author)} as cleaned Morse-ready book text with MP3 download controls and a live player link.`,
 }));
 
 const morseAudiobookSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
-  label: `${book.title} Morse Audiobook`,
+  label: `${book.title} Live Morse Player`,
   to: morseAudiobookPath(book.slug),
-  description: `Open ${book.title} by ${formatMorseBookAuthors(book.author)} as a browser-generated Morse audiobook with chapter scope and MP3/WAV controls.`,
+  description: `Open ${book.title} by ${formatMorseBookAuthors(book.author)} as a live browser Morse player with chapter selection, scrubbing, and saved progress.`,
 }));
 
 const morseBookPrintSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
@@ -131,7 +131,7 @@ const GROUPS: SitemapGroup[] = [
         label: "Book to Morse Code Translator",
         to: ROUTES.bookTranslator,
         description:
-          "Convert long text, TXT, EPUB, or PDF into Morse audio or video downloads.",
+          "Convert long text, TXT, EPUB, or PDF into MP3 downloads with live visual playback.",
       },
       {
         label: "Printable Morse Pages",
@@ -149,7 +149,7 @@ const GROUPS: SitemapGroup[] = [
         label: "Morse Code Audiobooks",
         to: ROUTES.morseAudiobooks,
         description:
-          "Browse processed books with browser-generated Morse audiobook preview and download controls.",
+          "Browse processed books with live Morse player pages and MP3 download links.",
       },
       {
         label: "Morse Code Video Generator",

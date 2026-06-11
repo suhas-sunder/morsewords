@@ -26,7 +26,7 @@ const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 const TITLE = "Morse code audiobooks";
 const META_TITLE = "Morse Code Audiobooks | MorseWords";
 const DESCRIPTION =
-  "Browse processed books prepared for browser-generated Morse audiobook preview and MP3 or WAV download.";
+  "Browse processed books prepared for live browser Morse playback and MP3 download.";
 const PAGE_SIZE = 12;
 const DEFAULT_SORT_MODE: SortMode = "title-az";
 
@@ -265,7 +265,7 @@ export default function MorseCodeAudiobooksRoute({
       "Morse code audiobooks",
       "Browser-generated Morse audio",
       "Chapter audio",
-      "Morse MP3 and WAV downloads",
+      "Morse MP3 downloads",
     ],
     ...(books.length > 0
       ? {
@@ -302,7 +302,7 @@ export default function MorseCodeAudiobooksRoute({
       <PageHero
         eyebrow="Morse audiobooks"
         title={TITLE}
-        description="Open processed books as audio-first Morse listening pages. Audio is generated in your browser from your speed, tone, Farnsworth, split, MP3, and WAV settings."
+        description="Open processed books as live Morse player pages. Audio and visuals are generated in your browser from your speed, tone, Farnsworth, and player settings."
       >
         <ActionLinks
           links={[
@@ -480,8 +480,8 @@ export default function MorseCodeAudiobooksRoute({
           <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
             These pages do not point to pre-made audio files. Choose the full
             book or selected chapters, adjust speed, tone, Farnsworth timing,
-            MP3/WAV format, and split settings, then preview or download from
-            your browser.
+            player settings, and visual layers, then listen or watch from your
+            browser.
           </p>
         </div>
       </section>

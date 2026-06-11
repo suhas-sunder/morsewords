@@ -136,7 +136,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
     { title: `${book.title} in Morse Code | MorseWords` },
     {
       name: "description",
-      content: `Read ${book.title} as cleaned book text, preview Morse code, and prepare browser-local Morse audio or video settings.`,
+      content: `Read ${book.title} as cleaned book text, preview Morse code, download MP3, or open the live Morse player.`,
     },
     { tagName: "link", rel: "canonical", href: canonical },
     { property: "og:url", content: canonical },
