@@ -55,6 +55,7 @@ import {
 } from "~/client/components/shared/video/morseVideoSupport";
 import { getAppliedThemeMode, type ThemeMode } from "~/client/theme/themeStorage";
 import {
+  createBookAudioPartDownloads,
   createBookDownloadPackage,
   getBookDownloadKind,
 } from "~/client/components/morse-code-book-translator/bookBundleExport";
@@ -65,17 +66,17 @@ import {
   formatDuration,
 } from "~/client/components/morse-code-book-translator/bookDurationEstimate";
 import {
+  BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE,
+  BOOK_LONG_EXPORT_MESSAGE,
   BOOK_OVERSIZED_EXPORT_MESSAGE,
   estimateBookVideoExport,
-  findOversizedAudioExportPart,
-  findOversizedVideoExportPart,
   friendlyBookExportErrorMessage,
-  oversizedExportDetailsLabel,
 } from "~/client/components/morse-code-book-translator/bookExportSafety";
 import {
   DEFAULT_BOOK_EXPORT_SETTINGS,
   sanitizeBookExportSettings,
 } from "~/client/components/morse-code-book-translator/bookExportPresets";
+import { buildBookExportPlan } from "~/client/components/morse-code-book-translator/bookExportPlan";
 import type {
   BookBundleMetadata,
   BookDownloadKind,
@@ -89,10 +90,10 @@ import {
   buildBookAudioPreview,
   type BookAudioPreview,
 } from "~/client/components/morse-code-book-translator/bookPreviewAudio";
-import { segmentBookText } from "~/client/components/morse-code-book-translator/bookSegmentation";
 import type { BookSourceSection } from "~/client/components/morse-code-book-translator/bookSourceTypes";
 import { buildBookVideoPreview } from "~/client/components/morse-code-book-translator/bookVideoPreview";
 import {
+  createBookVideoPartDownloads,
   createBookVideoDownloadPackage,
   getBookVideoDownloadKind,
 } from "~/client/components/morse-code-book-translator/bookVideoExport";
@@ -515,20 +516,24 @@ function buildBookMetadata(book: MorseBookManifest): BookBundleMetadata {
 function buildDownloadLabel({
   downloadKind,
   exportSettings,
-  formatLabel = "WebM",
   outputType,
 }: {
   downloadKind: BookDownloadKind;
   exportSettings: BookExportSettings;
-  formatLabel?: string;
   outputType: BookOutputType;
 }) {
-  if (downloadKind === "zip") {
-    return outputType === "video"
-      ? `Download ${formatLabel} ZIP`
-      : `Download ${exportSettings.outputFormat.toUpperCase()} ZIP`;
+  if (outputType === "video") {
+    if (downloadKind === "zip") return "Download video ZIP";
+    return downloadKind === "parts"
+      ? "Download video parts"
+      : "Download video";
   }
-  if (outputType === "video") return `Download ${formatLabel}`;
+  if (downloadKind === "zip") {
+    return `Download ${exportSettings.outputFormat.toUpperCase()} ZIP`;
+  }
+  if (downloadKind === "parts") {
+    return `Download ${exportSettings.outputFormat.toUpperCase()} parts`;
+  }
   return `Download ${exportSettings.outputFormat.toUpperCase()}`;
 }
 
@@ -544,6 +549,39 @@ function runningDownloadLabel(
   if (outputType === "video") return "Rendering video...";
   if (progress.phase === "encoding") return "Rendering audio...";
   return downloadKind === "zip" ? "Preparing ZIP..." : "Preparing export...";
+}
+
+function exportProgressPercent(progress: BookExportProgress) {
+  if (
+    typeof progress.renderedDurationMs === "number" &&
+    typeof progress.totalDurationMs === "number" &&
+    progress.totalDurationMs > 0
+  ) {
+    return Math.max(
+      0,
+      Math.min(
+        100,
+        Math.round((progress.renderedDurationMs / progress.totalDurationMs) * 100),
+      ),
+    );
+  }
+  if (progress.totalParts > 0) {
+    return Math.max(
+      0,
+      Math.min(100, Math.round((progress.currentPart / progress.totalParts) * 100)),
+    );
+  }
+  return progress.phase === "complete" ? 100 : 0;
+}
+
+function exportProgressDetail(progress: BookExportProgress, elapsedMs: number) {
+  const partLabel =
+    progress.totalParts > 1 && progress.currentPartIndex
+      ? `Part ${progress.currentPartIndex} of ${progress.totalParts}`
+      : progress.totalParts > 1 && typeof progress.completedParts === "number"
+        ? `${progress.completedParts} of ${progress.totalParts} parts`
+        : "Working";
+  return `${partLabel} / Elapsed ${formatDuration(elapsedMs)}`;
 }
 
 function getSelectedPartSummary(parts: BookExportPart[]) {
@@ -853,6 +891,7 @@ function MorseBookWorkspace({
   const videoPreviewStartedAtRef = React.useRef(0);
   const videoPreviewSessionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
+  const restoredRuntimeSignatureRef = React.useRef<string | null>(null);
   const selectAllDefaultRef = React.useRef<HTMLInputElement | null>(null);
 
   React.useEffect(() => {
@@ -874,13 +913,19 @@ function MorseBookWorkspace({
     });
   }, [videoSupport]);
 
+  const bookRuntimeSignature = `${book.slug}:${book.contentVersion}:${book.contentHash}`;
   const defaultSectionIds = React.useMemo(
     () => defaultSectionIdsForBook(book, initialSection.sectionId),
-    [book, initialSection.sectionId],
+    [bookRuntimeSignature, initialSection.sectionId],
   );
-  const allSectionIds = React.useMemo(() => allSectionIdsForBook(book), [book]);
+  const allSectionIds = React.useMemo(
+    () => allSectionIdsForBook(book),
+    [bookRuntimeSignature],
+  );
 
   React.useEffect(() => {
+    if (restoredRuntimeSignatureRef.current === bookRuntimeSignature) return;
+    restoredRuntimeSignatureRef.current = bookRuntimeSignature;
     setSettingsRestored(false);
     setLoadedSections(new Map([[initialSection.sectionId, initialSection]]));
     const saved = loadSavedMorseBookRuntimeSettings(book, defaultSectionIds);
@@ -902,7 +947,7 @@ function MorseBookWorkspace({
     setDownloadStatus({ kind: "idle", message: "" });
     setExportProgress(IDLE_EXPORT_PROGRESS);
     setSettingsRestored(true);
-  }, [book, defaultSectionIds, initialSection]);
+  }, [bookRuntimeSignature, defaultSectionIds, initialSection.sectionId]);
 
   const scopeSectionIds = React.useMemo(
     () => selectedSectionIdsForBook(book, selectedSectionIds),
@@ -1005,16 +1050,19 @@ function MorseBookWorkspace({
     () => createSourceSectionsForExport(selectedScopeSections, exportSettings),
     [exportSettings, selectedScopeSections],
   );
-  const exportParts = React.useMemo(
+  const exportPlan = React.useMemo(
     () =>
-      segmentBookText({
+      buildBookExportPlan({
         cleanedText: cleanedExportText,
+        outputType,
         settings: exportSettings,
         sourceSections: exportSourceSections,
         sourceTitle: book.title,
+        videoSettings,
       }),
-    [book.title, cleanedExportText, exportSettings, exportSourceSections],
+    [book.title, cleanedExportText, exportSettings, exportSourceSections, outputType, videoSettings],
   );
+  const exportParts = exportPlan.parts;
   const downloadKind =
     outputType === "video"
       ? getBookVideoDownloadKind(exportParts, exportSettings)
@@ -1038,7 +1086,6 @@ function MorseBookWorkspace({
   const downloadLabel = buildDownloadLabel({
     downloadKind,
     exportSettings,
-    formatLabel: selectedVideoFormatSupport.label,
     outputType,
   });
   const partSummary = getSelectedPartSummary(exportParts);
@@ -1103,36 +1150,18 @@ function MorseBookWorkspace({
     (videoSettings.showMorseSymbols ? 1 : 0) +
     (videoSettings.showPlainText ? 1 : 0);
   const exportRunning = downloadStatus.kind === "working";
-  const oversizedAudioExportPart = React.useMemo(
-    () => findOversizedAudioExportPart(exportParts, exportSettings),
-    [exportParts, exportSettings],
-  );
-  const oversizedVideoExportPart = React.useMemo(
-    () => findOversizedVideoExportPart(exportParts, videoSettings),
-    [exportParts, videoSettings],
-  );
-  const activeOversizedExportPart =
-    outputType === "video" ? oversizedVideoExportPart : oversizedAudioExportPart;
-  const oversizedExportMessage = activeOversizedExportPart
-    ? `${BOOK_OVERSIZED_EXPORT_MESSAGE} ${oversizedExportDetailsLabel(
-        activeOversizedExportPart,
-      )}`
+  const unresolvedOversizedExportPart = exportPlan.unresolvedOversizedPart;
+  const oversizedExportMessage = unresolvedOversizedExportPart
+    ? BOOK_OVERSIZED_EXPORT_MESSAGE
     : "";
+  const longExportMessages =
+    exportPlan.automaticSplit && exportParts.length > 1
+      ? [BOOK_LONG_EXPORT_MESSAGE, BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE]
+      : [];
   const activeDownloadLabel = exportRunning
     ? runningDownloadLabel(exportProgress, downloadKind, outputType)
     : downloadLabel;
-  const progressPercent =
-    exportProgress.totalParts > 0
-      ? Math.max(
-          0,
-          Math.min(
-            100,
-            Math.round((exportProgress.currentPart / exportProgress.totalParts) * 100),
-          ),
-        )
-      : exportProgress.phase === "complete"
-        ? 100
-        : 0;
+  const progressPercent = exportProgressPercent(exportProgress);
   const downloadBlockedMessage = publishReady
     ? oversizedExportMessage
     : "Downloads are unavailable for this book.";
@@ -1160,7 +1189,7 @@ function MorseBookWorkspace({
     !scopeReady ||
     exportParts.length === 0 ||
     exportRunning ||
-    Boolean(activeOversizedExportPart) ||
+    Boolean(unresolvedOversizedExportPart) ||
     videoUnavailable;
   const canShowZipCopy = downloadKind === "zip";
   const selectionLabel =
@@ -1321,6 +1350,7 @@ function MorseBookWorkspace({
 
   const resetSavedSettings = React.useCallback(() => {
     clearSavedMorseBookRuntimeSettings(book);
+    restoredRuntimeSignatureRef.current = bookRuntimeSignature;
     setSelectedSectionIds(new Set(defaultSectionIds));
     setOutputType("audio");
     setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
@@ -1329,7 +1359,7 @@ function MorseBookWorkspace({
     setDownloadStatus({ kind: "idle", message: "" });
     setExportProgress(IDLE_EXPORT_PROGRESS);
     setSavedSettingsStatus("Saved book settings reset.");
-  }, [book, defaultSectionIds]);
+  }, [book, bookRuntimeSignature, defaultSectionIds]);
 
   const startAudioPreviewFrom = React.useCallback(
     (startElapsedMs = 0) => {
@@ -1604,6 +1634,63 @@ function MorseBookWorkspace({
         setExportProgress(progress);
       };
       const metadata = buildBookMetadata(book);
+      if (downloadKind === "parts") {
+        const downloadSummary =
+          outputType === "video"
+            ? await createBookVideoPartDownloads({
+                metadata,
+                parts: exportParts,
+                exportSettings,
+                videoSettings,
+                resolvedBackgroundStyle: resolvedVideoBackgroundStyle,
+                support: effectiveVideoSupport as BookVideoSupport,
+                signal: controller.signal,
+                onProgress: progressHandler,
+                onPartReady: (part) => {
+                  const download = downloadBlobFile({
+                    blob: part.blob,
+                    filename: part.filename,
+                  });
+                  if (!download.ok) throw new Error(download.message);
+                },
+              })
+            : await createBookAudioPartDownloads({
+                metadata,
+                parts: exportParts,
+                settings: exportSettings,
+                signal: controller.signal,
+                onProgress: progressHandler,
+                onPartReady: (part) => {
+                  const download = downloadBlobFile({
+                    blob: part.blob,
+                    filename: part.filename,
+                  });
+                  if (!download.ok) throw new Error(download.message);
+                },
+              });
+        setDownloadStatus({
+          kind: "success",
+          message:
+            outputType === "video"
+              ? `Video parts downloaded. ${downloadSummary.filenames.length} files, ${formatBytes(
+                  downloadSummary.totalBytes,
+                )}.`
+              : `${exportSettings.outputFormat.toUpperCase()} parts downloaded. ${
+                  downloadSummary.filenames.length
+                } files, ${formatBytes(downloadSummary.totalBytes)}.`,
+        });
+        setExportProgress({
+          phase: "complete",
+          message: "Download parts completed.",
+          currentPart: exportParts.length,
+          completedParts: exportParts.length,
+          currentPartIndex: exportParts.length,
+          totalParts: exportParts.length,
+          renderedDurationMs: partSummary.totalRuntimeMs,
+          totalDurationMs: partSummary.totalRuntimeMs,
+        });
+        return;
+      }
       const result =
         outputType === "video"
           ? await createBookVideoDownloadPackage({
@@ -1968,10 +2055,12 @@ function MorseBookWorkspace({
                 <button
                   key={value}
                   type="button"
+                  aria-pressed={outputType === value}
                   className={toolControlButtonClass({
                     active: outputType === value,
                     size: "sm",
                   })}
+                  data-mw-morse-book-output-type={value}
                   onClick={() => setOutputType(value)}
                 >
                   {value === "audio" ? "Audio" : "Video"}
@@ -2027,8 +2116,17 @@ function MorseBookWorkspace({
               >
                 Split mode is active. Direct files are still used when the
                 selected chapters produce one part and no extras.
+                </p>
+              ) : null}
+            {longExportMessages.map((message) => (
+              <p
+                key={message}
+                className="text-sm font-semibold leading-relaxed text-slate-600"
+                data-mw-morse-book-long-export-note="true"
+              >
+                {message}
               </p>
-            ) : null}
+            ))}
             {canShowZipCopy ? (
               <p
                 className="text-sm leading-relaxed text-slate-600"
@@ -2110,8 +2208,8 @@ function MorseBookWorkspace({
                   className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
                   data-mw-morse-book-download-progress-detail="true"
                 >
-                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} / Elapsed{" "}
-                  {formatDuration(exportElapsedMs)}
+                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} /{" "}
+                  {exportProgressDetail(exportProgress, exportElapsedMs)}
                 </p>
               </div>
             ) : null}
@@ -2180,6 +2278,7 @@ function MorseBookWorkspace({
                 hover="dark"
                 onClick={resetSavedSettings}
                 className="rounded-xl"
+                data-mw-morse-book-reset-settings="true"
               >
                 <RefreshIcon size={18} title={undefined} aria-hidden="true" />
                 Reset saved settings

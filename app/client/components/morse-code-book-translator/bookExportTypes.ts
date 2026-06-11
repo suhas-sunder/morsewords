@@ -17,7 +17,7 @@ export type BookExportFormat = "mp3" | "wav";
 
 export type BookOutputType = "audio" | "video";
 
-export type BookDownloadKind = "audio" | "video" | "zip";
+export type BookDownloadKind = "audio" | "video" | "parts" | "zip";
 
 export type BookPunctuationMode = "preserve" | "simplify";
 
@@ -89,9 +89,13 @@ export type BookExportPhase =
   | "failed";
 
 export type BookExportProgress = {
+  completedParts?: number;
+  currentPartIndex?: number;
   phase: BookExportPhase;
   message: string;
   currentPart: number;
+  renderedDurationMs?: number;
+  totalDurationMs?: number;
   totalParts: number;
 };
 

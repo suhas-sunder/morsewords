@@ -39,6 +39,10 @@ type ExportVideoOptions = {
   onProgress?: (progress: BookExportProgress) => void;
 };
 
+type ExportVideoPartsOptions = ExportVideoOptions & {
+  onPartReady: (part: BookVideoDownloadPackage) => Promise<void> | void;
+};
+
 export type BookVideoDownloadPackage = {
   blob: Blob;
   filename: string;
@@ -53,9 +57,8 @@ export function getBookVideoDownloadKind(
   parts: BookExportPart[],
   settings: BookExportSettings,
 ): BookDownloadKind {
-  return parts.length === 1 && !hasBookDownloadSidecars(settings)
-    ? "video"
-    : "zip";
+  if (hasBookDownloadSidecars(settings)) return "zip";
+  return parts.length === 1 ? "video" : "parts";
 }
 
 export function describeBookVideoDownloadContents(
@@ -66,6 +69,7 @@ export function describeBookVideoDownloadContents(
 ) {
   const formatLabel = videoFormatLabel(extension);
   if (downloadKind === "video") return [`${formatLabel} video file`];
+  if (downloadKind === "parts") return [`${formatLabel} video parts`];
   return [
     `${formatLabel} video ${parts.length === 1 ? "file" : "parts"}`,
     "playlist.m3u",
@@ -104,7 +108,9 @@ export function buildBookVideoWarnings({
   if (totalRuntimeMs > 90_000 || partCount > 1) {
     if (partCount > 1) {
       warnings.push(
-        "Long videos may take time to render. Split video downloads are packaged in ZIP files.",
+        downloadKind === "zip"
+          ? "Long videos may take time to render. Selected extras are packaged with the video parts in a ZIP download."
+          : "Long videos may take time to render. MorseWords will prepare ordered video parts.",
       );
     } else if (downloadKind === "zip") {
       warnings.push(
@@ -153,6 +159,9 @@ export async function createBookVideoDownloadPackage({
   };
   assertBookVideoPartsWithinBrowserLimit(parts, effectiveVideoSettings);
   const downloadKind = getBookVideoDownloadKind(parts, exportSettings);
+  if (downloadKind === "parts") {
+    throw new Error("Use sequential part download for multi-part video exports.");
+  }
   const formatLabel = videoFormatLabel(support.extension);
 
   if (downloadKind === "zip") {
@@ -224,6 +233,171 @@ export async function createBookVideoDownloadPackage({
       downloadKind,
       support.extension,
     ),
+  };
+}
+
+export async function createBookVideoPartDownloads({
+  exportSettings,
+  metadata,
+  onPartReady,
+  onProgress,
+  parts,
+  resolvedBackgroundStyle,
+  signal,
+  support,
+  videoSettings,
+}: ExportVideoPartsOptions): Promise<{
+  contents: string[];
+  filenames: string[];
+  outputFormat: "webm" | "mp4";
+  totalBytes: number;
+}> {
+  throwIfAborted(signal);
+  if (!support.supported || !support.mimeType) {
+    throw new Error(support.reason);
+  }
+  if (parts.length === 0) {
+    throw new Error("No book parts are available for video download.");
+  }
+
+  const effectiveVideoSettings = {
+    ...videoSettings,
+    includeAudioTrack:
+      videoSettings.includeAudioTrack && support.audioTrackSupported,
+  };
+  assertBookVideoPartsWithinBrowserLimit(parts, effectiveVideoSettings);
+
+  const totalDurationMs = parts.reduce(
+    (total, part) => total + Math.max(0, part.morseDurationMs),
+    0,
+  );
+  let completedDurationMs = 0;
+  let totalBytes = 0;
+  const filenames: string[] = [];
+  const formatLabel = videoFormatLabel(support.extension);
+
+  onProgress?.({
+    phase: "splitting",
+    message: "Preparing download parts...",
+    currentPart: 0,
+    currentPartIndex: 0,
+    totalParts: parts.length,
+    renderedDurationMs: 0,
+    totalDurationMs,
+  });
+  await cooperativeYield(signal);
+
+  for (const part of parts) {
+    throwIfAborted(signal);
+    const filename = buildPartVideoFilename({
+      sourceTitle: metadata.title || metadata.filename,
+      partIndex: part.index,
+      extension: support.extension,
+    });
+    onProgress?.({
+      phase: "encoding",
+      message: `Rendering video part ${part.index} of ${parts.length} - ${percentLabel(
+        completedDurationMs,
+        totalDurationMs,
+      )}`,
+      currentPart: part.index - 1,
+      completedParts: part.index - 1,
+      currentPartIndex: part.index,
+      totalParts: parts.length,
+      renderedDurationMs: completedDurationMs,
+      totalDurationMs,
+    });
+
+    let videoBlob: Blob;
+    try {
+      videoBlob = await renderBookPartVideo({
+        exportSettings,
+        onProgress: (elapsedMs, durationMs) => {
+          const aggregateRenderedMs =
+            completedDurationMs + Math.max(0, Math.min(durationMs, elapsedMs));
+          onProgress?.({
+            phase: "encoding",
+            message: `Rendering video part ${part.index} of ${parts.length} - ${percentLabel(
+              aggregateRenderedMs,
+              totalDurationMs,
+            )}`,
+            currentPart: part.index - 1,
+            completedParts: part.index - 1,
+            currentPartIndex: part.index,
+            totalParts: parts.length,
+            renderedDurationMs: aggregateRenderedMs,
+            totalDurationMs,
+          });
+        },
+        part,
+        resolvedBackgroundStyle,
+        signal,
+        support,
+        videoSettings: effectiveVideoSettings,
+      });
+    } catch (error) {
+      throw partFailure(part.index, error);
+    }
+
+    onProgress?.({
+      phase: "bundling",
+      message: `Finalizing part ${part.index} of ${parts.length}...`,
+      currentPart: part.index - 1,
+      completedParts: part.index - 1,
+      currentPartIndex: part.index,
+      totalParts: parts.length,
+      renderedDurationMs: completedDurationMs + Math.max(0, part.morseDurationMs),
+      totalDurationMs,
+    });
+    await onPartReady({
+      blob: videoBlob,
+      filename,
+      downloadKind: "parts",
+      outputFormat: support.extension,
+      contents: describeBookVideoDownloadContents(
+        parts,
+        exportSettings,
+        "parts",
+        support.extension,
+      ),
+    });
+    filenames.push(filename);
+    totalBytes += videoBlob.size;
+    completedDurationMs += Math.max(0, part.morseDurationMs);
+    onProgress?.({
+      phase: "encoding",
+      message: `Part ${part.index} of ${parts.length} downloaded.`,
+      currentPart: part.index,
+      completedParts: part.index,
+      currentPartIndex: part.index,
+      totalParts: parts.length,
+      renderedDurationMs: completedDurationMs,
+      totalDurationMs,
+    });
+    await cooperativeYield(signal);
+  }
+
+  onProgress?.({
+    phase: "complete",
+    message: `${formatLabel} parts downloaded.`,
+    currentPart: parts.length,
+    completedParts: parts.length,
+    currentPartIndex: parts.length,
+    totalParts: parts.length,
+    renderedDurationMs: totalDurationMs,
+    totalDurationMs,
+  });
+
+  return {
+    contents: describeBookVideoDownloadContents(
+      parts,
+      exportSettings,
+      "parts",
+      support.extension,
+    ),
+    filenames,
+    outputFormat: support.extension,
+    totalBytes,
   };
 }
 
@@ -581,7 +755,7 @@ function buildPlaylist(files: string[]) {
   return ["#EXTM3U", ...files.map((file) => `./${file}`), ""].join("\n");
 }
 
-function buildPartVideoFilename({
+export function buildPartVideoFilename({
   extension = "webm",
   sourceTitle,
   partIndex,
@@ -610,6 +784,19 @@ function buildVideoBundleFilename(sourceTitle?: string) {
 
 function videoFormatLabel(extension: "webm" | "mp4") {
   return extension === "mp4" ? "MP4" : "WebM";
+}
+
+function percentLabel(renderedMs: number, totalMs: number) {
+  if (!Number.isFinite(totalMs) || totalMs <= 0) return "0%";
+  return `${Math.max(0, Math.min(100, Math.round((renderedMs / totalMs) * 100)))}%`;
+}
+
+function partFailure(partIndex: number, error: unknown) {
+  const cause = error instanceof Error ? error : undefined;
+  return new Error(
+    `Part ${partIndex} failed. Retry the download; completed files can be kept.`,
+    cause ? { cause } : undefined,
+  );
 }
 
 function filenameBase(sourceTitle?: string) {

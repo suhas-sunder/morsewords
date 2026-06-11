@@ -35,9 +35,19 @@ type ExportBundleOptions = {
   onProgress?: (progress: BookExportProgress) => void;
 };
 
+type ExportPartsOptions = ExportBundleOptions & {
+  onPartReady: (part: BookDownloadPackage) => Promise<void> | void;
+};
+
 type SignalEvent =
   | { type: "mark"; ms: number; symbol: "." | "-" }
   | { type: "gap"; ms: number };
+
+type AudioRenderProgress = {
+  encodedSamples?: number;
+  renderedMs: number;
+  totalMs: number;
+};
 
 const DEFAULT_TAIL_PADDING_MS = 180;
 const YIELD_EVERY_EVENTS = 80;
@@ -63,9 +73,8 @@ export function getBookDownloadKind(
   parts: BookExportPart[],
   settings: BookExportSettings,
 ): BookDownloadKind {
-  return parts.length === 1 && !hasBookDownloadSidecars(settings)
-    ? "audio"
-    : "zip";
+  if (hasBookDownloadSidecars(settings)) return "zip";
+  return parts.length === 1 ? "audio" : "parts";
 }
 
 export function describeBookDownloadContents(
@@ -75,6 +84,7 @@ export function describeBookDownloadContents(
 ) {
   const format = settings.outputFormat.toUpperCase();
   if (downloadKind === "audio") return [`${format} audio file`];
+  if (downloadKind === "parts") return [`${format} audio parts`];
   return [
     `${format} audio ${parts.length === 1 ? "file" : "parts"}`,
     "playlist.m3u",
@@ -100,6 +110,9 @@ export async function createBookDownloadPackage({
   assertBookAudioPartsWithinBrowserLimit(parts, settings);
 
   const downloadKind = getBookDownloadKind(parts, settings);
+  if (downloadKind === "parts") {
+    throw new Error("Use sequential part download for multi-part audio exports.");
+  }
   if (downloadKind === "zip") {
     const zip = await createBookExportZip({
       metadata,
@@ -138,6 +151,123 @@ export async function createBookDownloadPackage({
     }),
     downloadKind,
     contents: describeBookDownloadContents(parts, settings, downloadKind),
+  };
+}
+
+export async function createBookAudioPartDownloads({
+  metadata,
+  onPartReady,
+  onProgress,
+  parts,
+  settings,
+  signal,
+}: ExportPartsOptions): Promise<{
+  contents: string[];
+  filenames: string[];
+  totalBytes: number;
+}> {
+  throwIfAborted(signal);
+  if (parts.length === 0) {
+    throw new Error("No book parts are available for download.");
+  }
+  assertBookAudioPartsWithinBrowserLimit(parts, settings);
+
+  const filenames: string[] = [];
+  let totalBytes = 0;
+  const totalDurationMs = totalRuntimeWithTail(parts, settings);
+  let completedDurationMs = 0;
+  const formatLabel = settings.outputFormat.toUpperCase();
+
+  onProgress?.({
+    phase: "splitting",
+    message: "Preparing download parts...",
+    currentPart: 0,
+    currentPartIndex: 0,
+    totalParts: parts.length,
+    renderedDurationMs: 0,
+    totalDurationMs,
+  });
+  await cooperativeYield(signal);
+
+  for (const part of parts) {
+    throwIfAborted(signal);
+    const partRuntimeMs = partRuntimeWithTail(part, settings.tailPaddingMs);
+    const progressForPart = ({
+      renderedMs,
+      totalMs,
+    }: AudioRenderProgress) => {
+      const aggregateRenderedMs =
+        completedDurationMs + Math.max(0, Math.min(totalMs, renderedMs));
+      const percent = percentLabel(aggregateRenderedMs, totalDurationMs);
+      onProgress?.({
+        phase: "encoding",
+        message: `Rendering ${formatLabel} part ${part.index} of ${parts.length} - ${percent}`,
+        currentPart: part.index - 1,
+        completedParts: part.index - 1,
+        currentPartIndex: part.index,
+        totalParts: parts.length,
+        renderedDurationMs: aggregateRenderedMs,
+        totalDurationMs,
+      });
+    };
+
+    progressForPart({ renderedMs: 0, totalMs: partRuntimeMs });
+    let blob: Blob;
+    try {
+      blob = await renderBookPartAudio(part, settings, signal, progressForPart);
+    } catch (error) {
+      throw partFailure(part.index, error);
+    }
+
+    onProgress?.({
+      phase: "bundling",
+      message: `Finalizing part ${part.index} of ${parts.length}...`,
+      currentPart: part.index - 1,
+      completedParts: part.index - 1,
+      currentPartIndex: part.index,
+      totalParts: parts.length,
+      renderedDurationMs: completedDurationMs + partRuntimeMs,
+      totalDurationMs,
+    });
+
+    const filename = part.estimatedFilename;
+    await onPartReady({
+      blob,
+      filename,
+      downloadKind: "parts",
+      contents: describeBookDownloadContents(parts, settings, "parts"),
+    });
+    filenames.push(filename);
+    totalBytes += blob.size;
+    completedDurationMs += partRuntimeMs;
+    onProgress?.({
+      phase: "encoding",
+      message: `Part ${part.index} of ${parts.length} downloaded.`,
+      currentPart: part.index,
+      completedParts: part.index,
+      currentPartIndex: part.index,
+      totalParts: parts.length,
+      renderedDurationMs: completedDurationMs,
+      totalDurationMs,
+    });
+    await cooperativeYield(signal);
+  }
+
+  onProgress?.({
+    phase: "complete",
+    message: `${formatLabel} parts downloaded.`,
+    currentPart: parts.length,
+    completedParts: parts.length,
+    currentPartIndex: parts.length,
+    totalParts: parts.length,
+    renderedDurationMs: totalDurationMs,
+    totalDurationMs,
+  });
+
+  return {
+    contents: describeBookDownloadContents(parts, settings, "parts"),
+    filenames,
+    totalBytes,
   };
 }
 
@@ -264,18 +394,26 @@ export async function renderBookPartAudio(
   part: BookExportPart,
   settings: BookExportSettings,
   signal: AbortSignal,
+  onProgress?: (progress: AudioRenderProgress) => void,
 ): Promise<Blob> {
-  const pcm = await renderBookPartPcm(part.cleanedText, settings, signal);
+  const pcm = await renderBookPartPcm(part.cleanedText, settings, signal, onProgress);
   if (settings.outputFormat === "wav") {
-    return pcmToWavBlob(pcm, settings.sampleRate);
+    return pcmToWavBlob(pcm, settings.sampleRate, signal, onProgress);
   }
-  return pcmToMp3Blob(pcm, settings.sampleRate, settings.mp3Bitrate, signal);
+  return pcmToMp3Blob(
+    pcm,
+    settings.sampleRate,
+    settings.mp3Bitrate,
+    signal,
+    onProgress,
+  );
 }
 
 export async function renderBookPartPcm(
   text: string,
   settings: BookExportSettings,
   signal: AbortSignal,
+  onProgress?: (progress: AudioRenderProgress) => void,
 ): Promise<Float32Array> {
   throwIfAborted(signal);
   const events = buildBookSignalEvents(text, settings);
@@ -288,6 +426,8 @@ export async function renderBookPartPcm(
   const output = new Float32Array(totalSamples);
   const amplitude = clamp(settings.volume, 0, 1) * 0.38;
   let offset = 0;
+  let renderedMs = 0;
+  onProgress?.({ renderedMs: 0, totalMs });
 
   for (let eventIndex = 0; eventIndex < events.length; eventIndex += 1) {
     throwIfAborted(signal);
@@ -307,11 +447,14 @@ export async function renderBookPartPcm(
     }
 
     offset += samples;
+    renderedMs += event.ms;
     if (eventIndex > 0 && eventIndex % YIELD_EVERY_EVENTS === 0) {
+      onProgress?.({ renderedMs, totalMs });
       await cooperativeYield(signal);
     }
   }
 
+  onProgress?.({ renderedMs: totalMs, totalMs });
   return output;
 }
 
@@ -414,7 +557,12 @@ function writeTone({
   }
 }
 
-function pcmToWavBlob(pcm: Float32Array, sampleRate: number) {
+async function pcmToWavBlob(
+  pcm: Float32Array,
+  sampleRate: number,
+  signal: AbortSignal,
+  onProgress?: (progress: AudioRenderProgress) => void,
+) {
   const headerSize = 44;
   const dataSize = pcm.length * 2;
   const arrayBuffer = new ArrayBuffer(headerSize + dataSize);
@@ -450,11 +598,22 @@ function pcmToWavBlob(pcm: Float32Array, sampleRate: number) {
   view.setUint32(offset, dataSize, true);
   offset += 4;
 
+  const totalMs = (pcm.length / sampleRate) * 1000;
+  const yieldEverySamples = Math.max(sampleRate, 1);
   for (let index = 0; index < pcm.length; index += 1) {
+    throwIfAborted(signal);
     view.setInt16(offset, floatToInt16(pcm[index]), true);
     offset += 2;
+    if (index > 0 && index % yieldEverySamples === 0) {
+      onProgress?.({
+        renderedMs: (index / sampleRate) * 1000,
+        totalMs,
+      });
+      await cooperativeYield(signal);
+    }
   }
 
+  onProgress?.({ renderedMs: totalMs, totalMs });
   return new Blob([arrayBuffer], { type: "audio/wav" });
 }
 
@@ -463,11 +622,13 @@ async function pcmToMp3Blob(
   sampleRate: number,
   kbps: number,
   signal: AbortSignal,
+  onProgress?: (progress: AudioRenderProgress) => void,
 ) {
   const lamejs = await loadLameJs();
   const encoder = new lamejs.Mp3Encoder(1, sampleRate, kbps);
   const chunkSize = 1152;
   const parts: Uint8Array[] = [];
+  const totalMs = (pcm.length / sampleRate) * 1000;
 
   for (let sampleIndex = 0; sampleIndex < pcm.length; sampleIndex += chunkSize) {
     throwIfAborted(signal);
@@ -479,12 +640,18 @@ async function pcmToMp3Blob(
     const encoded = encoder.encodeBuffer(chunk);
     if (encoded.length > 0) parts.push(toUint8Array(encoded));
     if (sampleIndex > 0 && sampleIndex % (chunkSize * 48) === 0) {
+      onProgress?.({
+        encodedSamples: sampleIndex,
+        renderedMs: (sampleIndex / sampleRate) * 1000,
+        totalMs,
+      });
       await cooperativeYield(signal);
     }
   }
 
   const flushed = encoder.flush();
   if (flushed.length > 0) parts.push(toUint8Array(flushed));
+  onProgress?.({ encodedSamples: pcm.length, renderedMs: totalMs, totalMs });
   return new Blob(parts.map((part) => part.slice()), { type: "audio/mpeg" });
 }
 
@@ -632,6 +799,30 @@ function buildReadme({
   ]
     .filter((line) => line !== "")
     .join("\n");
+}
+
+function totalRuntimeWithTail(parts: BookExportPart[], settings: BookExportSettings) {
+  return parts.reduce(
+    (total, part) => total + partRuntimeWithTail(part, settings.tailPaddingMs),
+    0,
+  );
+}
+
+function partRuntimeWithTail(part: BookExportPart, tailPaddingMs: number) {
+  return Math.max(0, part.morseDurationMs) + Math.max(0, tailPaddingMs);
+}
+
+function percentLabel(renderedMs: number, totalMs: number) {
+  if (!Number.isFinite(totalMs) || totalMs <= 0) return "0%";
+  return `${Math.max(0, Math.min(100, Math.round((renderedMs / totalMs) * 100)))}%`;
+}
+
+function partFailure(partIndex: number, error: unknown) {
+  const cause = error instanceof Error ? error : undefined;
+  return new Error(
+    `Part ${partIndex} failed. Retry the download; completed files can be kept.`,
+    cause ? { cause } : undefined,
+  );
 }
 
 function floatToInt16(value: number) {

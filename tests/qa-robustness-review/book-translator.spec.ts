@@ -19,14 +19,18 @@ import {
   getBookVideoDownloadKind,
 } from "../../app/client/components/morse-code-book-translator/bookVideoExport";
 import {
+  BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES,
   BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS,
-  BOOK_OVERSIZED_EXPORT_MESSAGE,
   BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS,
   estimateBookVideoExport,
   findOversizedAudioExportPart,
   findOversizedVideoExportPart,
   friendlyBookExportErrorMessage,
 } from "../../app/client/components/morse-code-book-translator/bookExportSafety";
+import {
+  buildBookExportPlan,
+  estimateLargestAudioPartPcmBytes,
+} from "../../app/client/components/morse-code-book-translator/bookExportPlan";
 import {
   buildBookVideoTimeline,
   renderBookVideoFrame,
@@ -91,12 +95,12 @@ async function expectWorkflowReadyNearSource(page: Page) {
   ).toBeVisible();
   await expect(
     bookTool(page).getByRole("button", {
-      name: /Download (MP3|WAV|ZIP bundle)/,
+      name: /Download (MP3|WAV)(?: parts)?|Download ZIP bundle/,
     }),
   ).toHaveCount(1);
   await expect(
     sourceStep(page).getByRole("button", {
-      name: /Download (MP3|WAV|ZIP bundle)/,
+      name: /Download (MP3|WAV)(?: parts)?|Download ZIP bundle/,
     }),
   ).toBeVisible();
   await expect(
@@ -722,6 +726,15 @@ function makeVideoPart(index: number, text = "E") {
     ),
     estimatedFilename: `morse-book-part-${String(index).padStart(3, "0")}.mp3`,
   };
+}
+
+function repeatTextForRuntime(
+  phrase: string,
+  minRuntimeMs: number,
+  settings = BOOK_EXPORT_PRESETS["Reader Quick Start"],
+) {
+  const phraseRuntimeMs = Math.max(1, estimateBookTextDurationMs(phrase, settings));
+  return phrase.repeat(Math.ceil(minRuntimeMs / phraseRuntimeMs));
 }
 
 type MockCanvasCommand =
@@ -1361,7 +1374,7 @@ test("legacy video text display preferences migrate to explicit layer flags", ()
   expect(invalidEmptyLayers.showPlainText).toBe(true);
 });
 
-test("video timeline and package kind use shared timing and direct-vs-ZIP rules", () => {
+test("video timeline and package kind use shared timing and direct-vs-parts rules", () => {
   const settings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
   const text = "SOS HELP";
   const timeline = buildBookVideoTimeline(text, settings);
@@ -1374,7 +1387,7 @@ test("video timeline and package kind use shared timing and direct-vs-ZIP rules"
   const singlePart = [makeVideoPart(1)];
   const multiPart = [makeVideoPart(1), makeVideoPart(2)];
   expect(getBookVideoDownloadKind(singlePart, settings)).toBe("video");
-  expect(getBookVideoDownloadKind(multiPart, settings)).toBe("zip");
+  expect(getBookVideoDownloadKind(multiPart, settings)).toBe("parts");
   expect(describeBookVideoDownloadContents(singlePart, settings)).toEqual([
     "WebM video file",
   ]);
@@ -1387,6 +1400,7 @@ test("video timeline and package kind use shared timing and direct-vs-ZIP rules"
     includeManifest: true,
   };
   expect(getBookVideoDownloadKind(singlePart, sidecarSettings)).toBe("zip");
+  expect(getBookVideoDownloadKind(multiPart, sidecarSettings)).toBe("zip");
   expect(
     buildBookVideoWarnings({
       downloadKind: "video",
@@ -1418,7 +1432,7 @@ test("video timeline and package kind use shared timing and direct-vs-ZIP rules"
       videoSettings: DEFAULT_BOOK_VIDEO_SETTINGS,
     }),
   ).toContain(
-    "Long videos may take time to render. Split video downloads are packaged in ZIP files.",
+    "Long videos may take time to render. Selected extras are packaged with the video parts in a ZIP download.",
   );
 
   const preview = buildMorseVideoPreview(DEFAULT_BOOK_VIDEO_SETTINGS, text, {
@@ -1435,8 +1449,88 @@ test("video timeline and package kind use shared timing and direct-vs-ZIP rules"
   );
 });
 
-test("oversized export guards block before allocation and estimates video size", () => {
+test("long export planning splits oversized selections before allocation and estimates video size", () => {
   const settings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
+  const noSplitSettings = {
+    ...settings,
+    splitMode: "none" as const,
+    splitAudio: false,
+  };
+  const longText = repeatTextForRuntime(
+    "ALPHA BRAVO CHARLIE DELTA ECHO FOXTROT GOLF HOTEL. ",
+    3 * 60 * 60 * 1000 + 10 * 60 * 1000,
+    settings,
+  );
+  const longSection = {
+    title: "Chapter 1",
+    rawText: longText,
+    startOffset: 0,
+    endOffset: longText.length,
+  };
+  const audioPlan = buildBookExportPlan({
+    cleanedText: longText,
+    outputType: "audio",
+    settings: noSplitSettings,
+    sourceSections: [longSection],
+    sourceTitle: "Long Manual",
+  });
+  expect(audioPlan.automaticSplit).toBe(true);
+  expect(audioPlan.parts.length).toBeGreaterThan(1);
+  expect(audioPlan.unresolvedOversizedPart).toBeNull();
+  expect(findOversizedAudioExportPart(audioPlan.parts, settings)).toBeNull();
+  expect(
+    audioPlan.parts.every(
+      (part) =>
+        part.morseDurationMs + settings.tailPaddingMs <=
+        BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS,
+    ),
+  ).toBe(true);
+  expect(estimateLargestAudioPartPcmBytes(audioPlan.parts, settings)).toBeLessThanOrEqual(
+    BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES,
+  );
+
+  const videoPlan = buildBookExportPlan({
+    cleanedText: longText,
+    outputType: "video",
+    settings: noSplitSettings,
+    sourceSections: [longSection],
+    sourceTitle: "Long Manual",
+    videoSettings: DEFAULT_BOOK_VIDEO_SETTINGS,
+  });
+  expect(videoPlan.automaticSplit).toBe(true);
+  expect(videoPlan.parts.length).toBeGreaterThan(audioPlan.parts.length);
+  expect(videoPlan.unresolvedOversizedPart).toBeNull();
+  expect(
+    findOversizedVideoExportPart(videoPlan.parts, DEFAULT_BOOK_VIDEO_SETTINGS),
+  ).toBeNull();
+  expect(
+    videoPlan.parts.every(
+      (part) =>
+        part.morseDurationMs <=
+        BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS[DEFAULT_BOOK_VIDEO_SETTINGS.resolution],
+    ),
+  ).toBe(true);
+
+  const selectedTokens = longText.match(/[A-Z]+/g) ?? [];
+  const plannedTokens = audioPlan.parts.flatMap(
+    (part) => part.cleanedText.match(/[A-Z]+/g) ?? [],
+  );
+  expect(plannedTokens).toEqual(selectedTokens);
+  for (let index = 1; index < audioPlan.parts.length; index += 1) {
+    expect(audioPlan.parts[index].sourceStart).toBeGreaterThanOrEqual(
+      audioPlan.parts[index - 1].sourceEnd,
+    );
+  }
+
+  const smallPlan = buildBookExportPlan({
+    cleanedText: "SOS HELP",
+    outputType: "audio",
+    settings: noSplitSettings,
+    sourceTitle: "Small Manual",
+  });
+  expect(smallPlan.automaticSplit).toBe(false);
+  expect(smallPlan.parts).toHaveLength(1);
+
   const normalPart = makeVideoPart(1, "SOS HELP");
   const oversizedAudioPart = {
     ...normalPart,
@@ -1464,7 +1558,15 @@ test("oversized export guards block before allocation and estimates video size",
       new RangeError("Invalid typed array length: 13520144345"),
       "audio",
     ),
-  ).toBe(BOOK_OVERSIZED_EXPORT_MESSAGE);
+  ).toBe(
+    "Audio export failed while rendering a part. Retry the download, or use shorter parts if it fails again.",
+  );
+  expect(
+    friendlyBookExportErrorMessage(
+      new RangeError("Invalid typed array length: 13520144345"),
+      "audio",
+    ),
+  ).not.toContain("Invalid typed array length");
 
   const estimate = estimateBookVideoExport(
     12 * 60 * 1000,
@@ -2209,7 +2311,7 @@ test("output type selector gates audio and video settings without clearing sourc
     page.getByRole("heading", { name: "Download video" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Download WebM" }),
+    page.getByRole("button", { name: "Download video" }),
   ).toBeEnabled();
   await expect(page.getByLabel("Video format")).toHaveValue("webm");
   const formatOptions = await page
@@ -2662,7 +2764,7 @@ test("unsupported video export APIs show a clear unavailable message", async ({
     "This browser does not support MediaRecorder video export.",
   );
   await expect(
-    page.getByRole("button", { name: "Download WebM" }),
+    page.getByRole("button", { name: "Download video" }),
   ).toBeDisabled();
   const mp4Option = await page
     .getByLabel("Video format")
@@ -2698,8 +2800,8 @@ test("video format selector downloads MP4 only when the browser supports it", as
     );
   expect(formatValues).toEqual(["webm", "mp4"]);
   expect(formatValues).not.toContain("wmv");
-  await expect(page.getByRole("button", { name: "Download MP4" })).toBeEnabled();
-  const video = await downloadVideoFile(page, testInfo, /Download MP4/);
+  await expect(page.getByRole("button", { name: "Download video" })).toBeEnabled();
+  const video = await downloadVideoFile(page, testInfo, /Download video/);
   expect(video.filename).toMatch(/morse-video\.mp4$/);
   expect(strFromU8(video.bytes)).toContain("MP4-BOOK-VIDEO");
   expect(await readRecordedBookVideoMimeTypes(page)).toContainEqual(
@@ -2731,9 +2833,9 @@ for (const mode of [
 
     await expect(page.getByTestId(mode.testId)).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "Download WebM" }),
+      page.getByRole("button", { name: "Download video" }),
     ).toBeEnabled();
-    const video = await downloadVideoFile(page, testInfo, /Download WebM/);
+    const video = await downloadVideoFile(page, testInfo, /Download video/);
     expect(video.filename).toMatch(/morse-video\.webm$/);
     expectWebmLike(video.bytes);
     await expect(page.getByText("Last download")).toBeVisible();
@@ -2871,7 +2973,7 @@ test("video WebM rendering receives selected visual, text, branding, and audio s
   await page.getByLabel("Include audio track").uncheck();
   await page.getByLabel("Show branding").uncheck();
 
-  const video = await downloadVideoFile(page, testInfo, /Download WebM/);
+  const video = await downloadVideoFile(page, testInfo, /Download video/);
   expectWebmLike(video.bytes);
   const drawnText = await page.evaluate(() => {
     const entries =
@@ -2931,7 +3033,7 @@ test("video cancellation and source changes prevent stale completed state", asyn
     .fill("Long video cancel SOS HELP ".repeat(8));
   await chooseOutputType(page, "video");
 
-  await page.getByRole("button", { name: "Download WebM" }).click();
+  await page.getByRole("button", { name: "Download video" }).click();
   await expect(
     page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();
@@ -2950,10 +3052,10 @@ test("video cancellation and source changes prevent stale completed state", asyn
   await expect(page.getByText("Download cancelled.")).toBeVisible({
     timeout: 30_000,
   });
-  await expect(page.getByRole("button", { name: "Download WebM" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "Download video" })).toBeEnabled();
   await expect(page.getByText("Last download")).toHaveCount(0);
 
-  await page.getByRole("button", { name: "Download WebM" }).click();
+  await page.getByRole("button", { name: "Download video" }).click();
   await expect(
     page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();
@@ -2989,7 +3091,7 @@ test("switching output type clears stale results and audio still downloads", asy
     "Mode switch download SOS HELP.",
   );
   await expect(
-    page.getByRole("button", { name: "Download WebM" }),
+    page.getByRole("button", { name: "Download video" }),
   ).toBeEnabled();
 
   await chooseOutputType(page, "audio");
@@ -3077,7 +3179,7 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
   await openBookTranslator(page);
   await page
     .getByLabel("Paste long-form source text")
-    .fill("ALPHA BRAVO SOS HELP ".repeat(4_000));
+    .fill("ALPHA BRAVO SOS HELP ".repeat(40));
 
   const tool = bookTool(page);
   await expectWorkflowReadyNearSource(page);
@@ -3114,9 +3216,13 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
   );
 
   await chooseSplitMode(page, "By duration");
+  await page.getByLabel("Target part length").fill("1");
+  await expect(
+    tool.getByText("Long selections are prepared as ordered parts so each render stays manageable."),
+  ).toBeVisible();
   await expect(
     tool.getByText("Split downloads save timed parts in a ZIP bundle."),
-  ).toBeVisible();
+  ).toHaveCount(0);
 
   await chooseSplitMode(page, "No split");
   await expect(
@@ -3137,11 +3243,11 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
     tool.locator('[class*="border-t"][class*="border-slate-200/70"]'),
   ).toHaveCount(0);
   await expect(
-    sourceStep(page).getByRole("button", { name: /Download (WebM|MP4)/ }),
+    sourceStep(page).getByRole("button", { name: "Download video parts" }),
   ).toBeVisible();
   await expect(
     tool.getByText(
-      /Long videos may take time to render\. Keep this tab open until the (WebM|MP4) is ready\./,
+      "Long videos may take time to render. MorseWords will prepare ordered video parts.",
     ),
   ).toBeVisible();
   await expect(tool.getByText(/split into ZIP parts/i)).toHaveCount(0);
@@ -3155,9 +3261,15 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
   ).toHaveCount(0);
 
   await chooseSplitMode(page, "By duration");
+  await page.getByLabel("Target part length").fill("1");
+  await expect(
+    tool.getByText(
+      "Long videos may take time to render. MorseWords will prepare ordered video parts.",
+    ),
+  ).toBeVisible();
   await expect(
     tool.getByText("Split video downloads are packaged in ZIP files."),
-  ).toBeVisible();
+  ).toHaveCount(0);
 
   await chooseSplitMode(page, "No split");
   await expect(
@@ -3386,7 +3498,7 @@ test("route cancellation state is distinct from failure", async ({ page }) => {
   await chooseOutputFormat(page, "wav");
   await chooseSplitMode(page, "By duration");
 
-  await page.getByRole("button", { name: /Download ZIP bundle/ }).click();
+  await page.getByRole("button", { name: "Download WAV parts" }).click();
   await expect(
     page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();
@@ -3408,7 +3520,7 @@ test("source changes during active download cancel stale completion", async ({
   await chooseOutputFormat(page, "wav");
   await chooseSplitMode(page, "By duration");
 
-  await page.getByRole("button", { name: /Download ZIP bundle/ }).click();
+  await page.getByRole("button", { name: "Download WAV parts" }).click();
   await expect(
     page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();

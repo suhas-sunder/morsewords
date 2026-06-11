@@ -114,7 +114,7 @@ export function buildExportAnalysis({
 
   if (totalRuntimeMs > 0 && partCount > 1) {
     warnings.push(
-      "Split downloads save timed parts in a ZIP bundle.",
+      "Long selections are prepared as ordered parts so each render stays manageable.",
     );
   }
 
