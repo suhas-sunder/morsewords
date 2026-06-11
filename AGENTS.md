@@ -491,3 +491,362 @@ Approved button treatment is centralized by `app/app.css` and
   sizing.
 - Component refactors must preserve existing logic, layout, and styling unless
   the task explicitly allows visual changes.
+
+
+## 19. Audio/video export pipeline rules
+
+MorseWords audio/video export is a core product feature. Do not treat it as a secondary convenience feature.
+
+### Export must not be blocked just because the selection is long
+
+* Small selections should export as a single file.
+* Long selections should automatically export in smaller parts.
+* Very long selections should create more parts, not disable export.
+* If one planned part is still too large, split that part smaller.
+* The hard safety guard is only allowed to prevent a single unsafe internal render operation.
+* The user-facing download path must remain available whenever a technically viable segmented export exists.
+* Do not tell users to manually choose fewer chapters as the primary path.
+* Do not disable MP3, WAV, MP4, or WebM download only because the selected text is long.
+
+Preferred large-selection copy:
+
+`This selection has a lot of text, so the download may take a while. MorseWords will prepare it in smaller parts to keep the export reliable.`
+
+Optional second line:
+
+`Keep this tab open while the files are being prepared.`
+
+Avoid user-facing wording such as:
+
+* `browser-safe file`
+* `too long for a single browser export`
+* `choose fewer chapters`
+* `export by chapter for a safer download`
+
+Those can be internal concepts, not the main user message.
+
+### Do not rely on giant in-memory renders
+
+Codex must not “fix” export failures by only adding a lower limit or a disabled state.
+
+Audit and avoid:
+
+* one giant full-selection audio buffer
+* one giant full-selection video blob
+* full-book typed-array allocation
+* accumulating all parts in memory before download
+* recalculating the entire Morse timeline for every part
+* blocking the UI thread for long periods
+* exposing raw runtime errors such as typed-array allocation failures
+
+The preferred architecture is:
+
+* Build one canonical Morse timing timeline.
+* Use that same timeline for audio, bulb flashing, Morse highlight, text highlight, timeline playhead, preview, and export.
+* Split long exports by chapter/section boundaries first.
+* Split oversized chapters by duration/text segment.
+* Render/download parts sequentially.
+* Release memory between parts where possible.
+* Report progress from actual rendered duration, frames, chunks, or samples.
+* Use native browser APIs where reliable before adding dependencies.
+* Consider workers for expensive generation/encoding when the refactor is safe and measurable.
+* Consider MediaRecorder chunking/timeslice for long video/WebM paths where applicable.
+* Consider WebCodecs only if support/fallback behavior is clear.
+* Do not add ffmpeg.wasm or another large encoder unless the benefit is measured and documented.
+
+### Export quality requirements
+
+An export is not complete unless it is correct, playable, and usable.
+
+For audio exports:
+
+* Dots, dashes, character gaps, word gaps, WPM, Farnsworth timing, pitch, and volume must match the selected settings.
+* MP3/WAV output must contain the full selected text or full planned part.
+* Part boundaries must not cut tones incorrectly.
+* Filenames must be clean and ordered.
+
+For video exports:
+
+* The bulb must flash exactly during dots and dashes.
+* The bulb must remain off during gaps.
+* Morse symbols, plain text, bulb state, playhead, and audio must stay synchronized.
+* Preview and exported video must use the same canonical timing schedule.
+* MP4/WebM labels must reflect the actual produced format.
+* Long exports must show part count, current part, elapsed time, progress, and ETA where practical.
+
+### Large export estimates
+
+Do not show `Available after export` for normal export states.
+
+For large selections, show:
+
+* total runtime
+* estimated total file size
+* planned number of parts
+* estimated render time where reasonably calculable
+
+Example:
+
+`Runtime: 3h 50m`
+`Parts: 6`
+`Estimate: ~53 MB across 6 parts`
+
+If ETA is unreliable, show elapsed time instead of fake precision.
+
+### Export failure behavior
+
+Unexpected failures must be clean and recoverable.
+
+* Never show raw JavaScript errors to users.
+* Show which part failed.
+* Re-enable controls after failure.
+* Allow retry where practical.
+* Preserve already completed parts where browser constraints allow.
+* Do not leave buttons stuck in `Rendering...`.
+
+## 20. Book processing pipeline rules
+
+Book processing must be done in small reviewable batches. Do not process the full library in one large Codex pass.
+
+### Batch size
+
+* Process books in batches of 5.
+* Do not continue to the next batch until the previous batch has a reviewable report.
+* Each batch must make it easy to verify whether parsing, chapter structure, URLs, and export behavior are correct.
+
+### Required batch report
+
+Each batch must include a report with, per book:
+
+* title
+* author
+* source file
+* source folder
+* public/restricted status
+* detected top-level structure
+* whether the book contains nested books, volumes, parts, or sections
+* resulting public URL or URLs
+* chapter/section list
+* chapter title
+* chapter type
+* character length per chapter
+* word count per chapter
+* estimated Morse runtime per chapter
+* default audio/video selection state
+* whether each section is front matter, body content, back matter, or optional
+* suspicious parsing warnings
+* Cloudflare JSON path
+
+Reports should be saved in a clear docs or generated-report location and summarized in Codex’s final response.
+
+### Section parsing quality
+
+Do not accept obviously broken section detection.
+
+Flag and fix or explicitly report:
+
+* prefaces with enormous word counts
+* front matter swallowing body content
+* duplicate ambiguous labels such as multiple `Preface` sections
+* chapters appearing out of order
+* missing Chapter 1 when later chapters exist
+* table of contents treated as ordinary reading content
+* illustration/title-page markers selected as primary reading content
+* Gutenberg boilerplate leaking into reading/export content
+* fake headings incorrectly treated as real chapters
+
+Observed examples that must be caught:
+
+* `Preface` with hundreds of thousands of words
+* `Chapter 4` appearing before `Chapter 1`
+* duplicate `Preface` labels where one is actually a wrapper or parsing error
+
+### Nested books, volumes, and parts
+
+Some public-domain works contain real internal books or volumes.
+
+When a work has genuine major divisions such as:
+
+* `Book One`
+* `Book Two`
+* `Volume I`
+* `Volume II`
+* `Part One`
+* `Part Two`
+
+Codex should consider creating separate public URLs for those divisions.
+
+Rules:
+
+* Do not blindly split every occurrence of the word `book`.
+* Split only real structural divisions.
+* Preserve parent/source relationships.
+* Use stable, readable slugs.
+* Update sitemap, schema, internal links, manifests, audiobook pages, print pages, and Cloudflare export consistently.
+* If a division is ambiguous, report it instead of inventing structure.
+
+### Default selection behavior
+
+For audio/video defaults:
+
+* Select real readable body content by default.
+* Do not select obvious front matter by default.
+* Keep optional/front-matter sections manually selectable.
+* `Select all` must still select everything when explicitly used.
+* Print/PDF behavior may include fuller front matter later, but audio/video should prioritize listenable content.
+
+Skip by default where possible:
+
+* table of contents
+* title page
+* illustration-only markers
+* publisher/copyright/front matter
+* transcriber notes
+* production notes
+* Gutenberg boilerplate
+* very short metadata-like opening sections
+
+## 21. Empirical export validation for book batches
+
+Book processing is not complete until export behavior is tested on representative chapters.
+
+For each processed batch, Codex should validate exports where practical:
+
+* MP3 for each chapter or representative chapters if full testing is too costly
+* MP4 or WebM for each chapter or representative chapters if browser support allows
+* record whether the file downloads successfully
+* record export duration
+* record output file size
+* record source chapter runtime
+* record failures
+* record whether the output was direct single-file or split into parts
+
+Use measured results to improve estimates shown to users.
+
+Do not claim guaranteed performance based only on formulas. Estimated render time should be based on:
+
+* measured chapter export timing where available
+* selected format
+* selected runtime
+* output mode
+* browser constraints
+* historical local measurement if stored safely
+
+If empirical export testing is too slow for a Codex pass, test a representative sample, document the limitation, and do not pretend the whole batch was validated.
+
+## 22. Book images are deferred
+
+Cover/image matching for Morse books is currently deferred.
+
+Do not process `temp-books/images` unless explicitly asked.
+
+For now:
+
+* do not match cover images
+* do not add image paths to book metadata
+* do not add `books/images/*` to Cloudflare upload manifests
+* do not modify image folders
+* keep existing placeholder cover behavior
+
+This may be revisited later if the Morse book pages gain traction.
+
+## 23. Current high-priority remaining work
+
+Keep the following work tracked and do not lose it across Codex passes.
+
+### Active priority: export pipeline correctness
+
+The export pipeline must be corrected before major book expansion continues.
+
+Required outcome:
+
+* long audio/video exports work through automatic split parts
+* MP3/WAV/MP4/WebM are not disabled just because the selection is long
+* rendering is optimized to avoid giant memory allocation
+* progress, elapsed time, ETA, and part count are visible
+* output quality and timing are verified
+* preview/export timing remains synchronized
+* raw allocation errors never appear in the UI
+
+### Then: Morse Code by Language expansion
+
+Planned language work should be done in batches, starting with high-value pages such as:
+
+* German
+* French
+* Spanish
+* Korean
+* Italian
+* Portuguese
+
+Later likely candidates:
+
+* Dutch
+* Swedish
+* Norwegian
+* Danish
+* Finnish
+* Polish
+* Hebrew
+* Arabic
+* Turkish
+* Czech
+* Hungarian
+* Romanian
+* Ukrainian
+* Bulgarian
+
+Each language page must be accurate about whether it is an established adaptation, International Morse with added letters, or transliteration-based practical use. Do not invent official status.
+
+### Then: Contact, support, and legal
+
+Use `support@morsewords.com`.
+
+Still needed:
+
+* footer/contact/legal email updates
+* Contact page
+* Resend server-side contact form
+* categories for business, general, feature request, bug report, and source/content/copyright issues
+* safe attachment handling
+* spam/rate limiting
+* validation
+* privacy-safe behavior
+
+### Then: book processing in batches of 5
+
+Use the batch rules above.
+
+Respect:
+
+* `No-Restriction` books are public candidates.
+* `Not-Allowed-In-Canada` books are restricted/hidden by default unless geo-gating and rights rules are explicitly implemented.
+* Restricted books must not appear in public hub pages, book pages, audiobook pages, print pages, sitemap, schema, public manifests, or Cloudflare export.
+* Do not touch raw source folders except to read them.
+
+### Then: book SEO, audiobook SEO, printable SEO
+
+After reliable processing:
+
+* add unique book-specific content
+* add audiobook-specific content
+* add printable-specific content
+* avoid template spam
+* avoid copied summaries
+* keep content human, specific, useful, and accurate
+
+### Then: schema/canonical/sitemap audit
+
+Audit all public pages after major additions.
+
+### Then: AdSense readiness and human-first content quality pass
+
+The final content pass must reduce robotic AI-SEO patterns and keep pages useful, natural, and task-focused.
+
+### Then: deploy, Cloudflare upload, and production checks
+
+Do not deploy before content, legal/contact, schema, sitemap, and export behavior are production-ready.
+
+### Then: final optimization sweep
+
+Final performance optimization happens after the product is complete and deploy-ready.
