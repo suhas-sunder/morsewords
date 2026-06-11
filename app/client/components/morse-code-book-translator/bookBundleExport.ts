@@ -15,6 +15,7 @@ import {
 import type {
   BookBundleMetadata,
   BookDownloadKind,
+  BookExportBatch,
   BookExportPart,
   BookExportProgress,
   BookExportSettings,
@@ -28,10 +29,13 @@ import { buildBundleFilename, buildSingleAudioFilename } from "./bookSegmentatio
 type LameModule = typeof import("@breezystack/lamejs");
 
 type ExportBundleOptions = {
+  allParts?: BookExportPart[];
+  batch?: BookExportBatch;
   metadata: BookBundleMetadata;
   parts: BookExportPart[];
   settings: BookExportSettings;
   signal: AbortSignal;
+  totalSelectedRuntimeMs?: number;
   onProgress?: (progress: BookExportProgress) => void;
 };
 
@@ -51,6 +55,7 @@ type AudioRenderProgress = {
 
 const DEFAULT_TAIL_PADDING_MS = 180;
 const YIELD_EVERY_EVENTS = 80;
+const AUDIO_RENDER_CHUNK_SAMPLES = 4096;
 
 export type BookDownloadPackage = {
   blob: Blob;
@@ -74,7 +79,7 @@ export function getBookDownloadKind(
   settings: BookExportSettings,
 ): BookDownloadKind {
   if (hasBookDownloadSidecars(settings)) return "zip";
-  return parts.length === 1 ? "audio" : "parts";
+  return parts.length === 1 ? "audio" : "zip";
 }
 
 export function describeBookDownloadContents(
@@ -90,17 +95,20 @@ export function describeBookDownloadContents(
     "playlist.m3u",
     settings.includeCleanedText ? "cleaned-text.txt" : "",
     settings.includeMorseTranscript ? "morse-transcript.txt" : "",
-    settings.includeManifest ? "manifest.json" : "",
+    "manifest.json",
     settings.includeSettings ? "settings.json" : "",
     settings.includeReadme ? "README.txt" : "",
   ].filter(Boolean);
 }
 
 export async function createBookDownloadPackage({
+  allParts,
+  batch,
   metadata,
   parts,
   settings,
   signal,
+  totalSelectedRuntimeMs,
   onProgress,
 }: ExportBundleOptions): Promise<BookDownloadPackage> {
   throwIfAborted(signal);
@@ -115,10 +123,13 @@ export async function createBookDownloadPackage({
   }
   if (downloadKind === "zip") {
     const zip = await createBookExportZip({
+      allParts,
+      batch,
       metadata,
       parts,
       settings,
       signal,
+      totalSelectedRuntimeMs,
       onProgress,
     });
     return {
@@ -272,17 +283,35 @@ export async function createBookAudioPartDownloads({
 }
 
 export async function createBookExportZip({
+  allParts,
+  batch,
   metadata,
   parts,
   settings,
   signal,
+  totalSelectedRuntimeMs,
   onProgress,
 }: ExportBundleOptions): Promise<{ blob: Blob; filename: string }> {
   throwIfAborted(signal);
+  const batchNumber = batch?.batchNumber ?? 1;
+  const totalBatches = batch?.totalBatches ?? 1;
+  const selectedParts = allParts && allParts.length > 0 ? allParts : parts;
+  const selectedRuntimeMs =
+    totalSelectedRuntimeMs ?? selectedParts.reduce((sum, part) => sum + part.morseDurationMs, 0);
+  const batchTotalDurationMs = totalRuntimeWithTail(parts, settings);
+  let completedDurationMs = 0;
   onProgress?.({
     phase: "analyzing",
-    message: "Preparing download details...",
+    message:
+      totalBatches > 1
+        ? `Preparing ZIP batch ${batchNumber} of ${totalBatches}...`
+        : "Preparing download details...",
+    batchNumber,
+    batchPartCount: parts.length,
+    batchPartIndex: 0,
     currentPart: 0,
+    totalBatches,
+    totalDurationMs: batchTotalDurationMs,
     totalParts: parts.length,
   });
   await cooperativeYield(signal);
@@ -292,25 +321,75 @@ export async function createBookExportZip({
   const generatedAudioFiles: string[] = [];
   const generatedAt = new Date().toISOString();
 
-  for (const part of parts) {
+  for (const [batchPartOffset, part] of parts.entries()) {
     throwIfAborted(signal);
+    const batchPartIndex = batchPartOffset + 1;
+    const partRuntimeMs = partRuntimeWithTail(part, settings.tailPaddingMs);
+    const progressForPart = ({
+      renderedMs,
+      totalMs,
+    }: AudioRenderProgress) => {
+      const aggregateRenderedMs =
+        completedDurationMs + Math.max(0, Math.min(totalMs, renderedMs));
+      const percent = percentLabel(aggregateRenderedMs, batchTotalDurationMs);
+      onProgress?.({
+        phase: "encoding",
+        message:
+          totalBatches > 1
+            ? `Rendering ZIP batch ${batchNumber} of ${totalBatches} - Part ${batchPartIndex} of ${parts.length} - ${percent}`
+            : `Rendering ZIP part ${batchPartIndex} of ${parts.length} - ${percent}`,
+        batchNumber,
+        batchPartCount: parts.length,
+        batchPartIndex,
+        completedParts: batchPartIndex - 1,
+        currentPart: batchPartIndex - 1,
+        currentPartIndex: batchPartIndex,
+        renderedDurationMs: aggregateRenderedMs,
+        totalBatches,
+        totalDurationMs: batchTotalDurationMs,
+        totalParts: parts.length,
+      });
+    };
     onProgress?.({
       phase: "encoding",
-      message: `Encoding part ${part.index} of ${parts.length}...`,
-      currentPart: part.index,
+      message:
+        totalBatches > 1
+          ? `Rendering ZIP batch ${batchNumber} of ${totalBatches} - Part ${batchPartIndex} of ${parts.length}`
+          : `Encoding ZIP part ${batchPartIndex} of ${parts.length}...`,
+      batchNumber,
+      batchPartCount: parts.length,
+      batchPartIndex,
+      completedParts: batchPartIndex - 1,
+      currentPart: batchPartIndex - 1,
+      currentPartIndex: batchPartIndex,
+      renderedDurationMs: completedDurationMs,
+      totalBatches,
+      totalDurationMs: batchTotalDurationMs,
       totalParts: parts.length,
     });
-    const audioBlob = await renderBookPartAudio(part, settings, signal);
+    const audioBlob = await renderBookPartAudio(part, settings, signal, progressForPart);
     files[part.estimatedFilename] = new Uint8Array(await audioBlob.arrayBuffer());
     generatedAudioFiles.push(part.estimatedFilename);
+    completedDurationMs += partRuntimeMs;
     await cooperativeYield(signal);
   }
 
   throwIfAborted(signal);
   onProgress?.({
     phase: "bundling",
-    message: "Bundling audio and selected files...",
+    message:
+      totalBatches > 1
+        ? `Bundling ZIP batch ${batchNumber} of ${totalBatches}...`
+        : "Bundling audio and selected files...",
+    batchNumber,
+    batchPartCount: parts.length,
+    batchPartIndex: parts.length,
     currentPart: parts.length,
+    completedParts: parts.length,
+    currentPartIndex: parts.length,
+    renderedDurationMs: batchTotalDurationMs,
+    totalBatches,
+    totalDurationMs: batchTotalDurationMs,
     totalParts: parts.length,
   });
 
@@ -324,21 +403,23 @@ export async function createBookExportZip({
     files["morse-transcript.txt"] = strToU8(buildMorseTranscriptFile(parts));
   }
 
-  if (settings.includeManifest) {
-    files["manifest.json"] = strToU8(
-      JSON.stringify(
-        buildManifest({
-          generatedAt,
-          metadata,
-          parts,
-          settings,
-          generatedAudioFiles,
-        }),
-        null,
-        2,
-      ),
-    );
-  }
+  files["manifest.json"] = strToU8(
+    JSON.stringify(
+      buildManifest({
+        allParts: selectedParts,
+        batchNumber,
+        generatedAt,
+        generatedAudioFiles,
+        metadata,
+        parts,
+        selectedRuntimeMs,
+        settings,
+        totalBatches,
+      }),
+      null,
+      2,
+    ),
+  );
 
   if (settings.includeSettings) {
     files["settings.json"] = strToU8(
@@ -386,7 +467,10 @@ export async function createBookExportZip({
   const blob = new Blob([zipped], { type: "application/zip" });
   return {
     blob,
-    filename: buildBundleFilename(metadata.title || metadata.filename),
+    filename: buildBundleFilename(
+      metadata.title || metadata.filename,
+      totalBatches > 1 ? batchNumber : undefined,
+    ),
   };
 }
 
@@ -396,17 +480,201 @@ export async function renderBookPartAudio(
   signal: AbortSignal,
   onProgress?: (progress: AudioRenderProgress) => void,
 ): Promise<Blob> {
-  const pcm = await renderBookPartPcm(part.cleanedText, settings, signal, onProgress);
   if (settings.outputFormat === "wav") {
-    return pcmToWavBlob(pcm, settings.sampleRate, signal, onProgress);
+    return renderBookPartWavBlob(part.cleanedText, settings, signal, onProgress);
   }
-  return pcmToMp3Blob(
-    pcm,
-    settings.sampleRate,
-    settings.mp3Bitrate,
-    signal,
-    onProgress,
+  return renderBookPartMp3Blob(part.cleanedText, settings, signal, onProgress);
+}
+
+async function renderBookPartMp3Blob(
+  text: string,
+  settings: BookExportSettings,
+  signal: AbortSignal,
+  onProgress?: (progress: AudioRenderProgress) => void,
+) {
+  const lamejs = await loadLameJs();
+  const encoder = new lamejs.Mp3Encoder(1, settings.sampleRate, settings.mp3Bitrate);
+  const renderer = createChunkedSignalRenderer(text, settings);
+  assertAudioRenderWithinBrowserLimit(renderer.totalMs, settings.sampleRate);
+  const parts: Uint8Array[] = [];
+  const mp3ChunkSize = 1152;
+  let renderedSamples = 0;
+  let progressSampleCursor = 0;
+
+  onProgress?.({ renderedMs: 0, totalMs: renderer.totalMs });
+
+  while (renderedSamples < renderer.totalSamples) {
+    throwIfAborted(signal);
+    const samples = Math.min(mp3ChunkSize, renderer.totalSamples - renderedSamples);
+    const chunk = renderer.renderInt16Chunk(samples);
+    const encoded = encoder.encodeBuffer(chunk);
+    if (encoded.length > 0) parts.push(toUint8Array(encoded));
+    renderedSamples += samples;
+
+    if (renderedSamples - progressSampleCursor >= settings.sampleRate) {
+      progressSampleCursor = renderedSamples;
+      onProgress?.({
+        encodedSamples: renderedSamples,
+        renderedMs: (renderedSamples / settings.sampleRate) * 1000,
+        totalMs: renderer.totalMs,
+      });
+      await cooperativeYield(signal);
+    }
+  }
+
+  const flushed = encoder.flush();
+  if (flushed.length > 0) parts.push(toUint8Array(flushed));
+  onProgress?.({
+    encodedSamples: renderer.totalSamples,
+    renderedMs: renderer.totalMs,
+    totalMs: renderer.totalMs,
+  });
+  return new Blob(parts.map((part) => part.slice()), { type: "audio/mpeg" });
+}
+
+async function renderBookPartWavBlob(
+  text: string,
+  settings: BookExportSettings,
+  signal: AbortSignal,
+  onProgress?: (progress: AudioRenderProgress) => void,
+) {
+  const renderer = createChunkedSignalRenderer(text, settings);
+  assertAudioRenderWithinBrowserLimit(renderer.totalMs, settings.sampleRate);
+  const dataSize = renderer.totalSamples * 2;
+  const parts: ArrayBuffer[] = [buildWavHeader(dataSize, settings.sampleRate)];
+  let renderedSamples = 0;
+
+  onProgress?.({ renderedMs: 0, totalMs: renderer.totalMs });
+
+  while (renderedSamples < renderer.totalSamples) {
+    throwIfAborted(signal);
+    const samples = Math.min(
+      AUDIO_RENDER_CHUNK_SAMPLES,
+      renderer.totalSamples - renderedSamples,
+    );
+    const chunk = renderer.renderInt16Chunk(samples);
+    parts.push(chunk.buffer.slice(chunk.byteOffset, chunk.byteOffset + chunk.byteLength));
+    renderedSamples += samples;
+
+    if (renderedSamples % (AUDIO_RENDER_CHUNK_SAMPLES * 12) === 0) {
+      onProgress?.({
+        renderedMs: (renderedSamples / settings.sampleRate) * 1000,
+        totalMs: renderer.totalMs,
+      });
+      await cooperativeYield(signal);
+    }
+  }
+
+  onProgress?.({ renderedMs: renderer.totalMs, totalMs: renderer.totalMs });
+  return new Blob(parts, { type: "audio/wav" });
+}
+
+function createChunkedSignalRenderer(
+  text: string,
+  settings: BookExportSettings,
+) {
+  const sampleRate = settings.sampleRate;
+  const events = [
+    ...buildBookSignalEvents(text, settings),
+    { type: "gap" as const, ms: settings.tailPaddingMs ?? DEFAULT_TAIL_PADDING_MS },
+  ].map((event) => ({
+    ...event,
+    samples: Math.max(0, Math.round((event.ms / 1000) * sampleRate)),
+  }));
+  const totalSamples = Math.max(
+    1,
+    events.reduce((total, event) => total + event.samples, 0),
   );
+  const totalMs = (totalSamples / sampleRate) * 1000;
+  const amplitude = clamp(settings.volume, 0, 1) * 0.38;
+  const attackMs = defaultAttackMs(settings.tonePreset);
+  const releaseMs = defaultReleaseMs(settings.tonePreset);
+  let eventIndex = 0;
+  let sampleInEvent = 0;
+  let globalSampleIndex = 0;
+
+  const renderInt16Chunk = (requestedSamples: number) => {
+    const output = new Int16Array(requestedSamples);
+    for (let index = 0; index < requestedSamples; index += 1) {
+      while (
+        eventIndex < events.length &&
+        sampleInEvent >= events[eventIndex].samples
+      ) {
+        eventIndex += 1;
+        sampleInEvent = 0;
+      }
+
+      const event = events[eventIndex];
+      let value = 0;
+      if (event?.type === "mark" && event.samples > 0 && amplitude > 0) {
+        const attackSamples = Math.min(
+          event.samples / 2,
+          (sampleRate * attackMs) / 1000,
+        );
+        const releaseSamples = Math.min(
+          event.samples / 2,
+          (sampleRate * releaseMs) / 1000,
+        );
+        value =
+          samplePresetWaveform({
+            preset: settings.tonePreset,
+            sampleIndex: globalSampleIndex,
+            localSampleIndex: sampleInEvent,
+            samples: event.samples,
+            hz: settings.pitch,
+            sampleRate,
+          }) *
+          amplitude *
+          envelopeAt(sampleInEvent, event.samples, attackSamples, releaseSamples);
+      }
+      output[index] = floatToInt16(value);
+      sampleInEvent += 1;
+      globalSampleIndex += 1;
+    }
+    return output;
+  };
+
+  return {
+    renderInt16Chunk,
+    totalMs,
+    totalSamples,
+  };
+}
+
+function buildWavHeader(dataSize: number, sampleRate: number) {
+  const headerSize = 44;
+  const arrayBuffer = new ArrayBuffer(headerSize);
+  const view = new DataView(arrayBuffer);
+  let offset = 0;
+  const writeString = (value: string) => {
+    for (let index = 0; index < value.length; index += 1) {
+      view.setUint8(offset + index, value.charCodeAt(index));
+    }
+    offset += value.length;
+  };
+
+  writeString("RIFF");
+  view.setUint32(offset, 36 + dataSize, true);
+  offset += 4;
+  writeString("WAVE");
+  writeString("fmt ");
+  view.setUint32(offset, 16, true);
+  offset += 4;
+  view.setUint16(offset, 1, true);
+  offset += 2;
+  view.setUint16(offset, 1, true);
+  offset += 2;
+  view.setUint32(offset, sampleRate, true);
+  offset += 4;
+  view.setUint32(offset, sampleRate * 2, true);
+  offset += 4;
+  view.setUint16(offset, 2, true);
+  offset += 2;
+  view.setUint16(offset, 16, true);
+  offset += 2;
+  writeString("data");
+  view.setUint32(offset, dataSize, true);
+  return arrayBuffer;
 }
 
 export async function renderBookPartPcm(
@@ -680,21 +948,32 @@ function buildPlaylist(files: string[]) {
 }
 
 function buildManifest({
+  allParts,
+  batchNumber,
   generatedAt,
   generatedAudioFiles,
   metadata,
   parts,
+  selectedRuntimeMs,
   settings,
+  totalBatches,
 }: {
+  allParts: BookExportPart[];
+  batchNumber: number;
   generatedAt: string;
   generatedAudioFiles: string[];
   metadata: BookBundleMetadata;
   parts: BookExportPart[];
+  selectedRuntimeMs: number;
   settings: BookExportSettings;
+  totalBatches: number;
 }) {
   const runtimeMs = parts.reduce((sum, part) => sum + part.morseDurationMs, 0);
   return {
+    app: "MorseWords",
     generatedAt,
+    createdAt: generatedAt,
+    outputType: "audio",
     sourceKind: metadata.sourceType,
     title: metadata.title,
     author: metadata.author,
@@ -706,9 +985,18 @@ function buildManifest({
       author: metadata.author,
       filename: metadata.filename,
     },
+    batchNumber,
+    totalBatches,
     partCount: parts.length,
+    partCountInBatch: parts.length,
+    globalPartCount: allParts.length,
+    totalSelectedRuntimeEstimate: formatDuration(selectedRuntimeMs),
+    totalSelectedRuntimeMs: selectedRuntimeMs,
+    batchRuntimeEstimate: formatDuration(runtimeMs),
+    batchRuntimeMs: runtimeMs,
     runtimeEstimate: formatDuration(runtimeMs),
     runtimeMs,
+    selectedFormat: settings.outputFormat,
     outputFormat: settings.outputFormat,
     presetName: settings.presetName,
     settingsSummary: {
@@ -745,9 +1033,22 @@ function buildManifest({
       filename: part.estimatedFilename,
       sourceStart: part.sourceStart,
       sourceEnd: part.sourceEnd,
+      coverage: {
+        sourceStart: part.sourceStart,
+        sourceEnd: part.sourceEnd,
+        excerpt: part.cleanedExcerpt,
+      },
       runtimeEstimate: formatDuration(part.morseDurationMs),
       runtimeMs: part.morseDurationMs,
       excerpt: part.cleanedExcerpt,
+    })),
+    allParts: allParts.map((part) => ({
+      index: part.index,
+      title: part.title,
+      sourceStart: part.sourceStart,
+      sourceEnd: part.sourceEnd,
+      runtimeEstimate: formatDuration(part.morseDurationMs),
+      runtimeMs: part.morseDurationMs,
     })),
   };
 }

@@ -9,6 +9,7 @@ import {
 import type {
   BookBundleMetadata,
   BookDownloadKind,
+  BookExportBatch,
   BookExportPart,
   BookExportProgress,
   BookExportSettings,
@@ -29,12 +30,15 @@ import type { BookVideoSupport } from "./bookVideoSupport";
 import type { BookVideoSettings } from "./bookVideoTypes";
 
 type ExportVideoOptions = {
+  allParts?: BookExportPart[];
+  batch?: BookExportBatch;
   exportSettings: BookExportSettings;
   metadata: BookBundleMetadata;
   parts: BookExportPart[];
   resolvedBackgroundStyle: ResolvedBookVideoBackgroundStyle;
   signal: AbortSignal;
   support: BookVideoSupport;
+  totalSelectedRuntimeMs?: number;
   videoSettings: BookVideoSettings;
   onProgress?: (progress: BookExportProgress) => void;
 };
@@ -58,7 +62,7 @@ export function getBookVideoDownloadKind(
   settings: BookExportSettings,
 ): BookDownloadKind {
   if (hasBookDownloadSidecars(settings)) return "zip";
-  return parts.length === 1 ? "video" : "parts";
+  return parts.length === 1 ? "video" : "zip";
 }
 
 export function describeBookVideoDownloadContents(
@@ -75,7 +79,7 @@ export function describeBookVideoDownloadContents(
     "playlist.m3u",
     settings.includeCleanedText ? "cleaned-text.txt" : "",
     settings.includeMorseTranscript ? "morse-transcript.txt" : "",
-    settings.includeManifest ? "manifest.json" : "",
+    "manifest.json",
     settings.includeSettings ? "settings.json" : "",
     settings.includeReadme ? "README.txt" : "",
   ].filter(Boolean);
@@ -102,7 +106,9 @@ export function buildBookVideoWarnings({
     warnings.push(support.reason);
   } else {
     warnings.push(
-      "Browser video export support varies; WebM is broadly supported, and MP4 appears only when this browser reports real support.",
+      support?.extension === "mp4"
+        ? "MP4 export is available because this browser reports real MediaRecorder MP4 support."
+        : "This browser does not report MP4 recording support. MorseWords will not relabel WebM as MP4.",
     );
   }
   if (totalRuntimeMs > 90_000 || partCount > 1) {
@@ -135,6 +141,8 @@ export function buildBookVideoWarnings({
 }
 
 export async function createBookVideoDownloadPackage({
+  allParts,
+  batch,
   exportSettings,
   metadata,
   onProgress,
@@ -142,6 +150,7 @@ export async function createBookVideoDownloadPackage({
   resolvedBackgroundStyle,
   signal,
   support,
+  totalSelectedRuntimeMs,
   videoSettings,
 }: ExportVideoOptions): Promise<BookVideoDownloadPackage> {
   throwIfAborted(signal);
@@ -166,6 +175,8 @@ export async function createBookVideoDownloadPackage({
 
   if (downloadKind === "zip") {
     const zip = await createBookVideoZip({
+      allParts,
+      batch,
       exportSettings,
       metadata,
       onProgress,
@@ -173,6 +184,7 @@ export async function createBookVideoDownloadPackage({
       resolvedBackgroundStyle,
       signal,
       support,
+      totalSelectedRuntimeMs,
       videoSettings: effectiveVideoSettings,
     });
     return {
@@ -441,6 +453,8 @@ export async function renderBookPartVideo({
 }
 
 async function createBookVideoZip({
+  allParts,
+  batch,
   exportSettings,
   metadata,
   onProgress,
@@ -448,13 +462,33 @@ async function createBookVideoZip({
   resolvedBackgroundStyle,
   signal,
   support,
+  totalSelectedRuntimeMs,
   videoSettings,
 }: ExportVideoOptions): Promise<{ blob: Blob; filename: string }> {
   throwIfAborted(signal);
+  const batchNumber = batch?.batchNumber ?? 1;
+  const totalBatches = batch?.totalBatches ?? 1;
+  const selectedParts = allParts && allParts.length > 0 ? allParts : parts;
+  const selectedRuntimeMs =
+    totalSelectedRuntimeMs ?? selectedParts.reduce((sum, part) => sum + part.morseDurationMs, 0);
+  const totalDurationMs = parts.reduce(
+    (total, part) => total + Math.max(0, part.morseDurationMs),
+    0,
+  );
+  let completedDurationMs = 0;
   onProgress?.({
     phase: "analyzing",
-    message: "Preparing video download details...",
+    message:
+      totalBatches > 1
+        ? `Preparing ZIP batch ${batchNumber} of ${totalBatches}...`
+        : "Preparing video download details...",
+    batchNumber,
+    batchPartCount: parts.length,
+    batchPartIndex: 0,
     currentPart: 0,
+    renderedDurationMs: 0,
+    totalBatches,
+    totalDurationMs,
     totalParts: parts.length,
   });
   await cooperativeYield(signal);
@@ -464,8 +498,9 @@ async function createBookVideoZip({
   const generatedVideoFiles: string[] = [];
   const generatedAt = new Date().toISOString();
 
-  for (const part of parts) {
+  for (const [batchPartOffset, part] of parts.entries()) {
     throwIfAborted(signal);
+    const batchPartIndex = batchPartOffset + 1;
     const filename = buildPartVideoFilename({
       sourceTitle: metadata.title || metadata.filename,
       partIndex: part.index,
@@ -473,19 +508,46 @@ async function createBookVideoZip({
     });
     onProgress?.({
       phase: "encoding",
-      message: `Rendering video part ${part.index} of ${parts.length}...`,
-      currentPart: part.index,
+      message:
+        totalBatches > 1
+          ? `Rendering ZIP batch ${batchNumber} of ${totalBatches} - Part ${batchPartIndex} of ${parts.length}`
+          : `Rendering video part ${batchPartIndex} of ${parts.length}...`,
+      batchNumber,
+      batchPartCount: parts.length,
+      batchPartIndex,
+      completedParts: batchPartIndex - 1,
+      currentPart: batchPartIndex - 1,
+      currentPartIndex: batchPartIndex,
+      renderedDurationMs: completedDurationMs,
+      totalBatches,
+      totalDurationMs,
       totalParts: parts.length,
     });
     const videoBlob = await renderBookPartVideo({
       exportSettings,
       onProgress: (elapsedMs, durationMs) => {
+        const aggregateRenderedMs =
+          completedDurationMs + Math.max(0, Math.min(durationMs, elapsedMs));
         onProgress?.({
           phase: "encoding",
-          message: `Recording video part ${part.index} of ${parts.length} (${formatDuration(
-            elapsedMs,
-          )} of ${formatDuration(durationMs)})...`,
-          currentPart: part.index,
+          message:
+            totalBatches > 1
+              ? `Rendering ZIP batch ${batchNumber} of ${totalBatches} - Part ${batchPartIndex} of ${parts.length} - ${percentLabel(
+                  aggregateRenderedMs,
+                  totalDurationMs,
+                )}`
+              : `Recording video part ${batchPartIndex} of ${parts.length} (${formatDuration(
+                  elapsedMs,
+                )} of ${formatDuration(durationMs)})...`,
+          batchNumber,
+          batchPartCount: parts.length,
+          batchPartIndex,
+          completedParts: batchPartIndex - 1,
+          currentPart: batchPartIndex - 1,
+          currentPartIndex: batchPartIndex,
+          renderedDurationMs: aggregateRenderedMs,
+          totalBatches,
+          totalDurationMs,
           totalParts: parts.length,
         });
       },
@@ -497,14 +559,25 @@ async function createBookVideoZip({
     });
     files[filename] = new Uint8Array(await videoBlob.arrayBuffer());
     generatedVideoFiles.push(filename);
+    completedDurationMs += Math.max(0, part.morseDurationMs);
     await cooperativeYield(signal);
   }
 
   throwIfAborted(signal);
   onProgress?.({
     phase: "bundling",
-    message: "Bundling video and selected files...",
+    message:
+      totalBatches > 1
+        ? `Bundling ZIP batch ${batchNumber} of ${totalBatches}...`
+        : "Bundling video and selected files...",
+    batchNumber,
+    batchPartCount: parts.length,
+    batchPartIndex: parts.length,
+    completedParts: parts.length,
     currentPart: parts.length,
+    currentPartIndex: parts.length,
+    renderedDurationMs: totalDurationMs,
+    totalBatches,
     totalParts: parts.length,
   });
 
@@ -518,23 +591,25 @@ async function createBookVideoZip({
     files["morse-transcript.txt"] = strToU8(buildMorseTranscriptFile(parts));
   }
 
-  if (exportSettings.includeManifest) {
-    files["manifest.json"] = strToU8(
-      JSON.stringify(
-        buildVideoManifest({
-          generatedAt,
-          generatedVideoFiles,
-          metadata,
-          parts,
-          support,
-          exportSettings,
-          videoSettings,
-        }),
-        null,
-        2,
-      ),
-    );
-  }
+  files["manifest.json"] = strToU8(
+    JSON.stringify(
+      buildVideoManifest({
+        allParts: selectedParts,
+        batchNumber,
+        generatedAt,
+        generatedVideoFiles,
+        metadata,
+        parts,
+        selectedRuntimeMs,
+        support,
+        exportSettings,
+        totalBatches,
+        videoSettings,
+      }),
+      null,
+      2,
+    ),
+  );
 
   if (exportSettings.includeSettings) {
     files["settings.json"] = strToU8(
@@ -570,7 +645,10 @@ async function createBookVideoZip({
   const zipped = zipSync(files, { level: 6 });
   return {
     blob: new Blob([zipped], { type: "application/zip" }),
-    filename: buildVideoBundleFilename(metadata.title || metadata.filename),
+    filename: buildVideoBundleFilename(
+      metadata.title || metadata.filename,
+      totalBatches > 1 ? batchNumber : undefined,
+    ),
   };
 }
 
@@ -586,26 +664,37 @@ function buildMorseTranscriptFile(parts: BookExportPart[]) {
 }
 
 function buildVideoManifest({
+  allParts,
+  batchNumber,
   generatedAt,
   generatedVideoFiles,
   metadata,
   parts,
+  selectedRuntimeMs,
   support,
   exportSettings,
+  totalBatches,
   videoSettings,
 }: {
+  allParts: BookExportPart[];
+  batchNumber: number;
   generatedAt: string;
   generatedVideoFiles: string[];
   metadata: BookBundleMetadata;
   parts: BookExportPart[];
+  selectedRuntimeMs: number;
   support: BookVideoSupport;
   exportSettings: BookExportSettings;
+  totalBatches: number;
   videoSettings: BookVideoSettings;
 }) {
   const runtimeMs = parts.reduce((sum, part) => sum + part.morseDurationMs, 0);
   return {
+    app: "MorseWords",
     generatedAt,
+    createdAt: generatedAt,
     outputType: "video",
+    selectedFormat: support.extension,
     outputFormat: support.extension,
     mimeType: support.mimeType,
     sourceKind: metadata.sourceType,
@@ -619,7 +708,15 @@ function buildVideoManifest({
       author: metadata.author,
       filename: metadata.filename,
     },
+    batchNumber,
+    totalBatches,
     partCount: parts.length,
+    partCountInBatch: parts.length,
+    globalPartCount: allParts.length,
+    totalSelectedRuntimeEstimate: formatDuration(selectedRuntimeMs),
+    totalSelectedRuntimeMs: selectedRuntimeMs,
+    batchRuntimeEstimate: formatDuration(runtimeMs),
+    batchRuntimeMs: runtimeMs,
     runtimeEstimate: formatDuration(runtimeMs),
     runtimeMs,
     settingsSummary: buildVideoSettingsSummary(exportSettings, videoSettings),
@@ -641,9 +738,22 @@ function buildVideoManifest({
       filename: generatedVideoFiles[index],
       sourceStart: part.sourceStart,
       sourceEnd: part.sourceEnd,
+      coverage: {
+        sourceStart: part.sourceStart,
+        sourceEnd: part.sourceEnd,
+        excerpt: part.cleanedExcerpt,
+      },
       runtimeEstimate: formatDuration(part.morseDurationMs),
       runtimeMs: part.morseDurationMs,
       excerpt: part.cleanedExcerpt,
+    })),
+    allParts: allParts.map((part) => ({
+      index: part.index,
+      title: part.title,
+      sourceStart: part.sourceStart,
+      sourceEnd: part.sourceEnd,
+      runtimeEstimate: formatDuration(part.morseDurationMs),
+      runtimeMs: part.morseDurationMs,
     })),
   };
 }
@@ -742,8 +852,9 @@ function buildVideoReadme({
     exportSettings.includeSettings ? "- settings.json" : "",
     "",
     "Notes",
-    "- WebM is broadly supported by browser recording.",
-    "- MP4 is used only when this browser reports MediaRecorder MP4 support.",
+    support.extension === "mp4"
+      ? "- MP4 is used because this browser reported MediaRecorder MP4 support."
+      : "- WebM is used because this browser did not report MediaRecorder MP4 support for this export.",
     "- Video parts are sorted by filename and listed in playlist.m3u.",
     "- Source files are processed in your browser. Use source text you have the right to convert and use.",
   ]
@@ -778,8 +889,12 @@ function buildSingleVideoFilename({
   return `${filenameBase(sourceTitle)}-morse-video.${extension}`;
 }
 
-function buildVideoBundleFilename(sourceTitle?: string) {
-  return `${filenameBase(sourceTitle)}-morse-video-bundle.zip`;
+function buildVideoBundleFilename(sourceTitle?: string, batchNumber?: number) {
+  const batchSuffix =
+    typeof batchNumber === "number"
+      ? `-batch-${String(batchNumber).padStart(2, "0")}`
+      : "";
+  return `${filenameBase(sourceTitle)}-morse-video${batchSuffix}-bundle.zip`;
 }
 
 function videoFormatLabel(extension: "webm" | "mp4") {

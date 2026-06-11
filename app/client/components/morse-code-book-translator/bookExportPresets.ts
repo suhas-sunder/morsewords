@@ -19,6 +19,7 @@ import type {
   BookPunctuationMode,
   BookSplitMode,
 } from "./bookExportTypes";
+import { BOOK_DEFAULT_PART_TARGET_MINUTES } from "./bookExportSafety";
 
 export const BOOK_EXPORT_PRESET_NAMES = [
   "Reader Quick Start",
@@ -33,8 +34,8 @@ export const BOOK_PUNCTUATION_MODES = ["preserve", "simplify"] as const;
 export const BOOK_SPLIT_MODES = [
   "none",
   "duration",
-  "source-sections",
 ] as const satisfies readonly BookSplitMode[];
+export const BOOK_TARGET_PART_MINUTE_OPTIONS = [15, 30, 45, 60] as const;
 
 export const BOOK_EXPORT_PRESET_DETAILS: Record<
   BookExportPresetName,
@@ -84,7 +85,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     tailPaddingMs: 180,
     splitMode: "none",
     splitAudio: false,
-    targetPartMinutes: 8,
+    targetPartMinutes: BOOK_DEFAULT_PART_TARGET_MINUTES,
     preferSourceSections: true,
     paragraphPauseMultiplier: 2.4,
     sentencePauseMultiplier: 1.35,
@@ -108,7 +109,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     tailPaddingMs: 180,
     splitMode: "none",
     splitAudio: false,
-    targetPartMinutes: 18,
+    targetPartMinutes: BOOK_DEFAULT_PART_TARGET_MINUTES,
     preferSourceSections: true,
     paragraphPauseMultiplier: 3,
     sentencePauseMultiplier: 1.5,
@@ -132,7 +133,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     tailPaddingMs: 180,
     splitMode: "none",
     splitAudio: false,
-    targetPartMinutes: 5,
+    targetPartMinutes: BOOK_DEFAULT_PART_TARGET_MINUTES,
     preferSourceSections: false,
     paragraphPauseMultiplier: 2,
     sentencePauseMultiplier: 1.25,
@@ -156,7 +157,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     tailPaddingMs: 180,
     splitMode: "none",
     splitAudio: false,
-    targetPartMinutes: 10,
+    targetPartMinutes: BOOK_DEFAULT_PART_TARGET_MINUTES,
     preferSourceSections: true,
     paragraphPauseMultiplier: 1.8,
     sentencePauseMultiplier: 1.1,
@@ -180,7 +181,7 @@ export const BOOK_EXPORT_PRESETS: Record<
     tailPaddingMs: 220,
     splitMode: "none",
     splitAudio: false,
-    targetPartMinutes: 6,
+    targetPartMinutes: BOOK_DEFAULT_PART_TARGET_MINUTES,
     preferSourceSections: true,
     paragraphPauseMultiplier: 2,
     sentencePauseMultiplier: 1.2,
@@ -202,8 +203,10 @@ export function isBookExportPresetName(
   return BOOK_EXPORT_PRESET_NAMES.includes(value as BookExportPresetName);
 }
 
-export function isBookSplitMode(value: unknown): value is BookSplitMode {
-  return BOOK_SPLIT_MODES.includes(value as BookSplitMode);
+export function isBookSplitMode(
+  value: unknown,
+): value is (typeof BOOK_SPLIT_MODES)[number] {
+  return typeof value === "string" && BOOK_SPLIT_MODES.includes(value as never);
 }
 
 export function sanitizeBookExportSettings(
@@ -236,9 +239,13 @@ export function sanitizeBookExportSettings(
     settings.punctuationMode === "simplify"
       ? settings.punctuationMode
       : fallback.punctuationMode;
-  const splitMode = isBookSplitMode(settings.splitMode)
-    ? settings.splitMode
-    : fallback.splitMode;
+  const rawSplitMode = settings.splitMode as unknown;
+  const legacySourceSections = rawSplitMode === "source-sections";
+  const splitMode = legacySourceSections
+    ? "duration"
+    : isBookSplitMode(rawSplitMode)
+      ? rawSplitMode
+      : fallback.splitMode;
 
   return {
     ...fallback,
@@ -279,10 +286,12 @@ export function sanitizeBookExportSettings(
     ),
     splitMode,
     splitAudio: splitMode !== "none",
-    targetPartMinutes:
-      Math.round(clampNumber(settings.targetPartMinutes ?? fallback.targetPartMinutes, 1, 30) * 10) /
-      10,
-    preferSourceSections: splitMode === "source-sections",
+    targetPartMinutes: sanitizeTargetPartMinutes(
+      settings.targetPartMinutes ?? fallback.targetPartMinutes,
+    ),
+    preferSourceSections: Boolean(
+      settings.preferSourceSections ?? fallback.preferSourceSections,
+    ),
     paragraphPauseMultiplier:
       Math.round(
         clampNumber(
@@ -312,6 +321,13 @@ export function sanitizeBookExportSettings(
   };
 }
 
+function sanitizeTargetPartMinutes(value: number) {
+  const clamped = clampNumber(value, 15, 60);
+  return BOOK_TARGET_PART_MINUTE_OPTIONS.reduce((best, option) =>
+    Math.abs(option - clamped) < Math.abs(best - clamped) ? option : best,
+  );
+}
+
 export function applyBookPreset(
   presetName: BookExportPresetName,
 ): BookExportSettings {
@@ -324,11 +340,9 @@ export function describeBookExportSettings(settings: BookExportSettings) {
       ? `MP3 ${settings.mp3Bitrate} kbps`
       : `WAV ${settings.sampleRate} Hz`;
   const split =
-    settings.splitMode === "source-sections"
-      ? `source-section parts with ${settings.targetPartMinutes} minute fallback`
-      : settings.splitMode === "duration"
-        ? `${settings.targetPartMinutes} minute target parts`
-        : "single audio file";
+    settings.splitMode === "duration"
+      ? `${settings.targetPartMinutes} minute target parts`
+      : "single audio file";
   const tone = getAudioPresetShortLabel(settings.tonePreset);
   return `${settings.charWpm}/${settings.farnsworthWpm} WPM, ${tone}, ${format}, ${split}.`;
 }

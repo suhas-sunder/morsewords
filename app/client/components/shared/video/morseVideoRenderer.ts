@@ -85,6 +85,21 @@ export type MorseVideoFrameWordWindowItem = {
   activeCharIndex: number;
 };
 
+export type MorseVideoCanonicalFrameState = {
+  activeCharacter: string;
+  activeCharacterMorse: string;
+  activeMorseToken: MorseVideoTimelineToken | null;
+  activePlainText: string;
+  activeTimedEvent: MorseVideoTimedEvent | null;
+  bulbActive: boolean;
+  elapsedMs: number;
+  morseWindow: string;
+  plainTextWindow: string;
+  progress: number;
+  toneState: "tone" | "gap";
+  wordWindow: MorseVideoFrameWordWindowItem[];
+};
+
 type RenderFrameOptions = {
   audioSettings: MorseVideoAudioSettings;
   ctx: CanvasRenderingContext2D;
@@ -239,6 +254,48 @@ export function getMorseVideoFrameWordWindow(
   }
 
   return words;
+}
+
+export function getMorseVideoCanonicalFrameState(
+  timeline: MorseVideoTimeline,
+  elapsedMs: number,
+  wordWindowLimit = 168,
+): MorseVideoCanonicalFrameState {
+  const safeElapsed = Math.max(
+    0,
+    Math.min(Math.max(0, timeline.durationMs), elapsedMs),
+  );
+  const activeTimedEvent =
+    timeline.events.find(
+      (event) => safeElapsed >= event.startMs && safeElapsed < event.endMs,
+    ) ?? null;
+  const textState = getMorseVideoFrameTextState(timeline, safeElapsed);
+  const wordWindow = getMorseVideoFrameWordWindow(
+    timeline,
+    safeElapsed,
+    wordWindowLimit,
+  );
+  const morseWindow =
+    wordWindow.map((word) => word.morse).join(MORSE_DISPLAY_WORD_SEPARATOR) ||
+    textState.morseText;
+  const plainTextWindow =
+    wordWindow.map((word) => word.text).join(" ") || textState.plainText;
+  const durationMs = Math.max(1, timeline.durationMs);
+
+  return {
+    activeCharacter: textState.activeCharacter,
+    activeCharacterMorse: textState.activeCharacterMorse,
+    activeMorseToken: textState.token,
+    activePlainText: textState.plainText,
+    activeTimedEvent,
+    bulbActive: activeTimedEvent?.type === "mark",
+    elapsedMs: safeElapsed,
+    morseWindow,
+    plainTextWindow,
+    progress: Math.max(0, Math.min(1, safeElapsed / durationMs)),
+    toneState: activeTimedEvent?.type === "mark" ? "tone" : "gap",
+    wordWindow,
+  };
 }
 
 function buildTimelineWordGroups(timeline: MorseVideoTimeline) {
@@ -437,7 +494,8 @@ export function renderMorseVideoFrame({
   resolvedBackgroundStyle,
 }: RenderFrameOptions) {
   const palette = getFramePalette(resolvedBackgroundStyle);
-  const active = isMarkActive(timeline, elapsedMs);
+  const frameState = getMorseVideoCanonicalFrameState(timeline, elapsedMs);
+  const active = frameState.bulbActive;
   const flashFrame =
     settings.showVisualSignal && settings.visualStyle === "full-frame" && active;
   const background = flashFrame ? palette.flashBackground : palette.background;

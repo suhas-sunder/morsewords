@@ -55,7 +55,7 @@ export function segmentBookText({
 
   const targetMs = settings.targetPartMinutes * 60_000;
   const units =
-    settings.splitMode === "source-sections" && sourceSections.length > 1
+    settings.preferSourceSections && sourceSections.length > 1
       ? buildSectionUnits(sourceSections, cleanedText)
       : splitParagraphRanges(cleanedText).map((paragraph) => ({
           text: paragraph.text,
@@ -316,11 +316,15 @@ export function buildSingleAudioFilename({
   return `${base || "morse-book"}-morse-audio.${format}`;
 }
 
-export function buildBundleFilename(sourceTitle?: string) {
+export function buildBundleFilename(sourceTitle?: string, batchNumber?: number) {
   const base = sanitizeDownloadFilename(sourceTitle || "morse-book", "morse-book")
     .replace(/\.zip$/i, "")
     .slice(0, MAX_FILENAME_BASE_LENGTH);
-  return `${base || "morse-book"}-morse-audio-bundle.zip`;
+  const batchSuffix =
+    typeof batchNumber === "number"
+      ? `-batch-${String(batchNumber).padStart(2, "0")}`
+      : "";
+  return `${base || "morse-book"}-morse-audio${batchSuffix}-bundle.zip`;
 }
 
 function excerpt(text: string, limit: number) {
