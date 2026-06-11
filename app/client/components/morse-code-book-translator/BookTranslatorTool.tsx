@@ -53,6 +53,12 @@ import {
   formatDuration,
 } from "./bookDurationEstimate";
 import {
+  bookExportProgressDetail as exportProgressDetail,
+  bookExportProgressPercent as exportProgressPercent,
+} from "./bookExportProgressCopy";
+import {
+  BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE,
+  BOOK_LONG_EXPORT_MESSAGE,
   BOOK_OVERSIZED_EXPORT_MESSAGE,
   estimateBookVideoExport,
   findOversizedAudioExportPart,
@@ -67,8 +73,6 @@ import {
 } from "~/client/components/shared/video/MorseVideoPreviewControls";
 import {
   getMorseVideoFormatSupport,
-  getPreferredMorseVideoFormat,
-  MORSE_VIDEO_FORMATS,
   type MorseVideoFormat,
 } from "~/client/components/shared/video/morseVideoSupport";
 import useMorseAudio, {
@@ -84,6 +88,10 @@ import {
   settingsMatchBookPreset,
 } from "./bookExportPresets";
 import {
+  buildBookExportPlan,
+  type BookExportPlan,
+} from "./bookExportPlan";
+import {
   loadBookExportPreferences,
   saveBookExportPreferences,
 } from "./bookExportPreferences";
@@ -96,7 +104,6 @@ import type {
   BookExportSettings,
   BookOutputType,
 } from "./bookExportTypes";
-import { segmentBookText } from "./bookSegmentation";
 import {
   DEFAULT_CLEANUP_OPTIONS,
   type BookSourceSection,
@@ -181,11 +188,11 @@ const VIDEO_IDLE_EXPORT_PROGRESS: BookExportProgress = {
 
 const FULL_FRAME_FLASH_WARNING =
   "Full-frame flash mode can create rapid full-frame flashing in the finished video and may be uncomfortable or unsafe for some viewers. Use Lightbulb or Dot for a smaller flash area.";
+const PUBLIC_BOOK_VIDEO_FORMATS = ["mp4"] as const satisfies readonly MorseVideoFormat[];
 
 const BOOK_SPLIT_MODE_LABELS: Record<BookSplitMode, string> = {
   none: "No split",
   duration: "By duration",
-  "source-sections": "By source sections",
 };
 
 type BookPreviewStatus =
@@ -205,7 +212,7 @@ type CacheEntry<T> = {
 type BookDerivedCache = {
   preflight?: CacheEntry<PreflightSummary>;
   sourceSections?: CacheEntry<BookSourceSection[]>;
-  exportParts?: CacheEntry<BookExportPart[]>;
+  exportPlan?: CacheEntry<BookExportPlan>;
   exportAnalysis?: CacheEntry<BookExportAnalysis>;
 };
 
@@ -501,6 +508,20 @@ function isExportRunning(progress: BookExportProgress) {
   );
 }
 
+function estimatedRenderTimeLabel(
+  totalRuntimeMs: number,
+  outputType: BookOutputType,
+  videoEstimateLabel: string,
+  format: BookExportSettings["outputFormat"],
+) {
+  if (outputType === "video") return videoEstimateLabel;
+  if (!Number.isFinite(totalRuntimeMs) || totalRuntimeMs <= 0) return "~0s";
+  const formatFactor = format === "wav" ? [0.08, 0.18] : [0.12, 0.32];
+  const minMs = Math.max(1_000, totalRuntimeMs * formatFactor[0]);
+  const maxMs = Math.max(minMs, totalRuntimeMs * formatFactor[1]);
+  return `~${formatDuration(minMs)}-${formatDuration(maxMs)}`;
+}
+
 export default function BookTranslatorTool() {
   const [sourceText, setSourceText] = React.useState(DEFAULT_SOURCE_TEXT);
   const [parsedSource, setParsedSource] = React.useState<ParsedBookSource>(() =>
@@ -517,7 +538,7 @@ export default function BookTranslatorTool() {
   const [sourceEditMode, setSourceEditMode] =
     React.useState<SourceEditMode>("idle");
   const [sourceEditDraft, setSourceEditDraft] = React.useState("");
-  const [outputType, setOutputType] = React.useState<BookOutputType>("audio");
+  const [outputType, setOutputType] = React.useState<BookOutputType>("video");
   const [exportSettings, setExportSettings] =
     React.useState<BookExportSettings>(DEFAULT_BOOK_EXPORT_SETTINGS);
   const [videoSettings, setVideoSettings] = React.useState<BookVideoSettings>(
@@ -526,7 +547,7 @@ export default function BookTranslatorTool() {
   const [videoSupport, setVideoSupport] =
     React.useState<BookVideoSupport | null>(null);
   const [selectedVideoFormat, setSelectedVideoFormat] =
-    React.useState<MorseVideoFormat>("webm");
+    React.useState<MorseVideoFormat>("mp4");
   const [previewStatus, setPreviewStatus] =
     React.useState<BookPreviewStatus>("waiting");
   const [previewErrorMessage, setPreviewErrorMessage] = React.useState("");
@@ -548,6 +569,7 @@ export default function BookTranslatorTool() {
     null,
   );
   const [exportElapsedMs, setExportElapsedMs] = React.useState(0);
+  const [selectedBatchNumber, setSelectedBatchNumber] = React.useState(1);
   const [exportStatus, setExportStatus] = React.useState<{
     kind: ExportStatusKind;
     message: string;
@@ -713,14 +735,7 @@ export default function BookTranslatorTool() {
   }, [videoSupport]);
 
   React.useEffect(() => {
-    if (!videoSupport?.supported) return;
-    setSelectedVideoFormat((current) => {
-      const currentSupport = getMorseVideoFormatSupport(videoSupport, current);
-      if (!currentSupport.supported) {
-        return getPreferredMorseVideoFormat(videoSupport);
-      }
-      return current === "webm" ? getPreferredMorseVideoFormat(videoSupport) : current;
-    });
+    setSelectedVideoFormat("mp4");
   }, [videoSupport]);
 
   React.useEffect(() => {
@@ -803,16 +818,31 @@ export default function BookTranslatorTool() {
       targetPartMinutes: videoSettings.targetPartMinutes,
     });
   }, [exportSettings, outputType, videoSettings.targetPartMinutes]);
+  const effectiveVideoSettings = React.useMemo<BookVideoSettings>(
+    () =>
+      sanitizeBookVideoSettings({
+        ...videoSettings,
+        includeAudioTrack:
+          videoSettings.includeAudioTrack &&
+          Boolean(videoSupport?.audioTrackSupported),
+      }),
+    [videoSettings, videoSupport?.audioTrackSupported],
+  );
   const segmentationCacheSignature = React.useMemo(
-    () => settingsSignature(activeSegmentationSettings),
-    [activeSegmentationSettings],
+    () =>
+      settingsSignature({
+        activeSegmentationSettings,
+        effectiveVideoSettings,
+        outputType,
+      }),
+    [activeSegmentationSettings, effectiveVideoSettings, outputType],
   );
   const sourceSectionsCacheSignature = React.useMemo(
     () => sourceSectionsSignature(sourceSections),
     [sourceSections],
   );
 
-  const exportParts = React.useMemo<BookExportPart[]>(() => {
+  const exportPlan = React.useMemo(() => {
     const cacheKey = [
       hashString(preflight.cleanedText),
       segmentationCacheSignature,
@@ -820,19 +850,23 @@ export default function BookTranslatorTool() {
       preflight.title ?? "",
       preflight.filename ?? "",
     ].join("|");
-    const cached = derivedCacheRef.current.exportParts;
+    const cached = derivedCacheRef.current.exportPlan;
     if (cached?.key === cacheKey) return cached.value;
 
-    const value = segmentBookText({
+    const value = buildBookExportPlan({
       cleanedText: preflight.cleanedText,
+      outputType,
       settings: activeSegmentationSettings,
       sourceSections,
       sourceTitle: preflight.title || preflight.filename,
+      videoSettings: effectiveVideoSettings,
     });
-    derivedCacheRef.current.exportParts = { key: cacheKey, value };
+    derivedCacheRef.current.exportPlan = { key: cacheKey, value };
     return value;
   }, [
     activeSegmentationSettings,
+    effectiveVideoSettings,
+    outputType,
     preflight.cleanedText,
     preflight.filename,
     preflight.title,
@@ -840,6 +874,29 @@ export default function BookTranslatorTool() {
     sourceSections,
     sourceSectionsCacheSignature,
   ]);
+  const exportParts = exportPlan.parts;
+  const exportBatches = exportPlan.batches;
+  const zipBatchWorkflow = exportPlan.zipWorkflow && exportParts.length > 1;
+  const selectedExportBatch = React.useMemo(() => {
+    if (!zipBatchWorkflow) return null;
+    return (
+      exportBatches.find((batch) => batch.batchNumber === selectedBatchNumber) ??
+      exportBatches[0] ??
+      null
+    );
+  }, [exportBatches, selectedBatchNumber, zipBatchWorkflow]);
+  const activeDownloadParts = selectedExportBatch?.parts ?? exportParts;
+
+  React.useEffect(() => {
+    if (!zipBatchWorkflow) {
+      if (selectedBatchNumber !== 1) setSelectedBatchNumber(1);
+      return;
+    }
+    const totalBatches = Math.max(1, exportBatches.length);
+    if (selectedBatchNumber < 1 || selectedBatchNumber > totalBatches) {
+      setSelectedBatchNumber(1);
+    }
+  }, [exportBatches.length, selectedBatchNumber, zipBatchWorkflow]);
 
   const exportAnalysis = React.useMemo(() => {
     const cacheKey = [
@@ -912,22 +969,12 @@ export default function BookTranslatorTool() {
   const exportRunning = isExportRunning(exportProgress);
   const isAudioOutput = outputType === "audio";
   const isVideoOutput = outputType === "video";
-  const splitEnabled = activeSegmentationSettings.splitMode !== "none";
-  const isSegmentedOutput = splitEnabled;
-  const hasSourceSectionHints = sourceSections.length > 1;
+  const splitEnabled =
+    activeSegmentationSettings.splitMode !== "none" || exportPlan.automaticSplit;
+  const isSegmentedOutput = splitEnabled || exportParts.length > 1;
   const appliedThemeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(appliedThemeMode);
-  const effectiveVideoSettings = React.useMemo<BookVideoSettings>(
-    () =>
-      sanitizeBookVideoSettings({
-        ...videoSettings,
-        includeAudioTrack:
-          videoSettings.includeAudioTrack &&
-          Boolean(videoSupport?.audioTrackSupported),
-      }),
-    [videoSettings, videoSupport?.audioTrackSupported],
-  );
   const audioPreview = React.useMemo(
     () => buildBookAudioPreview(preflight.cleanedText, exportSettings),
     [exportSettings, preflight.cleanedText],
@@ -961,6 +1008,21 @@ export default function BookTranslatorTool() {
         effectiveVideoSettings,
       ),
     [effectiveVideoSettings, exportAnalysis.totalRuntimeMs, selectedVideoFormat],
+  );
+  const renderEstimateLabel = React.useMemo(
+    () =>
+      estimatedRenderTimeLabel(
+        exportAnalysis.totalRuntimeMs,
+        outputType,
+        videoExportEstimate.renderTimeLabel,
+        exportSettings.outputFormat,
+      ),
+    [
+      exportAnalysis.totalRuntimeMs,
+      exportSettings.outputFormat,
+      outputType,
+      videoExportEstimate.renderTimeLabel,
+    ],
   );
   const previewSettingsSignature = React.useMemo(
     () =>
@@ -1018,16 +1080,21 @@ export default function BookTranslatorTool() {
   const activeOversizedExportPart = isVideoOutput
     ? oversizedVideoExportPart
     : oversizedAudioExportPart;
-  const oversizedExportMessage = activeOversizedExportPart
+  const unresolvedOversizedExportPart = exportPlan.unresolvedOversizedPart;
+  const oversizedExportMessage = unresolvedOversizedExportPart
     ? `${BOOK_OVERSIZED_EXPORT_MESSAGE} ${oversizedExportDetailsLabel(
         activeOversizedExportPart,
       )}`
     : "";
+  const longExportMessages =
+    zipBatchWorkflow
+      ? [BOOK_LONG_EXPORT_MESSAGE, BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE]
+      : [];
   const canAudioExport =
     hasSource &&
     exportParts.length > 0 &&
     !exportRunning &&
-    !oversizedAudioExportPart;
+    !unresolvedOversizedExportPart;
   const selectedVideoFormatSupport = React.useMemo(
     () => getMorseVideoFormatSupport(videoSupport, selectedVideoFormat),
     [selectedVideoFormat, videoSupport],
@@ -1049,7 +1116,7 @@ export default function BookTranslatorTool() {
     hasCleanedSource &&
     exportParts.length > 0 &&
     !exportRunning &&
-    !oversizedVideoExportPart &&
+    !unresolvedOversizedExportPart &&
     Boolean(selectedBookVideoSupport?.supported) &&
     selectedVideoFormatSupport.supported;
   const canExport = isAudioOutput ? canAudioExport : canVideoExport;
@@ -1060,7 +1127,7 @@ export default function BookTranslatorTool() {
         ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
         : exportParts.length === 0
           ? "Review the source text before downloading."
-          : oversizedVideoExportPart
+          : unresolvedOversizedExportPart
             ? oversizedExportMessage
           : !videoSupport
             ? "Checking browser video export support."
@@ -1077,7 +1144,7 @@ export default function BookTranslatorTool() {
         ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
         : exportParts.length === 0
           ? "Review the source text before downloading."
-          : oversizedAudioExportPart
+          : unresolvedOversizedExportPart
             ? oversizedExportMessage
           : exportRunning
             ? "Download is currently running."
@@ -1099,52 +1166,48 @@ export default function BookTranslatorTool() {
   const activeSettingsSummary = describeBookExportSettings(exportSettings);
   const downloadKind =
     hasSource && exportParts.length > 0
-      ? isVideoOutput
+      ? zipBatchWorkflow
+        ? "zip"
+        : isVideoOutput
         ? getBookVideoDownloadKind(exportParts, activeSegmentationSettings)
         : getBookDownloadKind(exportParts, activeSegmentationSettings)
       : isVideoOutput
         ? "video"
         : "audio";
   const downloadFormatLabel = exportSettings.outputFormat.toUpperCase();
-  const primaryDownloadLabel = isVideoOutput
-    ? downloadKind === "zip"
-      ? `Download ZIP bundle${
-          exportParts.length > 1
-            ? ` (${exportParts.length.toLocaleString()} ${selectedVideoFormatSupport.label} files)`
-            : ""
-        }`
-      : `Download ${selectedVideoFormatSupport.label}`
-    : downloadKind === "zip"
-      ? `Download ZIP bundle${
-          exportParts.length > 1
-            ? ` (${exportParts.length.toLocaleString()} ${downloadFormatLabel} files)`
-            : ""
-        }`
-      : `Download ${downloadFormatLabel}`;
+  const totalBatches = exportBatches.length;
+  const selectedBatchLabel =
+    selectedExportBatch && totalBatches > 0
+      ? `batch ${selectedExportBatch.batchNumber}`
+      : "batch 1";
+  const primaryDownloadLabel =
+    zipBatchWorkflow
+      ? `Download ZIP ${selectedBatchLabel}`
+      : downloadKind === "zip"
+      ? "Download ZIP bundle"
+      : isVideoOutput
+        ? `Download ${selectedVideoFormatSupport.label}`
+        : exportParts.length > 1
+          ? `Download ZIP ${selectedBatchLabel}`
+          : `Download ${downloadFormatLabel}`;
   const splitMode = activeSegmentationSettings.splitMode;
   const splitTargetPartMinutes = isVideoOutput
     ? videoSettings.targetPartMinutes
     : exportSettings.targetPartMinutes;
   const splitSummaryText =
     splitMode === "none"
-      ? downloadKind === "zip"
-        ? "No split is selected. A ZIP is still required because selected sidecar files need to travel with the media."
-        : `No split is selected. This can download as one ${isVideoOutput ? "WebM video" : downloadFormatLabel} file.`
-      : splitMode === "source-sections"
-        ? hasSourceSectionHints
-          ? `Using available source sections with ${formatDuration(
-              exportAnalysis.targetPartMs,
-            )} duration fallback. Estimated parts: ${formatNumber(
-              exportParts.length,
-            )}.`
-          : `No EPUB/PDF section hints are available, so the download falls back to ${formatDuration(
-              exportAnalysis.targetPartMs,
-            )} duration parts and safe text boundaries.`
-        : `Using ${formatDuration(
-            exportAnalysis.targetPartMs,
-          )} target parts and safe text boundaries. Estimated parts: ${formatNumber(
+      ? exportPlan.automaticSplit
+        ? `${BOOK_LONG_EXPORT_MESSAGE} Estimated parts: ${formatNumber(
             exportParts.length,
-          )}.`;
+          )}.`
+        : downloadKind === "zip"
+        ? "No split is selected. A ZIP is still required because selected sidecar files need to travel with the media."
+        : `No split is selected. This can download as one ${isVideoOutput ? selectedVideoFormatSupport.label : downloadFormatLabel} file.`
+      : `Using ${formatDuration(
+          exportPlan.targetPartMs,
+        )} target parts and safe text boundaries. Estimated parts: ${formatNumber(
+          exportParts.length,
+        )}.`;
   const videoWarnings = isVideoOutput
     ? buildBookVideoWarnings({
         downloadKind,
@@ -1159,27 +1222,23 @@ export default function BookTranslatorTool() {
       new Map(preflight.customRuleMatches.map((match) => [match.id, match])),
     [preflight.customRuleMatches],
   );
-  const progressPercent =
-    exportProgress.totalParts > 0
-      ? Math.round(
-          (exportProgress.currentPart / exportProgress.totalParts) * 100,
-        )
-      : exportProgress.phase === "complete"
-        ? 100
-        : 0;
+  const progressPercent = exportProgressPercent(exportProgress);
   const showExportProgress = exportRunning;
   const showExportStatus = Boolean(exportStatus) && !exportRunning;
-  const runningDownloadLabel = isVideoOutput
-    ? exportProgress.phase === "analyzing" || exportProgress.phase === "splitting"
-      ? "Preparing export..."
-      : exportProgress.phase === "bundling"
-        ? "Finalizing download..."
-      : "Rendering video..."
-    : exportProgress.phase === "analyzing" || exportProgress.phase === "splitting"
-      ? "Preparing export..."
-      : exportProgress.phase === "bundling"
-        ? "Finalizing download..."
-        : "Rendering audio...";
+  const runningDownloadLabel =
+    zipBatchWorkflow && selectedExportBatch
+      ? `Rendering ZIP batch ${selectedExportBatch.batchNumber} of ${totalBatches}`
+      : isVideoOutput
+        ? exportProgress.phase === "analyzing" || exportProgress.phase === "splitting"
+          ? "Preparing export..."
+          : exportProgress.phase === "bundling"
+            ? "Finalizing download..."
+            : "Rendering video..."
+        : exportProgress.phase === "analyzing" || exportProgress.phase === "splitting"
+          ? "Preparing export..."
+          : exportProgress.phase === "bundling"
+            ? "Finalizing download..."
+            : "Rendering audio...";
   const downloadButtonLabel = exportRunning
     ? runningDownloadLabel
     : primaryDownloadLabel;
@@ -2034,7 +2093,7 @@ export default function BookTranslatorTool() {
       return;
     }
 
-    if (activeOversizedExportPart) {
+    if (unresolvedOversizedExportPart) {
       setExportStatus({
         kind: "error",
         message: oversizedExportMessage || BOOK_OVERSIZED_EXPORT_MESSAGE,
@@ -2043,7 +2102,7 @@ export default function BookTranslatorTool() {
         phase: "failed",
         message: oversizedExportMessage || BOOK_OVERSIZED_EXPORT_MESSAGE,
         currentPart: 0,
-        totalParts: exportParts.length,
+        totalParts: activeDownloadParts.length,
       });
       return;
     }
@@ -2067,7 +2126,11 @@ export default function BookTranslatorTool() {
         ? "Preparing cleaned source for video..."
         : "Preparing cleaned source for download...",
       currentPart: 0,
-      totalParts: exportParts.length,
+      batchNumber: selectedExportBatch?.batchNumber,
+      batchPartCount: activeDownloadParts.length,
+      batchPartIndex: 0,
+      totalBatches,
+      totalParts: activeDownloadParts.length,
     };
     exportProgressRef.current = initialProgress;
     setExportProgress(initialProgress);
@@ -2087,20 +2150,26 @@ export default function BookTranslatorTool() {
       };
       const result = isVideoOutput
         ? await createBookVideoDownloadPackage({
+            allParts: exportParts,
+            batch: selectedExportBatch ?? undefined,
             metadata,
-            parts: exportParts,
+            parts: activeDownloadParts,
             exportSettings: activeSegmentationSettings,
             videoSettings: effectiveVideoSettings,
             resolvedBackgroundStyle: resolvedVideoBackgroundStyle,
             support: selectedBookVideoSupport as BookVideoSupport,
             signal: controller.signal,
+            totalSelectedRuntimeMs: exportAnalysis.totalRuntimeMs,
             onProgress: progressHandler,
           })
         : await createBookDownloadPackage({
+            allParts: exportParts,
+            batch: selectedExportBatch ?? undefined,
             metadata,
-            parts: exportParts,
+            parts: activeDownloadParts,
             settings: exportSettings,
             signal: controller.signal,
+            totalSelectedRuntimeMs: exportAnalysis.totalRuntimeMs,
             onProgress: progressHandler,
           });
       if (!mountedRef.current || exportVersionRef.current !== version) return;
@@ -2112,8 +2181,9 @@ export default function BookTranslatorTool() {
         setExportProgress({
           phase: "failed",
           message: download.message,
-          currentPart: exportParts.length,
-          totalParts: exportParts.length,
+          currentPart: activeDownloadParts.length,
+          totalBatches,
+          totalParts: activeDownloadParts.length,
         });
         setExportStatus({ kind: "error", message: download.message });
         return;
@@ -2122,12 +2192,16 @@ export default function BookTranslatorTool() {
         ? (result as BookVideoDownloadPackage).outputFormat
         : exportSettings.outputFormat;
       setCompletedExport({
+        batchNumber: selectedExportBatch?.batchNumber,
         filename: result.filename,
         downloadKind: result.downloadKind,
         outputFormat: resultOutputFormat,
-        partCount: exportParts.length,
-        runtimeLabel: formatDuration(exportAnalysis.totalRuntimeMs),
-        sizeLabel: isVideoOutput
+        totalBatches,
+        partCount: activeDownloadParts.length,
+        runtimeLabel: formatDuration(
+          selectedExportBatch?.runtimeMs ?? exportAnalysis.totalRuntimeMs,
+        ),
+        sizeLabel: isVideoOutput || result.downloadKind === "zip"
           ? formatBytes(result.blob.size)
           : exportAnalysis.estimatedSizeLabel,
         contents: result.contents,
@@ -2136,24 +2210,47 @@ export default function BookTranslatorTool() {
         phase: "complete",
         message:
           result.downloadKind === "zip"
-            ? `ZIP download started with ${exportParts.length} part${
-                exportParts.length === 1 ? "" : "s"
-              }.`
+            ? zipBatchWorkflow && selectedExportBatch
+              ? `Batch ${selectedExportBatch.batchNumber} downloaded. ${
+                  selectedExportBatch.batchNumber < totalBatches
+                    ? `Batch ${selectedExportBatch.batchNumber + 1} is ready when you are.`
+                    : "All ZIP batches are complete."
+                }`
+              : `ZIP download started with ${activeDownloadParts.length} part${
+                  activeDownloadParts.length === 1 ? "" : "s"
+                }.`
             : isVideoOutput
               ? `${videoFormatLabel(resultOutputFormat)} download started.`
               : `${downloadFormatLabel} download started.`,
-        currentPart: exportParts.length,
-        totalParts: exportParts.length,
+        batchNumber: selectedExportBatch?.batchNumber,
+        batchPartCount: activeDownloadParts.length,
+        batchPartIndex: activeDownloadParts.length,
+        currentPart: activeDownloadParts.length,
+        totalBatches,
+        totalParts: activeDownloadParts.length,
       });
       setExportStatus({
         kind: "success",
         message:
           result.downloadKind === "zip"
-            ? "ZIP download started."
+            ? zipBatchWorkflow && selectedExportBatch
+              ? `Batch ${selectedExportBatch.batchNumber} downloaded. ${
+                  selectedExportBatch.batchNumber < totalBatches
+                    ? `Batch ${selectedExportBatch.batchNumber + 1} is ready when you are.`
+                    : "All ZIP batches are complete."
+                }`
+              : "ZIP download started."
             : isVideoOutput
               ? `${videoFormatLabel(resultOutputFormat)} download started.`
               : `${downloadFormatLabel} download started.`,
       });
+      if (
+        zipBatchWorkflow &&
+        selectedExportBatch &&
+        selectedExportBatch.batchNumber < totalBatches
+      ) {
+        setSelectedBatchNumber(selectedExportBatch.batchNumber + 1);
+      }
     } catch (error) {
       if (!mountedRef.current || exportVersionRef.current !== version) return;
       if (error instanceof DOMException && error.name === "AbortError") {
@@ -2161,7 +2258,8 @@ export default function BookTranslatorTool() {
           phase: "cancelled",
           message: "Download cancelled.",
           currentPart: 0,
-          totalParts: exportParts.length,
+          totalBatches,
+          totalParts: activeDownloadParts.length,
         });
         setExportStatus({ kind: "info", message: "Download cancelled." });
         return;
@@ -2173,7 +2271,8 @@ export default function BookTranslatorTool() {
         phase: "failed",
         message: failedMessage,
         currentPart: 0,
-        totalParts: exportParts.length,
+        totalBatches,
+        totalParts: activeDownloadParts.length,
       });
       setExportStatus({
         kind: "error",
@@ -2187,7 +2286,8 @@ export default function BookTranslatorTool() {
     }
   }, [
     activeSegmentationSettings,
-    activeOversizedExportPart,
+    activeDownloadParts,
+    downloadKind,
     effectiveVideoSettings,
     exportAnalysis.estimatedSizeLabel,
     exportAnalysis.totalRuntimeMs,
@@ -2200,8 +2300,12 @@ export default function BookTranslatorTool() {
     resolvedVideoBackgroundStyle,
     selectedBookVideoSupport,
     selectedVideoFormatSupport,
+    selectedExportBatch,
+    totalBatches,
+    zipBatchWorkflow,
     downloadFormatLabel,
     oversizedExportMessage,
+    unresolvedOversizedExportPart,
   ]);
 
   const uploadHelpText = hasSource
@@ -2423,7 +2527,7 @@ export default function BookTranslatorTool() {
                 label={splitEnabled ? "Target part" : "Split"}
                 value={
                   splitEnabled
-                    ? formatDuration(exportAnalysis.targetPartMs)
+                    ? formatDuration(exportPlan.targetPartMs)
                     : "Off"
                 }
               />
@@ -2435,12 +2539,7 @@ export default function BookTranslatorTool() {
                     : `~${exportAnalysis.estimatedSizeLabel}`
                 }
               />
-              {isVideoOutput ? (
-                <Metric
-                  label="Render time"
-                  value={videoExportEstimate.renderTimeLabel}
-                />
-              ) : null}
+              <Metric label="Render time" value={renderEstimateLabel} />
             </dl>
 
             {sourceDraftActive ? (
@@ -2461,6 +2560,13 @@ export default function BookTranslatorTool() {
                 title="Download warnings"
                 items={exportWarnings}
                 tone="warning"
+              />
+            ) : null}
+            {longExportMessages.length > 0 ? (
+              <MessageList
+                title="Download notes"
+                items={longExportMessages}
+                tone="info"
               />
             ) : null}
             {isVideoOutput ? (
@@ -2505,6 +2611,21 @@ export default function BookTranslatorTool() {
             />
 
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+              {zipBatchWorkflow && totalBatches > 0 ? (
+                <LabeledSelect
+                  label="ZIP batch"
+                  value={String(selectedExportBatch?.batchNumber ?? 1)}
+                  disabled={exportRunning}
+                  onChange={(value) => setSelectedBatchNumber(Number(value))}
+                >
+                  {exportBatches.map((batch) => (
+                    <option key={batch.batchNumber} value={batch.batchNumber}>
+                      Batch {batch.batchNumber} of {batch.totalBatches} -{" "}
+                      {formatDuration(batch.runtimeMs)}
+                    </option>
+                  ))}
+                </LabeledSelect>
+              ) : null}
               {isVideoOutput ? (
                 <VideoFormatSelect
                   selectedFormat={selectedVideoFormat}
@@ -2574,8 +2695,8 @@ export default function BookTranslatorTool() {
                   className="mt-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
                   data-testid="book-download-progress-detail"
                 >
-                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} / Elapsed{" "}
-                  {formatDuration(exportElapsedMs)}
+                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} /{" "}
+                  {exportProgressDetail(exportProgress, exportElapsedMs)}
                 </p>
               </div>
             ) : null}
@@ -2635,7 +2756,7 @@ export default function BookTranslatorTool() {
                     role="radiogroup"
                     aria-label="Split download"
                   >
-                    {(["none", "duration", "source-sections"] as const).map(
+                    {(["none", "duration"] as const).map(
                       (mode) => (
                         <button
                           key={mode}
@@ -2661,35 +2782,24 @@ export default function BookTranslatorTool() {
                   <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
                     {splitSummaryText}
                   </p>
-                  {splitMode === "source-sections" ? (
-                    <p
-                      className="mt-2 max-w-[68ch] text-sm font-semibold leading-relaxed text-slate-600"
-                      data-testid="book-split-section-fallback"
-                    >
-                      {hasSourceSectionHints
-                        ? "Source section hints are available for this source."
-                        : "No source section hints are available; duration fallback is active."}
-                    </p>
-                  ) : null}
                   {splitMode !== "none" ? (
-                    <SliderRow
-                      className="mt-4"
+                    <LabeledSelect
                       label="Target part length"
-                      value={splitTargetPartMinutes}
-                      min={1}
-                      max={30}
-                      step={1}
-                      unit="min"
-                      onChange={(value) =>
-                        isVideoOutput
-                          ? updateVideoSettings({
-                              targetPartMinutes: value,
-                            })
-                          : updateExportSettings({
-                              targetPartMinutes: value,
-                            })
-                      }
-                    />
+                      value={String(splitTargetPartMinutes)}
+                      onChange={(value) => {
+                        const targetPartMinutes = Number(value);
+                        if (isVideoOutput) {
+                          updateVideoSettings({ targetPartMinutes });
+                        } else {
+                          updateExportSettings({ targetPartMinutes });
+                        }
+                      }}
+                    >
+                      <option value="15">15 minutes</option>
+                      <option value="30">30 minutes recommended</option>
+                      <option value="45">45 minutes</option>
+                      <option value="60">60 minutes experimental</option>
+                    </LabeledSelect>
                   ) : null}
                 </fieldset>
 
@@ -3526,7 +3636,7 @@ export default function BookTranslatorTool() {
                 label={isSegmentedOutput ? "Target part" : "Split"}
                 value={
                   isSegmentedOutput
-                    ? formatDuration(exportAnalysis.targetPartMs)
+                    ? formatDuration(exportPlan.targetPartMs)
                     : "Off"
                 }
               />
@@ -3646,13 +3756,13 @@ export default function BookTranslatorTool() {
         </div>
         <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
           {isSegmentedOutput
-            ? splitMode === "source-sections"
-              ? "Parts use EPUB/PDF section hints when available, then fall back to the target part length and safe paragraph, sentence, or word boundaries."
+            ? exportPlan.automaticSplit
+              ? "Long selections are prepared as ordered duration-based parts, grouped into ZIP batches, using clean text boundaries where possible."
               : "Parts are based on the target part length and safe paragraph, sentence, or word boundaries."
             : isVideoOutput
               ? downloadKind === "zip"
-                ? "Selected sidecar files travel with the WebM in one ZIP download."
-                : "Video downloads stay as one WebM file by default."
+                ? `Selected sidecar files travel with the ${selectedVideoFormatSupport.label} in one ZIP download.`
+                : `Video downloads stay as one ${selectedVideoFormatSupport.label} file by default.`
               : "Audio downloads stay as one file by default. Choose a split mode in Download settings when you want timed parts."}
         </p>
         {isSegmentedOutput ? (
@@ -4317,7 +4427,7 @@ function VideoFormatSelect({
         className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
         aria-label="Video format"
       >
-        {MORSE_VIDEO_FORMATS.map((format) => {
+        {PUBLIC_BOOK_VIDEO_FORMATS.map((format) => {
           const formatSupport = getMorseVideoFormatSupport(support, format);
           return (
             <option

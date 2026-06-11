@@ -30,7 +30,7 @@ export type BookExportPreferences = {
 };
 
 const DEFAULT_BOOK_EXPORT_PREFERENCES: BookExportPreferences = {
-  outputType: "audio",
+  outputType: "video",
   exportSettings: DEFAULT_BOOK_EXPORT_SETTINGS,
   videoSettings: DEFAULT_BOOK_VIDEO_SETTINGS,
   advancedOpen: false,

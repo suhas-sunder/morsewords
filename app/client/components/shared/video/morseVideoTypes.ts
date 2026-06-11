@@ -71,6 +71,7 @@ export const MORSE_VIDEO_TEXT_DISPLAY_MODES = [
   "text",
   "both",
 ] as const satisfies readonly MorseVideoTextDisplayMode[];
+export const MORSE_VIDEO_TARGET_PART_MINUTE_OPTIONS = [15, 30, 45, 60] as const;
 
 export const DEFAULT_MORSE_VIDEO_SETTINGS: MorseVideoSettings = {
   visualStyle: "lightbulb",
@@ -84,7 +85,7 @@ export const DEFAULT_MORSE_VIDEO_SETTINGS: MorseVideoSettings = {
   showMorseOverlay: true,
   textDisplayMode: "both",
   showBranding: true,
-  targetPartMinutes: 8,
+  targetPartMinutes: 30,
 };
 
 export function isMorseVideoVisualStyle(
@@ -184,16 +185,17 @@ export function sanitizeMorseVideoSettings(
     showBranding: Boolean(
       settings.showBranding ?? DEFAULT_MORSE_VIDEO_SETTINGS.showBranding,
     ),
-    targetPartMinutes:
-      Math.round(
-        clampNumber(
-          settings.targetPartMinutes ??
-            DEFAULT_MORSE_VIDEO_SETTINGS.targetPartMinutes,
-          1,
-          30,
-        ) * 10,
-      ) / 10,
+    targetPartMinutes: sanitizeVideoTargetPartMinutes(
+      settings.targetPartMinutes ?? DEFAULT_MORSE_VIDEO_SETTINGS.targetPartMinutes,
+    ),
   };
+}
+
+function sanitizeVideoTargetPartMinutes(value: number) {
+  const clamped = clampNumber(value, 15, 60);
+  return MORSE_VIDEO_TARGET_PART_MINUTE_OPTIONS.reduce((best, option) =>
+    Math.abs(option - clamped) < Math.abs(best - clamped) ? option : best,
+  );
 }
 
 function textDisplayModeFromLayers(

@@ -1,6 +1,7 @@
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import type { MorseVideoAudioSettings } from "./morseVideoRenderer";
 import {
+  getMorseVideoCanonicalFrameState,
   getMorseVideoFrameWordWindow,
   buildMorseVideoTimelineFromMorse,
   getMorseVideoFrameTextState,
@@ -107,16 +108,21 @@ export function getMorseVideoPreviewFrame(
     .map((event) => event.symbol ?? "")
     .join("");
   const sampleMorse = preview.sampleMorse.replace(/\s+/g, " ");
+  const frameState = getMorseVideoCanonicalFrameState(
+    preview.timeline,
+    timelineElapsedMs,
+    PREVIEW_WORD_WINDOW_LIMIT,
+  );
   const textState = getMorseVideoFrameTextState(preview.timeline, timelineElapsedMs);
   const words = getMorseVideoFrameWordWindow(
     preview.timeline,
     timelineElapsedMs,
     PREVIEW_WORD_WINDOW_LIMIT,
   );
-  const morseExcerpt = words.map((word) => word.morse).join(" / ");
-  const textExcerpt = words.map((word) => word.text).join(" ");
+  const morseExcerpt = frameState.morseWindow || words.map((word) => word.morse).join(" / ");
+  const textExcerpt = frameState.plainTextWindow || words.map((word) => word.text).join(" ");
   return {
-    active,
+    active: frameState.bulbActive || active,
     symbols: readableMorseExcerpt(completedSymbols, sampleMorse, 44),
     morseExcerpt:
       morseExcerpt ||

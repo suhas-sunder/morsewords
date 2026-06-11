@@ -12,6 +12,7 @@ import type { BookExportPart, BookExportSettings } from "./bookExportTypes";
 
 type SegmentInput = {
   cleanedText: string;
+  maxPartMs?: number;
   settings: BookExportSettings;
   sourceSections?: BookSourceSection[];
   sourceTitle?: string;
@@ -29,6 +30,7 @@ const MAX_FILENAME_BASE_LENGTH = 72;
 
 export function segmentBookText({
   cleanedText,
+  maxPartMs,
   settings,
   sourceSections = [],
   sourceTitle,
@@ -53,7 +55,7 @@ export function segmentBookText({
 
   const targetMs = settings.targetPartMinutes * 60_000;
   const units =
-    settings.splitMode === "source-sections" && sourceSections.length > 1
+    settings.preferSourceSections && sourceSections.length > 1
       ? buildSectionUnits(sourceSections, cleanedText)
       : splitParagraphRanges(cleanedText).map((paragraph) => ({
           text: paragraph.text,
@@ -63,6 +65,7 @@ export function segmentBookText({
 
   const parts = collectPartsFromUnits({
     units: units.length > 0 ? units : [{ text: cleanedText, start: 0, end: cleanedText.length }],
+    maxPartMs,
     settings,
     targetMs,
   });
@@ -86,10 +89,12 @@ function buildSectionUnits(
 }
 
 function collectPartsFromUnits({
+  maxPartMs,
   units,
   settings,
   targetMs,
 }: {
+  maxPartMs?: number;
   units: TextUnit[];
   settings: BookExportSettings;
   targetMs: number;
@@ -98,17 +103,21 @@ function collectPartsFromUnits({
   let current: TextUnit | null = null;
   let currentMs = 0;
   const combinedUnitGapMs = getWordGapMs(settings) * settings.paragraphPauseMultiplier;
+  const splitLimitMs =
+    Number.isFinite(maxPartMs) && (maxPartMs ?? 0) > 0
+      ? Math.max(1, maxPartMs ?? 1)
+      : targetMs * 1.15;
 
   for (const unit of units) {
     const unitMs = estimateBookTextDurationMs(unit.text, settings);
 
-    if (unitMs > targetMs * 1.15) {
+    if (unitMs > splitLimitMs) {
       if (current) {
         rawParts.push(current);
         current = null;
         currentMs = 0;
       }
-      rawParts.push(...splitOversizedUnit(unit, settings, targetMs));
+      rawParts.push(...splitOversizedUnit(unit, settings, targetMs, splitLimitMs));
       continue;
     }
 
@@ -119,7 +128,10 @@ function collectPartsFromUnits({
     }
 
     const combinedMs = currentMs + combinedUnitGapMs + unitMs;
-    if (combinedMs > targetMs && currentMs > targetMs * 0.55) {
+    if (
+      combinedMs > splitLimitMs ||
+      (combinedMs > targetMs && currentMs > targetMs * 0.55)
+    ) {
       rawParts.push(current);
       current = { ...unit };
       currentMs = unitMs;
@@ -135,17 +147,19 @@ function collectPartsFromUnits({
   }
 
   if (current) rawParts.push(current);
-  return mergeTinyTrailingPart(rawParts, settings, targetMs);
+  return mergeTinyTrailingPart(rawParts, settings, targetMs, splitLimitMs);
 }
 
 function splitOversizedUnit(
   unit: TextUnit,
   settings: BookExportSettings,
   targetMs: number,
+  maxPartMs: number,
 ): TextUnit[] {
   const paragraphParts = splitByBoundary(
     splitParagraphRanges(unit.text),
     unit,
+    maxPartMs,
     settings,
     targetMs,
   );
@@ -154,20 +168,28 @@ function splitOversizedUnit(
   const sentenceParts = splitByBoundary(
     splitSentenceRanges(unit.text),
     unit,
+    maxPartMs,
     settings,
     targetMs,
   );
   if (sentenceParts.length > 1) return sentenceParts;
 
-  const wordParts = splitByBoundary(splitWordRanges(unit.text), unit, settings, targetMs);
+  const wordParts = splitByBoundary(
+    splitWordRanges(unit.text),
+    unit,
+    maxPartMs,
+    settings,
+    targetMs,
+  );
   if (wordParts.length > 1) return wordParts;
 
-  return hardSplitUnit(unit, settings, targetMs);
+  return hardSplitUnit(unit, settings, Math.min(targetMs, maxPartMs * 0.86));
 }
 
 function splitByBoundary(
   ranges: Array<{ text: string; start: number; end: number }>,
   parent: TextUnit,
+  maxPartMs: number,
   settings: BookExportSettings,
   targetMs: number,
 ): TextUnit[] {
@@ -178,7 +200,7 @@ function splitByBoundary(
     end: parent.start + range.end,
     title: parent.title,
   }));
-  return collectPartsFromUnits({ units, settings, targetMs });
+  return collectPartsFromUnits({ units, maxPartMs, settings, targetMs });
 }
 
 function hardSplitUnit(
@@ -214,6 +236,7 @@ function mergeTinyTrailingPart(
   parts: TextUnit[],
   settings: BookExportSettings,
   targetMs: number,
+  maxPartMs: number,
 ) {
   if (parts.length < 2) return parts;
   const last = parts[parts.length - 1];
@@ -227,6 +250,9 @@ function mergeTinyTrailingPart(
     end: last.end,
     title: previous.title,
   };
+  if (estimateBookTextDurationMs(combined.text, settings) > maxPartMs) {
+    return parts;
+  }
   return [...parts.slice(0, -2), combined];
 }
 
@@ -290,11 +316,15 @@ export function buildSingleAudioFilename({
   return `${base || "morse-book"}-morse-audio.${format}`;
 }
 
-export function buildBundleFilename(sourceTitle?: string) {
+export function buildBundleFilename(sourceTitle?: string, batchNumber?: number) {
   const base = sanitizeDownloadFilename(sourceTitle || "morse-book", "morse-book")
     .replace(/\.zip$/i, "")
     .slice(0, MAX_FILENAME_BASE_LENGTH);
-  return `${base || "morse-book"}-morse-audio-bundle.zip`;
+  const batchSuffix =
+    typeof batchNumber === "number"
+      ? `-batch-${String(batchNumber).padStart(2, "0")}`
+      : "";
+  return `${base || "morse-book"}-morse-audio${batchSuffix}-bundle.zip`;
 }
 
 function excerpt(text: string, limit: number) {

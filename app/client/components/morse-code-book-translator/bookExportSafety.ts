@@ -8,13 +8,25 @@ import type { MorseVideoFormat } from "~/client/components/shared/video/morseVid
 import type { BookVideoSettings } from "./bookVideoTypes";
 
 export const BOOK_OVERSIZED_EXPORT_MESSAGE =
-  "This selection is too long for a single browser export. Choose fewer chapters or export by chapter for a safer download.";
+  "A download part is still too large to render reliably. MorseWords could not split it smaller automatically.";
 
-export const BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS = 45 * 60 * 1000;
-export const BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES = 512 * 1024 * 1024;
+export const BOOK_LONG_EXPORT_MESSAGE =
+  "This selection has a lot of text, so the download may take a while. MorseWords will prepare it in smaller parts to keep the export reliable.";
+
+export const BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE =
+  "Keep this tab open while the files are being prepared.";
+
+export const BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS = 60 * 60 * 1000;
+export const BOOK_DEFAULT_PART_TARGET_MINUTES = 30;
+export const BOOK_DEFAULT_PART_TARGET_MS =
+  BOOK_DEFAULT_PART_TARGET_MINUTES * 60 * 1000;
+export const BOOK_ZIP_BATCH_TARGET_MS = 2 * 60 * 60 * 1000;
+export const BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS =
+  BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS;
+export const BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES = 768 * 1024 * 1024;
 export const BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS = {
-  "720p": 20 * 60 * 1000,
-  "1080p": 12 * 60 * 1000,
+  "720p": BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
+  "1080p": BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
 } as const;
 
 export type OversizedBookExportPart = {
@@ -165,25 +177,30 @@ export function friendlyBookExportErrorMessage(
   outputType: BookOutputType,
 ) {
   const rawMessage = error instanceof Error ? error.message : "";
+  if (/^Part \d+ failed\./.test(rawMessage)) {
+    return rawMessage;
+  }
   if (
     rawMessage.includes(BOOK_OVERSIZED_EXPORT_MESSAGE) ||
     /Invalid typed array length|Array buffer allocation|out of memory|maximum call stack|too large/i.test(
       rawMessage,
     )
   ) {
-    return BOOK_OVERSIZED_EXPORT_MESSAGE;
+    return outputType === "video"
+      ? "Video export failed while rendering a part. Retry the download, or lower video resolution if it fails again."
+      : "Audio export failed while rendering a part. Retry the download, or use shorter parts if it fails again.";
   }
 
   return outputType === "video"
-    ? "Video export failed. Try 720p, a shorter part duration, or silent video."
-    : "Book download failed. Try a shorter part duration or MP3 output.";
+    ? "Video export failed. Retry the download, use 720p, or try silent video."
+    : "Book download failed. Retry the download, use MP3 output, or shorten the part length.";
 }
 
 export function oversizedExportDetailsLabel(
   oversized: OversizedBookExportPart | null,
 ) {
   if (!oversized) return "";
-  return `${formatDuration(oversized.runtimeMs)} selected in one part; browser limit is about ${formatDuration(
+  return `${formatDuration(oversized.runtimeMs)} planned in one part; current part limit is about ${formatDuration(
     oversized.limitMs,
   )}.`;
 }

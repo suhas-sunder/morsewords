@@ -17,11 +17,11 @@ export type BookExportFormat = "mp3" | "wav";
 
 export type BookOutputType = "audio" | "video";
 
-export type BookDownloadKind = "audio" | "video" | "zip";
+export type BookDownloadKind = "audio" | "video" | "parts" | "zip";
 
 export type BookPunctuationMode = "preserve" | "simplify";
 
-export type BookSplitMode = "none" | "duration" | "source-sections";
+export type BookSplitMode = "none" | "duration";
 
 export type BookExportSettings = {
   presetName: BookExportPresetName;
@@ -71,6 +71,14 @@ export type BookExportPart = {
   estimatedFilename: string;
 };
 
+export type BookExportBatch = {
+  batchNumber: number;
+  totalBatches: number;
+  parts: BookExportPart[];
+  runtimeMs: number;
+  targetRuntimeMs: number;
+};
+
 export type BookBundleMetadata = {
   title?: string;
   author?: string;
@@ -89,16 +97,26 @@ export type BookExportPhase =
   | "failed";
 
 export type BookExportProgress = {
+  batchNumber?: number;
+  batchPartCount?: number;
+  batchPartIndex?: number;
+  completedParts?: number;
+  currentPartIndex?: number;
   phase: BookExportPhase;
   message: string;
   currentPart: number;
+  renderedDurationMs?: number;
+  totalBatches?: number;
+  totalDurationMs?: number;
   totalParts: number;
 };
 
 export type BookExportResultSummary = {
+  batchNumber?: number;
   filename: string;
   downloadKind: BookDownloadKind;
   outputFormat: BookExportFormat | "webm" | "mp4";
+  totalBatches?: number;
   partCount: number;
   runtimeLabel: string;
   sizeLabel: string;

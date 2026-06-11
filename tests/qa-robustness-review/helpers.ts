@@ -71,7 +71,9 @@ export function collectConsoleErrors(page: Page) {
 }
 
 export async function waitForRouteReady(page: Page) {
-  await page.waitForFunction(() => document.readyState === "complete");
+  await page.waitForFunction(() => document.readyState === "complete", undefined, {
+    timeout: 30_000,
+  });
   await page.evaluate(
     () =>
       new Promise<void>((resolve) => {

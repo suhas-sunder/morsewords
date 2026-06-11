@@ -49,8 +49,6 @@ import type {
 } from "~/client/components/shared/video/morseVideoTypes";
 import {
   getMorseVideoFormatSupport,
-  getPreferredMorseVideoFormat,
-  MORSE_VIDEO_FORMATS,
   type MorseVideoFormat,
 } from "~/client/components/shared/video/morseVideoSupport";
 import { getAppliedThemeMode, type ThemeMode } from "~/client/theme/themeStorage";
@@ -65,17 +63,21 @@ import {
   formatDuration,
 } from "~/client/components/morse-code-book-translator/bookDurationEstimate";
 import {
+  BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE,
+  BOOK_LONG_EXPORT_MESSAGE,
   BOOK_OVERSIZED_EXPORT_MESSAGE,
   estimateBookVideoExport,
-  findOversizedAudioExportPart,
-  findOversizedVideoExportPart,
   friendlyBookExportErrorMessage,
-  oversizedExportDetailsLabel,
 } from "~/client/components/morse-code-book-translator/bookExportSafety";
+import {
+  bookExportProgressDetail as exportProgressDetail,
+  bookExportProgressPercent as exportProgressPercent,
+} from "~/client/components/morse-code-book-translator/bookExportProgressCopy";
 import {
   DEFAULT_BOOK_EXPORT_SETTINGS,
   sanitizeBookExportSettings,
 } from "~/client/components/morse-code-book-translator/bookExportPresets";
+import { buildBookExportPlan } from "~/client/components/morse-code-book-translator/bookExportPlan";
 import type {
   BookBundleMetadata,
   BookDownloadKind,
@@ -89,7 +91,6 @@ import {
   buildBookAudioPreview,
   type BookAudioPreview,
 } from "~/client/components/morse-code-book-translator/bookPreviewAudio";
-import { segmentBookText } from "~/client/components/morse-code-book-translator/bookSegmentation";
 import type { BookSourceSection } from "~/client/components/morse-code-book-translator/bookSourceTypes";
 import { buildBookVideoPreview } from "~/client/components/morse-code-book-translator/bookVideoPreview";
 import {
@@ -139,8 +140,8 @@ const IDLE_EXPORT_PROGRESS: BookExportProgress = {
 const splitModeLabels: Record<BookSplitMode, string> = {
   none: "No split",
   duration: "By duration",
-  "source-sections": "By source sections",
 };
+const PUBLIC_BOOK_VIDEO_FORMATS = ["mp4"] as const satisfies readonly MorseVideoFormat[];
 
 const visualStyleLabels: Record<MorseVideoVisualStyle, string> = {
   lightbulb: "Lightbulb signal",
@@ -513,22 +514,31 @@ function buildBookMetadata(book: MorseBookManifest): BookBundleMetadata {
 }
 
 function buildDownloadLabel({
+  batchNumber,
   downloadKind,
   exportSettings,
-  formatLabel = "WebM",
   outputType,
+  videoFormatLabel,
 }: {
+  batchNumber?: number;
   downloadKind: BookDownloadKind;
   exportSettings: BookExportSettings;
-  formatLabel?: string;
   outputType: BookOutputType;
+  videoFormatLabel: string;
 }) {
-  if (downloadKind === "zip") {
-    return outputType === "video"
-      ? `Download ${formatLabel} ZIP`
-      : `Download ${exportSettings.outputFormat.toUpperCase()} ZIP`;
+  if (downloadKind === "zip" && batchNumber) {
+    return `Download ZIP batch ${batchNumber}`;
   }
-  if (outputType === "video") return `Download ${formatLabel}`;
+  if (outputType === "video") {
+    if (downloadKind === "zip") return "Download video ZIP";
+    return `Download ${videoFormatLabel}`;
+  }
+  if (downloadKind === "zip") {
+    return `Download ${exportSettings.outputFormat.toUpperCase()} ZIP`;
+  }
+  if (downloadKind === "parts") {
+    return `Download ${exportSettings.outputFormat.toUpperCase()} parts`;
+  }
   return `Download ${exportSettings.outputFormat.toUpperCase()}`;
 }
 
@@ -544,6 +554,20 @@ function runningDownloadLabel(
   if (outputType === "video") return "Rendering video...";
   if (progress.phase === "encoding") return "Rendering audio...";
   return downloadKind === "zip" ? "Preparing ZIP..." : "Preparing export...";
+}
+
+function estimatedRenderTimeLabel(
+  totalRuntimeMs: number,
+  outputType: BookOutputType,
+  videoEstimateLabel: string,
+  format: BookExportSettings["outputFormat"],
+) {
+  if (outputType === "video") return videoEstimateLabel;
+  if (!Number.isFinite(totalRuntimeMs) || totalRuntimeMs <= 0) return "~0s";
+  const factor = format === "wav" ? [0.08, 0.18] : [0.12, 0.32];
+  const minMs = Math.max(1_000, totalRuntimeMs * factor[0]);
+  const maxMs = Math.max(minMs, totalRuntimeMs * factor[1]);
+  return `~${formatDuration(minMs)}-${formatDuration(maxMs)}`;
 }
 
 function getSelectedPartSummary(parts: BookExportPart[]) {
@@ -815,7 +839,7 @@ function MorseBookWorkspace({
   const [sectionStatus, setSectionStatus] = React.useState<"idle" | "loading">(
     "idle",
   );
-  const [outputType, setOutputType] = React.useState<BookOutputType>("audio");
+  const [outputType, setOutputType] = React.useState<BookOutputType>("video");
   const [exportSettings, setExportSettings] = React.useState<BookExportSettings>(
     () => sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS),
   );
@@ -825,7 +849,7 @@ function MorseBookWorkspace({
   const [videoSupport, setVideoSupport] =
     React.useState<BookVideoSupport | null>(null);
   const [selectedVideoFormat, setSelectedVideoFormat] =
-    React.useState<MorseVideoFormat>("webm");
+    React.useState<MorseVideoFormat>("mp4");
   const [downloadStatus, setDownloadStatus] = React.useState<DownloadStatus>({
     kind: "idle",
     message: "",
@@ -836,6 +860,7 @@ function MorseBookWorkspace({
     null,
   );
   const [exportElapsedMs, setExportElapsedMs] = React.useState(0);
+  const [selectedBatchNumber, setSelectedBatchNumber] = React.useState(1);
   const [audioPreviewElapsedMs, setAudioPreviewElapsedMs] = React.useState(0);
   const [audioPreviewPlaying, setAudioPreviewPlaying] = React.useState(false);
   const [videoPreviewElapsedMs, setVideoPreviewElapsedMs] = React.useState(0);
@@ -853,6 +878,7 @@ function MorseBookWorkspace({
   const videoPreviewStartedAtRef = React.useRef(0);
   const videoPreviewSessionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
+  const restoredRuntimeSignatureRef = React.useRef<string | null>(null);
   const selectAllDefaultRef = React.useRef<HTMLInputElement | null>(null);
 
   React.useEffect(() => {
@@ -864,23 +890,22 @@ function MorseBookWorkspace({
   }, []);
 
   React.useEffect(() => {
-    if (!videoSupport?.supported) return;
-    setSelectedVideoFormat((current) => {
-      const currentSupport = getMorseVideoFormatSupport(videoSupport, current);
-      if (!currentSupport.supported) {
-        return getPreferredMorseVideoFormat(videoSupport);
-      }
-      return current === "webm" ? getPreferredMorseVideoFormat(videoSupport) : current;
-    });
+    setSelectedVideoFormat("mp4");
   }, [videoSupport]);
 
+  const bookRuntimeSignature = `${book.slug}:${book.contentVersion}:${book.contentHash}`;
   const defaultSectionIds = React.useMemo(
     () => defaultSectionIdsForBook(book, initialSection.sectionId),
-    [book, initialSection.sectionId],
+    [bookRuntimeSignature, initialSection.sectionId],
   );
-  const allSectionIds = React.useMemo(() => allSectionIdsForBook(book), [book]);
+  const allSectionIds = React.useMemo(
+    () => allSectionIdsForBook(book),
+    [bookRuntimeSignature],
+  );
 
   React.useEffect(() => {
+    if (restoredRuntimeSignatureRef.current === bookRuntimeSignature) return;
+    restoredRuntimeSignatureRef.current = bookRuntimeSignature;
     setSettingsRestored(false);
     setLoadedSections(new Map([[initialSection.sectionId, initialSection]]));
     const saved = loadSavedMorseBookRuntimeSettings(book, defaultSectionIds);
@@ -893,16 +918,16 @@ function MorseBookWorkspace({
       setSavedSettingsStatus("Restored saved settings for this book.");
     } else {
       setSelectedSectionIds(new Set(defaultSectionIds));
-      setOutputType("audio");
+      setOutputType("video");
       setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
       setVideoSettings(sanitizeMorseVideoSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
-      setSelectedVideoFormat("webm");
+      setSelectedVideoFormat("mp4");
       setSavedSettingsStatus("");
     }
     setDownloadStatus({ kind: "idle", message: "" });
     setExportProgress(IDLE_EXPORT_PROGRESS);
     setSettingsRestored(true);
-  }, [book, defaultSectionIds, initialSection]);
+  }, [bookRuntimeSignature, defaultSectionIds, initialSection.sectionId]);
 
   const scopeSectionIds = React.useMemo(
     () => selectedSectionIdsForBook(book, selectedSectionIds),
@@ -1005,18 +1030,44 @@ function MorseBookWorkspace({
     () => createSourceSectionsForExport(selectedScopeSections, exportSettings),
     [exportSettings, selectedScopeSections],
   );
-  const exportParts = React.useMemo(
+  const exportPlan = React.useMemo(
     () =>
-      segmentBookText({
+      buildBookExportPlan({
         cleanedText: cleanedExportText,
+        outputType,
         settings: exportSettings,
         sourceSections: exportSourceSections,
         sourceTitle: book.title,
+        videoSettings,
       }),
-    [book.title, cleanedExportText, exportSettings, exportSourceSections],
+    [book.title, cleanedExportText, exportSettings, exportSourceSections, outputType, videoSettings],
   );
+  const exportParts = exportPlan.parts;
+  const exportBatches = exportPlan.batches;
+  const zipBatchWorkflow = exportPlan.zipWorkflow && exportParts.length > 1;
+  const selectedExportBatch = React.useMemo(() => {
+    if (!zipBatchWorkflow) return null;
+    return (
+      exportBatches.find((batch) => batch.batchNumber === selectedBatchNumber) ??
+      exportBatches[0] ??
+      null
+    );
+  }, [exportBatches, selectedBatchNumber, zipBatchWorkflow]);
+  const activeDownloadParts = selectedExportBatch?.parts ?? exportParts;
+  React.useEffect(() => {
+    if (!zipBatchWorkflow) {
+      if (selectedBatchNumber !== 1) setSelectedBatchNumber(1);
+      return;
+    }
+    const totalBatches = Math.max(1, exportBatches.length);
+    if (selectedBatchNumber < 1 || selectedBatchNumber > totalBatches) {
+      setSelectedBatchNumber(1);
+    }
+  }, [exportBatches.length, selectedBatchNumber, zipBatchWorkflow]);
   const downloadKind =
-    outputType === "video"
+    zipBatchWorkflow
+      ? "zip"
+      : outputType === "video"
       ? getBookVideoDownloadKind(exportParts, exportSettings)
       : getBookDownloadKind(exportParts, exportSettings);
   const selectedVideoFormatSupport = React.useMemo(
@@ -1035,11 +1086,13 @@ function MorseBookWorkspace({
         : videoSupport,
     [selectedVideoFormatSupport, videoSupport],
   );
+  const selectedVideoFormatLabel = selectedVideoFormatSupport.label;
   const downloadLabel = buildDownloadLabel({
+    batchNumber: zipBatchWorkflow ? selectedExportBatch?.batchNumber : undefined,
     downloadKind,
     exportSettings,
-    formatLabel: selectedVideoFormatSupport.label,
     outputType,
+    videoFormatLabel: selectedVideoFormatLabel,
   });
   const partSummary = getSelectedPartSummary(exportParts);
   const estimatedBytes =
@@ -1103,46 +1156,36 @@ function MorseBookWorkspace({
     (videoSettings.showMorseSymbols ? 1 : 0) +
     (videoSettings.showPlainText ? 1 : 0);
   const exportRunning = downloadStatus.kind === "working";
-  const oversizedAudioExportPart = React.useMemo(
-    () => findOversizedAudioExportPart(exportParts, exportSettings),
-    [exportParts, exportSettings],
-  );
-  const oversizedVideoExportPart = React.useMemo(
-    () => findOversizedVideoExportPart(exportParts, videoSettings),
-    [exportParts, videoSettings],
-  );
-  const activeOversizedExportPart =
-    outputType === "video" ? oversizedVideoExportPart : oversizedAudioExportPart;
-  const oversizedExportMessage = activeOversizedExportPart
-    ? `${BOOK_OVERSIZED_EXPORT_MESSAGE} ${oversizedExportDetailsLabel(
-        activeOversizedExportPart,
-      )}`
+  const unresolvedOversizedExportPart = exportPlan.unresolvedOversizedPart;
+  const oversizedExportMessage = unresolvedOversizedExportPart
+    ? BOOK_OVERSIZED_EXPORT_MESSAGE
     : "";
+  const totalBatches = exportBatches.length;
+  const longExportMessages =
+    zipBatchWorkflow
+      ? [BOOK_LONG_EXPORT_MESSAGE, BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE]
+      : [];
   const activeDownloadLabel = exportRunning
-    ? runningDownloadLabel(exportProgress, downloadKind, outputType)
+    ? zipBatchWorkflow && selectedExportBatch
+      ? `Rendering ZIP batch ${selectedExportBatch.batchNumber} of ${totalBatches}`
+      : runningDownloadLabel(exportProgress, downloadKind, outputType)
     : downloadLabel;
-  const progressPercent =
-    exportProgress.totalParts > 0
-      ? Math.max(
-          0,
-          Math.min(
-            100,
-            Math.round((exportProgress.currentPart / exportProgress.totalParts) * 100),
-          ),
-        )
-      : exportProgress.phase === "complete"
-        ? 100
-        : 0;
+  const progressPercent = exportProgressPercent(exportProgress);
   const downloadBlockedMessage = publishReady
     ? oversizedExportMessage
     : "Downloads are unavailable for this book.";
-  const selectedVideoFormatLabel = selectedVideoFormatSupport.label;
   const videoEstimateLabel = selectedVideoFormatSupport.supported
     ? videoExportEstimate.sizeLabel
     : "Unavailable in this browser";
   const videoRenderEstimateLabel = selectedVideoFormatSupport.supported
     ? videoExportEstimate.renderTimeLabel
     : "";
+  const renderEstimateLabel = estimatedRenderTimeLabel(
+    partSummary.totalRuntimeMs,
+    outputType,
+    videoRenderEstimateLabel,
+    exportSettings.outputFormat,
+  );
   const videoUnavailable =
     outputType === "video" &&
     (!videoSupport ||
@@ -1160,7 +1203,7 @@ function MorseBookWorkspace({
     !scopeReady ||
     exportParts.length === 0 ||
     exportRunning ||
-    Boolean(activeOversizedExportPart) ||
+    Boolean(unresolvedOversizedExportPart) ||
     videoUnavailable;
   const canShowZipCopy = downloadKind === "zip";
   const selectionLabel =
@@ -1321,15 +1364,16 @@ function MorseBookWorkspace({
 
   const resetSavedSettings = React.useCallback(() => {
     clearSavedMorseBookRuntimeSettings(book);
+    restoredRuntimeSignatureRef.current = bookRuntimeSignature;
     setSelectedSectionIds(new Set(defaultSectionIds));
-    setOutputType("audio");
+    setOutputType("video");
     setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
     setVideoSettings(sanitizeMorseVideoSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
-    setSelectedVideoFormat("webm");
+    setSelectedVideoFormat("mp4");
     setDownloadStatus({ kind: "idle", message: "" });
     setExportProgress(IDLE_EXPORT_PROGRESS);
     setSavedSettingsStatus("Saved book settings reset.");
-  }, [book, defaultSectionIds]);
+  }, [book, bookRuntimeSignature, defaultSectionIds]);
 
   const startAudioPreviewFrom = React.useCallback(
     (startElapsedMs = 0) => {
@@ -1565,9 +1609,13 @@ function MorseBookWorkspace({
       phase: "cancelled",
       message: "Download cancelled.",
       currentPart: 0,
-      totalParts: exportParts.length,
+      batchNumber: selectedExportBatch?.batchNumber,
+      batchPartCount: activeDownloadParts.length,
+      batchPartIndex: 0,
+      totalBatches,
+      totalParts: activeDownloadParts.length,
     });
-  }, [exportParts.length]);
+  }, [activeDownloadParts.length, selectedExportBatch?.batchNumber, totalBatches]);
 
   const handleDownload = async () => {
     if (downloadDisabled) {
@@ -1595,8 +1643,12 @@ function MorseBookWorkspace({
     setExportProgress({
       phase: "analyzing",
       message: "Preparing selected book text...",
+      batchNumber: selectedExportBatch?.batchNumber,
+      batchPartCount: activeDownloadParts.length,
+      batchPartIndex: 0,
       currentPart: 0,
-      totalParts: exportParts.length,
+      totalBatches,
+      totalParts: activeDownloadParts.length,
     });
 
     try {
@@ -1607,20 +1659,26 @@ function MorseBookWorkspace({
       const result =
         outputType === "video"
           ? await createBookVideoDownloadPackage({
+              allParts: exportParts,
+              batch: selectedExportBatch ?? undefined,
               metadata,
-              parts: exportParts,
+              parts: activeDownloadParts,
               exportSettings,
               videoSettings,
               resolvedBackgroundStyle: resolvedVideoBackgroundStyle,
               support: effectiveVideoSupport as BookVideoSupport,
               signal: controller.signal,
+              totalSelectedRuntimeMs: partSummary.totalRuntimeMs,
               onProgress: progressHandler,
             })
           : await createBookDownloadPackage({
+              allParts: exportParts,
+              batch: selectedExportBatch ?? undefined,
               metadata,
-              parts: exportParts,
+              parts: activeDownloadParts,
               settings: exportSettings,
               signal: controller.signal,
+              totalSelectedRuntimeMs: partSummary.totalRuntimeMs,
               onProgress: progressHandler,
             });
       const download = downloadBlobFile({
@@ -1632,8 +1690,9 @@ function MorseBookWorkspace({
         setExportProgress({
           phase: "failed",
           message: download.message,
-          currentPart: exportParts.length,
-          totalParts: exportParts.length,
+          currentPart: activeDownloadParts.length,
+          totalBatches,
+          totalParts: activeDownloadParts.length,
         });
         return;
       }
@@ -1641,7 +1700,13 @@ function MorseBookWorkspace({
         kind: "success",
         message:
           result.downloadKind === "zip"
-            ? "ZIP download started."
+            ? zipBatchWorkflow && selectedExportBatch
+              ? `Batch ${selectedExportBatch.batchNumber} downloaded. ${
+                  selectedExportBatch.batchNumber < totalBatches
+                    ? `Batch ${selectedExportBatch.batchNumber + 1} is ready when you are.`
+                    : "All ZIP batches are complete."
+                }`
+              : "ZIP download started."
             : outputType === "video"
               ? `${selectedVideoFormatSupport.label} download started.`
               : `${exportSettings.outputFormat.toUpperCase()} download started.`,
@@ -1649,9 +1714,20 @@ function MorseBookWorkspace({
       setExportProgress({
         phase: "complete",
         message: "Download started.",
-        currentPart: exportParts.length,
-        totalParts: exportParts.length,
+        batchNumber: selectedExportBatch?.batchNumber,
+        batchPartCount: activeDownloadParts.length,
+        batchPartIndex: activeDownloadParts.length,
+        currentPart: activeDownloadParts.length,
+        totalBatches,
+        totalParts: activeDownloadParts.length,
       });
+      if (
+        zipBatchWorkflow &&
+        selectedExportBatch &&
+        selectedExportBatch.batchNumber < totalBatches
+      ) {
+        setSelectedBatchNumber(selectedExportBatch.batchNumber + 1);
+      }
     } catch (error) {
       const message =
         error instanceof DOMException && error.name === "AbortError"
@@ -1665,7 +1741,8 @@ function MorseBookWorkspace({
             : "failed",
         message,
         currentPart: 0,
-        totalParts: exportParts.length,
+        totalBatches,
+        totalParts: activeDownloadParts.length,
       });
     } finally {
       exportAbortRef.current = null;
@@ -1968,10 +2045,12 @@ function MorseBookWorkspace({
                 <button
                   key={value}
                   type="button"
+                  aria-pressed={outputType === value}
                   className={toolControlButtonClass({
                     active: outputType === value,
                     size: "sm",
                   })}
+                  data-mw-morse-book-output-type={value}
                   onClick={() => setOutputType(value)}
                 >
                   {value === "audio" ? "Audio" : "Video"}
@@ -2011,12 +2090,12 @@ function MorseBookWorkspace({
               )}
             </div>
 
-            {outputType === "video" && videoRenderEstimateLabel ? (
+            {renderEstimateLabel ? (
               <p
                 className="text-sm leading-relaxed text-slate-600"
                 data-mw-morse-book-video-render-estimate="true"
               >
-                Estimated render time: {videoRenderEstimateLabel}
+                Estimated render time: {renderEstimateLabel}
               </p>
             ) : null}
 
@@ -2027,8 +2106,17 @@ function MorseBookWorkspace({
               >
                 Split mode is active. Direct files are still used when the
                 selected chapters produce one part and no extras.
+                </p>
+              ) : null}
+            {longExportMessages.map((message) => (
+              <p
+                key={message}
+                className="text-sm font-semibold leading-relaxed text-slate-600"
+                data-mw-morse-book-long-export-note="true"
+              >
+                {message}
               </p>
-            ) : null}
+            ))}
             {canShowZipCopy ? (
               <p
                 className="text-sm leading-relaxed text-slate-600"
@@ -2053,6 +2141,27 @@ function MorseBookWorkspace({
             ) : null}
 
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+              {zipBatchWorkflow && totalBatches > 0 ? (
+                <label className="min-w-[12rem] text-sm font-semibold text-slate-700">
+                  ZIP batch
+                  <select
+                    value={selectedExportBatch?.batchNumber ?? 1}
+                    disabled={exportRunning}
+                    onChange={(event) =>
+                      setSelectedBatchNumber(Number(event.target.value))
+                    }
+                    className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    aria-label="ZIP batch"
+                  >
+                    {exportBatches.map((batch) => (
+                      <option key={batch.batchNumber} value={batch.batchNumber}>
+                        Batch {batch.batchNumber} of {batch.totalBatches} -{" "}
+                        {formatDuration(batch.runtimeMs)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : null}
               {outputType === "video" ? (
                 <BookVideoFormatSelect
                   selectedFormat={selectedVideoFormat}
@@ -2110,8 +2219,8 @@ function MorseBookWorkspace({
                   className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
                   data-mw-morse-book-download-progress-detail="true"
                 >
-                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} / Elapsed{" "}
-                  {formatDuration(exportElapsedMs)}
+                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} /{" "}
+                  {exportProgressDetail(exportProgress, exportElapsedMs)}
                 </p>
               </div>
             ) : null}
@@ -2180,6 +2289,7 @@ function MorseBookWorkspace({
                 hover="dark"
                 onClick={resetSavedSettings}
                 className="rounded-xl"
+                data-mw-morse-book-reset-settings="true"
               >
                 <RefreshIcon size={18} title={undefined} aria-hidden="true" />
                 Reset saved settings
@@ -2302,7 +2412,7 @@ function MorseBookWorkspace({
                 Split mode
               </p>
               <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label="Split mode">
-                {(["none", "duration", "source-sections"] as const).map((mode) => (
+                {(["none", "duration"] as const).map((mode) => (
                   <button
                     key={mode}
                     type="button"
@@ -2314,7 +2424,7 @@ function MorseBookWorkspace({
                       updateExportSettings({
                         splitMode: mode,
                         splitAudio: mode !== "none",
-                        preferSourceSections: mode === "source-sections",
+                        preferSourceSections: true,
                       })
                     }
                   >
@@ -2324,13 +2434,8 @@ function MorseBookWorkspace({
               </div>
               {exportSettings.splitMode !== "none" ? (
                 <label className="mt-3 block text-sm font-semibold text-slate-700">
-                  {exportSettings.splitMode === "source-sections"
-                    ? "Fallback part length"
-                    : "Target part length"}
-                  <input
-                    type="number"
-                    min={1}
-                    max={60}
+                  Target part length
+                  <select
                     value={exportSettings.targetPartMinutes}
                     onChange={(event) =>
                       updateExportSettings({
@@ -2338,17 +2443,13 @@ function MorseBookWorkspace({
                       })
                     }
                     className="ml-0 mt-1 w-32 rounded-lg bg-white px-3 py-2 text-slate-950 sm:ml-2"
-                  />
-                  <span className="ml-2 text-sm font-normal text-slate-600">
-                    minutes
-                  </span>
+                  >
+                    <option value={15}>15 min</option>
+                    <option value={30}>30 min recommended</option>
+                    <option value={45}>45 min</option>
+                    <option value={60}>60 min experimental</option>
+                  </select>
                 </label>
-              ) : null}
-              {exportSettings.splitMode === "source-sections" ? (
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Source-section splitting follows the generated chapter order.
-                  Excluded items stay out unless you select them.
-                </p>
               ) : null}
             </div>
 
@@ -2427,7 +2528,7 @@ function BookVideoFormatSelect({
         className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
         aria-label="Video format"
       >
-        {MORSE_VIDEO_FORMATS.map((format) => {
+        {PUBLIC_BOOK_VIDEO_FORMATS.map((format) => {
           const formatSupport = getMorseVideoFormatSupport(support, format);
           return (
             <option
