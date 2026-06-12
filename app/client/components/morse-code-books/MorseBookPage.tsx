@@ -878,6 +878,8 @@ function MorseBookWorkspace({
   const [videoPreviewPlaying, setVideoPreviewPlaying] = React.useState(false);
   const [settingsRestored, setSettingsRestored] = React.useState(false);
   const [savedSettingsStatus, setSavedSettingsStatus] = React.useState("");
+  const [runtimeSettingsResetVersion, setRuntimeSettingsResetVersion] =
+    React.useState(0);
 
   const audioPreviewIntervalRef = React.useRef<number | null>(null);
   const audioPreviewTimeoutRef = React.useRef<number | null>(null);
@@ -890,6 +892,7 @@ function MorseBookWorkspace({
   const videoPreviewSessionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
   const restoredRuntimeSignatureRef = React.useRef<string | null>(null);
+  const skipNextRuntimeSettingsSaveRef = React.useRef(false);
   const pendingRestoredLiveElapsedRef = React.useRef<number | null>(null);
   const selectAllDefaultRef = React.useRef<HTMLInputElement | null>(null);
 
@@ -977,6 +980,10 @@ function MorseBookWorkspace({
 
   React.useEffect(() => {
     if (!settingsRestored) return;
+    if (skipNextRuntimeSettingsSaveRef.current) {
+      skipNextRuntimeSettingsSaveRef.current = false;
+      return;
+    }
     const savedForMerge =
       isAudiobook && persistedLiveElapsedMs === 0
         ? loadSavedMorseBookRuntimeSettings(book, defaultSectionIds)?.livePlayer
@@ -1010,6 +1017,7 @@ function MorseBookWorkspace({
     exportSettings,
     isAudiobook,
     persistedLiveElapsedMs,
+    runtimeSettingsResetVersion,
     scopeSectionIds,
     settingsRestored,
     videoSettings,
@@ -1555,6 +1563,8 @@ function MorseBookWorkspace({
     clearSavedMorseBookRuntimeSettings(book);
     pendingRestoredLiveElapsedRef.current = null;
     restoredRuntimeSignatureRef.current = bookRuntimeSignature;
+    skipNextRuntimeSettingsSaveRef.current = true;
+    setRuntimeSettingsResetVersion((version) => version + 1);
     setSelectedSectionIds(new Set(isAudiobook ? [initialSection.sectionId] : defaultSectionIds));
     setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
     setVideoSettings(sanitizeMorseVideoSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
