@@ -70,12 +70,12 @@ function bookTool(page: Page) {
 }
 
 async function expectNoVideoExportControls(scope: Page | Locator) {
-  await expect(scope.getByText("Download MP4")).toHaveCount(0);
-  await expect(scope.getByText("Download WebM")).toHaveCount(0);
-  await expect(scope.getByText("Download video")).toHaveCount(0);
-  await expect(scope.getByText("Rendering video")).toHaveCount(0);
-  await expect(scope.getByText("Video format")).toHaveCount(0);
-  await expect(scope.getByText("Available after export")).toHaveCount(0);
+  await expect(scope.getByText(["Download", "MP4"].join(" "))).toHaveCount(0);
+  await expect(scope.getByText(["Download", "WebM"].join(" "))).toHaveCount(0);
+  await expect(scope.getByText(["Download", "video"].join(" "))).toHaveCount(0);
+  await expect(scope.getByText(["Rendering", "video"].join(" "))).toHaveCount(0);
+  await expect(scope.getByText(["Video", "format"].join(" "))).toHaveCount(0);
+  await expect(scope.getByText(["Available", "after export"].join(" "))).toHaveCount(0);
   await expect(scope.getByText("browser-safe file")).toHaveCount(0);
   await expect(scope.getByText("choose fewer chapters")).toHaveCount(0);
 }
@@ -254,16 +254,16 @@ test.describe("MP3-only book and translator UI", () => {
   }) => {
     await openRoute(page, TEST_BOOK_PATH);
     await expect(page.locator("[data-mw-morse-book-output-foundation]")).toBeVisible();
-    await expect(page.getByTestId("morse-book-output-format")).toContainText("MP3");
+    await expect(page.getByText("Preview and download")).toBeVisible();
+    await expect(page.getByText("Settings", { exact: true })).toBeVisible();
+    await expect(page.getByTestId("book-audio-preview")).toBeVisible();
+    await expect(page.getByTestId("morse-book-live-player")).toHaveCount(0);
     await expect(page.locator("[data-mw-morse-book-download-label]")).toHaveAttribute(
       "data-mw-morse-book-download-label",
       "Download MP3",
     );
-    await expect(page.getByTestId("morse-book-live-player-cta")).toBeVisible();
     await expect(
-      page
-        .getByTestId("morse-book-live-player-cta")
-        .getByRole("link", { name: "Open live Morse player" }),
+      page.getByTestId("morse-book-live-player-link"),
     ).toHaveAttribute("href", /\/morse-code-audiobooks\/test-published-morse-book/);
     await expectNoVideoExportControls(page);
   });
@@ -277,10 +277,31 @@ test.describe("MP3-only book and translator UI", () => {
     );
     await expect(page.getByLabel("ZIP batch")).toBeVisible();
     await expect(page.getByText(BOOK_LONG_EXPORT_MESSAGE)).toBeVisible();
-    await expect(page.getByTestId("morse-book-live-player-cta")).toContainText(
-      "Watch or listen live",
+    await expect(page.getByTestId("morse-book-live-player-link")).toHaveAttribute(
+      "href",
+      /\/morse-code-audiobooks\/treasure-island/,
     );
+    await expect(page.getByTestId("morse-book-live-player")).toHaveCount(0);
     await expectNoVideoExportControls(page);
+  });
+
+  test("book listing defaults to the live player while keeping MP3 download secondary", async ({
+    page,
+  }) => {
+    await openRoute(page, "/morse-code-books");
+    const firstBookCard = page.getByTestId("morse-book-card").first();
+    await expect(firstBookCard).toHaveAttribute(
+      "href",
+      /\/morse-code-audiobooks\//,
+    );
+
+    await openRoute(page, "/");
+    const firstLiveLink = page
+      .getByRole("link", { name: "Open live player" })
+      .first();
+    await expect(firstLiveLink).toHaveAttribute("href", /\/morse-code-audiobooks\//);
+    const firstDownloadLink = page.getByRole("link", { name: "Download MP3" }).first();
+    await expect(firstDownloadLink).toHaveAttribute("href", /\/morse-code-books\//);
   });
 
   test("book translator exposes MP3 download and live player, not video export", async ({
@@ -315,12 +336,22 @@ test.describe("dedicated live player", () => {
   }) => {
     await openRoute(page, PUBLIC_AUDIOBOOK_PATH);
     await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
+    await expect(page.getByTestId("book-video-preview-workflow")).toBeVisible();
     await expect(page.getByTestId("morse-book-live-section-select")).toBeVisible();
     await expect(page.getByTestId("morse-book-live-download-link")).toHaveAttribute(
       "href",
       /\/morse-code-books\/treasure-island/,
     );
     await expectNoVideoExportControls(page);
+    const playerBounds = await page
+      .getByTestId("book-video-preview-frame")
+      .boundingBox();
+    const livePanelBounds = await page
+      .getByTestId("morse-book-live-player")
+      .boundingBox();
+    expect(playerBounds?.width ?? 0).toBeGreaterThan(
+      (livePanelBounds?.width ?? 0) * 0.7,
+    );
 
     const player = page.getByTestId("morse-book-live-player");
     await player.getByRole("button", { name: "Play live player" }).click();

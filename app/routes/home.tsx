@@ -273,16 +273,16 @@ function FeaturedBooksSection() {
 
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <Link
-                  to={morseBookPath(book.slug)}
-                  className="mw-link font-semibold text-sky-900 underline-offset-4 hover:underline"
-                >
-                  Open book
-                </Link>
-                <Link
                   to={morseAudiobookPath(book.slug)}
                   className="mw-link font-semibold text-sky-900 underline-offset-4 hover:underline"
                 >
-                  Open audiobook
+                  Open live player
+                </Link>
+                <Link
+                  to={morseBookPath(book.slug)}
+                  className="mw-link font-semibold text-sky-900 underline-offset-4 hover:underline"
+                >
+                  Download MP3
                 </Link>
               </div>
             </article>

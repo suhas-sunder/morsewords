@@ -1989,6 +1989,11 @@ function MorseBookWorkspace({
                         : morseAudiobookPath(book.slug)
                     }
                     className="font-semibold text-sky-900 underline decoration-sky-900/45 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    data-testid={
+                      isAudiobook
+                        ? "morse-book-mp3-download-link"
+                        : "morse-book-live-player-link"
+                    }
                   >
                     {isAudiobook
                       ? "Open MP3 download page"
@@ -2056,32 +2061,6 @@ function MorseBookWorkspace({
             </p>
           ) : null}
 
-          {!isAudiobook && publishReady ? (
-            <div
-              className="mw-static-panel rounded-xl p-4"
-              data-testid="morse-book-live-player-cta"
-            >
-              <h2 className="mw-heading text-xl font-extrabold text-sky-950">
-                Watch or listen live
-              </h2>
-              <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                Open the live Morse player to watch the signal, hear the tone,
-                scrub through a chapter, and continue where you left off in this
-                browser. It plays on-site without preparing an offline media
-                file.
-              </p>
-              <Link
-                to={morseAudiobookPath(book.slug)}
-                className={toolControlButtonClass({
-                  tone: "dark",
-                  rounded: "xl",
-                }) + " mt-4 inline-flex"}
-              >
-                <PlayIcon size={18} title={undefined} aria-hidden="true" />
-                Open live Morse player
-              </Link>
-            </div>
-          ) : null}
         </div>
       </section>
 
@@ -2253,119 +2232,117 @@ function MorseBookWorkspace({
         >
           <ToolPanel label="Live Morse player" badge="Browser playback">
             <div className="space-y-5 px-4 pb-4">
-              <div className="grid gap-4 lg:grid-cols-[minmax(0,0.64fr)_minmax(260px,0.36fr)] lg:items-start">
-                <VideoPreviewControls
-                  elapsedMs={videoPreviewElapsedMs}
-                  headingText="Live Morse player"
-                  onPlay={startVideoPreview}
-                  onSeek={handleScrubVideoPreview}
-                  onSeekCommit={handleSeekVideoPreview}
-                  onStop={() => stopVideoPreview()}
-                  playLabel="Play live player"
-                  playing={videoPreviewPlaying}
-                  preview={livePreview}
-                  resolvedBackgroundStyle={resolvedVideoBackgroundStyle}
-                  settings={videoSettings}
-                  stopLabel="Pause live player"
-                  timelineAriaLabel="Live player timeline"
-                />
-                <div className="space-y-4">
-                  <label className="block text-sm font-semibold text-slate-700">
-                    Chapter or section
-                    <select
-                      value={activeLiveSectionId}
-                      onChange={(event) => activateLiveSection(event.target.value)}
-                      className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                      data-testid="morse-book-live-section-select"
-                    >
-                      {book.sections.map((section) => (
-                        <option key={section.id} value={section.id}>
-                          {sectionDisplayName(section)}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    <ToolButton
-                      type="button"
-                      tone="light"
-                      hover="dark"
-                      onClick={goToPreviousLiveSection}
-                      disabled={
-                        activeLiveSectionListIndex <= 0 &&
-                        activeLiveSegmentIndex === 0
-                      }
-                      className="rounded-xl"
-                    >
-                      Previous section
-                    </ToolButton>
-                    <ToolButton
-                      type="button"
-                      tone="light"
-                      hover="dark"
-                      onClick={goToNextLiveSection}
-                      disabled={
-                        activeLiveSectionListIndex >= book.sections.length - 1 &&
-                        activeLiveSegmentIndex >= Math.max(0, liveSegments.length - 1)
-                      }
-                      className="rounded-xl"
-                    >
-                      Next section
-                    </ToolButton>
-                  </div>
-                  <dl className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
-                    <Metric
-                      label="Current"
-                      value={
-                        activeLiveSection
-                          ? sectionDisplayName({
-                              id: activeLiveSection.sectionId,
-                              kind: activeLiveSection.kind,
-                              label: activeLiveSection.label,
-                              title: activeLiveSection.title,
-                              order: activeLiveSection.order,
-                              includeByDefault: true,
-                              characterCount: activeLiveSection.characterCount,
-                              wordCount: activeLiveSection.wordCount,
-                              estimatedTypingMinutes:
-                                activeLiveSection.estimatedTypingMinutes,
-                              estimatedListeningMinutes:
-                                activeLiveSection.estimatedListeningMinutes,
-                              morseCharacterEstimate:
-                                activeLiveSection.morseCharacterEstimate,
-                              textPreview: activeLiveSection.textPreview,
-                              sectionJsonPath: "",
-                            })
-                          : "Loading"
-                      }
-                    />
-                    <Metric
-                      label="Progress"
-                      value={`${formatDuration(videoPreviewElapsedMs)} / ${formatDuration(
-                        livePreview.durationMs,
-                      )}`}
-                    />
-                    <Metric
-                      label="Segment"
-                      value={`${Math.min(
-                        activeLiveSegmentIndex + 1,
-                        Math.max(1, liveSegments.length),
-                      )} of ${Math.max(1, liveSegments.length)}`}
-                    />
-                    <Metric
-                      label="Completed"
-                      value={formatNumber(completedLiveSectionIds.size)}
-                    />
-                  </dl>
-                  {liveSegments.length > 1 ? (
-                    <p className="text-sm leading-relaxed text-slate-600">
-                      This long section is split into browser-safe live playback
-                      segments. The segment changes automatically when playback
-                      reaches the end.
-                    </p>
-                  ) : null}
+              <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+                <label className="block text-sm font-semibold text-slate-700">
+                  Chapter or section
+                  <select
+                    value={activeLiveSectionId}
+                    onChange={(event) => activateLiveSection(event.target.value)}
+                    className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    data-testid="morse-book-live-section-select"
+                  >
+                    {book.sections.map((section) => (
+                      <option key={section.id} value={section.id}>
+                        {sectionDisplayName(section)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  <ToolButton
+                    type="button"
+                    tone="light"
+                    hover="dark"
+                    onClick={goToPreviousLiveSection}
+                    disabled={
+                      activeLiveSectionListIndex <= 0 &&
+                      activeLiveSegmentIndex === 0
+                    }
+                    className="rounded-xl"
+                  >
+                    Previous section
+                  </ToolButton>
+                  <ToolButton
+                    type="button"
+                    tone="light"
+                    hover="dark"
+                    onClick={goToNextLiveSection}
+                    disabled={
+                      activeLiveSectionListIndex >= book.sections.length - 1 &&
+                      activeLiveSegmentIndex >= Math.max(0, liveSegments.length - 1)
+                    }
+                    className="rounded-xl"
+                  >
+                    Next section
+                  </ToolButton>
                 </div>
               </div>
+              <VideoPreviewControls
+                elapsedMs={videoPreviewElapsedMs}
+                headingText="Live Morse player"
+                onPlay={startVideoPreview}
+                onSeek={handleScrubVideoPreview}
+                onSeekCommit={handleSeekVideoPreview}
+                onStop={() => stopVideoPreview()}
+                playLabel="Play live player"
+                playing={videoPreviewPlaying}
+                preview={livePreview}
+                resolvedBackgroundStyle={resolvedVideoBackgroundStyle}
+                settings={videoSettings}
+                stopLabel="Pause live player"
+                timelineAriaLabel="Live player timeline"
+              />
+              <dl className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2 lg:grid-cols-4">
+                <Metric
+                  label="Current"
+                  value={
+                    activeLiveSection
+                      ? sectionDisplayName({
+                          id: activeLiveSection.sectionId,
+                          kind: activeLiveSection.kind,
+                          label: activeLiveSection.label,
+                          title: activeLiveSection.title,
+                          order: activeLiveSection.order,
+                          includeByDefault: true,
+                          characterCount: activeLiveSection.characterCount,
+                          wordCount: activeLiveSection.wordCount,
+                          estimatedTypingMinutes:
+                            activeLiveSection.estimatedTypingMinutes,
+                          estimatedListeningMinutes:
+                            activeLiveSection.estimatedListeningMinutes,
+                          morseCharacterEstimate:
+                            activeLiveSection.morseCharacterEstimate,
+                          textPreview: activeLiveSection.textPreview,
+                          sectionJsonPath: "",
+                        })
+                      : "Loading"
+                  }
+                />
+                <Metric
+                  label="Progress"
+                  value={`${formatDuration(videoPreviewElapsedMs)} / ${formatDuration(
+                    livePreview.durationMs,
+                  )}`}
+                />
+                <Metric
+                  label="Segment"
+                  value={`${Math.min(
+                    activeLiveSegmentIndex + 1,
+                    Math.max(1, liveSegments.length),
+                  )} of ${Math.max(1, liveSegments.length)}`}
+                />
+                <Metric
+                  label="Completed"
+                  value={formatNumber(completedLiveSectionIds.size)}
+                />
+              </dl>
+              {liveSegments.length > 1 ? (
+                <p className="text-sm leading-relaxed text-slate-600">
+                  This long section is split into browser-safe live playback
+                  segments. The segment changes automatically when playback
+                  reaches the end.
+                </p>
+              ) : null}
             </div>
           </ToolPanel>
 
@@ -2483,12 +2460,11 @@ function MorseBookWorkspace({
         data-mw-morse-book-output-foundation="true"
       >
         <ToolPanel
-          label="MP3 preview and download"
+          label="Preview and download"
           badge={publishReady ? "Ready" : "Unavailable"}
         >
           <div className="space-y-5 px-4 pb-4">
             <div className="grid gap-3 text-sm text-slate-700 sm:grid-cols-3">
-              <Metric label="Format" value="MP3" testId="morse-book-output-format" />
               <Metric label="Parts" value={formatNumber(exportParts.length)} />
               <Metric label="Runtime" value={formatDuration(partSummary.totalRuntimeMs)} />
               <Metric

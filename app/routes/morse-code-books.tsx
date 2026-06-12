@@ -18,6 +18,7 @@ import {
   TEST_PUBLISHED_BOOK_SLUG,
   UNPUBLISHED_BOOK_PREVIEW_PARAM,
   getPublishedMorseBookSummariesRuntime,
+  morseAudiobookPath,
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
@@ -323,9 +324,9 @@ function subjectOptionsForBooks(books: HubBook[]) {
 }
 
 function publicBookHref(book: MorseBookLibrarySummary, includeTestFixture: boolean) {
-  const path = morseBookPath(book.slug);
+  const path = morseAudiobookPath(book.slug);
   if (includeTestFixture && book.slug === TEST_PUBLISHED_BOOK_SLUG) {
-    return `${path}?${UNPUBLISHED_BOOK_PREVIEW_PARAM}=${TEST_PUBLISHED_BOOK_PREVIEW_VALUE}`;
+    return `${morseBookPath(book.slug)}?${UNPUBLISHED_BOOK_PREVIEW_PARAM}=${TEST_PUBLISHED_BOOK_PREVIEW_VALUE}`;
   }
   return path;
 }
@@ -479,7 +480,7 @@ export default function MorseCodeBooksHubRoute({
               "@type": "ListItem",
               position: index + 1,
               name: book.title,
-              url: canonicalUrl(morseBookPath(book.slug)),
+              url: canonicalUrl(morseAudiobookPath(book.slug)),
             })),
           },
         }

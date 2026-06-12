@@ -111,8 +111,8 @@ test.describe("dark mode interactive states", () => {
       page.getByRole("button", { name: /Download MP3|Download ZIP batch/i }).first(),
       "book translator MP3 download action",
     );
-    await expect(page.getByText("Download MP4")).toHaveCount(0);
-    await expect(page.getByText("Download WebM")).toHaveCount(0);
+    await expect(page.getByText(["Download", "MP4"].join(" "))).toHaveCount(0);
+    await expect(page.getByText(["Download", "WebM"].join(" "))).toHaveCount(0);
 
     await gotoDarkRoute(page, "/morse-code-video-generator");
     await page.locator("textarea").first().fill("SOS");
