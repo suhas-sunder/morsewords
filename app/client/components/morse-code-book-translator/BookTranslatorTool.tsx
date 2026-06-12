@@ -2737,7 +2737,7 @@ export default function BookTranslatorTool() {
 
           <section
             id="book-download-controls"
-            className="space-y-4 pt-1"
+            className="space-y-4 scroll-mt-24 pt-1"
             aria-labelledby="book-download-controls-heading"
           >
             <h3
@@ -3726,6 +3726,18 @@ function BookPreviewSection({
               )}
               {previewPlaying ? "Stop preview" : "Play preview"}
             </ToolButton>
+            <a
+              href="#book-download-controls"
+              className={toolControlButtonClass({
+                tone: "light",
+                hover: "dark",
+                rounded: "xl",
+              })}
+              data-testid="book-preview-download-mp3-link"
+            >
+              <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+              Download MP3
+            </a>
           </div>
           {audioPreview ? (
             <MorseAudioTimingStrip
@@ -3766,6 +3778,18 @@ function BookPreviewSection({
               )}
               {previewPlaying ? "Stop live player" : "Play live player"}
             </ToolButton>
+            <a
+              href="#book-download-controls"
+              className={toolControlButtonClass({
+                tone: "light",
+                hover: "dark",
+                rounded: "xl",
+              })}
+              data-testid="book-preview-download-mp3-link"
+            >
+              <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+              Download MP3
+            </a>
             {livePreviewSegments.length > 1 ? (
               <label className="min-w-[12rem] text-sm font-semibold text-slate-700">
                 Segment

@@ -724,6 +724,9 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   const previewTime = preview.getByTestId(
     "book-video-preview-timing-strip-time",
   );
+  const previewDownloadLink = preview.getByTestId(
+    "book-preview-download-mp3-link",
+  );
   const playerDetails = playerDetailsPanel(page);
   const settingsRow = page.getByTestId("book-translator-settings-row");
   const settingsToggle = downloadSettingsToggle(page);
@@ -744,12 +747,21 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   await expect(visualPreview).toBeVisible();
   await expect(preview.getByRole("button", { name: "Play live player" }))
     .toBeVisible();
+  await expect(previewDownloadLink).toBeVisible();
+  await expect(previewDownloadLink).toHaveText("Download MP3");
+  await expect(previewDownloadLink).toHaveAttribute(
+    "href",
+    "#book-download-controls",
+  );
   await expect(timingStrip).toBeVisible();
   await expect(previewTime).toBeVisible();
   await expect(preview.getByTestId("book-video-preview-time")).toHaveCount(0);
   await expect(preview.getByText(/Preview time/)).toHaveCount(1);
   await expect(page.getByText("Condensed long preview")).toHaveCount(0);
   await expect(playerDetails).not.toHaveAttribute("open", "");
+  await expect(
+    playerDetails.getByRole("link", { name: "Download MP3" }),
+  ).toHaveCount(0);
   await expect(preview.getByTestId("book-preview-status")).toBeHidden();
   await expect(settingsRow).toBeVisible();
   await expect(
@@ -790,6 +802,17 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   expect(timingStripBox!.y).toBeLessThan(settingsBox!.y);
   expect(settingsBox!.y).toBeLessThan(downloadBox!.y);
   expect(downloadBox!.y).toBeLessThan(sourceDetailsBox!.y);
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await previewDownloadLink.click();
+  await expect
+    .poll(() => page.evaluate(() => window.location.hash))
+    .toBe("#book-download-controls");
+  await expect
+    .poll(() =>
+      downloadRow.evaluate((element) => element.getBoundingClientRect().top),
+    )
+    .toBeLessThan(220);
 
   await expect(
     page.getByRole("link", { name: "Open audio tool" }),

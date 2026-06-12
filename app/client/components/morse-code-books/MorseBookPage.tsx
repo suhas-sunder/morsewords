@@ -1969,6 +1969,20 @@ function MorseBookWorkspace({
       <ToolPanel label="Live Morse player" badge="Browser playback">
         <div className="space-y-5 px-4 pb-4">
           <VideoPreviewControls
+            action={
+              <a
+                href="#book-mp3-download"
+                className={toolControlButtonClass({
+                  tone: "light",
+                  hover: "dark",
+                  rounded: "xl",
+                })}
+                data-testid="morse-book-live-download-link"
+              >
+                <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                Download Audiobook MP3
+              </a>
+            }
             elapsedMs={videoPreviewElapsedMs}
             headingText="Live Morse player"
             onPlay={startVideoPreview}
@@ -2130,31 +2144,6 @@ function MorseBookWorkspace({
               </label>
             </div>
           </div>
-          {isAudiobook ? (
-            <Link
-              to={morseBookPath(book.slug)}
-              className={toolControlButtonClass({
-                tone: "dark",
-                rounded: "xl",
-              })}
-              data-testid="morse-book-live-download-link"
-            >
-              <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-              Download MP3
-            </Link>
-          ) : (
-            <a
-              href="#book-mp3-download"
-              className={toolControlButtonClass({
-                tone: "dark",
-                rounded: "xl",
-              })}
-              data-testid="morse-book-live-download-link"
-            >
-              <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-              Download MP3
-            </a>
-          )}
           </div>
         </ToolPanel>
       </details>
@@ -3193,6 +3182,7 @@ function AudioPreviewControls({
 }
 
 function VideoPreviewControls({
+  action,
   elapsedMs,
   headingText = "Live visual player",
   onPlay,
@@ -3207,6 +3197,7 @@ function VideoPreviewControls({
   stopLabel = "Stop live player",
   timelineAriaLabel = "Video preview timeline",
 }: {
+  action?: React.ReactNode;
   elapsedMs: number;
   headingText?: string;
   onPlay: () => void;
@@ -3251,6 +3242,7 @@ function VideoPreviewControls({
           )}
           {playing ? stopLabel : playLabel}
         </ToolButton>
+        {action}
       </div>
       <MorseVideoPreviewTimeline
         ariaLabel={timelineAriaLabel}

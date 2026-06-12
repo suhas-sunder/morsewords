@@ -448,8 +448,18 @@ test.describe("Morse book page foundation", () => {
       "href",
       "#book-mp3-download",
     );
+    const livePlayer = page.locator("#book-live-morse-player");
+    const livePlayerDownloadLink = livePlayer.getByTestId(
+      "morse-book-live-download-link",
+    );
     await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
     await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
+    await expect(livePlayerDownloadLink).toBeVisible();
+    await expect(livePlayerDownloadLink).toHaveText("Download Audiobook MP3");
+    await expect(livePlayerDownloadLink).toHaveAttribute(
+      "href",
+      "#book-mp3-download",
+    );
     await expect(
       page.getByTestId("book-video-preview-timing-strip-time"),
     ).toBeVisible();
@@ -460,6 +470,12 @@ test.describe("Morse book page foundation", () => {
         .locator("#book-live-morse-player details")
         .filter({ hasText: "Player settings" }),
     ).not.toHaveAttribute("open", "");
+    await expect(
+      page
+        .locator("#book-live-morse-player details")
+        .filter({ hasText: "Player settings" })
+        .getByTestId("morse-book-live-download-link"),
+    ).toHaveCount(0);
     await expect(page.locator("#book-mp3-download")).toBeVisible();
     await expect(
       page.locator("#book-mp3-download").getByRole("button", {
@@ -502,6 +518,18 @@ test.describe("Morse book page foundation", () => {
       .poll(() =>
         page
           .locator("#book-live-morse-player")
+          .evaluate((element) => element.getBoundingClientRect().top),
+      )
+      .toBeLessThan(220);
+
+    await livePlayerDownloadLink.click();
+    await expect
+      .poll(() => page.evaluate(() => window.location.hash))
+      .toBe("#book-mp3-download");
+    await expect
+      .poll(() =>
+        page
+          .locator("#book-mp3-download")
           .evaluate((element) => element.getBoundingClientRect().top),
       )
       .toBeLessThan(220);
