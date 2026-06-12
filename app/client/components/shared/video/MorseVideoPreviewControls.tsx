@@ -316,13 +316,6 @@ export function MorseVideoPreviewTimeline({
         testId={`${testIdPrefix}-timing-strip`}
         testIdPrefix={`${testIdPrefix}-timing-strip`}
       />
-      <p
-        className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
-        data-testid={`${testIdPrefix}-time`}
-      >
-        Preview time {formatPreviewDuration(safeElapsed)} /{" "}
-        {formatPreviewDuration(durationMs)}
-      </p>
     </div>
   );
 }
@@ -333,7 +326,6 @@ export function MorseAudioTimingStrip({
   elapsedMs,
   formatTime = formatPreviewDuration,
   headingText = "Morse timing strip",
-  instructionText = "Click or drag to preview another segment",
   onSeek,
   onSeekCommit,
   preview,
@@ -351,9 +343,7 @@ export function MorseAudioTimingStrip({
     () => buildTimingStripDisplayEvents(preview.timeline.events, durationMs),
     [durationMs, preview.timeline.events],
   );
-  const instruction = timingStripDisplay.compressed
-    ? "Condensed long preview - click or drag to seek"
-    : instructionText;
+  const timeText = `Preview time ${formatTime(safeElapsed)} / ${formatTime(durationMs)}`;
 
   const seekFromClientX = React.useCallback(
     (clientX: number) => {
@@ -496,8 +486,11 @@ export function MorseAudioTimingStrip({
         <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
           {headingText}
         </span>
-        <span className="text-xs font-semibold text-slate-600">
-          {instruction}
+        <span
+          className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+          data-testid={`${testIdPrefix}-time`}
+        >
+          {timeText}
         </span>
       </div>
       <div

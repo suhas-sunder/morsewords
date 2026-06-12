@@ -83,7 +83,7 @@ async function expectWorkflowReadyNearSource(page: Page) {
     sourceStep(page).getByRole("heading", { name: "Download MP3" }),
   ).toBeVisible();
   await expect(
-    previewSection(page).getByRole("heading", { name: "Live preview" }),
+    previewSection(page).getByTestId("book-video-preview-frame"),
   ).toBeVisible();
   await expectPreviewReady(page);
   await expect(
@@ -122,6 +122,20 @@ function downloadSettingsPanel(page: Page) {
 
 function livePlayerSettingsPanel(page: Page) {
   return bookTool(page).locator("details").filter({ hasText: "Live player settings" });
+}
+
+function playerDetailsPanel(page: Page) {
+  return previewSection(page).locator("details").filter({ hasText: "Player details" });
+}
+
+async function openPlayerDetails(page: Page) {
+  const details = playerDetailsPanel(page);
+  const open = await details.evaluate(
+    (element) => (element as HTMLDetailsElement).open,
+  );
+  if (!open) {
+    await details.locator("summary").click();
+  }
 }
 
 async function openDownloadSettings(page: Page) {
@@ -706,12 +720,11 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   const sourceInput = page.getByLabel("Paste long-form source text");
   const preview = previewSection(page);
   const visualPreview = page.getByTestId("book-video-preview");
-  const toneSummary = preview
-    .locator("dl")
-    .filter({ hasText: "Tone" })
-    .filter({ hasText: "Speed" })
-    .filter({ hasText: "Pitch" })
-    .filter({ hasText: "Volume" });
+  const timingStrip = preview.getByTestId("book-video-preview-timing-strip");
+  const previewTime = preview.getByTestId(
+    "book-video-preview-timing-strip-time",
+  );
+  const playerDetails = playerDetailsPanel(page);
   const settingsRow = page.getByTestId("book-translator-settings-row");
   const settingsToggle = downloadSettingsToggle(page);
   const downloadRow = page.locator("#book-download-controls");
@@ -727,9 +740,17 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   await expect(preview).toBeVisible();
   await expect(
     preview.getByRole("heading", { name: "Live preview" }),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(visualPreview).toBeVisible();
-  await expect(toneSummary).toBeVisible();
+  await expect(preview.getByRole("button", { name: "Play live player" }))
+    .toBeVisible();
+  await expect(timingStrip).toBeVisible();
+  await expect(previewTime).toBeVisible();
+  await expect(preview.getByTestId("book-video-preview-time")).toHaveCount(0);
+  await expect(preview.getByText(/Preview time/)).toHaveCount(1);
+  await expect(page.getByText("Condensed long preview")).toHaveCount(0);
+  await expect(playerDetails).not.toHaveAttribute("open", "");
+  await expect(preview.getByTestId("book-preview-status")).toBeHidden();
   await expect(settingsRow).toBeVisible();
   await expect(
     settingsRow.getByRole("heading", { name: "Settings" }),
@@ -749,7 +770,7 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   const inputBox = await sourceTextRow.boundingBox();
   const previewBox = await preview.boundingBox();
   const visualPreviewBox = await visualPreview.boundingBox();
-  const toneSummaryBox = await toneSummary.boundingBox();
+  const timingStripBox = await timingStrip.boundingBox();
   const settingsBox = await settingsRow.boundingBox();
   const downloadBox = await downloadRow.boundingBox();
   const sourceDetailsBox = await sourceDetails.boundingBox();
@@ -758,15 +779,15 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   expect(inputBox).not.toBeNull();
   expect(previewBox).not.toBeNull();
   expect(visualPreviewBox).not.toBeNull();
-  expect(toneSummaryBox).not.toBeNull();
+  expect(timingStripBox).not.toBeNull();
   expect(settingsBox).not.toBeNull();
   expect(downloadBox).not.toBeNull();
   expect(sourceDetailsBox).not.toBeNull();
   expect(uploadBox!.y).toBeLessThan(inputBox!.y);
   expect(inputBox!.y).toBeLessThan(previewBox!.y);
   expect(previewBox!.y).toBeLessThan(settingsBox!.y);
-  expect(visualPreviewBox!.y).toBeLessThan(toneSummaryBox!.y);
-  expect(toneSummaryBox!.y).toBeLessThan(settingsBox!.y);
+  expect(visualPreviewBox!.y).toBeLessThan(timingStripBox!.y);
+  expect(timingStripBox!.y).toBeLessThan(settingsBox!.y);
   expect(settingsBox!.y).toBeLessThan(downloadBox!.y);
   expect(downloadBox!.y).toBeLessThan(sourceDetailsBox!.y);
 
@@ -840,7 +861,7 @@ test("TXT and MD uploads populate source review", async ({
     "Plain text chapter\nSOS help",
   );
   await expect(
-    previewSection(page).getByRole("heading", { name: "Live preview" }),
+    previewSection(page).getByTestId("book-video-preview-frame"),
   ).toBeVisible();
   await expect(
     previewSection(page).getByTestId("book-preview-sample"),
@@ -1883,8 +1904,12 @@ test("live player previews current cleaned source and updates with audio setting
   const preview = previewSection(page);
   await expect(
     preview.getByRole("heading", { name: "Live preview" }),
-  ).toBeVisible();
+  ).toHaveCount(0);
+  await expect(preview.getByTestId("book-video-preview-frame")).toBeVisible();
   await expectPreviewReady(page);
+  await expect(playerDetailsPanel(page)).not.toHaveAttribute("open", "");
+  await expect(preview.getByTestId("book-preview-sample")).toBeHidden();
+  await openPlayerDetails(page);
   await expect(preview.getByTestId("book-preview-sample")).toContainText(
     "REMOVE",
   );
@@ -1937,11 +1962,7 @@ test("live player previews current cleaned source and updates with audio setting
     "true",
   );
   await expect
-    .poll(() =>
-      page
-        .getByTestId("book-video-preview-timeline")
-        .getAttribute("aria-valuenow"),
-    )
+    .poll(() => liveTimeline.getAttribute("aria-valuenow"))
     .not.toBe("0");
   await liveTimeline.click({
     position: {
@@ -2020,7 +2041,8 @@ test("long and short live previews report a safe seekable duration", async ({
   await expect(liveTimeline).toBeVisible();
   const longDurationMs = Number(await liveTimeline.getAttribute("aria-valuemax"));
   expect(longDurationMs).toBeGreaterThan(0);
-  expect(longDurationMs).toBeLessThanOrEqual(15 * 60 * 1000);
+  expect(longDurationMs).toBeGreaterThan(30 * 60 * 1000);
+  expect(longDurationMs).toBeLessThanOrEqual(60 * 60 * 1000);
   expect(
     ((await preview.getByTestId("book-preview-sample").textContent()) ?? "")
       .length,
@@ -2035,6 +2057,50 @@ test("long and short live previews report a safe seekable duration", async ({
   );
   expect(shortDurationMs).toBeLessThan(60_000);
   expect(shortDurationMs).toBeLessThan(longDurationMs);
+});
+
+test("long live preview segments can reach the final source word", async ({
+  page,
+}) => {
+  await openBookTranslator(page);
+  const finalWord = "apples";
+  const source = `${"PARIS ".repeat(900)}${finalWord}`;
+  await page.getByLabel("Paste long-form source text").fill(source);
+
+  const preview = previewSection(page);
+  await expectPreviewReady(page);
+  await expect(preview.getByTestId("book-video-preview-frame")).toBeVisible();
+  await expect(page.getByText("Condensed long preview")).toHaveCount(0);
+  await expect(
+    preview.getByTestId("book-video-preview-timing-strip-time"),
+  ).toBeVisible();
+  await expect(preview.getByTestId("book-video-preview-time")).toHaveCount(0);
+  await expect(preview.getByText(/Preview time/)).toHaveCount(1);
+
+  const segmentSelect = preview.getByTestId("book-live-preview-segment-select");
+  await expect(segmentSelect).toBeVisible();
+  const segmentCount = await segmentSelect.locator("option").count();
+  expect(segmentCount).toBeGreaterThan(1);
+  await segmentSelect.selectOption(String(segmentCount - 1));
+
+  const liveTimeline = preview.getByRole("slider", {
+    name: "Live player timeline",
+  });
+  await liveTimeline.focus();
+  await page.keyboard.press("End");
+  await expect
+    .poll(async () =>
+      (
+        (await page
+          .getByTestId("book-video-preview-text-layers")
+          .getAttribute("data-active-word")) ?? ""
+      ).toLowerCase(),
+    )
+    .toBe(finalWord);
+  await expectNoRawSourceInStorage(page, finalWord);
+  await expect(page.getByText("Download MP4")).toHaveCount(0);
+  await expect(page.getByText("Download WebM")).toHaveCount(0);
+  await expect(page.getByText("Video format")).toHaveCount(0);
 });
 
 test("MP3 download stays primary while the live visual player remains available", async ({
@@ -2062,6 +2128,7 @@ test("MP3 download stays primary while the live visual player remains available"
   await expect(page.getByTestId("book-live-player-workflow")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
   await expectBookVideoPreviewUsesModuleWidth(page);
+  await expect(playerDetailsPanel(page)).not.toHaveAttribute("open", "");
   await openLivePlayerSettings(page);
   const liveSettings = livePlayerSettingsPanel(page);
   await expect(liveSettings.getByRole("radio", { name: /Lightbulb/ })).toHaveAttribute(
@@ -2071,9 +2138,13 @@ test("MP3 download stays primary while the live visual player remains available"
   await expect(page.getByLabel("Show visual signal")).toBeChecked();
   await expect(page.getByLabel("Show Morse symbols")).toBeChecked();
   await expect(page.getByLabel("Show plain text")).toBeChecked();
-  await expect(previewSection(page).getByText("Visual signal: Lightbulb signal on")).toBeVisible();
-  await expect(previewSection(page).getByText("Morse symbols: on")).toBeVisible();
-  await expect(previewSection(page).getByText("Plain text: on")).toBeVisible();
+  await expect(
+    previewSection(page).getByText("Visual signal: Lightbulb signal on"),
+  ).toHaveCount(0);
+  await openPlayerDetails(page);
+  await expect(playerDetailsPanel(page).getByText("Visual signal")).toBeVisible();
+  await expect(playerDetailsPanel(page).getByText("Morse symbols")).toBeVisible();
+  await expect(playerDetailsPanel(page).getByText("Plain text")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-lightbulb")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-morse-overlay")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-text-overlay")).toBeVisible();
@@ -2108,12 +2179,17 @@ test("live visual preview modes, branding, and full-frame warning stay scoped", 
 
   await expect(
     previewSection(page).getByRole("heading", { name: "Live preview" }),
+  ).toHaveCount(0);
+  await expect(
+    previewSection(page).getByTestId("book-video-preview-frame"),
   ).toBeVisible();
   await expectPreviewReady(page);
+  await expect(playerDetailsPanel(page)).not.toHaveAttribute("open", "");
+  await openPlayerDetails(page);
   await expect(
     previewSection(page).getByTestId("book-preview-sample"),
   ).toContainText("SOS HELP preview");
-  await expect(previewSection(page).getByText("Audio on")).toBeVisible();
+  await expect(playerDetailsPanel(page).getByText("Audio")).toBeVisible();
   await expect(
     previewSection(page).getByRole("button", { name: "Play live player" }),
   ).toBeVisible();
@@ -2298,7 +2374,12 @@ test("live visual preview modes, branding, and full-frame warning stay scoped", 
     .getByRole("button", { name: "Stop live player" })
     .click();
   await page.getByRole("checkbox", { name: "Audio" }).uncheck();
-  await expect(previewSection(page).getByText("Audio off")).toBeVisible();
+  await expect(
+    playerDetailsPanel(page)
+      .locator("dl")
+      .filter({ hasText: "Audio" })
+      .filter({ hasText: "Off" }),
+  ).toBeVisible();
 });
 
 test("visual preview visibly animates and stops stale playback", async ({

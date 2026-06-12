@@ -47,7 +47,6 @@ import type {
   MorseVideoSettings,
   MorseVideoVisualStyle,
 } from "~/client/components/shared/video/morseVideoTypes";
-import { buildMorseVideoPreview } from "~/client/components/shared/video/morseVideoPreview";
 import { getAppliedThemeMode, type ThemeMode } from "~/client/theme/themeStorage";
 import {
   createBookDownloadPackage,
@@ -86,6 +85,10 @@ import {
   buildBookAudioPreview,
   type BookAudioPreview,
 } from "~/client/components/morse-code-book-translator/bookPreviewAudio";
+import {
+  buildLiveMorseVideoPreview,
+  buildLivePreviewSegments,
+} from "~/client/components/morse-code-book-translator/bookLivePreview";
 import type { BookSourceSection } from "~/client/components/morse-code-book-translator/bookSourceTypes";
 import {
   getDefaultMorseBookSectionId,
@@ -115,6 +118,7 @@ const DISPLAY_TEXT_PREVIEW_LIMIT = 3600;
 const MORSE_SOURCE_PREVIEW_LIMIT = 1200;
 const MORSE_OUTPUT_PREVIEW_LIMIT = 2600;
 const MIN_PREVIEW_RESTART_REMAINING_MS = 750;
+const AUDIOBOOK_LIVE_PLAYER_SEGMENT_TARGET_MINUTES = 15;
 
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   phase: "idle",
@@ -127,10 +131,6 @@ const splitModeLabels: Record<BookSplitMode, string> = {
   none: "No split",
   duration: "By duration",
 };
-const LIVE_PLAYER_SEGMENT_TARGET_MINUTES = 15;
-const LIVE_PLAYER_MAX_SEGMENT_CHARS = 180_000;
-const LIVE_PLAYER_MAX_SEGMENT_WORDS = 32_000;
-
 const visualStyleLabels: Record<MorseVideoVisualStyle, string> = {
   lightbulb: "Lightbulb signal",
   dot: "Dot signal",
@@ -1175,7 +1175,7 @@ function MorseBookWorkspace({
         outputFormat: "mp3",
         splitMode: "duration",
         splitAudio: true,
-        targetPartMinutes: LIVE_PLAYER_SEGMENT_TARGET_MINUTES,
+        targetPartMinutes: AUDIOBOOK_LIVE_PLAYER_SEGMENT_TARGET_MINUTES,
         includeCleanedText: false,
         includeMorseTranscript: false,
         includeManifest: false,
@@ -1202,33 +1202,37 @@ function MorseBookWorkspace({
       }),
     [activeLiveSection, book.sections, book.title, livePlayerSettings, liveSectionText],
   );
-  const liveSegments = livePlayerPlan.parts;
+  const bookLiveSegments = React.useMemo(
+    () =>
+      buildLivePreviewSegments({
+        cleanedText: cleanedExportText,
+        settings: exportSettings,
+        sourceSections: exportSourceSections,
+        sourceTitle: book.title,
+      }),
+    [book.title, cleanedExportText, exportSettings, exportSourceSections],
+  );
+  const liveSegments = isAudiobook ? livePlayerPlan.parts : bookLiveSegments;
   const activeLiveSegment =
     liveSegments[Math.min(activeLiveSegmentIndex, Math.max(0, liveSegments.length - 1))] ??
     null;
   const livePreview = React.useMemo(
     () =>
-      buildMorseVideoPreview(
-        videoSettings,
-        activeLiveSegment?.cleanedText || liveSectionText || "",
-        {
+      buildLiveMorseVideoPreview({
+        audioSettings: {
           charWpm: exportSettings.charWpm,
           farnsworthWpm: exportSettings.farnsworthWpm,
         },
-        {
-          maxCharacters: LIVE_PLAYER_MAX_SEGMENT_CHARS,
-          maxDurationMs: Math.max(
-            1_200,
-            (activeLiveSegment?.morseDurationMs ?? 5 * 60 * 1000) + 2_000,
-          ),
-          maxWords: LIVE_PLAYER_MAX_SEGMENT_WORDS,
-        },
-      ),
+        fallbackText: isAudiobook ? liveSectionText : cleanedExportText,
+        segment: activeLiveSegment,
+        settings: videoSettings,
+      }),
     [
-      activeLiveSegment?.cleanedText,
-      activeLiveSegment?.morseDurationMs,
+      activeLiveSegment,
+      cleanedExportText,
       exportSettings.charWpm,
       exportSettings.farnsworthWpm,
+      isAudiobook,
       liveSectionText,
       videoSettings,
     ],
@@ -1240,6 +1244,12 @@ function MorseBookWorkspace({
     setVideoPreviewElapsedMs(0);
     videoPreviewBaseElapsedRef.current = 0;
   }, [activeLiveSegmentIndex, liveSegments.length]);
+  React.useEffect(() => {
+    if (isAudiobook) return;
+    setActiveLiveSegmentIndex(0);
+    setVideoPreviewElapsedMs(0);
+    videoPreviewBaseElapsedRef.current = 0;
+  }, [isAudiobook, scopeSectionIds]);
   React.useEffect(() => {
     if (!isAudiobook || liveSegments.length === 0) return;
     const restoredElapsedMs = pendingRestoredLiveElapsedRef.current;
@@ -1479,13 +1489,29 @@ function MorseBookWorkspace({
       videoPreviewBaseElapsedRef.current = 0;
       return;
     }
-    goToNextLiveSection();
+    if (isAudiobook) goToNextLiveSection();
   }, [
     activeLiveSegmentIndex,
     goToNextLiveSection,
+    isAudiobook,
     liveSegments.length,
     stopVideoPreview,
   ]);
+
+  const handleLiveSegmentChange = React.useCallback(
+    (segmentIndex: number) => {
+      const safeIndex = Math.max(
+        0,
+        Math.min(segmentIndex, Math.max(0, liveSegments.length - 1)),
+      );
+      pendingRestoredLiveElapsedRef.current = null;
+      stopVideoPreview(true);
+      setActiveLiveSegmentIndex(safeIndex);
+      setVideoPreviewElapsedMs(0);
+      videoPreviewBaseElapsedRef.current = 0;
+    },
+    [liveSegments.length, stopVideoPreview],
+  );
 
   React.useEffect(() => {
     if (
@@ -1718,7 +1744,7 @@ function MorseBookWorkspace({
           setVideoPreviewElapsedMs(activeVisualPreview.durationMs);
           setVideoPreviewPlaying(false);
           clearVideoPreviewTimer();
-          if (isAudiobook) window.setTimeout(advanceLivePlayback, 0);
+          window.setTimeout(advanceLivePlayback, 0);
           return;
         }
         setVideoPreviewElapsedMs(nextElapsed);
@@ -1755,7 +1781,7 @@ function MorseBookWorkspace({
         clearVideoPreviewTimer();
         setVideoPreviewElapsedMs(activeVisualPreview.durationMs);
         setVideoPreviewPlaying(false);
-        if (isAudiobook) advanceLivePlayback();
+        advanceLivePlayback();
       })
       .catch(() => {
         if (videoPreviewSessionRef.current !== timerSession) return;
@@ -1771,7 +1797,6 @@ function MorseBookWorkspace({
     exportSettings.tonePreset,
     exportSettings.volume,
     advanceLivePlayback,
-    isAudiobook,
     stopAudioPreview,
     videoPreviewElapsedMs,
     videoSettings.includeAudioTrack,
@@ -1943,50 +1968,6 @@ function MorseBookWorkspace({
     >
       <ToolPanel label="Live Morse player" badge="Browser playback">
         <div className="space-y-5 px-4 pb-4">
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-            <label className="block text-sm font-semibold text-slate-700">
-              Chapter or section
-              <select
-                value={activeLiveSectionId}
-                onChange={(event) => activateLiveSection(event.target.value)}
-                className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                data-testid="morse-book-live-section-select"
-              >
-                {book.sections.map((section) => (
-                  <option key={section.id} value={section.id}>
-                    {sectionDisplayName(section)}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <div className="flex flex-wrap gap-2">
-              <ToolButton
-                type="button"
-                tone="light"
-                hover="dark"
-                onClick={goToPreviousLiveSection}
-                disabled={
-                  activeLiveSectionListIndex <= 0 && activeLiveSegmentIndex === 0
-                }
-                className="rounded-xl"
-              >
-                Previous section
-              </ToolButton>
-              <ToolButton
-                type="button"
-                tone="light"
-                hover="dark"
-                onClick={goToNextLiveSection}
-                disabled={
-                  activeLiveSectionListIndex >= book.sections.length - 1 &&
-                  activeLiveSegmentIndex >= Math.max(0, liveSegments.length - 1)
-                }
-                className="rounded-xl"
-              >
-                Next section
-              </ToolButton>
-            </div>
-          </div>
           <VideoPreviewControls
             elapsedMs={videoPreviewElapsedMs}
             headingText="Live Morse player"
@@ -2002,30 +1983,41 @@ function MorseBookWorkspace({
             stopLabel="Pause live player"
             timelineAriaLabel="Live player timeline"
           />
+          {liveSegments.length > 1 ? (
+            <label className="block text-sm font-semibold text-slate-700">
+              Segment
+              <select
+                value={activeLiveSegmentIndex}
+                onChange={(event) =>
+                  handleLiveSegmentChange(Number(event.target.value))
+                }
+                className="ml-0 mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:ml-2 sm:mt-0 sm:w-auto"
+                data-testid="morse-book-live-segment-select"
+              >
+                {liveSegments.map((segment, index) => (
+                  <option key={segment.index} value={index}>
+                    Segment {index + 1} of {liveSegments.length}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
+        </div>
+      </ToolPanel>
+
+      <details className="mt-1">
+        <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
+          <RefreshIcon size={18} title={undefined} aria-hidden="true" />
+          Player settings
+        </summary>
+        <ToolPanel label="Player settings" badge="Saved locally">
+          <div className="space-y-6 px-4 pb-4">
           <dl className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2 lg:grid-cols-4">
             <Metric
               label="Current"
               value={
-                activeLiveSection
-                  ? sectionDisplayName({
-                      id: activeLiveSection.sectionId,
-                      kind: activeLiveSection.kind,
-                      label: activeLiveSection.label,
-                      title: activeLiveSection.title,
-                      order: activeLiveSection.order,
-                      includeByDefault: true,
-                      characterCount: activeLiveSection.characterCount,
-                      wordCount: activeLiveSection.wordCount,
-                      estimatedTypingMinutes:
-                        activeLiveSection.estimatedTypingMinutes,
-                      estimatedListeningMinutes:
-                        activeLiveSection.estimatedListeningMinutes,
-                      morseCharacterEstimate:
-                        activeLiveSection.morseCharacterEstimate,
-                      textPreview: activeLiveSection.textPreview,
-                      sectionJsonPath: "",
-                    })
-                  : "Loading"
+                activeLiveSegment?.title ||
+                `${formatNumber(scopeSectionIds.length)} selected section(s)`
               }
             />
             <Metric
@@ -2046,18 +2038,6 @@ function MorseBookWorkspace({
               value={formatNumber(completedLiveSectionIds.size)}
             />
           </dl>
-          {liveSegments.length > 1 ? (
-            <p className="text-sm leading-relaxed text-slate-600">
-              This long section is split into browser-safe live playback
-              segments. The segment changes automatically when playback reaches
-              the end.
-            </p>
-          ) : null}
-        </div>
-      </ToolPanel>
-
-      <ToolPanel label="Player settings" badge="Saved locally">
-        <div className="space-y-6 px-4 pb-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="max-w-[58ch] text-sm leading-relaxed text-slate-700">
               This player remembers the active section, segment, playback
@@ -2175,8 +2155,9 @@ function MorseBookWorkspace({
               Download MP3
             </a>
           )}
-        </div>
-      </ToolPanel>
+          </div>
+        </ToolPanel>
+      </details>
     </section>
   );
 
@@ -3205,13 +3186,6 @@ function AudioPreviewControls({
             onSeekCommit={onSeek}
             preview={audioPreview}
           />
-          <p
-            className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
-            data-testid="book-audio-preview-time"
-          >
-            Preview time {formatDuration(elapsedMs)} /{" "}
-            {formatDuration(audioPreview.durationMs)}
-          </p>
         </>
       ) : null}
     </section>
@@ -3286,12 +3260,6 @@ function VideoPreviewControls({
         preview={preview}
         testIdPrefix="book-video-preview"
       />
-      <p className="mt-3 text-sm leading-relaxed text-slate-700">
-        Visual signal: {settings.showVisualSignal ? "on" : "off"} - Morse
-        symbols: {settings.showMorseSymbols ? "on" : "off"} - Plain text:{" "}
-        {settings.showPlainText ? "on" : "off"} -{" "}
-        {settings.includeAudioTrack ? "Audio on" : "Audio off"}.
-      </p>
     </section>
   );
 }

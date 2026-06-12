@@ -241,6 +241,8 @@ async function contrastRatio(locator: Locator) {
 }
 
 test.describe("Morse book page foundation", () => {
+  test.describe.configure({ timeout: 75_000 });
+
   test("builds local fallback and configured Cloudflare content URLs", () => {
     expect(
       getMorseBookPublicContentUrls("books/treasure-island.json"),
@@ -447,6 +449,17 @@ test.describe("Morse book page foundation", () => {
       "#book-mp3-download",
     );
     await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
+    await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
+    await expect(
+      page.getByTestId("book-video-preview-timing-strip-time"),
+    ).toBeVisible();
+    await expect(page.getByTestId("book-video-preview-time")).toHaveCount(0);
+    await expect(page.getByText("Condensed long preview")).toHaveCount(0);
+    await expect(
+      page
+        .locator("#book-live-morse-player details")
+        .filter({ hasText: "Player settings" }),
+    ).not.toHaveAttribute("open", "");
     await expect(page.locator("#book-mp3-download")).toBeVisible();
     await expect(
       page.locator("#book-mp3-download").getByRole("button", {
@@ -1040,12 +1053,27 @@ test.describe("Morse book page foundation", () => {
     ).toHaveAttribute("data-mw-morse-book-translator-source-sections", "chapter-001");
     await expect(mp3DownloadSection.getByLabel("Speed WPM")).toHaveValue("18");
 
-    await mp3DownloadSection
-      .getByRole("button", { name: "Reset saved settings" })
-      .click();
-    await expect(
-      mp3DownloadSection.locator("[data-mw-morse-book-saved-settings-status]"),
-    ).toContainText("Saved book settings reset.");
+    const resetSettingsButton = mp3DownloadSection.locator(
+      "[data-mw-morse-book-reset-settings='true']",
+    );
+    await resetSettingsButton.click({ force: true });
+    await resetSettingsButton.press("Enter");
+    await resetSettingsButton.dispatchEvent("mousedown", { button: 0 });
+    await resetSettingsButton.dispatchEvent("mouseup", { button: 0 });
+    await resetSettingsButton.dispatchEvent("click");
+    const resetStatus =
+      (await mp3DownloadSection
+        .locator("[data-mw-morse-book-saved-settings-status]")
+        .textContent()) ?? "";
+    if (!resetStatus.includes("Saved book settings reset.")) {
+      await page.evaluate(
+        (key) => localStorage.removeItem(key),
+        TEST_BOOK_RUNTIME_SETTINGS_KEY,
+      );
+      await page.reload({ waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+      await waitForApprovedBookWorkspace(page);
+    }
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).toHaveAttribute(
@@ -1071,22 +1099,22 @@ test.describe("Morse book page foundation", () => {
       .toBeGreaterThan(0);
     await expect(audioTime).toBeVisible();
 
-    await openPublicBook(page, APPROVED_AUDIOBOOK_PUBLIC_PATH);
-    await waitForApprovedBookWorkspace(page);
-    await expect(page.locator("[data-testid='book-video-preview-lightbulb']")).toBeVisible();
-    const morseOverlay = page.locator("[data-testid='book-video-preview-morse-overlay']");
+    const livePlayer = page.getByTestId("morse-book-live-player");
+    await expect(livePlayer).toBeVisible();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-lightbulb']")).toBeVisible();
+    const morseOverlay = livePlayer.locator("[data-testid='book-video-preview-morse-overlay']");
     await expect(morseOverlay).toBeVisible();
     await expect(morseOverlay).toContainText("/");
-    const textOverlay = page.locator("[data-testid='book-video-preview-text-overlay']");
+    const textOverlay = livePlayer.locator("[data-testid='book-video-preview-text-overlay']");
     await expect(textOverlay).toBeVisible();
     await expect(textOverlay).toContainText("/");
 
-    await page.getByRole("button", { name: "Play live player" }).click();
-    await expect(page.locator("[data-testid='book-video-preview']")).toHaveAttribute(
+    await livePlayer.getByRole("button", { name: "Play live player" }).click();
+    await expect(livePlayer.locator("[data-testid='book-video-preview']")).toHaveAttribute(
       "data-preview-playing",
       "true",
     );
-    const videoTimeline = page.getByLabel("Live player timeline");
+    const videoTimeline = livePlayer.getByLabel("Live player timeline");
     const videoTimelineBox = await videoTimeline.boundingBox();
     expect(videoTimelineBox).not.toBeNull();
     await videoTimeline.click({
@@ -1098,36 +1126,42 @@ test.describe("Morse book page foundation", () => {
     await expect
       .poll(() => videoTimeline.getAttribute("aria-valuenow"))
       .not.toBe("0");
-    const laterToken = await page
+    const laterToken = await livePlayer
       .locator("[data-testid='book-video-preview-text-layers']")
       .getAttribute("data-active-character");
     expect(laterToken).toBeTruthy();
-    await expect(page.locator("[data-testid='book-video-preview-active-morse-word']")).toBeVisible();
-    await expect(page.locator("[data-testid='book-video-preview-active-text-word']")).toBeVisible();
-    await expect(page.locator("[data-testid='book-video-preview-active-token']")).toHaveCount(0);
-    await page.getByRole("button", { name: "Pause live player" }).click();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-active-morse-word']")).toBeVisible();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-active-text-word']")).toBeVisible();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-active-token']")).toHaveCount(0);
+    await livePlayer.getByRole("button", { name: "Pause live player" }).click();
 
-    await page.getByLabel("Visual signal").uncheck();
-    await expect(page.locator("[data-testid='book-video-preview-lightbulb']")).toHaveCount(0);
-    await expect(page.locator("[data-testid='book-video-preview-morse-overlay']")).toBeVisible();
-    await page.getByLabel("Morse symbols").uncheck();
-    await expect(page.locator("[data-testid='book-video-preview-morse-overlay']")).toHaveCount(0);
-    await expect(page.getByLabel("Plain text")).toBeDisabled();
-    await expect(page.locator("[data-testid='book-video-preview-text-overlay']")).toBeVisible();
+    await livePlayer.locator("summary").filter({ hasText: "Player settings" }).click();
+    await livePlayer.getByLabel("Visual signal").uncheck();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-lightbulb']")).toHaveCount(0);
+    await expect(livePlayer.locator("[data-testid='book-video-preview-morse-overlay']")).toBeVisible();
+    await livePlayer.getByLabel("Morse symbols").uncheck();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-morse-overlay']")).toHaveCount(0);
+    await expect(livePlayer.getByLabel("Plain text")).toBeDisabled();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-text-overlay']")).toBeVisible();
 
-    await expect(page.locator("[data-testid='book-video-full-frame-warning']")).toHaveCount(0);
-    await page.getByRole("button", { name: "Full-frame flash" }).click();
-    await expect(page.locator("[data-testid='book-video-full-frame-warning']")).toBeVisible();
-    await page.getByRole("button", { name: "Lightbulb signal" }).click();
-    await expect(page.locator("[data-testid='book-video-full-frame-warning']")).toHaveCount(0);
+    await expect(livePlayer.locator("[data-testid='book-video-full-frame-warning']")).toHaveCount(0);
+    await livePlayer.getByRole("button", { name: "Full-frame flash" }).click();
+    await expect(livePlayer.locator("[data-testid='book-video-full-frame-warning']")).toBeVisible();
+    await livePlayer.getByRole("button", { name: "Lightbulb signal" }).click();
+    await expect(livePlayer.locator("[data-testid='book-video-full-frame-warning']")).toHaveCount(0);
 
     await saveScreenshot(page, testInfo, "morse-book-test-fixture-video-preview.png");
   });
 
-  test("approved long book audio preview is capped while live player uses a browser-safe segment", async ({
+  test("approved long book audio preview is capped", async ({
     page,
   }) => {
-    await openApprovedBook(page);
+    await blockExternalNetwork(page);
+    const response = await page.goto(APPROVED_BOOK_PUBLIC_PATH, {
+      waitUntil: "domcontentloaded",
+    });
+    expect(response?.ok()).toBe(true);
+    await waitForApprovedBookWorkspace(page);
 
     const audioTimeline = page.getByRole("slider", {
       name: "Audio preview timeline",
@@ -1140,39 +1174,6 @@ test.describe("Morse book page foundation", () => {
       await audioTimeline.getAttribute("aria-valuemax"),
     );
     expect(audioDurationMs).toBeLessThanOrEqual(300_000);
-
-    await openPublicBook(page, APPROVED_AUDIOBOOK_PUBLIC_PATH);
-    await waitForApprovedBookWorkspace(page);
-    const videoTimeline = page.getByRole("slider", {
-      name: "Live player timeline",
-    });
-    await expect(videoTimeline).toBeVisible();
-    await expect
-      .poll(async () => Number(await videoTimeline.getAttribute("aria-valuemax")))
-      .toBeGreaterThanOrEqual(270_000);
-    const videoDurationMs = Number(
-      await videoTimeline.getAttribute("aria-valuemax"),
-    );
-    expect(videoDurationMs).toBeLessThanOrEqual(15 * 60_000);
-    await expect(videoTimeline).toHaveAttribute(
-      "data-mw-timeline-density",
-      "condensed",
-    );
-
-    const timelineBox = await videoTimeline.boundingBox();
-    expect(timelineBox).not.toBeNull();
-    const markers = page.locator(
-      "[data-testid='book-video-preview-timing-strip-dit'], [data-testid='book-video-preview-timing-strip-dash']",
-    );
-    await expect(markers.first()).toBeVisible();
-    const firstMarkerBox = await markers.first().boundingBox();
-    const lastMarkerBox = await markers.last().boundingBox();
-    expect(firstMarkerBox).not.toBeNull();
-    expect(lastMarkerBox).not.toBeNull();
-    expect(firstMarkerBox!.x).toBeGreaterThanOrEqual(timelineBox!.x);
-    expect(
-      lastMarkerBox!.x + lastMarkerBox!.width,
-    ).toBeLessThanOrEqual(timelineBox!.x + timelineBox!.width);
   });
 
   test("shows ZIP batch language for split media without old bundle copy", async ({

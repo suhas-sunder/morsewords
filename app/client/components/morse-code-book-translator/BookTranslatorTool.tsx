@@ -119,10 +119,11 @@ import {
   buildCleanedSourceSections,
   buildPreflightSummary,
 } from "./textNormalization";
+import type { BookVideoPreview } from "./bookVideoPreview";
 import {
-  buildBookVideoPreview,
-  type BookVideoPreview,
-} from "./bookVideoPreview";
+  buildLiveMorseVideoPreview,
+  buildLivePreviewSegments,
+} from "./bookLivePreview";
 import {
   buildBookAudioPreview,
   type BookAudioPreview,
@@ -524,6 +525,8 @@ export default function BookTranslatorTool() {
   const [previewErrorMessage, setPreviewErrorMessage] = React.useState("");
   const [visualPreviewPlaying, setVisualPreviewPlaying] = React.useState(false);
   const [visualPreviewElapsedMs, setVisualPreviewElapsedMs] = React.useState(0);
+  const [activePreviewSegmentIndex, setActivePreviewSegmentIndex] =
+    React.useState(0);
   const [audioPreviewElapsedMs, setAudioPreviewElapsedMs] = React.useState(0);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [status, setStatus] = React.useState<ParseStatus>("ready");
@@ -941,17 +944,42 @@ export default function BookTranslatorTool() {
     () => buildBookAudioPreview(preflight.cleanedText, exportSettings),
     [exportSettings, preflight.cleanedText],
   );
+  const livePreviewSegments = React.useMemo(
+    () =>
+      buildLivePreviewSegments({
+        cleanedText: preflight.cleanedText,
+        settings: exportSettings,
+        sourceSections,
+        sourceTitle: preflight.title || preflight.filename,
+      }),
+    [
+      exportSettings,
+      preflight.cleanedText,
+      preflight.filename,
+      preflight.title,
+      sourceSections,
+    ],
+  );
+  const activePreviewSegment =
+    livePreviewSegments[
+      Math.min(
+        activePreviewSegmentIndex,
+        Math.max(0, livePreviewSegments.length - 1),
+      )
+    ] ?? null;
   const videoPreview = React.useMemo(
     () =>
-      buildBookVideoPreview(
-        effectiveVideoSettings,
-        preflight.cleanedText,
-        {
+      buildLiveMorseVideoPreview({
+        audioSettings: {
           charWpm: exportSettings.charWpm,
           farnsworthWpm: exportSettings.farnsworthWpm,
         },
-      ),
+        fallbackText: preflight.cleanedText,
+        segment: activePreviewSegment,
+        settings: effectiveVideoSettings,
+      }),
     [
+      activePreviewSegment,
       effectiveVideoSettings,
       exportSettings.charWpm,
       exportSettings.farnsworthWpm,
@@ -962,6 +990,25 @@ export default function BookTranslatorTool() {
     () => Math.max(1, videoPreview.durationMs),
     [videoPreview.durationMs],
   );
+  React.useEffect(() => {
+    if (activePreviewSegmentIndex < livePreviewSegments.length) return;
+    setActivePreviewSegmentIndex(0);
+    visualPreviewBaseElapsedRef.current = 0;
+    setVisualPreviewElapsedMs(0);
+  }, [activePreviewSegmentIndex, livePreviewSegments.length]);
+  React.useEffect(() => {
+    setActivePreviewSegmentIndex(0);
+    visualPreviewBaseElapsedRef.current = 0;
+    setVisualPreviewElapsedMs(0);
+  }, [
+    cleanupCacheSignature,
+    exportSettings.charWpm,
+    exportSettings.farnsworthWpm,
+    exportSettings.paragraphPauseMultiplier,
+    exportSettings.punctuationMode,
+    exportSettings.sentencePauseMultiplier,
+    sourceCacheSignature,
+  ]);
   const renderEstimateLabel = React.useMemo(
     () =>
       estimatedRenderTimeLabel(
@@ -1368,6 +1415,15 @@ export default function BookTranslatorTool() {
           setVisualPreviewElapsedMs(visualPreviewDurationMs);
           setVisualPreviewPlaying(false);
           setPreviewStatus("stopped");
+          if (activePreviewSegmentIndex + 1 < livePreviewSegments.length) {
+            window.setTimeout(() => {
+              setActivePreviewSegmentIndex((index) =>
+                Math.min(index + 1, Math.max(0, livePreviewSegments.length - 1)),
+              );
+              visualPreviewBaseElapsedRef.current = 0;
+              setVisualPreviewElapsedMs(0);
+            }, 0);
+          }
           return;
         }
         setVisualPreviewElapsedMs(nextElapsed);
@@ -1427,6 +1483,7 @@ export default function BookTranslatorTool() {
       });
   }, [
     audioPreview,
+    activePreviewSegmentIndex,
     clearVisualPreviewTimers,
     effectiveVideoSettings.includeAudioTrack,
     exportSettings.charWpm,
@@ -1434,6 +1491,7 @@ export default function BookTranslatorTool() {
     exportSettings.pitch,
     exportSettings.tonePreset,
     exportSettings.volume,
+    livePreviewSegments.length,
     previewAudioPlayer,
     videoPreview.sampleMorse,
     visualPreviewDurationMs,
@@ -1465,6 +1523,24 @@ export default function BookTranslatorTool() {
       }
     },
     [handlePlayVisualPreview, visualPreviewDurationMs, visualPreviewPlaying],
+  );
+
+  const handlePreviewSegmentChange = React.useCallback(
+    (segmentIndex: number) => {
+      const safeIndex = Math.max(
+        0,
+        Math.min(segmentIndex, Math.max(0, livePreviewSegments.length - 1)),
+      );
+      stopPreviewAudioRef.current?.();
+      stopVisualPreview(true);
+      setActivePreviewSegmentIndex(safeIndex);
+      visualPreviewBaseElapsedRef.current = 0;
+      setVisualPreviewElapsedMs(0);
+      setPreviewStatus((current) =>
+        current === "playing" ? "stopped" : current,
+      );
+    },
+    [livePreviewSegments.length, stopVisualPreview],
   );
 
   const updatePastedText = React.useCallback(
@@ -2261,6 +2337,9 @@ export default function BookTranslatorTool() {
             hasCleanedSource={hasCleanedSource}
             hasSource={hasSource}
             isDraftActive={sourceDraftActive}
+            activeSegmentIndex={activePreviewSegmentIndex}
+            livePreviewSegments={livePreviewSegments}
+            onPreviewSegmentChange={handlePreviewSegmentChange}
             onPlayAudioPreview={handlePlayAudioPreview}
             onPlayVisualPreview={handlePlayVisualPreview}
             onScrubAudioPreview={handleScrubAudioPreview}
@@ -3540,6 +3619,7 @@ export default function BookTranslatorTool() {
 }
 
 function BookPreviewSection({
+  activeSegmentIndex,
   audioPreviewElapsedMs,
   audioPlayerState,
   audioPreview,
@@ -3548,6 +3628,8 @@ function BookPreviewSection({
   hasCleanedSource,
   hasSource,
   isDraftActive,
+  livePreviewSegments,
+  onPreviewSegmentChange,
   onPlayAudioPreview,
   onPlayVisualPreview,
   onScrubAudioPreview,
@@ -3565,6 +3647,7 @@ function BookPreviewSection({
   visualPreviewElapsedMs,
   visualPreviewPlaying,
 }: {
+  activeSegmentIndex: number;
   audioPreviewElapsedMs: number;
   audioPlayerState: MorsePlayerState;
   audioPreview: BookAudioPreview | null;
@@ -3573,6 +3656,8 @@ function BookPreviewSection({
   hasCleanedSource: boolean;
   hasSource: boolean;
   isDraftActive: boolean;
+  livePreviewSegments: BookExportPart[];
+  onPreviewSegmentChange: (segmentIndex: number) => void;
   onPlayAudioPreview: () => void;
   onPlayVisualPreview: () => void;
   onScrubAudioPreview: (elapsedMs: number) => void;
@@ -3598,7 +3683,6 @@ function BookPreviewSection({
       ? audioPlayerState === "playing" || audioPlayerState === "paused"
       : visualPreviewPlaying);
   const actionDisabled = !canPreview || (isAudioOutput && !audioSupported);
-  const heading = isAudioOutput ? "Preview audio" : "Live preview";
   const previewElapsedMs = Math.min(
     visualPreviewDurationMs,
     Math.max(0, visualPreviewElapsedMs),
@@ -3621,48 +3705,11 @@ function BookPreviewSection({
   return (
     <section
       className="mt-5"
-      aria-labelledby="book-preview-heading"
+      aria-label="Live Morse preview"
       data-testid="book-preview-section"
     >
-      <div>
-        <h3
-          id="book-preview-heading"
-          className="text-base font-extrabold text-sky-950"
-        >
-          {heading}
-        </h3>
-        <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-          {audioPreview?.label ??
-            "Add source text to preview the current settings before download."}
-        </p>
-      </div>
-
-      {isDraftActive ? (
-        <p className="mt-3 text-sm font-semibold text-slate-600">
-          Draft edits are not previewed until you apply them.
-        </p>
-      ) : null}
-
-      {audioPreview ? (
-        <p
-          data-testid="book-preview-sample"
-          className="mt-3 max-w-[68ch] break-words font-mono text-sm leading-relaxed text-slate-700"
-        >
-          {previewSampleForDisplay(audioPreview.sampleText)}
-        </p>
-      ) : null}
-
-      <p
-        data-testid="book-preview-status"
-        role="status"
-        aria-live="polite"
-        className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
-      >
-        {statusText}
-      </p>
-
       {isAudioOutput ? (
-        <div className="mt-4" data-testid="book-audio-preview">
+        <div data-testid="book-audio-preview">
           <div className="flex flex-wrap gap-2">
             <ToolButton
               type="button"
@@ -3681,29 +3728,19 @@ function BookPreviewSection({
             </ToolButton>
           </div>
           {audioPreview ? (
-            <>
-              <MorseAudioTimingStrip
-                disabled={actionDisabled && !previewPlaying}
-                elapsedMs={audioElapsedMs}
-                formatTime={formatDuration}
-                onSeek={onScrubAudioPreview}
-                onSeekCommit={onSeekAudioPreview}
-                preview={audioPreview}
-              />
-              <p
-                className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
-                data-testid="book-audio-preview-time"
-              >
-                Preview time {formatDuration(audioElapsedMs)} /{" "}
-                {formatDuration(audioPreview.durationMs)}
-              </p>
-            </>
+            <MorseAudioTimingStrip
+              disabled={actionDisabled && !previewPlaying}
+              elapsedMs={audioElapsedMs}
+              formatTime={formatDuration}
+              onSeek={onScrubAudioPreview}
+              onSeekCommit={onSeekAudioPreview}
+              preview={audioPreview}
+            />
           ) : null}
         </div>
       ) : (
         <div data-testid="book-live-player-workflow">
           <MorseVideoPreviewPanel
-            className="mt-4"
             headingId="book-video-preview-heading"
             headingText="Live Morse frame"
             isPlaying={visualPreviewPlaying}
@@ -3729,6 +3766,25 @@ function BookPreviewSection({
               )}
               {previewPlaying ? "Stop live player" : "Play live player"}
             </ToolButton>
+            {livePreviewSegments.length > 1 ? (
+              <label className="min-w-[12rem] text-sm font-semibold text-slate-700">
+                Segment
+                <select
+                  value={activeSegmentIndex}
+                  onChange={(event) =>
+                    onPreviewSegmentChange(Number(event.target.value))
+                  }
+                  className="ml-0 mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:ml-2 sm:mt-0 sm:w-auto"
+                  data-testid="book-live-preview-segment-select"
+                >
+                  {livePreviewSegments.map((segment, index) => (
+                    <option key={segment.index} value={index}>
+                      Segment {index + 1} of {livePreviewSegments.length}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ) : null}
           </div>
           <MorseVideoPreviewTimeline
             ariaLabel="Live player timeline"
@@ -3739,40 +3795,80 @@ function BookPreviewSection({
             preview={videoPreview}
             testIdPrefix="book-video-preview"
           />
-          <p className="mt-3 text-sm leading-relaxed text-slate-700">
-            Visual signal:{" "}
-            {videoSettings.showVisualSignal
-              ? `${BOOK_VIDEO_VISUAL_STYLE_DETAILS[videoSettings.visualStyle].label} on`
-              : "off"}
-            {" - "}Morse symbols:{" "}
-            {videoSettings.showMorseSymbols ? "on" : "off"}
-            {" - "}Plain text:{" "}
-            {videoSettings.showPlainText ? "on" : "off"}
-            {" - "}
-            {videoSettings.includeAudioTrack
-              ? "Audio on"
-              : "Audio off"}
-            {" - "}
-            {videoSettings.showBranding ? "Branding on" : "Branding off"}
-          </p>
         </div>
       )}
 
-      <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Metric
-          label="Tone"
-          value={tonePresetLabel(exportSettings.tonePreset)}
-        />
-        <Metric
-          label="Speed"
-          value={`${exportSettings.charWpm}/${exportSettings.farnsworthWpm} WPM`}
-        />
-        <Metric label="Pitch" value={`${exportSettings.pitch} Hz`} />
-        <Metric
-          label="Volume"
-          value={`${Math.round(exportSettings.volume * 100)}%`}
-        />
-      </dl>
+      <details className="mt-4">
+        <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
+          <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
+          Player details
+        </summary>
+        <div className="mt-4 space-y-4">
+          {isDraftActive ? (
+            <p className="text-sm font-semibold text-slate-600">
+              Draft edits are not previewed until you apply them.
+            </p>
+          ) : null}
+          <p
+            data-testid="book-preview-status"
+            role="status"
+            aria-live="polite"
+            className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+          >
+            {statusText}
+          </p>
+          {audioPreview ? (
+            <p
+              data-testid="book-preview-sample"
+              className="max-w-[68ch] break-words font-mono text-sm leading-relaxed text-slate-700"
+            >
+              {previewSampleForDisplay(audioPreview.sampleText)}
+            </p>
+          ) : null}
+          <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <Metric
+              label="Segment"
+              value={`${Math.min(
+                activeSegmentIndex + 1,
+                Math.max(1, livePreviewSegments.length),
+              )} of ${Math.max(1, livePreviewSegments.length)}`}
+            />
+            <Metric
+              label="Tone"
+              value={tonePresetLabel(exportSettings.tonePreset)}
+            />
+            <Metric
+              label="Speed"
+              value={`${exportSettings.charWpm}/${exportSettings.farnsworthWpm} WPM`}
+            />
+            <Metric label="Pitch" value={`${exportSettings.pitch} Hz`} />
+            <Metric
+              label="Volume"
+              value={`${Math.round(exportSettings.volume * 100)}%`}
+            />
+            <Metric
+              label="Visual signal"
+              value={
+                videoSettings.showVisualSignal
+                  ? BOOK_VIDEO_VISUAL_STYLE_DETAILS[videoSettings.visualStyle].label
+                  : "Off"
+              }
+            />
+            <Metric
+              label="Morse symbols"
+              value={videoSettings.showMorseSymbols ? "On" : "Off"}
+            />
+            <Metric
+              label="Plain text"
+              value={videoSettings.showPlainText ? "On" : "Off"}
+            />
+            <Metric
+              label="Audio"
+              value={videoSettings.includeAudioTrack ? "On" : "Off"}
+            />
+          </dl>
+        </div>
+      </details>
     </section>
   );
 }
