@@ -11,7 +11,6 @@ import HowItWorks from "~/client/components/home/HowItWorks";
 import { ROUTES } from "~/client/data/routes";
 import {
   getPublishedMorseBookSummaries,
-  morseAudiobookPath,
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
@@ -273,7 +272,7 @@ function FeaturedBooksSection() {
 
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <Link
-                  to={morseAudiobookPath(book.slug)}
+                  to={morseBookPath(book.slug)}
                   className="mw-link font-semibold text-sky-900 underline-offset-4 hover:underline"
                 >
                   Open live player

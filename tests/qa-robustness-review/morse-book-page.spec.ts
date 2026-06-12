@@ -344,6 +344,67 @@ test.describe("Morse book page foundation", () => {
     expect(unknownAudiobookResponse.status()).toBe(404);
   });
 
+  test("default book cards link to primary book pages while audiobook routes remain", async ({
+    page,
+    request,
+  }) => {
+    const audiobookResponse = await request.get(APPROVED_AUDIOBOOK_PUBLIC_PATH);
+    expect(audiobookResponse.ok()).toBe(true);
+
+    await blockExternalNetwork(page);
+    await page.goto("/morse-code-books", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    const firstBookCard = page.getByTestId("morse-book-card").first();
+    await expect(firstBookCard).toBeVisible();
+    await expect(firstBookCard).toHaveAttribute(
+      "href",
+      /^\/morse-code-books\/[^/?#]+$/,
+    );
+    await expect(
+      page.locator('a[href^="/morse-code-audiobooks/"]'),
+    ).toHaveCount(0);
+
+    await page.goto("/morse-code-audiobooks", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+    const firstAudiobookCard = page.getByTestId("morse-audiobook-card").first();
+    await expect(firstAudiobookCard).toBeVisible();
+    await expect(firstAudiobookCard).toHaveAttribute(
+      "href",
+      /^\/morse-code-books\/[^/?#]+$/,
+    );
+    await expect(
+      page.locator('a[href^="/morse-code-audiobooks/"]'),
+    ).toHaveCount(0);
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    const featuredBooks = page.locator(
+      '[aria-labelledby="featured-morse-books-title"]',
+    );
+    await expect(featuredBooks).toBeVisible();
+    await expect(
+      featuredBooks.getByRole("link", { name: "Open live player" }).first(),
+    ).toHaveAttribute("href", /^\/morse-code-books\/[^/?#]+$/);
+    await expect(
+      featuredBooks.getByRole("link", { name: "Download MP3" }).first(),
+    ).toHaveAttribute("href", /^\/morse-code-books\/[^/?#]+$/);
+    await expect(
+      featuredBooks.locator('a[href^="/morse-code-audiobooks/"]'),
+    ).toHaveCount(0);
+
+    await page.getByRole("button", { name: "More" }).click();
+    await expect(
+      page
+        .locator(`a[href="${APPROVED_BOOK_PUBLIC_PATH}"]`)
+        .filter({ hasText: "Treasure Island" })
+        .first(),
+    ).toBeVisible();
+    await expect(page.locator(`a[href="${APPROVED_AUDIOBOOK_PUBLIC_PATH}"]`))
+      .toHaveCount(0);
+  });
+
   test("renders an approved external-authority Gutenberg book as a public page", async ({
     page,
   }) => {

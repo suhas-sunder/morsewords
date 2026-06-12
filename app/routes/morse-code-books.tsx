@@ -324,7 +324,7 @@ function subjectOptionsForBooks(books: HubBook[]) {
 }
 
 function publicBookHref(book: MorseBookLibrarySummary, includeTestFixture: boolean) {
-  const path = morseAudiobookPath(book.slug);
+  const path = morseBookPath(book.slug);
   if (includeTestFixture && book.slug === TEST_PUBLISHED_BOOK_SLUG) {
     return `${morseBookPath(book.slug)}?${UNPUBLISHED_BOOK_PREVIEW_PARAM}=${TEST_PUBLISHED_BOOK_PREVIEW_VALUE}`;
   }

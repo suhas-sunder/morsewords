@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 import logoUrl from "~/client/assets/images/logo.png";
 import {
   getPublishedMorseBookSummaries,
-  morseAudiobookPath,
+  morseBookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import { ROUTES } from "~/client/data/routes";
@@ -35,7 +35,7 @@ const MAIN_ITEMS: NavItem[] = [
 
 const PUBLIC_BOOK_ITEMS: NavItem[] = getPublishedMorseBookSummaries().map((book) => ({
   label: book.title,
-  href: morseAudiobookPath(book.slug),
+  href: morseBookPath(book.slug),
   description: formatMorseBookAuthors(book.author),
 }));
 

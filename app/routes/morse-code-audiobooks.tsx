@@ -15,6 +15,7 @@ import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace
 import {
   getPublishedMorseBookSummariesRuntime,
   morseAudiobookPath,
+  morseBookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
@@ -566,7 +567,7 @@ function AudiobookCard({ book }: { book: AudiobookSummary }) {
 
   return (
     <Link
-      to={morseAudiobookPath(book.slug)}
+      to={morseBookPath(book.slug)}
       className="mw-static-surface group flex h-full min-w-0 cursor-pointer flex-col rounded-xl bg-[#fffdf8]/90 p-3 text-left no-underline hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:p-4"
       data-testid="morse-audiobook-card"
       data-mw-morse-audiobook-card-slug={book.slug}
@@ -621,7 +622,7 @@ function AudiobookCard({ book }: { book: AudiobookSummary }) {
             tone: "dark",
           })}
         >
-          Open audiobook page
+          Open book page
         </span>
       </div>
     </Link>

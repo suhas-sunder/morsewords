@@ -285,23 +285,25 @@ test.describe("MP3-only book and translator UI", () => {
     await expectNoVideoExportControls(page);
   });
 
-  test("book listing defaults to the live player while keeping MP3 download secondary", async ({
+  test("book listing defaults to the primary book page for specific books", async ({
     page,
   }) => {
     await openRoute(page, "/morse-code-books");
     const firstBookCard = page.getByTestId("morse-book-card").first();
     await expect(firstBookCard).toHaveAttribute(
       "href",
-      /\/morse-code-audiobooks\//,
+      /\/morse-code-books\//,
     );
+    await expect(page.locator('a[href^="/morse-code-audiobooks/"]')).toHaveCount(0);
 
     await openRoute(page, "/");
     const firstLiveLink = page
       .getByRole("link", { name: "Open live player" })
       .first();
-    await expect(firstLiveLink).toHaveAttribute("href", /\/morse-code-audiobooks\//);
+    await expect(firstLiveLink).toHaveAttribute("href", /\/morse-code-books\//);
     const firstDownloadLink = page.getByRole("link", { name: "Download MP3" }).first();
     await expect(firstDownloadLink).toHaveAttribute("href", /\/morse-code-books\//);
+    await expect(page.locator('a[href^="/morse-code-audiobooks/"]')).toHaveCount(0);
   });
 
   test("book translator exposes MP3 download and live player, not video export", async ({
