@@ -705,6 +705,13 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   const sourceTextRow = page.getByTestId("book-source-text-row");
   const sourceInput = page.getByLabel("Paste long-form source text");
   const preview = previewSection(page);
+  const visualPreview = page.getByTestId("book-video-preview");
+  const toneSummary = preview
+    .locator("dl")
+    .filter({ hasText: "Tone" })
+    .filter({ hasText: "Speed" })
+    .filter({ hasText: "Pitch" })
+    .filter({ hasText: "Volume" });
   const settingsRow = page.getByTestId("book-translator-settings-row");
   const settingsToggle = downloadSettingsToggle(page);
   const downloadRow = page.locator("#book-download-controls");
@@ -716,12 +723,21 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   await expect(uploadDropzone).toContainText("Replace source file");
   await expect(sourceTextRow).toBeVisible();
   await expect(sourceInput).toBeVisible();
+  await expect(sourceInput).toHaveValue("SOS Help!");
   await expect(preview).toBeVisible();
-  await expect(preview.getByRole("heading", { name: "Live preview" })).toBeVisible();
+  await expect(
+    preview.getByRole("heading", { name: "Live preview" }),
+  ).toBeVisible();
+  await expect(visualPreview).toBeVisible();
+  await expect(toneSummary).toBeVisible();
   await expect(settingsRow).toBeVisible();
-  await expect(settingsRow.getByRole("heading", { name: "Settings" })).toBeVisible();
+  await expect(
+    settingsRow.getByRole("heading", { name: "Settings" }),
+  ).toBeVisible();
   await expect(settingsToggle).toBeVisible();
-  await expect(downloadRow.getByRole("heading", { name: "Download MP3" })).toBeVisible();
+  await expect(
+    downloadRow.getByRole("heading", { name: "Download MP3" }),
+  ).toBeVisible();
   await expect(sourceDetails).toBeVisible();
   await expect(sourceDetails.getByText("Active chars")).toBeVisible();
   await expect(sourceDetails.getByText("Copy extracted text")).toBeVisible();
@@ -732,6 +748,8 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   const uploadBox = await uploadRow.boundingBox();
   const inputBox = await sourceTextRow.boundingBox();
   const previewBox = await preview.boundingBox();
+  const visualPreviewBox = await visualPreview.boundingBox();
+  const toneSummaryBox = await toneSummary.boundingBox();
   const settingsBox = await settingsRow.boundingBox();
   const downloadBox = await downloadRow.boundingBox();
   const sourceDetailsBox = await sourceDetails.boundingBox();
@@ -739,21 +757,34 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   expect(uploadBox).not.toBeNull();
   expect(inputBox).not.toBeNull();
   expect(previewBox).not.toBeNull();
+  expect(visualPreviewBox).not.toBeNull();
+  expect(toneSummaryBox).not.toBeNull();
   expect(settingsBox).not.toBeNull();
   expect(downloadBox).not.toBeNull();
   expect(sourceDetailsBox).not.toBeNull();
   expect(uploadBox!.y).toBeLessThan(inputBox!.y);
   expect(inputBox!.y).toBeLessThan(previewBox!.y);
   expect(previewBox!.y).toBeLessThan(settingsBox!.y);
+  expect(visualPreviewBox!.y).toBeLessThan(toneSummaryBox!.y);
+  expect(toneSummaryBox!.y).toBeLessThan(settingsBox!.y);
   expect(settingsBox!.y).toBeLessThan(downloadBox!.y);
   expect(downloadBox!.y).toBeLessThan(sourceDetailsBox!.y);
 
+  await expect(
+    page.getByRole("link", { name: "Open audio tool" }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("link", { name: "Create MP3 audio" }),
+  ).toHaveCount(0);
   await expect(
     page.getByRole("heading", { name: "Create Morse audio or video" }),
   ).toHaveCount(0);
   await expect(
     page.getByRole("heading", { name: "Create Morse MP3 audio" }),
   ).toHaveCount(0);
+  await expect(page.getByText("Download MP4")).toHaveCount(0);
+  await expect(page.getByText("Download WebM")).toHaveCount(0);
+  await expect(page.getByText("Video format")).toHaveCount(0);
 });
 
 test("pasted text review reports unsupported characters and avoids localStorage", async ({
@@ -2443,7 +2474,7 @@ test("empty source, cleaned-empty source, large MP3, and progress semantics are 
   ).toBeVisible();
   await expect(page.getByText("Review export")).toHaveCount(0);
   const sourceInput = page.getByLabel("Paste long-form source text");
-  await expect(sourceInput).toHaveValue("S\nO\nS\n HELP");
+  await expect(sourceInput).toHaveValue("SOS Help!");
   await page.getByRole("button", { name: "Clear source" }).click();
   await expect(sourceInput).toHaveValue("");
   await expect(

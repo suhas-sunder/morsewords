@@ -158,7 +158,7 @@ const INLINE_UPLOAD_TEXTAREA_LIMIT = 40_000;
 // cleanup, Morse preview, runtime estimates, and splitting on every keystroke.
 const LARGE_SOURCE_EDIT_THRESHOLD = 40_000;
 const EXTRACTED_SOURCE_PREVIEW_LIMIT = 6_000;
-const DEFAULT_SOURCE_TEXT = "S\nO\nS\n HELP";
+const DEFAULT_SOURCE_TEXT = "SOS Help!";
 const MIN_PREVIEW_RESTART_REMAINING_MS = 750;
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   phase: "idle",
@@ -2190,7 +2190,7 @@ export default function BookTranslatorTool() {
                       : updatePastedText(event.target.value)
                   }
                   placeholder="Paste a chapter, public-domain excerpt, notes, or any long-form text here..."
-                  className="min-h-[10rem] sm:min-h-[12rem]"
+                  className="min-h-[7rem] sm:min-h-[8rem]"
                   spellCheck={false}
                 />
               </>
@@ -3661,22 +3661,6 @@ function BookPreviewSection({
         {statusText}
       </p>
 
-      <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Metric
-          label="Tone"
-          value={tonePresetLabel(exportSettings.tonePreset)}
-        />
-        <Metric
-          label="Speed"
-          value={`${exportSettings.charWpm}/${exportSettings.farnsworthWpm} WPM`}
-        />
-        <Metric label="Pitch" value={`${exportSettings.pitch} Hz`} />
-        <Metric
-          label="Volume"
-          value={`${Math.round(exportSettings.volume * 100)}%`}
-        />
-      </dl>
-
       {isAudioOutput ? (
         <div className="mt-4" data-testid="book-audio-preview">
           <div className="flex flex-wrap gap-2">
@@ -3773,6 +3757,22 @@ function BookPreviewSection({
           </p>
         </div>
       )}
+
+      <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Metric
+          label="Tone"
+          value={tonePresetLabel(exportSettings.tonePreset)}
+        />
+        <Metric
+          label="Speed"
+          value={`${exportSettings.charWpm}/${exportSettings.farnsworthWpm} WPM`}
+        />
+        <Metric label="Pitch" value={`${exportSettings.pitch} Hz`} />
+        <Metric
+          label="Volume"
+          value={`${Math.round(exportSettings.volume * 100)}%`}
+        />
+      </dl>
     </section>
   );
 }

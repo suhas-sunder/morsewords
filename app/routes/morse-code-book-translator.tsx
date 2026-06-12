@@ -5,7 +5,6 @@ import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
-  ActionLinks,
   DarkNote,
   PageHero,
   SectionCard,
@@ -452,14 +451,7 @@ export default function MorseCodeBookTranslatorRoute() {
             text; scanned PDFs are not OCR'd here.
           </DarkNote>
         }
-      >
-        <ActionLinks
-          links={[
-            { href: ROUTES.audio, label: "Open audio tool", primary: true },
-            { href: ROUTES.mp3Generator, label: "Create MP3 audio" },
-          ]}
-        />
-      </PageHero>
+      />
 
       <BookTranslatorTool />
 
