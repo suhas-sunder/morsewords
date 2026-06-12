@@ -30,6 +30,8 @@ const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`
 const THEME_STORAGE_KEY = "morsewords-theme";
 const TEST_BOOK_RUNTIME_SETTINGS_KEY =
   "morsewords:book-runtime:settings:v1:test-published-morse-book:test-published-v1:test-published-morse-book-content-hash-development-fixture-v1";
+const TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY =
+  "morsewords:book-live-preview-progress:v1:test-published-morse-book";
 function bookJsonPattern(slug: string) {
   return `**/morse-book-content/books/${slug}.json*`;
 }
@@ -58,6 +60,13 @@ async function openTestBook(page: Page) {
   await waitForRouteReady(page);
   expect(response?.ok()).toBe(true);
   await waitForApprovedBookWorkspace(page);
+}
+
+async function readBookLivePreviewProgress(page: Page) {
+  return page.evaluate((key) => {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  }, TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY);
 }
 
 function bookOutputTypeButton(page: Page, outputType: "audio" | "video") {
@@ -1108,6 +1117,95 @@ test.describe("Morse book page foundation", () => {
       "data-mw-morse-book-translator-source-sections",
       "chapter-001,chapter-002",
     );
+  });
+
+  test("persists live preview progress by selected book content hash", async ({
+    page,
+  }) => {
+    await openTestBook(page);
+
+    const livePlayer = page.locator("#book-live-morse-player");
+    const mp3DownloadSection = page.locator("#book-mp3-download");
+    await expect(livePlayer).toBeVisible();
+    await expect(mp3DownloadSection).toBeVisible();
+    const liveBeforeChooser = await page.evaluate(() => {
+      const live = document.querySelector("#book-live-morse-player");
+      const chooser = document.querySelector("#book-section-chooser");
+      return Boolean(
+        live &&
+          chooser &&
+          (live.compareDocumentPosition(chooser) &
+            Node.DOCUMENT_POSITION_FOLLOWING) !==
+            0,
+      );
+    });
+    expect(liveBeforeChooser).toBe(true);
+
+    const liveTimeline = livePlayer.getByRole("slider", {
+      name: "Live player timeline",
+    });
+    await expect(liveTimeline).toBeVisible();
+    await liveTimeline.focus();
+    for (let press = 0; press < 6; press += 1) {
+      await page.keyboard.press("ArrowRight");
+    }
+
+    await expect
+      .poll(() => readBookLivePreviewProgress(page))
+      .toMatchObject({
+        segmentIndex: 0,
+        version: 1,
+      });
+    const storedProgress = await readBookLivePreviewProgress(page);
+    expect(storedProgress.contentHash).toEqual(expect.any(String));
+    expect(storedProgress.timeSeconds).toBeGreaterThan(0);
+    expect(storedProgress.updatedAt).toEqual(expect.any(Number));
+    const storedSnapshot = await page.evaluate(
+      (key) => `${key}:${localStorage.getItem(key) ?? ""}`,
+      TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY,
+    );
+    expect(storedSnapshot).not.toContain("Signals at Dawn");
+    expect(storedSnapshot).not.toContain("SOS HELP carried");
+
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await waitForApprovedBookWorkspace(page);
+    await expect
+      .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+      .toBeGreaterThan(0);
+
+    await page.locator("[data-mw-morse-book-section-select='chapter-002']").uncheck();
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute("data-mw-morse-book-translator-source-sections", "chapter-001");
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await waitForApprovedBookWorkspace(page);
+    await expect
+      .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+      .toBe(0);
+
+    const resetSettingsButton = mp3DownloadSection.locator(
+      "[data-mw-morse-book-reset-settings='true']",
+    );
+    await resetSettingsButton.click({ force: true });
+    await resetSettingsButton.dispatchEvent("mousedown", { button: 0 });
+    await resetSettingsButton.dispatchEvent("mouseup", { button: 0 });
+    await resetSettingsButton.dispatchEvent("click");
+    await expect
+      .poll(() =>
+        page.evaluate((key) => {
+          const raw = localStorage.getItem(key);
+          if (!raw) return "cleared";
+          try {
+            const parsed = JSON.parse(raw) as { timeSeconds?: number };
+            return (parsed.timeSeconds ?? 0) === 0 ? "cleared" : "has-progress";
+          } catch {
+            return "cleared";
+          }
+        }, TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY),
+      )
+      .toBe("cleared");
   });
 
   test("supports MP3 audio timeline seek and live player visual layer toggles", async ({

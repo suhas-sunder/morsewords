@@ -57,6 +57,8 @@ const CANONICAL_PATH = ROUTES.bookTranslator;
 const ALIAS_PATH = ROUTES.ebookTranslatorAlias;
 const RAW_SECRET_TEXT = "Private Draft Source";
 const BOOK_TOOL_LABEL = "Book source review and download tool";
+const BOOK_TRANSLATOR_LIVE_PREVIEW_PROGRESS_KEY =
+  "morsewords:book-translator:live-preview-progress:v1";
 
 async function openBookTranslator(page: Page) {
   await blockExternalNetwork(page);
@@ -195,6 +197,13 @@ async function expectNoRawSourceInStorage(page: Page, rawText: string) {
     ].join("\n"),
   );
   expect(storageSnapshot).not.toContain(rawText);
+}
+
+async function readTranslatorLivePreviewProgress(page: Page) {
+  return page.evaluate((key) => {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  }, BOOK_TRANSLATOR_LIVE_PREVIEW_PROGRESS_KEY);
 }
 
 function writeFixture(testInfo: TestInfo, name: string, data: Buffer | string) {
@@ -2120,6 +2129,66 @@ test("long live preview segments can reach the final source word", async ({
       ).toLowerCase(),
     )
     .toBe(finalWord);
+  await expectNoRawSourceInStorage(page, finalWord);
+  await expect(page.getByText("Download MP4")).toHaveCount(0);
+  await expect(page.getByText("Download WebM")).toHaveCount(0);
+  await expect(page.getByText("Video format")).toHaveCount(0);
+});
+
+test("live preview progress restores only for the same translator source hash", async ({
+  page,
+}) => {
+  await openBookTranslator(page);
+  const finalWord = "apples";
+  const source = `${"PARIS ".repeat(900)}${finalWord}`;
+  await page.getByLabel("Paste long-form source text").fill(source);
+
+  const preview = previewSection(page);
+  await expectPreviewReady(page);
+  const segmentSelect = preview.getByTestId("book-live-preview-segment-select");
+  await expect(segmentSelect).toBeVisible();
+  const segmentCount = await segmentSelect.locator("option").count();
+  expect(segmentCount).toBeGreaterThan(1);
+  await segmentSelect.selectOption(String(segmentCount - 1));
+
+  const liveTimeline = preview.getByRole("slider", {
+    name: "Live player timeline",
+  });
+  await liveTimeline.focus();
+  await page.keyboard.press("End");
+
+  await expect
+    .poll(() => readTranslatorLivePreviewProgress(page))
+    .toMatchObject({
+      segmentIndex: segmentCount - 1,
+      version: 1,
+    });
+  const storedAfterSeek = await readTranslatorLivePreviewProgress(page);
+  expect(storedAfterSeek.contentHash).toEqual(expect.any(String));
+  expect(storedAfterSeek.timeSeconds).toBeGreaterThan(0);
+  expect(storedAfterSeek.updatedAt).toEqual(expect.any(Number));
+  await expectNoRawSourceInStorage(page, finalWord);
+  await expectNoRawSourceInStorage(page, source);
+
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await waitForRouteReady(page);
+  await expect(
+    page.locator("[data-mw-book-export-ready='true']"),
+  ).toBeVisible();
+  await page.getByLabel("Paste long-form source text").fill(source);
+  await expect(segmentSelect).toHaveValue(String(segmentCount - 1));
+  await expect
+    .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+    .toBeGreaterThan(0);
+
+  await page
+    .getByLabel("Paste long-form source text")
+    .fill("Different source text SOS HELP.");
+  await expect
+    .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+    .toBe(0);
+  await expect(preview.getByTestId("book-live-preview-segment-select"))
+    .toHaveCount(0);
   await expectNoRawSourceInStorage(page, finalWord);
   await expect(page.getByText("Download MP4")).toHaveCount(0);
   await expect(page.getByText("Download WebM")).toHaveCount(0);

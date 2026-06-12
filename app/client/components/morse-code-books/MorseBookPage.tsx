@@ -89,6 +89,13 @@ import {
   buildLiveMorseVideoPreview,
   buildLivePreviewSegments,
 } from "~/client/components/morse-code-book-translator/bookLivePreview";
+import {
+  buildLivePreviewProgressState,
+  clearLivePreviewProgress,
+  hashLivePreviewProgressSignature,
+  readLivePreviewProgress,
+  writeLivePreviewProgress,
+} from "~/client/components/morse-code-book-translator/bookLivePreviewProgress";
 import type { BookSourceSection } from "~/client/components/morse-code-book-translator/bookSourceTypes";
 import {
   getDefaultMorseBookSectionId,
@@ -190,6 +197,8 @@ type SavedMorseBookRuntimeSettings = {
 
 const BOOK_RUNTIME_SETTINGS_KEY_PREFIX =
   "morsewords:book-runtime:settings:v1:";
+const BOOK_LIVE_PREVIEW_PROGRESS_KEY_PREFIX =
+  "morsewords:book-live-preview-progress:v1:";
 
 const LOADING_STATUS_MESSAGES = [
   "Loading book text...",
@@ -245,6 +254,14 @@ function sectionStateLabel(
 
 function bookRuntimeSettingsKey(book: MorseBookManifest) {
   return `${BOOK_RUNTIME_SETTINGS_KEY_PREFIX}${book.slug}:${book.contentVersion}:${book.contentHash}`;
+}
+
+function bookLivePreviewProgressKey(book: MorseBookManifest) {
+  return `${BOOK_LIVE_PREVIEW_PROGRESS_KEY_PREFIX}${book.slug}`;
+}
+
+function livePreviewSegmentDurationMs(segment: BookExportPart | null | undefined) {
+  return Math.max(1_200, segment?.morseDurationMs ?? 0);
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -893,6 +910,10 @@ function MorseBookWorkspace({
   const exportAbortRef = React.useRef<AbortController | null>(null);
   const restoredRuntimeSignatureRef = React.useRef<string | null>(null);
   const skipNextRuntimeSettingsSaveRef = React.useRef(false);
+  const restoredBookLivePreviewProgressHashRef = React.useRef<string | null>(
+    null,
+  );
+  const skipNextBookLivePreviewProgressSaveRef = React.useRef(false);
   const pendingRestoredLiveElapsedRef = React.useRef<number | null>(null);
   const selectAllDefaultRef = React.useRef<HTMLInputElement | null>(null);
 
@@ -917,7 +938,10 @@ function MorseBookWorkspace({
     setLoadedSections(new Map([[initialSection.sectionId, initialSection]]));
     const saved = loadSavedMorseBookRuntimeSettings(book, defaultSectionIds);
     if (saved) {
-      const savedLiveElapsedMs = saved.livePlayer?.elapsedMs ?? 0;
+      const shouldRestoreRuntimeLivePlayer = isAudiobook;
+      const savedLiveElapsedMs = shouldRestoreRuntimeLivePlayer
+        ? saved.livePlayer?.elapsedMs ?? 0
+        : 0;
       pendingRestoredLiveElapsedRef.current =
         isAudiobook && savedLiveElapsedMs > 0 ? savedLiveElapsedMs : null;
       setSelectedSectionIds(
@@ -926,9 +950,15 @@ function MorseBookWorkspace({
       setExportSettings(saved.exportSettings);
       setVideoSettings(saved.videoSettings);
       setActiveLiveSectionId(
-        saved.livePlayer?.activeSectionId ?? initialSection.sectionId,
+        shouldRestoreRuntimeLivePlayer
+          ? saved.livePlayer?.activeSectionId ?? initialSection.sectionId
+          : initialSection.sectionId,
       );
-      setActiveLiveSegmentIndex(saved.livePlayer?.activeSegmentIndex ?? 0);
+      setActiveLiveSegmentIndex(
+        shouldRestoreRuntimeLivePlayer
+          ? saved.livePlayer?.activeSegmentIndex ?? 0
+          : 0,
+      );
       videoPreviewBaseElapsedRef.current = savedLiveElapsedMs;
       setVideoPreviewElapsedMs(savedLiveElapsedMs);
       setCompletedLiveSectionIds(
@@ -1213,6 +1243,47 @@ function MorseBookWorkspace({
     [book.title, cleanedExportText, exportSettings, exportSourceSections],
   );
   const liveSegments = isAudiobook ? livePlayerPlan.parts : bookLiveSegments;
+  const livePreviewProgressContentHash = React.useMemo(
+    () =>
+      hashLivePreviewProgressSignature(
+        JSON.stringify({
+          book: {
+            contentHash: book.contentHash,
+            contentVersion: book.contentVersion,
+            slug: book.slug,
+          },
+          mode: isAudiobook ? "audiobook" : "book",
+          selectedSectionIds: isAudiobook
+            ? [activeLiveSectionId]
+            : scopeSectionIds,
+          sourceHash: hashLivePreviewProgressSignature(
+            isAudiobook ? liveSectionText : cleanedExportText,
+          ),
+          timing: {
+            charWpm: exportSettings.charWpm,
+            farnsworthWpm: exportSettings.farnsworthWpm,
+            paragraphPauseMultiplier: exportSettings.paragraphPauseMultiplier,
+            punctuationMode: exportSettings.punctuationMode,
+            sentencePauseMultiplier: exportSettings.sentencePauseMultiplier,
+          },
+        }),
+      ),
+    [
+      activeLiveSectionId,
+      book.contentHash,
+      book.contentVersion,
+      book.slug,
+      cleanedExportText,
+      exportSettings.charWpm,
+      exportSettings.farnsworthWpm,
+      exportSettings.paragraphPauseMultiplier,
+      exportSettings.punctuationMode,
+      exportSettings.sentencePauseMultiplier,
+      isAudiobook,
+      liveSectionText,
+      scopeSectionIds,
+    ],
+  );
   const activeLiveSegment =
     liveSegments[Math.min(activeLiveSegmentIndex, Math.max(0, liveSegments.length - 1))] ??
     null;
@@ -1237,6 +1308,14 @@ function MorseBookWorkspace({
       videoSettings,
     ],
   );
+  const persistedVideoPreviewProgressMs = React.useMemo(
+    () =>
+      Math.round(
+        Math.max(0, Math.min(livePreview.durationMs, videoPreviewElapsedMs)) /
+          1000,
+      ) * 1000,
+    [livePreview.durationMs, videoPreviewElapsedMs],
+  );
   React.useEffect(() => {
     if (liveSegments.length === 0) return;
     if (activeLiveSegmentIndex < liveSegments.length) return;
@@ -1245,11 +1324,80 @@ function MorseBookWorkspace({
     videoPreviewBaseElapsedRef.current = 0;
   }, [activeLiveSegmentIndex, liveSegments.length]);
   React.useEffect(() => {
-    if (isAudiobook) return;
-    setActiveLiveSegmentIndex(0);
-    setVideoPreviewElapsedMs(0);
-    videoPreviewBaseElapsedRef.current = 0;
-  }, [isAudiobook, scopeSectionIds]);
+    if (isAudiobook || !settingsRestored) return;
+    if (
+      restoredBookLivePreviewProgressHashRef.current ===
+      livePreviewProgressContentHash
+    ) {
+      return;
+    }
+    restoredBookLivePreviewProgressHashRef.current =
+      livePreviewProgressContentHash;
+    skipNextBookLivePreviewProgressSaveRef.current = true;
+
+    if (liveSegments.length === 0) {
+      setActiveLiveSegmentIndex(0);
+      setVideoPreviewElapsedMs(0);
+      videoPreviewBaseElapsedRef.current = 0;
+      return;
+    }
+
+    const restored = readLivePreviewProgress(bookLivePreviewProgressKey(book), {
+      contentHash: livePreviewProgressContentHash,
+      getSegmentDurationMs: (segmentIndex) =>
+        livePreviewSegmentDurationMs(liveSegments[segmentIndex]),
+      segmentCount: liveSegments.length,
+    });
+    const restoredSegmentIndex = restored?.segmentIndex ?? 0;
+    const restoredElapsedMs = restored?.elapsedMs ?? 0;
+    setActiveLiveSegmentIndex(restoredSegmentIndex);
+    setVideoPreviewElapsedMs(restoredElapsedMs);
+    videoPreviewBaseElapsedRef.current = restoredElapsedMs;
+  }, [
+    book,
+    isAudiobook,
+    livePreviewProgressContentHash,
+    liveSegments,
+    settingsRestored,
+  ]);
+  React.useEffect(() => {
+    if (
+      isAudiobook ||
+      !settingsRestored ||
+      liveSegments.length === 0 ||
+      restoredBookLivePreviewProgressHashRef.current !==
+        livePreviewProgressContentHash
+    ) {
+      return;
+    }
+    if (skipNextBookLivePreviewProgressSaveRef.current) {
+      skipNextBookLivePreviewProgressSaveRef.current = false;
+      return;
+    }
+    const safeSegmentIndex = Math.min(
+      activeLiveSegmentIndex,
+      Math.max(0, liveSegments.length - 1),
+    );
+    if (safeSegmentIndex === 0 && persistedVideoPreviewProgressMs === 0) {
+      return;
+    }
+    writeLivePreviewProgress(
+      bookLivePreviewProgressKey(book),
+      buildLivePreviewProgressState({
+        contentHash: livePreviewProgressContentHash,
+        elapsedMs: persistedVideoPreviewProgressMs,
+        segmentIndex: safeSegmentIndex,
+      }),
+    );
+  }, [
+    activeLiveSegmentIndex,
+    book,
+    isAudiobook,
+    livePreviewProgressContentHash,
+    liveSegments.length,
+    persistedVideoPreviewProgressMs,
+    settingsRestored,
+  ]);
   React.useEffect(() => {
     if (!isAudiobook || liveSegments.length === 0) return;
     const restoredElapsedMs = pendingRestoredLiveElapsedRef.current;
@@ -1580,9 +1728,12 @@ function MorseBookWorkspace({
 
   const resetSavedSettings = React.useCallback(() => {
     clearSavedMorseBookRuntimeSettings(book);
+    clearLivePreviewProgress(bookLivePreviewProgressKey(book));
     pendingRestoredLiveElapsedRef.current = null;
+    restoredBookLivePreviewProgressHashRef.current = null;
     restoredRuntimeSignatureRef.current = bookRuntimeSignature;
     skipNextRuntimeSettingsSaveRef.current = true;
+    skipNextBookLivePreviewProgressSaveRef.current = true;
     setRuntimeSettingsResetVersion((version) => version + 1);
     setSelectedSectionIds(new Set(isAudiobook ? [initialSection.sectionId] : defaultSectionIds));
     setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));

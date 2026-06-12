@@ -125,6 +125,12 @@ import {
   buildLivePreviewSegments,
 } from "./bookLivePreview";
 import {
+  buildLivePreviewProgressState,
+  hashLivePreviewProgressSignature,
+  readLivePreviewProgress,
+  writeLivePreviewProgress,
+} from "./bookLivePreviewProgress";
+import {
   buildBookAudioPreview,
   type BookAudioPreview,
 } from "./bookPreviewAudio";
@@ -161,6 +167,8 @@ const LARGE_SOURCE_EDIT_THRESHOLD = 40_000;
 const EXTRACTED_SOURCE_PREVIEW_LIMIT = 6_000;
 const DEFAULT_SOURCE_TEXT = "SOS Help!";
 const MIN_PREVIEW_RESTART_REMAINING_MS = 750;
+const BOOK_TRANSLATOR_LIVE_PREVIEW_PROGRESS_KEY =
+  "morsewords:book-translator:live-preview-progress:v1";
 const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   phase: "idle",
   message: "",
@@ -303,6 +311,10 @@ function sourceSectionsSignature(sections: BookSourceSection[]) {
 
 function settingsSignature(value: unknown) {
   return JSON.stringify(value);
+}
+
+function livePreviewSegmentDurationMs(segment: BookExportPart | null | undefined) {
+  return Math.max(1_200, segment?.morseDurationMs ?? 0);
 }
 
 function cleanupLabel(key: keyof CleanupOptions) {
@@ -573,6 +585,8 @@ export default function BookTranslatorTool() {
   const audioPreviewSessionRef = React.useRef(0);
   const mountedRef = React.useRef(true);
   const customCleanupRuleIdRef = React.useRef(1);
+  const restoredLivePreviewProgressHashRef = React.useRef<string | null>(null);
+  const skipNextLivePreviewProgressSaveRef = React.useRef(false);
   const previewAudioPlayer = useMorseAudio();
   const stopPreviewAudioRef = React.useRef(previewAudioPlayer.stop);
   const derivedCacheRef = React.useRef<BookDerivedCache>({});
@@ -659,7 +673,7 @@ export default function BookTranslatorTool() {
   const stopActivePreview = React.useCallback(() => {
     stopPreviewAudioRef.current?.();
     stopAudioPreviewTimer();
-    stopVisualPreview();
+    stopVisualPreview(false);
     setPreviewStatus((current) =>
       current === "playing" ? "stopped" : current,
     );
@@ -960,6 +974,33 @@ export default function BookTranslatorTool() {
       sourceSections,
     ],
   );
+  const livePreviewProgressContentHash = React.useMemo(
+    () =>
+      hashLivePreviewProgressSignature(
+        JSON.stringify({
+          sourceHash: hashLivePreviewProgressSignature(preflight.cleanedText),
+          sourceSectionsHash: hashLivePreviewProgressSignature(
+            sourceSectionsCacheSignature,
+          ),
+          timing: {
+            charWpm: exportSettings.charWpm,
+            farnsworthWpm: exportSettings.farnsworthWpm,
+            paragraphPauseMultiplier: exportSettings.paragraphPauseMultiplier,
+            punctuationMode: exportSettings.punctuationMode,
+            sentencePauseMultiplier: exportSettings.sentencePauseMultiplier,
+          },
+        }),
+      ),
+    [
+      exportSettings.charWpm,
+      exportSettings.farnsworthWpm,
+      exportSettings.paragraphPauseMultiplier,
+      exportSettings.punctuationMode,
+      exportSettings.sentencePauseMultiplier,
+      preflight.cleanedText,
+      sourceSectionsCacheSignature,
+    ],
+  );
   const activePreviewSegment =
     livePreviewSegments[
       Math.min(
@@ -990,6 +1031,14 @@ export default function BookTranslatorTool() {
     () => Math.max(1, videoPreview.durationMs),
     [videoPreview.durationMs],
   );
+  const persistedVisualPreviewProgressMs = React.useMemo(
+    () =>
+      Math.round(
+        Math.max(0, Math.min(visualPreviewDurationMs, visualPreviewElapsedMs)) /
+          1000,
+      ) * 1000,
+    [visualPreviewDurationMs, visualPreviewElapsedMs],
+  );
   React.useEffect(() => {
     if (activePreviewSegmentIndex < livePreviewSegments.length) return;
     setActivePreviewSegmentIndex(0);
@@ -997,17 +1046,84 @@ export default function BookTranslatorTool() {
     setVisualPreviewElapsedMs(0);
   }, [activePreviewSegmentIndex, livePreviewSegments.length]);
   React.useEffect(() => {
-    setActivePreviewSegmentIndex(0);
-    visualPreviewBaseElapsedRef.current = 0;
-    setVisualPreviewElapsedMs(0);
+    if (!preferencesLoaded) return;
+    if (
+      restoredLivePreviewProgressHashRef.current ===
+      livePreviewProgressContentHash
+    ) {
+      return;
+    }
+    restoredLivePreviewProgressHashRef.current = livePreviewProgressContentHash;
+    skipNextLivePreviewProgressSaveRef.current = true;
+
+    if (!hasCleanedSource || livePreviewSegments.length === 0) {
+      setActivePreviewSegmentIndex(0);
+      visualPreviewBaseElapsedRef.current = 0;
+      setVisualPreviewElapsedMs(0);
+      return;
+    }
+
+    const restored = readLivePreviewProgress(
+      BOOK_TRANSLATOR_LIVE_PREVIEW_PROGRESS_KEY,
+      {
+        contentHash: livePreviewProgressContentHash,
+        getSegmentDurationMs: (segmentIndex) =>
+          livePreviewSegmentDurationMs(livePreviewSegments[segmentIndex]),
+        segmentCount: livePreviewSegments.length,
+      },
+    );
+    const restoredSegmentIndex = restored?.segmentIndex ?? 0;
+    const restoredElapsedMs = restored?.elapsedMs ?? 0;
+    setActivePreviewSegmentIndex(restoredSegmentIndex);
+    visualPreviewBaseElapsedRef.current = restoredElapsedMs;
+    setVisualPreviewElapsedMs(restoredElapsedMs);
   }, [
-    cleanupCacheSignature,
+    hasCleanedSource,
     exportSettings.charWpm,
     exportSettings.farnsworthWpm,
     exportSettings.paragraphPauseMultiplier,
     exportSettings.punctuationMode,
     exportSettings.sentencePauseMultiplier,
-    sourceCacheSignature,
+    livePreviewProgressContentHash,
+    livePreviewSegments,
+    preferencesLoaded,
+  ]);
+  React.useEffect(() => {
+    if (
+      !preferencesLoaded ||
+      !hasCleanedSource ||
+      livePreviewSegments.length === 0 ||
+      restoredLivePreviewProgressHashRef.current !==
+        livePreviewProgressContentHash
+    ) {
+      return;
+    }
+    if (skipNextLivePreviewProgressSaveRef.current) {
+      skipNextLivePreviewProgressSaveRef.current = false;
+      return;
+    }
+    const safeSegmentIndex = Math.min(
+      activePreviewSegmentIndex,
+      Math.max(0, livePreviewSegments.length - 1),
+    );
+    if (safeSegmentIndex === 0 && persistedVisualPreviewProgressMs === 0) {
+      return;
+    }
+    writeLivePreviewProgress(
+      BOOK_TRANSLATOR_LIVE_PREVIEW_PROGRESS_KEY,
+      buildLivePreviewProgressState({
+        contentHash: livePreviewProgressContentHash,
+        elapsedMs: persistedVisualPreviewProgressMs,
+        segmentIndex: safeSegmentIndex,
+      }),
+    );
+  }, [
+    activePreviewSegmentIndex,
+    hasCleanedSource,
+    livePreviewProgressContentHash,
+    livePreviewSegments.length,
+    persistedVisualPreviewProgressMs,
+    preferencesLoaded,
   ]);
   const renderEstimateLabel = React.useMemo(
     () =>
@@ -1181,7 +1297,7 @@ export default function BookTranslatorTool() {
   React.useEffect(() => {
     stopPreviewAudioRef.current?.();
     stopAudioPreviewTimer();
-    stopVisualPreview();
+    stopVisualPreview(false);
     setPreviewErrorMessage("");
 
     if (!hasSource) {
