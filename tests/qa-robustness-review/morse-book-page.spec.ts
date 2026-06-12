@@ -430,6 +430,81 @@ test.describe("Morse book page foundation", () => {
     await expect(
       page.getByRole("link", { name: "Open live Morse player" }),
     ).toHaveAttribute("href", APPROVED_AUDIOBOOK_PUBLIC_PATH);
+    const liveTranslationLink = page.getByTestId(
+      "morse-book-view-live-translation-link",
+    );
+    const downloadAudiobookLink = page.getByTestId(
+      "morse-book-download-audiobook-link",
+    );
+    await expect(liveTranslationLink).toHaveText("View Live Translation");
+    await expect(downloadAudiobookLink).toHaveText("Download Audiobook MP3");
+    await expect(liveTranslationLink).toHaveAttribute(
+      "href",
+      "#book-live-morse-player",
+    );
+    await expect(downloadAudiobookLink).toHaveAttribute(
+      "href",
+      "#book-mp3-download",
+    );
+    await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
+    await expect(page.locator("#book-mp3-download")).toBeVisible();
+    await expect(
+      page.locator("#book-mp3-download").getByRole("button", {
+        name: /Download MP3|Download ZIP batch 1/,
+      }),
+    ).toBeVisible();
+
+    const sectionOrder = await page.evaluate(() => {
+      const livePlayer = document.querySelector("#book-live-morse-player");
+      const chooser = document.querySelector("#book-section-chooser");
+      const mp3Download = document.querySelector("#book-mp3-download");
+      return {
+        liveBeforeChooser: Boolean(
+          livePlayer &&
+            chooser &&
+            (livePlayer.compareDocumentPosition(chooser) &
+              Node.DOCUMENT_POSITION_FOLLOWING) !==
+              0,
+        ),
+        chooserBeforeMp3: Boolean(
+          chooser &&
+            mp3Download &&
+            (chooser.compareDocumentPosition(mp3Download) &
+              Node.DOCUMENT_POSITION_FOLLOWING) !==
+              0,
+        ),
+      };
+    });
+    expect(sectionOrder).toEqual({
+      liveBeforeChooser: true,
+      chooserBeforeMp3: true,
+    });
+
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await liveTranslationLink.click();
+    await expect
+      .poll(() => page.evaluate(() => window.location.hash))
+      .toBe("#book-live-morse-player");
+    await expect
+      .poll(() =>
+        page
+          .locator("#book-live-morse-player")
+          .evaluate((element) => element.getBoundingClientRect().top),
+      )
+      .toBeLessThan(220);
+
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await downloadAudiobookLink.click();
+    await expect
+      .poll(() => page.evaluate(() => window.location.hash))
+      .toBe("#book-mp3-download");
+    await expect
+      .poll(() =>
+        page
+          .locator("#book-mp3-download")
+          .evaluate((element) => element.getBoundingClientRect().top),
+      )
+      .toBeLessThan(220);
 
     const selectorRows = page.locator("[data-mw-morse-book-section-row]");
     await expect(selectorRows.first()).toBeVisible();
@@ -932,12 +1007,13 @@ test.describe("Morse book page foundation", () => {
       "data-mw-morse-book-translator-source-sections",
       "chapter-001,chapter-002",
     );
+    const mp3DownloadSection = page.locator("#book-mp3-download");
     await expect(page.getByTestId("morse-book-output-format")).toHaveCount(0);
-    await expect(page.locator("[data-testid='book-video-preview-dot']")).toHaveCount(0);
+    await expect(page.locator("[data-testid='book-video-preview-dot']")).toBeVisible();
 
     await page.locator("[data-mw-morse-book-select-all-default]").uncheck();
     await page.locator("[data-mw-morse-book-section-select='chapter-001']").check();
-    await page.getByLabel("Speed WPM").fill("18");
+    await mp3DownloadSection.getByLabel("Speed WPM").fill("18");
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).toHaveAttribute("data-mw-morse-book-translator-source-sections", "chapter-001");
@@ -962,11 +1038,13 @@ test.describe("Morse book page foundation", () => {
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).toHaveAttribute("data-mw-morse-book-translator-source-sections", "chapter-001");
-    await expect(page.getByLabel("Speed WPM")).toHaveValue("18");
+    await expect(mp3DownloadSection.getByLabel("Speed WPM")).toHaveValue("18");
 
-    await page.locator("[data-mw-morse-book-reset-settings='true']").click();
+    await mp3DownloadSection
+      .getByRole("button", { name: "Reset saved settings" })
+      .click();
     await expect(
-      page.locator("[data-mw-morse-book-saved-settings-status]"),
+      mp3DownloadSection.locator("[data-mw-morse-book-saved-settings-status]"),
     ).toContainText("Saved book settings reset.");
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
