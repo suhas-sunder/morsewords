@@ -2134,9 +2134,7 @@ export default function BookTranslatorTool() {
   const uploadHelpText = hasSource
     ? "Drop a replacement TXT, MD, unprotected EPUB, or text-native PDF here, or click to choose a file."
     : "Drop TXT, MD, unprotected EPUB, or text-native PDF here, or click to choose a file.";
-  const uploadTitle = hasSource
-    ? "Replace source file"
-    : "Drag a source file here or click to upload";
+  const uploadTitle = "Replace source file";
   const uploadRightsText =
     "Only use text you have the right to process. You are responsible for your source content, including copyright or other usage restrictions.";
 
@@ -2146,32 +2144,15 @@ export default function BookTranslatorTool() {
       aria-label="Book source review and download tool"
       data-mw-book-export-ready={preferencesLoaded ? "true" : "loading"}
     >
-      <section className="space-y-4" aria-labelledby="book-add-source-heading">
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <h2
-              id="book-add-source-heading"
-              className="text-xl font-extrabold text-sky-950"
-            >
-              Create Morse MP3 audio
-            </h2>
-            <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-              Use the live player for browser playback, download MP3 audio for
-              offline listening, or edit the source text below when you want to
-              use your own passage.
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-              {hasSource ? "Source ready" : "Waiting for source"}
-            </span>
-          </div>
-        </div>
+      <section className="space-y-5" aria-labelledby="book-add-source-heading">
+        <h2 id="book-add-source-heading" className="sr-only">
+          Book translator source and download
+        </h2>
 
-        <div className="flex flex-col gap-5">
-          <div
-            className="grid gap-5 lg:grid-cols-[minmax(280px,0.85fr)_minmax(0,1.15fr)] lg:items-stretch"
-            data-testid="book-source-entry"
+        <div className="space-y-5" data-testid="book-source-entry">
+          <section
+            aria-label="Replace source file"
+            data-testid="book-source-upload-row"
           >
             <SourceUploadDropzone
               dragActive={dragActive}
@@ -2186,7 +2167,9 @@ export default function BookTranslatorTool() {
               uploadRightsText={uploadRightsText}
               uploadTitle={uploadTitle}
             />
+          </section>
 
+          <section data-testid="book-source-text-row">
             <ToolPanel
               label="Source text"
               badge={
@@ -2267,111 +2250,52 @@ export default function BookTranslatorTool() {
               </div>
             )}
             </ToolPanel>
-          </div>
+          </section>
+
+          <BookPreviewSection
+            audioPreviewElapsedMs={audioPreviewElapsedMs}
+            audioPlayerState={previewAudioPlayer.state}
+            audioPreview={audioPreview}
+            audioSupported={previewAudioPlayer.isSupported}
+            exportSettings={exportSettings}
+            hasCleanedSource={hasCleanedSource}
+            hasSource={hasSource}
+            isDraftActive={sourceDraftActive}
+            onPlayAudioPreview={handlePlayAudioPreview}
+            onPlayVisualPreview={handlePlayVisualPreview}
+            onScrubAudioPreview={handleScrubAudioPreview}
+            onScrubVisualPreview={handleScrubVisualPreview}
+            onSeekAudioPreview={handleSeekAudioPreview}
+            onSeekVisualPreview={handleSeekVisualPreview}
+            onStopPreview={stopActivePreview}
+            outputType="video"
+            previewErrorMessage={previewErrorMessage}
+            previewStatus={previewStatus}
+            resolvedVideoBackgroundStyle={resolvedVideoBackgroundStyle}
+            videoPreview={videoPreview}
+            videoSettings={effectiveVideoSettings}
+            visualPreviewDurationMs={visualPreviewDurationMs}
+            visualPreviewPlaying={visualPreviewPlaying}
+            visualPreviewElapsedMs={visualPreviewElapsedMs}
+          />
 
           <section
-            id="book-download-controls"
             className="space-y-4 pt-1"
-            aria-labelledby="book-download-controls-heading"
+            aria-labelledby="book-translator-settings-heading"
+            data-testid="book-translator-settings-row"
           >
             <h3
-              id="book-download-controls-heading"
+              id="book-translator-settings-heading"
               className="text-base font-extrabold text-sky-950"
             >
-              MP3 download
+              Settings
             </h3>
 
-            <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              <Metric label="Preset" value={exportSettings.presetName} />
-              <Metric
-                label="Format"
-                value="MP3"
-              />
-              <Metric
-                label="Runtime"
-                value={
-                  hasSource
-                    ? formatDuration(exportAnalysis.totalRuntimeMs)
-                    : "Waiting"
-                }
-              />
-              <Metric
-                label="Parts"
-                value={hasSource ? formatNumber(exportParts.length) : "0"}
-              />
-              <Metric
-                label={splitEnabled ? "Target part" : "Split"}
-                value={
-                  splitEnabled
-                    ? formatDuration(exportPlan.targetPartMs)
-                    : "Off"
-                }
-              />
-              <Metric
-                label="Output size"
-                value={`~${exportAnalysis.estimatedSizeLabel}`}
-              />
-              <Metric label="Render time" value={renderEstimateLabel} />
-            </dl>
-
-            {sourceDraftActive ? (
-              <p className="mt-4 text-sm font-semibold text-slate-600">
-                Draft edits are not included until you apply them.
-              </p>
-            ) : null}
-            {exportDisabledReason ? (
-              <p
-                id="book-download-disabled-reason"
-                className="mt-4 text-sm font-semibold text-slate-600"
-              >
-                {exportDisabledReason}
-              </p>
-            ) : null}
-            {isAudioOutput ? (
-              <MessageList
-                title="Download warnings"
-                items={exportWarnings}
-                tone="warning"
-              />
-            ) : null}
-            {longExportMessages.length > 0 ? (
-              <MessageList
-                title="Download notes"
-                items={longExportMessages}
-                tone="info"
-              />
-            ) : null}
             {effectiveVideoSettings.showVisualSignal &&
             effectiveVideoSettings.visualStyle === "full-frame" ? (
               <FullFrameFlashWarning className="mt-4" />
             ) : null}
 
-            <BookPreviewSection
-              audioPreviewElapsedMs={audioPreviewElapsedMs}
-              audioPlayerState={previewAudioPlayer.state}
-              audioPreview={audioPreview}
-              audioSupported={previewAudioPlayer.isSupported}
-              exportSettings={exportSettings}
-              hasCleanedSource={hasCleanedSource}
-              hasSource={hasSource}
-              isDraftActive={sourceDraftActive}
-              onPlayAudioPreview={handlePlayAudioPreview}
-              onPlayVisualPreview={handlePlayVisualPreview}
-              onScrubAudioPreview={handleScrubAudioPreview}
-              onScrubVisualPreview={handleScrubVisualPreview}
-              onSeekAudioPreview={handleSeekAudioPreview}
-              onSeekVisualPreview={handleSeekVisualPreview}
-              onStopPreview={stopActivePreview}
-              outputType="video"
-              previewErrorMessage={previewErrorMessage}
-              previewStatus={previewStatus}
-              resolvedVideoBackgroundStyle={resolvedVideoBackgroundStyle}
-              videoPreview={videoPreview}
-              videoSettings={effectiveVideoSettings}
-              visualPreviewDurationMs={visualPreviewDurationMs}
-              visualPreviewPlaying={visualPreviewPlaying}
-              visualPreviewElapsedMs={visualPreviewElapsedMs}
-            />
 
             <details className="mt-5">
               <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
@@ -2398,123 +2322,6 @@ export default function BookTranslatorTool() {
                 />
               </div>
             </details>
-
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
-              {zipBatchWorkflow && totalBatches > 0 ? (
-                <LabeledSelect
-                  label="ZIP batch"
-                  value={String(selectedExportBatch?.batchNumber ?? 1)}
-                  disabled={exportRunning}
-                  onChange={(value) => setSelectedBatchNumber(Number(value))}
-                >
-                  {exportBatches.map((batch) => (
-                    <option key={batch.batchNumber} value={batch.batchNumber}>
-                      Batch {batch.batchNumber} of {batch.totalBatches} -{" "}
-                      {formatDuration(batch.runtimeMs)}
-                    </option>
-                  ))}
-                </LabeledSelect>
-              ) : null}
-              <ToolButton
-                type="button"
-                tone="dark"
-                onClick={handleDownloadBook}
-                disabled={!canExport}
-                aria-describedby={
-                  exportDisabledReason
-                    ? "book-download-disabled-reason"
-                    : undefined
-                }
-                className="rounded-xl"
-              >
-                {exportRunning ? (
-                  <span
-                    className="h-2.5 w-2.5 animate-pulse rounded-full bg-current"
-                    aria-hidden="true"
-                  />
-                ) : (
-                  <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-                )}
-                {downloadButtonLabel}
-              </ToolButton>
-              {exportRunning ? (
-                <ToolButton
-                  type="button"
-                  tone="light"
-                  hover="dark"
-                  onClick={() => cancelActiveExport()}
-                  disabled={!exportRunning}
-                  className="rounded-xl"
-                >
-                  <StopIcon size={18} title={undefined} aria-hidden="true" />
-                  Cancel download
-                </ToolButton>
-              ) : null}
-            </div>
-
-            {showExportProgress ? (
-              <div className="mt-5">
-                <progress
-                  value={progressPercent}
-                  max={100}
-                  role="progressbar"
-                  aria-label="Book download progress"
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-valuenow={progressPercent}
-                  className="h-2 w-full overflow-hidden rounded-full"
-                />
-                <StatusMessage
-                  kind={
-                    exportStatus?.kind ?? (exportRunning ? "working" : "info")
-                  }
-                  live
-                  className="mt-3"
-                >
-                  {exportProgress.message || exportStatus?.message}
-                </StatusMessage>
-                <p
-                  className="mt-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
-                  data-testid="book-download-progress-detail"
-                >
-                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} /{" "}
-                  {exportProgressDetail(exportProgress, exportElapsedMs)}
-                </p>
-              </div>
-            ) : null}
-            {showExportStatus && exportStatus ? (
-              <StatusMessage kind={exportStatus.kind} live className="mt-3">
-                {exportStatus.message}
-              </StatusMessage>
-            ) : null}
-
-            {completedExport ? (
-              <div className="mt-5">
-                <h3 className="text-base font-extrabold text-sky-950">
-                  Last download
-                </h3>
-                <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                  <Metric label="File" value={completedExport.filename} />
-                  <Metric
-                    label="Format"
-                    value={completedExport.outputFormat.toUpperCase()}
-                  />
-                  <Metric
-                    label="Parts"
-                    value={completedExport.partCount.toLocaleString()}
-                  />
-                  <Metric
-                    label="Runtime"
-                    value={completedExport.runtimeLabel}
-                  />
-                </dl>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                  Download contents: {completedExport.contents.join(", ")}. Use
-                  the Download button again to save another copy, change
-                  settings to rebuild, or clear the source when you are done.
-                </p>
-              </div>
-            ) : null}
 
             <details
               open={advancedOpen}
@@ -2847,6 +2654,194 @@ export default function BookTranslatorTool() {
                 )}
               </div>
             </details>
+          </section>
+
+          <section
+            id="book-download-controls"
+            className="space-y-4 pt-1"
+            aria-labelledby="book-download-controls-heading"
+          >
+            <h3
+              id="book-download-controls-heading"
+              className="text-base font-extrabold text-sky-950"
+            >
+              Download MP3
+            </h3>
+
+            <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <Metric label="Preset" value={exportSettings.presetName} />
+              <Metric label="Format" value="MP3" />
+              <Metric
+                label="Runtime"
+                value={
+                  hasSource
+                    ? formatDuration(exportAnalysis.totalRuntimeMs)
+                    : "Waiting"
+                }
+              />
+              <Metric
+                label="Parts"
+                value={hasSource ? formatNumber(exportParts.length) : "0"}
+              />
+              <Metric
+                label={splitEnabled ? "Target part" : "Split"}
+                value={
+                  splitEnabled
+                    ? formatDuration(exportPlan.targetPartMs)
+                    : "Off"
+                }
+              />
+              <Metric
+                label="Output size"
+                value={`~${exportAnalysis.estimatedSizeLabel}`}
+              />
+              <Metric label="Render time" value={renderEstimateLabel} />
+            </dl>
+
+            {sourceDraftActive ? (
+              <p className="mt-4 text-sm font-semibold text-slate-600">
+                Draft edits are not included until you apply them.
+              </p>
+            ) : null}
+            {exportDisabledReason ? (
+              <p
+                id="book-download-disabled-reason"
+                className="mt-4 text-sm font-semibold text-slate-600"
+              >
+                {exportDisabledReason}
+              </p>
+            ) : null}
+            {isAudioOutput ? (
+              <MessageList
+                title="Download warnings"
+                items={exportWarnings}
+                tone="warning"
+              />
+            ) : null}
+            {longExportMessages.length > 0 ? (
+              <MessageList
+                title="Download notes"
+                items={longExportMessages}
+                tone="info"
+              />
+            ) : null}
+
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+              {zipBatchWorkflow && totalBatches > 0 ? (
+                <LabeledSelect
+                  label="ZIP batch"
+                  value={String(selectedExportBatch?.batchNumber ?? 1)}
+                  disabled={exportRunning}
+                  onChange={(value) => setSelectedBatchNumber(Number(value))}
+                >
+                  {exportBatches.map((batch) => (
+                    <option key={batch.batchNumber} value={batch.batchNumber}>
+                      Batch {batch.batchNumber} of {batch.totalBatches} -{" "}
+                      {formatDuration(batch.runtimeMs)}
+                    </option>
+                  ))}
+                </LabeledSelect>
+              ) : null}
+              <ToolButton
+                type="button"
+                tone="dark"
+                onClick={handleDownloadBook}
+                disabled={!canExport}
+                aria-describedby={
+                  exportDisabledReason
+                    ? "book-download-disabled-reason"
+                    : undefined
+                }
+                className="rounded-xl"
+              >
+                {exportRunning ? (
+                  <span
+                    className="h-2.5 w-2.5 animate-pulse rounded-full bg-current"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                )}
+                {downloadButtonLabel}
+              </ToolButton>
+              {exportRunning ? (
+                <ToolButton
+                  type="button"
+                  tone="light"
+                  hover="dark"
+                  onClick={() => cancelActiveExport()}
+                  disabled={!exportRunning}
+                  className="rounded-xl"
+                >
+                  <StopIcon size={18} title={undefined} aria-hidden="true" />
+                  Cancel download
+                </ToolButton>
+              ) : null}
+            </div>
+
+            {showExportProgress ? (
+              <div className="mt-5">
+                <progress
+                  value={progressPercent}
+                  max={100}
+                  role="progressbar"
+                  aria-label="Book download progress"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={progressPercent}
+                  className="h-2 w-full overflow-hidden rounded-full"
+                />
+                <StatusMessage
+                  kind={
+                    exportStatus?.kind ?? (exportRunning ? "working" : "info")
+                  }
+                  live
+                  className="mt-3"
+                >
+                  {exportProgress.message || exportStatus?.message}
+                </StatusMessage>
+                <p
+                  className="mt-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+                  data-testid="book-download-progress-detail"
+                >
+                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} /{" "}
+                  {exportProgressDetail(exportProgress, exportElapsedMs)}
+                </p>
+              </div>
+            ) : null}
+            {showExportStatus && exportStatus ? (
+              <StatusMessage kind={exportStatus.kind} live className="mt-3">
+                {exportStatus.message}
+              </StatusMessage>
+            ) : null}
+
+            {completedExport ? (
+              <div className="mt-5">
+                <h3 className="text-base font-extrabold text-sky-950">
+                  Last download
+                </h3>
+                <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  <Metric label="File" value={completedExport.filename} />
+                  <Metric
+                    label="Format"
+                    value={completedExport.outputFormat.toUpperCase()}
+                  />
+                  <Metric
+                    label="Parts"
+                    value={completedExport.partCount.toLocaleString()}
+                  />
+                  <Metric
+                    label="Runtime"
+                    value={completedExport.runtimeLabel}
+                  />
+                </dl>
+                <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                  Download contents: {completedExport.contents.join(", ")}. Use
+                  the Download button again to save another copy, change
+                  settings to rebuild, or clear the source when you are done.
+                </p>
+              </div>
+            ) : null}
           </section>
 
           {showSourceState ? (
@@ -3467,7 +3462,7 @@ export default function BookTranslatorTool() {
             ? exportPlan.automaticSplit
               ? "Long selections are prepared as ordered duration-based parts, grouped into ZIP batches, using clean text boundaries where possible."
               : "Parts are based on the target part length and safe paragraph, sentence, or word boundaries."
-            : "Audio downloads stay as one file by default. Choose a split mode in Download settings when you want timed parts."}
+            : "MP3 downloads stay as one file by default. Choose a split mode in Download settings when you want timed parts."}
         </p>
         {isSegmentedOutput ? (
           exportParts.length > 0 ? (
@@ -3603,7 +3598,7 @@ function BookPreviewSection({
       ? audioPlayerState === "playing" || audioPlayerState === "paused"
       : visualPreviewPlaying);
   const actionDisabled = !canPreview || (isAudioOutput && !audioSupported);
-  const heading = isAudioOutput ? "Preview audio" : "Live visual player";
+  const heading = isAudioOutput ? "Preview audio" : "Live preview";
   const previewElapsedMs = Math.min(
     visualPreviewDurationMs,
     Math.max(0, visualPreviewElapsedMs),

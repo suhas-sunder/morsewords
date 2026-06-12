@@ -80,10 +80,10 @@ async function expectWorkflowReadyNearSource(page: Page) {
     sourceStep(page).getByRole("link", { name: "Review export" }),
   ).toHaveCount(0);
   await expect(
-    sourceStep(page).getByRole("heading", { name: "MP3 download" }),
+    sourceStep(page).getByRole("heading", { name: "Download MP3" }),
   ).toBeVisible();
   await expect(
-    previewSection(page).getByRole("heading", { name: "Live visual player" }),
+    previewSection(page).getByRole("heading", { name: "Live preview" }),
   ).toBeVisible();
   await expectPreviewReady(page);
   await expect(
@@ -694,23 +694,34 @@ test("expanded SEO guide covers long-form workflows and dark-mode copy", async (
   await expect(page.getByText("Browser live player").first()).toBeVisible();
 });
 
-test("source entry appears before preview and source details stay below settings", async ({
+test("translator rows run upload, source text, live preview, settings, then MP3 download", async ({
   page,
 }) => {
   await openBookTranslator(page);
 
   const sourceEntry = page.getByTestId("book-source-entry");
+  const uploadRow = page.getByTestId("book-source-upload-row");
   const uploadDropzone = page.getByTestId("book-source-upload-dropzone");
+  const sourceTextRow = page.getByTestId("book-source-text-row");
   const sourceInput = page.getByLabel("Paste long-form source text");
   const preview = previewSection(page);
+  const settingsRow = page.getByTestId("book-translator-settings-row");
   const settingsToggle = downloadSettingsToggle(page);
+  const downloadRow = page.locator("#book-download-controls");
   const sourceDetails = page.getByTestId("book-source-details");
 
   await expect(sourceEntry).toBeVisible();
+  await expect(uploadRow).toBeVisible();
   await expect(uploadDropzone).toBeVisible();
+  await expect(uploadDropzone).toContainText("Replace source file");
+  await expect(sourceTextRow).toBeVisible();
   await expect(sourceInput).toBeVisible();
   await expect(preview).toBeVisible();
+  await expect(preview.getByRole("heading", { name: "Live preview" })).toBeVisible();
+  await expect(settingsRow).toBeVisible();
+  await expect(settingsRow.getByRole("heading", { name: "Settings" })).toBeVisible();
   await expect(settingsToggle).toBeVisible();
+  await expect(downloadRow.getByRole("heading", { name: "Download MP3" })).toBeVisible();
   await expect(sourceDetails).toBeVisible();
   await expect(sourceDetails.getByText("Active chars")).toBeVisible();
   await expect(sourceDetails.getByText("Copy extracted text")).toBeVisible();
@@ -718,21 +729,31 @@ test("source entry appears before preview and source details stay below settings
   await expect(sourceDetails.getByRole("button", { name: "Clear source" }))
     .toBeVisible();
 
-  const uploadBox = await uploadDropzone.boundingBox();
-  const inputBox = await sourceInput.boundingBox();
+  const uploadBox = await uploadRow.boundingBox();
+  const inputBox = await sourceTextRow.boundingBox();
   const previewBox = await preview.boundingBox();
-  const settingsBox = await settingsToggle.boundingBox();
+  const settingsBox = await settingsRow.boundingBox();
+  const downloadBox = await downloadRow.boundingBox();
   const sourceDetailsBox = await sourceDetails.boundingBox();
 
   expect(uploadBox).not.toBeNull();
   expect(inputBox).not.toBeNull();
   expect(previewBox).not.toBeNull();
   expect(settingsBox).not.toBeNull();
+  expect(downloadBox).not.toBeNull();
   expect(sourceDetailsBox).not.toBeNull();
-  expect(uploadBox!.y).toBeLessThan(previewBox!.y);
+  expect(uploadBox!.y).toBeLessThan(inputBox!.y);
   expect(inputBox!.y).toBeLessThan(previewBox!.y);
   expect(previewBox!.y).toBeLessThan(settingsBox!.y);
-  expect(settingsBox!.y).toBeLessThan(sourceDetailsBox!.y);
+  expect(settingsBox!.y).toBeLessThan(downloadBox!.y);
+  expect(downloadBox!.y).toBeLessThan(sourceDetailsBox!.y);
+
+  await expect(
+    page.getByRole("heading", { name: "Create Morse audio or video" }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("heading", { name: "Create Morse MP3 audio" }),
+  ).toHaveCount(0);
 });
 
 test("pasted text review reports unsupported characters and avoids localStorage", async ({
@@ -788,7 +809,7 @@ test("TXT and MD uploads populate source review", async ({
     "Plain text chapter\nSOS help",
   );
   await expect(
-    previewSection(page).getByRole("heading", { name: "Live visual player" }),
+    previewSection(page).getByRole("heading", { name: "Live preview" }),
   ).toBeVisible();
   await expect(
     previewSection(page).getByTestId("book-preview-sample"),
@@ -1830,7 +1851,7 @@ test("live player previews current cleaned source and updates with audio setting
 
   const preview = previewSection(page);
   await expect(
-    preview.getByRole("heading", { name: "Live visual player" }),
+    preview.getByRole("heading", { name: "Live preview" }),
   ).toBeVisible();
   await expectPreviewReady(page);
   await expect(preview.getByTestId("book-preview-sample")).toContainText(
@@ -1996,7 +2017,7 @@ test("MP3 download stays primary while the live visual player remains available"
 
   await expect(outputTypeRadio(page, "audio")).toHaveCount(0);
   await expect(outputTypeRadio(page, "video")).toHaveCount(0);
-  await expect(page.getByRole("heading", { name: "MP3 download" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Download MP3" })).toBeVisible();
   await expect(sourceStep(page).getByRole("button", { name: "Download MP3" })).toBeEnabled();
   await expect(page.getByText(["Download", "MP4"].join(" "))).toHaveCount(0);
   await expect(page.getByText(["Download", "WebM"].join(" "))).toHaveCount(0);
@@ -2055,7 +2076,7 @@ test("live visual preview modes, branding, and full-frame warning stay scoped", 
   await openDownloadSettings(page);
 
   await expect(
-    previewSection(page).getByRole("heading", { name: "Live visual player" }),
+    previewSection(page).getByRole("heading", { name: "Live preview" }),
   ).toBeVisible();
   await expectPreviewReady(page);
   await expect(
@@ -2418,7 +2439,7 @@ test("empty source, cleaned-empty source, large MP3, and progress semantics are 
     }),
   ).toHaveCount(1);
   await expect(
-    page.getByRole("heading", { name: "MP3 download" }),
+    page.getByRole("heading", { name: "Download MP3" }),
   ).toBeVisible();
   await expect(page.getByText("Review export")).toHaveCount(0);
   const sourceInput = page.getByLabel("Paste long-form source text");
@@ -2427,7 +2448,7 @@ test("empty source, cleaned-empty source, large MP3, and progress semantics are 
   await expect(sourceInput).toHaveValue("");
   await expect(
     page.getByRole("heading", { name: "Create Morse MP3 audio" }),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(
     page.getByRole("heading", { name: "Details and previews" }),
   ).toBeVisible();
