@@ -136,7 +136,6 @@ import {
 } from "./bookPreviewAudio";
 import {
   BOOK_VIDEO_INTENSITY_LABELS,
-  BOOK_VIDEO_RESOLUTION_LABELS,
   BOOK_VIDEO_VISUAL_STYLE_DETAILS,
 } from "./bookVideoPresets";
 import {
@@ -144,11 +143,10 @@ import {
   type BookVideoSupport,
 } from "./bookVideoSupport";
 import {
+  BOOK_LIVE_PLAYER_VISUAL_STYLES,
   BOOK_VIDEO_INTENSITIES,
-  BOOK_VIDEO_RESOLUTIONS,
-  BOOK_VIDEO_VISUAL_STYLES,
   DEFAULT_BOOK_VIDEO_SETTINGS,
-  sanitizeBookVideoSettings,
+  sanitizeBookLivePlayerSettings,
   type BookVideoSettings,
 } from "./bookVideoTypes";
 import type { BookSplitMode } from "./bookExportTypes";
@@ -175,9 +173,6 @@ const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   currentPart: 0,
   totalParts: 0,
 };
-
-const FULL_FRAME_FLASH_WARNING =
-  "Full-frame flash mode can create rapid full-frame flashing in the live player and may be uncomfortable or unsafe for some viewers. Use Lightbulb or Dot for a smaller flash area.";
 
 const BOOK_SPLIT_MODE_LABELS: Record<BookSplitMode, string> = {
   none: "No split",
@@ -528,7 +523,7 @@ export default function BookTranslatorTool() {
   const [exportSettings, setExportSettings] =
     React.useState<BookExportSettings>(DEFAULT_BOOK_EXPORT_SETTINGS);
   const [videoSettings, setVideoSettings] = React.useState<BookVideoSettings>(
-    DEFAULT_BOOK_VIDEO_SETTINGS,
+    () => sanitizeBookLivePlayerSettings(DEFAULT_BOOK_VIDEO_SETTINGS),
   );
   const [videoSupport, setVideoSupport] =
     React.useState<BookVideoSupport | null>(null);
@@ -683,7 +678,7 @@ export default function BookTranslatorTool() {
     const preferences = loadBookExportPreferences();
     setOutputType(preferences.outputType);
     setExportSettings(preferences.exportSettings);
-    setVideoSettings(preferences.videoSettings);
+    setVideoSettings(sanitizeBookLivePlayerSettings(preferences.videoSettings));
     setExportProgress(
       IDLE_EXPORT_PROGRESS,
     );
@@ -715,7 +710,7 @@ export default function BookTranslatorTool() {
     if (!videoSupport || videoSupport.audioTrackSupported) return;
     setVideoSettings((current) =>
       current.includeAudioTrack
-        ? sanitizeBookVideoSettings({ ...current, includeAudioTrack: false })
+        ? sanitizeBookLivePlayerSettings({ ...current, includeAudioTrack: false })
         : current,
     );
   }, [videoSupport]);
@@ -801,7 +796,7 @@ export default function BookTranslatorTool() {
   }, [exportSettings]);
   const effectiveVideoSettings = React.useMemo<BookVideoSettings>(
     () =>
-      sanitizeBookVideoSettings({
+      sanitizeBookLivePlayerSettings({
         ...videoSettings,
         includeAudioTrack:
           videoSettings.includeAudioTrack &&
@@ -2050,7 +2045,7 @@ export default function BookTranslatorTool() {
               }
             : patch;
       setVideoSettings((current) =>
-        sanitizeBookVideoSettings({ ...current, ...normalizedPatch }),
+        sanitizeBookLivePlayerSettings({ ...current, ...normalizedPatch }),
       );
       setExportStatus(null);
       setCompletedExport(null);
@@ -2485,12 +2480,6 @@ export default function BookTranslatorTool() {
             >
               Settings
             </h3>
-
-            {effectiveVideoSettings.showVisualSignal &&
-            effectiveVideoSettings.visualStyle === "full-frame" ? (
-              <FullFrameFlashWarning className="mt-4" />
-            ) : null}
-
 
             <details className="mt-5">
               <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
@@ -4092,7 +4081,7 @@ function BookVideoSettingsEditor({
           role="radiogroup"
           aria-label="Live player visual style"
         >
-          {BOOK_VIDEO_VISUAL_STYLES.map((style) => {
+          {BOOK_LIVE_PLAYER_VISUAL_STYLES.map((style) => {
             const details = BOOK_VIDEO_VISUAL_STYLE_DETAILS[style];
             const active = videoSettings.visualStyle === style;
             return (
@@ -4166,58 +4155,29 @@ function BookVideoSettingsEditor({
         </p>
       </fieldset>
 
-      <div>
-        <h4 className="text-base font-extrabold text-sky-950">Player frame</h4>
-        <div className="mt-4 grid gap-5 lg:grid-cols-2">
-          <fieldset>
-            <legend className="text-sm font-semibold text-slate-700">
-              Player size
-            </legend>
-            <div
-              className="mt-2 flex flex-wrap gap-2"
-              role="radiogroup"
-              aria-label="Live player size"
-            >
-              {BOOK_VIDEO_RESOLUTIONS.map((resolution) => (
-                <VideoSettingButton
-                  key={resolution}
-                  active={videoSettings.resolution === resolution}
-                  label={BOOK_VIDEO_RESOLUTION_LABELS[resolution]}
-                  onClick={() =>
-                    onVideoSettingsChange({
-                      resolution,
-                    })
-                  }
-                />
-              ))}
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend className="text-sm font-semibold text-slate-700">
-              Visual intensity
-            </legend>
-            <div
-              className="mt-2 flex flex-wrap gap-2"
-              role="radiogroup"
-              aria-label="Live player visual intensity"
-            >
-              {BOOK_VIDEO_INTENSITIES.map((intensity) => (
-                <VideoSettingButton
-                  key={intensity}
-                  active={videoSettings.intensity === intensity}
-                  label={BOOK_VIDEO_INTENSITY_LABELS[intensity]}
-                  onClick={() =>
-                    onVideoSettingsChange({
-                      intensity,
-                    })
-                  }
-                />
-              ))}
-            </div>
-          </fieldset>
+      <fieldset>
+        <legend className="text-base font-extrabold text-sky-950">
+          Visual intensity
+        </legend>
+        <div
+          className="mt-2 flex flex-wrap gap-2"
+          role="radiogroup"
+          aria-label="Live player visual intensity"
+        >
+          {BOOK_VIDEO_INTENSITIES.map((intensity) => (
+            <VideoSettingButton
+              key={intensity}
+              active={videoSettings.intensity === intensity}
+              label={BOOK_VIDEO_INTENSITY_LABELS[intensity]}
+              onClick={() =>
+                onVideoSettingsChange({
+                  intensity,
+                })
+              }
+            />
+          ))}
         </div>
-      </div>
+      </fieldset>
 
       <div>
         <h4 className="text-base font-extrabold text-sky-950">Player options</h4>
@@ -4229,15 +4189,6 @@ function BookVideoSettingsEditor({
             onChange={(value) =>
               onVideoSettingsChange({
                 includeAudioTrack: value,
-              })
-            }
-          />
-          <ExportCheckbox
-            label="Show branding"
-            checked={videoSettings.showBranding}
-            onChange={(value) =>
-              onVideoSettingsChange({
-                showBranding: value,
               })
             }
           />
@@ -4315,31 +4266,6 @@ function VideoSettingButton({
     >
       {label}
     </button>
-  );
-}
-
-function FullFrameFlashWarning({ className = "" }: { className?: string }) {
-  return (
-    <div
-      data-testid="book-video-full-frame-warning"
-      className={[
-        "flex items-start gap-2 text-sm leading-relaxed text-slate-700",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <WarningBadgeIcon
-        size={16}
-        title={undefined}
-        aria-hidden="true"
-        className="mt-0.5 shrink-0 text-sky-950"
-      />
-      <p>
-        <span className="font-extrabold text-sky-950">Strobe warning:</span>{" "}
-        {FULL_FRAME_FLASH_WARNING}
-      </p>
-    </div>
   );
 }
 

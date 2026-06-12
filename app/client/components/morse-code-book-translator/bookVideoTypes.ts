@@ -1,5 +1,6 @@
 export {
   DEFAULT_MORSE_VIDEO_SETTINGS as DEFAULT_BOOK_VIDEO_SETTINGS,
+  MORSE_LIVE_PLAYER_VISUAL_STYLES as BOOK_LIVE_PLAYER_VISUAL_STYLES,
   MORSE_VIDEO_BACKGROUND_STYLES as BOOK_VIDEO_BACKGROUND_STYLES,
   MORSE_VIDEO_INTENSITIES as BOOK_VIDEO_INTENSITIES,
   MORSE_VIDEO_RESOLUTIONS as BOOK_VIDEO_RESOLUTIONS,
@@ -10,6 +11,7 @@ export {
   isMorseVideoResolution as isBookVideoResolution,
   isMorseVideoTextDisplayMode as isBookVideoTextDisplayMode,
   isMorseVideoVisualStyle as isBookVideoVisualStyle,
+  sanitizeMorseLivePlayerSettings as sanitizeBookLivePlayerSettings,
   sanitizeMorseVideoSettings as sanitizeBookVideoSettings,
 } from "~/client/components/shared/video/morseVideoTypes";
 

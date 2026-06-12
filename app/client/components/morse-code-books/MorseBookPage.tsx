@@ -6,7 +6,6 @@ import {
   PlayIcon,
   RefreshIcon,
   StopIcon,
-  WarningBadgeIcon,
 } from "~/client/assets/svg/Icons";
 import {
   downloadBlobFile,
@@ -39,13 +38,13 @@ import {
 } from "~/client/components/shared/video/MorseVideoPreviewControls";
 import {
   DEFAULT_MORSE_VIDEO_SETTINGS,
+  MORSE_LIVE_PLAYER_VISUAL_STYLES,
   MORSE_VIDEO_INTENSITIES,
-  sanitizeMorseVideoSettings,
+  sanitizeMorseLivePlayerSettings,
 } from "~/client/components/shared/video/morseVideoTypes";
 import type {
   MorseVideoIntensity,
   MorseVideoSettings,
-  MorseVideoVisualStyle,
 } from "~/client/components/shared/video/morseVideoTypes";
 import { getAppliedThemeMode, type ThemeMode } from "~/client/theme/themeStorage";
 import {
@@ -138,11 +137,12 @@ const splitModeLabels: Record<BookSplitMode, string> = {
   none: "No split",
   duration: "By duration",
 };
-const visualStyleLabels: Record<MorseVideoVisualStyle, string> = {
+const visualStyleLabels: Record<
+  (typeof MORSE_LIVE_PLAYER_VISUAL_STYLES)[number],
+  string
+> = {
   lightbulb: "Lightbulb signal",
   dot: "Dot signal",
-  "full-frame": "Full-frame flash",
-  "morse-text": "Animated Morse signal",
 };
 
 const intensityLabels: Record<MorseVideoIntensity, string> = {
@@ -310,7 +310,7 @@ function loadSavedMorseBookRuntimeSettings(
       exportSettings: sanitizeBookExportSettings(
         isPlainObject(parsed.exportSettings) ? parsed.exportSettings : {},
       ),
-      videoSettings: sanitizeMorseVideoSettings(
+      videoSettings: sanitizeMorseLivePlayerSettings(
         isPlainObject(parsed.videoSettings) ? parsed.videoSettings : {},
       ),
       livePlayer: parseSavedLivePlayer(parsed.livePlayer, validSectionIds),
@@ -876,7 +876,7 @@ function MorseBookWorkspace({
     () => sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS),
   );
   const [videoSettings, setVideoSettings] = React.useState<MorseVideoSettings>(
-    () => sanitizeMorseVideoSettings(DEFAULT_MORSE_VIDEO_SETTINGS),
+    () => sanitizeMorseLivePlayerSettings(DEFAULT_MORSE_VIDEO_SETTINGS),
   );
   const [downloadStatus, setDownloadStatus] = React.useState<DownloadStatus>({
     kind: "idle",
@@ -971,7 +971,7 @@ function MorseBookWorkspace({
         new Set(isAudiobook ? [initialSection.sectionId] : defaultSectionIds),
       );
       setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
-      setVideoSettings(sanitizeMorseVideoSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
+      setVideoSettings(sanitizeMorseLivePlayerSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
       setActiveLiveSectionId(initialSection.sectionId);
       setActiveLiveSegmentIndex(0);
       setCompletedLiveSectionIds(new Set());
@@ -1718,7 +1718,7 @@ function MorseBookWorkspace({
 
   const updateVideoSettings = (patch: Partial<MorseVideoSettings>) => {
     setVideoSettings((current) => {
-      const next = sanitizeMorseVideoSettings({ ...current, ...patch });
+      const next = sanitizeMorseLivePlayerSettings({ ...current, ...patch });
       if (!next.showVisualSignal && !next.showMorseSymbols && !next.showPlainText) {
         return current;
       }
@@ -1737,7 +1737,7 @@ function MorseBookWorkspace({
     setRuntimeSettingsResetVersion((version) => version + 1);
     setSelectedSectionIds(new Set(isAudiobook ? [initialSection.sectionId] : defaultSectionIds));
     setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
-    setVideoSettings(sanitizeMorseVideoSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
+    setVideoSettings(sanitizeMorseLivePlayerSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
     setActiveLiveSectionId(initialSection.sectionId);
     setActiveLiveSegmentIndex(0);
     setCompletedLiveSectionIds(new Set());
@@ -3427,7 +3427,7 @@ function VideoSettings({
           layers control the live player overlays only.
         </p>
         <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label="Visual style">
-          {Object.entries(visualStyleLabels).map(([style, label]) => (
+          {MORSE_LIVE_PLAYER_VISUAL_STYLES.map((style) => (
             <button
               key={style}
               type="button"
@@ -3437,33 +3437,14 @@ function VideoSettings({
               })}
               onClick={() =>
                 onChange({
-                  visualStyle: style as MorseVideoVisualStyle,
+                  visualStyle: style,
                 })
               }
             >
-              {label}
+              {visualStyleLabels[style]}
             </button>
           ))}
         </div>
-        {settings.visualStyle === "full-frame" ? (
-          <div
-            className="mt-3 flex items-start gap-2 text-sm leading-relaxed text-slate-700"
-            data-testid="book-video-full-frame-warning"
-          >
-            <WarningBadgeIcon
-              size={16}
-              title={undefined}
-              aria-hidden="true"
-              className="mt-0.5 shrink-0 text-sky-950"
-            />
-            <p>
-              <span className="font-extrabold text-sky-950">Strobe warning:</span>{" "}
-              flashing light may be uncomfortable or unsafe for people with
-              photosensitive epilepsy or light sensitivity. Turn off Flash or
-              use audio-only practice if you are sensitive to strobing.
-            </p>
-          </div>
-        ) : null}
       </div>
 
       <div>
@@ -3491,11 +3472,6 @@ function VideoSettings({
             disabled={settings.showPlainText && visibleLayerCount <= 1}
             label="Plain text"
             onChange={(checked) => onChange({ showPlainText: checked })}
-          />
-          <LayerCheckbox
-            checked={settings.showBranding}
-            label="Minimal branding"
-            onChange={(checked) => onChange({ showBranding: checked })}
           />
           <LayerCheckbox
             checked={settings.includeAudioTrack}

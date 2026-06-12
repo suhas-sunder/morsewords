@@ -43,6 +43,11 @@ export const MORSE_VIDEO_VISUAL_STYLES = [
   "morse-text",
 ] as const satisfies readonly MorseVideoVisualStyle[];
 
+export const MORSE_LIVE_PLAYER_VISUAL_STYLES = [
+  "lightbulb",
+  "dot",
+] as const satisfies readonly MorseVideoVisualStyle[];
+
 export const MORSE_VIDEO_RESOLUTIONS = [
   "720p",
   "1080p",
@@ -92,6 +97,14 @@ export function isMorseVideoVisualStyle(
   value: unknown,
 ): value is MorseVideoVisualStyle {
   return MORSE_VIDEO_VISUAL_STYLES.includes(value as MorseVideoVisualStyle);
+}
+
+export function isMorseLivePlayerVisualStyle(
+  value: unknown,
+): value is (typeof MORSE_LIVE_PLAYER_VISUAL_STYLES)[number] {
+  return MORSE_LIVE_PLAYER_VISUAL_STYLES.includes(
+    value as (typeof MORSE_LIVE_PLAYER_VISUAL_STYLES)[number],
+  );
 }
 
 export function isMorseVideoResolution(
@@ -188,6 +201,19 @@ export function sanitizeMorseVideoSettings(
     targetPartMinutes: sanitizeVideoTargetPartMinutes(
       settings.targetPartMinutes ?? DEFAULT_MORSE_VIDEO_SETTINGS.targetPartMinutes,
     ),
+  };
+}
+
+export function sanitizeMorseLivePlayerSettings(
+  settings: Partial<MorseVideoSettings>,
+): MorseVideoSettings {
+  const sanitized = sanitizeMorseVideoSettings(settings);
+  return {
+    ...sanitized,
+    visualStyle: isMorseLivePlayerVisualStyle(sanitized.visualStyle)
+      ? sanitized.visualStyle
+      : DEFAULT_MORSE_VIDEO_SETTINGS.visualStyle,
+    showBranding: false,
   };
 }
 

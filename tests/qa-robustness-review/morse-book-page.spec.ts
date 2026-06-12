@@ -474,16 +474,34 @@ test.describe("Morse book page foundation", () => {
     ).toBeVisible();
     await expect(page.getByTestId("book-video-preview-time")).toHaveCount(0);
     await expect(page.getByText("Condensed long preview")).toHaveCount(0);
+    await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
+    await expect(livePlayer.getByText(/morsewords\.com/i)).toHaveCount(0);
+    const playerSettings = page
+      .locator("#book-live-morse-player details")
+      .filter({ hasText: "Player settings" });
     await expect(
-      page
-        .locator("#book-live-morse-player details")
-        .filter({ hasText: "Player settings" }),
+      playerSettings,
     ).not.toHaveAttribute("open", "");
+    await playerSettings.locator("summary").click();
     await expect(
-      page
-        .locator("#book-live-morse-player details")
-        .filter({ hasText: "Player settings" })
-        .getByTestId("morse-book-live-download-link"),
+      playerSettings.getByRole("button", { name: "Lightbulb signal" }),
+    ).toBeVisible();
+    await expect(
+      playerSettings.getByRole("button", { name: "Dot signal" }),
+    ).toBeVisible();
+    for (const retiredLabel of [
+      "Full-frame flash",
+      "Animated Morse signal",
+      "Video quality",
+      "720p",
+      "1080p",
+    ]) {
+      await expect(
+        playerSettings.getByText(retiredLabel, { exact: true }),
+      ).toHaveCount(0);
+    }
+    await expect(
+      playerSettings.getByTestId("morse-book-live-download-link"),
     ).toHaveCount(0);
     await expect(page.locator("#book-mp3-download")).toBeVisible();
     await expect(
@@ -1262,6 +1280,22 @@ test.describe("Morse book page foundation", () => {
     await livePlayer.getByRole("button", { name: "Pause live player" }).click();
 
     await livePlayer.locator("summary").filter({ hasText: "Player settings" }).click();
+    for (const retiredLabel of [
+      "Full-frame flash",
+      "Animated Morse signal",
+      "Video quality",
+      "720p",
+      "1080p",
+    ]) {
+      await expect(
+        livePlayer.getByText(retiredLabel, { exact: true }),
+      ).toHaveCount(0);
+    }
+    await expect(livePlayer.locator("[data-testid='book-video-preview-branding']")).toHaveCount(0);
+    await livePlayer.getByRole("button", { name: "Dot signal" }).click();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-dot']")).toBeVisible();
+    await livePlayer.getByRole("button", { name: "Lightbulb signal" }).click();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-lightbulb']")).toBeVisible();
     await livePlayer.getByLabel("Visual signal").uncheck();
     await expect(livePlayer.locator("[data-testid='book-video-preview-lightbulb']")).toHaveCount(0);
     await expect(livePlayer.locator("[data-testid='book-video-preview-morse-overlay']")).toBeVisible();
@@ -1270,10 +1304,6 @@ test.describe("Morse book page foundation", () => {
     await expect(livePlayer.getByLabel("Plain text")).toBeDisabled();
     await expect(livePlayer.locator("[data-testid='book-video-preview-text-overlay']")).toBeVisible();
 
-    await expect(livePlayer.locator("[data-testid='book-video-full-frame-warning']")).toHaveCount(0);
-    await livePlayer.getByRole("button", { name: "Full-frame flash" }).click();
-    await expect(livePlayer.locator("[data-testid='book-video-full-frame-warning']")).toBeVisible();
-    await livePlayer.getByRole("button", { name: "Lightbulb signal" }).click();
     await expect(livePlayer.locator("[data-testid='book-video-full-frame-warning']")).toHaveCount(0);
 
     await saveScreenshot(page, testInfo, "morse-book-test-fixture-video-preview.png");

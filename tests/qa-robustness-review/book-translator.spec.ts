@@ -739,6 +739,8 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   const playerDetails = playerDetailsPanel(page);
   const settingsRow = page.getByTestId("book-translator-settings-row");
   const settingsToggle = downloadSettingsToggle(page);
+  const liveSettingsToggle = livePlayerSettingsToggle(page);
+  const liveSettings = livePlayerSettingsPanel(page);
   const downloadRow = page.locator("#book-download-controls");
   const sourceDetails = page.getByTestId("book-source-details");
 
@@ -777,6 +779,28 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
     settingsRow.getByRole("heading", { name: "Settings" }),
   ).toBeVisible();
   await expect(settingsToggle).toBeVisible();
+  await expect(liveSettingsToggle).toBeVisible();
+  await expect(liveSettings).not.toHaveAttribute("open", "");
+  await openLivePlayerSettings(page);
+  await expect(
+    liveSettings.getByRole("radio", { name: /Lightbulb signal/ }),
+  ).toBeVisible();
+  await expect(
+    liveSettings.getByRole("radio", { name: /Dot signal/ }),
+  ).toBeVisible();
+  for (const retiredLabel of [
+    "Full-frame flash",
+    "Animated Morse signal",
+    "Video quality",
+    "720p",
+    "1080p",
+  ]) {
+    await expect(liveSettings.getByText(retiredLabel, { exact: true })).toHaveCount(
+      0,
+    );
+  }
+  await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
+  await expect(preview.getByText(/morsewords\.com/i)).toHaveCount(0);
   await expect(
     downloadRow.getByRole("heading", { name: "Download MP3" }),
   ).toBeVisible();
@@ -2258,7 +2282,7 @@ test("MP3 download stays primary while the live visual player remains available"
     .not.toContain('"outputType":"video"');
 });
 
-test("live visual preview modes, branding, and full-frame warning stay scoped", async ({
+test("live visual preview settings hide obsolete video controls and keep layers scoped", async ({
   page,
 }) => {
   await openBookTranslator(page);
@@ -2287,21 +2311,27 @@ test("live visual preview modes, branding, and full-frame warning stay scoped", 
   ).toBeVisible();
   await openLivePlayerSettings(page);
   const liveSettings = livePlayerSettingsPanel(page);
-  for (const label of [
-    "Lightbulb signal",
-    "Dot signal",
+  await expect(
+    liveSettings.getByRole("radio", { name: /Lightbulb signal/ }),
+  ).toBeVisible();
+  await expect(
+    liveSettings.getByRole("radio", { name: /Dot signal/ }),
+  ).toBeVisible();
+  for (const retiredLabel of [
     "Full-frame flash",
     "Animated Morse signal",
+    "Video quality",
+    "720p",
+    "1080p",
   ]) {
-    await expect(
-      liveSettings.getByRole("radio", { name: new RegExp(label) }),
-    ).toBeVisible();
+    await expect(liveSettings.getByText(retiredLabel, { exact: true })).toHaveCount(
+      0,
+    );
   }
   await expect(page.getByTestId("book-video-preview")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-lightbulb")).toBeVisible();
-  await expect(page.getByTestId("book-video-preview-branding")).toContainText(
-    "www.morsewords.com",
-  );
+  await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
+  await expect(previewSection(page).getByText(/morsewords\.com/i)).toHaveCount(0);
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
     0,
   );
@@ -2313,33 +2343,11 @@ test("live visual preview modes, branding, and full-frame warning stay scoped", 
     0,
   );
 
-  await liveSettings.getByRole("radio", { name: /Full-frame flash/ }).click();
-  await expect(page.getByTestId("book-video-preview-full-frame")).toBeVisible();
-  await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
-    1,
-  );
-  await expect(page.getByText("Strobe warning:")).toBeVisible();
-  await expect(
-    page.getByText("can create rapid full-frame flashing"),
-  ).toBeVisible();
-  await expectPreviewReady(page);
-  await previewSection(page)
-    .getByRole("button", { name: "Play live player" })
-    .click();
-  await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
-    "data-preview-playing",
-    "true",
-  );
-  await expect(
-    previewSection(page).getByRole("button", { name: "Stop live player" }),
-  ).toBeVisible();
-  await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
-
-  await liveSettings.getByRole("radio", { name: /Animated Morse signal/ }).click();
+  await liveSettings.getByRole("radio", { name: /Lightbulb signal/ }).click();
   await expect(
     previewSection(page).getByRole("button", { name: "Play live player" }),
   ).toBeVisible();
-  await expect(page.getByTestId("book-video-preview-morse-text")).toBeVisible();
+  await expect(page.getByTestId("book-video-preview-lightbulb")).toBeVisible();
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
     0,
   );
@@ -2349,7 +2357,6 @@ test("live visual preview modes, branding, and full-frame warning stay scoped", 
   await expect(
     page.getByRole("radiogroup", { name: "Text shown in video" }),
   ).toHaveCount(0);
-  await page.getByLabel("Show branding").uncheck();
   await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
   await expect(
     page.getByTestId("book-video-preview-morse-overlay"),
@@ -2371,7 +2378,7 @@ test("live visual preview modes, branding, and full-frame warning stay scoped", 
   expect(textOnlyBox).not.toBeNull();
 
   await page.getByLabel("Show visual signal").uncheck();
-  await expect(page.getByTestId("book-video-preview-morse-text")).toHaveCount(0);
+  await expect(page.getByTestId("book-video-preview-lightbulb")).toHaveCount(0);
   const textNoSignalBox = await page
     .getByTestId("book-video-preview-text-overlay")
     .boundingBox();
@@ -2435,7 +2442,6 @@ test("live visual preview modes, branding, and full-frame warning stay scoped", 
         .getAttribute("data-active-word"),
     )
     .not.toContain("SOS");
-  await liveSettings.getByRole("radio", { name: /Full-frame flash/ }).click();
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
     0,
   );
@@ -2452,14 +2458,14 @@ test("live visual preview modes, branding, and full-frame warning stay scoped", 
     .click();
   await page.getByLabel("Show visual signal").check();
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
-    1,
+    0,
   );
   await expectPreviewReady(page);
   await previewSection(page)
     .getByRole("button", { name: "Play live player" })
     .click();
   await expect(page.getByTestId("book-video-preview-frame")).toHaveAttribute(
-    "data-full-frame-active",
+    "data-preview-playing",
     "true",
   );
   await previewSection(page)
@@ -2555,11 +2561,10 @@ test("visual preview visibly animates and stops stale playback", async ({
     .getByRole("button", { name: "Stop live player" })
     .click();
 
-  await liveSettings.getByRole("radio", { name: /Animated Morse signal/ }).click();
   await expectPreviewReady(page);
-  const initialMorseText = await page
-    .getByTestId("book-video-preview-morse-text")
-    .innerText();
+  const initialActiveMorse = await page
+    .getByTestId("book-video-preview-text-layers")
+    .getAttribute("data-active-morse");
   const morseTimeline = page.getByLabel("Live player timeline");
   const morseTimelineBox = await morseTimeline.boundingBox();
   expect(morseTimelineBox).not.toBeNull();
@@ -2573,8 +2578,12 @@ test("visual preview visibly animates and stops stale playback", async ({
     .poll(() => morseTimeline.getAttribute("aria-valuenow"))
     .not.toBe("0");
   await expect
-    .poll(() => page.getByTestId("book-video-preview-morse-text").innerText())
-    .not.toBe(initialMorseText);
+    .poll(() =>
+      page
+        .getByTestId("book-video-preview-text-layers")
+        .getAttribute("data-active-morse"),
+    )
+    .not.toBe(initialActiveMorse);
   expect(
     await page
       .getByTestId("book-video-preview-text-layers")
@@ -2587,15 +2596,19 @@ test("visual preview visibly animates and stops stale playback", async ({
   await expect(page.getByTestId("book-video-preview-active-morse-word")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-active-text-word")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-active-token")).toHaveCount(0);
-  const seekedMorseText = await page
-    .getByTestId("book-video-preview-morse-text")
-    .innerText();
+  const seekedActiveMorse = await page
+    .getByTestId("book-video-preview-text-layers")
+    .getAttribute("data-active-morse");
   await previewSection(page)
     .getByRole("button", { name: "Play live player" })
     .click();
   await expect
-    .poll(() => page.getByTestId("book-video-preview-morse-text").innerText())
-    .not.toBe(seekedMorseText);
+    .poll(() =>
+      page
+        .getByTestId("book-video-preview-text-layers")
+        .getAttribute("data-active-morse"),
+    )
+    .not.toBe(seekedActiveMorse);
   const playingTimelineBox = await morseTimeline.boundingBox();
   expect(playingTimelineBox).not.toBeNull();
   await page.mouse.move(
@@ -3274,12 +3287,23 @@ test("mobile route smoke has no horizontal overflow or console regressions", asy
   ).toBeVisible();
   await openDownloadSettings(page);
   await openLivePlayerSettings(page);
-  await livePlayerSettingsPanel(page)
-    .getByRole("radio", { name: /Full-frame flash/ })
-    .click();
+  const liveSettings = livePlayerSettingsPanel(page);
+  for (const retiredLabel of [
+    "Full-frame flash",
+    "Animated Morse signal",
+    "Video quality",
+    "720p",
+    "1080p",
+  ]) {
+    await expect(liveSettings.getByText(retiredLabel, { exact: true })).toHaveCount(
+      0,
+    );
+  }
+  await liveSettings.getByRole("radio", { name: /Dot signal/ }).click();
   await expect(page.getByTestId("book-video-preview")).toBeVisible();
+  await expect(page.getByTestId("book-video-preview-dot")).toBeVisible();
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
-    1,
+    0,
   );
   await expect(page.locator(".mw-strobe-flash")).toHaveCount(0);
   const overflow = await page.evaluate(
