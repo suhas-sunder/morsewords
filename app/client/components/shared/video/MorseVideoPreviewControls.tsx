@@ -1048,11 +1048,11 @@ function renderMorsePreviewWords(
           data-testid={
             word.active ? `${testIdPrefix}-active-morse-word` : undefined
           }
-          className={[
+          className={
             word.active
-              ? activeMorseWordClass(darkFrame, fullFrameActive)
-              : "inline",
-          ].join(" ")}
+              ? activePreviewWordClass(darkFrame, fullFrameActive)
+              : "mx-1 inline-block whitespace-nowrap"
+          }
         >
           {morseCharacters.map((morse, morseIndex) => (
             <React.Fragment key={`${word.wordIndex}-${morseIndex}-${morse}`}>
@@ -1064,10 +1064,7 @@ function renderMorsePreviewWords(
                 }
                 className={
                   word.active && morseIndex === word.activeCharIndex
-                    ? [
-                        "inline-block whitespace-nowrap",
-                        activePreviewCharacterClass(darkFrame, fullFrameActive),
-                      ].join(" ")
+                    ? "inline-block whitespace-nowrap"
                     : "inline-block whitespace-nowrap"
                 }
               >
@@ -1143,19 +1140,6 @@ function activePreviewWordClass(
     return "mx-1 inline-block whitespace-nowrap rounded-lg bg-sky-300 px-1.5 py-0.5 text-slate-950 ring-1 ring-sky-100/80";
   }
   return "mx-1 inline-block whitespace-nowrap rounded-lg bg-sky-100 px-1.5 py-0.5 text-sky-950 ring-1 ring-sky-300/70";
-}
-
-function activeMorseWordClass(
-  darkFrame: boolean,
-  fullFrameActive: boolean,
-) {
-  if (fullFrameActive) {
-    return "inline text-sky-950";
-  }
-  if (darkFrame) {
-    return "inline text-sky-100";
-  }
-  return "inline text-sky-950";
 }
 
 function activePreviewCharacterClass(

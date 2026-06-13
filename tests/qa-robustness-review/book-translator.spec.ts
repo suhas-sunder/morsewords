@@ -349,6 +349,80 @@ function expectMorseGroupsSeparated(value: string) {
   expect(normalized).toMatch(/\/|[.-]{1,4}\s+[.-]{1,4}/);
 }
 
+async function expectActivePreviewHighlights(
+  root: Locator,
+  testIdPrefix = "book-video-preview",
+) {
+  const highlight = await root.evaluate((scope, prefix) => {
+    const morseWord = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-active-morse-word"]`,
+    );
+    const morseCharacter = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-active-morse-character"]`,
+    );
+    const textWord = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-active-text-word"]`,
+    );
+    const morseOverlay = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-morse-overlay"]`,
+    );
+    const textLayers = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-text-layers"]`,
+    );
+
+    function rectFor(element: HTMLElement | null) {
+      const rect = element?.getBoundingClientRect();
+      return rect
+        ? { height: rect.height, width: rect.width }
+        : { height: 0, width: 0 };
+    }
+
+    function styleFor(element: HTMLElement | null) {
+      if (!element) {
+        return {
+          backgroundColor: "",
+          borderRadius: 0,
+        };
+      }
+      const style = window.getComputedStyle(element);
+      return {
+        backgroundColor: style.backgroundColor,
+        borderRadius: Number.parseFloat(style.borderTopLeftRadius),
+      };
+    }
+
+    return {
+      activeMorse: textLayers?.getAttribute("data-active-morse") ?? "",
+      morseCharacterBackground: styleFor(morseCharacter).backgroundColor,
+      morseCharacterText: morseCharacter?.textContent?.trim() ?? "",
+      morseOverlayText: morseOverlay?.textContent?.replace(/\s+/g, " ").trim() ?? "",
+      morseRect: rectFor(morseWord),
+      morseStyle: styleFor(morseWord),
+      morseText: morseWord?.textContent?.replace(/\s+/g, " ").trim() ?? "",
+      overlayRect: rectFor(morseOverlay),
+      textStyle: styleFor(textWord),
+      textText: textWord?.textContent?.trim() ?? "",
+    };
+  }, testIdPrefix);
+
+  expect(highlight.morseText).toMatch(/[.-]/);
+  expect(highlight.textText.length).toBeGreaterThan(0);
+  expect(highlight.morseCharacterText).toBe(highlight.activeMorse);
+  expect(highlight.morseStyle.backgroundColor).not.toBe("rgba(0, 0, 0, 0)");
+  expect(highlight.morseStyle.backgroundColor).toBe(
+    highlight.textStyle.backgroundColor,
+  );
+  expect(highlight.morseStyle.borderRadius).toBeGreaterThan(0);
+  expect(Math.abs(
+    highlight.morseStyle.borderRadius - highlight.textStyle.borderRadius,
+  )).toBeLessThanOrEqual(1);
+  expect(highlight.morseCharacterBackground).toBe("rgba(0, 0, 0, 0)");
+  expect(highlight.morseOverlayText).toContain(highlight.morseText);
+  expect(highlight.morseOverlayText).not.toBe(highlight.morseText);
+  expect(highlight.morseRect.width).toBeGreaterThan(0);
+  expect(highlight.morseRect.width).toBeLessThan(highlight.overlayRect.width);
+}
+
 async function readTranslatorLivePreviewProgress(page: Page) {
   return page.evaluate((key) => {
     const raw = localStorage.getItem(key);
@@ -2977,6 +3051,7 @@ test("visual preview visibly animates and stops stale playback", async ({
   );
   await expect(page.getByTestId("book-video-preview-active-morse-word")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-active-text-word")).toBeVisible();
+  await expectActivePreviewHighlights(previewSection(page));
   await expect(page.getByTestId("book-video-preview-active-token")).toHaveCount(0);
   const seekedActiveMorse = await page
     .getByTestId("book-video-preview-text-layers")
