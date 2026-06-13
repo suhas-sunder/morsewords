@@ -3779,7 +3779,7 @@ function BookPreviewSection({
   livePreviewSegments: BookExportPart[];
   onPreviewSegmentChange: (segmentIndex: number) => void;
   onPlayAudioPreview: () => void;
-  onPlayVisualPreview: () => void;
+  onPlayVisualPreview: (elapsedMs?: number) => void;
   onScrubAudioPreview: (elapsedMs: number) => void;
   onScrubVisualPreview: (elapsedMs: number) => void;
   onSeekAudioPreview: (elapsedMs: number) => void;
@@ -3888,7 +3888,11 @@ function BookPreviewSection({
               type="button"
               tone={visualPlayerPlaying ? "light" : "dark"}
               hover={visualPlayerPlaying ? "dark" : undefined}
-              onClick={visualPlayerPlaying ? onStopPreview : onPlayVisualPreview}
+              onClick={
+                visualPlayerPlaying
+                  ? onStopPreview
+                  : () => onPlayVisualPreview()
+              }
               disabled={actionDisabled && !visualPlayerPlaying}
               className="rounded-xl"
             >
@@ -3899,6 +3903,19 @@ function BookPreviewSection({
               )}
               {visualPlayerPlaying ? "Stop live player" : "Play live player"}
             </ToolButton>
+            {visualPlayerPlaying ? (
+              <ToolButton
+                type="button"
+                tone="light"
+                hover="dark"
+                onClick={() => onPlayVisualPreview(0)}
+                disabled={actionDisabled}
+                className="rounded-xl"
+              >
+                <RefreshIcon size={18} title={undefined} aria-hidden="true" />
+                Restart live player
+              </ToolButton>
+            ) : null}
             <a
               href="#book-download-controls"
               className={toolControlButtonClass({
@@ -3917,6 +3934,7 @@ function BookPreviewSection({
               headingText="Fullscreen live Morse preview"
               isPlaying={visualPreviewPlaying}
               onPlay={onPlayVisualPreview}
+              onRestart={() => onPlayVisualPreview(0)}
               onSeek={onScrubVisualPreview}
               onSeekCommit={onSeekVisualPreview}
               onStop={onStopPreview}

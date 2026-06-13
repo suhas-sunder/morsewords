@@ -1,4 +1,4 @@
-export const LIVE_PREVIEW_START_BUFFER_MS = 2_200;
+export const LIVE_PREVIEW_START_BUFFER_MS = 2_000;
 
 export function getLivePreviewStartDelayMs(
   startElapsedMs: number,

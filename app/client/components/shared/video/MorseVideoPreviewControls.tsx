@@ -6,6 +6,7 @@ import {
   LightBulbIcon,
   PauseIcon,
   PlayIcon,
+  RefreshIcon,
   StopIcon,
 } from "~/client/assets/svg/Icons";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
@@ -224,7 +225,8 @@ export function MorseVideoPreviewPanel({
     previewWordWindowLimit,
   );
   const textState = getMorseVideoFrameTextState(preview.timeline, visualElapsedMs);
-  const markActive = isPlaying && signalVisible && previewFrame.active;
+  const markActive =
+    isPlaying && signalVisible && visualElapsedMs > 0 && previewFrame.active;
   const fullFrameActive = markActive && settings.visualStyle === "full-frame";
   const frameStyle = previewFrameStyle(darkFrame, fullFrameActive);
   const longTextExcerpt = previewFrame.textExcerpt.length > 44;
@@ -674,6 +676,7 @@ export function MorseLivePreviewFullscreenControl({
   headingText = "Fullscreen live Morse preview",
   isPlaying,
   onPlay,
+  onRestart,
   onSeek,
   onSeekCommit,
   onStop,
@@ -689,6 +692,7 @@ export function MorseLivePreviewFullscreenControl({
   headingText?: string;
   isPlaying: boolean;
   onPlay: () => void;
+  onRestart?: () => void;
   onSeek: (elapsedMs: number) => void;
   onSeekCommit?: (elapsedMs: number) => void;
   onStop: () => void;
@@ -778,6 +782,10 @@ export function MorseLivePreviewFullscreenControl({
     onPlay();
     suppressControlsAfterPlay();
   }, [isPlaying, onPlay, onStop, showControlsBriefly, suppressControlsAfterPlay]);
+
+  const handleRestart = React.useCallback(() => {
+    onRestart?.();
+  }, [onRestart]);
 
   const closeFullscreen = React.useCallback(() => {
     if (typeof document === "undefined") {
@@ -968,6 +976,21 @@ export function MorseLivePreviewFullscreenControl({
                 )}
                 {isPlaying ? "Pause live player" : "Play live player"}
               </button>
+              {isPlaying && onRestart ? (
+                <button
+                  type="button"
+                  className={toolControlButtonClass({
+                    tone: "light",
+                    hover: "dark",
+                    rounded: "xl",
+                  })}
+                  onClick={handleRestart}
+                  disabled={disabled}
+                >
+                  <RefreshIcon size={18} title={undefined} aria-hidden="true" />
+                  Restart live player
+                </button>
+              ) : null}
               {segmentControl}
             </div>
             <MorseVideoPreviewTimeline
@@ -1105,31 +1128,31 @@ function renderMorsePreviewWords(
     const morseCharacters = word.morse.split(" ").filter(Boolean);
     return (
       <React.Fragment key={`${word.wordIndex}-${word.morse}`}>
-        <span className="mx-1 inline-block whitespace-nowrap">
+        <span
+          data-testid={
+            word.active ? `${testIdPrefix}-active-morse-word` : undefined
+          }
+          className={
+            word.active
+              ? activePreviewWordClass(darkFrame, fullFrameActive)
+              : "mx-1 inline-block whitespace-nowrap"
+          }
+        >
           {morseCharacters.map((morse, morseIndex) => (
             <React.Fragment key={`${word.wordIndex}-${morseIndex}-${morse}`}>
               <span
                 data-testid={
                   word.active && morseIndex === word.activeCharIndex
-                    ? `${testIdPrefix}-active-morse-word`
+                    ? `${testIdPrefix}-active-morse-character`
                     : undefined
                 }
                 className={
                   word.active && morseIndex === word.activeCharIndex
-                    ? activePreviewGroupClass(darkFrame, fullFrameActive)
+                    ? activePreviewCharacterClass(darkFrame, fullFrameActive)
                     : "inline-block whitespace-nowrap"
                 }
               >
-                <span
-                  data-testid={
-                    word.active && morseIndex === word.activeCharIndex
-                      ? `${testIdPrefix}-active-morse-character`
-                      : undefined
-                  }
-                  className="inline-block whitespace-nowrap"
-                >
-                  {morse}
-                </span>
+                {morse}
               </span>
               {morseIndex < morseCharacters.length - 1 ? " " : null}
             </React.Fragment>
@@ -1197,13 +1220,6 @@ function activePreviewWordClass(
   return activePreviewHighlightClass(darkFrame, fullFrameActive, "mx-1");
 }
 
-function activePreviewGroupClass(
-  darkFrame: boolean,
-  fullFrameActive: boolean,
-) {
-  return activePreviewHighlightClass(darkFrame, fullFrameActive, "");
-}
-
 function activePreviewHighlightClass(
   darkFrame: boolean,
   fullFrameActive: boolean,
@@ -1225,10 +1241,18 @@ function activePreviewHighlightClass(
 }
 
 function activePreviewCharacterClass(
-  _darkFrame: boolean,
-  _fullFrameActive: boolean,
+  darkFrame: boolean,
+  fullFrameActive: boolean,
 ) {
-  return "inline-block";
+  const baseClass =
+    "inline-block whitespace-nowrap rounded-md px-1 text-center";
+  if (fullFrameActive) {
+    return `${baseClass} bg-white/90 text-sky-950`;
+  }
+  if (darkFrame) {
+    return `${baseClass} bg-white text-slate-950`;
+  }
+  return `${baseClass} bg-sky-300 text-slate-950`;
 }
 
 function previewFrameStyle(darkFrame: boolean, fullFrameActive: boolean) {

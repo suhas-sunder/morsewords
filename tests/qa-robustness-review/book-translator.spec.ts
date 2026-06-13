@@ -404,14 +404,17 @@ async function expectActivePreviewHighlights(
 
     return {
       activeMorse: textLayers?.getAttribute("data-active-morse") ?? "",
-      morseCharacterBackground: styleFor(morseCharacter).backgroundColor,
+      morseCharacterRect: rectFor(morseCharacter),
+      morseCharacterStyle: styleFor(morseCharacter),
       morseCharacterText: morseCharacter?.textContent?.trim() ?? "",
       morseOverlayText: morseOverlay?.textContent?.replace(/\s+/g, " ").trim() ?? "",
       morseRect: rectFor(morseWord),
       morseStyle: styleFor(morseWord),
       morseText: morseWord?.textContent?.replace(/\s+/g, " ").trim() ?? "",
       overlayRect: rectFor(morseOverlay),
-      textCharacterBackground: styleFor(textCharacter).backgroundColor,
+      textCharacterRect: rectFor(textCharacter),
+      textCharacterStyle: styleFor(textCharacter),
+      textCharacterText: textCharacter?.textContent?.trim() ?? "",
       textStyle: styleFor(textWord),
       textText: textWord?.textContent?.trim() ?? "",
     };
@@ -428,14 +431,42 @@ async function expectActivePreviewHighlights(
   expect(Math.abs(
     highlight.morseStyle.borderRadius - highlight.textStyle.borderRadius,
   )).toBeLessThanOrEqual(1);
-  expect(highlight.morseCharacterBackground).toBe("rgba(0, 0, 0, 0)");
-  expect(highlight.textCharacterBackground).toBe("rgba(0, 0, 0, 0)");
+  expect(highlight.textCharacterText.length).toBeGreaterThan(0);
+  expect(highlight.morseCharacterStyle.backgroundColor).not.toBe(
+    "rgba(0, 0, 0, 0)",
+  );
+  expect(highlight.textCharacterStyle.backgroundColor).not.toBe(
+    "rgba(0, 0, 0, 0)",
+  );
+  expect(highlight.morseCharacterStyle.backgroundColor).toBe(
+    highlight.textCharacterStyle.backgroundColor,
+  );
+  expect(highlight.morseCharacterStyle.backgroundColor).not.toBe(
+    highlight.morseStyle.backgroundColor,
+  );
+  expect(highlight.textCharacterStyle.backgroundColor).not.toBe(
+    highlight.textStyle.backgroundColor,
+  );
+  expect(highlight.morseCharacterStyle.borderRadius).toBeGreaterThan(0);
+  expect(highlight.textCharacterStyle.borderRadius).toBeGreaterThan(0);
   expect(Math.abs(
     highlight.textStyle.paddingLeft - highlight.textStyle.paddingRight,
+  )).toBeLessThanOrEqual(1);
+  expect(Math.abs(
+    highlight.textCharacterStyle.paddingLeft -
+      highlight.textCharacterStyle.paddingRight,
+  )).toBeLessThanOrEqual(1);
+  expect(Math.abs(
+    highlight.morseCharacterStyle.paddingLeft -
+      highlight.morseCharacterStyle.paddingRight,
   )).toBeLessThanOrEqual(1);
   expect(highlight.morseOverlayText).toContain(highlight.morseText);
   expect(highlight.morseOverlayText).not.toBe(highlight.morseText);
   expect(highlight.morseRect.width).toBeGreaterThan(0);
+  expect(highlight.morseCharacterRect.width).toBeGreaterThan(0);
+  expect(highlight.morseRect.width).toBeGreaterThanOrEqual(
+    highlight.morseCharacterRect.width,
+  );
   expect(highlight.morseRect.width).toBeLessThan(highlight.overlayRect.width);
 }
 
@@ -1617,6 +1648,7 @@ test("live preview frames keep stable display batches and a start buffer", () =>
   expect(
     getLivePreviewStartDelayMs(0, LIVE_PREVIEW_START_BUFFER_MS + 1_000),
   ).toBe(LIVE_PREVIEW_START_BUFFER_MS);
+  expect(LIVE_PREVIEW_START_BUFFER_MS).toBe(2_000);
   expect(
     getLivePreviewStartDelayMs(500, LIVE_PREVIEW_START_BUFFER_MS + 1_000),
   ).toBe(0);
@@ -3105,6 +3137,17 @@ test("visual preview visibly animates and stops stale playback", async ({
   await previewSection(page)
     .getByRole("button", { name: "Play live player" })
     .click();
+  await expect(
+    previewSection(page).getByRole("button", { name: "Restart live player" }),
+  ).toBeVisible();
+  await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
+    "data-preview-active",
+    "false",
+  );
+  await expect(page.getByTestId("book-video-preview-lightbulb")).toHaveAttribute(
+    "data-preview-active",
+    "false",
+  );
   await expect
     .poll(async () =>
       (await readPreviewAudioEvents(page)).includes("oscillator-start"),

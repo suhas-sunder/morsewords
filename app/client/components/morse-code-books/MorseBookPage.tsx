@@ -2272,6 +2272,7 @@ function MorseBookWorkspace({
             }
             headingText="Live Morse player"
             onPlay={startVideoPreview}
+            onRestart={() => startVideoPreview(0)}
             onSeek={handleScrubVideoPreview}
             onSeekCommit={handleSeekVideoPreview}
             onStop={() => stopVideoPreview()}
@@ -2793,6 +2794,7 @@ function MorseBookWorkspace({
                 elapsedMs={videoPreviewElapsedMs}
                 headingText="Live Morse player"
                 onPlay={startVideoPreview}
+                onRestart={() => startVideoPreview(0)}
                 onSeek={handleScrubVideoPreview}
                 onSeekCommit={handleSeekVideoPreview}
                 onStop={() => stopVideoPreview()}
@@ -3471,6 +3473,7 @@ function VideoPreviewControls({
   fullscreenSegmentControl,
   headingText = "Live visual player",
   onPlay,
+  onRestart,
   onSeek,
   onSeekCommit,
   onStop,
@@ -3488,6 +3491,7 @@ function VideoPreviewControls({
   fullscreenSegmentControl?: React.ReactNode;
   headingText?: string;
   onPlay: () => void;
+  onRestart?: () => void;
   onSeek: (elapsedMs: number) => void;
   onSeekCommit?: (elapsedMs: number) => void;
   onStop: () => void;
@@ -3534,6 +3538,18 @@ function VideoPreviewControls({
           )}
           {playing ? stopLabel : playLabel}
         </ToolButton>
+        {playing && onRestart ? (
+          <ToolButton
+            type="button"
+            tone="light"
+            hover="dark"
+            onClick={onRestart}
+            className="rounded-xl"
+          >
+            <RefreshIcon size={18} title={undefined} aria-hidden="true" />
+            Restart live player
+          </ToolButton>
+        ) : null}
         {action}
         {enableFullscreen ? (
           <MorseLivePreviewFullscreenControl
@@ -3541,6 +3557,7 @@ function VideoPreviewControls({
             headingText="Fullscreen live Morse preview"
             isPlaying={playing}
             onPlay={onPlay}
+            onRestart={onRestart}
             onSeek={onSeek}
             onSeekCommit={onSeekCommit}
             onStop={onStop}
