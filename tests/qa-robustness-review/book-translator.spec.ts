@@ -59,6 +59,13 @@ const RAW_SECRET_TEXT = "Private Draft Source";
 const BOOK_TOOL_LABEL = "Book source review and download tool";
 const BOOK_TRANSLATOR_LIVE_PREVIEW_PROGRESS_KEY =
   "morsewords:book-translator:live-preview-progress:v1";
+const LIVE_PREVIEW_AUDIO_CONTROL_LABELS = [
+  "Tone preset",
+  "Character speed",
+  "Farnsworth spacing",
+  "Pitch",
+  "Volume",
+] as const;
 
 async function openBookTranslator(page: Page) {
   await blockExternalNetwork(page);
@@ -151,6 +158,29 @@ async function openLivePlayerSettings(page: Page) {
   const toggle = livePlayerSettingsToggle(page);
   if ((await toggle.getAttribute("aria-expanded")) !== "true") {
     await toggle.click();
+  }
+}
+
+async function setRangeInputValue(locator: Locator, value: number) {
+  await locator.evaluate((input, nextValue) => {
+    const element = input as HTMLInputElement;
+    const valueSetter = Object.getOwnPropertyDescriptor(
+      HTMLInputElement.prototype,
+      "value",
+    )?.set;
+    if (valueSetter) {
+      valueSetter.call(element, String(nextValue));
+    } else {
+      element.value = String(nextValue);
+    }
+    element.dispatchEvent(new Event("input", { bubbles: true }));
+    element.dispatchEvent(new Event("change", { bubbles: true }));
+  }, value);
+}
+
+async function expectNormalizedLiveAudioControls(settingsPanel: Locator) {
+  for (const label of LIVE_PREVIEW_AUDIO_CONTROL_LABELS) {
+    await expect(settingsPanel.getByLabel(label)).toBeVisible();
   }
 }
 
@@ -2079,6 +2109,11 @@ test("split mode controls expose duration controls without public source-section
   await expect(page.getByLabel("Target part length")).toBeVisible();
   await expect(page.getByLabel("Target part length")).toHaveValue("30");
   await expect(page.getByTestId("book-split-section-fallback")).toHaveCount(0);
+
+  await openLivePlayerSettings(page);
+  const liveSettings = livePlayerSettingsPanel(page);
+  await expect(liveSettings.getByRole("radio", { name: "No split" })).toHaveCount(0);
+  await expect(liveSettings.getByLabel("Target part length")).toHaveCount(0);
 });
 
 test("live player previews current cleaned source and updates with audio settings", async ({
@@ -2492,8 +2527,15 @@ test("MP3 download stays primary while the live visual player remains available"
   await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
   await expectBookVideoPreviewUsesModuleWidth(page);
   await expect(playerDetailsPanel(page)).not.toHaveAttribute("open", "");
+  await expect(livePlayerSettingsPanel(page)).not.toHaveAttribute("open", "");
   await openLivePlayerSettings(page);
   const liveSettings = livePlayerSettingsPanel(page);
+  await expectNormalizedLiveAudioControls(liveSettings);
+  await expect(liveSettings.getByLabel("Tone preset")).toHaveValue("cw_radio");
+  await setRangeInputValue(liveSettings.getByLabel("Character speed"), 22);
+  await expect(liveSettings.getByLabel("Character speed")).toHaveValue("22");
+  await openPlayerDetails(page);
+  await expect(playerDetailsPanel(page).getByText("22/12 WPM")).toBeVisible();
   await expect(liveSettings.getByRole("radio", { name: /Lightbulb/ })).toHaveAttribute(
     "aria-checked",
     "true",
@@ -2511,7 +2553,12 @@ test("MP3 download stays primary while the live visual player remains available"
   await expect(page.getByTestId("book-video-preview-lightbulb")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-morse-overlay")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-text-overlay")).toBeVisible();
+  await expect(
+    previewSection(page).getByTestId("book-preview-download-mp3-link"),
+  ).toBeVisible();
   await expect(downloadSettingsPanel(page).getByLabel("MP3 bitrate")).toBeVisible();
+  await expect(liveSettings.getByRole("radio", { name: "No split" })).toHaveCount(0);
+  await expect(liveSettings.getByLabel("Target part length")).toHaveCount(0);
   await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
   await expect(page.getByRole("radio", { name: /MP3/ })).toHaveCount(0);
   await expect(page.getByRole("radio", { name: /WAV/ })).toHaveCount(0);

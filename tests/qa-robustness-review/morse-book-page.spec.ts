@@ -32,6 +32,13 @@ const TEST_BOOK_RUNTIME_SETTINGS_KEY =
   "morsewords:book-runtime:settings:v1:test-published-morse-book:test-published-v1:test-published-morse-book-content-hash-development-fixture-v1";
 const TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY =
   "morsewords:book-live-preview-progress:v1:test-published-morse-book";
+const LIVE_PREVIEW_AUDIO_CONTROL_LABELS = [
+  "Tone preset",
+  "Character speed",
+  "Farnsworth spacing",
+  "Pitch",
+  "Volume",
+] as const;
 function bookJsonPattern(slug: string) {
   return `**/morse-book-content/books/${slug}.json*`;
 }
@@ -67,6 +74,29 @@ async function readBookLivePreviewProgress(page: Page) {
     const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : null;
   }, TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY);
+}
+
+async function setRangeInputValue(locator: Locator, value: number) {
+  await locator.evaluate((input, nextValue) => {
+    const element = input as HTMLInputElement;
+    const valueSetter = Object.getOwnPropertyDescriptor(
+      HTMLInputElement.prototype,
+      "value",
+    )?.set;
+    if (valueSetter) {
+      valueSetter.call(element, String(nextValue));
+    } else {
+      element.value = String(nextValue);
+    }
+    element.dispatchEvent(new Event("input", { bubbles: true }));
+    element.dispatchEvent(new Event("change", { bubbles: true }));
+  }, value);
+}
+
+async function expectNormalizedLiveAudioControls(settingsPanel: Locator) {
+  for (const label of LIVE_PREVIEW_AUDIO_CONTROL_LABELS) {
+    await expect(settingsPanel.getByLabel(label)).toBeVisible();
+  }
 }
 
 async function expectLocatorInsideBounds(container: Locator, child: Locator) {
@@ -1511,6 +1541,7 @@ test.describe("Morse book page foundation", () => {
     await expect(audioTime).toBeVisible();
 
     const livePlayer = page.getByTestId("morse-book-live-player");
+    const mp3DownloadSection = page.locator("#book-mp3-download");
     await expect(livePlayer).toBeVisible();
     const liveBeforeChooser = await page.evaluate(() => {
       const live = document.querySelector("#book-live-morse-player");
@@ -1524,7 +1555,7 @@ test.describe("Morse book page foundation", () => {
       );
     });
     expect(liveBeforeChooser).toBe(true);
-    await expect(page.locator("#book-mp3-download")).toBeVisible();
+    await expect(mp3DownloadSection).toBeVisible();
     await expect(
       livePlayer.getByTestId("morse-book-live-download-link"),
     ).toHaveText("Download Audiobook MP3");
@@ -1566,8 +1597,25 @@ test.describe("Morse book page foundation", () => {
     await expect(livePlayer.locator("[data-testid='book-video-preview-active-text-word']")).toBeVisible();
     await expect(livePlayer.locator("[data-testid='book-video-preview-active-token']")).toHaveCount(0);
     await livePlayer.getByRole("button", { name: "Pause live player" }).click();
+    const defaultTimelineMax = Number(await videoTimeline.getAttribute("aria-valuemax"));
 
-    await livePlayer.locator("summary").filter({ hasText: "Player settings" }).click();
+    const playerSettings = livePlayer
+      .locator("details")
+      .filter({ hasText: "Player settings" });
+    await expect(playerSettings).not.toHaveAttribute("open", "");
+    await playerSettings.locator("summary").click();
+    await expectNormalizedLiveAudioControls(playerSettings);
+    await expect(playerSettings.getByLabel("Tone preset")).toHaveValue("cw_radio");
+    await setRangeInputValue(playerSettings.getByLabel("Character speed"), 22);
+    await expect(playerSettings.getByLabel("Character speed")).toHaveValue("22");
+    await expect
+      .poll(async () => Number(await videoTimeline.getAttribute("aria-valuemax")))
+      .not.toBe(defaultTimelineMax);
+    await expect(
+      mp3DownloadSection.getByRole("button", { name: "No split" }),
+    ).toBeVisible();
+    await expect(livePlayer.getByRole("button", { name: "No split" })).toHaveCount(0);
+    await expect(livePlayer.getByLabel("Target part length")).toHaveCount(0);
     for (const retiredLabel of [
       "Full-frame flash",
       "Animated Morse signal",

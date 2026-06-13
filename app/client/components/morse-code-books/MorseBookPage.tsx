@@ -10,7 +10,9 @@ import {
 import {
   downloadBlobFile,
 } from "~/client/components/shared/actionOutputUtils";
+import AudioSettingsPanel from "~/client/components/shared/AudioSettingsPanel";
 import {
+  getAudioPresetDefaults,
   getAudioPresetLabel,
   getAudioPresetsForContext,
   type AudioTonePresetId,
@@ -1732,6 +1734,15 @@ function MorseBookWorkspace({
     );
   };
 
+  const handleTonePresetChange = (tonePreset: AudioTonePresetId) => {
+    const defaults = getAudioPresetDefaults(tonePreset);
+    updateExportSettings({
+      tonePreset,
+      pitch: defaults.pitchHz,
+      volume: defaults.volume,
+    });
+  };
+
   const updateVideoSettings = (patch: Partial<MorseVideoSettings>) => {
     setVideoSettings((current) => {
       const next = sanitizeMorseLivePlayerSettings({ ...current, ...patch });
@@ -2271,68 +2282,21 @@ function MorseBookWorkspace({
             visibleLayerCount={visibleLayerCount}
             onChange={updateVideoSettings}
           />
-          <div>
-            <h3 className="text-base font-extrabold text-sky-950">
-              Audio settings
-            </h3>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              <label className="text-sm font-semibold text-slate-700">
-                Speed WPM
-                <input
-                  type="number"
-                  min={1}
-                  max={80}
-                  value={exportSettings.charWpm}
-                  onChange={(event) =>
-                    updateExportSettings({ charWpm: Number(event.target.value) })
-                  }
-                  className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950"
-                />
-              </label>
-              <label className="text-sm font-semibold text-slate-700">
-                Farnsworth WPM
-                <input
-                  type="number"
-                  min={1}
-                  max={80}
-                  value={exportSettings.farnsworthWpm}
-                  onChange={(event) =>
-                    updateExportSettings({
-                      farnsworthWpm: Number(event.target.value),
-                    })
-                  }
-                  className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950"
-                />
-              </label>
-              <label className="text-sm font-semibold text-slate-700">
-                Pitch Hz
-                <input
-                  type="number"
-                  min={120}
-                  max={1200}
-                  value={exportSettings.pitch}
-                  onChange={(event) =>
-                    updateExportSettings({ pitch: Number(event.target.value) })
-                  }
-                  className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950"
-                />
-              </label>
-              <label className="text-sm font-semibold text-slate-700">
-                Volume
-                <input
-                  type="number"
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  value={exportSettings.volume}
-                  onChange={(event) =>
-                    updateExportSettings({ volume: Number(event.target.value) })
-                  }
-                  className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950"
-                />
-              </label>
-            </div>
-          </div>
+          <BookLiveAudioSettings
+            audioSupported={previewAudioPlayer.isSupported}
+            exportSettings={exportSettings}
+            idPrefix="morse-book-live-player-audio"
+            onCharWpmChange={(value) =>
+              updateExportSettings({ charWpm: value })
+            }
+            onFarnsworthWpmChange={(value) =>
+              updateExportSettings({ farnsworthWpm: value })
+            }
+            onPitchChange={(value) => updateExportSettings({ pitch: value })}
+            onTonePresetChange={handleTonePresetChange}
+            onVolumeChange={(value) => updateExportSettings({ volume: value })}
+            videoSettings={videoSettings}
+          />
           </div>
         </ToolPanel>
       </details>
@@ -2831,68 +2795,23 @@ function MorseBookWorkspace({
                 visibleLayerCount={visibleLayerCount}
                 onChange={updateVideoSettings}
               />
-              <div>
-                <h3 className="text-base font-extrabold text-sky-950">
-                  Audio settings
-                </h3>
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <label className="text-sm font-semibold text-slate-700">
-                    Speed WPM
-                    <input
-                      type="number"
-                      min={1}
-                      max={80}
-                      value={exportSettings.charWpm}
-                      onChange={(event) =>
-                        updateExportSettings({ charWpm: Number(event.target.value) })
-                      }
-                      className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950"
-                    />
-                  </label>
-                  <label className="text-sm font-semibold text-slate-700">
-                    Farnsworth WPM
-                    <input
-                      type="number"
-                      min={1}
-                      max={80}
-                      value={exportSettings.farnsworthWpm}
-                      onChange={(event) =>
-                        updateExportSettings({
-                          farnsworthWpm: Number(event.target.value),
-                        })
-                      }
-                      className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950"
-                    />
-                  </label>
-                  <label className="text-sm font-semibold text-slate-700">
-                    Pitch Hz
-                    <input
-                      type="number"
-                      min={120}
-                      max={1200}
-                      value={exportSettings.pitch}
-                      onChange={(event) =>
-                        updateExportSettings({ pitch: Number(event.target.value) })
-                      }
-                      className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950"
-                    />
-                  </label>
-                  <label className="text-sm font-semibold text-slate-700">
-                    Volume
-                    <input
-                      type="number"
-                      min={0}
-                      max={1}
-                      step={0.05}
-                      value={exportSettings.volume}
-                      onChange={(event) =>
-                        updateExportSettings({ volume: Number(event.target.value) })
-                      }
-                      className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950"
-                    />
-                  </label>
-                </div>
-              </div>
+              <BookLiveAudioSettings
+                audioSupported={previewAudioPlayer.isSupported}
+                exportSettings={exportSettings}
+                idPrefix="morse-audiobook-live-player-audio"
+                onCharWpmChange={(value) =>
+                  updateExportSettings({ charWpm: value })
+                }
+                onFarnsworthWpmChange={(value) =>
+                  updateExportSettings({ farnsworthWpm: value })
+                }
+                onPitchChange={(value) => updateExportSettings({ pitch: value })}
+                onTonePresetChange={handleTonePresetChange}
+                onVolumeChange={(value) =>
+                  updateExportSettings({ volume: value })
+                }
+                videoSettings={videoSettings}
+              />
               <Link
                 to={morseBookPath(book.slug)}
                 className={toolControlButtonClass({
@@ -3232,15 +3151,11 @@ function MorseBookWorkspace({
                 aria-label="Tone preset"
                 value={exportSettings.tonePreset}
                 onChange={(event) =>
-                  updateExportSettings({
-                    tonePreset: event.target.value as AudioTonePresetId,
-                  })
+                  handleTonePresetChange(event.target.value as AudioTonePresetId)
                 }
                 className="mt-2 w-full rounded-lg bg-white px-3 py-2 font-semibold text-slate-950"
               >
-                {getAudioPresetsForContext("bookExport", {
-                  includeCreative: false,
-                }).map((preset) => (
+                {getAudioPresetsForContext("bookExport").map((preset) => (
                   <option key={preset} value={preset}>
                     {getAudioPresetLabel(preset)}
                   </option>
@@ -3481,6 +3396,67 @@ function VideoPreviewControls({
         testIdPrefix="book-video-preview"
       />
     </section>
+  );
+}
+
+function BookLiveAudioSettings({
+  audioSupported,
+  exportSettings,
+  idPrefix,
+  onCharWpmChange,
+  onFarnsworthWpmChange,
+  onPitchChange,
+  onTonePresetChange,
+  onVolumeChange,
+  videoSettings,
+}: {
+  audioSupported: boolean;
+  exportSettings: BookExportSettings;
+  idPrefix: string;
+  onCharWpmChange: (value: number) => void;
+  onFarnsworthWpmChange: (value: number) => void;
+  onPitchChange: (value: number) => void;
+  onTonePresetChange: (value: AudioTonePresetId) => void;
+  onVolumeChange: (value: number) => void;
+  videoSettings: MorseVideoSettings;
+}) {
+  const liveAudioEnabled = videoSettings.includeAudioTrack && audioSupported;
+
+  return (
+    <div>
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h3 className="text-base font-extrabold text-sky-950">
+            Timing and audio track
+          </h3>
+          <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+            Character speed and Farnsworth spacing use the same Morse timing
+            layer as MP3 export. Tone controls apply when live audio is on.
+          </p>
+        </div>
+        <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+          {liveAudioEnabled
+            ? getAudioPresetLabel(exportSettings.tonePreset)
+            : "Silent live player"}
+        </span>
+      </div>
+      <AudioSettingsPanel
+        className="mt-5"
+        context="bookExport"
+        disabledSound={!liveAudioEnabled}
+        idPrefix={idPrefix}
+        preset={exportSettings.tonePreset}
+        onPresetChange={onTonePresetChange}
+        charWpm={exportSettings.charWpm}
+        onCharWpmChange={onCharWpmChange}
+        farnsworthWpm={exportSettings.farnsworthWpm}
+        onFarnsworthWpmChange={onFarnsworthWpmChange}
+        pitch={exportSettings.pitch}
+        onPitchChange={onPitchChange}
+        volume={exportSettings.volume}
+        onVolumeChange={onVolumeChange}
+      />
+    </div>
   );
 }
 
