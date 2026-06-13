@@ -1976,26 +1976,39 @@ function MorseBookWorkspace({
     setVideoPreviewElapsedMs(startElapsed);
     setVideoPreviewPlaying(true);
 
-    const startVideoClock = (startedAtMs = performance.now()) => {
+    const syncVideoClock = (
+      syncedElapsedMs = startElapsed,
+      startedAtMs = performance.now(),
+    ) => {
       if (videoPreviewSessionRef.current !== timerSession) return;
-      clearVideoPreviewTimer();
-      videoPreviewBaseElapsedRef.current = startElapsed;
+      const nextBaseElapsed = Math.max(
+        0,
+        Math.min(activeVisualPreview.durationMs, syncedElapsedMs),
+      );
+      if (videoPreviewIntervalRef.current === null) {
+        clearVideoPreviewTimer();
+        videoPreviewIntervalRef.current = window.setInterval(() => {
+          if (videoPreviewSessionRef.current !== timerSession) return;
+          const nextElapsed =
+            videoPreviewBaseElapsedRef.current +
+            Math.max(0, performance.now() - videoPreviewStartedAtRef.current);
+          if (nextElapsed >= activeVisualPreview.durationMs) {
+            setVideoPreviewElapsedMs(activeVisualPreview.durationMs);
+            setVideoPreviewPlaying(false);
+            clearVideoPreviewTimer();
+            window.setTimeout(advanceLivePlayback, 0);
+            return;
+          }
+          setVideoPreviewElapsedMs(nextElapsed);
+        }, 40);
+      }
+      videoPreviewBaseElapsedRef.current = nextBaseElapsed;
       videoPreviewStartedAtRef.current = startedAtMs;
-      setVideoPreviewElapsedMs(startElapsed);
-      videoPreviewIntervalRef.current = window.setInterval(() => {
-        if (videoPreviewSessionRef.current !== timerSession) return;
-        const nextElapsed =
-          videoPreviewBaseElapsedRef.current +
-          Math.max(0, performance.now() - videoPreviewStartedAtRef.current);
-        if (nextElapsed >= activeVisualPreview.durationMs) {
-          setVideoPreviewElapsedMs(activeVisualPreview.durationMs);
-          setVideoPreviewPlaying(false);
-          clearVideoPreviewTimer();
-          window.setTimeout(advanceLivePlayback, 0);
-          return;
-        }
-        setVideoPreviewElapsedMs(nextElapsed);
-      }, 40);
+      setVideoPreviewElapsedMs(nextBaseElapsed);
+    };
+
+    const startVideoClock = (startedAtMs = performance.now()) => {
+      syncVideoClock(startElapsed, startedAtMs);
     };
 
     const playWithAudio =
@@ -2024,6 +2037,7 @@ function MorseBookWorkspace({
           soundEnabled: true,
           startElapsedMs: startElapsed,
           onPlaybackStart: startVideoClock,
+          onPlaybackProgress: syncVideoClock,
         })
         .then(() => {
           if (videoPreviewSessionRef.current !== timerSession) return;

@@ -1512,35 +1512,51 @@ export default function BookTranslatorTool() {
     visualPreviewBaseElapsedRef.current = startElapsed;
     setVisualPreviewElapsedMs(startElapsed);
 
-    const startVisualClock = (startedAtMs = performance.now()) => {
+    const syncVisualClock = (
+      syncedElapsedMs = startElapsed,
+      startedAtMs = performance.now(),
+    ) => {
       if (visualPreviewSessionRef.current !== timerSession) return;
-      clearVisualPreviewTimers();
-      visualPreviewStartedAtRef.current = startedAtMs;
-      visualPreviewBaseElapsedRef.current = startElapsed;
-      setVisualPreviewElapsedMs(startElapsed);
-      visualPreviewIntervalRef.current = window.setInterval(() => {
-        if (visualPreviewSessionRef.current !== timerSession) return;
-        const nextElapsed =
-          visualPreviewBaseElapsedRef.current +
-          Math.max(0, performance.now() - visualPreviewStartedAtRef.current);
-        if (nextElapsed >= visualPreviewDurationMs) {
-          clearVisualPreviewTimers();
-          setVisualPreviewElapsedMs(visualPreviewDurationMs);
-          setVisualPreviewPlaying(false);
-          setPreviewStatus("stopped");
-          if (activePreviewSegmentIndex + 1 < livePreviewSegments.length) {
-            window.setTimeout(() => {
-              setActivePreviewSegmentIndex((index) =>
-                Math.min(index + 1, Math.max(0, livePreviewSegments.length - 1)),
-              );
-              visualPreviewBaseElapsedRef.current = 0;
-              setVisualPreviewElapsedMs(0);
-            }, 0);
+      const nextBaseElapsed = Math.max(
+        0,
+        Math.min(visualPreviewDurationMs, syncedElapsedMs),
+      );
+      if (visualPreviewIntervalRef.current === null) {
+        clearVisualPreviewTimers();
+        visualPreviewIntervalRef.current = window.setInterval(() => {
+          if (visualPreviewSessionRef.current !== timerSession) return;
+          const nextElapsed =
+            visualPreviewBaseElapsedRef.current +
+            Math.max(0, performance.now() - visualPreviewStartedAtRef.current);
+          if (nextElapsed >= visualPreviewDurationMs) {
+            clearVisualPreviewTimers();
+            setVisualPreviewElapsedMs(visualPreviewDurationMs);
+            setVisualPreviewPlaying(false);
+            setPreviewStatus("stopped");
+            if (activePreviewSegmentIndex + 1 < livePreviewSegments.length) {
+              window.setTimeout(() => {
+                setActivePreviewSegmentIndex((index) =>
+                  Math.min(
+                    index + 1,
+                    Math.max(0, livePreviewSegments.length - 1),
+                  ),
+                );
+                visualPreviewBaseElapsedRef.current = 0;
+                setVisualPreviewElapsedMs(0);
+              }, 0);
+            }
+            return;
           }
-          return;
-        }
-        setVisualPreviewElapsedMs(nextElapsed);
-      }, 40);
+          setVisualPreviewElapsedMs(nextElapsed);
+        }, 40);
+      }
+      visualPreviewStartedAtRef.current = startedAtMs;
+      visualPreviewBaseElapsedRef.current = nextBaseElapsed;
+      setVisualPreviewElapsedMs(nextBaseElapsed);
+    };
+
+    const startVisualClock = (startedAtMs = performance.now()) => {
+      syncVisualClock(startElapsed, startedAtMs);
     };
 
     const playWithAudio =
@@ -1569,6 +1585,7 @@ export default function BookTranslatorTool() {
           soundEnabled: true,
           startElapsedMs: startElapsed,
           onPlaybackStart: startVisualClock,
+          onPlaybackProgress: syncVisualClock,
         })
         .then(() => {
           if (

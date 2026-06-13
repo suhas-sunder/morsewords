@@ -74,6 +74,13 @@ export type PlayOptions = {
    * their clock to the audible tone scheduler.
    */
   onPlaybackStart?: (startedAtMs: number) => void;
+
+  /**
+   * Fired at each Morse timing event boundary with the elapsed Morse timeline
+   * position and a performance.now() anchor. Live visual previews use this to
+   * prevent timer drift from separating the bulb from the audible tone.
+   */
+  onPlaybackProgress?: (elapsedMs: number, startedAtMs: number) => void;
 };
 
 export type RenderAudioOptions = Omit<
@@ -506,6 +513,10 @@ export default function useMorseAudio() {
       charWpm: baseOpts.wpm,
       farnsworthWpm: baseOpts.farnsworthWpm,
     });
+    let cursorElapsedMs = 0;
+    for (let index = 0; index < posRef.current.eventIndex; index += 1) {
+      cursorElapsedMs += playbackEventMs(events[index], baseOpts);
+    }
 
     for (let i = posRef.current.eventIndex; i < events.length; i++) {
       if (!isActiveSession(sessionId)) break;
@@ -520,8 +531,13 @@ export default function useMorseAudio() {
       if (event.type === "gap") {
         const live = getLiveOpts(baseOpts);
         const dur = Math.max(0, playbackEventMs(event, live) - eventOffsetMs);
+        baseOpts.onPlaybackProgress?.(
+          cursorElapsedMs + eventOffsetMs,
+          performance.now(),
+        );
         await sleep(dur);
         if (!isActiveSession(sessionId)) break;
+        cursorElapsedMs += eventOffsetMs + dur;
         posRef.current = { eventIndex: i + 1, eventOffsetMs: 0 };
         continue;
       }
@@ -530,6 +546,10 @@ export default function useMorseAudio() {
       applyMasterFromLive(live);
 
       const dur = Math.max(0, playbackEventMs(event, live) - eventOffsetMs);
+      baseOpts.onPlaybackProgress?.(
+        cursorElapsedMs + eventOffsetMs,
+        performance.now(),
+      );
       if (live.flash && isActiveSession(sessionId)) triggerFlash(dur);
 
       const audible = hasAudibleOutput(live);
@@ -556,6 +576,7 @@ export default function useMorseAudio() {
       }
 
       if (!isActiveSession(sessionId)) break;
+      cursorElapsedMs += eventOffsetMs + dur;
       posRef.current = { eventIndex: i + 1, eventOffsetMs: 0 };
     }
   }
