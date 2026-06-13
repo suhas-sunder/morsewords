@@ -69,6 +69,23 @@ async function readBookLivePreviewProgress(page: Page) {
   }, TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY);
 }
 
+async function expectLocatorInsideBounds(container: Locator, child: Locator) {
+  await expect(container).toBeVisible();
+  await expect(child).toBeVisible();
+  const containerBox = await container.boundingBox();
+  const childBox = await child.boundingBox();
+  expect(containerBox).not.toBeNull();
+  expect(childBox).not.toBeNull();
+  expect(childBox!.x).toBeGreaterThanOrEqual(containerBox!.x - 1);
+  expect(childBox!.y).toBeGreaterThanOrEqual(containerBox!.y - 1);
+  expect(childBox!.x + childBox!.width).toBeLessThanOrEqual(
+    containerBox!.x + containerBox!.width + 1,
+  );
+  expect(childBox!.y + childBox!.height).toBeLessThanOrEqual(
+    containerBox!.y + containerBox!.height + 1,
+  );
+}
+
 function bookOutputTypeButton(page: Page, outputType: "audio" | "video") {
   return page.locator(`[data-mw-morse-book-output-type="${outputType}"]`);
 }
@@ -496,14 +513,6 @@ test.describe("Morse book page foundation", () => {
     await expect(page.getByText("Condensed long preview")).toHaveCount(0);
     await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
     await expect(livePlayer.getByText(/morsewords\.com/i)).toHaveCount(0);
-    const liveTimeline = livePlayer.getByRole("slider", {
-      name: "Live player timeline",
-    });
-    await liveTimeline.focus();
-    await page.keyboard.press("ArrowRight");
-    await expect
-      .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
-      .toBeGreaterThan(0);
     const liveSegmentSelect = livePlayer.getByTestId(
       "morse-book-live-segment-select",
     );
@@ -524,29 +533,51 @@ test.describe("Morse book page foundation", () => {
       "data-fullscreen-active",
       "true",
     );
-    await expect(
-      page.getByTestId("book-video-preview-fullscreen-exit"),
-    ).toBeVisible();
+    const exitFullscreenButton = page.getByRole("button", {
+      name: "Exit fullscreen",
+    });
+    await expect(exitFullscreenButton).toBeVisible();
+    await expect(exitFullscreenButton.locator("svg")).toBeVisible();
     if (liveSegmentValue !== null) {
       await expect(
         page.getByTestId("morse-book-live-fullscreen-segment-select"),
       ).toHaveValue(liveSegmentValue);
     }
-    await expect
-      .poll(async () =>
-        Number(
-          await fullscreenOverlay
-            .getByRole("slider", { name: "Fullscreen live player timeline" })
-            .getAttribute("aria-valuenow"),
-        ),
-      )
-      .toBeGreaterThan(0);
-    await page.getByTestId("book-video-preview-fullscreen-exit").click();
+    const fullscreenFrame = page.getByTestId("book-video-preview-fullscreen-frame");
+    const fullscreenMorse = page.getByTestId(
+      "book-video-preview-fullscreen-morse-overlay",
+    );
+    const fullscreenText = page.getByTestId(
+      "book-video-preview-fullscreen-text-overlay",
+    );
+    const fullscreenMorseText = await fullscreenMorse.evaluate(
+      (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
+    );
+    expect(fullscreenMorseText).toMatch(/[.-]{1,5}\s+[.-]{1,5}/);
+    expect(fullscreenMorseText).toMatch(/\s\/\s/);
+    await expectLocatorInsideBounds(fullscreenFrame, fullscreenMorse);
+    await expectLocatorInsideBounds(fullscreenFrame, fullscreenText);
+    await expectLocatorInsideBounds(
+      fullscreenFrame,
+      page.getByTestId("book-video-preview-fullscreen-active-morse-word"),
+    );
+    await expectLocatorInsideBounds(
+      fullscreenFrame,
+      page.getByTestId("book-video-preview-fullscreen-active-text-word"),
+    );
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-visible",
+      "false",
+      { timeout: 4_500 },
+    );
+    await page.mouse.move(24, 24);
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-visible",
+      "true",
+    );
+    await exitFullscreenButton.click();
     await expect(page.getByTestId("book-video-preview-fullscreen-overlay")).toHaveCount(0);
     await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
-    await expect
-      .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
-      .toBeGreaterThan(0);
     if (liveSegmentValue !== null) {
       await expect(liveSegmentSelect).toHaveValue(liveSegmentValue);
     }
@@ -1275,6 +1306,26 @@ test.describe("Morse book page foundation", () => {
     await page.reload({ waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
     await waitForApprovedBookWorkspace(page);
+    await expect
+      .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+      .toBeGreaterThan(0);
+
+    await livePlayer.getByTestId("book-video-preview-fullscreen-button").click();
+    const fullscreenOverlay = page.getByTestId(
+      "book-video-preview-fullscreen-overlay",
+    );
+    await expect(fullscreenOverlay).toBeVisible();
+    await expect
+      .poll(async () =>
+        Number(
+          await fullscreenOverlay
+            .getByRole("slider", { name: "Fullscreen live player timeline" })
+            .getAttribute("aria-valuenow"),
+        ),
+      )
+      .toBeGreaterThan(0);
+    await page.getByRole("button", { name: "Exit fullscreen" }).click();
+    await expect(page.getByTestId("book-video-preview-fullscreen-overlay")).toHaveCount(0);
     await expect
       .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
       .toBeGreaterThan(0);

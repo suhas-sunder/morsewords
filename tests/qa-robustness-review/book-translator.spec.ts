@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import type { Page, TestInfo } from "@playwright/test";
+import type { Locator, Page, TestInfo } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
@@ -198,6 +198,23 @@ async function expectNoRawSourceInStorage(page: Page, rawText: string) {
     ].join("\n"),
   );
   expect(storageSnapshot).not.toContain(rawText);
+}
+
+async function expectLocatorInsideBounds(container: Locator, child: Locator) {
+  await expect(container).toBeVisible();
+  await expect(child).toBeVisible();
+  const containerBox = await container.boundingBox();
+  const childBox = await child.boundingBox();
+  expect(containerBox).not.toBeNull();
+  expect(childBox).not.toBeNull();
+  expect(childBox!.x).toBeGreaterThanOrEqual(containerBox!.x - 1);
+  expect(childBox!.y).toBeGreaterThanOrEqual(containerBox!.y - 1);
+  expect(childBox!.x + childBox!.width).toBeLessThanOrEqual(
+    containerBox!.x + containerBox!.width + 1,
+  );
+  expect(childBox!.y + childBox!.height).toBeLessThanOrEqual(
+    containerBox!.y + containerBox!.height + 1,
+  );
 }
 
 async function readTranslatorLivePreviewProgress(page: Page) {
@@ -2266,13 +2283,47 @@ test("live preview fullscreen preserves translator source and progress", async (
   const overlay = page.getByTestId("book-video-preview-fullscreen-overlay");
   await expect(overlay).toBeVisible();
   await expect(overlay).toHaveAttribute("data-fullscreen-active", "true");
-  await expect(
-    page.getByTestId("book-video-preview-fullscreen-exit"),
-  ).toBeVisible();
+  const exitFullscreenButton = page.getByRole("button", {
+    name: "Exit fullscreen",
+  });
+  await expect(exitFullscreenButton).toBeVisible();
+  await expect(exitFullscreenButton.locator("svg")).toBeVisible();
   await expect(sourceInput).toHaveValue(source);
   await expect(
     page.getByTestId("book-live-preview-fullscreen-segment-select"),
   ).toHaveValue(finalSegmentValue);
+  const fullscreenFrame = page.getByTestId("book-video-preview-fullscreen-frame");
+  const fullscreenMorse = page.getByTestId(
+    "book-video-preview-fullscreen-morse-overlay",
+  );
+  const fullscreenText = page.getByTestId(
+    "book-video-preview-fullscreen-text-overlay",
+  );
+  const fullscreenMorseText = await fullscreenMorse.evaluate(
+    (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
+  );
+  expect(fullscreenMorseText).toMatch(/[.-]{1,5}\s+[.-]{1,5}/);
+  expect(fullscreenMorseText).toMatch(/\s\/\s/);
+  await expectLocatorInsideBounds(fullscreenFrame, fullscreenMorse);
+  await expectLocatorInsideBounds(fullscreenFrame, fullscreenText);
+  await expectLocatorInsideBounds(
+    fullscreenFrame,
+    page.getByTestId("book-video-preview-fullscreen-active-morse-word"),
+  );
+  await expectLocatorInsideBounds(
+    fullscreenFrame,
+    page.getByTestId("book-video-preview-fullscreen-active-text-word"),
+  );
+  await expect(overlay).toHaveAttribute(
+    "data-fullscreen-controls-visible",
+    "false",
+    { timeout: 4_500 },
+  );
+  await page.mouse.move(24, 24);
+  await expect(overlay).toHaveAttribute(
+    "data-fullscreen-controls-visible",
+    "true",
+  );
   await expect
     .poll(async () =>
       Number(
@@ -2283,7 +2334,7 @@ test("live preview fullscreen preserves translator source and progress", async (
     )
     .toBeGreaterThan(0);
 
-  await page.getByTestId("book-video-preview-fullscreen-exit").click();
+  await exitFullscreenButton.click();
   await expect(page.getByTestId("book-video-preview-fullscreen-overlay")).toHaveCount(0);
   await expect(preview.getByTestId("book-video-preview-frame")).toBeVisible();
   await expect(sourceInput).toHaveValue(source);

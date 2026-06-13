@@ -751,7 +751,7 @@ export const CollapseIcon = React.memo(function CollapseIcon(
 ) {
   return (
     <SvgIconBase title="Exit fullscreen" {...props}>
-      <path d="M10 4h2v8H4v-2h4.59L4.29 5.71 5.71 4.29 10 8.59zm4 0 4.29 4.29 1.42-1.42L15.41 4H20v-2h-8v8h2zM4 14h8v8h-2v-4.59l-4.29 4.3-1.42-1.42L8.59 16H4zm16 0h-8v8h2v-4.59l4.29 4.3 1.42-1.42L15.41 16H20z" />
+      <path d="M5 16h3v3h2v-5H5zm3-8H5v2h5V5H8zm6 11h2v-3h3v-2h-5zm2-11V5h-2v5h5V8z" />
     </SvgIconBase>
   );
 });

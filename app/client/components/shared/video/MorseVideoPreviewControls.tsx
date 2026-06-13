@@ -7,9 +7,7 @@ import {
   PlayIcon,
   StopIcon,
 } from "~/client/assets/svg/Icons";
-import {
-  toolControlButtonClass,
-} from "~/client/components/shared/ToolWorkspace";
+import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 
 import {
   getMorseVideoFrameTextState,
@@ -81,6 +79,8 @@ type FullscreenElement = HTMLDivElement & {
 const TIMELINE_EDGE_PADDING_PX = 20;
 const TIMELINE_DENSE_EVENT_LIMIT = 260;
 const TIMELINE_DENSE_BUCKET_COUNT = 180;
+const INLINE_PREVIEW_WORD_WINDOW_LIMIT = 168;
+const FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT = 216;
 
 type TimelineDisplayEvent = MorseVideoTimeline["events"][number] & {
   compressed?: boolean;
@@ -188,7 +188,13 @@ export function MorseVideoPreviewPanel({
 }: MorseVideoPreviewPanelProps) {
   const fullscreen = layout === "fullscreen";
   const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
-  const previewFrame = getMorseVideoPreviewFrame(preview, visualElapsedMs);
+  const previewFrame = getMorseVideoPreviewFrame(
+    preview,
+    visualElapsedMs,
+    fullscreen
+      ? FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT
+      : INLINE_PREVIEW_WORD_WINDOW_LIMIT,
+  );
   const textState = getMorseVideoFrameTextState(preview.timeline, visualElapsedMs);
   const showTextLayers = settings.showMorseSymbols || settings.showPlainText;
   const textLayerCount =
@@ -198,54 +204,61 @@ export function MorseVideoPreviewPanel({
   const fullFrameActive = markActive && settings.visualStyle === "full-frame";
   const frameStyle = previewFrameStyle(darkFrame, fullFrameActive);
   const longTextExcerpt = previewFrame.textExcerpt.length > 44;
+  const denseText =
+    previewFrame.textExcerpt.length > 96 ||
+    previewFrame.morseExcerpt.length > 132 ||
+    previewFrame.words.length > 8;
   const textStackClass = fullscreen
     ? signalVisible
-      ? "w-full max-w-[min(94vw,88rem)] space-y-2 sm:space-y-4"
-      : "w-full max-w-[min(94vw,92rem)] space-y-4 sm:space-y-7"
+      ? "w-full max-w-[min(98vw,112rem)] space-y-3 sm:space-y-5"
+      : "w-full max-w-[min(98vw,116rem)] space-y-4 sm:space-y-8"
     : signalVisible
-      ? "w-full max-w-[64rem] space-y-0.5 sm:space-y-2"
-      : "w-full max-w-[66rem] space-y-3 sm:space-y-4";
+      ? "w-full max-w-[68rem] space-y-1 sm:space-y-2"
+      : "w-full max-w-[70rem] space-y-3 sm:space-y-4";
   const morseTextClass = fullscreen
     ? signalVisible
-      ? "mx-auto max-h-[32dvh] max-w-full overflow-hidden break-words font-mono text-[clamp(1.35rem,5vw,5.75rem)] font-bold leading-tight tracking-normal"
+      ? denseText
+        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(0.95rem,2.1vw,2.75rem)] font-bold leading-[1.08] tracking-normal"
+        : "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.45rem,4.5vw,5.75rem)] font-bold leading-[1.08] tracking-normal"
       : textLayerCount === 1
-        ? "mx-auto max-h-[62dvh] max-w-full overflow-hidden break-words font-mono text-[clamp(2.2rem,8vw,8rem)] font-bold leading-tight tracking-normal"
-        : "mx-auto max-h-[38dvh] max-w-full overflow-hidden break-words font-mono text-[clamp(1.8rem,6.8vw,6.5rem)] font-bold leading-tight tracking-normal"
+        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(2rem,6.8vw,8rem)] font-bold leading-[1.08] tracking-normal"
+        : "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.55rem,5vw,6rem)] font-bold leading-[1.08] tracking-normal"
     : signalVisible
-      ? "mx-auto max-h-[4.6rem] max-w-full overflow-hidden break-words font-mono text-base font-bold leading-tight tracking-normal sm:max-h-none sm:text-3xl lg:text-4xl"
+      ? "mx-auto max-w-full whitespace-normal break-words font-mono text-base font-bold leading-[1.12] tracking-normal sm:text-2xl lg:text-3xl"
       : textLayerCount === 1
-        ? "mx-auto max-w-full overflow-hidden break-words font-mono text-4xl font-bold leading-tight tracking-normal sm:text-6xl"
-        : "mx-auto max-w-full overflow-hidden break-words font-mono text-3xl font-bold leading-tight tracking-normal sm:text-5xl";
+        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-3xl font-bold leading-[1.1] tracking-normal sm:text-5xl"
+        : "mx-auto max-w-full whitespace-normal break-words font-mono text-2xl font-bold leading-[1.1] tracking-normal sm:text-4xl";
   const plainTextClass = fullscreen
     ? signalVisible
-      ? "mx-auto max-h-[26dvh] max-w-[min(92vw,84rem)] overflow-hidden break-words text-[clamp(1.25rem,4.4vw,5.25rem)] font-extrabold leading-tight"
+      ? denseText
+        ? "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1rem,2vw,2.6rem)] font-extrabold leading-[1.1]"
+        : "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1.3rem,3.9vw,5rem)] font-extrabold leading-[1.1]"
       : textLayerCount === 1
-        ? "mx-auto max-h-[62dvh] max-w-[min(92vw,86rem)] overflow-hidden break-words text-[clamp(2rem,7vw,7rem)] font-extrabold leading-tight"
-        : "mx-auto max-h-[34dvh] max-w-[min(92vw,86rem)] overflow-hidden break-words text-[clamp(1.7rem,5.8vw,5.75rem)] font-extrabold leading-tight"
+        ? "mx-auto max-w-[min(98vw,110rem)] whitespace-normal break-words text-[clamp(2rem,6.2vw,7rem)] font-extrabold leading-[1.1]"
+        : "mx-auto max-w-[min(98vw,110rem)] whitespace-normal break-words text-[clamp(1.55rem,4.7vw,5.6rem)] font-extrabold leading-[1.1]"
     : signalVisible
       ? [
-          "mx-auto max-w-[64rem] overflow-hidden break-words font-extrabold leading-tight",
+          "mx-auto max-w-[68rem] whitespace-normal break-words font-extrabold leading-[1.14]",
           longTextExcerpt
-            ? "max-h-[4rem] text-sm leading-snug sm:max-h-none sm:text-3xl sm:leading-tight"
-            : "text-sm sm:text-3xl lg:text-4xl",
+            ? "text-sm sm:text-2xl lg:text-3xl"
+            : "text-base sm:text-2xl lg:text-3xl",
         ].join(" ")
       : textLayerCount === 1
-        ? "mx-auto max-w-[60rem] overflow-hidden break-words text-4xl font-extrabold leading-tight sm:text-6xl"
-        : "mx-auto max-w-[60rem] overflow-hidden break-words text-3xl font-extrabold leading-tight sm:text-5xl";
+        ? "mx-auto max-w-[64rem] whitespace-normal break-words text-3xl font-extrabold leading-[1.1] sm:text-5xl"
+        : "mx-auto max-w-[64rem] whitespace-normal break-words text-2xl font-extrabold leading-[1.1] sm:text-4xl";
   const rootClass = fullscreen
     ? ["h-full min-h-0 w-full", className].filter(Boolean).join(" ")
     : ["space-y-3", className].filter(Boolean).join(" ");
   const frameClass = fullscreen
-    ? "relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none p-3 sm:p-7"
-    : "relative flex aspect-video min-h-[12rem] w-full flex-col overflow-hidden rounded-xl p-3 sm:min-h-[20rem] sm:p-6";
+    ? "relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none p-1 sm:p-3"
+    : "relative flex aspect-video min-h-[12rem] w-full flex-col overflow-hidden rounded-xl p-3 sm:min-h-[20rem] sm:p-5";
   const frameContentClass = fullscreen
-    ? [
-        "flex min-h-0 flex-1 flex-col items-center justify-center px-2 pb-16 pt-14 text-center sm:px-6 sm:pb-28 sm:pt-12",
-        signalVisible ? "gap-3 sm:gap-7" : "gap-5 sm:gap-10",
-      ].join(" ")
+    ? signalVisible
+      ? "grid min-h-0 flex-1 grid-rows-[auto_minmax(0,1fr)] items-center justify-items-center gap-3 px-1 pb-4 pt-14 text-center sm:gap-6 sm:px-4 sm:pb-6 sm:pt-12"
+      : "flex min-h-0 flex-1 flex-col items-center justify-center gap-4 px-1 pb-4 pt-14 text-center sm:gap-8 sm:px-4 sm:pb-6 sm:pt-12"
     : [
-        "flex min-h-0 flex-1 flex-col items-center justify-center pb-7 pt-0 text-center sm:pb-9 sm:pt-2",
-        signalVisible ? "gap-1 sm:gap-4" : "gap-3 sm:gap-6",
+        "flex min-h-0 flex-1 flex-col items-center justify-center pb-5 pt-0 text-center sm:pb-6 sm:pt-2",
+        signalVisible ? "gap-2 sm:gap-4" : "gap-3 sm:gap-6",
       ].join(" ");
 
   return (
@@ -669,7 +682,6 @@ export function MorseLivePreviewFullscreenControl({
   timelineAriaLabel?: string;
 }) {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
-  const closeButtonRef = React.useRef<HTMLButtonElement | null>(null);
   const hideControlsTimerRef = React.useRef<number | null>(null);
   const fullscreenApiActiveRef = React.useRef(false);
   const [open, setOpen] = React.useState(false);
@@ -731,7 +743,7 @@ export function MorseLivePreviewFullscreenControl({
     const previousBodyOverflow = document.body.style.overflow;
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
+    containerRef.current?.focus();
     showControlsBriefly();
 
     const element = containerRef.current;
@@ -819,8 +831,12 @@ export function MorseLivePreviewFullscreenControl({
           data-testid={`${testIdPrefix}-fullscreen-overlay`}
           data-fullscreen-active="true"
           data-fullscreen-mode={fullscreenApiActive ? "browser" : "fallback"}
+          data-fullscreen-controls-visible={controlsVisible ? "true" : "false"}
+          tabIndex={-1}
           className="fixed inset-0 z-[1000] h-[100dvh] w-screen overflow-hidden bg-slate-950 text-slate-50"
+          onFocusCapture={showControlsBriefly}
           onMouseMove={showControlsBriefly}
+          onPointerDown={showControlsBriefly}
           onPointerMove={showControlsBriefly}
         >
           <MorseVideoPreviewPanel
@@ -836,12 +852,17 @@ export function MorseLivePreviewFullscreenControl({
             visualElapsedMs={safeElapsed}
           />
           <button
-            ref={closeButtonRef}
             type="button"
-            className="absolute right-3 top-3 z-20 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-slate-950/82 px-3 py-2 text-sm font-extrabold text-slate-50 shadow-lg backdrop-blur hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:right-5 sm:top-5 sm:rounded-xl sm:px-4"
+            className={[
+              "absolute right-3 top-3 z-20 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-slate-950/82 px-3 py-2 text-sm font-extrabold text-slate-50 shadow-lg backdrop-blur transition-opacity hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:right-5 sm:top-5 sm:rounded-xl sm:px-4",
+              controlsVisible
+                ? "sm:opacity-100"
+                : "sm:pointer-events-none sm:opacity-0",
+            ].join(" ")}
             onClick={closeFullscreen}
             data-testid={`${testIdPrefix}-fullscreen-exit`}
-            aria-label="Exit fullscreen live preview"
+            aria-label="Exit fullscreen"
+            onFocus={showControlsBriefly}
           >
             <CollapseIcon size={18} title={undefined} aria-hidden="true" />
             <span className="hidden sm:inline">Exit fullscreen</span>
@@ -922,7 +943,7 @@ function MorseVideoPreviewVisual({
         role="img"
         className={[
           fullscreen
-            ? "block h-[clamp(4rem,18vw,14rem)] w-[clamp(4rem,18vw,14rem)] rounded-full"
+            ? "block h-[clamp(3.5rem,13vw,10rem)] w-[clamp(3.5rem,13vw,10rem)] rounded-full"
             : "block h-14 w-14 rounded-full sm:h-36 sm:w-36",
           active ? "bg-sky-300 ring-4 ring-sky-200/50" : "bg-slate-400",
           intensityClass,
@@ -942,7 +963,7 @@ function MorseVideoPreviewVisual({
         role="img"
         className={[
           fullscreen
-            ? "h-[clamp(4rem,18vw,14rem)] w-[clamp(4rem,18vw,14rem)] rounded-full"
+            ? "h-[clamp(3.5rem,13vw,10rem)] w-[clamp(3.5rem,13vw,10rem)] rounded-full"
             : "h-14 w-14 rounded-full sm:h-36 sm:w-36",
           active ? "bg-sky-300 ring-4 ring-sky-200/50" : "bg-slate-400",
           intensityClass,
@@ -987,7 +1008,7 @@ function MorseVideoPreviewVisual({
       <LightBulbIcon
         size={
           fullscreen
-            ? "clamp(5rem, 20vw, 15rem)"
+            ? "clamp(4rem, 14vw, 11rem)"
             : "clamp(4rem, 12vw, 7.5rem)"
         }
         title={undefined}
@@ -1018,26 +1039,28 @@ function renderMorsePreviewWords(
           ].join(" ")}
         >
           {morseCharacters.map((morse, morseIndex) => (
-            <span
-              key={`${word.wordIndex}-${morseIndex}-${morse}`}
-              data-testid={
-                word.active && morseIndex === word.activeCharIndex
-                  ? `${testIdPrefix}-active-morse-character`
-                  : undefined
-              }
-              className={
-                word.active && morseIndex === word.activeCharIndex
-                  ? activePreviewCharacterClass(darkFrame, fullFrameActive)
-                  : undefined
-              }
-            >
-              {morse}
-            </span>
+            <React.Fragment key={`${word.wordIndex}-${morseIndex}-${morse}`}>
+              <span
+                data-testid={
+                  word.active && morseIndex === word.activeCharIndex
+                    ? `${testIdPrefix}-active-morse-character`
+                    : undefined
+                }
+                className={
+                  word.active && morseIndex === word.activeCharIndex
+                    ? activePreviewCharacterClass(darkFrame, fullFrameActive)
+                    : undefined
+                }
+              >
+                {morse}
+              </span>
+              {morseIndex < morseCharacters.length - 1 ? " " : null}
+            </React.Fragment>
           ))}
         </span>
         {wordOffset < words.length - 1 ? (
-          <span className="mx-1 select-none opacity-70" aria-hidden="true">
-            /
+          <span className="mx-1 select-none opacity-70">
+            {" / "}
           </span>
         ) : null}
       </React.Fragment>
