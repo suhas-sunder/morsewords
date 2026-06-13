@@ -430,9 +430,26 @@ test.describe("Morse book page foundation", () => {
       "true",
     );
     await expect(page.locator("h1")).toContainText("Treasure Island");
+    const sourceMetadataLink = page.getByTestId(
+      "morse-book-source-metadata-link",
+    );
+    await expect(sourceMetadataLink).toHaveText("Project Gutenberg ID 120");
+    await expect(sourceMetadataLink).toHaveAttribute(
+      "href",
+      "https://www.gutenberg.org/ebooks/120",
+    );
+    await expect(sourceMetadataLink).toHaveAttribute("target", "_blank");
+    await expect(sourceMetadataLink).toHaveAttribute(
+      "rel",
+      /noopener noreferrer/,
+    );
+    await expect(sourceMetadataLink).not.toHaveAttribute("rel", /nofollow/);
     await expect(
       page.getByRole("link", { name: /Project Gutenberg ebook #120/ }),
     ).toHaveAttribute("href", "https://www.gutenberg.org/ebooks/120");
+    await expect(
+      page.getByRole("link", { name: "Translate your own text" }),
+    ).toHaveAttribute("href", "/morse-code-book-translator");
     await expect(page.locator("[data-mw-morse-book-source-preview]")).toBeVisible();
     await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
       "Project Gutenberg License",
@@ -441,6 +458,9 @@ test.describe("Morse book page foundation", () => {
     await expect(
       page.getByRole("link", { name: "Open live Morse player" }),
     ).toHaveAttribute("href", APPROVED_AUDIOBOOK_PUBLIC_PATH);
+    await expect(
+      page.getByRole("link", { name: "Print Morse pages" }),
+    ).toHaveAttribute("href", `${APPROVED_BOOK_PUBLIC_PATH}/print`);
     const liveTranslationLink = page.getByTestId(
       "morse-book-view-live-translation-link",
     );

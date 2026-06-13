@@ -151,6 +151,9 @@ const intensityLabels: Record<MorseVideoIntensity, string> = {
   high: "High",
 };
 
+const metadataLinkClass =
+  "font-semibold text-sky-900 underline decoration-sky-900/45 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+
 type DownloadStatus =
   | { kind: "idle"; message: string }
   | { kind: "working"; message: string }
@@ -209,6 +212,16 @@ const LOADING_STATUS_MESSAGES = [
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("en-US").format(value);
+}
+
+function bookSourceMetadataLabel(source: MorseBookManifest["source"]) {
+  return `${source.provider}${source.gutenbergId ? ` ID ${source.gutenbergId}` : ""}`;
+}
+
+function bookSourceMetadataHref(source: MorseBookManifest["source"]) {
+  const gutenbergId = source.gutenbergId?.trim();
+  if (gutenbergId) return `https://www.gutenberg.org/ebooks/${gutenbergId}`;
+  return source.sourceUrl?.trim() || "";
 }
 
 function clippedText(text: string, limit: number) {
@@ -846,6 +859,8 @@ function MorseBookWorkspace({
     () => getMorseBookAuthorDisplay(book.author),
     [book.author],
   );
+  const sourceMetadataLabel = bookSourceMetadataLabel(book.source);
+  const sourceMetadataHref = bookSourceMetadataHref(book.source);
   const themeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(themeMode);
@@ -2335,8 +2350,21 @@ function MorseBookWorkspace({
         <div className="space-y-5">
           <div>
             <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-              {book.source.provider}
-              {book.source.gutenbergId ? ` ID ${book.source.gutenbergId}` : ""}
+              {sourceMetadataHref ? (
+                <a
+                  href={sourceMetadataHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={metadataLinkClass}
+                  data-testid="morse-book-source-metadata-link"
+                >
+                  {sourceMetadataLabel}
+                </a>
+              ) : (
+                <span data-testid="morse-book-source-metadata-text">
+                  {sourceMetadataLabel}
+                </span>
+              )}
               <span className="mx-2 text-slate-400" aria-hidden="true">
                 /
               </span>
