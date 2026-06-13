@@ -1,6 +1,15 @@
 import * as React from "react";
 
-import { LightBulbIcon } from "~/client/assets/svg/Icons";
+import {
+  CollapseIcon,
+  ExpandIcon,
+  LightBulbIcon,
+  PlayIcon,
+  StopIcon,
+} from "~/client/assets/svg/Icons";
+import {
+  toolControlButtonClass,
+} from "~/client/components/shared/ToolWorkspace";
 
 import {
   getMorseVideoFrameTextState,
@@ -16,12 +25,14 @@ import type {
 } from "./morseVideoTypes";
 
 type ResolvedPreviewBackground = "warm-morsewords" | "dark-morsewords";
+type MorseVideoPreviewLayout = "inline" | "fullscreen";
 
 type MorseVideoPreviewPanelProps = {
   className?: string;
   headingId: string;
   headingText?: string;
   isPlaying: boolean;
+  layout?: MorseVideoPreviewLayout;
   preview: MorseVideoPreview;
   resolvedBackgroundStyle: ResolvedPreviewBackground;
   settings: MorseVideoSettings;
@@ -37,6 +48,7 @@ type MorseVideoPreviewTimelineProps = {
   onSeekCommit?: (elapsedMs: number) => void;
   preview: MorseVideoPreview;
   testIdPrefix: string;
+  tone?: "light" | "dark";
 };
 
 type MorseAudioTimingStripProps = {
@@ -54,6 +66,16 @@ type MorseAudioTimingStripProps = {
   };
   testId?: string;
   testIdPrefix?: string;
+  tone?: "light" | "dark";
+};
+
+type FullscreenDocument = Document & {
+  webkitExitFullscreen?: () => Promise<void> | void;
+  webkitFullscreenElement?: Element | null;
+};
+
+type FullscreenElement = HTMLDivElement & {
+  webkitRequestFullscreen?: () => Promise<void> | void;
 };
 
 const TIMELINE_EDGE_PADDING_PX = 20;
@@ -157,12 +179,14 @@ export function MorseVideoPreviewPanel({
   headingId,
   headingText = "Video preview frame",
   isPlaying,
+  layout = "inline",
   preview,
   resolvedBackgroundStyle,
   settings,
   testIdPrefix,
   visualElapsedMs,
 }: MorseVideoPreviewPanelProps) {
+  const fullscreen = layout === "fullscreen";
   const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
   const previewFrame = getMorseVideoPreviewFrame(preview, visualElapsedMs);
   const textState = getMorseVideoFrameTextState(preview.timeline, visualElapsedMs);
@@ -174,24 +198,55 @@ export function MorseVideoPreviewPanel({
   const fullFrameActive = markActive && settings.visualStyle === "full-frame";
   const frameStyle = previewFrameStyle(darkFrame, fullFrameActive);
   const longTextExcerpt = previewFrame.textExcerpt.length > 44;
-  const textStackClass = signalVisible
-    ? "w-full max-w-[64rem] space-y-0.5 sm:space-y-2"
-    : "w-full max-w-[66rem] space-y-3 sm:space-y-4";
-  const morseTextClass = signalVisible
-    ? "mx-auto max-h-[4.6rem] max-w-full overflow-hidden break-words font-mono text-base font-bold leading-tight tracking-normal sm:max-h-none sm:text-3xl lg:text-4xl"
-    : textLayerCount === 1
-      ? "mx-auto max-w-full overflow-hidden break-words font-mono text-4xl font-bold leading-tight tracking-normal sm:text-6xl"
-      : "mx-auto max-w-full overflow-hidden break-words font-mono text-3xl font-bold leading-tight tracking-normal sm:text-5xl";
-  const plainTextClass = signalVisible
+  const textStackClass = fullscreen
+    ? signalVisible
+      ? "w-full max-w-[min(94vw,88rem)] space-y-2 sm:space-y-4"
+      : "w-full max-w-[min(94vw,92rem)] space-y-4 sm:space-y-7"
+    : signalVisible
+      ? "w-full max-w-[64rem] space-y-0.5 sm:space-y-2"
+      : "w-full max-w-[66rem] space-y-3 sm:space-y-4";
+  const morseTextClass = fullscreen
+    ? signalVisible
+      ? "mx-auto max-h-[32dvh] max-w-full overflow-hidden break-words font-mono text-[clamp(1.35rem,5vw,5.75rem)] font-bold leading-tight tracking-normal"
+      : textLayerCount === 1
+        ? "mx-auto max-h-[62dvh] max-w-full overflow-hidden break-words font-mono text-[clamp(2.2rem,8vw,8rem)] font-bold leading-tight tracking-normal"
+        : "mx-auto max-h-[38dvh] max-w-full overflow-hidden break-words font-mono text-[clamp(1.8rem,6.8vw,6.5rem)] font-bold leading-tight tracking-normal"
+    : signalVisible
+      ? "mx-auto max-h-[4.6rem] max-w-full overflow-hidden break-words font-mono text-base font-bold leading-tight tracking-normal sm:max-h-none sm:text-3xl lg:text-4xl"
+      : textLayerCount === 1
+        ? "mx-auto max-w-full overflow-hidden break-words font-mono text-4xl font-bold leading-tight tracking-normal sm:text-6xl"
+        : "mx-auto max-w-full overflow-hidden break-words font-mono text-3xl font-bold leading-tight tracking-normal sm:text-5xl";
+  const plainTextClass = fullscreen
+    ? signalVisible
+      ? "mx-auto max-h-[26dvh] max-w-[min(92vw,84rem)] overflow-hidden break-words text-[clamp(1.25rem,4.4vw,5.25rem)] font-extrabold leading-tight"
+      : textLayerCount === 1
+        ? "mx-auto max-h-[62dvh] max-w-[min(92vw,86rem)] overflow-hidden break-words text-[clamp(2rem,7vw,7rem)] font-extrabold leading-tight"
+        : "mx-auto max-h-[34dvh] max-w-[min(92vw,86rem)] overflow-hidden break-words text-[clamp(1.7rem,5.8vw,5.75rem)] font-extrabold leading-tight"
+    : signalVisible
+      ? [
+          "mx-auto max-w-[64rem] overflow-hidden break-words font-extrabold leading-tight",
+          longTextExcerpt
+            ? "max-h-[4rem] text-sm leading-snug sm:max-h-none sm:text-3xl sm:leading-tight"
+            : "text-sm sm:text-3xl lg:text-4xl",
+        ].join(" ")
+      : textLayerCount === 1
+        ? "mx-auto max-w-[60rem] overflow-hidden break-words text-4xl font-extrabold leading-tight sm:text-6xl"
+        : "mx-auto max-w-[60rem] overflow-hidden break-words text-3xl font-extrabold leading-tight sm:text-5xl";
+  const rootClass = fullscreen
+    ? ["h-full min-h-0 w-full", className].filter(Boolean).join(" ")
+    : ["space-y-3", className].filter(Boolean).join(" ");
+  const frameClass = fullscreen
+    ? "relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none p-3 sm:p-7"
+    : "relative flex aspect-video min-h-[12rem] w-full flex-col overflow-hidden rounded-xl p-3 sm:min-h-[20rem] sm:p-6";
+  const frameContentClass = fullscreen
     ? [
-        "mx-auto max-w-[64rem] overflow-hidden break-words font-extrabold leading-tight",
-        longTextExcerpt
-          ? "max-h-[4rem] text-sm leading-snug sm:max-h-none sm:text-3xl sm:leading-tight"
-          : "text-sm sm:text-3xl lg:text-4xl",
+        "flex min-h-0 flex-1 flex-col items-center justify-center px-2 pb-16 pt-14 text-center sm:px-6 sm:pb-28 sm:pt-12",
+        signalVisible ? "gap-3 sm:gap-7" : "gap-5 sm:gap-10",
       ].join(" ")
-    : textLayerCount === 1
-      ? "mx-auto max-w-[60rem] overflow-hidden break-words text-4xl font-extrabold leading-tight sm:text-6xl"
-      : "mx-auto max-w-[60rem] overflow-hidden break-words text-3xl font-extrabold leading-tight sm:text-5xl";
+    : [
+        "flex min-h-0 flex-1 flex-col items-center justify-center pb-7 pt-0 text-center sm:pb-9 sm:pt-2",
+        signalVisible ? "gap-1 sm:gap-4" : "gap-3 sm:gap-6",
+      ].join(" ");
 
   return (
     <section
@@ -199,10 +254,10 @@ export function MorseVideoPreviewPanel({
       data-preview-playing={isPlaying ? "true" : "false"}
       data-preview-active={markActive ? "true" : "false"}
       aria-labelledby={headingId}
-      className={["space-y-3", className].filter(Boolean).join(" ")}
+      className={rootClass}
     >
       <div
-        className="relative flex aspect-video min-h-[12rem] w-full flex-col overflow-hidden rounded-xl p-3 sm:min-h-[20rem] sm:p-6"
+        className={frameClass}
         style={frameStyle}
         data-testid={`${testIdPrefix}-frame`}
         data-preview-playing={isPlaying ? "true" : "false"}
@@ -214,14 +269,12 @@ export function MorseVideoPreviewPanel({
         </h3>
 
         <div
-          className={[
-            "flex min-h-0 flex-1 flex-col items-center justify-center pb-7 pt-0 text-center sm:pb-9 sm:pt-2",
-            signalVisible ? "gap-1 sm:gap-4" : "gap-3 sm:gap-6",
-          ].join(" ")}
+          className={frameContentClass}
         >
           {signalVisible ? (
             <MorseVideoPreviewVisual
               active={markActive}
+              fullscreen={fullscreen}
               intensity={settings.intensity}
               preview={preview}
               previewFrame={previewFrame}
@@ -292,6 +345,7 @@ export function MorseVideoPreviewTimeline({
   onSeekCommit,
   preview,
   testIdPrefix,
+  tone = "light",
 }: MorseVideoPreviewTimelineProps) {
   const durationMs = Math.max(1, preview.durationMs);
   const safeElapsed = Math.max(0, Math.min(durationMs, elapsedMs));
@@ -315,6 +369,7 @@ export function MorseVideoPreviewTimeline({
         preview={preview}
         testId={`${testIdPrefix}-timing-strip`}
         testIdPrefix={`${testIdPrefix}-timing-strip`}
+        tone={tone}
       />
     </div>
   );
@@ -331,6 +386,7 @@ export function MorseAudioTimingStrip({
   preview,
   testId = "book-audio-preview-timeline",
   testIdPrefix = "book-audio-preview",
+  tone = "light",
 }: MorseAudioTimingStripProps) {
   const stripRef = React.useRef<HTMLDivElement | null>(null);
   const latestSeekRef = React.useRef<number | null>(null);
@@ -344,6 +400,14 @@ export function MorseAudioTimingStrip({
     [durationMs, preview.timeline.events],
   );
   const timeText = `Preview time ${formatTime(safeElapsed)} / ${formatTime(durationMs)}`;
+  const labelClass =
+    tone === "dark"
+      ? "font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-100"
+      : "font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500";
+  const stripClass =
+    tone === "dark"
+      ? "relative mt-2 h-14 w-full touch-none select-none overflow-hidden rounded-xl bg-slate-900/95"
+      : "relative mt-2 h-14 w-full touch-none select-none overflow-hidden rounded-xl bg-slate-950/90";
 
   const seekFromClientX = React.useCallback(
     (clientX: number) => {
@@ -483,11 +547,11 @@ export function MorseAudioTimingStrip({
   return (
     <div className="mt-4 w-full" data-testid={testId}>
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+        <span className={labelClass}>
           {headingText}
         </span>
         <span
-          className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+          className={labelClass}
           data-testid={`${testIdPrefix}-time`}
         >
           {timeText}
@@ -517,7 +581,7 @@ export function MorseAudioTimingStrip({
           timingStripDisplay.compressed ? "condensed" : "full"
         }
         className={[
-          "relative mt-2 h-14 w-full touch-none select-none overflow-hidden rounded-xl bg-slate-950/90",
+          stripClass,
           disabled
             ? "cursor-not-allowed opacity-65"
             : "cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
@@ -573,8 +637,261 @@ export function MorseAudioTimingStrip({
   );
 }
 
+export function MorseLivePreviewFullscreenControl({
+  disabled = false,
+  elapsedMs,
+  headingText = "Fullscreen live Morse preview",
+  isPlaying,
+  onPlay,
+  onSeek,
+  onSeekCommit,
+  onStop,
+  preview,
+  resolvedBackgroundStyle,
+  segmentControl,
+  settings,
+  testIdPrefix,
+  timelineAriaLabel = "Fullscreen live player timeline",
+}: {
+  disabled?: boolean;
+  elapsedMs: number;
+  headingText?: string;
+  isPlaying: boolean;
+  onPlay: () => void;
+  onSeek: (elapsedMs: number) => void;
+  onSeekCommit?: (elapsedMs: number) => void;
+  onStop: () => void;
+  preview: MorseVideoPreview;
+  resolvedBackgroundStyle: ResolvedPreviewBackground;
+  segmentControl?: React.ReactNode;
+  settings: MorseVideoSettings;
+  testIdPrefix: string;
+  timelineAriaLabel?: string;
+}) {
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = React.useRef<HTMLButtonElement | null>(null);
+  const hideControlsTimerRef = React.useRef<number | null>(null);
+  const fullscreenApiActiveRef = React.useRef(false);
+  const [open, setOpen] = React.useState(false);
+  const [fullscreenApiActive, setFullscreenApiActive] = React.useState(false);
+  const [controlsVisible, setControlsVisible] = React.useState(true);
+  const safeElapsed = Math.max(0, Math.min(Math.max(1, preview.durationMs), elapsedMs));
+  const fullscreenSettings = React.useMemo(
+    () =>
+      settings.showBranding
+        ? {
+            ...settings,
+            showBranding: false,
+          }
+        : settings,
+    [settings],
+  );
+
+  const clearHideControlsTimer = React.useCallback(() => {
+    if (hideControlsTimerRef.current === null) return;
+    window.clearTimeout(hideControlsTimerRef.current);
+    hideControlsTimerRef.current = null;
+  }, []);
+
+  const showControlsBriefly = React.useCallback(() => {
+    setControlsVisible(true);
+    clearHideControlsTimer();
+    hideControlsTimerRef.current = window.setTimeout(() => {
+      setControlsVisible(false);
+      hideControlsTimerRef.current = null;
+    }, 2600);
+  }, [clearHideControlsTimer]);
+
+  const closeFullscreen = React.useCallback(() => {
+    if (typeof document === "undefined") {
+      setOpen(false);
+      return;
+    }
+    const activeElement = getBrowserFullscreenElement();
+    if (activeElement && activeElement === containerRef.current) {
+      void Promise.resolve(exitBrowserFullscreen())
+        .catch(() => undefined)
+        .finally(() => {
+          fullscreenApiActiveRef.current = false;
+          setFullscreenApiActive(false);
+          setOpen(false);
+        });
+      return;
+    }
+    fullscreenApiActiveRef.current = false;
+    setFullscreenApiActive(false);
+    setOpen(false);
+  }, []);
+
+  React.useEffect(() => () => clearHideControlsTimer(), [clearHideControlsTimer]);
+
+  React.useEffect(() => {
+    if (!open || typeof document === "undefined") return undefined;
+    const previousDocumentOverflow = document.documentElement.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+    showControlsBriefly();
+
+    const element = containerRef.current;
+    if (element) {
+      const requestFullscreen = getRequestFullscreen(element);
+      if (requestFullscreen) {
+        void Promise.resolve(requestFullscreen())
+          .then(() => {
+            fullscreenApiActiveRef.current = true;
+            setFullscreenApiActive(true);
+          })
+          .catch(() => {
+            fullscreenApiActiveRef.current = false;
+            setFullscreenApiActive(false);
+          });
+      }
+    }
+
+    return () => {
+      document.documentElement.style.overflow = previousDocumentOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+      clearHideControlsTimer();
+    };
+  }, [clearHideControlsTimer, open, showControlsBriefly]);
+
+  React.useEffect(() => {
+    if (!open || typeof document === "undefined") return undefined;
+    const handleFullscreenChange = () => {
+      const activeElement = getBrowserFullscreenElement();
+      const active = activeElement === containerRef.current;
+      const wasActive = fullscreenApiActiveRef.current;
+      fullscreenApiActiveRef.current = active;
+      setFullscreenApiActive(active);
+      if (wasActive && !active && !activeElement) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener(
+      "webkitfullscreenchange",
+      handleFullscreenChange,
+    );
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange,
+      );
+    };
+  }, [open]);
+
+  React.useEffect(() => {
+    if (!open) return undefined;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeFullscreen();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [closeFullscreen, open]);
+
+  return (
+    <>
+      <button
+        type="button"
+        className={toolControlButtonClass({
+          tone: "light",
+          hover: "dark",
+          rounded: "xl",
+        })}
+        onClick={() => setOpen(true)}
+        data-testid={`${testIdPrefix}-fullscreen-button`}
+        aria-label="Open live preview fullscreen"
+      >
+        <ExpandIcon size={18} title={undefined} aria-hidden="true" />
+        Fullscreen
+      </button>
+      {open ? (
+        <div
+          ref={containerRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={headingText}
+          data-testid={`${testIdPrefix}-fullscreen-overlay`}
+          data-fullscreen-active="true"
+          data-fullscreen-mode={fullscreenApiActive ? "browser" : "fallback"}
+          className="fixed inset-0 z-[1000] h-[100dvh] w-screen overflow-hidden bg-slate-950 text-slate-50"
+          onMouseMove={showControlsBriefly}
+          onPointerMove={showControlsBriefly}
+        >
+          <MorseVideoPreviewPanel
+            className="h-full min-h-0 w-full"
+            headingId={`${testIdPrefix}-fullscreen-heading`}
+            headingText={headingText}
+            isPlaying={isPlaying}
+            layout="fullscreen"
+            preview={preview}
+            resolvedBackgroundStyle={resolvedBackgroundStyle}
+            settings={fullscreenSettings}
+            testIdPrefix={`${testIdPrefix}-fullscreen`}
+            visualElapsedMs={safeElapsed}
+          />
+          <button
+            ref={closeButtonRef}
+            type="button"
+            className="absolute right-3 top-3 z-20 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-slate-950/82 px-3 py-2 text-sm font-extrabold text-slate-50 shadow-lg backdrop-blur hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:right-5 sm:top-5 sm:rounded-xl sm:px-4"
+            onClick={closeFullscreen}
+            data-testid={`${testIdPrefix}-fullscreen-exit`}
+            aria-label="Exit fullscreen live preview"
+          >
+            <CollapseIcon size={18} title={undefined} aria-hidden="true" />
+            <span className="hidden sm:inline">Exit fullscreen</span>
+          </button>
+          <div
+            className={[
+              "absolute inset-x-3 bottom-3 z-20 hidden rounded-xl bg-slate-950/88 p-3 text-slate-50 shadow-lg backdrop-blur transition-opacity sm:block sm:p-4",
+              controlsVisible ? "opacity-100" : "pointer-events-none opacity-0",
+            ].join(" ")}
+          >
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                className={toolControlButtonClass({
+                  tone: isPlaying ? "light" : "dark",
+                  hover: isPlaying ? "dark" : undefined,
+                  rounded: "xl",
+                })}
+                onClick={isPlaying ? onStop : onPlay}
+                disabled={disabled && !isPlaying}
+              >
+                {isPlaying ? (
+                  <StopIcon size={18} title={undefined} aria-hidden="true" />
+                ) : (
+                  <PlayIcon size={18} title={undefined} aria-hidden="true" />
+                )}
+                {isPlaying ? "Pause live player" : "Play live player"}
+              </button>
+              {segmentControl}
+            </div>
+            <MorseVideoPreviewTimeline
+              ariaLabel={timelineAriaLabel}
+              disabled={disabled && !isPlaying}
+              elapsedMs={safeElapsed}
+              onSeek={onSeek}
+              onSeekCommit={onSeekCommit}
+              preview={preview}
+              testIdPrefix={`${testIdPrefix}-fullscreen`}
+              tone="dark"
+            />
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 function MorseVideoPreviewVisual({
   active,
+  fullscreen,
   intensity,
   preview,
   previewFrame,
@@ -582,6 +899,7 @@ function MorseVideoPreviewVisual({
   visualStyle,
 }: {
   active: boolean;
+  fullscreen: boolean;
   intensity: MorseVideoSettings["intensity"];
   preview: MorseVideoPreview;
   previewFrame: ReturnType<typeof getMorseVideoPreviewFrame>;
@@ -603,7 +921,9 @@ function MorseVideoPreviewVisual({
         aria-label="Dot preview"
         role="img"
         className={[
-          "block h-14 w-14 rounded-full sm:h-36 sm:w-36",
+          fullscreen
+            ? "block h-[clamp(4rem,18vw,14rem)] w-[clamp(4rem,18vw,14rem)] rounded-full"
+            : "block h-14 w-14 rounded-full sm:h-36 sm:w-36",
           active ? "bg-sky-300 ring-4 ring-sky-200/50" : "bg-slate-400",
           intensityClass,
         ]
@@ -621,7 +941,9 @@ function MorseVideoPreviewVisual({
         aria-label="Full-frame flash preview"
         role="img"
         className={[
-          "h-14 w-14 rounded-full sm:h-36 sm:w-36",
+          fullscreen
+            ? "h-[clamp(4rem,18vw,14rem)] w-[clamp(4rem,18vw,14rem)] rounded-full"
+            : "h-14 w-14 rounded-full sm:h-36 sm:w-36",
           active ? "bg-sky-300 ring-4 ring-sky-200/50" : "bg-slate-400",
           intensityClass,
         ]
@@ -637,7 +959,9 @@ function MorseVideoPreviewVisual({
         data-testid={`${testIdPrefix}-morse-text`}
         data-preview-active={active ? "true" : "false"}
         className={[
-          "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-4xl font-bold tracking-normal sm:text-6xl",
+          fullscreen
+            ? "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-[clamp(2.5rem,10vw,9rem)] font-bold tracking-normal"
+            : "max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-mono text-4xl font-bold tracking-normal sm:text-6xl",
           active ? "text-sky-300" : "",
         ]
           .filter(Boolean)
@@ -661,7 +985,11 @@ function MorseVideoPreviewVisual({
       ].join(" ")}
     >
       <LightBulbIcon
-        size="clamp(4rem, 12vw, 7.5rem)"
+        size={
+          fullscreen
+            ? "clamp(5rem, 20vw, 15rem)"
+            : "clamp(4rem, 12vw, 7.5rem)"
+        }
         title={undefined}
         aria-hidden="true"
       />
@@ -795,6 +1123,31 @@ function previewFrameStyle(darkFrame: boolean, fullFrameActive: boolean) {
   return fullFrameActive
     ? { backgroundColor: "#08324f", color: "#f8fafc" }
     : { backgroundColor: "#fffdf8", color: "#08324f" };
+}
+
+function getRequestFullscreen(element: FullscreenElement) {
+  if (element.requestFullscreen) {
+    return () => element.requestFullscreen();
+  }
+  if (element.webkitRequestFullscreen) {
+    return () => element.webkitRequestFullscreen?.();
+  }
+  return null;
+}
+
+function getBrowserFullscreenElement() {
+  if (typeof document === "undefined") return null;
+  const fullscreenDocument = document as FullscreenDocument;
+  return document.fullscreenElement ?? fullscreenDocument.webkitFullscreenElement ?? null;
+}
+
+function exitBrowserFullscreen() {
+  if (typeof document === "undefined") return undefined;
+  const fullscreenDocument = document as FullscreenDocument;
+  if (document.exitFullscreen) {
+    return document.exitFullscreen();
+  }
+  return fullscreenDocument.webkitExitFullscreen?.();
 }
 
 function formatPreviewDuration(elapsedMs: number) {

@@ -496,6 +496,60 @@ test.describe("Morse book page foundation", () => {
     await expect(page.getByText("Condensed long preview")).toHaveCount(0);
     await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
     await expect(livePlayer.getByText(/morsewords\.com/i)).toHaveCount(0);
+    const liveTimeline = livePlayer.getByRole("slider", {
+      name: "Live player timeline",
+    });
+    await liveTimeline.focus();
+    await page.keyboard.press("ArrowRight");
+    await expect
+      .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+      .toBeGreaterThan(0);
+    const liveSegmentSelect = livePlayer.getByTestId(
+      "morse-book-live-segment-select",
+    );
+    const liveSegmentValue =
+      (await liveSegmentSelect.count()) > 0
+        ? await liveSegmentSelect.inputValue()
+        : null;
+    const fullscreenButton = livePlayer.getByTestId(
+      "book-video-preview-fullscreen-button",
+    );
+    await expect(fullscreenButton).toBeVisible();
+    await fullscreenButton.click();
+    const fullscreenOverlay = page.getByTestId(
+      "book-video-preview-fullscreen-overlay",
+    );
+    await expect(fullscreenOverlay).toBeVisible();
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-active",
+      "true",
+    );
+    await expect(
+      page.getByTestId("book-video-preview-fullscreen-exit"),
+    ).toBeVisible();
+    if (liveSegmentValue !== null) {
+      await expect(
+        page.getByTestId("morse-book-live-fullscreen-segment-select"),
+      ).toHaveValue(liveSegmentValue);
+    }
+    await expect
+      .poll(async () =>
+        Number(
+          await fullscreenOverlay
+            .getByRole("slider", { name: "Fullscreen live player timeline" })
+            .getAttribute("aria-valuenow"),
+        ),
+      )
+      .toBeGreaterThan(0);
+    await page.getByTestId("book-video-preview-fullscreen-exit").click();
+    await expect(page.getByTestId("book-video-preview-fullscreen-overlay")).toHaveCount(0);
+    await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
+    await expect
+      .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+      .toBeGreaterThan(0);
+    if (liveSegmentValue !== null) {
+      await expect(liveSegmentSelect).toHaveValue(liveSegmentValue);
+    }
     const playerSettings = page
       .locator("#book-live-morse-player details")
       .filter({ hasText: "Player settings" });

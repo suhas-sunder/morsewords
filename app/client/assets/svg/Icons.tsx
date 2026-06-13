@@ -738,6 +738,24 @@ export const StopIcon = React.memo(function StopIcon(props: SvgIconProps) {
   );
 });
 
+export const ExpandIcon = React.memo(function ExpandIcon(props: SvgIconProps) {
+  return (
+    <SvgIconBase title="Enter fullscreen" {...props}>
+      <path d="M4 4h7v2H7.41l4.3 4.29-1.42 1.42L6 7.41V11H4zm9 0h7v7h-2V7.41l-4.29 4.3-1.42-1.42L16.59 6H13zM4 13h2v3.59l4.29-4.3 1.42 1.42L7.41 18H11v2H4zm15 0h-2v3.59l-4.29-4.3-1.42 1.42 4.3 4.29H13v2h7z" />
+    </SvgIconBase>
+  );
+});
+
+export const CollapseIcon = React.memo(function CollapseIcon(
+  props: SvgIconProps,
+) {
+  return (
+    <SvgIconBase title="Exit fullscreen" {...props}>
+      <path d="M10 4h2v8H4v-2h4.59L4.29 5.71 5.71 4.29 10 8.59zm4 0 4.29 4.29 1.42-1.42L15.41 4H20v-2h-8v8h2zM4 14h8v8h-2v-4.59l-4.29 4.3-1.42-1.42L8.59 16H4zm16 0h-8v8h2v-4.59l4.29 4.3 1.42-1.42L15.41 16H20z" />
+    </SvgIconBase>
+  );
+});
+
 export const ShareIcon = React.memo(function ShareIcon(props: SvgIconProps) {
   return (
     <SvgIconBase title="Share" {...props}>
@@ -1031,6 +1049,8 @@ export const Icons = {
   PauseIcon,
   PlayIcon,
   StopIcon,
+  ExpandIcon,
+  CollapseIcon,
   ShareIcon,
   WarningIcon,
   PrintIcon,

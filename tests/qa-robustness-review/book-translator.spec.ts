@@ -2232,6 +2232,72 @@ test("live preview progress restores only for the same translator source hash", 
   await expect(page.getByText("Video format")).toHaveCount(0);
 });
 
+test("live preview fullscreen preserves translator source and progress", async ({
+  page,
+}) => {
+  await openBookTranslator(page);
+  const finalWord = "apples";
+  const source = `${"PARIS ".repeat(900)}${finalWord}`;
+  const sourceInput = page.getByLabel("Paste long-form source text");
+  await sourceInput.fill(source);
+
+  const preview = previewSection(page);
+  await expectPreviewReady(page);
+  await expect(preview.getByTestId("book-video-preview-frame")).toBeVisible();
+  await expect(preview.getByTestId("book-video-preview-fullscreen-button")).toBeVisible();
+
+  const segmentSelect = preview.getByTestId("book-live-preview-segment-select");
+  await expect(segmentSelect).toBeVisible();
+  const segmentCount = await segmentSelect.locator("option").count();
+  expect(segmentCount).toBeGreaterThan(1);
+  const finalSegmentValue = String(segmentCount - 1);
+  await segmentSelect.selectOption(finalSegmentValue);
+
+  const liveTimeline = preview.getByRole("slider", {
+    name: "Live player timeline",
+  });
+  await liveTimeline.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect
+    .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+    .toBeGreaterThan(0);
+
+  await preview.getByTestId("book-video-preview-fullscreen-button").click();
+  const overlay = page.getByTestId("book-video-preview-fullscreen-overlay");
+  await expect(overlay).toBeVisible();
+  await expect(overlay).toHaveAttribute("data-fullscreen-active", "true");
+  await expect(
+    page.getByTestId("book-video-preview-fullscreen-exit"),
+  ).toBeVisible();
+  await expect(sourceInput).toHaveValue(source);
+  await expect(
+    page.getByTestId("book-live-preview-fullscreen-segment-select"),
+  ).toHaveValue(finalSegmentValue);
+  await expect
+    .poll(async () =>
+      Number(
+        await overlay
+          .getByRole("slider", { name: "Fullscreen live player timeline" })
+          .getAttribute("aria-valuenow"),
+      ),
+    )
+    .toBeGreaterThan(0);
+
+  await page.getByTestId("book-video-preview-fullscreen-exit").click();
+  await expect(page.getByTestId("book-video-preview-fullscreen-overlay")).toHaveCount(0);
+  await expect(preview.getByTestId("book-video-preview-frame")).toBeVisible();
+  await expect(sourceInput).toHaveValue(source);
+  await expect(segmentSelect).toHaveValue(finalSegmentValue);
+  await expect
+    .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+    .toBeGreaterThan(0);
+  await expect(
+    preview.getByTestId("book-preview-download-mp3-link"),
+  ).toBeVisible();
+  await expect(page.getByText("Download MP4")).toHaveCount(0);
+  await expect(page.getByText("Download WebM")).toHaveCount(0);
+});
+
 test("MP3 download stays primary while the live visual player remains available", async ({
   page,
 }) => {

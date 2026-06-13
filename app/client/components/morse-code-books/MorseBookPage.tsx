@@ -33,6 +33,7 @@ import type { ResolvedMorseVideoBackgroundStyle } from "~/client/components/shar
 import type { MorseVideoPreview } from "~/client/components/shared/video/morseVideoPreview";
 import {
   MorseAudioTimingStrip,
+  MorseLivePreviewFullscreenControl,
   MorseVideoPreviewPanel,
   MorseVideoPreviewTimeline,
 } from "~/client/components/shared/video/MorseVideoPreviewControls";
@@ -2150,6 +2151,28 @@ function MorseBookWorkspace({
               </a>
             }
             elapsedMs={videoPreviewElapsedMs}
+            enableFullscreen
+            fullscreenSegmentControl={
+              liveSegments.length > 1 ? (
+                <label className="min-w-[12rem] text-sm font-semibold text-slate-100">
+                  Segment
+                  <select
+                    value={activeLiveSegmentIndex}
+                    onChange={(event) =>
+                      handleLiveSegmentChange(Number(event.target.value))
+                    }
+                    className="ml-0 mt-2 w-full rounded-lg bg-slate-50 px-3 py-2 font-semibold text-slate-950 hover:bg-white focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:ml-2 sm:mt-0 sm:w-auto"
+                    data-testid="morse-book-live-fullscreen-segment-select"
+                  >
+                    {liveSegments.map((segment, index) => (
+                      <option key={segment.index} value={index}>
+                        Segment {index + 1} of {liveSegments.length}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : null
+            }
             headingText="Live Morse player"
             onPlay={startVideoPreview}
             onSeek={handleScrubVideoPreview}
@@ -3368,6 +3391,8 @@ function AudioPreviewControls({
 function VideoPreviewControls({
   action,
   elapsedMs,
+  enableFullscreen = false,
+  fullscreenSegmentControl,
   headingText = "Live visual player",
   onPlay,
   onSeek,
@@ -3383,6 +3408,8 @@ function VideoPreviewControls({
 }: {
   action?: React.ReactNode;
   elapsedMs: number;
+  enableFullscreen?: boolean;
+  fullscreenSegmentControl?: React.ReactNode;
   headingText?: string;
   onPlay: () => void;
   onSeek: (elapsedMs: number) => void;
@@ -3427,6 +3454,23 @@ function VideoPreviewControls({
           {playing ? stopLabel : playLabel}
         </ToolButton>
         {action}
+        {enableFullscreen ? (
+          <MorseLivePreviewFullscreenControl
+            elapsedMs={safeElapsed}
+            headingText="Fullscreen live Morse preview"
+            isPlaying={playing}
+            onPlay={onPlay}
+            onSeek={onSeek}
+            onSeekCommit={onSeekCommit}
+            onStop={onStop}
+            preview={preview}
+            resolvedBackgroundStyle={resolvedBackgroundStyle}
+            segmentControl={fullscreenSegmentControl}
+            settings={settings}
+            testIdPrefix="book-video-preview"
+            timelineAriaLabel="Fullscreen live player timeline"
+          />
+        ) : null}
       </div>
       <MorseVideoPreviewTimeline
         ariaLabel={timelineAriaLabel}
