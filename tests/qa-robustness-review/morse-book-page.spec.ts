@@ -43,6 +43,10 @@ function bookJsonPattern(slug: string) {
   return `**/morse-book-content/books/${slug}.json*`;
 }
 
+function bookPreviewPattern(slug: string) {
+  return `**/book-previews/${slug}.preview.json*`;
+}
+
 function readJson<T>(relativePath: string): T {
   return JSON.parse(
     fs.readFileSync(path.join(ROOT, relativePath), "utf8"),
@@ -389,6 +393,11 @@ async function waitForApprovedBookWorkspace(page: Page) {
   await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
     "data-mw-morse-book-available",
     "true",
+    { timeout: 30_000 },
+  );
+  await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
+    "data-mw-morse-book-full-loading",
+    "false",
     { timeout: 30_000 },
   );
   await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
@@ -1008,6 +1017,116 @@ test.describe("Morse book page foundation", () => {
     expect(bookJsonRequests).toHaveLength(1);
   });
 
+  test("renders a public book shell from the per-book preview while full data is pending", async ({
+    page,
+  }) => {
+    await page.addInitScript(
+      ({ cachePrefix, slug }) => {
+        Object.keys(localStorage)
+          .filter(
+            (key) =>
+              key.startsWith(cachePrefix) ||
+              key.startsWith(`morsewords:book-runtime:settings:v1:${slug}:`),
+          )
+          .forEach((key) => localStorage.removeItem(key));
+      },
+      { cachePrefix: BOOK_CACHE_KEY_PREFIX, slug: ALICE_SLUG },
+    );
+
+    const previewRequests: string[] = [];
+    const previewAssetRouteRequests: string[] = [];
+    const fullBookRequests: string[] = [];
+    let releaseFullBook = () => {};
+    const fullBookPending = new Promise<void>((resolve) => {
+      releaseFullBook = resolve;
+    });
+
+    page.on("request", (request) => {
+      const url = request.url();
+      if (url.includes("/book-previews/")) previewRequests.push(url);
+    });
+
+    await blockExternalNetwork(page);
+    await page.route(bookPreviewPattern(ALICE_SLUG), async (route) => {
+      previewAssetRouteRequests.push(route.request().url());
+      await route.continue();
+    });
+    await page.route(bookJsonPattern(ALICE_SLUG), async (route) => {
+      fullBookRequests.push(route.request().url());
+      await fullBookPending;
+      await route.continue();
+    });
+
+    try {
+      await gotoPublicBookPage(page, ALICE_PUBLIC_PATH);
+
+      const pageRoot = page.locator("[data-mw-morse-book-page]");
+      await expect(pageRoot).toHaveAttribute(
+        "data-mw-morse-book-full-loading",
+        "true",
+      );
+      await expect(pageRoot).toHaveAttribute(
+        "data-mw-morse-book-preview-state",
+        "preview",
+      );
+      await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
+      await expect(page.locator("#book-live-morse-player")).toBeVisible();
+      await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+        "CHAPTER I",
+      );
+      await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
+        "THE MILLENNIUM FULCRUM EDITION",
+      );
+      await expect(page.locator("[data-mw-morse-book-full-loading-status]")).toBeVisible();
+      await expect(page.locator("[data-mw-morse-book-section-skeleton]")).toHaveCount(4);
+      await expect(page.getByTestId("morse-book-download-audiobook-link")).toBeVisible();
+      await expect(page.locator("#book-mp3-download")).toBeVisible();
+
+      expect(fullBookRequests).toHaveLength(1);
+      const slugPreviewRequests = previewRequests.filter((url) =>
+        url.includes(`/book-previews/${ALICE_SLUG}.preview.json`),
+      );
+      expect(slugPreviewRequests).toHaveLength(1);
+      expect(previewAssetRouteRequests).toHaveLength(1);
+      expect(
+        previewRequests.every((url) =>
+          url.includes(`/book-previews/${ALICE_SLUG}.preview.json`),
+        ),
+      ).toBe(true);
+      expect(previewRequests.some((url) => url.includes("/book-previews/manifest.json"))).toBe(
+        false,
+      );
+
+      releaseFullBook();
+      await expect(pageRoot).toHaveAttribute(
+        "data-mw-morse-book-full-loading",
+        "false",
+      );
+      await expect(pageRoot).toHaveAttribute(
+        "data-mw-morse-book-preview-state",
+        "ready",
+      );
+      await expect(page.locator("[data-mw-morse-book-section-skeleton]")).toHaveCount(0);
+
+      const selectedIds = await selectedBookSectionIds(page);
+      expect(selectedIds[0]).toBe("chapter-001");
+      expect(selectedIds.every((id) => id.startsWith("chapter-"))).toBe(true);
+      expect(selectedIds).not.toContain("title-page-001");
+      expect(selectedIds).not.toContain("title-page-002");
+      await expect(
+        page.locator("[data-mw-morse-book-section-row][data-mw-morse-book-section-id='title-page-001']"),
+      ).toBeVisible();
+      await expect(
+        page.locator("[data-mw-morse-book-section-select='title-page-001']"),
+      ).not.toBeChecked();
+      await expect(
+        page.getByRole("link", { name: /Project Gutenberg ebook #11/ }),
+      ).toBeVisible();
+    } finally {
+      releaseFullBook();
+    }
+  });
+
   test("loads an approved audiobook page with one whole-book JSON and live player controls", async ({
     page,
   }) => {
@@ -1150,9 +1269,17 @@ test.describe("Morse book page foundation", () => {
       waitUntil: "domcontentloaded",
     });
     expect(initialResponse?.ok()).toBe(true);
-    await expect(page.locator("[data-testid='morse-book-loading']")).toBeVisible();
-    await expect(page.getByTestId("morse-book-loading-status")).toContainText(
-      /Loading book text|Fetching book data|Preparing chapters|Restoring saved settings/,
+    await expect(
+      page.locator(
+        "[data-testid='morse-book-loading'], [data-mw-morse-book-page][data-mw-morse-book-full-loading='true']",
+      ).first(),
+    ).toBeVisible();
+    await expect(
+      page.locator(
+        "[data-testid='morse-book-loading-status'], [data-mw-morse-book-full-loading-status]",
+      ).first(),
+    ).toContainText(
+      /Loading book text|Fetching book data|Preparing chapters|Restoring saved settings|Loading full book sections/,
     );
     await waitForRouteReady(page);
     await expect(page.locator("[data-testid='morse-book-load-error']")).toBeVisible();

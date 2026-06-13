@@ -203,3 +203,44 @@ export type MorseBookPublicContentJson = {
   manifest: MorseBookManifest;
   sections: MorseBookSectionJson[];
 };
+
+export type MorseBookPreviewAsset = {
+  version: 1;
+  slug: string;
+  contentVersion: string;
+  contentHash: string;
+  defaultSectionId: string;
+  defaultSectionKind: MorseBookSectionKind;
+  defaultSectionLabel: string;
+  defaultSectionTitle: string | null;
+  previewText: string;
+  estimatedRuntimeSeconds: number;
+  wordCount: number;
+  characterCount: number;
+  estimatedTypingMinutes: number;
+  estimatedListeningMinutes: number;
+  morseCharacterEstimate: number;
+  textPreview: string;
+  truncated: boolean;
+};
+
+export type MorseBookPreviewManifest = {
+  version: 1;
+  assetBasePath: string;
+  targetRuntimeSeconds: number;
+  books: Array<{
+    slug: string;
+    path: string;
+    contentVersion: string;
+    contentHash: string;
+    defaultSectionId: string;
+    previewBytes: number;
+    previewCharacterCount: number;
+    estimatedRuntimeSeconds: number;
+    truncated: boolean;
+  }>;
+  missing: Array<{
+    slug: string;
+    reason: string;
+  }>;
+};

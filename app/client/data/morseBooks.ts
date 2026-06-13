@@ -22,6 +22,7 @@ import type {
   MorseBookSectionJson,
   MorseBookSectionSummary,
 } from "./morseBookTypes";
+import { getDefaultMorseBookLiveSectionId } from "./morseBookSectionDefaults";
 import {
   getMorseBookPublicContentUrls as getConfiguredMorseBookPublicContentUrls,
   normalizeMorseBookContentBaseUrl,
@@ -705,11 +706,10 @@ export async function getMorseBookManifest(
 }
 
 export function getDefaultMorseBookSectionId(book: MorseBookManifest) {
-  return (
-    book.sections.find((section) => section.includeByDefault)?.id ??
-    book.sections[0]?.id ??
-    null
-  );
+  const fallbackSectionId = book.sections[0]?.id ?? null;
+  return fallbackSectionId
+    ? getDefaultMorseBookLiveSectionId(book, fallbackSectionId)
+    : null;
 }
 
 export function getMorseBookSectionSummary(

@@ -110,6 +110,14 @@ import {
   morseBookPath,
   morseBookPrintPath,
 } from "~/client/data/morseBooks";
+import { getMorseBookPreviewRuntimeContent } from "~/client/data/morseBookPreviews";
+import {
+  defaultReadableExcludedMorseBookSectionKinds,
+  getDefaultMorseBookLiveSectionId,
+  getDefaultMorseBookSectionIds,
+  getMorseBookAsideSectionDisplayLabel,
+  mainMorseBookStructureLabelPattern,
+} from "~/client/data/morseBookSectionDefaults";
 import {
   formatMorseBookAuthors,
   getMorseBookAuthorDisplay,
@@ -176,12 +184,14 @@ type MorseBookPageProps = {
 type MorseBookRuntimeState =
   | {
       book: MorseBookManifest;
+      fullBookLoading: boolean;
       initialSection: MorseBookSectionJson;
-      status: "ready";
+      status: "ready" | "preview";
       message: "";
     }
   | {
       book: null;
+      fullBookLoading: false;
       initialSection: null;
       status: "loading" | "error";
       message: string;
@@ -258,98 +268,15 @@ const sectionKindLabels: Record<MorseBookSectionKind, string> = {
   unknown: "Part",
 };
 
-const defaultReadableExcludedSectionKinds = new Set<MorseBookSectionKind>([
-  "title-page",
-  "dedication",
-  "epigraph",
-  "preface",
-  "introduction",
-  "epilogue",
-  "appendix",
-  "notes",
-  "glossary",
-  "index",
-  "transcriber-note",
-  "source-license",
-  "advertisement",
-]);
-
-const mainStructureLabelPattern = /^(chapter|part|book|volume|section)\b/i;
-
-const asideDefaultNameExclusionPattern =
-  /\b(table of contents|contents|list of illustrations|illustrations?|title page|copyright|license|source|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter)\b/;
-
-const asideDefaultEvidenceExclusionPattern =
-  /\b(project gutenberg|gutenberg|transcriber|produced by|production note|copyright|license|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter)\b/;
-
-function normalizedSectionText(
-  ...parts: Array<string | null | undefined>
-) {
-  return parts
-    .filter((part): part is string => Boolean(part))
-    .join(" ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase();
-}
-
-function sectionEvidenceText(section: MorseBookSectionSummary) {
-  return normalizedSectionText(
-    section.label,
-    section.title,
-    section.textPreview,
-  );
-}
-
-function sectionNameText(section: MorseBookSectionSummary) {
-  return normalizedSectionText(section.label, section.title);
-}
-
-function asideSectionDisplayLabel(section: MorseBookSectionSummary) {
-  const nameText = sectionNameText(section);
-  const evidenceText = sectionEvidenceText(section);
-
-  if (section.kind === "source-license") {
-    return /\b(project gutenberg|gutenberg|license|copyright)\b/.test(
-      evidenceText,
-    )
-      ? "License"
-      : "Source note";
-  }
-  if (section.kind === "transcriber-note") return "Transcriber note";
-  if (section.kind === "preface") return "Preface";
-  if (section.kind === "introduction") return "Introduction";
-  if (section.kind === "appendix") return "Appendix";
-  if (section.kind === "notes") return "Notes";
-  if (section.kind === "glossary") return "Glossary";
-  if (section.kind === "index") return "Index";
-  if (section.kind === "epilogue") return "End matter";
-
-  if (/\b(project gutenberg|gutenberg license|license|copyright)\b/.test(evidenceText)) {
-    return "License";
-  }
-  if (/\btranscriber\b/.test(evidenceText)) return "Transcriber note";
-  if (/\bpublisher\b/.test(evidenceText)) return "Publisher note";
-  if (/\bsource\b/.test(nameText)) return "Source note";
-  if (/\b(table of contents|contents)\b/.test(nameText)) return "Contents";
-  if (/\bpreface\b/.test(nameText)) return "Preface";
-  if (/\bintroduction\b/.test(nameText)) return "Introduction";
-  if (/\bappendix\b/.test(nameText)) return "Appendix";
-  if (/\bfootnotes?\b/.test(nameText)) return "Footnotes";
-  if (/\bnotes?\b/.test(nameText)) return "Notes";
-  if (/\bbibliography\b/.test(nameText)) return "Bibliography";
-  if (/\bindex\b/.test(nameText)) return "Index";
-  if (/\bend matter\b/.test(nameText)) return "End matter";
-
-  return null;
-}
-
 function sectionDisplayName(section: MorseBookSectionSummary) {
-  const asideLabel = asideSectionDisplayLabel(section);
-  if (asideLabel && mainStructureLabelPattern.test(section.label)) {
+  const asideLabel = getMorseBookAsideSectionDisplayLabel(section);
+  if (asideLabel && mainMorseBookStructureLabelPattern.test(section.label)) {
     return asideLabel;
   }
-  if (asideLabel && defaultReadableExcludedSectionKinds.has(section.kind)) {
+  if (
+    asideLabel &&
+    defaultReadableExcludedMorseBookSectionKinds.has(section.kind)
+  ) {
     return asideLabel;
   }
   return section.title ? `${section.label}: ${section.title}` : section.label;
@@ -565,50 +492,18 @@ function defaultSectionIdsForBook(
   book: MorseBookManifest,
   fallbackSectionId: string,
 ) {
-  const readable = book.sections
-    .filter((section) => isDefaultReadableBookSection(section))
-    .map((section) => section.id);
-  if (readable.length > 0) return readable;
-
-  const included = book.sections
-    .filter((section) => section.includeByDefault)
-    .map((section) => section.id);
-  return included.length > 0 ? included : [fallbackSectionId];
+  return getDefaultMorseBookSectionIds(book, fallbackSectionId);
 }
 
 function defaultLiveSectionIdForBook(
   book: MorseBookManifest,
   fallbackSectionId: string,
 ) {
-  return defaultSectionIdsForBook(book, fallbackSectionId)[0] ?? fallbackSectionId;
+  return getDefaultMorseBookLiveSectionId(book, fallbackSectionId);
 }
 
 function allSectionIdsForBook(book: MorseBookManifest) {
   return book.sections.map((section) => section.id);
-}
-
-function isDefaultReadableBookSection(section: MorseBookSectionSummary) {
-  if (defaultReadableExcludedSectionKinds.has(section.kind)) return false;
-
-  const nameText = sectionNameText(section);
-  if (asideDefaultNameExclusionPattern.test(nameText)) return false;
-
-  const labelText = sectionEvidenceText(section);
-  if (asideDefaultEvidenceExclusionPattern.test(labelText)) return false;
-
-  const earlySection = section.order <= 4;
-  if (earlySection && section.wordCount < 35) return false;
-  if (
-    earlySection &&
-    section.wordCount < 90 &&
-    /\b(cover|frontispiece|by\s+[a-z]|published|copyright|all rights reserved)\b/.test(
-      labelText,
-    )
-  ) {
-    return false;
-  }
-
-  return section.wordCount > 0;
 }
 
 function selectedSectionIdsForBook(
@@ -716,6 +611,7 @@ export default function MorseBookPage({
     if (book && initialSection) {
       return {
         book,
+        fullBookLoading: false,
         initialSection,
         status: "ready",
         message: "",
@@ -723,6 +619,7 @@ export default function MorseBookPage({
     }
     return {
       book: null,
+      fullBookLoading: false,
       initialSection: null,
       status: "loading",
       message: "",
@@ -736,6 +633,7 @@ export default function MorseBookPage({
     if (book && initialSection) {
       setRuntimeState({
         book,
+        fullBookLoading: false,
         initialSection,
         status: "ready",
         message: "",
@@ -745,6 +643,7 @@ export default function MorseBookPage({
     if (!bookSummary) {
       setRuntimeState({
         book: null,
+        fullBookLoading: false,
         initialSection: null,
         status: "error",
         message: "This Morse book could not be found.",
@@ -753,18 +652,36 @@ export default function MorseBookPage({
     }
 
     let cancelled = false;
+    let fullContentReady = false;
     setRuntimeState({
       book: null,
+      fullBookLoading: false,
       initialSection: null,
       status: "loading",
       message: "",
     });
+
+    if (mode === "book") {
+      getMorseBookPreviewRuntimeContent(bookSummary).then((previewContent) => {
+        if (cancelled || fullContentReady || !previewContent) return;
+        setRuntimeState({
+          book: previewContent.book,
+          fullBookLoading: true,
+          initialSection: previewContent.initialSection,
+          status: "preview",
+          message: "",
+        });
+      });
+    }
+
     getMorseBookPublicContent(bookSummary.slug)
       .then((content) => {
         if (cancelled) return;
+        fullContentReady = true;
         if (!content) {
           setRuntimeState({
             book: null,
+            fullBookLoading: false,
             initialSection: null,
             status: "error",
             message:
@@ -782,6 +699,7 @@ export default function MorseBookPage({
         if (!sectionId || !firstSection) {
           setRuntimeState({
             book: null,
+            fullBookLoading: false,
             initialSection: null,
             status: "error",
             message:
@@ -793,6 +711,7 @@ export default function MorseBookPage({
         }
         setRuntimeState({
           book: content.manifest,
+          fullBookLoading: false,
           initialSection: firstSection,
           status: "ready",
           message: "",
@@ -800,8 +719,10 @@ export default function MorseBookPage({
       })
       .catch(() => {
         if (cancelled) return;
+        fullContentReady = true;
         setRuntimeState({
           book: null,
+          fullBookLoading: false,
           initialSection: null,
           status: "error",
           message:
@@ -816,7 +737,7 @@ export default function MorseBookPage({
     };
   }, [book, bookSummary, initialSection, mode, retryKey]);
 
-  if (runtimeState.status !== "ready") {
+  if (runtimeState.status !== "ready" && runtimeState.status !== "preview") {
     return (
       <MorseBookRuntimeState
         message={runtimeState.message}
@@ -831,6 +752,7 @@ export default function MorseBookPage({
   return (
     <MorseBookWorkspace
       book={runtimeState.book}
+      fullBookLoading={runtimeState.fullBookLoading}
       initialSection={runtimeState.initialSection}
       mode={mode}
       previewMode={previewMode}
@@ -937,11 +859,13 @@ function MorseBookRuntimeState({
 
 function MorseBookWorkspace({
   book,
+  fullBookLoading,
   initialSection,
   mode,
   previewMode,
 }: {
   book: MorseBookManifest;
+  fullBookLoading: boolean;
   initialSection: MorseBookSectionJson;
   mode: "book" | "audiobook";
   previewMode: "unpublished" | "test-published" | null;
@@ -1032,7 +956,9 @@ function MorseBookWorkspace({
     previewAudioPlayerRef.current = previewAudioPlayer;
   }, [previewAudioPlayer]);
 
-  const bookRuntimeSignature = `${book.slug}:${book.contentVersion}:${book.contentHash}`;
+  const bookRuntimeSignature = `${book.slug}:${book.contentVersion}:${book.contentHash}:${
+    fullBookLoading ? "preview" : "full"
+  }:${book.sections.length}`;
   const defaultSectionIds = React.useMemo(
     () => defaultSectionIdsForBook(book, initialSection.sectionId),
     [bookRuntimeSignature, initialSection.sectionId],
@@ -1048,7 +974,9 @@ function MorseBookWorkspace({
     restoredRuntimeSignatureRef.current = bookRuntimeSignature;
     setSettingsRestored(false);
     setLoadedSections(new Map([[initialSection.sectionId, initialSection]]));
-    const saved = loadSavedMorseBookRuntimeSettings(book, defaultSectionIds);
+    const saved = fullBookLoading
+      ? null
+      : loadSavedMorseBookRuntimeSettings(book, defaultSectionIds);
     if (saved) {
       const shouldRestoreRuntimeLivePlayer = isAudiobook;
       const savedLiveElapsedMs = shouldRestoreRuntimeLivePlayer
@@ -1099,6 +1027,7 @@ function MorseBookWorkspace({
     bookRuntimeSignature,
     defaultLiveSectionId,
     defaultSectionIds,
+    fullBookLoading,
     initialSection.sectionId,
     isAudiobook,
   ]);
@@ -1129,6 +1058,7 @@ function MorseBookWorkspace({
 
   React.useEffect(() => {
     if (!settingsRestored) return;
+    if (fullBookLoading) return;
     if (skipNextRuntimeSettingsSaveRef.current) {
       skipNextRuntimeSettingsSaveRef.current = false;
       return;
@@ -1164,6 +1094,7 @@ function MorseBookWorkspace({
     completedLiveSectionIds,
     defaultSectionIds,
     exportSettings,
+    fullBookLoading,
     isAudiobook,
     persistedLiveElapsedMs,
     runtimeSettingsResetVersion,
@@ -1175,6 +1106,12 @@ function MorseBookWorkspace({
 
   React.useEffect(() => {
     let cancelled = false;
+    if (fullBookLoading) {
+      setSectionStatus("idle");
+      return () => {
+        cancelled = true;
+      };
+    }
     const sectionIdsToLoad = isAudiobook
       ? [activeLiveSectionId]
       : Array.from(new Set([...scopeSectionIds, activeLiveSectionId]));
@@ -1205,7 +1142,14 @@ function MorseBookWorkspace({
     return () => {
       cancelled = true;
     };
-  }, [activeLiveSectionId, book, isAudiobook, loadedSections, scopeSectionIds]);
+  }, [
+    activeLiveSectionId,
+    book,
+    fullBookLoading,
+    isAudiobook,
+    loadedSections,
+    scopeSectionIds,
+  ]);
 
   const publishReady = isMorseBookPublishReady(book);
   const selectedScopeSections = React.useMemo(
@@ -1443,7 +1387,7 @@ function MorseBookWorkspace({
     videoPreviewBaseElapsedRef.current = 0;
   }, [activeLiveSegmentIndex, liveSegments.length]);
   React.useEffect(() => {
-    if (isAudiobook || !settingsRestored) return;
+    if (isAudiobook || fullBookLoading || !settingsRestored) return;
     if (
       restoredBookLivePreviewProgressHashRef.current ===
       livePreviewProgressContentHash
@@ -1474,6 +1418,7 @@ function MorseBookWorkspace({
     videoPreviewBaseElapsedRef.current = restoredElapsedMs;
   }, [
     book,
+    fullBookLoading,
     isAudiobook,
     livePreviewProgressContentHash,
     liveSegments,
@@ -1482,6 +1427,7 @@ function MorseBookWorkspace({
   React.useEffect(() => {
     if (
       isAudiobook ||
+      fullBookLoading ||
       !settingsRestored ||
       liveSegments.length === 0 ||
       restoredBookLivePreviewProgressHashRef.current !==
@@ -1511,6 +1457,7 @@ function MorseBookWorkspace({
   }, [
     activeLiveSegmentIndex,
     book,
+    fullBookLoading,
     isAudiobook,
     livePreviewProgressContentHash,
     liveSegments.length,
@@ -1583,7 +1530,9 @@ function MorseBookWorkspace({
       : runningDownloadLabel(exportProgress, downloadKind)
     : downloadLabel;
   const progressPercent = exportProgressPercent(exportProgress);
-  const downloadBlockedMessage = publishReady
+  const downloadBlockedMessage = fullBookLoading
+    ? "Full book sections are still loading."
+    : publishReady
     ? oversizedExportMessage
     : "Downloads are unavailable for this book.";
   const renderEstimateLabel = estimatedRenderTimeLabel(
@@ -1592,6 +1541,7 @@ function MorseBookWorkspace({
   );
   const downloadDisabled =
     !publishReady ||
+    fullBookLoading ||
     !scopeReady ||
     exportParts.length === 0 ||
     exportRunning ||
@@ -1605,8 +1555,10 @@ function MorseBookWorkspace({
         ? "Readable defaults selected"
         : `${formatNumber(scopeSectionIds.length)} selected chapters`;
   const loadingSelectedSections =
+    fullBookLoading ||
     scopeSectionIds.length > 0 &&
     (!scopeReady || sectionStatus === "loading" || selectionUpdating);
+  const sectionControlsDisabled = fullBookLoading;
 
   React.useEffect(() => {
     if (!exportRunning || exportStartedAtMs === null) return undefined;
@@ -2385,7 +2337,9 @@ function MorseBookWorkspace({
       data-mw-morse-book-page="true"
       data-mw-morse-book-page-mode={mode}
       data-mw-morse-book-available={publishReady ? "true" : "false"}
+      data-mw-morse-book-full-loading={fullBookLoading ? "true" : "false"}
       data-mw-morse-book-preview-mode={previewMode ?? "public"}
+      data-mw-morse-book-preview-state={fullBookLoading ? "preview" : "ready"}
       data-mw-morse-book-settings-restored={settingsRestored ? "true" : "loading"}
     >
       <ToolHero
@@ -2570,11 +2524,17 @@ function MorseBookWorkspace({
           badge={isAudiobook ? "Chapter audio" : "Book sections"}
         >
           <div className="space-y-4 px-3 pb-3">
-            <label className="flex cursor-pointer items-start gap-3 rounded-lg bg-[#fffdf8]/82 px-3 py-3 text-sm font-semibold text-slate-700">
+            <label
+              className={[
+                "flex items-start gap-3 rounded-lg bg-[#fffdf8]/82 px-3 py-3 text-sm font-semibold text-slate-700",
+                sectionControlsDisabled ? "cursor-not-allowed opacity-70" : "cursor-pointer",
+              ].join(" ")}
+            >
               <input
                 ref={selectAllDefaultRef}
                 type="checkbox"
                 checked={allDefaultSectionsSelected}
+                disabled={sectionControlsDisabled}
                 onChange={(event) =>
                   handleSelectAllDefaultSections(event.target.checked)
                 }
@@ -2597,7 +2557,7 @@ function MorseBookWorkspace({
                 tone="light"
                 hover="dark"
                 onClick={handleSelectAllSections}
-                disabled={allSectionsSelected}
+                disabled={sectionControlsDisabled || allSectionsSelected}
                 className="min-h-10 rounded-lg px-3 py-1.5 text-sm"
               >
                 Select all
@@ -2607,12 +2567,22 @@ function MorseBookWorkspace({
                 tone="light"
                 hover="dark"
                 onClick={handleClearSelection}
-                disabled={selectedSectionIds.size === 0}
+                disabled={sectionControlsDisabled || selectedSectionIds.size === 0}
                 className="min-h-10 rounded-lg px-3 py-1.5 text-sm"
               >
                 Clear selection
               </ToolButton>
             </div>
+
+            {fullBookLoading ? (
+              <div
+                className="rounded-lg bg-[#fffdf8]/82 px-3 py-2 text-sm font-semibold text-slate-600"
+                role="status"
+                data-mw-morse-book-full-loading-status="true"
+              >
+                Loading full book sections...
+              </div>
+            ) : null}
 
             <div className="max-h-[42rem] overflow-y-auto pr-1 lg:max-h-[calc(100vh-10rem)]">
               <div className="space-y-2" role="list" aria-label="Book sections">
@@ -2623,7 +2593,10 @@ function MorseBookWorkspace({
                       key={section.id}
                       role="listitem"
                       className={[
-                        "flex cursor-pointer items-start gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold",
+                        "flex items-start gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold",
+                        sectionControlsDisabled
+                          ? "cursor-not-allowed opacity-70"
+                          : "cursor-pointer",
                         selected
                           ? "bg-slate-950 text-sky-100"
                           : "bg-[#fffdf8]/78 text-slate-700 hover:bg-[#fffaf2]",
@@ -2638,6 +2611,7 @@ function MorseBookWorkspace({
                       <input
                         type="checkbox"
                         checked={selected}
+                        disabled={sectionControlsDisabled}
                         onChange={(event) =>
                           handleSectionSelectionChange(
                             section.id,
@@ -2667,6 +2641,22 @@ function MorseBookWorkspace({
                     </label>
                   );
                 })}
+                {fullBookLoading
+                  ? Array.from({ length: 4 }, (_, index) => (
+                      <div
+                        key={`book-section-skeleton-${index}`}
+                        role="listitem"
+                        className="flex items-start gap-3 rounded-lg bg-[#fffdf8]/62 px-3 py-2.5 text-sm font-semibold text-slate-400"
+                        data-mw-morse-book-section-skeleton="true"
+                      >
+                        <span className="mt-0.5 h-4 w-4 rounded border border-slate-300 bg-white/70" />
+                        <span className="grid min-w-0 flex-1 gap-2">
+                          <span className="h-4 w-3/4 rounded bg-slate-200/80" />
+                          <span className="h-3 w-1/2 rounded bg-slate-200/70" />
+                        </span>
+                      </div>
+                    ))
+                  : null}
               </div>
             </div>
           </div>

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "slug": "the-happy-family",
+  "contentVersion": "d248625a57495d71",
+  "contentHash": "d248625a57495d710db65b555d3186171c9c8818eb324e50470d226215350f27",
+  "defaultSectionId": "part-001",
+  "defaultSectionKind": "part",
+  "defaultSectionLabel": "Part 1",
+  "defaultSectionTitle": null,
+  "previewText": "The Happy Family\n\nThis MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing source content for follow-up.",
+  "estimatedRuntimeSeconds": 120,
+  "wordCount": 29,
+  "characterCount": 186,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 995,
+  "textPreview": "The Happy Family This MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing source content for follo",
+  "truncated": false
+}
