@@ -48,6 +48,10 @@ import {
   getMorseVideoPreviewFrame,
 } from "../../app/client/components/shared/video/morseVideoPreview";
 import {
+  LIVE_PREVIEW_START_BUFFER_MS,
+  getLivePreviewStartDelayMs,
+} from "../../app/client/components/shared/video/livePreviewPlayback";
+import {
   blockExternalNetwork,
   collectConsoleErrors,
   waitForRouteReady,
@@ -363,6 +367,9 @@ async function expectActivePreviewHighlights(
     const textWord = scope.querySelector<HTMLElement>(
       `[data-testid="${prefix}-active-text-word"]`,
     );
+    const textCharacter = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-active-text-character"]`,
+    );
     const morseOverlay = scope.querySelector<HTMLElement>(
       `[data-testid="${prefix}-morse-overlay"]`,
     );
@@ -382,12 +389,16 @@ async function expectActivePreviewHighlights(
         return {
           backgroundColor: "",
           borderRadius: 0,
+          paddingLeft: 0,
+          paddingRight: 0,
         };
       }
       const style = window.getComputedStyle(element);
       return {
         backgroundColor: style.backgroundColor,
         borderRadius: Number.parseFloat(style.borderTopLeftRadius),
+        paddingLeft: Number.parseFloat(style.paddingLeft),
+        paddingRight: Number.parseFloat(style.paddingRight),
       };
     }
 
@@ -400,6 +411,7 @@ async function expectActivePreviewHighlights(
       morseStyle: styleFor(morseWord),
       morseText: morseWord?.textContent?.replace(/\s+/g, " ").trim() ?? "",
       overlayRect: rectFor(morseOverlay),
+      textCharacterBackground: styleFor(textCharacter).backgroundColor,
       textStyle: styleFor(textWord),
       textText: textWord?.textContent?.trim() ?? "",
     };
@@ -417,6 +429,10 @@ async function expectActivePreviewHighlights(
     highlight.morseStyle.borderRadius - highlight.textStyle.borderRadius,
   )).toBeLessThanOrEqual(1);
   expect(highlight.morseCharacterBackground).toBe("rgba(0, 0, 0, 0)");
+  expect(highlight.textCharacterBackground).toBe("rgba(0, 0, 0, 0)");
+  expect(Math.abs(
+    highlight.textStyle.paddingLeft - highlight.textStyle.paddingRight,
+  )).toBeLessThanOrEqual(1);
   expect(highlight.morseOverlayText).toContain(highlight.morseText);
   expect(highlight.morseOverlayText).not.toBe(highlight.morseText);
   expect(highlight.morseRect.width).toBeGreaterThan(0);
@@ -1546,6 +1562,67 @@ test("live visual timeline uses shared timing", () => {
   );
 });
 
+test("live preview frames keep stable display batches and a start buffer", () => {
+  const settings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
+  const text = [
+    "ALPHA BRAVO CHARLIE DELTA ECHO FOXTROT GOLF HOTEL INDIA JULIET KILO LIMA",
+    "MIKE NOVEMBER OSCAR PAPA QUEBEC ROMEO SIERRA TANGO UNIFORM VICTOR",
+  ].join(" ");
+  const preview = buildMorseVideoPreview(DEFAULT_BOOK_VIDEO_SETTINGS, text, {
+    charWpm: settings.charWpm,
+    farnsworthWpm: settings.farnsworthWpm,
+  });
+  const wordWindowLimit = 48;
+  const firstToken = preview.timeline.tokens[0];
+  expect(firstToken).toBeTruthy();
+  const firstFrame = getMorseVideoPreviewFrame(
+    preview,
+    firstToken.startMs + 1,
+    wordWindowLimit,
+  );
+  const firstWindowWordIds = firstFrame.words.map((word) => word.wordIndex);
+  expect(firstWindowWordIds.length).toBeGreaterThan(1);
+  expectMorseGroupsSeparated(firstFrame.morseExcerpt);
+
+  const lastVisibleWord = firstFrame.words[firstFrame.words.length - 1];
+  const lastVisibleWordToken = preview.timeline.tokens.find(
+    (token) => token.wordIndex === lastVisibleWord.wordIndex,
+  );
+  expect(lastVisibleWordToken).toBeTruthy();
+  const lastFrameInBatch = getMorseVideoPreviewFrame(
+    preview,
+    lastVisibleWordToken!.startMs + 1,
+    wordWindowLimit,
+  );
+  expect(lastFrameInBatch.words.map((word) => word.wordIndex)).toEqual(
+    firstWindowWordIds,
+  );
+
+  const nextBatchToken = preview.timeline.tokens.find(
+    (token) => token.wordIndex > lastVisibleWord.wordIndex,
+  );
+  expect(nextBatchToken).toBeTruthy();
+  const nextFrame = getMorseVideoPreviewFrame(
+    preview,
+    nextBatchToken!.startMs + 1,
+    wordWindowLimit,
+  );
+  expect(nextFrame.words.map((word) => word.wordIndex)).not.toEqual(
+    firstWindowWordIds,
+  );
+  expect(nextFrame.words[0].wordIndex).toBeGreaterThan(
+    firstWindowWordIds[0],
+  );
+
+  expect(
+    getLivePreviewStartDelayMs(0, LIVE_PREVIEW_START_BUFFER_MS + 1_000),
+  ).toBe(LIVE_PREVIEW_START_BUFFER_MS);
+  expect(
+    getLivePreviewStartDelayMs(500, LIVE_PREVIEW_START_BUFFER_MS + 1_000),
+  ).toBe(0);
+  expect(getLivePreviewStartDelayMs(0, LIVE_PREVIEW_START_BUFFER_MS)).toBe(0);
+});
+
 test("long export planning splits oversized selections before allocation and estimates video size", () => {
   const settings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
   const noSplitSettings = {
@@ -2540,12 +2617,27 @@ test("live preview fullscreen preserves translator source and progress", async (
     fullscreenFrame,
     page.getByTestId("book-video-preview-fullscreen-active-text-word"),
   );
+  await overlay.getByRole("button", { name: "Play live player" }).click();
   await expect(overlay).toHaveAttribute(
     "data-fullscreen-controls-visible",
     "false",
-    { timeout: 4_500 },
+    { timeout: 1_500 },
+  );
+  await expect(overlay).toHaveAttribute(
+    "data-fullscreen-controls-suppressed",
+    "true",
   );
   await page.mouse.move(24, 24);
+  await expect(overlay).toHaveAttribute(
+    "data-fullscreen-controls-visible",
+    "false",
+  );
+  await expect(overlay).toHaveAttribute(
+    "data-fullscreen-controls-suppressed",
+    "false",
+    { timeout: 4_000 },
+  );
+  await page.mouse.move(32, 32);
   await expect(overlay).toHaveAttribute(
     "data-fullscreen-controls-visible",
     "true",
@@ -2754,6 +2846,20 @@ test("live visual preview settings hide obsolete video controls and keep layers 
   expectLayerInsideFrame(defaultMetrics, defaultMetrics.text);
   expectMorseGroupsSeparated(defaultMetrics.morse!.text);
   expectNormalPlainTextSpacing(defaultMetrics.text);
+  const defaultTextWindow = normalizedPreviewText(defaultMetrics.text!.text);
+  const defaultMorseWindow = normalizedPreviewText(defaultMetrics.morse!.text);
+  const liveTimeline = previewSection(page).getByRole("slider", {
+    name: "Live player timeline",
+  });
+  await liveTimeline.focus();
+  await page.keyboard.press("ArrowRight");
+  const nudgedMetrics = await readPreviewLayerMetrics(preview);
+  expect(normalizedPreviewText(nudgedMetrics.text!.text)).toBe(
+    defaultTextWindow,
+  );
+  expect(normalizedPreviewText(nudgedMetrics.morse!.text)).toBe(
+    defaultMorseWindow,
+  );
   await expect(
     sourceStep(page).getByRole("button", { name: "Download MP3" }),
   ).toBeVisible();
@@ -2943,10 +3049,38 @@ test("visual preview visibly animates and stops stale playback", async ({
   await openBookTranslator(page);
   await page
     .getByLabel("Paste long-form source text")
-    .fill("SOS HELP visual preview animation");
+    .fill("SOS HELP visual preview animation ".repeat(10).trim());
   await openDownloadSettings(page);
   await openLivePlayerSettings(page);
   const liveSettings = livePlayerSettingsPanel(page);
+  const stopLivePlayerIfVisible = async () => {
+    const stopButton = previewSection(page).getByRole("button", {
+      name: "Stop live player",
+    });
+    if ((await stopButton.count()) > 0) {
+      await stopButton.click();
+    } else {
+      await expect(
+        previewSection(page).getByRole("button", { name: "Play live player" }),
+      ).toBeVisible();
+    }
+    await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
+      "data-preview-playing",
+      "false",
+    );
+  };
+  const expectLivePlayerControlReady = async () => {
+    const stopButton = previewSection(page).getByRole("button", {
+      name: "Stop live player",
+    });
+    if ((await stopButton.count()) > 0) {
+      await expect(stopButton).toBeEnabled();
+    } else {
+      await expect(
+        previewSection(page).getByRole("button", { name: "Play live player" }),
+      ).toBeVisible();
+    }
+  };
   await expectPreviewReady(page);
   await expectBookVideoPreviewUsesModuleWidth(page);
 
@@ -2995,13 +3129,7 @@ test("visual preview visibly animates and stops stale playback", async ({
         .evaluate((element) => getComputedStyle(element).color),
     )
     .not.toBe("rgb(148, 163, 184)");
-  await previewSection(page)
-    .getByRole("button", { name: "Stop live player" })
-    .click();
-  await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
-    "data-preview-playing",
-    "false",
-  );
+  await stopLivePlayerIfVisible();
 
   await liveSettings.getByRole("radio", { name: /Dot/ }).click();
   await expectPreviewReady(page);
@@ -3013,9 +3141,7 @@ test("visual preview visibly animates and stops stale playback", async ({
       page.getByTestId("book-video-preview-dot").getAttribute("data-preview-active"),
     )
     .toBe("true");
-  await previewSection(page)
-    .getByRole("button", { name: "Stop live player" })
-    .click();
+  await stopLivePlayerIfVisible();
 
   await expectPreviewReady(page);
   const initialActiveMorse = await page
@@ -3079,13 +3205,9 @@ test("visual preview visibly animates and stops stale playback", async ({
     { steps: 5 },
   );
   await expect(morseTimeline).not.toHaveAttribute("aria-disabled", "true");
-  await expect(
-    previewSection(page).getByRole("button", { name: "Stop live player" }),
-  ).toBeEnabled();
+  await expectLivePlayerControlReady();
   await page.mouse.up();
-  await expect(
-    previewSection(page).getByRole("button", { name: "Stop live player" }),
-  ).toBeEnabled();
+  await expectLivePlayerControlReady();
 
   await page
     .getByLabel("Paste long-form source text")

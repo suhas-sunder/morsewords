@@ -70,6 +70,7 @@ import {
   MorseVideoPreviewPanel,
   MorseVideoPreviewTimeline,
 } from "~/client/components/shared/video/MorseVideoPreviewControls";
+import { getLivePreviewStartDelayMs } from "~/client/components/shared/video/livePreviewPlayback";
 import useMorseAudio, {
   type MorsePlayerState,
 } from "~/client/components/shared/useMorseAudio";
@@ -1547,52 +1548,69 @@ export default function BookTranslatorTool() {
       previewAudioPlayer.isSupported &&
       videoPreview.sampleMorse.trim().length > 0;
 
-    if (!playWithAudio) {
-      startVisualClock();
+    const beginPlayback = () => {
+      if (visualPreviewSessionRef.current !== timerSession) return;
+
+      if (!playWithAudio) {
+        startVisualClock();
+        return;
+      }
+
+      void previewAudioPlayer
+        .play({
+          code: videoPreview.sampleMorse,
+          wpm: exportSettings.charWpm,
+          farnsworthWpm: exportSettings.farnsworthWpm,
+          hz: exportSettings.pitch,
+          volume: exportSettings.volume,
+          preset: exportSettings.tonePreset,
+          repeat: false,
+          flash: false,
+          soundEnabled: true,
+          startElapsedMs: startElapsed,
+          onPlaybackStart: startVisualClock,
+        })
+        .then(() => {
+          if (
+            !mountedRef.current ||
+            visualPreviewSessionRef.current !== timerSession
+          ) {
+            return;
+          }
+          clearVisualPreviewTimers();
+          setVisualPreviewElapsedMs(visualPreviewDurationMs);
+          setVisualPreviewPlaying(false);
+          setPreviewStatus("stopped");
+        })
+        .catch(() => {
+          if (
+            !mountedRef.current ||
+            visualPreviewSessionRef.current !== timerSession
+          ) {
+            return;
+          }
+          clearVisualPreviewTimers();
+          setVisualPreviewPlaying(false);
+          setPreviewStatus("failed");
+          setPreviewErrorMessage(
+            "Video preview audio failed. Try playing the preview again.",
+          );
+        });
+    };
+
+    const startDelayMs = getLivePreviewStartDelayMs(
+      startElapsed,
+      visualPreviewDurationMs,
+    );
+    if (startDelayMs > 0) {
+      visualPreviewTimeoutRef.current = window.setTimeout(() => {
+        visualPreviewTimeoutRef.current = null;
+        beginPlayback();
+      }, startDelayMs);
       return;
     }
 
-    startVisualClock();
-    void previewAudioPlayer
-      .play({
-        code: videoPreview.sampleMorse,
-        wpm: exportSettings.charWpm,
-        farnsworthWpm: exportSettings.farnsworthWpm,
-        hz: exportSettings.pitch,
-        volume: exportSettings.volume,
-        preset: exportSettings.tonePreset,
-        repeat: false,
-        flash: false,
-        soundEnabled: true,
-        startElapsedMs: startElapsed,
-        onPlaybackStart: startVisualClock,
-      })
-      .then(() => {
-        if (
-          !mountedRef.current ||
-          visualPreviewSessionRef.current !== timerSession
-        ) {
-          return;
-        }
-        clearVisualPreviewTimers();
-        setVisualPreviewElapsedMs(visualPreviewDurationMs);
-        setVisualPreviewPlaying(false);
-        setPreviewStatus("stopped");
-      })
-      .catch(() => {
-        if (
-          !mountedRef.current ||
-          visualPreviewSessionRef.current !== timerSession
-        ) {
-          return;
-        }
-        clearVisualPreviewTimers();
-        setVisualPreviewPlaying(false);
-        setPreviewStatus("failed");
-        setPreviewErrorMessage(
-          "Video preview audio failed. Try playing the preview again.",
-        );
-      });
+    beginPlayback();
   }, [
     audioPreview,
     activePreviewSegmentIndex,
@@ -3784,6 +3802,7 @@ function BookPreviewSection({
     (isAudioOutput
       ? audioPlayerState === "playing" || audioPlayerState === "paused"
       : visualPreviewPlaying);
+  const visualPlayerPlaying = visualPreviewPlaying;
   const actionDisabled = !canPreview || (isAudioOutput && !audioSupported);
   const previewElapsedMs = Math.min(
     visualPreviewDurationMs,
@@ -3867,18 +3886,18 @@ function BookPreviewSection({
           <div className="mt-4 flex flex-wrap gap-2">
             <ToolButton
               type="button"
-              tone={previewPlaying ? "light" : "dark"}
-              hover={previewPlaying ? "dark" : undefined}
-              onClick={previewPlaying ? onStopPreview : onPlayVisualPreview}
-              disabled={actionDisabled && !previewPlaying}
+              tone={visualPlayerPlaying ? "light" : "dark"}
+              hover={visualPlayerPlaying ? "dark" : undefined}
+              onClick={visualPlayerPlaying ? onStopPreview : onPlayVisualPreview}
+              disabled={actionDisabled && !visualPlayerPlaying}
               className="rounded-xl"
             >
-              {previewPlaying ? (
+              {visualPlayerPlaying ? (
                 <StopIcon size={18} title={undefined} aria-hidden="true" />
               ) : (
                 <PlayIcon size={18} title={undefined} aria-hidden="true" />
               )}
-              {previewPlaying ? "Stop live player" : "Play live player"}
+              {visualPlayerPlaying ? "Stop live player" : "Play live player"}
             </ToolButton>
             <a
               href="#book-download-controls"
@@ -3950,7 +3969,7 @@ function BookPreviewSection({
           </div>
           <MorseVideoPreviewTimeline
             ariaLabel="Live player timeline"
-            disabled={actionDisabled && !previewPlaying}
+            disabled={actionDisabled && !visualPlayerPlaying}
             elapsedMs={previewElapsedMs}
             onSeek={onScrubVisualPreview}
             onSeekCommit={onSeekVisualPreview}

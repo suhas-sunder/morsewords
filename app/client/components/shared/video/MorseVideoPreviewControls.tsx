@@ -78,6 +78,8 @@ type FullscreenElement = HTMLDivElement & {
 };
 
 const TIMELINE_EDGE_PADDING_PX = 20;
+const FULLSCREEN_CONTROLS_HIDE_DELAY_MS = 2_600;
+const FULLSCREEN_PLAY_SUPPRESSION_MS = 2_600;
 const TIMELINE_DENSE_EVENT_LIMIT = 260;
 const TIMELINE_DENSE_BUCKET_COUNT = 180;
 const INLINE_PREVIEW_WORD_WINDOW_LIMIT = 168;
@@ -699,10 +701,13 @@ export function MorseLivePreviewFullscreenControl({
 }) {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const hideControlsTimerRef = React.useRef<number | null>(null);
+  const controlsSuppressionTimerRef = React.useRef<number | null>(null);
+  const controlsSuppressedUntilRef = React.useRef(0);
   const fullscreenApiActiveRef = React.useRef(false);
   const [open, setOpen] = React.useState(false);
   const [fullscreenApiActive, setFullscreenApiActive] = React.useState(false);
   const [controlsVisible, setControlsVisible] = React.useState(true);
+  const [controlsSuppressed, setControlsSuppressed] = React.useState(false);
   const safeElapsed = Math.max(0, Math.min(Math.max(1, preview.durationMs), elapsedMs));
   const fullscreenSettings = React.useMemo(
     () =>
@@ -721,14 +726,58 @@ export function MorseLivePreviewFullscreenControl({
     hideControlsTimerRef.current = null;
   }, []);
 
-  const showControlsBriefly = React.useCallback(() => {
+  const clearControlsSuppression = React.useCallback(() => {
+    if (controlsSuppressionTimerRef.current !== null) {
+      window.clearTimeout(controlsSuppressionTimerRef.current);
+      controlsSuppressionTimerRef.current = null;
+    }
+    controlsSuppressedUntilRef.current = 0;
+    setControlsSuppressed(false);
+  }, []);
+
+  const controlsAreSuppressed = React.useCallback(
+    () => performance.now() < controlsSuppressedUntilRef.current,
+    [],
+  );
+
+  const showControlsBriefly = React.useCallback((force = false) => {
+    if (!force && controlsAreSuppressed()) {
+      setControlsVisible(false);
+      return;
+    }
     setControlsVisible(true);
     clearHideControlsTimer();
     hideControlsTimerRef.current = window.setTimeout(() => {
       setControlsVisible(false);
       hideControlsTimerRef.current = null;
-    }, 2600);
+    }, FULLSCREEN_CONTROLS_HIDE_DELAY_MS);
+  }, [clearHideControlsTimer, controlsAreSuppressed]);
+
+  const suppressControlsAfterPlay = React.useCallback(() => {
+    clearHideControlsTimer();
+    if (controlsSuppressionTimerRef.current !== null) {
+      window.clearTimeout(controlsSuppressionTimerRef.current);
+    }
+    controlsSuppressedUntilRef.current =
+      performance.now() + FULLSCREEN_PLAY_SUPPRESSION_MS;
+    setControlsSuppressed(true);
+    setControlsVisible(false);
+    controlsSuppressionTimerRef.current = window.setTimeout(() => {
+      controlsSuppressionTimerRef.current = null;
+      controlsSuppressedUntilRef.current = 0;
+      setControlsSuppressed(false);
+    }, FULLSCREEN_PLAY_SUPPRESSION_MS);
   }, [clearHideControlsTimer]);
+
+  const handleFullscreenPlaybackToggle = React.useCallback(() => {
+    if (isPlaying) {
+      onStop();
+      showControlsBriefly(true);
+      return;
+    }
+    onPlay();
+    suppressControlsAfterPlay();
+  }, [isPlaying, onPlay, onStop, showControlsBriefly, suppressControlsAfterPlay]);
 
   const closeFullscreen = React.useCallback(() => {
     if (typeof document === "undefined") {
@@ -740,18 +789,26 @@ export function MorseLivePreviewFullscreenControl({
       void Promise.resolve(exitBrowserFullscreen())
         .catch(() => undefined)
         .finally(() => {
+          clearControlsSuppression();
           fullscreenApiActiveRef.current = false;
           setFullscreenApiActive(false);
           setOpen(false);
         });
       return;
     }
+    clearControlsSuppression();
     fullscreenApiActiveRef.current = false;
     setFullscreenApiActive(false);
     setOpen(false);
-  }, []);
+  }, [clearControlsSuppression]);
 
-  React.useEffect(() => () => clearHideControlsTimer(), [clearHideControlsTimer]);
+  React.useEffect(
+    () => () => {
+      clearHideControlsTimer();
+      clearControlsSuppression();
+    },
+    [clearControlsSuppression, clearHideControlsTimer],
+  );
 
   React.useEffect(() => {
     if (!open || typeof document === "undefined") return undefined;
@@ -782,8 +839,9 @@ export function MorseLivePreviewFullscreenControl({
       document.documentElement.style.overflow = previousDocumentOverflow;
       document.body.style.overflow = previousBodyOverflow;
       clearHideControlsTimer();
+      clearControlsSuppression();
     };
-  }, [clearHideControlsTimer, open, showControlsBriefly]);
+  }, [clearControlsSuppression, clearHideControlsTimer, open, showControlsBriefly]);
 
   React.useEffect(() => {
     if (!open || typeof document === "undefined") return undefined;
@@ -848,12 +906,15 @@ export function MorseLivePreviewFullscreenControl({
           data-fullscreen-active="true"
           data-fullscreen-mode={fullscreenApiActive ? "browser" : "fallback"}
           data-fullscreen-controls-visible={controlsVisible ? "true" : "false"}
+          data-fullscreen-controls-suppressed={
+            controlsSuppressed ? "true" : "false"
+          }
           tabIndex={-1}
           className="fixed inset-0 z-[1000] h-[100dvh] w-screen overflow-hidden bg-slate-950 text-slate-50"
-          onFocusCapture={showControlsBriefly}
-          onMouseMove={showControlsBriefly}
-          onPointerDown={showControlsBriefly}
-          onPointerMove={showControlsBriefly}
+          onFocusCapture={() => showControlsBriefly(true)}
+          onMouseMove={() => showControlsBriefly()}
+          onPointerDown={() => showControlsBriefly()}
+          onPointerMove={() => showControlsBriefly()}
         >
           <MorseVideoPreviewPanel
             className="h-full min-h-0 w-full"
@@ -878,7 +939,7 @@ export function MorseLivePreviewFullscreenControl({
             onClick={closeFullscreen}
             data-testid={`${testIdPrefix}-fullscreen-exit`}
             aria-label="Exit fullscreen"
-            onFocus={showControlsBriefly}
+            onFocus={() => showControlsBriefly(true)}
           >
             <CollapseIcon size={18} title={undefined} aria-hidden="true" />
             <span className="hidden sm:inline">Exit fullscreen</span>
@@ -897,7 +958,7 @@ export function MorseLivePreviewFullscreenControl({
                   hover: isPlaying ? "dark" : undefined,
                   rounded: "xl",
                 })}
-                onClick={isPlaying ? onStop : onPlay}
+                onClick={handleFullscreenPlaybackToggle}
                 disabled={disabled && !isPlaying}
               >
                 {isPlaying ? (
@@ -1044,31 +1105,31 @@ function renderMorsePreviewWords(
     const morseCharacters = word.morse.split(" ").filter(Boolean);
     return (
       <React.Fragment key={`${word.wordIndex}-${word.morse}`}>
-        <span
-          data-testid={
-            word.active ? `${testIdPrefix}-active-morse-word` : undefined
-          }
-          className={
-            word.active
-              ? activePreviewWordClass(darkFrame, fullFrameActive)
-              : "mx-1 inline-block whitespace-nowrap"
-          }
-        >
+        <span className="mx-1 inline-block whitespace-nowrap">
           {morseCharacters.map((morse, morseIndex) => (
             <React.Fragment key={`${word.wordIndex}-${morseIndex}-${morse}`}>
               <span
                 data-testid={
                   word.active && morseIndex === word.activeCharIndex
-                    ? `${testIdPrefix}-active-morse-character`
+                    ? `${testIdPrefix}-active-morse-word`
                     : undefined
                 }
                 className={
                   word.active && morseIndex === word.activeCharIndex
-                    ? "inline-block whitespace-nowrap"
+                    ? activePreviewGroupClass(darkFrame, fullFrameActive)
                     : "inline-block whitespace-nowrap"
                 }
               >
-                {morse}
+                <span
+                  data-testid={
+                    word.active && morseIndex === word.activeCharIndex
+                      ? `${testIdPrefix}-active-morse-character`
+                      : undefined
+                  }
+                  className="inline-block whitespace-nowrap"
+                >
+                  {morse}
+                </span>
               </span>
               {morseIndex < morseCharacters.length - 1 ? " " : null}
             </React.Fragment>
@@ -1133,26 +1194,41 @@ function activePreviewWordClass(
   darkFrame: boolean,
   fullFrameActive: boolean,
 ) {
-  if (fullFrameActive) {
-    return "mx-1 inline-block whitespace-nowrap rounded-lg bg-sky-950/20 px-1.5 py-0.5 text-sky-950 ring-1 ring-sky-950/20";
-  }
-  if (darkFrame) {
-    return "mx-1 inline-block whitespace-nowrap rounded-lg bg-sky-300 px-1.5 py-0.5 text-slate-950 ring-1 ring-sky-100/80";
-  }
-  return "mx-1 inline-block whitespace-nowrap rounded-lg bg-sky-100 px-1.5 py-0.5 text-sky-950 ring-1 ring-sky-300/70";
+  return activePreviewHighlightClass(darkFrame, fullFrameActive, "mx-1");
 }
 
-function activePreviewCharacterClass(
+function activePreviewGroupClass(
   darkFrame: boolean,
   fullFrameActive: boolean,
 ) {
+  return activePreviewHighlightClass(darkFrame, fullFrameActive, "");
+}
+
+function activePreviewHighlightClass(
+  darkFrame: boolean,
+  fullFrameActive: boolean,
+  marginClass: string,
+) {
+  const baseClass = [
+    marginClass,
+    "inline-block whitespace-nowrap rounded-lg px-1.5 py-0.5",
+  ]
+    .filter(Boolean)
+    .join(" ");
   if (fullFrameActive) {
-    return "rounded bg-white/90 px-1 text-sky-950";
+    return `${baseClass} bg-sky-950/20 text-sky-950 ring-1 ring-sky-950/20`;
   }
   if (darkFrame) {
-    return "rounded bg-white px-1 text-slate-950";
+    return `${baseClass} bg-sky-300 text-slate-950 ring-1 ring-sky-100/80`;
   }
-  return "rounded bg-sky-300 px-1 text-slate-950";
+  return `${baseClass} bg-sky-100 text-sky-950 ring-1 ring-sky-300/70`;
+}
+
+function activePreviewCharacterClass(
+  _darkFrame: boolean,
+  _fullFrameActive: boolean,
+) {
+  return "inline-block";
 }
 
 function previewFrameStyle(darkFrame: boolean, fullFrameActive: boolean) {

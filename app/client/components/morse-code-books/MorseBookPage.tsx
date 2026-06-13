@@ -41,6 +41,7 @@ import {
   MorseVideoPreviewPanel,
   MorseVideoPreviewTimeline,
 } from "~/client/components/shared/video/MorseVideoPreviewControls";
+import { getLivePreviewStartDelayMs } from "~/client/components/shared/video/livePreviewPlayback";
 import {
   DEFAULT_MORSE_VIDEO_SETTINGS,
   MORSE_LIVE_PLAYER_VISUAL_STYLES,
@@ -939,6 +940,7 @@ function MorseBookWorkspace({
   const audioPreviewBaseElapsedRef = React.useRef(0);
   const audioPreviewStartedAtRef = React.useRef(0);
   const videoPreviewIntervalRef = React.useRef<number | null>(null);
+  const videoPreviewStartDelayTimeoutRef = React.useRef<number | null>(null);
   const videoPreviewBaseElapsedRef = React.useRef(0);
   const videoPreviewStartedAtRef = React.useRef(0);
   const videoPreviewSessionRef = React.useRef(0);
@@ -1621,6 +1623,10 @@ function MorseBookWorkspace({
       window.clearInterval(videoPreviewIntervalRef.current);
       videoPreviewIntervalRef.current = null;
     }
+    if (videoPreviewStartDelayTimeoutRef.current !== null) {
+      window.clearTimeout(videoPreviewStartDelayTimeoutRef.current);
+      videoPreviewStartDelayTimeoutRef.current = null;
+    }
   }, []);
 
   const stopAudioPreview = React.useCallback(
@@ -1997,38 +2003,55 @@ function MorseBookWorkspace({
       previewAudioPlayerRef.current.isSupported &&
       activeVisualPreview.sampleMorse.trim().length > 0;
 
-    if (!playWithAudio) {
-      startVideoClock();
+    const beginPlayback = () => {
+      if (videoPreviewSessionRef.current !== timerSession) return;
+
+      if (!playWithAudio) {
+        startVideoClock();
+        return;
+      }
+
+      void previewAudioPlayerRef.current
+        .play({
+          code: activeVisualPreview.sampleMorse,
+          wpm: exportSettings.charWpm,
+          farnsworthWpm: exportSettings.farnsworthWpm,
+          hz: exportSettings.pitch,
+          volume: exportSettings.volume,
+          preset: exportSettings.tonePreset,
+          repeat: false,
+          flash: false,
+          soundEnabled: true,
+          startElapsedMs: startElapsed,
+          onPlaybackStart: startVideoClock,
+        })
+        .then(() => {
+          if (videoPreviewSessionRef.current !== timerSession) return;
+          clearVideoPreviewTimer();
+          setVideoPreviewElapsedMs(activeVisualPreview.durationMs);
+          setVideoPreviewPlaying(false);
+          advanceLivePlayback();
+        })
+        .catch(() => {
+          if (videoPreviewSessionRef.current !== timerSession) return;
+          clearVideoPreviewTimer();
+          setVideoPreviewPlaying(false);
+        });
+    };
+
+    const startDelayMs = getLivePreviewStartDelayMs(
+      startElapsed,
+      activeVisualPreview.durationMs,
+    );
+    if (startDelayMs > 0) {
+      videoPreviewStartDelayTimeoutRef.current = window.setTimeout(() => {
+        videoPreviewStartDelayTimeoutRef.current = null;
+        beginPlayback();
+      }, startDelayMs);
       return;
     }
 
-    startVideoClock();
-    void previewAudioPlayerRef.current
-      .play({
-        code: activeVisualPreview.sampleMorse,
-        wpm: exportSettings.charWpm,
-        farnsworthWpm: exportSettings.farnsworthWpm,
-        hz: exportSettings.pitch,
-        volume: exportSettings.volume,
-        preset: exportSettings.tonePreset,
-        repeat: false,
-        flash: false,
-        soundEnabled: true,
-        startElapsedMs: startElapsed,
-        onPlaybackStart: startVideoClock,
-      })
-      .then(() => {
-        if (videoPreviewSessionRef.current !== timerSession) return;
-        clearVideoPreviewTimer();
-        setVideoPreviewElapsedMs(activeVisualPreview.durationMs);
-        setVideoPreviewPlaying(false);
-        advanceLivePlayback();
-      })
-      .catch(() => {
-        if (videoPreviewSessionRef.current !== timerSession) return;
-        clearVideoPreviewTimer();
-        setVideoPreviewPlaying(false);
-      });
+    beginPlayback();
   }, [
     activeVisualPreview,
     clearVideoPreviewTimer,

@@ -253,6 +253,9 @@ async function expectActivePreviewHighlights(
     const textWord = scope.querySelector<HTMLElement>(
       `[data-testid="${prefix}-active-text-word"]`,
     );
+    const textCharacter = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-active-text-character"]`,
+    );
     const morseOverlay = scope.querySelector<HTMLElement>(
       `[data-testid="${prefix}-morse-overlay"]`,
     );
@@ -272,12 +275,16 @@ async function expectActivePreviewHighlights(
         return {
           backgroundColor: "",
           borderRadius: 0,
+          paddingLeft: 0,
+          paddingRight: 0,
         };
       }
       const style = window.getComputedStyle(element);
       return {
         backgroundColor: style.backgroundColor,
         borderRadius: Number.parseFloat(style.borderTopLeftRadius),
+        paddingLeft: Number.parseFloat(style.paddingLeft),
+        paddingRight: Number.parseFloat(style.paddingRight),
       };
     }
 
@@ -290,6 +297,7 @@ async function expectActivePreviewHighlights(
       morseStyle: styleFor(morseWord),
       morseText: morseWord?.textContent?.replace(/\s+/g, " ").trim() ?? "",
       overlayRect: rectFor(morseOverlay),
+      textCharacterBackground: styleFor(textCharacter).backgroundColor,
       textStyle: styleFor(textWord),
       textText: textWord?.textContent?.trim() ?? "",
     };
@@ -307,6 +315,10 @@ async function expectActivePreviewHighlights(
     highlight.morseStyle.borderRadius - highlight.textStyle.borderRadius,
   )).toBeLessThanOrEqual(1);
   expect(highlight.morseCharacterBackground).toBe("rgba(0, 0, 0, 0)");
+  expect(highlight.textCharacterBackground).toBe("rgba(0, 0, 0, 0)");
+  expect(Math.abs(
+    highlight.textStyle.paddingLeft - highlight.textStyle.paddingRight,
+  )).toBeLessThanOrEqual(1);
   expect(highlight.morseOverlayText).toContain(highlight.morseText);
   expect(highlight.morseOverlayText).not.toBe(highlight.morseText);
   expect(highlight.morseRect.width).toBeGreaterThan(0);
@@ -1933,13 +1945,24 @@ test.describe("Morse book page foundation", () => {
     expectLayerInsideFrame(defaultMetrics, defaultMetrics.text);
     expectMorseGroupsSeparated(defaultMetrics.morse!.text);
     expectNormalPlainTextSpacing(defaultMetrics.text);
+    const defaultTextWindow = normalizedPreviewText(defaultMetrics.text!.text);
+    const defaultMorseWindow = normalizedPreviewText(defaultMetrics.morse!.text);
+    const videoTimeline = livePlayer.getByLabel("Live player timeline");
+    await videoTimeline.focus();
+    await page.keyboard.press("ArrowRight");
+    const nudgedMetrics = await readPreviewLayerMetrics(livePlayer);
+    expect(normalizedPreviewText(nudgedMetrics.text!.text)).toBe(
+      defaultTextWindow,
+    );
+    expect(normalizedPreviewText(nudgedMetrics.morse!.text)).toBe(
+      defaultMorseWindow,
+    );
 
     await livePlayer.getByRole("button", { name: "Play live player" }).click();
     await expect(livePlayer.locator("[data-testid='book-video-preview']")).toHaveAttribute(
       "data-preview-playing",
       "true",
     );
-    const videoTimeline = livePlayer.getByLabel("Live player timeline");
     const videoTimelineBox = await videoTimeline.boundingBox();
     expect(videoTimelineBox).not.toBeNull();
     await videoTimeline.click({
@@ -2063,6 +2086,33 @@ test.describe("Morse book page foundation", () => {
     expectLayerInsideFrame(fullscreenMetrics, fullscreenMetrics.morse);
     expect(fullscreenMetrics.morse!.fontSize).toBeLessThanOrEqual(72);
     expectMorseGroupsSeparated(fullscreenMetrics.morse!.text);
+    await fullscreenOverlay
+      .getByRole("button", { name: "Play live player" })
+      .click();
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-visible",
+      "false",
+      { timeout: 1_500 },
+    );
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-suppressed",
+      "true",
+    );
+    await page.mouse.move(24, 24);
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-visible",
+      "false",
+    );
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-suppressed",
+      "false",
+      { timeout: 4_000 },
+    );
+    await page.mouse.move(32, 32);
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-visible",
+      "true",
+    );
     await page.getByRole("button", { name: "Exit fullscreen" }).click();
     await expect(page.getByTestId("book-video-preview-fullscreen-overlay")).toHaveCount(0);
 

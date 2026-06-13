@@ -223,24 +223,16 @@ export function getMorseVideoFrameWordWindow(
     0,
     groups.findIndex((group) => group.wordIndex === activeToken?.wordIndex),
   );
-  const startOffset = Math.max(0, activeOffset - 5);
+  const { startOffset, endOffset } = getStableWordWindowRange(
+    groups,
+    activeOffset,
+    limit,
+  );
   const words: MorseVideoFrameWordWindowItem[] = [];
-  let textLength = 0;
-  let morseLength = 0;
 
-  for (let offset = startOffset; offset < groups.length; offset += 1) {
+  for (let offset = startOffset; offset < endOffset; offset += 1) {
     const group = groups[offset];
-    const nextTextLength = textLength + group.text.length + (words.length ? 1 : 0);
-    const nextMorseLength =
-      morseLength + group.morse.length + (words.length ? 3 : 0);
     const active = group.wordIndex === activeToken?.wordIndex;
-    if (
-      words.length > 0 &&
-      !active &&
-      (nextTextLength > limit || nextMorseLength > limit * 1.35)
-    ) {
-      break;
-    }
 
     words.push({
       ...group,
@@ -249,11 +241,55 @@ export function getMorseVideoFrameWordWindow(
       activeCharacterMorse: active ? activeToken?.morse ?? "" : "",
       activeCharIndex: active ? activeToken?.charIndex ?? -1 : -1,
     });
-    textLength = nextTextLength;
-    morseLength = nextMorseLength;
   }
 
   return words;
+}
+
+function getStableWordWindowRange(
+  groups: Array<{ wordIndex: number; text: string; morse: string }>,
+  activeOffset: number,
+  limit: number,
+) {
+  const textLimit = Math.max(1, limit);
+  const morseLimit = Math.max(1, limit * 1.35);
+  let pageStart = 0;
+
+  while (pageStart < groups.length) {
+    let pageEnd = pageStart;
+    let textLength = 0;
+    let morseLength = 0;
+
+    while (pageEnd < groups.length) {
+      const group = groups[pageEnd];
+      const nextTextLength =
+        textLength + group.text.length + (pageEnd > pageStart ? 1 : 0);
+      const nextMorseLength =
+        morseLength + group.morse.length + (pageEnd > pageStart ? 3 : 0);
+
+      if (
+        pageEnd > pageStart &&
+        (nextTextLength > textLimit || nextMorseLength > morseLimit)
+      ) {
+        break;
+      }
+
+      textLength = nextTextLength;
+      morseLength = nextMorseLength;
+      pageEnd += 1;
+    }
+
+    if (activeOffset >= pageStart && activeOffset < pageEnd) {
+      return { startOffset: pageStart, endOffset: pageEnd };
+    }
+
+    pageStart = Math.max(pageStart + 1, pageEnd);
+  }
+
+  return {
+    startOffset: Math.max(0, groups.length - 1),
+    endOffset: groups.length,
+  };
 }
 
 export function getMorseVideoCanonicalFrameState(
