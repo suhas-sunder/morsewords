@@ -234,10 +234,6 @@ function clippedText(text: string, limit: number) {
   return { text: `${text.slice(0, limit).trimEnd()}\n...`, truncated: true };
 }
 
-function sectionDisplayName(section: MorseBookSectionSummary) {
-  return section.title ? `${section.label}: ${section.title}` : section.label;
-}
-
 const sectionKindLabels: Record<MorseBookSectionKind, string> = {
   "title-page": "Opening",
   dedication: "Dedication",
@@ -257,10 +253,107 @@ const sectionKindLabels: Record<MorseBookSectionKind, string> = {
   glossary: "Glossary",
   index: "Index",
   "transcriber-note": "Transcriber note",
-  "source-license": "Source notes",
+  "source-license": "Source note",
   advertisement: "Advertisement",
   unknown: "Part",
 };
+
+const defaultReadableExcludedSectionKinds = new Set<MorseBookSectionKind>([
+  "title-page",
+  "dedication",
+  "epigraph",
+  "preface",
+  "introduction",
+  "epilogue",
+  "appendix",
+  "notes",
+  "glossary",
+  "index",
+  "transcriber-note",
+  "source-license",
+  "advertisement",
+]);
+
+const mainStructureLabelPattern = /^(chapter|part|book|volume|section)\b/i;
+
+const asideDefaultNameExclusionPattern =
+  /\b(table of contents|contents|list of illustrations|illustrations?|title page|copyright|license|source|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter)\b/;
+
+const asideDefaultEvidenceExclusionPattern =
+  /\b(project gutenberg|gutenberg|transcriber|produced by|production note|copyright|license|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter)\b/;
+
+function normalizedSectionText(
+  ...parts: Array<string | null | undefined>
+) {
+  return parts
+    .filter((part): part is string => Boolean(part))
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function sectionEvidenceText(section: MorseBookSectionSummary) {
+  return normalizedSectionText(
+    section.label,
+    section.title,
+    section.textPreview,
+  );
+}
+
+function sectionNameText(section: MorseBookSectionSummary) {
+  return normalizedSectionText(section.label, section.title);
+}
+
+function asideSectionDisplayLabel(section: MorseBookSectionSummary) {
+  const nameText = sectionNameText(section);
+  const evidenceText = sectionEvidenceText(section);
+
+  if (section.kind === "source-license") {
+    return /\b(project gutenberg|gutenberg|license|copyright)\b/.test(
+      evidenceText,
+    )
+      ? "License"
+      : "Source note";
+  }
+  if (section.kind === "transcriber-note") return "Transcriber note";
+  if (section.kind === "preface") return "Preface";
+  if (section.kind === "introduction") return "Introduction";
+  if (section.kind === "appendix") return "Appendix";
+  if (section.kind === "notes") return "Notes";
+  if (section.kind === "glossary") return "Glossary";
+  if (section.kind === "index") return "Index";
+  if (section.kind === "epilogue") return "End matter";
+
+  if (/\b(project gutenberg|gutenberg license|license|copyright)\b/.test(evidenceText)) {
+    return "License";
+  }
+  if (/\btranscriber\b/.test(evidenceText)) return "Transcriber note";
+  if (/\bpublisher\b/.test(evidenceText)) return "Publisher note";
+  if (/\bsource\b/.test(nameText)) return "Source note";
+  if (/\b(table of contents|contents)\b/.test(nameText)) return "Contents";
+  if (/\bpreface\b/.test(nameText)) return "Preface";
+  if (/\bintroduction\b/.test(nameText)) return "Introduction";
+  if (/\bappendix\b/.test(nameText)) return "Appendix";
+  if (/\bfootnotes?\b/.test(nameText)) return "Footnotes";
+  if (/\bnotes?\b/.test(nameText)) return "Notes";
+  if (/\bbibliography\b/.test(nameText)) return "Bibliography";
+  if (/\bindex\b/.test(nameText)) return "Index";
+  if (/\bend matter\b/.test(nameText)) return "End matter";
+
+  return null;
+}
+
+function sectionDisplayName(section: MorseBookSectionSummary) {
+  const asideLabel = asideSectionDisplayLabel(section);
+  if (asideLabel && mainStructureLabelPattern.test(section.label)) {
+    return asideLabel;
+  }
+  if (asideLabel && defaultReadableExcludedSectionKinds.has(section.kind)) {
+    return asideLabel;
+  }
+  return section.title ? `${section.label}: ${section.title}` : section.label;
+}
 
 function sectionStateLabel(
   section: MorseBookSectionSummary,
@@ -483,31 +576,25 @@ function defaultSectionIdsForBook(
   return included.length > 0 ? included : [fallbackSectionId];
 }
 
+function defaultLiveSectionIdForBook(
+  book: MorseBookManifest,
+  fallbackSectionId: string,
+) {
+  return defaultSectionIdsForBook(book, fallbackSectionId)[0] ?? fallbackSectionId;
+}
+
 function allSectionIdsForBook(book: MorseBookManifest) {
   return book.sections.map((section) => section.id);
 }
 
 function isDefaultReadableBookSection(section: MorseBookSectionSummary) {
-  const excludedKinds = new Set<MorseBookSectionKind>([
-    "title-page",
-    "source-license",
-    "transcriber-note",
-    "advertisement",
-    "index",
-    "glossary",
-  ]);
-  if (excludedKinds.has(section.kind)) return false;
+  if (defaultReadableExcludedSectionKinds.has(section.kind)) return false;
 
-  const labelText = `${section.label} ${section.title ?? ""} ${section.textPreview}`
-    .replace(/\s+/g, " ")
-    .toLowerCase();
-  if (
-    /\b(table of contents|contents|list of illustrations|illustrations?|title page|copyright|publisher|project gutenberg|transcriber|produced by|production note)\b/.test(
-      labelText,
-    )
-  ) {
-    return false;
-  }
+  const nameText = sectionNameText(section);
+  if (asideDefaultNameExclusionPattern.test(nameText)) return false;
+
+  const labelText = sectionEvidenceText(section);
+  if (asideDefaultEvidenceExclusionPattern.test(labelText)) return false;
 
   const earlySection = section.order <= 4;
   if (earlySection && section.wordCount < 35) return false;
@@ -869,6 +956,10 @@ function MorseBookWorkspace({
   const themeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(themeMode);
+  const initialDefaultLiveSectionId = defaultLiveSectionIdForBook(
+    book,
+    initialSection.sectionId,
+  );
   const previewAudioPlayer = useMorseAudio();
   const previewAudioPlayerRef = React.useRef(previewAudioPlayer);
   const [loadedSections, setLoadedSections] = React.useState(
@@ -883,7 +974,7 @@ function MorseBookWorkspace({
       ),
   );
   const [activeLiveSectionId, setActiveLiveSectionId] = React.useState(
-    initialSection.sectionId,
+    () => (isAudiobook ? initialSection.sectionId : initialDefaultLiveSectionId),
   );
   const [activeLiveSegmentIndex, setActiveLiveSegmentIndex] = React.useState(0);
   const [completedLiveSectionIds, setCompletedLiveSectionIds] = React.useState(
@@ -946,6 +1037,7 @@ function MorseBookWorkspace({
     () => defaultSectionIdsForBook(book, initialSection.sectionId),
     [bookRuntimeSignature, initialSection.sectionId],
   );
+  const defaultLiveSectionId = defaultSectionIds[0] ?? initialSection.sectionId;
   const allSectionIds = React.useMemo(
     () => allSectionIdsForBook(book),
     [bookRuntimeSignature],
@@ -964,16 +1056,15 @@ function MorseBookWorkspace({
         : 0;
       pendingRestoredLiveElapsedRef.current =
         isAudiobook && savedLiveElapsedMs > 0 ? savedLiveElapsedMs : null;
+      const restoredLiveSectionId = isAudiobook
+        ? saved.livePlayer?.activeSectionId ?? initialSection.sectionId
+        : saved.selectedSectionIds[0] ?? defaultLiveSectionId;
       setSelectedSectionIds(
-        new Set(isAudiobook ? [saved.livePlayer?.activeSectionId ?? initialSection.sectionId] : saved.selectedSectionIds),
+        new Set(isAudiobook ? [restoredLiveSectionId] : saved.selectedSectionIds),
       );
       setExportSettings(saved.exportSettings);
       setVideoSettings(saved.videoSettings);
-      setActiveLiveSectionId(
-        shouldRestoreRuntimeLivePlayer
-          ? saved.livePlayer?.activeSectionId ?? initialSection.sectionId
-          : initialSection.sectionId,
-      );
+      setActiveLiveSectionId(restoredLiveSectionId);
       setActiveLiveSegmentIndex(
         shouldRestoreRuntimeLivePlayer
           ? saved.livePlayer?.activeSegmentIndex ?? 0
@@ -992,7 +1083,9 @@ function MorseBookWorkspace({
       );
       setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
       setVideoSettings(sanitizeMorseLivePlayerSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
-      setActiveLiveSectionId(initialSection.sectionId);
+      setActiveLiveSectionId(
+        isAudiobook ? initialSection.sectionId : defaultLiveSectionId,
+      );
       setActiveLiveSegmentIndex(0);
       setCompletedLiveSectionIds(new Set());
       videoPreviewBaseElapsedRef.current = 0;
@@ -1002,7 +1095,13 @@ function MorseBookWorkspace({
     setDownloadStatus({ kind: "idle", message: "" });
     setExportProgress(IDLE_EXPORT_PROGRESS);
     setSettingsRestored(true);
-  }, [bookRuntimeSignature, defaultSectionIds, initialSection.sectionId, isAudiobook]);
+  }, [
+    bookRuntimeSignature,
+    defaultLiveSectionId,
+    defaultSectionIds,
+    initialSection.sectionId,
+    isAudiobook,
+  ]);
 
   const scopeSectionIds = React.useMemo(
     () => selectedSectionIdsForBook(book, selectedSectionIds),
@@ -1764,10 +1863,13 @@ function MorseBookWorkspace({
     skipNextRuntimeSettingsSaveRef.current = true;
     skipNextBookLivePreviewProgressSaveRef.current = true;
     setRuntimeSettingsResetVersion((version) => version + 1);
-    setSelectedSectionIds(new Set(isAudiobook ? [initialSection.sectionId] : defaultSectionIds));
+    const resetLiveSectionId = isAudiobook
+      ? initialSection.sectionId
+      : defaultLiveSectionId;
+    setSelectedSectionIds(new Set(isAudiobook ? [resetLiveSectionId] : defaultSectionIds));
     setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
     setVideoSettings(sanitizeMorseLivePlayerSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
-    setActiveLiveSectionId(initialSection.sectionId);
+    setActiveLiveSectionId(resetLiveSectionId);
     setActiveLiveSegmentIndex(0);
     setCompletedLiveSectionIds(new Set());
     setVideoPreviewElapsedMs(0);
@@ -1777,7 +1879,14 @@ function MorseBookWorkspace({
     setSavedSettingsStatus(
       isAudiobook ? "Saved player progress reset." : "Saved book settings reset.",
     );
-  }, [book, bookRuntimeSignature, defaultSectionIds, initialSection.sectionId, isAudiobook]);
+  }, [
+    book,
+    bookRuntimeSignature,
+    defaultLiveSectionId,
+    defaultSectionIds,
+    initialSection.sectionId,
+    isAudiobook,
+  ]);
 
   const startAudioPreviewFrom = React.useCallback(
     (startElapsedMs = 0) => {

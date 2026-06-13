@@ -218,6 +218,23 @@ function expectMorseGroupsSeparated(value: string) {
   expect(normalized).toMatch(/\/|[.-]{1,4}\s+[.-]{1,4}/);
 }
 
+async function selectedBookSectionIds(page: Page) {
+  return page.locator("[data-mw-morse-book-section-select]").evaluateAll(
+    (inputs) =>
+      inputs
+        .filter((input) => (input as HTMLInputElement).checked)
+        .map(
+          (input) =>
+            input.getAttribute("data-mw-morse-book-section-select") ?? "",
+        )
+        .filter(Boolean),
+  );
+}
+
+async function expectSelectedBookSectionIds(page: Page, expected: string[]) {
+  await expect.poll(() => selectedBookSectionIds(page)).toEqual(expected);
+}
+
 async function expectActivePreviewHighlights(
   root: Locator,
   testIdPrefix = "book-video-preview",
@@ -1375,6 +1392,10 @@ test.describe("Morse book page foundation", () => {
   }) => {
     await openTestBook(page);
 
+    await expectSelectedBookSectionIds(page, [
+      "chapter-001",
+      "chapter-002",
+    ]);
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).toHaveAttribute(
@@ -1391,14 +1412,28 @@ test.describe("Morse book page foundation", () => {
       "development-only fixture",
     );
 
+    const sourceNoteRow = page.locator(
+      "[data-mw-morse-book-section-row][data-mw-morse-book-section-id='source-license-001']",
+    );
+    await expect(sourceNoteRow).toBeVisible();
+    await expect(
+      sourceNoteRow.locator("[data-mw-morse-book-section-label]"),
+    ).toHaveText("Source note");
+    await expect(
+      sourceNoteRow.locator("[data-mw-morse-book-section-kind]"),
+    ).toHaveText("Source note");
     await expect(
       page.locator("[data-mw-morse-book-section-select='source-license-001']"),
     ).not.toBeChecked();
     await page.locator("[data-mw-morse-book-select-all-default]").uncheck();
+    await expectSelectedBookSectionIds(page, []);
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).toHaveAttribute("data-mw-morse-book-translator-source-sections", "");
     await page.locator("[data-mw-morse-book-section-select='source-license-001']").check();
+    await expectSelectedBookSectionIds(page, [
+      "source-license-001",
+    ]);
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).toHaveAttribute(
@@ -1415,6 +1450,60 @@ test.describe("Morse book page foundation", () => {
     ).toHaveAttribute(
       "data-mw-morse-book-translator-source-sections",
       "chapter-001,chapter-002,source-license-001",
+    );
+  });
+
+  test("defaults public Gutenberg books to readable chapters while front matter remains selectable", async ({
+    page,
+  }) => {
+    await page.addInitScript((slug) => {
+      Object.keys(localStorage)
+        .filter((key) =>
+          key.startsWith(`morsewords:book-runtime:settings:v1:${slug}:`),
+        )
+        .forEach((key) => localStorage.removeItem(key));
+    }, ALICE_SLUG);
+    await openPublicBook(page, ALICE_PUBLIC_PATH);
+
+    const selectedIds = await selectedBookSectionIds(page);
+    expect(selectedIds[0]).toBe("chapter-001");
+    expect(selectedIds.every((id) => id.startsWith("chapter-"))).toBe(true);
+    expect(selectedIds).not.toContain("title-page-001");
+    expect(selectedIds).not.toContain("title-page-002");
+
+    const sourceSectionIds = (
+      (await page
+        .locator("[data-mw-morse-book-translator-source-sections]")
+        .getAttribute("data-mw-morse-book-translator-source-sections")) ?? ""
+    )
+      .split(",")
+      .filter(Boolean);
+    expect(sourceSectionIds[0]).toBe("chapter-001");
+    expect(sourceSectionIds).not.toContain("title-page-001");
+    expect(sourceSectionIds).not.toContain("title-page-002");
+
+    const openingRow = page.locator(
+      "[data-mw-morse-book-section-row][data-mw-morse-book-section-id='title-page-001']",
+    );
+    const contentsRow = page.locator(
+      "[data-mw-morse-book-section-row][data-mw-morse-book-section-id='title-page-002']",
+    );
+    await expect(openingRow).toBeVisible();
+    await expect(contentsRow).toBeVisible();
+    await expect(
+      page.locator("[data-mw-morse-book-section-select='title-page-001']"),
+    ).not.toBeChecked();
+    await expect(
+      page.locator("[data-mw-morse-book-section-select='title-page-002']"),
+    ).not.toBeChecked();
+    await expect(
+      contentsRow.locator("[data-mw-morse-book-section-label]"),
+    ).toHaveText("Contents");
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+      "CHAPTER I",
+    );
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
+      "THE MILLENNIUM FULCRUM EDITION",
     );
   });
 
@@ -1484,6 +1573,9 @@ test.describe("Morse book page foundation", () => {
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).toHaveAttribute("data-mw-morse-book-translator-source-sections", "chapter-001");
+    await expectSelectedBookSectionIds(page, [
+      "chapter-001",
+    ]);
     await expect(mp3DownloadSection.getByLabel("Speed WPM")).toHaveValue("18");
 
     const resetSettingsButton = mp3DownloadSection.locator(
@@ -1513,6 +1605,13 @@ test.describe("Morse book page foundation", () => {
       "data-mw-morse-book-translator-source-sections",
       "chapter-001,chapter-002",
     );
+    await expectSelectedBookSectionIds(page, [
+      "chapter-001",
+      "chapter-002",
+    ]);
+    await expect(
+      page.locator("[data-mw-morse-book-section-select='source-license-001']"),
+    ).not.toBeChecked();
   });
 
   test("persists live preview progress by selected book content hash", async ({
