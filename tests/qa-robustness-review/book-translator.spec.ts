@@ -165,8 +165,9 @@ async function chooseSplitMode(
   page: Page,
   mode: "No split" | "By duration",
 ) {
-  await openDownloadSettings(page);
-  await page.getByRole("radio", { name: mode, exact: true }).click();
+  const downloadSection = page.locator("#book-download-controls");
+  await expect(downloadSection).toBeVisible();
+  await downloadSection.getByRole("radio", { name: mode, exact: true }).click();
 }
 
 function previewSection(page: Page) {
@@ -799,10 +800,20 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
       0,
     );
   }
+  await expect(liveSettings.getByText(/Split mode|Split download/)).toHaveCount(0);
   await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
   await expect(preview.getByText(/morsewords\.com/i)).toHaveCount(0);
   await expect(
     downloadRow.getByRole("heading", { name: "Download MP3" }),
+  ).toBeVisible();
+  await expect(
+    downloadRow.getByRole("radiogroup", { name: "Split download" }),
+  ).toBeVisible();
+  await expect(
+    downloadRow.getByRole("radio", { name: "No split" }),
+  ).toBeVisible();
+  await expect(
+    downloadRow.getByRole("radio", { name: "By duration" }),
   ).toBeVisible();
   await expect(sourceDetails).toBeVisible();
   await expect(sourceDetails.getByText("Active chars")).toBeVisible();
@@ -1755,20 +1766,22 @@ test("preset settings, reset, and safe route preferences persist", async ({
   await expect(
     tool.getByText("20/10 WPM, CW radio, MP3 48 kbps, single audio file."),
   ).toBeVisible();
+  const downloadControls = page.locator("#book-download-controls");
   await expect(
-    page.getByRole("radiogroup", { name: "Split download" }),
+    downloadControls.getByRole("radiogroup", { name: "Split download" }),
   ).toBeVisible();
-  await expect(page.getByRole("radio", { name: "No split" })).toHaveAttribute(
-    "aria-checked",
-    "true",
-  );
-  await expect(page.getByRole("radio", { name: "By duration" })).toBeVisible();
   await expect(
-    page.getByRole("radio", { name: "By source sections" }),
+    downloadControls.getByRole("radio", { name: "No split" }),
+  ).toHaveAttribute("aria-checked", "true");
+  await expect(
+    downloadControls.getByRole("radio", { name: "By duration" }),
+  ).toBeVisible();
+  await expect(
+    downloadControls.getByRole("radio", { name: "By source sections" }),
   ).toHaveCount(0);
-  await expect(page.getByLabel("Target part length")).toHaveCount(0);
+  await expect(downloadControls.getByLabel("Target part length")).toHaveCount(0);
   await chooseSplitMode(page, "By duration");
-  await expect(page.getByLabel("Target part length")).toBeVisible();
+  await expect(downloadControls.getByLabel("Target part length")).toBeVisible();
   const downloadSettings = downloadSettingsPanel(page);
   await expect(downloadSettings.getByLabel("Tone preset")).toHaveValue("cw_radio");
   await expect(page.getByLabel("MP3 bitrate")).toBeVisible();

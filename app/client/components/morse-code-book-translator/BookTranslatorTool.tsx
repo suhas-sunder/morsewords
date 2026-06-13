@@ -2520,58 +2520,6 @@ export default function BookTranslatorTool() {
                 Download settings
               </summary>
               <div className="mt-5 space-y-5">
-                <fieldset>
-                  <legend className="text-sm font-semibold text-slate-700">
-                    Split download
-                  </legend>
-                  <div
-                    className="mt-2 flex flex-wrap gap-2"
-                    role="radiogroup"
-                    aria-label="Split download"
-                  >
-                    {(["none", "duration"] as const).map(
-                      (mode) => (
-                        <button
-                          key={mode}
-                          type="button"
-                          role="radio"
-                          aria-checked={splitMode === mode}
-                          onClick={() =>
-                            updateExportSettings({ splitMode: mode })
-                          }
-                          className={toolControlButtonClass({
-                            active: splitMode === mode,
-                            tone: splitMode === mode ? "dark" : "light",
-                            size: "sm",
-                            rounded: "full",
-                            hover: "dark",
-                          })}
-                        >
-                          {BOOK_SPLIT_MODE_LABELS[mode]}
-                        </button>
-                      ),
-                    )}
-                  </div>
-                  <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
-                    {splitSummaryText}
-                  </p>
-                  {splitMode !== "none" ? (
-                    <LabeledSelect
-                      label="Target part length"
-                      value={String(splitTargetPartMinutes)}
-                      onChange={(value) => {
-                        const targetPartMinutes = Number(value);
-                        updateExportSettings({ targetPartMinutes });
-                      }}
-                    >
-                      <option value="15">15 minutes</option>
-                      <option value="30">30 minutes recommended</option>
-                      <option value="45">45 minutes</option>
-                      <option value="60">60 minutes experimental</option>
-                    </LabeledSelect>
-                  ) : null}
-                </fieldset>
-
                 {isAudioOutput ? (
                   <>
                     <div>
@@ -2909,6 +2857,54 @@ export default function BookTranslatorTool() {
                 tone="info"
               />
             ) : null}
+
+            <fieldset className="mt-4">
+              <legend className="text-sm font-semibold text-slate-700">
+                Split download
+              </legend>
+              <div
+                className="mt-2 flex flex-wrap gap-2"
+                role="radiogroup"
+                aria-label="Split download"
+              >
+                {(["none", "duration"] as const).map((mode) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    role="radio"
+                    aria-checked={splitMode === mode}
+                    onClick={() => updateExportSettings({ splitMode: mode })}
+                    className={toolControlButtonClass({
+                      active: splitMode === mode,
+                      tone: splitMode === mode ? "dark" : "light",
+                      size: "sm",
+                      rounded: "full",
+                      hover: "dark",
+                    })}
+                  >
+                    {BOOK_SPLIT_MODE_LABELS[mode]}
+                  </button>
+                ))}
+              </div>
+              <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+                {splitSummaryText}
+              </p>
+              {splitMode !== "none" ? (
+                <LabeledSelect
+                  label="Target part length"
+                  value={String(splitTargetPartMinutes)}
+                  onChange={(value) => {
+                    const targetPartMinutes = Number(value);
+                    updateExportSettings({ targetPartMinutes });
+                  }}
+                >
+                  <option value="15">15 minutes</option>
+                  <option value="30">30 minutes recommended</option>
+                  <option value="45">45 minutes</option>
+                  <option value="60">60 minutes experimental</option>
+                </LabeledSelect>
+              ) : null}
+            </fieldset>
 
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
               {zipBatchWorkflow && totalBatches > 0 ? (
@@ -3646,7 +3642,7 @@ export default function BookTranslatorTool() {
             ? exportPlan.automaticSplit
               ? "Long selections are prepared as ordered duration-based parts, grouped into ZIP batches, using clean text boundaries where possible."
               : "Parts are based on the target part length and safe paragraph, sentence, or word boundaries."
-            : "MP3 downloads stay as one file by default. Choose a split mode in Download settings when you want timed parts."}
+            : "MP3 downloads stay as one file by default. Choose a split mode in the Download MP3 section when you want timed parts."}
         </p>
         {isSegmentedOutput ? (
           exportParts.length > 0 ? (

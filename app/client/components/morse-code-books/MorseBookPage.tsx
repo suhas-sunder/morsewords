@@ -2922,6 +2922,56 @@ function MorseBookWorkspace({
               </p>
             ) : null}
 
+            <div>
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                Split mode
+              </p>
+              <div
+                className="mt-2 flex flex-wrap gap-2"
+                role="group"
+                aria-label="Split mode"
+              >
+                {(["none", "duration"] as const).map((mode) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    className={toolControlButtonClass({
+                      active: exportSettings.splitMode === mode,
+                      size: "sm",
+                    })}
+                    onClick={() =>
+                      updateExportSettings({
+                        splitMode: mode,
+                        splitAudio: mode !== "none",
+                        preferSourceSections: true,
+                      })
+                    }
+                  >
+                    {splitModeLabels[mode]}
+                  </button>
+                ))}
+              </div>
+              {exportSettings.splitMode !== "none" ? (
+                <label className="mt-3 block text-sm font-semibold text-slate-700">
+                  Target part length
+                  <select
+                    value={exportSettings.targetPartMinutes}
+                    onChange={(event) =>
+                      updateExportSettings({
+                        targetPartMinutes: Number(event.target.value),
+                      })
+                    }
+                    className="ml-0 mt-1 w-32 rounded-lg bg-white px-3 py-2 text-slate-950 sm:ml-2"
+                  >
+                    <option value={15}>15 min</option>
+                    <option value={30}>30 min recommended</option>
+                    <option value={45}>45 min</option>
+                    <option value={60}>60 min experimental</option>
+                  </select>
+                </label>
+              ) : null}
+            </div>
+
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
               {zipBatchWorkflow && totalBatches > 0 ? (
                 <label className="min-w-[12rem] text-sm font-semibold text-slate-700">
@@ -3147,51 +3197,6 @@ function MorseBookWorkspace({
               </select>
             </div>
 
-            <div>
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                Split mode
-              </p>
-              <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label="Split mode">
-                {(["none", "duration"] as const).map((mode) => (
-                  <button
-                    key={mode}
-                    type="button"
-                    className={toolControlButtonClass({
-                      active: exportSettings.splitMode === mode,
-                      size: "sm",
-                    })}
-                    onClick={() =>
-                      updateExportSettings({
-                        splitMode: mode,
-                        splitAudio: mode !== "none",
-                        preferSourceSections: true,
-                      })
-                    }
-                  >
-                    {splitModeLabels[mode]}
-                  </button>
-                ))}
-              </div>
-              {exportSettings.splitMode !== "none" ? (
-                <label className="mt-3 block text-sm font-semibold text-slate-700">
-                  Target part length
-                  <select
-                    value={exportSettings.targetPartMinutes}
-                    onChange={(event) =>
-                      updateExportSettings({
-                        targetPartMinutes: Number(event.target.value),
-                      })
-                    }
-                    className="ml-0 mt-1 w-32 rounded-lg bg-white px-3 py-2 text-slate-950 sm:ml-2"
-                  >
-                    <option value={15}>15 min</option>
-                    <option value={30}>30 min recommended</option>
-                    <option value={45}>45 min</option>
-                    <option value={60}>60 min experimental</option>
-                  </select>
-                </label>
-              ) : null}
-            </div>
           </div>
         </ToolPanel>
       </section>

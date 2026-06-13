@@ -503,9 +503,22 @@ test.describe("Morse book page foundation", () => {
     await expect(
       playerSettings.getByTestId("morse-book-live-download-link"),
     ).toHaveCount(0);
-    await expect(page.locator("#book-mp3-download")).toBeVisible();
+    await expect(playerSettings.getByText("Split mode", { exact: true })).toHaveCount(
+      0,
+    );
+    const mp3DownloadSection = page.locator("#book-mp3-download");
+    await expect(mp3DownloadSection).toBeVisible();
     await expect(
-      page.locator("#book-mp3-download").getByRole("button", {
+      mp3DownloadSection.getByText("Split mode", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      mp3DownloadSection.getByRole("button", { name: "No split" }),
+    ).toBeVisible();
+    await expect(
+      mp3DownloadSection.getByRole("button", { name: "By duration" }),
+    ).toBeVisible();
+    await expect(
+      mp3DownloadSection.getByRole("button", {
         name: /Download MP3|Download ZIP batch 1/,
       }),
     ).toBeVisible();
