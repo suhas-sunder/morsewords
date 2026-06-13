@@ -4,6 +4,7 @@ import {
   CollapseIcon,
   ExpandIcon,
   LightBulbIcon,
+  PauseIcon,
   PlayIcon,
   StopIcon,
 } from "~/client/assets/svg/Icons";
@@ -900,7 +901,7 @@ export function MorseLivePreviewFullscreenControl({
                 disabled={disabled && !isPlaying}
               >
                 {isPlaying ? (
-                  <StopIcon size={18} title={undefined} aria-hidden="true" />
+                  <PauseIcon size={18} title={undefined} aria-hidden="true" />
                 ) : (
                   <PlayIcon size={18} title={undefined} aria-hidden="true" />
                 )}

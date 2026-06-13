@@ -3,6 +3,8 @@ import { Link } from "react-router";
 
 import {
   DownloadIcon,
+  EqualizerIcon,
+  PauseIcon,
   PlayIcon,
   RefreshIcon,
   StopIcon,
@@ -2221,82 +2223,47 @@ function MorseBookWorkspace({
 
       <details className="mt-1">
         <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
-          <RefreshIcon size={18} title={undefined} aria-hidden="true" />
+          <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
           Player settings
         </summary>
         <ToolPanel label="Player settings" badge="Saved locally">
           <div className="space-y-6 px-4 pb-4">
-          <dl className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2 lg:grid-cols-4">
-            <Metric
-              label="Current"
-              value={
+            <BookLiveProgressSettingsSummary
+              completedValue={formatNumber(completedLiveSectionIds.size)}
+              currentValue={
                 activeLiveSegment?.title ||
                 `${formatNumber(scopeSectionIds.length)} selected section(s)`
               }
-            />
-            <Metric
-              label="Progress"
-              value={`${formatDuration(videoPreviewElapsedMs)} / ${formatDuration(
+              onReset={resetSavedSettings}
+              progressValue={`${formatDuration(videoPreviewElapsedMs)} / ${formatDuration(
                 livePreview.durationMs,
               )}`}
-            />
-            <Metric
-              label="Segment"
-              value={`${Math.min(
+              savedSettingsStatus={savedSettingsStatus}
+              segmentValue={`${Math.min(
                 activeLiveSegmentIndex + 1,
                 Math.max(1, liveSegments.length),
               )} of ${Math.max(1, liveSegments.length)}`}
             />
-            <Metric
-              label="Completed"
-              value={formatNumber(completedLiveSectionIds.size)}
+            <VideoSettings
+              settings={videoSettings}
+              visibleLayerCount={visibleLayerCount}
+              onChange={updateVideoSettings}
             />
-          </dl>
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="max-w-[58ch] text-sm leading-relaxed text-slate-700">
-              This player remembers the active section, segment, playback
-              position, audio settings, and visual settings in this browser.
-            </p>
-            <ToolButton
-              type="button"
-              tone="light"
-              hover="dark"
-              onClick={resetSavedSettings}
-              className="rounded-xl"
-              data-testid="morse-book-live-reset-progress"
-            >
-              <RefreshIcon size={18} title={undefined} aria-hidden="true" />
-              Reset progress
-            </ToolButton>
-          </div>
-          {savedSettingsStatus ? (
-            <p
-              className="text-sm font-semibold text-slate-600"
-              data-mw-morse-book-saved-settings-status="true"
-            >
-              {savedSettingsStatus}
-            </p>
-          ) : null}
-          <VideoSettings
-            settings={videoSettings}
-            visibleLayerCount={visibleLayerCount}
-            onChange={updateVideoSettings}
-          />
-          <BookLiveAudioSettings
-            audioSupported={previewAudioPlayer.isSupported}
-            exportSettings={exportSettings}
-            idPrefix="morse-book-live-player-audio"
-            onCharWpmChange={(value) =>
-              updateExportSettings({ charWpm: value })
-            }
-            onFarnsworthWpmChange={(value) =>
-              updateExportSettings({ farnsworthWpm: value })
-            }
-            onPitchChange={(value) => updateExportSettings({ pitch: value })}
-            onTonePresetChange={handleTonePresetChange}
-            onVolumeChange={(value) => updateExportSettings({ volume: value })}
-            videoSettings={videoSettings}
-          />
+            <BookLiveAudioSettings
+              audioSupported={previewAudioPlayer.isSupported}
+              exportSettings={exportSettings}
+              idPrefix="morse-book-live-player-audio"
+              onCharWpmChange={(value) =>
+                updateExportSettings({ charWpm: value })
+              }
+              onFarnsworthWpmChange={(value) =>
+                updateExportSettings({ farnsworthWpm: value })
+              }
+              onPitchChange={(value) => updateExportSettings({ pitch: value })}
+              onTonePresetChange={handleTonePresetChange}
+              onVolumeChange={(value) => updateExportSettings({ volume: value })}
+              videoSettings={videoSettings}
+            />
           </div>
         </ToolPanel>
       </details>
@@ -2765,31 +2732,40 @@ function MorseBookWorkspace({
 
           <ToolPanel label="Player settings" badge="Saved locally">
             <div className="space-y-6 px-4 pb-4">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="max-w-[58ch] text-sm leading-relaxed text-slate-700">
-                  This player remembers the active section, segment, playback
-                  position, audio settings, and visual settings in this browser.
-                </p>
-                <ToolButton
-                  type="button"
-                  tone="light"
-                  hover="dark"
-                  onClick={resetSavedSettings}
-                  className="rounded-xl"
-                  data-testid="morse-book-live-reset-progress"
-                >
-                  <RefreshIcon size={18} title={undefined} aria-hidden="true" />
-                  Reset progress
-                </ToolButton>
-              </div>
-              {savedSettingsStatus ? (
-                <p
-                  className="text-sm font-semibold text-slate-600"
-                  data-mw-morse-book-saved-settings-status="true"
-                >
-                  {savedSettingsStatus}
-                </p>
-              ) : null}
+              <BookLiveProgressSettingsSummary
+                completedValue={formatNumber(completedLiveSectionIds.size)}
+                currentValue={
+                  activeLiveSection
+                    ? sectionDisplayName({
+                        id: activeLiveSection.sectionId,
+                        kind: activeLiveSection.kind,
+                        label: activeLiveSection.label,
+                        title: activeLiveSection.title,
+                        order: activeLiveSection.order,
+                        includeByDefault: true,
+                        characterCount: activeLiveSection.characterCount,
+                        wordCount: activeLiveSection.wordCount,
+                        estimatedTypingMinutes:
+                          activeLiveSection.estimatedTypingMinutes,
+                        estimatedListeningMinutes:
+                          activeLiveSection.estimatedListeningMinutes,
+                        morseCharacterEstimate:
+                          activeLiveSection.morseCharacterEstimate,
+                        textPreview: activeLiveSection.textPreview,
+                        sectionJsonPath: "",
+                      })
+                    : "Loading"
+                }
+                onReset={resetSavedSettings}
+                progressValue={`${formatDuration(videoPreviewElapsedMs)} / ${formatDuration(
+                  livePreview.durationMs,
+                )}`}
+                savedSettingsStatus={savedSettingsStatus}
+                segmentValue={`${Math.min(
+                  activeLiveSegmentIndex + 1,
+                  Math.max(1, liveSegments.length),
+                )} of ${Math.max(1, liveSegments.length)}`}
+              />
               <VideoSettings
                 settings={videoSettings}
                 visibleLayerCount={visibleLayerCount}
@@ -3235,6 +3211,63 @@ function Metric({
   );
 }
 
+function BookLiveProgressSettingsSummary({
+  completedValue,
+  currentValue,
+  onReset,
+  progressValue,
+  savedSettingsStatus,
+  segmentValue,
+}: {
+  completedValue: string;
+  currentValue: string;
+  onReset: () => void;
+  progressValue: string;
+  savedSettingsStatus: string;
+  segmentValue: string;
+}) {
+  return (
+    <div
+      className="grid gap-4 border-b border-slate-200/70 pb-5"
+      data-testid="morse-book-live-progress-settings"
+    >
+      <dl className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2 lg:grid-cols-4">
+        <Metric label="Current" value={currentValue} />
+        <Metric label="Progress" value={progressValue} />
+        <Metric label="Segment" value={segmentValue} />
+        <Metric label="Completed" value={completedValue} />
+      </dl>
+      <div className="flex flex-wrap items-center gap-3">
+        <ToolButton
+          type="button"
+          tone="light"
+          hover="dark"
+          onClick={onReset}
+          className="rounded-xl"
+          data-testid="morse-book-live-reset-progress"
+        >
+          <RefreshIcon size={18} title={undefined} aria-hidden="true" />
+          Reset progress
+        </ToolButton>
+        <div className="grid min-w-0 gap-1">
+          <p className="max-w-[58ch] text-sm leading-relaxed text-slate-700">
+            This player remembers the active section, segment, playback
+            position, audio settings, and visual settings in this browser.
+          </p>
+          {savedSettingsStatus ? (
+            <p
+              className="text-sm font-semibold text-slate-600"
+              data-mw-morse-book-saved-settings-status="true"
+            >
+              {savedSettingsStatus}
+            </p>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function AudioPreviewControls({
   audioPreview,
   disabled,
@@ -3339,6 +3372,7 @@ function VideoPreviewControls({
   timelineAriaLabel?: string;
 }) {
   const safeElapsed = Math.max(0, Math.min(Math.max(1, preview.durationMs), elapsedMs));
+  const pauseAction = stopLabel.toLowerCase().startsWith("pause");
 
   return (
     <section data-testid="book-video-preview-workflow">
@@ -3362,7 +3396,11 @@ function VideoPreviewControls({
           className="rounded-xl"
         >
           {playing ? (
-            <StopIcon size={18} title={undefined} aria-hidden="true" />
+            pauseAction ? (
+              <PauseIcon size={18} title={undefined} aria-hidden="true" />
+            ) : (
+              <StopIcon size={18} title={undefined} aria-hidden="true" />
+            )
           ) : (
             <PlayIcon size={18} title={undefined} aria-hidden="true" />
           )}

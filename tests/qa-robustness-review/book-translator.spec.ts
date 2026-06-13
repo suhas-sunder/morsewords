@@ -2525,6 +2525,21 @@ test("MP3 download stays primary while the live visual player remains available"
   ).toHaveCount(0);
   await expect(page.getByTestId("book-live-player-workflow")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
+  const playLivePlayerButton = previewSection(page).getByRole("button", {
+    name: "Play live player",
+  });
+  const fullscreenButton = previewSection(page).getByRole("button", {
+    name: "Open live preview fullscreen",
+  });
+  const previewDownloadLink = previewSection(page).getByRole("link", {
+    name: "Download MP3",
+  });
+  await expect(playLivePlayerButton).toBeVisible();
+  await expect(playLivePlayerButton.locator("svg")).toBeVisible();
+  await expect(fullscreenButton).toBeVisible();
+  await expect(fullscreenButton.locator("svg")).toBeVisible();
+  await expect(previewDownloadLink).toBeVisible();
+  await expect(previewDownloadLink.locator("svg")).toBeVisible();
   await expectBookVideoPreviewUsesModuleWidth(page);
   await expect(playerDetailsPanel(page)).not.toHaveAttribute("open", "");
   await expect(livePlayerSettingsPanel(page)).not.toHaveAttribute("open", "");
@@ -2556,6 +2571,9 @@ test("MP3 download stays primary while the live visual player remains available"
   await expect(
     previewSection(page).getByTestId("book-preview-download-mp3-link"),
   ).toBeVisible();
+  await expect(
+    liveSettings.getByRole("button", { name: "Reset progress" }),
+  ).toHaveCount(0);
   await expect(downloadSettingsPanel(page).getByLabel("MP3 bitrate")).toBeVisible();
   await expect(liveSettings.getByRole("radio", { name: "No split" })).toHaveCount(0);
   await expect(liveSettings.getByLabel("Target part length")).toHaveCount(0);

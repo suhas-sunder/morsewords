@@ -632,6 +632,16 @@ test.describe("Morse book page foundation", () => {
     );
     await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
     await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
+    const playLivePlayerButton = livePlayer.getByRole("button", {
+      name: "Play live player",
+    });
+    const openFullscreenButton = livePlayer.getByRole("button", {
+      name: "Open live preview fullscreen",
+    });
+    await expect(playLivePlayerButton).toBeVisible();
+    await expect(playLivePlayerButton.locator("svg")).toBeVisible();
+    await expect(openFullscreenButton).toBeVisible();
+    await expect(openFullscreenButton.locator("svg")).toBeVisible();
     const embeddedFrameBox = await page
       .getByTestId("book-video-preview-frame")
       .boundingBox();
@@ -747,6 +757,21 @@ test.describe("Morse book page foundation", () => {
       playerSettings,
     ).not.toHaveAttribute("open", "");
     await playerSettings.locator("summary").click();
+    const progressSettings = playerSettings.getByTestId(
+      "morse-book-live-progress-settings",
+    );
+    await expect(progressSettings).toBeVisible();
+    await expect(
+      progressSettings.locator("p").filter({ hasText: "Progress" }),
+    ).toBeVisible();
+    await expect(
+      progressSettings.getByRole("button", { name: "Reset progress" }),
+    ).toBeVisible();
+    await expect(
+      progressSettings
+        .getByRole("button", { name: "Reset progress" })
+        .locator("svg"),
+    ).toBeVisible();
     await expect(
       playerSettings.getByRole("button", { name: "Lightbulb signal" }),
     ).toBeVisible();
@@ -1488,6 +1513,41 @@ test.describe("Morse book page foundation", () => {
     await expect
       .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
       .toBeGreaterThan(0);
+
+    const playerSettings = livePlayer
+      .locator("details")
+      .filter({ hasText: "Player settings" });
+    await expect(playerSettings).not.toHaveAttribute("open", "");
+    await playerSettings.locator("summary").click();
+    const progressSettings = playerSettings.getByTestId(
+      "morse-book-live-progress-settings",
+    );
+    await expect(progressSettings).toBeVisible();
+    await expect(
+      progressSettings.locator("p").filter({ hasText: "Progress" }),
+    ).toBeVisible();
+    const resetProgressButton = progressSettings.getByRole("button", {
+      name: "Reset progress",
+    });
+    await expect(resetProgressButton).toBeVisible();
+    await resetProgressButton.click();
+    await expect(
+      progressSettings.locator("[data-mw-morse-book-saved-settings-status]"),
+    ).toContainText("Saved book settings reset.");
+    await expect
+      .poll(() =>
+        page.evaluate((key) => {
+          const raw = localStorage.getItem(key);
+          if (!raw) return "cleared";
+          try {
+            const parsed = JSON.parse(raw) as { timeSeconds?: number };
+            return (parsed.timeSeconds ?? 0) === 0 ? "cleared" : "has-progress";
+          } catch {
+            return "cleared";
+          }
+        }, TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY),
+      )
+      .toBe("cleared");
 
     await page.locator("[data-mw-morse-book-section-select='chapter-002']").uncheck();
     await expect(
