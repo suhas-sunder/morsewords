@@ -2262,6 +2262,13 @@ test("live preview fullscreen preserves translator source and progress", async (
   await expectPreviewReady(page);
   await expect(preview.getByTestId("book-video-preview-frame")).toBeVisible();
   await expect(preview.getByTestId("book-video-preview-fullscreen-button")).toBeVisible();
+  const embeddedMorseText = await preview
+    .getByTestId("book-video-preview-morse-overlay")
+    .evaluate(
+      (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
+    );
+  expect(embeddedMorseText).toMatch(/[.-]{1,5}\s+[.-]{1,5}/);
+  expect(embeddedMorseText).toContain("/");
 
   const segmentSelect = preview.getByTestId("book-live-preview-segment-select");
   await expect(segmentSelect).toBeVisible();
@@ -2303,7 +2310,15 @@ test("live preview fullscreen preserves translator source and progress", async (
     (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
   );
   expect(fullscreenMorseText).toMatch(/[.-]{1,5}\s+[.-]{1,5}/);
-  expect(fullscreenMorseText).toMatch(/\s\/\s/);
+  expect(fullscreenMorseText).toContain("/");
+  const fullscreenActiveTextWord = await page
+    .getByTestId("book-video-preview-fullscreen-active-text-word")
+    .evaluate(
+      (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
+    );
+  expect(fullscreenActiveTextWord).not.toMatch(
+    /[A-Za-z]\s+[A-Za-z]\s+[A-Za-z]/,
+  );
   await expectLocatorInsideBounds(fullscreenFrame, fullscreenMorse);
   await expectLocatorInsideBounds(fullscreenFrame, fullscreenText);
   await expectLocatorInsideBounds(

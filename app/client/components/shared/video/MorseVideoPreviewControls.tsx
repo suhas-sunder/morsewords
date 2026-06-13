@@ -80,7 +80,7 @@ const TIMELINE_EDGE_PADDING_PX = 20;
 const TIMELINE_DENSE_EVENT_LIMIT = 260;
 const TIMELINE_DENSE_BUCKET_COUNT = 180;
 const INLINE_PREVIEW_WORD_WINDOW_LIMIT = 168;
-const FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT = 216;
+const FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT = 150;
 
 type TimelineDisplayEvent = MorseVideoTimeline["events"][number] & {
   compressed?: boolean;
@@ -213,52 +213,52 @@ export function MorseVideoPreviewPanel({
       ? "w-full max-w-[min(98vw,112rem)] space-y-3 sm:space-y-5"
       : "w-full max-w-[min(98vw,116rem)] space-y-4 sm:space-y-8"
     : signalVisible
-      ? "w-full max-w-[68rem] space-y-1 sm:space-y-2"
-      : "w-full max-w-[70rem] space-y-3 sm:space-y-4";
+      ? "w-full max-w-[64rem] space-y-0.5 sm:space-y-2"
+      : "w-full max-w-[66rem] space-y-3 sm:space-y-4";
   const morseTextClass = fullscreen
     ? signalVisible
       ? denseText
-        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(0.95rem,2.1vw,2.75rem)] font-bold leading-[1.08] tracking-normal"
-        : "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.45rem,4.5vw,5.75rem)] font-bold leading-[1.08] tracking-normal"
+        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.15rem,3vw,4.25rem)] font-bold leading-[1.08] tracking-normal"
+        : "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.55rem,5vw,6.25rem)] font-bold leading-[1.08] tracking-normal"
       : textLayerCount === 1
         ? "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(2rem,6.8vw,8rem)] font-bold leading-[1.08] tracking-normal"
         : "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.55rem,5vw,6rem)] font-bold leading-[1.08] tracking-normal"
     : signalVisible
-      ? "mx-auto max-w-full whitespace-normal break-words font-mono text-base font-bold leading-[1.12] tracking-normal sm:text-2xl lg:text-3xl"
+      ? "mx-auto max-w-full whitespace-normal break-words font-mono text-base font-bold leading-tight tracking-normal sm:text-3xl lg:text-4xl"
       : textLayerCount === 1
-        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-3xl font-bold leading-[1.1] tracking-normal sm:text-5xl"
-        : "mx-auto max-w-full whitespace-normal break-words font-mono text-2xl font-bold leading-[1.1] tracking-normal sm:text-4xl";
+        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-4xl font-bold leading-tight tracking-normal sm:text-6xl"
+        : "mx-auto max-w-full whitespace-normal break-words font-mono text-3xl font-bold leading-tight tracking-normal sm:text-5xl";
   const plainTextClass = fullscreen
     ? signalVisible
       ? denseText
-        ? "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1rem,2vw,2.6rem)] font-extrabold leading-[1.1]"
-        : "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1.3rem,3.9vw,5rem)] font-extrabold leading-[1.1]"
+        ? "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1.15rem,2.75vw,3.75rem)] font-extrabold leading-[1.1]"
+        : "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1.4rem,4.2vw,5.4rem)] font-extrabold leading-[1.1]"
       : textLayerCount === 1
         ? "mx-auto max-w-[min(98vw,110rem)] whitespace-normal break-words text-[clamp(2rem,6.2vw,7rem)] font-extrabold leading-[1.1]"
         : "mx-auto max-w-[min(98vw,110rem)] whitespace-normal break-words text-[clamp(1.55rem,4.7vw,5.6rem)] font-extrabold leading-[1.1]"
     : signalVisible
       ? [
-          "mx-auto max-w-[68rem] whitespace-normal break-words font-extrabold leading-[1.14]",
+          "mx-auto max-w-[64rem] whitespace-normal break-words font-extrabold leading-tight",
           longTextExcerpt
-            ? "text-sm sm:text-2xl lg:text-3xl"
-            : "text-base sm:text-2xl lg:text-3xl",
+            ? "text-sm leading-snug sm:text-3xl sm:leading-tight"
+            : "text-sm sm:text-3xl lg:text-4xl",
         ].join(" ")
       : textLayerCount === 1
-        ? "mx-auto max-w-[64rem] whitespace-normal break-words text-3xl font-extrabold leading-[1.1] sm:text-5xl"
-        : "mx-auto max-w-[64rem] whitespace-normal break-words text-2xl font-extrabold leading-[1.1] sm:text-4xl";
+        ? "mx-auto max-w-[60rem] whitespace-normal break-words text-4xl font-extrabold leading-tight sm:text-6xl"
+        : "mx-auto max-w-[60rem] whitespace-normal break-words text-3xl font-extrabold leading-tight sm:text-5xl";
   const rootClass = fullscreen
     ? ["h-full min-h-0 w-full", className].filter(Boolean).join(" ")
     : ["space-y-3", className].filter(Boolean).join(" ");
   const frameClass = fullscreen
     ? "relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none p-1 sm:p-3"
-    : "relative flex aspect-video min-h-[12rem] w-full flex-col overflow-hidden rounded-xl p-3 sm:min-h-[20rem] sm:p-5";
+    : "relative flex aspect-video min-h-[12rem] w-full flex-col overflow-hidden rounded-xl p-3 sm:min-h-[20rem] sm:p-6";
   const frameContentClass = fullscreen
     ? signalVisible
-      ? "grid min-h-0 flex-1 grid-rows-[auto_minmax(0,1fr)] items-center justify-items-center gap-3 px-1 pb-4 pt-14 text-center sm:gap-6 sm:px-4 sm:pb-6 sm:pt-12"
-      : "flex min-h-0 flex-1 flex-col items-center justify-center gap-4 px-1 pb-4 pt-14 text-center sm:gap-8 sm:px-4 sm:pb-6 sm:pt-12"
+      ? "flex min-h-0 flex-1 flex-col items-center justify-center gap-[clamp(0.75rem,2.2vh,2.25rem)] overflow-y-auto px-[clamp(0.5rem,2vw,2rem)] pb-[clamp(4.5rem,11vh,7rem)] pt-[clamp(3rem,7vh,5.5rem)] text-center"
+      : "flex min-h-0 flex-1 flex-col items-center justify-center gap-[clamp(1rem,3vh,3rem)] overflow-y-auto px-[clamp(0.5rem,2vw,2rem)] pb-[clamp(4.5rem,11vh,7rem)] pt-[clamp(3rem,7vh,5.5rem)] text-center"
     : [
-        "flex min-h-0 flex-1 flex-col items-center justify-center pb-5 pt-0 text-center sm:pb-6 sm:pt-2",
-        signalVisible ? "gap-2 sm:gap-4" : "gap-3 sm:gap-6",
+        "flex min-h-0 flex-1 flex-col items-center justify-center pb-7 pt-0 text-center sm:pb-9 sm:pt-2",
+        signalVisible ? "gap-1 sm:gap-4" : "gap-3 sm:gap-6",
       ].join(" ");
 
   return (
@@ -1034,8 +1034,8 @@ function renderMorsePreviewWords(
           }
           className={[
             word.active
-              ? activePreviewWordClass(darkFrame, fullFrameActive)
-              : "mx-1 inline-flex flex-wrap justify-center gap-1",
+              ? activeMorseWordClass(darkFrame, fullFrameActive)
+              : "inline",
           ].join(" ")}
         >
           {morseCharacters.map((morse, morseIndex) => (
@@ -1048,8 +1048,11 @@ function renderMorsePreviewWords(
                 }
                 className={
                   word.active && morseIndex === word.activeCharIndex
-                    ? activePreviewCharacterClass(darkFrame, fullFrameActive)
-                    : undefined
+                    ? [
+                        "inline-block whitespace-nowrap",
+                        activePreviewCharacterClass(darkFrame, fullFrameActive),
+                      ].join(" ")
+                    : "inline-block whitespace-nowrap"
                 }
               >
                 {morse}
@@ -1059,8 +1062,8 @@ function renderMorsePreviewWords(
           ))}
         </span>
         {wordOffset < words.length - 1 ? (
-          <span className="mx-1 select-none opacity-70">
-            {" / "}
+          <span className="mx-[0.1em] select-none opacity-70">
+            /
           </span>
         ) : null}
       </React.Fragment>
@@ -1081,26 +1084,28 @@ function renderTextPreviewWords(
         className={
           word.active
             ? activePreviewWordClass(darkFrame, fullFrameActive)
-            : undefined
+            : "mx-1 inline-block whitespace-nowrap"
         }
       >
-        {[...word.text].map((character, charIndex) => (
-          <span
-            key={`${word.wordIndex}-${charIndex}-${character}`}
-            data-testid={
-              word.active && charIndex === word.activeCharIndex
-                ? `${testIdPrefix}-active-text-character`
-                : undefined
-            }
-            className={
-              word.active && charIndex === word.activeCharIndex
-                ? activePreviewCharacterClass(darkFrame, fullFrameActive)
-                : undefined
-            }
-          >
-            {character}
-          </span>
-        ))}
+        {word.active
+          ? [...word.text].map((character, charIndex) => (
+              <span
+                key={`${word.wordIndex}-${charIndex}-${character}`}
+                data-testid={
+                  charIndex === word.activeCharIndex
+                    ? `${testIdPrefix}-active-text-character`
+                    : undefined
+                }
+                className={
+                  charIndex === word.activeCharIndex
+                    ? activePreviewCharacterClass(darkFrame, fullFrameActive)
+                    : undefined
+                }
+              >
+                {character}
+              </span>
+            ))
+          : word.text}
       </span>
       {wordOffset < words.length - 1 ? (
         <span className="mx-1 select-none opacity-55" aria-hidden="true">
@@ -1116,12 +1121,25 @@ function activePreviewWordClass(
   fullFrameActive: boolean,
 ) {
   if (fullFrameActive) {
-    return "mx-1 inline-flex flex-wrap justify-center gap-1 rounded-lg bg-sky-950/20 px-1.5 py-0.5 text-sky-950 ring-1 ring-sky-950/20";
+    return "mx-1 inline-block whitespace-nowrap rounded-lg bg-sky-950/20 px-1.5 py-0.5 text-sky-950 ring-1 ring-sky-950/20";
   }
   if (darkFrame) {
-    return "mx-1 inline-flex flex-wrap justify-center gap-1 rounded-lg bg-sky-300 px-1.5 py-0.5 text-slate-950 ring-1 ring-sky-100/80";
+    return "mx-1 inline-block whitespace-nowrap rounded-lg bg-sky-300 px-1.5 py-0.5 text-slate-950 ring-1 ring-sky-100/80";
   }
-  return "mx-1 inline-flex flex-wrap justify-center gap-1 rounded-lg bg-sky-100 px-1.5 py-0.5 text-sky-950 ring-1 ring-sky-300/70";
+  return "mx-1 inline-block whitespace-nowrap rounded-lg bg-sky-100 px-1.5 py-0.5 text-sky-950 ring-1 ring-sky-300/70";
+}
+
+function activeMorseWordClass(
+  darkFrame: boolean,
+  fullFrameActive: boolean,
+) {
+  if (fullFrameActive) {
+    return "inline text-sky-950";
+  }
+  if (darkFrame) {
+    return "inline text-sky-100";
+  }
+  return "inline text-sky-950";
 }
 
 function activePreviewCharacterClass(

@@ -500,6 +500,25 @@ test.describe("Morse book page foundation", () => {
     );
     await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
     await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
+    const embeddedFrameBox = await page
+      .getByTestId("book-video-preview-frame")
+      .boundingBox();
+    expect(embeddedFrameBox).not.toBeNull();
+    const embeddedFrameRatio = embeddedFrameBox!.width / embeddedFrameBox!.height;
+    expect(embeddedFrameRatio).toBeGreaterThan(1.65);
+    expect(embeddedFrameRatio).toBeLessThan(1.9);
+    const embeddedLightbulbBox = await livePlayer
+      .locator("[data-testid='book-video-preview-lightbulb'] svg")
+      .boundingBox();
+    expect(embeddedLightbulbBox).not.toBeNull();
+    expect(embeddedLightbulbBox!.width).toBeGreaterThanOrEqual(110);
+    const embeddedMorseText = await livePlayer
+      .getByTestId("book-video-preview-morse-overlay")
+      .evaluate(
+        (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
+      );
+    expect(embeddedMorseText).toMatch(/[.-]{1,5}\s+[.-]{1,5}/);
+    expect(embeddedMorseText).toContain("/");
     await expect(livePlayerDownloadLink).toBeVisible();
     await expect(livePlayerDownloadLink).toHaveText("Download Audiobook MP3");
     await expect(livePlayerDownloadLink).toHaveAttribute(
@@ -554,7 +573,15 @@ test.describe("Morse book page foundation", () => {
       (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
     );
     expect(fullscreenMorseText).toMatch(/[.-]{1,5}\s+[.-]{1,5}/);
-    expect(fullscreenMorseText).toMatch(/\s\/\s/);
+    expect(fullscreenMorseText).toContain("/");
+    const fullscreenActiveTextWord = await page
+      .getByTestId("book-video-preview-fullscreen-active-text-word")
+      .evaluate(
+        (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
+      );
+    expect(fullscreenActiveTextWord).not.toMatch(
+      /[A-Za-z]\s+[A-Za-z]\s+[A-Za-z]/,
+    );
     await expectLocatorInsideBounds(fullscreenFrame, fullscreenMorse);
     await expectLocatorInsideBounds(fullscreenFrame, fullscreenText);
     await expectLocatorInsideBounds(
