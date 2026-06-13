@@ -86,6 +86,108 @@ async function expectLocatorInsideBounds(container: Locator, child: Locator) {
   );
 }
 
+type PreviewLayerRect = {
+  bottom: number;
+  height: number;
+  left: number;
+  right: number;
+  top: number;
+  width: number;
+};
+
+type PreviewLayerMetric = {
+  fontSize: number;
+  letterSpacing: string;
+  rect: PreviewLayerRect;
+  text: string;
+};
+
+type PreviewLayerMetrics = {
+  frame: PreviewLayerRect;
+  morse: PreviewLayerMetric | null;
+  text: PreviewLayerMetric | null;
+  windowLimit: number;
+};
+
+async function readPreviewLayerMetrics(
+  root: Locator,
+  testIdPrefix = "book-video-preview",
+): Promise<PreviewLayerMetrics> {
+  return root.evaluate((scope, prefix) => {
+    const frame = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-frame"]`,
+    );
+    if (!frame) throw new Error(`Missing preview frame for ${prefix}`);
+
+    function rectFor(element: Element): PreviewLayerRect {
+      const rect = element.getBoundingClientRect();
+      return {
+        bottom: rect.bottom,
+        height: rect.height,
+        left: rect.left,
+        right: rect.right,
+        top: rect.top,
+        width: rect.width,
+      };
+    }
+
+    function metricFor(testId: string): PreviewLayerMetric | null {
+      const element = scope.querySelector<HTMLElement>(
+        `[data-testid="${testId}"]`,
+      );
+      if (!element) return null;
+      const style = window.getComputedStyle(element);
+      return {
+        fontSize: Number.parseFloat(style.fontSize),
+        letterSpacing: style.letterSpacing,
+        rect: rectFor(element),
+        text: element.textContent ?? "",
+      };
+    }
+
+    return {
+      frame: rectFor(frame),
+      morse: metricFor(`${prefix}-morse-overlay`),
+      text: metricFor(`${prefix}-text-overlay`),
+      windowLimit: Number(frame.dataset.previewWindowLimit ?? 0),
+    };
+  }, testIdPrefix);
+}
+
+function normalizedPreviewText(value: string) {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function previewWordCount(value: string) {
+  return normalizedPreviewText(value).split(/\s+/).filter(Boolean).length;
+}
+
+function expectLayerInsideFrame(
+  metrics: PreviewLayerMetrics,
+  layer: PreviewLayerMetric | null,
+) {
+  expect(layer).not.toBeNull();
+  expect(layer!.rect.width).toBeGreaterThan(0);
+  expect(layer!.rect.height).toBeGreaterThan(0);
+  expect(layer!.rect.left).toBeGreaterThanOrEqual(metrics.frame.left - 1);
+  expect(layer!.rect.top).toBeGreaterThanOrEqual(metrics.frame.top - 1);
+  expect(layer!.rect.right).toBeLessThanOrEqual(metrics.frame.right + 1);
+  expect(layer!.rect.bottom).toBeLessThanOrEqual(metrics.frame.bottom + 1);
+}
+
+function expectNormalPlainTextSpacing(layer: PreviewLayerMetric | null) {
+  expect(layer).not.toBeNull();
+  const spacing = layer!.letterSpacing;
+  const numericSpacing = Number.parseFloat(spacing);
+  expect(spacing === "normal" || Math.abs(numericSpacing) < 0.1).toBe(true);
+}
+
+function expectMorseGroupsSeparated(value: string) {
+  const normalized = normalizedPreviewText(value);
+  expect(normalized).toMatch(/[.-]/);
+  expect(normalized).toMatch(/\/|[.-]{1,4}\s+[.-]{1,4}/);
+}
+
 function bookOutputTypeButton(page: Page, outputType: "audio" | "video") {
   return page.locator(`[data-mw-morse-book-output-type="${outputType}"]`);
 }
@@ -1410,6 +1512,22 @@ test.describe("Morse book page foundation", () => {
 
     const livePlayer = page.getByTestId("morse-book-live-player");
     await expect(livePlayer).toBeVisible();
+    const liveBeforeChooser = await page.evaluate(() => {
+      const live = document.querySelector("#book-live-morse-player");
+      const chooser = document.querySelector("#book-section-chooser");
+      return Boolean(
+        live &&
+          chooser &&
+          (live.compareDocumentPosition(chooser) &
+            Node.DOCUMENT_POSITION_FOLLOWING) !==
+            0,
+      );
+    });
+    expect(liveBeforeChooser).toBe(true);
+    await expect(page.locator("#book-mp3-download")).toBeVisible();
+    await expect(
+      livePlayer.getByTestId("morse-book-live-download-link"),
+    ).toHaveText("Download Audiobook MP3");
     await expect(livePlayer.locator("[data-testid='book-video-preview-lightbulb']")).toBeVisible();
     const morseOverlay = livePlayer.locator("[data-testid='book-video-preview-morse-overlay']");
     await expect(morseOverlay).toBeVisible();
@@ -1417,6 +1535,11 @@ test.describe("Morse book page foundation", () => {
     const textOverlay = livePlayer.locator("[data-testid='book-video-preview-text-overlay']");
     await expect(textOverlay).toBeVisible();
     await expect(textOverlay).toContainText("/");
+    const defaultMetrics = await readPreviewLayerMetrics(livePlayer);
+    expectLayerInsideFrame(defaultMetrics, defaultMetrics.morse);
+    expectLayerInsideFrame(defaultMetrics, defaultMetrics.text);
+    expectMorseGroupsSeparated(defaultMetrics.morse!.text);
+    expectNormalPlainTextSpacing(defaultMetrics.text);
 
     await livePlayer.getByRole("button", { name: "Play live player" }).click();
     await expect(livePlayer.locator("[data-testid='book-video-preview']")).toHaveAttribute(
@@ -1464,10 +1587,73 @@ test.describe("Morse book page foundation", () => {
     await livePlayer.getByLabel("Visual signal").uncheck();
     await expect(livePlayer.locator("[data-testid='book-video-preview-lightbulb']")).toHaveCount(0);
     await expect(livePlayer.locator("[data-testid='book-video-preview-morse-overlay']")).toBeVisible();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-text-overlay']")).toBeVisible();
+    const noSignalMetrics = await readPreviewLayerMetrics(livePlayer);
+    expect(noSignalMetrics.windowLimit).toBeGreaterThan(
+      defaultMetrics.windowLimit,
+    );
+    expectLayerInsideFrame(noSignalMetrics, noSignalMetrics.morse);
+    expectLayerInsideFrame(noSignalMetrics, noSignalMetrics.text);
+    expect(noSignalMetrics.morse!.fontSize).toBeLessThanOrEqual(
+      defaultMetrics.morse!.fontSize + 1,
+    );
+    expect(noSignalMetrics.text!.fontSize).toBeLessThanOrEqual(
+      defaultMetrics.text!.fontSize + 1,
+    );
+    expect(previewWordCount(noSignalMetrics.text!.text)).toBeGreaterThanOrEqual(
+      previewWordCount(defaultMetrics.text!.text),
+    );
+    expectMorseGroupsSeparated(noSignalMetrics.morse!.text);
+    expectNormalPlainTextSpacing(noSignalMetrics.text);
+
     await livePlayer.getByLabel("Morse symbols").uncheck();
     await expect(livePlayer.locator("[data-testid='book-video-preview-morse-overlay']")).toHaveCount(0);
     await expect(livePlayer.getByLabel("Plain text")).toBeDisabled();
     await expect(livePlayer.locator("[data-testid='book-video-preview-text-overlay']")).toBeVisible();
+    const textOnlyMetrics = await readPreviewLayerMetrics(livePlayer);
+    expect(textOnlyMetrics.windowLimit).toBeGreaterThan(
+      noSignalMetrics.windowLimit,
+    );
+    expectLayerInsideFrame(textOnlyMetrics, textOnlyMetrics.text);
+    expect(textOnlyMetrics.text!.fontSize).toBeLessThanOrEqual(
+      defaultMetrics.text!.fontSize + 1,
+    );
+    expect(previewWordCount(textOnlyMetrics.text!.text)).toBeGreaterThanOrEqual(
+      previewWordCount(noSignalMetrics.text!.text),
+    );
+    expectNormalPlainTextSpacing(textOnlyMetrics.text);
+
+    await livePlayer.getByLabel("Morse symbols").check();
+    await livePlayer.getByLabel("Plain text").uncheck();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-morse-overlay']")).toBeVisible();
+    await expect(livePlayer.locator("[data-testid='book-video-preview-text-overlay']")).toHaveCount(0);
+    const morseOnlyMetrics = await readPreviewLayerMetrics(livePlayer);
+    expect(morseOnlyMetrics.windowLimit).toBeGreaterThan(
+      noSignalMetrics.windowLimit,
+    );
+    expectLayerInsideFrame(morseOnlyMetrics, morseOnlyMetrics.morse);
+    expect(morseOnlyMetrics.morse!.fontSize).toBeLessThanOrEqual(
+      defaultMetrics.morse!.fontSize + 1,
+    );
+    expect(previewWordCount(morseOnlyMetrics.morse!.text)).toBeGreaterThanOrEqual(
+      previewWordCount(noSignalMetrics.morse!.text),
+    );
+    expectMorseGroupsSeparated(morseOnlyMetrics.morse!.text);
+
+    await livePlayer.getByTestId("book-video-preview-fullscreen-button").click();
+    const fullscreenOverlay = page.getByTestId(
+      "book-video-preview-fullscreen-overlay",
+    );
+    await expect(fullscreenOverlay).toBeVisible();
+    const fullscreenMetrics = await readPreviewLayerMetrics(
+      fullscreenOverlay,
+      "book-video-preview-fullscreen",
+    );
+    expectLayerInsideFrame(fullscreenMetrics, fullscreenMetrics.morse);
+    expect(fullscreenMetrics.morse!.fontSize).toBeLessThanOrEqual(72);
+    expectMorseGroupsSeparated(fullscreenMetrics.morse!.text);
+    await page.getByRole("button", { name: "Exit fullscreen" }).click();
+    await expect(page.getByTestId("book-video-preview-fullscreen-overlay")).toHaveCount(0);
 
     await expect(livePlayer.locator("[data-testid='book-video-full-frame-warning']")).toHaveCount(0);
 

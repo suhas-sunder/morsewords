@@ -217,6 +217,108 @@ async function expectLocatorInsideBounds(container: Locator, child: Locator) {
   );
 }
 
+type PreviewLayerRect = {
+  bottom: number;
+  height: number;
+  left: number;
+  right: number;
+  top: number;
+  width: number;
+};
+
+type PreviewLayerMetric = {
+  fontSize: number;
+  letterSpacing: string;
+  rect: PreviewLayerRect;
+  text: string;
+};
+
+type PreviewLayerMetrics = {
+  frame: PreviewLayerRect;
+  morse: PreviewLayerMetric | null;
+  text: PreviewLayerMetric | null;
+  windowLimit: number;
+};
+
+async function readPreviewLayerMetrics(
+  root: Locator,
+  testIdPrefix = "book-video-preview",
+): Promise<PreviewLayerMetrics> {
+  return root.evaluate((scope, prefix) => {
+    const frame = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-frame"]`,
+    );
+    if (!frame) throw new Error(`Missing preview frame for ${prefix}`);
+
+    function rectFor(element: Element): PreviewLayerRect {
+      const rect = element.getBoundingClientRect();
+      return {
+        bottom: rect.bottom,
+        height: rect.height,
+        left: rect.left,
+        right: rect.right,
+        top: rect.top,
+        width: rect.width,
+      };
+    }
+
+    function metricFor(testId: string): PreviewLayerMetric | null {
+      const element = scope.querySelector<HTMLElement>(
+        `[data-testid="${testId}"]`,
+      );
+      if (!element) return null;
+      const style = window.getComputedStyle(element);
+      return {
+        fontSize: Number.parseFloat(style.fontSize),
+        letterSpacing: style.letterSpacing,
+        rect: rectFor(element),
+        text: element.textContent ?? "",
+      };
+    }
+
+    return {
+      frame: rectFor(frame),
+      morse: metricFor(`${prefix}-morse-overlay`),
+      text: metricFor(`${prefix}-text-overlay`),
+      windowLimit: Number(frame.dataset.previewWindowLimit ?? 0),
+    };
+  }, testIdPrefix);
+}
+
+function normalizedPreviewText(value: string) {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function previewWordCount(value: string) {
+  return normalizedPreviewText(value).split(/\s+/).filter(Boolean).length;
+}
+
+function expectLayerInsideFrame(
+  metrics: PreviewLayerMetrics,
+  layer: PreviewLayerMetric | null,
+) {
+  expect(layer).not.toBeNull();
+  expect(layer!.rect.width).toBeGreaterThan(0);
+  expect(layer!.rect.height).toBeGreaterThan(0);
+  expect(layer!.rect.left).toBeGreaterThanOrEqual(metrics.frame.left - 1);
+  expect(layer!.rect.top).toBeGreaterThanOrEqual(metrics.frame.top - 1);
+  expect(layer!.rect.right).toBeLessThanOrEqual(metrics.frame.right + 1);
+  expect(layer!.rect.bottom).toBeLessThanOrEqual(metrics.frame.bottom + 1);
+}
+
+function expectNormalPlainTextSpacing(layer: PreviewLayerMetric | null) {
+  expect(layer).not.toBeNull();
+  const spacing = layer!.letterSpacing;
+  const numericSpacing = Number.parseFloat(spacing);
+  expect(spacing === "normal" || Math.abs(numericSpacing) < 0.1).toBe(true);
+}
+
+function expectMorseGroupsSeparated(value: string) {
+  const normalized = normalizedPreviewText(value);
+  expect(normalized).toMatch(/[.-]/);
+  expect(normalized).toMatch(/\/|[.-]{1,4}\s+[.-]{1,4}/);
+}
+
 async function readTranslatorLivePreviewProgress(page: Page) {
   return page.evaluate((key) => {
     const raw = localStorage.getItem(key);
@@ -2430,12 +2532,10 @@ test("MP3 download stays primary while the live visual player remains available"
 test("live visual preview settings hide obsolete video controls and keep layers scoped", async ({
   page,
 }) => {
+  const sourceText =
+    "SOS HELP preview moves through a longer readable text window for seek testing with alpha bravo charlie delta echo foxtrot";
   await openBookTranslator(page);
-  await page
-    .getByLabel("Paste long-form source text")
-    .fill(
-      "SOS HELP preview moves through a longer readable text window for seek testing",
-    );
+  await page.getByLabel("Paste long-form source text").fill(sourceText);
   await openDownloadSettings(page);
 
   await expect(
@@ -2509,6 +2609,40 @@ test("live visual preview settings hide obsolete video controls and keep layers 
   await expect(
     page.getByTestId("book-video-preview-text-overlay"),
   ).toBeVisible();
+  const preview = page.getByTestId("book-video-preview");
+  const defaultMetrics = await readPreviewLayerMetrics(preview);
+  expectLayerInsideFrame(defaultMetrics, defaultMetrics.morse);
+  expectLayerInsideFrame(defaultMetrics, defaultMetrics.text);
+  expectMorseGroupsSeparated(defaultMetrics.morse!.text);
+  expectNormalPlainTextSpacing(defaultMetrics.text);
+  await expect(
+    sourceStep(page).getByRole("button", { name: "Download MP3" }),
+  ).toBeVisible();
+  await expect(page.getByRole("button", { name: /Download MP4|Download WebM/ }))
+    .toHaveCount(0);
+  await expect(page.getByText(/\bMP4\b|\bWebM\b/)).toHaveCount(0);
+
+  await page.getByLabel("Show visual signal").uncheck();
+  await expect(page.getByTestId("book-video-preview-lightbulb")).toHaveCount(0);
+  await expect(page.getByTestId("book-video-preview-morse-overlay")).toBeVisible();
+  await expect(page.getByTestId("book-video-preview-text-overlay")).toBeVisible();
+  const noSignalMetrics = await readPreviewLayerMetrics(preview);
+  expect(noSignalMetrics.windowLimit).toBeGreaterThan(
+    defaultMetrics.windowLimit,
+  );
+  expectLayerInsideFrame(noSignalMetrics, noSignalMetrics.morse);
+  expectLayerInsideFrame(noSignalMetrics, noSignalMetrics.text);
+  expect(noSignalMetrics.morse!.fontSize).toBeLessThanOrEqual(
+    defaultMetrics.morse!.fontSize + 1,
+  );
+  expect(noSignalMetrics.text!.fontSize).toBeLessThanOrEqual(
+    defaultMetrics.text!.fontSize + 1,
+  );
+  expect(previewWordCount(noSignalMetrics.text!.text)).toBeGreaterThanOrEqual(
+    previewWordCount(defaultMetrics.text!.text),
+  );
+  expectMorseGroupsSeparated(noSignalMetrics.morse!.text);
+  expectNormalPlainTextSpacing(noSignalMetrics.text);
 
   await page.getByLabel("Show Morse symbols").uncheck();
   await expect(
@@ -2517,23 +2651,57 @@ test("live visual preview settings hide obsolete video controls and keep layers 
   await expect(
     page.getByTestId("book-video-preview-text-overlay"),
   ).toBeVisible();
-  const textOnlyBox = await page
-    .getByTestId("book-video-preview-text-overlay")
-    .boundingBox();
-  expect(textOnlyBox).not.toBeNull();
-
-  await page.getByLabel("Show visual signal").uncheck();
-  await expect(page.getByTestId("book-video-preview-lightbulb")).toHaveCount(0);
-  const textNoSignalBox = await page
-    .getByTestId("book-video-preview-text-overlay")
-    .boundingBox();
-  expect(textNoSignalBox).not.toBeNull();
-  expect(textNoSignalBox!.height).toBeGreaterThanOrEqual(textOnlyBox!.height);
+  const textOnlyMetrics = await readPreviewLayerMetrics(preview);
+  expect(textOnlyMetrics.windowLimit).toBeGreaterThan(
+    noSignalMetrics.windowLimit,
+  );
+  expectLayerInsideFrame(textOnlyMetrics, textOnlyMetrics.text);
+  expect(textOnlyMetrics.text!.fontSize).toBeLessThanOrEqual(
+    defaultMetrics.text!.fontSize + 1,
+  );
+  expect(previewWordCount(textOnlyMetrics.text!.text)).toBeGreaterThanOrEqual(
+    previewWordCount(noSignalMetrics.text!.text),
+  );
+  expectNormalPlainTextSpacing(textOnlyMetrics.text);
 
   await page.getByLabel("Show Morse symbols").check();
+  await page.getByLabel("Show plain text").uncheck();
   await expect(
     page.getByTestId("book-video-preview-morse-overlay"),
   ).toBeVisible();
+  await expect(
+    page.getByTestId("book-video-preview-text-overlay"),
+  ).toHaveCount(0);
+  const morseOnlyMetrics = await readPreviewLayerMetrics(preview);
+  expect(morseOnlyMetrics.windowLimit).toBeGreaterThan(
+    noSignalMetrics.windowLimit,
+  );
+  expectLayerInsideFrame(morseOnlyMetrics, morseOnlyMetrics.morse);
+  expect(morseOnlyMetrics.morse!.fontSize).toBeLessThanOrEqual(
+    defaultMetrics.morse!.fontSize + 1,
+  );
+  expect(previewWordCount(morseOnlyMetrics.morse!.text)).toBeGreaterThanOrEqual(
+    previewWordCount(noSignalMetrics.morse!.text),
+  );
+  expectMorseGroupsSeparated(morseOnlyMetrics.morse!.text);
+
+  await page.getByTestId("book-video-preview-fullscreen-button").click();
+  const fullscreenOverlay = page.getByTestId(
+    "book-video-preview-fullscreen-overlay",
+  );
+  await expect(fullscreenOverlay).toBeVisible();
+  const fullscreenMetrics = await readPreviewLayerMetrics(
+    fullscreenOverlay,
+    "book-video-preview-fullscreen",
+  );
+  expectLayerInsideFrame(fullscreenMetrics, fullscreenMetrics.morse);
+  expect(fullscreenMetrics.morse!.fontSize).toBeLessThanOrEqual(72);
+  expectMorseGroupsSeparated(fullscreenMetrics.morse!.text);
+  await page.getByRole("button", { name: "Exit fullscreen" }).click();
+  await expect(page.getByTestId("book-video-preview-fullscreen-overlay"))
+    .toHaveCount(0);
+
+  await page.getByLabel("Show plain text").check();
   await expect(
     page.getByTestId("book-video-preview-text-overlay"),
   ).toBeVisible();
@@ -2561,16 +2729,20 @@ test("live visual preview settings hide obsolete video controls and keep layers 
           ?.getAttribute("data-active-word") ?? "",
     };
   });
-  const viewportWidth = page.viewportSize()?.width ?? 1280;
-  expect(overlaySizes.morseFontSize).toBeGreaterThanOrEqual(
-    viewportWidth < 640 ? 28 : 36,
+  expect(overlaySizes.morseFontSize).toBeGreaterThan(12);
+  expect(overlaySizes.textFontSize).toBeGreaterThan(12);
+  expect(overlaySizes.morseFontSize).toBeLessThanOrEqual(
+    defaultMetrics.morse!.fontSize + 1,
   );
-  expect(overlaySizes.textFontSize).toBeGreaterThanOrEqual(
-    viewportWidth < 640 ? 28 : 36,
+  expect(overlaySizes.textFontSize).toBeLessThanOrEqual(
+    defaultMetrics.text!.fontSize + 1,
   );
   expect(overlaySizes.morseText).toMatch(/[.-]/);
   expect(overlaySizes.plainText).toContain("SOS");
   expect(overlaySizes.activeWord).toContain("SOS");
+  await expect(page.getByLabel("Paste long-form source text")).toHaveValue(
+    sourceText,
+  );
   const videoTimeline = page.getByLabel("Live player timeline");
   const videoTimelineBox = await videoTimeline.boundingBox();
   expect(videoTimelineBox).not.toBeNull();

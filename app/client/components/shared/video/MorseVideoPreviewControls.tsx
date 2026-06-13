@@ -80,7 +80,7 @@ const TIMELINE_EDGE_PADDING_PX = 20;
 const TIMELINE_DENSE_EVENT_LIMIT = 260;
 const TIMELINE_DENSE_BUCKET_COUNT = 180;
 const INLINE_PREVIEW_WORD_WINDOW_LIMIT = 168;
-const FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT = 150;
+const FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT = 190;
 
 type TimelineDisplayEvent = MorseVideoTimeline["events"][number] & {
   compressed?: boolean;
@@ -174,6 +174,24 @@ function buildTimingStripDisplayEvents(
   };
 }
 
+function getPreviewWordWindowLimit({
+  fullscreen,
+  signalVisible,
+  textLayerCount,
+}: {
+  fullscreen: boolean;
+  signalVisible: boolean;
+  textLayerCount: number;
+}) {
+  const base = fullscreen
+    ? FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT
+    : INLINE_PREVIEW_WORD_WINDOW_LIMIT;
+  if (textLayerCount === 0) return base;
+  const freedSignalSpace = signalVisible ? 0 : fullscreen ? 96 : 48;
+  const freedTextLayerSpace = textLayerCount === 1 ? (fullscreen ? 96 : 54) : 0;
+  return base + freedSignalSpace + freedTextLayerSpace;
+}
+
 export function MorseVideoPreviewPanel({
   className = "",
   headingId,
@@ -188,18 +206,21 @@ export function MorseVideoPreviewPanel({
 }: MorseVideoPreviewPanelProps) {
   const fullscreen = layout === "fullscreen";
   const darkFrame = resolvedBackgroundStyle === "dark-morsewords";
-  const previewFrame = getMorseVideoPreviewFrame(
-    preview,
-    visualElapsedMs,
-    fullscreen
-      ? FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT
-      : INLINE_PREVIEW_WORD_WINDOW_LIMIT,
-  );
-  const textState = getMorseVideoFrameTextState(preview.timeline, visualElapsedMs);
   const showTextLayers = settings.showMorseSymbols || settings.showPlainText;
   const textLayerCount =
     (settings.showMorseSymbols ? 1 : 0) + (settings.showPlainText ? 1 : 0);
   const signalVisible = settings.showVisualSignal;
+  const previewWordWindowLimit = getPreviewWordWindowLimit({
+    fullscreen,
+    signalVisible,
+    textLayerCount,
+  });
+  const previewFrame = getMorseVideoPreviewFrame(
+    preview,
+    visualElapsedMs,
+    previewWordWindowLimit,
+  );
+  const textState = getMorseVideoFrameTextState(preview.timeline, visualElapsedMs);
   const markActive = isPlaying && signalVisible && previewFrame.active;
   const fullFrameActive = markActive && settings.visualStyle === "full-frame";
   const frameStyle = previewFrameStyle(darkFrame, fullFrameActive);
@@ -211,31 +232,21 @@ export function MorseVideoPreviewPanel({
   const textStackClass = fullscreen
     ? signalVisible
       ? "w-full max-w-[min(98vw,112rem)] space-y-3 sm:space-y-5"
-      : "w-full max-w-[min(98vw,116rem)] space-y-4 sm:space-y-8"
+      : "w-full max-w-[min(98vw,116rem)] space-y-3 sm:space-y-5"
     : signalVisible
       ? "w-full max-w-[64rem] space-y-0.5 sm:space-y-2"
-      : "w-full max-w-[66rem] space-y-3 sm:space-y-4";
+      : "w-full max-w-[66rem] space-y-1 sm:space-y-3";
   const morseTextClass = fullscreen
-    ? signalVisible
-      ? denseText
-        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.15rem,3vw,4.25rem)] font-bold leading-[1.08] tracking-normal"
-        : "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.55rem,5vw,6.25rem)] font-bold leading-[1.08] tracking-normal"
-      : textLayerCount === 1
-        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(2rem,6.8vw,8rem)] font-bold leading-[1.08] tracking-normal"
-        : "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.55rem,5vw,6rem)] font-bold leading-[1.08] tracking-normal"
+    ? denseText
+      ? "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.15rem,3vw,4.25rem)] font-bold leading-[1.08] tracking-normal"
+      : "mx-auto max-w-full whitespace-normal break-words font-mono text-[clamp(1.55rem,5vw,6.25rem)] font-bold leading-[1.08] tracking-normal"
     : signalVisible
       ? "mx-auto max-w-full whitespace-normal break-words font-mono text-base font-bold leading-tight tracking-normal sm:text-3xl lg:text-4xl"
-      : textLayerCount === 1
-        ? "mx-auto max-w-full whitespace-normal break-words font-mono text-4xl font-bold leading-tight tracking-normal sm:text-6xl"
-        : "mx-auto max-w-full whitespace-normal break-words font-mono text-3xl font-bold leading-tight tracking-normal sm:text-5xl";
+      : "mx-auto max-w-full whitespace-normal break-words font-mono text-base font-bold leading-tight tracking-normal sm:text-3xl lg:text-4xl";
   const plainTextClass = fullscreen
-    ? signalVisible
-      ? denseText
-        ? "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1.15rem,2.75vw,3.75rem)] font-extrabold leading-[1.1]"
-        : "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1.4rem,4.2vw,5.4rem)] font-extrabold leading-[1.1]"
-      : textLayerCount === 1
-        ? "mx-auto max-w-[min(98vw,110rem)] whitespace-normal break-words text-[clamp(2rem,6.2vw,7rem)] font-extrabold leading-[1.1]"
-        : "mx-auto max-w-[min(98vw,110rem)] whitespace-normal break-words text-[clamp(1.55rem,4.7vw,5.6rem)] font-extrabold leading-[1.1]"
+    ? denseText
+      ? "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1.15rem,2.75vw,3.75rem)] font-extrabold leading-[1.1]"
+      : "mx-auto max-w-[min(98vw,108rem)] whitespace-normal break-words text-[clamp(1.4rem,4.2vw,5.4rem)] font-extrabold leading-[1.1]"
     : signalVisible
       ? [
           "mx-auto max-w-[64rem] whitespace-normal break-words font-extrabold leading-tight",
@@ -243,9 +254,12 @@ export function MorseVideoPreviewPanel({
             ? "text-sm leading-snug sm:text-3xl sm:leading-tight"
             : "text-sm sm:text-3xl lg:text-4xl",
         ].join(" ")
-      : textLayerCount === 1
-        ? "mx-auto max-w-[60rem] whitespace-normal break-words text-4xl font-extrabold leading-tight sm:text-6xl"
-        : "mx-auto max-w-[60rem] whitespace-normal break-words text-3xl font-extrabold leading-tight sm:text-5xl";
+      : [
+          "mx-auto max-w-[64rem] whitespace-normal break-words font-extrabold leading-tight",
+          longTextExcerpt
+            ? "text-sm leading-snug sm:text-3xl sm:leading-tight"
+            : "text-sm sm:text-3xl lg:text-4xl",
+        ].join(" ");
   const rootClass = fullscreen
     ? ["h-full min-h-0 w-full", className].filter(Boolean).join(" ")
     : ["space-y-3", className].filter(Boolean).join(" ");
@@ -276,6 +290,7 @@ export function MorseVideoPreviewPanel({
         data-preview-playing={isPlaying ? "true" : "false"}
         data-preview-active={markActive ? "true" : "false"}
         data-full-frame-active={fullFrameActive ? "true" : "false"}
+        data-preview-window-limit={previewWordWindowLimit}
       >
         <h3 id={headingId} className="sr-only">
           {headingText}
