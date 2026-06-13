@@ -2301,7 +2301,13 @@ function MorseBookWorkspace({
 
       <section className="mt-6 grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
         <BookCover book={book} />
-        <div className="space-y-5">
+        <div
+          className={
+            !isAudiobook && publishReady
+              ? "flex self-stretch flex-col gap-5"
+              : "space-y-5"
+          }
+        >
           <div>
             <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
               {sourceMetadataHref ? (
@@ -2407,7 +2413,7 @@ function MorseBookWorkspace({
           </div>
 
           {!isAudiobook && publishReady ? (
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 lg:mt-auto">
               <a
                 href="#book-live-morse-player"
                 className={toolControlButtonClass({

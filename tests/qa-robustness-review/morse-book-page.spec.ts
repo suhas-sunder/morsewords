@@ -616,6 +616,8 @@ test.describe("Morse book page foundation", () => {
     const downloadAudiobookLink = page.getByTestId(
       "morse-book-download-audiobook-link",
     );
+    await expect(liveTranslationLink).toBeVisible();
+    await expect(downloadAudiobookLink).toBeVisible();
     await expect(liveTranslationLink).toHaveText("View Live Translation");
     await expect(downloadAudiobookLink).toHaveText("Download Audiobook MP3");
     await expect(liveTranslationLink).toHaveAttribute(
