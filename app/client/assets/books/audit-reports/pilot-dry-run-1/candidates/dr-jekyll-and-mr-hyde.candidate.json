@@ -1,0 +1,164 @@
+{
+  "slug": "dr-jekyll-and-mr-hyde",
+  "title": "The strange case of Dr. Jekyll and Mr. Hyde",
+  "author": [
+    "Robert Louis Stevenson"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Dr. Jekyll and Mr. Hyde.txt",
+  "pass2RiskLevel": "high",
+  "dryRunRecommendation": "needs individual review",
+  "boundaries": {
+    "startLine": 29,
+    "startIndex": 935,
+    "startSnippet": "by Robert Louis Stevenson Contents",
+    "endLine": 2568,
+    "endIndex": 139695,
+    "endSnippet": "down this room (my last earthly refuge) and give ear to every sound of menace. Will Hyde die upon the scaffold? or will he find courage to release himself at the last moment? God knows; I am careless; this is my true hour of death, and what is to follow concerns another than myself. Here then, as I lay down the pen and proceed to seal up my confession, I bring the life of that unhappy Henry Jekyll to an end."
+  },
+  "wordCounts": {
+    "raw": 29054,
+    "kept": 25881,
+    "removedFrontMatter": 163,
+    "removedEndMatter": 3010
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5459,
+      "characterCount": 29114,
+      "estimatedListeningMinutes": 174,
+      "textPreview": "by Robert Louis Stevenson Contents STORY OF THE DOOR SEARCH FOR MR. HYDE DR. JEKYLL WAS QUITE AT EASE THE CAREW MURDER CASE INCIDENT OF THE LETTER INCIDENT OF..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5463,
+      "characterCount": 29330,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "A fortnight later, by excellent good fortune, the doctor gave one of his pleasant dinners to some five or six old cronies, all intelligent, reputable men and a..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5563,
+      "characterCount": 29623,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "It is one thing to mortify curiosity, another to conquer it; and it may be doubted if, from that day forth, Utterson desired the society of his surviving frien..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5388,
+      "characterCount": 29014,
+      "estimatedListeningMinutes": 172,
+      "textPreview": "“That is the first part of the service: now for the second. You should be back, if you set out at once on the receipt of this, long before midnight; but I will..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Part 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3730,
+      "characterCount": 20208,
+      "estimatedListeningMinutes": 120,
+      "textPreview": "I must have stared upon it for near half a minute, sunk as I was in the mere stupidity of wonder, before terror woke up in my breast as sudden and startling as..."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Part 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 278,
+      "characterCount": 1460,
+      "estimatedListeningMinutes": 9,
+      "textPreview": "About a week has passed, and I am now finishing this statement under the influence of the last of the old powders. This, then, is the last time, short of a mir..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 25701,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 1057,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "“",
+          "’",
+          "”"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 71,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "low",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 5459,
+    "startsAtRealReadableContent": true,
+    "snippet": "by Robert Louis Stevenson Contents STORY OF THE DOOR SEARCH FOR MR. HYDE DR. JEKYLL WAS QUITE AT EASE THE CAREW MURDER CASE INCIDENT OF THE LETTER INCIDENT OF DR. LANYON INCIDENT AT THE WINDOW THE LAST NIGHT DR. LANYON’S NARRATIVE HENRY JEKYLL’S FULL STATEMENT OF THE CASE STORY OF THE DOOR Mr. Utterson the lawyer was a man of a rugged countenance that was n...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 did not mark first-hour preview derivation as safely derived; review before generation."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/dr-jekyll-and-mr-hyde/manifest.json",
+    "sectionCount": 6,
+    "includedSectionCount": 0,
+    "firstSectionPreview": "The Strange Case Of Dr. Jekyll And Mr. Hyde by Robert Louis Stevenson Contents STORY OF THE DOOR SEARCH FOR MR. HYDE DR. JEKYLL WAS QUITE AT EASE THE CAREW MUR...",
+    "lastSectionPreview": "About a week has passed, and I am now finishing this statement under the influence of the last of the old powders. This, then, is the last time, short of a mir...",
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": [
+      "starts too early",
+      "generated intro contains real chapter content",
+      "no default included sections"
+    ]
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Resolve pass-2 high-risk boundary/content flags before automated processing.",
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+  ]
+}

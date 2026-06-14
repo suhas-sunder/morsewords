@@ -1,0 +1,154 @@
+{
+  "slug": "a-christmas-carol",
+  "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+  "author": [
+    "Charles Dickens"
+  ],
+  "sourcePath": "app/client/assets/temp-books/a-christmas-carol.txt",
+  "pass2RiskLevel": "high",
+  "dryRunRecommendation": "needs individual review",
+  "boundaries": {
+    "startLine": 44,
+    "startIndex": 1179,
+    "startSnippet": "readers out of humour with themselves, with each other, with the season, or with me. May it haunt their houses pleasantly, and no one wish to lay it. Their faithful Friend and Servant, C. D.",
+    "endLine": 3869,
+    "endIndex": 159396,
+    "endSnippet": "He had no further intercourse with Spirits, but lived upon the Total Abstinence Principle, ever afterwards; and it was always said of him, that he knew how to keep Christmas well, if any man alive possessed the knowledge. May that be truly said of us, and all of us! And so, as Tiny Tim observed, God bless Us, Every One!"
+  },
+  "wordCounts": {
+    "raw": 31819,
+    "kept": 28607,
+    "removedFrontMatter": 200,
+    "removedEndMatter": 3012
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5335,
+      "characterCount": 29915,
+      "estimatedListeningMinutes": 180,
+      "textPreview": "readers out of humour with themselves, with each other, with the season, or with me. May it haunt their houses pleasantly, and no one wish to lay it. Their fai..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5340,
+      "characterCount": 29692,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "\"I have none to give,\" the Ghost replied. \"It comes from other regions, Ebenezer Scrooge, and is conveyed by other ministers, to other kinds of men. Nor can I..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5184,
+      "characterCount": 28988,
+      "estimatedListeningMinutes": 174,
+      "textPreview": "During the whole of this time, Scrooge had acted like a man out of his wits. His heart and soul were in the scene, and with his former self. He corroborated ev..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5389,
+      "characterCount": 29835,
+      "estimatedListeningMinutes": 179,
+      "textPreview": "Such a bustle ensued that you might have thought a goose the rarest of all birds; a feathered phenomenon, to which a black swan was a matter of course--and in..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Part 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5513,
+      "characterCount": 29781,
+      "estimatedListeningMinutes": 179,
+      "textPreview": "\"Ghost of the Future!\" he exclaimed, \"I fear you more than any spectre I have seen. But as I know your purpose is to do me good, and as I hope to live to be an..."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Part 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1786,
+      "characterCount": 9673,
+      "estimatedListeningMinutes": 59,
+      "textPreview": "Running to the window, he opened it, and put out his head. No fog, no mist; clear, bright, jovial, stirring, cold; cold, piping for the blood to dance to; Gold..."
+    },
+    {
+      "id": "part-007",
+      "kind": "part",
+      "label": "Part 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 60,
+      "characterCount": 321,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "He had no further intercourse with Spirits, but lived upon the Total Abstinence Principle, ever afterwards; and it was always said of him, that he knew how to..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 28607,
+    "actions": [],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "low",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 5335,
+    "startsAtRealReadableContent": true,
+    "snippet": "readers out of humour with themselves, with each other, with the season, or with me. May it haunt their houses pleasantly, and no one wish to lay it. Their faithful Friend and Servant, C. D. December, 1843. CONTENTS Stave I: Marley's Ghost Stave II: The First of the Three Spirits Stave III: The Second of the Three Spirits Stave IV: The Last of the Spirits S...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 did not mark first-hour preview derivation as safely derived; review before generation."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/a-christmas-carol/manifest.json",
+    "sectionCount": 7,
+    "includedSectionCount": 0,
+    "firstSectionPreview": "A CHRISTMAS CAROL IN PROSE BEING A Ghost Story of Christmas by Charles Dickens PREFACE I HAVE endeavoured in this Ghostly little book, to raise the Ghost of an...",
+    "lastSectionPreview": "He had no further intercourse with Spirits, but lived upon the Total Abstinence Principle, ever afterwards; and it was always said of him, that he knew how to...",
+    "suspiciousShortSections": [
+      {
+        "id": "part-007",
+        "label": "Part 7",
+        "wordCount": 60
+      }
+    ],
+    "suspiciousLongSections": [],
+    "apparentDamage": [
+      "starts too early",
+      "generated intro contains real chapter content",
+      "no default included sections",
+      "suspiciously short generated sections"
+    ]
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Resolve pass-2 high-risk boundary/content flags before automated processing.",
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "slug": "a-dream-of-armageddon",
+  "title": "Twelve Stories and a Dream",
+  "author": [
+    "H. G. Wells"
+  ],
+  "sourcePath": "app/client/assets/temp-books/A DREAM OF ARMAGEDDON.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 29,
+    "startIndex": 704,
+    "startSnippet": "A DREAM OF ARMAGEDDON The man with the white face entered the carriage at Rugby. He moved slowly in spite of the urgency of his porter, and even while he was still on the platform I noted how ill he seemed. He dropped into the corner over against me with a sigh, made an incomplete attempt to arrange his travelling shawl, and became motionless, with his eyes staring vacantly. Presently he was moved by a sense of my observation, looked up at me, and put out a spiritless hand for his newspaper. Th...",
+    "endLine": 537,
+    "endIndex": 54576,
+    "endSnippet": "“Nightmares,” he cried; “nightmares indeed! My God! Great birds that fought and tore.”"
+  },
+  "wordCounts": {
+    "raw": 10303,
+    "kept": 10186,
+    "removedFrontMatter": 117,
+    "removedEndMatter": 0
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5618,
+      "characterCount": 29692,
+      "estimatedListeningMinutes": 176,
+      "textPreview": "A DREAM OF ARMAGEDDON The man with the white face entered the carriage at Rugby. He moved slowly in spite of the urgency of his porter, and even while he was s..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4555,
+      "characterCount": 24086,
+      "estimatedListeningMinutes": 143,
+      "textPreview": "“Little guns, firing high explosive shells. They fired the guns backwards, out of the base of the leaf, so to speak, and rammed with the beak. That was the the..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 13,
+      "characterCount": 86,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "“Nightmares,” he cried; “nightmares indeed! My God! Great birds that fought and tore.”"
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 10186,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 409,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "“",
+          "”",
+          "“"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 160,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 5618,
+    "startsAtRealReadableContent": true,
+    "snippet": "A DREAM OF ARMAGEDDON The man with the white face entered the carriage at Rugby. He moved slowly in spite of the urgency of his porter, and even while he was still on the platform I noted how ill he seemed. He dropped into the corner over against me with a sigh, made an incomplete attempt to arrange his travelling shawl, and became motionless, with his eyes...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

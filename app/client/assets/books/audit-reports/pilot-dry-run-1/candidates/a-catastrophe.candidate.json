@@ -1,0 +1,138 @@
+{
+  "slug": "a-catastrophe",
+  "title": "A CATASTROPHE",
+  "author": [
+    "H. G. WELLS"
+  ],
+  "sourcePath": "app/client/assets/temp-books/A CATASTROPHE.txt",
+  "pass2RiskLevel": "high",
+  "dryRunRecommendation": "needs individual review",
+  "boundaries": {
+    "startLine": 16,
+    "startIndex": 171,
+    "startSnippet": "The little shop was not paying. The realisation came insensibly. Winslow was not the man for definite addition and subtraction and sudden discovery. He became aware of the truth in his mind gradually, as though it had always been there. A lot of facts had converged and led him there. There was that line of cretonnes—four half-pieces—untouched, save for half a yard sold to cover a stool. There were those shirtings at 4¾d.—Bandersnatch, in the Broadway, was selling them at 2¾d.—under cost, in fac...",
+    "endLine": 135,
+    "endIndex": 18117,
+    "endSnippet": "[251] Presently he was carrying in the shutters, and in the briskest way, the fire in the kitchen was crackling exhilaratingly, with a little saucepan walloping above it, for Minnie was boiling two eggs,—one for herself this morning, as well as one for him,—and Minnie herself was audible, laying breakfast with the greatest éclat. The blow was a sudden and terrible one—but it behoves us to face such things bravely in this sad, unaccountable world. It was quite midday before either of them mentio..."
+  },
+  "wordCounts": {
+    "raw": 3217,
+    "kept": 3189,
+    "removedFrontMatter": 28,
+    "removedEndMatter": 0
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3101,
+      "characterCount": 17432,
+      "estimatedListeningMinutes": 105,
+      "textPreview": "The little shop was not paying. The realisation came insensibly. Winslow was not the man for definite addition and subtraction and sudden discovery. He became..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 88,
+      "characterCount": 510,
+      "estimatedListeningMinutes": 3,
+      "textPreview": "Presently he was carrying in the shutters, and in the briskest way, the fire in the kitchen was crackling exhilaratingly, with a little saucepan walloping abov..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 3123,
+    "actions": [
+      {
+        "action": "remove-numbered-reference-markers",
+        "count": 12,
+        "recommendation": "Remove inline numeric reference markers from playback text; keep footnote prose only after manual review.",
+        "samples": [
+          "[240]",
+          "[241]",
+          "[242]",
+          "[243]",
+          "[244]",
+          "[245]",
+          "[246]",
+          "[247]"
+        ]
+      },
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 1,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L115: [251]"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 194,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "“",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 50,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "low",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 3101,
+    "startsAtRealReadableContent": true,
+    "snippet": "The little shop was not paying. The realisation came insensibly. Winslow was not the man for definite addition and subtraction and sudden discovery. He became aware of the truth in his mind gradually, as though it had always been there. A lot of facts had converged and led him there. There was that line of cretonnes—four half-pieces—untouched, save for half...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 did not mark first-hour preview derivation as safely derived; review before generation."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Resolve pass-2 high-risk boundary/content flags before automated processing."
+  ]
+}

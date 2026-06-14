@@ -1,0 +1,297 @@
+{
+  "slug": "the-lerouge-case",
+  "title": "The Lerouge Case",
+  "author": [
+    "Emile Gaboriau"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Lerouge Case.txt",
+  "pass2RiskLevel": "low",
+  "dryRunRecommendation": "safe to process later",
+  "boundaries": {
+    "startLine": 35,
+    "startIndex": 968,
+    "startSnippet": "women belonging to the village of La Jonchere presented themselves at the police station at Bougival. They stated that for two days past no one had seen the Widow Lerouge, one of their neighbours, who lived by herself in an isolated cottage. They had several times knocked at the door, but all in vain. The",
+    "endLine": 14304,
+    "endIndex": 695490,
+    "endSnippet": "errors. The ex-amateur detective doubts the very existence of crime, and maintains that the evidence of one’s senses proves nothing. He circulates petitions for the abolition of capital punishment, and has organised a society for the defence of poor and innocent prisoners."
+  },
+  "wordCounts": {
+    "raw": 127811,
+    "kept": 124646,
+    "removedFrontMatter": 161,
+    "removedEndMatter": 3004
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 6169,
+      "characterCount": 35004,
+      "estimatedListeningMinutes": 210,
+      "textPreview": "women belonging to the village of La Jonchere presented themselves at the police station at Bougival. They stated that for two days past no one had seen the Wi..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5232,
+      "characterCount": 29225,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "CHAPTER II. The two last depositions awakened in M. Daburon’s mind some slight gleams of hope. In the midst of darkness, the humblest rush-light acquires brill..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4012,
+      "characterCount": 22414,
+      "estimatedListeningMinutes": 134,
+      "textPreview": "CHAPTER III. M. Tabaret’s house was in fact not more than four minutes’ walk from the railway terminus of St. Lazare. It was a fine building carefully kept, an..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 9104,
+      "characterCount": 50384,
+      "estimatedListeningMinutes": 302,
+      "textPreview": "CHAPTER IV. When Noel and old Tabaret were seated face to face in Noel’s study, and the door had been carefully shut, the old fellow felt uneasy, and said: “Wh..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6818,
+      "characterCount": 37948,
+      "estimatedListeningMinutes": 227,
+      "textPreview": "CHAPTER V. Included in Madame Gerdy’s lease was a coach-house, which was used by her as a lumber room. Here were heaped together all the old rubbish of the hou..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 9974,
+      "characterCount": 56296,
+      "estimatedListeningMinutes": 337,
+      "textPreview": "CHAPTER VI. The clock of the St. Lazare terminus was striking eleven as old Tabaret, after shaking hands with Noel, left his house, still bewildered by what he..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6105,
+      "characterCount": 34750,
+      "estimatedListeningMinutes": 207,
+      "textPreview": "CHAPTER VII. M. Daburon did not return home on leaving Mademoiselle d’Arlange. All through the night he wandered about at random, seeking to cool his heated br..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3256,
+      "characterCount": 18648,
+      "estimatedListeningMinutes": 111,
+      "textPreview": "CHAPTER VIII. On the same day that the crime of La Jonchere was discovered, and precisely at the hour that M. Tabaret made his memorable examination in the vic..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 8224,
+      "characterCount": 45720,
+      "estimatedListeningMinutes": 274,
+      "textPreview": "CHAPTER IX. The revelation which had just taken place, irritated much more than it surprised the Count de Commarin. For twenty years, he had been constantly ex..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5113,
+      "characterCount": 28543,
+      "estimatedListeningMinutes": 171,
+      "textPreview": "CHAPTER X. The visitor who risks himself in the labyrinth of galleries and stairways in the Palais de Justice, and mounts to the third story in the left wing,..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6016,
+      "characterCount": 33550,
+      "estimatedListeningMinutes": 200,
+      "textPreview": "CHAPTER XI. It was indeed the Count de Commarin, though more like his shadow. His head, usually carried so high, leant upon his chest; his figure was bent; his..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7379,
+      "characterCount": 41586,
+      "estimatedListeningMinutes": 249,
+      "textPreview": "CHAPTER XII. Albert scarcely noticed his removal from home to the seclusion of the prison. Snatched away from his painful thoughts by the harsh voice of the co..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 8803,
+      "characterCount": 48372,
+      "estimatedListeningMinutes": 290,
+      "textPreview": "CHAPTER XIII. After seeing the Count de Commarin safely in his carriage at the entrance of the Palais de Justice, Noel Gerdy seemed inclined to leave him. Rest..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5940,
+      "characterCount": 33188,
+      "estimatedListeningMinutes": 198,
+      "textPreview": "CHAPTER XIV. Old Tabaret did not consider himself defeated, because he had been repulsed by the investigating magistrate, already irritated by a long day’s exa..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7140,
+      "characterCount": 39484,
+      "estimatedListeningMinutes": 237,
+      "textPreview": "CHAPTER XV. On the Monday morning, at nine o’clock, M. Daburon was preparing to start for the Palais de Justice, where he expected to find Gevrol and his man,..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5890,
+      "characterCount": 32505,
+      "estimatedListeningMinutes": 195,
+      "textPreview": "CHAPTER XVI. M. Daburon had been surprised at Claire’s visit. M. de Commarin was still more so, when his valet whispered to him that Mademoiselle d’Arlange des..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7492,
+      "characterCount": 40673,
+      "estimatedListeningMinutes": 243,
+      "textPreview": "CHAPTER XVII. Greatly troubled and perplexed by Mademoiselle d’Arlange’s revelations, M. Daburon was ascending the stairs that led to the offices of the invest..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6075,
+      "characterCount": 33304,
+      "estimatedListeningMinutes": 199,
+      "textPreview": "CHAPTER XVIII. Old Tabaret talked, but he acted also. Abandoned by the investigating magistrate to his own resources, he set to work without losing a minute an..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5318,
+      "characterCount": 29573,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "CHAPTER XIX. Noel had promised to use every effort, to attempt even the impossible, to obtain Albert’s release. He in fact did interview the Public Prosecutor..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 586,
+      "characterCount": 3298,
+      "estimatedListeningMinutes": 20,
+      "textPreview": "CHAPTER XX. Some months later, one evening, at old Mademoiselle de Goello’s house, the Marchioness d’Arlange, looking ten years younger than when we saw her la..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 123855,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 6612,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "“",
+          "”",
+          "“",
+          "”"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "high",
+    "sectionsUsed": [
+      "chapter-001 Chapter 2"
+    ],
+    "approximateWordCount": 5232,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER II. The two last depositions awakened in M. Daburon’s mind some slight gleams of hope. In the midst of darkness, the humblest rush-light acquires brilliancy. “I will go at once to Bougival, sir, if you approve of this step,” suggested Gevrol. “Perhaps you would do well to wait a little,” answered M. Daburon. “This man was seen on Sunday morning; we...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

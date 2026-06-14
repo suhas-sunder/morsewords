@@ -1,0 +1,317 @@
+{
+  "slug": "the-house-without-a-key",
+  "title": "The house without a key",
+  "author": [
+    "Earl Derr Biggers"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The house without a key.txt",
+  "pass2RiskLevel": "low",
+  "dryRunRecommendation": "safe to process later",
+  "boundaries": {
+    "startLine": 66,
+    "startIndex": 1764,
+    "startSnippet": "unexpected height of loveliness. It was the hour at which she liked Waikiki best, the hour just preceding dinner and the quick tropic darkness. The shadows cast by the tall cocoanut palms lengthened and deepened, the light of the falling sun flamed on Diamond Head and tinted with gold the rollers sweeping in from",
+    "endLine": 11008,
+    "endIndex": 469427,
+    "endSnippet": "moist and panting. \"Wha's that?\" he gurgled. \"She was speaking to me,\" cried John Quincy triumphantly. THE END"
+  },
+  "wordCounts": {
+    "raw": 86455,
+    "kept": 83178,
+    "removedFrontMatter": 271,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 4645,
+      "characterCount": 26225,
+      "estimatedListeningMinutes": 159,
+      "textPreview": "unexpected height of loveliness. It was the hour at which she liked Waikiki best, the hour just preceding dinner and the quick tropic darkness. The shadows cas..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1876,
+      "characterCount": 10454,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER II THE HIGH HAT John Quincy Winterslip walked aboard the ferry at Oakland feeling rather limp and weary. For more than six days he had been marooned on..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4271,
+      "characterCount": 24156,
+      "estimatedListeningMinutes": 146,
+      "textPreview": "CHAPTER III MIDNIGHT ON RUSSIAN HILL. A few moments later John Quincy stepped ashore in San Francisco. He had taken not more than three steps across the floor..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3117,
+      "characterCount": 17632,
+      "estimatedListeningMinutes": 107,
+      "textPreview": "CHAPTER IV A FRIEND OF TIM'S It was another of those mornings on which the fog maybe did not come. Roger and his guests were in the limousine again; it seemed..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2704,
+      "characterCount": 14992,
+      "estimatedListeningMinutes": 91,
+      "textPreview": "CHAPTER V THE BLOOD OF THE WINTERSLIPS The days that followed proved that he was right. He seldom had a moment alone with Barbara; when he did, Jennison seemed..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2156,
+      "characterCount": 12072,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER VI BEYOND THE BAMBOO CURTAIN Had John Quincy been able to see his Aunt Minerva at that moment, he would not have been so sure that he could persuade he..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3821,
+      "characterCount": 21447,
+      "estimatedListeningMinutes": 129,
+      "textPreview": "CHAPTER VII ENTER CHARLIE CHAN Miss Minerva leaned far over, her keen eyes seeking Dan's face. It was turned toward the wall, half buried in the pillow. \"Dan,\"..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3329,
+      "characterCount": 19011,
+      "estimatedListeningMinutes": 115,
+      "textPreview": "CHAPTER VIII STEAMER DAY Out in the harbor, by the channel entrance, the _President Tyler_ stood motionless as Diamond Head, and from his post near the rail ou..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3546,
+      "characterCount": 20107,
+      "estimatedListeningMinutes": 122,
+      "textPreview": "CHAPTER IX AT THE REEF AND PALM They reached Kalakaua Avenue and swerving sharply to the right, Captain Hallet stepped on the gas. Since the car was without a..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3503,
+      "characterCount": 20128,
+      "estimatedListeningMinutes": 122,
+      "textPreview": "CHAPTER X A NEWSPAPER RIPPED IN ANGER When John Quincy got back to the living-room he found Miss Minerva pacing up and down with the light of battle in her eye..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4883,
+      "characterCount": 27058,
+      "estimatedListeningMinutes": 164,
+      "textPreview": "CHAPTER XI THE TREE OF JEWELS Two hours later, John Quincy rose from the table where he and his aunt had dined together. \"Just to show you how quick I am to le..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3215,
+      "characterCount": 18400,
+      "estimatedListeningMinutes": 111,
+      "textPreview": "CHAPTER XII TOM BRADE THE BLACKBIRDER In Hallet's room at headquarters they found the Captain of Detectives seated grimly behind his desk staring at two reluct..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3415,
+      "characterCount": 18940,
+      "estimatedListeningMinutes": 114,
+      "textPreview": "CHAPTER XIII THE LUGGAGE IN ROOM NINETEEN John Quincy emerged from sleep the next morning with a great effort, and dragged his watch from under the pillow. Eig..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3707,
+      "characterCount": 20962,
+      "estimatedListeningMinutes": 127,
+      "textPreview": "CHAPTER XIV WHAT KAOHLA CARRIED Several days slipped by so rapidly John Quincy scarcely noted their passing. Dan Winterslip was sleeping now under the royal pa..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4919,
+      "characterCount": 27734,
+      "estimatedListeningMinutes": 168,
+      "textPreview": "CHAPTER XV THE MAN FROM INDIA They clattered along Kalakaua Avenue in Chan's car. John Quincy sat alone on the rear seat; at the detective's request he held th..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3841,
+      "characterCount": 21923,
+      "estimatedListeningMinutes": 133,
+      "textPreview": "CHAPTER XVI THE RETURN OF CAPTAIN COPE After breakfast on Sunday morning, John Quincy followed Miss Minerva to the lanai. It was a neat world that lay outside..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2871,
+      "characterCount": 16054,
+      "estimatedListeningMinutes": 97,
+      "textPreview": "CHAPTER XVII NIGHT LIFE IN HONOLULU Monday brought no new developments, and John Quincy spent a restless day. Several times he called Chan at the police statio..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3884,
+      "characterCount": 21627,
+      "estimatedListeningMinutes": 131,
+      "textPreview": "CHAPTER XVIII A CABLE FROM THE MAINLAND John Quincy awoke at nine the following morning, and slipped from under his mosquito netting eager to face the responsi..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5256,
+      "characterCount": 29393,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "CHAPTER XIX \"GOOD-BY, PETE!\" Charlie Chan lived in a bungalow that clung precariously to the side of Punchbowl Hill. Pausing a moment at the Chinaman's gate, J..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3372,
+      "characterCount": 19042,
+      "estimatedListeningMinutes": 116,
+      "textPreview": "CHAPTER XX THE STORY OF LAU HO Early Sunday morning John Quincy was awakened by a sharp knock on his door. Rising sleepily and donning dressing-gown and slippe..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4185,
+      "characterCount": 23470,
+      "estimatedListeningMinutes": 142,
+      "textPreview": "CHAPTER XXI THE STONE WALLS CRUMBLE The stone walls were crumbling and the light streaming through--but only for Chan. John Quincy was still groping in the dar..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4993,
+      "characterCount": 27342,
+      "estimatedListeningMinutes": 165,
+      "textPreview": "CHAPTER XXII THE LIGHT STREAMS THROUGH They moved on through the pier-shed to the street, where Hepworth, Jennison and the three policemen got into Hallet's ca..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1669,
+      "characterCount": 9428,
+      "estimatedListeningMinutes": 57,
+      "textPreview": "CHAPTER XXIII MOONLIGHT AT THE CROSSROADS They filed out, leaving Jennison with Greene and the stenographer. In the anteroom Chan approached John Quincy. \"You..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 83178,
+    "actions": [],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "high",
+    "sectionsUsed": [
+      "chapter-001 Chapter 2"
+    ],
+    "approximateWordCount": 1876,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER II THE HIGH HAT John Quincy Winterslip walked aboard the ferry at Oakland feeling rather limp and weary. For more than six days he had been marooned on sleepers--his pause at Chicago had been but a flitting from one train to another--and he was fed up. Seeing America first--that was what he had been doing. And what an appalling lot of it there was!...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

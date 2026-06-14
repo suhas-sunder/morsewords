@@ -1,0 +1,409 @@
+{
+  "slug": "dracula",
+  "title": "Dracula",
+  "author": [
+    "Bram Stoker"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Dracula.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 116,
+    "startIndex": 3527,
+    "startSnippet": "impression I had was that we were leaving the West and entering the East; the most western of splendid bridges over the Danube, which is here of noble width and depth, took us among the traditions of Turkish rule. We left in pretty good time, and came after nightfall to Klausenburgh.",
+    "endLine": 15430,
+    "endIndex": 846683,
+    "endSnippet": "THE VALLEY OF HEADSTRONG MEN _Ask for Complete free list of G. & D. Popular Copyrighted Fiction_ GROSSET & DUNLAP, _Publishers_, NEW YORK"
+  },
+  "wordCounts": {
+    "raw": 165910,
+    "kept": 162386,
+    "removedFrontMatter": 522,
+    "removedEndMatter": 3002
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 5659,
+      "characterCount": 30297,
+      "estimatedListeningMinutes": 180,
+      "textPreview": "impression I had was that we were leaving the West and entering the East; the most western of splendid bridges over the Danube, which is here of noble width an..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5527,
+      "characterCount": 28664,
+      "estimatedListeningMinutes": 170,
+      "textPreview": "CHAPTER II JONATHAN HARKER’S JOURNAL--_continued_ _5 May._--I must have been asleep, for certainly if I had been fully awake I must have noticed the approach o..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5742,
+      "characterCount": 30077,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "CHAPTER III JONATHAN HARKER’S JOURNAL--_continued_ When I found that I was a prisoner a sort of wild feeling came over me. I rushed up and down the stairs, try..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5873,
+      "characterCount": 30854,
+      "estimatedListeningMinutes": 180,
+      "textPreview": "CHAPTER IV JONATHAN HARKER’S JOURNAL--_continued_ I awoke in my own bed. If it be that I had not dreamt, the Count must have carried me here. I tried to satisf..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3633,
+      "characterCount": 18152,
+      "estimatedListeningMinutes": 109,
+      "textPreview": "CHAPTER V _Letter from Miss Mina Murray to Miss Lucy Westenra._ “_9 May._ “My dearest Lucy,-- “Forgive my long delay in writing, but I have been simply overwhe..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5780,
+      "characterCount": 29771,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "CHAPTER VI MINA MURRAY’S JOURNAL _24 July. Whitby._--Lucy met me at the station, looking sweeter and lovelier than ever, and we drove up to the house at the Cr..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5620,
+      "characterCount": 30931,
+      "estimatedListeningMinutes": 179,
+      "textPreview": "CHAPTER VII CUTTING FROM “THE DAILYGRAPH,” 8 AUGUST (_Pasted in Mina Murray’s Journal._) From a Correspondent. _Whitby_. One of the greatest and suddenest stor..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6353,
+      "characterCount": 33186,
+      "estimatedListeningMinutes": 195,
+      "textPreview": "CHAPTER VIII MINA MURRAY’S JOURNAL _Same day, 11 o’clock p. m._--Oh, but I am tired! If it were not that I had made my diary a duty I should not open it to-nig..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5969,
+      "characterCount": 30660,
+      "estimatedListeningMinutes": 180,
+      "textPreview": "CHAPTER IX _Letter, Mina Harker to Lucy Westenra._ “_Buda-Pesth, 24 August._ “My dearest Lucy,-- “I know you will be anxious to hear all that has happened sinc..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5995,
+      "characterCount": 31000,
+      "estimatedListeningMinutes": 185,
+      "textPreview": "CHAPTER X _Letter, Dr. Seward to Hon. Arthur Holmwood._ “_6 September._ “My dear Art,-- “My news to-day is not so good. Lucy this morning had gone back a bit...."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5246,
+      "characterCount": 27111,
+      "estimatedListeningMinutes": 162,
+      "textPreview": "CHAPTER XI _Lucy Westenra’s Diary._ _12 September._--How good they all are to me. I quite love that dear Dr. Van Helsing. I wonder why he was so anxious about..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7374,
+      "characterCount": 38104,
+      "estimatedListeningMinutes": 227,
+      "textPreview": "CHAPTER XII DR. SEWARD’S DIARY _18 September._--I drove at once to Hillingham and arrived early. Keeping my cab at the gate, I went up the avenue alone. I knoc..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6672,
+      "characterCount": 34580,
+      "estimatedListeningMinutes": 205,
+      "textPreview": "CHAPTER XIII DR. SEWARD’S DIARY--_continued_. The funeral was arranged for the next succeeding day, so that Lucy and her mother might be buried together. I att..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6512,
+      "characterCount": 32861,
+      "estimatedListeningMinutes": 196,
+      "textPreview": "CHAPTER XIV MINA HARKER’S JOURNAL _23 September_.--Jonathan is better after a bad night. I am so glad that he has plenty of work to do, for that keeps his mind..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5868,
+      "characterCount": 29964,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "CHAPTER XV DR. SEWARD’S DIARY--_continued_. For a while sheer anger mastered me; it was as if he had during her life struck Lucy on the face. I smote the table..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4616,
+      "characterCount": 24032,
+      "estimatedListeningMinutes": 143,
+      "textPreview": "CHAPTER XVI DR. SEWARD’S DIARY--_continued_ It was just a quarter before twelve o’clock when we got into the churchyard over the low wall. The night was dark w..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5654,
+      "characterCount": 29543,
+      "estimatedListeningMinutes": 174,
+      "textPreview": "CHAPTER XVII DR. SEWARD’S DIARY--_continued_ When we arrived at the Berkeley Hotel, Van Helsing found a telegram waiting for him:-- “Am coming up by train. Jon..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7000,
+      "characterCount": 36071,
+      "estimatedListeningMinutes": 215,
+      "textPreview": "CHAPTER XVIII DR. SEWARD’S DIARY _30 September._--I got home at five o’clock, and found that Godalming and Morris had not only arrived, but had already studied..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5728,
+      "characterCount": 29608,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "CHAPTER XIX JONATHAN HARKER’S JOURNAL _1 October, 5 a. m._--I went with the party to the search with an easy mind, for I think I never saw Mina so absolutely s..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6007,
+      "characterCount": 31505,
+      "estimatedListeningMinutes": 187,
+      "textPreview": "CHAPTER XX JONATHAN HARKER’S JOURNAL _1 October, evening._--I found Thomas Snelling in his house at Bethnal Green, but unhappily he was not in a condition to r..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6249,
+      "characterCount": 32315,
+      "estimatedListeningMinutes": 193,
+      "textPreview": "CHAPTER XXI DR. SEWARD’S DIARY _3 October._--Let me put down with exactness all that happened, as well as I can remember it, since last I made an entry. Not a..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5501,
+      "characterCount": 28243,
+      "estimatedListeningMinutes": 168,
+      "textPreview": "CHAPTER XXII JONATHAN HARKER’S JOURNAL _3 October._--As I must do something or go mad, I write this diary. It is now six o’clock, and we are to meet in the stu..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5727,
+      "characterCount": 29722,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "CHAPTER XXIII DR. SEWARD’S DIARY _3 October._--The time seemed terribly long whilst we were waiting for the coming of Godalming and Quincey Morris. The Profess..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6350,
+      "characterCount": 32458,
+      "estimatedListeningMinutes": 191,
+      "textPreview": "CHAPTER XXIV DR. SEWARD’S PHONOGRAPH DIARY, SPOKEN BY VAN HELSING This to Jonathan Harker. You are to stay with your dear Madam Mina. We shall go to make our s..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6312,
+      "characterCount": 33072,
+      "estimatedListeningMinutes": 195,
+      "textPreview": "CHAPTER XXV DR. SEWARD’S DIARY _11 October, Evening._--Jonathan Harker has asked me to note this, as he says he is hardly equal to the task, and he wants an ex..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7196,
+      "characterCount": 37759,
+      "estimatedListeningMinutes": 222,
+      "textPreview": "CHAPTER XXVI DR. SEWARD’S DIARY _29 October._--This is written in the train from Varna to Galatz. Last night we all assembled a little before the time of sunse..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7642,
+      "characterCount": 39137,
+      "estimatedListeningMinutes": 231,
+      "textPreview": "CHAPTER XXVII MINA HARKER’S JOURNAL _1 November._--All day long we have travelled, and at a good speed. The horses seem to know that they are being kindly trea..."
+    },
+    {
+      "id": "notes-001",
+      "kind": "notes",
+      "label": "Notes",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 581,
+      "characterCount": 3364,
+      "estimatedListeningMinutes": 19,
+      "textPreview": "NOTE Seven years ago we all went through the flames; and the happiness of some of us since then is, we think, well worth the pain we endured. It is an added jo..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 161309,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 130,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L169: * * * * *",
+          "candidate L677: * * * * *",
+          "candidate L925: * * * * *",
+          "candidate L1042: * * * * *",
+          "candidate L1111: * * * * *",
+          "candidate L1241: * * * * *",
+          "candidate L1291: * * * * *",
+          "candidate L1347: * * * * *"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 4541,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "’",
+          "“",
+          "”"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 2"
+    ],
+    "approximateWordCount": 5527,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER II JONATHAN HARKER’S JOURNAL--_continued_ _5 May._--I must have been asleep, for certainly if I had been fully awake I must have noticed the approach of such a remarkable place. In the gloom the courtyard looked of considerable size, and as several dark ways led from it under great round arches, it perhaps seemed bigger than it really is. I have not...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/dracula/manifest.json",
+    "sectionCount": 30,
+    "includedSectionCount": 27,
+    "firstSectionPreview": "DRACULA _by_ Bram Stoker [Illustration: colophon] NEW YORK GROSSET & DUNLAP _Publishers_ Copyright, 1897, in the United States of America, according to Act of...",
+    "lastSectionPreview": "NOTE Seven years ago we all went through the flames; and the happiness of some of us since then is, we think, well worth the pain we endured. It is an added jo...",
+    "suspiciousShortSections": [
+      {
+        "id": "title-page-001",
+        "label": "Opening section",
+        "wordCount": 49
+      }
+    ],
+    "suspiciousLongSections": [],
+    "apparentDamage": [
+      "suspiciously short generated sections"
+    ]
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+  ]
+}

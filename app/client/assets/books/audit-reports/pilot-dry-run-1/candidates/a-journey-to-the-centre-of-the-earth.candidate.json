@@ -1,0 +1,590 @@
+{
+  "slug": "a-journey-to-the-centre-of-the-earth",
+  "title": "A Journey to the Centre of the Earth",
+  "author": [
+    "Jules Verne"
+  ],
+  "sourcePath": "app/client/assets/temp-books/A Journey to the Centre of the Earth.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 153,
+    "startIndex": 3595,
+    "startSnippet": "was in a large town, and my uncle a professor of philosophy, chemistry, geology, mineralogy, and many other ologies. One day, after passing some hours in the laboratory--my uncle being absent at the time--I suddenly felt the necessity of renovating the tissues--<i>i.e.</i>, I was hungry, and was about to rouse up our old French",
+    "endLine": 10862,
+    "endIndex": 487809,
+    "endSnippet": "We need scarcely mention that her uncle was the illustrious Professor Hardwigg, corresponding member of all the scientific, geographical, mineralogical, and geological societies of the five parts of the globe. End of the Voyage Extraordinaire"
+  },
+  "wordCounts": {
+    "raw": 89511,
+    "kept": 85891,
+    "removedFrontMatter": 611,
+    "removedEndMatter": 3009
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 1930,
+      "characterCount": 10724,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "was in a large town, and my uncle a professor of philosophy, chemistry, geology, mineralogy, and many other ologies. One day, after passing some hours in the l..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1158,
+      "characterCount": 6897,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "CHAPTER 2 THE MYSTERIOUS PARCHMENT [Illustration: Runic Glyphs] \"I Declare,\" cried my uncle, striking the table fiercely with his fist, \"I declare to you it is..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2462,
+      "characterCount": 13804,
+      "estimatedListeningMinutes": 82,
+      "textPreview": "CHAPTER 3 AN ASTOUNDING DISCOVERY \"What is the matter?\" cried the cook, entering the room; \"when will master have his dinner?\" \"Never.\" \"And, his supper?\" \"I d..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1223,
+      "characterCount": 6796,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "CHAPTER 4 WE START ON THE JOURNEY \"You see, the whole island is composed of volcanoes,\" said the Professor, \"and remark carefully that they all bear the name o..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1253,
+      "characterCount": 6924,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "CHAPTER 5 First Lessons in Climbing At Altona, a suburb of Hamburg, is the Chief Station of the Kiel railway, which was to take us to the shores of the Belt. I..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2182,
+      "characterCount": 12242,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "CHAPTER 6 Our Voyage to Iceland The hour of departure came at last. The night before, the worthy Mr. Thompson brought us the most cordial letters of introducti..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1237,
+      "characterCount": 7356,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "CHAPTER 7 Conversation and Discovery When I returned, dinner was ready. This meal was devoured by my worthy relative with avidity and voracity. His shipboard d..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2373,
+      "characterCount": 13535,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "CHAPTER 8 THE EIDER-DOWN HUNTER--OFF AT LAST That evening I took a brief walk on the shore near Reykjavik, after which I returned to an early sleep on my bed o..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2012,
+      "characterCount": 11281,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER 9 OUR START--WE MEET WITH ADVENTURES BY THE WAY The weather was overcast but settled, when we commenced our adventurous and perilous journey. We had ne..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1923,
+      "characterCount": 10778,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "CHAPTER 10 TRAVELING IN ICELAND It ought, one would have thought, to have been night, even in the sixty-fifth parallel of latitude; but still the nocturnal ill..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2155,
+      "characterCount": 12065,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER 11 WE REACH MOUNT SNEFFELS--THE \"REYKIR\" Stapi is a town consisting of thirty huts, built on a large plain of lava, exposed to the rays of the sun, ref..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2591,
+      "characterCount": 14846,
+      "estimatedListeningMinutes": 88,
+      "textPreview": "CHAPTER 12 THE ASCENT OF MOUNT SNEFFELS The huge volcano which was the first stage of our daring experiment is above five thousand feet high. Sneffels is the t..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2411,
+      "characterCount": 13490,
+      "estimatedListeningMinutes": 80,
+      "textPreview": "CHAPTER 13 THE SHADOW OF SCARTARIS Our supper was eaten with ease and rapidity, after which everybody did the best he could for himself within the hollow of th..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1989,
+      "characterCount": 10853,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "CHAPTER 14 THE REAL JOURNEY COMMENCES Our real journey had now commenced. Hitherto our courage and determination had overcome all difficulties. We were fatigue..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1808,
+      "characterCount": 10347,
+      "estimatedListeningMinutes": 62,
+      "textPreview": "CHAPTER 15 WE CONTINUE OUR DESCENT At eight o'clock the next morning, a faint kind of dawn of day awoke us. The thousand and one prisms of the lava collected t..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1962,
+      "characterCount": 10968,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "CHAPTER 16 THE EASTERN TUNNEL The next day was Tuesday, the 30th of June--and at six o'clock in the morning we resumed our journey. We still continued to follo..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1955,
+      "characterCount": 10972,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "CHAPTER 17 DEEPER AND DEEPER--THE COAL MINE In truth, we were compelled to put ourselves upon rations. Our supply would certainly last not more than three days..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1800,
+      "characterCount": 9746,
+      "estimatedListeningMinutes": 58,
+      "textPreview": "CHAPTER 18 THE WRONG ROAD! Next day, our departure took place at a very early hour. There was no time for the least delay. According to my account, we had five..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1153,
+      "characterCount": 6444,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "CHAPTER 19 THE WESTERN GALLERY--A NEW ROUTE Our descent was now resumed by means of the second gallery. Hans took up his post in front as usual. We had not gon..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1870,
+      "characterCount": 10495,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER 20 WATER, WHERE IS IT? A BITTER DISAPPOINTMENT During a long, long, weary hour, there crossed my wildly delirious brain all sorts of reasons as to what..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1360,
+      "characterCount": 7660,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "CHAPTER 21 UNDER THE OCEAN By the next day we had nearly forgotten our past sufferings. The first sensation I experienced was surprise at not being thirsty, an..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1707,
+      "characterCount": 9800,
+      "estimatedListeningMinutes": 58,
+      "textPreview": "CHAPTER 22 SUNDAY BELOW GROUND I Awoke on Sunday morning without any sense of hurry and bustle attendant on an immediate departure. Though the day to be devote..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1202,
+      "characterCount": 6620,
+      "estimatedListeningMinutes": 39,
+      "textPreview": "CHAPTER 23 ALONE It must in all truth be confessed, things as yet had gone on well, and I should have acted in bad taste to have complained. If the true medium..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1597,
+      "characterCount": 8841,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "CHAPTER 24 LOST! No words in any human language can depict my utter despair. I was literally buried alive; with no other expectation before me but to die in al..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2132,
+      "characterCount": 12085,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "CHAPTER 25 THE WHISPERING GALLERY When at last I came back to a sense of life and being, my face was wet, but wet, as I soon knew, with tears. How long this st..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1510,
+      "characterCount": 8237,
+      "estimatedListeningMinutes": 49,
+      "textPreview": "CHAPTER 26 A RAPID RECOVERY When I returned to the consciousness of existence, I found myself surrounded by a kind of semiobscurity, lying on some thick and so..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2606,
+      "characterCount": 14897,
+      "estimatedListeningMinutes": 88,
+      "textPreview": "CHAPTER 27 THE CENTRAL SEA At first I saw absolutely nothing. My eyes, wholly unused to the effulgence of light, could not bear the sudden brightness; and I wa..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2022,
+      "characterCount": 11478,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "CHAPTER 28 LAUNCHING THE RAFT On the morning of the next day, to my great surprise, I awoke completely restored. I thought a bath would be delightful after my..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2858,
+      "characterCount": 16457,
+      "estimatedListeningMinutes": 98,
+      "textPreview": "CHAPTER 29 ON THE WATERS--A RAFT VOYAGE On the thirteenth of August we were up betimes. There was no time to be lost. We now had to inaugurate a new kind of lo..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3071,
+      "characterCount": 17203,
+      "estimatedListeningMinutes": 102,
+      "textPreview": "CHAPTER 30 TERRIFIC SAURIAN COMBAT Saturday, August 15th. The sea still retains its uniform monotony. The same leaden hue, the same eternal glare from above. N..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 31",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1826,
+      "characterCount": 10534,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER 31 THE SEA MONSTER Wednesday, August 19th. Fortunately the wind, which for the present blows with some violence, has allowed us to escape from the scen..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 32",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2279,
+      "characterCount": 12997,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "CHAPTER 32 THE BATTLE OF THE ELEMENTS Friday, August 21st. This morning the magnificent geyser had wholly disappeared. The wind had freshened up, and we were f..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 33",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2619,
+      "characterCount": 14402,
+      "estimatedListeningMinutes": 86,
+      "textPreview": "CHAPTER 33 OUR ROUTE REVERSED Here ends what I call \"My Journal\" of our voyage on board the raft, which journal was happily saved from the wreck. I proceed wit..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 34",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1791,
+      "characterCount": 10332,
+      "estimatedListeningMinutes": 61,
+      "textPreview": "CHAPTER 34 A VOYAGE OF DISCOVERY It would be altogether impossible for me to give any idea of the utter astonishment which overcame the Professor on making thi..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Chapter 35",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2246,
+      "characterCount": 13285,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "CHAPTER 35 DISCOVERY UPON DISCOVERY In order fully to understand the exclamation made by my uncle, and his allusions to these illustrious and learned men, it w..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Chapter 36",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1358,
+      "characterCount": 7945,
+      "estimatedListeningMinutes": 47,
+      "textPreview": "CHAPTER 36 WHAT IS IT? For a long and weary hour we tramped over this great bed of bones. We advanced regardless of everything, drawn on by ardent curiosity. W..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "Chapter 37",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1255,
+      "characterCount": 7027,
+      "estimatedListeningMinutes": 42,
+      "textPreview": "CHAPTER 37 THE MYSTERIOUS DAGGER During this time, we had left the bright and transparent forest far behind us. We were mute with astonishment, overcome by a k..."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "Chapter 38",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2214,
+      "characterCount": 12396,
+      "estimatedListeningMinutes": 74,
+      "textPreview": "CHAPTER 38 NO OUTLET--BLASTING THE ROCK Ever since the commencement of our marvelous journey, I had experienced many surprises, had suffered from many illusion..."
+    },
+    {
+      "id": "chapter-038",
+      "kind": "chapter",
+      "label": "Chapter 39",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2164,
+      "characterCount": 11868,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "CHAPTER 39 THE EXPLOSION AND ITS RESULTS The next day, which was the twenty-seventh of August, was a date celebrated in our wondrous subterranean journey. I ne..."
+    },
+    {
+      "id": "chapter-039",
+      "kind": "chapter",
+      "label": "Chapter 40",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2185,
+      "characterCount": 12087,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER 40 THE APE GIGANS It is difficult for me to determine what was the real time, but I should suppose, by after calculation, that it must have been ten at..."
+    },
+    {
+      "id": "chapter-040",
+      "kind": "chapter",
+      "label": "Chapter 41",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2316,
+      "characterCount": 12564,
+      "estimatedListeningMinutes": 75,
+      "textPreview": "CHAPTER 41 HUNGER Hunger, prolonged, is temporary madness! The brain is at work without its required food, and the most fantastic notions fill the mind. Hither..."
+    },
+    {
+      "id": "chapter-041",
+      "kind": "chapter",
+      "label": "Chapter 42",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3081,
+      "characterCount": 17472,
+      "estimatedListeningMinutes": 104,
+      "textPreview": "CHAPTER 42 THE VOLCANIC SHAFT Man's constitution is so peculiar that his health is purely a negative matter. No sooner is the rage of hunger appeased than it b..."
+    },
+    {
+      "id": "chapter-042",
+      "kind": "chapter",
+      "label": "Chapter 43",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1980,
+      "characterCount": 11210,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER 43 DAYLIGHT AT LAST When I opened my eyes I felt the hand of the guide clutching me firmly by the belt. With his other hand he supported my uncle. I wa..."
+    },
+    {
+      "id": "chapter-043",
+      "kind": "chapter",
+      "label": "Chapter 44",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1065,
+      "characterCount": 6125,
+      "estimatedListeningMinutes": 36,
+      "textPreview": "CHAPTER 44 THE JOURNEY ENDED This is the final conclusion of a narrative which will be probably disbelieved even by people who are astonished at nothing. I am,..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 85869,
+    "actions": [
+      {
+        "action": "remove-image-placeholders",
+        "count": 4,
+        "recommendation": "Remove bracketed image placeholders from playback text; preserve nearby narrative captions only if meaningful.",
+        "samples": [
+          "[Illustration: Runic Glyphs]",
+          "[Illustration: Runic Glyphs]",
+          "[Illustration: Runic Glyphs]",
+          "[Illustration: Runic Glyph]"
+        ]
+      },
+      {
+        "action": "remove-numbered-reference-markers",
+        "count": 10,
+        "recommendation": "Remove inline numeric reference markers from playback text; keep footnote prose only after manual review.",
+        "samples": [
+          "[1]",
+          "[1]",
+          "[2]",
+          "[3]",
+          "[2]",
+          "[3]",
+          "[4]",
+          "[4]"
+        ]
+      },
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 30,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L5465: ..........",
+          "candidate L5469: ..........",
+          "candidate L5473: ..........",
+          "candidate L5477: ..........",
+          "candidate L5481: ..........",
+          "candidate L5485: ..........",
+          "candidate L5489: ..........",
+          "candidate L5493: .........."
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 2"
+    ],
+    "approximateWordCount": 1158,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER 2 THE MYSTERIOUS PARCHMENT [Illustration: Runic Glyphs] \"I Declare,\" cried my uncle, striking the table fiercely with his fist, \"I declare to you it is Runic--and contains some wonderful secret, which I must get at, at any price.\" I was about to reply when he stopped me. \"Sit down,\" he said, quite fiercely, \"and write to my dictation.\" I obeyed. \"I...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

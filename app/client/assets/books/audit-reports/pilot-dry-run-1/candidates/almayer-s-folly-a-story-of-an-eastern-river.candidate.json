@@ -1,0 +1,208 @@
+{
+  "slug": "almayer-s-folly-a-story-of-an-eastern-river",
+  "title": "Almayer's Folly: A Story of an Eastern River",
+  "author": [
+    "Joseph Conrad"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Almayer's Folly - A Story of an Eastern River.txt",
+  "pass2RiskLevel": "low",
+  "dryRunRecommendation": "safe to process later",
+  "boundaries": {
+    "startLine": 63,
+    "startIndex": 1683,
+    "startSnippet": "He shuffled uneasily, but took no further notice of the call. Leaning with both his elbows on the balustrade of the verandah, he went on looking fixedly at the great river that flowed--indifferent and hurried--before his eyes. He liked to look at it about the time of sunset; perhaps because at that time the sinking sun would spread a",
+    "endLine": 6284,
+    "endIndex": 355795,
+    "endSnippet": "\"Let us go,\" he said, addressing Reshid. And as they passed through the crowd that fell back before them, the beads in Abdulla's hand clicked, while in a solemn whisper he breathed out piously the name of Allah! The Merciful! The Compassionate!"
+  },
+  "wordCounts": {
+    "raw": 66097,
+    "kept": 62806,
+    "removedFrontMatter": 282,
+    "removedEndMatter": 3009
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 5209,
+      "characterCount": 29726,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "He shuffled uneasily, but took no further notice of the call. Leaning with both his elbows on the balustrade of the verandah, he went on looking fixedly at the..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4091,
+      "characterCount": 23384,
+      "estimatedListeningMinutes": 139,
+      "textPreview": "CHAPTER II. When, in compliance with Lingard's abrupt demand, Almayer consented to wed the Malay girl, no one knew that on the day when the interesting young c..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4326,
+      "characterCount": 25484,
+      "estimatedListeningMinutes": 151,
+      "textPreview": "CHAPTER III. The deliberations conducted in London have a far-reaching importance, and so the decision issued from the fog-veiled offices of the Borneo Company..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3615,
+      "characterCount": 21018,
+      "estimatedListeningMinutes": 125,
+      "textPreview": "CHAPTER IV. That year, towards the breaking up of the south-west monsoon, disquieting rumours reached Sambir. Captain Ford, coming up to Almayer's house for an..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4783,
+      "characterCount": 27116,
+      "estimatedListeningMinutes": 160,
+      "textPreview": "CHAPTER V. At last the excitement had died out in Sambir. The inhabitants got used to the sight of comings and goings between Almayer's house and the vessel, n..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4222,
+      "characterCount": 24405,
+      "estimatedListeningMinutes": 145,
+      "textPreview": "CHAPTER VI. Dain was not long in crossing the river after leaving Almayer. He landed at the water-gate of the stockade enclosing the group of houses which comp..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5315,
+      "characterCount": 29901,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "CHAPTER VII. The bright sunshine of the clear mistless morning, after the stormy night, flooded the main path of the settlement leading from the low shore of t..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6003,
+      "characterCount": 33414,
+      "estimatedListeningMinutes": 197,
+      "textPreview": "CHAPTER VIII. The news as to the identity of the body lying now in Almayer's compound spread rapidly over the settlement. During the forenoon most of the inhab..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5891,
+      "characterCount": 33472,
+      "estimatedListeningMinutes": 199,
+      "textPreview": "CHAPTER IX. \"Can I believe what you tell me? It is like a tale for men that listen only half awake by the camp fire, and it seems to have run off a woman's ton..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5417,
+      "characterCount": 30043,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "CHAPTER X. \"It has set at last,\" said Nina to her mother pointing towards the hills behind which the sun had sunk. \"Listen, mother, I am going now to Bulangi's..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6771,
+      "characterCount": 36687,
+      "estimatedListeningMinutes": 217,
+      "textPreview": "CHAPTER XI. In the middle of a shadowless square of moonlight, shining on a smooth and level expanse of young rice-shoots, a little shelter-hut perched on high..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7163,
+      "characterCount": 39428,
+      "estimatedListeningMinutes": 233,
+      "textPreview": "CHAPTER XII. \"That is the place,\" said Dain, indicating with the blade of his paddle a small islet about a mile ahead of the canoe--\"that is the place where Ba..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 62806,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 4,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L541: * * * * *",
+          "candidate L4347: * * * * *",
+          "candidate L5838: * * * * *",
+          "candidate L6177: * * * * *"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "high",
+    "sectionsUsed": [
+      "chapter-001 Chapter 2"
+    ],
+    "approximateWordCount": 4091,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER II. When, in compliance with Lingard's abrupt demand, Almayer consented to wed the Malay girl, no one knew that on the day when the interesting young convert had lost all her natural relations and found a white father, she had been fighting desperately like the rest of them on board the prau, and was only prevented from leaping overboard, like the f...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

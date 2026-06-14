@@ -1,0 +1,295 @@
+{
+  "slug": "a-journal-of-the-plague-year",
+  "title": "A Journal of the Plague Year",
+  "author": [
+    "Daniel Defoe"
+  ],
+  "sourcePath": "app/client/assets/temp-books/A Journal of the Plague Year.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 2752,
+    "startIndex": 160707,
+    "startSnippet": "they had no better, ‘Well,’ says he, ‘I must make shift; this is a dreadful time; but it is but for one night.’ So he sat down upon the bedside, and bade the maid, I think it was, fetch him up a pint of warm ale. Accordingly the servant went for the ale, but some hurry in the house, which perhaps employed her other ways, put it out of her head, and she went up no more to him.",
+    "endLine": 9508,
+    "endIndex": 571190,
+    "endSnippet": "H. F. [Illustration] FINIS"
+  },
+  "wordCounts": {
+    "raw": 98135,
+    "kept": 68606,
+    "removedFrontMatter": 26522,
+    "removedEndMatter": 3007
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4952,
+      "characterCount": 29574,
+      "estimatedListeningMinutes": 159,
+      "textPreview": "they had no better, ‘Well,’ says he, ‘I must make shift; this is a dreadful time; but it is but for one night.’ So he sat down upon the bedside, and bade the m..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4991,
+      "characterCount": 29839,
+      "estimatedListeningMinutes": 161,
+      "textPreview": "They did tell me, indeed, of a nurse in one place that laid a wet cloth upon the face of a dying patient whom she tended, and so put an end to his life, who wa..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5115,
+      "characterCount": 29774,
+      "estimatedListeningMinutes": 159,
+      "textPreview": "But the vigilance of the Lord Mayor and such magistrates as could be had (for some, even of the aldermen, were dead, and some absent) prevented this; and they..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4878,
+      "characterCount": 29636,
+      "estimatedListeningMinutes": 153,
+      "textPreview": "I then asked the poor man if the distemper had not reached to Greenwich. He said it had not till about a fortnight before; but that then he feared it had, but..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Part 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5217,
+      "characterCount": 29728,
+      "estimatedListeningMinutes": 160,
+      "textPreview": "John. Why, what will you do then, brother? And what shall I do? for I am almost as bad as you. The people where I lodge are all gone into the country but a mai..."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Part 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5059,
+      "characterCount": 29660,
+      "estimatedListeningMinutes": 159,
+      "textPreview": "While this was doing he advanced himself and two or three with him, and set up their tent in the lane within sight of the barrier which the town’s men had made..."
+    },
+    {
+      "id": "part-007",
+      "kind": "part",
+      "label": "Part 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4511,
+      "characterCount": 27437,
+      "estimatedListeningMinutes": 146,
+      "textPreview": "Upon all these considerations John, their captain, in all their names, went back to their good friend and benefactor, who had relieved them before, and laying..."
+    },
+    {
+      "id": "part-008",
+      "kind": "part",
+      "label": "Part 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5034,
+      "characterCount": 29454,
+      "estimatedListeningMinutes": 158,
+      "textPreview": "Another infected person came and knocked at the door of a citizen’s house where they knew him very well; the servant let him in, and being told the master of t..."
+    },
+    {
+      "id": "part-009",
+      "kind": "part",
+      "label": "Part 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4942,
+      "characterCount": 29825,
+      "estimatedListeningMinutes": 159,
+      "textPreview": "But let me observe here that, when I say the people abandoned themselves to despair, I do not mean to what men call a religious despair, or a despair of their..."
+    },
+    {
+      "id": "part-010",
+      "kind": "part",
+      "label": "Part 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4595,
+      "characterCount": 29448,
+      "estimatedListeningMinutes": 150,
+      "textPreview": "It was indeed one admirable piece of conduct in the said magistrates that the streets were kept constantly clear and free from all manner of frightful objects,..."
+    },
+    {
+      "id": "part-011",
+      "kind": "part",
+      "label": "Part 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4869,
+      "characterCount": 29790,
+      "estimatedListeningMinutes": 157,
+      "textPreview": "I could propose many schemes on the foot of which the government of this city, if ever they should be under the apprehensions of such another enemy (God forbid..."
+    },
+    {
+      "id": "part-012",
+      "kind": "part",
+      "label": "Part 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4911,
+      "characterCount": 29401,
+      "estimatedListeningMinutes": 158,
+      "textPreview": "Nor was this charity so extraordinary eminent only in a few, but (for I cannot lightly quit this point) the charity of the rich, as well in the city and suburb..."
+    },
+    {
+      "id": "part-013",
+      "kind": "part",
+      "label": "Part 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5050,
+      "characterCount": 29985,
+      "estimatedListeningMinutes": 161,
+      "textPreview": "It remains now that I should say something of the merciful part of this terrible judgement. The last week in September, the plague being come to its crisis, it..."
+    },
+    {
+      "id": "part-014",
+      "kind": "part",
+      "label": "Part 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4481,
+      "characterCount": 26815,
+      "estimatedListeningMinutes": 144,
+      "textPreview": "I think it ought to be recorded to the honour of such men, as well clergy as physicians, surgeons, apothecaries, magistrates, and officers of every kind, as al..."
+    },
+    {
+      "id": "part-015",
+      "kind": "part",
+      "label": "Part 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1,
+      "characterCount": 5,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "FINIS"
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 68480,
+    "actions": [
+      {
+        "action": "remove-image-placeholders",
+        "count": 1,
+        "recommendation": "Remove bracketed image placeholders from playback text; preserve nearby narrative captions only if meaningful.",
+        "samples": [
+          "[Illustration]"
+        ]
+      },
+      {
+        "action": "remove-numbered-reference-markers",
+        "count": 10,
+        "recommendation": "Remove inline numeric reference markers from playback text; keep footnote prose only after manual review.",
+        "samples": [
+          "[1]",
+          "[1]",
+          "[2]",
+          "[2]",
+          "[3]",
+          "[3]",
+          "[4]",
+          "[4]"
+        ]
+      },
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 10,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L1024: - ——- ——-",
+          "candidate L1726: - —- —- ——",
+          "candidate L1738: - —- — —-",
+          "candidate L1752: - —— ——",
+          "candidate L4154: ————",
+          "candidate L4460: - ——-",
+          "candidate L4509: - ————",
+          "candidate L4533: - ————"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 641,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "‘",
+          "’",
+          "‘",
+          "’",
+          "‘"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 172,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 4952,
+    "startsAtRealReadableContent": true,
+    "snippet": "they had no better, ‘Well,’ says he, ‘I must make shift; this is a dreadful time; but it is but for one night.’ So he sat down upon the bedside, and bade the maid, I think it was, fetch him up a pint of warm ale. Accordingly the servant went for the ale, but some hurry in the house, which perhaps employed her other ways, put it out of her head, and she went...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}
