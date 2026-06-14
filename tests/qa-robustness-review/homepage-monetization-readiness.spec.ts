@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 
+import { formatMorseBookAuthors } from "../../app/client/data/morseBookDisplay";
 import { ROUTES } from "../../app/client/data/routes";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
@@ -23,23 +24,44 @@ const publicManifest = JSON.parse(
   books: Array<{
     slug: string;
     title: string;
+    author: string[];
+    description: string;
     source: {
       rightsStatus: string;
       publishReady: boolean;
       processingAllowed: boolean;
+      approvalSource?: string;
+      rightsReviewed?: boolean;
+    };
+    stats: {
+      wordCount: number;
+      sectionCount: number;
+      includedSectionCount: number;
     };
   }>;
 };
 
-const approvedBookSlugs = new Set(
-  publicManifest.books
-    .filter(
-      (book) =>
-        book.source.rightsStatus === "approved" &&
-        book.source.publishReady === true &&
-        book.source.processingAllowed === true,
-    )
-    .map((book) => book.slug),
+const approvedBooks = publicManifest.books
+  .filter((book) => {
+    const approvedBySource =
+      book.source.approvalSource === "file-evidence" ||
+      book.source.approvalSource === "external-authority" ||
+      (book.source.approvalSource === "owner-reviewed" &&
+        book.source.rightsReviewed === true) ||
+      (book.source.approvalSource === undefined &&
+        book.source.rightsReviewed === true);
+    return (
+      approvedBySource &&
+      book.source.rightsStatus === "approved" &&
+      book.source.publishReady === true &&
+      book.source.processingAllowed === true
+    );
+  })
+  .sort((a, b) => a.title.localeCompare(b.title));
+
+const approvedBookSlugs = new Set(approvedBooks.map((book) => book.slug));
+const approvedBooksBySlug = new Map(
+  approvedBooks.map((book) => [book.slug, book]),
 );
 
 async function gotoHome(page: Page) {
@@ -53,6 +75,80 @@ async function parsePageJsonLd(page: Page) {
     .evaluateAll((scripts) =>
       scripts.map((script) => JSON.parse(script.textContent?.trim() ?? "{}")),
     );
+}
+
+async function readFeaturedBookCards(page: Page) {
+  const section = page.locator('[aria-labelledby="featured-morse-books-title"]');
+  return section
+    .locator('[data-testid="home-featured-book-card"]')
+    .evaluateAll((cards) =>
+      cards.map((card) => {
+        const title = card.querySelector<HTMLElement>(
+          '[data-testid="home-featured-book-title"]',
+        );
+        const author = card.querySelector<HTMLElement>(
+          '[data-testid="home-featured-book-author"]',
+        );
+        const description = card.querySelector<HTMLElement>(
+          '[data-testid="home-featured-book-description"]',
+        );
+        const primaryLink = card.querySelector<HTMLAnchorElement>(
+          '[data-testid="home-featured-book-primary-link"]',
+        );
+        const mp3Link = card.querySelector<HTMLAnchorElement>(
+          '[data-testid="home-featured-book-mp3-link"]',
+        );
+        const links = Array.from(
+          card.querySelectorAll<HTMLAnchorElement>("a"),
+        ).map((link) => link.getAttribute("href") ?? "");
+
+        return {
+          slug: card.getAttribute("data-mw-home-book-slug") ?? "",
+          dataTitle: card.getAttribute("data-mw-home-book-title") ?? "",
+          dataAuthor: card.getAttribute("data-mw-home-book-author") ?? "",
+          title: title?.textContent?.trim() ?? "",
+          titleAttr: title?.getAttribute("title") ?? "",
+          titleClass: title?.className ?? "",
+          author: author?.textContent?.trim() ?? "",
+          authorAttr: author?.getAttribute("title") ?? "",
+          authorClass: author?.className ?? "",
+          descriptionClass: description?.className ?? "",
+          primaryHref: primaryLink?.getAttribute("href") ?? "",
+          mp3Href: mp3Link?.getAttribute("href") ?? "",
+          links,
+        };
+      }),
+    );
+}
+
+function expectFeaturedBookCardsToMatchApprovedRecords(
+  cards: Awaited<ReturnType<typeof readFeaturedBookCards>>,
+) {
+  expect(cards).toHaveLength(4);
+  for (const card of cards) {
+    const book = approvedBooksBySlug.get(card.slug);
+    expect(book, `${card.slug} is an approved public book`).toBeDefined();
+    expect(card.dataTitle).toBe(book!.title);
+    expect(card.title).toBe(book!.title);
+    expect(card.titleAttr).toBe(book!.title);
+
+    const authorText = formatMorseBookAuthors(book!.author);
+    expect(card.dataAuthor).toBe(authorText);
+    expect(card.author).toBe(authorText);
+    expect(card.authorAttr).toBe(authorText);
+
+    const bookPath = `/morse-code-books/${card.slug}`;
+    expect(card.primaryHref).toBe(bookPath);
+    expect(card.mp3Href).toBe(bookPath);
+    expect(card.links).toEqual(expect.arrayContaining([bookPath]));
+    expect(
+      card.links.some((href) => href.startsWith("/morse-code-audiobooks/")),
+    ).toBe(false);
+
+    expect(card.titleClass).toContain("line-clamp-2");
+    expect(card.authorClass).toContain("truncate");
+    expect(card.descriptionClass).toContain("line-clamp-3");
+  }
 }
 
 function flattenJsonLd(value: unknown): Record<string, unknown>[] {
@@ -251,34 +347,73 @@ test.describe("homepage monetization readiness", () => {
 
     const section = page.locator('[aria-labelledby="featured-morse-books-title"]');
     await expect(section).toBeVisible();
-    await expect(section.locator("article")).toHaveCount(4);
+    await expect(section.getByText("Books and audiobooks")).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "Read and listen with processed public books",
+      }),
+    ).toBeVisible();
+    await expect(
+      section.locator('[data-testid="home-featured-book-card"]'),
+    ).toHaveCount(4);
     await expect(section.locator(`a[href="${ROUTES.morseBooks}"]`)).toBeVisible();
     await expect(
       section.locator(`a[href="${ROUTES.morseAudiobooks}"]`),
     ).toBeVisible();
 
-    const linkedBookSlugs = await section.locator('a[href^="/morse-code-books/"]').evaluateAll(
-      (anchors) =>
-        anchors.map((anchor) =>
-          ((anchor as HTMLAnchorElement).getAttribute("href") ?? "")
-            .replace(/^\/morse-code-books\//, "")
-            .split("/")[0],
-        ),
+    expectFeaturedBookCardsToMatchApprovedRecords(
+      await readFeaturedBookCards(page),
     );
-    const linkedAudiobookSlugs = await section
-      .locator('a[href^="/morse-code-audiobooks/"]')
-      .evaluateAll((anchors) =>
-        anchors.map((anchor) =>
-          ((anchor as HTMLAnchorElement).getAttribute("href") ?? "")
-            .replace(/^\/morse-code-audiobooks\//, "")
-            .split("/")[0],
-        ),
-      );
-
-    for (const slug of [...linkedBookSlugs, ...linkedAudiobookSlugs]) {
-      expect(approvedBookSlugs.has(slug), `${slug} is approved`).toBe(true);
-    }
     await expect(section).not.toContainText("Test Published Morse Book");
+  });
+
+  test("randomizes featured book cards without mixing book data", async ({
+    page,
+    context,
+  }) => {
+    expect(approvedBooks.length).toBeGreaterThan(4);
+    await page.addInitScript(() => {
+      Math.random = () => 0;
+    });
+    await gotoHome(page);
+
+    const firstExpectedSlugs = approvedBooks
+      .slice(0, 4)
+      .map((book) => book.slug)
+      .join("|");
+    await expect
+      .poll(async () =>
+        (await readFeaturedBookCards(page)).map((card) => card.slug).join("|"),
+      )
+      .toBe(firstExpectedSlugs);
+    expectFeaturedBookCardsToMatchApprovedRecords(
+      await readFeaturedBookCards(page),
+    );
+
+    const lastPage = await context.newPage();
+    await blockExternalNetwork(lastPage);
+    await lastPage.addInitScript(() => {
+      Math.random = () => 0.999999;
+    });
+    await gotoHome(lastPage);
+
+    const lastExpectedSlugs = [...approvedBooks]
+      .reverse()
+      .slice(0, 4)
+      .map((book) => book.slug)
+      .join("|");
+    await expect
+      .poll(async () =>
+        (await readFeaturedBookCards(lastPage))
+          .map((card) => card.slug)
+          .join("|"),
+      )
+      .toBe(lastExpectedSlugs);
+    expect(lastExpectedSlugs).not.toBe(firstExpectedSlugs);
+    expectFeaturedBookCardsToMatchApprovedRecords(
+      await readFeaturedBookCards(lastPage),
+    );
+    await lastPage.close();
   });
 
   test("links printables, explains browser print, and keeps schema conservative", async ({
