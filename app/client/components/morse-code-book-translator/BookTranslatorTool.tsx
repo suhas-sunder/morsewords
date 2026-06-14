@@ -3839,6 +3839,13 @@ function BookPreviewSection({
         isAudioOutput,
         previewStatus,
       });
+  const handleToggleVisualPreview = React.useCallback(() => {
+    if (visualPlayerPlaying) {
+      onStopPreview();
+      return;
+    }
+    onPlayVisualPreview();
+  }, [onPlayVisualPreview, onStopPreview, visualPlayerPlaying]);
 
   return (
     <section
@@ -3894,6 +3901,8 @@ function BookPreviewSection({
             headingId="book-video-preview-heading"
             headingText="Live Morse frame"
             isPlaying={visualPreviewPlaying}
+            onTogglePlayback={handleToggleVisualPreview}
+            playbackToggleDisabled={actionDisabled && !visualPlayerPlaying}
             preview={videoPreview}
             resolvedBackgroundStyle={resolvedVideoBackgroundStyle}
             settings={videoSettings}

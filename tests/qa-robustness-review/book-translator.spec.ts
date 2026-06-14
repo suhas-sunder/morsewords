@@ -2330,15 +2330,16 @@ test("live player previews current cleaned source and updates with audio setting
   page,
 }) => {
   await openBookTranslator(page);
-  await page
-    .getByLabel("Paste long-form source text")
-    .fill("Preview KEEP REMOVE SOS HELP. ".repeat(8));
+  const sourceInput = page.getByLabel("Paste long-form source text");
+  const sourceText = "Preview KEEP REMOVE SOS HELP. ".repeat(8);
+  await sourceInput.fill(sourceText);
 
   const preview = previewSection(page);
+  const previewFrame = preview.getByTestId("book-video-preview-frame");
   await expect(
     preview.getByRole("heading", { name: "Live preview" }),
   ).toHaveCount(0);
-  await expect(preview.getByTestId("book-video-preview-frame")).toBeVisible();
+  await expect(previewFrame).toBeVisible();
   await expectPreviewReady(page);
   await expect(playerDetailsPanel(page)).not.toHaveAttribute("open", "");
   await expect(preview.getByTestId("book-preview-sample")).toBeHidden();
@@ -2367,7 +2368,7 @@ test("live player previews current cleaned source and updates with audio setting
   await expect(
     downloadSettings.getByLabel("Tone preset"),
   ).toHaveValue("sine");
-  await expect(page.getByTestId("book-video-preview-frame")).toBeVisible();
+  await expect(previewFrame).toBeVisible();
   await expect(page.getByTestId("book-video-preview-morse-overlay")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-text-overlay")).toBeVisible();
   const liveTimeline = preview.getByRole("slider", {
@@ -2384,9 +2385,11 @@ test("live player previews current cleaned source and updates with audio setting
     },
   });
   await expect(liveTimeline).not.toHaveAttribute("aria-valuenow", "0");
+  const scrubbedElapsed = Number(await liveTimeline.getAttribute("aria-valuenow"));
+  expect(scrubbedElapsed).toBeGreaterThan(0);
 
   const playButton = preview.getByRole("button", { name: "Play live player" });
-  await playButton.click();
+  await previewFrame.click();
   await expect(
     preview.getByRole("button", { name: "Stop live player" }),
   ).toBeVisible();
@@ -2394,6 +2397,28 @@ test("live player previews current cleaned source and updates with audio setting
     "data-preview-playing",
     "true",
   );
+  await expect(sourceInput).toHaveValue(sourceText);
+  const previewDownloadLink = preview.getByTestId("book-preview-download-mp3-link");
+  await expect(previewDownloadLink).toHaveText("Download MP3");
+  await previewDownloadLink.click();
+  await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
+    "data-preview-playing",
+    "true",
+  );
+  await expect(sourceInput).toHaveValue(sourceText);
+  await previewFrame.click();
+  await expect(playButton).toBeVisible();
+  await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
+    "data-preview-playing",
+    "false",
+  );
+  await expect
+    .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
+    .toBeGreaterThanOrEqual(scrubbedElapsed);
+  await playButton.click();
+  await expect(
+    preview.getByRole("button", { name: "Stop live player" }),
+  ).toBeVisible();
   await expect
     .poll(() => liveTimeline.getAttribute("aria-valuenow"))
     .not.toBe("0");
@@ -2403,6 +2428,10 @@ test("live player previews current cleaned source and updates with audio setting
       y: timelineBox!.height / 2,
     },
   });
+  await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
+    "data-preview-playing",
+    "true",
+  );
   await expect
     .poll(
       async () =>
@@ -2428,6 +2457,10 @@ test("live player previews current cleaned source and updates with audio setting
     preview.getByRole("button", { name: "Stop live player" }),
   ).toBeEnabled();
   await page.mouse.up();
+  await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
+    "data-preview-playing",
+    "true",
+  );
   await expect(
     preview.getByRole("button", { name: "Stop live player" }),
   ).toBeEnabled();
@@ -2443,9 +2476,7 @@ test("live player previews current cleaned source and updates with audio setting
   expect(["none", "solid"]).toContain(clickedFocusStyle.outlineStyle);
   expect(Number.parseFloat(clickedFocusStyle.outlineWidth)).toBeGreaterThanOrEqual(0);
 
-  await page
-    .getByLabel("Paste long-form source text")
-    .fill("Changed preview SOS");
+  await sourceInput.fill("Changed preview SOS");
   await expect(
     preview.getByRole("button", { name: "Play live player" }),
   ).toBeVisible();
@@ -2456,6 +2487,8 @@ test("live player previews current cleaned source and updates with audio setting
   await expect(
     page.getByRole("button", { name: "Download sample" }),
   ).toHaveCount(0);
+  await expect(page.getByText("Download MP4")).toHaveCount(0);
+  await expect(page.getByText("Download WebM")).toHaveCount(0);
 });
 
 test("long and short live previews report a safe seekable duration", async ({
@@ -2676,7 +2709,14 @@ test("live preview fullscreen preserves translator source and progress", async (
     fullscreenFrame,
     page.getByTestId("book-video-preview-fullscreen-active-text-word"),
   );
-  await overlay.getByRole("button", { name: "Play live player" }).click();
+  const fullscreenTimeline = overlay.getByRole("slider", {
+    name: "Fullscreen live player timeline",
+  });
+  await fullscreenFrame.click();
+  await expect(fullscreenFrame).toHaveAttribute(
+    "data-preview-playing",
+    "true",
+  );
   await expect(overlay).toHaveAttribute(
     "data-fullscreen-controls-visible",
     "false",
@@ -2686,10 +2726,14 @@ test("live preview fullscreen preserves translator source and progress", async (
     "data-fullscreen-controls-suppressed",
     "true",
   );
-  await page.mouse.move(24, 24);
+  await fullscreenFrame.click();
+  await expect(fullscreenFrame).toHaveAttribute(
+    "data-preview-playing",
+    "false",
+  );
   await expect(overlay).toHaveAttribute(
     "data-fullscreen-controls-visible",
-    "false",
+    "true",
   );
   await expect(overlay).toHaveAttribute(
     "data-fullscreen-controls-suppressed",
@@ -2703,11 +2747,7 @@ test("live preview fullscreen preserves translator source and progress", async (
   );
   await expect
     .poll(async () =>
-      Number(
-        await overlay
-          .getByRole("slider", { name: "Fullscreen live player timeline" })
-          .getAttribute("aria-valuenow"),
-      ),
+      Number(await fullscreenTimeline.getAttribute("aria-valuenow")),
     )
     .toBeGreaterThan(0);
 

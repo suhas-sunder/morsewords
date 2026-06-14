@@ -1972,6 +1972,13 @@ test.describe("Morse book page foundation", () => {
     await expect(
       livePlayer.getByTestId("morse-book-live-download-link"),
     ).toHaveText("Download Audiobook MP3");
+    const liveDownloadLink = livePlayer.getByTestId(
+      "morse-book-live-download-link",
+    );
+    const previewFrame = livePlayer.locator(
+      "[data-testid='book-video-preview-frame']",
+    );
+    await expect(previewFrame).toBeVisible();
     await expect(livePlayer.locator("[data-testid='book-video-preview-lightbulb']")).toBeVisible();
     const morseOverlay = livePlayer.locator("[data-testid='book-video-preview-morse-overlay']");
     await expect(morseOverlay).toBeVisible();
@@ -2006,6 +2013,25 @@ test.describe("Morse book page foundation", () => {
     );
     expect(nudgedMetrics.batchEndWordIndex).toBe(defaultMetrics.batchEndWordIndex);
 
+    const nudgedElapsed = Number(await videoTimeline.getAttribute("aria-valuenow"));
+    await previewFrame.click();
+    await expect(livePlayer.locator("[data-testid='book-video-preview']")).toHaveAttribute(
+      "data-preview-playing",
+      "true",
+    );
+    await liveDownloadLink.click();
+    await expect(livePlayer.locator("[data-testid='book-video-preview']")).toHaveAttribute(
+      "data-preview-playing",
+      "true",
+    );
+    await previewFrame.click();
+    await expect(livePlayer.locator("[data-testid='book-video-preview']")).toHaveAttribute(
+      "data-preview-playing",
+      "false",
+    );
+    await expect
+      .poll(async () => Number(await videoTimeline.getAttribute("aria-valuenow")))
+      .toBeGreaterThanOrEqual(nudgedElapsed);
     await livePlayer.getByRole("button", { name: "Play live player" }).click();
     await expect(livePlayer.locator("[data-testid='book-video-preview']")).toHaveAttribute(
       "data-preview-playing",
@@ -2029,6 +2055,10 @@ test.describe("Morse book page foundation", () => {
         y: videoTimelineBox!.height / 2,
       },
     });
+    await expect(livePlayer.locator("[data-testid='book-video-preview']")).toHaveAttribute(
+      "data-preview-playing",
+      "true",
+    );
     await expect
       .poll(() => videoTimeline.getAttribute("aria-valuenow"))
       .not.toBe("0");
@@ -2151,9 +2181,14 @@ test.describe("Morse book page foundation", () => {
     expectLayerInsideFrame(fullscreenMetrics, fullscreenMetrics.morse);
     expect(fullscreenMetrics.morse!.fontSize).toBeLessThanOrEqual(72);
     expectMorseGroupsSeparated(fullscreenMetrics.morse!.text);
-    await fullscreenOverlay
-      .getByRole("button", { name: "Play live player" })
-      .click();
+    const fullscreenFrame = fullscreenOverlay.getByTestId(
+      "book-video-preview-fullscreen-frame",
+    );
+    await fullscreenFrame.click();
+    await expect(fullscreenFrame).toHaveAttribute(
+      "data-preview-playing",
+      "true",
+    );
     await expect(fullscreenOverlay).toHaveAttribute(
       "data-fullscreen-controls-visible",
       "false",
@@ -2163,10 +2198,14 @@ test.describe("Morse book page foundation", () => {
       "data-fullscreen-controls-suppressed",
       "true",
     );
-    await page.mouse.move(24, 24);
+    await fullscreenFrame.click();
+    await expect(fullscreenFrame).toHaveAttribute(
+      "data-preview-playing",
+      "false",
+    );
     await expect(fullscreenOverlay).toHaveAttribute(
       "data-fullscreen-controls-visible",
-      "false",
+      "true",
     );
     await expect(fullscreenOverlay).toHaveAttribute(
       "data-fullscreen-controls-suppressed",

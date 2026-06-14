@@ -1443,6 +1443,21 @@ body
   color: currentColor !important;
 }
 
+.mw-page-content .mw-live-preview-toggle-frame[role="button"],
+.mw-page-content .mw-live-preview-toggle-frame[role="button"]:where(:hover, :active),
+:root[data-theme="dark"] .mw-page-content .mw-live-preview-toggle-frame[role="button"]:where(:hover, :active) {
+  background-color: var(--mw-live-preview-frame-bg) !important;
+  box-shadow: none !important;
+  color: var(--mw-live-preview-frame-color) !important;
+}
+
+.mw-page-content .mw-live-preview-toggle-frame[role="button"]:focus-visible,
+:root[data-theme="dark"] .mw-page-content .mw-live-preview-toggle-frame[role="button"]:focus-visible {
+  background-color: var(--mw-live-preview-frame-bg) !important;
+  box-shadow: inset 0 0 0 3px var(--mw-focus-ring) !important;
+  color: var(--mw-live-preview-frame-color) !important;
+}
+
 @media (min-width: 640px) {
   .mw-how-section > .flex.flex-col:first-child {
     margin: 0 0 1.75rem;

@@ -3519,6 +3519,13 @@ function VideoPreviewControls({
 }) {
   const safeElapsed = Math.max(0, Math.min(Math.max(1, preview.durationMs), elapsedMs));
   const pauseAction = stopLabel.toLowerCase().startsWith("pause");
+  const handleTogglePlayback = React.useCallback(() => {
+    if (playing) {
+      onStop();
+      return;
+    }
+    onPlay();
+  }, [onPlay, onStop, playing]);
 
   return (
     <section data-testid="book-video-preview-workflow">
@@ -3527,6 +3534,7 @@ function VideoPreviewControls({
         headingId="book-video-preview-heading"
         headingText={headingText}
         isPlaying={playing}
+        onTogglePlayback={handleTogglePlayback}
         preview={preview}
         resolvedBackgroundStyle={resolvedBackgroundStyle}
         settings={settings}

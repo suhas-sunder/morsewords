@@ -33,6 +33,9 @@ type MorseVideoPreviewPanelProps = {
   headingText?: string;
   isPlaying: boolean;
   layout?: MorseVideoPreviewLayout;
+  onTogglePlayback?: () => void;
+  playbackToggleDisabled?: boolean;
+  playbackToggleLabel?: string;
   preview: MorseVideoPreview;
   resolvedBackgroundStyle: ResolvedPreviewBackground;
   settings: MorseVideoSettings;
@@ -202,6 +205,9 @@ export function MorseVideoPreviewPanel({
   headingText = "Video preview frame",
   isPlaying,
   layout = "inline",
+  onTogglePlayback,
+  playbackToggleDisabled = false,
+  playbackToggleLabel,
   preview,
   resolvedBackgroundStyle,
   settings,
@@ -271,6 +277,14 @@ export function MorseVideoPreviewPanel({
   const frameClass = fullscreen
     ? "relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none p-1 sm:p-3"
     : "relative flex aspect-video min-h-[12rem] w-full flex-col overflow-hidden rounded-xl p-3 sm:min-h-[20rem] sm:p-6";
+  const playbackToggleEnabled =
+    Boolean(onTogglePlayback) && !playbackToggleDisabled;
+  const interactiveFrameClass = playbackToggleEnabled
+    ? "mw-live-preview-toggle-frame"
+    : "";
+  const frameClassName = [frameClass, interactiveFrameClass]
+    .filter(Boolean)
+    .join(" ");
   const frameContentClass = fullscreen
     ? signalVisible
       ? "flex min-h-0 flex-1 flex-col items-center justify-center gap-[clamp(0.75rem,2.2vh,2.25rem)] overflow-y-auto px-[clamp(0.5rem,2vw,2rem)] pb-[clamp(4.5rem,11vh,7rem)] pt-[clamp(3rem,7vh,5.5rem)] text-center"
@@ -279,6 +293,30 @@ export function MorseVideoPreviewPanel({
         "flex min-h-0 flex-1 flex-col items-center justify-center pb-7 pt-0 text-center sm:pb-9 sm:pt-2",
         signalVisible ? "gap-1 sm:gap-4" : "gap-3 sm:gap-6",
       ].join(" ");
+  const previewToggleLabel =
+    playbackToggleLabel ??
+    (isPlaying ? "Pause live preview playback" : "Play live preview playback");
+
+  const handlePreviewToggleClick = React.useCallback(() => {
+    if (!playbackToggleEnabled) return;
+    onTogglePlayback?.();
+  }, [onTogglePlayback, playbackToggleEnabled]);
+
+  const handlePreviewToggleKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (!playbackToggleEnabled) return;
+      if (
+        event.key !== "Enter" &&
+        event.key !== " " &&
+        event.key !== "Spacebar"
+      ) {
+        return;
+      }
+      event.preventDefault();
+      onTogglePlayback?.();
+    },
+    [onTogglePlayback, playbackToggleEnabled],
+  );
 
   return (
     <section
@@ -289,7 +327,7 @@ export function MorseVideoPreviewPanel({
       className={rootClass}
     >
       <div
-        className={frameClass}
+        className={frameClassName}
         style={frameStyle}
         data-testid={`${testIdPrefix}-frame`}
         data-preview-playing={isPlaying ? "true" : "false"}
@@ -301,6 +339,13 @@ export function MorseVideoPreviewPanel({
         }
         data-preview-batch-end-word-index={
           previewFrame.batchEndWordIndex ?? undefined
+        }
+        role={playbackToggleEnabled ? "button" : undefined}
+        tabIndex={playbackToggleEnabled ? 0 : undefined}
+        aria-label={playbackToggleEnabled ? previewToggleLabel : undefined}
+        onClick={playbackToggleEnabled ? handlePreviewToggleClick : undefined}
+        onKeyDown={
+          playbackToggleEnabled ? handlePreviewToggleKeyDown : undefined
         }
       >
         <h3 id={headingId} className="sr-only">
@@ -936,6 +981,8 @@ export function MorseLivePreviewFullscreenControl({
             headingText={headingText}
             isPlaying={isPlaying}
             layout="fullscreen"
+            onTogglePlayback={handleFullscreenPlaybackToggle}
+            playbackToggleDisabled={disabled && !isPlaying}
             preview={preview}
             resolvedBackgroundStyle={resolvedBackgroundStyle}
             settings={fullscreenSettings}
@@ -1261,15 +1308,40 @@ function activePreviewCharacterClass(
   return `${baseClass} bg-sky-300 text-slate-950`;
 }
 
-function previewFrameStyle(darkFrame: boolean, fullFrameActive: boolean) {
+type PreviewFrameStyle = React.CSSProperties & {
+  "--mw-live-preview-frame-bg": string;
+  "--mw-live-preview-frame-color": string;
+};
+
+function previewFrameStyle(
+  darkFrame: boolean,
+  fullFrameActive: boolean,
+): PreviewFrameStyle {
+  let backgroundColor: string;
+  let color: string;
+
   if (darkFrame) {
-    return fullFrameActive
-      ? { backgroundColor: "#e0f2fe", color: "#08324f" }
-      : { backgroundColor: "#020617", color: "#e0f2fe" };
+    if (fullFrameActive) {
+      backgroundColor = "#e0f2fe";
+      color = "#08324f";
+    } else {
+      backgroundColor = "#020617";
+      color = "#e0f2fe";
+    }
+  } else if (fullFrameActive) {
+    backgroundColor = "#08324f";
+    color = "#f8fafc";
+  } else {
+    backgroundColor = "#fffdf8";
+    color = "#08324f";
   }
-  return fullFrameActive
-    ? { backgroundColor: "#08324f", color: "#f8fafc" }
-    : { backgroundColor: "#fffdf8", color: "#08324f" };
+
+  return {
+    "--mw-live-preview-frame-bg": backgroundColor,
+    "--mw-live-preview-frame-color": color,
+    backgroundColor,
+    color,
+  };
 }
 
 function getRequestFullscreen(element: FullscreenElement) {
