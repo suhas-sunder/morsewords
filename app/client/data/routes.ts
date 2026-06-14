@@ -105,6 +105,12 @@ export const CANONICAL_ROUTES = {
   letterS: "/s-in-morse-code",
 } as const;
 
+export const TRUST_ROUTES = {
+  privacy: "/privacy",
+  terms: "/terms",
+  cookies: "/cookies",
+} as const;
+
 export const REDIRECT_ROUTE_ALIASES = {
   translatorAlias: "/morse-code-translator",
   dictionaryAlias: "/morse-code-dictionary",
@@ -147,11 +153,14 @@ export const REDIRECT_ROUTE_ALIASES = {
 
 export const ROUTES = {
   ...CANONICAL_ROUTES,
+  ...TRUST_ROUTES,
   ...REDIRECT_ROUTE_ALIASES,
 } as const;
 
 export type CanonicalRoutePath =
   (typeof CANONICAL_ROUTES)[keyof typeof CANONICAL_ROUTES];
+
+export type TrustRoutePath = (typeof TRUST_ROUTES)[keyof typeof TRUST_ROUTES];
 
 export type RedirectAliasRoutePath =
   (typeof REDIRECT_ROUTE_ALIASES)[keyof typeof REDIRECT_ROUTE_ALIASES];

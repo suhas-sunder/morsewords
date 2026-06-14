@@ -42,9 +42,9 @@ const FOOTER_PATHS = [
   ROUTES.sitemap,
   ROUTES.sources,
   ROUTES.miscSocials,
-  ROUTES.miscPrivacy,
-  ROUTES.miscTerms,
-  ROUTES.miscCookies,
+  ROUTES.privacy,
+  ROUTES.terms,
+  ROUTES.cookies,
 ] as const;
 
 function readRepoFile(filePath: string) {

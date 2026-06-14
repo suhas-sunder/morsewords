@@ -10,9 +10,9 @@ const footerLinks = [
   { label: "Sitemap", to: ROUTES.sitemap },
   { label: "Sources", to: ROUTES.sources },
   { label: "Socials", to: ROUTES.miscSocials },
-  { label: "Privacy", to: ROUTES.miscPrivacy },
-  { label: "Terms", to: ROUTES.miscTerms },
-  { label: "Cookies", to: ROUTES.miscCookies },
+  { label: "Privacy", to: ROUTES.privacy },
+  { label: "Terms", to: ROUTES.terms },
+  { label: "Cookies", to: ROUTES.cookies },
 ];
 
 export default function Footer() {
