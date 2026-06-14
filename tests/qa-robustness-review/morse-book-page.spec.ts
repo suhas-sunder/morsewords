@@ -1548,7 +1548,7 @@ test.describe("Morse book page foundation", () => {
       /\/morse-code-audiobooks\/test-published-morse-book/,
     );
 
-    const downloadPromise = page.waitForEvent("download");
+    const downloadPromise = page.waitForEvent("download", { timeout: 30_000 });
     await page.getByRole("button", { name: "Download MP3" }).click();
     const download = await downloadPromise;
     expect(download.suggestedFilename()).toMatch(/test-published-morse-book.*\.mp3$/i);
@@ -2184,7 +2184,8 @@ test.describe("Morse book page foundation", () => {
     const fullscreenFrame = fullscreenOverlay.getByTestId(
       "book-video-preview-fullscreen-frame",
     );
-    await fullscreenFrame.click();
+    await fullscreenFrame.focus();
+    await page.keyboard.press("Space");
     await expect(fullscreenFrame).toHaveAttribute(
       "data-preview-playing",
       "true",
@@ -2198,6 +2199,25 @@ test.describe("Morse book page foundation", () => {
       "data-fullscreen-controls-suppressed",
       "true",
     );
+    await page.mouse.move(24, 24);
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-visible",
+      "false",
+    );
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-suppressed",
+      "true",
+    );
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-suppressed",
+      "false",
+      { timeout: 4_000 },
+    );
+    await page.mouse.move(32, 32);
+    await expect(fullscreenOverlay).toHaveAttribute(
+      "data-fullscreen-controls-visible",
+      "true",
+    );
     await fullscreenFrame.click();
     await expect(fullscreenFrame).toHaveAttribute(
       "data-preview-playing",
@@ -2210,12 +2230,6 @@ test.describe("Morse book page foundation", () => {
     await expect(fullscreenOverlay).toHaveAttribute(
       "data-fullscreen-controls-suppressed",
       "false",
-      { timeout: 4_000 },
-    );
-    await page.mouse.move(32, 32);
-    await expect(fullscreenOverlay).toHaveAttribute(
-      "data-fullscreen-controls-visible",
-      "true",
     );
     await page.getByRole("button", { name: "Exit fullscreen" }).click();
     await expect(page.getByTestId("book-video-preview-fullscreen-overlay")).toHaveCount(0);

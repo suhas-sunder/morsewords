@@ -795,8 +795,8 @@ export function MorseLivePreviewFullscreenControl({
     [],
   );
 
-  const showControlsBriefly = React.useCallback((force = false) => {
-    if (!force && controlsAreSuppressed()) {
+  const showControlsBriefly = React.useCallback(() => {
+    if (controlsAreSuppressed()) {
       setControlsVisible(false);
       return;
     }
@@ -827,12 +827,20 @@ export function MorseLivePreviewFullscreenControl({
   const handleFullscreenPlaybackToggle = React.useCallback(() => {
     if (isPlaying) {
       onStop();
-      showControlsBriefly(true);
+      clearControlsSuppression();
+      showControlsBriefly();
       return;
     }
     onPlay();
     suppressControlsAfterPlay();
-  }, [isPlaying, onPlay, onStop, showControlsBriefly, suppressControlsAfterPlay]);
+  }, [
+    clearControlsSuppression,
+    isPlaying,
+    onPlay,
+    onStop,
+    showControlsBriefly,
+    suppressControlsAfterPlay,
+  ]);
 
   const handleRestart = React.useCallback(() => {
     onRestart?.();
@@ -970,7 +978,7 @@ export function MorseLivePreviewFullscreenControl({
           }
           tabIndex={-1}
           className="fixed inset-0 z-[1000] h-[100dvh] w-screen overflow-hidden bg-slate-950 text-slate-50"
-          onFocusCapture={() => showControlsBriefly(true)}
+          onFocusCapture={() => showControlsBriefly()}
           onMouseMove={() => showControlsBriefly()}
           onPointerDown={() => showControlsBriefly()}
           onPointerMove={() => showControlsBriefly()}
@@ -1000,7 +1008,7 @@ export function MorseLivePreviewFullscreenControl({
             onClick={closeFullscreen}
             data-testid={`${testIdPrefix}-fullscreen-exit`}
             aria-label="Exit fullscreen"
-            onFocus={() => showControlsBriefly(true)}
+            onFocus={() => showControlsBriefly()}
           >
             <CollapseIcon size={18} title={undefined} aria-hidden="true" />
             <span className="hidden sm:inline">Exit fullscreen</span>

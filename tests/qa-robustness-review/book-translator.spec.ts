@@ -2712,7 +2712,7 @@ test("live preview fullscreen preserves translator source and progress", async (
   const fullscreenTimeline = overlay.getByRole("slider", {
     name: "Fullscreen live player timeline",
   });
-  await fullscreenFrame.click();
+  await overlay.getByRole("button", { name: "Play live player" }).click();
   await expect(fullscreenFrame).toHaveAttribute(
     "data-preview-playing",
     "true",
@@ -2726,6 +2726,25 @@ test("live preview fullscreen preserves translator source and progress", async (
     "data-fullscreen-controls-suppressed",
     "true",
   );
+  await page.mouse.move(24, 24);
+  await expect(overlay).toHaveAttribute(
+    "data-fullscreen-controls-visible",
+    "false",
+  );
+  await expect(overlay).toHaveAttribute(
+    "data-fullscreen-controls-suppressed",
+    "true",
+  );
+  await expect(overlay).toHaveAttribute(
+    "data-fullscreen-controls-suppressed",
+    "false",
+    { timeout: 4_000 },
+  );
+  await page.mouse.move(32, 32);
+  await expect(overlay).toHaveAttribute(
+    "data-fullscreen-controls-visible",
+    "true",
+  );
   await fullscreenFrame.click();
   await expect(fullscreenFrame).toHaveAttribute(
     "data-preview-playing",
@@ -2738,12 +2757,6 @@ test("live preview fullscreen preserves translator source and progress", async (
   await expect(overlay).toHaveAttribute(
     "data-fullscreen-controls-suppressed",
     "false",
-    { timeout: 4_000 },
-  );
-  await page.mouse.move(32, 32);
-  await expect(overlay).toHaveAttribute(
-    "data-fullscreen-controls-visible",
-    "true",
   );
   await expect
     .poll(async () =>
