@@ -296,6 +296,12 @@ export function MorseVideoPreviewPanel({
         data-preview-active={markActive ? "true" : "false"}
         data-full-frame-active={fullFrameActive ? "true" : "false"}
         data-preview-window-limit={previewWordWindowLimit}
+        data-preview-batch-start-word-index={
+          previewFrame.batchStartWordIndex ?? undefined
+        }
+        data-preview-batch-end-word-index={
+          previewFrame.batchEndWordIndex ?? undefined
+        }
       >
         <h3 id={headingId} className="sr-only">
           {headingText}

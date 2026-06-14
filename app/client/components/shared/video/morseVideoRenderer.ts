@@ -85,12 +85,22 @@ export type MorseVideoFrameWordWindowItem = {
   activeCharIndex: number;
 };
 
+export type MorseVideoFrameWordBatch = {
+  batchStartWordIndex: number;
+  batchEndWordIndex: number;
+  startOffset: number;
+  endOffset: number;
+  groups: MorseVideoTimelineWordGroup[];
+};
+
 export type MorseVideoCanonicalFrameState = {
   activeCharacter: string;
   activeCharacterMorse: string;
   activeMorseToken: MorseVideoTimelineToken | null;
   activePlainText: string;
   activeTimedEvent: MorseVideoTimedEvent | null;
+  batchEndWordIndex: number | null;
+  batchStartWordIndex: number | null;
   bulbActive: boolean;
   elapsedMs: number;
   morseWindow: string;
@@ -108,6 +118,12 @@ type RenderFrameOptions = {
   settings: MorseVideoSettings;
   timeline: MorseVideoTimeline;
   resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
+};
+
+export type MorseVideoTimelineWordGroup = {
+  wordIndex: number;
+  text: string;
+  morse: string;
 };
 
 const FRAME_RATE = 24;
@@ -216,22 +232,41 @@ export function getMorseVideoFrameWordWindow(
   limit = 168,
 ): MorseVideoFrameWordWindowItem[] {
   const activeToken = getMorseVideoActiveToken(timeline, elapsedMs);
-  const groups = buildTimelineWordGroups(timeline);
-  if (groups.length === 0) return [];
-
-  const activeOffset = Math.max(
-    0,
-    groups.findIndex((group) => group.wordIndex === activeToken?.wordIndex),
-  );
-  const { startOffset, endOffset } = getStableWordWindowRange(
-    groups,
-    activeOffset,
+  const batch = getMorseVideoFrameWordBatchForActiveToken(
+    timeline,
+    activeToken,
     limit,
   );
+  if (!batch) return [];
+  return buildWordWindowItems(batch.groups, activeToken);
+}
+
+export function buildMorseVideoFrameWordBatches(
+  timeline: MorseVideoTimeline,
+  limit = 168,
+): MorseVideoFrameWordBatch[] {
+  return buildStableWordBatches(buildTimelineWordGroups(timeline), limit);
+}
+
+export function getMorseVideoFrameWordBatch(
+  timeline: MorseVideoTimeline,
+  elapsedMs: number,
+  limit = 168,
+): MorseVideoFrameWordBatch | null {
+  return getMorseVideoFrameWordBatchForActiveToken(
+    timeline,
+    getMorseVideoActiveToken(timeline, elapsedMs),
+    limit,
+  );
+}
+
+function buildWordWindowItems(
+  groups: MorseVideoTimelineWordGroup[],
+  activeToken: MorseVideoTimelineToken | null,
+) {
   const words: MorseVideoFrameWordWindowItem[] = [];
 
-  for (let offset = startOffset; offset < endOffset; offset += 1) {
-    const group = groups[offset];
+  for (const group of groups) {
     const active = group.wordIndex === activeToken?.wordIndex;
 
     words.push({
@@ -246,13 +281,35 @@ export function getMorseVideoFrameWordWindow(
   return words;
 }
 
-function getStableWordWindowRange(
-  groups: Array<{ wordIndex: number; text: string; morse: string }>,
-  activeOffset: number,
+function getMorseVideoFrameWordBatchForActiveToken(
+  timeline: MorseVideoTimeline,
+  activeToken: MorseVideoTimelineToken | null,
+  limit: number,
+) {
+  const groups = buildTimelineWordGroups(timeline);
+  if (groups.length === 0) return null;
+  const batches = buildStableWordBatches(groups, limit);
+  if (batches.length === 0) return null;
+  const activeOffset = groups.findIndex(
+    (group) => group.wordIndex === activeToken?.wordIndex,
+  );
+  const safeActiveOffset = activeOffset >= 0 ? activeOffset : 0;
+  return (
+    batches.find(
+      (batch) =>
+        safeActiveOffset >= batch.startOffset &&
+        safeActiveOffset < batch.endOffset,
+    ) ?? batches[0]
+  );
+}
+
+function buildStableWordBatches(
+  groups: MorseVideoTimelineWordGroup[],
   limit: number,
 ) {
   const textLimit = Math.max(1, limit);
   const morseLimit = Math.max(1, limit * 1.35);
+  const batches: MorseVideoFrameWordBatch[] = [];
   let pageStart = 0;
 
   while (pageStart < groups.length) {
@@ -279,17 +336,21 @@ function getStableWordWindowRange(
       pageEnd += 1;
     }
 
-    if (activeOffset >= pageStart && activeOffset < pageEnd) {
-      return { startOffset: pageStart, endOffset: pageEnd };
-    }
+    const pageGroups = groups.slice(pageStart, pageEnd);
+    const firstGroup = pageGroups[0];
+    const lastGroup = pageGroups[pageGroups.length - 1];
+    batches.push({
+      batchStartWordIndex: firstGroup.wordIndex,
+      batchEndWordIndex: lastGroup.wordIndex,
+      startOffset: pageStart,
+      endOffset: pageEnd,
+      groups: pageGroups,
+    });
 
     pageStart = Math.max(pageStart + 1, pageEnd);
   }
 
-  return {
-    startOffset: Math.max(0, groups.length - 1),
-    endOffset: groups.length,
-  };
+  return batches;
 }
 
 export function getMorseVideoCanonicalFrameState(
@@ -306,11 +367,14 @@ export function getMorseVideoCanonicalFrameState(
       (event) => safeElapsed >= event.startMs && safeElapsed < event.endMs,
     ) ?? null;
   const textState = getMorseVideoFrameTextState(timeline, safeElapsed);
-  const wordWindow = getMorseVideoFrameWordWindow(
+  const wordBatch = getMorseVideoFrameWordBatchForActiveToken(
     timeline,
-    safeElapsed,
+    textState.token,
     wordWindowLimit,
   );
+  const wordWindow = wordBatch
+    ? buildWordWindowItems(wordBatch.groups, textState.token)
+    : [];
   const morseWindow =
     wordWindow.map((word) => word.morse).join(MORSE_DISPLAY_WORD_SEPARATOR) ||
     textState.morseText;
@@ -324,6 +388,8 @@ export function getMorseVideoCanonicalFrameState(
     activeMorseToken: textState.token,
     activePlainText: textState.plainText,
     activeTimedEvent,
+    batchEndWordIndex: wordBatch?.batchEndWordIndex ?? null,
+    batchStartWordIndex: wordBatch?.batchStartWordIndex ?? null,
     bulbActive: activeTimedEvent?.type === "mark",
     elapsedMs: safeElapsed,
     morseWindow,
@@ -335,7 +401,7 @@ export function getMorseVideoCanonicalFrameState(
 }
 
 function buildTimelineWordGroups(timeline: MorseVideoTimeline) {
-  const groups: Array<{ wordIndex: number; text: string; morse: string }> = [];
+  const groups: MorseVideoTimelineWordGroup[] = [];
   for (const token of timeline.tokens) {
     if (!token.word || !token.wordMorse) continue;
     const previous = groups.at(-1);

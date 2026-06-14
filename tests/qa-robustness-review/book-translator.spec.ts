@@ -47,6 +47,7 @@ import {
   buildMorseVideoPreview,
   getMorseVideoPreviewFrame,
 } from "../../app/client/components/shared/video/morseVideoPreview";
+import { buildMorseVideoFrameWordBatches } from "../../app/client/components/shared/video/morseVideoRenderer";
 import {
   LIVE_PREVIEW_START_BUFFER_MS,
   getLivePreviewStartDelayMs,
@@ -268,6 +269,8 @@ type PreviewLayerMetric = {
 };
 
 type PreviewLayerMetrics = {
+  batchEndWordIndex: number | null;
+  batchStartWordIndex: number | null;
   frame: PreviewLayerRect;
   morse: PreviewLayerMetric | null;
   text: PreviewLayerMetric | null;
@@ -311,6 +314,12 @@ async function readPreviewLayerMetrics(
     }
 
     return {
+      batchEndWordIndex: frame.dataset.previewBatchEndWordIndex
+        ? Number(frame.dataset.previewBatchEndWordIndex)
+        : null,
+      batchStartWordIndex: frame.dataset.previewBatchStartWordIndex
+        ? Number(frame.dataset.previewBatchStartWordIndex)
+        : null,
       frame: rectFor(frame),
       morse: metricFor(`${prefix}-morse-overlay`),
       text: metricFor(`${prefix}-text-overlay`),
@@ -1604,6 +1613,11 @@ test("live preview frames keep stable display batches and a start buffer", () =>
     farnsworthWpm: settings.farnsworthWpm,
   });
   const wordWindowLimit = 48;
+  const batches = buildMorseVideoFrameWordBatches(
+    preview.timeline,
+    wordWindowLimit,
+  );
+  expect(batches.length).toBeGreaterThan(1);
   const firstToken = preview.timeline.tokens[0];
   expect(firstToken).toBeTruthy();
   const firstFrame = getMorseVideoPreviewFrame(
@@ -1613,6 +1627,8 @@ test("live preview frames keep stable display batches and a start buffer", () =>
   );
   const firstWindowWordIds = firstFrame.words.map((word) => word.wordIndex);
   expect(firstWindowWordIds.length).toBeGreaterThan(1);
+  expect(firstFrame.batchStartWordIndex).toBe(batches[0].batchStartWordIndex);
+  expect(firstFrame.batchEndWordIndex).toBe(batches[0].batchEndWordIndex);
   expectMorseGroupsSeparated(firstFrame.morseExcerpt);
 
   const lastVisibleWord = firstFrame.words[firstFrame.words.length - 1];
@@ -1628,6 +1644,15 @@ test("live preview frames keep stable display batches and a start buffer", () =>
   expect(lastFrameInBatch.words.map((word) => word.wordIndex)).toEqual(
     firstWindowWordIds,
   );
+  expect(lastFrameInBatch.batchStartWordIndex).toBe(
+    firstFrame.batchStartWordIndex,
+  );
+  expect(lastFrameInBatch.batchEndWordIndex).toBe(
+    firstFrame.batchEndWordIndex,
+  );
+  expect(
+    lastFrameInBatch.words.find((word) => word.active)?.wordIndex,
+  ).toBe(lastVisibleWord.wordIndex);
 
   const nextBatchToken = preview.timeline.tokens.find(
     (token) => token.wordIndex > lastVisibleWord.wordIndex,
@@ -1644,6 +1669,8 @@ test("live preview frames keep stable display batches and a start buffer", () =>
   expect(nextFrame.words[0].wordIndex).toBeGreaterThan(
     firstWindowWordIds[0],
   );
+  expect(nextFrame.batchStartWordIndex).toBe(batches[1].batchStartWordIndex);
+  expect(nextFrame.batchEndWordIndex).toBe(batches[1].batchEndWordIndex);
 
   expect(
     getLivePreviewStartDelayMs(0, LIVE_PREVIEW_START_BUFFER_MS + 1_000),
@@ -2878,6 +2905,11 @@ test("live visual preview settings hide obsolete video controls and keep layers 
   expectLayerInsideFrame(defaultMetrics, defaultMetrics.text);
   expectMorseGroupsSeparated(defaultMetrics.morse!.text);
   expectNormalPlainTextSpacing(defaultMetrics.text);
+  expect(defaultMetrics.batchStartWordIndex).not.toBeNull();
+  expect(defaultMetrics.batchEndWordIndex).not.toBeNull();
+  expect(defaultMetrics.batchEndWordIndex!).toBeGreaterThanOrEqual(
+    defaultMetrics.batchStartWordIndex!,
+  );
   const defaultTextWindow = normalizedPreviewText(defaultMetrics.text!.text);
   const defaultMorseWindow = normalizedPreviewText(defaultMetrics.morse!.text);
   const liveTimeline = previewSection(page).getByRole("slider", {
@@ -2892,6 +2924,10 @@ test("live visual preview settings hide obsolete video controls and keep layers 
   expect(normalizedPreviewText(nudgedMetrics.morse!.text)).toBe(
     defaultMorseWindow,
   );
+  expect(nudgedMetrics.batchStartWordIndex).toBe(
+    defaultMetrics.batchStartWordIndex,
+  );
+  expect(nudgedMetrics.batchEndWordIndex).toBe(defaultMetrics.batchEndWordIndex);
   await expect(
     sourceStep(page).getByRole("button", { name: "Download MP3" }),
   ).toBeVisible();
@@ -3036,6 +3072,13 @@ test("live visual preview settings hide obsolete video controls and keep layers 
         .getAttribute("data-active-word"),
     )
     .not.toContain("SOS");
+  const advancedMetrics = await readPreviewLayerMetrics(preview);
+  expect(advancedMetrics.batchStartWordIndex).not.toBe(
+    defaultMetrics.batchStartWordIndex,
+  );
+  expect(advancedMetrics.batchStartWordIndex!).toBeGreaterThan(
+    defaultMetrics.batchStartWordIndex!,
+  );
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
     0,
   );

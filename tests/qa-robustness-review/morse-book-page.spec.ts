@@ -137,6 +137,8 @@ type PreviewLayerMetric = {
 };
 
 type PreviewLayerMetrics = {
+  batchEndWordIndex: number | null;
+  batchStartWordIndex: number | null;
   frame: PreviewLayerRect;
   morse: PreviewLayerMetric | null;
   text: PreviewLayerMetric | null;
@@ -180,6 +182,12 @@ async function readPreviewLayerMetrics(
     }
 
     return {
+      batchEndWordIndex: frame.dataset.previewBatchEndWordIndex
+        ? Number(frame.dataset.previewBatchEndWordIndex)
+        : null,
+      batchStartWordIndex: frame.dataset.previewBatchStartWordIndex
+        ? Number(frame.dataset.previewBatchStartWordIndex)
+        : null,
       frame: rectFor(frame),
       morse: metricFor(`${prefix}-morse-overlay`),
       text: metricFor(`${prefix}-text-overlay`),
@@ -1976,6 +1984,11 @@ test.describe("Morse book page foundation", () => {
     expectLayerInsideFrame(defaultMetrics, defaultMetrics.text);
     expectMorseGroupsSeparated(defaultMetrics.morse!.text);
     expectNormalPlainTextSpacing(defaultMetrics.text);
+    expect(defaultMetrics.batchStartWordIndex).not.toBeNull();
+    expect(defaultMetrics.batchEndWordIndex).not.toBeNull();
+    expect(defaultMetrics.batchEndWordIndex!).toBeGreaterThanOrEqual(
+      defaultMetrics.batchStartWordIndex!,
+    );
     const defaultTextWindow = normalizedPreviewText(defaultMetrics.text!.text);
     const defaultMorseWindow = normalizedPreviewText(defaultMetrics.morse!.text);
     const videoTimeline = livePlayer.getByLabel("Live player timeline");
@@ -1988,6 +2001,10 @@ test.describe("Morse book page foundation", () => {
     expect(normalizedPreviewText(nudgedMetrics.morse!.text)).toBe(
       defaultMorseWindow,
     );
+    expect(nudgedMetrics.batchStartWordIndex).toBe(
+      defaultMetrics.batchStartWordIndex,
+    );
+    expect(nudgedMetrics.batchEndWordIndex).toBe(defaultMetrics.batchEndWordIndex);
 
     await livePlayer.getByRole("button", { name: "Play live player" }).click();
     await expect(livePlayer.locator("[data-testid='book-video-preview']")).toHaveAttribute(
@@ -2015,6 +2032,13 @@ test.describe("Morse book page foundation", () => {
     await expect
       .poll(() => videoTimeline.getAttribute("aria-valuenow"))
       .not.toBe("0");
+    const advancedMetrics = await readPreviewLayerMetrics(livePlayer);
+    expect(advancedMetrics.batchStartWordIndex).not.toBe(
+      defaultMetrics.batchStartWordIndex,
+    );
+    expect(advancedMetrics.batchStartWordIndex!).toBeGreaterThan(
+      defaultMetrics.batchStartWordIndex!,
+    );
     const laterToken = await livePlayer
       .locator("[data-testid='book-video-preview-text-layers']")
       .getAttribute("data-active-character");
