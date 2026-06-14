@@ -1,0 +1,208 @@
+{
+  "slug": "pointed-roofs",
+  "selectionReason": "Medium-risk book with high-confidence start/end boundaries and a useful transcriber/printer-note edge case to verify end-matter handling.",
+  "title": "Pointed roofs",
+  "author": [
+    "Dorothy M. Richardson"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Pointed Roofs.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 74,
+    "startIndex": 1796,
+    "startSnippet": "INTRODUCTION I have read \"Pointed Roofs\" three times. The first time it came to me with its original wardrobe, a different",
+    "endLine": 6870,
+    "endIndex": 336808,
+    "endSnippet": "_The Mayflower Press, Plymouth, England._ William Brendon & Son, Ltd."
+  },
+  "wordCounts": {
+    "raw": 60960,
+    "kept": 57428,
+    "removedFrontMatter": 229,
+    "removedEndMatter": 3303
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5156,
+      "characterCount": 29878,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "INTRODUCTION I have read \"Pointed Roofs\" three times. The first time it came to me with its original wardrobe, a different dress for every mood; and in some pl..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4919,
+      "characterCount": 28960,
+      "estimatedListeningMinutes": 172,
+      "textPreview": "It was a fool's errand.... To undertake to go to the German school and teach ... to be going there ... with nothing to give. The moment would come when there w..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5146,
+      "characterCount": 29949,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "Clara Bergmann followed. Miriam watched her as she took her place at the piano--how square and stout she looked and old, careworn, like a woman of forty. She h..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5148,
+      "characterCount": 29922,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "\"Of course you can only 'play when you _can_,'\" said she to herself, \"like a bird singing.\" She sang once or twice, very quietly, in those early weeks. But she..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Part 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4926,
+      "characterCount": 29062,
+      "estimatedListeningMinutes": 171,
+      "textPreview": "Certainly it was wrong to listen to sermons ... stultifying ... unless they were intellectual ... lectures like Mr. Brough's ... that was as bad, because they..."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Part 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5104,
+      "characterCount": 29979,
+      "estimatedListeningMinutes": 176,
+      "textPreview": "They had been twice since her coming. Sitting at a little marble-topped table with the Bergmanns near the window and overlooking the full flood of the Georgstr..."
+    },
+    {
+      "id": "part-007",
+      "kind": "part",
+      "label": "Part 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4925,
+      "characterCount": 29117,
+      "estimatedListeningMinutes": 173,
+      "textPreview": "Miriam glanced towards the marble steps. The little group had disappeared. She turned helplessly towards Gertrude's curtains. She could not think of anything t..."
+    },
+    {
+      "id": "part-008",
+      "kind": "part",
+      "label": "Part 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5171,
+      "characterCount": 29991,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "They made their way back to the street through a long low roomful of men drinking at little tables. Heavy clouds of smoke hung and moved in the air and mingled..."
+    },
+    {
+      "id": "part-009",
+      "kind": "part",
+      "label": "Part 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4982,
+      "characterCount": 29013,
+      "estimatedListeningMinutes": 172,
+      "textPreview": "Taking a last look round she caught the eye of Eve's photograph gazing steadily at her from the chest of drawers.... It would be quite easy now that this had h..."
+    },
+    {
+      "id": "part-010",
+      "kind": "part",
+      "label": "Part 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5148,
+      "characterCount": 29933,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "Early next morning Judy came in to tell Emma and Ulrica to get up at once and come and help the housekeeper make the rooms tidy and prepare breakfast. Miriam l..."
+    },
+    {
+      "id": "part-011",
+      "kind": "part",
+      "label": "Part 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5071,
+      "characterCount": 29180,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "She lay motionless. The night was cool. The screens had not been moved. She felt that the door was shut. After a while she began in imagination a conversation..."
+    },
+    {
+      "id": "part-012",
+      "kind": "part",
+      "label": "Part 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1723,
+      "characterCount": 9841,
+      "estimatedListeningMinutes": 59,
+      "textPreview": "She looked about her like a stranger--everything was as it had been the day she came--the little cramped basement hall--the strange German girls--small and old..."
+    },
+    {
+      "id": "part-013",
+      "kind": "part",
+      "label": "Part 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 9,
+      "characterCount": 91,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "_The Mayflower Press, Plymouth, England._ William Brendon & Son, Ltd."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 57428,
+    "actions": [],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 5156,
+    "startsAtRealReadableContent": true,
+    "snippet": "INTRODUCTION I have read \"Pointed Roofs\" three times. The first time it came to me with its original wardrobe, a different dress for every mood; and in some places the handwriting of the manuscript clothed the thought with the ragged urgency of haste; and in others it wore an aspect incredibly delicate and neat, as if the writer had caressed each word befor...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

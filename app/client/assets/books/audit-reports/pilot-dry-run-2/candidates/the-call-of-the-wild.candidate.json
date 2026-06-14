@@ -1,0 +1,184 @@
+{
+  "slug": "the-call-of-the-wild",
+  "selectionReason": "Medium-risk generated-output comparison case with high-confidence boundaries and a feasible first-hour preview source.",
+  "title": "The call of the wild",
+  "author": [
+    "Jack London"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The call of the wild.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 57,
+    "startIndex": 1189,
+    "startSnippet": "Chapter I. Into the Primitive “Old longings nomadic leap, Chafing at custom’s chain; Again from its brumal sleep",
+    "endLine": 3097,
+    "endIndex": 176447,
+    "endSnippet": "But he is not always alone. When the long winter nights come on and the wolves follow their meat into the lower valleys, he may be seen running at the head of the pack through the pale moonlight or glimmering borealis, leaping gigantic above his fellows, his great throat a-bellow as he sings a song of the younger world, which is the song of the pack."
+  },
+  "wordCounts": {
+    "raw": 35327,
+    "kept": 32114,
+    "removedFrontMatter": 207,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": "Into the Primitive",
+      "includeByDefault": true,
+      "wordCount": 3791,
+      "characterCount": 20613,
+      "estimatedListeningMinutes": 123,
+      "textPreview": "Chapter I. Into the Primitive “Old longings nomadic leap, Chafing at custom’s chain; Again from its brumal sleep Wakens the ferine strain.” Buck did not read t..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": "The Law of Club and Fang",
+      "includeByDefault": true,
+      "wordCount": 3356,
+      "characterCount": 18336,
+      "estimatedListeningMinutes": 109,
+      "textPreview": "Chapter II. The Law of Club and Fang Buck’s first day on the Dyea beach was like a nightmare. Every hour was filled with shock and surprise. He had been sudden..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": "The Dominant Primordial Beast",
+      "includeByDefault": true,
+      "wordCount": 5211,
+      "characterCount": 28375,
+      "estimatedListeningMinutes": 169,
+      "textPreview": "Chapter III. The Dominant Primordial Beast The dominant primordial beast was strong in Buck, and under the fierce conditions of trail life it grew and grew. Ye..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": "Who Has Won to Mastership",
+      "includeByDefault": true,
+      "wordCount": 3260,
+      "characterCount": 17538,
+      "estimatedListeningMinutes": 104,
+      "textPreview": "Chapter IV. Who Has Won to Mastership “Eh? Wot I say? I spik true w’en I say dat Buck two devils.” This was François’s speech next morning when he discovered S..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": "The Toil of Trace and Trail",
+      "includeByDefault": true,
+      "wordCount": 5418,
+      "characterCount": 29627,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "Chapter V. The Toil of Trace and Trail Thirty days from the time it left Dawson, the Salt Water Mail, with Buck and his mates at the fore, arrived at Skaguay...."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": "For the Love of a Man",
+      "includeByDefault": true,
+      "wordCount": 4815,
+      "characterCount": 26422,
+      "estimatedListeningMinutes": 158,
+      "textPreview": "Chapter VI. For the Love of a Man When John Thornton froze his feet in the previous December his partners had made him comfortable and left him to get well, go..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": "The Sounding of the Call",
+      "includeByDefault": true,
+      "wordCount": 6263,
+      "characterCount": 34317,
+      "estimatedListeningMinutes": 204,
+      "textPreview": "Chapter VII. The Sounding of the Call When Buck earned sixteen hundred dollars in five minutes for John Thornton, he made it possible for his master to pay off..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 31880,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 569,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "’",
+          "”",
+          "’",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 41,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 3791,
+    "startsAtRealReadableContent": true,
+    "snippet": "Chapter I. Into the Primitive “Old longings nomadic leap, Chafing at custom’s chain; Again from its brumal sleep Wakens the ferine strain.” Buck did not read the newspapers, or he would have known that trouble was brewing, not alone for himself, but for every tide-water dog, strong of muscle and with warm, long hair, from Puget Sound to San Diego. Because m...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/the-call-of-the-wild/manifest.json",
+    "sectionCount": 9,
+    "includedSectionCount": 7,
+    "firstSectionPreview": "cover The Call of the Wild by Jack London",
+    "lastSectionPreview": "Chapter VII. The Sounding of the Call When Buck earned sixteen hundred dollars in five minutes for John Thornton, he made it possible for his master to pay off...",
+    "suspiciousShortSections": [
+      {
+        "id": "title-page-001",
+        "label": "Opening section",
+        "wordCount": 9
+      },
+      {
+        "id": "title-page-002",
+        "label": "Contents",
+        "wordCount": 50
+      }
+    ],
+    "suspiciousLongSections": [],
+    "apparentDamage": [
+      "suspiciously short generated sections"
+    ]
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+  ]
+}

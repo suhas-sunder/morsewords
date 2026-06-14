@@ -1,0 +1,109 @@
+{
+  "slug": "room-13",
+  "selectionReason": "Medium-risk novel with high-confidence boundaries and an end-note/correction edge case that should remain reviewable before writing.",
+  "title": "Room 13",
+  "author": [
+    "Edgar Wallace"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Room 13.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "needs individual review",
+  "boundaries": {
+    "startLine": 115,
+    "startIndex": 1663,
+    "startSnippet": "CHAPTER I Over the grim stone archway was carved the words: PARCERE SUBJECTIS.",
+    "endLine": 8287,
+    "endIndex": 330236,
+    "endSnippet": "[Chapter XXXI] “_John_ listened at the door; he was coming alone” to _Johnny_. [End of text]"
+  },
+  "wordCounts": {
+    "raw": 64632,
+    "kept": 61369,
+    "removedFrontMatter": 260,
+    "removedEndMatter": 3003
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 61067,
+      "characterCount": 326580,
+      "estimatedListeningMinutes": 1969,
+      "textPreview": "CHAPTER I Over the grim stone archway was carved the words: PARCERE SUBJECTIS. In cold weather, and employing the argot of his companions, Johnny Gray translat..."
+    },
+    {
+      "id": "transcriber-note-001",
+      "kind": "transcriber-note",
+      "label": "Transcriber's Note",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 302,
+      "characterCount": 1922,
+      "estimatedListeningMinutes": 12,
+      "textPreview": "TRANSCRIBER’S NOTES The Arrow Books Ltd. edition (London, 1961) was consulted for many of the changes listed below. Minor spelling inconsistencies (e.g. bathro..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 59509,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 2,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L903: * * * * *",
+          "candidate L3006: * * * * *"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 6112,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "“",
+          "”",
+          "’"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 61067,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I Over the grim stone archway was carved the words: PARCERE SUBJECTIS. In cold weather, and employing the argot of his companions, Johnny Gray translated this as “Parky Subjects”--it certainly had no significance as “Spare the Vanquished,” for he had been neither vanquished nor spared. Day by day, harnessed to the shafts, he and Lal Morgon had pulle...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

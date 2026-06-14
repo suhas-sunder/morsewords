@@ -1,0 +1,213 @@
+{
+  "slug": "four-day-planet",
+  "selectionReason": "Medium-risk science-fiction novel with dedication/TOC/transcriber-note cleanup signals and high-confidence boundaries.",
+  "title": "Four-Day Planet",
+  "author": [
+    "H. Beam Piper"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Four-Day Planet.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 76,
+    "startIndex": 1784,
+    "startSnippet": "DEDICATION For Betty and Vall, with loving remembrance * * * * *",
+    "endLine": 6710,
+    "endIndex": 318073,
+    "endSnippet": "dangerous. Unfortunately it's common knowledge that the s'Srauff are evolved from canine ancestors--and not a Texan alive is about to be scared of a talking dog! But unless he can get them to act, and fast, there won't be a Texan alive, scared or otherwise! * * * * *"
+  },
+  "wordCounts": {
+    "raw": 61092,
+    "kept": 57856,
+    "removedFrontMatter": 233,
+    "removedEndMatter": 3003
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5366,
+      "characterCount": 29696,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "DEDICATION For Betty and Vall, with loving remembrance * * * * * CONTENTS 1. The Ship from Terra 2. Reporter Working 3. Bottom Level 4. Main City Level 5. Meet..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5344,
+      "characterCount": 29440,
+      "estimatedListeningMinutes": 176,
+      "textPreview": "I got some footage of the tugs grappling the ship, which was now completely weightless, and pulling her down. Through the finder, I could see that she had her..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5397,
+      "characterCount": 29995,
+      "estimatedListeningMinutes": 180,
+      "textPreview": "Tom hadn't said anything after we left the stacks of wax and the men guarding them. We came up a vehicle shaft a few blocks up Broadway, and he brought the jee..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5458,
+      "characterCount": 29996,
+      "estimatedListeningMinutes": 180,
+      "textPreview": "Fortunately, at that moment somebody took a swing at Joe and grazed his cheek. It was a good thing that was all he did; he was wearing brass knuckles. Joe went..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Part 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5499,
+      "characterCount": 29709,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "It seemed as though I had barely fallen asleep before I was wakened by the ship changing direction and losing altitude. I knew there were clouds coming in from..."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Part 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5499,
+      "characterCount": 29552,
+      "estimatedListeningMinutes": 176,
+      "textPreview": "He was going to say something else, but before he could say it there was a terrific roar forward. The whole ship bucked like a recoiling gun, throwing everybod..."
+    },
+    {
+      "id": "part-007",
+      "kind": "part",
+      "label": "Part 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5484,
+      "characterCount": 29687,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "When we got back to camp, everybody who wasn't crippled and had enough clothes to get away from the heater came out and helped. First, we got a fire started--t..."
+    },
+    {
+      "id": "part-008",
+      "kind": "part",
+      "label": "Part 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5442,
+      "characterCount": 29984,
+      "estimatedListeningMinutes": 180,
+      "textPreview": "\"And then, about thirty hours after the Javelin left port, I was in the Happy Haven, and who should I see, buying drinks for the house, but Al Devis. I let him..."
+    },
+    {
+      "id": "part-009",
+      "kind": "part",
+      "label": "Part 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5555,
+      "characterCount": 29981,
+      "estimatedListeningMinutes": 179,
+      "textPreview": "\"Who? I don't believe I know him.\" After Hallstock got into his big black air-limousine and took off, Joe Kivelson gave a short laugh. \"I could have told him w..."
+    },
+    {
+      "id": "part-010",
+      "kind": "part",
+      "label": "Part 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5396,
+      "characterCount": 29672,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "Three or four thousand undisciplined hunters, against fifty trained, disciplined and organized soldiers, because that was what the spaceport police were. I kne..."
+    },
+    {
+      "id": "part-011",
+      "kind": "part",
+      "label": "Part 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3416,
+      "characterCount": 18472,
+      "estimatedListeningMinutes": 110,
+      "textPreview": "When I got back to the _Times_, Dad and Julio had had their lunch and were going over the teleprint edition. Julio was printing corrections on blank sheets of..."
+    },
+    {
+      "id": "part-012",
+      "kind": "part",
+      "label": "Part 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 0,
+      "characterCount": 33,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "* * * * *"
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 57856,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 10,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L6: * * * * *",
+          "candidate L52: * * * * *",
+          "candidate L2236: * * * * *",
+          "candidate L2534: * * * * *",
+          "candidate L6182: * * * * *",
+          "candidate L6336: * * * * *",
+          "candidate L6481: * * * * *",
+          "candidate L6533: * * * * *"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 5366,
+    "startsAtRealReadableContent": true,
+    "snippet": "DEDICATION For Betty and Vall, with loving remembrance * * * * * CONTENTS 1. The Ship from Terra 2. Reporter Working 3. Bottom Level 4. Main City Level 5. Meeting Out of Order 6. Elementary, My Dear Kivelson 7. Aboard the _Javelin_ 8. Practice, 50-MM Gun 9. Monster Killing 10. Mayday, Mayday 11. Darkness and Cold 12. Castaways Working 13. The Beacon Light 1...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

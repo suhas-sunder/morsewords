@@ -1,0 +1,496 @@
+{
+  "slug": "anne-of-green-gables",
+  "selectionReason": "Medium-risk book with high-confidence boundaries, an isolated TOC, an existing generated output for comparison, and a feasible preview source.",
+  "title": "Anne of Green Gables",
+  "author": [
+    "L. M. Montgomery"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Anne of Green Gables.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 82,
+    "startIndex": 2898,
+    "startSnippet": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woods of the",
+    "endLine": 10809,
+    "endIndex": 561981,
+    "endSnippet": "The joy of sincere work and worthy aspiration and congenial friendship were to be hers; nothing could rob her of her birthright of fancy or her ideal world of dreams. And there was always the bend in the road! “‘God’s in his heaven, all’s right with the world,’” whispered Anne softly."
+  },
+  "wordCounts": {
+    "raw": 109928,
+    "kept": 106496,
+    "removedFrontMatter": 427,
+    "removedEndMatter": 3005
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": "Mrs. Rachel Lynde Is Surprised",
+      "includeByDefault": true,
+      "wordCount": 2954,
+      "characterCount": 15629,
+      "estimatedListeningMinutes": 93,
+      "textPreview": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and la..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": "Matthew Cuthbert Is Surprised",
+      "includeByDefault": true,
+      "wordCount": 5135,
+      "characterCount": 26490,
+      "estimatedListeningMinutes": 158,
+      "textPreview": "CHAPTER II. Matthew Cuthbert Is Surprised MATTHEW Cuthbert and the sorrel mare jogged comfortably over the eight miles to Bright River. It was a pretty road, r..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": "Marilla Cuthbert Is Surprised",
+      "includeByDefault": true,
+      "wordCount": 2251,
+      "characterCount": 11966,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER III. Marilla Cuthbert Is Surprised MARILLA came briskly forward as Matthew opened the door. But when her eyes fell on the odd little figure in the stif..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": "Morning at Green Gables",
+      "includeByDefault": true,
+      "wordCount": 2392,
+      "characterCount": 12372,
+      "estimatedListeningMinutes": 74,
+      "textPreview": "CHAPTER IV. Morning at Green Gables IT was broad daylight when Anne awoke and sat up in bed, staring confusedly at the window through which a flood of cheery s..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": "Anne’s History",
+      "includeByDefault": true,
+      "wordCount": 2197,
+      "characterCount": 11134,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER V. Anne’s History DO you know,” said Anne confidentially, “I’ve made up my mind to enjoy this drive. It’s been my experience that you can nearly always..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": "Marilla Makes Up Her Mind",
+      "includeByDefault": true,
+      "wordCount": 2020,
+      "characterCount": 10459,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER VI. Marilla Makes Up Her Mind GET there they did, however, in due season. Mrs. Spencer lived in a big yellow house at White Sands Cove, and she came to..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": "Anne Says Her Prayers",
+      "includeByDefault": true,
+      "wordCount": 1263,
+      "characterCount": 6587,
+      "estimatedListeningMinutes": 39,
+      "textPreview": "CHAPTER VII. Anne Says Her Prayers WHEN Marilla took Anne up to bed that night she said stiffly: “Now, Anne, I noticed last night that you threw your clothes a..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": "Anne’s Bringing-up Is Begun",
+      "includeByDefault": true,
+      "wordCount": 3044,
+      "characterCount": 15762,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "CHAPTER VIII. Anne’s Bringing-up Is Begun FOR reasons best known to herself, Marilla did not tell Anne that she was to stay at Green Gables until the next afte..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": "Mrs. Rachel Lynde Is Properly Horrified",
+      "includeByDefault": true,
+      "wordCount": 2485,
+      "characterCount": 13458,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "CHAPTER IX. Mrs. Rachel Lynde Is Properly Horrified ANNE had been a fortnight at Green Gables before Mrs. Lynde arrived to inspect her. Mrs. Rachel, to do her..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": "Anne’s Apology",
+      "includeByDefault": true,
+      "wordCount": 2587,
+      "characterCount": 13609,
+      "estimatedListeningMinutes": 82,
+      "textPreview": "CHAPTER X. Anne’s Apology MARILLA said nothing to Matthew about the affair that evening; but when Anne proved still refractory the next morning an explanation..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": "Anne’s Impressions of Sunday-school",
+      "includeByDefault": true,
+      "wordCount": 1837,
+      "characterCount": 9952,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "CHAPTER XI. Anne’s Impressions of Sunday-school WELL, how do you like them?” said Marilla. Anne was standing in the gable room, looking solemnly at three new d..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": "A Solemn Vow and Promise",
+      "includeByDefault": true,
+      "wordCount": 2117,
+      "characterCount": 11056,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER XII. A Solemn Vow and Promise IT was not until the next Friday that Marilla heard the story of the flower-wreathed hat. She came home from Mrs. Lynde’s..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": "The Delights of Anticipation",
+      "includeByDefault": true,
+      "wordCount": 1929,
+      "characterCount": 9992,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "CHAPTER XIII. The Delights of Anticipation IT’S time Anne was in to do her sewing,” said Marilla, glancing at the clock and then out into the yellow August aft..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": "Anne’s Confession",
+      "includeByDefault": true,
+      "wordCount": 3196,
+      "characterCount": 16529,
+      "estimatedListeningMinutes": 99,
+      "textPreview": "CHAPTER XIV. Anne’s Confession ON the Monday evening before the picnic Marilla came down from her room with a troubled face. “Anne,” she said to that small per..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": "A Tempest in the School Teapot",
+      "includeByDefault": true,
+      "wordCount": 5458,
+      "characterCount": 28852,
+      "estimatedListeningMinutes": 173,
+      "textPreview": "CHAPTER XV. A Tempest in the School Teapot WHAT a splendid day!” said Anne, drawing a long breath. “Isn’t it good just to be alive on a day like this? I pity t..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": "Diana Is Invited to Tea with Tragic Results",
+      "includeByDefault": true,
+      "wordCount": 4137,
+      "characterCount": 21552,
+      "estimatedListeningMinutes": 129,
+      "textPreview": "CHAPTER XVI. Diana Is Invited to Tea with Tragic Results OCTOBER was a beautiful month at Green Gables, when the birches in the hollow turned as golden as suns..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": "A New Interest in Life",
+      "includeByDefault": true,
+      "wordCount": 2090,
+      "characterCount": 11517,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER XVII. A New Interest in Life THE next afternoon Anne, bending over her patchwork at the kitchen window, happened to glance out and beheld Diana down by..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": "Anne to the Rescue",
+      "includeByDefault": true,
+      "wordCount": 3564,
+      "characterCount": 18398,
+      "estimatedListeningMinutes": 110,
+      "textPreview": "CHAPTER XVIII. Anne to the Rescue ALL things great are wound up with all things little. At first glance it might not seem that the decision of a certain Canadi..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": "A Concert, a Catastrophe, and a Confession",
+      "includeByDefault": true,
+      "wordCount": 4189,
+      "characterCount": 22048,
+      "estimatedListeningMinutes": 132,
+      "textPreview": "CHAPTER XIX. A Concert, a Catastrophe, and a Confession MARILLA, can I go over to see Diana just for a minute?” asked Anne, running breathlessly down from the..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "A Good Imagination Gone Wrong",
+      "includeByDefault": true,
+      "wordCount": 2314,
+      "characterCount": 12276,
+      "estimatedListeningMinutes": 74,
+      "textPreview": "CHAPTER XX. A Good Imagination Gone Wrong SPRING had come once more to Green Gables--the beautiful capricious, reluctant Canadian spring, lingering along throu..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": "A New Departure in Flavorings",
+      "includeByDefault": true,
+      "wordCount": 3786,
+      "characterCount": 20016,
+      "estimatedListeningMinutes": 120,
+      "textPreview": "CHAPTER XXI. A New Departure in Flavorings DEAR me, there is nothing but meetings and partings in this world, as Mrs. Lynde says,” remarked Anne plaintively, p..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": "Anne Is Invited Out to Tea",
+      "includeByDefault": true,
+      "wordCount": 1527,
+      "characterCount": 8082,
+      "estimatedListeningMinutes": 48,
+      "textPreview": "CHAPTER XXII. Anne Is Invited Out to Tea AND what are your eyes popping out of your head about. Now?” asked Marilla, when Anne had just come in from a run to t..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": "Anne Comes to Grief in an Affair of Honor",
+      "includeByDefault": true,
+      "wordCount": 2400,
+      "characterCount": 12705,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "CHAPTER XXIII. Anne Comes to Grief in an Affair of Honor ANNE had to live through more than two weeks, as it happened. Almost a month having elapsed since the..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": "Miss Stacy and Her Pupils Get Up a Concert",
+      "includeByDefault": true,
+      "wordCount": 1595,
+      "characterCount": 8411,
+      "estimatedListeningMinutes": 51,
+      "textPreview": "CHAPTER XXIV. Miss Stacy and Her Pupils Get Up a Concert IT was October again when Anne was ready to go back to school--a glorious October, all red and gold, w..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": "Matthew Insists on Puffed Sleeves",
+      "includeByDefault": true,
+      "wordCount": 3616,
+      "characterCount": 19193,
+      "estimatedListeningMinutes": 115,
+      "textPreview": "CHAPTER XXV. Matthew Insists on Puffed Sleeves MATTHEW was having a bad ten minutes of it. He had come into the kitchen, in the twilight of a cold, gray Decemb..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": "The Story Club Is Formed",
+      "includeByDefault": true,
+      "wordCount": 2754,
+      "characterCount": 14422,
+      "estimatedListeningMinutes": 86,
+      "textPreview": "CHAPTER XXVI. The Story Club Is Formed JUNIOR Avonlea found it hard to settle down to humdrum existence again. To Anne in particular things seemed fearfully fl..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": "Vanity and Vexation of Spirit",
+      "includeByDefault": true,
+      "wordCount": 2623,
+      "characterCount": 13612,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "CHAPTER XXVII. Vanity and Vexation of Spirit MARILLA, walking home one late April evening from an Aid meeting, realized that the winter was over and gone with..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": "An Unfortunate Lily Maid",
+      "includeByDefault": true,
+      "wordCount": 2919,
+      "characterCount": 15705,
+      "estimatedListeningMinutes": 94,
+      "textPreview": "CHAPTER XXVIII. An Unfortunate Lily Maid OF course you must be Elaine, Anne,” said Diana. “I could never have the courage to float down there.” “Nor I,” said R..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": "An Epoch in Anne’s Life",
+      "includeByDefault": true,
+      "wordCount": 3324,
+      "characterCount": 17105,
+      "estimatedListeningMinutes": 102,
+      "textPreview": "CHAPTER XXIX. An Epoch in Anne’s Life ANNE was bringing the cows home from the back pasture by way of Lover’s Lane. It was a September evening and all the gaps..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "The Queen’s Class Is Organized",
+      "includeByDefault": true,
+      "wordCount": 4439,
+      "characterCount": 23164,
+      "estimatedListeningMinutes": 138,
+      "textPreview": "CHAPTER XXX. The Queen’s Class Is Organized MARILLA laid her knitting on her lap and leaned back in her chair. Her eyes were tired, and she thought vaguely tha..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 31",
+      "title": "Where the Brook and River Meet",
+      "includeByDefault": true,
+      "wordCount": 2377,
+      "characterCount": 12393,
+      "estimatedListeningMinutes": 74,
+      "textPreview": "CHAPTER XXXI. Where the Brook and River Meet ANNE had her “good” summer and enjoyed it wholeheartedly. She and Diana fairly lived outdoors, reveling in all the..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 32",
+      "title": "The Pass List Is Out",
+      "includeByDefault": true,
+      "wordCount": 2796,
+      "characterCount": 14438,
+      "estimatedListeningMinutes": 86,
+      "textPreview": "CHAPTER XXXII. The Pass List Is Out WITH the end of June came the close of the term and the close of Miss Stacy’s rule in Avonlea school. Anne and Diana walked..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 33",
+      "title": "The Hotel Concert",
+      "includeByDefault": true,
+      "wordCount": 3404,
+      "characterCount": 18656,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "CHAPTER XXXIII. The Hotel Concert PUT on your white organdy, by all means, Anne,” advised Diana decidedly. They were together in the east gable chamber; outsid..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Chapter 34",
+      "title": "A Queen’s Girl",
+      "includeByDefault": true,
+      "wordCount": 2617,
+      "characterCount": 13791,
+      "estimatedListeningMinutes": 83,
+      "textPreview": "CHAPTER XXXIV. A Queen’s Girl THE next three weeks were busy ones at Green Gables, for Anne was getting ready to go to Queen’s, and there was much sewing to be..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Chapter 35",
+      "title": "The Winter at Queen’s",
+      "includeByDefault": true,
+      "wordCount": 1661,
+      "characterCount": 9182,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER XXXV. The Winter at Queen’s ANNE’S homesickness wore off, greatly helped in the wearing by her weekend visits home. As long as the open weather lasted..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "Chapter 36",
+      "title": "The Glory and the Dream",
+      "includeByDefault": true,
+      "wordCount": 2008,
+      "characterCount": 10437,
+      "estimatedListeningMinutes": 62,
+      "textPreview": "CHAPTER XXXVI. The Glory and the Dream ON the morning when the final results of all the examinations were to be posted on the bulletin board at Queen’s, Anne a..."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "Chapter 37",
+      "title": "The Reaper Whose Name Is Death",
+      "includeByDefault": true,
+      "wordCount": 2425,
+      "characterCount": 12548,
+      "estimatedListeningMinutes": 75,
+      "textPreview": "CHAPTER XXXVII. The Reaper Whose Name Is Death MATTHEW--Matthew--what is the matter? Matthew, are you sick?” It was Marilla who spoke, alarm in every jerky wor..."
+    },
+    {
+      "id": "chapter-038",
+      "kind": "chapter",
+      "label": "Chapter 38",
+      "title": "The Bend in the Road",
+      "includeByDefault": true,
+      "wordCount": 3066,
+      "characterCount": 15400,
+      "estimatedListeningMinutes": 92,
+      "textPreview": "CHAPTER XXXVIII. The Bend in the Road MARILLA went to town the next day and returned in the evening. Anne had gone over to Orchard Slope with Diana and came ba..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 102898,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 7478,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "’",
+          "“"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 2954,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woods of the old Cuthbert place; it was reputed to be an intricate, headlong brook in its earlier course through those wood...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/anne-of-green-gables/manifest.json",
+    "sectionCount": 39,
+    "includedSectionCount": 38,
+    "firstSectionPreview": "ANNE OF GREEN GABLES By Lucy Maud Montgomery Table of Contents CHAPTER I Mrs. Rachel Lynde Is Surprised CHAPTER II Matthew Cuthbert Is Surprised CHAPTER III Ma...",
+    "lastSectionPreview": "CHAPTER XXXVIII. The Bend in the Road MARILLA went to town the next day and returned in the evening. Anne had gone over to Orchard Slope with Diana and came ba...",
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

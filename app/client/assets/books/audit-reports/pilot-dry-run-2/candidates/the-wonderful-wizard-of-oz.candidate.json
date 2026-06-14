@@ -1,0 +1,376 @@
+{
+  "slug": "the-wonderful-wizard-of-oz",
+  "selectionReason": "Medium-risk generated-output comparison case with image placeholder cleanup and high-confidence readable boundaries.",
+  "title": "The Wonderful Wizard of Oz",
+  "author": [
+    "L. Frank Baum"
+  ],
+  "sourcePath": "app/client/assets/temp-books/the-wonderful-wizard-of-oz.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 106,
+    "startIndex": 3144,
+    "startSnippet": "Chapter I The Cyclone Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their",
+    "endLine": 4778,
+    "endIndex": 208634,
+    "endSnippet": "“My darling child!” she cried, folding the little girl in her arms and covering her face with kisses. “Where in the world did you come from?” “From the Land of Oz,” said Dorothy gravely. “And here is Toto, too. And oh, Aunt Em! I’m so glad to be at home again!”"
+  },
+  "wordCounts": {
+    "raw": 43060,
+    "kept": 39535,
+    "removedFrontMatter": 519,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1152,
+      "characterCount": 5982,
+      "estimatedListeningMinutes": 36,
+      "textPreview": "Chapter I The Cyclone Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer’s wife. Thei..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2012,
+      "characterCount": 10617,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "Chapter II The Council with the Munchkins She was awakened by a shock, so sudden and severe that if Dorothy had not been lying on the soft bed she might have b..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1978,
+      "characterCount": 10303,
+      "estimatedListeningMinutes": 62,
+      "textPreview": "Chapter III How Dorothy Saved the Scarecrow When Dorothy was left alone she began to feel hungry. So she went to the cupboard and cut herself some bread, which..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1447,
+      "characterCount": 7484,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "Chapter IV The Road Through the Forest After a few hours the road began to be rough, and the walking grew so difficult that the Scarecrow often stumbled over t..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2066,
+      "characterCount": 10395,
+      "estimatedListeningMinutes": 62,
+      "textPreview": "Chapter V The Rescue of the Tin Woodman When Dorothy awoke the sun was shining through the trees and Toto had long been out chasing birds around him and squirr..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1533,
+      "characterCount": 7831,
+      "estimatedListeningMinutes": 47,
+      "textPreview": "Chapter VI The Cowardly Lion All this time Dorothy and her companions had been walking through the thick woods. The road was still paved with yellow brick, but..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1819,
+      "characterCount": 9445,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "Chapter VII The Journey to the Great Oz They were obliged to camp out that night under a large tree in the forest, for there were no houses near. The tree made..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1946,
+      "characterCount": 10074,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "Chapter VIII The Deadly Poppy Field Our little party of travelers awakened the next morning refreshed and full of hope, and Dorothy breakfasted like a princess..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1394,
+      "characterCount": 7283,
+      "estimatedListeningMinutes": 43,
+      "textPreview": "Chapter IX The Queen of the Field Mice “We cannot be far from the road of yellow brick, now,” remarked the Scarecrow, as he stood beside the girl, “for we have..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1962,
+      "characterCount": 10125,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "Chapter X The Guardian of the Gate It was some time before the Cowardly Lion awakened, for he had lain among the poppies a long while, breathing in their deadl..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3621,
+      "characterCount": 18731,
+      "estimatedListeningMinutes": 111,
+      "textPreview": "Chapter XI The Wonderful City of Oz Even with eyes protected by the green spectacles, Dorothy and her friends were at first dazzled by the brilliancy of the wo..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3688,
+      "characterCount": 19011,
+      "estimatedListeningMinutes": 113,
+      "textPreview": "Chapter XII The Search for the Wicked Witch The soldier with the green whiskers led them through the streets of the Emerald City until they reached the room wh..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1201,
+      "characterCount": 6330,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "Chapter XIII The Rescue The Cowardly Lion was much pleased to hear that the Wicked Witch had been melted by a bucket of water, and Dorothy at once unlocked the..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1897,
+      "characterCount": 9933,
+      "estimatedListeningMinutes": 59,
+      "textPreview": "Chapter XIV The Winged Monkeys You will remember there was no road—not even a pathway—between the castle of the Wicked Witch and the Emerald City. When the fou..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2798,
+      "characterCount": 14416,
+      "estimatedListeningMinutes": 86,
+      "textPreview": "Chapter XV The Discovery of Oz, the Terrible The four travelers walked up to the great gate of Emerald City and rang the bell. After ringing several times, it..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 944,
+      "characterCount": 4901,
+      "estimatedListeningMinutes": 29,
+      "textPreview": "Chapter XVI The Magic Art of the Great Humbug Next morning the Scarecrow said to his friends: “Congratulate me. I am going to Oz to get my brains at last. When..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1167,
+      "characterCount": 5904,
+      "estimatedListeningMinutes": 35,
+      "textPreview": "Chapter XVII How the Balloon Was Launched For three days Dorothy heard nothing from Oz. These were sad days for the little girl, although her friends were all..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1175,
+      "characterCount": 6188,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "Chapter XVIII Away to the South Dorothy wept bitterly at the passing of her hope to get home to Kansas again; but when she thought it all over she was glad she..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1021,
+      "characterCount": 5367,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "Chapter XIX Attacked by the Fighting Trees The next morning Dorothy kissed the pretty green girl good-bye, and they all shook hands with the soldier with the g..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1524,
+      "characterCount": 8183,
+      "estimatedListeningMinutes": 49,
+      "textPreview": "Chapter XX The Dainty China Country While the Woodman was making a ladder from wood which he found in the forest Dorothy lay down and slept, for she was tired..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 903,
+      "characterCount": 4753,
+      "estimatedListeningMinutes": 28,
+      "textPreview": "Chapter XXI The Lion Becomes the King of Beasts After climbing down from the china wall the travelers found themselves in a disagreeable country, full of bogs..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 946,
+      "characterCount": 5065,
+      "estimatedListeningMinutes": 30,
+      "textPreview": "Chapter XXII The Country of the Quadlings The four travelers passed through the rest of the forest in safety, and when they came out from its gloom saw before..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1262,
+      "characterCount": 6649,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "Chapter XXIII Glinda The Good Witch Grants Dorothy’s Wish Before they went to see Glinda, however, they were taken to a room of the Castle, where Dorothy washe..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 79,
+      "characterCount": 405,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "Chapter XXIV Home Again Aunt Em had just come out of the house to water the cabbages when she looked up and saw Dorothy running toward her. “My darling child!”..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 39304,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 2404,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "“",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 31,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 1152,
+    "startsAtRealReadableContent": true,
+    "snippet": "Chapter I The Cyclone Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their house was small, for the lumber to build it had to be carried by wagon many miles. There were four walls, a floor and a roof, which made one room; and this room contained a rusty looking cookstove,...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/the-wonderful-wizard-of-oz/manifest.json",
+    "sectionCount": 28,
+    "includedSectionCount": 24,
+    "firstSectionPreview": "[Illustration] The Wonderful Wizard of Oz by L. Frank Baum This book is dedicated to my good friend & comrade My Wife L.F.B.",
+    "lastSectionPreview": "Chapter XXIV Home Again Aunt Em had just come out of the house to water the cabbages when she looked up and saw Dorothy running toward her. “My darling child!”...",
+    "suspiciousShortSections": [
+      {
+        "id": "title-page-001",
+        "label": "Opening section",
+        "wordCount": 24
+      },
+      {
+        "id": "title-page-002",
+        "label": "Contents",
+        "wordCount": 1
+      },
+      {
+        "id": "chapter-024",
+        "label": "Chapter 24",
+        "wordCount": 79
+      }
+    ],
+    "suspiciousLongSections": [],
+    "apparentDamage": [
+      "suspiciously short generated sections"
+    ]
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+  ]
+}

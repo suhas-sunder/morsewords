@@ -1,0 +1,241 @@
+{
+  "slug": "the-lost-world",
+  "selectionReason": "Medium-risk prose novel with high-confidence boundaries, isolated TOC handling, no existing generated output, and a feasible preview source.",
+  "title": "The Lost World",
+  "author": [
+    "Arthur Conan Doyle"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Lost World.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 49,
+    "startIndex": 1250,
+    "startSnippet": "Foreword Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Challenger, who, being",
+    "endLine": 8005,
+    "endIndex": 424883,
+    "endSnippet": "\"Not just yet,\" said I, with a rueful smile. \"I think, if you will have me, that I would rather go with you.\" Lord Roxton said nothing, but a brown hand was stretched out to me across the table."
+  },
+  "wordCounts": {
+    "raw": 79252,
+    "kept": 76065,
+    "removedFrontMatter": 183,
+    "removedEndMatter": 3004
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5248,
+      "characterCount": 29751,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "Foreword Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Chal..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5320,
+      "characterCount": 29786,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "\"Dear me! That is his most dangerous subject. You won't believe a word he says--I'm sure I don't wonder. But don't tell him so, for it makes him very violent...."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4530,
+      "characterCount": 25804,
+      "estimatedListeningMinutes": 153,
+      "textPreview": "\"I overcame the extreme reluctance of the natives--a reluctance which extends even to talk upon the subject--and by judicious persuasion and gifts, aided, I wi..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5323,
+      "characterCount": 29530,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "\"Ladies and Gentlemen,\" he began, amid a sustained interruption from the back. \"I beg pardon--Ladies, Gentlemen, and Children--I must apologize, I had inadvert..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Part 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5087,
+      "characterCount": 28914,
+      "estimatedListeningMinutes": 171,
+      "textPreview": "I will not bore those whom this narrative may reach by an account of our luxurious voyage upon the Booth liner, nor will I tell of our week's stay at Para (sav..."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Part 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5282,
+      "characterCount": 29855,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "All day the drums rumbled and whispered, while their menace reflected itself in the faces of our colored companions. Even the hardy, swaggering half-breed seem..."
+    },
+    {
+      "id": "part-007",
+      "kind": "part",
+      "label": "Part 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5322,
+      "characterCount": 29139,
+      "estimatedListeningMinutes": 173,
+      "textPreview": "We had proceeded some five more miles when again we saw a white arrow upon the rocks. It was at a point where the face of the cliff was for the first time spli..."
+    },
+    {
+      "id": "part-008",
+      "kind": "part",
+      "label": "Part 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5332,
+      "characterCount": 29541,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "There was plenty for him to do, and admirably the faithful fellow did it. First of all, under our directions, he undid the rope from the tree-stump and threw o..."
+    },
+    {
+      "id": "part-009",
+      "kind": "part",
+      "label": "Part 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5364,
+      "characterCount": 29852,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "\"Oh, nothing, nothing,\" said he, and strolled back to where the voices of the contending men of science rose in a prolonged duet, the high, strident note of Su..."
+    },
+    {
+      "id": "part-010",
+      "kind": "part",
+      "label": "Part 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5478,
+      "characterCount": 29784,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "\"Well,\" said Challenger, \"I admit that my mind will be more at ease when I am assured that the result of our expedition has been conveyed to our friends. How w..."
+    },
+    {
+      "id": "part-011",
+      "kind": "part",
+      "label": "Part 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5576,
+      "characterCount": 29912,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "Suddenly a thought came to me and brought some little comfort to my heart. I was not absolutely alone in the world. Down at the bottom of the cliff, and within..."
+    },
+    {
+      "id": "part-012",
+      "kind": "part",
+      "label": "Part 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5370,
+      "characterCount": 29390,
+      "estimatedListeningMinutes": 173,
+      "textPreview": "\"Well, it's lucky for you, Challenger, that you ARE a little out of the ordinary. If you hadn't been so like the king----\" \"Upon my word, Lord John, you allow..."
+    },
+    {
+      "id": "part-013",
+      "kind": "part",
+      "label": "Part 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5389,
+      "characterCount": 29489,
+      "estimatedListeningMinutes": 174,
+      "textPreview": "\"We have been privileged,\" he cried, strutting about like a gamecock, \"to be present at one of the typical decisive battles of history--the battles which have..."
+    },
+    {
+      "id": "part-014",
+      "kind": "part",
+      "label": "Part 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4695,
+      "characterCount": 27543,
+      "estimatedListeningMinutes": 162,
+      "textPreview": "There is a dry bituminous wood upon the plateau--a species of araucaria, according to our botanist--which is always used by the Indians for torches. Each of us..."
+    },
+    {
+      "id": "part-015",
+      "kind": "part",
+      "label": "Part 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2733,
+      "characterCount": 15163,
+      "estimatedListeningMinutes": 90,
+      "textPreview": "\"It was at this point that the sensation of the evening arose--a sensation so dramatic that it can never have been paralleled in the history of scientific gath..."
+    },
+    {
+      "id": "part-016",
+      "kind": "part",
+      "label": "Part 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 16,
+      "characterCount": 84,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "Lord Roxton said nothing, but a brown hand was stretched out to me across the table."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 76065,
+    "actions": [],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 5248,
+    "startsAtRealReadableContent": true,
+    "snippet": "Foreword Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Challenger, who, being satisfied that no criticism or comment in this book is meant in an offensive spirit, has guaranteed that he will place no impediment to its publication and circulation. Contents CHA...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

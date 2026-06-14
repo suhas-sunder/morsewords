@@ -1,0 +1,275 @@
+{
+  "slug": "the-red-thumb-mark",
+  "selectionReason": "Medium-risk mystery with a real preface to preserve, high-confidence boundaries, and manageable TOC cleanup.",
+  "title": "The Red Thumb Mark",
+  "author": [
+    "R. Austin Freeman"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Red Thumb Mark.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 36,
+    "startIndex": 916,
+    "startSnippet": "PREFACE In writing the following story, the author has had in view no purpose other than that of affording entertainment to such readers as are interested in problems of crime and their solutions; and the story itself differs in no respect from others of its class, excepting in that",
+    "endLine": 8357,
+    "endIndex": 398737,
+    "endSnippet": "She laid her hand in mine for a moment with a gentle pressure and then drew it away; and so we passed through into the cloisters. THE END"
+  },
+  "wordCounts": {
+    "raw": 73793,
+    "kept": 70636,
+    "removedFrontMatter": 152,
+    "removedEndMatter": 3005
+  },
+  "sections": [
+    {
+      "id": "preface-001",
+      "kind": "preface",
+      "label": "Preface",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 223,
+      "characterCount": 1397,
+      "estimatedListeningMinutes": 8,
+      "textPreview": "PREFACE In writing the following story, the author has had in view no purpose other than that of affording entertainment to such readers as are interested in p..."
+    },
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Contents",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 83,
+      "characterCount": 522,
+      "estimatedListeningMinutes": 3,
+      "textPreview": "CONTENTS CHAPTER I MY LEARNED BROTHER CHAPTER II THE SUSPECT CHAPTER III A LADY IN THE CASE CHAPTER IV CONFIDENCES CHAPTER V THE \"THUMBOGRAPH\" CHAPTER VI COMMI..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1940,
+      "characterCount": 10997,
+      "estimatedListeningMinutes": 66,
+      "textPreview": "CHAPTER I MY LEARNED BROTHER \"Conflagratam An° 1677. Fabricatam An° 1698. Richardo Powell Armiger Thesaurar.\" The words, set in four panels, which formed a fri..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3887,
+      "characterCount": 21883,
+      "estimatedListeningMinutes": 131,
+      "textPreview": "CHAPTER II THE SUSPECT \"I had better,\" said he, \"give you a general outline of the case as it presents itself to the legal mind, and then my client, Mr. Reuben..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4782,
+      "characterCount": 27118,
+      "estimatedListeningMinutes": 163,
+      "textPreview": "CHAPTER III A LADY IN THE CASE When I arrived at Thorndyke's chambers on the following morning, I found my friend already hard at work. Breakfast was laid at o..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4053,
+      "characterCount": 22329,
+      "estimatedListeningMinutes": 134,
+      "textPreview": "CHAPTER IV CONFIDENCES During our walk home my friend was unusually thoughtful and silent, and his face bore a look of concentration under which I thought I co..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3250,
+      "characterCount": 18315,
+      "estimatedListeningMinutes": 110,
+      "textPreview": "CHAPTER V THE 'THUMBOGRAPH' \"So your net has been sweeping the quiet and pleasant waters of feminine conversation,\" remarked Thorndyke when we met at the dinne..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3341,
+      "characterCount": 19060,
+      "estimatedListeningMinutes": 114,
+      "textPreview": "CHAPTER VI COMMITTED FOR TRIAL Thorndyke's hint as to the possible danger foreshadowed by my growing intimacy with Juliet Gibson had come upon me as a complete..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2550,
+      "characterCount": 13951,
+      "estimatedListeningMinutes": 83,
+      "textPreview": "CHAPTER VII SHOALS AND QUICKSANDS When I arrived at Endsley Gardens, Miss Gibson was at home, and to my unspeakable relief, Mrs. Hornby was not. My veneration..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2256,
+      "characterCount": 12945,
+      "estimatedListeningMinutes": 77,
+      "textPreview": "CHAPTER VIII A SUSPICIOUS ACCIDENT The Temple clock had announced in soft and confidential tones that it was a quarter to seven, in which statement it was stou..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3072,
+      "characterCount": 17081,
+      "estimatedListeningMinutes": 102,
+      "textPreview": "CHAPTER IX THE PRISONER On the following morning, as I emerged from my room, I met Polton coming up with a tray (our bedrooms were on the attic floor above the..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3516,
+      "characterCount": 19820,
+      "estimatedListeningMinutes": 118,
+      "textPreview": "CHAPTER X POLTON IS MYSTIFIED A couple of days sufficed to prove that Thorndyke's mishap was not to be productive of any permanent ill consequences; his wounds..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5408,
+      "characterCount": 30345,
+      "estimatedListeningMinutes": 181,
+      "textPreview": "CHAPTER XI THE AMBUSH \"I am going to ask for your collaboration in another case,\" said Thorndyke, a day or two later. \"It appears to be one of suicide, but the..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3027,
+      "characterCount": 16607,
+      "estimatedListeningMinutes": 99,
+      "textPreview": "CHAPTER XII IT MIGHT HAVE BEEN It was now only a week from the date on which the trial was to open. In eight days the mystery would almost certainly be solved..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4896,
+      "characterCount": 27710,
+      "estimatedListeningMinutes": 165,
+      "textPreview": "CHAPTER XIII MURDER BY POST The next few days were perhaps the most unhappy that I have known. My life, indeed, since I had left the hospital had been one of m..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3738,
+      "characterCount": 20936,
+      "estimatedListeningMinutes": 125,
+      "textPreview": "CHAPTER XIV A STARTLING DISCOVERY The morning of the trial, so long looked forward to, had at length arrived, and the train of events which it has been my busi..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 9509,
+      "characterCount": 53086,
+      "estimatedListeningMinutes": 318,
+      "textPreview": "CHAPTER XV THE FINGER-PRINT EXPERTS The hum of conversation that had been gradually increasing as the court filled suddenly ceased. A door at the back of the d..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 8990,
+      "characterCount": 52016,
+      "estimatedListeningMinutes": 310,
+      "textPreview": "CHAPTER XVI THORNDYKE PLAYS HIS CARD As Thorndyke took his place in the box I looked at him with a sense of unreasonable surprise, feeling that I had never bef..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2115,
+      "characterCount": 11613,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "CHAPTER XVII AT LAST \"We had better let the people clear off,\" said Thorndyke, when the first greetings were over and we stood around Reuben in the fast-emptyi..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 70636,
+    "actions": [],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "preface-001 Preface",
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 2163,
+    "startsAtRealReadableContent": true,
+    "snippet": "PREFACE In writing the following story, the author has had in view no purpose other than that of affording entertainment to such readers as are interested in problems of crime and their solutions; and the story itself differs in no respect from others of its class, excepting in that an effort has been made to keep within the probabilities of ordinary life,...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

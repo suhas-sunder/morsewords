@@ -1,0 +1,231 @@
+{
+  "slug": "triplanetary",
+  "selectionReason": "Medium-risk science-fiction novel with high-confidence boundaries and illustration placeholder cleanup.",
+  "title": "Triplanetary",
+  "author": [
+    "E. E. Smith"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Triplanetary.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 79,
+    "startIndex": 2144,
+    "startSnippet": "CHAPTER I Pirates of Space Apparently motionless to her passengers and crew, the Interplanetary",
+    "endLine": 6286,
+    "endIndex": 339574,
+    "endSnippet": "\"You can talk all you want to, Conway, but I don't like them a bit. They give me the purple jitters! I suppose that they are really estimable folks; talented, cultured, and everything; but just the same I'll bet that it will be a long, long time before anybody on earth will really, truly _like_ them!\""
+  },
+  "wordCounts": {
+    "raw": 60768,
+    "kept": 57430,
+    "removedFrontMatter": 336,
+    "removedEndMatter": 3002
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6234,
+      "characterCount": 36537,
+      "estimatedListeningMinutes": 219,
+      "textPreview": "CHAPTER I Pirates of Space Apparently motionless to her passengers and crew, the Interplanetary liner _Hyperion_ bored serenely onward through space at normal..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5742,
+      "characterCount": 32626,
+      "estimatedListeningMinutes": 197,
+      "textPreview": "CHAPTER II In Roger's Planetoid In the hall Clio glanced around her wildly, her bosom heaving, eyes darting here and there, seeking even the narrowest avenue o..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3680,
+      "characterCount": 22240,
+      "estimatedListeningMinutes": 133,
+      "textPreview": "CHAPTER III Fleet Against Planetoid One of the newest and fleetest of the Law Enforcement Vessels of the Triplanetary League, the heavy cruiser _Chicago_, of t..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5884,
+      "characterCount": 34858,
+      "estimatedListeningMinutes": 209,
+      "textPreview": "CHAPTER IV Within the Red Veil Nevia, the home planet of the marauding space-ship, would have appeared peculiar indeed to Terrestrial senses. High in the deep..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6169,
+      "characterCount": 35584,
+      "estimatedListeningMinutes": 214,
+      "textPreview": "CHAPTER V Nevian Strife The Nevian space-ship was hurtling upon its way. Space-navigators both, the two Terrestrial officers soon discovered that it was even t..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2309,
+      "characterCount": 13542,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "CHAPTER VI Worm, Submarine, and Freedom Since both Costigan and Bradley had often watched their captors at work during the long voyage from the Solar System to..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4102,
+      "characterCount": 24333,
+      "estimatedListeningMinutes": 147,
+      "textPreview": "CHAPTER VII The Hill [Illustration: Its atmosphere was withdrawn, the outer door opened, and he glanced across a bare hundred feet of space at the rocket-plane..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1970,
+      "characterCount": 11913,
+      "estimatedListeningMinutes": 71,
+      "textPreview": "CHAPTER VIII The Super-Ship Is Launched After weeks of ceaseless work, during which was lavished upon her every resource of mind and material afforded by three..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1420,
+      "characterCount": 8578,
+      "estimatedListeningMinutes": 51,
+      "textPreview": "CHAPTER IX Specimens Only too well founded was Costigan's conviction that the submarine of the deep-sea fishes had not been able to prevail against Nerado's fo..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4764,
+      "characterCount": 28675,
+      "estimatedListeningMinutes": 172,
+      "textPreview": "CHAPTER X The _Boise_ Acts But what of the super-ship? What happened after that inertialess, that terribly destructive take-off? Doctor Frederick Rodebush sat..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4803,
+      "characterCount": 28504,
+      "estimatedListeningMinutes": 171,
+      "textPreview": "CHAPTER XI Roger Carries On For gray Roger had not perished in the floods of Nevian energy which had destroyed his planetoid. While those terrific streamers of..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6097,
+      "characterCount": 34510,
+      "estimatedListeningMinutes": 207,
+      "textPreview": "CHAPTER XII The Specimens Escape Knowing well that conversation with its fellows is one of the greatest needs of any intelligent being, the Nevians had permitt..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4256,
+      "characterCount": 25470,
+      "estimatedListeningMinutes": 153,
+      "textPreview": "CHAPTER XIII The Meeting of the Giants \"Check your blast, Fred, I think I hear something trying to come through!\" Cleveland called out, sharply. For days the _..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 57317,
+    "actions": [
+      {
+        "action": "remove-image-placeholders",
+        "count": 4,
+        "recommendation": "Remove bracketed image placeholders from playback text; preserve nearby narrative captions only if meaningful.",
+        "samples": [
+          "[Illustration: Now, systematically and precisely, the great Cone of Battle was coming into being; a formation developed during the Jovian W...",
+          "[Illustration: Many bridges and more tubes extended through the air from building to building, and the watery \"streets\" teemed with surface...",
+          "[Illustration: Its atmosphere was withdrawn, the outer door opened, and he glanced across a bare hundred feet of space at the rocket-plane...",
+          "[Illustration: And through that terrific conduit came speeding package after package of destruction.]"
+        ]
+      },
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 4,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L73: * * * * *",
+          "candidate L92: * * * * *",
+          "candidate L3801: * * * * *",
+          "candidate L6147: * * * * *"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 6234,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I Pirates of Space Apparently motionless to her passengers and crew, the Interplanetary liner _Hyperion_ bored serenely onward through space at normal acceleration. In the railed-off sanctum in one corner of the control room a bell tinkled, a smothered whirr was heard, and Captain Bradley frowned as he studied the brief message upon the tape of the...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

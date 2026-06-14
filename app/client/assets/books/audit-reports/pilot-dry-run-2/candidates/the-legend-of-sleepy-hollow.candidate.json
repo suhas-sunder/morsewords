@@ -1,0 +1,132 @@
+{
+  "slug": "the-legend-of-sleepy-hollow",
+  "selectionReason": "Medium-risk short work with a medium-confidence opening epigraph, selected as a controlled boundary review case.",
+  "title": "The Legend of Sleepy Hollow",
+  "author": [
+    "Washington Irving"
+  ],
+  "sourcePath": "app/client/assets/temp-books/the-legend-of-sleepy-hollow.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 42,
+    "startIndex": 990,
+    "startSnippet": "A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summer sky. CASTLE OF INDOLENCE.",
+    "endLine": 1157,
+    "endIndex": 70633,
+    "endSnippet": "extravagant--there were one or two points on which he had his doubts. “Faith, sir,” replied the story-teller, “as to that matter, I don’t believe one-half of it myself.” D. K. THE END."
+  },
+  "wordCounts": {
+    "raw": 15429,
+    "kept": 12260,
+    "removedFrontMatter": 163,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5237,
+      "characterCount": 29948,
+      "estimatedListeningMinutes": 179,
+      "textPreview": "A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summe..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5065,
+      "characterCount": 28663,
+      "estimatedListeningMinutes": 171,
+      "textPreview": "I profess not to know how women’s hearts are wooed and won. To me they have always been matters of riddle and admiration. Some seem to have but one vulnerable..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1956,
+      "characterCount": 11009,
+      "estimatedListeningMinutes": 66,
+      "textPreview": "Ichabod, who had no relish for this strange midnight companion, and bethought himself of the adventure of Brom Bones with the Galloping Hessian, now quickened..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2,
+      "characterCount": 8,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "THE END."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 12228,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 81,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "’",
+          "’",
+          "“"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 5237,
+    "startsAtRealReadableContent": true,
+    "snippet": "A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summer sky. CASTLE OF INDOLENCE. In the bosom of one of those spacious coves which indent the eastern shore of the Hudson, at that broad expansion of the river denominated by the ancient Dutch navigators t...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/the-legend-of-sleepy-hollow/manifest.json",
+    "sectionCount": 4,
+    "includedSectionCount": 0,
+    "firstSectionPreview": "The Legend of Sleepy Hollow by Washington Irving FOUND AMONG THE PAPERS OF THE LATE DIEDRICH KNICKERBOCKER. A pleasing land of drowsy head it was, Of dreams th...",
+    "lastSectionPreview": "THE END.",
+    "suspiciousShortSections": [
+      {
+        "id": "part-004",
+        "label": "Part 4",
+        "wordCount": 2
+      }
+    ],
+    "suspiciousLongSections": [],
+    "apparentDamage": [
+      "no default included sections",
+      "suspiciously short generated sections"
+    ]
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+  ]
+}

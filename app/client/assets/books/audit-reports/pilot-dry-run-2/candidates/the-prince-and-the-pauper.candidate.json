@@ -1,0 +1,442 @@
+{
+  "slug": "the-prince-and-the-pauper",
+  "selectionReason": "Medium-risk novel with high-confidence boundaries plus footnote/reference cleanup that should be reviewed before writing.",
+  "title": "The Prince and the Pauper",
+  "author": [
+    "Mark Twain"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Prince and the Pauper.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 480,
+    "startIndex": 8271,
+    "startSnippet": "CHAPTER I. The birth of the Prince and the Pauper. In the ancient city of London, on a certain autumn day in the second quarter of the sixteenth century, a boy was born to a poor family of the name of Canty, who did not want him. On the same day another English child was born to a rich family of the name of Tudor, who did want him.",
+    "endLine": 8184,
+    "endIndex": 396882,
+    "endSnippet": "There has never been a time--under the Blue Laws or any other--when above _fourteen_ crimes were punishable by death in Connecticut. But in England, within the memory of men who are still hale in body and mind, _two hundred and twenty-three_ crimes were punishable by death! {10} These facts are worth knowing--and worth thinking about, too."
+  },
+  "wordCounts": {
+    "raw": 74570,
+    "kept": 70180,
+    "removedFrontMatter": 1384,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": "The birth of the Prince and the Pauper.",
+      "includeByDefault": true,
+      "wordCount": 269,
+      "characterCount": 1424,
+      "estimatedListeningMinutes": 8,
+      "textPreview": "CHAPTER I. The birth of the Prince and the Pauper. In the ancient city of London, on a certain autumn day in the second quarter of the sixteenth century, a boy..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": "Tom’s early life.",
+      "includeByDefault": true,
+      "wordCount": 1643,
+      "characterCount": 9065,
+      "estimatedListeningMinutes": 54,
+      "textPreview": "CHAPTER II. Tom’s early life. Let us skip a number of years. London was fifteen hundred years old, and was a great town--for that day. It had a hundred thousan..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": "Tom’s meeting with the Prince.",
+      "includeByDefault": true,
+      "wordCount": 2214,
+      "characterCount": 12232,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "CHAPTER III. Tom’s meeting with the Prince. Tom got up hungry, and sauntered hungry away, but with his thoughts busy with the shadowy splendours of his night’s..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": "The Prince’s troubles begin.",
+      "includeByDefault": true,
+      "wordCount": 1263,
+      "characterCount": 6849,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "CHAPTER IV. The Prince’s troubles begin. After hours of persistent pursuit and persecution, the little prince was at last deserted by the rabble and left to hi..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": "Tom as a Patrician.",
+      "includeByDefault": true,
+      "wordCount": 2383,
+      "characterCount": 13147,
+      "estimatedListeningMinutes": 78,
+      "textPreview": "CHAPTER V. Tom as a Patrician. Tom Canty, left alone in the prince’s cabinet, made good use of his opportunity. He turned himself this way and that before the..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": "Tom receives instructions.",
+      "includeByDefault": true,
+      "wordCount": 2603,
+      "characterCount": 14345,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "CHAPTER VI. Tom receives instructions. Tom was conducted to the principal apartment of a noble suite, and made to sit down--a thing which he was loth to do, si..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": "Tom’s first royal dinner.",
+      "includeByDefault": true,
+      "wordCount": 1227,
+      "characterCount": 6842,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "CHAPTER VII. Tom’s first royal dinner. Somewhat after one in the afternoon, Tom resignedly underwent the ordeal of being dressed for dinner. He found himself a..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": "The Question of the Seal.",
+      "includeByDefault": true,
+      "wordCount": 855,
+      "characterCount": 4700,
+      "estimatedListeningMinutes": 28,
+      "textPreview": "CHAPTER VIII. The Question of the Seal. About five o’clock Henry VIII. awoke out of an unrefreshing nap, and muttered to himself, “Troublous dreams, troublous..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": "The river pageant.",
+      "includeByDefault": true,
+      "wordCount": 911,
+      "characterCount": 5359,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "CHAPTER IX. The river pageant. At nine in the evening the whole vast river-front of the palace was blazing with light. The river itself, as far as the eye coul..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": "The Prince in the toils.",
+      "includeByDefault": true,
+      "wordCount": 2965,
+      "characterCount": 16261,
+      "estimatedListeningMinutes": 97,
+      "textPreview": "CHAPTER X. The Prince in the toils. We left John Canty dragging the rightful prince into Offal Court, with a noisy and delighted mob at his heels. There was bu..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": "At Guildhall.",
+      "includeByDefault": true,
+      "wordCount": 1595,
+      "characterCount": 9072,
+      "estimatedListeningMinutes": 54,
+      "textPreview": "CHAPTER XI. At Guildhall. The royal barge, attended by its gorgeous fleet, took its stately way down the Thames through the wilderness of illuminated boats. Th..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": "The Prince and his Deliverer.",
+      "includeByDefault": true,
+      "wordCount": 3971,
+      "characterCount": 21475,
+      "estimatedListeningMinutes": 128,
+      "textPreview": "CHAPTER XII. The Prince and his Deliverer. As soon as Miles Hendon and the little prince were clear of the mob, they struck down through back lanes and alleys..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": "The disappearance of the Prince.",
+      "includeByDefault": true,
+      "wordCount": 1453,
+      "characterCount": 8006,
+      "estimatedListeningMinutes": 48,
+      "textPreview": "CHAPTER XIII. The disappearance of the Prince. A heavy drowsiness presently fell upon the two comrades. The King said-- “Remove these rags.”--meaning his cloth..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": "‘Le Roi est mort--vive le Roi.’",
+      "includeByDefault": true,
+      "wordCount": 3870,
+      "characterCount": 21571,
+      "estimatedListeningMinutes": 129,
+      "textPreview": "CHAPTER XIV. ‘Le Roi est mort--vive le Roi.’ Toward daylight of the same morning, Tom Canty stirred out of a heavy sleep and opened his eyes in the dark. He la..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": "Tom as King.",
+      "includeByDefault": true,
+      "wordCount": 3656,
+      "characterCount": 20384,
+      "estimatedListeningMinutes": 121,
+      "textPreview": "CHAPTER XV. Tom as King. The next day the foreign ambassadors came, with their gorgeous trains; and Tom, throned in awful state, received them. The splendours..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": "The State Dinner.",
+      "includeByDefault": true,
+      "wordCount": 963,
+      "characterCount": 5511,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER XVI. The State Dinner. The dinner hour drew near--yet strangely enough, the thought brought but slight discomfort to Tom, and hardly any terror. The mo..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": "Foo-foo the First.",
+      "includeByDefault": true,
+      "wordCount": 3533,
+      "characterCount": 19570,
+      "estimatedListeningMinutes": 117,
+      "textPreview": "CHAPTER XVII. Foo-foo the First. Miles Hendon hurried along toward the Southwark end of the bridge, keeping a sharp look-out for the persons he sought, and hop..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": "The Prince with the Tramps.",
+      "includeByDefault": true,
+      "wordCount": 2849,
+      "characterCount": 15581,
+      "estimatedListeningMinutes": 93,
+      "textPreview": "CHAPTER XVIII. The Prince with the Tramps. The troop of vagabonds turned out at early dawn, and set forward on their march. There was a lowering sky overhead,..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": "The Prince with the peasants.",
+      "includeByDefault": true,
+      "wordCount": 1994,
+      "characterCount": 10867,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "CHAPTER XIX. The Prince with the peasants. When the King awoke in the early morning, he found that a wet but thoughtful rat had crept into the place during the..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "The Prince and the hermit.",
+      "includeByDefault": true,
+      "wordCount": 2247,
+      "characterCount": 12369,
+      "estimatedListeningMinutes": 74,
+      "textPreview": "CHAPTER XX. The Prince and the hermit. The high hedge hid him from the house, now; and so, under the impulse of a deadly fright, he let out all his forces and..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": "Hendon to the rescue.",
+      "includeByDefault": true,
+      "wordCount": 1488,
+      "characterCount": 8185,
+      "estimatedListeningMinutes": 49,
+      "textPreview": "CHAPTER XXI. Hendon to the rescue. The old man glided away, stooping, stealthy, cat-like, and brought the low bench. He seated himself upon it, half his body i..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": "A Victim of Treachery.",
+      "includeByDefault": true,
+      "wordCount": 1995,
+      "characterCount": 11081,
+      "estimatedListeningMinutes": 66,
+      "textPreview": "CHAPTER XXII. A Victim of Treachery. Once more ‘King Foo-foo the First’ was roving with the tramps and outlaws, a butt for their coarse jests and dull-witted r..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": "The Prince a prisoner.",
+      "includeByDefault": true,
+      "wordCount": 1133,
+      "characterCount": 6337,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "CHAPTER XXIII. The Prince a prisoner. Hendon forced back a smile, and bent down and whispered in the King’s ear-- “Softly, softly, my prince, wag thy tongue wa..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": "The Escape.",
+      "includeByDefault": true,
+      "wordCount": 956,
+      "characterCount": 5172,
+      "estimatedListeningMinutes": 31,
+      "textPreview": "CHAPTER XXIV. The Escape. The short winter day was nearly ended. The streets were deserted, save for a few random stragglers, and these hurried straight along,..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": "Hendon Hall.",
+      "includeByDefault": true,
+      "wordCount": 2396,
+      "characterCount": 13152,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "CHAPTER XXV. Hendon Hall. As soon as Hendon and the King were out of sight of the constable, his Majesty was instructed to hurry to a certain place outside the..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": "Disowned.",
+      "includeByDefault": true,
+      "wordCount": 1395,
+      "characterCount": 7461,
+      "estimatedListeningMinutes": 44,
+      "textPreview": "CHAPTER XXVI. Disowned. The King sat musing a few moments, then looked up and said-- “‘Tis strange--most strange. I cannot account for it.” “No, it is not stra..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": "In Prison.",
+      "includeByDefault": true,
+      "wordCount": 3412,
+      "characterCount": 18616,
+      "estimatedListeningMinutes": 111,
+      "textPreview": "CHAPTER XXVII. In Prison. The cells were all crowded; so the two friends were chained in a large room where persons charged with trifling offences were commonl..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": "The sacrifice.",
+      "includeByDefault": true,
+      "wordCount": 1259,
+      "characterCount": 7011,
+      "estimatedListeningMinutes": 42,
+      "textPreview": "CHAPTER XXVIII. The sacrifice. Meantime Miles was growing sufficiently tired of confinement and inaction. But now his trial came on, to his great gratification..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": "To London.",
+      "includeByDefault": true,
+      "wordCount": 732,
+      "characterCount": 4089,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "CHAPTER XXIX. To London. When Hendon’s term of service in the stocks was finished, he was released and ordered to quit the region and come back no more. His sw..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "Tom’s progress.",
+      "includeByDefault": true,
+      "wordCount": 869,
+      "characterCount": 4965,
+      "estimatedListeningMinutes": 29,
+      "textPreview": "CHAPTER XXX. Tom’s progress. Whilst the true King wandered about the land poorly clad, poorly fed, cuffed and derided by tramps one while, herding with thieves..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 31",
+      "title": "The Recognition procession.",
+      "includeByDefault": true,
+      "wordCount": 2092,
+      "characterCount": 11923,
+      "estimatedListeningMinutes": 71,
+      "textPreview": "CHAPTER XXXI. The Recognition procession. When Tom Canty awoke the next morning, the air was heavy with a thunderous murmur: all the distances were charged wit..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 32",
+      "title": "Coronation Day.",
+      "includeByDefault": true,
+      "wordCount": 4092,
+      "characterCount": 22993,
+      "estimatedListeningMinutes": 137,
+      "textPreview": "CHAPTER XXXII. Coronation Day. Let us go backward a few hours, and place ourselves in Westminster Abbey, at four o’clock in the morning of this memorable Coron..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 33",
+      "title": "Edward as King.",
+      "includeByDefault": true,
+      "wordCount": 5897,
+      "characterCount": 32836,
+      "estimatedListeningMinutes": 196,
+      "textPreview": "CHAPTER XXXIII. Edward as King. Miles Hendon was picturesque enough before he got into the riot on London Bridge--he was more so when he got out of it. He had..."
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 69631,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 2681,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "’",
+          "’"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1",
+      "chapter-002 Chapter 2"
+    ],
+    "approximateWordCount": 1912,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I. The birth of the Prince and the Pauper. In the ancient city of London, on a certain autumn day in the second quarter of the sixteenth century, a boy was born to a poor family of the name of Canty, who did not want him. On the same day another English child was born to a rich family of the name of Tudor, who did want him. All England wanted him to...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "slug": "violet-fairy-book",
+  "selectionReason": "Medium-risk story collection with a real preface and many sections, selected to check collection-style section splitting without severe artifact risk.",
+  "title": "The Violet Fairy Book",
+  "author": [
+    "Andrew Lang"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Violet Fairy Book.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 53,
+    "startIndex": 1041,
+    "startSnippet": "PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not invent them ‘out of his own head.’ He is accustomed to",
+    "endLine": 11140,
+    "endIndex": 534262,
+    "endSnippet": "as he wished. And they went together to the palace, where Mogarzea was still waiting for him, and the marriage was celebrated by the emperor himself. But every May they returned to the Milk Lake, they and their children, and bathed in its waters. (Olumanische Marchen.)"
+  },
+  "wordCounts": {
+    "raw": 106431,
+    "kept": 103256,
+    "removedFrontMatter": 170,
+    "removedEndMatter": 3005
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Part 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5625,
+      "characterCount": 29521,
+      "estimatedListeningMinutes": 174,
+      "textPreview": "PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Part 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5845,
+      "characterCount": 29865,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "‘In my youth, when I was an old man, we had a quantity of beehives. Every morning when I got up I counted them over, and it was quite easy to number the bees,..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Part 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5838,
+      "characterCount": 29857,
+      "estimatedListeningMinutes": 176,
+      "textPreview": "‘Have patience for one minute. I would like before I die to blow three blasts on my hunting horn--one in this room, one on the stairs, and one in the courtyard..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Part 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5780,
+      "characterCount": 29785,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "The third night the prince mounted the mare and rode her out to the meadows, with the foal trotting after. He tried hard to keep awake, but it was of no use, a..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Part 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5779,
+      "characterCount": 29992,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "‘Oh, you unlucky creature!’ cried she; ‘and how do you think you are to do it. If you had all the men in the world to help you, you could not clear off this on..."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Part 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5864,
+      "characterCount": 29998,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "The young king did not know her again, but he never left her side nor took his eyes from her. And at midnight a strange thing happened. A thick cloud suddenly..."
+    },
+    {
+      "id": "part-007",
+      "kind": "part",
+      "label": "Part 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5909,
+      "characterCount": 29871,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "The sultan, on hearing what had happened to his future son-in-law, turned his horse and rode to the palace, and bade a groom to harness the best horse in the s..."
+    },
+    {
+      "id": "part-008",
+      "kind": "part",
+      "label": "Part 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5714,
+      "characterCount": 29813,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "What kind of bird do you think he caught in his net? He caught a crane, and the crane said, ‘Let me go free, and I’ll show myself grateful.’ The man answered,..."
+    },
+    {
+      "id": "part-009",
+      "kind": "part",
+      "label": "Part 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5803,
+      "characterCount": 29901,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "Hardly had he done speaking, scarcely had Petru twisted his wreath, when a soft breeze arose on all sides at once. Out of the breeze came a storm wind, and the..."
+    },
+    {
+      "id": "part-010",
+      "kind": "part",
+      "label": "Part 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5770,
+      "characterCount": 29855,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "‘You are lying!’ cried Petru angrily, throwing the box on the ground, where it broke into a thousand pieces. It was not long before he began to catch glimpses..."
+    },
+    {
+      "id": "part-011",
+      "kind": "part",
+      "label": "Part 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5811,
+      "characterCount": 29934,
+      "estimatedListeningMinutes": 179,
+      "textPreview": "‘I saw you come in, but the work was pressing, and I could not stop to speak to you. To-day you must be my guest, and I will show you something of the way in w..."
+    },
+    {
+      "id": "part-012",
+      "kind": "part",
+      "label": "Part 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5841,
+      "characterCount": 29863,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "‘What has his highness ordered for luncheon?’ asked the head cook. ‘Sir, his highness has graciously ordered a Danish soup and red Hamburg dumplings.’ ‘Good,’..."
+    },
+    {
+      "id": "part-013",
+      "kind": "part",
+      "label": "Part 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5835,
+      "characterCount": 29591,
+      "estimatedListeningMinutes": 175,
+      "textPreview": "And it waited till the next day, and caught some one’s child. And the sultan was told, ‘The cat has caught a child.’ And he said, ‘The cat is mine and the chil..."
+    },
+    {
+      "id": "part-014",
+      "kind": "part",
+      "label": "Part 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5739,
+      "characterCount": 29978,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "Of course it was not everyone who cared to get up in the middle of the night, when he had been working hard all day; still, a good many had agreed to do it. Bu..."
+    },
+    {
+      "id": "part-015",
+      "kind": "part",
+      "label": "Part 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5693,
+      "characterCount": 29763,
+      "estimatedListeningMinutes": 177,
+      "textPreview": "But she had not seen that where the fire burnt brightest two sparks flew up, and, after floating in the air for a few moments, fell down into the great river t..."
+    },
+    {
+      "id": "part-016",
+      "kind": "part",
+      "label": "Part 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5677,
+      "characterCount": 29988,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "The breath of the princess came and went, and her feet rattled in the stirrups. Suddenly the remembrance flashed across her of the wolf whom she had put to fli..."
+    },
+    {
+      "id": "part-017",
+      "kind": "part",
+      "label": "Part 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5892,
+      "characterCount": 29997,
+      "estimatedListeningMinutes": 179,
+      "textPreview": "‘Nonsense; of course he is our uncle,’ answered they. ‘Well, this very night you will see!’ said Halfman. And he did not go to bed, but hid himself and watched..."
+    },
+    {
+      "id": "part-018",
+      "kind": "part",
+      "label": "Part 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4839,
+      "characterCount": 25520,
+      "estimatedListeningMinutes": 151,
+      "textPreview": "‘Then,’ said the voice, ‘draw back that bolt, and set me free.’ ‘But who are you?’ asked Virgilius, who never did anything in a hurry. ‘I am an evil spirit,’ s..."
+    },
+    {
+      "id": "part-019",
+      "kind": "part",
+      "label": "Part 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2,
+      "characterCount": 22,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "(Olumanische Marchen.)"
+    }
+  ],
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 102746,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 4281,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "‘",
+          "’",
+          "‘",
+          "’",
+          "‘"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Part 1"
+    ],
+    "approximateWordCount": 5625,
+    "startsAtRealReadableContent": true,
+    "snippet": "PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not invent them ‘out of his own head.’ He is accustomed to being asked, by ladies, ‘Have you written anything else except the Fairy Books?’ He is then obliged to explain that he has NOT written the Fairy...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}
