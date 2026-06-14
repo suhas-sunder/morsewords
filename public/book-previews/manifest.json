@@ -259,12 +259,12 @@
     {
       "slug": "dracula",
       "path": "/book-previews/dracula.preview.json",
-      "contentVersion": "cfb7fa5337ae3897",
-      "contentHash": "cfb7fa5337ae38970561813cbb980e3cc6a24bbd4148cc89071711fc0039d02b",
+      "contentVersion": "ef84d5b4e3aefbf0",
+      "contentHash": "ef84d5b4e3aefbf05e304c91eb4a5034474be4a3a871d5a693f42379ac1708b5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11304,
-      "previewCharacterCount": 10325,
-      "estimatedRuntimeSeconds": 3684,
+      "previewBytes": 9540,
+      "previewCharacterCount": 8695,
+      "estimatedRuntimeSeconds": 3099,
       "truncated": true
     },
     {
@@ -815,6 +815,72 @@
       "previewBytes": 11457,
       "previewCharacterCount": 10443,
       "estimatedRuntimeSeconds": 3663,
+      "truncated": true
+    },
+    {
+      "slug": "a-dream-of-armageddon",
+      "path": "/book-previews/a-dream-of-armageddon.preview.json",
+      "contentVersion": "098fc3894d321285",
+      "contentHash": "098fc3894d3212855aad3d641c8609aa7796fda6d3d8a520699ac797cac1f2c5",
+      "defaultSectionId": "part-001",
+      "previewBytes": 9695,
+      "previewCharacterCount": 8791,
+      "estimatedRuntimeSeconds": 3148,
+      "truncated": true
+    },
+    {
+      "slug": "almayer-s-folly-a-story-of-an-eastern-river",
+      "path": "/book-previews/almayer-s-folly-a-story-of-an-eastern-river.preview.json",
+      "contentVersion": "a3c587c4d7f560fa",
+      "contentHash": "a3c587c4d7f560fa04ba11a9491b1ada4f3639061ceb2b06ddc54521d01cab72",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 9156,
+      "previewCharacterCount": 8324,
+      "estimatedRuntimeSeconds": 2987,
+      "truncated": true
+    },
+    {
+      "slug": "the-house-without-a-key",
+      "path": "/book-previews/the-house-without-a-key.preview.json",
+      "contentVersion": "1cf06171fb66cb1e",
+      "contentHash": "1cf06171fb66cb1efcf8360dbd1ed47cc29c24e8fa1ce0fe0c544da32fcc97fa",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10757,
+      "previewCharacterCount": 9738,
+      "estimatedRuntimeSeconds": 3532,
+      "truncated": true
+    },
+    {
+      "slug": "the-lerouge-case",
+      "path": "/book-previews/the-lerouge-case.preview.json",
+      "contentVersion": "2034c185a686accd",
+      "contentHash": "2034c185a686accdb53a68bf64d0fbbe9e2ff872b584ad7417484f7335314f1b",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10849,
+      "previewCharacterCount": 9949,
+      "estimatedRuntimeSeconds": 3556,
+      "truncated": true
+    },
+    {
+      "slug": "a-journey-to-the-centre-of-the-earth",
+      "path": "/book-previews/a-journey-to-the-centre-of-the-earth.preview.json",
+      "contentVersion": "3e200b38cc02277c",
+      "contentHash": "3e200b38cc02277c5c03dc6af12a524c3b25504bf437759b8ffce9db4c70287a",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11021,
+      "previewCharacterCount": 10080,
+      "estimatedRuntimeSeconds": 3597,
+      "truncated": true
+    },
+    {
+      "slug": "a-journal-of-the-plague-year",
+      "path": "/book-previews/a-journal-of-the-plague-year.preview.json",
+      "contentVersion": "931a9cc803a5cb02",
+      "contentHash": "931a9cc803a5cb02130b125fccc31252a58718a64fb8eac85f77abc017865b35",
+      "defaultSectionId": "part-001",
+      "previewBytes": 10803,
+      "previewCharacterCount": 9876,
+      "estimatedRuntimeSeconds": 3459,
       "truncated": true
     }
   ],

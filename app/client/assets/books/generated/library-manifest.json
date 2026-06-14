@@ -745,8 +745,8 @@
       "author": [
         "Bram Stoker"
       ],
-      "contentVersion": "2d5328b1fadb30bb",
-      "contentHash": "2d5328b1fadb30bb2a9f666e5a444e7c97932c4613fd622925e63cdef7fe299a",
+      "contentVersion": "ef84d5b4e3aefbf0",
+      "contentHash": "ef84d5b4e3aefbf05e304c91eb4a5034474be4a3a871d5a693f42379ac1708b5",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -766,7 +766,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 1 processed this source from the audited Project Gutenberg text. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
@@ -774,10 +774,10 @@
         "alt": "Placeholder cover for Dracula"
       },
       "stats": {
-        "originalCharacterCount": 865100,
-        "cleanedCharacterCount": 845824,
-        "wordCount": 162773,
-        "sectionCount": 30,
+        "originalCharacterCount": 881058,
+        "cleanedCharacterCount": 836326,
+        "wordCount": 161173,
+        "sectionCount": 28,
         "includedSectionCount": 27
       },
       "defaults": {
@@ -3623,6 +3623,300 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "wood-folk-at-school/manifest.json"
+    },
+    {
+      "slug": "a-dream-of-armageddon",
+      "title": "Twelve Stories and a Dream",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "098fc3894d321285",
+      "contentHash": "098fc3894d3212855aad3d641c8609aa7796fda6d3d8a520699ac797cac1f2c5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 1 processed this source from the audited Project Gutenberg text. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Twelve Stories and a Dream"
+      },
+      "stats": {
+        "originalCharacterCount": 55119,
+        "cleanedCharacterCount": 53868,
+        "wordCount": 10068,
+        "sectionCount": 2,
+        "includedSectionCount": 2
+      },
+      "defaults": {
+        "includeKinds": [
+          "part"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-dream-of-armageddon/manifest.json"
+    },
+    {
+      "slug": "almayer-s-folly-a-story-of-an-eastern-river",
+      "title": "Almayer's Folly: A Story of an Eastern River",
+      "author": [
+        "Joseph Conrad"
+      ],
+      "contentVersion": "a3c587c4d7f560fa",
+      "contentHash": "a3c587c4d7f560fa04ba11a9491b1ada4f3639061ceb2b06ddc54521d01cab72",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "720",
+        "releaseDate": "November 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/720",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 1 processed this source from the audited Project Gutenberg text. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Almayer's Folly: A Story of an Eastern River"
+      },
+      "stats": {
+        "originalCharacterCount": 380989,
+        "cleanedCharacterCount": 351938,
+        "wordCount": 62860,
+        "sectionCount": 12,
+        "includedSectionCount": 12
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "almayer-s-folly-a-story-of-an-eastern-river/manifest.json"
+    },
+    {
+      "slug": "the-house-without-a-key",
+      "title": "The house without a key",
+      "author": [
+        "Earl Derr Biggers"
+      ],
+      "contentVersion": "1cf06171fb66cb1e",
+      "contentHash": "1cf06171fb66cb1efcf8360dbd1ed47cc29c24e8fa1ce0fe0c544da32fcc97fa",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "73771",
+        "releaseDate": "June 4, 2024",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/73771",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 1 processed this source from the audited Project Gutenberg text. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The house without a key"
+      },
+      "stats": {
+        "originalCharacterCount": 499378,
+        "cleanedCharacterCount": 467890,
+        "wordCount": 83243,
+        "sectionCount": 23,
+        "includedSectionCount": 23
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-house-without-a-key/manifest.json"
+    },
+    {
+      "slug": "the-lerouge-case",
+      "title": "The Lerouge Case",
+      "author": [
+        "Emile Gaboriau"
+      ],
+      "contentVersion": "2034c185a686accd",
+      "contentHash": "2034c185a686accdb53a68bf64d0fbbe9e2ff872b584ad7417484f7335314f1b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3802",
+        "releaseDate": "April 13, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3802",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 1 processed this source from the audited Project Gutenberg text. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Lerouge Case"
+      },
+      "stats": {
+        "originalCharacterCount": 728654,
+        "cleanedCharacterCount": 694607,
+        "wordCount": 123870,
+        "sectionCount": 20,
+        "includedSectionCount": 20
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-lerouge-case/manifest.json"
+    },
+    {
+      "slug": "a-journey-to-the-centre-of-the-earth",
+      "title": "A Journey to the Centre of the Earth",
+      "author": [
+        "Jules Verne"
+      ],
+      "contentVersion": "3e200b38cc02277c",
+      "contentHash": "3e200b38cc02277c5c03dc6af12a524c3b25504bf437759b8ffce9db4c70287a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "18857",
+        "releaseDate": "July 18, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/18857",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 1 processed this source from the audited Project Gutenberg text. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Journey to the Centre of the Earth"
+      },
+      "stats": {
+        "originalCharacterCount": 517717,
+        "cleanedCharacterCount": 483946,
+        "wordCount": 85953,
+        "sectionCount": 44,
+        "includedSectionCount": 44
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-journey-to-the-centre-of-the-earth/manifest.json"
+    },
+    {
+      "slug": "a-journal-of-the-plague-year",
+      "title": "A Journal of the Plague Year",
+      "author": [
+        "Daniel Defoe"
+      ],
+      "contentVersion": "931a9cc803a5cb02",
+      "contentHash": "931a9cc803a5cb02130b125fccc31252a58718a64fb8eac85f77abc017865b35",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "376",
+        "releaseDate": "January 16, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/376",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 1 processed this source from the audited Project Gutenberg text. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Journal of the Plague Year"
+      },
+      "stats": {
+        "originalCharacterCount": 599554,
+        "cleanedCharacterCount": 521106,
+        "wordCount": 94607,
+        "sectionCount": 18,
+        "includedSectionCount": 18
+      },
+      "defaults": {
+        "includeKinds": [
+          "part"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-journal-of-the-plague-year/manifest.json"
     }
   ]
 }

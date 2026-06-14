@@ -1,0 +1,1182 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-1",
+  "generatedAt": "2026-06-14T16:36:33.037Z",
+  "inputReports": {
+    "pass1": "app/client/assets/books/audit-reports/book-processing-audit-pass-1.json",
+    "pass2": "app/client/assets/books/audit-reports/book-processing-audit-pass-2.json",
+    "pilotDryRun1": "app/client/assets/books/audit-reports/pilot-dry-run-1/pilot-dry-run-1.json"
+  },
+  "paths": {
+    "tempBooksRoot": "app/client/assets/temp-books",
+    "generatedRoot": "app/client/assets/books/generated",
+    "cloudflareRoot": "app/client/assets/books/cloudflare-export",
+    "previewRoot": "public/book-previews"
+  },
+  "approvedPilotSlugs": [
+    "almayer-s-folly-a-story-of-an-eastern-river",
+    "the-house-without-a-key",
+    "the-lerouge-case",
+    "a-dream-of-armageddon",
+    "a-journey-to-the-centre-of-the-earth",
+    "a-journal-of-the-plague-year",
+    "dracula"
+  ],
+  "individualReviewSlugs": [
+    "a-christmas-carol",
+    "dr-jekyll-and-mr-hyde",
+    "a-catastrophe"
+  ],
+  "totals": {
+    "considered": 7,
+    "written": 7,
+    "skipped": 0
+  },
+  "books": [
+    {
+      "slug": "almayer-s-folly-a-story-of-an-eastern-river",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Almayer's Folly - A Story of an Eastern River.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/manifest.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/cleaned_book.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/processed_book.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/rights_report.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/processing_notes.md",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-001.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-002.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-003.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-004.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-005.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-006.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-007.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-008.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-009.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-010.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-011.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-012.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/almayer-s-folly-a-story-of-an-eastern-river.preview.json",
+      "candidateTitle": "Almayer's Folly: A Story of an Eastern River",
+      "candidateAuthor": [
+        "Joseph Conrad"
+      ],
+      "pass2RiskLevel": "low",
+      "startBoundaryUsed": {
+        "line": 63,
+        "reason": "Starts at CHAPTER I after title, printing history, and dedication.",
+        "snippet": "CHAPTER I. \"Kaspar! Makan!\" The well-known shrill voice startled Almayer from his dream of splendid future into the unpleasant realities of the present hour. An unpleasant",
+        "linesBefore": [
+          "L51: ",
+          "L52: _Second Impression_, 1907",
+          "L53: ",
+          "L54: _Third_ ,, 1914",
+          "L55: ",
+          "L56: _Fourth_ ,, 1915",
+          "L57: ",
+          "L58: To the memory of T. B.",
+          "L59: ",
+          "L60: ",
+          "L61: ",
+          "L62: ",
+          "L63: CHAPTER I."
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 6320,
+        "reason": "Ends immediately before the Project Gutenberg end marker.",
+        "snippet": "*** END OF THE PROJECT GUTENBERG EBOOK ALMAYER'S FOLLY: A STORY OF AN EASTERN RIVER *** Updated editions will replace the previous one—the old editions will",
+        "linesAfter": [
+          "L6320: ",
+          "L6321: *** END OF THE PROJECT GUTENBERG EBOOK ALMAYER'S FOLLY: A STORY OF AN EASTERN RIVER ***",
+          "L6322: ",
+          "L6323: ",
+          "L6324:     ",
+          "L6325: ",
+          "L6326: Updated editions will replace the previous one—the old editions will",
+          "L6327: be renamed.",
+          "L6328: ",
+          "L6329: Creating the works from print editions not protected by U.S. copyright",
+          "L6330: law means that no one owns a United States copyright in these works,",
+          "L6331: so the Foundation (and you!) can copy and distribute it in the United",
+          "L6332: States without permission and without paying copyright"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 228,
+        "lineRange": "1-62"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3009,
+        "lineRange": "6321-6671"
+      },
+      "sectionCount": 12,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 5263
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "wordCount": 4091
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "wordCount": 4326
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 3615
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "wordCount": 4783
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-008",
+          "label": "Chapter 8",
+          "title": null,
+          "wordCount": 6003
+        },
+        {
+          "id": "chapter-009",
+          "label": "Chapter 9",
+          "title": null,
+          "wordCount": 5891
+        },
+        {
+          "id": "chapter-010",
+          "label": "Chapter 10",
+          "title": null,
+          "wordCount": 5417
+        },
+        {
+          "id": "chapter-011",
+          "label": "Chapter 11",
+          "title": null,
+          "wordCount": 6771
+        },
+        {
+          "id": "chapter-012",
+          "label": "Chapter 12",
+          "title": null,
+          "wordCount": 7163
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 4,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": "No existing generated output was present.",
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-house-without-a-key",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The house without a key.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/the-house-without-a-key/manifest.json",
+        "app/client/assets/books/generated/the-house-without-a-key/cleaned_book.json",
+        "app/client/assets/books/generated/the-house-without-a-key/processed_book.json",
+        "app/client/assets/books/generated/the-house-without-a-key/rights_report.json",
+        "app/client/assets/books/generated/the-house-without-a-key/processing_notes.md",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-023.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/the-house-without-a-key.preview.json",
+      "candidateTitle": "The house without a key",
+      "candidateAuthor": [
+        "Earl Derr Biggers"
+      ],
+      "pass2RiskLevel": "low",
+      "startBoundaryUsed": {
+        "line": 66,
+        "reason": "Starts at CHAPTER I after title page and dedication.",
+        "snippet": "CHAPTER I KONA WEATHER Miss Minerva Winterslip was a Bostonian in good standing, and long past the romantic age. Yet beauty thrilled her still, even the semi-barbaric",
+        "linesBefore": [
+          "L54: ",
+          "L55:             _TO_",
+          "L56:     MY MOTHER AND FATHER",
+          "L57: ",
+          "L58: ",
+          "L59: ",
+          "L60: ",
+          "L61: THE HOUSE WITHOUT A KEY",
+          "L62: ",
+          "L63: ",
+          "L64: ",
+          "L65: ",
+          "L66: CHAPTER I"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 11071,
+        "reason": "Ends immediately before the Project Gutenberg end marker.",
+        "snippet": "*** END OF THE PROJECT GUTENBERG EBOOK THE HOUSE WITHOUT A KEY *** Updated editions will replace the previous one—the old editions will",
+        "linesAfter": [
+          "L11071: ",
+          "L11072: *** END OF THE PROJECT GUTENBERG EBOOK THE HOUSE WITHOUT A KEY ***",
+          "L11073: ",
+          "L11074: ",
+          "L11075:     ",
+          "L11076: ",
+          "L11077: Updated editions will replace the previous one—the old editions will",
+          "L11078: be renamed.",
+          "L11079: ",
+          "L11080: Creating the works from print editions not protected by U.S. copyright",
+          "L11081: law means that no one owns a United States copyright in these works,",
+          "L11082: so the Foundation (and you!) can copy and distribute it in the United",
+          "L11083: States without permission and without paying copyright"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 206,
+        "lineRange": "1-65"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3006,
+        "lineRange": "11072-11422"
+      },
+      "sectionCount": 23,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "KONA WEATHER",
+          "wordCount": 4710
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "THE HIGH HAT",
+          "wordCount": 1876
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "MIDNIGHT ON RUSSIAN HILL.",
+          "wordCount": 4271
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "A FRIEND OF TIM'S",
+          "wordCount": 3117
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "THE BLOOD OF THE WINTERSLIPS",
+          "wordCount": 2704
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-019",
+          "label": "Chapter 19",
+          "title": "\"GOOD-BY, PETE!\"",
+          "wordCount": 5256
+        },
+        {
+          "id": "chapter-020",
+          "label": "Chapter 20",
+          "title": "THE STORY OF LAU HO",
+          "wordCount": 3372
+        },
+        {
+          "id": "chapter-021",
+          "label": "Chapter 21",
+          "title": "THE STONE WALLS CRUMBLE",
+          "wordCount": 4185
+        },
+        {
+          "id": "chapter-022",
+          "label": "Chapter 22",
+          "title": "THE LIGHT STREAMS THROUGH",
+          "wordCount": 4993
+        },
+        {
+          "id": "chapter-023",
+          "label": "Chapter 23",
+          "title": "MOONLIGHT AT THE CROSSROADS",
+          "wordCount": 1669
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": "No existing generated output was present.",
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-lerouge-case",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The Lerouge Case.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/the-lerouge-case/manifest.json",
+        "app/client/assets/books/generated/the-lerouge-case/cleaned_book.json",
+        "app/client/assets/books/generated/the-lerouge-case/processed_book.json",
+        "app/client/assets/books/generated/the-lerouge-case/rights_report.json",
+        "app/client/assets/books/generated/the-lerouge-case/processing_notes.md",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-020.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/the-lerouge-case.preview.json",
+      "candidateTitle": "The Lerouge Case",
+      "candidateAuthor": [
+        "Emile Gaboriau"
+      ],
+      "pass2RiskLevel": "low",
+      "startBoundaryUsed": {
+        "line": 35,
+        "reason": "Starts at CHAPTER I after Gutenberg header, title, and author lines.",
+        "snippet": "CHAPTER I. On Thursday, the 6th of March, 1862, two days after Shrove Tuesday, five women belonging to the village of La Jonchere presented themselves at the police station at Bougival. They stated that for two days past no one had seen th...",
+        "linesBefore": [
+          "L23: ",
+          "L24: Credits: Produced by David Moynihan; Dagny; David Widger",
+          "L25: ",
+          "L26: ",
+          "L27: *** START OF THE PROJECT GUTENBERG EBOOK THE LEROUGE CASE ***",
+          "L28: THE LEROUGE CASE",
+          "L29: ",
+          "L30: By Emile Gaboriau",
+          "L31: ",
+          "L32: ",
+          "L33: ",
+          "L34: ",
+          "L35: CHAPTER I."
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 14329,
+        "reason": "Ends immediately before the Project Gutenberg end marker.",
+        "snippet": "*** END OF THE PROJECT GUTENBERG EBOOK THE LEROUGE CASE *** Updated editions will replace the previous one—the old editions will",
+        "linesAfter": [
+          "L14329: ",
+          "L14330: *** END OF THE PROJECT GUTENBERG EBOOK THE LEROUGE CASE ***",
+          "L14331: ",
+          "L14332: ",
+          "L14333:     ",
+          "L14334: ",
+          "L14335: Updated editions will replace the previous one—the old editions will",
+          "L14336: be renamed.",
+          "L14337: ",
+          "L14338: Creating the works from print editions not protected by U.S. copyright",
+          "L14339: law means that no one owns a United States copyright in these works,",
+          "L14340: so the Foundation (and you!) can copy and distribute it in the United",
+          "L14341: States without permission and without paying copyright"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 146,
+        "lineRange": "1-34"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3004,
+        "lineRange": "14330-14680"
+      },
+      "sectionCount": 20,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 6164
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "wordCount": 5214
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "wordCount": 3993
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 9050
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "wordCount": 6799
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-016",
+          "label": "Chapter 16",
+          "title": null,
+          "wordCount": 5832
+        },
+        {
+          "id": "chapter-017",
+          "label": "Chapter 17",
+          "title": null,
+          "wordCount": 7427
+        },
+        {
+          "id": "chapter-018",
+          "label": "Chapter 18",
+          "title": null,
+          "wordCount": 5992
+        },
+        {
+          "id": "chapter-019",
+          "label": "Chapter 19",
+          "title": null,
+          "wordCount": 5280
+        },
+        {
+          "id": "chapter-020",
+          "label": "Chapter 20",
+          "title": null,
+          "wordCount": 580
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": "No existing generated output was present.",
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "a-dream-of-armageddon",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/A DREAM OF ARMAGEDDON.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/a-dream-of-armageddon/manifest.json",
+        "app/client/assets/books/generated/a-dream-of-armageddon/cleaned_book.json",
+        "app/client/assets/books/generated/a-dream-of-armageddon/processed_book.json",
+        "app/client/assets/books/generated/a-dream-of-armageddon/rights_report.json",
+        "app/client/assets/books/generated/a-dream-of-armageddon/processing_notes.md",
+        "app/client/assets/books/generated/a-dream-of-armageddon/sections/part-001.json",
+        "app/client/assets/books/generated/a-dream-of-armageddon/sections/part-002.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/a-dream-of-armageddon.preview.json",
+      "candidateTitle": "Twelve Stories and a Dream",
+      "candidateAuthor": [
+        "H. G. Wells"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 34,
+        "reason": "Starts at the story title and skips the Gutenberg URL/source note.",
+        "snippet": "A DREAM OF ARMAGEDDON The man with the white face entered the carriage at Rugby. He moved slowly in spite of the urgency of his porter, and even while he was still on the platform I noted how ill he seemed. He dropped into the corner over...",
+        "linesBefore": [
+          "L22: ",
+          "L23: ",
+          "L24: ",
+          "L25: ",
+          "L26: Produced by Aaron Cannon, Stephanie Johnson, and David Widger",
+          "L27: ",
+          "L28: ",
+          "L29: https://www.gutenberg.org/files/1743/1743-h/1743-h.htm",
+          "L30: ",
+          "L31: ",
+          "L32: ",
+          "L33: ",
+          "L34: A DREAM OF ARMAGEDDON"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 540,
+        "reason": "Source file ends with the story text and has no separate license footer.",
+        "snippet": "",
+        "linesAfter": [
+          "L540: "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 117,
+        "lineRange": "1-33"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 0,
+        "lineRange": "none"
+      },
+      "sectionCount": 2,
+      "firstFiveSections": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "wordCount": 5552
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "wordCount": 4516
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "wordCount": 5552
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "wordCount": 4516
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": true
+      },
+      "remainingWarnings": [
+        "No chapter headings were detected; generated fallback parts instead."
+      ],
+      "firstHourPreviewSourceSections": [
+        "part-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": "No existing generated output was present.",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "a-journey-to-the-centre-of-the-earth",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/A Journey to the Centre of the Earth.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/manifest.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/cleaned_book.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/processed_book.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/rights_report.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/processing_notes.md",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-001.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-002.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-003.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-004.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-005.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-006.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-007.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-008.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-009.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-010.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-011.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-012.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-013.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-014.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-015.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-016.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-017.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-018.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-019.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-020.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-021.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-022.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-023.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-024.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-025.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-026.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-027.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-028.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-029.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-030.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-031.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-032.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-033.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-034.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-035.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-036.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-037.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-038.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-039.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-040.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-041.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-042.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-043.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-044.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/a-journey-to-the-centre-of-the-earth.preview.json",
+      "candidateTitle": "A Journey to the Centre of the Earth",
+      "candidateAuthor": [
+        "Jules Verne"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 153,
+        "reason": "Starts at CHAPTER 1 after the table of contents and source notes.",
+        "snippet": "CHAPTER 1 MY UNCLE MAKES A GREAT DISCOVERY Looking back to all that has occurred to me since that eventful day, I am scarcely able to believe in the reality of my adventures. They were",
+        "linesBefore": [
+          "L141: ",
+          "L142: CHAPTER 41 HUNGER",
+          "L143: ",
+          "L144: CHAPTER 42 THE VOLCANIC SHAFT",
+          "L145: ",
+          "L146: CHAPTER 43 DAYLIGHT AT LAST",
+          "L147: ",
+          "L148: CHAPTER 44 THE JOURNEY ENDED",
+          "L149: ",
+          "L150: ",
+          "L151: ",
+          "L152: ",
+          "L153: CHAPTER 1"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 10970,
+        "reason": "Ends immediately before the Project Gutenberg end marker.",
+        "snippet": "*** END OF THE PROJECT GUTENBERG EBOOK A JOURNEY TO THE CENTRE OF THE EARTH *** Updated editions will replace the previous one—the old editions will",
+        "linesAfter": [
+          "L10970: ",
+          "L10971: *** END OF THE PROJECT GUTENBERG EBOOK A JOURNEY TO THE CENTRE OF THE EARTH ***",
+          "L10972: ",
+          "L10973: ",
+          "L10974:     ",
+          "L10975: ",
+          "L10976: Updated editions will replace the previous one—the old editions will",
+          "L10977: be renamed.",
+          "L10978: ",
+          "L10979: Creating the works from print editions not protected by U.S. copyright",
+          "L10980: law means that no one owns a United States copyright in these works,",
+          "L10981: so the Foundation (and you!) can copy and distribute it in the United",
+          "L10982: States without permission and without paying copyright"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 527,
+        "lineRange": "1-152"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3009,
+        "lineRange": "10971-11321"
+      },
+      "sectionCount": 44,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "MY UNCLE MAKES A GREAT DISCOVERY",
+          "wordCount": 2014
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "THE MYSTERIOUS PARCHMENT",
+          "wordCount": 1152
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "AN ASTOUNDING DISCOVERY",
+          "wordCount": 2462
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "WE START ON THE JOURNEY",
+          "wordCount": 1223
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "wordCount": 1253
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-040",
+          "label": "Chapter 40",
+          "title": "THE APE GIGANS",
+          "wordCount": 2185
+        },
+        {
+          "id": "chapter-041",
+          "label": "Chapter 41",
+          "title": "HUNGER",
+          "wordCount": 2316
+        },
+        {
+          "id": "chapter-042",
+          "label": "Chapter 42",
+          "title": "THE VOLCANIC SHAFT",
+          "wordCount": 3081
+        },
+        {
+          "id": "chapter-043",
+          "label": "Chapter 43",
+          "title": "DAYLIGHT AT LAST",
+          "wordCount": 1980
+        },
+        {
+          "id": "chapter-044",
+          "label": "Chapter 44",
+          "title": "THE JOURNEY ENDED",
+          "wordCount": 1065
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 4,
+        "numberedReferencesRemoved": 10,
+        "decorativeLinesRemoved": 30,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": "No existing generated output was present.",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "a-journal-of-the-plague-year",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/A Journal of the Plague Year.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/manifest.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/cleaned_book.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/processed_book.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/rights_report.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/processing_notes.md",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-001.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-002.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-003.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-004.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-005.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-006.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-007.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-008.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-009.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-010.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-011.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-012.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-013.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-014.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-015.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-016.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-017.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-018.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/a-journal-of-the-plague-year.preview.json",
+      "candidateTitle": "A Journal of the Plague Year",
+      "candidateAuthor": [
+        "Daniel Defoe"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 51,
+        "reason": "Starts at the first narrative paragraph after title page, subtitle, byline, and illustration placeholder.",
+        "snippet": "It was about the beginning of September, 1664, that I, among the rest of my neighbours, heard in ordinary discourse that the plague was returned again in Holland; for it had been very violent there, and particularly at Amsterdam and Rotter...",
+        "linesBefore": [
+          "L39: by Daniel Defoe",
+          "L40: ",
+          "L41: ",
+          "L42:       being Observations or Memorials",
+          "L43:       of the most remarkable occurrences,",
+          "L44:       as well public as_ private, which happened in London",
+          "L45:       during the last great visitation in 1665.",
+          "L46:        Written by a CITIZEN who continued",
+          "L47:       all the while in London_.",
+          "L48:       Never made publick before",
+          "L49: ",
+          "L50: ",
+          "L51:       It was about the beginning of September, 1664, that I, among the"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 9525,
+        "reason": "Ends immediately before the Project Gutenberg end marker.",
+        "snippet": "*** END OF THE PROJECT GUTENBERG EBOOK A JOURNAL OF THE PLAGUE YEAR *** Updated editions will replace the previous one—the old editions will",
+        "linesAfter": [
+          "L9525: ",
+          "L9526: *** END OF THE PROJECT GUTENBERG EBOOK A JOURNAL OF THE PLAGUE YEAR ***",
+          "L9527: ",
+          "L9528: ",
+          "L9529:     ",
+          "L9530: ",
+          "L9531: Updated editions will replace the previous one—the old editions will",
+          "L9532: be renamed.",
+          "L9533: ",
+          "L9534: Creating the works from print editions not protected by U.S. copyright",
+          "L9535: law means that no one owns a United States copyright in these works,",
+          "L9536: so the Foundation (and you!) can copy and distribute it in the United",
+          "L9537: States without permission and without paying copyright"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 197,
+        "lineRange": "1-50"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3007,
+        "lineRange": "9526-9876"
+      },
+      "sectionCount": 18,
+      "firstFiveSections": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "wordCount": 5413
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "wordCount": 5115
+        },
+        {
+          "id": "part-003",
+          "label": "Part 3",
+          "title": null,
+          "wordCount": 5256
+        },
+        {
+          "id": "part-004",
+          "label": "Part 4",
+          "title": null,
+          "wordCount": 5327
+        },
+        {
+          "id": "part-005",
+          "label": "Part 5",
+          "title": null,
+          "wordCount": 5430
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "part-014",
+          "label": "Part 14",
+          "title": null,
+          "wordCount": 5135
+        },
+        {
+          "id": "part-015",
+          "label": "Part 15",
+          "title": null,
+          "wordCount": 5342
+        },
+        {
+          "id": "part-016",
+          "label": "Part 16",
+          "title": null,
+          "wordCount": 5289
+        },
+        {
+          "id": "part-017",
+          "label": "Part 17",
+          "title": null,
+          "wordCount": 5423
+        },
+        {
+          "id": "part-018",
+          "label": "Part 18",
+          "title": null,
+          "wordCount": 3783
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 1,
+        "numberedReferencesRemoved": 10,
+        "decorativeLinesRemoved": 12,
+        "standaloneFinisLinesRemoved": 1,
+        "unicodeNormalized": true,
+        "dashesNormalized": true
+      },
+      "remainingWarnings": [
+        "No chapter headings were detected; generated fallback parts instead."
+      ],
+      "firstHourPreviewSourceSections": [
+        "part-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": "No existing generated output was present.",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "dracula",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Dracula.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/dracula/manifest.json",
+        "app/client/assets/books/generated/dracula/cleaned_book.json",
+        "app/client/assets/books/generated/dracula/processed_book.json",
+        "app/client/assets/books/generated/dracula/rights_report.json",
+        "app/client/assets/books/generated/dracula/processing_notes.md",
+        "app/client/assets/books/generated/dracula/sections/chapter-001.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-002.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-003.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-004.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-005.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-006.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-007.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-008.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-009.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-010.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-011.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-012.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-013.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-014.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-015.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-016.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-017.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-018.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-019.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-020.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-021.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-022.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-023.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-024.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-025.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-026.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-027.json",
+        "app/client/assets/books/generated/dracula/sections/notes-001.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/dracula.preview.json",
+      "candidateTitle": "Dracula",
+      "candidateAuthor": [
+        "Bram Stoker"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 116,
+        "reason": "Starts at CHAPTER I after title-page, dedication, table of contents, and opening editorial note.",
+        "snippet": "CHAPTER I JONATHAN HARKER’S JOURNAL (_Kept in shorthand._)",
+        "linesBefore": [
+          "L104: past things wherein memory may err, for all the records chosen are",
+          "L105: exactly contemporary, given from the standpoints and within the range",
+          "L106: of knowledge of those who made them.",
+          "L107: ",
+          "L108: ",
+          "L109: ",
+          "L110: ",
+          "L111: DRACULA",
+          "L112: ",
+          "L113: ",
+          "L114: ",
+          "L115: ",
+          "L116: CHAPTER I"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 15436,
+        "reason": "Ends at the novel's own THE END and excludes the publisher catalog.",
+        "snippet": "THE END * * * * * _There’s More to Follow!_ More stories of the sort you like; more, probably, by the author of",
+        "linesAfter": [
+          "L15436:                                 THE END",
+          "L15437: ",
+          "L15438:        *       *       *       *       *",
+          "L15439: ",
+          "L15440:                        _There’s More to Follow!_",
+          "L15441: ",
+          "L15442:      More stories of the sort you like; more, probably, by the author of",
+          "L15443:      this one; more than 500 titles all told by writers of world-wide",
+          "L15444:      reputation, in the Authors’ Alphabetical List which you will find",
+          "L15445:      on the _reverse side_ of the wrapper of this book. Look it over",
+          "L15446:      before you lay it aside. There are books here you are sure to",
+          "L15447:      want--some, possibly, that you have _always_ wanted.",
+          "L15448: "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 432,
+        "lineRange": "1-115"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3229,
+        "lineRange": "15437-15853"
+      },
+      "sectionCount": 28,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "JONATHAN HARKER'S JOURNAL",
+          "wordCount": 5736
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "wordCount": 5510
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "wordCount": 5726
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 5856
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "wordCount": 3579
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-024",
+          "label": "Chapter 24",
+          "title": "DR. SEWARD'S PHONOGRAPH DIARY, SPOKEN BY VAN HELSING",
+          "wordCount": 6318
+        },
+        {
+          "id": "chapter-025",
+          "label": "Chapter 25",
+          "title": "DR. SEWARD'S DIARY",
+          "wordCount": 6270
+        },
+        {
+          "id": "chapter-026",
+          "label": "Chapter 26",
+          "title": "DR. SEWARD'S DIARY",
+          "wordCount": 7143
+        },
+        {
+          "id": "chapter-027",
+          "label": "Chapter 27",
+          "title": "MINA HARKER'S JOURNAL",
+          "wordCount": 7619
+        },
+        {
+          "id": "notes-001",
+          "label": "Notes",
+          "title": null,
+          "wordCount": 351
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 128,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": "Prior Dracula output included title-page/contents material and mojibake in readable sections; pilot write 1 regenerates from UTF-8 source, starts at CHAPTER I, excludes the publisher catalog, and keeps the final note outside default playback.",
+      "finalRecommendation": "needs manual review before scaling"
+    }
+  ],
+  "confirmations": {
+    "tempBooksModified": false,
+    "cloudflareExportModified": false,
+    "processedOnlyApprovedPilotBooks": true,
+    "allBookBuildRun": false
+  }
+}
