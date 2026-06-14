@@ -116,6 +116,23 @@ function formatCount(value: number, label: string) {
   return `${value.toLocaleString("en-US")} ${label}`;
 }
 
+const FEATURED_BOOK_LIMIT = 4;
+
+function selectRandomFeaturedBooks<T>(books: readonly T[], limit: number) {
+  if (books.length <= limit) return [...books];
+
+  const pool = [...books];
+  const selected: T[] = [];
+
+  while (selected.length < limit && pool.length > 0) {
+    const index = Math.floor(Math.random() * pool.length);
+    const [book] = pool.splice(index, 1);
+    if (book) selected.push(book);
+  }
+
+  return selected;
+}
+
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3">
@@ -182,16 +199,25 @@ function OfferingsSection() {
 }
 
 function FeaturedBooksSection() {
-  const featuredBooks = getPublishedMorseBookSummaries().slice(0, 4);
+  const availableBooks = React.useMemo(() => getPublishedMorseBookSummaries(), []);
+  const [featuredBooks, setFeaturedBooks] = React.useState(() =>
+    availableBooks.slice(0, FEATURED_BOOK_LIMIT),
+  );
+
+  React.useEffect(() => {
+    setFeaturedBooks(
+      selectRandomFeaturedBooks(availableBooks, FEATURED_BOOK_LIMIT),
+    );
+  }, [availableBooks]);
 
   if (featuredBooks.length === 0) return null;
 
   return (
     <section
-      className="mw-bg-page-soft relative left-1/2 mt-12 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/35 px-4 py-10 sm:px-6 lg:px-8"
+      className="mw-bg-page-soft relative left-1/2 mt-12 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/35 py-10"
       aria-labelledby="featured-morse-books-title"
     >
-      <div className="mx-auto max-w-[1160px]">
+      <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-7 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end">
           <div>
             <SectionEyebrow>Books and audiobooks</SectionEyebrow>
@@ -224,68 +250,95 @@ function FeaturedBooksSection() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {featuredBooks.map((book) => (
-            <article
-              key={book.slug}
-              className="mw-static-surface rounded-xl bg-[#fffdf8] p-4"
-            >
-              <div className="flex items-start gap-3">
+        <div className="mt-8 grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {featuredBooks.map((book) => {
+            const bookPath = morseBookPath(book.slug);
+            const authorText = formatMorseBookAuthors(book.author);
+            const description =
+              book.description ||
+              "Open cleaned public book text for Morse reading, listening, and MP3 download practice.";
+
+            return (
+              <article
+                key={book.slug}
+                className="mw-static-surface flex h-full min-w-0 flex-col rounded-xl bg-[#fffdf8] p-4"
+                data-testid="home-featured-book-card"
+                data-mw-home-book-slug={book.slug}
+                data-mw-home-book-title={book.title}
+                data-mw-home-book-author={authorText}
+              >
                 <div
-                  className="mw-static-tile flex h-20 w-14 shrink-0 items-center justify-center rounded-lg bg-[#f2eee6] px-2 text-center font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-sky-950"
-                  aria-hidden="true"
+                  className="mw-static-tile flex min-h-44 flex-col justify-between rounded-xl bg-[#f2eee6] p-4"
                 >
-                  Morse book
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                    MorseWords book
+                  </span>
+                  <div className="min-w-0 pt-8">
+                    <h3
+                      className="mw-heading line-clamp-2 break-words text-xl font-extrabold leading-tight text-sky-950"
+                      title={book.title}
+                      data-testid="home-featured-book-title"
+                    >
+                      {book.title}
+                    </h3>
+                    <p
+                      className="mt-3 truncate text-sm font-semibold text-slate-600"
+                      title={authorText}
+                      data-testid="home-featured-book-author"
+                    >
+                      {authorText}
+                    </p>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <h3 className="mw-heading text-base font-extrabold leading-snug text-sky-950">
-                    {book.title}
-                  </h3>
-                  <p className="mw-text-soft mt-1 text-sm leading-relaxed text-slate-600">
-                    {formatMorseBookAuthors(book.author)}
-                  </p>
-                </div>
-              </div>
 
-              <p className="mw-text-muted mt-3 line-clamp-3 text-sm leading-relaxed text-slate-700">
-                {book.description}
-              </p>
-
-              <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                <div>
-                  <dt className="mw-muted-label font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                    Sections
-                  </dt>
-                  <dd className="mw-text-muted mt-1 text-slate-700">
-                    {formatCount(book.stats.includedSectionCount, "sections")}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="mw-muted-label font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                    Words
-                  </dt>
-                  <dd className="mw-text-muted mt-1 text-slate-700">
-                    {formatCount(book.stats.wordCount, "words")}
-                  </dd>
-                </div>
-              </dl>
-
-              <div className="mt-4 flex flex-wrap gap-3 text-sm">
-                <Link
-                  to={morseBookPath(book.slug)}
-                  className="mw-link font-semibold text-sky-900 underline-offset-4 hover:underline"
+                <p
+                  className="mw-text-muted mt-4 line-clamp-3 text-sm leading-relaxed text-slate-700"
+                  title={description}
+                  data-testid="home-featured-book-description"
                 >
-                  Open live player
-                </Link>
-                <Link
-                  to={morseBookPath(book.slug)}
-                  className="mw-link font-semibold text-sky-900 underline-offset-4 hover:underline"
-                >
-                  Download MP3
-                </Link>
-              </div>
-            </article>
-          ))}
+                  {description}
+                </p>
+
+                <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
+                  <div className="min-w-0">
+                    <dt className="mw-muted-label font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      Sections
+                    </dt>
+                    <dd className="mw-text-muted mt-1 truncate text-slate-700">
+                      {formatCount(book.stats.includedSectionCount, "sections")}
+                    </dd>
+                  </div>
+                  <div className="min-w-0">
+                    <dt className="mw-muted-label font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      Words
+                    </dt>
+                    <dd className="mw-text-muted mt-1 truncate text-slate-700">
+                      {formatCount(book.stats.wordCount, "words")}
+                    </dd>
+                  </div>
+                </dl>
+
+                <div className="mt-auto flex flex-wrap gap-2 pt-4 text-sm">
+                  <Link
+                    to={bookPath}
+                    className="mw-button-outline mw-button-secondary-dark-hover inline-flex min-h-10 items-center rounded-lg bg-[#fffdf8] px-3 py-1.5 font-bold text-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    title={`Open ${book.title}`}
+                    data-testid="home-featured-book-primary-link"
+                  >
+                    Open live player
+                  </Link>
+                  <Link
+                    to={bookPath}
+                    className="mw-link inline-flex min-h-10 items-center font-semibold text-sky-900 underline-offset-4 hover:underline"
+                    title={`Open MP3 download controls for ${book.title}`}
+                    data-testid="home-featured-book-mp3-link"
+                  >
+                    Download MP3
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
