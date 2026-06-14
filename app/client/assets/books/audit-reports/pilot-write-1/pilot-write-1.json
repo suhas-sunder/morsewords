@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportName": "pilot-write-1",
-  "generatedAt": "2026-06-14T16:36:33.037Z",
+  "generatedAt": "2026-06-14T16:53:03.150Z",
   "inputReports": {
     "pass1": "app/client/assets/books/audit-reports/book-processing-audit-pass-1.json",
     "pass2": "app/client/assets/books/audit-reports/book-processing-audit-pass-2.json",
@@ -229,7 +229,7 @@
         "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-023.json"
       ],
       "previewAssetFileChanged": "public/book-previews/the-house-without-a-key.preview.json",
-      "candidateTitle": "The house without a key",
+      "candidateTitle": "The House Without a Key",
       "candidateAuthor": [
         "Earl Derr Biggers"
       ],
@@ -547,7 +547,7 @@
         "app/client/assets/books/generated/a-dream-of-armageddon/sections/part-002.json"
       ],
       "previewAssetFileChanged": "public/book-previews/a-dream-of-armageddon.preview.json",
-      "candidateTitle": "Twelve Stories and a Dream",
+      "candidateTitle": "A Dream of Armageddon",
       "candidateAuthor": [
         "H. G. Wells"
       ],

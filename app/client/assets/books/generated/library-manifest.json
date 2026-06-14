@@ -3626,12 +3626,12 @@
     },
     {
       "slug": "a-dream-of-armageddon",
-      "title": "Twelve Stories and a Dream",
+      "title": "A Dream of Armageddon",
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "098fc3894d321285",
-      "contentHash": "098fc3894d3212855aad3d641c8609aa7796fda6d3d8a520699ac797cac1f2c5",
+      "contentVersion": "7385067d298d1424",
+      "contentHash": "7385067d298d1424a80bbc7c039e339b4614b4bc13855cdc6a1fb6c85c74df08",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3656,7 +3656,7 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Twelve Stories and a Dream"
+        "alt": "Placeholder cover for A Dream of Armageddon"
       },
       "stats": {
         "originalCharacterCount": 55119,
@@ -3724,12 +3724,12 @@
     },
     {
       "slug": "the-house-without-a-key",
-      "title": "The house without a key",
+      "title": "The House Without a Key",
       "author": [
         "Earl Derr Biggers"
       ],
-      "contentVersion": "1cf06171fb66cb1e",
-      "contentHash": "1cf06171fb66cb1efcf8360dbd1ed47cc29c24e8fa1ce0fe0c544da32fcc97fa",
+      "contentVersion": "47f9002a7d45edf7",
+      "contentHash": "47f9002a7d45edf7eb2b89b9ca60824a200fbf5231e99d74598294dd4bf3b140",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3754,7 +3754,7 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for The house without a key"
+        "alt": "Placeholder cover for The House Without a Key"
       },
       "stats": {
         "originalCharacterCount": 499378,

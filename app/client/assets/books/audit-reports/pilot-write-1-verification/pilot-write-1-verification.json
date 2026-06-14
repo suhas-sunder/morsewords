@@ -1,0 +1,538 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-1-verification",
+  "generatedAt": "2026-06-14T16:53:17.078Z",
+  "pilotSlugs": [
+    "almayer-s-folly-a-story-of-an-eastern-river",
+    "the-house-without-a-key",
+    "the-lerouge-case",
+    "a-dream-of-armageddon",
+    "a-journey-to-the-centre-of-the-earth",
+    "a-journal-of-the-plague-year",
+    "dracula"
+  ],
+  "inspectedPaths": {
+    "tempBooksRoot": "app/client/assets/temp-books",
+    "generatedRoot": "app/client/assets/books/generated",
+    "previewRoot": "public/book-previews",
+    "cloudflareRoot": "app/client/assets/books/cloudflare-export",
+    "writeReport": "app/client/assets/books/audit-reports/pilot-write-1/pilot-write-1.json"
+  },
+  "summary": {
+    "pass": 5,
+    "warn": 2,
+    "fail": 0
+  },
+  "books": [
+    {
+      "slug": "almayer-s-folly-a-story-of-an-eastern-river",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/manifest.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-001.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-002.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-003.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-004.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-005.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-006.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-007.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-008.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-009.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-010.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-011.json",
+        "app/client/assets/books/generated/almayer-s-folly-a-story-of-an-eastern-river/sections/chapter-012.json"
+      ],
+      "previewAssetInspected": "public/book-previews/almayer-s-folly-a-story-of-an-eastern-river.preview.json",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the expected readable boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the expected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows source headings with meaningful sections.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes boilerplate and obvious playback-hostile artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I. \"Kaspar! Makan!\" The well-known shrill voice startled Almayer from his dream of splendid future into the unpleasant realities of the present hour. An unpleasant voice too. He had heard it for many years, and with every year he liked it less. No matter; there would be an end to all this soon.",
+        "generated": "CHAPTER I. \"Kaspar! Makan!\" The well-known shrill voice startled Almayer from his dream of splendid future into the unpleasant realities of the present hour. An unpleasant voice too. He had heard it for many years, and with every year he liked it less. No matter; there would be an end to all this soon. He shuffled une..."
+      },
+      "endSnippet": {
+        "raw": "And as they passed through the crowd that fell back before them, the beads in Abdulla's hand clicked, while in a solemn whisper he breathed out piously the name of Allah! The Merciful! The Compassionate!",
+        "generated": "he died. Abdulla looked down sadly at this Infidel he had fought so long and had bested so many times. Such was the reward of the Faithful! Yet in the Arab's old heart there was a feeling of regret for that thing gone out of his life. He was leaving fast behind him friendships, and enmities, successes, and disappointm..."
+      },
+      "metadataCorrectionsObserved": []
+    },
+    {
+      "slug": "the-house-without-a-key",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-house-without-a-key/manifest.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-house-without-a-key/sections/chapter-023.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-house-without-a-key.preview.json",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the expected readable boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the expected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows source headings with meaningful sections.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes boilerplate and obvious playback-hostile artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Normalized generated title capitalization from \"The house without a key\" to \"The House Without a Key\"."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I KONA WEATHER Miss Minerva Winterslip was a Bostonian in good standing, and long past the romantic age. Yet beauty thrilled her still, even the semi-barbaric beauty of a Pacific island. As she walked slowly along the beach she felt the little catch in her throat that sometimes she had known in",
+        "generated": "CHAPTER I KONA WEATHER Miss Minerva Winterslip was a Bostonian in good standing, and long past the romantic age. Yet beauty thrilled her still, even the semi-barbaric beauty of a Pacific island. As she walked slowly along the beach she felt the little catch in her throat that sometimes she had known in Symphony Hall,..."
+      },
+      "endSnippet": {
+        "raw": "",
+        "generated": "t the same instant John Quincy seized the girl's hands. \"Listen to me. I can't wait another second. I want to tell you that I love you--\" \"You're mad,\" she cried. \"Mad about you. Ever since that day on the ferry--\" \"But your people?\" \"What about my people? It's just you and I--we'll live in San Francisco--that is, if..."
+      },
+      "metadataCorrectionsObserved": [
+        "Normalized generated title capitalization from \"The house without a key\" to \"The House Without a Key\"."
+      ]
+    },
+    {
+      "slug": "the-lerouge-case",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-lerouge-case/manifest.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-lerouge-case/sections/chapter-020.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-lerouge-case.preview.json",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the expected readable boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the expected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows source headings with meaningful sections.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes boilerplate and obvious playback-hostile artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I. On Thursday, the 6th of March, 1862, two days after Shrove Tuesday, five women belonging to the village of La Jonchere presented themselves at the police station at Bougival. They stated that for two days past no one had seen the Widow Lerouge, one of their neighbours, who lived by herself in an isolated co...",
+        "generated": "CHAPTER I. On Thursday, the 6th of March, 1862, two days after Shrove Tuesday, five women belonging to the village of La Jonchere presented themselves at the police station at Bougival. They stated that for two days past no one had seen the Widow Lerouge, one of their neighbours, who lived by herself in an isolated co..."
+      },
+      "endSnippet": {
+        "raw": "errors. The ex-amateur detective doubts the very existence of crime, and maintains that the evidence of one’s senses proves nothing. He circulates petitions for the abolition of capital punishment, and has organised a society for the defence of poor and innocent prisoners.",
+        "generated": "ng against her son-in-law! Retiring to his father's home in Poitou, after sending in his resignation, M. Daburon has at length found rest; forgetfulness will come later on. His friends do not yet despair of inducing him to marry. Madame Juliette is quite consoled for the loss of Noel. The eighty thousand francs hidden..."
+      },
+      "metadataCorrectionsObserved": []
+    },
+    {
+      "slug": "a-dream-of-armageddon",
+      "status": "warn",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/a-dream-of-armageddon/manifest.json",
+        "app/client/assets/books/generated/a-dream-of-armageddon/sections/part-001.json",
+        "app/client/assets/books/generated/a-dream-of-armageddon/sections/part-002.json"
+      ],
+      "previewAssetInspected": "public/book-previews/a-dream-of-armageddon.preview.json",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the expected readable boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the expected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Source is a single story without internal headings; 2 fallback parts are acceptable for review.",
+        "details": [
+          "Fallback split is at paragraph boundaries and preserves the story from title through final sentence."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes boilerplate and obvious playback-hostile artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "No chapter headings were detected; generated fallback parts instead.",
+        "Corrected generated title from the Gutenberg collection header \"Twelve Stories and a Dream\" to the story title \"A Dream of Armageddon\".",
+        "Accepted with warning; review before larger scaling."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "A DREAM OF ARMAGEDDON The man with the white face entered the carriage at Rugby. He moved slowly in spite of the urgency of his porter, and even while he was still on the platform I noted how ill he seemed. He dropped into the corner over against me with a sigh, made an incomplete attempt to arrange his travelling sha...",
+        "generated": "A DREAM OF ARMAGEDDON The man with the white face entered the carriage at Rugby. He moved slowly in spite of the urgency of his porter, and even while he was still on the platform I noted how ill he seemed. He dropped into the corner over against me with a sigh, made an incomplete attempt to arrange his travelling sha..."
+      },
+      "endSnippet": {
+        "raw": "“I couldn't get to her. She was there on the other side of the Temple—And then—” “Yes,” I insisted. “Yes?” “Nightmares,” he cried; “nightmares indeed! My God! Great birds that fought and tore.”",
+        "generated": "rutal face before me, the face of the man who had killed me, seemed to recede. It swept out of existence-\" \"Euston!\" clamoured the voices outside; \"Euston!\" The carriage door opened, admitting a flood of sound, and a porter stood regarding us. The sounds of doors slamming, and the hoof-clatter of cab-horses, and behin..."
+      },
+      "metadataCorrectionsObserved": [
+        "Corrected generated title from the Gutenberg collection header \"Twelve Stories and a Dream\" to the story title \"A Dream of Armageddon\"."
+      ]
+    },
+    {
+      "slug": "a-journey-to-the-centre-of-the-earth",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/manifest.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-001.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-002.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-003.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-004.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-005.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-006.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-007.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-008.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-009.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-010.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-011.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-012.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-013.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-014.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-015.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-016.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-017.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-018.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-019.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-020.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-021.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-022.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-023.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-024.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-025.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-026.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-027.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-028.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-029.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-030.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-031.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-032.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-033.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-034.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-035.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-036.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-037.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-038.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-039.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-040.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-041.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-042.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-043.json",
+        "app/client/assets/books/generated/a-journey-to-the-centre-of-the-earth/sections/chapter-044.json"
+      ],
+      "previewAssetInspected": "public/book-previews/a-journey-to-the-centre-of-the-earth.preview.json",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the expected readable boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the expected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows source headings with meaningful sections.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes boilerplate and obvious playback-hostile artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER 1 MY UNCLE MAKES A GREAT DISCOVERY Looking back to all that has occurred to me since that eventful day, I am scarcely able to believe in the reality of my adventures. They were truly so wonderful that even now I am bewildered when I think of them.",
+        "generated": "CHAPTER 1 MY UNCLE MAKES A GREAT DISCOVERY Looking back to all that has occurred to me since that eventful day, I am scarcely able to believe in the reality of my adventures. They were truly so wonderful that even now I am bewildered when I think of them. My uncle was a German, having married my mother's sister, an En..."
+      },
+      "endSnippet": {
+        "raw": "End of the Voyage Extraordinaire",
+        "generated": "is now easily explained. But to what phenomenon do we owe this alteration in the needle?\" \"Nothing more simple.\" \"Explain yourself, my boy. I am on thorns.\" \"During the storm, upon the Central Sea, the ball of fire which made a magnet of the iron in our raft, turned our compass topsy-turvy.\" \"Ah!\" cried the Professor,..."
+      },
+      "metadataCorrectionsObserved": []
+    },
+    {
+      "slug": "a-journal-of-the-plague-year",
+      "status": "warn",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/manifest.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-001.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-002.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-003.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-004.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-005.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-006.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-007.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-008.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-009.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-010.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-011.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-012.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-013.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-014.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-015.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-016.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-017.json",
+        "app/client/assets/books/generated/a-journal-of-the-plague-year/sections/part-018.json"
+      ],
+      "previewAssetInspected": "public/book-previews/a-journal-of-the-plague-year.preview.json",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the expected readable boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the expected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Source lacks clean chapter headings; 18 fallback parts are acceptable but manual section labels would improve polish before scaling.",
+        "details": [
+          "Parts are consecutive paragraph-boundary chunks with no tiny terminal leftovers."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes boilerplate and obvious playback-hostile artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "No chapter headings were detected; generated fallback parts instead.",
+        "Accepted with warning; review before larger scaling."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "It was about the beginning of September, 1664, that I, among the rest of my neighbours, heard in ordinary discourse that the plague was returned again in Holland; for it had been very violent there, and particularly at Amsterdam and Rotterdam, in the year 1663, whither, they say, it was brought, some said from Italy,...",
+        "generated": "It was about the beginning of September, 1664, that I, among the rest of my neighbours, heard in ordinary discourse that the plague was returned again in Holland; for it had been very violent there, and particularly at Amsterdam and Rotterdam, in the year 1663, whither, they say, it was brought, some said from Italy,..."
+      },
+      "endSnippet": {
+        "raw": "H. F. [Illustration] FINIS",
+        "generated": "might too justly be said of them as was said of the children of Israel after their being delivered from the host of Pharaoh, when they passed the Red Sea, and looked back and saw the Egyptians overwhelmed in the water: viz., that they sang His praise, but they soon forgot His works. I can go no farther here. I should..."
+      },
+      "metadataCorrectionsObserved": []
+    },
+    {
+      "slug": "dracula",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/dracula/manifest.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-001.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-002.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-003.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-004.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-005.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-006.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-007.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-008.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-009.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-010.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-011.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-012.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-013.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-014.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-015.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-016.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-017.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-018.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-019.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-020.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-021.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-022.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-023.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-024.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-025.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-026.json",
+        "app/client/assets/books/generated/dracula/sections/chapter-027.json",
+        "app/client/assets/books/generated/dracula/sections/notes-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/dracula.preview.json",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the expected readable boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the expected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows source headings with meaningful sections.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes boilerplate and obvious playback-hostile artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I JONATHAN HARKER’S JOURNAL (_Kept in shorthand._) _3 May. Bistritz._--Left Munich at 8:35 P. M., on 1st May, arriving at Vienna early next morning; should have arrived at 6:46, but train was an",
+        "generated": "CHAPTER I JONATHAN HARKER'S JOURNAL (_Kept in shorthand._) _3 May. Bistritz._--Left Munich at 8:35 P. M., on 1st May, arriving at Vienna early next morning; should have arrived at 6:46, but train was an hour late. Buda-Pesth seems a wonderful place, from the glimpse which I got of it from the train and the little I co..."
+      },
+      "endSnippet": {
+        "raw": "“We want no proofs; we ask none to believe us! This boy will some day know what a brave and gallant woman his mother is. Already he knows her sweetness and loving care; later on he will understand how some men so loved her, that they did dare much for her sake.” JONATHAN HARKER. THE END",
+        "generated": "ch we could all look back on without despair, for Godalming and Seward are both happily married. I took the papers from the safe where they had been ever since our return so long ago. We were struck with the fact, that in all the mass of material of which the record is composed, there is hardly one authentic document;..."
+      },
+      "metadataCorrectionsObserved": []
+    }
+  ],
+  "conclusions": {
+    "acceptedForMain": [
+      "almayer-s-folly-a-story-of-an-eastern-river",
+      "the-house-without-a-key",
+      "the-lerouge-case",
+      "a-dream-of-armageddon",
+      "a-journey-to-the-centre-of-the-earth",
+      "a-journal-of-the-plague-year",
+      "dracula"
+    ],
+    "needsCorrectionBeforeMain": [],
+    "shouldBeRevertedOrSkipped": [],
+    "correctionsMadeBeforeVerification": [
+      "Normalized generated title capitalization from \"The house without a key\" to \"The House Without a Key\".",
+      "Corrected generated title from the Gutenberg collection header \"Twelve Stories and a Dream\" to the story title \"A Dream of Armageddon\"."
+    ]
+  },
+  "confirmations": {
+    "inspectedOnlyPilotBooks": true,
+    "tempBooksModified": false,
+    "cloudflareExportModified": false,
+    "unrelatedGeneratedBooksTouched": false,
+    "allBookProcessingRun": false
+  }
+}

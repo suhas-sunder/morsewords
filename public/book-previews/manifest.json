@@ -820,8 +820,8 @@
     {
       "slug": "a-dream-of-armageddon",
       "path": "/book-previews/a-dream-of-armageddon.preview.json",
-      "contentVersion": "098fc3894d321285",
-      "contentHash": "098fc3894d3212855aad3d641c8609aa7796fda6d3d8a520699ac797cac1f2c5",
+      "contentVersion": "7385067d298d1424",
+      "contentHash": "7385067d298d1424a80bbc7c039e339b4614b4bc13855cdc6a1fb6c85c74df08",
       "defaultSectionId": "part-001",
       "previewBytes": 9695,
       "previewCharacterCount": 8791,
@@ -842,8 +842,8 @@
     {
       "slug": "the-house-without-a-key",
       "path": "/book-previews/the-house-without-a-key.preview.json",
-      "contentVersion": "1cf06171fb66cb1e",
-      "contentHash": "1cf06171fb66cb1efcf8360dbd1ed47cc29c24e8fa1ce0fe0c544da32fcc97fa",
+      "contentVersion": "47f9002a7d45edf7",
+      "contentHash": "47f9002a7d45edf7eb2b89b9ca60824a200fbf5231e99d74598294dd4bf3b140",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10757,
       "previewCharacterCount": 9738,

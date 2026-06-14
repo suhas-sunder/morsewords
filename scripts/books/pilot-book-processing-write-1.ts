@@ -278,6 +278,11 @@ const authorDeathYears: Record<string, number> = {
   dracula: 1912,
 };
 
+const titleOverrides: Record<string, string> = {
+  "a-dream-of-armageddon": "A Dream of Armageddon",
+  "the-house-without-a-key": "The House Without a Key",
+};
+
 function readJson<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
 }
@@ -452,6 +457,7 @@ function makeMetadata(
   boundary: PilotBoundary,
 ): BookMetadata {
   const author = dryRun.candidateAuthor.length > 0 ? dryRun.candidateAuthor : ["Unknown"];
+  const title = titleOverrides[dryRun.slug] ?? dryRun.candidateTitle;
   const gutenbergId = extractGutenbergId(rawText);
   const releaseDateRaw = extractHeaderValue(rawText, "Release date");
   const releaseDate = releaseDateRaw?.replace(/\s*\[.*$/, "").trim() ?? null;
@@ -460,7 +466,7 @@ function makeMetadata(
     slug: dryRun.slug,
     metadataStatus: "reviewed",
     manualReviewRequired: dryRun.pass2RiskLevel !== "low",
-    title: dryRun.candidateTitle,
+    title,
     author,
     language: "en",
     source: {
@@ -478,7 +484,7 @@ function makeMetadata(
     cover: {
       src: null,
       placeholder: true,
-      alt: `Placeholder cover for ${dryRun.candidateTitle}`,
+      alt: `Placeholder cover for ${title}`,
     },
     description: "",
     subjects: [],
@@ -1131,7 +1137,7 @@ function processPilotBook(dryRun: DryRunBook): {
     sourceFileUsed: statusPath(sourcePath),
     generatedOutputFilesChanged: [],
     previewAssetFileChanged: null,
-    candidateTitle: dryRun.candidateTitle,
+    candidateTitle: metadata.title,
     candidateAuthor: metadata.author,
     pass2RiskLevel: dryRun.pass2RiskLevel,
     startBoundaryUsed: {

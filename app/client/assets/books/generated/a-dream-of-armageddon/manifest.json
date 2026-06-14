@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "slug": "a-dream-of-armageddon",
-  "title": "Twelve Stories and a Dream",
+  "title": "A Dream of Armageddon",
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "098fc3894d321285",
-  "contentHash": "098fc3894d3212855aad3d641c8609aa7796fda6d3d8a520699ac797cac1f2c5",
+  "contentVersion": "7385067d298d1424",
+  "contentHash": "7385067d298d1424a80bbc7c039e339b4614b4bc13855cdc6a1fb6c85c74df08",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -31,7 +31,7 @@
   "cover": {
     "src": null,
     "placeholder": true,
-    "alt": "Placeholder cover for Twelve Stories and a Dream"
+    "alt": "Placeholder cover for A Dream of Armageddon"
   },
   "stats": {
     "originalCharacterCount": 55119,

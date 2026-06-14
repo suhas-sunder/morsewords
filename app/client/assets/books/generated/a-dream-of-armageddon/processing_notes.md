@@ -1,4 +1,4 @@
-# Twelve Stories and a Dream
+# A Dream of Armageddon
 
 Processed by pilot write pass 1.
 
