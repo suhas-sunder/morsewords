@@ -2826,238 +2826,247 @@ export default function BookTranslatorTool() {
 
           <section
             id="book-download-controls"
-            className="space-y-4 scroll-mt-24 pt-1"
-            aria-labelledby="book-download-controls-heading"
+            className="scroll-mt-24"
+            aria-label="Download MP3"
+            data-testid="book-download-controls"
           >
-            <h3
-              id="book-download-controls-heading"
-              className="text-base font-extrabold text-sky-950"
+            <ToolPanel
+              label="Preview and download"
+              badge={hasCleanedSource ? "Ready" : "Waiting"}
             >
-              Download MP3
-            </h3>
-
-            <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              <Metric label="Preset" value={exportSettings.presetName} />
-              <Metric label="Format" value="MP3" />
-              <Metric
-                label="Runtime"
-                value={
-                  hasSource
-                    ? formatDuration(exportAnalysis.totalRuntimeMs)
-                    : "Waiting"
-                }
-              />
-              <Metric
-                label="Parts"
-                value={hasSource ? formatNumber(exportParts.length) : "0"}
-              />
-              <Metric
-                label={splitEnabled ? "Target part" : "Split"}
-                value={
-                  splitEnabled
-                    ? formatDuration(exportPlan.targetPartMs)
-                    : "Off"
-                }
-              />
-              <Metric
-                label="Output size"
-                value={`~${exportAnalysis.estimatedSizeLabel}`}
-              />
-              <Metric label="Render time" value={renderEstimateLabel} />
-            </dl>
-
-            {sourceDraftActive ? (
-              <p className="mt-4 text-sm font-semibold text-slate-600">
-                Draft edits are not included until you apply them.
-              </p>
-            ) : null}
-            {exportDisabledReason ? (
-              <p
-                id="book-download-disabled-reason"
-                className="mt-4 text-sm font-semibold text-slate-600"
-              >
-                {exportDisabledReason}
-              </p>
-            ) : null}
-            {isAudioOutput ? (
-              <MessageList
-                title="Download warnings"
-                items={exportWarnings}
-                tone="warning"
-              />
-            ) : null}
-            {longExportMessages.length > 0 ? (
-              <MessageList
-                title="Download notes"
-                items={longExportMessages}
-                tone="info"
-              />
-            ) : null}
-
-            <fieldset className="mt-4">
-              <legend className="text-sm font-semibold text-slate-700">
-                Split download
-              </legend>
-              <div
-                className="mt-2 flex flex-wrap gap-2"
-                role="radiogroup"
-                aria-label="Split download"
-              >
-                {(["none", "duration"] as const).map((mode) => (
-                  <button
-                    key={mode}
-                    type="button"
-                    role="radio"
-                    aria-checked={splitMode === mode}
-                    onClick={() => updateExportSettings({ splitMode: mode })}
-                    className={toolControlButtonClass({
-                      active: splitMode === mode,
-                      tone: splitMode === mode ? "dark" : "light",
-                      size: "sm",
-                      rounded: "full",
-                      hover: "dark",
-                    })}
-                  >
-                    {BOOK_SPLIT_MODE_LABELS[mode]}
-                  </button>
-                ))}
-              </div>
-              <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
-                {splitSummaryText}
-              </p>
-              {splitMode !== "none" ? (
-                <LabeledSelect
-                  label="Target part length"
-                  value={String(splitTargetPartMinutes)}
-                  onChange={(value) => {
-                    const targetPartMinutes = Number(value);
-                    updateExportSettings({ targetPartMinutes });
-                  }}
-                >
-                  <option value="15">15 minutes</option>
-                  <option value="30">30 minutes recommended</option>
-                  <option value="45">45 minutes</option>
-                  <option value="60">60 minutes experimental</option>
-                </LabeledSelect>
-              ) : null}
-            </fieldset>
-
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
-              {zipBatchWorkflow && totalBatches > 0 ? (
-                <LabeledSelect
-                  label="ZIP batch"
-                  value={String(selectedExportBatch?.batchNumber ?? 1)}
-                  disabled={exportRunning}
-                  onChange={(value) => setSelectedBatchNumber(Number(value))}
-                >
-                  {exportBatches.map((batch) => (
-                    <option key={batch.batchNumber} value={batch.batchNumber}>
-                      Batch {batch.batchNumber} of {batch.totalBatches} -{" "}
-                      {formatDuration(batch.runtimeMs)}
-                    </option>
-                  ))}
-                </LabeledSelect>
-              ) : null}
-              <ToolButton
-                type="button"
-                tone="dark"
-                onClick={handleDownloadBook}
-                disabled={!canExport}
-                aria-describedby={
-                  exportDisabledReason
-                    ? "book-download-disabled-reason"
-                    : undefined
-                }
-                className="rounded-xl"
-              >
-                {exportRunning ? (
-                  <span
-                    className="h-2.5 w-2.5 animate-pulse rounded-full bg-current"
-                    aria-hidden="true"
-                  />
-                ) : (
-                  <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-                )}
-                {downloadButtonLabel}
-              </ToolButton>
-              {exportRunning ? (
-                <ToolButton
-                  type="button"
-                  tone="light"
-                  hover="dark"
-                  onClick={() => cancelActiveExport()}
-                  disabled={!exportRunning}
-                  className="rounded-xl"
-                >
-                  <StopIcon size={18} title={undefined} aria-hidden="true" />
-                  Cancel download
-                </ToolButton>
-              ) : null}
-            </div>
-
-            {showExportProgress ? (
-              <div className="mt-5">
-                <progress
-                  value={progressPercent}
-                  max={100}
-                  role="progressbar"
-                  aria-label="Book download progress"
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-valuenow={progressPercent}
-                  className="h-2 w-full overflow-hidden rounded-full"
-                />
-                <StatusMessage
-                  kind={
-                    exportStatus?.kind ?? (exportRunning ? "working" : "info")
-                  }
-                  live
-                  className="mt-3"
-                >
-                  {exportProgress.message || exportStatus?.message}
-                </StatusMessage>
-                <p
-                  className="mt-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
-                  data-testid="book-download-progress-detail"
-                >
-                  {progressPercent > 0 ? `${progressPercent}%` : "Working"} /{" "}
-                  {exportProgressDetail(exportProgress, exportElapsedMs)}
-                </p>
-              </div>
-            ) : null}
-            {showExportStatus && exportStatus ? (
-              <StatusMessage kind={exportStatus.kind} live className="mt-3">
-                {exportStatus.message}
-              </StatusMessage>
-            ) : null}
-
-            {completedExport ? (
-              <div className="mt-5">
-                <h3 className="text-base font-extrabold text-sky-950">
-                  Last download
-                </h3>
-                <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                  <Metric label="File" value={completedExport.filename} />
-                  <Metric
-                    label="Format"
-                    value={completedExport.outputFormat.toUpperCase()}
-                  />
+              <div className="space-y-5 px-4 pb-4">
+                <dl className="grid gap-3 text-sm text-slate-700 sm:grid-cols-3">
                   <Metric
                     label="Parts"
-                    value={completedExport.partCount.toLocaleString()}
+                    value={hasSource ? formatNumber(exportParts.length) : "0"}
                   />
                   <Metric
                     label="Runtime"
-                    value={completedExport.runtimeLabel}
+                    value={
+                      hasSource
+                        ? formatDuration(exportAnalysis.totalRuntimeMs)
+                        : "Waiting"
+                    }
+                  />
+                  <Metric
+                    label="Estimate"
+                    value={`~${exportAnalysis.estimatedSizeLabel}`}
                   />
                 </dl>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                  Download contents: {completedExport.contents.join(", ")}. Use
-                  the Download button again to save another copy, change
-                  settings to rebuild, or clear the source when you are done.
-                </p>
+
+                {renderEstimateLabel ? (
+                  <p className="text-sm leading-relaxed text-slate-600">
+                    Estimated render time: {renderEstimateLabel}
+                  </p>
+                ) : null}
+
+                {sourceDraftActive ? (
+                  <p className="text-sm font-semibold text-slate-600">
+                    Draft edits are not included until you apply them.
+                  </p>
+                ) : null}
+                {exportDisabledReason ? (
+                  <p
+                    id="book-download-disabled-reason"
+                    className="text-sm font-semibold text-slate-600"
+                  >
+                    {exportDisabledReason}
+                  </p>
+                ) : null}
+                {isAudioOutput ? (
+                  <MessageList
+                    title="Download warnings"
+                    items={exportWarnings}
+                    tone="warning"
+                  />
+                ) : null}
+                {longExportMessages.length > 0 ? (
+                  <MessageList
+                    title="Download notes"
+                    items={longExportMessages}
+                    tone="info"
+                  />
+                ) : null}
+
+                <fieldset>
+                  <legend className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                    Split mode
+                  </legend>
+                  <div
+                    className="mt-2 flex flex-wrap gap-2"
+                    role="radiogroup"
+                    aria-label="Split mode"
+                  >
+                    {(["none", "duration"] as const).map((mode) => (
+                      <button
+                        key={mode}
+                        type="button"
+                        role="radio"
+                        aria-checked={splitMode === mode}
+                        onClick={() =>
+                          updateExportSettings({ splitMode: mode })
+                        }
+                        className={toolControlButtonClass({
+                          active: splitMode === mode,
+                          size: "sm",
+                        })}
+                      >
+                        {BOOK_SPLIT_MODE_LABELS[mode]}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
+                    {splitSummaryText}
+                  </p>
+                  {splitMode !== "none" ? (
+                    <LabeledSelect
+                      label="Target part length"
+                      value={String(splitTargetPartMinutes)}
+                      onChange={(value) => {
+                        const targetPartMinutes = Number(value);
+                        updateExportSettings({ targetPartMinutes });
+                      }}
+                    >
+                      <option value="15">15 minutes</option>
+                      <option value="30">30 minutes recommended</option>
+                      <option value="45">45 minutes</option>
+                      <option value="60">60 minutes experimental</option>
+                    </LabeledSelect>
+                  ) : null}
+                </fieldset>
+
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+                  {zipBatchWorkflow && totalBatches > 0 ? (
+                    <LabeledSelect
+                      label="ZIP batch"
+                      value={String(selectedExportBatch?.batchNumber ?? 1)}
+                      disabled={exportRunning}
+                      onChange={(value) => setSelectedBatchNumber(Number(value))}
+                    >
+                      {exportBatches.map((batch) => (
+                        <option
+                          key={batch.batchNumber}
+                          value={batch.batchNumber}
+                        >
+                          Batch {batch.batchNumber} of {batch.totalBatches} -{" "}
+                          {formatDuration(batch.runtimeMs)}
+                        </option>
+                      ))}
+                    </LabeledSelect>
+                  ) : null}
+                  <ToolButton
+                    type="button"
+                    tone="dark"
+                    onClick={handleDownloadBook}
+                    disabled={!canExport}
+                    aria-describedby={
+                      exportDisabledReason
+                        ? "book-download-disabled-reason"
+                        : undefined
+                    }
+                    className="rounded-xl"
+                  >
+                    {exportRunning ? (
+                      <span
+                        className="h-2.5 w-2.5 animate-pulse rounded-full bg-current"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <DownloadIcon
+                        size={18}
+                        title={undefined}
+                        aria-hidden="true"
+                      />
+                    )}
+                    {downloadButtonLabel}
+                  </ToolButton>
+                  {exportRunning ? (
+                    <ToolButton
+                      type="button"
+                      tone="light"
+                      hover="dark"
+                      onClick={() => cancelActiveExport()}
+                      disabled={!exportRunning}
+                      className="rounded-xl"
+                    >
+                      <StopIcon
+                        size={18}
+                        title={undefined}
+                        aria-hidden="true"
+                      />
+                      Cancel download
+                    </ToolButton>
+                  ) : null}
+                </div>
+
+                {showExportProgress ? (
+                  <div className="space-y-2">
+                    <progress
+                      value={progressPercent}
+                      max={100}
+                      role="progressbar"
+                      aria-label="Book download progress"
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-valuenow={progressPercent}
+                      className="h-2 w-full overflow-hidden rounded-full"
+                    />
+                    <StatusMessage
+                      kind={
+                        exportStatus?.kind ??
+                        (exportRunning ? "working" : "info")
+                      }
+                      live
+                    >
+                      {exportProgress.message || exportStatus?.message}
+                    </StatusMessage>
+                    <p
+                      className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+                      data-testid="book-download-progress-detail"
+                    >
+                      {progressPercent > 0
+                        ? `${progressPercent}%`
+                        : "Working"}{" "}
+                      / {exportProgressDetail(exportProgress, exportElapsedMs)}
+                    </p>
+                  </div>
+                ) : null}
+                {showExportStatus && exportStatus ? (
+                  <StatusMessage kind={exportStatus.kind} live>
+                    {exportStatus.message}
+                  </StatusMessage>
+                ) : null}
+
+                {completedExport ? (
+                  <div>
+                    <h3 className="text-base font-extrabold text-sky-950">
+                      Last download
+                    </h3>
+                    <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                      <Metric label="File" value={completedExport.filename} />
+                      <Metric
+                        label="Format"
+                        value={completedExport.outputFormat.toUpperCase()}
+                      />
+                      <Metric
+                        label="Parts"
+                        value={completedExport.partCount.toLocaleString()}
+                      />
+                      <Metric
+                        label="Runtime"
+                        value={completedExport.runtimeLabel}
+                      />
+                    </dl>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                      Download contents: {completedExport.contents.join(", ")}.
+                      Use the Download button again to save another copy,
+                      change settings to rebuild, or clear the source when you
+                      are done.
+                    </p>
+                  </div>
+                ) : null}
               </div>
-            ) : null}
+            </ToolPanel>
           </section>
 
           {showSourceState ? (

@@ -94,7 +94,12 @@ async function expectWorkflowReadyNearSource(page: Page) {
     sourceStep(page).getByRole("link", { name: "Review export" }),
   ).toHaveCount(0);
   await expect(
-    sourceStep(page).getByRole("heading", { name: "Download MP3" }),
+    sourceStep(page).getByTestId("book-download-controls"),
+  ).toBeVisible();
+  await expect(
+    sourceStep(page)
+      .getByTestId("book-download-controls")
+      .getByText("Preview and download"),
   ).toBeVisible();
   await expect(
     previewSection(page).getByTestId("book-video-preview-frame"),
@@ -1083,10 +1088,10 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
   await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
   await expect(preview.getByText(/morsewords\.com/i)).toHaveCount(0);
   await expect(
-    downloadRow.getByRole("heading", { name: "Download MP3" }),
+    downloadRow.getByText("Preview and download"),
   ).toBeVisible();
   await expect(
-    downloadRow.getByRole("radiogroup", { name: "Split download" }),
+    downloadRow.getByRole("radiogroup", { name: "Split mode" }),
   ).toBeVisible();
   await expect(
     downloadRow.getByRole("radio", { name: "No split" }),
@@ -2127,7 +2132,7 @@ test("preset settings, reset, and safe route preferences persist", async ({
   ).toBeVisible();
   const downloadControls = page.locator("#book-download-controls");
   await expect(
-    downloadControls.getByRole("radiogroup", { name: "Split download" }),
+    downloadControls.getByRole("radiogroup", { name: "Split mode" }),
   ).toBeVisible();
   await expect(
     downloadControls.getByRole("radio", { name: "No split" }),
@@ -2790,7 +2795,9 @@ test("MP3 download stays primary while the live visual player remains available"
 
   await expect(outputTypeRadio(page, "audio")).toHaveCount(0);
   await expect(outputTypeRadio(page, "video")).toHaveCount(0);
-  await expect(page.getByRole("heading", { name: "Download MP3" })).toBeVisible();
+  await expect(
+    page.getByTestId("book-download-controls").getByText("Preview and download"),
+  ).toBeVisible();
   await expect(sourceStep(page).getByRole("button", { name: "Download MP3" })).toBeEnabled();
   await expect(page.getByText(["Download", "MP4"].join(" "))).toHaveCount(0);
   await expect(page.getByText(["Download", "WebM"].join(" "))).toHaveCount(0);
@@ -3374,7 +3381,7 @@ test("empty source, cleaned-empty source, large MP3, and progress semantics are 
     }),
   ).toHaveCount(1);
   await expect(
-    page.getByRole("heading", { name: "Download MP3" }),
+    page.getByTestId("book-download-controls").getByText("Preview and download"),
   ).toBeVisible();
   await expect(page.getByText("Review export")).toHaveCount(0);
   const sourceInput = page.getByLabel("Paste long-form source text");
