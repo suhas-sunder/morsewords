@@ -15,6 +15,7 @@
     "books:pilot-write-1": "node --experimental-strip-types scripts/books/pilot-book-processing-write-1.ts",
     "books:pilot-write-2": "node --experimental-strip-types scripts/books/pilot-book-processing-write-2.ts",
     "books:pilot-write-1-verify": "node --experimental-strip-types scripts/books/verify-pilot-write-1.ts",
+    "books:pilot-write-2-verify": "node --experimental-strip-types scripts/books/verify-pilot-write-2.ts",
     "books:build-previews": "node --experimental-strip-types scripts/books/build-book-previews.ts",
     "books:candidate-report": "node --experimental-strip-types scripts/books/generate-first-publication-candidate-report.ts",
     "books:enrich-metadata": "node --experimental-strip-types scripts/books/enrich-book-metadata.ts",

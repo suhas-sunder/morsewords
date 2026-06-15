@@ -10,3 +10,4 @@ Processed by pilot write pass 2.
 - Recommendation: needs manual review before scaling
 
 This output is intentionally review-gated before larger batch processing or Cloudflare export.
+Post-write verification removed four illustration placeholders from playable Triplanetary text.

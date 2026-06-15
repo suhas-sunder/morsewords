@@ -974,12 +974,12 @@
     {
       "slug": "triplanetary",
       "path": "/book-previews/triplanetary.preview.json",
-      "contentVersion": "c460637b84b8f8ea",
-      "contentHash": "c460637b84b8f8eae26af02c6a12ddcc989f4846a00461da000e817f74f1c6a4",
+      "contentVersion": "aea8c0f7e5f0e274",
+      "contentHash": "aea8c0f7e5f0e2744d8027225c562cc0954c6f2b39ff82a69de9c139fedc6430",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9837,
-      "previewCharacterCount": 8964,
-      "estimatedRuntimeSeconds": 3244,
+      "previewBytes": 10850,
+      "previewCharacterCount": 9960,
+      "estimatedRuntimeSeconds": 3609,
       "truncated": true
     }
   ],
