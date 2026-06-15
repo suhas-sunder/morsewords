@@ -288,6 +288,223 @@
       "textPreview": "Chapter XXIV Home Again Aunt Em had just come out of the house to water the cabbages when she looked up and saw Dorothy running toward her. “My darling child!”..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 24,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 24,
+      "examples": [
+        "L1: Chapter I",
+        "L120: Chapter II",
+        "L359: Chapter III",
+        "L592: Chapter IV",
+        "L759: Chapter V",
+        "L985: Chapter VI"
+      ],
+      "bodyExamples": [
+        "L1: Chapter I",
+        "L120: Chapter II",
+        "L359: Chapter III",
+        "L592: Chapter IV",
+        "L759: Chapter V",
+        "L985: Chapter VI",
+        "L1169: Chapter VII",
+        "L1366: Chapter VIII"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 24,
+        "minimumWords": 79,
+        "medianWords": 1524,
+        "maximumWords": 3688,
+        "averageWords": 1647,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 1,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 24,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 24,
+        "examples": [
+          "L1: Chapter I",
+          "L120: Chapter II",
+          "L359: Chapter III",
+          "L592: Chapter IV",
+          "L759: Chapter V",
+          "L985: Chapter VI"
+        ],
+        "bodyExamples": [
+          "L1: Chapter I",
+          "L120: Chapter II",
+          "L359: Chapter III",
+          "L592: Chapter IV",
+          "L759: Chapter V",
+          "L985: Chapter VI",
+          "L1169: Chapter VII",
+          "L1366: Chapter VIII"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 24,
+          "minimumWords": 79,
+          "medianWords": 1524,
+          "maximumWords": 3688,
+          "averageWords": 1647,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 1,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 34,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 34,
+        "examples": [
+          "L2: The Cyclone",
+          "L121: The Council with the Munchkins",
+          "L360: How Dorothy Saved the Scarecrow",
+          "L593: The Road Through the Forest",
+          "L760: The Rescue of the Tin Woodman",
+          "L986: The Cowardly Lion"
+        ],
+        "bodyExamples": [
+          "L2: The Cyclone",
+          "L121: The Council with the Munchkins",
+          "L360: How Dorothy Saved the Scarecrow",
+          "L593: The Road Through the Forest",
+          "L760: The Rescue of the Tin Woodman",
+          "L986: The Cowardly Lion",
+          "L1170: The Journey to the Great Oz",
+          "L1367: The Deadly Poppy Field"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 34,
+          "minimumWords": 77,
+          "medianWords": 1152,
+          "maximumWords": 2798,
+          "averageWords": 1163,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 1,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L307: “LET DOROTHY GO TO THE CITY OF EMERALDS”"
+        ],
+        "bodyExamples": [
+          "L307: “LET DOROTHY GO TO THE CITY OF EMERALDS”"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 36749,
+          "medianWords": 36749,
+          "maximumWords": 36749,
+          "averageWords": 36749,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 34,
+        "bodyLikeCount": 34,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 24,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 24,
+    "bodyHeadingExamples": [
+      "L1: Chapter I",
+      "L120: Chapter II",
+      "L359: Chapter III",
+      "L592: Chapter IV",
+      "L759: Chapter V",
+      "L985: Chapter VI",
+      "L1169: Chapter VII",
+      "L1366: Chapter VIII"
+    ],
+    "tocHeadingExamples": [
+      "L42: Chapter I. The Cyclone",
+      "L43: Chapter II. The Council with the Munchkins",
+      "L44: Chapter III. How Dorothy Saved the Scarecrow",
+      "L45: Chapter IV. The Road Through the Forest",
+      "L46: Chapter V. The Rescue of the Tin Woodman",
+      "L47: Chapter VI. The Cowardly Lion",
+      "L48: Chapter VII. The Journey to the Great Oz",
+      "L49: Chapter VIII. The Deadly Poppy Field"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 39304,
     "actions": [

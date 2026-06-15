@@ -24,26 +24,15 @@
   },
   "sections": [
     {
-      "id": "preface-001",
-      "kind": "preface",
-      "label": "Preface",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 223,
-      "characterCount": 1397,
-      "estimatedListeningMinutes": 8,
-      "textPreview": "PREFACE In writing the following story, the author has had in view no purpose other than that of affording entertainment to such readers as are interested in p..."
-    },
-    {
       "id": "title-page-001",
       "kind": "title-page",
-      "label": "Contents",
+      "label": "Opening section",
       "title": null,
       "includeByDefault": false,
-      "wordCount": 83,
-      "characterCount": 522,
-      "estimatedListeningMinutes": 3,
-      "textPreview": "CONTENTS CHAPTER I MY LEARNED BROTHER CHAPTER II THE SUSPECT CHAPTER III A LADY IN THE CASE CHAPTER IV CONFIDENCES CHAPTER V THE \"THUMBOGRAPH\" CHAPTER VI COMMI..."
+      "wordCount": 306,
+      "characterCount": 1922,
+      "estimatedListeningMinutes": 11,
+      "textPreview": "PREFACE In writing the following story, the author has had in view no purpose other than that of affording entertainment to such readers as are interested in p..."
     },
     {
       "id": "chapter-001",
@@ -233,6 +222,307 @@
       "textPreview": "CHAPTER XVII AT LAST \"We had better let the people clear off,\" said Thorndyke, when the first greetings were over and we stood around Reuben in the fast-emptyi..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 34,
+      "tocLikeCount": 17,
+      "bodyLikeCount": 17,
+      "examples": [
+        "L32: CHAPTER I",
+        "L35: CHAPTER II",
+        "L38: CHAPTER III",
+        "L41: CHAPTER IV",
+        "L44: CHAPTER V",
+        "L47: CHAPTER VI"
+      ],
+      "bodyExamples": [
+        "L84: CHAPTER I",
+        "L315: CHAPTER II",
+        "L758: CHAPTER III",
+        "L1325: CHAPTER IV",
+        "L1799: CHAPTER V",
+        "L2160: CHAPTER VI",
+        "L2555: CHAPTER VII",
+        "L2848: CHAPTER VIII"
+      ],
+      "tocExamples": [
+        "L32: CHAPTER I",
+        "L35: CHAPTER II",
+        "L38: CHAPTER III",
+        "L41: CHAPTER IV",
+        "L44: CHAPTER V",
+        "L47: CHAPTER VI",
+        "L50: CHAPTER VII",
+        "L53: CHAPTER VIII"
+      ],
+      "score": 1,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 17,
+        "minimumWords": 1940,
+        "medianWords": 3516,
+        "maximumWords": 9509,
+        "averageWords": 4137,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 34,
+        "tocLikeCount": 17,
+        "bodyLikeCount": 17,
+        "examples": [
+          "L32: CHAPTER I",
+          "L35: CHAPTER II",
+          "L38: CHAPTER III",
+          "L41: CHAPTER IV",
+          "L44: CHAPTER V",
+          "L47: CHAPTER VI"
+        ],
+        "bodyExamples": [
+          "L84: CHAPTER I",
+          "L315: CHAPTER II",
+          "L758: CHAPTER III",
+          "L1325: CHAPTER IV",
+          "L1799: CHAPTER V",
+          "L2160: CHAPTER VI",
+          "L2555: CHAPTER VII",
+          "L2848: CHAPTER VIII"
+        ],
+        "tocExamples": [
+          "L32: CHAPTER I",
+          "L35: CHAPTER II",
+          "L38: CHAPTER III",
+          "L41: CHAPTER IV",
+          "L44: CHAPTER V",
+          "L47: CHAPTER VI",
+          "L50: CHAPTER VII",
+          "L53: CHAPTER VIII"
+        ],
+        "score": 1,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 17,
+          "minimumWords": 1940,
+          "medianWords": 3516,
+          "maximumWords": 9509,
+          "averageWords": 4137,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 34,
+        "tocLikeCount": 17,
+        "bodyLikeCount": 17,
+        "examples": [
+          "L33: MY LEARNED BROTHER",
+          "L36: THE SUSPECT",
+          "L39: A LADY IN THE CASE",
+          "L42: CONFIDENCES",
+          "L45: THE \"THUMBOGRAPH\"",
+          "L48: COMMITTED FOR TRIAL"
+        ],
+        "bodyExamples": [
+          "L86: MY LEARNED BROTHER",
+          "L317: THE SUSPECT",
+          "L760: A LADY IN THE CASE",
+          "L1327: CONFIDENCES",
+          "L1801: THE 'THUMBOGRAPH'",
+          "L2162: COMMITTED FOR TRIAL",
+          "L2557: SHOALS AND QUICKSANDS",
+          "L2850: A SUSPICIOUS ACCIDENT"
+        ],
+        "tocExamples": [
+          "L33: MY LEARNED BROTHER",
+          "L36: THE SUSPECT",
+          "L39: A LADY IN THE CASE",
+          "L42: CONFIDENCES",
+          "L45: THE \"THUMBOGRAPH\"",
+          "L48: COMMITTED FOR TRIAL",
+          "L51: SHOALS AND QUICKSANDS",
+          "L54: A SUSPICIOUS ACCIDENT"
+        ],
+        "score": 0.901,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 17,
+          "minimumWords": 1940,
+          "medianWords": 3516,
+          "maximumWords": 9509,
+          "averageWords": 4137,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 40,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 39,
+        "examples": [
+          "L89: \"Conflagratam An° 1677. Fabricatam An° 1698. Richardo Powell Armiger",
+          "L413: Hornby.\"",
+          "L425: \"None whatever,\" replied Mr. Lawley. \"The Scotland Yard people, of",
+          "L998: Hornby.\"",
+          "L1498: show to Dr. Thorndyke?\" \"Oh, my dear Juliet,\" replied Mrs. Hornby, \"I",
+          "L1933: Juliet--\""
+        ],
+        "bodyExamples": [
+          "L89: \"Conflagratam An° 1677. Fabricatam An° 1698. Richardo Powell Armiger",
+          "L425: \"None whatever,\" replied Mr. Lawley. \"The Scotland Yard people, of",
+          "L998: Hornby.\"",
+          "L1498: show to Dr. Thorndyke?\" \"Oh, my dear Juliet,\" replied Mrs. Hornby, \"I",
+          "L1933: Juliet--\"",
+          "L2152: Reuben Hornby?\"",
+          "L2263: Hospital.\"",
+          "L2601: \"Well?\""
+        ],
+        "tocExamples": [
+          "L413: Hornby.\""
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 39,
+          "minimumWords": 9,
+          "medianWords": 504,
+          "maximumWords": 9214,
+          "averageWords": 1803,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 7,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 2,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L1: PREFACE",
+          "L30: CONTENTS"
+        ],
+        "bodyExamples": [
+          "L1: PREFACE"
+        ],
+        "tocExamples": [
+          "L30: CONTENTS"
+        ],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 70636,
+          "medianWords": 70636,
+          "maximumWords": 70636,
+          "averageWords": 70636,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 34,
+        "bodyLikeCount": 17,
+        "tocLikeCount": 17,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 40,
+        "bodyLikeCount": 39,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 2,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 17,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 17,
+    "bodyHeadingExamples": [
+      "L84: CHAPTER I",
+      "L315: CHAPTER II",
+      "L758: CHAPTER III",
+      "L1325: CHAPTER IV",
+      "L1799: CHAPTER V",
+      "L2160: CHAPTER VI",
+      "L2555: CHAPTER VII",
+      "L2848: CHAPTER VIII"
+    ],
+    "tocHeadingExamples": [
+      "L32: CHAPTER I",
+      "L35: CHAPTER II",
+      "L38: CHAPTER III",
+      "L41: CHAPTER IV",
+      "L44: CHAPTER V",
+      "L47: CHAPTER VI",
+      "L50: CHAPTER VII",
+      "L53: CHAPTER VIII"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 70636,
     "actions": [],
@@ -242,12 +532,11 @@
     "feasible": true,
     "confidence": "medium",
     "sectionsUsed": [
-      "preface-001 Preface",
       "chapter-001 Chapter 1"
     ],
-    "approximateWordCount": 2163,
+    "approximateWordCount": 1940,
     "startsAtRealReadableContent": true,
-    "snippet": "PREFACE In writing the following story, the author has had in view no purpose other than that of affording entertainment to such readers as are interested in problems of crime and their solutions; and the story itself differs in no respect from others of its class, excepting in that an effort has been made to keep within the probabilities of ordinary life,...",
+    "snippet": "CHAPTER I MY LEARNED BROTHER \"Conflagratam An° 1677. Fabricatam An° 1698. Richardo Powell Armiger Thesaurar.\" The words, set in four panels, which formed a frieze beneath the pediment of a fine brick portico, summarised the history of one of the tall houses at the upper end of King's Bench Walk and as I, somewhat absently, read over the inscription, my atte...",
     "notes": [
       "Targets about 900 words as a first-hour source approximation for later generation.",
       "Pass 2 marked first-hour preview derivation as feasible."

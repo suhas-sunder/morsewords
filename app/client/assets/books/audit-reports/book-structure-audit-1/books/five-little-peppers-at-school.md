@@ -15,8 +15,8 @@
 
 | Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
 | --- | ---: | ---: | ---: | --- | --- |
-| all-caps-title | 97 | 52 | 44 | yes |  |
-| isolated-title-case | 93 | 83 | 10 | no | weaker than selected strategy all-caps-title |
+| all-caps-title | 97 | 48 | 48 | yes |  |
+| isolated-title-case | 93 | 81 | 12 | no | weaker than selected strategy all-caps-title |
 | roman-numbered-title | 25 | 3 | 22 | no | weaker than selected strategy all-caps-title |
 | special-front-back | 2 | 1 | 1 | no | weaker than selected strategy all-caps-title |
 
@@ -44,8 +44,8 @@
 
 ## Section Size Sanity
 
-- Sections: 52
-- Min/median/max words: 1/1298/5230
+- Sections: 48
+- Min/median/max words: 1/1997/5230
 - Notes: section sizes look plausible for the selected strategy
 
 ## Boundary Confidence

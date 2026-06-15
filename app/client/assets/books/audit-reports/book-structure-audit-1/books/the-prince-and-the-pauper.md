@@ -16,7 +16,7 @@
 | Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
 | --- | ---: | ---: | ---: | --- | --- |
 | chapter-roman | 33 | 33 | 0 | yes |  |
-| all-caps-title | 195 | 7 | 187 | no | weaker than selected strategy chapter-roman |
+| all-caps-title | 195 | 7 | 188 | no | weaker than selected strategy chapter-roman |
 | isolated-title-case | 49 | 46 | 3 | no | weaker than selected strategy chapter-roman |
 | arabic-only | 1 | 1 | 0 | no | weaker than selected strategy chapter-roman |
 | special-front-back | 2 | 1 | 1 | no | weaker than selected strategy chapter-roman |
@@ -36,13 +36,13 @@
 ## Rejected TOC-like Examples
 
 - L59: ILLUSTRATIONS
+- L63: THE BIRTH OF THE PRINCE AND THE PAUPER
 - L65: “SPLENDID PAGEANTS AND GREAT BONFIRES”
 - L67: TOM’S EARLY LIFE
 - L69: OFFAL COURT
 - L71: “WITH ANY MISERABLE CRUST”
 - L73: “HE OFTEN READ THE PRIEST’S BOOKS”
 - L75: “SAW POOR ANNE ASKEW BURNED”
-- L77: “BROUGHT THEIR PERPLEXITIES TO TOM”
 - L61: THE GREAT SEAL (frontispiece)
 - L1287: Lord Hertford said--
 

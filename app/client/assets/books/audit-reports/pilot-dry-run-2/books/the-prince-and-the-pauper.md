@@ -68,45 +68,78 @@
 - L8203: royalties. Special rules, set forth in the General Terms of Use part
 - L8204: of this license, apply to copying and distributing Project
 
+## Structure Detection
+
+- Detected structural convention: chapter-based roman numerals
+- Selected heading strategy: chapter-roman
+- TOC entries detected: yes
+- Body headings detected: yes
+- Section count from selected strategy: 33
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: pass
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| chapter-roman | 33 | 33 | 0 | yes |  |
+| isolated-title-case | 45 | 43 | 2 | no | weaker than selected strategy chapter-roman |
+| all-caps-title | 4 | 4 | 0 | no | weaker than selected strategy chapter-roman |
+| arabic-only | 1 | 1 | 0 | no | weaker than selected strategy chapter-roman |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| isolated-title-case | 45 | 43 | 2 | weaker than selected strategy chapter-roman |
+| all-caps-title | 4 | 4 | 0 | weaker than selected strategy chapter-roman |
+| arabic-only | 1 | 1 | 0 | weaker than selected strategy chapter-roman |
+
+### Structure Warnings
+
+- None.
+
 ## Proposed Sections
 
 - Total proposed sections: 33
 
 | ID | Kind | Label | Title | Words | Default |
 | --- | --- | --- | --- | ---: | --- |
-| chapter-001 | chapter | Chapter 1 | The birth of the Prince and the Pauper. | 269 | yes |
-| chapter-002 | chapter | Chapter 2 | Tom’s early life. | 1643 | yes |
-| chapter-003 | chapter | Chapter 3 | Tom’s meeting with the Prince. | 2214 | yes |
-| chapter-004 | chapter | Chapter 4 | The Prince’s troubles begin. | 1263 | yes |
-| chapter-005 | chapter | Chapter 5 | Tom as a Patrician. | 2383 | yes |
-| chapter-006 | chapter | Chapter 6 | Tom receives instructions. | 2603 | yes |
-| chapter-007 | chapter | Chapter 7 | Tom’s first royal dinner. | 1227 | yes |
-| chapter-008 | chapter | Chapter 8 | The Question of the Seal. | 855 | yes |
-| chapter-009 | chapter | Chapter 9 | The river pageant. | 911 | yes |
-| chapter-010 | chapter | Chapter 10 | The Prince in the toils. | 2965 | yes |
-| chapter-011 | chapter | Chapter 11 | At Guildhall. | 1595 | yes |
-| chapter-012 | chapter | Chapter 12 | The Prince and his Deliverer. | 3971 | yes |
-| chapter-013 | chapter | Chapter 13 | The disappearance of the Prince. | 1453 | yes |
+| chapter-001 | chapter | Chapter 1 | The birth of the Prince and the Pauper | 269 | yes |
+| chapter-002 | chapter | Chapter 2 | Tom’s early life | 1643 | yes |
+| chapter-003 | chapter | Chapter 3 | Tom’s meeting with the Prince | 2214 | yes |
+| chapter-004 | chapter | Chapter 4 | The Prince’s troubles begin | 1263 | yes |
+| chapter-005 | chapter | Chapter 5 | Tom as a Patrician | 2383 | yes |
+| chapter-006 | chapter | Chapter 6 | Tom receives instructions | 2603 | yes |
+| chapter-007 | chapter | Chapter 7 | Tom’s first royal dinner | 1227 | yes |
+| chapter-008 | chapter | Chapter 8 | The Question of the Seal | 855 | yes |
+| chapter-009 | chapter | Chapter 9 | The river pageant | 911 | yes |
+| chapter-010 | chapter | Chapter 10 | The Prince in the toils | 2965 | yes |
+| chapter-011 | chapter | Chapter 11 | At Guildhall | 1595 | yes |
+| chapter-012 | chapter | Chapter 12 | The Prince and his Deliverer | 3971 | yes |
+| chapter-013 | chapter | Chapter 13 | The disappearance of the Prince | 1453 | yes |
 | chapter-014 | chapter | Chapter 14 | ‘Le Roi est mort--vive le Roi.’ | 3870 | yes |
-| chapter-015 | chapter | Chapter 15 | Tom as King. | 3656 | yes |
-| chapter-016 | chapter | Chapter 16 | The State Dinner. | 963 | yes |
-| chapter-017 | chapter | Chapter 17 | Foo-foo the First. | 3533 | yes |
-| chapter-018 | chapter | Chapter 18 | The Prince with the Tramps. | 2849 | yes |
-| chapter-019 | chapter | Chapter 19 | The Prince with the peasants. | 1994 | yes |
-| chapter-020 | chapter | Chapter 20 | The Prince and the hermit. | 2247 | yes |
-| chapter-021 | chapter | Chapter 21 | Hendon to the rescue. | 1488 | yes |
-| chapter-022 | chapter | Chapter 22 | A Victim of Treachery. | 1995 | yes |
-| chapter-023 | chapter | Chapter 23 | The Prince a prisoner. | 1133 | yes |
-| chapter-024 | chapter | Chapter 24 | The Escape. | 956 | yes |
-| chapter-025 | chapter | Chapter 25 | Hendon Hall. | 2396 | yes |
-| chapter-026 | chapter | Chapter 26 | Disowned. | 1395 | yes |
-| chapter-027 | chapter | Chapter 27 | In Prison. | 3412 | yes |
-| chapter-028 | chapter | Chapter 28 | The sacrifice. | 1259 | yes |
-| chapter-029 | chapter | Chapter 29 | To London. | 732 | yes |
-| chapter-030 | chapter | Chapter 30 | Tom’s progress. | 869 | yes |
-| chapter-031 | chapter | Chapter 31 | The Recognition procession. | 2092 | yes |
-| chapter-032 | chapter | Chapter 32 | Coronation Day. | 4092 | yes |
-| chapter-033 | chapter | Chapter 33 | Edward as King. | 5897 | yes |
+| chapter-015 | chapter | Chapter 15 | Tom as King | 3656 | yes |
+| chapter-016 | chapter | Chapter 16 | The State Dinner | 963 | yes |
+| chapter-017 | chapter | Chapter 17 | Foo-foo the First | 3533 | yes |
+| chapter-018 | chapter | Chapter 18 | The Prince with the Tramps | 2849 | yes |
+| chapter-019 | chapter | Chapter 19 | The Prince with the peasants | 1994 | yes |
+| chapter-020 | chapter | Chapter 20 | The Prince and the hermit | 2247 | yes |
+| chapter-021 | chapter | Chapter 21 | Hendon to the rescue | 1488 | yes |
+| chapter-022 | chapter | Chapter 22 | A Victim of Treachery | 1995 | yes |
+| chapter-023 | chapter | Chapter 23 | The Prince a prisoner | 1133 | yes |
+| chapter-024 | chapter | Chapter 24 | The Escape | 956 | yes |
+| chapter-025 | chapter | Chapter 25 | Hendon Hall | 2396 | yes |
+| chapter-026 | chapter | Chapter 26 | Disowned | 1395 | yes |
+| chapter-027 | chapter | Chapter 27 | In Prison | 3412 | yes |
+| chapter-028 | chapter | Chapter 28 | The sacrifice | 1259 | yes |
+| chapter-029 | chapter | Chapter 29 | To London | 732 | yes |
+| chapter-030 | chapter | Chapter 30 | Tom’s progress | 869 | yes |
+| chapter-031 | chapter | Chapter 31 | The Recognition procession | 2092 | yes |
+| chapter-032 | chapter | Chapter 32 | Coronation Day | 4092 | yes |
+| chapter-033 | chapter | Chapter 33 | Edward as King | 5897 | yes |
 
 ## Suspicious Sections
 

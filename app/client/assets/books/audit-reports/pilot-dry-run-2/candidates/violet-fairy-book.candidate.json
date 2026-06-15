@@ -24,208 +24,461 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
       "title": null,
-      "includeByDefault": true,
-      "wordCount": 5625,
-      "characterCount": 29521,
-      "estimatedListeningMinutes": 174,
+      "includeByDefault": false,
+      "wordCount": 487,
+      "characterCount": 2825,
+      "estimatedListeningMinutes": 17,
       "textPreview": "PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not..."
     },
     {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
-      "title": null,
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two In A Sack,’ And ‘The",
+      "title": "‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two in a Sack,’ and ‘The",
       "includeByDefault": true,
-      "wordCount": 5845,
-      "characterCount": 29865,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "‘In my youth, when I was an old man, we had a quantity of beehives. Every morning when I got up I counted them over, and it was quite easy to number the bees,..."
+      "wordCount": 4602,
+      "characterCount": 24013,
+      "estimatedListeningMinutes": 142,
+      "textPreview": "‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two in a Sack,’ and ‘The Fish that swam in the Air.’ Mr. W. A. Craigie translated from the Scandinavian, ‘Jasper w..."
     },
     {
-      "id": "part-003",
-      "kind": "part",
-      "label": "Part 3",
-      "title": null,
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "(From Ehstnische Marchen.)",
+      "title": "(From Ehstnische Marchen.)",
       "includeByDefault": true,
-      "wordCount": 5838,
-      "characterCount": 29857,
-      "estimatedListeningMinutes": 176,
-      "textPreview": "‘Have patience for one minute. I would like before I die to blow three blasts on my hunting horn--one in this room, one on the stairs, and one in the courtyard..."
+      "wordCount": 4338,
+      "characterCount": 21904,
+      "estimatedListeningMinutes": 130,
+      "textPreview": "(From Ehstnische Marchen.) THE FINEST LIAR IN THE WORLD At the edge of a wood there lived an old man who had only one son, and one day he called the boy to him..."
     },
     {
-      "id": "part-004",
-      "kind": "part",
-      "label": "Part 4",
-      "title": null,
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "(From The Serbian.)",
+      "title": "(From the Serbian.)",
       "includeByDefault": true,
-      "wordCount": 5780,
-      "characterCount": 29785,
-      "estimatedListeningMinutes": 175,
-      "textPreview": "The third night the prince mounted the mare and rode her out to the meadows, with the foal trotting after. He tried hard to keep awake, but it was of no use, a..."
+      "wordCount": 10021,
+      "characterCount": 51655,
+      "estimatedListeningMinutes": 303,
+      "textPreview": "(From the Serbian.) SCHIPPEITARO It was the custom in old times that as soon as a Japanese boy reached manhood he should leave his home and roam through the la..."
     },
     {
-      "id": "part-005",
-      "kind": "part",
-      "label": "Part 5",
-      "title": null,
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "(From The Russian.)",
+      "title": "(From the Russian.)",
       "includeByDefault": true,
-      "wordCount": 5779,
-      "characterCount": 29992,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "‘Oh, you unlucky creature!’ cried she; ‘and how do you think you are to do it. If you had all the men in the world to help you, you could not clear off this on..."
+      "wordCount": 6300,
+      "characterCount": 32443,
+      "estimatedListeningMinutes": 192,
+      "textPreview": "(From the Russian.) THE GRATEFUL PRINCE Once upon a time the king of the Goldland lost himself in a forest, and try as he would he could not find the way out...."
     },
     {
-      "id": "part-006",
-      "kind": "part",
-      "label": "Part 6",
-      "title": null,
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "(Ehstnische Marchen.)",
+      "title": "(Ehstnische Marchen.)",
       "includeByDefault": true,
-      "wordCount": 5864,
-      "characterCount": 29998,
-      "estimatedListeningMinutes": 178,
-      "textPreview": "The young king did not know her again, but he never left her side nor took his eyes from her. And at midnight a strange thing happened. A thick cloud suddenly..."
+      "wordCount": 3277,
+      "characterCount": 17022,
+      "estimatedListeningMinutes": 101,
+      "textPreview": "(Ehstnische Marchen.) THE CHILD WHO CAME FROM AN EGG Once upon a time there lived a queen whose heart was sore because she had no children. She was sad enough..."
     },
     {
-      "id": "part-007",
-      "kind": "part",
-      "label": "Part 7",
-      "title": null,
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "(Ehstnische Marchen.)",
+      "title": "(Ehstnische Marchen.)",
       "includeByDefault": true,
-      "wordCount": 5909,
-      "characterCount": 29871,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "The sultan, on hearing what had happened to his future son-in-law, turned his horse and rode to the palace, and bade a groom to harness the best horse in the s..."
+      "wordCount": 3690,
+      "characterCount": 18850,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "(Ehstnische Marchen.) STAN BOLOVAN Once upon a time what happened did happen, and if it had not happened this story would never have been told. On the outskirt..."
     },
     {
-      "id": "part-008",
-      "kind": "part",
-      "label": "Part 8",
-      "title": null,
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "(Adapted From Rumanische Marchen.)",
+      "title": "(Adapted from Rumanische Marchen.)",
       "includeByDefault": true,
-      "wordCount": 5714,
-      "characterCount": 29813,
-      "estimatedListeningMinutes": 175,
-      "textPreview": "What kind of bird do you think he caught in his net? He caught a crane, and the crane said, ‘Let me go free, and I’ll show myself grateful.’ The man answered,..."
+      "wordCount": 599,
+      "characterCount": 3066,
+      "estimatedListeningMinutes": 18,
+      "textPreview": "(Adapted from Rumanische Marchen.) THE TWO FROGS Once upon a time in the country of Japan there lived two frogs, one of whom made his home in a ditch near the..."
     },
     {
-      "id": "part-009",
-      "kind": "part",
-      "label": "Part 9",
-      "title": null,
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "(Japanische Marchen.)",
+      "title": "(Japanische Marchen.)",
       "includeByDefault": true,
-      "wordCount": 5803,
-      "characterCount": 29901,
-      "estimatedListeningMinutes": 178,
-      "textPreview": "Hardly had he done speaking, scarcely had Petru twisted his wreath, when a soft breeze arose on all sides at once. Out of the breeze came a storm wind, and the..."
+      "wordCount": 5797,
+      "characterCount": 29321,
+      "estimatedListeningMinutes": 174,
+      "textPreview": "(Japanische Marchen.) THE STORY OF A GAZELLE Once upon a time there lived a man who wasted all his money, and grew so poor that his only food was a few grains..."
     },
     {
-      "id": "part-010",
-      "kind": "part",
-      "label": "Part 10",
-      "title": null,
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "(Swahili Tales.)",
+      "title": "(Swahili Tales.)",
       "includeByDefault": true,
-      "wordCount": 5770,
-      "characterCount": 29855,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "‘You are lying!’ cried Petru angrily, throwing the box on the ground, where it broke into a thousand pieces. It was not long before he began to catch glimpses..."
+      "wordCount": 2273,
+      "characterCount": 11566,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "(Swahili Tales.) HOW A FISH SWAM IN THE AIR AND A HARE IN THE WATER. Once upon a time an old man and his wife lived together in a little village. They might ha..."
     },
     {
-      "id": "part-011",
-      "kind": "part",
-      "label": "Part 11",
-      "title": null,
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "One--Two--",
+      "title": "One--two--",
       "includeByDefault": true,
-      "wordCount": 5811,
-      "characterCount": 29934,
-      "estimatedListeningMinutes": 179,
-      "textPreview": "‘I saw you come in, but the work was pressing, and I could not stop to speak to you. To-day you must be my guest, and I will show you something of the way in w..."
+      "wordCount": 12,
+      "characterCount": 71,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "One--two-- Or you’ll find you will catch it uncommonly hot,"
     },
     {
-      "id": "part-012",
-      "kind": "part",
-      "label": "Part 12",
-      "title": null,
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "One--Two--’",
+      "title": "One--two--’",
       "includeByDefault": true,
-      "wordCount": 5841,
-      "characterCount": 29863,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "‘What has his highness ordered for luncheon?’ asked the head cook. ‘Sir, his highness has graciously ordered a Danish soup and red Hamburg dumplings.’ ‘Good,’..."
+      "wordCount": 134,
+      "characterCount": 727,
+      "estimatedListeningMinutes": 4,
+      "textPreview": "One--two--’ And they beat on till the man panted out: ‘Two into the sack.’ The words were hardly out of his mouth, when the two crept back into the sack. Then..."
     },
     {
-      "id": "part-013",
-      "kind": "part",
-      "label": "Part 13",
-      "title": null,
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "One--Two--",
+      "title": "One--two--",
       "includeByDefault": true,
-      "wordCount": 5835,
-      "characterCount": 29591,
-      "estimatedListeningMinutes": 175,
-      "textPreview": "And it waited till the next day, and caught some one’s child. And the sultan was told, ‘The cat has caught a child.’ And he said, ‘The cat is mine and the chil..."
+      "wordCount": 8,
+      "characterCount": 64,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "One--two-- Give the peasant back his sack!"
     },
     {
-      "id": "part-014",
-      "kind": "part",
-      "label": "Part 14",
-      "title": null,
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "One--Two--’",
+      "title": "One--two--’",
       "includeByDefault": true,
-      "wordCount": 5739,
-      "characterCount": 29978,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "Of course it was not everyone who cared to get up in the middle of the night, when he had been working hard all day; still, a good many had agreed to do it. Bu..."
+      "wordCount": 66,
+      "characterCount": 421,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "One--two--’ And they went on beating till the woman called to her eldest daughter: ‘Go and fetch your cousin from the bathroom. Tell him these two ruffians are..."
     },
     {
-      "id": "part-015",
-      "kind": "part",
-      "label": "Part 15",
-      "title": null,
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "One--Two--’",
+      "title": "One--two--’",
       "includeByDefault": true,
-      "wordCount": 5693,
-      "characterCount": 29763,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "But she had not seen that where the fire burnt brightest two sparks flew up, and, after floating in the air for a few moments, fell down into the great river t..."
+      "wordCount": 318,
+      "characterCount": 1670,
+      "estimatedListeningMinutes": 10,
+      "textPreview": "One--two--’ Then the woman sent her second daughter and said: ‘Quick, quick, get him to come to me.’ ‘I’m just washing my head,’ said the man. Then she sent th..."
     },
     {
-      "id": "part-016",
-      "kind": "part",
-      "label": "Part 16",
-      "title": null,
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Oh! Oh!’",
+      "title": "Oh! Oh!’",
       "includeByDefault": true,
-      "wordCount": 5677,
-      "characterCount": 29988,
-      "estimatedListeningMinutes": 178,
-      "textPreview": "The breath of the princess came and went, and her feet rattled in the stirrups. Suddenly the remembrance flashed across her of the wolf whom she had put to fli..."
+      "wordCount": 79,
+      "characterCount": 491,
+      "estimatedListeningMinutes": 3,
+      "textPreview": "Oh! Oh!’ The woman screamed out: ‘Old man, old man! Come here, quick! Here are two ruffians pommelling me fit to break my bones.’ Her husband only strolled up..."
     },
     {
-      "id": "part-017",
-      "kind": "part",
-      "label": "Part 17",
-      "title": null,
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "One--Two--’",
+      "title": "One--two--’",
       "includeByDefault": true,
-      "wordCount": 5892,
-      "characterCount": 29997,
-      "estimatedListeningMinutes": 179,
-      "textPreview": "‘Nonsense; of course he is our uncle,’ answered they. ‘Well, this very night you will see!’ said Halfman. And he did not go to bed, but hid himself and watched..."
+      "wordCount": 57,
+      "characterCount": 282,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "One--two--’ At last her husband took pity on her, and cried: ‘Two into the sack.’ He had hardly said the words before they were back in the sack again. From th..."
     },
     {
-      "id": "part-018",
-      "kind": "part",
-      "label": "Part 18",
-      "title": null,
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "(From Russiche Marchen.)",
+      "title": "(From Russiche Marchen.)",
       "includeByDefault": true,
-      "wordCount": 4839,
-      "characterCount": 25520,
-      "estimatedListeningMinutes": 151,
-      "textPreview": "‘Then,’ said the voice, ‘draw back that bolt, and set me free.’ ‘But who are you?’ asked Virgilius, who never did anything in a hurry. ‘I am an evil spirit,’ s..."
+      "wordCount": 1717,
+      "characterCount": 8753,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "(From Russiche Marchen.) THE ENVIOUS NEIGHBOUR Long, long ago an old couple lived in a village, and, as they had no children to love and care for, they gave al..."
     },
     {
-      "id": "part-019",
-      "kind": "part",
-      "label": "Part 19",
-      "title": null,
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "(Japanische Marchen.)",
+      "title": "(Japanische Marchen.)",
+      "includeByDefault": true,
+      "wordCount": 7781,
+      "characterCount": 40144,
+      "estimatedListeningMinutes": 239,
+      "textPreview": "(Japanische Marchen.) THE FAIRY OF THE DAWN Once upon a time what should happen DID happen; and if it had not happened this tale would never have been told. Th..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Dawn--The Fairy Of The Dawn--Herself!",
+      "title": "Dawn--the Fairy of the Dawn--herself!",
+      "includeByDefault": true,
+      "wordCount": 961,
+      "characterCount": 5037,
+      "estimatedListeningMinutes": 30,
+      "textPreview": "Dawn--the Fairy of the Dawn--herself! And as Petru looked at her the magic flute dropped by his side, and he held his breath. Near the well was a table, on whi..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "(From Rumanische Marchen.)",
+      "title": "(From Rumanische Marchen.)",
+      "includeByDefault": true,
+      "wordCount": 872,
+      "characterCount": 4502,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "(From Rumanische Marchen.) THE ENCHANTED KNIFE Once upon a time there lived a young man who vowed that he would never marry any girl who had not royal blood in..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "(Volksmarchen Der Serben.)",
+      "title": "(Volksmarchen der Serben.)",
+      "includeByDefault": true,
+      "wordCount": 3677,
+      "characterCount": 18964,
+      "estimatedListeningMinutes": 113,
+      "textPreview": "(Volksmarchen der Serben.) JESPER WHO HERDED THE HARES There was once a king who ruled over a kingdom somewhere between sunrise and sunset. It was as small as..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "(Scandinavian.)",
+      "title": "(Scandinavian.)",
+      "includeByDefault": true,
+      "wordCount": 2301,
+      "characterCount": 11965,
+      "estimatedListeningMinutes": 71,
+      "textPreview": "(Scandinavian.) THE UNDERGROUND WORKERS On a bitter night somewhere between Christmas and the New Year, a man set out to walk to the neighbouring village. It w..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "(Ehstnische Marchen.)",
+      "title": "(Ehstnische Marchen.)",
+      "includeByDefault": true,
+      "wordCount": 5282,
+      "characterCount": 27316,
+      "estimatedListeningMinutes": 163,
+      "textPreview": "(Ehstnische Marchen.) THE HISTORY OF DWARF LONG NOSE It is a great mistake to think that fairies, witches, magicians, and such people lived only in Eastern cou..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "‘Good Gracious!’ Said Long Nose. ‘So You Can Speak, Mistress Goose. I",
+      "title": "‘Good gracious!’ said Long Nose. ‘So you can speak, Mistress Goose. I",
+      "includeByDefault": true,
+      "wordCount": 6099,
+      "characterCount": 30862,
+      "estimatedListeningMinutes": 183,
+      "textPreview": "‘Good gracious!’ said Long Nose. ‘So you can speak, Mistress Goose. I never should have thought it! Well, don’t be anxious. I know better than to hurt so rare..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "(Adapted From Swahili Tales.)",
+      "title": "(Adapted from Swahili Tales.)",
+      "includeByDefault": true,
+      "wordCount": 1861,
+      "characterCount": 9224,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "(Adapted from Swahili Tales.) THE STORY OF HASSEBU Once upon a time there lived a poor woman who had only one child, and he was a little boy called Hassebu. Wh..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "(Adapted From Swahili Tales,)",
+      "title": "(Adapted from Swahili Tales,)",
+      "includeByDefault": true,
+      "wordCount": 1464,
+      "characterCount": 7574,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "(Adapted from Swahili Tales,) THE MAIDEN WITH THE WOODEN HELMET In a little village in the country of Japan there lived long, long ago a man and his wife. For..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "(Japanische Marchen.)",
+      "title": "(Japanische Marchen.)",
+      "includeByDefault": true,
+      "wordCount": 1303,
+      "characterCount": 6711,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "(Japanische Marchen.) THE MONKEY AND THE JELLY-FISH Children must often have wondered why jelly-fishes have no shells, like so many of the creatures that are w..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "(Japanische Marchen.)",
+      "title": "(Japanische Marchen.)",
+      "includeByDefault": true,
+      "wordCount": 2845,
+      "characterCount": 14811,
+      "estimatedListeningMinutes": 88,
+      "textPreview": "(Japanische Marchen.) THE HEADLESS DWARFS There was once a minister who spent his whole time in trying to find a servant who would undertake to ring the church..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "(Ehstnische Marchen.)",
+      "title": "(Ehstnische Marchen.)",
+      "includeByDefault": true,
+      "wordCount": 1311,
+      "characterCount": 6881,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "(Ehstnische Marchen.) THE YOUNG MAN WHO WOULD HAVE HIS EYES OPENED Once upon a time there lived a youth who was never happy unless he was prying into something..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "(Ehstnische Marchen.)",
+      "title": "(Ehstnische Marchen.)",
+      "includeByDefault": true,
+      "wordCount": 2818,
+      "characterCount": 14866,
+      "estimatedListeningMinutes": 88,
+      "textPreview": "(Ehstnische Marchen.) THE BOYS WITH THE GOLDEN STARS Once upon a time what happened did happen: and if it had not happened, you would never have heard this sto..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "(Rumanische Marchen.)",
+      "title": "(Rumanische Marchen.)",
+      "includeByDefault": true,
+      "wordCount": 1378,
+      "characterCount": 7202,
+      "estimatedListeningMinutes": 43,
+      "textPreview": "(Rumanische Marchen.) THE FROG Once upon a time there was a woman who had three sons. Though they were peasants they were well off, for the soil on which they..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "(From The Italian.)",
+      "title": "(From the Italian.)",
+      "includeByDefault": true,
+      "wordCount": 1031,
+      "characterCount": 5371,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "(From the Italian.) THE PRINCESS WHO WAS HIDDEN UNDERGROUND Once there was a king who had great riches, which, when he died, he divided among his three sons. T..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "(From The German.)",
+      "title": "(From the German.)",
+      "includeByDefault": true,
+      "wordCount": 4068,
+      "characterCount": 21264,
+      "estimatedListeningMinutes": 126,
+      "textPreview": "(From the German.) THE GIRL WHO PRETENDED TO BE A BOY Once upon a time there lived an emperor who was a great conqueror, and reigned over more countries than a..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "‘Golden Hair",
+      "title": "‘Golden Hair",
+      "includeByDefault": true,
+      "wordCount": 3333,
+      "characterCount": 17656,
+      "estimatedListeningMinutes": 105,
+      "textPreview": "‘Golden Hair The fields are green,’ and that to their certain knowledge he had a curl of her hair in his possession. When he heard that, the emperor desired th..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "(From Sept Contes Roumains, Jules Brun And Leo Bachelin.)",
+      "title": "(From Sept Contes Roumains, Jules Brun and Leo Bachelin.)",
+      "includeByDefault": true,
+      "wordCount": 3650,
+      "characterCount": 18634,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "(From Sept Contes Roumains, Jules Brun and Leo Bachelin.) THE STORY OF HALFMAN In a certain town there lived a judge who was married but had no children. One d..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "(Marchen Und Gedichte Aus Der Stadt Tripolis. Hans Von Stumme.)",
+      "title": "(Marchen und Gedichte aus der Stadt Tripolis. Hans von Stumme.)",
+      "includeByDefault": true,
+      "wordCount": 2358,
+      "characterCount": 11936,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "(Marchen und Gedichte aus der Stadt Tripolis. Hans von Stumme.) THE PRINCE WHO WANTED TO SEE THE WORLD There was once a king who had only one son, and this you..."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "(From The Portuguese.)",
+      "title": "(From the Portuguese.)",
+      "includeByDefault": true,
+      "wordCount": 216,
+      "characterCount": 1107,
+      "estimatedListeningMinutes": 7,
+      "textPreview": "(From the Portuguese.) VIRGILIUS THE SORCERER Long, long ago there was born to a Roman knight and his wife Maja a little boy called Virgilius. While he was sti..."
+    },
+    {
+      "id": "chapter-038",
+      "kind": "chapter",
+      "label": "Virgilius!’",
+      "title": "Virgilius!’",
+      "includeByDefault": true,
+      "wordCount": 1524,
+      "characterCount": 8235,
+      "estimatedListeningMinutes": 49,
+      "textPreview": "Virgilius!’ ‘Who calls?’ he asked, stopping and looking round. ‘Virgilius!’ answered the voice, ‘do you mark upon the ground where you are standing a slide or..."
+    },
+    {
+      "id": "chapter-039",
+      "kind": "chapter",
+      "label": "‘Preservation Of Rome.’",
+      "title": "‘Preservation of Rome.’",
+      "includeByDefault": true,
+      "wordCount": 1462,
+      "characterCount": 7872,
+      "estimatedListeningMinutes": 46,
+      "textPreview": "‘Preservation of Rome.’ On the roof of the Capitol, which was the most famous public building in the city, he set up statues representing the gods worshipped b..."
+    },
+    {
+      "id": "chapter-040",
+      "kind": "chapter",
+      "label": "(Adapted From ‘Virgilius The Sorcerer.’)",
+      "title": "(Adapted from ‘Virgilius the Sorcerer.’)",
+      "includeByDefault": true,
+      "wordCount": 1884,
+      "characterCount": 9607,
+      "estimatedListeningMinutes": 57,
+      "textPreview": "(Adapted from ‘Virgilius the Sorcerer.’) MOGARZEA AND HIS SON There was once a little boy, whose father and mother, when they were dying, left him to the care..."
+    },
+    {
+      "id": "chapter-041",
+      "kind": "chapter",
+      "label": "(Olumanische Marchen.)",
+      "title": "(Olumanische Marchen.)",
       "includeByDefault": true,
       "wordCount": 2,
       "characterCount": 22,
@@ -233,6 +486,239 @@
       "textPreview": "(Olumanische Marchen.)"
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "isolated titled sections",
+    "selectedHeadingStrategy": {
+      "patternId": "isolated-title-case",
+      "label": "Isolated title-case heading",
+      "convention": "isolated titled sections",
+      "kind": "titled-section",
+      "candidateCount": 70,
+      "tocLikeCount": 29,
+      "bodyLikeCount": 41,
+      "examples": [
+        "L48: ‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two in a Sack,’ and ‘The",
+        "L60: A Tale of the Tontlawald",
+        "L62: The Story of three Wonderful Beggars",
+        "L63: Schippeitaro",
+        "L64: The Three Princes and their Beasts",
+        "L65: The Goat’s Ears of the Emperor Trojan"
+      ],
+      "bodyExamples": [
+        "L48: ‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two in a Sack,’ and ‘The",
+        "L502: (From Ehstnische Marchen.)",
+        "L971: (From the Serbian.)",
+        "L2027: (From the Russian.)",
+        "L2683: (Ehstnische Marchen.)",
+        "L2998: (Ehstnische Marchen.)",
+        "L3425: (Adapted from Rumanische Marchen.)",
+        "L3481: (Japanische Marchen.)"
+      ],
+      "tocExamples": [
+        "L60: A Tale of the Tontlawald",
+        "L62: The Story of three Wonderful Beggars",
+        "L63: Schippeitaro",
+        "L64: The Three Princes and their Beasts",
+        "L65: The Goat’s Ears of the Emperor Trojan",
+        "L66: The Nine Pea-hens and the Golden Apples",
+        "L67: The Lute Player",
+        "L68: The Grateful Prince"
+      ],
+      "score": 0.901,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 41,
+        "minimumWords": 2,
+        "medianWords": 1861,
+        "maximumWords": 10021,
+        "averageWords": 2507,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 6,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 70,
+        "tocLikeCount": 29,
+        "bodyLikeCount": 41,
+        "examples": [
+          "L48: ‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two in a Sack,’ and ‘The",
+          "L60: A Tale of the Tontlawald",
+          "L62: The Story of three Wonderful Beggars",
+          "L63: Schippeitaro",
+          "L64: The Three Princes and their Beasts",
+          "L65: The Goat’s Ears of the Emperor Trojan"
+        ],
+        "bodyExamples": [
+          "L48: ‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two in a Sack,’ and ‘The",
+          "L502: (From Ehstnische Marchen.)",
+          "L971: (From the Serbian.)",
+          "L2027: (From the Russian.)",
+          "L2683: (Ehstnische Marchen.)",
+          "L2998: (Ehstnische Marchen.)",
+          "L3425: (Adapted from Rumanische Marchen.)",
+          "L3481: (Japanische Marchen.)"
+        ],
+        "tocExamples": [
+          "L60: A Tale of the Tontlawald",
+          "L62: The Story of three Wonderful Beggars",
+          "L63: Schippeitaro",
+          "L64: The Three Princes and their Beasts",
+          "L65: The Goat’s Ears of the Emperor Trojan",
+          "L66: The Nine Pea-hens and the Golden Apples",
+          "L67: The Lute Player",
+          "L68: The Grateful Prince"
+        ],
+        "score": 0.901,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 41,
+          "minimumWords": 2,
+          "medianWords": 1861,
+          "maximumWords": 10021,
+          "averageWords": 2507,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 6,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 35,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 34,
+        "examples": [
+          "L97: A TALE OF THE TONTLAWALD",
+          "L505: THE FINEST LIAR IN THE WORLD",
+          "L645: THE STORY OF THREE WONDERFUL BEGGARS",
+          "L974: SCHIPPEITARO",
+          "L1081: THE THREE PRINCES AND THEIR BEASTS (LITHUANIAN FAIRY TALE)",
+          "L1360: THE GOAT’S EARS OF THE EMPEROR TROJAN"
+        ],
+        "bodyExamples": [
+          "L505: THE FINEST LIAR IN THE WORLD",
+          "L645: THE STORY OF THREE WONDERFUL BEGGARS",
+          "L974: SCHIPPEITARO",
+          "L1081: THE THREE PRINCES AND THEIR BEASTS (LITHUANIAN FAIRY TALE)",
+          "L1360: THE GOAT’S EARS OF THE EMPEROR TROJAN",
+          "L1444: THE NINE PEA-HENS AND THE GOLDEN APPLES",
+          "L1833: THE LUTE PLAYER",
+          "L2030: THE GRATEFUL PRINCE"
+        ],
+        "tocExamples": [
+          "L97: A TALE OF THE TONTLAWALD"
+        ],
+        "score": 0.901,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "not selected because another strategy better spans the readable body",
+        "sectionSizeNotes": {
+          "sectionCount": 34,
+          "minimumWords": 597,
+          "medianWords": 2351,
+          "maximumWords": 8743,
+          "averageWords": 2887,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 2,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L1: PREFACE",
+          "L58: CONTENTS"
+        ],
+        "bodyExamples": [
+          "L1: PREFACE"
+        ],
+        "tocExamples": [
+          "L58: CONTENTS"
+        ],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy isolated-title-case",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 103256,
+          "medianWords": 103256,
+          "maximumWords": 103256,
+          "averageWords": 103256,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 35,
+        "bodyLikeCount": 34,
+        "tocLikeCount": 1,
+        "reason": "not selected because another strategy better spans the readable body"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 2,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy isolated-title-case"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 41,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L48: ‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two in a Sack,’ and ‘The",
+      "L502: (From Ehstnische Marchen.)",
+      "L971: (From the Serbian.)",
+      "L2027: (From the Russian.)",
+      "L2683: (Ehstnische Marchen.)",
+      "L2998: (Ehstnische Marchen.)",
+      "L3425: (Adapted from Rumanische Marchen.)",
+      "L3481: (Japanische Marchen.)"
+    ],
+    "tocHeadingExamples": [
+      "L58: CONTENTS"
+    ],
+    "priorTwoSectionCollapseFixed": false
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 102746,
     "actions": [
@@ -255,11 +741,11 @@
     "feasible": true,
     "confidence": "medium",
     "sectionsUsed": [
-      "part-001 Part 1"
+      "chapter-001 ‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two In A Sack,’ And ‘The"
     ],
-    "approximateWordCount": 5625,
+    "approximateWordCount": 4602,
     "startsAtRealReadableContent": true,
-    "snippet": "PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not invent them ‘out of his own head.’ He is accustomed to being asked, by ladies, ‘Have you written anything else except the Fairy Books?’ He is then obliged to explain that he has NOT written the Fairy...",
+    "snippet": "‘The Wonderful Beggars,’ ‘The Lute Player,’ ‘Two in a Sack,’ and ‘The Fish that swam in the Air.’ Mr. W. A. Craigie translated from the Scandinavian, ‘Jasper who herded the Hares.’ Mrs. Lang did the rest. Some of the most interesting are from the Roumanion, and three were previously published in the late Dr. Steere’s ‘Swahili Tales.’ By the permission of hi...",
     "notes": [
       "Targets about 900 words as a first-hour source approximation for later generation.",
       "Pass 2 marked first-hour preview derivation as feasible."

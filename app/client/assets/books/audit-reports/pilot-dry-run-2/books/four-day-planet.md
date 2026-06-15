@@ -68,24 +68,68 @@
 - L6729: States without permission and without paying copyright
 - L6730: royalties. Special rules, set forth in the General Terms of Use part
 
+## Structure Detection
+
+- Detected structural convention: standalone arabic-numbered sections
+- Selected heading strategy: arabic-only
+- TOC entries detected: yes
+- Body headings detected: yes
+- Section count from selected strategy: 20
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: pass
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| arabic-only | 20 | 20 | 0 | yes |  |
+| isolated-title-case | 60 | 58 | 1 | no | weaker than selected strategy arabic-only |
+| all-caps-title | 33 | 33 | 0 | no | weaker than selected strategy arabic-only |
+| arabic-numbered-title | 20 | 2 | 18 | no | weaker than selected strategy arabic-only |
+| special-front-back | 1 | 0 | 1 | no | rejected as TOC-like or front-matter-only evidence |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| isolated-title-case | 60 | 58 | 1 | weaker than selected strategy arabic-only |
+| all-caps-title | 33 | 33 | 0 | weaker than selected strategy arabic-only |
+| arabic-numbered-title | 20 | 2 | 18 | weaker than selected strategy arabic-only |
+| special-front-back | 1 | 0 | 1 | rejected as TOC-like or front-matter-only evidence |
+
+### Structure Warnings
+
+- None.
+
 ## Proposed Sections
 
-- Total proposed sections: 12
+- Total proposed sections: 21
 
 | ID | Kind | Label | Title | Words | Default |
 | --- | --- | --- | --- | ---: | --- |
-| part-001 | part | Part 1 |  | 5366 | yes |
-| part-002 | part | Part 2 |  | 5344 | yes |
-| part-003 | part | Part 3 |  | 5397 | yes |
-| part-004 | part | Part 4 |  | 5458 | yes |
-| part-005 | part | Part 5 |  | 5499 | yes |
-| part-006 | part | Part 6 |  | 5499 | yes |
-| part-007 | part | Part 7 |  | 5484 | yes |
-| part-008 | part | Part 8 |  | 5442 | yes |
-| part-009 | part | Part 9 |  | 5555 | yes |
-| part-010 | part | Part 10 |  | 5396 | yes |
-| part-011 | part | Part 11 |  | 3416 | yes |
-| part-012 | part | Part 12 |  | 0 | yes |
+| title-page-001 | title-page | Opening section |  | 84 | no |
+| chapter-001 | chapter | Section 1 |  | 3992 | yes |
+| chapter-002 | chapter | Section 2 |  | 3492 | yes |
+| chapter-003 | chapter | Section 3 |  | 3019 | yes |
+| chapter-004 | chapter | Section 4 |  | 2926 | yes |
+| chapter-005 | chapter | Section 5 |  | 3157 | yes |
+| chapter-006 | chapter | Section 6 |  | 2406 | yes |
+| chapter-007 | chapter | Section 7 |  | 2485 | yes |
+| chapter-008 | chapter | Section 8 |  | 2568 | yes |
+| chapter-009 | chapter | Section 9 |  | 2081 | yes |
+| chapter-010 | chapter | Section 10 |  | 2578 | yes |
+| chapter-011 | chapter | Section 11 |  | 2400 | yes |
+| chapter-012 | chapter | Section 12 |  | 1967 | yes |
+| chapter-013 | chapter | Section 13 |  | 1550 | yes |
+| chapter-014 | chapter | Section 14 |  | 1954 | yes |
+| chapter-015 | chapter | Section 15 |  | 3588 | yes |
+| chapter-016 | chapter | Section 16 |  | 2327 | yes |
+| chapter-017 | chapter | Section 17 |  | 3088 | yes |
+| chapter-018 | chapter | Section 18 |  | 2916 | yes |
+| chapter-019 | chapter | Section 19 |  | 4777 | yes |
+| chapter-020 | chapter | Section 20 |  | 4501 | yes |
 
 ## Suspicious Sections
 
@@ -106,10 +150,10 @@
 
 - Feasible: yes
 - Confidence: medium
-- Sections used: part-001 Part 1
-- Approximate word count: 5366
+- Sections used: chapter-001 Section 1
+- Approximate word count: 3992
 - Starts at real readable content: yes
-- Snippet: DEDICATION For Betty and Vall, with loving remembrance * * * * * CONTENTS 1. The Ship from Terra 2. Reporter Working 3. Bottom Level 4. Main City Level 5. Meeting Out of Order 6. Elementary, My Dear Kivelson 7. Aboard the _Javelin_ 8. Practice, 50-MM Gun 9. Monster Killing 10. Mayday, Mayday 11. Darkness and Cold 12. Castaways Working 13. The Beacon Light 1...
+- Snippet: 1 THE SHIP FROM TERRA I went through the gateway, towing my equipment in a contragravity hamper over my head. As usual, I was wondering what it would take, short of a revolution, to get the city of Port Sandor as clean and tidy and well lighted as the spaceport area. I knew Dad's editorials and my sarcastic news stories wouldn't do it. We'd been trying long...
 
 ## Existing Generated Output Comparison
 

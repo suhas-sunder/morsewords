@@ -68,14 +68,46 @@
 - L8376: concept and trademark. Project Gutenberg is a registered trademark,
 - L8377: and may not be used if you charge for an eBook, except by following
 
+## Structure Detection
+
+- Detected structural convention: chapter-based roman numerals
+- Selected heading strategy: chapter-roman
+- TOC entries detected: yes
+- Body headings detected: yes
+- Section count from selected strategy: 17
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: pass
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| chapter-roman | 34 | 17 | 17 | yes |  |
+| all-caps-title | 34 | 17 | 17 | no | weaker than selected strategy chapter-roman |
+| isolated-title-case | 40 | 39 | 1 | no | weaker than selected strategy chapter-roman |
+| special-front-back | 2 | 1 | 1 | no | weaker than selected strategy chapter-roman |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| all-caps-title | 34 | 17 | 17 | weaker than selected strategy chapter-roman |
+| isolated-title-case | 40 | 39 | 1 | weaker than selected strategy chapter-roman |
+| special-front-back | 2 | 1 | 1 | weaker than selected strategy chapter-roman |
+
+### Structure Warnings
+
+- None.
+
 ## Proposed Sections
 
-- Total proposed sections: 19
+- Total proposed sections: 18
 
 | ID | Kind | Label | Title | Words | Default |
 | --- | --- | --- | --- | ---: | --- |
-| preface-001 | preface | Preface |  | 223 | yes |
-| title-page-001 | title-page | Contents |  | 83 | no |
+| title-page-001 | title-page | Opening section |  | 306 | no |
 | chapter-001 | chapter | Chapter 1 |  | 1940 | yes |
 | chapter-002 | chapter | Chapter 2 |  | 3887 | yes |
 | chapter-003 | chapter | Chapter 3 |  | 4782 | yes |
@@ -113,10 +145,10 @@
 
 - Feasible: yes
 - Confidence: medium
-- Sections used: preface-001 Preface, chapter-001 Chapter 1
-- Approximate word count: 2163
+- Sections used: chapter-001 Chapter 1
+- Approximate word count: 1940
 - Starts at real readable content: yes
-- Snippet: PREFACE In writing the following story, the author has had in view no purpose other than that of affording entertainment to such readers as are interested in problems of crime and their solutions; and the story itself differs in no respect from others of its class, excepting in that an effort has been made to keep within the probabilities of ordinary life,...
+- Snippet: CHAPTER I MY LEARNED BROTHER "Conflagratam An° 1677. Fabricatam An° 1698. Richardo Powell Armiger Thesaurar." The words, set in four panels, which formed a frieze beneath the pediment of a fine brick portico, summarised the history of one of the tall houses at the upper end of King's Bench Walk and as I, somewhat absently, read over the inscription, my atte...
 
 ## Existing Generated Output Comparison
 

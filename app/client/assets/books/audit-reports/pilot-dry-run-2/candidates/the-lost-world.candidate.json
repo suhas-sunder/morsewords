@@ -24,182 +24,527 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
       "title": null,
-      "includeByDefault": true,
-      "wordCount": 5248,
-      "characterCount": 29751,
-      "estimatedListeningMinutes": 175,
+      "includeByDefault": false,
+      "wordCount": 173,
+      "characterCount": 1238,
+      "estimatedListeningMinutes": 6,
       "textPreview": "Foreword Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Chal..."
     },
     {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5320,
-      "characterCount": 29786,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "\"Dear me! That is his most dangerous subject. You won't believe a word he says--I'm sure I don't wonder. But don't tell him so, for it makes him very violent...."
+      "wordCount": 2109,
+      "characterCount": 11271,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER I \"There Are Heroisms All Round Us\" Mr. Hungerton, her father, really was the most tactless person upon earth,--a fluffy, feathery, untidy cockatoo of..."
     },
     {
-      "id": "part-003",
-      "kind": "part",
-      "label": "Part 3",
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 4530,
-      "characterCount": 25804,
-      "estimatedListeningMinutes": 153,
-      "textPreview": "\"I overcame the extreme reluctance of the natives--a reluctance which extends even to talk upon the subject--and by judicious persuasion and gifts, aided, I wi..."
+      "wordCount": 2337,
+      "characterCount": 13472,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "CHAPTER II \"Try Your Luck with Professor Challenger\" I always liked McArdle, the crabbed, old, round-backed, red-headed news editor, and I rather hoped that he..."
     },
     {
-      "id": "part-004",
-      "kind": "part",
-      "label": "Part 4",
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5323,
-      "characterCount": 29530,
+      "wordCount": 2421,
+      "characterCount": 13626,
+      "estimatedListeningMinutes": 80,
+      "textPreview": "CHAPTER III \"He is a Perfectly Impossible Person\" My friend's fear or hope was not destined to be realized. When I called on Wednesday there was a letter with..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5450,
+      "characterCount": 30524,
+      "estimatedListeningMinutes": 182,
+      "textPreview": "CHAPTER IV \"It's Just the very Biggest Thing in the World\" Hardly was it shut when Mrs. Challenger darted out from the dining-room. The small woman was in a fu..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4453,
+      "characterCount": 25634,
+      "estimatedListeningMinutes": 152,
+      "textPreview": "CHAPTER V \"Question!\" What with the physical shocks incidental to my first interview with Professor Challenger and the mental ones which accompanied the second..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3470,
+      "characterCount": 18832,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "CHAPTER VI \"I was the Flail of the Lord\" Lord John Roxton and I turned down Vigo Street together and through the dingy portals of the famous aristocratic rooke..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3468,
+      "characterCount": 19709,
+      "estimatedListeningMinutes": 117,
+      "textPreview": "CHAPTER VII \"To-morrow we Disappear into the Unknown\" I will not bore those whom this narrative may reach by an account of our luxurious voyage upon the Booth..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4445,
+      "characterCount": 25369,
+      "estimatedListeningMinutes": 151,
+      "textPreview": "CHAPTER VIII \"The Outlying Pickets of the New World\" Our friends at home may well rejoice with us, for we are at our goal, and up to a point, at least, we have..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 8223,
+      "characterCount": 45081,
+      "estimatedListeningMinutes": 267,
+      "textPreview": "CHAPTER IX \"Who could have Foreseen it?\" A dreadful thing has happened to us. Who could have foreseen it? I cannot foresee any end to our troubles. It may be t..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4978,
+      "characterCount": 27732,
+      "estimatedListeningMinutes": 164,
+      "textPreview": "CHAPTER X \"The most Wonderful Things have Happened\" The most wonderful things have happened and are continually happening to us. All the paper that I possess c..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5608,
+      "characterCount": 31178,
+      "estimatedListeningMinutes": 185,
+      "textPreview": "CHAPTER XI \"For once I was the Hero\" Lord John Roxton was right when he thought that some specially toxic quality might lie in the bite of the horrible creatur..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5703,
+      "characterCount": 30906,
+      "estimatedListeningMinutes": 182,
+      "textPreview": "CHAPTER XII \"It was Dreadful in the Forest\" I have said--or perhaps I have not said, for my memory plays me sad tricks these days--that I glowed with pride whe..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5482,
+      "characterCount": 29539,
       "estimatedListeningMinutes": 175,
-      "textPreview": "\"Ladies and Gentlemen,\" he began, amid a sustained interruption from the back. \"I beg pardon--Ladies, Gentlemen, and Children--I must apologize, I had inadvert..."
+      "textPreview": "CHAPTER XIII \"A Sight which I shall Never Forget\" Just as the sun was setting upon that melancholy night I saw the lonely figure of the Indian upon the vast pl..."
     },
     {
-      "id": "part-005",
-      "kind": "part",
-      "label": "Part 5",
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5087,
-      "characterCount": 28914,
-      "estimatedListeningMinutes": 171,
-      "textPreview": "I will not bore those whom this narrative may reach by an account of our luxurious voyage upon the Booth liner, nor will I tell of our week's stay at Para (sav..."
-    },
-    {
-      "id": "part-006",
-      "kind": "part",
-      "label": "Part 6",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 5282,
-      "characterCount": 29855,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "All day the drums rumbled and whispered, while their menace reflected itself in the faces of our colored companions. Even the hardy, swaggering half-breed seem..."
-    },
-    {
-      "id": "part-007",
-      "kind": "part",
-      "label": "Part 7",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 5322,
-      "characterCount": 29139,
-      "estimatedListeningMinutes": 173,
-      "textPreview": "We had proceeded some five more miles when again we saw a white arrow upon the rocks. It was at a point where the face of the cliff was for the first time spli..."
-    },
-    {
-      "id": "part-008",
-      "kind": "part",
-      "label": "Part 8",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 5332,
-      "characterCount": 29541,
-      "estimatedListeningMinutes": 175,
-      "textPreview": "There was plenty for him to do, and admirably the faithful fellow did it. First of all, under our directions, he undid the rope from the tree-stump and threw o..."
-    },
-    {
-      "id": "part-009",
-      "kind": "part",
-      "label": "Part 9",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 5364,
-      "characterCount": 29852,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "\"Oh, nothing, nothing,\" said he, and strolled back to where the voices of the contending men of science rose in a prolonged duet, the high, strident note of Su..."
-    },
-    {
-      "id": "part-010",
-      "kind": "part",
-      "label": "Part 10",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 5478,
-      "characterCount": 29784,
-      "estimatedListeningMinutes": 175,
-      "textPreview": "\"Well,\" said Challenger, \"I admit that my mind will be more at ease when I am assured that the result of our expedition has been conveyed to our friends. How w..."
-    },
-    {
-      "id": "part-011",
-      "kind": "part",
-      "label": "Part 11",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 5576,
-      "characterCount": 29912,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "Suddenly a thought came to me and brought some little comfort to my heart. I was not absolutely alone in the world. Down at the bottom of the cliff, and within..."
-    },
-    {
-      "id": "part-012",
-      "kind": "part",
-      "label": "Part 12",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 5370,
-      "characterCount": 29390,
-      "estimatedListeningMinutes": 173,
-      "textPreview": "\"Well, it's lucky for you, Challenger, that you ARE a little out of the ordinary. If you hadn't been so like the king----\" \"Upon my word, Lord John, you allow..."
-    },
-    {
-      "id": "part-013",
-      "kind": "part",
-      "label": "Part 13",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 5389,
-      "characterCount": 29489,
+      "wordCount": 5409,
+      "characterCount": 29498,
       "estimatedListeningMinutes": 174,
-      "textPreview": "\"We have been privileged,\" he cried, strutting about like a gamecock, \"to be present at one of the typical decisive battles of history--the battles which have..."
+      "textPreview": "CHAPTER XIV \"Those Were the Real Conquests\" We had imagined that our pursuers, the ape-men, knew nothing of our brush-wood hiding-place, but we were soon to fi..."
     },
     {
-      "id": "part-014",
-      "kind": "part",
-      "label": "Part 14",
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 4695,
-      "characterCount": 27543,
-      "estimatedListeningMinutes": 162,
-      "textPreview": "There is a dry bituminous wood upon the plateau--a species of araucaria, according to our botanist--which is always used by the Indians for torches. Each of us..."
+      "wordCount": 6008,
+      "characterCount": 32664,
+      "estimatedListeningMinutes": 193,
+      "textPreview": "CHAPTER XV \"Our Eyes have seen Great Wonders\" I write this from day to day, but I trust that before I come to the end of it, I may be able to say that the ligh..."
     },
     {
-      "id": "part-015",
-      "kind": "part",
-      "label": "Part 15",
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 2733,
-      "characterCount": 15163,
-      "estimatedListeningMinutes": 90,
-      "textPreview": "\"It was at this point that the sensation of the evening arose--a sensation so dramatic that it can never have been paralleled in the history of scientific gath..."
-    },
-    {
-      "id": "part-016",
-      "kind": "part",
-      "label": "Part 16",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 16,
-      "characterCount": 84,
-      "estimatedListeningMinutes": 1,
-      "textPreview": "Lord Roxton said nothing, but a brown hand was stretched out to me across the table."
+      "wordCount": 6328,
+      "characterCount": 36806,
+      "estimatedListeningMinutes": 218,
+      "textPreview": "CHAPTER XVI \"A Procession! A Procession!\" I should wish to place upon record here our gratitude to all our friends upon the Amazon for the very great kindness..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 16,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 16,
+      "examples": [
+        "L40: CHAPTER I",
+        "L275: CHAPTER II",
+        "L585: CHAPTER III",
+        "L888: CHAPTER IV",
+        "L1549: CHAPTER V",
+        "L2031: CHAPTER VI"
+      ],
+      "bodyExamples": [
+        "L40: CHAPTER I",
+        "L275: CHAPTER II",
+        "L585: CHAPTER III",
+        "L888: CHAPTER IV",
+        "L1549: CHAPTER V",
+        "L2031: CHAPTER VI",
+        "L2370: CHAPTER VII",
+        "L2711: CHAPTER VIII"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 16,
+        "minimumWords": 2109,
+        "medianWords": 5409,
+        "maximumWords": 8223,
+        "averageWords": 4743,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 16,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 16,
+        "examples": [
+          "L40: CHAPTER I",
+          "L275: CHAPTER II",
+          "L585: CHAPTER III",
+          "L888: CHAPTER IV",
+          "L1549: CHAPTER V",
+          "L2031: CHAPTER VI"
+        ],
+        "bodyExamples": [
+          "L40: CHAPTER I",
+          "L275: CHAPTER II",
+          "L585: CHAPTER III",
+          "L888: CHAPTER IV",
+          "L1549: CHAPTER V",
+          "L2031: CHAPTER VI",
+          "L2370: CHAPTER VII",
+          "L2711: CHAPTER VIII"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 16,
+          "minimumWords": 2109,
+          "medianWords": 5409,
+          "maximumWords": 8223,
+          "averageWords": 4743,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 11,
+        "tocLikeCount": 2,
+        "bodyLikeCount": 9,
+        "examples": [
+          "L15: CHAPTER",
+          "L35: THE LOST WORLD",
+          "L561: EDWARD D. MALONE.\"",
+          "L596: \"ENMORE PARK, W.",
+          "L619: \"GEORGE EDWARD CHALLENGER.\"",
+          "L7345: THE NEW WORLD"
+        ],
+        "bodyExamples": [
+          "L561: EDWARD D. MALONE.\"",
+          "L596: \"ENMORE PARK, W.",
+          "L619: \"GEORGE EDWARD CHALLENGER.\"",
+          "L7345: THE NEW WORLD",
+          "L7346: GREAT MEETING AT THE QUEEN'S HALL",
+          "L7347: SCENES OF UPROAR",
+          "L7348: EXTRAORDINARY INCIDENT",
+          "L7349: WHAT WAS IT?"
+        ],
+        "tocExamples": [
+          "L15: CHAPTER",
+          "L35: THE LOST WORLD"
+        ],
+        "score": 0.8310000000000001,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 9,
+          "minimumWords": 2,
+          "medianWords": 6,
+          "maximumWords": 65513,
+          "averageWords": 7955,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 5,
+          "notes": [
+            "1 section(s) exceed 18000 words",
+            "many very small sections; headings may include TOC, captions, or fragments",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 57,
+        "tocLikeCount": 2,
+        "bodyLikeCount": 55,
+        "examples": [
+          "L6: by Professor G. E. Challenger, who, being",
+          "L38: The Lost World",
+          "L42: \"There Are Heroisms All Round Us\"",
+          "L277: \"Try Your Luck with Professor Challenger\"",
+          "L341: Enmore Park?\"",
+          "L367: \"'Challenger, George Edward. Born: Largs, N. B., 1863. Educ.: Largs"
+        ],
+        "bodyExamples": [
+          "L42: \"There Are Heroisms All Round Us\"",
+          "L277: \"Try Your Luck with Professor Challenger\"",
+          "L341: Enmore Park?\"",
+          "L367: \"'Challenger, George Edward. Born: Largs, N. B., 1863. Educ.: Largs",
+          "L371: Crayston Medal for Zoological Research. Foreign Member of'--well,",
+          "L373: American Academy of Sciences, La Plata, etc., etc. Ex-President",
+          "L374: Palaeontological Society. Section H, British Association'--so on, so",
+          "L375: on!--'Publications: \"Some Observations Upon a Series of Kalmuck"
+        ],
+        "tocExamples": [
+          "L6: by Professor G. E. Challenger, who, being",
+          "L38: The Lost World"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 55,
+          "minimumWords": 7,
+          "medianWords": 763,
+          "maximumWords": 6178,
+          "averageWords": 1380,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 12,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "label": "Roman numbered titled heading",
+        "convention": "roman-numbered titled sections",
+        "kind": "chapter",
+        "candidateCount": 17,
+        "tocLikeCount": 16,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L17: I. \"THERE ARE HEROISMS ALL ROUND US\"",
+          "L18: II. \"TRY YOUR LUCK WITH PROFESSOR CHALLENGER\"",
+          "L19: III. \"HE IS A PERFECTLY IMPOSSIBLE PERSON\"",
+          "L20: IV. \"IT'S JUST THE VERY BIGGEST THING IN THE WORLD\"",
+          "L21: V. \"QUESTION!\"",
+          "L22: VI. \"I WAS THE FLAIL OF THE LORD\""
+        ],
+        "bodyExamples": [
+          "L3359: lid. The state of the metal seemed to show that the catastrophe had"
+        ],
+        "tocExamples": [
+          "L17: I. \"THERE ARE HEROISMS ALL ROUND US\"",
+          "L18: II. \"TRY YOUR LUCK WITH PROFESSOR CHALLENGER\"",
+          "L19: III. \"HE IS A PERFECTLY IMPOSSIBLE PERSON\"",
+          "L20: IV. \"IT'S JUST THE VERY BIGGEST THING IN THE WORLD\"",
+          "L21: V. \"QUESTION!\"",
+          "L22: VI. \"I WAS THE FLAIL OF THE LORD\"",
+          "L23: VII. \"TO-MORROW WE DISAPPEAR INTO THE UNKNOWN\"",
+          "L24: VIII. \"THE OUTLYING PICKETS OF THE NEW WORLD\""
+        ],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 45802,
+          "medianWords": 45802,
+          "maximumWords": 45802,
+          "averageWords": 45802,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 2,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L1: Foreword",
+          "L13: Contents"
+        ],
+        "bodyExamples": [
+          "L1: Foreword"
+        ],
+        "tocExamples": [
+          "L13: Contents"
+        ],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 76065,
+          "medianWords": 76065,
+          "maximumWords": 76065,
+          "averageWords": 76065,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 11,
+        "bodyLikeCount": 9,
+        "tocLikeCount": 2,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 57,
+        "bodyLikeCount": 55,
+        "tocLikeCount": 2,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "convention": "roman-numbered titled sections",
+        "candidateCount": 17,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 16,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 2,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 16,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 16,
+    "bodyHeadingExamples": [
+      "L40: CHAPTER I",
+      "L275: CHAPTER II",
+      "L585: CHAPTER III",
+      "L888: CHAPTER IV",
+      "L1549: CHAPTER V",
+      "L2031: CHAPTER VI",
+      "L2370: CHAPTER VII",
+      "L2711: CHAPTER VIII"
+    ],
+    "tocHeadingExamples": [
+      "L17: I. \"THERE ARE HEROISMS ALL ROUND US\"",
+      "L18: II. \"TRY YOUR LUCK WITH PROFESSOR CHALLENGER\"",
+      "L19: III. \"HE IS A PERFECTLY IMPOSSIBLE PERSON\"",
+      "L20: IV. \"IT'S JUST THE VERY BIGGEST THING IN THE WORLD\"",
+      "L21: V. \"QUESTION!\"",
+      "L22: VI. \"I WAS THE FLAIL OF THE LORD\"",
+      "L23: VII. \"TO-MORROW WE DISAPPEAR INTO THE UNKNOWN\"",
+      "L24: VIII. \"THE OUTLYING PICKETS OF THE NEW WORLD\""
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 76065,
     "actions": [],
@@ -209,11 +554,11 @@
     "feasible": true,
     "confidence": "medium",
     "sectionsUsed": [
-      "part-001 Part 1"
+      "chapter-001 Chapter 1"
     ],
-    "approximateWordCount": 5248,
+    "approximateWordCount": 2109,
     "startsAtRealReadableContent": true,
-    "snippet": "Foreword Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Challenger, who, being satisfied that no criticism or comment in this book is meant in an offensive spirit, has guaranteed that he will place no impediment to its publication and circulation. Contents CHA...",
+    "snippet": "CHAPTER I \"There Are Heroisms All Round Us\" Mr. Hungerton, her father, really was the most tactless person upon earth,--a fluffy, feathery, untidy cockatoo of a man, perfectly good-natured, but absolutely centered upon his own silly self. If anything could have driven me from Gladys, it would have been the thought of such a father-in-law. I am convinced tha...",
     "notes": [
       "Targets about 900 words as a first-hour source approximation for later generation.",
       "Pass 2 marked first-hour preview derivation as feasible."

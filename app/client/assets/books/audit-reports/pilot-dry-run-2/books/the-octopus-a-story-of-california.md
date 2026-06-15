@@ -68,34 +68,62 @@
 - L21264: States without permission and without paying copyright
 - L21265: royalties. Special rules, set forth in the General Terms of Use part
 
+## Structure Detection
+
+- Detected structural convention: chapter-based roman numerals with book divisions
+- Selected heading strategy: chapter-roman
+- TOC entries detected: yes
+- Body headings detected: yes
+- Section count from selected strategy: 11
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: warn
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| chapter-roman | 15 | 11 | 4 | yes |  |
+| all-caps-title | 10 | 10 | 0 | no | weaker than selected strategy chapter-roman |
+| isolated-title-case | 135 | 134 | 1 | no | weaker than selected strategy chapter-roman |
+| book-division | 2 | 2 | 0 | no | weaker than selected strategy chapter-roman |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| all-caps-title | 10 | 10 | 0 | weaker than selected strategy chapter-roman |
+| isolated-title-case | 135 | 134 | 1 | weaker than selected strategy chapter-roman |
+| book-division | 2 | 2 | 0 | weaker than selected strategy chapter-roman |
+
+### Structure Warnings
+
+- long book has huge sections despite detected headings
+
 ## Proposed Sections
 
-- Total proposed sections: 17
+- Total proposed sections: 12
 
 | ID | Kind | Label | Title | Words | Default |
 | --- | --- | --- | --- | ---: | --- |
-| book-001 | book | Book 1 |  | 2 | yes |
-| chapter-001 | chapter | Chapter 1 |  | 15240 | yes |
-| chapter-002 | chapter | Chapter 2 |  | 13151 | yes |
-| chapter-003 | chapter | Chapter 3 |  | 8997 | yes |
-| chapter-004 | chapter | Chapter 4 |  | 10854 | yes |
-| chapter-005 | chapter | Chapter 5 |  | 16117 | yes |
-| chapter-006 | chapter | Chapter 6 |  | 21717 | yes |
-| book-002 | book | Book 2 |  | 2 | yes |
-| chapter-007 | chapter | Chapter 1 |  | 11543 | yes |
-| chapter-008 | chapter | Chapter 2 |  | 14299 | yes |
-| chapter-009 | chapter | Chapter 3 |  | 7538 | yes |
-| chapter-010 | chapter | Chapter 4 |  | 16657 | yes |
-| chapter-011 | chapter | Chapter 5 |  | 11596 | yes |
-| chapter-012 | chapter | Chapter 6 |  | 10068 | yes |
-| chapter-013 | chapter | Chapter 7 |  | 11627 | yes |
-| chapter-014 | chapter | Chapter 8 |  | 15888 | yes |
-| chapter-015 | chapter | Chapter 9 |  | 11567 | yes |
+| title-page-001 | title-page | Opening section |  | 48244 | no |
+| chapter-001 | chapter | Chapter 5 |  | 16117 | yes |
+| chapter-002 | chapter | Chapter 6 |  | 21719 | yes |
+| chapter-003 | chapter | Chapter 1 |  | 11543 | yes |
+| chapter-004 | chapter | Chapter 2 |  | 14299 | yes |
+| chapter-005 | chapter | Chapter 3 |  | 7538 | yes |
+| chapter-006 | chapter | Chapter 4 |  | 16657 | yes |
+| chapter-007 | chapter | Chapter 5 |  | 11596 | yes |
+| chapter-008 | chapter | Chapter 6 |  | 10068 | yes |
+| chapter-009 | chapter | Chapter 7 |  | 11627 | yes |
+| chapter-010 | chapter | Chapter 8 |  | 15888 | yes |
+| chapter-011 | chapter | Chapter 9 |  | 11567 | yes |
 
 ## Suspicious Sections
 
-- Suspiciously short sections: book-001 (2), book-002 (2)
-- Suspiciously long sections: chapter-006 (21717)
+- Suspiciously short sections: None
+- Suspiciously long sections: title-page-001 (48244), chapter-002 (21719)
 
 ## Cleanup Simulation
 
@@ -112,10 +140,10 @@
 
 - Feasible: yes
 - Confidence: medium
-- Sections used: book-001 Book 1, chapter-001 Chapter 1
-- Approximate word count: 15242
+- Sections used: chapter-001 Chapter 5
+- Approximate word count: 16117
 - Starts at real readable content: yes
-- Snippet: BOOK 1 CHAPTER I Just after passing Caraher's saloon, on the County Road that ran south from Bonneville, and that divided the Broderson ranch from that of Los Muertos, Presley was suddenly aware of the faint and prolonged blowing of a steam whistle that he knew must come from the railroad shops near the depot at Bonneville. In starting out from the ranch ho...
+- Snippet: CHAPTER V At seven o'clock, in the bedroom of his ranch house, in the white-painted iron bedstead with its blue-grey army blankets and red counterpane, Annixter was still asleep, his face red, his mouth open, his stiff yellow hair in wild disorder. On the wooden chair at the bed-head, stood the kerosene lamp, by the light of which he had been reading the pr...
 
 ## Existing Generated Output Comparison
 
@@ -134,7 +162,9 @@
 - Check suspiciously short or long proposed sections before a real write pass.
 - Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.
 - Confirm the first-hour preview candidate starts with real readable content.
+- Review the structure-detection warnings and confirm TOC entries were not selected as body sections.
 
 ## Recommendation Reasons
 
+- Structure warning: long book has huge sections despite detected headings
 - Decorative/page markers are cleanup candidates but not boundary blockers.

@@ -24,149 +24,1230 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
       "title": null,
-      "includeByDefault": true,
-      "wordCount": 5156,
-      "characterCount": 29878,
-      "estimatedListeningMinutes": 177,
+      "includeByDefault": false,
+      "wordCount": 13541,
+      "characterCount": 79097,
+      "estimatedListeningMinutes": 470,
       "textPreview": "INTRODUCTION I have read \"Pointed Roofs\" three times. The first time it came to me with its original wardrobe, a different dress for every mood; and in some pl..."
     },
     {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Section 15",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 4919,
-      "characterCount": 28960,
-      "estimatedListeningMinutes": 172,
-      "textPreview": "It was a fool's errand.... To undertake to go to the German school and teach ... to be going there ... with nothing to give. The moment would come when there w..."
+      "wordCount": 810,
+      "characterCount": 4630,
+      "estimatedListeningMinutes": 28,
+      "textPreview": "15 At the end of twenty minutes, dismissed by Fräulein with a smiling recommendation to go and practise in the saal, Miriam had run upstairs for her music. \"It..."
     },
     {
-      "id": "part-003",
-      "kind": "part",
-      "label": "Part 3",
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Section 16",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5146,
-      "characterCount": 29949,
-      "estimatedListeningMinutes": 178,
-      "textPreview": "Clara Bergmann followed. Miriam watched her as she took her place at the piano--how square and stout she looked and old, careworn, like a woman of forty. She h..."
+      "wordCount": 681,
+      "characterCount": 3819,
+      "estimatedListeningMinutes": 23,
+      "textPreview": "16 As she flew upstairs for her music, saying, \"I'm all right. I can do it all right,\" she was half-conscious that her provisional success with her class had v..."
     },
     {
-      "id": "part-004",
-      "kind": "part",
-      "label": "Part 4",
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Section 17",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5148,
-      "characterCount": 29922,
-      "estimatedListeningMinutes": 178,
-      "textPreview": "\"Of course you can only 'play when you _can_,'\" said she to herself, \"like a bird singing.\" She sang once or twice, very quietly, in those early weeks. But she..."
+      "wordCount": 375,
+      "characterCount": 2215,
+      "estimatedListeningMinutes": 14,
+      "textPreview": "17 Every other day or so Miriam found she could get an hour on a bedroom piano; and always on a Saturday morning during _raccommodage_. She rediscovered all th..."
     },
     {
-      "id": "part-005",
-      "kind": "part",
-      "label": "Part 5",
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Section 18",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 4926,
-      "characterCount": 29062,
-      "estimatedListeningMinutes": 171,
-      "textPreview": "Certainly it was wrong to listen to sermons ... stultifying ... unless they were intellectual ... lectures like Mr. Brough's ... that was as bad, because they..."
+      "wordCount": 470,
+      "characterCount": 2756,
+      "estimatedListeningMinutes": 17,
+      "textPreview": "18 The morning of Ulrica Hesse's arrival was one of the mornings when she could \"play.\" She was sitting, happy, in the large English bedroom, listening. It was..."
     },
     {
-      "id": "part-006",
-      "kind": "part",
-      "label": "Part 6",
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Section 19",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5104,
-      "characterCount": 29979,
-      "estimatedListeningMinutes": 176,
-      "textPreview": "They had been twice since her coming. Sitting at a little marble-topped table with the Bergmanns near the window and overlooking the full flood of the Georgstr..."
+      "wordCount": 682,
+      "characterCount": 3975,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "19 No one else was to be seen. Perhaps it was all over. She was too late. Then a second basin held in coarse red hands appeared round the kitchen door and in a..."
     },
     {
-      "id": "part-007",
-      "kind": "part",
-      "label": "Part 7",
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Section 20",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 4925,
-      "characterCount": 29117,
-      "estimatedListeningMinutes": 173,
-      "textPreview": "Miriam glanced towards the marble steps. The little group had disappeared. She turned helplessly towards Gertrude's curtains. She could not think of anything t..."
+      "wordCount": 1035,
+      "characterCount": 6096,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "20 The snarling rattle of the coffee mill sounded out into the hall. Several voices were speaking together as she entered. Fräulein Pfaff was not there. Gertru..."
     },
     {
-      "id": "part-008",
-      "kind": "part",
-      "label": "Part 8",
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Section 21",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5171,
-      "characterCount": 29991,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "They made their way back to the street through a long low roomful of men drinking at little tables. Heavy clouds of smoke hung and moved in the air and mingled..."
+      "wordCount": 1443,
+      "characterCount": 8089,
+      "estimatedListeningMinutes": 48,
+      "textPreview": "21 Everyone was writing Saturday letters--Mademoiselle and the Germans with compressed lips and fine careful evenly moving pen-points; the English scrawling an..."
     },
     {
-      "id": "part-009",
-      "kind": "part",
-      "label": "Part 9",
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Section 1",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 4982,
-      "characterCount": 29013,
-      "estimatedListeningMinutes": 172,
-      "textPreview": "Taking a last look round she caught the eye of Eve's photograph gazing steadily at her from the chest of drawers.... It would be quite easy now that this had h..."
+      "wordCount": 776,
+      "characterCount": 4531,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "1 Miriam paid her first visit to a German church the next day, her third Sunday. Of the first Sunday, now so far off, she could remember nothing but sitting in..."
     },
     {
-      "id": "part-010",
-      "kind": "part",
-      "label": "Part 10",
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Section 2",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5148,
-      "characterCount": 29933,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "Early next morning Judy came in to tell Emma and Ulrica to get up at once and come and help the housekeeper make the rooms tidy and prepare breakfast. Miriam l..."
+      "wordCount": 67,
+      "characterCount": 366,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "2 Emma looked so sweet standing there shaking and suffused. Her blue eyes were full of tears. Miriam wanted to giggle too. She longed to know what had amused h..."
     },
     {
-      "id": "part-011",
-      "kind": "part",
-      "label": "Part 11",
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Section 3",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5071,
-      "characterCount": 29180,
-      "estimatedListeningMinutes": 175,
-      "textPreview": "She lay motionless. The night was cool. The screens had not been moved. She felt that the door was shut. After a while she began in imagination a conversation..."
+      "wordCount": 488,
+      "characterCount": 2722,
+      "estimatedListeningMinutes": 16,
+      "textPreview": "3 Sitting on this third Sunday morning in the dim Schloss Kirche--the Waldstrasse pew was in one of its darkest spaces and immediately under the shadow of a de..."
     },
     {
-      "id": "part-012",
-      "kind": "part",
-      "label": "Part 12",
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Section 4",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 1723,
-      "characterCount": 9841,
-      "estimatedListeningMinutes": 59,
-      "textPreview": "She looked about her like a stranger--everything was as it had been the day she came--the little cramped basement hall--the strange German girls--small and old..."
+      "wordCount": 645,
+      "characterCount": 3680,
+      "estimatedListeningMinutes": 22,
+      "textPreview": "4 Certainly it was wrong to listen to sermons ... stultifying ... unless they were intellectual ... lectures like Mr. Brough's ... that was as bad, because the..."
     },
     {
-      "id": "part-013",
-      "kind": "part",
-      "label": "Part 13",
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Section 5",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 9,
-      "characterCount": 91,
-      "estimatedListeningMinutes": 1,
-      "textPreview": "_The Mayflower Press, Plymouth, England._ William Brendon & Son, Ltd."
+      "wordCount": 389,
+      "characterCount": 2187,
+      "estimatedListeningMinutes": 13,
+      "textPreview": "5 They were singing a hymn. The people near her had not moved. Nobody had moved. The whole church was sitting down, singing a hymn. What wonderful people.... L..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 516,
+      "characterCount": 3061,
+      "estimatedListeningMinutes": 18,
+      "textPreview": "1 During those early days Miriam realised that school-routine, as she knew it--the planned days--the regular unvarying succession of lessons and preparations,..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 330,
+      "characterCount": 1913,
+      "estimatedListeningMinutes": 11,
+      "textPreview": "2 Miriam mused over the difference between the bearing of these men and that of the masters she remembered and tried to find words. What was it? Had her master..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 244,
+      "characterCount": 1464,
+      "estimatedListeningMinutes": 9,
+      "textPreview": "3 She began to recognise now with a glow of gratitude that her own teachers, those who were enthusiastic about their subjects--the albino, her dear Monsieur wi..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 516,
+      "characterCount": 2810,
+      "estimatedListeningMinutes": 17,
+      "textPreview": "4 She began to wonder whether hers had been in some way a specially good school. Things _had_ mattered there. Somehow the girls had been made to feel they matt..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Section 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 445,
+      "characterCount": 2511,
+      "estimatedListeningMinutes": 15,
+      "textPreview": "5 Woven through her retrospective appreciations came a doubt. She wondered whether, after all, her school had been right. Whether it ought to have treated them..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Section 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 98,
+      "characterCount": 517,
+      "estimatedListeningMinutes": 3,
+      "textPreview": "6 There was one other teacher, a Swiss and some sort of minister she supposed as everyone called him the Herr Pastor. She wondered whether he was in any sense..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Section 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 504,
+      "characterCount": 3059,
+      "estimatedListeningMinutes": 18,
+      "textPreview": "7 The time that was not taken up by the masters and the regular succession of rich and savoury meals--wastefully plentiful they seemed to Miriam--was filled in..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Section 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 636,
+      "characterCount": 3821,
+      "estimatedListeningMinutes": 23,
+      "textPreview": "8 During the cold weeks after Miriam's arrival there were no expeditions; and very commonly uncertainty was prolonged by a provisional distribution of the ten..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Section 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 389,
+      "characterCount": 2288,
+      "estimatedListeningMinutes": 14,
+      "textPreview": "9 The thing Miriam dreaded most acutely was a visit with Minna to her aurist. She learned with horror that Minna was obliged every few months to submit to a se..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Section 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 90,
+      "characterCount": 528,
+      "estimatedListeningMinutes": 3,
+      "textPreview": "10 These dreaded expeditions brought a compensation. Her liking for Minna grew with each visit. She wondered at her. Here she was with her nose and her ear--sh..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Section 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 660,
+      "characterCount": 3888,
+      "estimatedListeningMinutes": 23,
+      "textPreview": "11 On several occasions a little contingent selected from the pianos and kitchen had appeared in the schoolroom and settled down to read German with Fräulein...."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Section 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 86,
+      "characterCount": 496,
+      "estimatedListeningMinutes": 3,
+      "textPreview": "12 During dinner Fräulein Pfaff went the round of the table with questions as to what had been consumed at Kreipe's. The whole of the table on her right confes..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Section 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 585,
+      "characterCount": 3485,
+      "estimatedListeningMinutes": 21,
+      "textPreview": "13 Even walks were incalculable excepting on Saturdays, when at noon Anna turned out the schoolrooms. Then--unless to Miriam's great satisfaction it rained and..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Section 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 776,
+      "characterCount": 4402,
+      "estimatedListeningMinutes": 26,
+      "textPreview": "14 Her growing conviction and the distress of it were confirmed each week by a spectacle she could not escape and was rapidly growing to hate. Just in front of..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Section 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 340,
+      "characterCount": 1918,
+      "estimatedListeningMinutes": 11,
+      "textPreview": "15 Each occasion left her more puzzled and helpless. Now and again she thought there was going to be a change. She would feel a stirring of animation in her co..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Section 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 88,
+      "characterCount": 507,
+      "estimatedListeningMinutes": 3,
+      "textPreview": "16 Even Emma had a \"jüngling.\" He had a very vulgar surname, too vulgar to be spoken; it was breathed against Miriam's shoulder in the half-light. Miriam was b..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Section 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 199,
+      "characterCount": 1183,
+      "estimatedListeningMinutes": 7,
+      "textPreview": "17 Miriam felt ashamed of her share in the hairdresser and the chemist. Emma's jüngling might possibly be a student.... She grieved over the things that she fe..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 440,
+      "characterCount": 2612,
+      "estimatedListeningMinutes": 16,
+      "textPreview": "1 Fräulein Pfaff came to the breakfast-table a little late in a grey stuff dress with a cream-coloured ruching about the collar-band and ruchings against her l..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 748,
+      "characterCount": 4330,
+      "estimatedListeningMinutes": 26,
+      "textPreview": "2 Fräulein Pfaff rose at last from the table. \"Na, Kinder,\" she smiled, holding her arms out to them all. She turned to the nearest window. \"Die Fenster auf!\"..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 318,
+      "characterCount": 1829,
+      "estimatedListeningMinutes": 11,
+      "textPreview": "3 She handed the book to Ulrica, indicating the place and Ulrica read. Her voice sounded a higher pitch than Fräulein's. It sounded out rich and full and liqui..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 178,
+      "characterCount": 1017,
+      "estimatedListeningMinutes": 6,
+      "textPreview": "4 \"Schiller\" she saw at the top of the page and the title of the poem \"Der Spaziergang.\" Miriam laid the book on the end of her knee, and leaning over it, read..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Section 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 585,
+      "characterCount": 3349,
+      "estimatedListeningMinutes": 20,
+      "textPreview": "5 \"Are you dressed, Hendy?\" Miriam, who had sat up in her bath when the drumming came at the door, answered sleepily, \"No, I shan't be a minute.\" \"Don't you wa..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Section 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 613,
+      "characterCount": 3619,
+      "estimatedListeningMinutes": 22,
+      "textPreview": "6 \"Hullo, Hendy, let me get into my cubicle.\" Gertrude stood before her dripping and smiling. \"However on earth did you do it?\" said Miriam, gazing incredulous..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "Section 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 463,
+      "characterCount": 2568,
+      "estimatedListeningMinutes": 16,
+      "textPreview": "7 \"Thank you,\" laughed Miriam. Emma's hands were on her muff, stroking it eagerly. \"Hendchen, Hendchen,\" she cooed in her consoling tones, \"to house to house,..."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "Section 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 541,
+      "characterCount": 3074,
+      "estimatedListeningMinutes": 18,
+      "textPreview": "8 Pastor Lahmann gave a French lesson the next afternoon. \"Sur l'eau, si beau!\" This refrain threatening for the third time, three or four of the girls led by..."
+    },
+    {
+      "id": "chapter-038",
+      "kind": "chapter",
+      "label": "Section 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 713,
+      "characterCount": 4064,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "9 Breakfast the next morning was a gay feast. The mood which had seized the girls at the lavishly decked tea-table awaiting them on their return from their mom..."
+    },
+    {
+      "id": "chapter-039",
+      "kind": "chapter",
+      "label": "Section 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 763,
+      "characterCount": 4593,
+      "estimatedListeningMinutes": 28,
+      "textPreview": "10 Taking the top flight three stairs at a time Miriam reached the garret first and began running about the room at a quick trot with her fists closed, arms do..."
+    },
+    {
+      "id": "chapter-040",
+      "kind": "chapter",
+      "label": "Section 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 576,
+      "characterCount": 3368,
+      "estimatedListeningMinutes": 20,
+      "textPreview": "11 After the gay breakfast Miriam found herself alone in the schoolroom listening inadvertently to a conversation going on apparently in Fräulein Pfaff's room..."
+    },
+    {
+      "id": "chapter-041",
+      "kind": "chapter",
+      "label": "Section 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 122,
+      "characterCount": 727,
+      "estimatedListeningMinutes": 4,
+      "textPreview": "12 Miriam had crept back to the schoolroom window. She stood shivering, trying to forget the taunting words, and the cruel laughter. \"You can have your ha'penc..."
+    },
+    {
+      "id": "chapter-042",
+      "kind": "chapter",
+      "label": "Section 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 263,
+      "characterCount": 1479,
+      "estimatedListeningMinutes": 9,
+      "textPreview": "13 Starting out along the dusty field-girt roadway leading from the railway station to the little town of Hoddenheim through the hot sunshine, Miriam was alrea..."
+    },
+    {
+      "id": "chapter-043",
+      "kind": "chapter",
+      "label": "Section 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 343,
+      "characterCount": 2012,
+      "estimatedListeningMinutes": 12,
+      "textPreview": "14 Making some remark to Minna, Miriam secured her companionship and dropped a little behind the group. Minna gave her one eager beam from behind her nose, whi..."
+    },
+    {
+      "id": "chapter-044",
+      "kind": "chapter",
+      "label": "Section 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 753,
+      "characterCount": 4512,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "15 \"You like old-time Germany, Miss Henderson?\" Miriam turned a radiant face to Fräulein Pfaff's table and made some movement with her lips. \"I think you have..."
+    },
+    {
+      "id": "chapter-045",
+      "kind": "chapter",
+      "label": "Section 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 781,
+      "characterCount": 4476,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "16 They made their way back to the street through a long low roomful of men drinking at little tables. Heavy clouds of smoke hung and moved in the air and ming..."
+    },
+    {
+      "id": "chapter-046",
+      "kind": "chapter",
+      "label": "Section 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 197,
+      "characterCount": 1123,
+      "estimatedListeningMinutes": 7,
+      "textPreview": "17 At sunset they stood on a hill outside the town and looked across at it lying up its own hillside, its buildings peaking against the sky. They counted the r..."
+    },
+    {
+      "id": "chapter-047",
+      "kind": "chapter",
+      "label": "Section 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 604,
+      "characterCount": 3433,
+      "estimatedListeningMinutes": 21,
+      "textPreview": "18 For a week the whole of the housework and cooking was done by the girls under the superintendence of Gertrude, who seemed to be all over the house acting as..."
+    },
+    {
+      "id": "chapter-048",
+      "kind": "chapter",
+      "label": "Section 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 240,
+      "characterCount": 1270,
+      "estimatedListeningMinutes": 8,
+      "textPreview": "19 Minna was calling to her from the stairs. She went on to the landing to answer her and found her on the top flight dressed to go out. \"Ach!\" she whispered a..."
+    },
+    {
+      "id": "chapter-049",
+      "kind": "chapter",
+      "label": "Section 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 737,
+      "characterCount": 4274,
+      "estimatedListeningMinutes": 26,
+      "textPreview": "20 Minna and Miriam ambled gently along together. Miriam had discarded her little fur pelerine and her double-breasted jacket bulged loosely over the thin fabr..."
+    },
+    {
+      "id": "chapter-050",
+      "kind": "chapter",
+      "label": "Section 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 377,
+      "characterCount": 2187,
+      "estimatedListeningMinutes": 13,
+      "textPreview": "21 Miriam almost ran home from seeing Minna into the three o'clock train ... dear beautiful, beautiful Hanover ... the sunlight blazed from the rain-sprinkled..."
+    },
+    {
+      "id": "chapter-051",
+      "kind": "chapter",
+      "label": "Section 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1256,
+      "characterCount": 7397,
+      "estimatedListeningMinutes": 44,
+      "textPreview": "22 \"Pom--erain--eeya,\" she hummed, swinging herself round the great door into the saal. Pastor Lahmann was standing near one of the windows. The rush of her en..."
+    },
+    {
+      "id": "chapter-052",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 633,
+      "characterCount": 3520,
+      "estimatedListeningMinutes": 21,
+      "textPreview": "1 Walking along a narrow muddy causeway by a little river overhung with willows, girls ahead of her in single file and girls in single file behind, Miriam drea..."
+    },
+    {
+      "id": "chapter-053",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 399,
+      "characterCount": 2295,
+      "estimatedListeningMinutes": 14,
+      "textPreview": "2 Passing languidly up through the house after breakfast, unable to decide to spend her Saturday morning as usual at a piano in one of the bedrooms, Miriam wen..."
+    },
+    {
+      "id": "chapter-054",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 558,
+      "characterCount": 3376,
+      "estimatedListeningMinutes": 20,
+      "textPreview": "3 In the schoolroom she found the _raccommodage_ party gathered round the table. At its head sat Mademoiselle, her arms flung out upon the table and her face b..."
+    },
+    {
+      "id": "chapter-055",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 793,
+      "characterCount": 4523,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "4 The heat grew intense. The air was more and more oppressive as the day went on. Clara fainted suddenly just after dinner, and Fräulein, holding a little disc..."
+    },
+    {
+      "id": "chapter-056",
+      "kind": "chapter",
+      "label": "Section 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 846,
+      "characterCount": 4865,
+      "estimatedListeningMinutes": 29,
+      "textPreview": "5 Coming up the basement stairs in response to the tea-gong, Miriam thought there were visitors in the hall and hesitated; then there was Pastor Lahmann's prof..."
+    },
+    {
+      "id": "chapter-057",
+      "kind": "chapter",
+      "label": "Section 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 245,
+      "characterCount": 1367,
+      "estimatedListeningMinutes": 8,
+      "textPreview": "6 Tea was over. Fräulein decided against a walk and they all trooped into the saal. No programme was suggested; they all sat about unoccupied. There was no cen..."
+    },
+    {
+      "id": "chapter-058",
+      "kind": "chapter",
+      "label": "Section 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 730,
+      "characterCount": 4156,
+      "estimatedListeningMinutes": 25,
+      "textPreview": "7 The sun had set. Miriam had found a little thin volume of German poetry in her pocket. She sat fumbling the leaves. She felt the touch of her limp straighten..."
+    },
+    {
+      "id": "chapter-059",
+      "kind": "chapter",
+      "label": "Section 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 325,
+      "characterCount": 1870,
+      "estimatedListeningMinutes": 11,
+      "textPreview": "8 Fräulein Pfaff came upstairs behind the girls and ordered silence as they went to their rooms. \"Hear, all, children,\" she said in German in the quiet clear e..."
+    },
+    {
+      "id": "chapter-060",
+      "kind": "chapter",
+      "label": "Section 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 277,
+      "characterCount": 1621,
+      "estimatedListeningMinutes": 10,
+      "textPreview": "9 Miriam could not remember hearing Fräulein Pfaff go away when she woke in the darkness feeling unendurably oppressed. She flung her sheet aside and turned he..."
+    },
+    {
+      "id": "chapter-061",
+      "kind": "chapter",
+      "label": "Section 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 801,
+      "characterCount": 4561,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "10 Miriam was the last to reach the schoolroom. The girls were drawn up on either side of the gaslit room--leaving the shuttered windows clear. She moved to ta..."
+    },
+    {
+      "id": "chapter-062",
+      "kind": "chapter",
+      "label": "Section 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 354,
+      "characterCount": 2010,
+      "estimatedListeningMinutes": 12,
+      "textPreview": "11 \"You will be asleep, Miss Hendershon.\" Miriam started at the sound of Ulrica's wailing whisper. Fräulein had only just gone. She had been sitting on the end..."
+    },
+    {
+      "id": "chapter-063",
+      "kind": "chapter",
+      "label": "Section 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 694,
+      "characterCount": 3966,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "12 Early next morning Judy came in to tell Emma and Ulrica to get up at once and come and help the housekeeper make the rooms tidy and prepare breakfast. Miria..."
+    },
+    {
+      "id": "chapter-064",
+      "kind": "chapter",
+      "label": "Section 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 272,
+      "characterCount": 1506,
+      "estimatedListeningMinutes": 9,
+      "textPreview": "13 The sky seen from the summer-house was darker still. There were no massed clouds, nothing but a hard even dark copper-grey, and away through the gap the dis..."
+    },
+    {
+      "id": "chapter-065",
+      "kind": "chapter",
+      "label": "Section 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 498,
+      "characterCount": 2909,
+      "estimatedListeningMinutes": 17,
+      "textPreview": "14 There was no church. Late in the afternoon when the sky lifted they all went to the woods in their summer dresses and hats. They had permission to carry the..."
+    },
+    {
+      "id": "chapter-066",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 814,
+      "characterCount": 4749,
+      "estimatedListeningMinutes": 28,
+      "textPreview": "1 The next afternoon they all drove in a high, wide brake with an awning, five miles out into the country to have tea at a forest-inn. The inn appeared at last..."
+    },
+    {
+      "id": "chapter-067",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 475,
+      "characterCount": 2667,
+      "estimatedListeningMinutes": 16,
+      "textPreview": "2 They were driving swiftly along through the twilight. The warm scents of the woods stood across the roadway. They breathed them in. Sitting at the forward en..."
+    },
+    {
+      "id": "chapter-068",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 384,
+      "characterCount": 2222,
+      "estimatedListeningMinutes": 13,
+      "textPreview": "1 Towards the end of June there were frequent excursions. Into all the gatherings at Waldstrasse the outside world came like a presence. It removed the sense o..."
+    },
+    {
+      "id": "chapter-069",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 55,
+      "characterCount": 307,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "2 One morning she knew that there was going to be a change. The term was coming to an end. There was to be a going away. The girls were talking about \"Norderne..."
+    },
+    {
+      "id": "chapter-070",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1009,
+      "characterCount": 5725,
+      "estimatedListeningMinutes": 34,
+      "textPreview": "3 \"You shall write and enquire of your good parents what they would have you do. You shall tell them that the German pupils return all to their homes; that the..."
+    },
+    {
+      "id": "chapter-071",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 876,
+      "characterCount": 5136,
+      "estimatedListeningMinutes": 31,
+      "textPreview": "4 As they walked she laughed and talked with the girls, responding excitedly to all that was said. They walked along a broad and almost empty boulevard in two..."
+    },
+    {
+      "id": "chapter-072",
+      "kind": "chapter",
+      "label": "Section 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1137,
+      "characterCount": 6232,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "5 Miriam woke in the moonlight. She saw Mademoiselle's face as it had looked at tea-time, pale and cruel, silent and very old. Someone had said she had been in..."
+    },
+    {
+      "id": "chapter-073",
+      "kind": "chapter",
+      "label": "Section 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 578,
+      "characterCount": 3398,
+      "estimatedListeningMinutes": 21,
+      "textPreview": "6 She turned about in bed; her head was growing fevered. She conjured up a vision of the backs of the books in the bookcase in the dining-room at home.... Ilia..."
+    },
+    {
+      "id": "chapter-074",
+      "kind": "chapter",
+      "label": "Section 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 536,
+      "characterCount": 3203,
+      "estimatedListeningMinutes": 20,
+      "textPreview": "7 Then nothing matters. Just one little short life.... \"A few more years shall roll ... A few more seasons pass....\" There was a better one than that ... not s..."
+    },
+    {
+      "id": "chapter-075",
+      "kind": "chapter",
+      "label": "Section 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 425,
+      "characterCount": 2369,
+      "estimatedListeningMinutes": 14,
+      "textPreview": "8 \"What a perfect morning ... what a perfect morning,\" Miriam kept telling herself, trying to see into the garden. There was a bowl of irises on the breakfast-..."
+    },
+    {
+      "id": "chapter-076",
+      "kind": "chapter",
+      "label": "Section 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 412,
+      "characterCount": 2383,
+      "estimatedListeningMinutes": 14,
+      "textPreview": "9 After bed-making, Fräulein settled a mending party at the window-end of the schoolroom table. She sent no emissary but was waiting herself in the schoolroom..."
+    },
+    {
+      "id": "chapter-077",
+      "kind": "chapter",
+      "label": "Section 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 502,
+      "characterCount": 3021,
+      "estimatedListeningMinutes": 18,
+      "textPreview": "10 Miriam ran into the empty summer-house tearing open a well-filled envelope. There was a long letter from Eve, a folded half-sheet from mother. Her heart bea..."
+    },
+    {
+      "id": "chapter-078",
+      "kind": "chapter",
+      "label": "Section 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1242,
+      "characterCount": 6976,
+      "estimatedListeningMinutes": 42,
+      "textPreview": "11 \"Are all here?\" Jimmie answered and Fräulein came to the table and stood leaning for a moment upon one hand. The door opened and the housekeeper shone hard..."
+    },
+    {
+      "id": "chapter-079",
+      "kind": "chapter",
+      "label": "Section 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1222,
+      "characterCount": 6913,
+      "estimatedListeningMinutes": 42,
+      "textPreview": "12 \"Dearest Mim. I have a wonderful piece of news for you. I wonder what you will say? It is about Harriett. She has asked me to tell you as she does not like..."
+    },
+    {
+      "id": "chapter-080",
+      "kind": "chapter",
+      "label": "Section 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 821,
+      "characterCount": 4743,
+      "estimatedListeningMinutes": 28,
+      "textPreview": "13 The house was shut up for the night. Miriam looked up at the clock dizzily as she drank the last of her coffee. It marked half-past eleven. Fräulein had tol..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone arabic-numbered sections",
+    "selectedHeadingStrategy": {
+      "patternId": "arabic-only",
+      "label": "Standalone Arabic number",
+      "convention": "standalone arabic-numbered sections",
+      "kind": "section",
+      "candidateCount": 104,
+      "tocLikeCount": 24,
+      "bodyLikeCount": 80,
+      "examples": [
+        "L93: 1",
+        "L173: 2",
+        "L391: 3",
+        "L565: 1",
+        "L610: 2",
+        "L647: 3"
+      ],
+      "bodyExamples": [
+        "L1567: 15",
+        "L1649: 16",
+        "L1714: 17",
+        "L1754: 18",
+        "L1822: 19",
+        "L1903: 20",
+        "L2044: 21",
+        "L2185: 1"
+      ],
+      "tocExamples": [
+        "L93: 1",
+        "L173: 2",
+        "L391: 3",
+        "L565: 1",
+        "L610: 2",
+        "L647: 3",
+        "L692: 4",
+        "L721: 5"
+      ],
+      "score": 0.9530632911392407,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 80,
+        "minimumWords": 55,
+        "medianWords": 516,
+        "maximumWords": 1443,
+        "averageWords": 549,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 2,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "arabic-only",
+        "label": "Standalone Arabic number",
+        "convention": "standalone arabic-numbered sections",
+        "kind": "section",
+        "candidateCount": 104,
+        "tocLikeCount": 24,
+        "bodyLikeCount": 80,
+        "examples": [
+          "L93: 1",
+          "L173: 2",
+          "L391: 3",
+          "L565: 1",
+          "L610: 2",
+          "L647: 3"
+        ],
+        "bodyExamples": [
+          "L1567: 15",
+          "L1649: 16",
+          "L1714: 17",
+          "L1754: 18",
+          "L1822: 19",
+          "L1903: 20",
+          "L2044: 21",
+          "L2185: 1"
+        ],
+        "tocExamples": [
+          "L93: 1",
+          "L173: 2",
+          "L391: 3",
+          "L565: 1",
+          "L610: 2",
+          "L647: 3",
+          "L692: 4",
+          "L721: 5"
+        ],
+        "score": 0.9530632911392407,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 80,
+          "minimumWords": 55,
+          "medianWords": 516,
+          "maximumWords": 1443,
+          "averageWords": 549,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 2,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 10,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 10,
+        "examples": [
+          "L90: CHAPTER I",
+          "L562: CHAPTER II",
+          "L846: CHAPTER III",
+          "L2182: CHAPTER IV",
+          "L2418: CHAPTER V",
+          "L3091: CHAPTER VI"
+        ],
+        "bodyExamples": [
+          "L90: CHAPTER I",
+          "L562: CHAPTER II",
+          "L846: CHAPTER III",
+          "L2182: CHAPTER IV",
+          "L2418: CHAPTER V",
+          "L3091: CHAPTER VI",
+          "L4492: CHAPTER VII",
+          "L4552: CHAPTER VIII"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 10,
+          "minimumWords": 429,
+          "medianWords": 6502,
+          "maximumWords": 12338,
+          "averageWords": 5663,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 67,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 66,
+        "examples": [
+          "L212: \"Don't, Mim.\"",
+          "L217: \"_Don't_, Mim.\"",
+          "L227: \"Oh--reely.\"",
+          "L306: \"What?\"",
+          "L310: \"Oh.\"",
+          "L315: \"Me?\""
+        ],
+        "bodyExamples": [
+          "L212: \"Don't, Mim.\"",
+          "L217: \"_Don't_, Mim.\"",
+          "L227: \"Oh--reely.\"",
+          "L306: \"What?\"",
+          "L315: \"Me?\"",
+          "L446: Tales,\" \"John Halifax,\" \"Swiss Family Robinson\" made her laugh. The",
+          "L455: Villette--Longfellow--Holy Bible _with_ Apocrypha--Egmont----",
+          "L482: \"Mm.\""
+        ],
+        "tocExamples": [
+          "L310: \"Oh.\""
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 66,
+          "minimumWords": 1,
+          "medianWords": 319,
+          "maximumWords": 9657,
+          "averageWords": 843,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 22,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 2,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 2,
+        "examples": [
+          "L84: J. D. BERESFORD.",
+          "L87: POINTED ROOFS"
+        ],
+        "bodyExamples": [
+          "L84: J. D. BERESFORD.",
+          "L87: POINTED ROOFS"
+        ],
+        "tocExamples": [],
+        "score": 0.341,
+        "confidence": "low",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 2,
+          "minimumWords": 3,
+          "medianWords": 56633,
+          "maximumWords": 56633,
+          "averageWords": 28318,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 1,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L1: INTRODUCTION"
+        ],
+        "bodyExamples": [
+          "L1: INTRODUCTION"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 57428,
+          "medianWords": 57428,
+          "maximumWords": 57428,
+          "averageWords": 57428,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "chapter-roman",
+        "convention": "chapter-based roman numerals",
+        "candidateCount": 10,
+        "bodyLikeCount": 10,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy arabic-only"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 67,
+        "bodyLikeCount": 66,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy arabic-only"
+      },
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 2,
+        "bodyLikeCount": 2,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy arabic-only"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy arabic-only"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 80,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "warn",
+    "warnings": [
+      "body headings were found but rejected by the selected strategy"
+    ],
+    "bodyChapterHeadingCount": 10,
+    "bodyHeadingExamples": [
+      "L1567: 15",
+      "L1649: 16",
+      "L1714: 17",
+      "L1754: 18",
+      "L1822: 19",
+      "L1903: 20",
+      "L2044: 21",
+      "L2185: 1"
+    ],
+    "tocHeadingExamples": [
+      "L93: 1",
+      "L173: 2",
+      "L391: 3",
+      "L565: 1",
+      "L610: 2",
+      "L647: 3",
+      "L692: 4",
+      "L721: 5"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 57428,
     "actions": [],
@@ -176,11 +1257,12 @@
     "feasible": true,
     "confidence": "medium",
     "sectionsUsed": [
-      "part-001 Part 1"
+      "chapter-001 Section 15",
+      "chapter-002 Section 16"
     ],
-    "approximateWordCount": 5156,
+    "approximateWordCount": 1491,
     "startsAtRealReadableContent": true,
-    "snippet": "INTRODUCTION I have read \"Pointed Roofs\" three times. The first time it came to me with its original wardrobe, a different dress for every mood; and in some places the handwriting of the manuscript clothed the thought with the ragged urgency of haste; and in others it wore an aspect incredibly delicate and neat, as if the writer had caressed each word befor...",
+    "snippet": "15 At the end of twenty minutes, dismissed by Fräulein with a smiling recommendation to go and practise in the saal, Miriam had run upstairs for her music. \"It's all right. I'm all right. I shall be able to do it,\" she said to herself as she ran. The ordeal was past. She was, she had learned, to talk English with the German girls, at table, during walks, wh...",
     "notes": [
       "Targets about 900 words as a first-hour source approximation for later generation.",
       "Pass 2 marked first-hour preview derivation as feasible."
@@ -203,6 +1285,7 @@
     "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
     "Check suspiciously short or long proposed sections before a real write pass.",
     "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
-    "Confirm the first-hour preview candidate starts with real readable content."
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Review the structure-detection warnings and confirm TOC entries were not selected as body sections."
   ]
 }

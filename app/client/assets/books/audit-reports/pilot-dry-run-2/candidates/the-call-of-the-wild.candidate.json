@@ -101,6 +101,174 @@
       "textPreview": "Chapter VII. The Sounding of the Call When Buck earned sixteen hundred dollars in five minutes for John Thornton, he made it possible for his master to pay off..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 7,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 7,
+      "examples": [
+        "L1: Chapter I. Into the Primitive",
+        "L378: Chapter II. The Law of Club and Fang",
+        "L682: Chapter III. The Dominant Primordial Beast",
+        "L1157: Chapter IV. Who Has Won to Mastership",
+        "L1463: Chapter V. The Toil of Trace and Trail",
+        "L1990: Chapter VI. For the Love of a Man"
+      ],
+      "bodyExamples": [
+        "L1: Chapter I. Into the Primitive",
+        "L378: Chapter II. The Law of Club and Fang",
+        "L682: Chapter III. The Dominant Primordial Beast",
+        "L1157: Chapter IV. Who Has Won to Mastership",
+        "L1463: Chapter V. The Toil of Trace and Trail",
+        "L1990: Chapter VI. For the Love of a Man",
+        "L2463: Chapter VII. The Sounding of the Call"
+      ],
+      "tocExamples": [],
+      "score": 0.8700000000000001,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 7,
+        "minimumWords": 3260,
+        "medianWords": 4815,
+        "maximumWords": 6263,
+        "averageWords": 4588,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 7,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 7,
+        "examples": [
+          "L1: Chapter I. Into the Primitive",
+          "L378: Chapter II. The Law of Club and Fang",
+          "L682: Chapter III. The Dominant Primordial Beast",
+          "L1157: Chapter IV. Who Has Won to Mastership",
+          "L1463: Chapter V. The Toil of Trace and Trail",
+          "L1990: Chapter VI. For the Love of a Man"
+        ],
+        "bodyExamples": [
+          "L1: Chapter I. Into the Primitive",
+          "L378: Chapter II. The Law of Club and Fang",
+          "L682: Chapter III. The Dominant Primordial Beast",
+          "L1157: Chapter IV. Who Has Won to Mastership",
+          "L1463: Chapter V. The Toil of Trace and Trail",
+          "L1990: Chapter VI. For the Love of a Man",
+          "L2463: Chapter VII. The Sounding of the Call"
+        ],
+        "tocExamples": [],
+        "score": 0.8700000000000001,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 7,
+          "minimumWords": 3260,
+          "medianWords": 4815,
+          "maximumWords": 6263,
+          "averageWords": 4588,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 4,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 4,
+        "examples": [
+          "L892: Buck.”",
+          "L897: Sure. I know.”",
+          "L1275: the White Horse Rapids. Across Marsh, Tagish, and Bennett (seventy",
+          "L2420: “Now, MUSH!”"
+        ],
+        "bodyExamples": [
+          "L892: Buck.”",
+          "L897: Sure. I know.”",
+          "L1275: the White Horse Rapids. Across Marsh, Tagish, and Bennett (seventy",
+          "L2420: “Now, MUSH!”"
+        ],
+        "tocExamples": [],
+        "score": 0.49100000000000005,
+        "confidence": "low",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 4,
+          "minimumWords": 46,
+          "medianWords": 6649,
+          "maximumWords": 11947,
+          "averageWords": 5667,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 1,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 4,
+        "bodyLikeCount": 4,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 7,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 7,
+    "bodyHeadingExamples": [
+      "L1: Chapter I. Into the Primitive",
+      "L378: Chapter II. The Law of Club and Fang",
+      "L682: Chapter III. The Dominant Primordial Beast",
+      "L1157: Chapter IV. Who Has Won to Mastership",
+      "L1463: Chapter V. The Toil of Trace and Trail",
+      "L1990: Chapter VI. For the Love of a Man",
+      "L2463: Chapter VII. The Sounding of the Call"
+    ],
+    "tocHeadingExamples": [
+      "L39: Chapter I. Into the Primitive",
+      "L40: Chapter II. The Law of Club and Fang",
+      "L41: Chapter III. The Dominant Primordial Beast",
+      "L42: Chapter IV. Who Has Won to Mastership",
+      "L43: Chapter V. The Toil of Trace and Trail",
+      "L44: Chapter VI. For the Love of a Man",
+      "L45: Chapter VII. The Sounding of the Call",
+      "L48: Chapter I. Into the Primitive"
+    ],
+    "priorTwoSectionCollapseFixed": false
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 31880,
     "actions": [

@@ -1,6 +1,6 @@
 # Book Structure Audit 1
 
-Generated: 2026-06-14T19:41:34.818Z
+Generated: 2026-06-15T03:43:05.100Z
 
 This is a report-only global structure analysis. It reads source text files, optionally reads existing generated manifests for comparison, and writes only this audit report tree.
 
@@ -459,19 +459,27 @@ This is a report-only global structure analysis. It reads source text files, opt
 
 ## Top Parser Weaknesses Found
 
-- A chapter-only detector is not enough: 399 source(s) are better described by non-chapter conventions such as stories, acts, staves, cantos, parts, dated entries, or titled sections.
+- Non-chapter structure remains common: 399 source(s) are better described by stories, acts, staves, cantos, parts, dated entries, or titled sections.
 - 6 source(s) have no reliable internal headings and need explicit one-section/fallback policy instead of silent chunking.
-- 54 source(s) show likely TOC/body confusion and need position, repetition, and following-prose checks.
+- 54 source(s) still show likely TOC/body confusion and need manual review or more targeted fixtures.
 - 22 source(s) have body-like heading candidates outside the selected strategy; detector decisions should be explainable and reviewable.
 - 16 existing generated output comparison(s) appear to have collapsed real structure or included wrong boundary material.
 
+## Detector Fixes Implemented In This Branch
+
+- Added a shared scored detector module used by both the global structure audit and pilot dry-run 2.
+- The detector now evaluates multiple conventions: chapter headings, books/parts/volumes, acts/scenes, staves/cantos, letters, dated entries, standalone ordinals, story titles, and isolated titled sections.
+- TOC-like candidates are retained as evidence but separated from body headings using front-list position, explicit contents ranges, page-leader shape, duplicate later headings, and following-prose checks.
+- Fallback is now explicit, with legitimacy and suspicious-fallback flags in the JSON and markdown reports.
+- The dry-run section builder now uses the shared structure analysis instead of the older chapter/fallback-only behavior.
+
 ## Recommended Detector Fixes Before More Write Passes
 
-- Replace the hard chapter-only gate with a scored heading strategy that can select chapters, story titles, parts/books/volumes, acts/scenes, staves/cantos, letters, dated entries, or an intentional one-section fallback.
-- Keep TOC candidates as evidence, but reject only the compact front-list occurrence when the same headings repeat later with body paragraphs.
-- Do not reject body headings solely because they have leading whitespace or trailing punctuation; score them with nearby prose and sequence evidence.
-- Surface fallback as a warning/manual-review state when candidate headings exist or a long source would become only 1-2 parts.
-- Use section-size sanity checks before writing generated books, especially huge sections, tiny fragment-heavy sections, and generated-vs-raw section-count mismatches.
+- Add regression fixtures for the highest-risk conventions before a real write pass: Room 13 roman chapters, story collections, play acts/scenes, staves/cantos, diary/date entries, and no-heading short works.
+- Review low-confidence title/story detection manually so poem titles, captions, and all-caps display lines do not become noisy sections.
+- Define an explicit policy for legitimate no-heading books, including when to keep one readable section versus fallback chunks.
+- Use generated-vs-raw section-count mismatches as a hard warning before any write pass updates generated output.
+- Keep section-size sanity checks in the write pipeline, especially huge sections, tiny fragment-heavy sections, and TOC/body ambiguity.
 - Add a regression fixture for Room 13 that expects the Chapter I through Chapter XXXIII body sequence to be detected before any write pass.
 
 ## Room 13 Regression

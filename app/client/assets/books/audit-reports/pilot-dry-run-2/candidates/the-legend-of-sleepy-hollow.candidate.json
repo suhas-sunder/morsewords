@@ -24,43 +24,54 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
       "title": null,
-      "includeByDefault": true,
-      "wordCount": 5237,
-      "characterCount": 29948,
-      "estimatedListeningMinutes": 179,
+      "includeByDefault": false,
+      "wordCount": 31,
+      "characterCount": 193,
+      "estimatedListeningMinutes": 1,
       "textPreview": "A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summe..."
     },
     {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
-      "title": null,
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Castle Of Indolence.",
+      "title": "CASTLE OF INDOLENCE.",
       "includeByDefault": true,
-      "wordCount": 5065,
-      "characterCount": 28663,
-      "estimatedListeningMinutes": 171,
-      "textPreview": "I profess not to know how women’s hearts are wooed and won. To me they have always been matters of riddle and admiration. Some seem to have but one vulnerable..."
+      "wordCount": 11789,
+      "characterCount": 66896,
+      "estimatedListeningMinutes": 400,
+      "textPreview": "CASTLE OF INDOLENCE. In the bosom of one of those spacious coves which indent the eastern shore of the Hudson, at that broad expansion of the river denominated..."
     },
     {
-      "id": "part-003",
-      "kind": "part",
-      "label": "Part 3",
-      "title": null,
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Postscript.",
+      "title": "POSTSCRIPT.",
       "includeByDefault": true,
-      "wordCount": 1956,
-      "characterCount": 11009,
-      "estimatedListeningMinutes": 66,
-      "textPreview": "Ichabod, who had no relish for this strange midnight companion, and bethought himself of the adventure of Brom Bones with the Galloping Hessian, now quickened..."
+      "wordCount": 1,
+      "characterCount": 11,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "POSTSCRIPT."
     },
     {
-      "id": "part-004",
-      "kind": "part",
-      "label": "Part 4",
-      "title": null,
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Found In The Handwriting Of Mr. Knickerbocker.",
+      "title": "FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER.",
+      "includeByDefault": true,
+      "wordCount": 437,
+      "characterCount": 2477,
+      "estimatedListeningMinutes": 15,
+      "textPreview": "FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER. The preceding tale is given almost in the precise words in which I heard it related at a Corporation meeting at..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "The End.",
+      "title": "THE END.",
       "includeByDefault": true,
       "wordCount": 2,
       "characterCount": 8,
@@ -68,6 +79,146 @@
       "textPreview": "THE END."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "story or titled-section headings",
+    "selectedHeadingStrategy": {
+      "patternId": "all-caps-title",
+      "label": "All-caps story or titled-section heading",
+      "convention": "story or titled-section headings",
+      "kind": "story-title",
+      "candidateCount": 4,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 4,
+      "examples": [
+        "L5: CASTLE OF INDOLENCE.",
+        "L1066: POSTSCRIPT.",
+        "L1068: FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER.",
+        "L1115: THE END."
+      ],
+      "bodyExamples": [
+        "L5: CASTLE OF INDOLENCE.",
+        "L1066: POSTSCRIPT.",
+        "L1068: FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER.",
+        "L1115: THE END."
+      ],
+      "tocExamples": [],
+      "score": 0.7709999999999999,
+      "confidence": "medium",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 4,
+        "minimumWords": 1,
+        "medianWords": 437,
+        "maximumWords": 11789,
+        "averageWords": 3057,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 2,
+        "notes": [
+          "largest section is much bigger than the median section"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 4,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 4,
+        "examples": [
+          "L5: CASTLE OF INDOLENCE.",
+          "L1066: POSTSCRIPT.",
+          "L1068: FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER.",
+          "L1115: THE END."
+        ],
+        "bodyExamples": [
+          "L5: CASTLE OF INDOLENCE.",
+          "L1066: POSTSCRIPT.",
+          "L1068: FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER.",
+          "L1115: THE END."
+        ],
+        "tocExamples": [],
+        "score": 0.7709999999999999,
+        "confidence": "medium",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 4,
+          "minimumWords": 1,
+          "medianWords": 437,
+          "maximumWords": 11789,
+          "averageWords": 3057,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 2,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L1013: excepting Cotton Mather’s “History of Witchcraft,” a “New England"
+        ],
+        "bodyExamples": [
+          "L1013: excepting Cotton Mather’s “History of Witchcraft,” a “New England"
+        ],
+        "tocExamples": [],
+        "score": 0.031000000000000028,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy all-caps-title",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 1000,
+          "medianWords": 1000,
+          "maximumWords": 1000,
+          "averageWords": 1000,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy all-caps-title"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 4,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "warn",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L5: CASTLE OF INDOLENCE.",
+      "L1066: POSTSCRIPT.",
+      "L1068: FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER.",
+      "L1115: THE END."
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 12228,
     "actions": [
@@ -90,11 +241,11 @@
     "feasible": true,
     "confidence": "medium",
     "sectionsUsed": [
-      "part-001 Part 1"
+      "chapter-001 Castle Of Indolence."
     ],
-    "approximateWordCount": 5237,
+    "approximateWordCount": 11789,
     "startsAtRealReadableContent": true,
-    "snippet": "A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summer sky. CASTLE OF INDOLENCE. In the bosom of one of those spacious coves which indent the eastern shore of the Hudson, at that broad expansion of the river denominated by the ancient Dutch navigators t...",
+    "snippet": "CASTLE OF INDOLENCE. In the bosom of one of those spacious coves which indent the eastern shore of the Hudson, at that broad expansion of the river denominated by the ancient Dutch navigators the Tappan Zee, and where they always prudently shortened sail and implored the protection of St. Nicholas when they crossed, there lies a small market town or rural p...",
     "notes": [
       "Targets about 900 words as a first-hour source approximation for later generation.",
       "Pass 2 marked first-hour preview derivation as feasible."
@@ -127,6 +278,7 @@
     "Check suspiciously short or long proposed sections before a real write pass.",
     "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
     "Confirm the first-hour preview candidate starts with real readable content.",
-    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage.",
+    "Review the structure-detection warnings and confirm TOC entries were not selected as body sections."
   ]
 }

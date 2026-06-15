@@ -68,6 +68,39 @@
 - L9855: States without permission and without paying copyright
 - L9856: royalties. Special rules, set forth in the General Terms of Use part
 
+## Structure Detection
+
+- Detected structural convention: chapter-based roman numerals
+- Selected heading strategy: chapter-roman
+- TOC entries detected: no
+- Body headings detected: yes
+- Section count from selected strategy: 24
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: pass
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| chapter-roman | 24 | 24 | 0 | yes |  |
+| all-caps-title | 6 | 5 | 1 | no | weaker than selected strategy chapter-roman |
+| isolated-title-case | 29 | 24 | 5 | no | weaker than selected strategy chapter-roman |
+| roman-numbered-title | 1 | 1 | 0 | no | weaker than selected strategy chapter-roman |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| all-caps-title | 6 | 5 | 1 | weaker than selected strategy chapter-roman |
+| isolated-title-case | 29 | 24 | 5 | weaker than selected strategy chapter-roman |
+| roman-numbered-title | 1 | 1 | 0 | weaker than selected strategy chapter-roman |
+
+### Structure Warnings
+
+- None.
+
 ## Proposed Sections
 
 - Total proposed sections: 24
@@ -77,7 +110,7 @@
 | chapter-001 | chapter | Chapter 1 | The Catastrophe | 2910 | yes |
 | chapter-002 | chapter | Chapter 2 | Two Penitents | 2089 | yes |
 | chapter-003 | chapter | Chapter 3 | Ward No. 1 | 3897 | yes |
-| chapter-004 | chapter | Chapter 4 | Ward No. 2. | 3145 | yes |
+| chapter-004 | chapter | Chapter 4 | Ward No. 2 | 3145 | yes |
 | chapter-005 | chapter | Chapter 5 | Secrets | 1674 | yes |
 | chapter-006 | chapter | Chapter 6 | Surprises | 4916 | yes |
 | chapter-007 | chapter | Chapter 7 | Jill's Mission | 4437 | yes |

@@ -442,6 +442,216 @@
       "textPreview": "CHAPTER XXXVIII. The Bend in the Road MARILLA went to town the next day and returned in the evening. Anne had gone over to Orchard Slope with Diana and came ba..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 38,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 38,
+      "examples": [
+        "L1: CHAPTER I. Mrs. Rachel Lynde Is Surprised",
+        "L276: CHAPTER II. Matthew Cuthbert Is Surprised",
+        "L768: CHAPTER III. Marilla Cuthbert Is Surprised",
+        "L1039: CHAPTER IV. Morning at Green Gables",
+        "L1286: CHAPTER V. Anne’s History",
+        "L1486: CHAPTER VI. Marilla Makes Up Her Mind"
+      ],
+      "bodyExamples": [
+        "L1: CHAPTER I. Mrs. Rachel Lynde Is Surprised",
+        "L276: CHAPTER II. Matthew Cuthbert Is Surprised",
+        "L768: CHAPTER III. Marilla Cuthbert Is Surprised",
+        "L1039: CHAPTER IV. Morning at Green Gables",
+        "L1286: CHAPTER V. Anne’s History",
+        "L1486: CHAPTER VI. Marilla Makes Up Her Mind",
+        "L1691: CHAPTER VII. Anne Says Her Prayers",
+        "L1833: CHAPTER VIII. Anne’s Bringing-up Is Begun"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 38,
+        "minimumWords": 1263,
+        "medianWords": 2617,
+        "maximumWords": 5458,
+        "averageWords": 2803,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 38,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 38,
+        "examples": [
+          "L1: CHAPTER I. Mrs. Rachel Lynde Is Surprised",
+          "L276: CHAPTER II. Matthew Cuthbert Is Surprised",
+          "L768: CHAPTER III. Marilla Cuthbert Is Surprised",
+          "L1039: CHAPTER IV. Morning at Green Gables",
+          "L1286: CHAPTER V. Anne’s History",
+          "L1486: CHAPTER VI. Marilla Makes Up Her Mind"
+        ],
+        "bodyExamples": [
+          "L1: CHAPTER I. Mrs. Rachel Lynde Is Surprised",
+          "L276: CHAPTER II. Matthew Cuthbert Is Surprised",
+          "L768: CHAPTER III. Marilla Cuthbert Is Surprised",
+          "L1039: CHAPTER IV. Morning at Green Gables",
+          "L1286: CHAPTER V. Anne’s History",
+          "L1486: CHAPTER VI. Marilla Makes Up Her Mind",
+          "L1691: CHAPTER VII. Anne Says Her Prayers",
+          "L1833: CHAPTER VIII. Anne’s Bringing-up Is Begun"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 38,
+          "minimumWords": 1263,
+          "medianWords": 2617,
+          "maximumWords": 5458,
+          "averageWords": 2803,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 49,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 48,
+        "examples": [
+          "L23: of the Church Aid Society and Foreign Missions Auxiliary. Yet with all",
+          "L170: Nothing!",
+          "L576: Cuthbert!! Oh, Mr. Cuthbert!!!”",
+          "L1317: Lake of Shining Waters today?”",
+          "L1341: Bolingbroke High School. My mother’s name was Bertha Shirley. Aren’t",
+          "L1717: God is, Anne?”"
+        ],
+        "bodyExamples": [
+          "L23: of the Church Aid Society and Foreign Missions Auxiliary. Yet with all",
+          "L170: Nothing!",
+          "L576: Cuthbert!! Oh, Mr. Cuthbert!!!”",
+          "L1317: Lake of Shining Waters today?”",
+          "L1341: Bolingbroke High School. My mother’s name was Bertha Shirley. Aren’t",
+          "L1717: God is, Anne?”",
+          "L1884: Can I call you Aunt Marilla?”",
+          "L1899: Marilla?”"
+        ],
+        "tocExamples": [
+          "L2373: Anne.”"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 48,
+          "minimumWords": 50,
+          "medianWords": 1883,
+          "maximumWords": 6871,
+          "averageWords": 2214,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 1,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L4733: “TO ANNE"
+        ],
+        "bodyExamples": [
+          "L4733: “TO ANNE"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 60459,
+          "medianWords": 60459,
+          "maximumWords": 60459,
+          "averageWords": 60459,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 49,
+        "bodyLikeCount": 48,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 38,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 38,
+    "bodyHeadingExamples": [
+      "L1: CHAPTER I. Mrs. Rachel Lynde Is Surprised",
+      "L276: CHAPTER II. Matthew Cuthbert Is Surprised",
+      "L768: CHAPTER III. Marilla Cuthbert Is Surprised",
+      "L1039: CHAPTER IV. Morning at Green Gables",
+      "L1286: CHAPTER V. Anne’s History",
+      "L1486: CHAPTER VI. Marilla Makes Up Her Mind",
+      "L1691: CHAPTER VII. Anne Says Her Prayers",
+      "L1833: CHAPTER VIII. Anne’s Bringing-up Is Begun"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": true
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 102898,
     "actions": [

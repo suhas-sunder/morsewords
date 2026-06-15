@@ -68,6 +68,37 @@
 - L6305: States without permission and without paying copyright
 - L6306: royalties. Special rules, set forth in the General Terms of Use part
 
+## Structure Detection
+
+- Detected structural convention: chapter-based roman numerals
+- Selected heading strategy: chapter-roman
+- TOC entries detected: no
+- Body headings detected: yes
+- Section count from selected strategy: 13
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: pass
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| chapter-roman | 13 | 13 | 0 | yes |  |
+| isolated-title-case | 37 | 36 | 1 | no | weaker than selected strategy chapter-roman |
+| arabic-numbered-title | 1 | 1 | 0 | no | weaker than selected strategy chapter-roman |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| isolated-title-case | 37 | 36 | 1 | weaker than selected strategy chapter-roman |
+| arabic-numbered-title | 1 | 1 | 0 | weaker than selected strategy chapter-roman |
+
+### Structure Warnings
+
+- None.
+
 ## Proposed Sections
 
 - Total proposed sections: 13

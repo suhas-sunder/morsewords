@@ -16,7 +16,7 @@
 | Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
 | --- | ---: | ---: | ---: | --- | --- |
 | roman-only | 29 | 29 | 0 | yes |  |
-| all-caps-title | 38 | 23 | 10 | no | weaker than selected strategy roman-only |
+| all-caps-title | 38 | 20 | 13 | no | weaker than selected strategy roman-only |
 | isolated-title-case | 67 | 61 | 6 | no | weaker than selected strategy roman-only |
 | roman-numbered-title | 1 | 1 | 0 | no | weaker than selected strategy roman-only |
 
@@ -33,6 +33,7 @@
 
 ## Rejected TOC-like Examples
 
+- L52: ILLUSTRATIONS
 - L56: OTHER”
 - L58: “MARION SAT ON A GIGANTIC 52
 - L59: MOSS-GROWN ROCK, LOOKING ... AT
@@ -40,7 +41,6 @@
 - L62: “THE LITTLE WAITRESS BROUGHT HER 170
 - L63: SAMISEN, AND ... BEGAN TO PLAY
 - L64: AND SING”
-- L66: “HE SEIZED HER HAND SUDDENLY IN HIS 226
 - L1: [Illustration:
 - L24: [Illustration]
 

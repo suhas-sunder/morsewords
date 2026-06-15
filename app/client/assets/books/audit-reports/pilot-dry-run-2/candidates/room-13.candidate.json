@@ -7,7 +7,7 @@
   ],
   "sourcePath": "app/client/assets/temp-books/Room 13.txt",
   "pass2RiskLevel": "medium",
-  "dryRunRecommendation": "needs individual review",
+  "dryRunRecommendation": "process later with warnings",
   "boundaries": {
     "startLine": 115,
     "startIndex": 1663,
@@ -29,23 +29,629 @@
       "label": "Chapter 1",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 61067,
-      "characterCount": 326580,
-      "estimatedListeningMinutes": 1969,
+      "wordCount": 2343,
+      "characterCount": 12604,
+      "estimatedListeningMinutes": 76,
       "textPreview": "CHAPTER I Over the grim stone archway was carved the words: PARCERE SUBJECTIS. In cold weather, and employing the argot of his companions, Johnny Gray translat..."
     },
     {
-      "id": "transcriber-note-001",
-      "kind": "transcriber-note",
-      "label": "Transcriber's Note",
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
       "title": null,
-      "includeByDefault": false,
-      "wordCount": 302,
-      "characterCount": 1922,
-      "estimatedListeningMinutes": 12,
-      "textPreview": "TRANSCRIBER’S NOTES The Arrow Books Ltd. edition (London, 1961) was consulted for many of the changes listed below. Minor spelling inconsistencies (e.g. bathro..."
+      "includeByDefault": true,
+      "wordCount": 2597,
+      "characterCount": 14065,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "CHAPTER II Two days later, Johnny Gray was summoned to the Governor’s office and heard the momentous news. “Gray, I have good news for you. You are to be relea..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2089,
+      "characterCount": 11099,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER III “Married?” Johnny repeated the word dully. Marney married…! It was incredible, impossible to comprehend. For a moment the stays and supports of exi..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1224,
+      "characterCount": 6475,
+      "estimatedListeningMinutes": 39,
+      "textPreview": "CHAPTER IV Had he betrayed himself, he wondered? All his will power was exercised to prevent such a betrayal. Though a tornado of fury swept through and throug..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1522,
+      "characterCount": 7878,
+      "estimatedListeningMinutes": 48,
+      "textPreview": "CHAPTER V Johnny was alone in the lower garden, huddled up on a corner of the marble bench, out of sight but not out of hearing of the guests who were assembli..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2066,
+      "characterCount": 11118,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "CHAPTER VI “Hallo, Johnny! Running for the compensation stakes?” Johnny laughed. “You mean the maid? She is rather pretty, isn’t she?” “Very,” said the other...."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2074,
+      "characterCount": 11114,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER VII The old man made his way back to the road and passed quickly along until he came to the main highway. Two men were seated in the shade of a bush, e..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1021,
+      "characterCount": 5642,
+      "estimatedListeningMinutes": 34,
+      "textPreview": "CHAPTER VIII He struck a layer of thick sand and turned a complete somersault. The wall of the tunnel caught and almost dislocated his arm, and he rebounded to..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1497,
+      "characterCount": 7873,
+      "estimatedListeningMinutes": 48,
+      "textPreview": "CHAPTER IX Marney made her journey to London that afternoon in almost complete silence. She sat in a corner of the limousine, and felt herself separated from t..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2250,
+      "characterCount": 11568,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "CHAPTER X For a moment Jeff Legge stood, helpless with rage. Then he flung all his weight against the door, but it did not yield. He took up the telephone, but..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2168,
+      "characterCount": 11911,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER XI In a long, sedate road in suburban Brockley lived a man who had apparently no fixed occupation. He was tall, thin, somewhat cadaverous, and he was k..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2534,
+      "characterCount": 14001,
+      "estimatedListeningMinutes": 84,
+      "textPreview": "CHAPTER XII Emanuel Legge was half-way home before he could sort out his impressions. He went back to the Bloomsbury Hotel where he was staying. There was no m..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1562,
+      "characterCount": 8422,
+      "estimatedListeningMinutes": 51,
+      "textPreview": "CHAPTER XIII To Parker, the valet, as he laid out Johnny’s dress clothes, there was a misfortune and a tragedy deeper than any to which Johnny had been a spect..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 564,
+      "characterCount": 3161,
+      "estimatedListeningMinutes": 19,
+      "textPreview": "CHAPTER XIV The doors and the walls of the private dining-rooms were almost sound-proof. No stir followed the shot. In the hall outside, the porter lifted his..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1983,
+      "characterCount": 10250,
+      "estimatedListeningMinutes": 62,
+      "textPreview": "CHAPTER XV The last of the guests had escaped, when the police came, and, simultaneously with the ambulance, Divisional-Inspector Craig, who had happened to be..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2317,
+      "characterCount": 12090,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "CHAPTER XVI A surprise awaited him when he came to the Charlton. Mrs. Floyd had gone--nobody knew whither. Her husband had followed her some time afterwards, a..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 975,
+      "characterCount": 5324,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "CHAPTER XVII In another second the girl was in his arms, clinging to him, weeping convulsively on his shoulder, her face against his, her clasped hands about h..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1999,
+      "characterCount": 10504,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "CHAPTER XVIII Jeff Legge reclined in a long cane chair on a lawn which stretched to the edge of a cliff. Before him were the blue waters of the Channel, and th..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1416,
+      "characterCount": 7281,
+      "estimatedListeningMinutes": 44,
+      "textPreview": "CHAPTER XIX “What do you think of him for a busy?” asked Jeffrey contemptuously. She did not answer. Contact with the man had frightened her. It was not like L..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1568,
+      "characterCount": 8611,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "CHAPTER XX Walking down Regent Street one morning, Johnny Gray saw a familiar face--a man standing on the kerb selling penny trinkets. The face was oddly famil..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2830,
+      "characterCount": 15579,
+      "estimatedListeningMinutes": 94,
+      "textPreview": "CHAPTER XXI Mr. Reeder descended from the bus at Victoria Station, bought a third-class return ticket to Horsham, and, going on to the bookstall, purchased a c..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1456,
+      "characterCount": 7464,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "CHAPTER XXII Peter was as cool as ice when he came into the drawing-room and found Emanuel examining the pictures on the wall with the air of a connoisseur. He..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1885,
+      "characterCount": 9910,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "CHAPTER XXIII Mr. Emanuel Legge had a great deal of business to do in London. The closing of the club had sadly interfered with the amenities of the Highlow, f..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1834,
+      "characterCount": 9978,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "CHAPTER XXIV Peter wrote to tell of the invitation which Legge had extended to him. Johnny Gray had the letter by the first post. He sat in his big arm-chair,..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1704,
+      "characterCount": 9276,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "CHAPTER XXV On Thursday afternoon, Emanuel Legge came out of the elevator at the Highlow Club, and, with a curt nod to Stevens, walked up the heavily carpeted..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3407,
+      "characterCount": 18241,
+      "estimatedListeningMinutes": 110,
+      "textPreview": "CHAPTER XXVI Johnny was the first of the guests to arrive, and Stevens helped him to take off his raincoat. As he did so, he asked in a low voice: “Got a gun,..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1804,
+      "characterCount": 9775,
+      "estimatedListeningMinutes": 59,
+      "textPreview": "CHAPTER XXVII Mr. Reeder sidled into the room apologetically, closing the door behind him. “All alone, Mr. Legge?” he asked. “I thought you had company?” “I ha..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2311,
+      "characterCount": 12127,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "CHAPTER XXVIII It was unnecessary to call a doctor to satisfy the police. Emanuel Legge had passed beyond the sphere of his evil activities. “The poker came fr..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1933,
+      "characterCount": 10305,
+      "estimatedListeningMinutes": 62,
+      "textPreview": "CHAPTER XXIX It was five minutes past two in the morning when Marney, sitting in the drawing-room at the front of the house, heard the sound of an auto stop be..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1305,
+      "characterCount": 6863,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "CHAPTER XXX The girl looked at him, speechless. “It isn’t true!” she cried. “It’s not true, isn’t it?” Jeffrey almost howled the words. He was mad with hate, w..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 31",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2114,
+      "characterCount": 11259,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "CHAPTER XXXI Johnny Gray came to consciousness with a violent headache and a sense of suffocating restriction, which he discovered was due to his wing collar h..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 32",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1690,
+      "characterCount": 9103,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER XXXII For a second Legge was paralysed with rage and fear. Then, in the wildness of his despair, he kicked at the man, who had slipped from the bed and..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 33",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1327,
+      "characterCount": 7507,
+      "estimatedListeningMinutes": 46,
+      "textPreview": "CHAPTER XXXIII For the first time Jeffrey Legge felt the cold contact of handcuffs. He was led back to the porter’s lodge, whilst two of the policemen worked a..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 33,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 33,
+      "examples": [
+        "L1: CHAPTER I",
+        "L289: CHAPTER II",
+        "L655: CHAPTER III",
+        "L954: CHAPTER IV",
+        "L1134: CHAPTER V",
+        "L1362: CHAPTER VI"
+      ],
+      "bodyExamples": [
+        "L1: CHAPTER I",
+        "L289: CHAPTER II",
+        "L655: CHAPTER III",
+        "L954: CHAPTER IV",
+        "L1134: CHAPTER V",
+        "L1362: CHAPTER VI",
+        "L1663: CHAPTER VII",
+        "L1913: CHAPTER VIII"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 33,
+        "minimumWords": 564,
+        "medianWords": 1885,
+        "maximumWords": 3407,
+        "averageWords": 1860,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 33,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 33,
+        "examples": [
+          "L1: CHAPTER I",
+          "L289: CHAPTER II",
+          "L655: CHAPTER III",
+          "L954: CHAPTER IV",
+          "L1134: CHAPTER V",
+          "L1362: CHAPTER VI"
+        ],
+        "bodyExamples": [
+          "L1: CHAPTER I",
+          "L289: CHAPTER II",
+          "L655: CHAPTER III",
+          "L954: CHAPTER IV",
+          "L1134: CHAPTER V",
+          "L1362: CHAPTER VI",
+          "L1663: CHAPTER VII",
+          "L1913: CHAPTER VIII"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 33,
+          "minimumWords": 564,
+          "medianWords": 1885,
+          "maximumWords": 3407,
+          "averageWords": 1860,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 77,
+        "tocLikeCount": 5,
+        "bodyLikeCount": 72,
+        "examples": [
+          "L160: _Parcere Subjectis._",
+          "L453: “No, Captain. I only know Peter slightly.”",
+          "L634: “About Marney? No, only----”",
+          "L657: “Married?”",
+          "L685: “Craig--the Scotland Yard man?”",
+          "L707: “Who?”"
+        ],
+        "bodyExamples": [
+          "L160: _Parcere Subjectis._",
+          "L453: “No, Captain. I only know Peter slightly.”",
+          "L634: “About Marney? No, only----”",
+          "L657: “Married?”",
+          "L685: “Craig--the Scotland Yard man?”",
+          "L713: “Where is Miss Marney--Mrs. Floyd?”",
+          "L860: “Yes.”",
+          "L943: “Oh, Johnny… Johnny!”"
+        ],
+        "tocExamples": [
+          "L707: “Who?”",
+          "L764: Peter?”",
+          "L935: “Johnny!”",
+          "L1044: Marney.”",
+          "L1892: Look!”"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 72,
+          "minimumWords": 3,
+          "medianWords": 323,
+          "maximumWords": 7540,
+          "averageWords": 835,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 24,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 2,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 2,
+        "examples": [
+          "L6: PARCERE SUBJECTIS.",
+          "L8019: TRANSCRIBER’S NOTES"
+        ],
+        "bodyExamples": [
+          "L6: PARCERE SUBJECTIS.",
+          "L8019: TRANSCRIBER’S NOTES"
+        ],
+        "tocExamples": [],
+        "score": 0.551,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 2,
+          "minimumWords": 302,
+          "medianWords": 61056,
+          "maximumWords": 61056,
+          "averageWords": 30679,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "label": "Arabic numbered titled heading",
+        "convention": "arabic-numbered titled sections",
+        "kind": "section",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L7654: 4. As the door opened, the girl shrank back against the wall."
+        ],
+        "bodyExamples": [
+          "L7654: 4. As the door opened, the girl shrank back against the wall."
+        ],
+        "tocExamples": [],
+        "score": 0.031000000000000028,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 3133,
+          "medianWords": 3133,
+          "maximumWords": 3133,
+          "averageWords": 3133,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 77,
+        "bodyLikeCount": 72,
+        "tocLikeCount": 5,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 2,
+        "bodyLikeCount": 2,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "convention": "arabic-numbered titled sections",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 33,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 33,
+    "bodyHeadingExamples": [
+      "L1: CHAPTER I",
+      "L289: CHAPTER II",
+      "L655: CHAPTER III",
+      "L954: CHAPTER IV",
+      "L1134: CHAPTER V",
+      "L1362: CHAPTER VI",
+      "L1663: CHAPTER VII",
+      "L1913: CHAPTER VIII"
+    ],
+    "tocHeadingExamples": [
+      "L64: Chapter I",
+      "L65: Chapter II",
+      "L66: Chapter III",
+      "L67: Chapter IV",
+      "L68: Chapter V",
+      "L69: Chapter VI",
+      "L70: Chapter VII",
+      "L71: Chapter VIII"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 59509,
     "actions": [
@@ -79,7 +685,7 @@
     "sectionsUsed": [
       "chapter-001 Chapter 1"
     ],
-    "approximateWordCount": 61067,
+    "approximateWordCount": 2343,
     "startsAtRealReadableContent": true,
     "snippet": "CHAPTER I Over the grim stone archway was carved the words: PARCERE SUBJECTIS. In cold weather, and employing the argot of his companions, Johnny Gray translated this as “Parky Subjects”--it certainly had no significance as “Spare the Vanquished,” for he had been neither vanquished nor spared. Day by day, harnessed to the shafts, he and Lal Morgon had pulle...",
     "notes": [

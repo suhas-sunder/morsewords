@@ -2,7 +2,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { detectBookSections } from "./detect-book-sections.ts";
 import type {
   BookMetadata,
   BookSectionKind,
@@ -11,10 +10,16 @@ import type {
 import {
   countBookWords,
   estimateMorseCharacters,
-  normalizeBookText,
   textPreview,
   trimBookText,
 } from "./bookTextNormalization.ts";
+import {
+  analyzeBookStructure,
+  buildDetectedSectionsFromStructure,
+  type BookHeadingPatternSummary,
+  type BookStructureAnalysis,
+  type RejectedBookHeadingStrategy,
+} from "./lib/book-structure-detection.ts";
 
 type RiskLevel = "low" | "medium" | "high" | "blocked";
 type DryRunRecommendation =
@@ -22,6 +27,26 @@ type DryRunRecommendation =
   | "process later with warnings"
   | "needs individual review"
   | "blocked";
+type StructureDetectionStatus = "pass" | "warn" | "fail";
+
+type DryRunStructureDetection = {
+  detectedStructuralConvention: string;
+  selectedHeadingStrategy: BookHeadingPatternSummary | null;
+  candidateHeadingPatternsFound: BookHeadingPatternSummary[];
+  rejectedHeadingStrategies: RejectedBookHeadingStrategy[];
+  tocEntriesDetected: boolean;
+  bodyHeadingsDetected: boolean;
+  sectionCountFromSelectedStrategy: number;
+  fallbackUsed: boolean;
+  fallbackLegitimacy: "legitimate" | "suspicious" | "not required";
+  fallbackReason: string | null;
+  status: StructureDetectionStatus;
+  warnings: string[];
+  bodyChapterHeadingCount: number;
+  bodyHeadingExamples: string[];
+  tocHeadingExamples: string[];
+  priorTwoSectionCollapseFixed: boolean;
+};
 
 type BoundaryContext = {
   line: number | null;
@@ -139,6 +164,7 @@ type CandidateJson = {
     removedEndMatter: number;
   };
   sections: SectionSummary[];
+  structureDetection: DryRunStructureDetection;
   cleanupSimulation: CleanupSimulation;
   firstHourPreviewCandidate: FirstHourPreviewCandidate;
   comparisonAgainstExistingGeneratedOutput: ExistingGeneratedComparison;
@@ -199,6 +225,7 @@ type BookDryRun = {
   lastFiveProposedSections: SectionSummary[];
   suspiciouslyShortSections: SectionSummary[];
   suspiciouslyLongSections: SectionSummary[];
+  structureDetection: DryRunStructureDetection;
   artifactsDetectedAndCleanupAction: CleanupSimulation;
   footnoteReferenceHandlingRecommendation: string;
   illustrationImagePlaceholderHandlingRecommendation: string;
@@ -710,12 +737,109 @@ function sectionSummary(section: DetectedBookSection): SectionSummary {
   };
 }
 
+function bodyChapterHeadingCount(structure: BookStructureAnalysis): number {
+  return structure.allCandidateHeadingPatternsFound
+    .filter((summary) => summary.kind === "chapter" && /^chapter-/.test(summary.patternId))
+    .reduce((maximum, summary) => Math.max(maximum, summary.bodyLikeCount), 0);
+}
+
+function reliableTocExamples(structure: BookStructureAnalysis): string[] {
+  const summaries = [
+    structure.selectedHeadingStrategy,
+    ...structure.allCandidateHeadingPatternsFound,
+  ].filter((summary): summary is BookHeadingPatternSummary => Boolean(summary));
+  for (const summary of summaries) {
+    if (
+      summary.tocExamples.length > 0 &&
+      summary.bodyLikeCount > 0 &&
+      !["all-caps-title", "isolated-title-case"].includes(summary.patternId)
+    ) {
+      return summary.tocExamples;
+    }
+  }
+  return [];
+}
+
+function summarizeStructureDetection(
+  structure: BookStructureAnalysis,
+  sections: DetectedBookSection[],
+  keptWordCount: number,
+  sourceStructure: BookStructureAnalysis | null = null,
+): DryRunStructureDetection {
+  const warnings = [...structure.redFlags];
+  if (structure.fallbackRequired) {
+    warnings.push(
+      `Fallback used: ${structure.fallbackReason ?? "no selected heading strategy"}.`,
+    );
+  }
+  if (
+    structure.likelyBodyHeadingsDetected &&
+    sections.length <= 2 &&
+    keptWordCount >= 30_000
+  ) {
+    warnings.push(
+      `Only ${sections.length} section(s) were produced for ${keptWordCount} kept words despite body-heading evidence.`,
+    );
+  }
+  if (
+    structure.selectedHeadingStrategy &&
+    structure.estimatedSectionCount > 0 &&
+    sections.length < Math.floor(structure.estimatedSectionCount * 0.75)
+  ) {
+    warnings.push(
+      `Built section count ${sections.length} is far below selected body heading count ${structure.estimatedSectionCount}.`,
+    );
+  }
+
+  const status: StructureDetectionStatus =
+    structure.confidenceLevel === "blocked" ||
+    (structure.fallbackRequired && structure.fallbackLegitimacy === "suspicious")
+      ? "fail"
+      : warnings.length > 0 || structure.confidenceLevel !== "high"
+        ? "warn"
+        : "pass";
+  const chapterCount = bodyChapterHeadingCount(structure);
+  const tocExamples =
+    reliableTocExamples(structure).length > 0
+      ? reliableTocExamples(structure)
+      : sourceStructure
+        ? reliableTocExamples(sourceStructure)
+        : [];
+
+  return {
+    detectedStructuralConvention: structure.detectedStructuralConvention,
+    selectedHeadingStrategy: structure.selectedHeadingStrategy,
+    candidateHeadingPatternsFound: structure.allCandidateHeadingPatternsFound,
+    rejectedHeadingStrategies: structure.rejectedHeadingStrategies,
+    tocEntriesDetected: tocExamples.length > 0,
+    bodyHeadingsDetected: structure.likelyBodyHeadingsDetected,
+    sectionCountFromSelectedStrategy: structure.estimatedSectionCount,
+    fallbackUsed: structure.fallbackRequired,
+    fallbackLegitimacy: structure.fallbackLegitimacy,
+    fallbackReason: structure.fallbackReason,
+    status,
+    warnings: [...new Set(warnings)],
+    bodyChapterHeadingCount: chapterCount,
+    bodyHeadingExamples: structure.examplesOfDetectedBodyHeadings,
+    tocHeadingExamples: tocExamples,
+    priorTwoSectionCollapseFixed:
+      chapterCount >= 10 && sections.length > 2 && !structure.fallbackRequired,
+  };
+}
+
 function buildSections(keptText: string, book: Pass2Book, author: string[]): {
   sections: DetectedBookSection[];
   warnings: string[];
+  structure: BookStructureAnalysis;
 } {
   const metadata = syntheticMetadata(book, author);
-  return detectBookSections(keptText, metadata);
+  const structure = analyzeBookStructure(keptText, {
+    rawWordCount: countBookWords(keptText),
+  });
+  return {
+    ...buildDetectedSectionsFromStructure(keptText, structure, metadata),
+    structure,
+  };
 }
 
 function buildPreviewCandidate(
@@ -822,6 +946,7 @@ function finalRecommendation(
   book: Pass2Book,
   comparison: ExistingGeneratedComparison,
   proposedSections: SectionSummary[],
+  structureDetection: DryRunStructureDetection,
   cleanupSimulation: CleanupSimulation,
   previewCandidate: FirstHourPreviewCandidate,
   suspiciouslyLongSections: SectionSummary[],
@@ -834,6 +959,15 @@ function finalRecommendation(
     return {
       recommendation: "blocked",
       reasons: ["Pass 2 marked this source as blocked."],
+    };
+  }
+  if (structureDetection.status === "fail") {
+    return {
+      recommendation: "needs individual review",
+      reasons: [
+        "Structure detection failed or used suspicious fallback.",
+        ...structureDetection.warnings,
+      ],
     };
   }
   if (book.pass2Risk === "high") {
@@ -883,6 +1017,9 @@ function finalRecommendation(
       reasons: ["The first-hour preview candidate does not start at confidently readable content."],
     };
   }
+  if (structureDetection.status === "warn") {
+    reasons.push(...structureDetection.warnings.map((warning) => `Structure warning: ${warning}`));
+  }
   if (book.pass2Risk === "medium" || comparison.apparentDamage.length > 0) {
     reasons.push(...book.pass2RiskReasons);
     if (comparison.apparentDamage.length > 0) {
@@ -893,13 +1030,26 @@ function finalRecommendation(
       reasons,
     };
   }
+  if (structureDetection.status === "warn") {
+    return {
+      recommendation: "process later with warnings",
+      reasons: reasons.length
+        ? reasons
+        : ["Structure detection is usable but should be reviewed before writing."],
+    };
+  }
   return {
     recommendation: "safe to process later",
     reasons: ["Pass 2 verified high-confidence boundaries and this dry run found no blocking issue."],
   };
 }
 
-function manualChecklist(book: Pass2Book, sections: SectionSummary[], comparison: ExistingGeneratedComparison): string[] {
+function manualChecklist(
+  book: Pass2Book,
+  sections: SectionSummary[],
+  comparison: ExistingGeneratedComparison,
+  structureDetection: DryRunStructureDetection,
+): string[] {
   const checklist = [
     "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
     "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
@@ -916,6 +1066,9 @@ function manualChecklist(book: Pass2Book, sections: SectionSummary[], comparison
   }
   if (sections.length === 0) {
     checklist.push("No proposed sections were produced; do not process until section detection is fixed.");
+  }
+  if (structureDetection.status !== "pass") {
+    checklist.push("Review the structure-detection warnings and confirm TOC entries were not selected as body sections.");
   }
   return checklist;
 }
@@ -941,6 +1094,49 @@ function bookMarkdown(book: BookDryRun): string {
     book.comparisonAgainstExistingGeneratedOutput.apparentDamage.length === 0
       ? "No generated-output damage flagged in this dry run."
       : book.comparisonAgainstExistingGeneratedOutput.apparentDamage.join("; ");
+  const structurePatternRows =
+    book.structureDetection.candidateHeadingPatternsFound.length === 0
+      ? "| None | 0 | 0 | 0 |  |"
+      : book.structureDetection.candidateHeadingPatternsFound
+          .map(
+            (summary) =>
+              `| ${escapeMarkdown(summary.patternId)} | ${summary.candidateCount} | ${summary.bodyLikeCount} | ${summary.tocLikeCount} | ${summary.selected ? "yes" : "no"} | ${escapeMarkdown(summary.rejectionReason ?? "")} |`,
+          )
+          .join("\n");
+  const rejectedStrategyRows =
+    book.structureDetection.rejectedHeadingStrategies.length === 0
+      ? "| None | 0 | 0 | 0 | |"
+      : book.structureDetection.rejectedHeadingStrategies
+          .slice(0, 40)
+          .map(
+            (strategy) =>
+              `| ${escapeMarkdown(strategy.patternId)} | ${strategy.candidateCount} | ${strategy.bodyLikeCount} | ${strategy.tocLikeCount} | ${escapeMarkdown(strategy.reason)} |`,
+          )
+          .join("\n");
+  const room13RegressionSection =
+    book.slug === "room-13"
+      ? [
+          "## Room 13 Regression",
+          "",
+          `- Body chapter heading count: ${book.structureDetection.bodyChapterHeadingCount}`,
+          `- Final section count: ${book.proposedSections.length}`,
+          `- TOC/body distinction: ${book.structureDetection.tocEntriesDetected ? "TOC-like entries were detected separately from body headings." : "No TOC-like entries were selected."}`,
+          `- Prior 2-section collapse fixed: ${book.structureDetection.priorTwoSectionCollapseFixed ? "yes" : "no"}`,
+          "",
+          "### Body Chapter Examples",
+          "",
+          book.structureDetection.bodyHeadingExamples.length
+            ? book.structureDetection.bodyHeadingExamples.map((example) => `- ${example}`).join("\n")
+            : "- None.",
+          "",
+          "### TOC-Like Examples",
+          "",
+          book.structureDetection.tocHeadingExamples.length
+            ? book.structureDetection.tocHeadingExamples.map((example) => `- ${example}`).join("\n")
+            : "- None.",
+          "",
+        ]
+      : [];
 
   return [
     `# Pilot Dry Run: ${book.slug}`,
@@ -981,6 +1177,37 @@ function bookMarkdown(book: BookDryRun): string {
       ? book.linesAfterCandidateEnd.map((line) => `- ${line}`).join("\n")
       : "- None.",
     "",
+    "## Structure Detection",
+    "",
+    `- Detected structural convention: ${book.structureDetection.detectedStructuralConvention}`,
+    `- Selected heading strategy: ${book.structureDetection.selectedHeadingStrategy?.patternId ?? "none"}`,
+    `- TOC entries detected: ${book.structureDetection.tocEntriesDetected ? "yes" : "no"}`,
+    `- Body headings detected: ${book.structureDetection.bodyHeadingsDetected ? "yes" : "no"}`,
+    `- Section count from selected strategy: ${book.structureDetection.sectionCountFromSelectedStrategy}`,
+    `- Fallback used: ${book.structureDetection.fallbackUsed ? "yes" : "no"}`,
+    `- Fallback legitimacy: ${book.structureDetection.fallbackLegitimacy}`,
+    `- Fallback reason: ${book.structureDetection.fallbackReason ?? "not required"}`,
+    `- Structure detection status: ${book.structureDetection.status}`,
+    "",
+    "### Candidate Heading Patterns",
+    "",
+    "| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |",
+    "| --- | ---: | ---: | ---: | --- | --- |",
+    structurePatternRows,
+    "",
+    "### Rejected Heading Strategies",
+    "",
+    "| Pattern | Candidates | Body-like | TOC-like | Reason |",
+    "| --- | ---: | ---: | ---: | --- |",
+    rejectedStrategyRows,
+    "",
+    "### Structure Warnings",
+    "",
+    book.structureDetection.warnings.length
+      ? book.structureDetection.warnings.map((warning) => `- ${warning}`).join("\n")
+      : "- None.",
+    "",
+    ...room13RegressionSection,
     "## Proposed Sections",
     "",
     `- Total proposed sections: ${book.proposedSections.length}`,
@@ -1042,6 +1269,9 @@ function escapeMarkdown(input: string): string {
 function dryRunBook(book: Pass2Book): BookDryRun {
   const sourcePath = resolveRepoPath(book.sourcePath);
   const sourceText = normalizeBoundaryText(fs.readFileSync(sourcePath, "utf8"));
+  const sourceStructure = analyzeBookStructure(sourceText, {
+    rawWordCount: countBookWords(sourceText),
+  });
   const lines = buildLines(sourceText);
   const generated = readGeneratedManifest(book.slug);
   const author = extractAuthor(sourceText, generated.manifest);
@@ -1073,6 +1303,12 @@ function dryRunBook(book: Pass2Book): BookDryRun {
   const endMatterText = sourceText.slice(safeEndIndex);
   const cleanupSimulation = simulateCleanup(keptText);
   const sectionResult = buildSections(keptText, book, author);
+  const structureDetection = summarizeStructureDetection(
+    sectionResult.structure,
+    sectionResult.sections,
+    countBookWords(keptText),
+    sourceStructure,
+  );
   const proposedSections = sectionResult.sections.map(sectionSummary);
   const suspiciouslyShortSections = proposedSections.filter(
     (section) => section.wordCount > 0 && section.wordCount < SHORT_SECTION_WORDS,
@@ -1086,11 +1322,17 @@ function dryRunBook(book: Pass2Book): BookDryRun {
     book,
     comparison,
     proposedSections,
+    structureDetection,
     cleanupSimulation,
     previewCandidate,
     suspiciouslyLongSections,
   );
-  const manualReviewChecklist = manualChecklist(book, proposedSections, comparison);
+  const manualReviewChecklist = manualChecklist(
+    book,
+    proposedSections,
+    comparison,
+    structureDetection,
+  );
   const slugMarkdownPath = path.join(DRY_RUN_BOOKS_ROOT, `${book.slug}.md`);
   const candidateJsonPath = path.join(
     DRY_RUN_CANDIDATES_ROOT,
@@ -1131,6 +1373,7 @@ function dryRunBook(book: Pass2Book): BookDryRun {
     lastFiveProposedSections: proposedSections.slice(-5),
     suspiciouslyShortSections,
     suspiciouslyLongSections,
+    structureDetection,
     artifactsDetectedAndCleanupAction: cleanupSimulation,
     footnoteReferenceHandlingRecommendation:
       book.cleanupArtifactSummary.numberedBracketReferences > 0 ||
@@ -1178,6 +1421,7 @@ function dryRunBook(book: Pass2Book): BookDryRun {
       removedEndMatter: result.removedEndMatterWordCountEstimate,
     },
     sections: result.proposedSections,
+    structureDetection: result.structureDetection,
     cleanupSimulation: result.artifactsDetectedAndCleanupAction,
     firstHourPreviewCandidate: result.firstHourPreviewCandidate,
     comparisonAgainstExistingGeneratedOutput: result.comparisonAgainstExistingGeneratedOutput,
@@ -1232,6 +1476,9 @@ function summarizeBoundaryRisks(books: BookDryRun[]): DryRunReport["commonBounda
     if (book.firstHourPreviewCandidate.confidence === "low") {
       addCategory(categories, "low-confidence-preview-source", book.slug);
     }
+    if (book.structureDetection.status !== "pass") {
+      addCategory(categories, `structure-${book.structureDetection.status}`, book.slug);
+    }
   }
   return [...categories.entries()]
     .map(([category, value]) => ({ category, ...value }))
@@ -1242,7 +1489,7 @@ function mainMarkdown(report: DryRunReport): string {
   const recommendationRows = report.books
     .map(
       (book) =>
-        `| ${book.slug} | ${book.pass2RiskLevel} | ${book.proposedSections.length} | ${book.keptWordCountEstimate} | ${book.finalDryRunRecommendation} | ${book.firstHourPreviewCandidate.feasible ? "yes" : "no"} | ${escapeMarkdown(book.selectionReason)} |`,
+        `| ${book.slug} | ${book.pass2RiskLevel} | ${escapeMarkdown(book.structureDetection.detectedStructuralConvention)} | ${book.structureDetection.status} | ${book.proposedSections.length} | ${book.keptWordCountEstimate} | ${book.finalDryRunRecommendation} | ${book.firstHourPreviewCandidate.feasible ? "yes" : "no"} | ${escapeMarkdown(book.selectionReason)} |`,
     )
     .join("\n");
   const listByRecommendation = (recommendation: DryRunRecommendation) => {
@@ -1281,8 +1528,8 @@ function mainMarkdown(report: DryRunReport): string {
     "",
     "## Per-Book Recommendation Table",
     "",
-    "| Slug | Pass-2 risk | Sections | Kept words | Dry-run recommendation | Preview feasible | Why selected |",
-    "| --- | --- | ---: | ---: | --- | --- | --- |",
+    "| Slug | Pass-2 risk | Structure | Structure status | Sections | Kept words | Dry-run recommendation | Preview feasible | Why selected |",
+    "| --- | --- | --- | --- | ---: | ---: | --- | --- | --- |",
     recommendationRows,
     "",
     "## Safe To Process Later",
@@ -1370,10 +1617,12 @@ function buildReport(books: BookDryRun[]): DryRunReport {
       slug: book.slug,
       apparentDamage: book.comparisonAgainstExistingGeneratedOutput.apparentDamage,
     }));
+  const structureFailures = books.filter((book) => book.structureDetection.status === "fail").length;
   const seemsSafe =
     counts.safeToProcessLater + counts.processLaterWithWarnings >= 8 &&
     counts.blocked === 0 &&
-    counts.needsIndividualReview <= 4;
+    counts.needsIndividualReview <= 4 &&
+    structureFailures === 0;
 
   return {
     schemaVersion: 1,
@@ -1405,7 +1654,9 @@ function buildReport(books: BookDryRun[]): DryRunReport {
       seemsSafeEnoughForRealPilotWritePass: seemsSafe,
       reason: seemsSafe
         ? "The dry run produced reviewable outputs for the selected second-batch books with no blocked sources and enough safe/warning candidates for a controlled write pass."
-        : "Several batch-2 books still require individual review, so a real write pass should wait until those are reviewed or excluded.",
+        : structureFailures > 0
+          ? "At least one batch-2 book still has a failed structure-detection result, so a real write pass should wait until those are reviewed or excluded."
+          : "Several batch-2 books still require individual review, so a real write pass should wait until those are reviewed or excluded.",
       recommendedNextStep: seemsSafe
         ? "Run a real pilot write pass only for the safe/warning subset from dry-run 2, excluding any individual-review or blocked books."
         : "Review the individual-review per-book reports, then run a smaller real write pass for safe and warning-only books.",

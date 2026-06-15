@@ -9,6 +9,7 @@ import {
   textPreview,
   trimBookText,
 } from "./bookTextNormalization.ts";
+import { analyzeBookStructure } from "./lib/book-structure-detection.ts";
 
 type ConfidenceLevel = "high" | "medium" | "low" | "blocked";
 type RecommendedHandling =
@@ -171,6 +172,7 @@ type GlobalReport = {
   booksToProcessWithWarnings: string[];
   blockedBooks: string[];
   topParserWeaknessesFound: string[];
+  detectorFixesImplementedInThisBranch: string[];
   recommendedDetectorFixesBeforeMoreWritePasses: string[];
   room13Regression: {
     found: boolean;
@@ -1191,63 +1193,11 @@ function auditTextBook(filePath: string): BookStructureAudit {
   const cleaned = cleanGutenbergText(rawText);
   const cleanedText = trimBookText(cleaned.cleanedText || rawText);
   const cleanedWordCount = countBookWords(cleanedText);
-  const lines = buildLines(cleanedText);
-  const candidates = annotateCandidates(
-    lines,
-    collectRawCandidates(lines, Math.max(1, cleanedText.length)),
-  );
-  const patternSummaries = summarizePatterns(cleanedText, candidates, rawWordCount);
-  const selected = chooseSelectedStrategy(patternSummaries);
-  const selectedWithFlag = patternSummaries.map((summary) => ({
-    ...summary,
-    selected: selected?.patternId === summary.patternId,
-    rejectionReason: selected?.patternId === summary.patternId ? null : rejectionReason(summary, selected),
-  }));
-  const selectedSummary = selectedWithFlag.find((summary) => summary.selected) ?? null;
+  const structure = analyzeBookStructure(cleanedText, { rawWordCount });
+  const selectedWithFlag = structure.allCandidateHeadingPatternsFound;
+  const selectedSummary = structure.selectedHeadingStrategy;
   const generatedComparison = readGeneratedComparison(slug, selectedSummary);
-  const fallbackRequired = selectedSummary === null;
-  const fallbackReason = fallbackRequired
-    ? candidates.length > 0
-      ? "candidate headings were present, but none had enough body-heading evidence"
-      : "no plausible chapter, section, story, play, date, or titled-section headings were detected"
-    : null;
-  const fallbackLegitimacy =
-    fallbackRequired && rawWordCount < 6_000 && candidates.length <= 2
-      ? "legitimate"
-      : fallbackRequired
-        ? "suspicious"
-        : "not required";
-  const likelyToc = patternSummaries.some((summary) => summary.tocLikeCount > 0);
-  const likelyBody = patternSummaries.some((summary) => summary.bodyLikeCount > 0);
-  const sectionNotes = selectedSummary?.sectionSizeNotes ?? null;
-  const redFlags: string[] = [];
-
-  if (rawWordCount < 25) redFlags.push("blocked: source has almost no readable text");
-  if (!selectedSummary) redFlags.push("no reliable chapters, sections, story headings, or structural headings detected");
-  if (fallbackRequired && candidates.length >= 5) {
-    redFlags.push("fallback would be used even though many candidate headings exist");
-  }
-  if (fallbackRequired && fallbackLegitimacy === "suspicious") {
-    redFlags.push("suspicious fallback-only structure");
-  }
-  if (selectedSummary && selectedSummary.bodyLikeCount <= 2 && rawWordCount >= HIGH_WORD_COUNT) {
-    redFlags.push("only 1-2 detected sections for a high-word-count book");
-  }
-  if (sectionNotes && sectionNotes.hugeSectionCount > 0) {
-    redFlags.push("long book has huge sections despite detected headings");
-  }
-  if (
-    likelyToc &&
-    (!selectedSummary || selectedSummary.confidence === "low" || selectedSummary.tocLikeCount > selectedSummary.bodyLikeCount)
-  ) {
-    redFlags.push("TOC/body confusion is likely");
-  }
-  if (
-    selectedSummary &&
-    selectedWithFlag.some((summary) => isMeaningfulCompetingStrategy(summary, selectedSummary))
-  ) {
-    redFlags.push("body headings were found but rejected by the selected strategy");
-  }
+  const redFlags = [...structure.redFlags];
   if (cleaned.report.confidence === "low") redFlags.push("start/end boundary confidence is low");
   if (generatedComparison.warnings.some((warning) => /far below|has \d+ section/i.test(warning))) {
     redFlags.push("generated output likely collapsed real structure");
@@ -1256,9 +1206,9 @@ function auditTextBook(filePath: string): BookStructureAudit {
     redFlags.push("generated output may include source/license/TOC/footer junk");
   }
 
-  const confidenceScore = selectedSummary?.score ?? 0;
-  const confidenceLevel = selectedSummary?.confidence ?? (rawWordCount < 25 ? "blocked" : "low");
-  let recommendedHandling = handlingFor(redFlags, confidenceLevel, fallbackRequired, rawWordCount);
+  const confidenceScore = structure.confidenceScore;
+  const confidenceLevel = structure.confidenceLevel;
+  let recommendedHandling = handlingFor(redFlags, confidenceLevel, structure.fallbackRequired, rawWordCount);
   if (
     recommendedHandling === "safe for normal processing" &&
     selectedSummary &&
@@ -1276,30 +1226,21 @@ function auditTextBook(filePath: string): BookStructureAudit {
     cleanedWordCount,
     likelyTitle: title,
     likelyAuthor: author,
-    detectedStructuralConvention: detectedConvention(selectedSummary, selectedWithFlag),
+    detectedStructuralConvention: structure.detectedStructuralConvention,
     confidenceScore: Number(confidenceScore.toFixed(3)),
     confidenceLevel,
     allCandidateHeadingPatternsFound: selectedWithFlag,
     selectedHeadingStrategy: selectedSummary,
-    rejectedHeadingStrategies: selectedWithFlag
-      .filter((summary) => !summary.selected)
-      .map((summary) => ({
-        patternId: summary.patternId,
-        convention: summary.convention,
-        candidateCount: summary.candidateCount,
-        bodyLikeCount: summary.bodyLikeCount,
-        tocLikeCount: summary.tocLikeCount,
-        reason: summary.rejectionReason ?? "not selected",
-      })),
-    estimatedSectionCount: selectedSummary?.bodyLikeCount ?? 0,
-    fallbackRequired,
-    fallbackReason,
-    fallbackLegitimacy,
-    likelyTocHeadingsDetected: likelyToc,
-    likelyBodyHeadingsDetected: likelyBody,
-    examplesOfDetectedBodyHeadings: prioritizedExamples(selectedSummary, selectedWithFlag, "bodyExamples"),
-    examplesOfRejectedTocLikeHeadings: prioritizedExamples(selectedSummary, selectedWithFlag, "tocExamples"),
-    sectionSizeSanityNotes: sectionNotes,
+    rejectedHeadingStrategies: structure.rejectedHeadingStrategies,
+    estimatedSectionCount: structure.estimatedSectionCount,
+    fallbackRequired: structure.fallbackRequired,
+    fallbackReason: structure.fallbackReason,
+    fallbackLegitimacy: structure.fallbackLegitimacy,
+    likelyTocHeadingsDetected: structure.likelyTocHeadingsDetected,
+    likelyBodyHeadingsDetected: structure.likelyBodyHeadingsDetected,
+    examplesOfDetectedBodyHeadings: structure.examplesOfDetectedBodyHeadings,
+    examplesOfRejectedTocLikeHeadings: structure.examplesOfRejectedTocLikeHeadings,
+    sectionSizeSanityNotes: structure.sectionSizeSanityNotes,
     startBoundaryConfidence: confidenceFromCleaningConfidence(cleaned.report.confidence),
     endBoundaryConfidence: confidenceFromCleaningConfidence(cleaned.report.confidence),
     cleaningWarnings: cleaned.report.warnings,
@@ -1458,21 +1399,31 @@ function buildTopWeaknesses(books: BookStructureAudit[]): string[] {
     book.redFlags.some((flag) => /body headings were found but rejected/i.test(flag)),
   ).length;
   return [
-    `A chapter-only detector is not enough: ${nonChapter} source(s) are better described by non-chapter conventions such as stories, acts, staves, cantos, parts, dated entries, or titled sections.`,
+    `Non-chapter structure remains common: ${nonChapter} source(s) are better described by stories, acts, staves, cantos, parts, dated entries, or titled sections.`,
     `${noHeadings} source(s) have no reliable internal headings and need explicit one-section/fallback policy instead of silent chunking.`,
-    `${tocConfusion} source(s) show likely TOC/body confusion and need position, repetition, and following-prose checks.`,
+    `${tocConfusion} source(s) still show likely TOC/body confusion and need manual review or more targeted fixtures.`,
     `${rejectedBody} source(s) have body-like heading candidates outside the selected strategy; detector decisions should be explainable and reviewable.`,
     `${collapsedGenerated} existing generated output comparison(s) appear to have collapsed real structure or included wrong boundary material.`,
   ];
 }
 
+function detectorFixesImplemented(): string[] {
+  return [
+    "Added a shared scored detector module used by both the global structure audit and pilot dry-run 2.",
+    "The detector now evaluates multiple conventions: chapter headings, books/parts/volumes, acts/scenes, staves/cantos, letters, dated entries, standalone ordinals, story titles, and isolated titled sections.",
+    "TOC-like candidates are retained as evidence but separated from body headings using front-list position, explicit contents ranges, page-leader shape, duplicate later headings, and following-prose checks.",
+    "Fallback is now explicit, with legitimacy and suspicious-fallback flags in the JSON and markdown reports.",
+    "The dry-run section builder now uses the shared structure analysis instead of the older chapter/fallback-only behavior.",
+  ];
+}
+
 function recommendedFixes(): string[] {
   return [
-    "Replace the hard chapter-only gate with a scored heading strategy that can select chapters, story titles, parts/books/volumes, acts/scenes, staves/cantos, letters, dated entries, or an intentional one-section fallback.",
-    "Keep TOC candidates as evidence, but reject only the compact front-list occurrence when the same headings repeat later with body paragraphs.",
-    "Do not reject body headings solely because they have leading whitespace or trailing punctuation; score them with nearby prose and sequence evidence.",
-    "Surface fallback as a warning/manual-review state when candidate headings exist or a long source would become only 1-2 parts.",
-    "Use section-size sanity checks before writing generated books, especially huge sections, tiny fragment-heavy sections, and generated-vs-raw section-count mismatches.",
+    "Add regression fixtures for the highest-risk conventions before a real write pass: Room 13 roman chapters, story collections, play acts/scenes, staves/cantos, diary/date entries, and no-heading short works.",
+    "Review low-confidence title/story detection manually so poem titles, captions, and all-caps display lines do not become noisy sections.",
+    "Define an explicit policy for legitimate no-heading books, including when to keep one readable section versus fallback chunks.",
+    "Use generated-vs-raw section-count mismatches as a hard warning before any write pass updates generated output.",
+    "Keep section-size sanity checks in the write pipeline, especially huge sections, tiny fragment-heavy sections, and TOC/body ambiguity.",
     "Add a regression fixture for Room 13 that expects the Chapter I through Chapter XXXIII body sequence to be detected before any write pass.",
   ];
 }
@@ -1538,6 +1489,7 @@ function buildReport(textBooks: BookStructureAudit[], nonTextFiles: NonTextFile[
     booksToProcessWithWarnings: warnings.map((book) => book.slug),
     blockedBooks: blocked.map((book) => book.slug),
     topParserWeaknessesFound: buildTopWeaknesses(textBooks),
+    detectorFixesImplementedInThisBranch: detectorFixesImplemented(),
     recommendedDetectorFixesBeforeMoreWritePasses: recommendedFixes(),
     room13Regression: buildRoom13Regression(textBooks),
     confirmations: {
@@ -1641,6 +1593,10 @@ function mainMarkdown(report: GlobalReport): string {
     "## Top Parser Weaknesses Found",
     "",
     markdownList(report.topParserWeaknessesFound),
+    "",
+    "## Detector Fixes Implemented In This Branch",
+    "",
+    markdownList(report.detectorFixesImplementedInThisBranch),
     "",
     "## Recommended Detector Fixes Before More Write Passes",
     "",

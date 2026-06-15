@@ -60,7 +60,7 @@
       "id": "chapter-004",
       "kind": "chapter",
       "label": "Chapter 4",
-      "title": "Ward No. 2.",
+      "title": "Ward No. 2",
       "includeByDefault": true,
       "wordCount": 3145,
       "characterCount": 16816,
@@ -288,6 +288,272 @@
       "textPreview": "Chapter XXIV. Down the River A fortnight later, the boys were picking apples one golden October afternoon, and the girls were hurrying to finish their work, th..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 24,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 24,
+      "examples": [
+        "L1: Chapter I. The Catastrophe",
+        "L332: Chapter II. Two Penitents",
+        "L552: Chapter III. Ward No. 1",
+        "L995: Chapter IV. Ward No. 2.",
+        "L1312: Chapter V. Secrets",
+        "L1480: Chapter VI. Surprises"
+      ],
+      "bodyExamples": [
+        "L1: Chapter I. The Catastrophe",
+        "L332: Chapter II. Two Penitents",
+        "L552: Chapter III. Ward No. 1",
+        "L995: Chapter IV. Ward No. 2.",
+        "L1312: Chapter V. Secrets",
+        "L1480: Chapter VI. Surprises",
+        "L2028: Chapter VII. Jill's Mission",
+        "L2472: Chapter VIII. Merry and Molly"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 24,
+        "minimumWords": 1674,
+        "medianWords": 4034,
+        "maximumWords": 5641,
+        "averageWords": 3870,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 24,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 24,
+        "examples": [
+          "L1: Chapter I. The Catastrophe",
+          "L332: Chapter II. Two Penitents",
+          "L552: Chapter III. Ward No. 1",
+          "L995: Chapter IV. Ward No. 2.",
+          "L1312: Chapter V. Secrets",
+          "L1480: Chapter VI. Surprises"
+        ],
+        "bodyExamples": [
+          "L1: Chapter I. The Catastrophe",
+          "L332: Chapter II. Two Penitents",
+          "L552: Chapter III. Ward No. 1",
+          "L995: Chapter IV. Ward No. 2.",
+          "L1312: Chapter V. Secrets",
+          "L1480: Chapter VI. Surprises",
+          "L2028: Chapter VII. Jill's Mission",
+          "L2472: Chapter VIII. Merry and Molly"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 24,
+          "minimumWords": 1674,
+          "medianWords": 4034,
+          "maximumWords": 5641,
+          "averageWords": 3870,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 6,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 5,
+        "examples": [
+          "L836: “J.P.”",
+          "L874: “E.D.”",
+          "L1938: THE BLESSED DAY",
+          "L5248: “R.O.W.”",
+          "L7067: “TO MY LADY",
+          "L7624: H.B.B.C."
+        ],
+        "bodyExamples": [
+          "L836: “J.P.”",
+          "L874: “E.D.”",
+          "L5248: “R.O.W.”",
+          "L7067: “TO MY LADY",
+          "L7624: H.B.B.C."
+        ],
+        "tocExamples": [
+          "L1938: THE BLESSED DAY"
+        ],
+        "score": 0.751,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 5,
+          "minimumWords": 338,
+          "medianWords": 17522,
+          "maximumWords": 41005,
+          "averageWords": 17071,
+          "hugeSectionCount": 2,
+          "tinySectionCount": 0,
+          "notes": [
+            "2 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 29,
+        "tocLikeCount": 5,
+        "bodyLikeCount": 24,
+        "examples": [
+          "L21: “Here's Molly Loo",
+          "L22: And little Boo!”",
+          "L45: For jolly Jack!”",
+          "L400: “Am I hurt badly, Mammy?”",
+          "L741: “Jack”",
+          "L766: “Jill”"
+        ],
+        "bodyExamples": [
+          "L21: “Here's Molly Loo",
+          "L22: And little Boo!”",
+          "L45: For jolly Jack!”",
+          "L400: “Am I hurt badly, Mammy?”",
+          "L766: “Jill”",
+          "L867: “Gus”",
+          "L886: “Joseph P. Flint”",
+          "L911: “Your Jack”"
+        ],
+        "tocExamples": [
+          "L741: “Jack”",
+          "L1941: On Christmas Day, on Christmas Day?",
+          "L1945: On Christmas Day, on Christmas Day;",
+          "L1950: On Christmas Day, on Christmas Day?",
+          "L1954: On Christmas Day, on Christmas Day;"
+        ],
+        "score": 0.631,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 24,
+          "minimumWords": 3,
+          "medianWords": 889,
+          "maximumWords": 19446,
+          "averageWords": 3863,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 3,
+          "notes": [
+            "1 section(s) exceed 18000 words",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "label": "Roman numbered titled heading",
+        "convention": "roman-numbered titled sections",
+        "kind": "chapter",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L7524: did. Nor was that all, for when they reluctantly excused themselves,"
+        ],
+        "bodyExamples": [
+          "L7524: did. Nor was that all, for when they reluctantly excused themselves,"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 22369,
+          "medianWords": 22369,
+          "maximumWords": 22369,
+          "averageWords": 22369,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 6,
+        "bodyLikeCount": 5,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 29,
+        "bodyLikeCount": 24,
+        "tocLikeCount": 5,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "convention": "roman-numbered titled sections",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 24,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 24,
+    "bodyHeadingExamples": [
+      "L1: Chapter I. The Catastrophe",
+      "L332: Chapter II. Two Penitents",
+      "L552: Chapter III. Ward No. 1",
+      "L995: Chapter IV. Ward No. 2.",
+      "L1312: Chapter V. Secrets",
+      "L1480: Chapter VI. Surprises",
+      "L2028: Chapter VII. Jill's Mission",
+      "L2472: Chapter VIII. Merry and Molly"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": true
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 92885,
     "actions": [

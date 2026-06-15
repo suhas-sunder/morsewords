@@ -24,138 +24,552 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
       "title": null,
-      "includeByDefault": true,
-      "wordCount": 5366,
-      "characterCount": 29696,
-      "estimatedListeningMinutes": 177,
+      "includeByDefault": false,
+      "wordCount": 84,
+      "characterCount": 630,
+      "estimatedListeningMinutes": 3,
       "textPreview": "DEDICATION For Betty and Vall, with loving remembrance * * * * * CONTENTS 1. The Ship from Terra 2. Reporter Working 3. Bottom Level 4. Main City Level 5. Meet..."
     },
     {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Section 1",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5344,
-      "characterCount": 29440,
-      "estimatedListeningMinutes": 176,
-      "textPreview": "I got some footage of the tugs grappling the ship, which was now completely weightless, and pulling her down. Through the finder, I could see that she had her..."
+      "wordCount": 3992,
+      "characterCount": 21914,
+      "estimatedListeningMinutes": 131,
+      "textPreview": "1 THE SHIP FROM TERRA I went through the gateway, towing my equipment in a contragravity hamper over my head. As usual, I was wondering what it would take, sho..."
     },
     {
-      "id": "part-003",
-      "kind": "part",
-      "label": "Part 3",
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Section 2",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5397,
-      "characterCount": 29995,
-      "estimatedListeningMinutes": 180,
-      "textPreview": "Tom hadn't said anything after we left the stacks of wax and the men guarding them. We came up a vehicle shaft a few blocks up Broadway, and he brought the jee..."
+      "wordCount": 3492,
+      "characterCount": 19220,
+      "estimatedListeningMinutes": 115,
+      "textPreview": "2 REPORTER WORKING Bish came over and greeted us solemnly. \"Good afternoon, gentlemen. Captain Ahab, I believe,\" he said, bowing to Tom, who seemed slightly pu..."
     },
     {
-      "id": "part-004",
-      "kind": "part",
-      "label": "Part 4",
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Section 3",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5458,
-      "characterCount": 29996,
-      "estimatedListeningMinutes": 180,
-      "textPreview": "Fortunately, at that moment somebody took a swing at Joe and grazed his cheek. It was a good thing that was all he did; he was wearing brass knuckles. Joe went..."
+      "wordCount": 3019,
+      "characterCount": 16676,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "3 BOTTOM LEVEL It didn't take long to get Murell's luggage assembled. There was surprisingly little of it, and nothing that looked like photographic or recordi..."
     },
     {
-      "id": "part-005",
-      "kind": "part",
-      "label": "Part 5",
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Section 4",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5499,
-      "characterCount": 29709,
-      "estimatedListeningMinutes": 177,
-      "textPreview": "It seemed as though I had barely fallen asleep before I was wakened by the ship changing direction and losing altitude. I knew there were clouds coming in from..."
+      "wordCount": 2926,
+      "characterCount": 16183,
+      "estimatedListeningMinutes": 97,
+      "textPreview": "4 MAIN CITY LEVEL The ceiling on Main City Level is two hundred feet high; in order to permit free circulation of air and avoid traffic jams, nothing is built..."
     },
     {
-      "id": "part-006",
-      "kind": "part",
-      "label": "Part 6",
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Section 5",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5499,
-      "characterCount": 29552,
-      "estimatedListeningMinutes": 176,
-      "textPreview": "He was going to say something else, but before he could say it there was a terrific roar forward. The whole ship bucked like a recoiling gun, throwing everybod..."
+      "wordCount": 3157,
+      "characterCount": 17454,
+      "estimatedListeningMinutes": 105,
+      "textPreview": "5 MEETING OUT OF ORDER Dad called the spaceport hospital, after dinner, and talked to Doc Rojansky. Murell was asleep, and in no danger whatever. They'd given..."
     },
     {
-      "id": "part-007",
-      "kind": "part",
-      "label": "Part 7",
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Section 6",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5484,
-      "characterCount": 29687,
-      "estimatedListeningMinutes": 178,
-      "textPreview": "When we got back to camp, everybody who wasn't crippled and had enough clothes to get away from the heater came out and helped. First, we got a fire started--t..."
+      "wordCount": 2406,
+      "characterCount": 13248,
+      "estimatedListeningMinutes": 80,
+      "textPreview": "6 ELEMENTARY, MY DEAR KIVELSON Before we left the lighted elevator car, we took a quick nose count. Besides the Kivelsons, there were five _Javelin_ men--Ramón..."
     },
     {
-      "id": "part-008",
-      "kind": "part",
-      "label": "Part 8",
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Section 7",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5442,
-      "characterCount": 29984,
-      "estimatedListeningMinutes": 180,
-      "textPreview": "\"And then, about thirty hours after the Javelin left port, I was in the Happy Haven, and who should I see, buying drinks for the house, but Al Devis. I let him..."
+      "wordCount": 2485,
+      "characterCount": 13763,
+      "estimatedListeningMinutes": 82,
+      "textPreview": "7 ABOARD THE _JAVELIN_ We heard nothing more from Bish Ware that evening. Joe and Tom Kivelson and Oscar Fujisawa slept at the _Times_ Building, and after brea..."
     },
     {
-      "id": "part-009",
-      "kind": "part",
-      "label": "Part 9",
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Section 8",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5555,
-      "characterCount": 29981,
-      "estimatedListeningMinutes": 179,
-      "textPreview": "\"Who? I don't believe I know him.\" After Hallstock got into his big black air-limousine and took off, Joe Kivelson gave a short laugh. \"I could have told him w..."
+      "wordCount": 2568,
+      "characterCount": 14058,
+      "estimatedListeningMinutes": 84,
+      "textPreview": "8 PRACTICE, 50-MM GUN It seemed as though I had barely fallen asleep before I was wakened by the ship changing direction and losing altitude. I knew there were..."
     },
     {
-      "id": "part-010",
-      "kind": "part",
-      "label": "Part 10",
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Section 9",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 5396,
-      "characterCount": 29672,
-      "estimatedListeningMinutes": 178,
-      "textPreview": "Three or four thousand undisciplined hunters, against fifty trained, disciplined and organized soldiers, because that was what the spaceport police were. I kne..."
+      "wordCount": 2081,
+      "characterCount": 11132,
+      "estimatedListeningMinutes": 66,
+      "textPreview": "9 MONSTER KILLING There was a man in the turret, waiting to help me. He had a clip of five rounds in the gun, the searchlight on, and the viewscreen tuned to t..."
     },
     {
-      "id": "part-011",
-      "kind": "part",
-      "label": "Part 11",
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Section 10",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 3416,
-      "characterCount": 18472,
-      "estimatedListeningMinutes": 110,
-      "textPreview": "When I got back to the _Times_, Dad and Julio had had their lunch and were going over the teleprint edition. Julio was printing corrections on blank sheets of..."
+      "wordCount": 2578,
+      "characterCount": 14121,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "10 MAYDAY, MAYDAY Getting a ship's boat berthed inside the ship in the air is tricky work under the best of conditions; the way the wind was blowing by now, it..."
     },
     {
-      "id": "part-012",
-      "kind": "part",
-      "label": "Part 12",
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Section 11",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 0,
-      "characterCount": 33,
-      "estimatedListeningMinutes": 1,
-      "textPreview": "* * * * *"
+      "wordCount": 2400,
+      "characterCount": 12902,
+      "estimatedListeningMinutes": 77,
+      "textPreview": "11 DARKNESS AND COLD The next time I woke, Tom Kivelson was reciting the Mayday, Mayday incantation into the radio, and his father was asleep. The man who had..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Section 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1967,
+      "characterCount": 10162,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "12 CASTAWAYS WORKING We had been away from the boat for about two hours; when we got back, I saw that Abdullah and his helpers had gotten the deck plates off t..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Section 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1550,
+      "characterCount": 8384,
+      "estimatedListeningMinutes": 50,
+      "textPreview": "13 THE BEACON LIGHT We all said, \"Shooting!\" and, \"The machine gun!\" as though we had to tell each other what it was. \"Something's attacking them,\" Cesário gue..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Section 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1954,
+      "characterCount": 10525,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "14 THE RESCUE The scout boat from the _Pequod_ came in about thirty minutes later, from up the ravine where the forest fire was sending up flame and smoke. It..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Section 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3588,
+      "characterCount": 19651,
+      "estimatedListeningMinutes": 118,
+      "textPreview": "15 VIGILANTES When the _Pequod_ surfaced under the city roof, I saw what was cooking. There were twenty or more ships, either on the concrete docks or afloat i..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Section 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2327,
+      "characterCount": 12990,
+      "estimatedListeningMinutes": 77,
+      "textPreview": "16 CIVIL WAR POSTPONED The moaner went on for thirty seconds, like a banshee mourning its nearest and dearest. It was everywhere, Main City Level and the four..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Section 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3088,
+      "characterCount": 16552,
+      "estimatedListeningMinutes": 98,
+      "textPreview": "17 TALLOW-WAX FIRE Now that we were out of the traffic jam, I could poke along and use the camera myself. The wax was stacked in piles twenty feet high, which..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Section 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2916,
+      "characterCount": 15836,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "18 THE TREASON OF BISH WARE I wanted to find out who had been splashed, but Joe Kivelson was too busy directing the new phase of the fight to hand out casualty..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Section 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4777,
+      "characterCount": 26411,
+      "estimatedListeningMinutes": 158,
+      "textPreview": "19 MASKS OFF There was dead silence for two or three seconds. If a kitten had sneezed, everybody would have heard it. Then it started, first an inarticulate ro..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Section 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4501,
+      "characterCount": 24376,
+      "estimatedListeningMinutes": 145,
+      "textPreview": "20 FINALE They had Tom Kivelson in a private room at the hospital; he was sitting up in a chair, with a lot of pneumatic cushions around him, and a lunch tray..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone arabic-numbered sections",
+    "selectedHeadingStrategy": {
+      "patternId": "arabic-only",
+      "label": "Standalone Arabic number",
+      "convention": "standalone arabic-numbered sections",
+      "kind": "section",
+      "candidateCount": 20,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 20,
+      "examples": [
+        "L57: 1",
+        "L462: 2",
+        "L847: 3",
+        "L1164: 4",
+        "L1498: 5",
+        "L1879: 6"
+      ],
+      "bodyExamples": [
+        "L57: 1",
+        "L462: 2",
+        "L847: 3",
+        "L1164: 4",
+        "L1498: 5",
+        "L1879: 6",
+        "L2177: 7",
+        "L2448: 8"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 20,
+        "minimumWords": 1550,
+        "medianWords": 2916,
+        "maximumWords": 4777,
+        "averageWords": 2889,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "arabic-only",
+        "label": "Standalone Arabic number",
+        "convention": "standalone arabic-numbered sections",
+        "kind": "section",
+        "candidateCount": 20,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 20,
+        "examples": [
+          "L57: 1",
+          "L462: 2",
+          "L847: 3",
+          "L1164: 4",
+          "L1498: 5",
+          "L1879: 6"
+        ],
+        "bodyExamples": [
+          "L57: 1",
+          "L462: 2",
+          "L847: 3",
+          "L1164: 4",
+          "L1498: 5",
+          "L1879: 6",
+          "L2177: 7",
+          "L2448: 8"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 20,
+          "minimumWords": 1550,
+          "medianWords": 2916,
+          "maximumWords": 4777,
+          "averageWords": 2889,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 60,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 58,
+        "examples": [
+          "L3: For Betty and Vall, with",
+          "L55: Four-Day Planet",
+          "L113: \"Which one?\" I asked. \"Glenn Murell or Leo Belsher?\"",
+          "L472: Pulitzer. Or is it Horace Greeley?\"",
+          "L488: Land.\"",
+          "L668: men, all former Federation Regular Army or Colonial Constabulary. The"
+        ],
+        "bodyExamples": [
+          "L113: \"Which one?\" I asked. \"Glenn Murell or Leo Belsher?\"",
+          "L472: Pulitzer. Or is it Horace Greeley?\"",
+          "L488: Land.\"",
+          "L668: men, all former Federation Regular Army or Colonial Constabulary. The",
+          "L765: on Terra, like _La Prensa_ in Buenos Aires, and the Melbourne _Times_,",
+          "L779: Sandor _Times_.\"",
+          "L878: cases, marked TERRAN FEDERATION ARMED FORCES, and 50-MM, MK. 608,",
+          "L993: Co-operative?\""
+        ],
+        "tocExamples": [
+          "L55: Four-Day Planet"
+        ],
+        "score": 0.901,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 58,
+          "minimumWords": 8,
+          "medianWords": 682,
+          "maximumWords": 5175,
+          "averageWords": 989,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 8,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 33,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 33,
+        "examples": [
+          "L1: DEDICATION",
+          "L59: THE SHIP FROM TERRA",
+          "L464: REPORTER WORKING",
+          "L849: BOTTOM LEVEL",
+          "L879: ANTIVEHICLE AND ANTIPERSONNEL, 25 ROUNDS, and OVERAGE. PRACTICE ONLY.",
+          "L880: NOT TO BE ISSUED FOR SERVICE, and INSPECTED AND CONDEMNED. The hunters"
+        ],
+        "bodyExamples": [
+          "L1: DEDICATION",
+          "L59: THE SHIP FROM TERRA",
+          "L464: REPORTER WORKING",
+          "L849: BOTTOM LEVEL",
+          "L879: ANTIVEHICLE AND ANTIPERSONNEL, 25 ROUNDS, and OVERAGE. PRACTICE ONLY.",
+          "L880: NOT TO BE ISSUED FOR SERVICE, and INSPECTED AND CONDEMNED. The hunters",
+          "L1166: MAIN CITY LEVEL",
+          "L1500: MEETING OUT OF ORDER"
+        ],
+        "tocExamples": [],
+        "score": 0.851,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 33,
+          "minimumWords": 1,
+          "medianWords": 2081,
+          "maximumWords": 4777,
+          "averageWords": 1753,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 9,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "label": "Arabic numbered titled heading",
+        "convention": "arabic-numbered titled sections",
+        "kind": "section",
+        "candidateCount": 20,
+        "tocLikeCount": 18,
+        "bodyLikeCount": 2,
+        "examples": [
+          "L12: 1. The Ship from Terra",
+          "L14: 2. Reporter Working",
+          "L16: 3. Bottom Level",
+          "L18: 4. Main City Level",
+          "L20: 5. Meeting Out of Order",
+          "L22: 6. Elementary, My Dear Kivelson"
+        ],
+        "bodyExamples": [
+          "L48: 19. Masks Off",
+          "L50: 20. Finale"
+        ],
+        "tocExamples": [
+          "L12: 1. The Ship from Terra",
+          "L14: 2. Reporter Working",
+          "L16: 3. Bottom Level",
+          "L18: 4. Main City Level",
+          "L20: 5. Meeting Out of Order",
+          "L22: 6. Elementary, My Dear Kivelson",
+          "L24: 7. Aboard the _Javelin_",
+          "L26: 8. Practice, 50-MM Gun"
+        ],
+        "score": 0.274,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 2,
+          "minimumWords": 3,
+          "medianWords": 57776,
+          "maximumWords": 57776,
+          "averageWords": 28890,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 1,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 1,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 0,
+        "examples": [
+          "L9: CONTENTS"
+        ],
+        "bodyExamples": [],
+        "tocExamples": [
+          "L9: CONTENTS"
+        ],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "rejected as TOC-like or front-matter-only evidence",
+        "sectionSizeNotes": null
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 60,
+        "bodyLikeCount": 58,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy arabic-only"
+      },
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 33,
+        "bodyLikeCount": 33,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy arabic-only"
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "convention": "arabic-numbered titled sections",
+        "candidateCount": 20,
+        "bodyLikeCount": 2,
+        "tocLikeCount": 18,
+        "reason": "weaker than selected strategy arabic-only"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 1,
+        "bodyLikeCount": 0,
+        "tocLikeCount": 1,
+        "reason": "rejected as TOC-like or front-matter-only evidence"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 20,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L57: 1",
+      "L462: 2",
+      "L847: 3",
+      "L1164: 4",
+      "L1498: 5",
+      "L1879: 6",
+      "L2177: 7",
+      "L2448: 8"
+    ],
+    "tocHeadingExamples": [
+      "L12: 1. The Ship from Terra",
+      "L14: 2. Reporter Working",
+      "L16: 3. Bottom Level",
+      "L18: 4. Main City Level",
+      "L20: 5. Meeting Out of Order",
+      "L22: 6. Elementary, My Dear Kivelson",
+      "L24: 7. Aboard the _Javelin_",
+      "L26: 8. Practice, 50-MM Gun"
+    ],
+    "priorTwoSectionCollapseFixed": false
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 57856,
     "actions": [
@@ -181,11 +595,11 @@
     "feasible": true,
     "confidence": "medium",
     "sectionsUsed": [
-      "part-001 Part 1"
+      "chapter-001 Section 1"
     ],
-    "approximateWordCount": 5366,
+    "approximateWordCount": 3992,
     "startsAtRealReadableContent": true,
-    "snippet": "DEDICATION For Betty and Vall, with loving remembrance * * * * * CONTENTS 1. The Ship from Terra 2. Reporter Working 3. Bottom Level 4. Main City Level 5. Meeting Out of Order 6. Elementary, My Dear Kivelson 7. Aboard the _Javelin_ 8. Practice, 50-MM Gun 9. Monster Killing 10. Mayday, Mayday 11. Darkness and Cold 12. Castaways Working 13. The Beacon Light 1...",
+    "snippet": "1 THE SHIP FROM TERRA I went through the gateway, towing my equipment in a contragravity hamper over my head. As usual, I was wondering what it would take, short of a revolution, to get the city of Port Sandor as clean and tidy and well lighted as the spaceport area. I knew Dad's editorials and my sarcastic news stories wouldn't do it. We'd been trying long...",
     "notes": [
       "Targets about 900 words as a first-hour source approximation for later generation.",
       "Pass 2 marked first-hour preview derivation as feasible."

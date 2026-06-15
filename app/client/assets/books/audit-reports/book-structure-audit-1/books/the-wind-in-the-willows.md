@@ -16,8 +16,8 @@
 | Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
 | --- | ---: | ---: | ---: | --- | --- |
 | roman-only | 13 | 12 | 1 | yes |  |
-| all-caps-title | 31 | 22 | 9 | no | weaker than selected strategy roman-only |
-| isolated-title-case | 36 | 30 | 6 | no | weaker than selected strategy roman-only |
+| all-caps-title | 31 | 21 | 10 | no | weaker than selected strategy roman-only |
+| isolated-title-case | 36 | 27 | 9 | no | weaker than selected strategy roman-only |
 | roman-numbered-title | 12 | 2 | 10 | no | weaker than selected strategy roman-only |
 | special-front-back | 1 | 0 | 1 | no | rejected as TOC-like or front-matter-only evidence |
 

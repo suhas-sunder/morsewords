@@ -68,29 +68,131 @@
 - L6889: 
 - L6890: [p. 162]:
 
+## Structure Detection
+
+- Detected structural convention: standalone arabic-numbered sections
+- Selected heading strategy: arabic-only
+- TOC entries detected: yes
+- Body headings detected: yes
+- Section count from selected strategy: 80
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: warn
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| arabic-only | 104 | 80 | 24 | yes |  |
+| chapter-roman | 10 | 10 | 0 | no | weaker than selected strategy arabic-only |
+| isolated-title-case | 67 | 66 | 1 | no | weaker than selected strategy arabic-only |
+| all-caps-title | 2 | 2 | 0 | no | weaker than selected strategy arabic-only |
+| special-front-back | 1 | 1 | 0 | no | weaker than selected strategy arabic-only |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| chapter-roman | 10 | 10 | 0 | weaker than selected strategy arabic-only |
+| isolated-title-case | 67 | 66 | 1 | weaker than selected strategy arabic-only |
+| all-caps-title | 2 | 2 | 0 | weaker than selected strategy arabic-only |
+| special-front-back | 1 | 1 | 0 | weaker than selected strategy arabic-only |
+
+### Structure Warnings
+
+- body headings were found but rejected by the selected strategy
+
 ## Proposed Sections
 
-- Total proposed sections: 13
+- Total proposed sections: 81
 
 | ID | Kind | Label | Title | Words | Default |
 | --- | --- | --- | --- | ---: | --- |
-| part-001 | part | Part 1 |  | 5156 | yes |
-| part-002 | part | Part 2 |  | 4919 | yes |
-| part-003 | part | Part 3 |  | 5146 | yes |
-| part-004 | part | Part 4 |  | 5148 | yes |
-| part-005 | part | Part 5 |  | 4926 | yes |
-| part-006 | part | Part 6 |  | 5104 | yes |
-| part-007 | part | Part 7 |  | 4925 | yes |
-| part-008 | part | Part 8 |  | 5171 | yes |
-| part-009 | part | Part 9 |  | 4982 | yes |
-| part-010 | part | Part 10 |  | 5148 | yes |
-| part-011 | part | Part 11 |  | 5071 | yes |
-| part-012 | part | Part 12 |  | 1723 | yes |
-| part-013 | part | Part 13 |  | 9 | yes |
+| title-page-001 | title-page | Opening section |  | 13541 | no |
+| chapter-001 | chapter | Section 15 |  | 810 | yes |
+| chapter-002 | chapter | Section 16 |  | 681 | yes |
+| chapter-003 | chapter | Section 17 |  | 375 | yes |
+| chapter-004 | chapter | Section 18 |  | 470 | yes |
+| chapter-005 | chapter | Section 19 |  | 682 | yes |
+| chapter-006 | chapter | Section 20 |  | 1035 | yes |
+| chapter-007 | chapter | Section 21 |  | 1443 | yes |
+| chapter-008 | chapter | Section 1 |  | 776 | yes |
+| chapter-009 | chapter | Section 2 |  | 67 | yes |
+| chapter-010 | chapter | Section 3 |  | 488 | yes |
+| chapter-011 | chapter | Section 4 |  | 645 | yes |
+| chapter-012 | chapter | Section 5 |  | 389 | yes |
+| chapter-013 | chapter | Section 1 |  | 516 | yes |
+| chapter-014 | chapter | Section 2 |  | 330 | yes |
+| chapter-015 | chapter | Section 3 |  | 244 | yes |
+| chapter-016 | chapter | Section 4 |  | 516 | yes |
+| chapter-017 | chapter | Section 5 |  | 445 | yes |
+| chapter-018 | chapter | Section 6 |  | 98 | yes |
+| chapter-019 | chapter | Section 7 |  | 504 | yes |
+| chapter-020 | chapter | Section 8 |  | 636 | yes |
+| chapter-021 | chapter | Section 9 |  | 389 | yes |
+| chapter-022 | chapter | Section 10 |  | 90 | yes |
+| chapter-023 | chapter | Section 11 |  | 660 | yes |
+| chapter-024 | chapter | Section 12 |  | 86 | yes |
+| chapter-025 | chapter | Section 13 |  | 585 | yes |
+| chapter-026 | chapter | Section 14 |  | 776 | yes |
+| chapter-027 | chapter | Section 15 |  | 340 | yes |
+| chapter-028 | chapter | Section 16 |  | 88 | yes |
+| chapter-029 | chapter | Section 17 |  | 199 | yes |
+| chapter-030 | chapter | Section 1 |  | 440 | yes |
+| chapter-031 | chapter | Section 2 |  | 748 | yes |
+| chapter-032 | chapter | Section 3 |  | 318 | yes |
+| chapter-033 | chapter | Section 4 |  | 178 | yes |
+| chapter-034 | chapter | Section 5 |  | 585 | yes |
+| chapter-035 | chapter | Section 6 |  | 613 | yes |
+| chapter-036 | chapter | Section 7 |  | 463 | yes |
+| chapter-037 | chapter | Section 8 |  | 541 | yes |
+| chapter-038 | chapter | Section 9 |  | 713 | yes |
+| chapter-039 | chapter | Section 10 |  | 763 | yes |
+| chapter-040 | chapter | Section 11 |  | 576 | yes |
+| chapter-041 | chapter | Section 12 |  | 122 | yes |
+| chapter-042 | chapter | Section 13 |  | 263 | yes |
+| chapter-043 | chapter | Section 14 |  | 343 | yes |
+| chapter-044 | chapter | Section 15 |  | 753 | yes |
+| chapter-045 | chapter | Section 16 |  | 781 | yes |
+| chapter-046 | chapter | Section 17 |  | 197 | yes |
+| chapter-047 | chapter | Section 18 |  | 604 | yes |
+| chapter-048 | chapter | Section 19 |  | 240 | yes |
+| chapter-049 | chapter | Section 20 |  | 737 | yes |
+| chapter-050 | chapter | Section 21 |  | 377 | yes |
+| chapter-051 | chapter | Section 22 |  | 1256 | yes |
+| chapter-052 | chapter | Section 1 |  | 633 | yes |
+| chapter-053 | chapter | Section 2 |  | 399 | yes |
+| chapter-054 | chapter | Section 3 |  | 558 | yes |
+| chapter-055 | chapter | Section 4 |  | 793 | yes |
+| chapter-056 | chapter | Section 5 |  | 846 | yes |
+| chapter-057 | chapter | Section 6 |  | 245 | yes |
+| chapter-058 | chapter | Section 7 |  | 730 | yes |
+| chapter-059 | chapter | Section 8 |  | 325 | yes |
+| chapter-060 | chapter | Section 9 |  | 277 | yes |
+| chapter-061 | chapter | Section 10 |  | 801 | yes |
+| chapter-062 | chapter | Section 11 |  | 354 | yes |
+| chapter-063 | chapter | Section 12 |  | 694 | yes |
+| chapter-064 | chapter | Section 13 |  | 272 | yes |
+| chapter-065 | chapter | Section 14 |  | 498 | yes |
+| chapter-066 | chapter | Section 1 |  | 814 | yes |
+| chapter-067 | chapter | Section 2 |  | 475 | yes |
+| chapter-068 | chapter | Section 1 |  | 384 | yes |
+| chapter-069 | chapter | Section 2 |  | 55 | yes |
+| chapter-070 | chapter | Section 3 |  | 1009 | yes |
+| chapter-071 | chapter | Section 4 |  | 876 | yes |
+| chapter-072 | chapter | Section 5 |  | 1137 | yes |
+| chapter-073 | chapter | Section 6 |  | 578 | yes |
+| chapter-074 | chapter | Section 7 |  | 536 | yes |
+| chapter-075 | chapter | Section 8 |  | 425 | yes |
+| chapter-076 | chapter | Section 9 |  | 412 | yes |
+| chapter-077 | chapter | Section 10 |  | 502 | yes |
+| chapter-078 | chapter | Section 11 |  | 1242 | yes |
+| chapter-079 | chapter | Section 12 |  | 1222 | yes |
 
 ## Suspicious Sections
 
-- Suspiciously short sections: part-013 (9)
+- Suspiciously short sections: chapter-009 (67), chapter-069 (55)
 - Suspiciously long sections: None
 
 ## Cleanup Simulation
@@ -107,10 +209,10 @@
 
 - Feasible: yes
 - Confidence: medium
-- Sections used: part-001 Part 1
-- Approximate word count: 5156
+- Sections used: chapter-001 Section 15, chapter-002 Section 16
+- Approximate word count: 1491
 - Starts at real readable content: yes
-- Snippet: INTRODUCTION I have read "Pointed Roofs" three times. The first time it came to me with its original wardrobe, a different dress for every mood; and in some places the handwriting of the manuscript clothed the thought with the ragged urgency of haste; and in others it wore an aspect incredibly delicate and neat, as if the writer had caressed each word befor...
+- Snippet: 15 At the end of twenty minutes, dismissed by Fräulein with a smiling recommendation to go and practise in the saal, Miriam had run upstairs for her music. "It's all right. I'm all right. I shall be able to do it," she said to herself as she ran. The ordeal was past. She was, she had learned, to talk English with the German girls, at table, during walks, wh...
 
 ## Existing Generated Output Comparison
 
@@ -129,7 +231,9 @@
 - Check suspiciously short or long proposed sections before a real write pass.
 - Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.
 - Confirm the first-hour preview candidate starts with real readable content.
+- Review the structure-detection warnings and confirm TOC entries were not selected as body sections.
 
 ## Recommendation Reasons
 
+- Structure warning: body headings were found but rejected by the selected strategy
 - Transcriber/editor notes are present and should stay out of readable defaults.

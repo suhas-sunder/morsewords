@@ -15,15 +15,14 @@
 
 | Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
 | --- | ---: | ---: | ---: | --- | --- |
-| all-caps-title | 154 | 151 | 3 | yes |  |
+| all-caps-title | 154 | 150 | 4 | yes |  |
 | chapter-word | 76 | 68 | 0 | no | weaker than selected strategy all-caps-title |
 | isolated-title-case | 25 | 15 | 9 | no | weaker than selected strategy all-caps-title |
 | part-division | 3 | 1 | 2 | no | weaker than selected strategy all-caps-title |
-| special-front-back | 3 | 1 | 2 | no | weaker than selected strategy all-caps-title |
+| special-front-back | 3 | 0 | 3 | no | rejected as TOC-like or front-matter-only evidence |
 
 ## Body Heading Examples
 
-- L93: ILLUSTRATIONS
 - L305: G. H. MAYNADIER
 - L311: TO DOCTOR ———
 - L455: THE AUTHOR.
@@ -31,16 +30,18 @@
 - L610: A SUPERFICIAL VIEW OF OUR HERO’S INFANCY.
 - L712: HE IS INITIATED IN A MILITARY LIFE, AND HAS THE GOOD FORTUNE TO ACQUIRE
 - L713: A GENEROUS PATRON.
+- L827: HIS MOTHER’S PROWESS AND DEATH; TOGETHER WITH SOME INSTANCES OF HIS OWN
 
 ## Rejected TOC-like Examples
 
 - L10: COMPLETE IN TWO PARTS
 - L21: TO DOCTOR
+- L93: ILLUSTRATIONS
 - L308: THE ADVENTURES OF FERDINAND COUNT FATHOM
 
 ## Section Size Sanity
 
-- Sections: 151
+- Sections: 150
 - Min/median/max words: 2/171/7134
 - Notes: many very small sections; headings may include TOC, captions, or fragments; largest section is much bigger than the median section
 

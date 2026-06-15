@@ -17,9 +17,9 @@
 | --- | ---: | ---: | ---: | --- | --- |
 | roman-numbered-title | 83 | 46 | 37 | yes |  |
 | book-division | 8 | 4 | 4 | no | weaker than selected strategy roman-numbered-title |
-| all-caps-title | 33 | 28 | 5 | no | weaker than selected strategy roman-numbered-title |
+| all-caps-title | 33 | 27 | 6 | no | weaker than selected strategy roman-numbered-title |
 | arabic-numbered-title | 14 | 14 | 0 | no | weaker than selected strategy roman-numbered-title |
-| isolated-title-case | 158 | 152 | 6 | no | weaker than selected strategy roman-numbered-title |
+| isolated-title-case | 158 | 151 | 7 | no | weaker than selected strategy roman-numbered-title |
 | special-front-back | 1 | 0 | 1 | no | rejected as TOC-like or front-matter-only evidence |
 
 ## Body Heading Examples

@@ -167,6 +167,216 @@
       "textPreview": "CHAPTER XIII The Meeting of the Giants \"Check your blast, Fred, I think I hear something trying to come through!\" Cleveland called out, sharply. For days the _..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 13,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 13,
+      "examples": [
+        "L1: CHAPTER I",
+        "L680: CHAPTER II",
+        "L1281: CHAPTER III",
+        "L1681: CHAPTER IV",
+        "L2297: CHAPTER V",
+        "L2958: CHAPTER VI"
+      ],
+      "bodyExamples": [
+        "L1: CHAPTER I",
+        "L680: CHAPTER II",
+        "L1281: CHAPTER III",
+        "L1681: CHAPTER IV",
+        "L2297: CHAPTER V",
+        "L2958: CHAPTER VI",
+        "L3204: CHAPTER VII",
+        "L3660: CHAPTER VIII"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 13,
+        "minimumWords": 1420,
+        "medianWords": 4764,
+        "maximumWords": 6234,
+        "averageWords": 4418,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 13,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 13,
+        "examples": [
+          "L1: CHAPTER I",
+          "L680: CHAPTER II",
+          "L1281: CHAPTER III",
+          "L1681: CHAPTER IV",
+          "L2297: CHAPTER V",
+          "L2958: CHAPTER VI"
+        ],
+        "bodyExamples": [
+          "L1: CHAPTER I",
+          "L680: CHAPTER II",
+          "L1281: CHAPTER III",
+          "L1681: CHAPTER IV",
+          "L2297: CHAPTER V",
+          "L2958: CHAPTER VI",
+          "L3204: CHAPTER VII",
+          "L3660: CHAPTER VIII"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 13,
+          "minimumWords": 1420,
+          "medianWords": 4764,
+          "maximumWords": 6234,
+          "averageWords": 4418,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 37,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 36,
+        "examples": [
+          "L3: Pirates of Space",
+          "L42: [Illustration:",
+          "L196: Franklin's Lewiston, besides!\"",
+          "L517: \"Captain Bradley, First Officer Costigan, Miss Marsden,\" the man spoke",
+          "L682: In Roger's Planetoid",
+          "L845: \"Get ready, Bradley!\" Costigan directed tersely. \"He's left Clio's"
+        ],
+        "bodyExamples": [
+          "L3: Pirates of Space",
+          "L196: Franklin's Lewiston, besides!\"",
+          "L517: \"Captain Bradley, First Officer Costigan, Miss Marsden,\" the man spoke",
+          "L682: In Roger's Planetoid",
+          "L845: \"Get ready, Bradley!\" Costigan directed tersely. \"He's left Clio's",
+          "L1283: Fleet Against Planetoid",
+          "L1313: \"Sector alarm! N. A. T. _Hyperion_ gassed with Vee-Two. Nothing",
+          "L1481: of Virgil Samms!"
+        ],
+        "tocExamples": [
+          "L42: [Illustration:"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 36,
+          "minimumWords": 2,
+          "medianWords": 1461,
+          "maximumWords": 6091,
+          "averageWords": 1595,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 5,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "label": "Arabic numbered titled heading",
+        "convention": "arabic-numbered titled sections",
+        "kind": "section",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L3776: 151. I have ordered all traffic out of space for the duration of the"
+        ],
+        "bodyExamples": [
+          "L3776: 151. I have ordered all traffic out of space for the duration of the"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 22228,
+          "medianWords": 22228,
+          "maximumWords": 22228,
+          "averageWords": 22228,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 37,
+        "bodyLikeCount": 36,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "convention": "arabic-numbered titled sections",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 13,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 13,
+    "bodyHeadingExamples": [
+      "L1: CHAPTER I",
+      "L680: CHAPTER II",
+      "L1281: CHAPTER III",
+      "L1681: CHAPTER IV",
+      "L2297: CHAPTER V",
+      "L2958: CHAPTER VI",
+      "L3204: CHAPTER VII",
+      "L3660: CHAPTER VIII"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": true
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 57317,
     "actions": [

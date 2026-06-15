@@ -8,7 +8,7 @@
 - Confidence: blocked (0)
 - Recommended handling: blocked
 - Fallback required: yes
-- Fallback reason: no plausible chapter, section, story, play, date, or titled-section headings were detected
+- Fallback reason: no plausible chapter, section, story, play, date, letter, or titled-section headings were detected
 - Fallback legitimacy: legitimate
 
 ## Candidate Patterns

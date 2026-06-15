@@ -24,62 +24,18 @@
   },
   "sections": [
     {
-      "id": "book-001",
-      "kind": "book",
-      "label": "Book 1",
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
       "title": null,
-      "includeByDefault": true,
-      "wordCount": 2,
-      "characterCount": 6,
-      "estimatedListeningMinutes": 1,
-      "textPreview": "BOOK 1"
+      "includeByDefault": false,
+      "wordCount": 48244,
+      "characterCount": 272389,
+      "estimatedListeningMinutes": 1630,
+      "textPreview": "BOOK 1 CHAPTER I Just after passing Caraher's saloon, on the County Road that ran south from Bonneville, and that divided the Broderson ranch from that of Los..."
     },
     {
       "id": "chapter-001",
-      "kind": "chapter",
-      "label": "Chapter 1",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 15240,
-      "characterCount": 86535,
-      "estimatedListeningMinutes": 518,
-      "textPreview": "CHAPTER I Just after passing Caraher's saloon, on the County Road that ran south from Bonneville, and that divided the Broderson ranch from that of Los Muertos..."
-    },
-    {
-      "id": "chapter-002",
-      "kind": "chapter",
-      "label": "Chapter 2",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 13151,
-      "characterCount": 73764,
-      "estimatedListeningMinutes": 441,
-      "textPreview": "CHAPTER II On the following morning, Harran Derrick was up and about by a little after six o'clock, and a quarter of an hour later had breakfast in the kitchen..."
-    },
-    {
-      "id": "chapter-003",
-      "kind": "chapter",
-      "label": "Chapter 3",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 8997,
-      "characterCount": 50798,
-      "estimatedListeningMinutes": 305,
-      "textPreview": "CHAPTER III When Annixter arrived at the Los Muertos ranch house that same evening, he found a little group already assembled in the dining-room. Magnus Derric..."
-    },
-    {
-      "id": "chapter-004",
-      "kind": "chapter",
-      "label": "Chapter 4",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 10854,
-      "characterCount": 61274,
-      "estimatedListeningMinutes": 366,
-      "textPreview": "CHAPTER IV On the Quien Sabe ranch, in one of its western divisions, near the line fence that divided it from the Osterman holding, Vanamee was harnessing the..."
-    },
-    {
-      "id": "chapter-005",
       "kind": "chapter",
       "label": "Chapter 5",
       "title": null,
@@ -90,29 +46,18 @@
       "textPreview": "CHAPTER V At seven o'clock, in the bedroom of his ranch house, in the white-painted iron bedstead with its blue-grey army blankets and red counterpane, Annixte..."
     },
     {
-      "id": "chapter-006",
+      "id": "chapter-002",
       "kind": "chapter",
       "label": "Chapter 6",
       "title": null,
       "includeByDefault": true,
-      "wordCount": 21717,
-      "characterCount": 123915,
+      "wordCount": 21719,
+      "characterCount": 123925,
       "estimatedListeningMinutes": 742,
       "textPreview": "CHAPTER VI It was high noon, and the rays of the sun, that hung poised directly overhead in an intolerable white glory, fell straight as plummets upon the roof..."
     },
     {
-      "id": "book-002",
-      "kind": "book",
-      "label": "Book 2",
-      "title": null,
-      "includeByDefault": true,
-      "wordCount": 2,
-      "characterCount": 7,
-      "estimatedListeningMinutes": 1,
-      "textPreview": "BOOK II"
-    },
-    {
-      "id": "chapter-007",
+      "id": "chapter-003",
       "kind": "chapter",
       "label": "Chapter 1",
       "title": null,
@@ -123,7 +68,7 @@
       "textPreview": "CHAPTER I In his office at San Francisco, seated before a massive desk of polished redwood, very ornate, Lyman Derrick sat dictating letters to his typewriter,..."
     },
     {
-      "id": "chapter-008",
+      "id": "chapter-004",
       "kind": "chapter",
       "label": "Chapter 2",
       "title": null,
@@ -134,7 +79,7 @@
       "textPreview": "CHAPTER II Underneath the Long Trestle where Broderson Creek cut the line of the railroad and the Upper Road, the ground was low and covered with a second grow..."
     },
     {
-      "id": "chapter-009",
+      "id": "chapter-005",
       "kind": "chapter",
       "label": "Chapter 3",
       "title": null,
@@ -145,7 +90,7 @@
       "textPreview": "CHAPTER III Presley's room in the ranch house of Los Muertos was in the second story of the building. It was a corner room; one of its windows facing the south..."
     },
     {
-      "id": "chapter-010",
+      "id": "chapter-006",
       "kind": "chapter",
       "label": "Chapter 4",
       "title": null,
@@ -156,7 +101,7 @@
       "textPreview": "CHAPTER IV Presley's Socialistic poem, “The Toilers,” had an enormous success. The editor of the Sunday supplement of the San Francisco paper to which it was s..."
     },
     {
-      "id": "chapter-011",
+      "id": "chapter-007",
       "kind": "chapter",
       "label": "Chapter 5",
       "title": null,
@@ -167,7 +112,7 @@
       "textPreview": "CHAPTER V. Jack-rabbits were a pest that year and Presley occasionally found amusement in hunting them with Harran's half-dozen greyhounds, following the chase..."
     },
     {
-      "id": "chapter-012",
+      "id": "chapter-008",
       "kind": "chapter",
       "label": "Chapter 6",
       "title": null,
@@ -178,7 +123,7 @@
       "textPreview": "CHAPTER VI Osterman cut his wheat that summer before any of the other ranchers, and as soon as his harvest was over organized a jack-rabbit drive. Like Annixte..."
     },
     {
-      "id": "chapter-013",
+      "id": "chapter-009",
       "kind": "chapter",
       "label": "Chapter 7",
       "title": null,
@@ -189,7 +134,7 @@
       "textPreview": "CHAPTER VII On their way to Derrick's ranch house, Hilma and Mrs. Derrick heard the sounds of distant firing. “Stop!” cried Hilma, laying her hand upon young V..."
     },
     {
-      "id": "chapter-014",
+      "id": "chapter-010",
       "kind": "chapter",
       "label": "Chapter 8",
       "title": null,
@@ -200,7 +145,7 @@
       "textPreview": "CHAPTER VIII On a certain afternoon in the early part of July, about a month after the fight at the irrigating ditch and the mass meeting at Bonneville, Cedarq..."
     },
     {
-      "id": "chapter-015",
+      "id": "chapter-011",
       "kind": "chapter",
       "label": "Chapter 9",
       "title": null,
@@ -211,6 +156,287 @@
       "textPreview": "CHAPTER IX On Division Number Three of the Los Muertos ranch the wheat had already been cut, and S. Behrman on a certain morning in the first week of August dr..."
     }
   ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals with book divisions",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 15,
+      "tocLikeCount": 4,
+      "bodyLikeCount": 11,
+      "examples": [
+        "L4: CHAPTER I",
+        "L1504: CHAPTER II",
+        "L2882: CHAPTER III",
+        "L3832: CHAPTER IV",
+        "L4885: CHAPTER V",
+        "L6586: CHAPTER VI"
+      ],
+      "bodyExamples": [
+        "L4885: CHAPTER V",
+        "L6586: CHAPTER VI",
+        "L8918: CHAPTER I",
+        "L10136: CHAPTER II",
+        "L11655: CHAPTER III",
+        "L12400: CHAPTER IV",
+        "L14268: CHAPTER V.",
+        "L15561: CHAPTER VI"
+      ],
+      "tocExamples": [
+        "L4: CHAPTER I",
+        "L1504: CHAPTER II",
+        "L2882: CHAPTER III",
+        "L3832: CHAPTER IV"
+      ],
+      "score": 0.8796000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 11,
+        "minimumWords": 7538,
+        "medianWords": 11627,
+        "maximumWords": 21719,
+        "averageWords": 13511,
+        "hugeSectionCount": 1,
+        "tinySectionCount": 0,
+        "notes": [
+          "1 section(s) exceed 18000 words"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 15,
+        "tocLikeCount": 4,
+        "bodyLikeCount": 11,
+        "examples": [
+          "L4: CHAPTER I",
+          "L1504: CHAPTER II",
+          "L2882: CHAPTER III",
+          "L3832: CHAPTER IV",
+          "L4885: CHAPTER V",
+          "L6586: CHAPTER VI"
+        ],
+        "bodyExamples": [
+          "L4885: CHAPTER V",
+          "L6586: CHAPTER VI",
+          "L8918: CHAPTER I",
+          "L10136: CHAPTER II",
+          "L11655: CHAPTER III",
+          "L12400: CHAPTER IV",
+          "L14268: CHAPTER V.",
+          "L15561: CHAPTER VI"
+        ],
+        "tocExamples": [
+          "L4: CHAPTER I",
+          "L1504: CHAPTER II",
+          "L2882: CHAPTER III",
+          "L3832: CHAPTER IV"
+        ],
+        "score": 0.8796000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 11,
+          "minimumWords": 7538,
+          "medianWords": 11627,
+          "maximumWords": 21719,
+          "averageWords": 13511,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 10,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 10,
+        "examples": [
+          "L526: “NAME ONE.”",
+          "L8536: CYRUS BLAKELEE RUGGLES,",
+          "L8539: S. BEHRMAN,",
+          "L8596: CAN?”",
+          "L10935: “SUPERSEDES NO. 7 OF AUG. 1”",
+          "L16772: “HOCH, DER KAISER! HOCH, DER VATERLAND!”"
+        ],
+        "bodyExamples": [
+          "L526: “NAME ONE.”",
+          "L8536: CYRUS BLAKELEE RUGGLES,",
+          "L8539: S. BEHRMAN,",
+          "L8596: CAN?”",
+          "L10935: “SUPERSEDES NO. 7 OF AUG. 1”",
+          "L16772: “HOCH, DER KAISER! HOCH, DER VATERLAND!”",
+          "L17292: RED!”",
+          "L18402: “PRESIDENT.”"
+        ],
+        "tocExamples": [],
+        "score": 0.781,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 10,
+          "minimumWords": 11,
+          "medianWords": 10862,
+          "maximumWords": 77745,
+          "averageWords": 19165,
+          "hugeSectionCount": 4,
+          "tinySectionCount": 1,
+          "notes": [
+            "4 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 135,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 134,
+        "examples": [
+          "L58: but finished and read, “S. Behrman, Real Estate, Mortgages, Main Street,",
+          "L61: Behrman Has Something To Say To You.”",
+          "L608: De La Cuesta was disappointed.”",
+          "L1407: unfamiliar names--Quijotoa, Uintah, Sonora, Laredo, Uncompahgre. It",
+          "L1658: Turko-Russian War!",
+          "L1726: the Bay of Naples. The “Marble Faun,” Raphael's “Madonnas” and “Il"
+        ],
+        "bodyExamples": [
+          "L58: but finished and read, “S. Behrman, Real Estate, Mortgages, Main Street,",
+          "L61: Behrman Has Something To Say To You.”",
+          "L608: De La Cuesta was disappointed.”",
+          "L1407: unfamiliar names--Quijotoa, Uintah, Sonora, Laredo, Uncompahgre. It",
+          "L1658: Turko-Russian War!",
+          "L1726: the Bay of Naples. The “Marble Faun,” Raphael's “Madonnas” and “Il",
+          "L1781: Epicurean,” “The Essays of Elia,” “Sesame and Lilies,” “The Stones of",
+          "L1855: State--North Carolina--in the United States Senate. Calhoun was his"
+        ],
+        "tocExamples": [
+          "L2020: Derrick?”"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 134,
+          "minimumWords": 1,
+          "medianWords": 746,
+          "maximumWords": 12799,
+          "averageWords": 1465,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 24,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "book-division",
+        "label": "Book division",
+        "convention": "book divisions",
+        "kind": "book",
+        "candidateCount": 2,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 2,
+        "examples": [
+          "L1: BOOK 1",
+          "L8915: BOOK II"
+        ],
+        "bodyExamples": [
+          "L1: BOOK 1",
+          "L8915: BOOK II"
+        ],
+        "tocExamples": [],
+        "score": 0.5700000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 2,
+          "minimumWords": 86078,
+          "medianWords": 110785,
+          "maximumWords": 110785,
+          "averageWords": 98432,
+          "hugeSectionCount": 2,
+          "tinySectionCount": 0,
+          "notes": [
+            "2 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 10,
+        "bodyLikeCount": 10,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 135,
+        "bodyLikeCount": 134,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "book-division",
+        "convention": "book divisions",
+        "candidateCount": 2,
+        "bodyLikeCount": 2,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 11,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "warn",
+    "warnings": [
+      "long book has huge sections despite detected headings"
+    ],
+    "bodyChapterHeadingCount": 11,
+    "bodyHeadingExamples": [
+      "L4885: CHAPTER V",
+      "L6586: CHAPTER VI",
+      "L8918: CHAPTER I",
+      "L10136: CHAPTER II",
+      "L11655: CHAPTER III",
+      "L12400: CHAPTER IV",
+      "L14268: CHAPTER V.",
+      "L15561: CHAPTER VI"
+    ],
+    "tocHeadingExamples": [
+      "L4: CHAPTER I",
+      "L1504: CHAPTER II",
+      "L2882: CHAPTER III",
+      "L3832: CHAPTER IV"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
   "cleanupSimulation": {
     "cleanedWordCountEstimate": 196863,
     "actions": [
@@ -248,12 +474,11 @@
     "feasible": true,
     "confidence": "medium",
     "sectionsUsed": [
-      "book-001 Book 1",
-      "chapter-001 Chapter 1"
+      "chapter-001 Chapter 5"
     ],
-    "approximateWordCount": 15242,
+    "approximateWordCount": 16117,
     "startsAtRealReadableContent": true,
-    "snippet": "BOOK 1 CHAPTER I Just after passing Caraher's saloon, on the County Road that ran south from Bonneville, and that divided the Broderson ranch from that of Los Muertos, Presley was suddenly aware of the faint and prolonged blowing of a steam whistle that he knew must come from the railroad shops near the depot at Bonneville. In starting out from the ranch ho...",
+    "snippet": "CHAPTER V At seven o'clock, in the bedroom of his ranch house, in the white-painted iron bedstead with its blue-grey army blankets and red counterpane, Annixter was still asleep, his face red, his mouth open, his stiff yellow hair in wild disorder. On the wooden chair at the bed-head, stood the kerosene lamp, by the light of which he had been reading the pr...",
     "notes": [
       "Targets about 900 words as a first-hour source approximation for later generation.",
       "Pass 2 marked first-hour preview derivation as feasible."
@@ -276,6 +501,7 @@
     "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
     "Check suspiciously short or long proposed sections before a real write pass.",
     "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
-    "Confirm the first-hour preview candidate starts with real readable content."
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Review the structure-detection warnings and confirm TOC entries were not selected as body sections."
   ]
 }

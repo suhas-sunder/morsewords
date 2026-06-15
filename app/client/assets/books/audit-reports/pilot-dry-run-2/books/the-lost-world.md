@@ -68,32 +68,68 @@
 - L8024: 
 - L8025: Creating the works from print editions not protected by U.S. copyright
 
+## Structure Detection
+
+- Detected structural convention: chapter-based roman numerals
+- Selected heading strategy: chapter-roman
+- TOC entries detected: yes
+- Body headings detected: yes
+- Section count from selected strategy: 16
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: pass
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| chapter-roman | 16 | 16 | 0 | yes |  |
+| all-caps-title | 11 | 9 | 2 | no | weaker than selected strategy chapter-roman |
+| isolated-title-case | 57 | 55 | 2 | no | weaker than selected strategy chapter-roman |
+| roman-numbered-title | 17 | 1 | 16 | no | weaker than selected strategy chapter-roman |
+| special-front-back | 2 | 1 | 1 | no | weaker than selected strategy chapter-roman |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| all-caps-title | 11 | 9 | 2 | weaker than selected strategy chapter-roman |
+| isolated-title-case | 57 | 55 | 2 | weaker than selected strategy chapter-roman |
+| roman-numbered-title | 17 | 1 | 16 | weaker than selected strategy chapter-roman |
+| special-front-back | 2 | 1 | 1 | weaker than selected strategy chapter-roman |
+
+### Structure Warnings
+
+- None.
+
 ## Proposed Sections
 
-- Total proposed sections: 16
+- Total proposed sections: 17
 
 | ID | Kind | Label | Title | Words | Default |
 | --- | --- | --- | --- | ---: | --- |
-| part-001 | part | Part 1 |  | 5248 | yes |
-| part-002 | part | Part 2 |  | 5320 | yes |
-| part-003 | part | Part 3 |  | 4530 | yes |
-| part-004 | part | Part 4 |  | 5323 | yes |
-| part-005 | part | Part 5 |  | 5087 | yes |
-| part-006 | part | Part 6 |  | 5282 | yes |
-| part-007 | part | Part 7 |  | 5322 | yes |
-| part-008 | part | Part 8 |  | 5332 | yes |
-| part-009 | part | Part 9 |  | 5364 | yes |
-| part-010 | part | Part 10 |  | 5478 | yes |
-| part-011 | part | Part 11 |  | 5576 | yes |
-| part-012 | part | Part 12 |  | 5370 | yes |
-| part-013 | part | Part 13 |  | 5389 | yes |
-| part-014 | part | Part 14 |  | 4695 | yes |
-| part-015 | part | Part 15 |  | 2733 | yes |
-| part-016 | part | Part 16 |  | 16 | yes |
+| title-page-001 | title-page | Opening section |  | 173 | no |
+| chapter-001 | chapter | Chapter 1 |  | 2109 | yes |
+| chapter-002 | chapter | Chapter 2 |  | 2337 | yes |
+| chapter-003 | chapter | Chapter 3 |  | 2421 | yes |
+| chapter-004 | chapter | Chapter 4 |  | 5450 | yes |
+| chapter-005 | chapter | Chapter 5 |  | 4453 | yes |
+| chapter-006 | chapter | Chapter 6 |  | 3470 | yes |
+| chapter-007 | chapter | Chapter 7 |  | 3468 | yes |
+| chapter-008 | chapter | Chapter 8 |  | 4445 | yes |
+| chapter-009 | chapter | Chapter 9 |  | 8223 | yes |
+| chapter-010 | chapter | Chapter 10 |  | 4978 | yes |
+| chapter-011 | chapter | Chapter 11 |  | 5608 | yes |
+| chapter-012 | chapter | Chapter 12 |  | 5703 | yes |
+| chapter-013 | chapter | Chapter 13 |  | 5482 | yes |
+| chapter-014 | chapter | Chapter 14 |  | 5409 | yes |
+| chapter-015 | chapter | Chapter 15 |  | 6008 | yes |
+| chapter-016 | chapter | Chapter 16 |  | 6328 | yes |
 
 ## Suspicious Sections
 
-- Suspiciously short sections: part-016 (16)
+- Suspiciously short sections: None
 - Suspiciously long sections: None
 
 ## Cleanup Simulation
@@ -110,10 +146,10 @@
 
 - Feasible: yes
 - Confidence: medium
-- Sections used: part-001 Part 1
-- Approximate word count: 5248
+- Sections used: chapter-001 Chapter 1
+- Approximate word count: 2109
 - Starts at real readable content: yes
-- Snippet: Foreword Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Challenger, who, being satisfied that no criticism or comment in this book is meant in an offensive spirit, has guaranteed that he will place no impediment to its publication and circulation. Contents CHA...
+- Snippet: CHAPTER I "There Are Heroisms All Round Us" Mr. Hungerton, her father, really was the most tactless person upon earth,--a fluffy, feathery, untidy cockatoo of a man, perfectly good-natured, but absolutely centered upon his own silly self. If anything could have driven me from Gladys, it would have been the thought of such a father-in-law. I am convinced tha...
 
 ## Existing Generated Output Comparison
 

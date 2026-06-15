@@ -68,20 +68,50 @@
 - L1176: of this license, apply to copying and distributing Project
 - L1177: Gutenberg™ electronic works to protect the PROJECT GUTENBERG™
 
+## Structure Detection
+
+- Detected structural convention: story or titled-section headings
+- Selected heading strategy: all-caps-title
+- TOC entries detected: no
+- Body headings detected: yes
+- Section count from selected strategy: 4
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: warn
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| all-caps-title | 4 | 4 | 0 | yes |  |
+| isolated-title-case | 1 | 1 | 0 | no | weaker than selected strategy all-caps-title |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| isolated-title-case | 1 | 1 | 0 | weaker than selected strategy all-caps-title |
+
+### Structure Warnings
+
+- None.
+
 ## Proposed Sections
 
-- Total proposed sections: 4
+- Total proposed sections: 5
 
 | ID | Kind | Label | Title | Words | Default |
 | --- | --- | --- | --- | ---: | --- |
-| part-001 | part | Part 1 |  | 5237 | yes |
-| part-002 | part | Part 2 |  | 5065 | yes |
-| part-003 | part | Part 3 |  | 1956 | yes |
-| part-004 | part | Part 4 |  | 2 | yes |
+| title-page-001 | title-page | Opening section |  | 31 | no |
+| chapter-001 | chapter | Castle Of Indolence. | CASTLE OF INDOLENCE. | 11789 | yes |
+| chapter-002 | chapter | Postscript. | POSTSCRIPT. | 1 | yes |
+| chapter-003 | chapter | Found In The Handwriting Of Mr. Knickerbocker. | FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER. | 437 | yes |
+| chapter-004 | chapter | The End. | THE END. | 2 | yes |
 
 ## Suspicious Sections
 
-- Suspiciously short sections: part-004 (2)
+- Suspiciously short sections: title-page-001 (31), chapter-002 (1), chapter-004 (2)
 - Suspiciously long sections: None
 
 ## Cleanup Simulation
@@ -98,10 +128,10 @@
 
 - Feasible: yes
 - Confidence: medium
-- Sections used: part-001 Part 1
-- Approximate word count: 5237
+- Sections used: chapter-001 Castle Of Indolence.
+- Approximate word count: 11789
 - Starts at real readable content: yes
-- Snippet: A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summer sky. CASTLE OF INDOLENCE. In the bosom of one of those spacious coves which indent the eastern shore of the Hudson, at that broad expansion of the river denominated by the ancient Dutch navigators t...
+- Snippet: CASTLE OF INDOLENCE. In the bosom of one of those spacious coves which indent the eastern shore of the Hudson, at that broad expansion of the river denominated by the ancient Dutch navigators the Tappan Zee, and where they always prudently shortened sail and implored the protection of St. Nicholas when they crossed, there lies a small market town or rural p...
 
 ## Existing Generated Output Comparison
 
@@ -121,6 +151,7 @@
 - Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.
 - Confirm the first-hour preview candidate starts with real readable content.
 - Compare candidate output against existing generated output because pass 2 flagged generated-output damage.
+- Review the structure-detection warnings and confirm TOC entries were not selected as body sections.
 
 ## Recommendation Reasons
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportName": "book-structure-audit-1",
-  "generatedAt": "2026-06-14T19:41:34.818Z",
+  "generatedAt": "2026-06-15T03:43:05.100Z",
   "paths": {
     "tempBooks": "app/client/assets/temp-books",
     "generatedBooks": "app/client/assets/books/generated",
@@ -899,18 +899,25 @@
     "new-text-document"
   ],
   "topParserWeaknessesFound": [
-    "A chapter-only detector is not enough: 399 source(s) are better described by non-chapter conventions such as stories, acts, staves, cantos, parts, dated entries, or titled sections.",
+    "Non-chapter structure remains common: 399 source(s) are better described by stories, acts, staves, cantos, parts, dated entries, or titled sections.",
     "6 source(s) have no reliable internal headings and need explicit one-section/fallback policy instead of silent chunking.",
-    "54 source(s) show likely TOC/body confusion and need position, repetition, and following-prose checks.",
+    "54 source(s) still show likely TOC/body confusion and need manual review or more targeted fixtures.",
     "22 source(s) have body-like heading candidates outside the selected strategy; detector decisions should be explainable and reviewable.",
     "16 existing generated output comparison(s) appear to have collapsed real structure or included wrong boundary material."
   ],
+  "detectorFixesImplementedInThisBranch": [
+    "Added a shared scored detector module used by both the global structure audit and pilot dry-run 2.",
+    "The detector now evaluates multiple conventions: chapter headings, books/parts/volumes, acts/scenes, staves/cantos, letters, dated entries, standalone ordinals, story titles, and isolated titled sections.",
+    "TOC-like candidates are retained as evidence but separated from body headings using front-list position, explicit contents ranges, page-leader shape, duplicate later headings, and following-prose checks.",
+    "Fallback is now explicit, with legitimacy and suspicious-fallback flags in the JSON and markdown reports.",
+    "The dry-run section builder now uses the shared structure analysis instead of the older chapter/fallback-only behavior."
+  ],
   "recommendedDetectorFixesBeforeMoreWritePasses": [
-    "Replace the hard chapter-only gate with a scored heading strategy that can select chapters, story titles, parts/books/volumes, acts/scenes, staves/cantos, letters, dated entries, or an intentional one-section fallback.",
-    "Keep TOC candidates as evidence, but reject only the compact front-list occurrence when the same headings repeat later with body paragraphs.",
-    "Do not reject body headings solely because they have leading whitespace or trailing punctuation; score them with nearby prose and sequence evidence.",
-    "Surface fallback as a warning/manual-review state when candidate headings exist or a long source would become only 1-2 parts.",
-    "Use section-size sanity checks before writing generated books, especially huge sections, tiny fragment-heavy sections, and generated-vs-raw section-count mismatches.",
+    "Add regression fixtures for the highest-risk conventions before a real write pass: Room 13 roman chapters, story collections, play acts/scenes, staves/cantos, diary/date entries, and no-heading short works.",
+    "Review low-confidence title/story detection manually so poem titles, captions, and all-caps display lines do not become noisy sections.",
+    "Define an explicit policy for legitimate no-heading books, including when to keep one readable section versus fallback chunks.",
+    "Use generated-vs-raw section-count mismatches as a hard warning before any write pass updates generated output.",
+    "Keep section-size sanity checks in the write pipeline, especially huge sections, tiny fragment-heavy sections, and TOC/body ambiguity.",
     "Add a regression fixture for Room 13 that expects the Chapter I through Chapter XXXIII body sequence to be detected before any write pass."
   ],
   "room13Regression": {
@@ -2835,8 +2842,8 @@
           "convention": "story or titled-section headings",
           "kind": "story-title",
           "candidateCount": 38,
-          "tocLikeCount": 10,
-          "bodyLikeCount": 23,
+          "tocLikeCount": 13,
+          "bodyLikeCount": 20,
           "examples": [
             "L3: “THEY CALLED ACROSS MERRILY TO EACH OTHER”",
             "L10: _A JAPANESE",
@@ -2850,35 +2857,34 @@
             "L28: HARPER & BROTHERS",
             "L29: PUBLISHERS M-C-M-V-I_",
             "L46: MY CHILDREN_",
-            "L52: ILLUSTRATIONS",
-            "L74: _A JAPANESE BLOSSOM_",
-            "L80: _A JAPANESE BLOSSOM_",
-            "L946: “MARION SAT ON A GIGANTIC MOSS-GROWN ROCK, LOOKING ... AT THE CHILDREN"
+            "L946: “MARION SAT ON A GIGANTIC MOSS-GROWN ROCK, LOOKING ... AT THE CHILDREN",
+            "L947: IN THE FAMILY POND”",
+            "L1384: “KURUKAWA GOZO.”",
+            "L2579: “P. B.”"
           ],
           "tocExamples": [
+            "L52: ILLUSTRATIONS",
             "L56: OTHER”",
             "L58: “MARION SAT ON A GIGANTIC 52",
             "L59: MOSS-GROWN ROCK, LOOKING ... AT",
             "L60: THE CHILDREN IN THE FAMILY POND”",
             "L62: “THE LITTLE WAITRESS BROUGHT HER 170",
             "L63: SAMISEN, AND ... BEGAN TO PLAY",
-            "L64: AND SING”",
-            "L66: “HE SEIZED HER HAND SUDDENLY IN HIS 226"
+            "L64: AND SING”"
           ],
           "score": 0.901,
           "confidence": "high",
           "selected": false,
           "rejectionReason": "weaker than selected strategy roman-only",
           "sectionSizeNotes": {
-            "sectionCount": 23,
+            "sectionCount": 20,
             "minimumWords": 2,
-            "medianWords": 113,
+            "medianWords": 277,
             "maximumWords": 8687,
-            "averageWords": 1415,
+            "averageWords": 1627,
             "hugeSectionCount": 0,
-            "tinySectionCount": 9,
+            "tinySectionCount": 6,
             "notes": [
-              "many very small sections; headings may include TOC, captions, or fragments",
               "largest section is much bigger than the median section"
             ]
           }
@@ -3016,8 +3022,8 @@
           "patternId": "all-caps-title",
           "convention": "story or titled-section headings",
           "candidateCount": 38,
-          "bodyLikeCount": 23,
-          "tocLikeCount": 10,
+          "bodyLikeCount": 20,
+          "tocLikeCount": 13,
           "reason": "weaker than selected strategy roman-only"
         },
         {
@@ -3054,6 +3060,7 @@
         "L1302: VIII"
       ],
       "examplesOfRejectedTocLikeHeadings": [
+        "L52: ILLUSTRATIONS",
         "L56: OTHER”",
         "L58: “MARION SAT ON A GIGANTIC 52",
         "L59: MOSS-GROWN ROCK, LOOKING ... AT",
@@ -3061,7 +3068,6 @@
         "L62: “THE LITTLE WAITRESS BROUGHT HER 170",
         "L63: SAMISEN, AND ... BEGAN TO PLAY",
         "L64: AND SING”",
-        "L66: “HE SEIZED HER HAND SUDDENLY IN HIS 226",
         "L1: [Illustration:",
         "L24: [Illustration]"
       ],
@@ -21351,8 +21357,8 @@
           "convention": "story or titled-section headings",
           "kind": "story-title",
           "candidateCount": 97,
-          "tocLikeCount": 44,
-          "bodyLikeCount": 52,
+          "tocLikeCount": 48,
+          "bodyLikeCount": 48,
           "examples": [
             "L6: FIVE LITTLE PEPPERS AT SCHOOL",
             "L9: BOOKS BY",
@@ -21386,13 +21392,13 @@
           "selected": true,
           "rejectionReason": null,
           "sectionSizeNotes": {
-            "sectionCount": 52,
+            "sectionCount": 48,
             "minimumWords": 1,
-            "medianWords": 1298,
+            "medianWords": 1997,
             "maximumWords": 5230,
-            "averageWords": 1632,
+            "averageWords": 1768,
             "hugeSectionCount": 0,
-            "tinySectionCount": 18,
+            "tinySectionCount": 16,
             "notes": [
               "section sizes look plausible for the selected strategy"
             ]
@@ -21404,8 +21410,8 @@
           "convention": "isolated titled sections",
           "kind": "titled-section",
           "candidateCount": 93,
-          "tocLikeCount": 10,
-          "bodyLikeCount": 83,
+          "tocLikeCount": 12,
+          "bodyLikeCount": 81,
           "examples": [
             "L14: _Illustrated by Frank T. Merrill_",
             "L17: _Illustrated by Frank T. Merrill_",
@@ -21416,34 +21422,34 @@
           ],
           "bodyExamples": [
             "L53: [Illustration: \"TAKE RICKIE: HE BEAT, TOO, AS MUCH AS I.\"]",
-            "L185: \"TAKE RICKIE! HE BEAT TOO, AS MUCH AS I.\" _Frontispiece_",
-            "L209: _Five Little Peppers at School_",
             "L247: \"Who--Dave?\"",
             "L309: Berry?\"",
             "L617: Ricketson against Tom Beresford and Lawrence Greene, otherwise \"Larry.\"",
             "L642: Tippety Rippety! Hi! Hi!\"",
-            "L860: \"_Joel Pepper!_\""
+            "L860: \"_Joel Pepper!_\"",
+            "L872: \"Why?\"",
+            "L897: Coventry.\""
           ],
           "tocExamples": [
             "L14: _Illustrated by Frank T. Merrill_",
             "L17: _Illustrated by Frank T. Merrill_",
             "L23: _Twelve Volumes Illustrated_",
             "L95: _Fifty-fourth Thousand._",
+            "L185: \"TAKE RICKIE! HE BEAT TOO, AS MUCH AS I.\" _Frontispiece_",
+            "L209: _Five Little Peppers at School_",
             "L1032: Joel.\"",
-            "L1848: Salisbury.\"",
-            "L2166: Polly.\"",
-            "L2379: Polly.\""
+            "L1848: Salisbury.\""
           ],
           "score": 0.7010000000000001,
           "confidence": "medium",
           "selected": false,
           "rejectionReason": "weaker than selected strategy all-caps-title",
           "sectionSizeNotes": {
-            "sectionCount": 83,
+            "sectionCount": 81,
             "minimumWords": 1,
-            "medianWords": 461,
+            "medianWords": 527,
             "maximumWords": 5560,
-            "averageWords": 1021,
+            "averageWords": 1046,
             "hugeSectionCount": 0,
             "tinySectionCount": 9,
             "notes": [
@@ -21542,8 +21548,8 @@
         "convention": "story or titled-section headings",
         "kind": "story-title",
         "candidateCount": 97,
-        "tocLikeCount": 44,
-        "bodyLikeCount": 52,
+        "tocLikeCount": 48,
+        "bodyLikeCount": 48,
         "examples": [
           "L6: FIVE LITTLE PEPPERS AT SCHOOL",
           "L9: BOOKS BY",
@@ -21577,13 +21583,13 @@
         "selected": true,
         "rejectionReason": null,
         "sectionSizeNotes": {
-          "sectionCount": 52,
+          "sectionCount": 48,
           "minimumWords": 1,
-          "medianWords": 1298,
+          "medianWords": 1997,
           "maximumWords": 5230,
-          "averageWords": 1632,
+          "averageWords": 1768,
           "hugeSectionCount": 0,
-          "tinySectionCount": 18,
+          "tinySectionCount": 16,
           "notes": [
             "section sizes look plausible for the selected strategy"
           ]
@@ -21594,8 +21600,8 @@
           "patternId": "isolated-title-case",
           "convention": "isolated titled sections",
           "candidateCount": 93,
-          "bodyLikeCount": 83,
-          "tocLikeCount": 10,
+          "bodyLikeCount": 81,
+          "tocLikeCount": 12,
           "reason": "weaker than selected strategy all-caps-title"
         },
         {
@@ -21615,7 +21621,7 @@
           "reason": "weaker than selected strategy all-caps-title"
         }
       ],
-      "estimatedSectionCount": 52,
+      "estimatedSectionCount": 48,
       "fallbackRequired": false,
       "fallbackReason": null,
       "fallbackLegitimacy": "not required",
@@ -21642,13 +21648,13 @@
         "L29: FIVE LITTLE PEPPERS GROWN UP"
       ],
       "sectionSizeSanityNotes": {
-        "sectionCount": 52,
+        "sectionCount": 48,
         "minimumWords": 1,
-        "medianWords": 1298,
+        "medianWords": 1997,
         "maximumWords": 5230,
-        "averageWords": 1632,
+        "averageWords": 1768,
         "hugeSectionCount": 0,
-        "tinySectionCount": 18,
+        "tinySectionCount": 16,
         "notes": [
           "section sizes look plausible for the selected strategy"
         ]
@@ -39558,7 +39564,7 @@
       "rejectedHeadingStrategies": [],
       "estimatedSectionCount": 0,
       "fallbackRequired": true,
-      "fallbackReason": "no plausible chapter, section, story, play, date, or titled-section headings were detected",
+      "fallbackReason": "no plausible chapter, section, story, play, date, letter, or titled-section headings were detected",
       "fallbackLegitimacy": "legitimate",
       "likelyTocHeadingsDetected": false,
       "likelyBodyHeadingsDetected": false,
@@ -50727,8 +50733,8 @@
           "convention": "story or titled-section headings",
           "kind": "story-title",
           "candidateCount": 154,
-          "tocLikeCount": 3,
-          "bodyLikeCount": 151,
+          "tocLikeCount": 4,
+          "bodyLikeCount": 150,
           "examples": [
             "L10: COMPLETE IN TWO PARTS",
             "L21: TO DOCTOR",
@@ -50738,18 +50744,19 @@
             "L311: TO DOCTOR ———"
           ],
           "bodyExamples": [
-            "L93: ILLUSTRATIONS",
             "L305: G. H. MAYNADIER",
             "L311: TO DOCTOR ———",
             "L455: THE AUTHOR.",
             "L460: SOME SAGE OBSERVATIONS THAT NATURALLY INTRODUCE OUR IMPORTANT HISTORY.",
             "L610: A SUPERFICIAL VIEW OF OUR HERO’S INFANCY.",
             "L712: HE IS INITIATED IN A MILITARY LIFE, AND HAS THE GOOD FORTUNE TO ACQUIRE",
-            "L713: A GENEROUS PATRON."
+            "L713: A GENEROUS PATRON.",
+            "L827: HIS MOTHER’S PROWESS AND DEATH; TOGETHER WITH SOME INSTANCES OF HIS OWN"
           ],
           "tocExamples": [
             "L10: COMPLETE IN TWO PARTS",
             "L21: TO DOCTOR",
+            "L93: ILLUSTRATIONS",
             "L308: THE ADVENTURES OF FERDINAND COUNT FATHOM"
           ],
           "score": 0.901,
@@ -50757,11 +50764,11 @@
           "selected": true,
           "rejectionReason": null,
           "sectionSizeNotes": {
-            "sectionCount": 151,
+            "sectionCount": 150,
             "minimumWords": 2,
             "medianWords": 171,
             "maximumWords": 7134,
-            "averageWords": 1069,
+            "averageWords": 1062,
             "hugeSectionCount": 0,
             "tinySectionCount": 74,
             "notes": [
@@ -50913,36 +50920,24 @@
           "convention": "front/back matter headings",
           "kind": "front-back-matter",
           "candidateCount": 3,
-          "tocLikeCount": 2,
-          "bodyLikeCount": 1,
+          "tocLikeCount": 3,
+          "bodyLikeCount": 0,
           "examples": [
             "L16: CONTENTS",
             "L18: INTRODUCTION",
             "L104: INTRODUCTION"
           ],
-          "bodyExamples": [
-            "L104: INTRODUCTION"
-          ],
+          "bodyExamples": [],
           "tocExamples": [
             "L16: CONTENTS",
-            "L18: INTRODUCTION"
+            "L18: INTRODUCTION",
+            "L104: INTRODUCTION"
           ],
           "score": 0,
           "confidence": "blocked",
           "selected": false,
-          "rejectionReason": "weaker than selected strategy all-caps-title",
-          "sectionSizeNotes": {
-            "sectionCount": 1,
-            "minimumWords": 161455,
-            "medianWords": 161455,
-            "maximumWords": 161455,
-            "averageWords": 161455,
-            "hugeSectionCount": 1,
-            "tinySectionCount": 0,
-            "notes": [
-              "1 section(s) exceed 18000 words"
-            ]
-          }
+          "rejectionReason": "rejected as TOC-like or front-matter-only evidence",
+          "sectionSizeNotes": null
         }
       ],
       "selectedHeadingStrategy": {
@@ -50951,8 +50946,8 @@
         "convention": "story or titled-section headings",
         "kind": "story-title",
         "candidateCount": 154,
-        "tocLikeCount": 3,
-        "bodyLikeCount": 151,
+        "tocLikeCount": 4,
+        "bodyLikeCount": 150,
         "examples": [
           "L10: COMPLETE IN TWO PARTS",
           "L21: TO DOCTOR",
@@ -50962,18 +50957,19 @@
           "L311: TO DOCTOR ———"
         ],
         "bodyExamples": [
-          "L93: ILLUSTRATIONS",
           "L305: G. H. MAYNADIER",
           "L311: TO DOCTOR ———",
           "L455: THE AUTHOR.",
           "L460: SOME SAGE OBSERVATIONS THAT NATURALLY INTRODUCE OUR IMPORTANT HISTORY.",
           "L610: A SUPERFICIAL VIEW OF OUR HERO’S INFANCY.",
           "L712: HE IS INITIATED IN A MILITARY LIFE, AND HAS THE GOOD FORTUNE TO ACQUIRE",
-          "L713: A GENEROUS PATRON."
+          "L713: A GENEROUS PATRON.",
+          "L827: HIS MOTHER’S PROWESS AND DEATH; TOGETHER WITH SOME INSTANCES OF HIS OWN"
         ],
         "tocExamples": [
           "L10: COMPLETE IN TWO PARTS",
           "L21: TO DOCTOR",
+          "L93: ILLUSTRATIONS",
           "L308: THE ADVENTURES OF FERDINAND COUNT FATHOM"
         ],
         "score": 0.901,
@@ -50981,11 +50977,11 @@
         "selected": true,
         "rejectionReason": null,
         "sectionSizeNotes": {
-          "sectionCount": 151,
+          "sectionCount": 150,
           "minimumWords": 2,
           "medianWords": 171,
           "maximumWords": 7134,
-          "averageWords": 1069,
+          "averageWords": 1062,
           "hugeSectionCount": 0,
           "tinySectionCount": 74,
           "notes": [
@@ -51023,38 +51019,39 @@
           "patternId": "special-front-back",
           "convention": "front/back matter headings",
           "candidateCount": 3,
-          "bodyLikeCount": 1,
-          "tocLikeCount": 2,
-          "reason": "weaker than selected strategy all-caps-title"
+          "bodyLikeCount": 0,
+          "tocLikeCount": 3,
+          "reason": "rejected as TOC-like or front-matter-only evidence"
         }
       ],
-      "estimatedSectionCount": 151,
+      "estimatedSectionCount": 150,
       "fallbackRequired": false,
       "fallbackReason": null,
       "fallbackLegitimacy": "not required",
       "likelyTocHeadingsDetected": true,
       "likelyBodyHeadingsDetected": true,
       "examplesOfDetectedBodyHeadings": [
-        "L93: ILLUSTRATIONS",
         "L305: G. H. MAYNADIER",
         "L311: TO DOCTOR ———",
         "L455: THE AUTHOR.",
         "L460: SOME SAGE OBSERVATIONS THAT NATURALLY INTRODUCE OUR IMPORTANT HISTORY.",
         "L610: A SUPERFICIAL VIEW OF OUR HERO’S INFANCY.",
         "L712: HE IS INITIATED IN A MILITARY LIFE, AND HAS THE GOOD FORTUNE TO ACQUIRE",
-        "L713: A GENEROUS PATRON."
+        "L713: A GENEROUS PATRON.",
+        "L827: HIS MOTHER’S PROWESS AND DEATH; TOGETHER WITH SOME INSTANCES OF HIS OWN"
       ],
       "examplesOfRejectedTocLikeHeadings": [
         "L10: COMPLETE IN TWO PARTS",
         "L21: TO DOCTOR",
+        "L93: ILLUSTRATIONS",
         "L308: THE ADVENTURES OF FERDINAND COUNT FATHOM"
       ],
       "sectionSizeSanityNotes": {
-        "sectionCount": 151,
+        "sectionCount": 150,
         "minimumWords": 2,
         "medianWords": 171,
         "maximumWords": 7134,
-        "averageWords": 1069,
+        "averageWords": 1062,
         "hugeSectionCount": 0,
         "tinySectionCount": 74,
         "notes": [
@@ -81019,8 +81016,8 @@
           "convention": "story or titled-section headings",
           "kind": "story-title",
           "candidateCount": 33,
-          "tocLikeCount": 5,
-          "bodyLikeCount": 28,
+          "tocLikeCount": 6,
+          "bodyLikeCount": 27,
           "examples": [
             "L1: THE LEAVENWORTH CASE",
             "L3: A LAWYER’S STORY",
@@ -81032,30 +81029,31 @@
           "bodyExamples": [
             "L1: THE LEAVENWORTH CASE",
             "L3: A LAWYER’S STORY",
-            "L119: PAGE",
             "L470: FOOTNOTE:",
             "L1958: OTWAY.",
             "L3687: SHOCKING MURDER",
             "L3689: MR. LEAVENWORTH, THE WELL-KNOWN MILLIONAIRE, FOUND DEAD IN HIS",
-            "L3690: ROOM"
+            "L3690: ROOM",
+            "L3692: NO CLUE TO THE PERPETRATOR OF THE DEED"
           ],
           "tocExamples": [
             "L18: THE PROBLEM",
             "L20: PAGE",
             "L51: HENRY CLAVERING",
             "L82: HANNAH",
-            "L101: THE PROBLEM SOLVED"
+            "L101: THE PROBLEM SOLVED",
+            "L119: PAGE"
           ],
           "score": 0.8310000000000001,
           "confidence": "high",
           "selected": false,
           "rejectionReason": "weaker than selected strategy roman-numbered-title",
           "sectionSizeNotes": {
-            "sectionCount": 28,
+            "sectionCount": 27,
             "minimumWords": 1,
-            "medianWords": 231,
+            "medianWords": 115,
             "maximumWords": 24084,
-            "averageWords": 4008,
+            "averageWords": 4156,
             "hugeSectionCount": 2,
             "tinySectionCount": 13,
             "notes": [
@@ -81117,8 +81115,8 @@
           "convention": "isolated titled sections",
           "kind": "titled-section",
           "candidateCount": 158,
-          "tocLikeCount": 6,
-          "bodyLikeCount": 152,
+          "tocLikeCount": 7,
+          "bodyLikeCount": 151,
           "examples": [
             "L6: By Anna Katharine Green",
             "L116: Illustrations",
@@ -81129,15 +81127,16 @@
           ],
           "bodyExamples": [
             "L6: By Anna Katharine Green",
-            "L116: Illustrations",
             "L233: “Dead?”",
             "L235: “Stone-dead.”",
             "L673: “Yes, sir; I and Mr. Harwell.”",
             "L675: “And who is Mr. Harwell?”",
             "L874: “Not Miss Mary?”",
-            "L896: “United?”"
+            "L896: “United?”",
+            "L1010: “James Trueman Harwell.”"
           ],
           "tocExamples": [
+            "L116: Illustrations",
             "L671: Leavenworth?”",
             "L1172: “Immediately.”",
             "L1194: “Well?”",
@@ -81150,11 +81149,11 @@
           "selected": false,
           "rejectionReason": "weaker than selected strategy roman-numbered-title",
           "sectionSizeNotes": {
-            "sectionCount": 152,
+            "sectionCount": 151,
             "minimumWords": 1,
             "medianWords": 249,
             "maximumWords": 7671,
-            "averageWords": 738,
+            "averageWords": 743,
             "hugeSectionCount": 0,
             "tinySectionCount": 41,
             "notes": [
@@ -81250,8 +81249,8 @@
           "patternId": "all-caps-title",
           "convention": "story or titled-section headings",
           "candidateCount": 33,
-          "bodyLikeCount": 28,
-          "tocLikeCount": 5,
+          "bodyLikeCount": 27,
+          "tocLikeCount": 6,
           "reason": "weaker than selected strategy roman-numbered-title"
         },
         {
@@ -81266,8 +81265,8 @@
           "patternId": "isolated-title-case",
           "convention": "isolated titled sections",
           "candidateCount": 158,
-          "bodyLikeCount": 152,
-          "tocLikeCount": 6,
+          "bodyLikeCount": 151,
+          "tocLikeCount": 7,
           "reason": "weaker than selected strategy roman-numbered-title"
         },
         {
@@ -92292,7 +92291,7 @@
           "convention": "story or titled-section headings",
           "kind": "story-title",
           "candidateCount": 195,
-          "tocLikeCount": 187,
+          "tocLikeCount": 188,
           "bodyLikeCount": 7,
           "examples": [
             "L4: THE PRINCE AND THE PAUPER",
@@ -92313,13 +92312,13 @@
           ],
           "tocExamples": [
             "L59: ILLUSTRATIONS",
+            "L63: THE BIRTH OF THE PRINCE AND THE PAUPER",
             "L65: “SPLENDID PAGEANTS AND GREAT BONFIRES”",
             "L67: TOM’S EARLY LIFE",
             "L69: OFFAL COURT",
             "L71: “WITH ANY MISERABLE CRUST”",
             "L73: “HE OFTEN READ THE PRIEST’S BOOKS”",
-            "L75: “SAW POOR ANNE ASKEW BURNED”",
-            "L77: “BROUGHT THEIR PERPLEXITIES TO TOM”"
+            "L75: “SAW POOR ANNE ASKEW BURNED”"
           ],
           "score": 0.751,
           "confidence": "medium",
@@ -92538,7 +92537,7 @@
           "convention": "story or titled-section headings",
           "candidateCount": 195,
           "bodyLikeCount": 7,
-          "tocLikeCount": 187,
+          "tocLikeCount": 188,
           "reason": "weaker than selected strategy chapter-roman"
         },
         {
@@ -92592,13 +92591,13 @@
       ],
       "examplesOfRejectedTocLikeHeadings": [
         "L59: ILLUSTRATIONS",
+        "L63: THE BIRTH OF THE PRINCE AND THE PAUPER",
         "L65: “SPLENDID PAGEANTS AND GREAT BONFIRES”",
         "L67: TOM’S EARLY LIFE",
         "L69: OFFAL COURT",
         "L71: “WITH ANY MISERABLE CRUST”",
         "L73: “HE OFTEN READ THE PRIEST’S BOOKS”",
         "L75: “SAW POOR ANNE ASKEW BURNED”",
-        "L77: “BROUGHT THEIR PERPLEXITIES TO TOM”",
         "L61: THE GREAT SEAL (frontispiece)",
         "L1287: Lord Hertford said--"
       ],
@@ -114155,8 +114154,8 @@
           "convention": "story or titled-section headings",
           "kind": "story-title",
           "candidateCount": 22,
-          "tocLikeCount": 6,
-          "bodyLikeCount": 16,
+          "tocLikeCount": 8,
+          "bodyLikeCount": 14,
           "examples": [
             "L8: THE WATER-BABIES",
             "L12: BY CHARLES KINGSLEY",
@@ -114173,7 +114172,7 @@
             "L41: TO ALL OTHER GOOD LITTLE BOYS",
             "L44: COME READ ME MY RIDDLE, EACH GOOD LITTLE MAN;",
             "L45: IF YOU CANNOT READ IT, NO GROWN-UP FOLK CAN.",
-            "L48: ILLUSTRATIONS"
+            "L967: SPENSER."
           ],
           "tocExamples": [
             "L12: BY CHARLES KINGSLEY",
@@ -114181,6 +114180,8 @@
             "L15: WARWICK GOBLE",
             "L17: MACMILLAN AND CO., LIMITED",
             "L18: ST. MARTIN'S STREET, LONDON",
+            "L48: ILLUSTRATIONS",
+            "L50: FACING PAGE",
             "L101: WORDSWORTH."
           ],
           "score": 0.901,
@@ -114188,16 +114189,15 @@
           "selected": true,
           "rejectionReason": null,
           "sectionSizeNotes": {
-            "sectionCount": 16,
-            "minimumWords": 1,
-            "medianWords": 572,
+            "sectionCount": 14,
+            "minimumWords": 3,
+            "medianWords": 6442,
             "maximumWords": 17113,
-            "averageWords": 4306,
+            "averageWords": 4921,
             "hugeSectionCount": 0,
-            "tinySectionCount": 8,
+            "tinySectionCount": 6,
             "notes": [
-              "many very small sections; headings may include TOC, captions, or fragments",
-              "largest section is much bigger than the median section"
+              "many very small sections; headings may include TOC, captions, or fragments"
             ]
           }
         },
@@ -114250,8 +114250,8 @@
           "convention": "isolated titled sections",
           "kind": "titled-section",
           "candidateCount": 91,
-          "tocLikeCount": 2,
-          "bodyLikeCount": 88,
+          "tocLikeCount": 3,
+          "bodyLikeCount": 87,
           "examples": [
             "L1: [Illustration: Cover]",
             "L5: (_Frontispiece_)]",
@@ -114266,24 +114266,25 @@
             "L10: A Fairy Tale for a Land-Baby",
             "L25: _With 16 Illustrations in Colour by Warwick Goble, Demy 8vo, October",
             "L27: _Reprinted November 1910, 1912_",
-            "L86: \"That's Mother Carey\" 219",
             "L366: Remember.\"",
-            "L471: _The second Cinque-cento._"
+            "L471: _The second Cinque-cento._",
+            "L473: _The first-floor Elizabethan._"
           ],
           "tocExamples": [
             "L22: _First Published 1863_",
-            "L23: _Edition with 32 Illustrations in Colour by Warwick Goble, Crown"
+            "L23: _Edition with 32 Illustrations in Colour by Warwick Goble, Crown",
+            "L86: \"That's Mother Carey\" 219"
           ],
           "score": 0.631,
           "confidence": "medium",
           "selected": false,
           "rejectionReason": "weaker than selected strategy all-caps-title",
           "sectionSizeNotes": {
-            "sectionCount": 88,
+            "sectionCount": 87,
             "minimumWords": 1,
-            "medianWords": 5,
+            "medianWords": 4,
             "maximumWords": 10010,
-            "averageWords": 783,
+            "averageWords": 792,
             "hugeSectionCount": 0,
             "tinySectionCount": 65,
             "notes": [
@@ -114395,8 +114396,8 @@
         "convention": "story or titled-section headings",
         "kind": "story-title",
         "candidateCount": 22,
-        "tocLikeCount": 6,
-        "bodyLikeCount": 16,
+        "tocLikeCount": 8,
+        "bodyLikeCount": 14,
         "examples": [
           "L8: THE WATER-BABIES",
           "L12: BY CHARLES KINGSLEY",
@@ -114413,7 +114414,7 @@
           "L41: TO ALL OTHER GOOD LITTLE BOYS",
           "L44: COME READ ME MY RIDDLE, EACH GOOD LITTLE MAN;",
           "L45: IF YOU CANNOT READ IT, NO GROWN-UP FOLK CAN.",
-          "L48: ILLUSTRATIONS"
+          "L967: SPENSER."
         ],
         "tocExamples": [
           "L12: BY CHARLES KINGSLEY",
@@ -114421,6 +114422,8 @@
           "L15: WARWICK GOBLE",
           "L17: MACMILLAN AND CO., LIMITED",
           "L18: ST. MARTIN'S STREET, LONDON",
+          "L48: ILLUSTRATIONS",
+          "L50: FACING PAGE",
           "L101: WORDSWORTH."
         ],
         "score": 0.901,
@@ -114428,16 +114431,15 @@
         "selected": true,
         "rejectionReason": null,
         "sectionSizeNotes": {
-          "sectionCount": 16,
-          "minimumWords": 1,
-          "medianWords": 572,
+          "sectionCount": 14,
+          "minimumWords": 3,
+          "medianWords": 6442,
           "maximumWords": 17113,
-          "averageWords": 4306,
+          "averageWords": 4921,
           "hugeSectionCount": 0,
-          "tinySectionCount": 8,
+          "tinySectionCount": 6,
           "notes": [
-            "many very small sections; headings may include TOC, captions, or fragments",
-            "largest section is much bigger than the median section"
+            "many very small sections; headings may include TOC, captions, or fragments"
           ]
         }
       },
@@ -114454,8 +114456,8 @@
           "patternId": "isolated-title-case",
           "convention": "isolated titled sections",
           "candidateCount": 91,
-          "bodyLikeCount": 88,
-          "tocLikeCount": 2,
+          "bodyLikeCount": 87,
+          "tocLikeCount": 3,
           "reason": "weaker than selected strategy all-caps-title"
         },
         {
@@ -114483,7 +114485,7 @@
           "reason": "rejected as TOC-like or front-matter-only evidence"
         }
       ],
-      "estimatedSectionCount": 16,
+      "estimatedSectionCount": 14,
       "fallbackRequired": false,
       "fallbackReason": null,
       "fallbackLegitimacy": "not required",
@@ -114497,7 +114499,7 @@
         "L41: TO ALL OTHER GOOD LITTLE BOYS",
         "L44: COME READ ME MY RIDDLE, EACH GOOD LITTLE MAN;",
         "L45: IF YOU CANNOT READ IT, NO GROWN-UP FOLK CAN.",
-        "L48: ILLUSTRATIONS"
+        "L967: SPENSER."
       ],
       "examplesOfRejectedTocLikeHeadings": [
         "L12: BY CHARLES KINGSLEY",
@@ -114505,19 +114507,20 @@
         "L15: WARWICK GOBLE",
         "L17: MACMILLAN AND CO., LIMITED",
         "L18: ST. MARTIN'S STREET, LONDON",
+        "L48: ILLUSTRATIONS",
+        "L50: FACING PAGE",
         "L101: WORDSWORTH."
       ],
       "sectionSizeSanityNotes": {
-        "sectionCount": 16,
-        "minimumWords": 1,
-        "medianWords": 572,
+        "sectionCount": 14,
+        "minimumWords": 3,
+        "medianWords": 6442,
         "maximumWords": 17113,
-        "averageWords": 4306,
+        "averageWords": 4921,
         "hugeSectionCount": 0,
-        "tinySectionCount": 8,
+        "tinySectionCount": 6,
         "notes": [
-          "many very small sections; headings may include TOC, captions, or fragments",
-          "largest section is much bigger than the median section"
+          "many very small sections; headings may include TOC, captions, or fragments"
         ]
       },
       "startBoundaryConfidence": "high",
@@ -116361,8 +116364,8 @@
           "convention": "story or titled-section headings",
           "kind": "story-title",
           "candidateCount": 31,
-          "tocLikeCount": 9,
-          "bodyLikeCount": 22,
+          "tocLikeCount": 10,
+          "bodyLikeCount": 21,
           "examples": [
             "L9: THE WIND IN THE WILLOWS",
             "L14: THE WIND",
@@ -116374,12 +116377,12 @@
           "bodyExamples": [
             "L9: THE WIND IN THE WILLOWS",
             "L14: THE WIND",
-            "L67: ILLUSTRATIONS",
             "L96: THE RIVER BANK",
             "L583: THE OPEN ROAD",
             "L603: \"DUCKS' DITTY.\"",
             "L1046: THE WILD WOOD",
-            "L1521: MR. BADGER"
+            "L1521: MR. BADGER",
+            "L1998: DULCE DOMUM"
           ],
           "tocExamples": [
             "L15: IN THE WILLOWS",
@@ -116396,11 +116399,11 @@
           "selected": false,
           "rejectionReason": "weaker than selected strategy roman-only",
           "sectionSizeNotes": {
-            "sectionCount": 22,
+            "sectionCount": 21,
             "minimumWords": 6,
             "medianWords": 3778,
             "maximumWords": 6116,
-            "averageWords": 2689,
+            "averageWords": 2817,
             "hugeSectionCount": 0,
             "tinySectionCount": 4,
             "notes": [
@@ -116414,8 +116417,8 @@
           "convention": "isolated titled sections",
           "kind": "titled-section",
           "candidateCount": 36,
-          "tocLikeCount": 6,
-          "bodyLikeCount": 30,
+          "tocLikeCount": 9,
+          "bodyLikeCount": 27,
           "examples": [
             "L3: by The Internet Archive/American Libraries.)",
             "L6: [Illustration: Front Cover]",
@@ -116428,32 +116431,34 @@
             "L3: by The Internet Archive/American Libraries.)",
             "L6: [Illustration: Front Cover]",
             "L11: [Illustration: _The Piper at the Gates of Dawn_]",
-            "L70: The Piper at the Gates of Dawn _Frontispiece_",
-            "L72: Facing Page",
-            "L74: It was the Water Rat 8",
             "L209: [Illustration: _It was the Water Rat_]",
-            "L280: So--this--is--a--River!\""
+            "L280: So--this--is--a--River!\"",
+            "L393: friend Mr. Mole.\"",
+            "L1506: Ratty--\"",
+            "L4296: Rat_]"
           ],
           "tocExamples": [
             "L23: [Illustration: Front Fly Leaf",
             "L26: [Illustration]",
             "L34: _Published October, 1913_",
+            "L70: The Piper at the Gates of Dawn _Frontispiece_",
+            "L72: Facing Page",
+            "L74: It was the Water Rat 8",
             "L181: It was the Water Rat!",
-            "L444: Toad....\"",
-            "L673: Toad.\""
+            "L444: Toad....\""
           ],
           "score": 0.631,
           "confidence": "medium",
           "selected": false,
           "rejectionReason": "weaker than selected strategy roman-only",
           "sectionSizeNotes": {
-            "sectionCount": 30,
-            "minimumWords": 2,
-            "medianWords": 272,
+            "sectionCount": 27,
+            "minimumWords": 5,
+            "medianWords": 394,
             "maximumWords": 26869,
-            "averageWords": 1972,
+            "averageWords": 2191,
             "hugeSectionCount": 1,
-            "tinySectionCount": 14,
+            "tinySectionCount": 12,
             "notes": [
               "1 section(s) exceed 18000 words",
               "many very small sections; headings may include TOC, captions, or fragments",
@@ -116581,16 +116586,16 @@
           "patternId": "all-caps-title",
           "convention": "story or titled-section headings",
           "candidateCount": 31,
-          "bodyLikeCount": 22,
-          "tocLikeCount": 9,
+          "bodyLikeCount": 21,
+          "tocLikeCount": 10,
           "reason": "weaker than selected strategy roman-only"
         },
         {
           "patternId": "isolated-title-case",
           "convention": "isolated titled sections",
           "candidateCount": 36,
-          "bodyLikeCount": 30,
-          "tocLikeCount": 6,
+          "bodyLikeCount": 27,
+          "tocLikeCount": 9,
           "reason": "weaker than selected strategy roman-only"
         },
         {

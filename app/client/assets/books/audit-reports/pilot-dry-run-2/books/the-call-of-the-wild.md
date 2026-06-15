@@ -68,6 +68,35 @@
 - L3116: Gutenberg™ electronic works to protect the PROJECT GUTENBERG™
 - L3117: concept and trademark. Project Gutenberg is a registered trademark,
 
+## Structure Detection
+
+- Detected structural convention: chapter-based roman numerals
+- Selected heading strategy: chapter-roman
+- TOC entries detected: yes
+- Body headings detected: yes
+- Section count from selected strategy: 7
+- Fallback used: no
+- Fallback legitimacy: not required
+- Fallback reason: not required
+- Structure detection status: pass
+
+### Candidate Heading Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| chapter-roman | 7 | 7 | 0 | yes |  |
+| isolated-title-case | 4 | 4 | 0 | no | weaker than selected strategy chapter-roman |
+
+### Rejected Heading Strategies
+
+| Pattern | Candidates | Body-like | TOC-like | Reason |
+| --- | ---: | ---: | ---: | --- |
+| isolated-title-case | 4 | 4 | 0 | weaker than selected strategy chapter-roman |
+
+### Structure Warnings
+
+- None.
+
 ## Proposed Sections
 
 - Total proposed sections: 7
